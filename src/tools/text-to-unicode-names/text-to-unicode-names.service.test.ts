@@ -1,7 +1,10 @@
+import { readFile } from 'node:fs/promises';
 import { describe, expect, it } from 'vitest';
-import { convertTextToUnicodeNames } from './text-to-unicode-names.service';
+import { DATA_FILE_NAME, initUnicodeNames } from './text-to-unicode-names.service';
 
-describe('text-to-unicode-names', () => {
+describe('text-to-unicode-names', async () => {
+  const convertTextToUnicodeNames = await initUnicodeNames(readFile(`./public/${DATA_FILE_NAME}`));
+
   describe('convertTextToUnicodeNames', () => {
     it('a text string is converted to its unicode names representation', () => {
       expect(convertTextToUnicodeNames('A')).toBe(
@@ -18,6 +21,10 @@ describe('text-to-unicode-names', () => {
     it('the separator between octets can be changed', () => {
       expect(convertTextToUnicodeNames('hello', { separator: ' ; ' })).toBe(
         'h (U+0068: LATIN SMALL LETTER H) ; e (U+0065: LATIN SMALL LETTER E) ; l (U+006C: LATIN SMALL LETTER L) ; l (U+006C: LATIN SMALL LETTER L) ; o (U+006F: LATIN SMALL LETTER O)');
+    });
+    it('returns "UNKNOWN CHARACTER" for unassigned code points', () => {
+      expect(convertTextToUnicodeNames(String.fromCodePoint(0x10FFFF))).toBe(
+        '\u{10FFFF} (U+10FFFF: UNKNOWN CHARACTER)');
     });
   });
 });

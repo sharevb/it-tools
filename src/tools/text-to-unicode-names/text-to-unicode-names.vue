@@ -1,8 +1,15 @@
 <script setup lang="ts">
-import { convertTextToUnicodeNames } from './text-to-unicode-names.service';
+import { DATA_FILE_NAME, initUnicodeNames } from './text-to-unicode-names.service';
+
+const unicodeNamesPromise = initUnicodeNames(
+  fetch(new URL(DATA_FILE_NAME, window.location.origin)),
+);
 
 const inputText = ref('');
-const unicodeNamesFromText = computed(() => convertTextToUnicodeNames(inputText.value, { separator: '\n' }));
+const unicodeNamesFromText = asyncComputed(async () => {
+  const input = inputText.value;
+  return (await unicodeNamesPromise)(input, { separator: '\n' });
+}, '');
 </script>
 
 <template>
