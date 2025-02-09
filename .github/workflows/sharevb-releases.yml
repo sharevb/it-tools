@@ -2,6 +2,8 @@ name: Release new versions
 
 on:
   push:
+    branches:
+      - chore/all-my-stuffs
     tags:
       - 'v*.*.*'
 
