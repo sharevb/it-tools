@@ -170,16 +170,21 @@ export function getCertificateLabelValues(cert: Certificate) {
       })), null, 2),
       multiline: true,
     },
-    {
-      label: 'Fingerprint (sha256):',
-      value: onErrorReturnErrorMessage(() => cert.fingerprint('sha256')),
-      multiline: true,
-    },
-    {
-      label: 'Fingerprint (sha512):',
-      value: onErrorReturnErrorMessage(() => cert.fingerprint('sha512')),
-      multiline: true,
-    },
+    ...['sha1', 'sha256', 'sha512'].flatMap(algorithm =>
+      [
+
+        {
+          label: `Fingerprint (${algorithm}):`,
+          value: onErrorReturnErrorMessage(() => cert.fingerprint(algorithm)),
+          multiline: true,
+        },
+        {
+          label: `Fingerprint HEX (${algorithm}):`,
+          value: onErrorReturnErrorMessage(() => cert.fingerprint(algorithm).toString('hex')),
+          multiline: true,
+        },
+      ],
+    ),
     {
       label: 'Certificate (pem):',
       value: onErrorReturnErrorMessage(() => cert.toString('pem')),
