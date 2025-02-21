@@ -61,7 +61,7 @@ function validateSetup() {
           />
         </div>
       </n-form-item>
-      <n-form-item v-if="['raid_50', 'raid_60'].includes(raidType)" label="Disks per stripe" label-placement="left" label-width="150" mb-2>
+      <n-form-item v-if="['raid_50', 'raid_60', 'raid_70'].includes(raidType)" label="Disks per stripe" label-placement="left" label-width="150" mb-2>
         <n-input-number v-model:value="diskPerStripe" max="10000" min="2" placeholder="Number of disks per stripe (ex: 3)" w-full />
         <n-input v-model:value="totalStripes" placeholder="" readonly ml-1 w-full />
       </n-form-item>
@@ -74,9 +74,11 @@ function validateSetup() {
             { label: 'RAID 1 (mirror)', value: 'raid_1' },
             { label: 'RAID 5 (parity)', value: 'raid_5' },
             { label: 'RAID 6 (double parity)', value: 'raid_6' },
+            { label: 'RAID 7 (triple parity)', value: 'raid_7' },
             { label: 'RAID 10 (mirror + stripe)', value: 'raid_10' },
             { label: 'RAID 50 (parity + stripe)', value: 'raid_50' },
             { label: 'RAID 60 (double parity + stripe)', value: 'raid_60' },
+            { label: 'RAID 70 (triple parity + stripe)', value: 'raid_70' },
           ]"
         />
       </n-form-item>
