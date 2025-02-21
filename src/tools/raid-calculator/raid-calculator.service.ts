@@ -85,6 +85,25 @@ const raidCalculations: { [key: string]: RaidType } = {
       return '2 drive failures';
     },
   },
+  raid_7: {
+    about: 'RAID 7/RAID TP (non-standard) is similiar to RAID 5 and RAID 6 but with a third parity block. This allows for a third disk failure at the cost of storage reduction equal to three drives.',
+    requirements: 'RAID 7 requires at least 5 disks',
+    validate(num: number, _size: number, _stripeSize: number) {
+      return num >= 5;
+    },
+    capacity(num: number, size: number, stripeSize: number, unit: number) {
+      // (N-3) * S (3 parity)
+      return ((num - 3) * size) * unit;
+    },
+    efficiency(num: number, _stripeSize: number) {
+      // 1 - (3/N)
+      return (1 - (3 / num)) * 100;
+    },
+    fault(_num: number, _size: number, _unit: number) {
+      // always 3 drive failures
+      return '3 drive failures';
+    },
+  },
   raid_10: {
     about: 'RAID 10 is a stripe of mirrors (RAID 1 + RAID 0). Each set of drives is mirrored and striped together so that each drive in the set is fault tolerant within the group.',
     requirements: 'RAID 10 requires an even number of at least 4 disks',
@@ -146,6 +165,28 @@ const raidCalculations: { [key: string]: RaidType } = {
     fault(_num: number, _size: number, _unit: number) {
       // 2 per set
       return '2 drive failures per RAID 6 set';
+    },
+  },
+  raid_70: {
+    about: 'RAID 70 stripes multiple RAID 7 arrays together (RAID 7 + RAID 0). Each RAID 7 set can sustain a three drive failures.',
+    requirements: 'RAID 70 requires at least 10 disks with 5 minimum per stripe. Stripes must contain an equal number of disks.',
+    validate(num: number, size: number, stripeSize: number) {
+      return num >= 10 && stripeSize >= 5 && num % stripeSize === 0;
+    },
+    capacity(num: number, size: number, stripeSize: number, unit: number) {
+      // RAID 7 per stripe
+      const perStripe = ((stripeSize - 3) * size) * unit;
+
+      // sum each stripe
+      return perStripe * (num / stripeSize);
+    },
+    efficiency(num: number, stripeSize: number) {
+      // 1 - (3 / strips per stripe)
+      return (1 - (3 / stripeSize)) * 100;
+    },
+    fault(_num: number, _size: number, _unit: number) {
+      // 2 per set
+      return '3 drive failures per RAID 7 set';
     },
   },
 };
