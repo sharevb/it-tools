@@ -1,4 +1,5 @@
 import type {
+  AlgorithmHashType,
   Certificate,
   Fingerprint,
   Key,
@@ -175,12 +176,12 @@ export function getCertificateLabelValues(cert: Certificate) {
 
         {
           label: `Fingerprint (${algorithm}):`,
-          value: onErrorReturnErrorMessage(() => cert.fingerprint(algorithm)),
+          value: onErrorReturnErrorMessage(() => cert.fingerprint(algorithm as AlgorithmHashType)),
           multiline: true,
         },
         {
           label: `Fingerprint HEX (${algorithm}):`,
-          value: onErrorReturnErrorMessage(() => cert.fingerprint(algorithm).toString('hex')),
+          value: onErrorReturnErrorMessage(() => cert.fingerprint(algorithm as AlgorithmHashType).toString('hex')),
           multiline: true,
         },
       ],
