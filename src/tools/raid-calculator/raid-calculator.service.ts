@@ -146,7 +146,7 @@ const raidCalculations: { [key: string]: RaidType } = {
     },
   },
   raid_60: {
-    about: 'RAID 60 stripes multiple RAID 6 arrays together (RAID 6 + RAID 0). Each RAID 6 set can sustain a two drive failures.',
+    about: 'RAID 60 stripes multiple RAID 6 arrays together (RAID 6 + RAID 0). Each RAID 6 set can sustain two drive failures.',
     requirements: 'RAID 60 requires at least 8 disks with 4 minimum per stripe. Stripes must contain an equal number of disks.',
     validate(num: number, size: number, stripeSize: number) {
       return num >= 8 && stripeSize >= 4 && num % stripeSize === 0;
@@ -168,7 +168,7 @@ const raidCalculations: { [key: string]: RaidType } = {
     },
   },
   raid_70: {
-    about: 'RAID 70 stripes multiple RAID 7 arrays together (RAID 7 + RAID 0). Each RAID 7 set can sustain a three drive failures.',
+    about: 'RAID 70 stripes multiple RAID 7 arrays together (RAID 7 + RAID 0). Each RAID 7 set can sustain three drive failures.',
     requirements: 'RAID 70 requires at least 10 disks with 5 minimum per stripe. Stripes must contain an equal number of disks.',
     validate(num: number, size: number, stripeSize: number) {
       return num >= 10 && stripeSize >= 5 && num % stripeSize === 0;
