@@ -1,6 +1,8 @@
 import { tool as base64FileConverter } from './base64-file-converter';
 import { tool as base64StringConverter } from './base64-string-converter';
 import { tool as basicAuthGenerator } from './basic-auth-generator';
+import { tool as iesLightingGuidelines } from './ies-lighting-guidelines';
+import { tool as illuminanceConverter } from './illuminance-converter';
 import { tool as imageResizer } from './image-resizer';
 import { tool as multiLinkDownloader } from './multi-link-downloader';
 import { tool as aspectRatioCalculator } from './aspect-ratio-calculator';
@@ -24,7 +26,10 @@ import { tool as areaConverter } from './area-converter';
 import { tool as angleConverter } from './angle-converter';
 import { tool as floatingPointNumberConverter } from './floating-point-number-converter';
 import { tool as snowflakeIdExtractor } from './snowflake-id-extractor';
+import { tool as qrContactInfoGenerator } from './qr-contact-info-generator';
 import { tool as emailNormalizer } from './email-normalizer';
+import { tool as hexConverter } from './hex-converter';
+import { tool as sharepointDecoder } from './sharepoint-decoder';
 import { tool as jwtGenerator } from './jwt-generator';
 import { tool as gptTokenEstimator } from './gpt-token-estimator';
 import { tool as myIp } from './my-ip';
@@ -300,6 +305,7 @@ export const toolsByCategory: ToolCategory[] = [
       timezoneConverter,
       baseConverter,
       floatingPointNumberConverter,
+      hexConverter,
       romanNumeralConverter,
       base64StringConverter,
       base64FileConverter,
@@ -371,6 +377,7 @@ export const toolsByCategory: ToolCategory[] = [
       jsonDiff,
       softwareLicenceCompatibility,
       safelinkDecoder,
+      sharepointDecoder,
       micTester,
       snowflakeIdExtractor,
       apiTester,
@@ -392,6 +399,7 @@ export const toolsByCategory: ToolCategory[] = [
     components: [
       qrCodeGenerator,
       wifiQrCodeGenerator,
+      qrContactInfoGenerator,
       barcodeReader,
       barcodeGenerator,
       heicConverter,
@@ -534,6 +542,8 @@ export const toolsByCategory: ToolCategory[] = [
       energyComputer,
       benchmarkBuilder,
       geoDistanceCalculator,
+      iesLightingGuidelines,
+      illuminanceConverter,
     ],
   },
   {

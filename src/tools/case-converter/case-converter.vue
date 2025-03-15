@@ -4,78 +4,97 @@ import {
   capitalCase,
   constantCase,
   dotCase,
-  headerCase,
+  kebabCase,
   noCase,
-  paramCase,
   pascalCase,
   pathCase,
   sentenceCase,
   snakeCase,
+  trainCase,
 } from 'change-case';
 import InputCopyable from '../../components/InputCopyable.vue';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useValidation } from '@/composable/validation';
 
-const baseConfig = {
-  stripRegexp: /[^A-Za-zÀ-ÖØ-öø-ÿ]+/gi,
-};
+const cleaningRegex = useQueryParamOrStorage({ name: 'clean', storageName: 'case-conv:cl', defaultValue: '[^\\w\\d\\s]' });
+const cleaningRegexValidation = useValidation({
+  source: cleaningRegex,
+  rules: [
+    {
+      message: 'Invalid cleaning regex: {0}',
+      validator: value => new RegExp(value),
+      getErrorMessage: (value) => {
+        const _ = new RegExp(value);
+        return '';
+      },
+    },
+  ],
+});
 
 const input = ref('lorem ipsum dolor sit amet');
+const inputCleaned = computed(() => {
+  if (!cleaningRegexValidation.isValid) {
+    return input.value;
+  }
+  return input.value.replace(new RegExp(cleaningRegex.value, 'g'), '');
+});
 
 const formats = computed(() => [
   {
     label: 'Lowercase:',
-    value: input.value.toLocaleLowerCase(),
+    value: inputCleaned.value.toLocaleLowerCase(),
   },
   {
     label: 'Uppercase:',
-    value: input.value.toLocaleUpperCase(),
+    value: inputCleaned.value.toLocaleUpperCase(),
   },
   {
     label: 'Camelcase:',
-    value: camelCase(input.value, baseConfig),
+    value: camelCase(inputCleaned.value),
   },
   {
     label: 'Capitalcase:',
-    value: capitalCase(input.value, baseConfig),
+    value: capitalCase(inputCleaned.value),
   },
   {
     label: 'Constantcase:',
-    value: constantCase(input.value, baseConfig),
+    value: constantCase(inputCleaned.value),
   },
   {
     label: 'Dotcase:',
-    value: dotCase(input.value, baseConfig),
+    value: dotCase(inputCleaned.value),
   },
   {
-    label: 'Headercase:',
-    value: headerCase(input.value, baseConfig),
+    label: 'Kebab/paramcase:',
+    value: kebabCase(inputCleaned.value),
   },
   {
     label: 'Nocase:',
-    value: noCase(input.value, baseConfig),
+    value: noCase(inputCleaned.value),
   },
   {
-    label: 'Paramcase:',
-    value: paramCase(input.value, baseConfig),
+    label: 'Train/headercase:',
+    value: trainCase(inputCleaned.value),
   },
   {
     label: 'Pascalcase:',
-    value: pascalCase(input.value, baseConfig),
+    value: pascalCase(inputCleaned.value),
   },
   {
     label: 'Pathcase:',
-    value: pathCase(input.value, baseConfig),
+    value: pathCase(inputCleaned.value),
   },
   {
     label: 'Sentencecase:',
-    value: sentenceCase(input.value, baseConfig),
+    value: sentenceCase(inputCleaned.value),
   },
   {
     label: 'Snakecase:',
-    value: snakeCase(input.value, baseConfig),
+    value: snakeCase(inputCleaned.value),
   },
   {
     label: 'Mockingcase:',
-    value: input.value
+    value: inputCleaned.value
       .split('')
       .map((char, index) => (index % 2 === 0 ? char.toUpperCase() : char.toLowerCase()))
       .join(''),
@@ -84,7 +103,7 @@ const formats = computed(() => [
 
 const inputLabelAlignmentConfig = {
   labelPosition: 'left',
-  labelWidth: '120px',
+  labelWidth: '125px',
   labelAlign: 'right',
 };
 </script>
@@ -97,6 +116,16 @@ const inputLabelAlignmentConfig = {
       placeholder="Your string..."
       raw-text
       v-bind="inputLabelAlignmentConfig"
+      mb-1
+    />
+
+    <c-input-text
+      v-model:value="cleaningRegex"
+      label="Cleaning regex:"
+      placeholder="Your cleaning regex..."
+      raw-text
+      v-bind="inputLabelAlignmentConfig"
+      mb-1
     />
 
     <div my-16px divider />
