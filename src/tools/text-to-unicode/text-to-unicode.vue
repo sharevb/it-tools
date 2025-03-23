@@ -4,7 +4,7 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { useCopy } from '@/composable/copy';
 
 const encoding = useQueryParamOrStorage({ name: 'enc', storageName: 'txt-uni:enc', defaultValue: 'htmldec' });
-const skipAscii = useQueryParamOrStorage({ name: 'skipAscii', storageName: 'txt-uni:asc', defaultValue: false });
+const skipAscii = useQueryParamOrStorage({ name: 'skipAscii', storageName: 'txt-uni:asc', defaultValue: true });
 
 const inputText = ref('');
 const unicodeFromText = computed(() => inputText.value.trim() === ''
