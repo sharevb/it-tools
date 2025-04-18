@@ -5,4 +5,4 @@ services:
     pull_policy: always
     restart: unless-stopped
     ports:
-      - 8080:80
+      - 8080:8080       # Since Docker base image is now nginx-unpriviledged, docker image now listen to 8080 and no more 80. 
