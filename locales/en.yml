@@ -483,3 +483,7 @@ tools:
     input:
       label: Your Input
       placeholder: Your UUID with/without hyphen
+
+  ad-ldap-searcher:
+    title: ActiveDirectory LDAP properties searcher
+    description: Search in mapping of LDAP properties and ActiveDirectory UI

@@ -1,10 +1,12 @@
 import { Folder } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
+import { translate } from '@/plugins/i18n.plugin';
+
 export const tool = defineTool({
-  name: 'ActiveDirectory LDAP properties searcher',
+  name: translate('tools.ad-ldap-searcher.title'),
   path: '/ad-ldap-searcher',
-  description: 'Search in mapping of LDAP properties and ActiveDirectory UI',
+  description: translate('tools.ad-ldap-searcher.description'),
   keywords: ['active', 'directory', 'ad', 'ldap', 'prop', 'searcher'],
   component: () => import('./ad-ldap-searcher.vue'),
   icon: Folder,

@@ -476,3 +476,7 @@ tools:
     input:
       label: Ваш ввід
       placeholder: Ваш UUID з/без дефісів
+
+  ad-ldap-searcher:
+    title: Пошук властивостей ActiveDirectory LDAP
+    description: Пошук у відповідності властивостей LDAP та інтерфейсу ActiveDirectory

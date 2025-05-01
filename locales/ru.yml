@@ -473,3 +473,7 @@ tools:
     input:
       label: Ваш ввод
       placeholder: Ваш UUID с/без дефисов
+
+  ad-ldap-searcher:
+    title: ActiveDirectory LDAP properties searcher
+    description: Search in mapping of LDAP properties and ActiveDirectory UI
