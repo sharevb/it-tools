@@ -37,13 +37,13 @@ about:
 
     ## Технологии
 
-    IT Tools выполнен на Vue.js (Vue 3) с использованием библиотеки компонентов Naive UI и развертывается с помощью Vercel. В некоторых инструментах используются сторонние открытые библиотеки, полный список которых вы можете найти в файле [package.json](https://github.com/CorentinTh/it-tools/blob/main/package.json) репозитория.
+    IT Tools выполнен на Vue.js (Vue 3) с использованием библиотеки компонентов Naive UI и развертывается с помощью Vercel. В некоторых инструментах используются сторонние открытые библиотеки, полный список которых вы можете найти в файле [package.json](https://github.com/sharevb/it-tools/blob/main/package.json) репозитория.
 
     ## Нашли баг? Отсутствует инструмент?
 
-    Если вам нужен инструмент, которого пока нет здесь, и вы считаете, что он может быть полезным, вы можете подать запрос на добавление функции в [разделе проблем](https://github.com/CorentinTh/it-tools/issues/new/choose) в репозитории GitHub.
+    Если вам нужен инструмент, которого пока нет здесь, и вы считаете, что он может быть полезным, вы можете подать запрос на добавление функции в [разделе проблем](https://github.com/sharevb/it-tools/issues/new/choose) в репозитории GitHub.
 
-    А если вы нашли баг или что-то не работает, как ожидалось, пожалуйста, подайте отчет о баге в [разделе проблем](https://github.com/CorentinTh/it-tools/issues/new/choose) в репозитории GitHub.
+    А если вы нашли баг или что-то не работает, как ожидалось, пожалуйста, подайте отчет о баге в [разделе проблем](https://github.com/sharevb/it-tools/issues/new/choose) в репозитории GitHub.
 
 404:
   notFound: '404 Страница не найдена'
@@ -391,3 +391,85 @@ tools:
   text-to-binary:
     title: Текст в двоичный ASCII
     description: Конвертируйте текст в его двоичное представление ASCII и наоборот.
+
+  csv-to-json:
+    title: CSV в JSON
+    description: Преобразуйте CSV в JSON с автоматическим обнаружением заголовков.
+
+  json-to-javascript:
+    title: JSON в JS
+    description: Просто конвертируйте JSON в объект JavaScript с помощью этого онлайн-конвертера.
+
+  javascript-to-json:
+    title: JS в JSON
+    description: Просто конвертируйте объект JavaScript в JSON с помощью этого онлайн-конвертера.
+
+  mic-tester:
+    title: Тестер микрофона
+    description: Воспроизводите и визуализируйте звук с вашего микрофона с добавленной задержкой в одну секунду.
+    start-button-text: Начать воспроизведение микрофона
+    stop-button-text: Остановить воспроизведение микрофона
+
+  qr-contact-info-generator:
+    title: Генератор QR-кодов для контактов
+    description: Генерируйте и загружайте QR-коды для контактной информации (vCard) и настраивайте цвета фона и переднего плана.
+
+  json-sort-master:
+    title: Мастер сортировки JSON
+    description: Сортируйте ваш JSON по ключам и значениям.
+
+  json-string-converter:
+    title: Конвертер строк JSON
+    description: Преобразуйте ваш текст или объекты JavaScript в строковый формат JSON и наоборот.
+
+  floating-point-converter:
+    title: Конвертер чисел с плавающей точкой
+    description: Преобразуйте десятичное число в двоичное число с плавающей точкой IEEE 754 или наоборот.
+
+  nanoid-generator:
+    title: Генератор NanoID
+    description: Генерируйте случайные, уникальные и удобные для URL идентификаторы для ваших приложений.
+    uppercase: Заглавные буквы
+    lowercase: Строчные буквы
+    numbers: Числа
+    symbols: Символы
+    excludeLookalikes: Исключить похожие символы
+    length: Длина
+    quantity: Количество
+    copied: NanoID скопирован в буфер обмена
+    button:
+      copy: Копировать
+      refresh: Обновить
+
+  image-resizer:
+    title: Изменение размера изображения
+    description: Изменяйте ширину и высоту изображения, предварительно просматривайте и загружайте его в нужном формате (.jpg, .jpeg, .png, .bmp, .ico, .svg).
+
+  multi-link-downloader:
+    title: Множественный загрузчик ссылок
+    description: Асинхронно загружайте файлы по нескольким ссылкам в zip-архив, а одиночные ссылки загружайте напрямую. (Требуется подключение к интернету)
+
+  unicode-to-java-entities:
+    title: Конвертер символов Unicode в Java-сущности
+    description: Конвертируйте символы Unicode в Java-сущности и наоборот.
+
+  sip-auth:
+    password: SIP пароль
+    password-tips: Введите пароль...
+    message: SIP сообщение
+    message-tips: Вставьте ваше SIP сообщение сюда...
+    result: Результат
+    sucess: Успех
+    failure: Ошибка
+
+  uuid-converter:
+    title: Конвертер UUID
+    description: Конвертируйте UUID с дефисами и без них в другие общие SQL нотации и обратно.
+
+    uuid: UUID
+    uuidhexupper: HEX нотация (заглавные)
+    uuidhexlower: HEX нотация (строчные)
+    uuidversion: RFC версия
+    input:
+      label: Ваш ввод
+      placeholder: Ваш UUID с/без дефисов
