@@ -475,5 +475,712 @@ tools:
       placeholder: Ваш UUID с/без дефисов
 
   ad-ldap-searcher:
-    title: ActiveDirectory LDAP properties searcher
-    description: Search in mapping of LDAP properties and ActiveDirectory UI
+    title: Поиск свойств ActiveDirectory LDAP
+    description: Поиск в сопоставлении свойств LDAP и интерфейса ActiveDirectory
+
+  ai-prompt-splitter:
+    title: Разделитель подсказок ИИ
+    description: Разделите длинный документ на несколько подсказок для чата (например, ChatGPT)
+
+  angle-converter:
+    title: Конвертер углов
+    description: Конвертируйте значения между единицами измерения углов
+
+  ansible-vault-crypt-decrypt:
+    title: Шифрование/дешифрование Ansible Vault
+    description: Шифруйте и дешифруйте секреты Ansible Vault
+
+  api-tester:
+    title: Тестер API
+    description: HTTP API тестер
+
+  area-converter:
+    title: Конвертер единиц площади
+    description: Конвертируйте значения между единицами измерения площади
+
+  ascii-text-drawer:
+    title: Рисователь ASCII текста
+    description: Создавайте ASCII-арт текст с различными шрифтами и стилями
+
+  aspect-ratio-calculator:
+    title: Калькулятор соотношения сторон
+    description: Используйте этот калькулятор для проверки размеров при изменении размера изображений
+
+  barcode-generator:
+    title: Генератор штрих-кодов
+    description: Генератор штрих-кодов
+
+  barcode-reader:
+    title: Чтение штрих-кодов
+    description: Чтение штрих-кодов
+
+  base64-hex-converter:
+    title: Конвертер Base64 Hex массива
+    description: Просто кодируйте и декодируйте Hex массив в его представление Base64
+
+  bounce-parser:
+    title: Парсер возвратов электронной почты
+    description: Разбирайте SMTP возвраты электронной почты
+
+  card-picker:
+    title: Выбор карт
+    description: Генерируйте колоду игральных карт
+
+  certificate-key-parser:
+    title: Парсер сертификатов/ключей
+    description: Разбирайте ключи и сертификаты
+
+  cidr-in-cidr:
+    title: IPv4-6/IPRange/CIDR в IPRange/CIDR/IPMask
+    description: Укажите, находится ли данный IPv4-6/диапазон/CIDR/маска в диапазоне подсети
+
+  code-highlighter:
+    title: Подсветка кода/скриптов
+    description: Подсвечивайте фрагменты программного кода
+
+  coin-flipper:
+    title: Монетка
+    description: Подбросьте монетку
+
+  color-contrast-checker:
+    title: Проверка контраста цветов
+    description: Проверьте уровень контраста WCAG между двумя цветами
+
+  color-wheel:
+    title: Цветовой круг
+    description: Выберите цветовую палитру/тему, используя круг и режим
+
+  common-regex-memo:
+    title: Шпаргалка по регулярным выражениям
+    description: Шпаргалка по общим шаблонам регулярных выражений
+
+  countdown:
+    title: Таймер обратного отсчета
+    description: Таймер обратного отсчета с сигналом по истечении времени
+
+  crc-calculator:
+    title: Калькулятор CRC
+    description: Вычисляйте CRC текста или файла (CRC1, CRC8, CRC16, CRC32 и другие)
+
+  csr-generator:
+    title: Генератор CSR
+    description: Генератор запросов на подпись сертификата (PEM формат)
+
+  css-prettifier:
+    title: Форматирование CSS
+    description: Форматируйте CSS-код
+
+  css-selectors-memo:
+    title: Шпаргалка по CSS-селекторам
+    description: Шпаргалка по синтаксису CSS-селекторов
+
+  css-xpath-converter:
+    title: Конвертер CSS XPath
+    description: Конвертируйте CSS-селекторы в XPath-выражения и обратно
+
+  curl-converter:
+    title: Конвертер Curl
+    description: Генерируйте версии команд curl для популярных языков программирования
+
+  currency-converter:
+    title: Конвертер валют
+    description: Конвертируйте значения валют с использованием https://github.com/fawazahmed0/exchange-api
+
+  data-storage-unit-converter:
+    title: Конвертер единиц хранения данных
+    description: Конвертируйте единицы хранения или передачи данных (байты, килобайты, мегабайты и т.д.)
+
+  data-transfer-rate-converter:
+    title: Калькулятор скорости передачи данных
+    description: Рассчитывайте время передачи данных, скорость и объем данных
+
+  date-duration-calculator:
+    title: Калькулятор дат и длительности
+    description: Добавляйте или вычитайте длительности из конкретной даты
+
+  days-calculator:
+    title: Калькулятор дней
+    description: Рассчитывайте интервал дней, праздники, разницу, рабочее время
+
+  dice-roller:
+    title: Бросок кубика
+    description: Бросайте кубики для RPG, используя нотацию кубиков
+
+  dmarc-report-analyzer:
+    title: Анализатор отчетов DMARC
+    description: Читайте и отображайте XML-отчеты DMARC
+
+  dns-queries:
+    title: DNS-запросы
+    description: Выполняйте DNS-запросы (через HTTPS)
+
+  docker-compose-converter:
+    title: Конвертер Docker Compose
+    description: Конвертируйте файлы Docker Compose между версиями V1, 2.x, 3.x или CommonSpec
+
+  docker-compose-to-docker-run-converter:
+    title: Конвертер Docker Compose в Docker run
+    description: Преобразуйте файлы Docker Compose в команды docker run!
+
+  docker-compose-to-kubernetes:
+    title: Docker Compose в Kubernetes
+    description: Преобразуйте Docker Compose в манифесты Kubernetes
+
+  docker-compose-validator:
+    title: Валидатор Docker Compose
+    description: Проверяйте файлы Docker Compose на соответствие схеме CommonSpec
+
+  docker-memo:
+    title: Шпаргалка Docker
+    description: Шпаргалка по командам Docker
+
+  docker-run-to-kubernetes:
+    title: Docker run в Kubernetes
+    description: Преобразуйте команды docker run в манифесты Kubernetes
+
+  duplicate-line-finder:
+    title: Поиск дублированных строк
+    description: Найдите и перечислите дублированные строки
+
+  duration-calculator:
+    title: Калькулятор длительности
+    description: Рассчитывайте и анализируйте длительности
+
+  ecdsa-key-pair-generator:
+    title: Генератор ключей ECDSA
+    description: Генерируйте новые случайные приватные и публичные ключи ECDSA (с паролем или без)
+
+  ed25519-key-pair-generator:
+    title: Генератор ключей Ed25519
+    description: Генерируйте новые случайные приватные и публичные ключи Ed25519 (с паролем или без)
+
+  email-normalizer:
+    title: Нормализатор email
+    description: Нормализуйте email-адреса для упрощения сравнения. Полезно для удаления дубликатов и очистки данных
+
+  email-parser:
+    title: Парсер email
+    description: Разбирайте и извлекайте информацию из сырого содержимого email
+
+  energy-computer:
+    title: Калькулятор потребления энергии
+    description: Рассчитывайте потребление энергии и расходы
+
+  energy-converter:
+    title: Конвертер единиц энергии
+    description: Конвертируйте значения между единицами энергии
+
+  file-hasher:
+    title: Хеширование файлов
+    description: Вычисляйте хеш файлов
+
+  file-type:
+    title: Определение типа файла
+    description: Определяйте тип файла
+
+  folder-structure-diagram:
+    title: Диаграмма структуры папок
+    description: Утилита для генерации ASCII-диаграмм структуры папок
+
+  force-converter:
+    title: Конвертер единиц силы
+    description: Конвертируйте значения между единицами силы
+
+  geo-distance-calculator:
+    title: Калькулятор географического расстояния
+    description: Рассчитывайте расстояние между двумя географическими точками (и отображайте информацию о текущем местоположении пользователя)
+
+  gpt-token-estimator:
+    title: Оценщик токенов GPT
+    description: Оценщик токенов OpenAI GPT
+
+  gzip-converter:
+    title: Конвертер GZip/Deflate
+    description: Конвертируйте текст в/из формата gzip/deflate
+
+  har-sanitizer:
+    title: Санитайзер HAR
+    description: Очистка файлов HAR
+
+  hdd-calculator:
+    title: Калькулятор HDD
+    description: Производители устройств хранения данных указывают емкость в десятичной форме (например, GB), в то время как операционные системы используют двоичную форму (GiB). Этот инструмент конвертирует емкость из десятичной формы в различные двоичные формы.
+
+  heic-converter:
+    title: Конвертер HEIC
+    description: Конвертируйте HEIC в JPEG или PNG
+
+  hex-converter:
+    title: Конвертер Hex
+    description: Кодируйте и декодируйте Hex буферы в числа (биты, порядок байтов, знак или плавающая точка) и структуры
+
+  hex-file-converter:
+    title: Конвертер Hex файлов
+    description: Конвертируйте между файлами и их шестнадцатеричным представлением
+
+  html-cleaner:
+    title: Очистка HTML
+    description: Очистите HTML-код
+
+  html-prettifier:
+    title: Форматирование HTML
+    description: Форматируйте HTML-код
+
+  html-to-markdown:
+    title: HTML в Markdown
+    description: Конвертируйте HTML (например, из буфера обмена) в Markdown
+
+  htpasswd-generator:
+    title: Генератор Htpasswd/Htaccess
+    description: Генератор пользователей/паролей для htpasswd/htaccess
+
+  ical-generator:
+    title: Генератор ICAL
+    description: Генерируйте ICAL/ICS файлы из информации о событиях
+
+  ical-merger:
+    title: Объединитель iCal
+    description: Объединяйте несколько iCal файлов в один
+
+  ical-parser:
+    title: Парсер ICAL файлов
+    description: Разбирайте ICAL/ICS файлы для отображения событий
+
+  ico-converter:
+    title: Конвертер ICO/PNG
+    description: Конвертируйте из PNG/JPEG в ICO и обратно
+
+  ies-lighting-guidelines:
+    title: Рекомендации по освещению IES
+    description: Поиск в рекомендациях по освещению Illuminating Engineering Society (IES)
+
+  illuminance-converter:
+    title: Конвертер освещенности
+    description: Конвертируйте единицы освещенности (люксы, фут-канделы, ноксы, фотоны, пламя)
+
+  image-converter:
+    title: Конвертер форматов изображений
+    description: Конвертируйте изображения из одного формата в другой
+
+  image-exif-reader:
+    title: Чтение EXIF/метаданных изображений
+    description: Читайте EXIF, IPTC, XMP, GPS и другие метаданные, качество JPEG и другую информацию из файлов изображений
+
+  image-to-ascii-art:
+    title: Изображение в ASCII-арт
+    description: Генератор ASCII-арта из изображений
+
+  image-to-css:
+    title: Изображение в CSS
+    description: Конвертируйте изображение в CSS (url, фон и т.д.)
+
+  integers-to-ip:
+    title: Целые числа в IPv4/IPv6
+    description: Конвертируйте целые числа в IP-адреса
+
+  ip-cidr-to-range:
+    title: IPv4/6 CIDR в диапазон IP
+    description: Рассчитывайте диапазон IP из CIDR (IPv4/6)
+
+  ip-geo-location:
+    title: Геолокация IP
+    description: Получайте информацию о местоположении IPv4/6 адреса или домена
+
+  ip-include-exclude:
+    title: Исключение подсетей IP
+    description: Исключайте запрещенные диапазоны/маски/CIDR из разрешенных диапазонов/масок/CIDR
+
+  ip-range-to-cidr:
+    title: Диапазон IPv4/6 в CIDR
+    description: Рассчитывайте CIDR из диапазона IP (IPv4/6)
+
+  ipv6-address-converter:
+    title: Конвертер IPv6 адресов
+    description: Конвертируйте IP-адреса в десятичное, двоичное, шестнадцатеричное представление и получайте информацию
+
+  ipv6-subnet-calculator:
+    title: Калькулятор подсетей IPv6
+    description: Разбирайте ваши блоки CIDR IPv6 и получайте всю необходимую информацию о вашей подсети
+
+  isbn-validator-and-parser:
+    title: Валидатор и парсер ISBN
+    description: Разбирайте, проверяйте, форматируйте и получайте информацию об ISBN
+
+  iso-3166-searcher:
+    title: Поиск кодов стран ISO 3166
+    description: Поиск кодов стран (ISO 3166) и информации о них
+
+  javascript-prettifier:
+    title: Форматирование JavaScript
+    description: Форматируйте JavaScript-код
+
+  jq-memo:
+    title: Шпаргалка JQ
+    description: Шпаргалка по командам JQ
+
+  jq-tester:
+    title: Тестер JQ/JSONPath
+    description: Тестируйте выражения JQ/JSONPath на JSON-контенте
+
+  js-unobfuscator:
+    title: Деобфускатор JavaScript
+    description: Инструмент для обратной разработки JavaScript. Деобфусцирует, деминифицирует и распаковывает код, чтобы максимально приблизить его к исходному.
+
+  json-editor:
+    title: Редактор JSON
+    description: Редактируйте содержимое JSON
+
+  json-escaper:
+    title: Экранирование/разэкранирование JSON
+    description: Экранируйте и разэкранируйте строки JSON
+
+  json-linter:
+    title: Линтер JSON
+    description: Проверяйте и линтуйте содержимое JSON
+
+  json-size-analyzer:
+    title: Анализатор размера JSON
+    description: Измеряйте относительный вес узлов JSON
+
+  json-to-csharp:
+    title: JSON в C#
+    description: Конвертируйте данные JSON в определение типа C#
+
+  json-to-go:
+    title: JSON в Go
+    description: Конвертируйте JSON в структуру Go
+
+  json-to-java:
+    title: JSON в Java
+    description: Конвертируйте JSON в сущности Java
+
+  json-to-php-array:
+    title: JSON в PHP-массив
+    description: Конвертируйте JSON в PHP-массив
+
+  json-to-schema:
+    title: JSON в схему
+    description: Конвертируйте данные JSON в JSON Schema, MySQL DDL, Mongoose Schema, Google BigQuery Schema или ClickHouse Table Schema
+
+  json-to-xml:
+    title: JSON в XML
+    description: Конвертируйте JSON в XML
+
+  jsonpath-memo:
+    title: Шпаргалка по JSONPath
+    description: Шпаргалка по синтаксису JSONPath
+
+  jwt-generator:
+    title: Генератор JWT
+    description: Генератор и редактор токенов JWT
+
+  length-converter:
+    title: Конвертер единиц длины
+    description: Конвертируйте значения между единицами длины
+
+  list-comparer:
+    title: Сравнение списков
+    description: Сравнивайте элементы двух списков
+
+  luhn-validator:
+    title: Валидатор алгоритма Луна
+    description: Проверяйте и генерируйте ключи для идентификаторов, валидируемых алгоритмом Луна
+
+  mac-address-converter:
+    title: Конвертер MAC-адресов
+    description: Изменяйте формат MAC-адреса и выбирайте между различными форматами (EUI-48, EUI-64, IPv6)
+
+  many-units-converter:
+    title: Конвертер различных единиц
+    description: Конвертируйте все виды единиц измерения
+
+  markdown-cheatsheet:
+    title: Шпаргалка по Markdown
+    description: Шпаргалка по Markdown
+
+  markdown-editor:
+    title: Редактор Markdown
+    description: Простой редактор Markdown
+
+  markdown-to-html:
+    title: Markdown в HTML
+    description: Конвертируйте Markdown в HTML и позволяйте печатать (в PDF)
+
+  markdown-toc-generator:
+    title: Генератор оглавления Markdown
+    description: Генерируйте оглавление из файла/содержимого Markdown
+
+  mass-converter:
+    title: Конвертер единиц массы
+    description: Конвертируйте значения между единицами массы
+
+  math-formats-converter:
+    title: Конвертер математических форматов
+    description: Конвертируйте математические выражения между форматами
+
+  math-ocr:
+    title: Математический OCR
+    description: Конвертируйте изображения формул в Latex
+
+  mermaid-exporter:
+    title: Экспортер Mermaid
+    description: Конвертируйте Markdown (Mermaid) в изображение и экспортируйте в PNG, JPG и SVG
+
+  mime-converter:
+    title: Конвертер MIME-кодировки
+    description: Конвертируйте из/в MIME-кодировку (Mail Subject)
+
+  mongo-objectid-converter:
+    title: Конвертер MongoDB ObjectId
+    description: Конвертируйте между MongoDB ObjectId и внутренней временной меткой
+
+  morse-converter:
+    title: Конвертер азбуки Морзе
+    description: Кодируйте/декодируйте в азбуку Морзе
+
+  my-ip:
+    title: Мой IP-адрес
+    description: Узнайте ваш клиентский IP-адрес (IPv4/6) с использованием https://www.ipify.org/
+
+  nano-memo:
+    title: Шпаргалка Nano
+    description: Шпаргалка по редактору Nano
+
+  nginx-formatter:
+    title: Форматирование Nginx
+    description: Форматируйте/украшайте конфигурационные файлы Nginx
+
+  ocr-image:
+    title: OCR изображений и PDF
+    description: Выполняйте OCR (Tesseract) на изображениях или PDF
+
+  option43-generator:
+    title: Генератор Option43
+    description: Генерируйте конфигурацию DHCP Option43 для WiFi
+
+  outlook-parser:
+    title: Парсер Outlook MSG
+    description: Разбирайте файлы Outlook MSG
+
+  parquets-reader:
+    title: Чтение файлов Parquet
+    description: Читайте файлы Parquet как массивы объектов JSON
+
+  passphrase-generator:
+    title: Генератор паролей
+    description: Генерируйте случайные запоминаемые пароли
+
+  paste-as-markdown:
+    title: Вставить как Markdown
+    description: Вставляйте ячейки/таблицы и ссылки из содержимого буфера обмена как Markdown
+
+  pdf-encrypt:
+    title: Шифрование PDF
+    description: Шифруйте и добавляйте защиту к PDF-файлу
+
+  pdf-linearize:
+    title: Линеаризация PDF/FastWeb
+    description: Создайте линеаризованную версию PDF (преобразуйте в FastWeb)
+
+  pdf-unlock:
+    title: Расшифровка и разблокировка PDF
+    description: Расшифруйте PDF и снимите ограничения (удалите разрешения безопасности)
+
+  pgp-encryption:
+    title: Шифрование PGP
+    description: Шифруйте и дешифруйте текст с использованием PGP-ключей
+
+  pgp-key-pair-generator:
+    title: Генератор PGP-ключей
+    description: Генерируйте новые случайные приватные и публичные PGP-ключи (с паролем или без)
+
+  php-array-to-json:
+    title: PHP-массив в JSON
+    description: Конвертируйте PHP-массив в JSON
+
+  pin-code-generator:
+    title: Генератор PIN-кодов
+    description: Генерируйте уникальные PIN-коды (цифры)
+
+  pomodoro-timer:
+    title: Таймер Pomodoro
+    description: Базовый таймер Pomodoro
+
+  port-numbers:
+    title: Номера портов
+    description: Найдите назначенное использование заданного порта и протокола
+
+  potrace:
+    title: Изображение в SVG (potrace)
+    description: Преобразуйте растровое изображение в векторный SVG
+
+  power-converter:
+    title: Конвертер мощности
+    description: Конвертируйте значения между единицами мощности
+
+  pressure-converter:
+    title: Конвертер давления
+    description: Конвертируйте значения между единицами давления
+
+  properties-to-yaml:
+    title: Properties в YAML
+    description: Конвертируйте содержимое Java .properties в YAML
+
+  raid-calculator:
+    title: Калькулятор RAID
+    description: Рассчитывайте емкость хранилища, отказоустойчивость и эффективность пространства массива на основе количества дисков, их размера и типа RAID
+
+  regex-memo:
+    title: Шпаргалка по регулярным выражениям
+    description: Шпаргалка по регулярным выражениям/регулярным выражениям JavaScript
+
+  regex-tester:
+    title: Тестер регулярных выражений
+    description: Тестируйте свои регулярные выражения с примером текста
+
+  rem-px-converter:
+    title: Конвертер REM в пиксели
+    description: Конвертируйте px в rem и наоборот
+
+  remove-exif:
+    title: Удаление EXIF
+    description: Удаляйте EXIF из JPEG-файлов
+
+  rmb-numbers:
+    title: Конвертер RMB в прописной формат
+    description: Инструмент преобразования чисел RMB/Юаней в прописной формат
+
+  rsa-ecdsa-signing:
+    title: Подпись и проверка RSA/DSA/ECDSA
+    description: Подписывайте данные и проверяйте подпись с использованием ключей RSA/DSA/ECDSA
+
+  rsa-encryption:
+    title: Шифрование RSA
+    description: Шифруйте и дешифруйте текст с использованием RSA-ключей
+
+  rune-converter:
+    title: Конвертер рун
+    description: Конвертируйте текст в руны и наоборот
+
+  safelink-decoder:
+    title: Декодер Safelink
+    description: Декодируйте ссылки SafeLink из Outlook
+
+  sensitive-data-masker:
+    title: Маскирование конфиденциальных данных
+    description: Удаляйте конфиденциальные данные из текстового содержимого (например, журналов)
+
+  sharepoint-decoder:
+    title: Декодер ссылок SharePoint
+    description: Декодируйте ссылки sharepoint.com в "обычные" ссылки SharePoint
+
+  sla-calculator:
+    title: Калькулятор SLA
+    description: Калькулятор соглашений об уровне обслуживания (SLA)
+
+  smart-raw-converter:
+    title: Конвертер SMART Raw
+    description: Преобразуйте значения SMART Raw в читаемый формат
+
+  smart-text-replacer:
+    title: Умный заменитель текста
+    description: Ищите и заменяйте слова в одном или нескольких вхождениях, как в блокноте Windows. Также позволяет управлять разрывами строк и разделением текста
+
+  snowflake-id-extractor:
+    title: Извлечение ID Snowflake
+    description: Извлекайте временную метку, ID машины и номер последовательности из ID Snowflake
+
+  software-licence-compatibility:
+    title: Совместимость лицензий ПО
+    description: Проверка совместимости лицензий программного обеспечения и информация о них
+
+  ssl-cert-converter:
+    title: Конвертер SSL-сертификатов
+    description: Конвертируйте SSL-сертификаты из различных форматов
+
+  stacktrace-prettier:
+    title: Преобразователь трассировки стека
+    description: Подсвечивайте трассировки стека .Net и JS
+
+  timezone-converter:
+    title: Конвертер часовых поясов
+    description: Конвертируйте дату и время из одного часового пояса в другие и получайте информацию о часовых поясах и странах
+
+  torrent-to-magnet:
+    title: Конвертер Torrent в Magnet
+    description: Преобразуйте торрент-файл в Magnet-ссылку
+
+  ttl-calculator:
+    title: Калькулятор TTL
+    description: Конвертируйте TTL в время
+
+  unicode-formatter:
+    title: Форматировщик Unicode
+    description: Форматируйте текст с использованием шрифтов Unicode
+
+  unicode-search:
+    title: Поиск Unicode
+    description: Поиск символов Unicode
+
+  url-cleaner:
+    title: Очиститель URL
+    description: Удаляйте параметры трекеров рекламы, UTM, Facebook и других провайдеров рекламы из URL
+
+  url-fanger:
+    title: URL Fanger
+    description: Дефангуйте/рефангуйте URL или адрес электронной почты
+
+  url-text-fragment-maker:
+    title: Создатель текстовых фрагментов URL
+    description: Создавайте URL, которые позволяют ссылаться непосредственно на определенную часть текста в веб-документе
+
+  utm-url-generator:
+    title: Генератор UTM URL
+    description: Генерируйте URL с параметрами utm_
+
+  vat-validator:
+    title: Валидатор номеров НДС
+    description: Проверяйте номера НДС
+
+  volume-converter:
+    title: Конвертер объема
+    description: Конвертируйте значения между единицами объема
+
+  websocket-tester:
+    title: Тестер WebSocket
+    description: Тестируйте соединения WebSocket
+
+  week-number-converter:
+    title: Конвертер номеров недель
+    description: Конвертируйте между ISO-номером недели, номером недели в месяце и датой
+
+  wpa-psk-generator:
+    title: Генератор WPA PSK
+    description: Генератор предварительно общего ключа WPA для преобразования пароля WPA и SSID в 256-битный предварительно общий ("сырой") ключ
+
+  x-vr-spamcause-decoder:
+    title: Декодер X-VR-SpamCause
+    description: Декодируйте заголовок X-VR-SPAMCAUSE в письмах OVH
+
+  x509-certificate-generator:
+    title: Генератор сертификатов X509
+    description: Генерируйте самоподписанный SSL/x509 сертификат
+
+  xml-to-json:
+    title: XML в JSON
+    description: Конвертируйте XML в JSON
+
+  xpath-memo:
+    title: Шпаргалка по XPath
+    description: Шпаргалка по синтаксису XPath
+
+  xpath-tester:
+    title: Тестер XPath
+    description: Тестируйте выражения XPath на содержимом XML
+
+  xslt-tester:
+    title: Тестер XSLT
+    description: Тестируйте преобразование XML с использованием XSLT-стилей
+
+
+

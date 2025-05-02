@@ -1,10 +1,11 @@
 import { SquaresDiagonal } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Area Units Converter',
+  name: translate('tools.area-converter.title'),
   path: '/area-converter',
-  description: 'Convert values between area units',
+  description: translate('tools.area-converter.description'),
   keywords: ['area', 'converter'],
   component: () => import('./area-converter.vue'),
   icon: SquaresDiagonal,

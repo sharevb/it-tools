@@ -1,10 +1,11 @@
 import { Barcode } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Barcode Generator',
+  name: translate('tools.barcode-generator.title'),
   path: '/barcode-generator',
-  description: 'Barcode generator',
+  description: translate('tools.barcode-generator.description'),
   keywords: ['barcode', 'generator'],
   component: () => import('./barcode-generator.vue'),
   icon: Barcode,

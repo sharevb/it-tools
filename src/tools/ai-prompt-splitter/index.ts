@@ -1,10 +1,11 @@
 import { Prompt } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'AI Prompt Splitter',
+  name: translate('tools.ai-prompt-splitter.title'),
   path: '/ai-prompt-splitter',
-  description: 'Split a long document to multiple chat (ie ChatGPT) prompts',
+  description: translate('tools.ai-prompt-splitter.description'),
   keywords: ['ai', 'chatgpt', 'gpt', 'prompt', 'splitter'],
   component: () => import('./ai-prompt-splitter.vue'),
   icon: Prompt,

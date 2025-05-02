@@ -3,13 +3,15 @@ import type { KeyEncoding } from './encryption.service';
 import { algos } from './encryption.service';
 import { computedCatch } from '@/composable/computed/catchedComputed';
 
+const { t } = useI18n();
+
 const cypherInput = ref('Lorem ipsum dolor sit amet');
 const cypherAlgo = ref<keyof typeof algos>('AES-CBC');
 const cypherSecret = ref('my secret key 16');
 const cypherSecretEncoding = ref<KeyEncoding>('Text');
 const [cypherOutput, cypherError] = computedCatch(() => algos[cypherAlgo.value].encrypt(cypherInput.value, cypherSecret.value, cypherSecretEncoding.value), {
   defaultValue: '',
-  defaultErrorMessage: 'Unable to cypher your text',
+  defaultErrorMessage: t('tools.encryption.defaultErrorMessage'),
 });
 
 const decryptInput = ref('dopEIE7v5TJlhHl+0+mA4Q+BxNj4xcdTsiVGw4tmpLlkDln8lzmzavO3egJuzpCD');
@@ -18,12 +20,12 @@ const decryptSecret = ref('my secret key 16');
 const decryptSecretEncoding = ref<KeyEncoding>('Text');
 const [decryptOutput, decryptError] = computedCatch(() => algos[decryptAlgo.value].decrypt(decryptInput.value, decryptSecret.value, decryptSecretEncoding.value), {
   defaultValue: '',
-  defaultErrorMessage: 'Unable to decrypt your text',
+  defaultErrorMessage: t('tools.encryption.defaultErrorMessage'),
 });
 </script>
 
 <template>
-  <c-card title="Encrypt">
+  <c-card :title="t('tools.encryption.title-encrypt')">
     <div flex gap-3>
       <c-input-text
         v-model:value="cypherInput"
@@ -69,7 +71,7 @@ const [decryptOutput, decryptError] = computedCatch(() => algos[decryptAlgo.valu
       multiline monospace readonly autosize mt-5
     />
   </c-card>
-  <c-card title="Decrypt">
+  <c-card :title="t('tools.encryption.title-decrypt')">
     <div flex gap-3>
       <c-input-text
         v-model:value="decryptInput"
