@@ -137,6 +137,9 @@ export default defineConfig({
           if (id.includes('tesseract.js')) return 'tesseract.js';
           if (id.includes('pdfjs')) return 'pdfjs';
           if (id.includes('unicode')) return 'unicode';
+          if (id.includes('faker')) return 'faker';
+          if (id.includes('quicktype')) return 'quicktype';
+          if (id.includes('protobuf')) return 'protobuf';
           // if (id.includes('transformers')) return 'transformers';
           // if (id.includes("node_modules")) {
           //   return "vendor";
