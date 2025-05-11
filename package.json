@@ -167,7 +167,7 @@
     "jks-js": "^1.1.4",
     "jose": "^5.9.6",
     "jpeg-quality-estimator": "^1.0.1",
-    "jq-wasm": "^0.0.9",
+    "jq-wasm": "^1.0.0",
     "js-base64": "^3.7.7",
     "js-beautify": "^1.15.2",
     "jsbarcode": "^3.11.6",
