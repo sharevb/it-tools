@@ -127,6 +127,7 @@ export default defineConfig({
     target: 'esnext',
     // sourcemap: false,
     minify: !process.env.VERCEL,
+    reportCompressedSize: !process.env.VERCEL,
     // cssMinify: false,
     rollupOptions: {
       external: ['regex', './out/isolated_vm', 'isolated-vm'],
