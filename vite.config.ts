@@ -134,10 +134,10 @@ export default defineConfig({
       output: {
         format: 'es',
         manualChunks: (id) => {
-          if (id.includes('monaco-editor')) return 'monaco-editor';
+          //if (id.includes('monaco-editor')) return 'monaco-editor';
           if (id.includes('tesseract.js')) return 'tesseract.js';
           if (id.includes('pdfjs')) return 'pdfjs';
-          if (id.includes('unicode')) return 'unicode';
+          //if (id.includes('unicode')) return 'unicode';
           // if (id.includes('faker')) return 'faker';
           // if (id.includes('transformers')) return 'transformers';
           // if (id.includes("node_modules")) {
@@ -153,7 +153,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['re2-wasm-embedded', 'isolated-vm', 'pdfjs-dist'], // optionally specify dependency name
+    include: ['isolated-vm', 'pdfjs-dist'], // optionally specify dependency name
     esbuildOptions: {
       supported: {
         'top-level-await': true,
