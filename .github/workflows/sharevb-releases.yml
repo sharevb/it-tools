@@ -8,6 +8,9 @@ on:
 jobs:
   docker-release:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        architecture: [amd64,arm64]
     steps:
       - name: Get release version
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
@@ -41,7 +44,7 @@ jobs:
           file: ./Dockerfile
           build-args: |
             "BASE_URL=/it-tools/"
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/${{ matrix.architecture }}
           push: true
           tags: |
             sharevb/it-tools:baseurl-it-tools
