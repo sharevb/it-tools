@@ -115,6 +115,7 @@ export default defineConfig({
       'fs': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       '@babel/core': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'isolated-vm': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
+      'onnxruntime-node': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
     },
   },
   define: {
@@ -131,7 +132,7 @@ export default defineConfig({
     // cssMinify: false,
     modulePreload: false,
     rollupOptions: {
-      external: ['regex', './out/isolated_vm', 'isolated-vm'],
+      external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node'],
       output: {
         format: 'es',
         manualChunks: (id) => {
@@ -154,7 +155,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['isolated-vm', 'pdfjs-dist'], // optionally specify dependency name
+    include: ['isolated-vm', 'pdfjs-dist', 'onnxruntime-node'], // optionally specify dependency name
     esbuildOptions: {
       supported: {
         'top-level-await': true,
