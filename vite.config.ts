@@ -129,12 +129,13 @@ export default defineConfig({
     minify: !process.env.VERCEL,
     reportCompressedSize: !process.env.VERCEL,
     // cssMinify: false,
+    modulePreload: false,
     rollupOptions: {
       external: ['regex', './out/isolated_vm', 'isolated-vm'],
       output: {
         format: 'es',
         manualChunks: (id) => {
-          //if (id.includes('monaco-editor')) return 'monaco-editor';
+          if (id.includes('monaco-editor')) return 'monaco-editor';
           if (id.includes('tesseract.js')) return 'tesseract.js';
           if (id.includes('pdfjs')) return 'pdfjs';
           if (id.includes('unicode')) return 'unicode';
