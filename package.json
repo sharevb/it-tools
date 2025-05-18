@@ -136,6 +136,7 @@
     "figue": "^1.2.0",
     "file-type": "^20.1.0",
     "flatten-anything": "^4.0.1",
+    "flexsearch": "^0.8.167",
     "fuse.js": "^7.1.0",
     "generate-schema": "^2.6.0",
     "get-timezone-offset": "^1.0.5",
