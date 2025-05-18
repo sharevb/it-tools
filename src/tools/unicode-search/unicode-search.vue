@@ -3,7 +3,7 @@ import unicodeNames from '@unicode/unicode-15.1.0/Names/index.js';
 import unicodeCategories from '@unicode/unicode-15.1.0/General_Category';
 import utf8 from 'utf8';
 
-import { useFuzzySearch } from '@/composable/fuzzySearch';
+import { useFlexSearch } from '@/composable/flexSearch';
 import useDebouncedRef from '@/composable/debouncedref';
 
 function toPaddedHex(num: number) {
@@ -12,10 +12,11 @@ function toPaddedHex(num: number) {
 
 function toUTF8(codePoint: number) {
   const utf8String = utf8.encode(String.fromCodePoint(codePoint));
-  return [...utf8String].map(c => `\\x${c.codePointAt(0)?.toString(16).toUpperCase()}`);
+  const bytes = [...utf8String].map(c => `\\x${c.codePointAt(0)?.toString(16).toUpperCase()}`);
+  return bytes.join(''); // Join the string array into a single string to fix a bug where it would otherwise join the array items with a comma
 }
 
-const searchQuery = useDebouncedRef('', 500);
+const searchQuery = useDebouncedRef('', 250);
 const parsedSearchQuery = computed(() => {
   const parsedRegex = /^\s*(?:\&#x(?<hex1>[\da-f]+);|\&#(?<dec>\d+);|(?:U\+|\\u)?\s*(?<hex2>[\da-f]+))\s*$/gi; // NOSONAR
   const parsedQuery = parsedRegex.exec(searchQuery.value);
@@ -39,18 +40,19 @@ const unicodeSearchData = [...unicodeNames].map(([codePoint, characterName]) => 
   };
 });
 
-const limit = ref(100);
-const { searchResult } = useFuzzySearch({
+const limit = ref(40);
+// Using FlexSearch instead of FuzzySearch for better performance
+const { searchResult } = useFlexSearch({
   search: parsedSearchQuery,
   data: unicodeSearchData,
   options: {
     keys: ['characterName', 'hex'],
-    threshold: 0.2,
-    isCaseSensitive: false,
-    minMatchCharLength: 3,
-    useExtendedSearch: true,
+    filterEmpty: false,
+    cache: true,
+    resolution: 9,
+    optimize: true,
   },
-  limit: limit.value,
+  limit,
 });
 </script>
 
@@ -71,12 +73,7 @@ const { searchResult } = useFuzzySearch({
     </div>
 
     <div v-if="searchQuery.trim().length > 0">
-      <div
-        v-if="searchResult.length === 0"
-        mt-4
-        text-20px
-        font-bold
-      >
+      <div v-if="searchResult.length === 0" mt-4 text-20px font-bold>
         No results
       </div>
 
@@ -89,11 +86,11 @@ const { searchResult } = useFuzzySearch({
           <thead>
             <th>UCOD</th>
             <th>Display/UTF8</th>
-            <th style="width:30%">
+            <th style="width: 30%">
               Category
             </th>
             <th>Html</th>
-            <th style="width:30%">
+            <th style="width: 30%">
               Name
             </th>
           </thead>
@@ -101,7 +98,10 @@ const { searchResult } = useFuzzySearch({
             <tr v-for="(result, ix) in searchResult" :key="ix">
               <td>
                 <input-copyable :value="`U+${toPaddedHex(result.codePoint)}`" mb-1 />
-                <!-- //NOSONAR --><n-a :href="`https://unicodeplus.com/U+${toPaddedHex(result.codePoint)}`" target="_blank">
+                <!-- //NOSONAR --><n-a
+                  :href="`https://unicodeplus.com/U+${toPaddedHex(result.codePoint)}`"
+                  target="_blank"
+                >
                   &gt; More info
                 </n-a>
               </td>

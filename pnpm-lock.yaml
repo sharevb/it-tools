@@ -308,6 +308,9 @@ importers:
       flatten-anything:
         specifier: ^4.0.1
         version: 4.0.1
+      flexsearch:
+        specifier: ^0.8.167
+        version: 0.8.167
       fuse.js:
         specifier: ^7.1.0
         version: 7.1.0
@@ -4244,8 +4247,8 @@ packages:
   '@vueuse/shared@10.11.1':
     resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
-  '@vueuse/shared@13.1.0':
-    resolution: {integrity: sha512-IVS/qRRjhPTZ6C2/AM3jieqXACGwFZwWTdw5sNTSKk2m/ZpkuuN+ri+WCVUP8TqaKwJYt/KuMwmXspMAw8E6ew==}
+  '@vueuse/shared@13.2.0':
+    resolution: {integrity: sha512-vx9ZPDF5HcU9up3Jgt3G62dMUfZEdk6tLyBAHYAG4F4n73vpaA7J5hdncDI/lS9Vm7GA/FPlbOmh9TrDZROTpg==}
     peerDependencies:
       vue: ^3.5.0
 
@@ -6159,6 +6162,9 @@ packages:
   flatten-anything@4.0.1:
     resolution: {integrity: sha512-Wz5tXB7Sgm54LHOqgbqvFlhKxzBZxA+TAv8AE28wfGpqk6zYkNauIS/ierU4VmNRokgzG2KnxhVYaUCXP+oPCQ==}
     engines: {node: '>=18'}
+
+  flexsearch@0.8.167:
+    resolution: {integrity: sha512-iCBbY9npWhNlTCiHha2pwGqtbhpSEHx8+m5FJab+DLr/IKMneLNDgWbu2+IOvsAHo/Euo2Fu/5awrAEhN4q8Jw==}
 
   follow-redirects@1.15.9:
     resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
@@ -14245,7 +14251,7 @@ snapshots:
     dependencies:
       '@unhead/dom': 0.5.1
       '@unhead/schema': 0.5.1
-      '@vueuse/shared': 13.1.0(vue@3.3.4)
+      '@vueuse/shared': 13.2.0(vue@3.3.4)
       unhead: 0.5.1
       vue: 3.3.4
 
@@ -14729,7 +14735,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/shared@13.1.0(vue@3.3.4)':
+  '@vueuse/shared@13.2.0(vue@3.3.4)':
     dependencies:
       vue: 3.3.4
 
@@ -16962,6 +16968,8 @@ snapshots:
     dependencies:
       filter-anything: 4.0.2
       is-what: 5.0.2
+
+  flexsearch@0.8.167: {}
 
   follow-redirects@1.15.9: {}
 
