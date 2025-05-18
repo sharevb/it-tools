@@ -305,6 +305,9 @@ dependencies:
   flatten-anything:
     specifier: ^4.0.1
     version: 4.0.1
+  flexsearch:
+    specifier: ^0.8.167
+    version: 0.8.167
   fuse.js:
     specifier: ^7.1.0
     version: 7.1.0
@@ -11201,6 +11204,10 @@ packages:
     dependencies:
       filter-anything: 4.0.2
       is-what: 5.0.2
+    dev: false
+
+  /flexsearch@0.8.167:
+    resolution: {integrity: sha512-iCBbY9npWhNlTCiHha2pwGqtbhpSEHx8+m5FJab+DLr/IKMneLNDgWbu2+IOvsAHo/Euo2Fu/5awrAEhN4q8Jw==}
     dev: false
 
   /follow-redirects@1.15.9:
