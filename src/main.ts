@@ -4,9 +4,6 @@ import { createHead } from '@vueuse/head';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
-import { install as VueMonacoEditorPlugin, loader } from '@guolao/vue-monaco-editor';
-import * as monaco from 'monaco-editor';
-
 import { registerSW } from 'virtual:pwa-register';
 import shadow from 'vue-shadow-dom';
 import { plausible } from './plugins/plausible.plugin';
@@ -23,14 +20,10 @@ import store from './tools/pomodoro-timer/app/store';
 
 library.add(fas);
 
-// loaded monaco-editor from `node_modules`
-loader.config({ monaco });
-
 registerSW();
 
 const app = createApp(App);
 
-app.use(VueMonacoEditorPlugin);
 app.use(createPinia());
 app.use(createHead());
 app.use(i18nPlugin);

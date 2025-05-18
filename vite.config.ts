@@ -136,7 +136,7 @@ export default defineConfig({
       output: {
         format: 'es',
         manualChunks: (id) => {
-          if (id.includes('monaco-editor')) return 'monaco-editor';
+          // if (id.includes('monaco-editor')) return 'monaco-editor';
           if (id.includes('tesseract.js')) return 'tesseract.js';
           if (id.includes('pdfjs')) return 'pdfjs';
           if (id.includes('unicode')) return 'unicode';
