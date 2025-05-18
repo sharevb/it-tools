@@ -130,7 +130,7 @@ export default defineConfig({
     minify: !process.env.VERCEL,
     reportCompressedSize: !process.env.VERCEL,
     // cssMinify: false,
-    modulePreload: false,
+    // modulePreload: false,
     rollupOptions: {
       external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node'],
       output: {
@@ -139,7 +139,7 @@ export default defineConfig({
           if (id.includes('monaco-editor')) return 'monaco-editor';
           if (id.includes('tesseract.js')) return 'tesseract.js';
           if (id.includes('pdfjs')) return 'pdfjs';
-          if (id.includes('unicode')) return 'unicode';
+          // if (id.includes('unicode')) return 'unicode';
           // if (id.includes('transformers')) return 'transformers';
           // if (id.includes("node_modules")) {
           //   return "vendor";
