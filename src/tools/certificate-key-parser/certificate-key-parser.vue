@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
 
-import { getKeyOrCertificateInfosAsync } from './certificate-key-parser.service';
+import { getKeysOrCertificatesInfosAsync } from './certificate-key-parser.service';
 import { type LabelValue } from './certificate-key-parser.infos';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
@@ -37,7 +37,7 @@ function downloadX509DERFile() {
   }
 }
 
-const parsedSections = computedAsync<LabelValue[]>(async () => {
+const parsedSections = computedAsync<LabelValue[][]>(async () => {
   const inputContent = inputKeyOrCertificate.value;
   const file = fileInput.value;
   let inputKeyOrCertificateValue: string | Buffer = '';
@@ -47,9 +47,15 @@ const parsedSections = computedAsync<LabelValue[]>(async () => {
   else if (inputType.value === 'content' && inputContent) {
     inputKeyOrCertificateValue = inputContent;
   }
-  const { values, certificateX509DER: certPEM } = await getKeyOrCertificateInfosAsync(inputKeyOrCertificateValue, passphrase.value);
-  certificateX509DER.value = certPEM || '';
-  return values;
+  const parsed = await getKeysOrCertificatesInfosAsync(inputKeyOrCertificateValue, passphrase.value);
+  if (parsed.length === 1) {
+    const { values, certificateX509DER: certPEM } = parsed[0];
+    certificateX509DER.value = certPEM || '';
+    return [values];
+  }
+  else {
+    return parsed.map(p => p.values);
+  }
 });
 </script>
 
@@ -96,20 +102,26 @@ const parsedSections = computedAsync<LabelValue[]>(async () => {
 
     <n-divider />
 
-    <input-copyable
-      v-for="{ label, value, multiline } of parsedSections"
-      :key="label"
-      :label="label"
-      :data-test-id="label"
-      label-position="left"
-      label-width="100px"
-      label-align="right"
+    <c-card
+      v-for="(part, partIndex) of parsedSections"
+      :key="partIndex"
+      mb-2
+    >
+      <input-copyable
+        v-for="{ label, value, multiline } of part"
+        :key="label"
+        :label="label"
+        :data-test-id="label"
+        label-position="left"
+        label-width="100px"
+        label-align="right"
 
-      autosize mb-2
-      :multiline="multiline"
-      :value="value"
-      placeholder="Not Set"
-    />
+        autosize mb-2
+        :multiline="multiline"
+        :value="value"
+        placeholder="Not Set"
+      />
+    </c-card>
 
     <div v-if="certificateX509DER !== ''" flex justify-center>
       <c-button @click="downloadX509DERFile()">
