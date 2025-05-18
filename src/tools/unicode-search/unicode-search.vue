@@ -13,7 +13,7 @@ function toPaddedHex(num: number) {
 function toUTF8(codePoint: number) {
   const utf8String = utf8.encode(String.fromCodePoint(codePoint));
   const bytes = [...utf8String].map(c => `\\x${c.codePointAt(0)?.toString(16).toUpperCase()}`);
-  return bytes.join(''); // Join the array into a single string
+  return bytes.join(''); // Join the string array into a single string to fix a bug where it would otherwise join the array items with a comma
 }
 
 const searchQuery = useDebouncedRef('', 250);
