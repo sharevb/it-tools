@@ -21,7 +21,7 @@ function getCountDownHref(c: CountDown) {
 
 const days = useQueryParam({ name: 'd', defaultValue: 0 });
 const hours = useQueryParam({ name: 'h', defaultValue: 0 });
-const minutes = useQueryParam({ name: 'm', defaultValue: 15 });
+const minutes = useQueryParam({ name: 'm', defaultValue: 0 });
 const seconds = useQueryParam({ name: 's', defaultValue: 0 });
 const history = useStorage<CountDown[]>('countdown:hst', []);
 
@@ -72,6 +72,23 @@ function ended() {
   if (status.value === 'running') {
     status.value = 'ended';
   }
+  if (document.fullscreenElement) {
+    document.exitFullscreen?.();
+  }
+}
+
+const fullScreenElement = ref<HTMLElement>();
+function toggleFullScreen() {
+  const element = fullScreenElement.value;
+  if (!element) {
+    return;
+  }
+  if (!document.fullscreenElement) {
+    element?.requestFullscreen();
+  }
+  else {
+    document.exitFullscreen?.();
+  }
 }
 
 const isEnded = computed(() => status.value === 'ended');
@@ -112,19 +129,19 @@ const isEnded = computed(() => status.value === 'ended');
       </div>
     </c-card>
 
-    <Countdown :deadline="deadlineFormatted" :stop="status !== 'running'" mb-2 @time-elapsed="ended()" />
+    <div id="fullScreenElement" ref="fullScreenElement" mb-2>
+      <div>
+        <Countdown :deadline="deadlineFormatted" :stop="status !== 'running'" mb-2 countdown-size="4rem" @time-elapsed="ended()" />
 
-    <n-p align="center">
-      Alarm at: {{ deadlineDate }}
-    </n-p>
-
-    <div mb-2 flex justify-center>
-      <c-button
-        :disabled="status === 'stopped'"
-        @click="stop"
-      >
-        Stop
-      </c-button>
+        <div mb-2 flex justify-center>
+          <c-button
+            :disabled="status === 'stopped'"
+            @click="toggleFullScreen"
+          >
+            Toggle Fullscreen
+          </c-button>
+        </div>
+      </div>
     </div>
 
     <n-modal v-model:show="isEnded" mask-closable="false">
@@ -145,6 +162,19 @@ const isEnded = computed(() => status.value === 'ended');
       </n-card>
     </n-modal>
 
+    <div mb-2 flex justify-center>
+      <c-button
+        :disabled="status === 'stopped'"
+        @click="stop"
+      >
+        Stop
+      </c-button>
+    </div>
+
+    <n-p align="center">
+      Alarm at: {{ deadlineDate }}
+    </n-p>
+
     <c-card v-if="history" title="History">
       <div flex justify-center gap-1>
         <template v-for="(entry, index) in history" :key="index">
@@ -162,3 +192,12 @@ const isEnded = computed(() => status.value === 'ended');
     <audio ref="audio" loop src="/Beep.mp3" />
   </div>
 </template>
+
+<style scoped>
+#fullScreenElement:fullscreen {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
