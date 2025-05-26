@@ -63,6 +63,11 @@ export function getPublicKeyLabelValues(publicKey: Key) {
       value: onErrorReturnErrorMessage(() => publicKey.fingerprint('sha512')),
       multiline: true,
     },
+    {
+      label: 'Key (PEM):',
+      value: onErrorReturnErrorMessage(() => publicKey.toString('pem')),
+      multiline: true,
+    },
   ] as LabelValue[];
 }
 
@@ -97,6 +102,11 @@ export function getPrivateKeyLabelValues(privateKey: PrivateKey) {
     {
       label: 'Fingerprint (sha512):',
       value: onErrorReturnErrorMessage(() => privateKey.fingerprint('sha512')),
+      multiline: true,
+    },
+    {
+      label: 'Key (PEM):',
+      value: onErrorReturnErrorMessage(() => privateKey.toString('pem')),
       multiline: true,
     },
   ] as LabelValue[];
