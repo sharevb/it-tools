@@ -26,10 +26,10 @@ export function useFlexSearch<Data extends Record<string, any>>({
   limit?: MaybeRef<number>
 }) {
   // Extract options
-  const { keys, filterEmpty = true, tokenize = 'forward', ...index_options } = options;
+  const { keys, filterEmpty = true, tokenize = 'forward', ...indexOptions } = options;
 
   // Normalize keys to include weights
-  const normalized_keys = keys.map((key) => {
+  const normalizedKeys = keys.map((key) => {
     if (typeof key === 'string') {
       return { name: key, weight: 1 };
     }
@@ -37,13 +37,13 @@ export function useFlexSearch<Data extends Record<string, any>>({
   });
 
   // Helper to get unique key for each item (prefer 'id', fallback to index)
-  const get_item_key = (item: Data, idx: number) => (item.id !== undefined ? item.id : idx);
+  const getItemKey = (item: Data, idx: number) => (item.id !== undefined ? item.id : idx);
 
   // Map to store original data items by unique key
-  const data_map = ref(new Map<any, Data>());
+  const dataMap = ref(new Map<any, Data>());
 
   // Create separate indices for each key with weight info
-  const indices = normalized_keys.map(({ name, weight }) => ({
+  const indices = normalizedKeys.map(({ name, weight }) => ({
     key: name,
     weight,
     index: new FlexSearch.Index({
@@ -53,89 +53,89 @@ export function useFlexSearch<Data extends Record<string, any>>({
       optimize: true,
       cache: 100,
       fastupdate: true,
-      ...index_options,
+      ...indexOptions,
     }),
   }));
 
   // Initialize indices with data
-  const initialize_indices = () => {
-    data_map.value.clear();
+  const initializeIndices = () => {
+    dataMap.value.clear();
     indices.forEach(({ index }) => index.clear());
 
     data.forEach((item, idx) => {
-      const item_key = get_item_key(item, idx);
-      data_map.value.set(item_key, item);
+      const itemKey = getItemKey(item, idx);
+      dataMap.value.set(itemKey, item);
 
       indices.forEach(({ key, index }) => {
         // Support nested keys (e.g., 'foo.bar')
         const value = key.split('.').reduce((obj, path) => obj?.[path], item);
         if (value) {
-          index.add(item_key, String(value));
+          index.add(itemKey, String(value));
         }
       });
     });
   };
 
   // Initialize on creation
-  initialize_indices();
+  initializeIndices();
 
   // Watch for data changes (deep watch for array content)
   watch(
     () => data,
-    initialize_indices,
+    initializeIndices,
     { deep: true },
   );
 
   // Function to search across all indices with weight consideration
-  const search_all_indices = (query: string, search_limit: number) => {
+  const searchAllIndices = (query: string, searchLimit: number) => {
     if (!query) {
       return [];
     }
 
     // Use a higher individual limit for each index to ensure we don't miss potential matches
-    const individual_limit = search_limit > 0 ? search_limit * 2 : undefined;
+    const individualLimit = searchLimit > 0 ? searchLimit * 2 : undefined;
 
     // Search each index and collect results with weights
-    const weighted_results = new Map<any, number>();
+    const weightedResults = new Map<any, number>();
 
     indices.forEach(({ index, weight }) => {
-      const results = index.search(query, individual_limit ? { limit: individual_limit } : undefined);
+      const results = index.search(query, individualLimit ? { limit: individualLimit } : undefined);
 
       results.forEach((id) => {
-        const current_score = weighted_results.get(id) || 0;
-        weighted_results.set(id, current_score + weight);
+        const currentScore = weightedResults.get(id) || 0;
+        weightedResults.set(id, currentScore + weight);
       });
     });
 
     // Sort by weight (higher weight = better match) and convert to array
-    const sorted_ids = Array.from(weighted_results.entries())
+    const sortedIds = Array.from(weightedResults.entries())
       .sort((a, b) => b[1] - a[1])
       .map(([id]) => id);
 
     // Apply limit and convert back to original items
-    const limited_ids = search_limit > 0 ? sorted_ids.slice(0, search_limit) : sorted_ids;
+    const limitedIds = searchLimit > 0 ? sortedIds.slice(0, searchLimit) : sortedIds;
 
-    return limited_ids
-      .map(id => data_map.value.get(id))
+    return limitedIds
+      .map(id => dataMap.value.get(id))
       .filter(Boolean) as Data[];
   };
 
   // Computed results
-  const search_result = computed<Data[]>(() => {
+  const searchResult = computed<Data[]>(() => {
     const query = get(search);
-    const search_limit: number = get(limit);
+    const searchLimit: number = get(limit);
 
     // Handle empty query case
     if (!query && !filterEmpty) {
-      return search_limit > 0 ? data.slice(0, search_limit) : data;
+      return searchLimit > 0 ? data.slice(0, searchLimit) : data;
     }
 
     if (!query) {
       return [];
     }
 
-    return search_all_indices(query, search_limit);
+    return searchAllIndices(query, searchLimit);
   });
 
-  return { searchResult: search_result };
+  return { searchResult };
 }
