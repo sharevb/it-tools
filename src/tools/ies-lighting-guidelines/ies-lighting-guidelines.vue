@@ -1,20 +1,16 @@
 <script setup lang="ts">
 import iesData from './ies-lighting-data.json';
-import { useFuzzySearch } from '@/composable/fuzzySearch';
 import useDebouncedRef from '@/composable/debouncedref';
+import { useFlexSearch } from '@/composable/flexSearch';
 
-const data = iesData.map(i => ({ ...i, all: `${i.industryType} - ${i.industryApplication}` }));
-const searchQuery = useDebouncedRef('', 500);
+const data = iesData;
+const searchQuery = useDebouncedRef('', 250);
 
-const { searchResult } = useFuzzySearch({
+const { searchResult } = useFlexSearch({
   search: searchQuery,
   data,
   options: {
-    keys: ['all'],
-    threshold: 0.2,
-    isCaseSensitive: false,
-    minMatchCharLength: 3,
-    useExtendedSearch: true,
+    keys: ['industryType', 'industryApplication', 'footCandlesRange', 'recommendedLighting'],
     filterEmpty: false,
   },
 });
@@ -25,7 +21,7 @@ const { searchResult } = useFuzzySearch({
     <div flex items-center gap-3>
       <c-input-text
         v-model:value="searchQuery"
-        placeholder="Search IES recommandation by industry or application"
+        placeholder="Search IES recommendation by industry or application"
         mx-auto max-w-600px
       >
         <template #prefix>
