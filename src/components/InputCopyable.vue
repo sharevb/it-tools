@@ -7,6 +7,7 @@ const props = defineProps<{
   multiline?: boolean
   rows?: number | string
   autosize?: boolean
+  readonly?: boolean
 }>();
 const emit = defineEmits(['update:value']);
 
@@ -21,6 +22,7 @@ const tooltipText = computed(() => isJustCopied.value ? 'Copied!' : 'Copy to cli
     :multiline="multiline"
     :rows="rows"
     :autosize="autosize"
+    :readonly="readonly"
   >
     <template #suffix>
       <c-tooltip :tooltip="tooltipText">
