@@ -1,23 +1,38 @@
 <script setup lang="ts">
+import 'webcrypto-liner-shim';
 import * as openpgp from 'openpgp';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useValidation } from '@/composable/validation';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
+
+openpgp.config.rejectCurves = new Set();
+
+function isWindowSecureContext() {
+  return window.isSecureContext;
+}
 
 const bits = ref(4096);
 const username = ref('');
 const useremail = ref('');
 const password = ref('');
 
-const format = useStorage('pgp-key-pair-generator:format', 'curve25519');
-const formats = [
-  'rsa',
-  'curve25519',
-  'ed25519',
-  'p256', 'p384', 'p521',
-  'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1',
-  'secp256k1',
-];
+const format = useStorage('pgp-key-pair-generator:format', isWindowSecureContext() ? 'curve25519' : 'p256');
+
+const formats = isWindowSecureContext()
+  ? [
+      'rsa',
+      'curve25519',
+      'curve448',
+      'ed25519',
+      'p256', 'p384', 'p521',
+      'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1',
+      'secp256k1',
+    ]
+  : [
+      'p256', 'p384', 'p521',
+      'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1',
+      'secp256k1',
+    ];
 
 const { attrs: bitsValidationAttrs } = useValidation({
   source: bits,
@@ -51,7 +66,7 @@ const [certs, refreshCerts] = computedRefreshableAsync(
       }
 
       const { privateKey, publicKey, revocationCertificate } = await openpgp.generateKey({
-        type: 'ecc', // Type of the key, defaults to ECC
+        type: format.value === 'curve448' ? 'curve448' : 'ecc', // Type of the key, defaults to ECC
         curve: formatValue as openpgp.EllipticCurveName, // ECC curve name, defaults to curve25519
         userIDs: [{ name, email }], // you can pass multiple user IDs
         passphrase, // protects the private key
@@ -69,6 +84,11 @@ const [certs, refreshCerts] = computedRefreshableAsync(
 <template>
   <div>
     <div mb-4>
+      <c-alert v-if="!isWindowSecureContext()" mb-2>
+        Your browser is not in <n-a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts" target="_blank">
+          "Secure Context" (HTTPS)
+        </n-a>. This tool may not work correctly and require HTTPS to work fully.
+      </c-alert>
       <div style="flex: 0 0 100%">
         <div item-style="flex: 1 1 0" style="max-width: 600px" mx-auto flex gap-3>
           <c-select
@@ -77,6 +97,7 @@ const [certs, refreshCerts] = computedRefreshableAsync(
             label="Format:"
             :options="formats"
             placeholder="Select a key format"
+            style="min-width: 150px"
           />
 
           <n-form-item v-if="format === 'rsa'" label="RSA Bits :" v-bind="bitsValidationAttrs as any" label-placement="left">

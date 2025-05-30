@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import 'webcrypto-liner-shim';
 import * as openpgp from 'openpgp';
 import { computedCatchAsync } from '@/composable/computed/catchedComputed';
+
+openpgp.config.rejectCurves = new Set();
 
 const cryptInput = ref('');
 const cryptPublicKey = ref('');
@@ -79,11 +82,20 @@ const [decryptOutput, decryptError] = computedCatchAsync(async () => {
   defaultValue: { decryptedText: '', signatureError: '' },
   defaultErrorMessage: 'Unable to encrypt your text',
 });
+
+function isWindowSecureContext() {
+  return window.isSecureContext;
+}
 </script>
 
 <template>
   <div>
-    <c-card title="Encrypt">
+    <c-alert v-if="!isWindowSecureContext()" mb-2>
+      Your browser is not in <n-a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts" target="_blank">
+        "Secure Context" (HTTPS)
+      </n-a>. This tool may not work correctly and require HTTPS to work fully.
+    </c-alert>
+    <c-card title="Encrypt" mb-2>
       <div>
         <c-input-text
           v-model:value="cryptInput"
