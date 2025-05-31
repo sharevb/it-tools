@@ -72,7 +72,9 @@ const themeVars = useThemeVars();
     </div>
 
     <div class="tool-content">
-      <slot />
+      <Suspense>
+        <slot />
+      </Suspense>
     </div>
 
     <div class="tool-footer">

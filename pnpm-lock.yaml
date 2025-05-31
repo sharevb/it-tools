@@ -710,6 +710,9 @@ dependencies:
   unixcrypt-browser:
     specifier: ^2.0.4
     version: 2.0.4
+  unpdf:
+    specifier: ^1.0.5
+    version: 1.0.5
   unplugin-auto-import:
     specifier: ^0.16.4
     version: 0.16.4(@vueuse/core@10.11.1)(rollup@2.79.2)
@@ -17772,6 +17775,15 @@ packages:
       - rollup
       - supports-color
     dev: true
+
+  /unpdf@1.0.5:
+    resolution: {integrity: sha512-f06b1bT0Cu96UpQmU4wQbir4nJrZ8kMU9dC3zUg7Ac+Sy5iKuh/aHq58rlyk6ggue0xjhed2Q5uu0AJVSl7qHA==}
+    peerDependencies:
+      '@napi-rs/canvas': ^0.1.69
+    peerDependenciesMeta:
+      '@napi-rs/canvas':
+        optional: true
+    dev: false
 
   /unplugin-auto-import@0.16.4(@vueuse/core@10.11.1)(rollup@2.79.2):
     resolution: {integrity: sha512-xdgBa9NAS3JG8HjkAZHSbGSMlrjKpaWKXGUzaF6RzEtr980RCl1t0Zsu0skUInNYrEQfqaHc7aGWPv41DLTK/w==}
