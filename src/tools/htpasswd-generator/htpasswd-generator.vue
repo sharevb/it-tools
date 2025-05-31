@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { hashSync } from 'bcryptjs';
-import md5 from 'apache-md5';
+import { generateHtpasswd } from './htpasswd-generator.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const username = ref('');
@@ -8,18 +7,25 @@ const password = ref('');
 const hashMethod = ref('bcrypt');
 const saltCount = ref(10);
 
+const algos = [
+  { value: 'bcrypt', label: 'Bcrypt' },
+  { value: 'md5', label: 'MD5' },
+  { value: 'apr1', label: 'Apache MD5 (apr1)' },
+  { value: 'sha256', label: 'SHA256' },
+  { value: 'sha512', label: 'SHA512' },
+];
+
 const htpasswd = computed(() => {
   if (username.value === '' || password.value === '') {
     return '# username and password must not be empty';
   }
-  let hash;
-  if (hashMethod.value === 'md5') {
-    hash = md5(password.value);
-  }
-  else {
-    hash = hashSync(password.value, saltCount.value);
-  }
-  return `${username.value}:${hash}`;
+
+  return generateHtpasswd({
+    username: username.value,
+    password: password.value,
+    saltRounds: saltCount.value,
+    algorithm: hashMethod.value as never,
+  });
 });
 </script>
 
@@ -44,10 +50,11 @@ const htpasswd = computed(() => {
     <c-select
       v-model:value="hashMethod"
       label="Hash method:"
-      :options="['bcrypt', 'md5']"
+      :options="algos"
+      mb-2
     />
 
-    <n-form-item v-if="hashMethod === 'bcrypt'" label="Salt count: " label-placement="left" label-width="120">
+    <n-form-item v-if="hashMethod === 'bcrypt'" label="Salt rounds: " label-placement="left" label-width="120">
       <n-input-number v-model:value="saltCount" placeholder="Salt rounds..." :max="100" :min="0" w-full />
     </n-form-item>
 
