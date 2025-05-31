@@ -271,6 +271,7 @@
     "unicode-emoji-json": "^0.4.0",
     "unique-random": "^4.0.0",
     "unixcrypt-browser": "^2.0.4",
+    "unpdf": "^1.0.5",
     "unplugin-auto-import": "^0.16.4",
     "utf8": "^3.0.0",
     "uuid": "^11.0.5",
