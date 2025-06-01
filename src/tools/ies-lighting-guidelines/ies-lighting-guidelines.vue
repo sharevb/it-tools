@@ -60,16 +60,16 @@ const { searchResult } = useFlexSearch({
           <tbody>
             <tr v-for="(result, ix) in searchResult" :key="ix">
               <td>
-                <input-copyable :value="result.industryType" />
+                <input-copyable :readonly="true" :value="result.industryType" />
               </td>
               <td>
-                <input-copyable :value="result.industryApplication" />
+                <input-copyable :readonly="true" :value="result.industryApplication" />
               </td>
               <td>
-                <input-copyable :value="result.footCandlesRange" />
+                <input-copyable :readonly="true" :value="result.footCandlesRange" />
               </td>
               <td>
-                <input-copyable :value="result.recommendedLighting" />
+                <input-copyable :readonly="true" :value="result.recommendedLighting" />
               </td>
             </tr>
           </tbody>
