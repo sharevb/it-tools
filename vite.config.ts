@@ -126,7 +126,7 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    // sourcemap: false,
+    sourcemap: !process.env.VERCEL,
     minify: !process.env.VERCEL,
     reportCompressedSize: !process.env.VERCEL,
     // cssMinify: false,
@@ -140,6 +140,9 @@ export default defineConfig({
           if (id.includes('tesseract.js')) return 'tesseract.js';
           if (id.includes('pdfjs')) return 'pdfjs';
           if (id.includes('unicode')) return 'unicode';
+          if (process.env.VERCEL) {
+            if (id.includes('webcrypto')) return 'webcrypto';
+          }
           // if (id.includes('transformers')) return 'transformers';
           // if (id.includes("node_modules")) {
           //   return "vendor";
