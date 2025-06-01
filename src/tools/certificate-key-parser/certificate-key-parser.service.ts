@@ -14,6 +14,7 @@ import type {
   PrivateKey, Signature, SignatureFormatType,
 } from 'sshpk';
 import { Base64 } from 'js-base64';
+import 'webcrypto-liner-shim';
 import * as openpgp from 'openpgp';
 import * as forge from 'node-forge';
 import { type LabelValue, getCSRLabelValues, getCertificateLabelValues, getFingerprintLabelValues, getPGPPrivateKeyLabelValuesAsync, getPGPPublicKeyLabelValuesAsync, getPrivateKeyLabelValues, getPublicKeyLabelValues, getSignatureLabelValues } from './certificate-key-parser.infos';

@@ -47,14 +47,21 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
   else if (inputType.value === 'content' && inputContent) {
     inputKeyOrCertificateValue = inputContent;
   }
-  const parsed = await getKeysOrCertificatesInfosAsync(inputKeyOrCertificateValue, passphrase.value);
-  if (parsed.length === 1) {
-    const { values, certificateX509DER: certPEM } = parsed[0];
-    certificateX509DER.value = certPEM || '';
-    return [values];
+  try {
+    const parsed = await getKeysOrCertificatesInfosAsync(inputKeyOrCertificateValue, passphrase.value);
+    if (parsed.length === 1) {
+      const { values, certificateX509DER: certPEM } = parsed[0];
+      certificateX509DER.value = certPEM || '';
+      return [values];
+    }
+    else {
+      return parsed.map(p => p.values);
+    }
   }
-  else {
-    return parsed.map(p => p.values);
+  catch (e: any) {
+    return [
+      [{ label: 'Parsing Error', value: e.toString() }],
+    ];
   }
 });
 </script>
