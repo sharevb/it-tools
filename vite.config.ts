@@ -126,7 +126,7 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    sourcemap: !process.env.VERCEL,
+    // sourcemap: !process.env.VERCEL,
     minify: !process.env.VERCEL,
     reportCompressedSize: !process.env.VERCEL,
     // cssMinify: false,
