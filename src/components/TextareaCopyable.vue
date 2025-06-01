@@ -75,7 +75,10 @@ const { download } = useDownloadFileFromBase64(
 
 <template>
   <div style="overflow-x: hidden; width: 100%">
-    <c-card relative>
+    <c-card
+      relative
+      :style="(copyPlacement === 'top-right' || copyPlacement === 'bottom-right') ? `padding-bottom: 50px` : ''"
+    >
       <n-scrollbar
         x-scrollable
         trigger="none"
@@ -87,9 +90,10 @@ const { download } = useDownloadFileFromBase64(
       </n-scrollbar>
       <div
         v-if="value && copyPlacement !== 'none'"
-        absolute right-10px
+
         :top-10px="copyPlacement === 'top-right' ? '' : 'no'"
         :bottom-10px="copyPlacement === 'bottom-right' ? '' : 'no'"
+        absolute right-10px
       >
         <c-tooltip v-if="value && copyPlacement !== 'outside'" :tooltip="tooltipText" position="left">
           <c-button circle important:h-10 important:w-10 @click="copy()">
