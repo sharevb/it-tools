@@ -116,6 +116,7 @@ export default defineConfig({
       '@babel/core': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'isolated-vm': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'onnxruntime-node': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
+      'webcrypto-liner-shim': !process.env.VERCEL ? 'webcrypto-liner-shim' : fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
     },
   },
   define: {
@@ -126,29 +127,32 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    // sourcemap: false,
+    // sourcemap: !process.env.VERCEL,
     minify: !process.env.VERCEL,
     reportCompressedSize: !process.env.VERCEL,
     // cssMinify: false,
-    modulePreload: false,
+    // modulePreload: false,
     rollupOptions: {
       external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node'],
       output: {
         format: 'es',
         manualChunks: (id) => {
-          if (id.includes('monaco-editor')) return 'monaco-editor';
+          // if (id.includes('monaco-editor')) return 'monaco-editor';
           if (id.includes('tesseract.js')) return 'tesseract.js';
           if (id.includes('pdfjs')) return 'pdfjs';
           if (id.includes('unicode')) return 'unicode';
+          if (process.env.VERCEL) {
+            if (id.includes('webcrypto')) return 'webcrypto';
+          }
           // if (id.includes('transformers')) return 'transformers';
           // if (id.includes("node_modules")) {
           //   return "vendor";
           // }
         },
-        sourcemapIgnoreList: (relativeSourcePath) => {
-          const normalizedPath = path.normalize(relativeSourcePath);
-          return normalizedPath.includes("node_modules");
-        },
+        // sourcemapIgnoreList: (relativeSourcePath) => {
+        // const normalizedPath = path.normalize(relativeSourcePath);
+        // return normalizedPath.includes("node_modules");
+        // },
       },
       cache: false,
     },
