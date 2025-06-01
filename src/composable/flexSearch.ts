@@ -17,7 +17,23 @@ export function useFlexSearch<Data extends Record<string, any>>({
   data: Data[]
   options?: {
     keys: SearchKey[]
+    /**
+     * Whether to show or not show items with an empty search query. `true` won't show any items, `false` will show all items.
+     * @default true
+     */
     filterEmpty?: boolean
+    /**
+     * Whether the results should be sorted by similarity score using the Levenshtein distance.
+     * @default true
+     */
+    shouldSort?: boolean
+    /**
+     * Type of tokenization logic to use (Determines how the search logic will behave).
+     * @default 'forward'
+     * @see {@link https://github.com/nextapps-de/flexsearch?tab=readme-ov-file#tokenizer-partial-match | FlexSearch Tokenizer Documentation}
+     *
+     * Note: The `'tolerant'` tokenizer option mentioned in the documentation doesn't exist anymore in the current version of FlexSearch.
+     */
     tokenize?: 'strict' | 'forward' | 'reverse' | 'full'
     resolution?: number
     optimize?: boolean
@@ -26,7 +42,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
   limit?: MaybeRef<number>
 }) {
   // Extract options
-  const { keys, filterEmpty = true, tokenize = 'forward', ...indexOptions } = options;
+  const { keys, filterEmpty = true, shouldSort = true, tokenize = 'forward', ...indexOptions } = options;
 
   // Normalize keys to include weights
   const normalizedKeys = keys.map((key) => {
@@ -115,9 +131,75 @@ export function useFlexSearch<Data extends Record<string, any>>({
     // Apply limit and convert back to original items
     const limitedIds = searchLimit > 0 ? sortedIds.slice(0, searchLimit) : sortedIds;
 
-    return limitedIds
-      .map(id => dataMap.value.get(id))
-      .filter(Boolean) as Data[];
+    // Return the limited results early if it shouldn't be sorted by similarity
+    if (!shouldSort) {
+      return limitedIds
+        .map(id => dataMap.value.get(id))
+        .filter(Boolean) as Data[];
+    }
+
+    // Calculate Levenshtein distance
+    const levenshteinDistance = (str1: string, str2: string): number => {
+      const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
+
+      for (let i = 0; i <= str1.length; i++) {
+        matrix[0][i] = i;
+      }
+      for (let j = 0; j <= str2.length; j++) {
+        matrix[j][0] = j;
+      }
+
+      for (let j = 1; j <= str2.length; j++) {
+        for (let i = 1; i <= str1.length; i++) {
+          const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
+          matrix[j][i] = Math.min(
+            matrix[j][i - 1] + 1, // deletion
+            matrix[j - 1][i] + 1, // insertion
+            matrix[j - 1][i - 1] + indicator, // substitution
+          );
+        }
+      }
+
+      return matrix[str2.length][str1.length];
+    };
+
+    // Calculate similarity score (0-1, where 1 is perfect match)
+    const calculateSimilarity = (str1: string, str2: string): number => {
+      const maxLength = Math.max(str1.length, str2.length);
+      if (maxLength === 0) {
+        return 1;
+      }
+
+      const distance = levenshteinDistance(str1.toLowerCase(), str2.toLowerCase());
+      return 1 - (distance / maxLength);
+    };
+
+    // Sort limited results by similarity score
+    const sortedResults = limitedIds
+      .map((id) => {
+        const item = dataMap.value.get(id);
+        if (!item) {
+          return null;
+        }
+
+        // Calculate best similarity score across all searchable fields
+        const similarities = normalizedKeys.map(({ name }) => {
+          const value = name.split('.').reduce((obj, path) => obj?.[path], item);
+          return value ? calculateSimilarity(query, String(value)) : 0;
+        });
+
+        const bestSimilarity = Math.max(...similarities);
+
+        return {
+          item,
+          similarity: bestSimilarity,
+        };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b!.similarity - a!.similarity)
+      .map(result => result!.item);
+
+    return sortedResults as Data[];
   };
 
   // Computed results
