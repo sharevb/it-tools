@@ -97,7 +97,7 @@ const { searchResult } = useFlexSearch({
           <tbody>
             <tr v-for="(result, ix) in searchResult" :key="ix">
               <td>
-                <input-copyable :value="`U+${toPaddedHex(result.codePoint)}`" mb-1 />
+                <input-copyable :value="`U+${toPaddedHex(result.codePoint)}`" :readonly="true" mb-1 />
                 <!-- //NOSONAR --><n-a
                   :href="`https://unicodeplus.com/U+${toPaddedHex(result.codePoint)}`"
                   target="_blank"
@@ -106,17 +106,17 @@ const { searchResult } = useFlexSearch({
                 </n-a>
               </td>
               <td>
-                <input-copyable :value="String.fromCodePoint(result.codePoint)" mb-1 />
-                <input-copyable :value="toUTF8(result.codePoint)" />
+                <input-copyable :value="String.fromCodePoint(result.codePoint)" :readonly="true" mb-1 />
+                <input-copyable :value="toUTF8(result.codePoint)" :readonly="true" />
               </td>
               <td>
-                <input-copyable :value="unicodeCategories.get(result.codePoint)" />
+                <input-copyable :value="unicodeCategories.get(result.codePoint)" :readonly="true" />
               </td>
               <td>
-                <input-copyable :value="`\&\#x${toPaddedHex(result.codePoint)};`" mb-1 />
-                <input-copyable :value="`\&\#${result.codePoint};`" />
+                <input-copyable :value="`\&\#x${toPaddedHex(result.codePoint)};`" :readonly="true" mb-1 />
+                <input-copyable :value="`\&\#${result.codePoint};`" :readonly="true" />
               </td>
-              <td><input-copyable :value="result.characterName" /></td>
+              <td><input-copyable :value="result.characterName" :readonly="true" /></td>
             </tr>
           </tbody>
         </n-table>
