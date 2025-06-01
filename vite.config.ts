@@ -116,6 +116,7 @@ export default defineConfig({
       '@babel/core': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'isolated-vm': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'onnxruntime-node': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
+      'webcrypto-liner-shim': !process.env.VERCEL ? 'webcrypto-liner-shim' : fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
     },
   },
   define: {
@@ -130,19 +131,18 @@ export default defineConfig({
     minify: !process.env.VERCEL,
     reportCompressedSize: !process.env.VERCEL,
     // cssMinify: false,
-    // modulePreload: false,
+    modulePreload: false,
     rollupOptions: {
-      external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node'],
+      external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node', ...(process.env.VERCEL ? ['webcrypto-liner-shim'] : [])],
       output: {
         format: 'es',
         manualChunks: (id) => {
-          // if (id.includes('monaco-editor')) return 'monaco-editor';
+          if (process.env.VERCEL) {
+            return id;
+          }
           if (id.includes('tesseract.js')) return 'tesseract.js';
           if (id.includes('pdfjs')) return 'pdfjs';
           if (id.includes('unicode')) return 'unicode';
-          if (process.env.VERCEL) {
-            if (id.includes('webcrypto')) return 'webcrypto';
-          }
           // if (id.includes('transformers')) return 'transformers';
           // if (id.includes("node_modules")) {
           //   return "vendor";
@@ -157,7 +157,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['isolated-vm', 'pdfjs-dist', 'onnxruntime-node'], // optionally specify dependency name
+    include: ['isolated-vm', 'pdfjs-dist', 'onnxruntime-node', ...(process.env.VERCEL ? ['webcrypto-liner-shim'] : [])], // optionally specify dependency name
     esbuildOptions: {
       supported: {
         'top-level-await': true,
