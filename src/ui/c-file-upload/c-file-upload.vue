@@ -33,14 +33,19 @@ function toBase64(file: File) {
 
 const fileInput = ref<HTMLInputElement | null>(null);
 const imgPreview = ref<HTMLImageElement | null>(null);
-async function handlePreview(image: File) {
-  if (imgPreview.value) {
-    imgPreview.value.src = await toBase64(image);
-  }
-}
 function clearPreview() {
   if (imgPreview.value) {
     imgPreview.value.src = '';
+  }
+}
+async function handlePreview(image: File) {
+  if (imgPreview.value) {
+    if (image.type?.includes('image/')) {
+      imgPreview.value.src = await toBase64(image);
+    }
+    else {
+      clearPreview();
+    }
   }
 }
 
