@@ -22,6 +22,35 @@ function getEmojiCodePoints({ emoji }: { emoji: string }) {
   return codePoints.length > 0 ? codePoints.join(' ') : undefined;
 }
 
+// Function to detect if a string contains emojis
+function containsEmoji(text: string): boolean {
+  // Check each character in the text against our emoji data
+  for (const char of text) {
+    if (emojiUnicodeData[char]) {
+      return true;
+    }
+  }
+  return false;
+}
+// Function to convert emojis in text to their unicode representations
+function convertEmojisToUnicode(text: string): string {
+  let result = text;
+
+  // Process each character/emoji in the string
+  for (const char of text) {
+    // Check if this character is an emoji by looking it up in our emoji data
+    if (emojiUnicodeData[char]) {
+      const unicodeString = escapeUnicode({ emoji: char });
+      if (unicodeString) {
+        // Replace the emoji with its unicode representation
+        result = result.replace(char, unicodeString);
+      }
+    }
+  }
+
+  return result;
+}
+
 // Process emojis with enhanced code point handling
 const emojis = _.map(emojiUnicodeData, (emojiInfo, emoji) => ({
   ...emojiInfo,
@@ -43,11 +72,25 @@ const emojisGroups: { emojiInfos: EmojiInfo[]; group: string }[] = _.chain(emoji
   .value();
 
 const limit = ref(150);
+const rawSearchQuery = ref('');
 const searchQuery = useDebouncedRef('', 250);
 
 // Add automated lazy loading for emoji groups
 const visibleGroupsCount = ref(1); // Start with 1 group
 let loadingInterval: NodeJS.Timeout | null = null;
+
+// Watch for raw search query changes and process emojis
+watch(rawSearchQuery, (newQuery) => {
+  if (containsEmoji(newQuery)) {
+    // Convert emojis to unicode and update the debounced search query
+    const unicodeQuery = convertEmojisToUnicode(newQuery);
+    searchQuery.value = unicodeQuery;
+  }
+  else {
+    // Regular text search
+    searchQuery.value = newQuery;
+  }
+});
 
 const { searchResult } = useFlexSearch({
   search: searchQuery,
@@ -128,8 +171,8 @@ onUnmounted(() => {
   <div mx-auto max-w-2400px important:flex-1>
     <div mx-auto mb-4 max-w-600px flex justify-center gap-3>
       <c-input-text
-        v-model:value="searchQuery"
-        placeholder="Search emojis (e.g. 'smile', 'flag', 'heart')..."
+        v-model:value="rawSearchQuery"
+        placeholder="Search emojis (e.g. 'smile', 'flag', 'heart') or paste an emoji..."
         class="flex-1"
       >
         <template #prefix>
