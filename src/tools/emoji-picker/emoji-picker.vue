@@ -172,7 +172,7 @@ onUnmounted(() => {
     <div mx-auto mb-4 max-w-600px flex justify-center gap-3>
       <c-input-text
         v-model:value="rawSearchQuery"
-        placeholder="Search emojis (e.g. 'smile', 'flag', 'heart') or paste an emoji..."
+        placeholder="Search emojis (e.g. 'smile') or paste an emoji (e.g. '😄')"
         class="flex-1"
       >
         <template #prefix>
@@ -189,7 +189,7 @@ onUnmounted(() => {
       <div v-if="displayedSearchResults.length === 0" mt-4 text-center text-20px font-bold op-70>
         <div>No results found</div>
         <div mt-2 text-14px font-normal>
-          Try searching for something else like "smile", "flag", or "food"
+          Try searching for something else like "smile", "flag", or "😄"
         </div>
       </div>
 
