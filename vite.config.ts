@@ -132,25 +132,25 @@ export default defineConfig({
     minify: !process.env.VERCEL,
     reportCompressedSize: !process.env.VERCEL,
     // cssMinify: false,
-    modulePreload: false,
+    // modulePreload: false,
     rollupOptions: {
       external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node', 'unpdf/pdfjs', ...(process.env.VERCEL ? ['webcrypto-liner-shim'] : [])],
       output: {
         format: 'es',
-        manualChunks: (id) => {
-          // if (id.includes('monaco-editor')) return 'monaco-editor';
-          if (id.includes('tesseract.js')) return 'tesseract.js';
-          if (id.includes('pdfjs')) return 'pdfjs';
-          if (id.includes('unicode')) return 'unicode';
-          // if (id.includes('transformers')) return 'transformers';
-          // if (id.includes("node_modules")) {
-          //   return "vendor";
-          // }
-        },
-        sourcemapIgnoreList: (relativeSourcePath) => {
-          const normalizedPath = path.normalize(relativeSourcePath);
-          return normalizedPath.includes("node_modules");
-        },
+        // manualChunks: (id) => {
+        //   // if (id.includes('monaco-editor')) return 'monaco-editor';
+        //   // if (id.includes('tesseract.js')) return 'tesseract.js';
+        //   // if (id.includes('pdfjs')) return 'pdfjs';
+        //   // if (id.includes('unicode')) return 'unicode';
+        //   // if (id.includes('transformers')) return 'transformers';
+        //   // if (id.includes("node_modules")) {
+        //   //   return "vendor";
+        //   // }
+        // },
+        // sourcemapIgnoreList: (relativeSourcePath) => {
+        //   const normalizedPath = path.normalize(relativeSourcePath);
+        //   return normalizedPath.includes("node_modules");
+        // },
       },
       cache: false,
     },
