@@ -6,6 +6,7 @@ import {
   IconDeviceDesktopExclamation,
   IconExternalLink,
   IconInfoCircle,
+  IconSearch,
 } from '@tabler/icons-vue';
 import { codesByCategories } from './http-status-codes.constants';
 import { useFlexSearch } from '@/composable/flexSearch';
@@ -31,27 +32,26 @@ const codesByCategoryFiltered = computed(() => {
 function getCategoryIcon(category: string) {
   const categoryLower = category.toLowerCase();
 
-  if (categoryLower.includes('informational') || categoryLower.includes('1xx')) {
+  if (categoryLower.includes('1xx')) {
     return IconInfoCircle;
   }
-  if (categoryLower.includes('success') || categoryLower.includes('2xx')) {
+  if (categoryLower.includes('2xx')) {
     return IconCircleCheck;
   }
-  if (categoryLower.includes('redirection') || categoryLower.includes('3xx')) {
+  if (categoryLower.includes('3xx')) {
     return IconCircleArrowUpRight;
   }
-  if (categoryLower.includes('client error') || categoryLower.includes('4xx')) {
+  if (categoryLower.includes('4xx')) {
     return IconDeviceDesktopExclamation;
   }
-  if (categoryLower.includes('server error') || categoryLower.includes('5xx')) {
+  if (categoryLower.includes('5xx')) {
     return IconDatabaseExclamation;
   }
-
   // Default icon for search results or unknown categories
-  return IconInfoCircle;
+  return IconSearch;
 }
 
-function openMdnDocs(code: string) {
+function openMdnDocs(code: number) {
   window.open(`https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/${code}`, '_blank', 'noopener,noreferrer');
 }
 </script>
@@ -76,7 +76,7 @@ function openMdnDocs(code: string) {
           <div
             class="flex cursor-pointer items-center justify-center rounded text-gray-500 transition-colors hover:text-blue-600"
             title="View MDN documentation"
-            @click="openMdnDocs(String(code))"
+            @click="openMdnDocs(code)"
           >
             <n-icon :component="IconExternalLink" size="18" />
           </div>
