@@ -1,9 +1,14 @@
 import { type MaybeRef, get } from '@vueuse/core';
 import Fuse, { type IFuseOptions } from 'fuse.js';
 import { computed } from 'vue';
+import { useFlexSearch } from './flexSearch';
 
 export { useFuzzySearch };
 
+/**
+ * @deprecated This composable is deprecated and will be removed in a future version.
+ * Use {@link useFlexSearch} instead.
+ */
 function useFuzzySearch<Data>({
   search,
   data,
