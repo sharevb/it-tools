@@ -11,7 +11,7 @@ const { searchResult } = useFlexSearch({
   search: searchQuery,
   data: countriesSearchData,
   options: {
-    keys: ['name', { name: 'iso3', weight: 3 }, { name: 'iso2', weight: 2 }, 'domain'],
+    keys: ['name', { name: 'iso3', weight: 3 }, { name: 'iso2', weight: 2 }, 'officialName', 'domain', 'continentId', 'currencyCode', 'currencyName', 'phoneCode'],
   },
   limit,
 });
