@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import _ from 'lodash';
 import type { PaletteOption } from './command-palette.types';
 import { useToolStore } from '@/tools/tools.store';
-import { useFuzzySearch } from '@/composable/fuzzySearch';
 import { useStyleStore } from '@/stores/style.store';
 
 import SunIcon from '~icons/mdi/white-balance-sunny';
@@ -10,6 +9,7 @@ import GithubIcon from '~icons/mdi/github';
 import BugIcon from '~icons/mdi/bug-outline';
 import DiceIcon from '~icons/mdi/dice-5';
 import InfoIcon from '~icons/mdi/information-outline';
+import { useFlexSearch } from '@/composable/flexSearch';
 
 const maxSearchResultsPerCategory = import.meta.env.VITE_MAX_SEARCH_RESULT || 25;
 
@@ -74,12 +74,11 @@ export const useCommandPaletteStore = defineStore('command-palette', () => {
     },
   ];
 
-  const { searchResult } = useFuzzySearch({
+  const { searchResult } = useFlexSearch({
     search: searchPrompt,
     data: searchOptions,
     options: {
       keys: [{ name: 'name', weight: 2 }, 'description', 'keywords', 'category'],
-      threshold: 0.3,
     },
   });
 
