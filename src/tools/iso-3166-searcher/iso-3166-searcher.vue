@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, nextTick, onUnmounted, ref } from 'vue';
 import CountriesDB from 'countries-db';
 import ISO6391 from 'iso-639-1';
 import useDebouncedRef from '@/composable/debouncedref';
@@ -11,7 +12,7 @@ const { searchResult } = useFlexSearch({
   search: searchQuery,
   data: countriesSearchData,
   options: {
-    keys: ['name', { name: 'iso3', weight: 3 }, { name: 'iso2', weight: 2 }, 'officialName', 'domain', 'continentId', 'currencyCode', 'currencyName', 'phoneCode'],
+    keys: [{ name: 'name', weight: 2 }, { name: 'iso3', weight: 3 }, { name: 'iso2', weight: 2 }, 'officialName', 'domain', 'continentId', 'currencyCode', 'currencyName', 'phoneCode'],
   },
   limit,
 });
@@ -23,6 +24,66 @@ function langToName(code: string) {
   }
   return `${code} (${name})`;
 }
+
+// Batch loading logic for search results
+const RESULTS_PER_BATCH = 2; // Show 2 results per batch
+const visibleResultsCount = ref(RESULTS_PER_BATCH); // Start with first batch
+let loadingInterval: NodeJS.Timeout | null = null;
+
+// Computed property for visible search results
+const visibleSearchResults = computed(() => {
+  return searchResult.value.slice(0, visibleResultsCount.value);
+});
+
+// Function to stop automated loading
+function stopAutomatedLoading() {
+  if (loadingInterval) {
+    clearInterval(loadingInterval);
+    loadingInterval = null;
+  }
+}
+
+// Function to start automated loading
+function startAutomatedLoading() {
+  // Clear any existing interval
+  if (loadingInterval) {
+    clearInterval(loadingInterval);
+  }
+
+  // Reset visible count when starting new search
+  visibleResultsCount.value = RESULTS_PER_BATCH;
+
+  // Start loading batches every 150ms
+  loadingInterval = setInterval(() => {
+    if (visibleResultsCount.value < searchResult.value.length) {
+      visibleResultsCount.value = Math.min(
+        visibleResultsCount.value + RESULTS_PER_BATCH,
+        searchResult.value.length,
+      );
+    }
+    else {
+      // Stop loading when all results are visible
+      stopAutomatedLoading();
+    }
+  }, 150);
+}
+
+// Watch for changes in search results to restart batching
+watch(searchResult, (newResults) => {
+  if (newResults.length > 0) {
+    nextTick(() => {
+      startAutomatedLoading();
+    });
+  }
+  else {
+    stopAutomatedLoading();
+  }
+}, { immediate: true });
+
+// Clean up on component unmount
+onUnmounted(() => {
+  stopAutomatedLoading();
+});
 </script>
 
 <template>
@@ -54,7 +115,7 @@ function langToName(code: string) {
             <th>Name and Info</th>
           </thead>
           <tbody>
-            <tr v-for="(result, ix) in searchResult" :key="ix">
+            <tr v-for="(result, ix) in visibleSearchResults" :key="ix">
               <td style="vertical-align: top">
                 <input-copyable :value="result.iso2" :readonly="true" />
                 <input-copyable :value="result.iso3" :readonly="true" />
@@ -74,7 +135,7 @@ function langToName(code: string) {
                   label-width="150px"
                   label="Emoji"
                   label-position="left"
-                  :value="`${result.emoji} (${result.emojiUnicode})`"
+                  :value="`${result.emoji}`"
                   :readonly="true"
                   mb-1
                 />
@@ -158,6 +219,7 @@ function langToName(code: string) {
                     result.neighborCountryIds
                       .map((id) => CountriesDB.getCountry(id, 'name')?.toString() || id)
                       .join(', ')
+                      || 'None'
                   "
                   :readonly="true"
                   mb-1
@@ -188,6 +250,13 @@ function langToName(code: string) {
             </tr>
           </tbody>
         </n-table>
+
+        <!-- Loading indicator when more results are coming -->
+        <div v-if="visibleResultsCount < searchResult.length" mt-6 text-center>
+          <div text-14px op-70>
+            Loading more results... ({{ visibleSearchResults.length }}/{{ searchResult.length }})
+          </div>
+        </div>
       </div>
     </div>
   </div>
