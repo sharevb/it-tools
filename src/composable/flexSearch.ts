@@ -35,8 +35,19 @@ export function useFlexSearch<Data extends Record<string, any>>({
      * Note: The `'tolerant'` tokenizer option mentioned in the documentation doesn't exist anymore in the current version of FlexSearch.
      */
     tokenize?: 'strict' | 'forward' | 'reverse' | 'full'
+    /**
+     * Resolution value for giving meaningful results when searching for partial matches.
+     * @default 9
+     * @see {@link https://github.com/nextapps-de/flexsearch?tab=readme-ov-file#resolution | FlexSearch Resolution Documentation}
+     */
     resolution?: number
     optimize?: boolean
+    /**
+     * Value to determine if the cache should be used.
+     * If set to a number, the cache will use the number to assign that number of cache slots (No information in the documentation is provided about what a cache slot is exactly).
+     * @default false
+     * @see {@link https://github.com/nextapps-de/flexsearch?tab=readme-ov-file#auto-balanced-cache-by-popularity | FlexSearch Cache Documentation}
+     */
     cache?: boolean | number
   }
   limit?: MaybeRef<number>
@@ -67,7 +78,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
       preset: 'performance',
       resolution: 9,
       optimize: true,
-      cache: 100,
+      cache: false,
       fastupdate: true,
       ...indexOptions,
     }),
@@ -134,7 +145,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
     // Sort by score (higher score = better match) and convert to array
     const sortedIds = Array.from(weightedResults.entries())
       .sort((a, b) => {
-        // First sort by max weight, then by total score
+      // First sort by max weight, then by total score
         if (b[1].maxWeight !== a[1].maxWeight) {
           return b[1].maxWeight - a[1].maxWeight;
         }
@@ -142,11 +153,9 @@ export function useFlexSearch<Data extends Record<string, any>>({
       })
       .map(([id]) => id);
 
-    // Apply limit and convert back to original items
-    const limitedIds = searchLimit > 0 ? sortedIds.slice(0, searchLimit) : sortedIds;
-
-    // Return the limited results early if it shouldn't be sorted by similarity
+    // If shouldn't be sorted by similarity, apply limit here and return early
     if (!shouldSort) {
+      const limitedIds = searchLimit > 0 ? sortedIds.slice(0, searchLimit) : sortedIds;
       return limitedIds
         .map(id => dataMap.value.get(id))
         .filter(Boolean) as Data[];
@@ -188,8 +197,8 @@ export function useFlexSearch<Data extends Record<string, any>>({
       return 1 - (distance / maxLength);
     };
 
-    // Sort limited results by similarity score, but maintain weight priority
-    const sortedResults = limitedIds
+    // Sort ALL results by similarity score, then apply limit at the end
+    const sortedResults = sortedIds
       .map((id) => {
         const item = dataMap.value.get(id);
         if (!item) {
@@ -221,7 +230,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
       })
       .filter(Boolean)
       .sort((a, b) => {
-        // First sort by max field weight, then by weighted similarity
+      // First sort by max field weight, then by weighted similarity
         if (b!.maxWeight !== a!.maxWeight) {
           return b!.maxWeight - a!.maxWeight;
         }
@@ -229,7 +238,8 @@ export function useFlexSearch<Data extends Record<string, any>>({
       })
       .map(result => result!.item);
 
-    return sortedResults as Data[];
+    // Apply limit after final sorting
+    return searchLimit > 0 ? sortedResults.slice(0, searchLimit) : sortedResults;
   };
 
   // Computed results
