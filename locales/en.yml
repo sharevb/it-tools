@@ -448,7 +448,7 @@ tools:
 
   image-resizer:
     title: Image resizer
-    description: Convert the width and height of an image file, preview, and download it in a desired format (.jpg, .jpeg, .png, .bmp, .ico, .svg)
+    description: Convert the width and height of an image file, preview, and download it in a desired format
 
   json-to-object:
     title: JSON to object
@@ -471,7 +471,7 @@ tools:
     message: SIP message
     message-tips: Paste your SIP message here...
     result: Result
-    sucess: Sucess
+    sucess: Success
     failure: Failure
 
   uuid-converter:
