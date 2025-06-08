@@ -212,30 +212,48 @@ function resetToOriginal() {
   }
 }
 
-// Watch width to trigger resizing
+function onWidthFocus() {
+  aspectRatioPriority.value = 'width';
+}
+
+function onHeightFocus() {
+  aspectRatioPriority.value = 'height';
+}
+
 watch(imageWidth, () => {
   if (aspectRatioLocked.value && aspectRatio.value && !isUpdatingDimensions.value && imageWidth.value > 0) {
-    isUpdatingDimensions.value = true;
-    const newHeight = Math.round(imageWidth.value / aspectRatio.value);
-    if (newHeight > 0) {
-      imageHeight.value = newHeight;
+    if (aspectRatioPriority.value === 'width') {
+      isUpdatingDimensions.value = true;
+      const newHeight = Math.round(imageWidth.value / aspectRatio.value);
+      if (newHeight > 0) {
+        imageHeight.value = newHeight;
+      }
+      isUpdatingDimensions.value = false;
     }
-    isUpdatingDimensions.value = false;
   }
-  resizeImage();
+
+  // Only resize if not too large for preview
+  if (!isPreviewTooLarge.value) {
+    resizeImage();
+  }
 });
 
-// Watch height to trigger resizing
 watch(imageHeight, () => {
   if (aspectRatioLocked.value && aspectRatio.value && !isUpdatingDimensions.value && imageHeight.value > 0) {
-    isUpdatingDimensions.value = true;
-    const newWidth = Math.round(imageHeight.value * aspectRatio.value);
-    if (newWidth > 0) {
-      imageWidth.value = newWidth;
+    if (aspectRatioPriority.value === 'height') {
+      isUpdatingDimensions.value = true;
+      const newWidth = Math.round(imageHeight.value * aspectRatio.value);
+      if (newWidth > 0) {
+        imageWidth.value = newWidth;
+      }
+      isUpdatingDimensions.value = false;
     }
-    isUpdatingDimensions.value = false;
   }
-  resizeImage();
+
+  // Only resize if not too large for preview
+  if (!isPreviewTooLarge.value) {
+    resizeImage();
+  }
 });
 
 // Handle file upload
@@ -443,6 +461,7 @@ function downloadImage(format: string) {
               placeholder="Width (px)"
               :min="1"
               :max="MAX_CANVAS_DIMENSION"
+              @focus="onWidthFocus"
             />
           </div>
           <div class="input-group">
@@ -453,6 +472,7 @@ function downloadImage(format: string) {
               placeholder="Height (px)"
               :min="1"
               :max="MAX_CANVAS_DIMENSION"
+              @focus="onHeightFocus"
             />
           </div>
 
@@ -469,7 +489,7 @@ function downloadImage(format: string) {
           </div>
         </div>
 
-        <!-- Middle: Current aspect ratio display, lock, and priority options -->
+        <!-- Middle: Current aspect ratio display, lock, and priority -->
         <div class="aspect-ratio-middle">
           <h4>Aspect Ratio</h4>
 
@@ -486,31 +506,9 @@ function downloadImage(format: string) {
           >
             <n-icon :component="getLockStateIcon()" size="26" />
           </div>
-
-          <!-- Priority radio buttons -->
-          <div class="priority-options">
-            <n-radio-group v-model:value="aspectRatioPriority" size="small">
-              <div class="radio-option">
-                <n-radio value="width">
-                  Prioritize width
-                </n-radio>
-              </div>
-              <div class="radio-option">
-                <n-radio value="height">
-                  Prioritize height
-                </n-radio>
-              </div>
-            </n-radio-group>
-            <n-tooltip trigger="hover">
-              <template #trigger>
-                <n-icon :component="IconInfoCircleFilled" size="16" style="color: #666; cursor: help; margin-top: 5px;" />
-              </template>
-              <span>These settings determine which dimension is prioritized when calculating the new dimensions for the aspect ratio.<br>While any number can be freely entered in the prioritized field, the non-prioritized field is susceptible to the value being autocorrected to comply with the current aspect ratio</span>
-            </n-tooltip>
-          </div>
         </div>
 
-        <!-- Right side: Aspect Ratio controls -->
+        <!-- Right side: Aspect Ratio presets only -->
         <div class="aspect-ratio-section-compact">
           <h4>Aspect Ratio Presets</h4>
 
@@ -646,17 +644,6 @@ function downloadImage(format: string) {
 
 .lock-icon {
   margin: 5px 0;
-}
-
-.priority-options {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 5px;
-}
-
-.radio-option {
-  font-size: 12px;
 }
 
 .aspect-ratio-section-compact {
