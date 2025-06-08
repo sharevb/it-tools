@@ -39,6 +39,7 @@
     "h": true,
     "ignorableWatch": true,
     "inject": true,
+    "injectLocal": true,
     "isDefined": true,
     "isProxy": true,
     "isReactive": true,
@@ -68,6 +69,7 @@
     "onUpdated": true,
     "pausableWatch": true,
     "provide": true,
+    "provideLocal": true,
     "reactify": true,
     "reactifyObject": true,
     "reactive": true,
@@ -96,6 +98,7 @@
     "toReactive": true,
     "toRef": true,
     "toRefs": true,
+    "toValue": true,
     "triggerRef": true,
     "tryOnBeforeMount": true,
     "tryOnBeforeUnmount": true,
@@ -130,6 +133,7 @@
     "useBrowserLocation": true,
     "useCached": true,
     "useClipboard": true,
+    "useClipboardItems": true,
     "useCloned": true,
     "useColorMode": true,
     "useConfirmDialog": true,
@@ -285,10 +289,6 @@
     "watchThrottled": true,
     "watchTriggerable": true,
     "watchWithFilter": true,
-    "whenever": true,
-    "toValue": true,
-    "injectLocal": true,
-    "provideLocal": true,
-    "useClipboardItems": true
+    "whenever": true
   }
 }
