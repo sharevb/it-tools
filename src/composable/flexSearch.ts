@@ -145,7 +145,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
     // Sort by score (higher score = better match) and convert to array
     const sortedIds = Array.from(weightedResults.entries())
       .sort((a, b) => {
-      // First sort by max weight, then by total score
+        // First sort by max weight, then by total score
         if (b[1].maxWeight !== a[1].maxWeight) {
           return b[1].maxWeight - a[1].maxWeight;
         }
@@ -230,7 +230,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
       })
       .filter(Boolean)
       .sort((a, b) => {
-      // First sort by max field weight, then by weighted similarity
+        // First sort by max field weight, then by weighted similarity
         if (b!.maxWeight !== a!.maxWeight) {
           return b!.maxWeight - a!.maxWeight;
         }
