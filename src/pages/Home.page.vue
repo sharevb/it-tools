@@ -137,6 +137,7 @@ onUnmounted(() => {
             class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
             ghost-class="ghost-favorites-draggable"
             item-key="name"
+            :delay="250"
             @end="onUpdateFavoriteTools"
           >
             <template #item="{ element: tool }">
