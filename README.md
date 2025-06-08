@@ -2,13 +2,20 @@
 
 Since *Docker base image* is now `nginx-unpriviledged`, docker image now listen to **8080** and no more 80. So you need to update your port mapping, ie from `8080:80` to `8080:8080`.
 
-### Check out these change here: <https://sharevb-it-tools.vercel.app/>
+### Check out these change here: <https://sharevb-it-tools.vercel.app/> or <https://sharevb.github.io/it-tools/>
 
 You can use my image in your docker-compose file if you want an update to date version of it-tools (with my PR and some of others) until the main branch has been updated.
 
 - github action triggers on every push to this branch - [view package here](https://github.com/sharevb/it-tools/pkgs/container/it-tools)
 
 (Thanks to [gitmotion](https://github.com/gitmotion/it-tools) for this model of README fork)
+
+## Contributors
+
+Big thanks to all the people who have already contributed!
+
+[![contributors](https://contrib.rocks/image?repo=sharevb/it-tools&refresh=1)](https://github.com/sharevb/it-tools/graphs/contributors)
+
 
 ## Added features
 
@@ -19,6 +26,17 @@ Almost [all tools PR of it-tools](https://github.com/sharevb/it-tools/pulls).
 [GitHub Container Registry](https://github.com/sharevb/it-tools/pkgs/container/it-tools): `ghcr.io/sharevb/it-tools:latest`
 
 [Docker Hub](https://hub.docker.com/r/sharevb/it-tools): `sharevb/it-tools:latest`
+
+## HTTPS is recommanded
+
+Some tools like PGP encryption rely on WebCrypto API that is only available in HTTPS/SSL.
+
+So even on internal installations, you can enable HTTPS using Let's Encrypt using DNS Challenge
+
+Some docs about DNS Challenge:
+- https://medium.com/@life-is-short-so-enjoy-it/homelab-nginx-proxy-manager-setup-ssl-certificate-with-domain-name-in-cloudflare-dns-732af64ddc0b
+- https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/
+- https://medium.com/@svenvanginkel/traefik-letsencrypt-dns01-challenge-with-ovhcloud-52f2a2c6d08a
 
 ## Use in Docker Compose file
 
@@ -95,72 +113,7 @@ Then navigate to http://localhost:8080/it-tools/
 ## To build for GitHub Pages:
 
 1. Enable GitHub Pages build and deployment option in your fork, under **Settings** > **Pages** and select **GitHub Actions** as the source
-2. Add the following GitHub action to your repo:
-
-.github/workflows/deploy-pages.yaml
-```yaml
-name: Deploy static content to Pages
-
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: true
-
-      - name: Build
-        run: |
-          BASE_URL="/it-tools/" pnpm build
-          cp dist/index.html dist/404.html
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
-```
+2. Add the following GitHub action to your repo: https://github.com/sharevb/it-tools/.github/workflows/sharevb-github-pages-publish.yml
 
 ## Installation methods
 

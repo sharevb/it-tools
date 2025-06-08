@@ -4,7 +4,7 @@ import { defineTool } from '../tool';
 export const tool = defineTool({
   name: 'Fortune wheel',
   path: '/fortune-wheel',
-  description: '',
+  description: 'A configurable fortune wheel',
   keywords: ['fortune', 'wheel'],
   component: () => import('./fortune-wheel.vue'),
   icon: ArrowsShuffle,

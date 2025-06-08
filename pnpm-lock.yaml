@@ -273,8 +273,8 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   emojilib:
-    specifier: ^4.0.1
-    version: 4.0.1
+    specifier: ^4.0.2
+    version: 4.0.2
   event-cron-parser:
     specifier: ^1.0.35
     version: 1.0.35
@@ -702,8 +702,8 @@ dependencies:
     specifier: ^2.3.0
     version: 2.3.0
   unicode-emoji-json:
-    specifier: ^0.4.0
-    version: 0.4.0
+    specifier: ^0.8.0
+    version: 0.8.0
   unique-random:
     specifier: ^4.0.0
     version: 4.0.0
@@ -10173,8 +10173,8 @@ packages:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
     dev: false
 
-  /emojilib@4.0.1:
-    resolution: {integrity: sha512-zVY5JGxycujUimHkBn2lg5NCVwASJiQA2fhKfDPgyDFmNTftiw6KdOcq2fQt1HCVw0YeYW/ccYxQHQNjZpNeuw==}
+  /emojilib@4.0.2:
+    resolution: {integrity: sha512-8sP3sfAi861cNaFFp7RmyKi4S26K34ZKy4si75ojUW627AIVBHhMSu2SFJo3YRoK66YWnbysIbOk/d48uEqtKQ==}
     dev: false
 
   /encoding-japanese@2.2.0:
@@ -17599,8 +17599,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /unicode-emoji-json@0.4.0:
-    resolution: {integrity: sha512-lVNOwh2AnmbwqtSrEVjAWKQoVzWgyWmXVqPuPkPfKb0tnA0+uYN/4ILCTdy9IRj/+3drAVhmjwjNJQr2dhCwnA==}
+  /unicode-emoji-json@0.8.0:
+    resolution: {integrity: sha512-3wDXXvp6YGoKGhS2O2H7+V+bYduOBydN1lnI0uVfr1cIdY02uFFiEH1i3kE5CCE4l6UqbLKVmEFW9USxTAMD1g==}
     dev: false
 
   /unicode-match-property-ecmascript@2.0.0:

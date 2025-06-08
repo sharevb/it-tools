@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import mappingData from './ad-mapping.json';
-import { useFuzzySearch } from '@/composable/fuzzySearch';
-import useDebouncedRef from '@/composable/debouncedref';
+import { useFlexSearch } from '@/composable/flexSearch';
 
-const data = mappingData.map(i => ({ ...i, all: `${i.TAB} - ${i.ActiveDirectoryField}` }));
-const searchQuery = useDebouncedRef('', 500);
+const data = mappingData;
+const search = ref('');
 
-const { searchResult } = useFuzzySearch({
-  search: searchQuery,
+const { searchResult } = useFlexSearch({
+  search,
   data,
   options: {
-    keys: ['all'],
-    threshold: 0.2,
-    isCaseSensitive: false,
-    minMatchCharLength: 3,
-    useExtendedSearch: true,
+    keys: ['TAB', 'ActiveDirectoryField', 'LDAPAttribute'],
     filterEmpty: false,
   },
 });
@@ -24,7 +19,7 @@ const { searchResult } = useFuzzySearch({
   <div mx-auto max-w-2400px important:flex-1>
     <div flex items-center gap-3>
       <c-input-text
-        v-model:value="searchQuery"
+        v-model:value="search"
         placeholder="Search Active Directory LDAP mapping"
         mx-auto max-w-600px
       >
