@@ -112,20 +112,34 @@ export function useFlexSearch<Data extends Record<string, any>>({
     const individualLimit = searchLimit > 0 ? searchLimit * 2 : undefined;
 
     // Search each index and collect results with weights
-    const weightedResults = new Map<any, number>();
+    const weightedResults = new Map<any, { score: number; maxWeight: number }>();
 
     indices.forEach(({ index, weight }) => {
       const results = index.search(query, individualLimit ? { limit: individualLimit } : undefined);
 
       results.forEach((id) => {
-        const currentScore = weightedResults.get(id) || 0;
-        weightedResults.set(id, currentScore + weight);
+        const current = weightedResults.get(id) || { score: 0, maxWeight: 0 };
+        // Use the maximum weight among matching fields as the primary score
+        // Add a small bonus for additional field matches
+        const newScore = Math.max(current.score, weight * 100) + (weight * 10);
+        const newMaxWeight = Math.max(current.maxWeight, weight);
+
+        weightedResults.set(id, {
+          score: newScore,
+          maxWeight: newMaxWeight,
+        });
       });
     });
 
-    // Sort by weight (higher weight = better match) and convert to array
+    // Sort by score (higher score = better match) and convert to array
     const sortedIds = Array.from(weightedResults.entries())
-      .sort((a, b) => b[1] - a[1])
+      .sort((a, b) => {
+        // First sort by max weight, then by total score
+        if (b[1].maxWeight !== a[1].maxWeight) {
+          return b[1].maxWeight - a[1].maxWeight;
+        }
+        return b[1].score - a[1].score;
+      })
       .map(([id]) => id);
 
     // Apply limit and convert back to original items
@@ -174,7 +188,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
       return 1 - (distance / maxLength);
     };
 
-    // Sort limited results by similarity score
+    // Sort limited results by similarity score, but maintain weight priority
     const sortedResults = limitedIds
       .map((id) => {
         const item = dataMap.value.get(id);
@@ -182,21 +196,37 @@ export function useFlexSearch<Data extends Record<string, any>>({
           return null;
         }
 
-        // Calculate best similarity score across all searchable fields
-        const similarities = normalizedKeys.map(({ name }) => {
-          const value = name.split('.').reduce((obj, path) => obj?.[path], item);
-          return value ? calculateSimilarity(query, String(value)) : 0;
-        });
+        // Calculate weighted similarity score across all searchable fields
+        let bestWeightedSimilarity = 0;
+        let maxFieldWeight = 0;
 
-        const bestSimilarity = Math.max(...similarities);
+        normalizedKeys.forEach(({ name, weight }) => {
+          const value = name.split('.').reduce((obj, path) => obj?.[path], item);
+          if (value) {
+            const similarity = calculateSimilarity(query, String(value));
+            const weightedSimilarity = similarity * weight;
+
+            if (weightedSimilarity > bestWeightedSimilarity) {
+              bestWeightedSimilarity = weightedSimilarity;
+              maxFieldWeight = weight;
+            }
+          }
+        });
 
         return {
           item,
-          similarity: bestSimilarity,
+          similarity: bestWeightedSimilarity,
+          maxWeight: maxFieldWeight,
         };
       })
       .filter(Boolean)
-      .sort((a, b) => b!.similarity - a!.similarity)
+      .sort((a, b) => {
+        // First sort by max field weight, then by weighted similarity
+        if (b!.maxWeight !== a!.maxWeight) {
+          return b!.maxWeight - a!.maxWeight;
+        }
+        return b!.similarity - a!.similarity;
+      })
       .map(result => result!.item);
 
     return sortedResults as Data[];
