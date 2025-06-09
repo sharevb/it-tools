@@ -153,14 +153,9 @@ onUnmounted(() => {
             class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
             ghost-class="ghost-favorites-draggable"
             item-key="name"
-<<<<<<< HEAD
-            :delay="250"
-            @end="onUpdateFavoriteTools"
-=======
             :delay="100"
             @start="startOrderingFavorites"
             @end="stopOrderingFavorites"
->>>>>>> 8e9d921b8886bc5f5f32dd9b42e0f4c22684a347
           >
             <template #item="{ element: tool }">
               <ToolCard :tool="tool" />
