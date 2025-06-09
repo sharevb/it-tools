@@ -49,4 +49,18 @@ html {
 * {
   box-sizing: border-box;
 }
+
+body .vld-container {
+  position:absolute;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100vh;
+  background-color: #101014;
+  z-index: 9999;
+  text-align: center;
+}
+body .vld-container .vl-overlay.vl-active {
+  margin-top: 15%;
+}
 </style>

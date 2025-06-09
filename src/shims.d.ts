@@ -39,3 +39,7 @@ declare module 'pdf-signature-reader' {
 
   export default verifySignature;
 }
+
+declare module 'vite-plugin-splash-screen/runtime' {
+  export function hideSplashScreen();
+}

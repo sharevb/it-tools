@@ -734,6 +734,9 @@ dependencies:
   vue-i18n:
     specifier: ^9.14.3
     version: 9.14.4(vue@3.3.4)
+  vue-loading-overlay:
+    specifier: ^6.0
+    version: 6.0.6(vue@3.3.4)
   vue-markdown-render:
     specifier: ^2.2.1
     version: 2.2.1(vue@3.3.4)
@@ -994,6 +997,9 @@ devDependencies:
   vite-plugin-pwa:
     specifier: ^1.0.0
     version: 1.0.0(vite@4.4.9)(workbox-build@7.3.0)(workbox-window@7.3.0)
+  vite-plugin-splash-screen:
+    specifier: ^0.2.0
+    version: 0.2.0
   vite-plugin-vue-markdown:
     specifier: ^0.23.5
     version: 0.23.5(rollup@2.79.2)(vite@4.4.9)
@@ -18210,6 +18216,10 @@ packages:
       - supports-color
     dev: true
 
+  /vite-plugin-splash-screen@0.2.0:
+    resolution: {integrity: sha512-PCUiVq8wjx7dHMa9vOqnB+bewKp60VFbhPJJjQOA8UdwmPdf9ChBGuxh+sku4szrnJFsriB0gIDAURAmOqBcUQ==}
+    dev: true
+
   /vite-plugin-vue-markdown@0.23.5(rollup@2.79.2)(vite@4.4.9):
     resolution: {integrity: sha512-NXTZ4y+n691gLPWayMBbh4jldQeaqDp9e9WjWUYbn9obsLqS9qU+hr4RAruDq5kP4siTOp7JDV34Sw5eA7WxLg==}
     peerDependencies:
@@ -18471,6 +18481,15 @@ packages:
       '@intlify/shared': 9.14.4
       '@vue/devtools-api': 6.5.0
       vue: 3.3.4
+
+  /vue-loading-overlay@6.0.6(vue@3.3.4):
+    resolution: {integrity: sha512-ZPrWawjCoNKGbCG9z4nePgbs/K9KXPa1j1oAJXP6T8FQho3NO+/chhjx4MLYFzfpwr+xkiQ8SNrV1kUG1bZPAw==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.3.4
+    dev: false
 
   /vue-markdown-render@2.2.1(vue@3.3.4):
     resolution: {integrity: sha512-XkYnC0PMdbs6Vy6j/gZXSvCuOS0787Se5COwXlepRqiqPiunyCIeTPQAO2XnB4Yl04EOHXwLx5y6IuszMWSgyQ==}
