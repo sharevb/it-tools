@@ -1,10 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { type ActiveLoader, useLoading } from 'vue-loading-overlay';
 import { layouts } from './layouts/index';
 import HomePage from './pages/Home.page.vue';
 import NotFound from './pages/404.page.vue';
 import { tools } from './tools';
 import { config } from './config';
 import { routes as demoRoutes } from './ui/demo/demo.routes';
+
+const $loading = useLoading();
 
 const toolsRoutes = tools.map(({ path, name, component, ...config }) => ({
   path,
@@ -36,6 +39,16 @@ const router = createRouter({
     ...(config.app.env === 'development' ? demoRoutes : []),
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   ],
+});
+let loader: ActiveLoader;
+router.beforeEach(() => {
+  loader = $loading?.show({
+    color: '#fff',
+    backgroundColor: '#101014',
+  });
+});
+router.afterEach(() => {
+  loader?.hide();
 });
 
 export default router;

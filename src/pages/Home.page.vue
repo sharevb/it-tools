@@ -28,8 +28,24 @@ const { t } = useI18n();
 
 const favoriteTools = computed(() => toolStore.favoriteTools);
 
+const isOrderingFavorites = ref(false);
+
+window.addEventListener('contextmenu', (e) => {
+  if (isOrderingFavorites.value) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    return false;
+  }
+});
+
+function startOrderingFavorites() {
+  isOrderingFavorites.value = true;
+}
+
 // Update favorite tools order when drag is finished
-function onUpdateFavoriteTools() {
+function stopOrderingFavorites() {
+  isOrderingFavorites.value = false;
   toolStore.updateFavoriteTools(favoriteTools.value); // Update the store with the new order
 }
 
@@ -137,8 +153,14 @@ onUnmounted(() => {
             class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
             ghost-class="ghost-favorites-draggable"
             item-key="name"
+<<<<<<< HEAD
             :delay="250"
             @end="onUpdateFavoriteTools"
+=======
+            :delay="100"
+            @start="startOrderingFavorites"
+            @end="stopOrderingFavorites"
+>>>>>>> 8e9d921b8886bc5f5f32dd9b42e0f4c22684a347
           >
             <template #item="{ element: tool }">
               <ToolCard :tool="tool" />
