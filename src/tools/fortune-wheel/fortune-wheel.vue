@@ -8,7 +8,7 @@ const WHEEL_CONFIG = {
   innerRadius: 95, // Inner edge of segments (center hole)
   textRadius: 185, // Where text is positioned
   centerSize: 190, // Size of center circle
-  mobileSize: 375, // Wheel size on mobile
+  mobileSize: 250, // Wheel size on mobile
 } as const;
 
 const WHEEL_CENTER = WHEEL_CONFIG.size / 2;
