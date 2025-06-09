@@ -40,15 +40,34 @@ const router = createRouter({
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   ],
 });
-let loader: ActiveLoader;
-router.beforeEach(() => {
-  loader = $loading?.show({
-    color: '#fff',
-    backgroundColor: '#101014',
-  });
+
+let loader: ActiveLoader | null = null;
+let loadingTimeout: ReturnType<typeof setTimeout> | null = null;
+
+router.beforeEach((to, from) => {
+  // Only show loading for actual route changes, not just query param changes
+  if (to.path !== from.path) {
+    // Added a delay of 750ms to prevent flickering when a page does load quickly
+    loadingTimeout = setTimeout(() => {
+      loader = $loading?.show({
+        color: '#fff',
+        backgroundColor: '#292929',
+      });
+      loadingTimeout = null;
+    }, 750);
+  }
 });
-router.afterEach(() => {
-  loader?.hide();
+
+router.afterEach((to, from) => {
+  // Only clear loading if an actual route change happened
+  if (to.path !== from.path) {
+    if (loadingTimeout) {
+      clearTimeout(loadingTimeout);
+      loadingTimeout = null;
+    }
+    loader?.hide();
+    loader = null;
+  }
 });
 
 export default router;
