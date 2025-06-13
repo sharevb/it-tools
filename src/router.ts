@@ -47,14 +47,14 @@ let loadingTimeout: ReturnType<typeof setTimeout> | null = null;
 router.beforeEach((to, from) => {
   // Only show loading for actual route changes, not just query param changes
   if (to.path !== from.path) {
-    // Added a delay of 750ms to prevent flickering when a page does load quickly
+    // Added a delay to prevent flickering when a page does load quickly
     loadingTimeout = setTimeout(() => {
       loader = $loading?.show({
         color: '#fff',
         backgroundColor: '#292929',
       });
       loadingTimeout = null;
-    }, 750);
+    }, 300);
   }
 });
 
