@@ -303,9 +303,16 @@ declare module '@vue/runtime-core' {
     NanoMemo: typeof import('./src/tools/nano-memo/nano-memo.vue')['default']
     'NanoMemo.content': typeof import('./src/tools/nano-memo/nano-memo.content.md')['default']
     NavbarButtons: typeof import('./src/components/NavbarButtons.vue')['default']
+<<<<<<< HEAD
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NCode: typeof import('naive-ui')['NCode']
+=======
+<<<<<<< HEAD
+=======
+    NCode: typeof import('naive-ui')['NCode']
+>>>>>>> 1e405c34468067d5be1186268d190ad3c0739efa
+>>>>>>> chore/all-my-stuffs
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDivider: typeof import('naive-ui')['NDivider']
     NEllipsis: typeof import('naive-ui')['NEllipsis']
@@ -324,6 +331,7 @@ declare module '@vue/runtime-core' {
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutSider: typeof import('naive-ui')['NLayoutSider']
     NMenu: typeof import('naive-ui')['NMenu']
+<<<<<<< HEAD
     NRadio: typeof import('naive-ui')['NRadio']
     NRadioGroup: typeof import('naive-ui')['NRadioGroup']
     NScrollbar: typeof import('naive-ui')['NScrollbar']
@@ -332,6 +340,14 @@ declare module '@vue/runtime-core' {
     NTable: typeof import('naive-ui')['NTable']
     NTabPane: typeof import('naive-ui')['NTabPane']
     NTabs: typeof import('naive-ui')['NTabs']
+=======
+<<<<<<< HEAD
+=======
+    NScrollbar: typeof import('naive-ui')['NScrollbar']
+    NSpace: typeof import('naive-ui')['NSpace']
+    NSwitch: typeof import('naive-ui')['NSwitch']
+>>>>>>> 1e405c34468067d5be1186268d190ad3c0739efa
+>>>>>>> chore/all-my-stuffs
     NumberInput: typeof import('./src/tools/pomodoro-timer/app/components/NumberInput.vue')['default']
     NumeronymGenerator: typeof import('./src/tools/numeronym-generator/numeronym-generator.vue')['default']
     OcrImage: typeof import('./src/tools/ocr-image/ocr-image.vue')['default']
