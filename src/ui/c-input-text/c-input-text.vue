@@ -62,6 +62,7 @@ const props = withDefaults(
     pasteHtml: false,
   },
 );
+
 const emit = defineEmits(['update:value']);
 const value = useVModel(props, 'value', emit);
 const showPassword = ref(false);
@@ -320,7 +321,6 @@ defineExpose({
           sans-serif;
         font-size: inherit;
         font-feature-settings: 'liga' off;
-        font-variant-emoji: emoji;
         text-rendering: optimizeQuality;
         line-height: 1.2;
         color: v-bind('appTheme.text.baseColor');
@@ -361,7 +361,6 @@ defineExpose({
         'EmojiOne Color', /* Additional emoji fallback */
         sans-serif;
       font-feature-settings: 'liga' off;
-      font-variant-emoji: emoji;
       text-rendering: optimizeQuality;
       line-height: 1.2;
       color: v-bind('appTheme.text.baseColor');

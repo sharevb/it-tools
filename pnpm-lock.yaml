@@ -755,9 +755,6 @@ dependencies:
   vue3-flip-countdown:
     specifier: ^0.1.6
     version: 0.1.6
-  vue3-fortune-wheel:
-    specifier: ^2.0.5
-    version: 2.0.5(vue@3.3.4)
   vuedraggable:
     specifier: ^4.1.0
     version: 4.1.0(vue@3.3.4)
@@ -18543,16 +18540,6 @@ packages:
   /vue3-flip-countdown@0.1.6:
     resolution: {integrity: sha512-RRz+iZ7Zvr1U9mrZRya7I5815jboDyRJz9vzgILq8ZCc2fQ6SxZPYwOr3pD5oWCDBprAEsPF9x4fsTtEitSmXw==}
     dependencies:
-      vue: 3.3.4
-    dev: false
-
-  /vue3-fortune-wheel@2.0.5(vue@3.3.4):
-    resolution: {integrity: sha512-fMCmyT8sE79+O6fs2IWWrQMa1UjU+cuzu92C6EDCNaXaHaJKLReQxkAKLDiHyUC/GFpcsbpuBFbketWE3cKL0A==}
-    engines: {node: '>=20.14.0', pnpm: '>=9.5.0'}
-    peerDependencies:
-      vue: ^3.4.0
-    dependencies:
-      d3: 7.9.0
       vue: 3.3.4
     dev: false
 
