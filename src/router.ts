@@ -42,30 +42,20 @@ const router = createRouter({
 });
 
 let loader: ActiveLoader | null = null;
-let loadingTimeout: ReturnType<typeof setTimeout> | null = null;
 
 router.beforeEach((to, from) => {
   // Only show loading for actual route changes, not just query param changes
   if (to.path !== from.path) {
-    // Added a delay to prevent flickering when a page does load quickly
-    loadingTimeout = setTimeout(() => {
-      loader = $loading?.show({
-        color: '#fff',
-        backgroundColor: '#292929',
-      });
-      loadingTimeout = null;
-    }, 300);
+    loader = $loading?.show({
+      color: '#fff',
+      backgroundColor: '#292929',
+    });
   }
 });
 
-router.afterEach((to, from) => {
-  // Only clear loading if an actual route change happened
-  if (to.path !== from.path) {
-    if (loadingTimeout) {
-      clearTimeout(loadingTimeout);
-      loadingTimeout = null;
-    }
-    loader?.hide();
+router.afterEach(() => {
+  if (loader) {
+    loader.hide();
     loader = null;
   }
 });
