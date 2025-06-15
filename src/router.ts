@@ -40,15 +40,24 @@ const router = createRouter({
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   ],
 });
-let loader: ActiveLoader;
-router.beforeEach(() => {
-  loader = $loading?.show({
-    color: '#fff',
-    backgroundColor: '#101014',
-  });
+
+let loader: ActiveLoader | null = null;
+
+router.beforeEach((to, from) => {
+  // Only show loading for actual route changes, not just query param changes
+  if (to.path !== from.path) {
+    loader = $loading?.show({
+      color: '#fff',
+      backgroundColor: '#292929',
+    });
+  }
 });
+
 router.afterEach(() => {
-  loader?.hide();
+  if (loader) {
+    loader.hide();
+    loader = null;
+  }
 });
 
 export default router;
