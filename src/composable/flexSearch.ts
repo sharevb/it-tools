@@ -85,22 +85,59 @@ export function useFlexSearch<Data extends Record<string, any>>({
   }));
 
   // Initialize indices with data
-  const initializeIndices = () => {
+  const initializeIndices = async () => {
     dataMap.value.clear();
     indices.forEach(({ index }) => index.clear());
 
-    data.forEach((item, idx) => {
+    // Pre-calculate all the values to avoid repeated nested property access
+    const itemData = data.map((item, idx) => {
       const itemKey = getItemKey(item, idx);
-      dataMap.value.set(itemKey, item);
+      const values = new Map<string, string>();
 
-      indices.forEach(({ key, index }) => {
-        // Support nested keys (e.g., 'foo.bar')
+      indices.forEach(({ key }) => {
         const value = key.split('.').reduce((obj, path) => obj?.[path], item);
         if (value) {
-          index.add(itemKey, String(value));
+          values.set(key, String(value));
         }
       });
+
+      return { itemKey, item, values };
     });
+
+    // Batch add to dataMap
+    itemData.forEach(({ itemKey, item }) => {
+      dataMap.value.set(itemKey, item);
+    });
+
+    // Batch add to indices - parallel processing with chunking
+    await Promise.all(
+      indices.map(async ({ key, index }) => {
+        // Filter items that have values for this key upfront
+        const itemsForThisKey = itemData
+          .map(({ itemKey, values }) => ({ itemKey, value: values.get(key) }))
+          .filter(({ value }) => value);
+
+        // Process in chunks to avoid blocking the main thread
+        const chunkSize = 1000; // Adjust based on your data size
+        const chunks = [];
+        for (let i = 0; i < itemsForThisKey.length; i += chunkSize) {
+          chunks.push(itemsForThisKey.slice(i, i + chunkSize));
+        }
+
+        // Process each chunk asynchronously
+        for (const chunk of chunks) {
+          await new Promise<void>((resolve) => {
+            // Use setTimeout to yield control back to the browser
+            setTimeout(() => {
+              chunk.forEach(({ itemKey, value }) => {
+                index.add(itemKey, value!);
+              });
+              resolve();
+            }, 0);
+          });
+        }
+      }),
+    );
   };
 
   // Initialize on creation
@@ -109,8 +146,10 @@ export function useFlexSearch<Data extends Record<string, any>>({
   // Watch for data changes (deep watch for array content)
   watch(
     () => data,
-    initializeIndices,
-    { deep: true },
+    () => {
+      initializeIndices();
+    },
+    { immediate: true, deep: true },
   );
 
   // Function to search across all indices with weight consideration
