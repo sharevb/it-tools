@@ -1,7 +1,7 @@
 {
   "name": "it-tools",
   "type": "module",
-  "version": "2025.4.21-70194069",
+  "version": "2025.6.15-20a26514",
   "packageManager": "pnpm@9.11.0",
   "description": "Collection of handy online tools for developers, with great UX. ",
   "author": "Corentin Th <corentin.thomasset74+it-tools@gmail.com> (https://corentin.tech)",
@@ -262,6 +262,7 @@
     "svgo": "^3.3.2",
     "tesseract.js": "^5.1.1",
     "text-encoding-utf-8": "^1.0.2",
+    "tick-time": "^1.0.1",
     "tidy-url": "^1.18.3",
     "to-double-quotes": "^4.0.0",
     "to-single-quotes": "^4.0.0",

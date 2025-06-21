@@ -683,6 +683,9 @@ dependencies:
   text-encoding-utf-8:
     specifier: ^1.0.2
     version: 1.0.2
+  tick-time:
+    specifier: ^1.0.1
+    version: 1.0.1
   tidy-url:
     specifier: ^1.18.3
     version: 1.18.3
@@ -14122,6 +14125,11 @@ packages:
       vueuc: 0.4.64(vue@3.3.4)
     dev: false
 
+  /nano-seconds@1.2.2:
+    resolution: {integrity: sha512-s06EY41x1hM6BJE2HhIFRzvXuVUlZNd4761lduv+hjgtDDR7W4RzhShkap2wJcWMO6+CahR+49cCQJfFmgf7gw==}
+    engines: {node: '>=4.0.0'}
+    dev: false
+
   /nanoid-dictionary@4.3.0:
     resolution: {integrity: sha512-Xw1+/QnRGWO1KJ0rLfU1xR85qXmAHyLbE3TUkklu9gOIDburP6CsUnLmTaNECGpBh5SHb2uPFmx0VT8UPyoeyw==}
     dev: false
@@ -17059,6 +17067,13 @@ packages:
   /through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
     dev: true
+
+  /tick-time@1.0.1:
+    resolution: {integrity: sha512-de0ah4VT+jK7Kaz9aGShjW72avFfsEAeacYouM2IF27Rz4l9XPr3xVBS1vI64LUL3gKBbW1OBttWlLCfhFfX9A==}
+    engines: {node: '>=6'}
+    dependencies:
+      nano-seconds: 1.2.2
+    dev: false
 
   /tidy-url@1.18.3:
     resolution: {integrity: sha512-NnbmullqE/3loiDoopNltfLb/v6EhX5GYNUVU4EuZjnDjh/NIBzy5dHnhvH3EfIAnZZZMf3cW0HgNw9E+easyg==}

@@ -33,7 +33,7 @@ body:
   - type: textarea
     id: alternative
     attributes:
-      label: Is their example of this tool in the wild?
+      label: Is there example of this tool in the wild?
       description: Provide link to already existing tool (like websites, apps, cli, ...) or npm packages that could be used or provide inspiration for the feature.
 
   - type: textarea
