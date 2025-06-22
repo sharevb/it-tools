@@ -22,8 +22,7 @@ const inputStructureTemplate = `my-app
   
   README.md
 empty dir`;
-const inputStructure = ref(inputStructureTemplate,
-);
+const inputStructure = ref(inputStructureTemplate);
 
 const outputTree = computed(() => withDefaultOnError(() => generateTree(parseInput(inputStructure.value)), ''));
 
