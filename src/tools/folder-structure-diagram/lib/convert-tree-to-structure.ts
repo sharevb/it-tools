@@ -28,7 +28,7 @@ export default function convertTreeToStructure(tree: string): string {
       const connectorEnd = lastMatch.index! + lastMatch[0].length;
 
       // Calculate depth (assuming 4 characters per level)
-      const depth = Math.floor(lastMatch.index / 4);
+      const depth = Math.floor(lastMatch.index! / 4);
 
       // Extract folder name after the last connector
       let folderName = line.substring(connectorEnd);
