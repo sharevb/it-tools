@@ -1,10 +1,11 @@
 import { Folder } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Folder Structure Diagram',
+  name: translate('tools.folder-structure-diagram.title'),
   path: '/folder-structure-diagram',
-  description: 'tree-like utility for generating ASCII folder structure diagrams',
+  description: translate('tools.folder-structure-diagram.description'),
   keywords: ['folder', 'structure', 'diagram', 'tree', 'ascii'],
   component: () => import('./folder-structure-diagram.vue'),
   icon: Folder,

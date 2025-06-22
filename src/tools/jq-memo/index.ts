@@ -1,10 +1,11 @@
 import { Brackets } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Jq Cheatsheet',
+  name: translate('tools.jq-memo.title'),
   path: '/jq-memo',
-  description: 'JQ command cheatsheet',
+  description: translate('tools.jq-memo.description'),
   keywords: ['jq', 'cheatsheet', 'memo'],
   component: () => import('./jq-memo.vue'),
   icon: Brackets,

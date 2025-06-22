@@ -1,10 +1,11 @@
 import { Engine } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Energy Consumption and Expense Computer',
+  name: translate('tools.energy-computer.title'),
   path: '/energy-computer',
-  description: 'Compute energy consumption and expense',
+  description: translate('tools.energy-computer.description'),
   keywords: ['energy', 'expense', 'watt', 'kwh', 'computer'],
   component: () => import('./energy-computer.vue'),
   icon: Engine,

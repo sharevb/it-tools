@@ -1,10 +1,11 @@
 import { PictureInPicture } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'ICO/PNG converter',
+  name: translate('tools.ico-converter.title'),
   path: '/ico-converter',
-  description: 'Convert from PNG/JPEG to/from ICO',
+  description: translate('tools.ico-converter.description'),
   keywords: ['ico', 'png', 'jpeg', 'icon', 'converter'],
   component: () => import('./ico-converter.vue'),
   icon: PictureInPicture,

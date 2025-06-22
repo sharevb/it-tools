@@ -1,10 +1,11 @@
 import { ReceiptTax } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'VAT Numbers Validator',
+  name: translate('tools.vat-validator.title'),
   path: '/vat-validator',
-  description: 'Validate VAT Numbers',
+  description: translate('tools.vat-validator.description'),
   keywords: ['vat', 'validator'],
   component: () => import('./vat-validator.vue'),
   icon: ReceiptTax,

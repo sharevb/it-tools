@@ -1,10 +1,11 @@
 import { FileText } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Distinct Words',
+  name: translate('tools.distinct-words.title'),
   path: '/distinct-words',
-  description: 'Extract and count occurences of each unique word in a text',
+  description: translate('tools.distinct-words.description'),
   keywords: ['distinct', 'words'],
   component: () => import('./distinct-words.vue'),
   icon: FileText,

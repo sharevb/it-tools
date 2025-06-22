@@ -1,10 +1,11 @@
 import { CalendarPlus } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'iCal Merger',
+  name: translate('tools.ical-merger.title'),
   path: '/ical-merger',
-  description: 'Merge many iCal file to a single',
+  description: translate('tools.ical-merger.description'),
   keywords: ['ical', 'ics', 'merger'],
   component: () => import('./ical-merger.vue'),
   icon: CalendarPlus,

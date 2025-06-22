@@ -1,10 +1,11 @@
 import { ColorPicker } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Color Wheel',
+  name: translate('tools.color-wheel.title'),
   path: '/color-wheel',
-  description: 'Choose a color palette/theme using a wheel and mode',
+  description: translate('tools.color-wheel.description'),
   keywords: ['color', 'wheel', 'palette', 'theme'],
   component: () => import('./color-wheel.vue'),
   icon: ColorPicker,

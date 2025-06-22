@@ -1,10 +1,11 @@
 import { Search } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Smart Text Replacer and Linebreaker',
+  name: translate('tools.smart-text-replacer.title'),
   path: '/smart-text-replacer',
-  description: 'Search and replace a word on single or multiple occurrences just like windows notepad search and replace. Also allows to manage linebreaking and text splitting',
+  description: translate('tools.smart-text-replacer.description'),
   keywords: ['smart', 'text-replacer', 'linebreak', 'remove', 'add', 'split', 'search', 'replace'],
   component: () => import('./smart-text-replacer.vue'),
   icon: Search,

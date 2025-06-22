@@ -1,10 +1,11 @@
 import { Mail } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'MIME Encoding Converter',
+  name: translate('tools.mime-converter.title'),
   path: '/mime-converter',
-  description: 'Convert from/to MIME Encoded-Word format (Mail Subject)',
+  description: translate('tools.mime-converter.description'),
   keywords: ['mime', 'converter', 'subject', 'rfc2047', 'rfc1341', 'rfc2045'],
   component: () => import('./mime-converter.vue'),
   icon: Mail,

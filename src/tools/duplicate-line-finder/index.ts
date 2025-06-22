@@ -1,10 +1,11 @@
 import { ListSearch } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Duplicate Lines Finder',
+  name: translate('tools.duplicate-line-finder.title'),
   path: '/duplicate-line-finder',
-  description: 'Find and list duplicated lines',
+  description: translate('tools.duplicate-line-finder.description'),
   keywords: ['duplicate', 'line', 'finder'],
   component: () => import('./duplicate-line-finder.vue'),
   icon: ListSearch,

@@ -1,10 +1,11 @@
 import { Table } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Markdown toc generator',
+  name: translate('tools.markdown-toc-generator.title'),
   path: '/markdown-toc-generator',
-  description: 'Generate a TOC from a markdown file/content',
+  description: translate('tools.markdown-toc-generator.description'),
   keywords: ['markdown', 'md', 'toc', 'generator'],
   component: () => import('./markdown-toc-generator.vue'),
   icon: Table,

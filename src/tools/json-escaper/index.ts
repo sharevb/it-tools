@@ -1,10 +1,11 @@
 import { Braces } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Json Escaper/Unescaper',
+  name: translate('tools.json-escaper.title'),
   path: '/json-escaper',
-  description: 'Escape and unescape JSON string',
+  description: translate('tools.json-escaper.description'),
   keywords: ['json', 'string', 'escape', 'unescape'],
   component: () => import('./json-escaper.vue'),
   icon: Braces,

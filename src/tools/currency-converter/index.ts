@@ -1,10 +1,11 @@
 import { Currency } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Currency Converter',
+  name: translate('tools.currency-converter.title'),
   path: '/currency-converter',
-  description: 'Convert currency values using https://github.com/fawazahmed0/exchange-api',
+  description: translate('tools.currency-converter.description'),
   keywords: ['currency', 'converter'],
   component: () => import('./currency-converter.vue'),
   icon: Currency,

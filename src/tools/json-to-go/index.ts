@@ -1,10 +1,11 @@
 import { Braces } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'JSON to Go',
+  name: translate('tools.json-to-go.title'),
   path: '/json-to-go',
-  description: 'Convert JSON to Go struct',
+  description: translate('tools.json-to-go.description'),
   keywords: ['json', 'parse', 'go', 'convert', 'transform'],
   component: () => import('./json-to-go.vue'),
   icon: Braces,

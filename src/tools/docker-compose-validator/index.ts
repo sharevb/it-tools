@@ -1,10 +1,11 @@
 import { BrandDocker } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Docker Compose Validator',
+  name: translate('tools.docker-compose-validator.title'),
   path: '/docker-compose-validator',
-  description: 'Validate Docker Compose files against CommonSpec schema',
+  description: translate('tools.docker-compose-validator.description'),
   keywords: ['docker', 'compose', 'validator', 'commonspec'],
   component: () => import('./docker-compose-validator.vue'),
   icon: BrandDocker,

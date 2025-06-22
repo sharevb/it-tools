@@ -1,10 +1,11 @@
 import { NetworkCheckSharp } from '@vicons/material';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Traefik Docker Compose Maker',
+  name: translate('tools.traefik-compose-maker.title'),
   path: '/traefik-compose-maker',
-  description: 'Create a docker compose with Traefik labels ready for a given service and options',
+  description: translate('tools.traefik-compose-maker.description'),
   keywords: ['traefik', 'docker', 'compose'],
   component: () => import('./traefik-compose-maker.vue'),
   icon: NetworkCheckSharp,

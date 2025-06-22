@@ -1,10 +1,11 @@
 import { TransferIn } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Rsync Generator',
+  name: translate('tools.rsync-generator.title'),
   path: '/rsync-generator',
-  description: 'Rsync command generator',
+  description: translate('tools.rsync-generator.description'),
   keywords: ['rsync'],
   component: () => import('./rsync-generator.vue'),
   icon: TransferIn,

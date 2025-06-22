@@ -1,10 +1,11 @@
 import { EqualNot } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Math Formats Converter',
+  name: translate('tools.math-formats-converter.title'),
   path: '/math-formats-converter',
-  description: 'Convert mathematical expression between formats',
+  description: translate('tools.math-formats-converter.description'),
   keywords: ['math', 'formats', 'converter', 'latex', 'mathml', 'asciimath', 'omml', 'html'],
   component: () => import('./math-formats-converter.vue'),
   icon: EqualNot,

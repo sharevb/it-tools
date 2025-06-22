@@ -1,10 +1,11 @@
 import { Stack } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Stacktrace prettier',
+  name: translate('tools.stacktrace-prettier.title'),
   path: '/stacktrace-prettier',
-  description: 'Highlight .Net and JS stacktraces',
+  description: translate('tools.stacktrace-prettier.description'),
   keywords: ['stacktrace', 'prettier', 'highlighter'],
   component: () => import('./stacktrace-prettier.vue'),
   icon: Stack,

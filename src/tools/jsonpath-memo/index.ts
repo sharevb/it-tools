@@ -1,10 +1,11 @@
 import { Brackets } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'JSONPath Syntax Cheatsheet',
+  name: translate('tools.jsonpath-memo.title'),
   path: '/jsonpath-memo',
-  description: 'JSONPath Syntax Cheatsheet',
+  description: translate('tools.jsonpath-memo.description'),
   keywords: ['jsonpath', 'cheatsheet', 'memo'],
   component: () => import('./jsonpath-memo.vue'),
   icon: Brackets,

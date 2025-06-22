@@ -1,10 +1,11 @@
 import { Binary } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Integers to IPv4/IPv6',
+  name: translate('tools.integers-to-ip.title'),
   path: '/integers-to-ip',
-  description: 'Convert integers to IP',
+  description: translate('tools.integers-to-ip.description'),
   keywords: ['integers', 'ip', 'ipv4', 'ipv6'],
   component: () => import('./integers-to-ip.vue'),
   icon: Binary,

@@ -1,10 +1,11 @@
 import { Dice } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Dice Roller',
+  name: translate('tools.dice-roller.title'),
   path: '/dice-roller',
-  description: 'RPG Dice Roller using Dice Notation',
+  description: translate('tools.dice-roller.description'),
   keywords: ['dice', 'rng', 'rpg', 'roller'],
   component: () => import('./dice-roller.vue'),
   icon: Dice,

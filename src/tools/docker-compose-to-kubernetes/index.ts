@@ -1,10 +1,11 @@
 import { BrandDocker } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Docker compose to kubernetes',
+  name: translate('tools.docker-compose-to-kubernetes.title'),
   path: '/docker-compose-to-kubernetes',
-  description: 'Docker Compose to Kubernetes manifests',
+  description: translate('tools.docker-compose-to-kubernetes.description'),
   keywords: ['docker', 'compose', 'convert', 'kubernetes'],
   component: () => import('./docker-compose-to-kubernetes.vue'),
   icon: BrandDocker,

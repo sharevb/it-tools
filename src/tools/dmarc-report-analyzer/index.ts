@@ -1,10 +1,11 @@
 import { World } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'DMARC Report Analyzer',
+  name: translate('tools.dmarc-report-analyzer.title'),
   path: '/dmarc-report-analyzer',
-  description: 'Read and display DMARC Xml Reports',
+  description: translate('tools.dmarc-report-analyzer.description'),
   keywords: ['dmarc', 'report', 'analyzer'],
   component: () => import('./dmarc-report-analyzer.vue'),
   icon: World,

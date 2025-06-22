@@ -1,10 +1,11 @@
 import { ArrowsShuffle } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Fortune wheel',
+  name: translate('tools.fortune-wheel.title'),
   path: '/fortune-wheel',
-  description: 'A configurable fortune wheel',
+  description: translate('tools.fortune-wheel.description'),
   keywords: ['fortune', 'wheel'],
   component: () => import('./fortune-wheel.vue'),
   icon: ArrowsShuffle,

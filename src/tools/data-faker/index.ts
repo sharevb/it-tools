@@ -1,10 +1,11 @@
 import { ArrowsShuffle } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Data Faker',
+  name: translate('tools.data-faker.title'),
   path: '/data-faker',
-  description: 'Generate fake data using JSON template',
+  description: translate('tools.data-faker.description'),
   keywords: ['data', 'json', 'sample', 'faker'],
   component: () => import('./data-faker.vue'),
   icon: ArrowsShuffle,

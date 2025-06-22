@@ -1,10 +1,11 @@
 import { Power } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Energy Units Converter',
+  name: translate('tools.energy-converter.title'),
   path: '/energy-converter',
-  description: 'Convert values between energy units',
+  description: translate('tools.energy-converter.description'),
   keywords: ['energy', 'converter'],
   component: () => import('./energy-converter.vue'),
   icon: Power,

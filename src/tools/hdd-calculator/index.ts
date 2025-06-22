@@ -1,10 +1,11 @@
 import { DeviceDesktop } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'HDD calculator',
+  name: translate('tools.hdd-calculator.title'),
   path: '/hdd-calculator',
-  description: 'Storage device manufacturers report capacities in decimal form (like GB), while operating systems and other software uses binary form (GiB), although still incorrectly using the decimal unit (GiB). This tool converts decimal form capacity into various binary forms.',
+  description: translate('tools.hdd-calculator.description'),
   keywords: ['hdd', 'calculator', 'size', 'conversion', 'binary', 'decimal',
     'gb', 'mb', 'tb',
     'gigabyte', 'gibibyte', 'megabyte', 'mebibyte', 'terabyte', 'tebibyte'],

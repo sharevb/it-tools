@@ -1,10 +1,11 @@
 import { BrandPhp } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Json to PHP-Array',
+  name: translate('tools.json-to-php-array.title'),
   path: '/json-to-php-array',
-  description: 'Convert JSON to PHP Array',
+  description: translate('tools.json-to-php-array.description'),
   keywords: ['json', 'php', 'array'],
   component: () => import('./json-to-php-array.vue'),
   icon: BrandPhp,

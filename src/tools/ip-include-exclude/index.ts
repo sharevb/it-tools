@@ -1,10 +1,11 @@
 import { UnfoldMoreOutlined } from '@vicons/material';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'IP Subnets Exclude Calculator',
+  name: translate('tools.ip-include-exclude.title'),
   path: '/ip-include-exclude',
-  description: 'Substract a disallowed IP Ranges/Mask/CIDR list from an allowed IP Ranges/Mask/CIDR list',
+  description: translate('tools.ip-include-exclude.description'),
   keywords: ['ip', 'allowed', 'disallowed', 'include', 'exclude', 'subnet', 'cidr'],
   component: () => import('./ip-include-exclude.vue'),
   icon: UnfoldMoreOutlined,

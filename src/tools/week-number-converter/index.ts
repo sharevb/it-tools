@@ -1,10 +1,11 @@
 import { Calendar } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Week Numbers Converter',
+  name: translate('tools.week-number-converter.title'),
   path: '/week-number-converter',
-  description: 'Convert between ISO Week number, Week number in month and date',
+  description: translate('tools.week-number-converter.description'),
   keywords: ['week', 'month', 'number', 'iso', 'converter'],
   component: () => import('./week-number-converter.vue'),
   icon: Calendar,

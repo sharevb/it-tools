@@ -1,10 +1,11 @@
 import { Firetruck } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Iptables Generator',
+  name: translate('tools.iptables-generator.title'),
   path: '/iptables-generator',
-  description: 'Generate iptables command lines',
+  description: translate('tools.iptables-generator.description'),
   keywords: ['iptables', 'firewall'],
   component: () => import('./iptables-generator.vue'),
   icon: Firetruck,

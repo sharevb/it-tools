@@ -1,10 +1,11 @@
 import { Braces } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Nginx formatter',
+  name: translate('tools.nginx-formatter.title'),
   path: '/nginx-formatter',
-  description: 'Format/prettify Nginx configuration files',
+  description: translate('tools.nginx-formatter.description'),
   keywords: ['nginx', 'formatter', 'prettier'],
   component: () => import('./nginx-formatter.vue'),
   icon: Braces,

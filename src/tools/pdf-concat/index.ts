@@ -1,10 +1,11 @@
 import { FileImport } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Pdf Concatener',
+  name: translate('tools.pdf-concat.title'),
   path: '/pdf-concat',
-  description: 'Concatenate PDF into a single one',
+  description: translate('tools.pdf-concat.description'),
   keywords: ['pdf', 'concat'],
   component: () => import('./pdf-concat.vue'),
   icon: FileImport,

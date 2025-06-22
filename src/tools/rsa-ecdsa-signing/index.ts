@@ -1,10 +1,11 @@
 import { Lock } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'RSA/DSA/ECDSA Signer and Verifier',
+  name: translate('tools.rsa-ecdsa-signing.title'),
   path: '/rsa-ecdsa-signing',
-  description: 'Sign data and verify signature using RSA/DSA/ECDSA Keys',
+  description: translate('tools.rsa-ecdsa-signing.description'),
   keywords: ['rsa', 'dsa', 'ecdsa', 'ed25519', 'encryption', 'cypher', 'encipher', 'crypt', 'decrypt'],
   component: () => import('./rsa-ecdsa-signing.vue'),
   icon: Lock,

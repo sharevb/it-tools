@@ -1,10 +1,11 @@
 import { PictureInPictureOff } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Remove EXIF',
+  name: translate('tools.remove-exif.title'),
   path: '/remove-exif',
-  description: 'Remove Exif from JPEG Files',
+  description: translate('tools.remove-exif.description'),
   keywords: ['remove', 'exif', 'jpeg'],
   component: () => import('./remove-exif.vue'),
   icon: PictureInPictureOff,

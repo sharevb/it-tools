@@ -1,10 +1,11 @@
 import { CalendarEvent } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'ICAL Generator',
+  name: translate('tools.ical-generator.title'),
   path: '/ical-generator',
-  description: 'Generate ICAL/ICS file from event infos',
+  description: translate('tools.ical-generator.description'),
   keywords: ['ical', 'calendar', 'event', 'generator'],
   component: () => import('./ical-generator.vue'),
   icon: CalendarEvent,

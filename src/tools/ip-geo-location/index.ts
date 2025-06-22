@@ -1,10 +1,11 @@
 import { World } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'IP Geo Location',
+  name: translate('tools.ip-geo-location.title'),
   path: '/ip-geo-location',
-  description: 'Retrieve information about an IPv4/6 address or domain location',
+  description: translate('tools.ip-geo-location.description'),
   keywords: ['ip', 'domain', 'geo', 'location'],
   component: () => import('./ip-geo-location.vue'),
   icon: World,

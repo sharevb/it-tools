@@ -1,10 +1,11 @@
 import { TransferIn } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Data Transfer Rate Calculator',
+  name: translate('tools.data-transfer-rate-converter.title'),
   path: '/data-transfer-rate-converter',
-  description: 'Compute Data Transfer times, rates and amount of data',
+  description: translate('tools.data-transfer-rate-converter.description'),
   keywords: ['data', 'transfer', 'rate', 'convert', 'time'],
   component: () => import('./data-transfer-rate-converter.vue'),
   icon: TransferIn,

@@ -1,10 +1,11 @@
 import { TableExport } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Excel to data',
+  name: translate('tools.excel-to-data.title'),
   path: '/excel-to-data',
-  description: 'Convert XLSX file to JSON, YAML, CSV, SQL INSERT, XML or Markdown',
+  description: translate('tools.excel-to-data.description'),
   keywords: ['excel', 'csv', 'xlsx', 'sql', 'json', 'yaml', 'insert', 'markdown', 'md', 'tsv', 'xml'],
   component: () => import('./excel-to-data.vue'),
   icon: TableExport,

@@ -1,10 +1,11 @@
 import { Certificate } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Ed25519 key pair generator',
+  name: translate('tools.ed25519-key-pair-generator.title'),
   path: '/ed25519-key-pair-generator',
-  description: 'Generate new random Ed25519 private and public keys (with or without passphrase).',
+  description: translate('tools.ed25519-key-pair-generator.description'),
   keywords: ['ed25519', 'key', 'pair', 'generator', 'public', 'private', 'secret', 'ssh', 'pem', 'passphrase', 'password'],
   component: () => import('./ed25519-key-pair-generator.vue'),
   icon: Certificate,

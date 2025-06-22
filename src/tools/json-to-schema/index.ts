@@ -1,10 +1,11 @@
 import { Braces } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Json to Schema',
+  name: translate('tools.json-to-schema.title'),
   path: '/json-to-schema',
-  description: 'Convert JSON data to JSON Schema, MySQL DDL, Mongoose Schema, Google BigQuery schema or ClickHouse Table Schema',
+  description: translate('tools.json-to-schema.description'),
   keywords: ['json', 'schema', 'mysql', 'sql', 'ddl', 'mongoose', 'bigquery', 'clickhouse', 'table'],
   component: () => import('./json-to-schema.vue'),
   icon: Braces,

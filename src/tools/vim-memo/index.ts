@@ -1,10 +1,11 @@
 import { FileText } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'VIM Cheatsheet',
+  name: translate('tools.vim-memo.title'),
   path: '/vim-memo',
-  description: 'Vim text editor commands',
+  description: translate('tools.vim-memo.description'),
   keywords: ['vim', 'editor'],
   component: () => import('./vim-memo.vue'),
   icon: FileText,

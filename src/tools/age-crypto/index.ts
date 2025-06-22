@@ -1,10 +1,11 @@
 import { EyeOff } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'AGE Cryptography',
+  name: translate('tools.age-crypto.title'),
   path: '/age-crypto',
-  description: 'Provides a simple and easy-to-use open-source Age tool for generating keys, encrypting, and decrypting messages.',
+  description: translate('tools.age-crypto.description'),
   keywords: ['age'],
   component: () => import('./age-crypto.vue'),
   icon: EyeOff,

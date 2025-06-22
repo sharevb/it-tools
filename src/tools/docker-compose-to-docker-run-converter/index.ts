@@ -1,10 +1,11 @@
 import { BrandDocker } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Docker Compose to Docker run converter',
+  name: translate('tools.docker-compose-to-docker-run-converter.title'),
   path: '/docker-compose-to-docker-run-converter',
-  description: 'Turns Docker Compose filt to docker run command(s)!',
+  description: translate('tools.docker-compose-to-docker-run-converter.description'),
   keywords: ['docker', 'run', 'compose', 'yaml', 'yml', 'convert', 'deamon'],
   component: () => import('./docker-compose-to-docker-run-converter.vue'),
   icon: BrandDocker,

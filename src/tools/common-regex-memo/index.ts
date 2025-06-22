@@ -1,10 +1,11 @@
 import { FileText } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Common Regex Cheatsheet',
+  name: translate('tools.common-regex-memo.title'),
   path: '/common-regex-memo',
-  description: 'Cheatsheet for common regex patterns',
+  description: translate('tools.common-regex-memo.description'),
   keywords: ['common', 'regex', 'memo', 'cheatsheet'],
   component: () => import('./common-regex-memo.vue'),
   icon: FileText,

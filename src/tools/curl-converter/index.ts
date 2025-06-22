@@ -1,10 +1,11 @@
 import { ExternalLink } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Curl Converter',
+  name: translate('tools.curl-converter.title'),
   path: '/curl-converter',
-  description: 'Generate common coding languages version of provided curl command line',
+  description: translate('tools.curl-converter.description'),
   keywords: ['curl', 'code', 'language', 'generator'],
   component: () => import('./curl-converter.vue'),
   icon: ExternalLink,

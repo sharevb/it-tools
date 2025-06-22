@@ -1,10 +1,11 @@
 import { Id } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Snowflake ID extractor',
+  name: translate('tools.snowflake-id-extractor.title'),
   path: '/snowflake-id-extractor',
-  description: 'Extract timestamp, machine ID, and sequence number from a Snowflake ID',
+  description: translate('tools.snowflake-id-extractor.description'),
   keywords: ['snowflake', 'id', 'extractor'],
   component: () => import('./snowflake-id-extractor.vue'),
   icon: Id,

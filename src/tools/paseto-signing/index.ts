@@ -1,10 +1,11 @@
 import { Key } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Paseto/PASERK Public/Private',
+  name: translate('tools.paseto-signing.title'),
   path: '/paseto-signing',
-  description: 'Generate public/private key pairs and sign/verify payload',
+  description: translate('tools.paseto-signing.description'),
   keywords: ['paseto', 'signing', 'verify', 'paserk', 'payload'],
   component: () => import('./paseto-signing.vue'),
   icon: Key,

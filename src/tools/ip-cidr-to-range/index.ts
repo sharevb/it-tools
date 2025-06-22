@@ -1,10 +1,11 @@
 import { Binary } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Ipv4/6 CIDR to IP Range Calculator',
+  name: translate('tools.ip-cidr-to-range.title'),
   path: '/ip-cidr-to-range',
-  description: 'Calculate IP Range from a CIDR (IPv4/6)',
+  description: translate('tools.ip-cidr-to-range.description'),
   keywords: ['ipv4', 'ipv6', 'cidr'],
   component: () => import('./ip-cidr-to-range.vue'),
   icon: Binary,

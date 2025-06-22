@@ -1,10 +1,11 @@
 import { Cloud } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'K8s Cheatsheet',
+  name: translate('tools.k8s-memo.title'),
   path: '/k8s-memo',
-  description: 'Kubernetes useful commands',
+  description: translate('tools.k8s-memo.description'),
   keywords: ['k8s', 'kubernetes'],
   component: () => import('./k8s-memo.vue'),
   icon: Cloud,

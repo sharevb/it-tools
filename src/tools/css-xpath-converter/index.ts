@@ -1,10 +1,11 @@
 import { Braces } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'CSS XPath Converter',
+  name: translate('tools.css-xpath-converter.title'),
   path: '/css-xpath-converter',
-  description: 'Convert CSS selector to/from XPath expression',
+  description: translate('tools.css-xpath-converter.description'),
   keywords: ['css', 'xpath', 'converter'],
   component: () => import('./css-xpath-converter.vue'),
   icon: Braces,

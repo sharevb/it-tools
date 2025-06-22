@@ -1,10 +1,11 @@
 import { CalendarEvent } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'ICAL File Parser',
+  name: translate('tools.ical-parser.title'),
   path: '/ical-parser',
-  description: 'Parse ICAL/ICS file to event display',
+  description: translate('tools.ical-parser.description'),
   keywords: ['ical', 'ics', 'calendar', 'parser'],
   component: () => import('./ical-parser.vue'),
   icon: CalendarEvent,

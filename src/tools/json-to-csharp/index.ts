@@ -1,10 +1,11 @@
 import { CSharp } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'JSON to C#',
+  name: translate('tools.json-to-csharp.title'),
   path: '/json-to-csharp',
-  description: 'Convert JSON data to C# type definition',
+  description: translate('tools.json-to-csharp.description'),
   keywords: ['json', 'c#', 'csharp'],
   component: () => import('./json-to-csharp.vue'),
   icon: CSharp,

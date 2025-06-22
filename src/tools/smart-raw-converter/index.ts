@@ -1,10 +1,11 @@
 import { Disc } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'SMART Raw Converter',
+  name: translate('tools.smart-raw-converter.title'),
   path: '/smart-raw-converter',
-  description: 'Convert SMART Raw values to human readable',
+  description: translate('tools.smart-raw-converter.description'),
   keywords: ['smart', 'raw', 'converter'],
   component: () => import('./smart-raw-converter.vue'),
   icon: Disc,

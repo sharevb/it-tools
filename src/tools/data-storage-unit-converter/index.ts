@@ -1,10 +1,11 @@
 import { ArrowsLeftRight } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Data Storage Unit converter',
+  name: translate('tools.data-storage-unit-converter.title'),
   path: '/data-storage-unit-converter',
-  description: 'Convert data storage or transfer units (bytes, bibytes, bits, kilobytes...)',
+  description: translate('tools.data-storage-unit-converter.description'),
   keywords: ['data', 'storage', 'unit', 'conversion',
     'bits', 'bytes', 'bibytes', 'binary',
     'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB',

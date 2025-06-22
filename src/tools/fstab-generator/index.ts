@@ -1,10 +1,11 @@
 import { DeviceFloppy } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'FStab Generator',
+  name: translate('tools.fstab-generator.title'),
   path: '/fstab-generator',
-  description: 'Generate /etc/fstab line',
+  description: translate('tools.fstab-generator.description'),
   keywords: ['fstab', 'etc'],
   component: () => import('./fstab-generator.vue'),
   icon: DeviceFloppy,

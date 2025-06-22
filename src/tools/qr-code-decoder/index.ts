@@ -1,10 +1,11 @@
 import { Qrcode } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'QR Code decoder',
+  name: translate('tools.qr-code-decoder.title'),
   path: '/qr-code-decoder',
-  description: 'QR Code Reader',
+  description: translate('tools.qr-code-decoder.description'),
   keywords: ['qrcode', 'qr-code', 'decoder', 'reader'],
   component: () => import('./qr-code-decoder.vue'),
   icon: Qrcode,

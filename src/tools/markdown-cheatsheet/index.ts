@@ -1,10 +1,11 @@
 import { Markdown } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Markdown Cheat Sheet',
+  name: translate('tools.markdown-cheatsheet.title'),
   path: '/markdown-cheatsheet',
-  description: 'Markdown Cheat Sheet',
+  description: translate('tools.markdown-cheatsheet.description'),
   keywords: ['markdown', 'cheatsheet', 'memo'],
   component: () => import('./markdown-cheatsheet.vue'),
   icon: Markdown,

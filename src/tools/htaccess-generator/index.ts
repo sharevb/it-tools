@@ -1,10 +1,11 @@
 import { ShieldLock } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'HTAccess generator',
+  name: translate('tools.htaccess-generator.title'),
   path: '/htaccess-generator',
-  description: 'Generate .htaccess file',
+  description: translate('tools.htaccess-generator.description'),
   keywords: ['htaccess'],
   component: () => import('./htaccess-generator.vue'),
   icon: ShieldLock,

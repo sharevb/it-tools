@@ -1,10 +1,11 @@
 import { BrandJavascript } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Javascript Prettifier',
+  name: translate('tools.javascript-prettifier.title'),
   path: '/javascript-prettifier',
-  description: 'JS/Javascript Prettifier',
+  description: translate('tools.javascript-prettifier.description'),
   keywords: ['javascript', 'prettifier', 'beautify', 'prettier', 'format'],
   component: () => import('./javascript-prettifier.vue'),
   icon: BrandJavascript,

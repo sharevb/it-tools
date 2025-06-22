@@ -1,10 +1,11 @@
 import { DeviceDesktop } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Nginx Cheatsheet',
+  name: translate('tools.nginx-memo.title'),
   path: '/nginx-memo',
-  description: 'Nginx configuration and useful commands',
+  description: translate('tools.nginx-memo.description'),
   keywords: ['nginx'],
   component: () => import('./nginx-memo.vue'),
   icon: DeviceDesktop,

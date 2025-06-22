@@ -1,10 +1,11 @@
 import { Lock } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'PGP encryption',
+  name: translate('tools.pgp-encryption.title'),
   path: '/pgp-encryption',
-  description: 'Encrypt and decrypt text clear text using PGP Keys.',
+  description: translate('tools.pgp-encryption.description'),
   keywords: ['pgp', 'openpgp', 'encryption', 'cypher', 'encipher', 'crypt', 'decrypt'],
   component: () => import('./pgp-encryption.vue'),
   icon: Lock,

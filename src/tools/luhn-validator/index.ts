@@ -1,10 +1,11 @@
 import { Check } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Luhn Validator',
+  name: translate('tools.luhn-validator.title'),
   path: '/luhn-validator',
-  description: 'Check and generate key for identifier validated by a Luhn checknum',
+  description: translate('tools.luhn-validator.description'),
   keywords: ['luhn', 'credit-card', 'imei', 'identifier', 'validator'],
   component: () => import('./luhn-validator.vue'),
   icon: Check,

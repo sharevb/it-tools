@@ -1,10 +1,11 @@
 import { Mail } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Email Parser',
+  name: translate('tools.email-parser.title'),
   path: '/email-parser',
-  description: 'Parse and extract information from raw Email content',
+  description: translate('tools.email-parser.description'),
   keywords: ['email', 'parser', 'header', 'rfc2822', 'rfc5322', 'rfc822'],
   component: () => import('./email-parser.vue'),
   icon: Mail,

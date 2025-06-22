@@ -1,10 +1,11 @@
 import { PlugConnected } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Port Numbers',
+  name: translate('tools.port-numbers.title'),
   path: '/port-numbers',
-  description: 'Search for assigned usage of a given port and protocol',
+  description: translate('tools.port-numbers.description'),
   keywords: ['port', 'tcp', 'udp', 'protocol'],
   component: () => import('./port-numbers.vue'),
   icon: PlugConnected,

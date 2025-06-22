@@ -1,10 +1,11 @@
 import { PasswordRound } from '@vicons/material';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Htpasswd/htaccess generator',
+  name: translate('tools.htpasswd-generator.title'),
   path: '/htpasswd-generator',
-  description: 'htpassword/htaccess user/password generator',
+  description: translate('tools.htpasswd-generator.description'),
   keywords: ['htpasswd', 'htaccess', 'bcrypt', 'password'],
   component: () => import('./htpasswd-generator.vue'),
   icon: PasswordRound,

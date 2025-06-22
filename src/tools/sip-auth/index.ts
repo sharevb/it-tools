@@ -1,10 +1,11 @@
 import { ShieldCheck } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'SIP Authorization',
+  name: translate('tools.sip-auth.title'),
   path: '/sip-auth',
-  description: 'This tool helps you to verify the SIP authorization header. The tool performs all calculations in the browser and does not transmit sensitive information over the network, so feel free to use it.',
+  description: translate('tools.sip-auth.description'),
   keywords: ['sip', 'authorization'],
   component: () => import('./sip-auth.vue'),
   icon: ShieldCheck,

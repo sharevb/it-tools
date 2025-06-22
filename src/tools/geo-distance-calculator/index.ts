@@ -1,10 +1,11 @@
 import { WorldLatitude } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Geo distance calculator',
+  name: translate('tools.geo-distance-calculator.title'),
   path: '/geo-distance-calculator',
-  description: 'Compute distance between two geo location (and display current user location information)',
+  description: translate('tools.geo-distance-calculator.description'),
   keywords: ['geo', 'distance', 'calculator'],
   component: () => import('./geo-distance-calculator.vue'),
   icon: WorldLatitude,

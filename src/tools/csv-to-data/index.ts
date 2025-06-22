@@ -1,10 +1,11 @@
 import { TableExport } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Csv to Data',
+  name: translate('tools.csv-to-data.title'),
   path: '/csv-to-data',
-  description: 'Convert CSV file to JSON, YAML, CSV, SQL INSERT, XML or Markdown',
+  description: translate('tools.csv-to-data.description'),
   keywords: ['excel', 'csv', 'xlsx', 'sql', 'json', 'yaml', 'insert', 'markdown', 'md', 'tsv', 'xml'],
   component: () => import('./csv-to-data.vue'),
   icon: TableExport,

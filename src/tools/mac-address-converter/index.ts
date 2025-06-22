@@ -1,10 +1,11 @@
 import { Devices } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'MAC Address Converter',
+  name: translate('tools.mac-address-converter.title'),
   path: '/mac-address-converter',
-  description: 'Change the format of a MAC address and chose between different formats (EUI-48, EUI-64, IPv6)',
+  description: translate('tools.mac-address-converter.description'),
   keywords: [
     'converter',
     'mac',

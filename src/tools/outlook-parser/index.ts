@@ -1,10 +1,11 @@
 import { Mail } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Outlook MSG Parser',
+  name: translate('tools.outlook-parser.title'),
   path: '/outlook-parser',
-  description: 'Parse Outlook MSG Files',
+  description: translate('tools.outlook-parser.description'),
   keywords: ['outlook', 'email', 'msg', 'parser'],
   component: () => import('./outlook-parser.vue'),
   icon: Mail,

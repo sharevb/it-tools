@@ -1,10 +1,11 @@
 import { Artboard } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Image to ASCII Art',
+  name: translate('tools.image-to-ascii-art.title'),
   path: '/image-to-ascii-art',
-  description: 'Image to ASCII Art Generator',
+  description: translate('tools.image-to-ascii-art.description'),
   keywords: ['image', 'ascii', 'art'],
   component: () => import('./image-to-ascii-art.vue'),
   icon: Artboard,

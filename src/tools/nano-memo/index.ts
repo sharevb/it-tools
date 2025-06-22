@@ -1,10 +1,11 @@
 import { FileText } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Nano CheatSheet',
+  name: translate('tools.nano-memo.title'),
   path: '/nano-memo',
-  description: 'Nano Editor Cheatsheet',
+  description: translate('tools.nano-memo.description'),
   keywords: ['nano', 'memo', 'cheatsheet', 'sheet'],
   component: () => import('./nano-memo.vue'),
   icon: FileText,

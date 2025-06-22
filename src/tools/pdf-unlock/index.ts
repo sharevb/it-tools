@@ -1,10 +1,11 @@
 import { LockOff } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Pdf Decrypt and Unlock',
+  name: translate('tools.pdf-unlock.title'),
   path: '/pdf-unlock',
-  description: 'Decrypt a PDF and unlock (remove security permissions)',
+  description: translate('tools.pdf-unlock.description'),
   keywords: ['pdf', 'unlock', 'decrypt'],
   component: () => import('./pdf-unlock.vue'),
   icon: LockOff,

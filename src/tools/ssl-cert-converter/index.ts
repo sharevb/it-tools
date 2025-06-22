@@ -1,10 +1,11 @@
 import { ShieldChevron } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'SSL Certificate converter',
+  name: translate('tools.ssl-cert-converter.title'),
   path: '/ssl-cert-converter',
-  description: 'Convert SSL Certificate from different formats',
+  description: translate('tools.ssl-cert-converter.description'),
   keywords: ['ssl', 'certificate', 'crt', 'pkcs', 'p12', 'pem', 'der', 'jks', 'converter'],
   component: () => import('./ssl-cert-converter.vue'),
   icon: ShieldChevron,

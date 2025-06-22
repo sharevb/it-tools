@@ -1,10 +1,11 @@
 import { Copyright } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Watermarker',
+  name: translate('tools.watermarker.title'),
   path: '/watermarker',
-  description: 'Add watermark or logo to one or more images',
+  description: translate('tools.watermarker.description'),
   keywords: ['watermarker'],
   component: () => import('./watermarker.vue'),
   icon: Copyright,

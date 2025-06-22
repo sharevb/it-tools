@@ -1,10 +1,11 @@
 import { FileExport } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Pdf Page Extractor',
+  name: translate('tools.pdf-extract.title'),
   path: '/pdf-extract',
-  description: 'Extract pages range from a PDF',
+  description: translate('tools.pdf-extract.description'),
   keywords: ['pdf', 'page', 'extract'],
   component: () => import('./pdf-extract.vue'),
   icon: FileExport,

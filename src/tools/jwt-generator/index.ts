@@ -1,10 +1,11 @@
 import { Key } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'JWT Generator',
+  name: translate('tools.jwt-generator.title'),
   path: '/jwt-generator',
-  description: 'JWT Token generator and editor',
+  description: translate('tools.jwt-generator.description'),
   keywords: [
     'jwt',
     'generator',

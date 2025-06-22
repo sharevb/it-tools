@@ -1,10 +1,11 @@
 import { Quote } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Quote Converter',
+  name: translate('tools.quote-converter.title'),
   path: '/quote-converter',
-  description: 'Convert quoted string from/to \' and "',
+  description: translate('tools.quote-converter.description'),
   keywords: ['quote', 'converter'],
   component: () => import('./quote-converter.vue'),
   icon: Quote,

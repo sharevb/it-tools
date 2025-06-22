@@ -1,10 +1,11 @@
 import { Braces } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'JSON Linter',
+  name: translate('tools.json-linter.title'),
   path: '/json-linter',
-  description: 'Check and lint JSON content',
+  description: translate('tools.json-linter.description'),
   keywords: ['json', 'linter', 'check'],
   component: () => import('./json-linter.vue'),
   icon: Braces,

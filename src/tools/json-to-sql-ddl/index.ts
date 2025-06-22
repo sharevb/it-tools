@@ -1,10 +1,11 @@
 import { Database } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Json to SQL DDL',
+  name: translate('tools.json-to-sql-ddl.title'),
   path: '/json-to-sql-ddl',
-  description: 'JSON to SQL CREATE TABLE',
+  description: translate('tools.json-to-sql-ddl.description'),
   keywords: ['json', 'sql', 'ddl', 'create', 'table'],
   component: () => import('./json-to-sql-ddl.vue'),
   icon: Database,

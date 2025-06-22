@@ -1,10 +1,11 @@
 import { ArrowsShuffle } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Image to SVG (potrace)',
+  name: translate('tools.potrace.title'),
   path: '/potrace',
-  description: 'Convert an raster image to vectorial SVG',
+  description: translate('tools.potrace.description'),
   keywords: ['potrace', 'image', 'svg', 'raster', 'vectorial'],
   component: () => import('./potrace.vue'),
   icon: ArrowsShuffle,

@@ -1,10 +1,11 @@
 import { Parking } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Parquet files Reader',
+  name: translate('tools.parquets-reader.title'),
   path: '/parquets-reader',
-  description: 'Read parquet file as JSON object arrays',
+  description: translate('tools.parquets-reader.description'),
   keywords: ['parquet', 'reader'],
   component: () => import('./parquets-reader.vue'),
   icon: Parking,

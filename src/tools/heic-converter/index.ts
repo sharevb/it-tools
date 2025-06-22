@@ -1,10 +1,11 @@
 import { Photo } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'HEIC Converter',
+  name: translate('tools.heic-converter.title'),
   path: '/heic-converter',
-  description: 'HEIC Converter to JPEG or PNG',
+  description: translate('tools.heic-converter.description'),
   keywords: ['heic', 'heif', 'convert', 'decoder', 'converter'],
   component: () => import('./heic-converter.vue'),
   icon: Photo,

@@ -1,10 +1,11 @@
 import { Brackets } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'XPath Syntax Cheatsheet',
+  name: translate('tools.xpath-memo.title'),
   path: '/xpath-memo',
-  description: 'XPath Syntax Cheatsheet',
+  description: translate('tools.xpath-memo.description'),
   keywords: ['xpath', 'memo', 'cheatsheet'],
   component: () => import('./xpath-memo.vue'),
   icon: Brackets,

@@ -1,10 +1,11 @@
 import { Language } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Text to Unicode Names',
+  name: translate('tools.text-to-unicode-names.title'),
   path: '/text-to-unicode-names',
-  description: 'Convert a text to its hexadecimal character codes and Unicode Names for each character',
+  description: translate('tools.text-to-unicode-names.description'),
   keywords: ['text', 'unicode', 'name', 'hexa', 'char', 'code'],
   component: () => import('./text-to-unicode-names.vue'),
   icon: Language,

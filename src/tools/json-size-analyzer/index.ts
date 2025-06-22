@@ -1,10 +1,11 @@
 import { FileAnalytics } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Json Size Analyzer',
+  name: translate('tools.json-size-analyzer.title'),
   path: '/json-size-analyzer',
-  description: 'Measure JSON nodes relative weights',
+  description: translate('tools.json-size-analyzer.description'),
   keywords: ['json', 'size', 'analyzer'],
   component: () => import('./json-size-analyzer.vue'),
   icon: FileAnalytics,

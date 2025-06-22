@@ -1,10 +1,11 @@
 import { FileText } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Unicode Search',
+  name: translate('tools.unicode-search.title'),
   path: '/unicode-search',
-  description: 'Search in Unicode Characters',
+  description: translate('tools.unicode-search.description'),
   keywords: ['unicode', 'search'],
   component: () => import('./unicode-search.vue'),
   icon: FileText,

@@ -1,10 +1,11 @@
 import { Alarm } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Countdown',
+  name: translate('tools.countdown.title'),
   path: '/countdown',
-  description: 'Countdown and alarm at ellapsed duration',
+  description: translate('tools.countdown.description'),
   keywords: ['countdown'],
   component: () => import('./countdown.vue'),
   icon: Alarm,

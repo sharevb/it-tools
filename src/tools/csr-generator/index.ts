@@ -1,10 +1,11 @@
 import { ArrowsShuffle } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'CSR Generator',
+  name: translate('tools.csr-generator.title'),
   path: '/csr-generator',
-  description: 'Certificate Signing Request generator (PEM format)',
+  description: translate('tools.csr-generator.description'),
   keywords: ['csr', 'certificate', 'signing', 'request', 'x509', 'generator'],
   component: () => import('./csr-generator.vue'),
   icon: ArrowsShuffle,

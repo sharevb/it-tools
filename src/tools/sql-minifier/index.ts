@@ -1,10 +1,11 @@
 import { Database } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'SQL Minifier',
+  name: translate('tools.sql-minifier.title'),
   path: '/sql-minifier',
-  description: 'Minify SQL queries',
+  description: translate('tools.sql-minifier.description'),
   keywords: ['sql', 'query', 'minifier'],
   component: () => import('./sql-minifier.vue'),
   icon: Database,

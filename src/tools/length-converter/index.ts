@@ -1,10 +1,11 @@
 import { SquareHalf } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Length Units Converter',
+  name: translate('tools.length-converter.title'),
   path: '/length-converter',
-  description: 'Convert values from length units',
+  description: translate('tools.length-converter.description'),
   keywords: ['length', 'converter'],
   component: () => import('./length-converter.vue'),
   icon: SquareHalf,

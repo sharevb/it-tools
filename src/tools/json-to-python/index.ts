@@ -1,10 +1,11 @@
 import { BrandPython } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Json to Python',
+  name: translate('tools.json-to-python.title'),
   path: '/json-to-python',
-  description: 'Convert JSON to Python classes',
+  description: translate('tools.json-to-python.description'),
   keywords: ['json', 'to', 'python'],
   component: () => import('./json-to-python.vue'),
   icon: BrandPython,

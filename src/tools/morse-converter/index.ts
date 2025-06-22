@@ -1,10 +1,11 @@
 import { ArrowsShuffle } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Morse Code Converter',
+  name: translate('tools.morse-converter.title'),
   path: '/morse-converter',
-  description: 'Encode/Decode to Morse code',
+  description: translate('tools.morse-converter.description'),
   keywords: ['morse', 'converter'],
   component: () => import('./morse-converter.vue'),
   icon: ArrowsShuffle,

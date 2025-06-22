@@ -1,10 +1,11 @@
 import { World } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Punycode Converter',
+  name: translate('tools.punycode-converter.title'),
   path: '/punycode-converter',
-  description: 'Convert international unicode domain names or emails from/to ASCII Punycode version',
+  description: translate('tools.punycode-converter.description'),
   keywords: ['punycode', 'converter', 'rfc3492', 'bootstring', 'domain', 'dns'],
   component: () => import('./punycode-converter.vue'),
   icon: World,
