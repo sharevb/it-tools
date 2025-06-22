@@ -19,7 +19,7 @@ import Icons from 'unplugin-icons/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 import VueI18n from '@intlify/unplugin-vue-i18n/vite';
 
-const baseUrl = process.env.BASE_URL ?? '/';
+const baseUrl = process.env.BASE_URL || '/';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -67,8 +67,8 @@ export default defineConfig({
         name: 'IT Tools',
         description: 'Aggregated set of useful tools for developers.',
         display: 'standalone',
-        lang: 'fr-FR',
         start_url: `${baseUrl}?utm_source=pwa&utm_medium=pwa`,
+        scope: baseUrl,
         orientation: 'any',
         theme_color: '#18a058',
         background_color: '#f1f5f9',

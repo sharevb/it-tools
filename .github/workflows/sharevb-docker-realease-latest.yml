@@ -67,6 +67,8 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          build-args: |
+            "BASE_URL=/"
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |

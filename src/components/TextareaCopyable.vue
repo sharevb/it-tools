@@ -31,6 +31,8 @@ const props = withDefaults(
     wordWrap?: boolean
     downloadFileName?: string
     downloadButtonText?: string
+    scrollable?: boolean
+    maxHeight?: string
   }>(),
   {
     followHeightOf: null,
@@ -39,6 +41,8 @@ const props = withDefaults(
     copyMessage: 'Copy to clipboard',
     downloadFileName: '',
     downloadButtonText: 'Download',
+    scrollable: false,
+    maxHeight: '400px',
   },
 );
 hljs.registerLanguage('sql', sqlHljs);
@@ -62,6 +66,17 @@ hljs.registerLanguage('protobuf', protobufHljs);
 const { value, language, followHeightOf, copyPlacement, copyMessage, downloadFileName, downloadButtonText } = toRefs(props);
 const { height } = followHeightOf.value ? useElementSize(followHeightOf) : { height: ref(null) };
 
+const scrollbarRef = ref();
+
+// Watch for content changes and scroll to bottom
+watch(value, () => {
+  nextTick(() => {
+    if (scrollbarRef.value) {
+      scrollbarRef.value.scrollTo({ top: scrollbarRef.value.scrollbarInstRef.containerRef.scrollHeight });
+    }
+  });
+}, { flush: 'post' });
+
 const { copy, isJustCopied } = useCopy({ source: value, createToast: false });
 const tooltipText = computed(() => isJustCopied.value ? 'Copied!' : copyMessage.value);
 
@@ -80,9 +95,14 @@ const { download } = useDownloadFileFromBase64(
       :style="(copyPlacement === 'top-right' || copyPlacement === 'bottom-right') ? `padding-bottom: 50px` : ''"
     >
       <n-scrollbar
-        x-scrollable
+        ref="scrollbarRef"
+        :x-scrollable="true"
+        :y-scrollable="scrollable"
         trigger="none"
-        :style="height ? `min-height: ${height - 40 /* card padding */ + 10 /* negative margin compensation */}px` : ''"
+        :style="{
+          minHeight: height ? `${height - 40 /* card padding */ + 10 /* negative margin compensation */}px` : '',
+          maxHeight: scrollable ? maxHeight : '',
+        }"
       >
         <n-config-provider :hljs="hljs">
           <n-code :code="value" :language="language" :word-wrap="wordWrap" :trim="false" data-test-id="area-content" />
@@ -90,10 +110,10 @@ const { download } = useDownloadFileFromBase64(
       </n-scrollbar>
       <div
         v-if="value && copyPlacement !== 'none'"
-
         :top-10px="copyPlacement === 'top-right' ? '' : 'no'"
         :bottom-10px="copyPlacement === 'bottom-right' ? '' : 'no'"
         absolute right-10px
+        :style="scrollable ? 'z-index: 10; background: var(--bg-color); border-radius: 50%; padding: 2px;' : ''"
       >
         <c-tooltip v-if="value && copyPlacement !== 'outside'" :tooltip="tooltipText" position="left">
           <c-button circle important:h-10 important:w-10 @click="copy()">
