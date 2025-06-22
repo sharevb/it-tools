@@ -11,6 +11,7 @@ import {
   isValid,
   parseISO,
 } from 'date-fns';
+import { ticksFromDate, ticksToDate } from 'tick-time';
 import { UTCDate } from '@date-fns/utc';
 import type { DateFormat, ToDateMapper } from './date-time-converter.types';
 import {
@@ -127,6 +128,12 @@ const formats: DateFormat[] = [
     fromDate: date => dateToWin32FileTime(date),
     toDate: date => win32FileTimeToUnix(date),
     formatMatcher: isWin32FileTime,
+  },
+  {
+    name: '.Net ticks',
+    fromDate: date => ticksFromDate(date),
+    toDate: date => ticksToDate(date) || new Date(),
+    formatMatcher: date => /\d+/.test(date || ''),
   },
 ];
 

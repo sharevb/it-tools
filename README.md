@@ -2,6 +2,21 @@
 
 Since *Docker base image* is now `nginx-unpriviledged`, docker image now listen to **8080** and no more 80. So you need to update your port mapping, ie from `8080:80` to `8080:8080`.
 
+Docker image listen to IPv6, so it needs to be enabled: https://serverfault.com/questions/1147296/how-to-enable-ipv6-on-ubuntu-20-04. Alternatively, you can mount your own `nginx.conf` own using docker option `-v "./nginx.conf:/etc/nginx/conf.d/nginx.conf"` (with `listen [::]:8080;` removed)
+
+## HTTPS is recommanded
+
+Some tools like PGP encryption rely on WebCrypto API that is only available in HTTPS/SSL. Also, if you want to use PWA, HTTPS is required.
+
+So even on internal installations, you can enable HTTPS using Let's Encrypt using DNS Challenge
+
+Some docs about DNS Challenge:
+- https://medium.com/@life-is-short-so-enjoy-it/homelab-nginx-proxy-manager-setup-ssl-certificate-with-domain-name-in-cloudflare-dns-732af64ddc0b
+- https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/
+- https://medium.com/@svenvanginkel/traefik-letsencrypt-dns01-challenge-with-ovhcloud-52f2a2c6d08a
+
+Related doc for CyberPanel: https://community.cyberpanel.net/t/reverse-proxy-traffic-to-docker-container-on-cyberpanel/30644
+
 ### Check out these change here: <https://sharevb-it-tools.vercel.app/> or <https://sharevb.github.io/it-tools/>
 
 You can use my image in your docker-compose file if you want an update to date version of it-tools (with my PR and some of others) until the main branch has been updated.
@@ -16,6 +31,9 @@ Big thanks to all the people who have already contributed!
 
 [![contributors](https://contrib.rocks/image?repo=sharevb/it-tools&refresh=1)](https://github.com/sharevb/it-tools/graphs/contributors)
 
+## Development under Windows
+
+Use of WSL2 is recommanded to develop using VSCode on Windows. Direct development is tricky (because of some dependencies)
 
 ## Added features
 
@@ -26,17 +44,6 @@ Almost [all tools PR of it-tools](https://github.com/sharevb/it-tools/pulls).
 [GitHub Container Registry](https://github.com/sharevb/it-tools/pkgs/container/it-tools): `ghcr.io/sharevb/it-tools:latest`
 
 [Docker Hub](https://hub.docker.com/r/sharevb/it-tools): `sharevb/it-tools:latest`
-
-## HTTPS is recommanded
-
-Some tools like PGP encryption rely on WebCrypto API that is only available in HTTPS/SSL.
-
-So even on internal installations, you can enable HTTPS using Let's Encrypt using DNS Challenge
-
-Some docs about DNS Challenge:
-- https://medium.com/@life-is-short-so-enjoy-it/homelab-nginx-proxy-manager-setup-ssl-certificate-with-domain-name-in-cloudflare-dns-732af64ddc0b
-- https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/
-- https://medium.com/@svenvanginkel/traefik-letsencrypt-dns01-challenge-with-ovhcloud-52f2a2c6d08a
 
 ## Use in Docker Compose file
 
