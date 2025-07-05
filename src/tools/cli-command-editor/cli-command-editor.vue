@@ -41,9 +41,9 @@ const command = ref('');
         <c-text-copyable
           v-if="command"
           :value="command"
-          font-mono
+
           :show-icon="false"
-          mt-6
+          mt-6 font-mono
         />
       </n-gi>
     </n-grid>
