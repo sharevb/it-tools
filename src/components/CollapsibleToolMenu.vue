@@ -55,10 +55,24 @@ async function toggleAllCategories() {
   isToggling.value = false;
 }
 
+// Function to calculate animation duration based on number of items
+function getAnimationDuration(itemCount: number): number {
+  const baseDuration = 300;
+  const baseItemCount = 5;
+  const durationIncrement = 7;
+
+  const additionalDuration = (itemCount - baseItemCount) * durationIncrement;
+
+  // Ensure the duration doesn't go below the base duration
+  // This means that only if the item count is higher than the base item count, each extra element will add `durationIncrement` milliseconds to the animation
+  return Math.max(baseDuration + additionalDuration, baseDuration);
+}
+
 const menuOptions = computed(() =>
   toolsByCategory.value.map(({ name, components }) => ({
     name,
     isCollapsed: collapsedCategories.value[name] === undefined ? true : collapsedCategories.value[name],
+    animationDuration: getAnimationDuration(components.length),
     tools: components.map(tool => ({
       label: makeLabel(tool),
       icon: makeIcon(tool),
@@ -82,7 +96,7 @@ const themeVars = useThemeVars();
     </c-button>
   </div>
 
-  <div v-for="{ name, tools, isCollapsed } of menuOptions" :key="name" class="category-container">
+  <div v-for="{ name, tools, isCollapsed, animationDuration } of menuOptions" :key="name" class="category-container">
     <div ml-6px mt-12px flex cursor-pointer items-center op-60 @click="toggleCategoryCollapse({ name })">
       <span :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }" text-16px lh-1 op-50 transition-transform>
         <icon-mdi-chevron-right />
@@ -93,7 +107,11 @@ const themeVars = useThemeVars();
       </span>
     </div>
 
-    <div class="menu-container" :class="{ collapsed: isCollapsed }">
+    <div
+      class="menu-container"
+      :class="{ collapsed: isCollapsed }"
+      :style="{ '--animation-duration': `${animationDuration}ms` }"
+    >
       <div class="menu-wrapper">
         <div class="toggle-bar" @click="toggleCategoryCollapse({ name })" />
 
@@ -114,33 +132,18 @@ const themeVars = useThemeVars();
 <style scoped lang="less">
 .category-container {
   .menu-container {
-    overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:not(.collapsed) {
-      max-height: 1000px;
-      opacity: 1;
-      transform: translateY(0);
-    }
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows var(--animation-duration, 300ms) ease-in-out;
 
     &.collapsed {
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(-10px);
+      grid-template-rows: 0fr;
     }
 
     .menu-wrapper {
       display: flex;
       flex-direction: row;
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
-
-      .menu-container:not(.collapsed) & {
-        transform: translateY(0);
-      }
-
-      .menu-container.collapsed & {
-        transform: translateY(-20px);
-      }
+      overflow: hidden;
 
       .menu {
         flex: 1;
