@@ -57,7 +57,7 @@ async function toggleAllCategories() {
 
 // Function to calculate animation duration based on number of items
 function getAnimationDuration(itemCount: number): number {
-  const baseDuration = 350;
+  const baseDuration = 325;
   const baseItemCount = 10;
   const durationIncrement = 5;
 
