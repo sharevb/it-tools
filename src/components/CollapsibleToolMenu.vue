@@ -57,9 +57,9 @@ async function toggleAllCategories() {
 
 // Function to calculate animation duration based on number of items
 function getAnimationDuration(itemCount: number): number {
-  const baseDuration = 300;
-  const baseItemCount = 5;
-  const durationIncrement = 7;
+  const baseDuration = 350;
+  const baseItemCount = 10;
+  const durationIncrement = 5;
 
   const additionalDuration = (itemCount - baseItemCount) * durationIncrement;
 
@@ -134,7 +134,7 @@ const themeVars = useThemeVars();
   .menu-container {
     display: grid;
     grid-template-rows: 1fr;
-    transition: grid-template-rows var(--animation-duration, 300ms) ease-in-out;
+    transition: grid-template-rows var(--animation-duration, 350ms) ease-in-out;
 
     &.collapsed {
       grid-template-rows: 0fr;
