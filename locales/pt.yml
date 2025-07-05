@@ -78,3 +78,9 @@ tools:
   json-sort-master:
     title: 'Mestre de classificação JSON'
     description: 'Ordene seu JSON por chaves e valores.'
+
+  cli-command-editor:
+    title: Editor de comando CLI
+    description: Converta comandos CLI com opções em um formato facilmente editável e gere o comando resultante com valores de entrada.
+    command: Comando
+    placeholder: Cole o comando aqui

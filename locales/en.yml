@@ -1198,3 +1198,8 @@ tools:
     title: XSLT tester
     description: Allows to test XML transformation using XSLT Stylesheets  
 
+  cli-command-editor:
+    title: CLI command editor
+    description: Convert CLI commands with options into an easily editable form and generate the resulting command with input values.
+    command: Command
+    placeholder: Paste command here
