@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import yaml from 'yaml';
 import properties from 'properties';
 import { flatten } from 'flatten-anything';
+
+const { t } = useI18n();
 
 const defaultPropertiesValue = `app_name App
 
@@ -39,22 +42,22 @@ function toProperties(value: string) {
 </script>
 
 <template>
-  <c-card title=".properties to YAML">
+  <c-card :title="t('tools.properties-converter.texts.title-properties-to-yaml')">
     <format-transformer
-      input-label="Your .properties content:"
+      :input-label="t('tools.properties-converter.texts.input-label-your-properties-content')"
       :input-default="defaultPropertiesValue"
-      input-placeholder="Paste your .properties content here..."
-      output-label="YAML version:"
+      :input-placeholder="t('tools.properties-converter.texts.input-placeholder-paste-your-properties-content-here')"
+      :output-label="t('tools.properties-converter.texts.output-label-yaml-version')"
       output-language="yaml"
       :transformer="fromProperties"
     />
   </c-card>
-  <c-card title="YAML to .properties">
+  <c-card :title="t('tools.properties-converter.texts.title-yaml-to-properties')">
     <format-transformer
-      input-label="Your YAML content:"
+      :input-label="t('tools.properties-converter.texts.input-label-your-yaml-content')"
       :input-default="defaultYamlValue"
-      input-placeholder="Paste your YAML content here..."
-      output-label=".properties version:"
+      :input-placeholder="t('tools.properties-converter.texts.input-placeholder-paste-your-yaml-content-here')"
+      :output-label="t('tools.properties-converter.texts.output-label-properties-version')"
       output-language="ini"
       :transformer="toProperties"
     />

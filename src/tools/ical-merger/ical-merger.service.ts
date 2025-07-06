@@ -1,5 +1,7 @@
 import ICAL from 'ical.js';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export function mergeIcals(inputs: Array<string>, options: {
   calname?: string
   timezone?: string
@@ -33,12 +35,12 @@ export function mergeIcals(inputs: Array<string>, options: {
       }
     }
     catch (e) {
-      throw new Error(`Failed to merge: ${e}\n\nWith input: ${input}`);
+      throw new Error(t('tools.ical-merger.service.text.failed-to-merge-e-n-nwith-input-input', [e, input]));
     }
   }
 
   if (!calendar) {
-    throw new Error('No icals parsed successfully');
+    throw new Error(t('tools.ical-merger.service.text.no-icals-parsed-successfully'));
   }
 
   return calendar.toString();

@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { checkVAT, countries } from 'jsvat-next';
 import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
+
+const { t } = useI18n();
 
 const rawVATNumber = ref('BE0411905847');
 const vatInfos = computed<{ isValid: boolean; infos: CKeyValueListItems }>(() => {
@@ -12,31 +15,31 @@ const vatInfos = computed<{ isValid: boolean; infos: CKeyValueListItems }>(() =>
     isValid: vat.isValid,
     infos: [
       {
-        label: 'Is VAT Number valid ?',
+        label: t('tools.vat-validator.texts.label-is-vat-number-valid'),
         value: vat.isValid,
       },
       {
-        label: 'Is VAT Number valid format ?',
+        label: t('tools.vat-validator.texts.label-is-vat-number-valid-format'),
         value: vat.isValidFormat,
       },
       {
-        label: 'Cleaned VAT Number',
+        label: t('tools.vat-validator.texts.label-cleaned-vat-number'),
         value: vat.value,
       },
       {
-        label: 'Country (name)',
+        label: t('tools.vat-validator.texts.label-country-name'),
         value: vat.country?.name || 'Unknown',
       },
       {
-        label: 'Country (ISO2)',
+        label: t('tools.vat-validator.texts.label-country-iso2'),
         value: vat.country?.isoCode?.short || 'unk',
       },
       {
-        label: 'Country (ISO3)',
+        label: t('tools.vat-validator.texts.label-country-iso3'),
         value: vat.country?.isoCode?.long || 'unk',
       },
       {
-        label: 'Country (ISO Num)',
+        label: t('tools.vat-validator.texts.label-country-iso-num'),
         value: vat.country?.isoCode?.numeric || 0,
       },
     ],
@@ -46,12 +49,12 @@ const vatInfos = computed<{ isValid: boolean; infos: CKeyValueListItems }>(() =>
 
 <template>
   <div>
-    <c-input-text v-model:value="rawVATNumber" placeholder="Enter a VAT number to check for validity..." test-id="vat-input" mb-2 />
+    <c-input-text v-model:value="rawVATNumber" :placeholder="t('tools.vat-validator.texts.placeholder-enter-a-vat-number-to-check-for-validity')" test-id="vat-input" mb-2 />
     <n-alert v-if="!vatInfos.isValid" type="error" mb-2>
-      Invalid VAT Number.
+      {{ t('tools.vat-validator.texts.tag-invalid-vat-number') }}
     </n-alert>
 
-    <c-card v-if="vatInfos.infos.length > 0" title="VAT Number Infos">
+    <c-card v-if="vatInfos.infos.length > 0" :title="t('tools.vat-validator.texts.title-vat-number-infos')">
       <c-key-value-list :items="vatInfos.infos" data-test-id="vat-info" />
     </c-card>
   </div>

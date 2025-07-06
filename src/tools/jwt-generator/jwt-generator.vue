@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import * as jose from 'jose';
 import { type KeyLike } from 'jose';
 import JSON5 from 'json5';
 import { jwsAlgorithms } from './jwt-generator.constants';
 import { useValidation } from '@/composable/validation';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const payload = ref(`{
   "sub": "1234567890",
@@ -100,7 +103,7 @@ const jsonInputValidation = useValidation({
   source: payload,
   rules: [
     {
-      message: 'Invalid JSON string',
+      message: t('tools.jwt-generator.texts.message-invalid-json-string'),
       validator: value => JSON5.parse(value),
     },
   ],
@@ -112,25 +115,25 @@ const jsonInputValidation = useValidation({
     <c-select
       v-model:value="alg"
       :options="jwsAlgorithms.map(a => ({ value: a.alg, label: `${a.alg}: ${a.verify}` }))"
-      placeholder="Algorithms"
+      :placeholder="t('tools.jwt-generator.texts.placeholder-algorithms')"
       mb-2
     />
-    <n-form-item label="Description:" label-placement="left" mb-2>
+    <n-form-item :label="t('tools.jwt-generator.texts.label-description')" label-placement="left" mb-2>
       {{ algInfo.alg }}: {{ algInfo.keyDesc }} (verify with {{ algInfo.verify }})
     </n-form-item>
 
-    <c-card title="Token Content" mb-2>
-      <n-form-item label="Header:">
+    <c-card :title="t('tools.jwt-generator.texts.title-token-content')" mb-2>
+      <n-form-item :label="t('tools.jwt-generator.texts.label-header')">
         <textarea-copyable :value="header" language="json" />
       </n-form-item>
 
       <c-input-text
         v-model:value="payload"
-        label="Payload:"
+        :label="t('tools.jwt-generator.texts.label-payload')"
         multiline
         rows="5"
         autosize
-        placeholder="JSON payload"
+        :placeholder="t('tools.jwt-generator.texts.placeholder-json-payload')"
         :validation="jsonInputValidation"
       />
     </c-card>
@@ -139,7 +142,7 @@ const jsonInputValidation = useValidation({
       <c-input-text v-if="isSecret" v-model:value="secret" />
 
       <div v-if="!isSecret">
-        <n-form-item label="Public Key (PEM):">
+        <n-form-item :label="t('tools.jwt-generator.texts.label-public-key-pem')">
           <c-input-text
             v-model:value="publicKeyPEM"
             multiline
@@ -147,7 +150,7 @@ const jsonInputValidation = useValidation({
             autosize
           />
         </n-form-item>
-        <n-form-item label="Private Key (PEM):">
+        <n-form-item :label="t('tools.jwt-generator.texts.label-private-key-pem')">
           <c-input-text
             v-model:value="privateKeyPEM"
             multiline
@@ -158,7 +161,7 @@ const jsonInputValidation = useValidation({
 
         <n-divider />
 
-        <n-form-item label="Public Key (JWK):">
+        <n-form-item :label="t('tools.jwt-generator.texts.label-public-key-jwk')">
           <c-input-text
             v-model:value="publicKeyJWK"
             multiline
@@ -166,7 +169,7 @@ const jsonInputValidation = useValidation({
             autosize
           />
         </n-form-item>
-        <n-form-item label="Private Key (JWK):">
+        <n-form-item :label="t('tools.jwt-generator.texts.label-private-key-jwk')">
           <c-input-text
             v-model:value="privateKeyJWK"
             multiline
@@ -177,7 +180,7 @@ const jsonInputValidation = useValidation({
       </div>
     </c-card>
 
-    <c-card v-if="encodedJWT" title="Generated JWT Token:" mb-2>
+    <c-card v-if="encodedJWT" :title="t('tools.jwt-generator.texts.title-generated-jwt-token')" mb-2>
       <textarea-copyable v-if="encodedJWT.token" :value="encodedJWT.token" word-wrap />
       <c-alert v-if="encodedJWT.error">
         {{ encodedJWT.error }}

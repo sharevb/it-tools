@@ -1,3 +1,5 @@
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export function convertDecimalToBinary({ value, bitCount }: { value: string; bitCount: number }) {
   let number = Number.parseFloat(value.replace(/\s/g, ''));
   if (value.match(/^-?inf(inity)?$/i)) {
@@ -16,16 +18,16 @@ export function convertDecimalToBinary({ value, bitCount }: { value: string; bit
       return [...uint].slice(0, 2).reverse().map(p => p.toString(2).padStart(32, '0')).join('');
     }
     default:
-      throw new Error('Unsupported bit count. Only 32 and 64 are allowed.');
+      throw new Error(t('tools.floating-point-number-converter.model.text.unsupported-bit-count-only-32-and-64-are-allowed'));
   }
 }
 
 export function convertBinaryToDecimal({ value, decimalPrecision, removeZeroPadding }: { value: string; decimalPrecision: string; removeZeroPadding: boolean }) {
   if (value.match(/[^01]/)) {
-    throw new Error('Not a binary number.');
+    throw new Error(t('tools.floating-point-number-converter.model.text.not-a-binary-number'));
   }
   if (decimalPrecision.match(/[^\d]/)) {
-    throw new Error('Decimal Precision must be a positive whole number.');
+    throw new Error(t('tools.floating-point-number-converter.model.text.decimal-precision-must-be-a-positive-whole-number'));
   }
 
   let result: number;
@@ -41,7 +43,7 @@ export function convertBinaryToDecimal({ value, decimalPrecision, removeZeroPadd
       break;
     }
     default:
-      throw new Error('Invalid length. Supply a binary string with length 32 or 64.');
+      throw new Error(t('tools.floating-point-number-converter.model.text.invalid-length-supply-a-binary-string-with-length-32-or-64'));
   }
 
   const zeroNegative = result === 0 && 2 / result === Number.NEGATIVE_INFINITY;

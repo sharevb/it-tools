@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { type MatcherNames, maskSensitiveData } from './sensitive-data-masker.service';
 import { withDefaultOnError } from '@/utils/defaults';
+
+const { t } = useI18n();
 
 const defaultValue = `{
   email: 'john.doe@example.com',
@@ -36,8 +39,8 @@ function transformer(value: string) {
   <div>
     <c-input-text
       v-model:value="customRegex"
-      label="Your custom cleaning regex(es) (case insensitive):"
-      placeholder="Your custom cleaning regex(es)"
+      :label="t('tools.sensitive-data-masker.texts.label-your-custom-cleaning-regex-es-case-insensitive')"
+      :placeholder="t('tools.sensitive-data-masker.texts.placeholder-your-custom-cleaning-regex-es')"
       raw-text
       multiline
       rows="4"
@@ -46,7 +49,7 @@ function transformer(value: string) {
 
     <n-select
       v-model:value="excludedMatchers"
-      placeholder="No Fallback"
+      :placeholder="t('tools.sensitive-data-masker.texts.placeholder-no-fallback')"
       multiple
       :fallback-option="false"
       :options="allMatchers.map(v => ({ label: v, value: v }))"
@@ -54,10 +57,10 @@ function transformer(value: string) {
     />
 
     <format-transformer
-      input-label="Your log/textual data:"
+      :input-label="t('tools.sensitive-data-masker.texts.input-label-your-log-textual-data')"
       :input-default="defaultValue"
-      input-placeholder="Paste your log/textual data here..."
-      output-label="Cleaned version:"
+      :input-placeholder="t('tools.sensitive-data-masker.texts.input-placeholder-paste-your-log-textual-data-here')"
+      :output-label="t('tools.sensitive-data-masker.texts.output-label-cleaned-version')"
       :transformer="transformer"
     />
   </div>

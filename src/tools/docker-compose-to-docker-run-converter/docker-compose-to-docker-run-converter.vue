@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import decomposerize from 'decomposerize';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const detachOption = ref<boolean>(false);
 const removeOption = ref<boolean>(false);
@@ -49,7 +52,7 @@ const MONACO_EDITOR_OPTIONS = {
 
 <template>
   <div>
-    <c-label label="Paste your Docker Compose file content:">
+    <c-label :label="t('tools.docker-compose-to-docker-run-converter.texts.label-paste-your-docker-compose-file-content')">
       <div relative w-full>
         <c-monaco-editor
           v-model:value="dockerCompose"
@@ -62,7 +65,7 @@ const MONACO_EDITOR_OPTIONS = {
     </c-label>
 
     <div v-if="errors.length > 0">
-      <n-alert title="The following errors occured" type="error" mt-5>
+      <n-alert :title="t('tools.docker-compose-to-docker-run-converter.texts.title-the-following-errors-occured')" type="error" mt-5>
         <ul>
           <li v-for="(message, index) of errors" :key="index">
             {{ message }}
@@ -75,16 +78,16 @@ const MONACO_EDITOR_OPTIONS = {
 
     <div class="mb-6 flex flex-row items-center gap-2">
       <n-checkbox v-model:checked="detachOption">
-        Detach (-d)
+        {{ t('tools.docker-compose-to-docker-run-converter.texts.tag-detach-d') }}
       </n-checkbox>
       <n-checkbox v-model:checked="removeOption">
-        Remove (--rm)
+        {{ t('tools.docker-compose-to-docker-run-converter.texts.tag-remove-rm') }}
       </n-checkbox>
       <n-checkbox v-model:checked="longArgsOption">
-        Long Arguments
+        {{ t('tools.docker-compose-to-docker-run-converter.texts.tag-long-arguments') }}
       </n-checkbox>
       <n-checkbox v-model:checked="equalAsSepOption">
-        --<i>arg</i>=<i>value</i> ?
+        {{ t('tools.docker-compose-to-docker-run-converter.texts.tag-') }}<i>{{ t('tools.docker-compose-to-docker-run-converter.texts.tag-arg') }}</i>{{ t('tools.docker-compose-to-docker-run-converter.texts.tag-') }}<i>{{ t('tools.docker-compose-to-docker-run-converter.texts.tag-value') }}</i>{{ t('tools.docker-compose-to-docker-run-converter.texts.tag-') }}
       </n-checkbox>
     </div>
 

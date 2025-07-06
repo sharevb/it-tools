@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { lib } from 'crypto-js';
 import { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, enc } from 'crypto-js';
 
@@ -25,6 +26,8 @@ import {
 import InputCopyable from '../../components/InputCopyable.vue';
 import { convertHexToBin } from './hash-text.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const algos = {
   MD5,
@@ -152,8 +155,8 @@ const hashWasmPBKDF2 = computedAsync(async () => {
       <c-input-text
         v-model:value="clearText"
         multiline raw-text
-        placeholder="Your string to hash..." rows="3"
-        autosize autofocus label="Your text to hash:"
+        :placeholder="t('tools.hash-text.texts.placeholder-your-string-to-hash')" rows="3"
+        autosize autofocus :label="t('tools.hash-text.texts.label-your-text-to-hash')"
       />
 
       <n-divider />
@@ -161,22 +164,22 @@ const hashWasmPBKDF2 = computedAsync(async () => {
       <c-select
         v-model:value="encoding"
         mb-4
-        label="Digest encoding"
+        :label="t('tools.hash-text.texts.label-digest-encoding')"
         :options="[
           {
-            label: 'Binary (base 2)',
+            label: t('tools.hash-text.texts.label-binary-base-2'),
             value: 'Bin',
           },
           {
-            label: 'Hexadecimal (base 16)',
+            label: t('tools.hash-text.texts.label-hexadecimal-base-16'),
             value: 'Hex',
           },
           {
-            label: 'Base64 (base 64)',
+            label: t('tools.hash-text.texts.label-base64-base-64'),
             value: 'Base64',
           },
           {
-            label: 'Base64url (base 64 with url safe chars)',
+            label: t('tools.hash-text.texts.label-base64url-base-64-with-url-safe-chars'),
             value: 'Base64url',
           },
         ]"
@@ -205,25 +208,25 @@ const hashWasmPBKDF2 = computedAsync(async () => {
       <div style="margin: 5px 0">
         <n-input-group>
           <n-input-group-label style="flex: 0 0 120px">
-            Argon2d
+            {{ t('tools.hash-text.texts.tag-argon2d') }}
           </n-input-group-label>
           <InputCopyable :value="hashWasmArgon2d" readonly />
         </n-input-group>
         <n-input-group>
           <n-input-group-label style="flex: 0 0 120px">
-            Argon2i
+            {{ t('tools.hash-text.texts.tag-argon2i') }}
           </n-input-group-label>
           <InputCopyable :value="hashWasmArgon2i" readonly />
         </n-input-group>
         <n-input-group>
           <n-input-group-label style="flex: 0 0 120px">
-            Argon2id
+            {{ t('tools.hash-text.texts.tag-argon2id') }}
           </n-input-group-label>
           <InputCopyable :value="hashWasmArgon2id" readonly />
         </n-input-group>
         <n-input-group>
           <n-input-group-label style="flex: 0 0 120px">
-            PBKDF2
+            {{ t('tools.hash-text.texts.tag-pbkdf2') }}
           </n-input-group-label>
           <InputCopyable :value="hashWasmPBKDF2" readonly />
         </n-input-group>

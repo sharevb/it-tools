@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 interface KeyValuePair {
   key: string
@@ -72,50 +75,50 @@ function emptyKeyPair() {
 
 <template>
   <div>
-    <c-card title="API Calling">
+    <c-card :title="t('tools.api-tester.texts.title-api-calling')">
       <c-input-text
         v-model:value="baseUrl"
-        label="Base API Url"
-        placeholder="Base API Url"
+        :label="t('tools.api-tester.texts.label-base-api-url')"
+        :placeholder="t('tools.api-tester.texts.placeholder-base-api-url')"
         mb-2
       />
 
       <c-select
         v-model:value="method"
-        label="HTTP Method:"
+        :label="t('tools.api-tester.texts.label-http-method')"
         :options="['GET', 'POST', 'PUT', 'DELETE', 'PATCH']"
         mb-2
       />
 
-      <c-card title="Headers" mb-2>
+      <c-card :title="t('tools.api-tester.texts.title-headers')" mb-2>
         <n-dynamic-input v-model:value="headers" :on-create="emptyKeyPair">
           <template #create-button-default>
-            Add a new HTTP Header
+            {{ t('tools.api-tester.texts.tag-add-a-new-http-header') }}
           </template>
           <template #default="{ value }">
             <div v-if="value" w-100 flex justify-center gap-2>
-              <c-input-text v-model:value="value.key" placeholder="Header Name" type="text" />
-              <c-input-text v-model:value="value.value" placeholder="Value" type="text" />
+              <c-input-text v-model:value="value.key" :placeholder="t('tools.api-tester.texts.placeholder-header-name')" type="text" />
+              <c-input-text v-model:value="value.value" :placeholder="t('tools.api-tester.texts.placeholder-value')" type="text" />
             </div>
           </template>
         </n-dynamic-input>
         <c-select
           v-model:value="contentType"
-          label="Content-Type:"
+          :label="t('tools.api-tester.texts.label-content-type')"
           :options="['application/json', 'text/plain']"
           mt-2
         />
       </c-card>
 
-      <c-card title="Query Parameters" mb-2>
+      <c-card :title="t('tools.api-tester.texts.title-query-parameters')" mb-2>
         <n-dynamic-input v-model:value="queryParams" :on-create="emptyKeyPair">
           <template #create-button-default>
-            Add a new Query Parameter
+            {{ t('tools.api-tester.texts.tag-add-a-new-query-parameter') }}
           </template>
           <template #default="{ value }">
             <div v-if="value" w-100 flex justify-center gap-2>
-              <c-input-text v-model:value="value.key" placeholder="Param Name" type="text" />
-              <c-input-text v-model:value="value.value" placeholder="Value" type="text" />
+              <c-input-text v-model:value="value.key" :placeholder="t('tools.api-tester.texts.placeholder-param-name')" type="text" />
+              <c-input-text v-model:value="value.value" :placeholder="t('tools.api-tester.texts.placeholder-value')" type="text" />
             </div>
           </template>
         </n-dynamic-input>
@@ -123,20 +126,20 @@ function emptyKeyPair() {
       <c-input-text
         v-if="method !== 'GET' && method !== 'HEAD'"
         v-model:value="body"
-        label="Body"
-        placeholder="HTTP Query body"
+        :label="t('tools.api-tester.texts.label-body')"
+        :placeholder="t('tools.api-tester.texts.placeholder-http-query-body')"
         multiline
         monospace
         mb-2
       />
 
       <n-checkbox v-model:checked="noCORS">
-        No CORS
+        {{ t('tools.api-tester.texts.tag-no-cors') }}
       </n-checkbox>
 
       <div mt-5 flex justify-center>
         <c-button secondary @click="callAPI">
-          Call API
+          {{ t('tools.api-tester.texts.tag-call-api') }}
         </c-button>
       </div>
     </c-card>
@@ -144,11 +147,11 @@ function emptyKeyPair() {
       v-if="inprogress"
       size="small"
     />
-    <c-alert v-if="!inprogress && apiCallResult && apiCallResult.code !== 200" type="error" mt-12 title="Error while calling API">
+    <c-alert v-if="!inprogress && apiCallResult && apiCallResult.code !== 200" type="error" mt-12 :title="t('tools.api-tester.texts.title-error-while-calling-api')">
       <p><strong>Status code = {{ apiCallResult.code }}</strong></p>
       <TextareaCopyable :value="apiCallResult.error" copy-placement="none" />
     </c-alert>
-    <c-card v-if="!inprogress && apiCallResult && apiCallResult.code === 200" mt-12 title="API Call result">
+    <c-card v-if="!inprogress && apiCallResult && apiCallResult.code === 200" mt-12 :title="t('tools.api-tester.texts.title-api-call-result')">
       <TextareaCopyable :value="apiCallResult.result" word-wrap />
     </c-card>
   </div>

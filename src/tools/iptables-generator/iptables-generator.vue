@@ -1,22 +1,25 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 const actionOptions = [
-  { label: 'ACCEPT', value: 'ACCEPT' },
-  { label: 'DROP', value: 'DROP' },
-  { label: 'REJECT', value: 'REJECT' },
+  { label: t('tools.iptables-generator.texts.label-accept'), value: 'ACCEPT' },
+  { label: t('tools.iptables-generator.texts.label-drop'), value: 'DROP' },
+  { label: t('tools.iptables-generator.texts.label-reject'), value: 'REJECT' },
 ];
 
 const protocolOptions = [
-  { label: 'TCP', value: 'tcp' },
-  { label: 'UDP', value: 'udp' },
-  { label: 'ICMP', value: 'icmp' },
-  { label: 'IP', value: 'ip' },
+  { label: t('tools.iptables-generator.texts.label-tcp'), value: 'tcp' },
+  { label: t('tools.iptables-generator.texts.label-udp'), value: 'udp' },
+  { label: t('tools.iptables-generator.texts.label-icmp'), value: 'icmp' },
+  { label: t('tools.iptables-generator.texts.label-ip'), value: 'ip' },
 ];
 
 const chainOptions = [
-  { label: 'INPUT', value: 'INPUT' },
-  { label: 'OUTPUT', value: 'OUTPUT' },
-  { label: 'FORWARD', value: 'FORWARD' },
-  { label: 'PREROUTING', value: 'PREROUTING' },
+  { label: t('tools.iptables-generator.texts.label-input'), value: 'INPUT' },
+  { label: t('tools.iptables-generator.texts.label-output'), value: 'OUTPUT' },
+  { label: t('tools.iptables-generator.texts.label-forward'), value: 'FORWARD' },
+  { label: t('tools.iptables-generator.texts.label-prerouting'), value: 'PREROUTING' },
 ];
 
 const action = ref('ACCEPT');
@@ -54,33 +57,33 @@ const command = computed(() => {
 
 <template>
   <NForm label-placement="left" label-width="140px">
-    <NFormItem label="Action:">
+    <NFormItem :label="t('tools.iptables-generator.texts.label-action')">
       <NSelect v-model:value="action" :options="actionOptions" />
     </NFormItem>
-    <NFormItem label="Protocol:">
+    <NFormItem :label="t('tools.iptables-generator.texts.label-protocol')">
       <NSelect v-model:value="protocol" :options="protocolOptions" />
     </NFormItem>
-    <NFormItem label="Source IP:">
+    <NFormItem :label="t('tools.iptables-generator.texts.label-source-ip')">
       <NInput v-model:value="sourceIP" />
     </NFormItem>
-    <NFormItem label="Destination IP:">
+    <NFormItem :label="t('tools.iptables-generator.texts.label-destination-ip')">
       <NInput v-model:value="destinationIP" />
     </NFormItem>
-    <NFormItem label="Source Port:">
+    <NFormItem :label="t('tools.iptables-generator.texts.label-source-port')">
       <NInputNumber v-model:value="sourcePort" />
     </NFormItem>
-    <NFormItem label="Destination Port:">
+    <NFormItem :label="t('tools.iptables-generator.texts.label-destination-port')">
       <NInputNumber v-model:value="destinationPort" />
     </NFormItem>
-    <NFormItem label="Chain:">
+    <NFormItem :label="t('tools.iptables-generator.texts.label-chain')">
       <NSelect v-model:value="chain" :options="chainOptions" />
     </NFormItem>
-    <NFormItem label="Rule Order:">
+    <NFormItem :label="t('tools.iptables-generator.texts.label-rule-order')">
       <NInputNumber v-model:value="ruleOrder" />
     </NFormItem>
   </NForm>
 
-  <c-card title="Generated iptables command">
+  <c-card :title="t('tools.iptables-generator.texts.title-generated-iptables-command')">
     <textarea-copyable :value="command" />
   </c-card>
 
@@ -89,46 +92,46 @@ const command = computed(() => {
   <table border="1" class="w-full border-collapse text-left text-sm text-gray-500 dark:text-gray-400">
     <thead>
       <tr>
-        <td><strong>Expression</strong></td>
-        <td><strong>Meaning</strong></td>
+        <td><strong>{{ t('tools.iptables-generator.texts.tag-expression') }}</strong></td>
+        <td><strong>{{ t('tools.iptables-generator.texts.tag-meaning') }}</strong></td>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>iptables -L</td>
-        <td>List all rules in the selected chain</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-iptables-l') }}</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-list-all-rules-in-the-selected-chain') }}</td>
       </tr>
       <tr>
-        <td>iptables -t nat -n -L</td>
-        <td>List all NAT rules</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-iptables-t-nat-n-l') }}</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-list-all-nat-rules') }}</td>
       </tr>
       <tr>
-        <td>iptables -L -n --line-numbers</td>
-        <td>List all rules including their line number</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-iptables-l-n-line-numbers') }}</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-list-all-rules-including-their-line-number') }}</td>
       </tr>
       <tr>
-        <td>iptables -F</td>
-        <td>Delete existing rules</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-iptables-f') }}</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-delete-existing-rules') }}</td>
       </tr>
       <tr>
-        <td>iptables -D INPUT 2</td>
-        <td>Delete the second rule in the INPUT chain</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-iptables-d-input-2') }}</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-delete-the-second-rule-in-the-input-chain') }}</td>
       </tr>
       <tr>
-        <td>iptables -t nat -D PREROUTING 2</td>
-        <td>Delete the second rule in the NAT table</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-iptables-t-nat-d-prerouting-2') }}</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-delete-the-second-rule-in-the-nat-table') }}</td>
       </tr>
       <tr>
-        <td>iptables -A INPUT -s "&lt;ip address&gt;" -j DROP</td>
-        <td>Block a specific IP address</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-iptables-a-input-s-lt-ip-address-gt-j-drop') }}</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-block-a-specific-ip-address') }}</td>
       </tr>
       <tr>
-        <td>iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT</td>
-        <td>Limit connections to 25 per minute on port 80, after 100 connections have been reached</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-iptables-a-input-p-tcp-dport-80-m-limit-limit-25-minute-limit-burst-100-j-accept') }}</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached') }}</td>
       </tr>
       <tr>
-        <td>iptables -N MYCHAIN</td>
-        <td>Create a new chain called "MYCHAIN"</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-iptables-n-mychain') }}</td>
+        <td>{{ t('tools.iptables-generator.texts.tag-create-a-new-chain-called-mychain') }}</td>
       </tr>
     </tbody>
   </table>

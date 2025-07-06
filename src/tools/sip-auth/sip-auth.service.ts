@@ -2,6 +2,8 @@ import { MD5 } from 'crypto-js';
 
 export { getAuthHeaderCheckResult };
 
+const { t } = useI18n();
+
 function getAuthHeaderCheckResult({ message, password }: { message: string; password: string }) {
   let calculatedHash;
   const method = extractComponent('^([A-Z]+) sip', message);
@@ -31,6 +33,6 @@ function extractComponent(regex: string, source: string): string {
     return matchResult[1];
   }
   else {
-    return 'Not Found';
+    return t('tools.sip-auth.text.not-found');
   }
 }

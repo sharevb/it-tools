@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import createQPDFModule from 'qpdf-wasm-esm-embedded';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+
+const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
@@ -68,7 +71,7 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
   <div>
     <div style="flex: 0 0 100%">
       <div mx-auto max-w-600px>
-        <c-file-upload title="Drag and drop a PDF file here, or click to select a file" accept=".pdf" @file-upload="onPDFFileUploaded" />
+        <c-file-upload :title="t('tools.pdf-unlock.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')" accept=".pdf" @file-upload="onPDFFileUploaded" />
       </div>
     </div>
 
@@ -82,8 +85,8 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
       />
     </div>
 
-    <c-card title="Logs">
-      <input-copyable label="qpdf" :value="qpdfCommand" mb-1 />
+    <c-card :title="t('tools.pdf-unlock.texts.title-logs')">
+      <input-copyable :label="t('tools.pdf-unlock.texts.label-qpdf')" :value="qpdfCommand" mb-1 />
       <pre>{{ logs.join('\n') }}</pre>
     </c-card>
   </div>

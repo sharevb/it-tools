@@ -50,10 +50,10 @@ const { copy } = useCopy({ source: tokens, text: t('tools.token-generator.copied
         </n-space>
       </n-form>
 
-      <n-form-item label="Denied Characters (ie, visually similar { oO01lI } or punctuations)" label-placement="top">
+      <n-form-item :label="t('tools.token-generator.texts.label-denied-characters-ie-visually-similar-oo01li-or-punctuations')" label-placement="top">
         <c-input-text
           v-model:value="deniedChars"
-          placeholder="Put characters to deny from token"
+          :placeholder="t('tools.token-generator.texts.placeholder-put-characters-to-deny-from-token')"
         />
       </n-form-item>
 
@@ -62,7 +62,7 @@ const { copy } = useCopy({ source: tokens, text: t('tools.token-generator.copied
         <n-input-number v-model:value="length" :min="1" :max="512" size="small" />
       </n-form-item>
 
-      <n-form-item label="Number of token to generate" label-placement="left">
+      <n-form-item :label="t('tools.token-generator.texts.label-number-of-token-to-generate')" label-placement="left">
         <n-slider v-model:value="count" :step="1" :min="1" mr-2 />
         <n-input-number v-model:value="count" :min="1" size="small" />
       </n-form-item>

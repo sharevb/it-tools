@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JsonEditorVue from 'json-editor-vue';
 import { type AfterSelection, type InsideSelection, type JSONEditorSelection, type KeySelection, type MultiSelection, type ValueSelection, isAfterSelection, isInsideSelection, isKeySelection, isMultiSelection, isValueSelection, stringifyJSONPath } from 'vanilla-jsoneditor';
 import 'vanilla-jsoneditor/themes/jse-theme-dark.css';
 import { useStyleStore } from '@/stores/style.store';
+
+const { t } = useI18n();
 
 const styleStore = useStyleStore();
 
@@ -41,13 +44,13 @@ function updateJsonPath(selection: JSONEditorSelection) {
       mb-2
     />
 
-    <n-form-item label="Current Selected Node JSONPath:">
+    <n-form-item :label="t('tools.json-editor.texts.label-current-selected-node-jsonpath')">
       <textarea-copyable :value="jsonPath" />
     </n-form-item>
 
     <n-divider />
 
-    <n-form-item label="Your edited JSON:">
+    <n-form-item :label="t('tools.json-editor.texts.label-your-edited-json')">
       <textarea-copyable :value="jsonText" language="json" />
     </n-form-item>
   </div>

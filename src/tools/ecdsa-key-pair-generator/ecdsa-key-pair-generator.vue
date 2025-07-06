@@ -1,27 +1,30 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type sshpk from 'sshpk';
 import { generateKeyPair } from './ecdsa-key-pair-generator.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { withDefaultOnErrorAsync } from '@/utils/defaults';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
 
+const { t } = useI18n();
+
 const password = ref('');
 const comment = ref('');
 const emptyCerts = { publicKey: '', privateKey: '' };
 const curve = useStorage('ecdsa-key-pair-generator:curve', 'nistp256');
 const curveOptions = [
-  { value: 'nistp256', label: 'nistp256' },
-  { value: 'nistp384', label: 'nistp384' },
-  { value: 'nistp521', label: 'nistp521' },
+  { value: 'nistp256', label: t('tools.ecdsa-key-pair-generator.texts.label-nistp256') },
+  { value: 'nistp384', label: t('tools.ecdsa-key-pair-generator.texts.label-nistp384') },
+  { value: 'nistp521', label: t('tools.ecdsa-key-pair-generator.texts.label-nistp521') },
 ];
 
 const format = useStorage('ecdsa-key-pair-generator:format', 'ssh');
 const formatOptions = [
-  { value: 'pem', label: 'PEM' },
-  { value: 'pkcs8', label: 'PKCS#8' },
-  { value: 'ssh', label: 'OpenSSH Standard' },
-  { value: 'openssh', label: 'OpenSSH New' },
-  { value: 'putty', label: 'PuTTY' },
+  { value: 'pem', label: t('tools.ecdsa-key-pair-generator.texts.label-pem') },
+  { value: 'pkcs8', label: t('tools.ecdsa-key-pair-generator.texts.label-pkcs-8') },
+  { value: 'ssh', label: t('tools.ecdsa-key-pair-generator.texts.label-openssh-standard') },
+  { value: 'openssh', label: t('tools.ecdsa-key-pair-generator.texts.label-openssh-new') },
+  { value: 'putty', label: t('tools.ecdsa-key-pair-generator.texts.label-putty') },
 ];
 
 const supportsPassphrase = computed(() => format.value === 'ssh');
@@ -44,56 +47,56 @@ const [certs, refreshCerts] = computedRefreshableAsync(
       <c-select
         v-model:value="format"
         label-position="left"
-        label="Format:"
+        :label="t('tools.ecdsa-key-pair-generator.texts.label-format')"
         :options="formatOptions"
-        placeholder="Select a key format"
+        :placeholder="t('tools.ecdsa-key-pair-generator.texts.placeholder-select-a-key-format')"
       />
 
       <c-select
         v-model:value="curve"
         label-position="left"
-        label="Curve:"
+        :label="t('tools.ecdsa-key-pair-generator.texts.label-curve')"
         :options="curveOptions"
-        placeholder="Select a curve type"
+        :placeholder="t('tools.ecdsa-key-pair-generator.texts.placeholder-select-a-curve-type')"
       />
     </n-space>
 
     <div v-if="supportsPassphrase" mb-1 mt-3>
-      <n-form-item label="Passphrase :" label-placement="left">
+      <n-form-item :label="t('tools.ecdsa-key-pair-generator.texts.label-passphrase')" label-placement="left">
         <n-input
           v-model:value="password"
           type="password"
           show-password-on="mousedown"
-          placeholder="Passphrase"
+          :placeholder="t('tools.ecdsa-key-pair-generator.texts.placeholder-passphrase')"
         />
       </n-form-item>
     </div>
 
     <div mb-2>
-      <n-form-item label="Comment :" label-placement="left">
+      <n-form-item :label="t('tools.ecdsa-key-pair-generator.texts.label-comment')" label-placement="left">
         <n-input
           v-model:value="comment"
           type="text"
-          placeholder="Comment"
+          :placeholder="t('tools.ecdsa-key-pair-generator.texts.placeholder-comment')"
         />
       </n-form-item>
     </div>
 
     <n-space justify="center" mb-1>
       <c-button @click="refreshCerts">
-        Refresh key-pair
+        {{ t('tools.ecdsa-key-pair-generator.texts.tag-refresh-key-pair') }}
       </c-button>
     </n-space>
 
     <n-divider />
 
     <div>
-      <h3>Public key</h3>
+      <h3>{{ t('tools.ecdsa-key-pair-generator.texts.tag-public-key') }}</h3>
       <TextareaCopyable :value="certs.publicKey" :word-wrap="true" />
     </div>
 
     <div>
-      <h3>Private key</h3>
+      <h3>{{ t('tools.ecdsa-key-pair-generator.texts.tag-private-key') }}</h3>
       <TextareaCopyable :value="certs.privateKey" />
     </div>
   </div>

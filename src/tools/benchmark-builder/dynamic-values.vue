@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Plus, Trash } from '@vicons/tabler';
 import { useTemplateRefsList, useVModel } from '@vueuse/core';
 import { NInputNumber } from 'naive-ui';
@@ -7,6 +8,8 @@ import { nextTick } from 'vue';
 const props = defineProps<{ values: (number | null)[] }>();
 
 const emit = defineEmits(['update:values']);
+
+const { t } = useI18n();
 
 const refs = useTemplateRefsList<typeof NInputNumber>();
 
@@ -35,7 +38,7 @@ function onInputEnter(index: number) {
         :ref="refs.set"
         v-model:value="values[index]"
         :show-button="false"
-        placeholder="Set your measure..."
+        :placeholder="t('tools.benchmark-builder.texts.placeholder-set-your-measure')"
         autofocus
         @keydown.enter="onInputEnter(index)"
       />
@@ -47,8 +50,7 @@ function onInputEnter(index: number) {
     </div>
 
     <c-button @click="addValue">
-      <n-icon :component="Plus" depth="3" mr-2 size="18" />
-      Add a measure
+      <n-icon :component="Plus" depth="3" mr-2 size="18" />{{ t('tools.benchmark-builder.texts.tag-add-a-measure') }}
     </c-button>
   </div>
 </template>

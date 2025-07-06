@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useObfuscateString } from './string-obfuscator.model';
 import { useCopy } from '@/composable/copy';
+
+const { t } = useI18n();
 
 const str = ref('Lorem ipsum dolor sit amet');
 const keepFirst = ref(4);
@@ -13,22 +16,22 @@ const { copy } = useCopy({ source: obfuscatedString });
 
 <template>
   <div>
-    <c-input-text v-model:value="str" raw-text placeholder="Enter string to obfuscate" label="String to obfuscate:" clearable multiline />
+    <c-input-text v-model:value="str" raw-text :placeholder="t('tools.string-obfuscator.texts.placeholder-enter-string-to-obfuscate')" :label="t('tools.string-obfuscator.texts.label-string-to-obfuscate')" clearable multiline />
 
     <div mt-4 flex gap-10px>
       <div>
-        <div>Keep first:</div>
+        <div>{{ t('tools.string-obfuscator.texts.tag-keep-first') }}</div>
         <n-input-number v-model:value="keepFirst" min="0" />
       </div>
 
       <div>
-        <div>Keep last:</div>
+        <div>{{ t('tools.string-obfuscator.texts.tag-keep-last') }}</div>
         <n-input-number v-model:value="keepLast" min="0" />
       </div>
 
       <div>
         <div mb-5px>
-          Keep&nbsp;spaces:
+          {{ t('tools.string-obfuscator.texts.tag-keep-nbsp-spaces') }}
         </div>
         <n-switch v-model:value="keepSpace" />
       </div>

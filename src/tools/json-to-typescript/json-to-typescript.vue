@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import { InputData, jsonInputForTargetLanguage, quicktype } from 'quicktype-core';
 import type { UseValidationRule } from '@/composable/validation';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const defaultValue = `{
   a:"n",
@@ -92,55 +95,55 @@ const tsOutput = computedAsync(async () => {
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || JSON5.parse(v),
-    message: 'Provided JSON is not valid.',
+    message: t('tools.json-to-typescript.texts.message-provided-json-is-not-valid'),
   },
 ];
 </script>
 
 <template>
-  <c-card title="JSON to Typescript">
+  <c-card :title="t('tools.json-to-typescript.texts.title-json-to-typescript')">
     <c-input-text
       v-model:value="jsonInput"
       multiline
-      placeholder="Put your json string here..."
+      :placeholder="t('tools.json-to-typescript.texts.placeholder-put-your-json-string-here')"
       rows="20"
-      label="JSON to Typescript"
+      :label="t('tools.json-to-typescript.texts.label-json-to-typescript')"
       :validation-rules="rules"
       raw-text
       mb-5
     />
     <n-space justify="center">
-      <c-input v-model:value="rootName" label="Root Name" />
+      <c-input v-model:value="rootName" :label="t('tools.json-to-typescript.texts.label-root-name')" />
       <n-checkbox v-model:checked="interfacesOnly">
-        Use Interfaces Only
+        {{ t('tools.json-to-typescript.texts.tag-use-interfaces-only') }}
       </n-checkbox>
       <n-checkbox v-model:checked="transformPropertyNames">
-        Transform Property Names to JavaScripty
+        {{ t('tools.json-to-typescript.texts.tag-transform-property-names-to-javascripty') }}
       </n-checkbox>
       <n-checkbox v-model:checked="explicitlyNameUnions">
-        Explicitly Name Unions
+        {{ t('tools.json-to-typescript.texts.tag-explicitly-name-unions') }}
       </n-checkbox>
       <n-checkbox v-model:checked="verifyJsonParseResults">
-        Verify JSON.parse results at runtime
+        {{ t('tools.json-to-typescript.texts.tag-verify-json-parse-results-at-runtime') }}
       </n-checkbox>
       <n-checkbox v-model:checked="preferUnionTypeOverEnum">
-        Use Union Type Instead of Enum
+        {{ t('tools.json-to-typescript.texts.tag-use-union-type-instead-of-enum') }}
       </n-checkbox>
       <n-checkbox v-model:checked="preferTypesOverInterfaces">
-        Use Types Instead of Interfaces
+        {{ t('tools.json-to-typescript.texts.tag-use-types-instead-of-interfaces') }}
       </n-checkbox>
       <n-checkbox v-model:checked="useStringInsteadOfEnumForSingleValueEnums">
-        Use String Instead of Enum for Single Value Enums
+        {{ t('tools.json-to-typescript.texts.tag-use-string-instead-of-enum-for-single-value-enums') }}
       </n-checkbox>
       <n-checkbox v-model:checked="useReadonlyTypeMembers">
-        Use Readonly Type Members
+        {{ t('tools.json-to-typescript.texts.tag-use-readonly-type-members') }}
       </n-checkbox>
       <n-checkbox v-model:checked="optionalProperties">
-        Make All Properties Optional
+        {{ t('tools.json-to-typescript.texts.tag-make-all-properties-optional') }}
       </n-checkbox>
     </n-space>
   </c-card>
-  <c-card title="Your Typescript code">
+  <c-card :title="t('tools.json-to-typescript.texts.title-your-typescript-code')">
     <TextareaCopyable
       :value="tsOutput"
       language="typescript"

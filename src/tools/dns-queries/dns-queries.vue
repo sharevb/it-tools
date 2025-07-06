@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { combineTXT, query, wellknown } from 'dns-query';
 import types from './dns.records.types.json';
+
+const { t } = useI18n();
 
 const type = ref('A');
 const name = ref('google.com');
@@ -31,15 +34,15 @@ async function queryDNS() {
   <div>
     <c-input-text
       v-model:value="name"
-      label="Name"
+      :label="t('tools.dns-queries.texts.label-name')"
       label-position="left"
-      placeholder="Name to query"
+      :placeholder="t('tools.dns-queries.texts.placeholder-name-to-query')"
       mb-2
     />
     <c-select
       v-model:value="type"
       searchable
-      label="DNS record type:"
+      :label="t('tools.dns-queries.texts.label-dns-record-type')"
       label-position="left"
       :options="Object.values(types).map(kv => ({ value: kv.value, label: `${kv.value}: ${kv.label}` }))"
       mb-2
@@ -49,13 +52,13 @@ async function queryDNS() {
       <c-button
         @click="queryDNS"
       >
-        Send DNS query
+        {{ t('tools.dns-queries.texts.tag-send-dns-query') }}
       </c-button>
     </div>
 
     <n-divider />
 
-    <c-card title="Query results">
+    <c-card :title="t('tools.dns-queries.texts.title-query-results')">
       <textarea-copyable
         v-for="(answer, index) in answers"
         :key="index"

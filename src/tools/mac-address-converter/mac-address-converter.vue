@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import InputCopyable from '../../components/InputCopyable.vue';
 import {
   convertMacCISCO, convertMacCanonical,
@@ -8,59 +9,61 @@ import {
   convertMacToNumber,
 } from './mac-address-converter.service';
 
+const { t } = useI18n();
+
 const input = ref('AA:BB:CC:DD:EE:FF');
 
 const formats = computed(() => [
   {
-    label: 'Canonical IETF Format:',
+    label: t('tools.mac-address-converter.texts.label-canonical-ietf-format'),
     value: convertMacCanonicalIETF(input.value),
   },
   {
-    label: 'Canonical Format:',
+    label: t('tools.mac-address-converter.texts.label-canonical-format'),
     value: convertMacCanonical(input.value),
   },
   {
-    label: 'Canonical IEEE Format:',
+    label: t('tools.mac-address-converter.texts.label-canonical-ieee-format'),
     value: convertMacCanonicalIEEE(input.value),
   },
   {
-    label: 'Cisco:',
+    label: t('tools.mac-address-converter.texts.label-cisco'),
     value: convertMacCISCO(input.value),
   },
   {
-    label: 'Hex:',
+    label: t('tools.mac-address-converter.texts.label-hex'),
     value: convertMacToNumber(input.value).toString(16),
   },
   {
-    label: 'Decimal:',
+    label: t('tools.mac-address-converter.texts.label-decimal'),
     value: convertMacToNumber(input.value).toString(10),
   },
   {
-    label: 'EUI-64 Canonical IETF Format:',
+    label: t('tools.mac-address-converter.texts.label-eui-64-canonical-ietf-format'),
     value: convertMacToEUI64CanonicalIETF(input.value, false),
   },
   {
-    label: 'EUI-64 Canonical IEEE Format:',
+    label: t('tools.mac-address-converter.texts.label-eui-64-canonical-ieee-format'),
     value: convertMacToEUI64CanonicalIEEE(input.value, false),
   },
   {
-    label: 'EUI-64 Cisco:',
+    label: t('tools.mac-address-converter.texts.label-eui-64-cisco'),
     value: convertMacToEUI64CISCO(input.value, false),
   },
   {
-    label: 'EUI-64 IPv6 Canonical IETF Format:',
+    label: t('tools.mac-address-converter.texts.label-eui-64-ipv6-canonical-ietf-format'),
     value: convertMacToEUI64CanonicalIETF(input.value, true),
   },
   {
-    label: 'EUI-64 IPv6 Canonical IEEE Format:',
+    label: t('tools.mac-address-converter.texts.label-eui-64-ipv6-canonical-ieee-format'),
     value: convertMacToEUI64CanonicalIEEE(input.value, true),
   },
   {
-    label: 'EUI-64 IPv6 Cisco:',
+    label: t('tools.mac-address-converter.texts.label-eui-64-ipv6-cisco'),
     value: convertMacToEUI64CISCO(input.value, true),
   },
   {
-    label: 'Link-Local IPv6:',
+    label: t('tools.mac-address-converter.texts.label-link-local-ipv6'),
     value: convertMacToLinkLocalIPv6(input.value),
   },
 ]);
@@ -76,9 +79,9 @@ const inputLabelAlignmentConfig = {
   <c-card>
     <c-input-text
       v-model:value="input"
-      label="MAC address:"
+      :label="t('tools.mac-address-converter.texts.label-mac-address')"
       size="large"
-      placeholder="Type a MAC address"
+      :placeholder="t('tools.mac-address-converter.texts.placeholder-type-a-mac-address')"
       clearable
       autocomplete="off"
       autocorrect="off"

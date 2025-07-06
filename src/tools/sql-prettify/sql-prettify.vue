@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { type IndentStyle, type KeywordCase, format as formatSQL } from 'sql-formatter';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const keywordCase = useQueryParamOrStorage({ name: 'keywordCase', storageName: 'sql-prt:kw', defaultValue: 'upper' });
 const dataTypeCase = useQueryParamOrStorage({ name: 'typeCase', storageName: 'sql-prt:dt', defaultValue: 'upper' });
@@ -14,9 +17,9 @@ const expressionWidth = useQueryParamOrStorage({ name: 'exprWidth', storageName:
 const inputElement = ref<HTMLElement>();
 
 const caseOptions = [
-  { label: 'UPPERCASE', value: 'upper' },
-  { label: 'lowercase', value: 'lower' },
-  { label: 'Preserve', value: 'preserve' },
+  { label: t('tools.sql-prettify.texts.label-uppercase'), value: 'upper' },
+  { label: t('tools.sql-prettify.texts.label-lowercase'), value: 'lower' },
+  { label: t('tools.sql-prettify.texts.label-preserve'), value: 'preserve' },
 ];
 
 const rawSQL = ref('select field1,field2,field3 from my_table where my_condition;');
@@ -41,24 +44,24 @@ const prettySQL = computed(() => {
 });
 
 const sqlDialects = [
-  { value: 'sql', label: 'Standard SQL' },
-  { value: 'bigquery', label: 'GCP BigQuery' },
-  { value: 'db2', label: 'IBM DB2' },
-  { value: 'db2i', label: 'IBM DB2i (experimental)' },
-  { value: 'hive', label: 'Apache Hive' },
-  { value: 'mariadb', label: 'MariaDB' },
-  { value: 'mysql', label: 'MySQL' },
-  { value: 'tidb', label: 'TiDB' },
-  { value: 'n1ql', label: 'Couchbase N1QL' },
-  { value: 'plsql', label: 'Oracle PL/SQL' },
-  { value: 'postgresql', label: 'PostgreSQL' },
-  { value: 'redshift', label: 'Amazon Redshift' },
-  { value: 'singlestoredb', label: 'SingleStoreDB' },
-  { value: 'snowflake', label: 'Snowflake' },
-  { value: 'spark', label: 'Spark' },
-  { value: 'sqlite', label: 'SQLite' },
-  { value: 'transactsql', label: 'SQL Server Transact-SQL' },
-  { value: 'trino', label: 'Trino/Presto' },
+  { value: 'sql', label: t('tools.sql-prettify.texts.label-standard-sql') },
+  { value: 'bigquery', label: t('tools.sql-prettify.texts.label-gcp-bigquery') },
+  { value: 'db2', label: t('tools.sql-prettify.texts.label-ibm-db2') },
+  { value: 'db2i', label: t('tools.sql-prettify.texts.label-ibm-db2i-experimental') },
+  { value: 'hive', label: t('tools.sql-prettify.texts.label-apache-hive') },
+  { value: 'mariadb', label: t('tools.sql-prettify.texts.label-mariadb') },
+  { value: 'mysql', label: t('tools.sql-prettify.texts.label-mysql') },
+  { value: 'tidb', label: t('tools.sql-prettify.texts.label-tidb') },
+  { value: 'n1ql', label: t('tools.sql-prettify.texts.label-couchbase-n1ql') },
+  { value: 'plsql', label: t('tools.sql-prettify.texts.label-oracle-pl-sql') },
+  { value: 'postgresql', label: t('tools.sql-prettify.texts.label-postgresql') },
+  { value: 'redshift', label: t('tools.sql-prettify.texts.label-amazon-redshift') },
+  { value: 'singlestoredb', label: t('tools.sql-prettify.texts.label-singlestoredb') },
+  { value: 'snowflake', label: t('tools.sql-prettify.texts.label-snowflake') },
+  { value: 'spark', label: t('tools.sql-prettify.texts.label-spark') },
+  { value: 'sqlite', label: t('tools.sql-prettify.texts.label-sqlite') },
+  { value: 'transactsql', label: t('tools.sql-prettify.texts.label-sql-server-transact-sql') },
+  { value: 'trino', label: t('tools.sql-prettify.texts.label-trino-presto') },
 ];
 </script>
 
@@ -68,50 +71,50 @@ const sqlDialects = [
       <c-select
         v-model:value="language"
         flex-1
-        label="Dialect"
+        :label="t('tools.sql-prettify.texts.label-dialect')"
         :options="sqlDialects"
       />
       <c-select
-        v-model:value="keywordCase" label="Keyword case"
+        v-model:value="keywordCase" :label="t('tools.sql-prettify.texts.label-keyword-case')"
         flex-1
         :options="caseOptions"
       />
       <c-select
-        v-model:value="dataTypeCase" label="Datatype case"
+        v-model:value="dataTypeCase" :label="t('tools.sql-prettify.texts.label-datatype-case')"
         flex-1
         :options="caseOptions"
       />
       <c-select
-        v-model:value="functionCase" label="Function case"
+        v-model:value="functionCase" :label="t('tools.sql-prettify.texts.label-function-case')"
         flex-1
         :options="caseOptions"
       />
       <c-select
-        v-model:value="indentStyle" label="Indent style"
+        v-model:value="indentStyle" :label="t('tools.sql-prettify.texts.label-indent-style')"
         flex-1
         :options="[
-          { label: 'Standard', value: 'standard' },
-          { label: 'Tabular left', value: 'tabularLeft' },
-          { label: 'Tabular right', value: 'tabularRight' },
+          { label: t('tools.sql-prettify.texts.label-standard'), value: 'standard' },
+          { label: t('tools.sql-prettify.texts.label-tabular-left'), value: 'tabularLeft' },
+          { label: t('tools.sql-prettify.texts.label-tabular-right'), value: 'tabularRight' },
         ]"
       />
     </n-space>
 
     <n-space justify="center">
-      <n-form-item label="Use tabs" label-placement="left">
+      <n-form-item :label="t('tools.sql-prettify.texts.label-use-tabs')" label-placement="left">
         <n-checkbox v-model:checked="useTabs" mr-2 />
       </n-form-item>
-      <n-form-item label="Expressions width" label-placement="left">
+      <n-form-item :label="t('tools.sql-prettify.texts.label-expressions-width')" label-placement="left">
         <n-input-number v-model:value="expressionWidth" :min="0" size="small" />
       </n-form-item>
     </n-space>
   </div>
 
-  <n-form-item label="Your SQL query">
+  <n-form-item :label="t('tools.sql-prettify.texts.label-your-sql-query')">
     <c-input-text
       ref="inputElement"
       v-model:value="rawSQL"
-      placeholder="Put your SQL query here..."
+      :placeholder="t('tools.sql-prettify.texts.placeholder-put-your-sql-query-here')"
       rows="20"
       multiline
       autocomplete="off"
@@ -122,11 +125,11 @@ const sqlDialects = [
     />
   </n-form-item>
 
-  <n-form-item v-if="!prettySQL.error" label="Prettify version of your query">
+  <n-form-item v-if="!prettySQL.error" :label="t('tools.sql-prettify.texts.label-prettify-version-of-your-query')">
     <TextareaCopyable :value="prettySQL.prettyQuery" language="sql" :follow-height-of="inputElement" />
   </n-form-item>
 
-  <c-alert v-if="prettySQL.error" title="Parsing error">
+  <c-alert v-if="prettySQL.error" :title="t('tools.sql-prettify.texts.title-parsing-error')">
     {{ prettySQL.error }}
   </c-alert>
 </template>

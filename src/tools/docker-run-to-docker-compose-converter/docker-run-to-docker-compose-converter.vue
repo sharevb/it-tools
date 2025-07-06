@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import composerize from 'composerize';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { textToBase64 } from '@/utils/base64';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const dockerRuns = ref(
   'docker run -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --restart always --log-opt max-size=1g nginx',
@@ -14,9 +17,9 @@ const existingDockerComposeFile = ref(
 );
 const format = useStorage('docker-run-to-compose:format', 'latest');
 const formatOptions = [
-  { value: 'v2x', label: 'V2 - 2.x' },
-  { value: 'v3x', label: 'V2 - 3.x' },
-  { value: 'latest', label: 'CommonSpec' },
+  { value: 'v2x', label: t('tools.docker-run-to-docker-compose-converter.texts.label-v2-2-x') },
+  { value: 'v3x', label: t('tools.docker-run-to-docker-compose-converter.texts.label-v2-3-x') },
+  { value: 'latest', label: t('tools.docker-run-to-docker-compose-converter.texts.label-commonspec') },
 ];
 
 const conversionResult = computed(() => {
@@ -45,18 +48,18 @@ const MONACO_EDITOR_OPTIONS = {
   <div>
     <c-input-text
       v-model:value="dockerRuns"
-      label="Your docker run command(s):"
+      :label="t('tools.docker-run-to-docker-compose-converter.texts.label-your-docker-run-command-s')"
       style="font-family: monospace"
       multiline
       raw-text
       monospace
-      placeholder="Your docker run command(s) to convert..."
+      :placeholder="t('tools.docker-run-to-docker-compose-converter.texts.placeholder-your-docker-run-command-s-to-convert')"
       rows="4"
     />
 
     <n-divider />
 
-    <c-label label="Eventually, paste your existing Docker Compose:">
+    <c-label :label="t('tools.docker-run-to-docker-compose-converter.texts.label-eventually-paste-your-existing-docker-compose')">
       <div relative w-full>
         <c-monaco-editor
           v-model:value="existingDockerComposeFile"
@@ -75,13 +78,13 @@ const MONACO_EDITOR_OPTIONS = {
         <c-select
           v-model:value="format"
           label-position="top"
-          label="Docker Compose format:"
+          :label="t('tools.docker-run-to-docker-compose-converter.texts.label-docker-compose-format')"
           :options="formatOptions"
-          placeholder="Select Docker Compose format"
+          :placeholder="t('tools.docker-run-to-docker-compose-converter.texts.placeholder-select-docker-compose-format')"
         />
       </n-gi>
       <n-gi span="2">
-        <n-form-item label="Indent size:" label-placement="top" label-width="100" :show-feedback="false">
+        <n-form-item :label="t('tools.docker-run-to-docker-compose-converter.texts.label-indent-size')" label-placement="top" label-width="100" :show-feedback="false">
           <n-input-number v-model:value="indentSize" min="0" max="10" w-100px />
         </n-form-item>
       </n-gi>
@@ -93,12 +96,12 @@ const MONACO_EDITOR_OPTIONS = {
 
     <div mt-5 flex justify-center>
       <c-button :disabled="dockerCompose === ''" secondary @click="download">
-        Download docker-compose.yml
+        {{ t('tools.docker-run-to-docker-compose-converter.texts.tag-download-docker-compose-yml') }}
       </c-button>
     </div>
 
     <div v-if="errors.length > 0">
-      <n-alert title="The following errors occured" type="error" mt-5>
+      <n-alert :title="t('tools.docker-run-to-docker-compose-converter.texts.title-the-following-errors-occured')" type="error" mt-5>
         <ul>
           <li v-for="(message, index) of errors" :key="index">
             {{ message }}

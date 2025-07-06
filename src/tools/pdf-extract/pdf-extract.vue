@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import createQPDFModule from 'qpdf-wasm-esm-embedded';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+
+const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
@@ -78,33 +81,33 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
     <div style="flex: 0 0 100%">
       <div mx-auto max-w-600px>
         <c-file-upload
-          title="Drag and drop a PDF file here, or click to select a file"
+          :title="t('tools.pdf-extract.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')"
           accept=".pdf"
           @file-upload="onFileUploaded"
         />
         <div mt-2 text-center>
-          <c-input-text :value="fileName" label="Output file:" label-position="left" />
+          <c-input-text :value="fileName" :label="t('tools.pdf-extract.texts.label-output-file')" label-position="left" />
         </div>
       </div>
     </div>
 
-    <c-card title="Extraction Range" mb-3 mt-3>
+    <c-card :title="t('tools.pdf-extract.texts.title-extraction-range')" mb-3 mt-3>
       <c-input-text
         v-model:value="extractRange"
-        label="Range:"
-        placeholder="Qpdf Range"
+        :label="t('tools.pdf-extract.texts.label-range')"
+        :placeholder="t('tools.pdf-extract.texts.placeholder-qpdf-range')"
         mb-2
       />
       <n-p>
-        For details about Range options, see <n-a target="_blank" href="https://qpdf.readthedocs.io/en/stable/cli.html#page-selection">
-          QPDF Documentation
+        {{ t('tools.pdf-extract.texts.tag-for-details-about-range-options-see') }}<n-a target="_blank" href="https://qpdf.readthedocs.io/en/stable/cli.html#page-selection">
+          {{ t('tools.pdf-extract.texts.tag-qpdf-documentation') }}
         </n-a>
       </n-p>
     </c-card>
 
     <div mt-3 flex justify-center>
       <c-button :disabled="!file" @click="onProcessClicked()">
-        Extract PDF pages
+        {{ t('tools.pdf-extract.texts.tag-extract-pdf-pages') }}
       </c-button>
     </div>
 
@@ -120,8 +123,8 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
       />
     </div>
 
-    <c-card title="Logs">
-      <input-copyable label="qpdf" :value="qpdfCommand" mb-1 />
+    <c-card :title="t('tools.pdf-extract.texts.title-logs')">
+      <input-copyable :label="t('tools.pdf-extract.texts.label-qpdf')" :value="qpdfCommand" mb-1 />
       <pre>{{ logs.join('\n') }}</pre>
     </c-card>
   </div>

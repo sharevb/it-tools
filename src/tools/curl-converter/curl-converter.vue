@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import {
   type Warnings, toAnsible, toAnsibleWarn, toCFML, toCFMLWarn, toCSharp,
   toCSharpWarn, toClojure, toClojureWarn, toDart, toDartWarn, toElixir, toElixirWarn, toGo,
@@ -15,6 +16,8 @@ import {
   toWgetWarn,
 } from 'curlconverter';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const translate = {
   'ansible': [toAnsible, toAnsibleWarn],
@@ -110,23 +113,23 @@ const inlang = computed(() => {
     <c-input-text
       v-model:value="curl"
       size="large"
-      placeholder="Your curl command"
+      :placeholder="t('tools.curl-converter.texts.placeholder-your-curl-command')"
       mb-3
     />
 
     <c-select
       v-model:value="language"
       searchable
-      label="Language:"
+      :label="t('tools.curl-converter.texts.label-language')"
       :options="Object.keys(translate)"
     />
 
     <n-divider />
 
-    <n-form-item label="Curl language equivalent:">
+    <n-form-item :label="t('tools.curl-converter.texts.label-curl-language-equivalent')">
       <TextareaCopyable :value="inlang.translated as string" />
     </n-form-item>
-    <n-form-item label="Warnings:">
+    <n-form-item :label="t('tools.curl-converter.texts.label-warnings')">
       <TextareaCopyable style="color: red" :value="(inlang.warnings as Warnings || []).map(w => w[1]).join('\n')" />
     </n-form-item>
   </div>
