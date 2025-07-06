@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
+
+const { t } = useI18n();
 
 const ip = ref('8.8.8.8');
 const errorMessage = ref('');
@@ -71,24 +74,24 @@ async function onGetInfos() {
     <div flex items-center gap-2>
       <c-input-text
         v-model:value="ip"
-        placeholder="Enter an IPv4/6"
+        :placeholder="t('tools.ip-geo-location.texts.placeholder-enter-an-ipv4-6')"
         @update:value="() => { status = 'pending' }"
       />
       <c-button align-center @click="onGetInfos">
-        Get GEO Location Infos
+        {{ t('tools.ip-geo-location.texts.tag-get-geo-location-infos') }}
       </c-button>
     </div>
 
     <details mt-2>
-      <summary>Optional ipinfo.io token</summary>
+      <summary>{{ t('tools.ip-geo-location.texts.tag-optional-ipinfo-io-token') }}</summary>
       <c-input-text
         v-model:value="token"
-        placeholder="Optional ipinfo.io token"
+        :placeholder="t('tools.ip-geo-location.texts.placeholder-optional-ipinfo-io-token')"
         @update:value="() => { status = 'pending' }"
       />
       <n-p>
         <n-a href="https://ipinfo.io/">
-          Signup for a free token
+          {{ t('tools.ip-geo-location.texts.tag-signup-for-a-free-token') }}
         </n-a>
       </n-p>
     </details>
@@ -96,12 +99,12 @@ async function onGetInfos() {
     <n-divider />
 
     <c-card v-if="status === 'pending'" mt-5>
-      Click on button above to get latest infos
+      {{ t('tools.ip-geo-location.texts.tag-click-on-button-above-to-get-latest-infos') }}
     </c-card>
 
     <c-card v-if="status === 'success' && openStreetMapUrl" mt-4>
       <c-button :href="openStreetMapUrl" target="_blank">
-        Localize on Open Street Map
+        {{ t('tools.ip-geo-location.texts.tag-localize-on-open-street-map') }}
       </c-button>
     </c-card>
 
@@ -109,7 +112,7 @@ async function onGetInfos() {
       <c-key-value-list :items="geoInfos" />
     </c-card>
 
-    <n-alert v-if="status === 'error'" title="Errors occured" type="error" mt-5>
+    <n-alert v-if="status === 'error'" :title="t('tools.ip-geo-location.texts.title-errors-occured')" type="error" mt-5>
       {{ errorMessage }}
     </n-alert>
   </div>

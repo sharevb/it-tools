@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { escapeForLanguage, languages } from '@/utils/ascii-lang-utils';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const rawInput = ref('Hello "every"\n A\'');
 const language = useQueryParamOrStorage({ name: 'lang', storageName: 'string-escaper:l', defaultValue: 'raw' });
@@ -14,24 +17,24 @@ const stringOutput = computed(() => escapeForLanguage(
 </script>
 
 <template>
-  <c-card title="String Escaper">
+  <c-card :title="t('tools.string-escaper.texts.title-string-escaper')">
     <c-input-text
       v-model:value="rawInput"
-      label="Your text:"
-      placeholder="Your raw text to escape"
+      :label="t('tools.string-escaper.texts.label-your-text')"
+      :placeholder="t('tools.string-escaper.texts.placeholder-your-raw-text-to-escape')"
       raw-text
       multiline
       rows="4"
       mb-2
     />
-    <c-select v-model:value="language" label="Target language:" :options="languagesOptions" searchable mb-2 />
+    <c-select v-model:value="language" :label="t('tools.string-escaper.texts.label-target-language')" :options="languagesOptions" searchable mb-2 />
     <n-space justify="center">
       <n-checkbox v-model:checked="single_linize">
-        Single linize
+        {{ t('tools.string-escaper.texts.tag-single-linize') }}
       </n-checkbox>
     </n-space>
   </c-card>
-  <c-card title="Your escaped string in target language">
+  <c-card :title="t('tools.string-escaper.texts.title-your-escaped-string-in-target-language')">
     <TextareaCopyable
       :value="stringOutput"
     />

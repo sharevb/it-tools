@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import { jsonrepair } from 'jsonrepair';
 import {
@@ -10,8 +11,10 @@ import { withDefaultOnError } from '@/utils/defaults';
 import { useValidation } from '@/composable/validation';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
+const { t } = useI18n();
+
 const inputElement = ref<HTMLElement>();
-const repairJsonLabel = 'Repair JSON';
+const repairJsonLabel = t('tools.json-viewer.text.repair-json');
 
 const rawJson = useStorage('json-prettify:raw-json', '{"hello": "world", "foo": "bar"}');
 const indentSize = useStorage('json-prettify:indent-size', 3);
@@ -26,7 +29,7 @@ const rawJsonValidation = useValidation({
     {
       validator: v => v === '' || (get(repairJson) ? jsonrepair(v) : JSON5.parse(v)),
       get message() {
-        return `Provided JSON is not valid.${!get(repairJson) ? ` Try again with "${repairJsonLabel}"` : ''}`;
+        return t('tools.json-viewer.text.provided-json-is-not-valid') + (!get(repairJson) ? t('tools.json-viewer.text.try-again-with-repairjsonlabel', [repairJsonLabel]) : '');
       },
     },
   ],
@@ -36,13 +39,13 @@ const rawJsonValidation = useValidation({
 
 <template>
   <n-space justify="center">
-    <n-form-item label="Sort keys :" label-placement="left" label-width="100">
+    <n-form-item :label="t('tools.json-viewer.texts.label-sort-keys')" label-placement="left" label-width="100">
       <n-switch v-model:value="sortKeys" />
     </n-form-item>
-    <n-form-item label="Unescape Unicode :" label-placement="left" label-width="150">
+    <n-form-item :label="t('tools.json-viewer.texts.label-unescape-unicode')" label-placement="left" label-width="150">
       <n-switch v-model:value="unescapeUnicode" />
     </n-form-item>
-    <n-form-item label="Indent size :" label-placement="left" label-width="100" :show-feedback="false">
+    <n-form-item :label="t('tools.json-viewer.texts.label-indent-size')" label-placement="left" label-width="100" :show-feedback="false">
       <n-input-number v-model:value="indentSize" min="0" max="10" style="width: 100px" />
     </n-form-item>
     <n-form-item :label="`${repairJsonLabel} :`" label-placement="left" label-width="110">
@@ -51,14 +54,14 @@ const rawJsonValidation = useValidation({
   </n-space>
 
   <n-form-item
-    label="Your raw JSON"
+    :label="t('tools.json-viewer.texts.label-your-raw-json')"
     :feedback="rawJsonValidation.message"
     :validation-status="rawJsonValidation.status"
   >
     <c-input-text
       ref="inputElement"
       v-model:value="rawJson"
-      placeholder="Paste your raw JSON here..."
+      :placeholder="t('tools.json-viewer.texts.placeholder-paste-your-raw-json-here')"
       rows="20"
       multiline
       autocomplete="off"
@@ -68,7 +71,7 @@ const rawJsonValidation = useValidation({
       monospace
     />
   </n-form-item>
-  <n-form-item label="Prettified version of your JSON">
+  <n-form-item :label="t('tools.json-viewer.texts.label-prettified-version-of-your-json')">
     <TextareaCopyable :value="cleanJson" language="json" :follow-height-of="inputElement" />
   </n-form-item>
 </template>

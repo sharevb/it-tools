@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Countdown } from 'vue3-flip-countdown';
 import moment from 'moment';
 import { useQueryParam } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const alarmAt = useQueryParam({ name: 'alarmAt', defaultValue: '17:30:00' });
 const history = useStorage<string[]>('timealarm:hst', []);
@@ -85,9 +88,9 @@ const isEnded = computed(() => status.value === 'ended');
 
 <template>
   <div max-w-600px>
-    <c-card :disabled="status !== 'stopped'" title="Alarm" mb-4>
+    <c-card :disabled="status !== 'stopped'" :title="t('tools.time-alarm.texts.title-alarm')" mb-4>
       <div flex justify-center>
-        <n-form-item label="Alarm at:" label-placement="left">
+        <n-form-item :label="t('tools.time-alarm.texts.label-alarm-at')" label-placement="left">
           <n-time-picker v-model:formatted-value="alarmAt" />
         </n-form-item>
       </div>
@@ -96,7 +99,7 @@ const isEnded = computed(() => status.value === 'ended');
         <c-button
           @click="start"
         >
-          Start
+          {{ t('tools.time-alarm.texts.tag-start') }}
         </c-button>
       </div>
     </c-card>
@@ -109,7 +112,7 @@ const isEnded = computed(() => status.value === 'ended');
             :disabled="status === 'stopped'"
             @click="toggleFullScreen"
           >
-            Toggle Fullscreen
+            {{ t('tools.time-alarm.texts.tag-toggle-fullscreen') }}
           </c-button>
         </div>
       </div>
@@ -118,16 +121,16 @@ const isEnded = computed(() => status.value === 'ended');
     <n-modal v-model:show="isEnded" mask-closable="false">
       <n-card
         style="width: 600px"
-        title="Timer finished"
+        :title="t('tools.time-alarm.texts.title-timer-finished')"
         :bordered="false"
         size="huge"
         role="dialog"
         aria-modal="true"
       >
-        <p>Timer ellapsed!</p>
+        <p>{{ t('tools.time-alarm.texts.tag-timer-ellapsed') }}</p>
         <template #footer>
           <n-button @click="stop()">
-            OK
+            {{ t('tools.time-alarm.texts.tag-ok') }}
           </n-button>
         </template>
       </n-card>
@@ -138,7 +141,7 @@ const isEnded = computed(() => status.value === 'ended');
         :disabled="status === 'stopped'"
         @click="stop"
       >
-        Stop
+        {{ t('tools.time-alarm.texts.tag-stop') }}
       </c-button>
     </div>
 
@@ -146,7 +149,7 @@ const isEnded = computed(() => status.value === 'ended');
       Alarm at: {{ alarmAtDate }}
     </n-p>
 
-    <c-card v-if="history" title="History">
+    <c-card v-if="history" :title="t('tools.time-alarm.texts.title-history')">
       <div flex justify-center gap-1>
         <template v-for="(entry, index) in history" :key="index">
           {{ index > 0 ? ' / ' : '' }}

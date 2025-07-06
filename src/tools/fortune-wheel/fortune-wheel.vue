@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 // Centralized wheel configuration - edit these values to change wheel size
 const WHEEL_CONFIG = {
@@ -283,7 +286,7 @@ function getTextPosition(index: number) {
   <div class="fortune-wheel-container">
     <!-- Controls -->
     <div class="wheel-controls">
-      <n-form-item label="Spin Duration (seconds):" label-placement="left" my--5>
+      <n-form-item :label="t('tools.fortune-wheel.texts.label-spin-duration-seconds')" label-placement="left" my--5>
         <n-input-number v-model:value="spinDuration" :min="0" :max="10" />
       </n-form-item>
 
@@ -291,18 +294,18 @@ function getTextPosition(index: number) {
 
       <!-- Add new option -->
       <div class="add-option-section">
-        <h3>Add New Option</h3>
+        <h3>{{ t('tools.fortune-wheel.texts.tag-add-new-option') }}</h3>
         <div class="add-option-form">
           <c-input-text
             v-model:value="newOptionText"
-            placeholder="Enter wheel option"
+            :placeholder="t('tools.fortune-wheel.texts.placeholder-enter-wheel-option')"
             @keyup.enter="addOption"
           />
           <c-button :disabled="!newOptionText.trim()" @click="addOption">
-            Add Option
+            {{ t('tools.fortune-wheel.texts.tag-add-option') }}
           </c-button>
           <c-button class="clear-all-button" @click="removeAllOptions">
-            Clear All Options
+            {{ t('tools.fortune-wheel.texts.tag-clear-all-options') }}
           </c-button>
         </div>
       </div>
@@ -311,7 +314,7 @@ function getTextPosition(index: number) {
       <div class="options-section">
         <h3>Wheel Options ({{ wheelOptions.length }})</h3>
         <div v-if="wheelOptions.length === 0" class="empty-state">
-          No options added yet. Add some options to start spinning!
+          {{ t('tools.fortune-wheel.texts.tag-no-options-added-yet-add-some-options-to-start-spinning') }}
         </div>
         <div v-else class="options-list">
           <div
@@ -326,25 +329,25 @@ function getTextPosition(index: number) {
                 <c-button
                   size="small"
                   :disabled="index === 0"
-                  title="Move up"
+                  :title="t('tools.fortune-wheel.texts.title-move-up')"
                   @click="moveOption(index, index - 1)"
                 >
-                  ↑
+                  {{ t('tools.fortune-wheel.texts.tag-') }}
                 </c-button>
                 <c-button
                   size="small"
                   :disabled="index === wheelOptions.length - 1"
-                  title="Move down"
+                  :title="t('tools.fortune-wheel.texts.title-move-down')"
                   @click="moveOption(index, index + 1)"
                 >
-                  ↓
+                  {{ t('tools.fortune-wheel.texts.tag-') }}
                 </c-button>
                 <c-button
                   size="small"
-                  title="Remove"
+                  :title="t('tools.fortune-wheel.texts.title-remove')"
                   @click="removeOption(option.id)"
                 >
-                  ✕
+                  {{ t('tools.fortune-wheel.texts.tag-') }}
                 </c-button>
               </div>
             </div>

@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { GPTTokens } from 'gpt-tokens';
 import JSON5 from 'json5';
 import type { supportModelType } from 'gpt-tokens';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useValidation } from '@/composable/validation';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const models = GPTTokens.supportModels;
 
@@ -20,7 +23,7 @@ const messagesValidation = useValidation({
   source: messagesJsonArray,
   rules: [
     {
-      message: 'Invalid "messages" array',
+      message: t('tools.gpt-token-estimator.texts.message-invalid-messages-array'),
       validator: value => value && JSON5.parse(value.trim()),
     },
   ],
@@ -29,7 +32,7 @@ const toolsValidation = useValidation({
   source: toolsJsonArray,
   rules: [
     {
-      message: 'Invalid "tools" array',
+      message: t('tools.gpt-token-estimator.texts.message-invalid-tools-array'),
       validator: value => value && JSON5.parse(value.trim()),
     },
   ],
@@ -93,56 +96,56 @@ const outputTokenCosts = computed(() => {
     <c-select
       v-model:value="model"
       label-position="left"
-      label="Model:"
+      :label="t('tools.gpt-token-estimator.texts.label-model')"
       :options="models"
-      placeholder="Select GPT model"
+      :placeholder="t('tools.gpt-token-estimator.texts.placeholder-select-gpt-model')"
       mb-2
     />
 
     <div flex justify-center>
-      <n-form-item label="Advanded JSON Mode" label-placement="left">
+      <n-form-item :label="t('tools.gpt-token-estimator.texts.label-advanded-json-mode')" label-placement="left">
         <n-checkbox v-model:checked="isAdvancedMode" mr-2 />
       </n-form-item>
     </div>
 
-    <c-card v-if="isAdvancedMode" title="Prompts">
+    <c-card v-if="isAdvancedMode" :title="t('tools.gpt-token-estimator.texts.title-prompts')">
       <c-input-text
         v-model:value="messagesJsonArray"
         multiline raw-text
-        placeholder="Your 'messages' JSON array..."
+        :placeholder="t('tools.gpt-token-estimator.texts.placeholder-your-messages-json-array')"
         rows="5"
         autofocus
-        label="Your 'messages' JSON array:"
+        :label="t('tools.gpt-token-estimator.texts.label-your-messages-json-array')"
         :validation="messagesValidation"
       />
 
       <c-input-text
         v-model:value="toolsJsonArray"
         multiline raw-text
-        placeholder="Your 'tools' JSON array..."
+        :placeholder="t('tools.gpt-token-estimator.texts.placeholder-your-tools-json-array')"
         rows="5"
         autofocus
-        label="Your 'tools' JSON array:"
+        :label="t('tools.gpt-token-estimator.texts.label-your-tools-json-array')"
         :validation="toolsValidation"
       />
     </c-card>
-    <c-card v-else title="Input JSON(s)">
+    <c-card v-else :title="t('tools.gpt-token-estimator.texts.title-input-json-s')">
       <c-input-text
         v-model:value="systemPrompt"
         multiline raw-text
-        placeholder="Your System Prompt content..."
+        :placeholder="t('tools.gpt-token-estimator.texts.placeholder-your-system-prompt-content')"
         rows="2"
         autofocus
-        label="Your System Prompt content:"
+        :label="t('tools.gpt-token-estimator.texts.label-your-system-prompt-content')"
       />
 
       <c-input-text
         v-model:value="userPrompt"
         multiline raw-text
-        placeholder="Your User Prompt content..."
+        :placeholder="t('tools.gpt-token-estimator.texts.placeholder-your-user-prompt-content')"
         rows="6"
         autofocus
-        label="Your User Prompt content:"
+        :label="t('tools.gpt-token-estimator.texts.label-your-user-prompt-content')"
       />
     </c-card>
 
@@ -153,16 +156,16 @@ const outputTokenCosts = computed(() => {
     </c-alert>
 
     <div v-if="!outputTokenCosts.error">
-      <n-form-item label="Used Tokens:">
+      <n-form-item :label="t('tools.gpt-token-estimator.texts.label-used-tokens')">
         <TextareaCopyable :value="outputTokenCosts.usedTokens" />
       </n-form-item>
-      <n-form-item label="Prompt Tokens:">
+      <n-form-item :label="t('tools.gpt-token-estimator.texts.label-prompt-tokens')">
         <TextareaCopyable :value="outputTokenCosts.promptUsedTokens" />
       </n-form-item>
-      <n-form-item label="Completion Tokens:">
+      <n-form-item :label="t('tools.gpt-token-estimator.texts.label-completion-tokens')">
         <TextareaCopyable :value="outputTokenCosts.completionUsedTokens" />
       </n-form-item>
-      <n-form-item label="Used USD:">
+      <n-form-item :label="t('tools.gpt-token-estimator.texts.label-used-usd')">
         <TextareaCopyable :value="outputTokenCosts.usedUSD" />
       </n-form-item>
     </div>

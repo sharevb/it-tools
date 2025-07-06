@@ -44,7 +44,7 @@ const toolFooter = computed<string>(() => {
         packageName,
         packageName.includes('://') ? packageName : `https://www.npmjs.com/package/${packageName}`),
     );
-  return ((npmPackages.length > 0 ? `Made with ${npmPackages.join(', ')}\n` : '') + footer).trim();
+  return ((npmPackages.length > 0 ? t('tools.tool.layout.text.made-with-npmpackages-join-n', [npmPackages.join(', ')]) : '') + footer).trim();
 });
 const themeVars = useThemeVars();
 </script>

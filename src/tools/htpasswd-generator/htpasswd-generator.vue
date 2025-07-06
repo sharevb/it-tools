@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { generateHtpasswd } from './htpasswd-generator.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const username = ref('');
 const password = ref('');
@@ -8,11 +11,11 @@ const hashMethod = ref('bcrypt');
 const saltCount = ref(10);
 
 const algos = [
-  { value: 'bcrypt', label: 'Bcrypt' },
-  { value: 'md5', label: 'MD5' },
-  { value: 'apr1', label: 'Apache MD5 (apr1)' },
-  { value: 'sha256', label: 'SHA256' },
-  { value: 'sha512', label: 'SHA512' },
+  { value: 'bcrypt', label: t('tools.htpasswd-generator.texts.label-bcrypt') },
+  { value: 'md5', label: t('tools.htpasswd-generator.texts.label-md5') },
+  { value: 'apr1', label: t('tools.htpasswd-generator.texts.label-apache-md5-apr1') },
+  { value: 'sha256', label: t('tools.htpasswd-generator.texts.label-sha256') },
+  { value: 'sha512', label: t('tools.htpasswd-generator.texts.label-sha512') },
 ];
 
 const htpasswd = computed(() => {
@@ -33,14 +36,14 @@ const htpasswd = computed(() => {
   <div>
     <c-input-text
       v-model:value="username"
-      label="Username"
-      placeholder="Your username..."
+      :label="t('tools.htpasswd-generator.texts.label-username')"
+      :placeholder="t('tools.htpasswd-generator.texts.placeholder-your-username')"
       clearable raw-text mb-5
     />
     <c-input-text
       v-model:value="password"
-      label="Password"
-      placeholder="Your password..."
+      :label="t('tools.htpasswd-generator.texts.label-password')"
+      :placeholder="t('tools.htpasswd-generator.texts.placeholder-your-password')"
       clearable
       raw-text
       mb-2
@@ -49,18 +52,18 @@ const htpasswd = computed(() => {
 
     <c-select
       v-model:value="hashMethod"
-      label="Hash method:"
+      :label="t('tools.htpasswd-generator.texts.label-hash-method')"
       :options="algos"
       mb-2
     />
 
-    <n-form-item v-if="hashMethod === 'bcrypt'" label="Salt rounds: " label-placement="left" label-width="120">
-      <n-input-number v-model:value="saltCount" placeholder="Salt rounds..." :max="100" :min="0" w-full />
+    <n-form-item v-if="hashMethod === 'bcrypt'" :label="t('tools.htpasswd-generator.texts.label-salt-rounds')" label-placement="left" label-width="120">
+      <n-input-number v-model:value="saltCount" :placeholder="t('tools.htpasswd-generator.texts.placeholder-salt-rounds')" :max="100" :min="0" w-full />
     </n-form-item>
 
     <n-divider />
 
-    <n-form-item label="htpasswd content:">
+    <n-form-item :label="t('tools.htpasswd-generator.texts.label-htpasswd-content')">
       <TextareaCopyable :value="htpasswd" />
     </n-form-item>
   </div>

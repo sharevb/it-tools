@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import cards from '@younestouati/playing-cards-standard-deck';
 import { exhaustiveUniqueRandom } from 'unique-random';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const cardKeys = [...Object.keys(cards).filter(k => k !== 'joker'), 'joker', 'joker'];
 type CardNames = keyof typeof cards;
@@ -44,7 +47,7 @@ function translateName(cardId: string) {
 
 const cardPickedString = computed(() => cardPicked.value.map(translateName).join(', '));
 
-const { copy } = useCopy({ source: cardPickedString, text: 'Cards Picked copied to the clipboard' });
+const { copy } = useCopy({ source: cardPickedString, text: t('tools.card-picker.texts.text-cards-picked-copied-to-the-clipboard') });
 </script>
 
 <template>
@@ -56,24 +59,24 @@ const { copy } = useCopy({ source: cardPickedString, text: 'Cards Picked copied 
       <textarea-copyable :value="cardPickedString" readonly mb-1 />
     </div>
     <div flex justify-center gap-3>
-      <n-form-item label="Number of cards:" label-placement="left">
-        <n-input-number v-model:value="numberOfCards" min="1" :max="maxCards" placeholder="Number of cards to pick" />
+      <n-form-item :label="t('tools.card-picker.texts.label-number-of-cards')" label-placement="left">
+        <n-input-number v-model:value="numberOfCards" min="1" :max="maxCards" :placeholder="t('tools.card-picker.texts.placeholder-number-of-cards-to-pick')" />
       </n-form-item>
-      <n-form-item label="Number of packs:" label-placement="left">
-        <n-input-number v-model:value="numberOfPacks" min="1" placeholder="Number of card packs to pick in" />
+      <n-form-item :label="t('tools.card-picker.texts.label-number-of-packs')" label-placement="left">
+        <n-input-number v-model:value="numberOfPacks" min="1" :placeholder="t('tools.card-picker.texts.placeholder-number-of-card-packs-to-pick-in')" />
       </n-form-item>
     </div>
     <div mb-4 flex justify-center>
       <n-checkbox v-model:checked="useJokers">
-        Use Jokers
+        {{ t('tools.card-picker.texts.tag-use-jokers') }}
       </n-checkbox>
     </div>
     <div flex justify-center gap-3>
       <c-button @click="copy()">
-        Copy deck
+        {{ t('tools.card-picker.texts.tag-copy-deck') }}
       </c-button>
       <c-button @click="refreshCardPicked">
-        Refresh deck
+        {{ t('tools.card-picker.texts.tag-refresh-deck') }}
       </c-button>
     </div>
   </c-card>

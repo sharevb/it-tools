@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { generateSillyPassword } from 'silly-password-generator';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { randIntFromInterval } from '@/utils/random';
+
+const { t } = useI18n();
 
 const count = useQueryParamOrStorage({ name: 'count', storageName: 'pass-generator:count', defaultValue: 1 });
 const words = useQueryParamOrStorage({ name: 'words', storageName: 'pass-generator:words', defaultValue: 5 });
@@ -53,7 +56,7 @@ const [passphrases, refreshPassphrases] = computedRefreshable(
     }).join('\n'),
 );
 
-const { copy } = useCopy({ source: passphrases, text: 'Passphrase(s) copied to clipboard!' });
+const { copy } = useCopy({ source: passphrases, text: t('tools.passphrase-generator.texts.text-passphrase-s-copied-to-clipboard') });
 </script>
 
 <template>
@@ -64,43 +67,43 @@ const { copy } = useCopy({ source: passphrases, text: 'Passphrase(s) copied to c
           <n-slider v-model:value="words" :step="1" :min="1" :max="512" mr-2 />
           <n-input-number v-model:value="words" size="small" />
         </n-form-item>
-        <n-form-item label="Add numbers after X words" label-placement="left">
+        <n-form-item :label="t('tools.passphrase-generator.texts.label-add-numbers-after-x-words')" label-placement="left">
           <n-slider v-model:value="numbers" :step="1" :min="1" :max="words" mr-2 />
           <n-input-number v-model:value="numbers" :max="words" size="small" />
         </n-form-item>
       </n-space>
 
       <n-space>
-        <n-form-item label="Max passphrase len" label-placement="left">
+        <n-form-item :label="t('tools.passphrase-generator.texts.label-max-passphrase-len')" label-placement="left">
           <n-input-number v-model:value="maxLen" size="small" />
         </n-form-item>
 
-        <n-form-item label="Capitalize" label-placement="left">
+        <n-form-item :label="t('tools.passphrase-generator.texts.label-capitalize')" label-placement="left">
           <n-switch v-model:value="capitalize" />
         </n-form-item>
-        <n-form-item label="Separator" label-placement="left">
+        <n-form-item :label="t('tools.passphrase-generator.texts.label-separator')" label-placement="left">
           <c-input-text
             v-model:value="separator"
-            placeholder="Put separator char"
+            :placeholder="t('tools.passphrase-generator.texts.placeholder-put-separator-char')"
           />
         </n-form-item>
       </n-space>
 
-      <n-form-item label="Ending Salt Chars" label-placement="left">
+      <n-form-item :label="t('tools.passphrase-generator.texts.label-ending-salt-chars')" label-placement="left">
         <c-input-text
           v-model:value="saltChars"
-          placeholder="Put characters to appended to end of passphrase"
+          :placeholder="t('tools.passphrase-generator.texts.placeholder-put-characters-to-appended-to-end-of-passphrase')"
         />
       </n-form-item>
 
-      <n-form-item label="Number of passphrase to generate" label-placement="left">
+      <n-form-item :label="t('tools.passphrase-generator.texts.label-number-of-passphrase-to-generate')" label-placement="left">
         <n-input-number v-model:value="count" size="small" />
       </n-form-item>
 
       <c-input-text
         v-model:value="passphrases"
         multiline
-        placeholder="Passphrase..."
+        :placeholder="t('tools.passphrase-generator.texts.placeholder-passphrase')"
         readonly
         rows="3"
         autosize
@@ -110,10 +113,10 @@ const { copy } = useCopy({ source: passphrases, text: 'Passphrase(s) copied to c
 
       <div mt-5 flex justify-center gap-3>
         <c-button @click="copy()">
-          Copy
+          {{ t('tools.passphrase-generator.texts.tag-copy') }}
         </c-button>
         <c-button @click="refreshPassphrases">
-          Refresh
+          {{ t('tools.passphrase-generator.texts.tag-refresh') }}
         </c-button>
       </div>
     </c-card>

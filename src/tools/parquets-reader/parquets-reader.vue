@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
 // import { Buffer } from 'node:buffer';
 import { parquetReadObjects } from 'hyparquet';
 import { compressors } from 'hyparquet-compressors';
 import type { DataTableInst } from 'naive-ui';
+
+const { t } = useI18n();
 
 const fileInput = ref() as Ref<File | null>;
 
@@ -41,9 +45,9 @@ function downloadCsv() {
 
 <template>
   <div>
-    <c-card title="Input" mb-2>
+    <c-card :title="t('tools.parquets-reader.texts.title-input')" mb-2>
       <c-file-upload
-        title="Drag and drop Parquet file here, or click to select a file"
+        :title="t('tools.parquets-reader.texts.title-drag-and-drop-parquet-file-here-or-click-to-select-a-file')"
         @file-upload="onUpload"
       />
     </c-card>
@@ -59,7 +63,7 @@ function downloadCsv() {
       <n-tab-pane v-if="columns.length" name="tabData" tab="Table View">
         <div mb-1 flex justify-center>
           <n-button @click="downloadCsv">
-            Export as CSV
+            {{ t('tools.parquets-reader.texts.tag-export-as-csv') }}
           </n-button>
         </div>
         <n-data-table

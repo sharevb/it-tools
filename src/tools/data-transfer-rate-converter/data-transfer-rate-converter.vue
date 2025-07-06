@@ -1,38 +1,41 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { formatDuration, intervalToDuration } from 'date-fns';
 import { type AllSupportedUnits, displayStorageAndRateUnits } from '../data-storage-unit-converter/data-storage-unit-converter.service';
 import { amountTransferable, transferSpeedRate, transferTimeSeconds } from './data-transfer-rate-converter.service';
 
+const { t } = useI18n();
+
 const allStorateUnits = [
-  { value: 'B', label: 'Bytes (B)' },
-  { value: 'iB', label: 'Bibytes (iB)' },
-  { value: 'KB', label: 'Kilobytes (KB)' },
-  { value: 'KiB', label: 'Kibibytes (KiB)' },
-  { value: 'MB', label: 'Megabytes (MB)' },
-  { value: 'MiB', label: 'Mebibytes (MiB)' },
-  { value: 'GB', label: 'Gigabytes (GB)' },
-  { value: 'GiB', label: 'Gibibytes (GiB)' },
-  { value: 'TB', label: 'Terabytes (TB)' },
-  { value: 'TiB', label: 'Tebibytes (TiB)' },
-  { value: 'PB', label: 'Petabytes (PB)' },
-  { value: 'PiB', label: 'Pebibytes (PiB)' },
-  { value: 'EB', label: 'Exabytes (EB)' },
-  { value: 'EiB', label: 'Exbibytes (EiB)' },
-  { value: 'ZB', label: 'Zettabytes (ZB)' },
-  { value: 'ZiB', label: 'Zebibytes (ZiB)' },
-  { value: 'YB', label: 'Yottabytes (YB)' },
-  { value: 'YiB', label: 'Yobibytes (YiB)' },
+  { value: 'B', label: t('tools.data-transfer-rate-converter.texts.label-bytes-b') },
+  { value: 'iB', label: t('tools.data-transfer-rate-converter.texts.label-bibytes-ib') },
+  { value: 'KB', label: t('tools.data-transfer-rate-converter.texts.label-kilobytes-kb') },
+  { value: 'KiB', label: t('tools.data-transfer-rate-converter.texts.label-kibibytes-kib') },
+  { value: 'MB', label: t('tools.data-transfer-rate-converter.texts.label-megabytes-mb') },
+  { value: 'MiB', label: t('tools.data-transfer-rate-converter.texts.label-mebibytes-mib') },
+  { value: 'GB', label: t('tools.data-transfer-rate-converter.texts.label-gigabytes-gb') },
+  { value: 'GiB', label: t('tools.data-transfer-rate-converter.texts.label-gibibytes-gib') },
+  { value: 'TB', label: t('tools.data-transfer-rate-converter.texts.label-terabytes-tb') },
+  { value: 'TiB', label: t('tools.data-transfer-rate-converter.texts.label-tebibytes-tib') },
+  { value: 'PB', label: t('tools.data-transfer-rate-converter.texts.label-petabytes-pb') },
+  { value: 'PiB', label: t('tools.data-transfer-rate-converter.texts.label-pebibytes-pib') },
+  { value: 'EB', label: t('tools.data-transfer-rate-converter.texts.label-exabytes-eb') },
+  { value: 'EiB', label: t('tools.data-transfer-rate-converter.texts.label-exbibytes-eib') },
+  { value: 'ZB', label: t('tools.data-transfer-rate-converter.texts.label-zettabytes-zb') },
+  { value: 'ZiB', label: t('tools.data-transfer-rate-converter.texts.label-zebibytes-zib') },
+  { value: 'YB', label: t('tools.data-transfer-rate-converter.texts.label-yottabytes-yb') },
+  { value: 'YiB', label: t('tools.data-transfer-rate-converter.texts.label-yobibytes-yib') },
 ];
 const allBitsUnits = [
-  { value: 'b', label: 'Bits (bit)' },
-  { value: 'Kb', label: 'Kilobits (Kbit)' },
-  { value: 'Mb', label: 'Megabits (Mbit)' },
-  { value: 'Gb', label: 'Gigabits (Gbit)' },
-  { value: 'Tb', label: 'Terabits (Tbit)' },
-  { value: 'Pb', label: 'Petabits (Pbit)' },
-  { value: 'Eb', label: 'Exabits (Ebit)' },
-  { value: 'Zb', label: 'Zettabits (Zbit)' },
-  { value: 'Yb', label: 'Yottabits (Ybit)' },
+  { value: 'b', label: t('tools.data-transfer-rate-converter.texts.label-bits-bit') },
+  { value: 'Kb', label: t('tools.data-transfer-rate-converter.texts.label-kilobits-kbit') },
+  { value: 'Mb', label: t('tools.data-transfer-rate-converter.texts.label-megabits-mbit') },
+  { value: 'Gb', label: t('tools.data-transfer-rate-converter.texts.label-gigabits-gbit') },
+  { value: 'Tb', label: t('tools.data-transfer-rate-converter.texts.label-terabits-tbit') },
+  { value: 'Pb', label: t('tools.data-transfer-rate-converter.texts.label-petabits-pbit') },
+  { value: 'Eb', label: t('tools.data-transfer-rate-converter.texts.label-exabits-ebit') },
+  { value: 'Zb', label: t('tools.data-transfer-rate-converter.texts.label-zettabits-zbit') },
+  { value: 'Yb', label: t('tools.data-transfer-rate-converter.texts.label-yottabits-ybit') },
 ];
 
 const allRateUnits = [...allBitsUnits, ...allStorateUnits];
@@ -143,31 +146,30 @@ const amountTransferableOutput = computed(() => {
 <template>
   <div>
     <n-p text-center>
-      1MiB = 1024KiB ; 1MB = 1000kB ; 1GiB = 1024MiB ; 1GB = 1000MB ;
-      <n-a href="https://en.wikipedia.org/wiki/Byte" target="_blank" rel="noopener">
-        see here for details
+      {{ t('tools.data-transfer-rate-converter.texts.tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb') }}<n-a href="https://en.wikipedia.org/wiki/Byte" target="_blank" rel="noopener">
+        {{ t('tools.data-transfer-rate-converter.texts.tag-see-here-for-details') }}
       </n-a>
     </n-p>
 
-    <c-card title="Transfer Time" mb-2>
-      <n-form-item label="Data Size:" label-placement="left">
-        <n-input v-model:value="transferTimeInput.dataSize" placeholder="Data Size..." :min="0" w-full />
+    <c-card :title="t('tools.data-transfer-rate-converter.texts.title-transfer-time')" mb-2>
+      <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-data-size')" label-placement="left">
+        <n-input v-model:value="transferTimeInput.dataSize" :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-data-size')" :min="0" w-full />
         <c-select
           v-model:value="transferTimeInput.dataSizeUnit"
           searchable
           :options="allStorateUnits"
-          placeholder="Select a storage unit"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-select-a-storage-unit')"
           ml-1
         />
       </n-form-item>
 
-      <n-form-item label="Bit Rate:" label-placement="left">
-        <n-input v-model:value="transferTimeInput.bitRate" placeholder="Bit Rate..." :min="0" w-full />
+      <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-bit-rate')" label-placement="left">
+        <n-input v-model:value="transferTimeInput.bitRate" :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-bit-rate')" :min="0" w-full />
         <c-select
           v-model:value="transferTimeInput.bitRateUnit"
           searchable
           :options="allRateUnits"
-          placeholder="Select a bit rate unit"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-select-a-bit-rate-unit')"
           ml-1
         />
       </n-form-item>
@@ -175,76 +177,76 @@ const amountTransferableOutput = computed(() => {
       <n-divider />
 
       <InputCopyable
-        label="Transfer time"
+        :label="t('tools.data-transfer-rate-converter.texts.label-transfer-time')"
         :value="transferTimeOutput"
-        placeholder="Transfer time will be here..."
+        :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-transfer-time-will-be-here')"
       />
     </c-card>
-    <c-card title="Transfer Bit Rate/Speed" mb-2>
-      <n-form-item label="Data Size:" label-placement="left">
-        <n-input v-model:value="transferSpeedRateInput.dataSize" placeholder="Data Size..." :min="0" w-full />
+    <c-card :title="t('tools.data-transfer-rate-converter.texts.title-transfer-bit-rate-speed')" mb-2>
+      <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-data-size')" label-placement="left">
+        <n-input v-model:value="transferSpeedRateInput.dataSize" :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-data-size')" :min="0" w-full />
         <c-select
           v-model:value="transferSpeedRateInput.dataSizeUnit"
           :options="allStorateUnits"
-          placeholder="Select a storage unit"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-select-a-storage-unit')"
           ml-1
         />
       </n-form-item>
 
-      <n-form-item label="Duration (h/m/s):" label-placement="left">
-        <n-input-number v-model:value="transferSpeedRateInput.hours" mr-1 placeholder="Hours" :min="0" w-full />
-        <n-input-number v-model:value="transferSpeedRateInput.minutes" mr-1 placeholder="Minutes" :min="0" w-full />
-        <n-input-number v-model:value="transferSpeedRateInput.seconds" mr-1 placeholder="Seconds" :min="0" w-full />
+      <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-duration-h-m-s')" label-placement="left">
+        <n-input-number v-model:value="transferSpeedRateInput.hours" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-hours')" :min="0" w-full />
+        <n-input-number v-model:value="transferSpeedRateInput.minutes" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-minutes')" :min="0" w-full />
+        <n-input-number v-model:value="transferSpeedRateInput.seconds" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-seconds')" :min="0" w-full />
       </n-form-item>
 
       <n-divider />
 
       <div flex items-baseline gap-2>
         <InputCopyable
-          label="Transfer Bit Rate/Speed:"
+          :label="t('tools.data-transfer-rate-converter.texts.label-transfer-bit-rate-speed')"
           label-position="left"
           :value="transferSpeedRateOutput"
-          placeholder="Bit Rate will be here..."
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-bit-rate-will-be-here')"
         />
         <c-select
           v-model:value="transferSpeedRateInput.bitRateUnit"
           :options="allRateUnits"
-          placeholder="Select a bit rate unit"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-select-a-bit-rate-unit')"
           ml-1
         />
       </div>
     </c-card>
-    <c-card title="Amount Transferable" mb-2>
-      <n-form-item label="Bit Rate:" label-placement="left">
-        <n-input v-model:value="amountTransferableInput.bitRate" placeholder="Bit Rate..." :min="0" w-full />
+    <c-card :title="t('tools.data-transfer-rate-converter.texts.title-amount-transferable')" mb-2>
+      <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-bit-rate')" label-placement="left">
+        <n-input v-model:value="amountTransferableInput.bitRate" :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-bit-rate')" :min="0" w-full />
         <c-select
           v-model:value="amountTransferableInput.bitRateUnit"
           :options="allRateUnits"
-          placeholder="Select a bit rate unit"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-select-a-bit-rate-unit')"
           ml-1
         />
       </n-form-item>
 
-      <n-form-item label="Duration (h/m/s):" label-placement="left">
-        <n-input-number v-model:value="amountTransferableInput.hours" mr-1 placeholder="Hours" :min="0" w-full />
-        <n-input-number v-model:value="amountTransferableInput.minutes" mr-1 placeholder="Minutes" :min="0" w-full />
-        <n-input-number v-model:value="amountTransferableInput.seconds" mr-1 placeholder="Seconds" :min="0" w-full />
+      <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-duration-h-m-s')" label-placement="left">
+        <n-input-number v-model:value="amountTransferableInput.hours" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-hours')" :min="0" w-full />
+        <n-input-number v-model:value="amountTransferableInput.minutes" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-minutes')" :min="0" w-full />
+        <n-input-number v-model:value="amountTransferableInput.seconds" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-seconds')" :min="0" w-full />
       </n-form-item>
 
       <n-divider />
 
       <div flex items-baseline gap-2>
         <InputCopyable
-          label="Amount transferable:"
+          :label="t('tools.data-transfer-rate-converter.texts.label-amount-transferable')"
           label-position="left"
           :value="amountTransferableOutput"
-          placeholder="Amount transferable will be here..."
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-amount-transferable-will-be-here')"
         />
         <c-select
           v-model:value="amountTransferableInput.dataSizeUnit"
           searchable
           :options="allStorateUnits"
-          placeholder="Select a storage unit"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-select-a-storage-unit')"
           ml-1
         />
       </div>

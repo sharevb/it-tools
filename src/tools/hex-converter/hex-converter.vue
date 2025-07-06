@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import hexArray from 'hex-array';
 import { packArray, packString, unpackArray, unpackString } from 'byte-data';
 import JSON5 from 'json5';
 import { type Conversion, cleanHex, decodeNumber, decodeStruct, encodeStruct } from './hex-converter.service';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const mode = ref<'simple' | 'struct'>('simple');
 
@@ -86,7 +89,7 @@ const structDefinitionValidation = useValidation({
   source: structDefinition,
   rules: [
     {
-      message: 'Struct definition is not a valid JSON',
+      message: t('tools.hex-converter.texts.message-struct-definition-is-not-a-valid-json'),
       validator: value => JSON5.parse(value.trim()),
     },
   ],
@@ -131,170 +134,168 @@ const encodedStructOutput = computed(() => {
       <n-space>
         <n-radio
           value="simple"
-          label="Simple Encoder/Decoder"
+          :label="t('tools.hex-converter.texts.label-simple-encoder-decoder')"
         />
         <n-radio
           value="struct"
-          label="C/C++ typed struct"
+          :label="t('tools.hex-converter.texts.label-c-c-typed-struct')"
         />
       </n-space>
     </n-radio-group>
 
     <div v-if="mode === 'simple'">
-      <c-card title="Hex Options" mb-1>
+      <c-card :title="t('tools.hex-converter.texts.title-hex-options')" mb-1>
         <c-select
           v-model:value="decodeAs"
-          label="Decode/Encode As:"
+          :label="t('tools.hex-converter.texts.label-decode-encode-as')"
           label-position="left" mb-1
-          :options="[{ value: 'dec', label: 'Decimal' }, { value: 'bin', label: 'Binary' }, { value: 'hex', label: 'Hexadecimal' }, { value: 'char', label: 'Char/ASCII' }, { value: 'utf8', label: 'UTF8 string' }]"
+          :options="[{ value: 'dec', label: t('tools.hex-converter.texts.label-decimal') }, { value: 'bin', label: t('tools.hex-converter.texts.label-binary') }, { value: 'hex', label: t('tools.hex-converter.texts.label-hexadecimal') }, { value: 'char', label: t('tools.hex-converter.texts.label-char-ascii') }, { value: 'utf8', label: t('tools.hex-converter.texts.label-utf8-string') }]"
         />
         <n-space v-if="decodeAs !== 'utf8'" align="baseline" justify="center">
-          <n-form-item label="Bits:" label-placement="left">
+          <n-form-item :label="t('tools.hex-converter.texts.label-bits')" label-placement="left">
             <n-input-number v-model:value="bits" :min="1" style="width: 6em" />
           </n-form-item>
           <n-form-item>
             <n-checkbox v-model:checked="floatingPoint">
-              Floating Point
+              {{ t('tools.hex-converter.texts.tag-floating-point') }}
             </n-checkbox>
           </n-form-item>
           <n-form-item>
             <n-checkbox v-model:checked="signed">
-              Signed
+              {{ t('tools.hex-converter.texts.tag-signed') }}
             </n-checkbox>
           </n-form-item>
           <n-form-item>
             <n-checkbox v-model:checked="bigEndian">
-              Big Endian
+              {{ t('tools.hex-converter.texts.tag-big-endian') }}
             </n-checkbox>
           </n-form-item>
         </n-space>
       </c-card>
-      <c-card title="Hex Data Decoder" mb-3>
+      <c-card :title="t('tools.hex-converter.texts.title-hex-data-decoder')" mb-3>
         <c-input-text
           v-model:value="hexInput"
           multiline
-          placeholder="Put your Hex data here..."
+          :placeholder="t('tools.hex-converter.texts.placeholder-put-your-hex-data-here')"
           rows="2"
-          label="Hex Data to decode"
+          :label="t('tools.hex-converter.texts.label-hex-data-to-decode')"
           raw-text
           mb-5
         />
 
-        <n-form-item label="Your decoded values:">
+        <n-form-item :label="t('tools.hex-converter.texts.label-your-decoded-values')">
           <textarea-copyable :value="decodedOutput" />
         </n-form-item>
       </c-card>
-      <c-card v-if="decodeAs !== 'utf8'" title="Hex Data Encoder" mt-3>
+      <c-card v-if="decodeAs !== 'utf8'" :title="t('tools.hex-converter.texts.title-hex-data-encoder')" mt-3>
         <c-input-text
           v-model:value="numberInput"
           multiline
-          placeholder="Put your Numbers array here..."
+          :placeholder="t('tools.hex-converter.texts.placeholder-put-your-numbers-array-here')"
           rows="2"
-          label="Numbers array to encode"
+          :label="t('tools.hex-converter.texts.label-numbers-array-to-encode')"
           raw-text
           mb-5
         />
 
-        <n-form-item label="Your encoded numbers array as Hex:">
+        <n-form-item :label="t('tools.hex-converter.texts.label-your-encoded-numbers-array-as-hex')">
           <textarea-copyable :value="encodedOutput" />
         </n-form-item>
       </c-card>
-      <c-card v-if="decodeAs === 'utf8'" title="Hex UTF8 String Encoder" mt-3>
+      <c-card v-if="decodeAs === 'utf8'" :title="t('tools.hex-converter.texts.title-hex-utf8-string-encoder')" mt-3>
         <c-input-text
           v-model:value="stringInput"
           multiline
-          placeholder="Put your text here..."
+          :placeholder="t('tools.hex-converter.texts.placeholder-put-your-text-here')"
           rows="5"
-          label="String to encode"
+          :label="t('tools.hex-converter.texts.label-string-to-encode')"
           raw-text
           mb-5
         />
 
-        <n-form-item label="Your encoded string as UTF8 Hex:">
+        <n-form-item :label="t('tools.hex-converter.texts.label-your-encoded-string-as-utf8-hex')">
           <textarea-copyable :value="utf8Output" />
         </n-form-item>
       </c-card>
-      <c-card title="Hex Encoding Output" mt-1>
+      <c-card :title="t('tools.hex-converter.texts.title-hex-encoding-output')" mt-1>
         <n-space align="baseline" justify="center">
-          <n-form-item label="Uppercase" label-placement="left">
+          <n-form-item :label="t('tools.hex-converter.texts.label-uppercase')" label-placement="left">
             <n-switch v-model:value="uppercase" />
           </n-form-item>
-          <n-form-item label="Group by" label-placement="left">
-            <n-input-number v-model:value="grouping" :min="0" style="width: 6em" mr-1 /> digits (0 = no grouping)
+          <n-form-item :label="t('tools.hex-converter.texts.label-group-by')" label-placement="left">
+            <n-input-number v-model:value="grouping" :min="0" style="width: 6em" mr-1 />{{ t('tools.hex-converter.texts.tag-digits-0-no-grouping') }}
           </n-form-item>
-          <n-form-item label="Split as rows by" label-placement="left">
-            <n-input-number v-model:value="rowlength" :min="0" style="width: 6em" mr-1 /> group of digits (0 = no rows)
+          <n-form-item :label="t('tools.hex-converter.texts.label-split-as-rows-by')" label-placement="left">
+            <n-input-number v-model:value="rowlength" :min="0" style="width: 6em" mr-1 />{{ t('tools.hex-converter.texts.tag-group-of-digits-0-no-rows') }}
           </n-form-item>
         </n-space>
       </c-card>
     </div>
 
     <div v-if="mode === 'struct'">
-      <c-card title="Struct Definition">
+      <c-card :title="t('tools.hex-converter.texts.title-struct-definition')">
         <c-input-text
           v-model:value="structDefinition"
           multiline
-          placeholder="Put your Struct defintion here..."
+          :placeholder="t('tools.hex-converter.texts.placeholder-put-your-struct-defintion-here')"
           rows="5"
-          label="C/C+ like struct definition"
+          :label="t('tools.hex-converter.texts.label-c-c-like-struct-definition')"
           raw-text
           mb-5
           :validation="structDefinitionValidation"
         />
 
         <details>
-          <summary>Instructions</summary>
+          <summary>{{ t('tools.hex-converter.texts.tag-instructions') }}</summary>
           <n-p>
-            Define you struct definition in JSON format: keys = struct member names ; value = type
-            <br>
+            {{ t('tools.hex-converter.texts.tag-define-you-struct-definition-in-json-format-keys-struct-member-names-value-type') }}<br>
             Types syntax: u?int{size}(be)? | float(be)? | double(be)? | char | wchar(be)? | &lt;type&gt;[{array size}]
             <br>
             where "u" means "unsigned" ; "be" means "Big Endian" ; {size} is number of bits ; {array size} fixed size for arrays
-            <br>
-            can prefix integer with 0x or 0b to display as hex and binary
+            <br>{{ t('tools.hex-converter.texts.tag-can-prefix-integer-with-0x-or-0b-to-display-as-hex-and-binary') }}
           </n-p>
         </details>
       </c-card>
-      <c-card title="Hex Struct Decoder" m-t-1>
+      <c-card :title="t('tools.hex-converter.texts.title-hex-struct-decoder')" m-t-1>
         <c-input-text
           v-model:value="hexStructInput"
           multiline
-          placeholder="Put your Hex data here..."
+          :placeholder="t('tools.hex-converter.texts.placeholder-put-your-hex-data-here')"
           rows="5"
-          label="Hex Data to decode"
+          :label="t('tools.hex-converter.texts.label-hex-data-to-decode')"
           raw-text
           mb-5
         />
 
-        <n-form-item label="Your decoded values:">
+        <n-form-item :label="t('tools.hex-converter.texts.label-your-decoded-values')">
           <textarea-copyable :value="decodedStructOutput" />
         </n-form-item>
       </c-card>
-      <c-card title="Hex Struct Encoder" m-t-1>
+      <c-card :title="t('tools.hex-converter.texts.title-hex-struct-encoder')" m-t-1>
         <c-input-text
           v-model:value="jsonStructInput"
           multiline
-          placeholder="Put your Struct to encode here..."
+          :placeholder="t('tools.hex-converter.texts.placeholder-put-your-struct-to-encode-here')"
           rows="5"
-          label="Struct json to encode"
+          :label="t('tools.hex-converter.texts.label-struct-json-to-encode')"
           raw-text
           mb-5
         />
 
-        <n-form-item label="Your encoded struct as Hex:">
+        <n-form-item :label="t('tools.hex-converter.texts.label-your-encoded-struct-as-hex')">
           <textarea-copyable :value="encodedStructOutput" />
         </n-form-item>
       </c-card>
-      <c-card title="Hex Encoding Output" mt-1>
+      <c-card :title="t('tools.hex-converter.texts.title-hex-encoding-output')" mt-1>
         <n-space align="baseline" justify="center">
-          <n-form-item label="Uppercase" label-placement="left">
+          <n-form-item :label="t('tools.hex-converter.texts.label-uppercase')" label-placement="left">
             <n-switch v-model:value="uppercase" />
           </n-form-item>
-          <n-form-item label="Group by" label-placement="left">
-            <n-input-number v-model:value="grouping" :min="0" style="width: 6em" mr-1 /> digits (0 = no grouping)
+          <n-form-item :label="t('tools.hex-converter.texts.label-group-by')" label-placement="left">
+            <n-input-number v-model:value="grouping" :min="0" style="width: 6em" mr-1 />{{ t('tools.hex-converter.texts.tag-digits-0-no-grouping') }}
           </n-form-item>
-          <n-form-item label="Split as rows by" label-placement="left">
-            <n-input-number v-model:value="rowlength" :min="0" style="width: 6em" mr-1 /> group of digits (0 = no rows)
+          <n-form-item :label="t('tools.hex-converter.texts.label-split-as-rows-by')" label-placement="left">
+            <n-input-number v-model:value="rowlength" :min="0" style="width: 6em" mr-1 />{{ t('tools.hex-converter.texts.tag-group-of-digits-0-no-rows') }}
           </n-form-item>
         </n-space>
       </c-card>

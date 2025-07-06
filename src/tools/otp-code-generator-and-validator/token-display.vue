@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useCopy } from '@/composable/copy';
 
 const props = defineProps<{ tokens: { previous: string; current: string; next: string } }>();
+
+const { t } = useI18n();
+
 const { copy: copyPrevious, isJustCopied: previousCopied } = useCopy({ createToast: false });
 const { copy: copyCurrent, isJustCopied: currentCopied } = useCopy({ createToast: false });
 const { copy: copyNext, isJustCopied: nextCopied } = useCopy({ createToast: false });
@@ -13,13 +17,13 @@ const { tokens } = toRefs(props);
   <div>
     <div mb-5px w-full flex items-center>
       <div flex-1 text-left>
-        Previous
+        {{ t('tools.otp-code-generator-and-validator.texts.tag-previous') }}
       </div>
       <div flex-1 text-center>
-        Current OTP
+        {{ t('tools.otp-code-generator-and-validator.texts.tag-current-otp') }}
       </div>
       <div flex-1 text-right>
-        Next
+        {{ t('tools.otp-code-generator-and-validator.texts.tag-next') }}
       </div>
     </div>
     <div flex items-center>

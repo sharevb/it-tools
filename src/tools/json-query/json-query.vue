@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import { jsonquery } from '@jsonquerylang/jsonquery';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const indent = 2;
 
@@ -39,7 +42,7 @@ const jsonValidation = useValidation({
   rules: [
     {
       validator: v => JSON5.parse(v),
-      message: 'Provided JSON is not valid.',
+      message: t('tools.json-query.texts.message-provided-json-is-not-valid'),
     },
   ],
 });
@@ -47,32 +50,32 @@ const jsonValidation = useValidation({
 
 <template>
   <div>
-    <c-card title="Input" mb-2>
+    <c-card :title="t('tools.json-query.texts.title-input')" mb-2>
       <c-input-text
         v-model:value="jsonQuery"
-        label="JSON Query"
-        placeholder="Put your JSON Query string here..."
+        :label="t('tools.json-query.texts.label-json-query')"
+        :placeholder="t('tools.json-query.texts.placeholder-put-your-json-query-string-here')"
         mb-2
       />
 
       <div mb-2 flex justify-center>
         <n-a target="_blank" href="https://jsonquerylang.org/docs/">
-          See JSON Query lang documentation
+          {{ t('tools.json-query.texts.tag-see-json-query-lang-documentation') }}
         </n-a>
       </div>
 
       <c-input-text
         v-model:value="json"
-        label="JSON"
+        :label="t('tools.json-query.texts.label-json')"
         multiline
-        placeholder="Put your JSON here..."
+        :placeholder="t('tools.json-query.texts.placeholder-put-your-json-here')"
         rows="5"
         :validation="jsonValidation"
         mb-2
       />
     </c-card>
 
-    <c-card title="Result">
+    <c-card :title="t('tools.json-query.texts.title-result')">
       <TextareaCopyable :value="result" language="json" />
     </c-card>
   </div>

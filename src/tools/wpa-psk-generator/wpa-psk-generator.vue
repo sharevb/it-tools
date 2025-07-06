@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { generateWpaPskRawKey } from './wpa-psk-generator.service';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const ssid = ref('');
 const passphrase = ref('');
@@ -20,7 +23,7 @@ const ssidValidation = useValidation({
   rules: [
     {
       validator: v => v !== '',
-      message: 'SSID must not be empty.',
+      message: t('tools.wpa-psk-generator.texts.message-ssid-must-not-be-empty'),
     },
   ],
 });
@@ -28,32 +31,32 @@ const ssidValidation = useValidation({
 
 <template>
   <div>
-    <c-card title="Wifi Infos" mb-2>
+    <c-card :title="t('tools.wpa-psk-generator.texts.title-wifi-infos')" mb-2>
       <c-input-text
         v-model:value="ssid"
-        label="SSID"
+        :label="t('tools.wpa-psk-generator.texts.label-ssid')"
         label-position="left"
-        placeholder="Put your SSID here..."
+        :placeholder="t('tools.wpa-psk-generator.texts.placeholder-put-your-ssid-here')"
         :validation="ssidValidation"
         mb-2
       />
 
       <c-input-text
         v-model:value="passphrase"
-        label="Passphrase"
+        :label="t('tools.wpa-psk-generator.texts.label-passphrase')"
         label-position="left"
-        placeholder="Put your Passphrase here..."
+        :placeholder="t('tools.wpa-psk-generator.texts.placeholder-put-your-passphrase-here')"
         mb-2
       />
 
       <div flex justify-center>
         <n-button @click="computeRawKey()">
-          Compute
+          {{ t('tools.wpa-psk-generator.texts.tag-compute') }}
         </n-button>
       </div>
     </c-card>
 
-    <c-card title="WPA PSK Raw Key (256 bits)">
+    <c-card :title="t('tools.wpa-psk-generator.texts.title-wpa-psk-raw-key-256-bits')">
       <TextareaCopyable :value="wpaPSKRawKey" />
     </c-card>
   </div>

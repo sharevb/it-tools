@@ -21,7 +21,7 @@ const regexValidation = useValidation({
   source: regex,
   rules: [
     {
-      message: 'Invalid regex: {0}',
+      message: t('tools.regex-tester.texts.message-invalid-regex-0'),
       validator: value => new RegExp(value),
       getErrorMessage: (value) => {
         const _ = new RegExp(value);
@@ -107,22 +107,22 @@ watchEffect(
       </router-link>
       <n-space>
         <n-checkbox v-model:checked="global">
-          <span :title="t('tools.regex-tester.global')">Global search (<code>g</code>)</span>
+          <span :title="t('tools.regex-tester.global')">{{ t('tools.regex-tester.texts.tag-global-search') }}<code>{{ t('tools.regex-tester.texts.tag-g') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
         </n-checkbox>
         <n-checkbox v-model:checked="ignoreCase">
-          <span :title="t('tools.regex-tester.ignoreCase')">Case-insensitive search (<code>i</code>)</span>
+          <span :title="t('tools.regex-tester.ignoreCase')">{{ t('tools.regex-tester.texts.tag-case-insensitive-search') }}<code>{{ t('tools.regex-tester.texts.tag-i') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
         </n-checkbox>
         <n-checkbox v-model:checked="multiline">
-          <span :title="t('tools.regex-tester.multiline')">Multiline (<code>m</code>)</span>
+          <span :title="t('tools.regex-tester.multiline')">{{ t('tools.regex-tester.texts.tag-multiline') }}<code>{{ t('tools.regex-tester.texts.tag-m') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
         </n-checkbox>
         <n-checkbox v-model:checked="dotAll">
-          <span :title="t('tools.regex-tester.dotAll')">Singleline (<code>s</code>)</span>
+          <span :title="t('tools.regex-tester.dotAll')">{{ t('tools.regex-tester.texts.tag-singleline') }}<code>{{ t('tools.regex-tester.texts.tag-s') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
         </n-checkbox>
         <n-checkbox v-model:checked="unicode">
-          <span :title="t('tools.regex-tester.unicode')">Unicode (<code>u</code>)</span>
+          <span :title="t('tools.regex-tester.unicode')">{{ t('tools.regex-tester.texts.tag-unicode') }}<code>{{ t('tools.regex-tester.texts.tag-u') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
         </n-checkbox>
         <n-checkbox v-model:checked="unicodeSets">
-          <span :title="t('tools.regex-tester.unicodeSets')">Unicode Sets (<code>v</code>)</span>
+          <span :title="t('tools.regex-tester.unicodeSets')">{{ t('tools.regex-tester.texts.tag-unicode-sets') }}<code>{{ t('tools.regex-tester.texts.tag-v') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
         </n-checkbox>
       </n-space>
 
@@ -187,7 +187,7 @@ watchEffect(
 
     <c-card :title="t('tools.regex-tester.diagram')" style="overflow-x: scroll;" mt-3>
       <shadow-root ref="visualizerSVG">
-&#xa0;
+        {{ t('tools.regex-tester.texts.tag-xa0') }}
       </shadow-root>
     </c-card>
   </div>

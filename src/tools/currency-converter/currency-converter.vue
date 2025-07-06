@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { code, countries, country } from 'currency-codes-ts';
 import converter from 'currency-exchanger-js';
 import moneysData from './moneys.json';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const allCurrencies = Object.entries(moneysData).map(([k, v]) => ({ value: k, label: v || k }));
 const otherCurrencies = useQueryParamOrStorage<{ name: string }[]>({ name: 'to', storageName: 'currency-conv:others', defaultValue: [{ name: 'usd' }] });
@@ -34,27 +37,27 @@ const currencyToCountriesOutput = computed(() => code(currencyToCountriesInput.v
 
 <template>
   <div>
-    <c-card title="Currency Converter" mb-2>
+    <c-card :title="t('tools.currency-converter.texts.title-currency-converter')" mb-2>
       <c-select
         v-model:value="currentCurrency"
-        label="From"
+        :label="t('tools.currency-converter.texts.label-from')"
         label-position="left"
         searchable
         :options="allCurrencies"
         mb-2
       />
-      <n-form-item label="Amount:" label-placement="left" mb-2>
+      <n-form-item :label="t('tools.currency-converter.texts.label-amount')" label-placement="left" mb-2>
         <n-input-number v-model:value="amount" :min="0" />
       </n-form-item>
 
-      <n-form-item label="For Date:" label-placement="left" mb-2>
+      <n-form-item :label="t('tools.currency-converter.texts.label-for-date')" label-placement="left" mb-2>
         <n-date-picker
           v-model:value="currentDatetime"
           type="date"
         />
       </n-form-item>
 
-      <c-card title="Converted currencies">
+      <c-card :title="t('tools.currency-converter.texts.title-converted-currencies')">
         <n-dynamic-input
           v-model:value="otherCurrencies"
           show-sort-button
@@ -65,7 +68,7 @@ const currencyToCountriesOutput = computed(() => code(currencyToCountriesInput.v
               <n-select
                 v-model:value="value.name"
                 filterable
-                placeholder="Please select a currency"
+                :placeholder="t('tools.currency-converter.texts.placeholder-please-select-a-currency')"
                 :options="allCurrencies"
                 w-full
               />
@@ -76,10 +79,10 @@ const currencyToCountriesOutput = computed(() => code(currencyToCountriesInput.v
       </c-card>
     </c-card>
 
-    <c-card title="Country to Currencies" mb-2>
+    <c-card :title="t('tools.currency-converter.texts.title-country-to-currencies')" mb-2>
       <c-select
         v-model:value="countryToCurrenciesInput"
-        label="Country"
+        :label="t('tools.currency-converter.texts.label-country')"
         label-position="left"
         searchable
         :options="allCountries"
@@ -94,10 +97,10 @@ const currencyToCountriesOutput = computed(() => code(currencyToCountriesInput.v
       </ul>
     </c-card>
 
-    <c-card title="Currencies to Countries" mb-2>
+    <c-card :title="t('tools.currency-converter.texts.title-currencies-to-countries')" mb-2>
       <c-select
         v-model:value="currencyToCountriesInput"
-        label="Currency"
+        :label="t('tools.currency-converter.texts.label-currency')"
         label-position="left"
         searchable
         :options="allCurrencies"

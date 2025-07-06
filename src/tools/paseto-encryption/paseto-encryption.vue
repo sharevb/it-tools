@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import { decrypt, encrypt, generateKeys } from 'paseto-ts/v4';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const payload = ref(`{
   "sub": "1234567890",
@@ -52,7 +55,7 @@ const jsonInputValidation = useValidation({
   source: payload,
   rules: [
     {
-      message: 'Invalid JSON string',
+      message: t('tools.paseto-encryption.texts.message-invalid-json-string'),
       validator: value => JSON5.parse(value),
     },
   ],
@@ -61,7 +64,7 @@ const jsonFooterValidation = useValidation({
   source: footer,
   rules: [
     {
-      message: 'Invalid JSON string',
+      message: t('tools.paseto-encryption.texts.message-invalid-json-string'),
       validator: value => JSON5.parse(value),
     },
   ],
@@ -95,55 +98,55 @@ const decryptedToken = computedAsync(async () => {
 
 <template>
   <div>
-    <c-card title="Local Key" mb-2>
+    <c-card :title="t('tools.paseto-encryption.texts.title-local-key')" mb-2>
       <c-input-text
         v-model:value="localKey"
-        label="Local Key:"
+        :label="t('tools.paseto-encryption.texts.label-local-key')"
         label-position="left"
-        placeholder="PASERK local key k4.local.xxxx"
+        :placeholder="t('tools.paseto-encryption.texts.placeholder-paserk-local-key-k4-local-xxxx')"
         mb-2
       />
       <div flex justify-center>
         <n-button @click="generateLocalKey()">
-          Refresh Key
+          {{ t('tools.paseto-encryption.texts.tag-refresh-key') }}
         </n-button>
       </div>
     </c-card>
 
-    <c-card title="Encryption" mb-2>
+    <c-card :title="t('tools.paseto-encryption.texts.title-encryption')" mb-2>
       <c-input-text
         v-model:value="payload"
-        label="Payload:"
+        :label="t('tools.paseto-encryption.texts.label-payload')"
         multiline
         rows="5"
         autosize
-        placeholder="JSON payload"
+        :placeholder="t('tools.paseto-encryption.texts.placeholder-json-payload')"
         :validation="jsonInputValidation"
       />
       <n-space justify="center">
-        <n-form-item label="Validate Payload" label-placement="left">
+        <n-form-item :label="t('tools.paseto-encryption.texts.label-validate-payload')" label-placement="left">
           <n-switch v-model:value="validatePayload" />
         </n-form-item>
-        <n-form-item label="Add Exp" label-placement="left">
+        <n-form-item :label="t('tools.paseto-encryption.texts.label-add-exp')" label-placement="left">
           <n-switch v-model:value="addExp" />
         </n-form-item>
-        <n-form-item label="Add IAT" label-placement="left">
+        <n-form-item :label="t('tools.paseto-encryption.texts.label-add-iat')" label-placement="left">
           <n-switch v-model:value="addIat" />
         </n-form-item>
       </n-space>
 
       <c-input-text
         v-model:value="footer"
-        label="Footer:"
+        :label="t('tools.paseto-encryption.texts.label-footer')"
         multiline
         rows="2"
         autosize
-        placeholder="JSON footer"
+        :placeholder="t('tools.paseto-encryption.texts.placeholder-json-footer')"
         :validation="jsonFooterValidation"
         mb-2
       />
 
-      <c-card v-if="encryptedToken" title="Generated PASERK Token:" mb-2>
+      <c-card v-if="encryptedToken" :title="t('tools.paseto-encryption.texts.title-generated-paserk-token')" mb-2>
         <textarea-copyable v-if="encryptedToken.token" :value="encryptedToken.token" word-wrap />
         <c-alert v-if="encryptedToken.error">
           {{ encryptedToken.error }}
@@ -151,26 +154,26 @@ const decryptedToken = computedAsync(async () => {
       </c-card>
     </c-card>
 
-    <c-card title="Decryption" mb-2>
+    <c-card :title="t('tools.paseto-encryption.texts.title-decryption')" mb-2>
       <c-input-text
         v-model:value="token"
-        label="Token:"
+        :label="t('tools.paseto-encryption.texts.label-token')"
         multiline
         rows="5"
         autosize
-        placeholder="PASERK token"
+        :placeholder="t('tools.paseto-encryption.texts.placeholder-paserk-token')"
       />
       <n-space justify="center">
-        <n-form-item label="Validate Payload" label-placement="left">
+        <n-form-item :label="t('tools.paseto-encryption.texts.label-validate-payload')" label-placement="left">
           <n-checkbox v-model:checked="validatePayload" />
         </n-form-item>
       </n-space>
 
-      <c-card v-if="decryptedToken" title="Decoded PASERK:" mb-2>
-        <n-form-item v-if="decryptedToken.payload" label="Payload:">
+      <c-card v-if="decryptedToken" :title="t('tools.paseto-encryption.texts.title-decoded-paserk')" mb-2>
+        <n-form-item v-if="decryptedToken.payload" :label="t('tools.paseto-encryption.texts.label-payload')">
           <textarea-copyable :value="JSON.stringify(decryptedToken.payload, null, 2)" word-wrap />
         </n-form-item>
-        <n-form-item v-if="decryptedToken.footer" label="Footer:">
+        <n-form-item v-if="decryptedToken.footer" :label="t('tools.paseto-encryption.texts.label-footer')">
           <textarea-copyable :value="JSON.stringify(decryptedToken.footer, null, 2)" word-wrap />
         </n-form-item>
         <c-alert v-if="decryptedToken.error">

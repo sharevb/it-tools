@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { computed, ref } from 'vue';
 import { bundledLanguagesInfo, createHighlighter } from 'shiki/bundle/full';
 import { bundledThemesInfo } from 'shiki/themes';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { useCopy, useCopyClipboardItems } from '@/composable/copy';
+
+const { t } = useI18n();
 
 const code = ref(`// Using 'typeof' to infer types
 const person = { name: "Alice", age: 30 };
@@ -85,7 +88,7 @@ const { copy: copyText } = useCopy({ source: code });
     <div mb-3 flex items-baseline gap-1>
       <c-select
         v-model:value="currentLang"
-        label="Language"
+        :label="t('tools.code-highlighter.texts.label-language')"
         label-position="left"
         searchable
         :options="langs"
@@ -93,7 +96,7 @@ const { copy: copyText } = useCopy({ source: code });
       />
       <c-select
         v-model:value="currentTheme"
-        label="Theme"
+        :label="t('tools.code-highlighter.texts.label-theme')"
         label-position="left"
         searchable
         :options="themes"
@@ -103,22 +106,22 @@ const { copy: copyText } = useCopy({ source: code });
 
     <c-input-text
       v-model:value="code"
-      label="Code snippet to format:"
+      :label="t('tools.code-highlighter.texts.label-code-snippet-to-format')"
       multiline
-      placeholder="Put your code snippet here"
+      :placeholder="t('tools.code-highlighter.texts.placeholder-put-your-code-snippet-here')"
       rows="5"
       mb-3
     />
 
     <div flex justify-center gap-2>
-      <n-form-item label="Show line numbers" label-placement="left">
+      <n-form-item :label="t('tools.code-highlighter.texts.label-show-line-numbers')" label-placement="left">
         <n-switch v-model:value="showLineNumbers" />
       </n-form-item>
       <c-button @click="copyHtml()">
-        Copy HTML Formatted
+        {{ t('tools.code-highlighter.texts.tag-copy-html-formatted') }}
       </c-button>
       <c-button @click="copyText()">
-        Copy Code Text
+        {{ t('tools.code-highlighter.texts.tag-copy-code-text') }}
       </c-button>
     </div>
 

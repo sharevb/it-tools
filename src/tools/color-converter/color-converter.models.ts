@@ -4,6 +4,8 @@ import { useValidation } from '@/composable/validation';
 
 export { removeAlphaChannelWhenOpaque, buildColorFormat };
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 function removeAlphaChannelWhenOpaque(hexColor: string) {
   return hexColor.replace(/^(#(?:[0-9a-f]{3}){1,2})ff$/i, '$1');
 }
@@ -13,7 +15,7 @@ function buildColorFormat({
   parse = value => colord(value),
   format,
   placeholder,
-  invalidMessage = `Invalid ${label.toLowerCase()} format.`,
+  invalidMessage = t('tools.color-converter.models.text.invalid-label-tolowercase-format', [label.toLowerCase()]),
   type = 'text',
 }: {
   label: string

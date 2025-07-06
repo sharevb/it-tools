@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { parseDmarcReportFromEmail, parseDmarcReportsFromXml } from 'dmarc-report-parser';
+
+const { t } = useI18n();
 
 const inputType = ref<'file' | 'content'>('file');
 const emailContent = ref('');
@@ -68,32 +71,32 @@ function policyResultClass(policyResult: string) {
 
 <template>
   <div>
-    <c-card title="Input" mb-2>
+    <c-card :title="t('tools.dmarc-report-analyzer.texts.title-input')" mb-2>
       <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
         <n-space>
           <n-radio
             value="file"
-            label="DMARC XML File"
+            :label="t('tools.dmarc-report-analyzer.texts.label-dmarc-xml-file')"
           />
           <n-radio
             value="content"
-            label="EML Content"
+            :label="t('tools.dmarc-report-analyzer.texts.label-eml-content')"
           />
         </n-space>
       </n-radio-group>
 
       <c-file-upload
         v-if="inputType === 'file'"
-        title="Drag and drop DMARC XML Report file here, or click to select a file"
+        :title="t('tools.dmarc-report-analyzer.texts.title-drag-and-drop-dmarc-xml-report-file-here-or-click-to-select-a-file')"
         @file-upload="onUpload"
       />
 
       <c-input-text
         v-if="inputType === 'content'"
         v-model:value="emailContent"
-        label="Raw Email Content"
+        :label="t('tools.dmarc-report-analyzer.texts.label-raw-email-content')"
         multiline
-        placeholder="Put your eml/email content here..."
+        :placeholder="t('tools.dmarc-report-analyzer.texts.placeholder-put-your-eml-email-content-here')"
         rows="15"
         mb-2
       />
@@ -103,34 +106,34 @@ function policyResultClass(policyResult: string) {
       {{ error }}
     </c-alert>
 
-    <c-card v-if="!error && parsedReport" title="Output">
-      <input-copyable v-if="fileInput?.name" label="File Name" :value="fileInput?.name" />
+    <c-card v-if="!error && parsedReport" :title="t('tools.dmarc-report-analyzer.texts.title-output')">
+      <input-copyable v-if="fileInput?.name" :label="t('tools.dmarc-report-analyzer.texts.label-file-name')" :value="fileInput?.name" />
 
       <c-card
         v-for="(report, reportIndex) in parsedReport.reports || []"
         :key="reportIndex" :title="`${report.reportMetadata?.orgName} (${report.reportMetadata?.reportId})`"
       >
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 label="OrgName:" :value="report.reportMetadata?.orgName" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 label="Email:" :value="report.reportMetadata?.email" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 label="extraContactInfo:" :value="report.reportMetadata?.extraContactInfo" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 label="reportId:" :value="report.reportMetadata?.reportId" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 label="Date Begin:" :value="toDate(report.reportMetadata?.dateRange?.begin)" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 label="Date End:" :value="toDate(report.reportMetadata?.dateRange?.end)" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 label="Domain:" :value="report.policyPublished?.domain" />
-        <c-card title="Policy Published:" mb-2>
+        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-orgname')" :value="report.reportMetadata?.orgName" />
+        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-email')" :value="report.reportMetadata?.email" />
+        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-extracontactinfo')" :value="report.reportMetadata?.extraContactInfo" />
+        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-reportid')" :value="report.reportMetadata?.reportId" />
+        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-date-begin')" :value="toDate(report.reportMetadata?.dateRange?.begin)" />
+        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-date-end')" :value="toDate(report.reportMetadata?.dateRange?.end)" />
+        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-domain')" :value="report.policyPublished?.domain" />
+        <c-card :title="t('tools.dmarc-report-analyzer.texts.title-policy-published')" mb-2>
           <textarea-copyable :value="JSON.stringify(report.policyPublished, null, 2)" />
         </c-card>
 
-        <c-card title="Failures" mt-2>
+        <c-card :title="t('tools.dmarc-report-analyzer.texts.title-failures')" mt-2>
           <n-table>
             <thead>
               <tr>
-                <th>Source IP</th>
-                <th>Email Volume</th>
-                <th>DMARC Policy</th>
-                <th>DKIM Policy</th>
-                <th>SPF Policy</th>
-                <th>Identifiers</th>
+                <th>{{ t('tools.dmarc-report-analyzer.texts.tag-source-ip') }}</th>
+                <th>{{ t('tools.dmarc-report-analyzer.texts.tag-email-volume') }}</th>
+                <th>{{ t('tools.dmarc-report-analyzer.texts.tag-dmarc-policy') }}</th>
+                <th>{{ t('tools.dmarc-report-analyzer.texts.tag-dkim-policy') }}</th>
+                <th>{{ t('tools.dmarc-report-analyzer.texts.tag-spf-policy') }}</th>
+                <th>{{ t('tools.dmarc-report-analyzer.texts.tag-identifiers') }}</th>
               </tr>
             </thead>
             <tbody>

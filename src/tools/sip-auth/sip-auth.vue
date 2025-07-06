@@ -29,9 +29,9 @@ function transformer(value: string) {
       :label="$t('tools.sip-auth.password')"
     />
     <format-transformer
-      :input-label="$t('tools.sip-auth.message')"
-      :input-placeholder="$t('tools.sip-auth.message-tips')"
-      :output-label="$t('tools.sip-auth.result')"
+      :input-:label="t('tools.sip-auth.texts.label-t-tools-sip-auth-message')"
+      :input-:placeholder="t('tools.sip-auth.texts.placeholder-t-tools-sip-auth-message-tips')"
+      :output-:label="t('tools.sip-auth.texts.label-t-tools-sip-auth-result')"
       :transformer="transformer"
       autosize
     />

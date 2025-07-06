@@ -34,6 +34,8 @@ import MenuBarItem from './menu-bar-item.vue';
 const props = defineProps<{ editor: Editor }>();
 const { editor } = toRefs(props);
 
+const { t } = useI18n();
+
 type MenuItem =
   | {
     icon: Component
@@ -57,28 +59,28 @@ const items: MenuItem[] = [
   {
     type: 'button',
     icon: Bold,
-    title: 'Bold',
+    title: t('tools.__i18n_ally_root__.unicode-formatter.texts.title-bold'),
     action: () => editor.value.chain().focus().toggleBold().run(),
     isActive: () => editor.value.isActive('bold'),
   },
   {
     type: 'button',
     icon: Italic,
-    title: 'Italic',
+    title: t('tools.__i18n_ally_root__.unicode-formatter.texts.title-italic'),
     action: () => editor.value.chain().focus().toggleItalic().run(),
     isActive: () => editor.value.isActive('italic'),
   },
   {
     type: 'button',
     icon: Strikethrough,
-    title: 'Strike',
+    title: t('tools.menu-bar.text.strike'),
     action: () => editor.value.chain().focus().toggleStrike().run(),
     isActive: () => editor.value.isActive('strike'),
   },
   {
     type: 'button',
     icon: Code,
-    title: 'Inline code',
+    title: t('tools.menu-bar.text.inline-code'),
     action: () => editor.value.chain().focus().toggleCode().run(),
     isActive: () => editor.value.isActive('code'),
   },
@@ -88,28 +90,28 @@ const items: MenuItem[] = [
   {
     type: 'button',
     icon: H1,
-    title: 'Heading 1',
+    title: t('tools.menu-bar.text.heading-1'),
     action: () => editor.value.chain().focus().toggleHeading({ level: 1 }).run(),
     isActive: () => editor.value.isActive('heading', { level: 1 }),
   },
   {
     type: 'button',
     icon: H2,
-    title: 'Heading 2',
+    title: t('tools.menu-bar.text.heading-2'),
     action: () => editor.value.chain().focus().toggleHeading({ level: 2 }).run(),
     isActive: () => editor.value.isActive('heading', { level: 2 }),
   },
   {
     type: 'button',
     icon: H3,
-    title: 'Heading 3',
+    title: t('tools.menu-bar.text.heading-3'),
     action: () => editor.value.chain().focus().toggleHeading({ level: 3 }).run(),
     isActive: () => editor.value.isActive('heading', { level: 3 }),
   },
   {
     type: 'button',
     icon: H4,
-    title: 'Heading 4',
+    title: t('tools.menu-bar.text.heading-4'),
     action: () => editor.value.chain().focus().toggleHeading({ level: 4 }).run(),
     isActive: () => editor.value.isActive('heading', { level: 4 }),
   },
@@ -119,21 +121,21 @@ const items: MenuItem[] = [
   {
     type: 'button',
     icon: List,
-    title: 'Bullet list',
+    title: t('tools.menu-bar.text.bullet-list'),
     action: () => editor.value.chain().focus().toggleBulletList().run(),
     isActive: () => editor.value.isActive('bulletList'),
   },
   {
     type: 'button',
     icon: ListNumbers,
-    title: 'Ordered list',
+    title: t('tools.menu-bar.text.ordered-list'),
     action: () => editor.value.chain().focus().toggleOrderedList().run(),
     isActive: () => editor.value.isActive('orderedList'),
   },
   {
     type: 'button',
     icon: CodePlus,
-    title: 'Code block',
+    title: t('tools.menu-bar.text.code-block'),
     action: () => editor.value.chain().focus().toggleCodeBlock().run(),
     isActive: () => editor.value.isActive('codeBlock'),
   },
@@ -141,7 +143,7 @@ const items: MenuItem[] = [
   {
     type: 'button',
     icon: Blockquote,
-    title: 'Blockquote',
+    title: t('tools.menu-bar.text.blockquote'),
     action: () => editor.value.chain().focus().toggleBlockquote().run(),
     isActive: () => editor.value.isActive('blockquote'),
   },
@@ -151,13 +153,13 @@ const items: MenuItem[] = [
   {
     type: 'button',
     icon: TextWrap,
-    title: 'Hard break',
+    title: t('tools.menu-bar.text.hard-break'),
     action: () => editor.value.chain().focus().setHardBreak().run(),
   },
   {
     type: 'button',
     icon: ClearFormatting,
-    title: 'Clear format',
+    title: t('tools.menu-bar.text.clear-format'),
     action: () => editor.value.chain().focus().clearNodes().unsetAllMarks().run(),
   },
   {
@@ -165,7 +167,7 @@ const items: MenuItem[] = [
   },
   {
     type: 'color',
-    title: 'Forecolor',
+    title: t('tools.menu-bar.text.forecolor'),
     icon: ColorPicker,
     action: color => editor.value.chain().focus().setColor(color).run(),
     value: () => editor.value.getAttributes('textStyle').color,
@@ -173,7 +175,7 @@ const items: MenuItem[] = [
   {
     type: 'button',
     icon: ClearFormatting,
-    title: 'Clear Forecolor',
+    title: t('tools.menu-bar.text.clear-forecolor'),
     action: () => editor.value.chain().focus().unsetColor().run(),
   },
   {
@@ -181,7 +183,7 @@ const items: MenuItem[] = [
   },
   {
     type: 'color',
-    title: 'Highlight color',
+    title: t('tools.menu-bar.text.highlight-color'),
     icon: ColorPicker,
     action: color => editor.value.chain().focus().setHighlight({ color }).run(),
     value: () => '#FAF594',
@@ -189,7 +191,7 @@ const items: MenuItem[] = [
   {
     type: 'button',
     icon: ClearFormatting,
-    title: 'Clear Highlight',
+    title: t('tools.menu-bar.text.clear-highlight'),
     action: () => editor.value.chain().focus().unsetHighlight().run(),
     isActive: () => editor.value.isActive('highlight'),
   },
@@ -199,13 +201,13 @@ const items: MenuItem[] = [
   {
     type: 'button',
     icon: ArrowBack,
-    title: 'Undo',
+    title: t('tools.menu-bar.text.undo'),
     action: () => editor.value.chain().focus().undo().run(),
   },
   {
     type: 'button',
     icon: ArrowForwardUp,
-    title: 'Redo',
+    title: t('tools.menu-bar.text.redo'),
     action: () => editor.value.chain().focus().redo().run(),
   },
   {
@@ -215,7 +217,7 @@ const items: MenuItem[] = [
     type: 'button',
     action: () => editor.value.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run(),
     enabled: () => editor.value.can().insertTable(),
-    title: 'Insert table',
+    title: t('tools.menu-bar.text.insert-table'),
     icon: Table,
   },
   {
@@ -225,21 +227,21 @@ const items: MenuItem[] = [
     type: 'button',
     action: () => editor.value.chain().focus().addColumnBefore().run(),
     enabled: () => editor.value.can().addColumnBefore(),
-    title: 'Add column before',
+    title: t('tools.menu-bar.text.add-column-before'),
     icon: ColumnInsertLeft,
   },
   {
     type: 'button',
     action: () => editor.value.chain().focus().addColumnAfter().run(),
     enabled: () => editor.value.can().addColumnAfter(),
-    title: 'Add column after',
+    title: t('tools.menu-bar.text.add-column-after'),
     icon: ColumnInsertRight,
   },
   {
     type: 'button',
     action: () => editor.value.chain().focus().deleteColumn().run(),
     enabled: () => editor.value.can().deleteColumn(),
-    title: 'Delete column',
+    title: t('tools.menu-bar.text.delete-column'),
     icon: Cross,
   },
   {
@@ -249,21 +251,21 @@ const items: MenuItem[] = [
     type: 'button',
     action: () => editor.value.chain().focus().addRowBefore().run(),
     enabled: () => editor.value.can().addRowBefore(),
-    title: 'Add row before',
+    title: t('tools.menu-bar.text.add-row-before'),
     icon: RowInsertTop,
   },
   {
     type: 'button',
     action: () => editor.value.chain().focus().addRowAfter().run(),
     enabled: () => editor.value.can().addRowAfter(),
-    title: 'Add row after',
+    title: t('tools.menu-bar.text.add-row-after'),
     icon: RowInsertBottom,
   },
   {
     type: 'button',
     action: () => editor.value.chain().focus().deleteRow().run(),
     enabled: () => editor.value.can().deleteRow(),
-    title: 'Delete row',
+    title: t('tools.menu-bar.text.delete-row'),
     icon: Cross,
   },
   {
@@ -273,7 +275,7 @@ const items: MenuItem[] = [
     type: 'button',
     action: () => editor.value.chain().focus().deleteTable().run(),
     enabled: () => editor.value.can().deleteTable(),
-    title: 'Delete table',
+    title: t('tools.menu-bar.text.delete-table'),
     icon: TableOff,
   },
   {
@@ -283,21 +285,21 @@ const items: MenuItem[] = [
     type: 'button',
     action: () => editor.value.chain().focus().mergeCells().run(),
     enabled: () => editor.value.can().mergeCells(),
-    title: 'Merge cells',
+    title: t('tools.menu-bar.text.merge-cells'),
     icon: LayersUnion,
   },
   {
     type: 'button',
     action: () => editor.value.chain().focus().splitCell().run(),
     enabled: () => editor.value.can().splitCell(),
-    title: 'Split cell',
+    title: t('tools.menu-bar.text.split-cell'),
     icon: SeparatorVertical,
   },
   {
     type: 'button',
     action: () => editor.value.chain().focus().mergeOrSplit().run(),
     enabled: () => editor.value.can().mergeOrSplit(),
-    title: 'Merge or split',
+    title: t('tools.menu-bar.text.merge-or-split'),
     icon: LayersIntersect2,
   },
   {
@@ -307,21 +309,21 @@ const items: MenuItem[] = [
     type: 'button',
     action: () => editor.value.chain().focus().toggleHeaderColumn().run(),
     enabled: () => editor.value.can().toggleHeaderColumn(),
-    title: 'Toggle header column',
+    title: t('tools.menu-bar.text.toggle-header-column'),
     icon: LayoutDistributeVertical,
   },
   {
     type: 'button',
     action: () => editor.value.chain().focus().toggleHeaderRow().run(),
     enabled: () => editor.value.can().toggleHeaderRow(),
-    title: 'Toggle header row',
+    title: t('tools.menu-bar.text.toggle-header-row'),
     icon: LayoutDistributeHorizontal,
   },
   {
     type: 'button',
     action: () => editor.value.chain().focus().toggleHeaderCell().run(),
     enabled: () => editor.value.can().toggleHeaderCell(),
-    title: 'Toggle header cell',
+    title: t('tools.menu-bar.text.toggle-header-cell'),
     icon: Heading,
   },
   {
@@ -331,7 +333,7 @@ const items: MenuItem[] = [
     type: 'button',
     action: () => editor.value.chain().focus().fixTables().run(),
     enabled: () => editor.value.can().fixTables(),
-    title: 'Fix tables',
+    title: t('tools.menu-bar.text.fix-tables'),
     icon: Tool,
   },
 ];

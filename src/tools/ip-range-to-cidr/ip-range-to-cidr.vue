@@ -1,10 +1,13 @@
 <!-- eslint-disable vue/no-side-effects-in-computed-properties -->
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { mergeCidr, parseCidr } from 'cidr-tools';
 import { isIP, isIPv6 } from 'is-ip';
 import { Exchange } from '@vicons/tabler';
 import { stringifyIp } from 'ip-bigint';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const rawStartAddress = useStorage('ip-range-to-cidr:startAddress', '192.168.1.1');
 const rawEndAddress = useStorage('ip-range-to-cidr:endAddress', '192.168.6.255');
@@ -44,11 +47,11 @@ const result = computed(() => {
 
 const startIpValidation = useValidation({
   source: rawStartAddress,
-  rules: [{ message: 'Invalid ipv4/6 address', validator: ip => isIP(ip) }],
+  rules: [{ message: t('tools.ip-range-to-cidr.texts.message-invalid-ipv4-6-address'), validator: ip => isIP(ip) }],
 });
 const endIpValidation = useValidation({
   source: rawEndAddress,
-  rules: [{ message: 'Invalid ipv4/6 address', validator: ip => isIP(ip) }],
+  rules: [{ message: t('tools.ip-range-to-cidr.texts.message-invalid-ipv4-6-address'), validator: ip => isIP(ip) }],
 });
 
 const showResult = computed(() => endIpValidation.isValid && startIpValidation.isValid && result.value.length > 0);
@@ -66,8 +69,8 @@ function onSwitchStartEndClicked() {
       <n-gi span="2">
         <c-input-text
           v-model:value="rawStartAddress"
-          label="Start address"
-          placeholder="Start IPv4/6 address..."
+          :label="t('tools.ip-range-to-cidr.texts.label-start-address')"
+          :placeholder="t('tools.ip-range-to-cidr.texts.placeholder-start-ipv4-6-address')"
           :validation="startIpValidation"
           clearable
         />
@@ -75,15 +78,15 @@ function onSwitchStartEndClicked() {
       <n-gi span="2">
         <c-input-text
           v-model:value="rawEndAddress"
-          label="End address"
-          placeholder="End IPv4/6 address..."
+          :label="t('tools.ip-range-to-cidr.texts.label-end-address')"
+          :placeholder="t('tools.ip-range-to-cidr.texts.placeholder-end-ipv4-6-address')"
           :validation="endIpValidation"
           clearable
         />
       </n-gi>
     </n-grid>
 
-    <c-card v-if="showResult" title="CIDR" data-test-id="result">
+    <c-card v-if="showResult" :title="t('tools.ip-range-to-cidr.texts.title-cidr')" data-test-id="result">
       <ul style="list-item-type: none">
         <li v-for="cidr in result" :key="cidr">
           {{ cidr }}
@@ -92,7 +95,7 @@ function onSwitchStartEndClicked() {
     </c-card>
     <n-alert
       v-else-if="startIpValidation.isValid && endIpValidation.isValid && isReversed"
-      title="Invalid combination of start and end IPv4/6 address"
+      :title="t('tools.ip-range-to-cidr.texts.title-invalid-combination-of-start-and-end-ipv4-6-address')"
       type="error"
     >
       <div my-3 op-70>
@@ -101,17 +104,16 @@ function onSwitchStartEndClicked() {
       </div>
 
       <c-button @click="onSwitchStartEndClicked">
-        <n-icon mr-2 :component="Exchange" depth="3" size="22" />
-        Switch start and end IPv4/6 address
+        <n-icon mr-2 :component="Exchange" depth="3" size="22" />{{ t('tools.ip-range-to-cidr.texts.tag-switch-start-and-end-ipv4-6-address') }}
       </c-button>
     </n-alert>
     <n-alert
       v-else-if="isNotSameVersion"
-      title="Invalid combination of IP version 4/6"
+      :title="t('tools.ip-range-to-cidr.texts.title-invalid-combination-of-ip-version-4-6')"
       type="error"
     >
       <div my-3 op-70>
-        Start IP and End IP must be of same version: IPv4 or IPv6
+        {{ t('tools.ip-range-to-cidr.texts.tag-start-ip-and-end-ip-must-be-of-same-version-ipv4-or-ipv6') }}
       </div>
     </n-alert>
   </div>

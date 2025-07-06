@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import GenerateSchema from 'generate-schema';
 import { withDefaultOnError } from '../../utils/defaults';
 import type { UseValidationRule } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const tableName = ref('TableName');
 
@@ -15,7 +18,7 @@ const transformer = (value: string) => value.trim() === '' ? '' : withDefaultOnE
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || JSON5.parse(v),
-    message: 'Provided JSON is not valid.',
+    message: t('tools.json-to-sql-ddl.texts.message-provided-json-is-not-valid'),
   },
 ];
 </script>
@@ -24,16 +27,16 @@ const rules: UseValidationRule<string>[] = [
   <div>
     <c-input-text
       v-model:value="tableName"
-      label="Table Name"
-      placeholder="Table Name"
+      :label="t('tools.json-to-sql-ddl.texts.label-table-name')"
+      :placeholder="t('tools.json-to-sql-ddl.texts.placeholder-table-name')"
       mb-2
     />
     <n-divider />
 
     <format-transformer
-      input-label="Your JSON"
-      input-placeholder="Paste your JSON here..."
-      output-label="Your SQL DDL"
+      :input-label="t('tools.json-to-sql-ddl.texts.input-label-your-json')"
+      :input-placeholder="t('tools.json-to-sql-ddl.texts.input-placeholder-paste-your-json-here')"
+      :output-label="t('tools.json-to-sql-ddl.texts.output-label-your-sql-ddl')"
       output-language="sql"
       :input-validation-rules="rules"
       :transformer="transformer"
