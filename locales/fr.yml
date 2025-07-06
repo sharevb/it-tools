@@ -88,3 +88,9 @@ tools:
   json-sort-master:
     title: Maître de tri JSON
     description: Triez votre JSON par clés et valeurs.
+  
+  cli-command-editor:
+    title: Éditeur de commandes CLI
+    description: Convertissez les commandes CLI avec des options dans un format facilement modifiable et générez la commande résultante avec des valeurs d'entrée.
+    command: Commande
+    placeholder: Coller la commande ici

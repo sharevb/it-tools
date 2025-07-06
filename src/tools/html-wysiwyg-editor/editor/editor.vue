@@ -33,6 +33,12 @@ const editor = new Editor({
   ],
 });
 
+watch(html, (newHtml) => {
+  if (editor.getHTML() !== newHtml) {
+    editor.commands.setContent(newHtml);
+  }
+});
+
 editor.on('update', ({ editor }) => emit('update:html', editor.getHTML()));
 
 tryOnBeforeUnmount(() => {

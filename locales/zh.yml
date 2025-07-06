@@ -414,3 +414,9 @@ tools:
     result: 检测结果
     sucess: 成功
     failure: 失败
+
+  cli-command-editor:
+    title: CLI 命令编辑器
+    description: 将带有选项的 CLI 命令转换为易于编辑的形式，并生成带有输入值的结果命令。
+    command: 命令
+    placeholder: 将命令粘贴到此处

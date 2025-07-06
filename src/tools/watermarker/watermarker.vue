@@ -28,6 +28,8 @@ const opacity = useQueryParamOrStorage({ name: 'opa', storageName: 'watermarker:
 const rotation = useQueryParamOrStorage({ name: 'rot', storageName: 'watermarker:r', defaultValue: 45 });
 const repeatWatermark = useQueryParamOrStorage({ name: 'repeat', storageName: 'watermarker:rep', defaultValue: false });
 const logoWidth = useQueryParamOrStorage({ name: 'logow', storageName: 'watermarker:lw', defaultValue: 60 });
+const tileSpacing = useQueryParamOrStorage({ name: 'tilespc', storageName: 'watermarker:ts', defaultValue: 30 });
+const watermarkPosition = useQueryParamOrStorage({ name: 'pos', storageName: 'watermarker:pos', defaultValue: 'center' });
 
 const logo = ref<HTMLImageElement | null>(null);
 const downloadFormat = ref('png');
@@ -105,28 +107,25 @@ function drawImage(index: number) {
   ctx.drawImage(img, 0, 0);
   ctx.globalAlpha = opacity.value / 100;
 
+  // Measure text
+  const measureCanvas = document.createElement('canvas');
+  const measureCtx = measureCanvas.getContext('2d')!;
+  measureCtx.font = `${fontSize.value}px sans-serif`;
+
+  const textMetrics = measureCtx.measureText(watermarkText.value);
+  const textWidth = textMetrics.width;
+  const textHeight = fontSize.value;
+
+  const angle = (rotation.value * Math.PI) / 180;
+
+  const rotatedWidth = Math.abs(textWidth * Math.cos(angle)) + Math.abs(textHeight * Math.sin(angle));
+  const rotatedHeight = Math.abs(textWidth * Math.sin(angle)) + Math.abs(textHeight * Math.cos(angle));
+
   if (repeatWatermark.value) {
-    // Step 1: Create measurement context
-    const measureCanvas = document.createElement('canvas');
-    const measureCtx = measureCanvas.getContext('2d')!;
-    measureCtx.font = `${fontSize.value}px sans-serif`;
+    // Create single watermark tile canvas
+    const tileWidth = textWidth + tileSpacing.value;
+    const tileHeight = textHeight + tileSpacing.value;
 
-    const textMetrics = measureCtx.measureText(watermarkText.value);
-    const textWidth = textMetrics.width;
-    const textHeight = fontSize.value;
-    const angle = (rotation.value * Math.PI) / 180;
-
-    // Step 2: Compute bounding box for rotated text
-    const rotatedWidth = Math.abs(textWidth * Math.cos(angle)) + Math.abs(textHeight * Math.sin(angle));
-    const rotatedHeight = Math.abs(textWidth * Math.sin(angle)) + Math.abs(textHeight * Math.cos(angle));
-
-    const paddingX = 40;
-    const paddingY = 30;
-
-    const tileWidth = rotatedWidth + paddingX;
-    const tileHeight = rotatedHeight + paddingY;
-
-    // Step 3: Create offscreen canvas
     const offCanvas = document.createElement('canvas');
     const offCtx = offCanvas.getContext('2d')!;
     offCanvas.width = tileWidth;
@@ -138,21 +137,61 @@ function drawImage(index: number) {
     offCtx.textAlign = 'center';
     offCtx.textBaseline = 'middle';
     offCtx.translate(tileWidth / 2, tileHeight / 2);
-    offCtx.rotate(angle);
     offCtx.fillText(watermarkText.value, 0, 0);
 
     if (logo.value) {
       drawLogo(offCtx, textHeight / 2);
     }
 
-    const pattern = ctx.createPattern(offCanvas, 'repeat');
-    ctx.fillStyle = pattern!;
-    ctx.fillRect(0, 0, img.width, img.height);
+    // create a repeated watermark canvas that covers image in diagonal
+    const imageHypotenuseLength = Math.sqrt(img.width * img.width + img.height * img.height);
+    const watermarkCanvas = document.createElement('canvas');
+    const watermarkCtx = watermarkCanvas.getContext('2d')!;
+    watermarkCanvas.width = imageHypotenuseLength;
+    watermarkCanvas.height = imageHypotenuseLength;
+
+    watermarkCtx.clearRect(0, 0, imageHypotenuseLength, imageHypotenuseLength);
+    const pattern = watermarkCtx.createPattern(offCanvas, 'repeat');
+    watermarkCtx.fillStyle = pattern!;
+    watermarkCtx.fillRect(0, 0, imageHypotenuseLength, imageHypotenuseLength);
+
+    ctx.save();
+    ctx.translate(img.width / 2, img.height / 2);
+    ctx.rotate(angle);
+
+    ctx.drawImage(watermarkCanvas, -watermarkCanvas.width / 2, -watermarkCanvas.height / 2);
+
+    ctx.restore();
   }
   else {
     ctx.save();
-    ctx.translate(img.width / 2, img.height / 2);
-    ctx.rotate((rotation.value * Math.PI) / 180);
+
+    let posX = img.width / 2;
+    let posY = img.height / 2;
+    const margin = tileSpacing.value;
+
+    switch (watermarkPosition.value) {
+      case 'top-left':
+        posX = margin + rotatedWidth / 2;
+        posY = margin + rotatedHeight / 2;
+        break;
+      case 'top-right':
+        posX = img.width - margin - rotatedWidth / 2;
+        posY = margin + rotatedHeight / 2;
+        break;
+      case 'bottom-left':
+        posX = margin + rotatedWidth / 2;
+        posY = img.height - margin - rotatedHeight / 2;
+        break;
+      case 'bottom-right':
+        posX = img.width - margin - rotatedWidth / 2;
+        posY = img.height - margin - rotatedHeight / 2;
+        break;
+  // default is center
+    }
+
+    ctx.translate(posX, posY);
+    ctx.rotate(angle);
 
     drawLogo(ctx);
 
@@ -249,16 +288,35 @@ watchEffect(() => drawImage(selectedIndex.value));
         <n-form-item label="Color:" label-placement="left" mt-2>
           <NColorPicker v-model:value="fontColor" style="width:100px" />
         </n-form-item>
+        <n-form-item label="Rotation (°):" label-placement="left" mt-2>
+          <NSlider v-model:value="rotation" :step="0.5" :min="0" :max="360" mr-2 />
+          <n-input-number v-model:value="rotation" size="small" :min="0" :max="360" />
+        </n-form-item>
       </NSpace>
 
       <NSpace justify="center">
-        <n-form-item label="Rotation (°):" label-placement="left" mt-2>
-          <NSlider v-model:value="rotation" :step="0.5" :min="0" :max="360" mr-2 />
-          <n-input-number v-model:value="rotation" size="small" :min="1" :max="360" />
-        </n-form-item>
-
         <n-form-item label="Repeat Watermark:" label-placement="left" mt-2>
           <NSwitch v-model:value="repeatWatermark" />
+        </n-form-item>
+
+        <n-form-item :label="repeatWatermark ? 'Tile spacing:' : 'Margin:'" label-placement="left" mt-2>
+          <NSlider v-model:value="tileSpacing" :step="1" :min="1" :max="1000" mr-2 />
+          <n-input-number v-model:value="tileSpacing" size="small" :min="1" :max="1000" />
+        </n-form-item>
+
+        <n-form-item v-if="!repeatWatermark" label="Position:" label-placement="left" mt-2>
+          <NSelect
+            v-model:value="watermarkPosition"
+            style="min-width: 130px"
+            :options="[
+              { label: 'Center', value: 'center' },
+              { label: 'Top Left', value: 'top-left' },
+              { label: 'Top Right', value: 'top-right' },
+              { label: 'Bottom Left', value: 'bottom-left' },
+              { label: 'Bottom Right', value: 'bottom-right' },
+            ]"
+            placeholder="Watermark Position"
+          />
         </n-form-item>
       </NSpace>
 

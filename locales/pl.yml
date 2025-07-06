@@ -85,3 +85,9 @@ tools:
     description: Odtwórz i wizualizuj dźwięk z Twojego mikrofonu, z dodaną jedną sekundą opóźnienia
     start-button-text: Odtwarzaj mikrofonu
     stop-button-text: Zatrzymaj odtwarzanie mikrofonu
+
+  cli-command-editor:
+    title: Edytor poleceń CLI
+    description: Konwertuj polecenia CLI z opcjami do postaci, którą można łatwo edytować, i generuj wynikowe polecenia z wartościami wejściowymi.
+    command: Rozkaz
+    placeholder: Wklej tutaj polecenie
