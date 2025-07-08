@@ -1,0 +1,1369 @@
+'404':
+  notFound: 404 Gan Aimsiú
+  sorry: Ár leithscéal, ní cosúil go bhfuil an leathanach seo ann
+  maybe: B'fhéidir go bhfuil an taisce ag déanamh rudaí deacra, bain triail as fórsa-athnuachan?
+  backHome: Ar ais abhaile
+home:
+  categories:
+    newestTools: Uirlisí is déanaí
+    favoriteTools: Na huirlisí is fearr leat
+    allTools: Gach na huirlisí
+    favoritesDndToolTip: Tarraing agus scaoil chun na ceanáin a athordú
+  subtitle: Uirlisí láimhe d&#39;fhorbróirí
+  toggleMenu: Scoránaigh roghchlár
+  home: Baile
+  uiLib: Chomhéadain Lib
+  support: Tacú le forbairt IT-Tools
+  buyMeACoffee: Ceannaigh caife dom
+  follow:
+    title: Is maith leat é-uirlisí?
+    p1: Tabhair dúinn réalta ar
+    githubRepository: Taisclann IT-Tools GitHub
+    p2: nó lean sinn ar aghaidh
+    twitterXAccount: Cuntas X IT-Tools
+    thankYou: Go raibh maith agat!
+  nav:
+    github: Stóras GitHub
+    githubRepository: Taisclann IT-Tools GitHub
+    twitterX: Cuntas X
+    twitterXAccount: Cuntas X IT Tools
+    about: Maidir le IT-Tools
+    aboutLabel: Faoi
+    darkMode: Mod dorcha
+    lightMode: Modh solais
+    mode: Scoránaigh mód dorcha/éadrom
+about:
+  content: >
+    # Maidir le  IT-Tools
+
+    An suíomh gréasáin iontach seo, déanta le ❤ ag [Corentin Thomasset]
+    (https://corentin.tech?utm_source=it-tools&utm_medium=about),
+    bailíonn sé uirlisí úsáideacha do fhorbróirí agus do dhaoine atá ag 
+    obair in TF. Má fhaigheann tú go bhfuil sé úsáideach, bíodh leisce ort é 
+    a roinnt le daoine a cheapann tú a d'fhéadfadh a bheith úsáideach 
+    freisin agus ná déan dearmad é a leabharmharcáil i do bharra aicearra!
+
+    Is foinse oscailte (faoin gceadúnas GPL-3.0) agus saor in aisce é IT 
+    Tools, agus beidh sé i gcónaí, ach cosnaíonn sé airgead dom an t-ainm 
+    fearainn a óstáil agus a athnuachan. Más mian leat tacú le mo chuid 
+    oibre, agus mé a spreagadh chun níos mó uirlisí a chur leis, smaoinigh 
+    le do thoil ar thacaíocht a thabhairt trí [urraíocht a dhéanamh orm]
+    (https://www.buymeacoffee.com/cthmsst).
+
+    ## Teicneolaíochtaí
+
+    Tá IT Tools déanta i Vue.js (Vue 3) leis an leabharlann  comhpháirteanna 
+    Naive UI agus tá sé á óstáil agus á imscaradh go leanúnach ag Vercel. Úsáidtear 
+    leabharlanna foinse oscailte tríú páirtí i roinnt uirlisí, féadfaidh tú an l
+    iosta iomlán a fháil sa chomhad[package.json]
+    (https://github.com/sharevb/it-tools/blob/main/package.json)
+    den stórlann.
+
+    ## An bhfuair tú fabht? An bhfuil uirlis ar iarraidh?
+
+    Más gá duit uirlis nach bhfuil i láthair anseo faoi láthair, agus má 
+    cheapann tú go bhféadfadh sí a bheith úsáideach, is féidir leat iarratas 
+    gné a chur isteach sa rannóg [issues]
+    (https://github.com/sharevb/it-tools/issues/new/choose) sa stórlann GitHub.
+
+    Agus má aimsigh tú fabht, nó mura n-oibríonn rud éigin mar a bhíothas 
+    ag súil leis, comhdaigh le do thoil tuarascáil fabht sa rannóg [issues]
+    (https://github.com/sharevb/it-tools/issues/new/choose) sa stórlann GitHub.
+favoriteButton:
+  remove: Bain ó cheanáin
+  add: Cuir le ceanáin
+toolCard:
+  new: Nua
+search:
+  label: Cuardach
+  placeholder: Clóscríobh chun uirlis nó ordú a chuardach...
+textareaCopyable:
+  copy: Cóipeáil chuig an ghearrthaisce
+  copied: Cóipeáilte!
+spanCopyable:
+  copy: Cóipeáil chuig an ghearrthaisce
+  copied: Cóipeáilte!
+inputCopyable:
+  copy: Cóipeáil chuig an ghearrthaisce
+  copied: Cóipeáilte!
+formatTransformer:
+  input: Ionchur
+  input-placeholder: Ionchur...
+  output: Aschur
+tools:
+  categories:
+    favorite-tools: Is fearr leat na hairíonna
+    crypto: Crypto
+    converter: Tiontaire
+    web: Gréasán
+    images and videos: Íomhánna & Físeáin
+    development: Forbairt
+    network: Líonra
+    math: Mata
+    measurement: Tomhas
+    text: Téacs
+    data: Sonraí
+  password-strength-analyser:
+    title: Anailíseoir neart pasfhocal
+    description: >-
+      Faigh amach cé chomh láidir is atá do phasfhocal leis an 
+      anailíseoir neart pasfhocal cliant-taobh-amháin seo agus leis an uirlis meastacháin am crack.
+  chronometer:
+    title: Cróniméadar
+    description: >-
+      Monatóireacht a dhéanamh ar fhad an ruda. Go bunúsach 
+      chronometer le gnéithe chronometer simplí.
+    button:
+      start: Tosaigh
+      stop: Stad
+      reset: Athshocraigh
+  token-generator:
+    title: Gineadóir comhartha
+    description: >-
+      Gin teaghrán randamach leis na carachtair atá uait, 
+      litreacha móra nó litreacha beaga, uimhreacha agus/nó siombailí.
+    uppercase: Cás Uachtair (ABC...)
+    lowercase: Cás Íochtar (abc...)
+    numbers: Uimhreacha (123...)
+    symbols: Siombailí (!-;...)
+    length: Fad
+    tokenPlaceholder: An comhartha...
+    copied: Cóipeáladh an comhartha chuig an ngearrthaisce
+    button:
+      copy: Cóip
+      refresh: Athnuaigh
+  percentage-calculator:
+    title: Áireamhán céatadánach
+    description: >-
+      Ríomh céatadáin go héasca ó luach go luach eile, 
+      nó ó chéatadán go luach.
+  svg-placeholder-generator:
+    title: Gineadóir áitsealbhóirí SVG
+    description: Gin íomhánna svg le húsáid mar áitshealbhóir i d’fheidhmchláir.
+
+  json-to-csv:
+    title: JSON go CSV
+    description: Tiontaigh JSON go CSV le brath ceanntásc go huathoibríoch.
+  csv-to-json:
+    title: CSV go JSON
+    description: Tiontaigh JSON go CSV le brath ceanntásc go huathoibríoch.
+  camera-recorder:
+    title: Taifeadta ceamara
+    description: Glac pictiúr nó taifead físeán ó do ceamara gréasáin nó ceamara.
+
+  keycode-info:
+    title: Faisnéis eochairchóid
+    description: >-
+      Faigh eochairchód javascript, cód, suíomh agus 
+      mionathraithe aon eochair brúite.
+
+  emoji-picker:
+    title: Roghnóir Emoji
+    description: Cóipeáil agus greamaigh emojis go héasca agus faigh an cód cód agus luach pointí gach emoji.
+
+  color-converter:
+    title: Tiontaire datha
+    description: Tiontaigh dath idir na formáidí éagsúla (hex, rgb, hsl agus ainm css)
+
+  bcrypt:
+    title: Bcrypt
+    description: Hasháil agus comparáid a dhéanamh ar shlabhra téacs ag úsáid bcrypt. Is feidhm hashála 
+    pasfhocail é bcrypt atá bunaithe ar an gcipher Blowfish.
+
+  crontab-generator:
+    title: Gineadóir Crontab
+    description: >-
+    description: Bailíochtaigh agus gin crontab agus faigh an cur síos inléite ag an duine ar an sceideal cron.
+
+  http-status-codes:
+    title: Cóid stádais HTTP
+    description: An liosta de na cóid stádais HTTP go léir, a n-ainm, agus a gciall.
+  sql-prettify:
+    title: SQL prettify agus formáid
+    description: Déan do cheisteanna SQL a fhormáid agus a mhaisiú ar líne (tacaíonn sé le canúintí 
+    SQL éagsúla).
+      
+  benchmark-builder:
+    title: Tógálaí tagarmhairc
+    description: Déan comparáid éasca le ham feidhmithe na dtascanna leis an tógálaí 
+    tagarmharcála ar líne an-simplí seo.
+
+      benchmark builder.
+  git-memo:
+    title: Bileog caimiléir Git
+    description: Is bogearraí bainistíochta leagan díláraithe é Git. Leis an bhileog cheat seo, 
+    beidh rochtain thapa agat ar na horduithe git is coitianta.
+      
+  slugify-string:
+    title: Slabhra sluga a chruthú
+    description: Déan slabhra URL, ainm comhad agus ID sábháilte.
+  encryption:
+    title: Criptigh / díchriptiú téacs
+    description: >-
+    Criptigh téacs soiléir agus díchriptigh ciphertext ag baint úsáide as halgartaim 
+    crypto mar AES, TripleDES, Coinín nó RC4.
+    defaultErrorMessage: Ní féidir do théacs a chipriú
+    title-encrypt: Criptigh
+    title-decrypt: Díchriptigh
+  random-port-generator:
+    title: Gineadóir port randamach
+    description: >-
+    description: Gin uimhreacha randamacha poirt lasmuigh de raon na gcalafort "aitheanta" 
+    (0-1023).
+
+  yaml-prettify:
+    title: YAML prettify agus formáid
+    description: Cuir do theaghrán YAML i bhformáid chairdiúil inléite ag an duine.
+  eta-calculator:
+    title: Áireamhán ETA
+    description: Áireamhán ETA (Am Measta na hAthalainne) chun an t-am críochnaithe garbh de 
+    thasc a chinneadh, mar shampla, am críochnaithe agus fad íoslódála comhad.
+
+  roman-numeral-converter:
+    title: Tiontaire uimhreacha Rómhánacha
+    description: Tiontaigh uimhreacha Rómhánacha go huimhreacha agus tiontaigh uimhreacha go huimhreacha Rómhánacha.
+  hmac-generator:
+    title: Hmac gineadóir
+    description: >-
+      Ríomhtar cód fíordheimhnithe teachtaireachta hash-bhunaithe (HMAC) 
+      ag baint úsáide as eochair rúnda agus an fheidhm hashing is fearr leat.
+  bip39-generator:
+    title: Gineadóir pasfhrása BIP39
+    description: >-
+      Gin pasfhrása BIP39 ó chomóradh atá ann cheana nó randamach, 
+      nó faigh an cuimhneachán ón bpasfhrása.
+  base64-file-converter:
+    title: Tiontaire comhad base64 íoslódáil
+    description: Tiontaigh teaghrán, comhad, nó íomhá ina léiriú base64.
+  list-converter:
+    title: Liosta tiontaire
+    description: >-
+      Is féidir leis an uirlis seo sonraí colún-bhunaithe a phróiseáil agus 
+      athruithe éagsúla a chur i bhfeidhm (trasuí, cuir réimír agus iarmhír, liosta droim ar ais, 
+      liosta sórtála, luachanna cás íochtair, luachanna teasctha) le gach ró.
+  base64-string-converter:
+    title: Ionchódóir/díchódóir teaghrán Base64
+    description: Níl ort ach teaghráin a ionchódú agus a dhíchódú ina n-ionadaíocht base64.
+  toml-to-yaml:
+    title: TOML go YAML
+    description: Parsáil agus tiontaigh TOML go YAML.
+
+  math-evaluator:
+    title: Measúnaí mata
+    description: >-
+      Áireamhán chun nathanna matamaitice a mheas. Is féidir leat feidhmeanna 
+      a úsáid mar sqrt, cos, sin, ABS, etc.
+  json-to-yaml-converter:
+    title: Tiontaire JSON go YAML
+    description: Níl ort ach JSON a thiontú go YAML leis an tiontaire beo ar líne seo.
+  json-to-javascript:
+    title: Tiontaire JSON go JS
+    description: Go simplí, tiontaigh JSON go réad Javascript leis an tiontaire beo ar líne seo.
+  javascript-to-json:
+    title: Tiontaire JS go JSON
+    description: Go simplí, tiontaigh réad Javascript go JSON leis an tiontaire beo ar líne seo.
+  url-parser:
+    title: Parsálaí URL
+    description: >-
+      Déan URL a pharsáil ina chodanna comhpháirteacha ar leithligh 
+      (prótacal, bunús, paraiméadair, port, ainm úsáideora-pasfhocal, ...)
+  iban-validator-and-parser:
+    title: Bailíochtóir agus parsálaí IBAN
+    description: >-
+      Bailíochtaigh agus parsáil uimhreacha IBAN. Seiceáil an bhfuil IBAN 
+      bailí agus faigh an tír, BBAN, más QR-IBAN é agus an fhormáid chairdiúil IBAN.
+  user-agent-parser:
+    title: Parsálaí úsáideora-ghníomhaire
+    description: >-
+      Brabhsáil agus parsáil Brabhsálaí, Inneall, OS, LAP, agus 
+      cineál / samhail  Gléas ó theaghrán úsáideora-ghníomhaire.
+  numeronym-generator:
+    title: Gineadóir uimhreacha
+    description: >-
+      Is focal é uimhrainm ina n-úsáidtear uimhir chun giorrúchán 
+      a dhéanamh. Mar shampla, is uimhrainm de "idirnáisiúnú" é "i18n" 
+      áit a seasann 18 do líon na litreacha idir an chéad i agus an n deireanach sa fhocal.
+  case-converter:
+    title: Tiontaire cás
+    description: Claochlaigh cás teaghráin agus roghnaigh idir formáidí éagsúla
+  html-entities:
+    title: Éalú aonáin HTML
+    description: >-
+     Éalú nó dí-éalaigh aonáin HTML (cuir a leagan HTML in ionad carachtair mar
+     <,>, &, " agus \')
+  json-prettify:
+    title: JSON ceartaigh agus formáid
+    description: Cuir do theaghrán JSON i bhformáid atá cairdiúil agus inléite ag an duine.
+  docker-run-to-docker-compose-converter:
+    title: Rith docker chuig tiontaire cumadóireachta Docker
+    description: Athraíonn orduithe “rith dugaí” go comhaid cumadóireachta docker!
+  mac-address-lookup:
+    title: Cuardach seoladh MAC
+    description: Faigh díoltóir agus monaróir feiste ag a sheoladh MAC.
+  mime-types:
+    title: Cineálacha MIME
+    description: Tiontaigh cineálacha MIME go síntí comhad agus vice-versa.
+  mic-tester:
+    title: Tástálaí Micreafóin
+    description: >-
+      Athsheinm agus léirshamhlaigh fuaim ó do mhicreafón, le soicind 
+      amháin breise de mhoill
+    start-button-text: Tosaigh ag athsheinm an mhicreafóin
+    stop-button-text: Stop ag athsheinm an mhicreafóin
+  toml-to-json:
+    title: TOML go JSON
+    description: Parsáil agus tiontaigh TOML go JSON.
+  lorem-ipsum-generator:
+    title: Gineadóir an-mhaith
+    description: >-
+     Is téacs áitsealbhóra é Lorem ipsum a úsáidtear go coitianta 
+     chun foirm amhairc doiciméid nó cló-aghaidh a léiriú gan a bheith ag brath ar ábhar brí
+  qrcode-generator:
+    title: Gineadóir cóid QR
+    description: >-
+      Gin agus íoslódáil cód QR le haghaidh URL (nó gnáth-théacs), 
+      agus saincheap na dathanna cúlra agus tulra.
+    error-resistance: 'Friotaíocht earráide:'
+    background-color: 'Dath an chúlra:'
+    foreground-color: 'Dath an tulra:'
+    text: 'Téacs:'
+    placeholder: Do nasc nó téacs...
+    button:
+      download: Íoslódáil cód QR
+  wifi-qrcode-generator:
+    title: Gineadóir cóid QR WiFi
+    description: Gin agus íoslódáil cóid QR le haghaidh naisc thapa le líonraí WiFi.
+  qr-contact-info-generator:
+    title: Gineadóir Faisnéise Teagmhála QR
+    description: >-
+      Gin agus íoslódáil cóid QR le haghaidh Faisnéis Teagmhála (vCard), agus 
+      saincheap dathanna an chúlra agus an tulra.
+  xml-formatter:
+    title: Formáidiú XML
+    description: Cuir do theaghrán XML i bhformáid chairdiúil inléite ag an duine.
+  temperature-converter:
+    title: Tiontaire teochta
+    description: >-
+      Tiontuithe teochta céimeanna do Kelvin, Celsius, Fahrenheit, 
+      Rankine, Delisle, Newton, Réaumur, agus Rømer.
+  chmod-calculator:
+    title: Áireamhán Chmod
+    description: >-
+      Ríomh do cheadanna agus orduithe chmod 
+      leis an áireamhán chmod ar líne seo.
+  rsa-key-pair-generator:
+    title: RSA gineadóir eochair péire
+    description: Gin eochairphéire deimhnithe nua randamach RSA príobháideach agus poiblí pem.
+  html-wysiwyg-editor:
+    title: Eagarthóir HTML WYSIWYG
+    description: >-
+      Eagarthóir HTML WYSIWYG ar líne, gné-saibhir a 
+      ghineann cód foinse an ábhair láithreach.
+  yaml-to-toml:
+    title: YAML go TOML
+    description: Parsáil agus tiontaigh YAML go TOML.
+  mac-address-generator:
+    title: Gineadóir seoladh MAC
+    description: >-
+      Cuir isteach an chainníocht agus an réimír. Ginfear seoltaí MAC i do 
+      chás roghnaithe (cás mór nó cás íochtair)
+  json-diff:
+    title: Difríocht JSON
+    description: Déan comparáid idir dhá réad JSON agus faigh na difríochtaí eatarthu.
+  date-converter:
+    title: Tiontaire dáta-am
+    description: Tiontaigh dáta agus am isteach sna formáidí éagsúla
+  phone-parser-and-formatter:
+    title: Parsálaí agus formáidí fón
+    description: >-
+      Parsáil, bailíochtaigh agus formáid uimhreacha gutháin. 
+      Faigh eolas faoin uimhir theileafóin, amhail an cód tíre, cineál, etc.
+  ipv4-subnet-calculator:
+    title: Áireamhán subnet IPv4
+    description: >-
+      Déan do bhloic IPv4 CIDR a pharsáil agus faigh an fhaisnéis 
+      uile a theastaíonn uait faoi do fho-líonra.
+  og-meta-generator:
+    title: Oscail gineadóir meta graf
+    description: Ginigh meitea-chlibeanna HTML graif oscailte agus sóisialta do do shuíomh Gréasáin.
+  ipv6-ula-generator:
+    title: IPv6 gineadóir ULA
+    description: >-
+      Gin do sheoltaí IP áitiúla féin, neamh-inrothraithe, 
+      le do líonra de réir RFC4193.
+  hash-text:
+    title: Hais téacs
+    description: >-
+      Déan hash ar shreangán téacs ag baint úsáide as an bhfeidhm atá uait: 
+      MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 nó RIPEMD160
+  json-to-toml:
+    title: JSON go TOML
+    description: Parsáil agus tiontaigh JSON go TOML.
+  json-to-ts:
+    title: JSON go TS
+    description: Parsáil agus tiontaigh JSON go TS.
+  device-information:
+    title: Eolas gléas
+    description: >-
+      Faigh faisnéis faoi do ghléas reatha (méid scáileáin, cóimheas picteilín, 
+      gníomhaire úsáideora, ...)
+  pdf-signature-checker:
+    title: Seiceáil sínithe PDF
+    description: >-
+      Fíoraigh sínithe comhaid PDF. Tá síniú amháin nó níos mó i gcomhad 
+      PDF sínithe a fhéadfar a úsáid chun a chinneadh ar athraíodh a bhfuil 
+      sa chomhad ó síníodh an comhad.
+  json-sort-master:
+    title: Máistir sórtála JSON
+    description: Sórtáil do JSON de réir eochracha agus luachanna.
+  json-minify:
+    title: Laghdaigh JSON
+    description: Laghdaigh agus comhbhrúigh do JSON trí spásanna neamhgháasta a bhaint.
+  json-string-converter:
+    title: Tiontaire teaghrán Json
+    description: ''
+  ulid-generator:
+    title: Gineadóir ULID
+    description: >-
+      Gin Aitheantóir Sortáilte Foclóra Uathúil Uathúil (ULID) randamach.
+  string-obfuscator:
+    title: Scrambalóir slabhra
+    description: >-
+      Scrambail slabhra (cosúil le rúndiamhair, IBAN, nó tocón) 
+      chun é a dhéanamh in-athsheachadte agus aitheanta gan a ábhar a nochtadh.
+  base-converter:
+    title: Tiontaire bonn slánuimhir
+    description: >-
+      Uimhir a thiontú idir bhunanna difriúla (deachúil, heicsidheachúil, 
+      dénártha, ochtach, bonn64, ...)
+  floating-point-converter:
+    title: Tiontaire uimhir snámhphointe
+    description: >-
+      Tiontaigh uimhir dheachúil go huimhir snámhphointe dénártha IEEE 
+      754 nó a mhalairt.
+  yaml-to-json-converter:
+    title: Tiontaire YAML go JSON
+    description: Níl ort ach YAML a thiontú go JSON leis an tiontaire beo ar líne seo.
+  uuid-generator:
+    title: Gineadóir UUIDs
+    description: >-
+       Is uimhir 128-giotán é Aitheantóir Uathúil Uilíoch (UUID) a úsáidtear chun 
+       faisnéis a aithint i gcórais ríomhaireachta. Is é an líon UUIDanna féideartha 
+       ná 16^32, is é sin 2^128 nó thart ar 3.4x10^38 (is é sin go leor!).
+  nanoid-generator:
+    title: Gineadóir NanoIDanna
+    description: Gin aitheantóirí randamacha, uathúla agus atá cairdiúil do URLanna do d’fheidhmchláir.
+    uppercase: Cás Uachtarach
+    lowercase: Cás beag
+    numbers: Uimhreacha
+    symbols: Siombailí
+    excludeLookalikes: Eisiamh cosúlachtaí
+    length: Fad
+    quantity: Cainníocht
+    copied: NanoID cóipeáilte chuig an ghearrthaisce
+    button:
+      copy: Cóipeáil
+      refresh: Athnuaigh
+  ipv4-address-converter:
+    title: Tiontaire seoladh IPv4
+    description: >-
+      Tiontaigh seoladh IP go deachúil, dénártha, 
+      heicsidheachúlach, nó fiú ionadaíocht IPv6 de.
+  text-statistics:
+    title: Staitisticí téacs
+    description: >-
+     Faigh eolas faoi théacs, líon na gcarachtar, líon na bhfocal, 
+     a mhéid i mbearta, ...
+    characters: Líon na gcarachtar
+    words: Líon focal
+    lines: Líon na línte
+    bytes: Méid na mbaití
+    placeholder: Do théacs...
+  text-to-nato-alphabet:
+    title: Téacs go aibítir NATO
+    description: Trasfhoirmigh téacs go aibítir foghraíochta NATO chun é a tharchur ó bhéal.
+
+  basic-auth-generator:
+    title: Gineadóir údaraithe bunúsach
+    description: Gin ceanntásc aitheantais base64 ó ainm úsáideora agus pasfhocal.
+    button:
+      copy: Cóipeáil ceanntásc
+    username: Ainm úsáideora
+    yourusername: D'ainm úsáideora...
+    password: Pasfhocal
+    yourpassword: Do phasfhocal...
+    copied: Ceanntásc cóipeáilte chuig an ghearrthaisce
+  text-to-unicode:
+    title: Téacs go Unicode
+    description: Parsáil agus tiontaigh téacs go Unicode agus vice-versa
+  ipv4-range-expander:
+    title: Forbróir raon IPv4
+    description: >-
+     Nuair a thugtar seoladh tosaigh agus deireadh IPv4, ríomhann an 
+     uirlis seo folíon IPv4 bailí mar aon lena nodaireacht CIDR.
+  text-diff:
+    title: Difríocht téacs
+    description: Déan comparáid idir dhá théacs agus féach ar na difríochtaí eatarthu.
+  otp-generator:
+    title: Gineadóir cóid OTP saor in aisce,
+    description: >-
+      Gin agus bailíochtaigh OTP bunaithe ar am 
+      (focal faire aonuaire) le haghaidh fíordheimhnithe ilfhachtóiriúil.
+  url-encoder:
+    title: Ionchódaigh/díchódaigh teaghráin formáidithe URL
+    description: >-
+      Ionchódaigh an téacs go formáid URL-ionchódaithe (ar a dtugtar 
+      "faoin gcéad ionchódaithe freisin"), nó díchódaigh uaidh.
+  text-to-binary:
+    title: Text to UTF-8 binary
+    description: Convert text to its UTF-8 binary representation and vice-versa.
+  image-resizer:
+    title: Image resizer
+    description: ''
+  json-to-object:
+    title: JSON to object
+    description: Parse and convert JSON to object.
+  multi-link-downloader:
+    title: Multi link downloader
+    description: >-
+      The tool will asynchronously combine the contents of the provided links
+      into a single zip file for you to download. (Requires an internet
+      connection)
+  unicode-to-java-entities:
+    title: Unicode Characters to Java Entities Converter
+    description: Unicode Characters to Java Entities Converter and vice-versa
+  sip-auth:
+    title: SIP Authorization
+    description: >-
+      This tool helps you to verify the SIP authorization header. The tool
+      performs all calculations in the browser and does not transmit sensitive
+      information over the network, so feel free to use it.
+    password: SIP password
+    password-tips: Enter a password...
+    message: SIP message
+    message-tips: Paste your SIP message here...
+    result: Result
+    sucess: Success
+    failure: Failure
+  uuid-converter:
+    title: UUID converter
+    description: >-
+      Converts a UUID with and without a hyphen to other common SQL notations
+      and back.
+    uuid: UUID
+    uuidhexupper: HEX notation (upper)
+    uuidhexlower: HEX notation (lower)
+    uuidversion: RFC Version
+    input:
+      label: Your Input
+      placeholder: Your UUID with/without hyphen
+  ad-ldap-searcher:
+    title: ActiveDirectory LDAP properties searcher
+    description: Search in mapping of LDAP properties and ActiveDirectory UI
+  ai-prompt-splitter:
+    title: AI Prompt Splitter
+    description: Split a long document to multiple chat (ie ChatGPT) prompts
+  angle-converter:
+    title: Angle Units Converter
+    description: Convert values between angle units
+  ansible-vault-crypt-decrypt:
+    title: Ansible vault crypt decrypt
+    description: Encrypt and decrypt Ansible Vault Secrets
+  api-tester:
+    title: API Tester
+    description: HTTP API Tester
+  area-converter:
+    title: Area Units Converter
+    description: Convert values between area units
+  aspect-ratio-calculator:
+    title: Aspect Ratio Calculator
+    description: Use this ratio calculator to check the dimensions when resizing images.
+  barcode-generator:
+    title: Barcode generator
+    description: Barcode generator
+  barcode-reader:
+    title: Barcode Reader
+    description: Barcode reader
+  base64-hex-converter:
+    title: Base64 Hex array encoder/decoder
+    description: Simply encode and decode Hex array into a their base64 representation.
+  bounce-parser:
+    title: Bounce Email Parser
+    description: Parse SMTP Bounce Emails
+  card-picker:
+    title: Card Picker
+    description: Generate a deck of playing cards
+  certificate-key-parser:
+    title: Certificate/Key parser
+    description: Parse Key and Certificate
+  cidr-in-cidr:
+    title: IPv4-6/IPRange/CIDR in IPRange/CIDR/IPMask
+    description: >-
+      Given a CIDR/IP Range/Wildcard IP/IP Mask, tell if a given
+      IPv4-6/Range/CIDR/Wildcard IP/IP Mask is in subnet range
+  code-highlighter:
+    title: Code/Scripts Highlighter
+    description: Highlight programming code fragments
+  coin-flipper:
+    title: Coin Flipper
+    description: Flip a coin
+  color-contrast-checker:
+    title: Color Contrast Checker
+    description: Check the WCAG constrast level between two colors
+  color-wheel:
+    title: Color Wheel
+    description: Choose a color palette/theme using a wheel and mode
+  common-regex-memo:
+    title: Common Regex Cheatsheet
+    description: Cheatsheet for common regex patterns
+  countdown:
+    title: Countdown
+    description: Countdown and alarm at ellapsed duration
+  crc-calculator:
+    title: CRC calculator
+    description: >-
+      Compute text or file CRC (CRC1, CRC8, CRC8 1-Wire, CRC8 DVB-S2, CRC16,
+      CRC16 CCITT, CRC16 Modbus, CRC16 Kermit, CRC16 XModem, CRC24, CRC32, CRC32
+      MPEG-2, CRCJAM)
+  csr-generator:
+    title: CSR Generator
+    description: Certificate Signing Request generator (PEM format)
+  css-prettifier:
+    title: Css prettifier
+    description: CSS Prettify
+  css-selectors-memo:
+    title: CSS Selectors Cheatsheet
+    description: CSS Selectors Syntax Cheatsheet
+  css-xpath-converter:
+    title: CSS XPath Converter
+    description: Convert CSS selector to/from XPath expression
+  curl-converter:
+    title: Curl Converter
+    description: Generate common coding languages version of provided curl command line
+  currency-converter:
+    title: Currency Converter
+    description: Convert currency values using https://github.com/fawazahmed0/exchange-api
+  data-storage-unit-converter:
+    title: Data Storage Unit converter
+    description: >-
+      Convert data storage or transfer units (bytes, bibytes, bits,
+      kilobytes...)
+  data-transfer-rate-converter:
+    title: Data Transfer Rate Calculator
+    description: Compute Data Transfer times, rates and amount of data
+  date-duration-calculator:
+    title: Date+Durations Calculator
+    description: Add/substract durations from a specific date
+  days-calculator:
+    title: Days Calculator
+    description: Calculate days interval, holidays, difference, business times
+  dice-roller:
+    title: Dice Roller
+    description: RPG Dice Roller using Dice Notation
+  dmarc-report-analyzer:
+    title: DMARC Report Analyzer
+    description: Read and display DMARC Xml Reports
+  dns-queries:
+    title: DNS Queries
+    description: Perform DNS Queries (over HTTPS)
+  docker-compose-converter:
+    title: Docker Compose Format Converter
+    description: >-
+      Convert Docker Compose file between V1, 2.x, 3.x or CommonSpec and may
+      expand ports/volumes syntaxes
+  docker-compose-to-docker-run-converter:
+    title: Docker Compose to Docker run converter
+    description: Turns Docker Compose filt to docker run command(s)!
+  docker-compose-to-kubernetes:
+    title: Docker compose to kubernetes
+    description: Docker Compose to Kubernetes manifests
+  docker-compose-validator:
+    title: Docker Compose Validator
+    description: Validate Docker Compose files against CommonSpec schema
+  docker-memo:
+    title: Docker Cheatsheet
+    description: Docker command memo
+  docker-run-to-kubernetes:
+    title: Docker run to kubernetes
+    description: Docker run command(s) to Kubernetes manifests
+  duplicate-line-finder:
+    title: Duplicate Lines Finder
+    description: Find and list duplicated lines
+  duration-calculator:
+    title: Duration Calculator
+    description: Calculate/parse durations
+  ecdsa-key-pair-generator:
+    title: ECDSA key pair generator
+    description: >-
+      Generate new random ECDSA private and public keys (with or without
+      passphrase).
+  ed25519-key-pair-generator:
+    title: Ed25519 key pair generator
+    description: >-
+      Generate new random Ed25519 private and public keys (with or without
+      passphrase).
+  email-parser:
+    title: Email Parser
+    description: Parse and extract information from raw Email content
+  energy-computer:
+    title: Energy Consumption and Expense Computer
+    description: Compute energy consumption and expense
+  energy-converter:
+    title: Energy Units Converter
+    description: Convert values between energy units
+  file-hasher:
+    title: File Hasher
+    description: Compute Hash of files
+  file-type:
+    title: File Type Detector
+    description: Identify the type of a file
+  folder-structure-diagram:
+    title: Folder Structure Diagram
+    description: tree-like utility for generating ASCII folder structure diagrams
+  force-converter:
+    title: Force Units Converter
+    description: Convert values between force units
+  geo-distance-calculator:
+    title: Geo distance calculator
+    description: >-
+      Compute distance between two geo location (and display current user
+      location information)
+  gpt-token-estimator:
+    title: GPT Token Estimator
+    description: OpenAI GPT Token Estimator
+  gzip-converter:
+    title: GZip/Deflate converter
+    description: Convert text from/to gzip/deflate
+  har-sanitizer:
+    title: HAR Sanitizer
+    description: HAR Files Sanitizer
+  hdd-calculator:
+    title: HDD calculator
+    description: >-
+      Storage device manufacturers report capacities in decimal form (like GB),
+      while operating systems and other software uses binary form (GiB),
+      although still incorrectly using the decimal unit (GiB). This tool
+      converts decimal form capacity into various binary forms.
+  heic-converter:
+    title: HEIC Converter
+    description: HEIC Converter to JPEG or PNG
+  hex-converter:
+    title: Hex Encoder/Decoder
+    description: >-
+      Encode and decode Hex buffers to number (bits, endianess, sign or floating
+      point or chars) and structures
+  hex-file-converter:
+    title: HEX File Converter
+    description: Convert between file and hexadecimal representation
+  html-cleaner:
+    title: Html cleaner
+    description: Clean HTML
+  html-prettifier:
+    title: Html Prettifier
+    description: Prettify HTML code
+  html-to-markdown:
+    title: Html to markdown
+    description: Convert HTML (either from clipboard) to Markdown
+  htpasswd-generator:
+    title: Htpasswd/htaccess generator
+    description: htpassword/htaccess user/password generator
+  ical-generator:
+    title: ICAL Generator
+    description: Generate ICAL/ICS file from event infos
+  ical-merger:
+    title: iCal Merger
+    description: Merge many iCal file to a single
+  ical-parser:
+    title: ICAL File Parser
+    description: Parse ICAL/ICS file to event display
+  ico-converter:
+    title: ICO/PNG converter
+    description: Convert from PNG/JPEG to/from ICO
+  ies-lighting-guidelines:
+    title: IES Lighting Guidelines
+    description: >-
+      Search in the Illuminating Engineering Society’s (IES) current illuminance
+      recommendations.
+  illuminance-converter:
+    title: Illuminance Converter
+    description: Illuminance units converter (Lux, Foot Candles, Nox, Phot, Flame)
+  image-converter:
+    title: Image Formats Converter
+    description: Convert images from one format to another
+  image-exif-reader:
+    title: Image EXIF/Metadata/GPS/JPEG Quality reader
+    description: >-
+      Read EXIF, IPTC, XMP, GPS and other metadata, JPEG Quality, and other
+      infos from images files
+  image-to-ascii-art:
+    title: Image to ASCII Art
+    description: Image to ASCII Art Generator
+  image-to-css:
+    title: Image to CSS
+    description: Convert image to CSS (url, background, ...)
+  integers-to-ip:
+    title: Integers to IPv4/IPv6
+    description: Convert integers to IP
+  ip-cidr-to-range:
+    title: Ipv4/6 CIDR to IP Range Calculator
+    description: Calculate IP Range from a CIDR (IPv4/6)
+  ip-geo-location:
+    title: IP Geo Location
+    description: Retrieve information about an IPv4/6 address or domain location
+  ip-include-exclude:
+    title: IP Subnets Exclude Calculator
+    description: >-
+      Substract a disallowed IP Ranges/Mask/CIDR list from an allowed IP
+      Ranges/Mask/CIDR list
+  ip-range-to-cidr:
+    title: IPv4/6 Range to CIDR(s) Calculator
+    description: Calculate CIDR(s) from an IP Range (IPv4/6)
+  ipv6-address-converter:
+    title: Ipv6 address converter
+    description: Convert an ip address into decimal, binary, hexadecimal and get infos
+  ipv6-subnet-calculator:
+    title: Ipv6 subnet calculator
+    description: >-
+      Parse your IPv6 CIDR blocks and get all the info you need about your sub
+      network.
+  isbn-validator-and-parser:
+    title: ISBN Validator and Parser
+    description: Parse, validate, format and get infos for an ISBN
+  iso-3166-searcher:
+    title: ISO 3166 Country Codes Searcher
+    description: Allow searching for Country Code (ISO 3166) and info
+  javascript-prettifier:
+    title: Javascript Prettifier
+    description: JS/Javascript Prettifier
+  jq-memo:
+    title: Jq Cheatsheet
+    description: JQ command cheatsheet
+  jq-tester:
+    title: Jq/JSONPath Tester
+    description: Test jq/JSONPath expression against a JSON content
+  js-unobfuscator:
+    title: Javascript Unobfuscator/Unpacker
+    description: >-
+      webcrack is a tool for reverse engineering javascript. It can deobfuscate
+      obfuscator.io, unminify, transpile, and unpack webpack/browserify, to
+      resemble the original source code as much as possible.
+  json-editor:
+    title: JSON Editor
+    description: Edit JSON content
+  json-escaper:
+    title: Json Escaper/Unescaper
+    description: Escape and unescape JSON string
+  json-linter:
+    title: JSON Linter
+    description: Check and lint JSON content
+  json-size-analyzer:
+    title: Json Size Analyzer
+    description: Measure JSON nodes relative weights
+  json-to-csharp:
+    title: JSON to C#
+    description: Convert JSON data to C# type definition
+  json-to-go:
+    title: JSON to Go
+    description: Convert JSON to Go struct
+  json-to-java:
+    title: JSON to Java Entity
+    description: Convert JSON into Java entities
+  json-to-php-array:
+    title: Json to PHP-Array
+    description: Convert JSON to PHP Array
+  json-to-schema:
+    title: Json to Schema
+    description: >-
+      Convert JSON data to JSON Schema, MySQL DDL, Mongoose Schema, Google
+      BigQuery schema or ClickHouse Table Schema
+  jsonpath-memo:
+    title: JSONPath Syntax Cheatsheet
+    description: JSONPath Syntax Cheatsheet
+  jwt-generator:
+    title: JWT Generator
+    description: JWT Token generator and editor
+  jwt-parser:
+    title: JWT parser
+    description: Parse and decode your JSON Web Token (jwt) and display its content.
+  length-converter:
+    title: Length Units Converter
+    description: Convert values from length units
+  list-comparer:
+    title: Lists Comparer
+    description: Compare two list items
+  luhn-validator:
+    title: Luhn Validator
+    description: Check and generate key for identifier validated by a Luhn checknum
+  mac-address-converter:
+    title: MAC Address Converter
+    description: >-
+      Change the format of a MAC address and chose between different formats
+      (EUI-48, EUI-64, IPv6)
+  many-units-converter:
+    title: Many Units Converter
+    description: Convert all kind of units
+  markdown-cheatsheet:
+    title: Markdown Cheat Sheet
+    description: Markdown Cheat Sheet
+  markdown-editor:
+    title: Markdown Editor
+    description: Simple Markdown Editor
+  markdown-toc-generator:
+    title: Markdown toc generator
+    description: Generate a TOC from a markdown file/content
+  mass-converter:
+    title: Mass Units Converter
+    description: Convert values between mass units
+  math-formats-converter:
+    title: Math Formats Converter
+    description: Convert mathematical expression between formats
+  math-ocr:
+    title: Math OCR
+    description: Convert Math Formula images to Latex
+  mermaid-exporter:
+    title: Mermaid exporter
+    description: Convert Markdown (Mermaid) to image and allow to export to PNG, JPG & SVG
+  mime-converter:
+    title: MIME Encoding Converter
+    description: Convert from/to MIME Encoded-Word format (Mail Subject)
+  mongo-objectid-converter:
+    title: MongoDB ObjectId Converter
+    description: Convert between MongoDB ObjectId and internal timestamp
+  morse-converter:
+    title: Morse Code Converter
+    description: Encode/Decode to Morse code
+  my-ip:
+    title: My IP Address
+    description: Get your client IP Address (IPv4/6) using https://www.ipify.org/
+  nano-memo:
+    title: Nano CheatSheet
+    description: Nano Editor Cheatsheet
+  nginx-formatter:
+    title: Nginx formatter
+    description: Format/prettify Nginx configuration files
+  ocr-image:
+    title: OCRize image and PDF
+    description: Perform OCR (Tesseract) on an image or PDF
+  option43-generator:
+    title: Option43 generator
+    description: Generate Option43 Wifi DHCP configuration
+  outlook-parser:
+    title: Outlook MSG Parser
+    description: Parse Outlook MSG Files
+  parquets-reader:
+    title: Parquet files Reader
+    description: Read parquet file as JSON object arrays
+  passphrase-generator:
+    title: Passphrase Generator
+    description: Generate random memoizable Passphrases
+  paste-as-markdown:
+    title: Paste as Markdown
+    description: Paste cells/tables and links from clipboard content as Markdown
+  pdf-encrypt:
+    title: Pdf Encrypt
+    description: Encrypt and add protection to a PDF File
+  pdf-linearize:
+    title: Pdf Linearize/FastWeb
+    description: Create a Linearized version of a PDF (turn to FastWeb)
+  pdf-unlock:
+    title: Pdf Decrypt and Unlock
+    description: Decrypt a PDF and unlock (remove security permissions)
+  pgp-encryption:
+    title: PGP encryption
+    description: Encrypt and decrypt text clear text using PGP Keys.
+  pgp-key-pair-generator:
+    title: PGP keygen
+    description: >-
+      Generate new random PGP private and public keys (with or without
+      passphrase).
+  php-array-to-json:
+    title: PHP-Array to JSON
+    description: Convert PHP Array to JSON
+  pin-code-generator:
+    title: Pin Code Generator
+    description: Generate Unique PIN (digits) codes
+  pomodoro-timer:
+    title: Pomodoro Timer
+    description: Basic Pomodoro Timer
+  port-numbers:
+    title: Port Numbers
+    description: Search for assigned usage of a given port and protocol
+  potrace:
+    title: Image to SVG (potrace)
+    description: Convert an raster image to vectorial SVG
+  power-converter:
+    title: Power Converter
+    description: Convert values between power units
+  pressure-converter:
+    title: Pressure Units Converter
+    description: Convert values between pressure units
+  properties-to-yaml:
+    title: Properties to YAML
+    description: Convert Java .properties content to Yaml
+  raid-calculator:
+    title: RAID Calculator
+    description: >-
+      Calculate storage capacity, fault tolerance and space efficiency of an
+      array based on the number of disks, size, and RAID type
+  rem-px-converter:
+    title: REM Pixel converter
+    description: Convert px to rem and vice versa
+  remove-exif:
+    title: Remove EXIF
+    description: Remove Exif from JPEG Files
+  rmb-numbers:
+    title: RMB Uppercase Converter
+    description: RMB/Renminbi Capitalization Conversion Tool
+  rsa-ecdsa-signing:
+    title: RSA/DSA/ECDSA Signer and Verifier
+    description: Sign data and verify signature using RSA/DSA/ECDSA Keys
+  rsa-encryption:
+    title: RSA encryption
+    description: Encrypt and decrypt text clear text using RSA Keys.
+  rune-converter:
+    title: Rune converter
+    description: Convert Text to Runes and vice-versa
+  sensitive-data-masker:
+    title: Sensitive data masker
+    description: Clean sensitive data from textual content (ie logs)
+  sharepoint-decoder:
+    title: Sharepoint Share Url Decoder
+    description: Decode sharepoint.com share urls to "normal" Sharepoint Url
+  sla-calculator:
+    title: SLA calculator
+    description: Service Level Agreement Calcultator
+  smart-raw-converter:
+    title: SMART Raw Converter
+    description: Convert SMART Raw values to human readable
+  smart-text-replacer:
+    title: Smart Text Replacer and Linebreaker
+    description: >-
+      Search and replace a word on single or multiple occurrences just like
+      windows notepad search and replace. Also allows to manage linebreaking and
+      text splitting
+  snowflake-id-extractor:
+    title: Snowflake ID extractor
+    description: Extract timestamp, machine ID, and sequence number from a Snowflake ID
+  software-licence-compatibility:
+    title: Software licence compatibility
+    description: Software Licence compatibility checker and information
+  ssl-cert-converter:
+    title: SSL Certificate converter
+    description: Convert SSL Certificate from different formats
+  stacktrace-prettier:
+    title: Stacktrace prettier
+    description: Highlight .Net and JS stacktraces
+  timezone-converter:
+    title: Timezone Converter
+    description: >-
+      Convert Date-Time from a timezone to others and get timezone vs countries
+      infos
+  torrent-to-magnet:
+    title: Torrent to Magnet
+    description: Convert a torrent file to a Magnet url
+  ttl-calculator:
+    title: TTL calculator
+    description: TTL to Time converter
+  unicode-formatter:
+    title: Unicode Formatter
+    description: Format text using Unicode fonts
+  unicode-search:
+    title: Unicode Search
+    description: Search in Unicode Characters
+  url-cleaner:
+    title: Url Cleaner
+    description: >-
+      Clean Ads tracker, UTM, Facebook and other ads provider parameters from an
+      URL
+  url-fanger:
+    title: Url Fanger
+    description: Defang/Refang an URL or email address
+  url-text-fragment-maker:
+    title: Url Text Search Fragment Maker
+    description: >-
+      Create url that allows linking directly to a specific portion of text in a
+      web document
+  utm-url-generator:
+    title: UTM Url Generator
+    description: Generate an URL with utm_ parameters
+  vat-validator:
+    title: VAT Numbers Validator
+    description: Validate VAT Numbers
+  volume-converter:
+    title: Volume Units Converter
+    description: Convert values from volume units
+  websocket-tester:
+    title: Websocket tester
+    description: Allows to test WebSocket connections
+  week-number-converter:
+    title: Week Numbers Converter
+    description: Convert between ISO Week number, Week number in month and date
+  wpa-psk-generator:
+    title: WPA PSK generator
+    description: >-
+      WPA Pre-shared Key Generator to convert a WPA passphrase and SSID to the
+      256-bit pre-shared ("raw") key
+  x-vr-spamcause-decoder:
+    title: X-VR-SpamCause Decoder
+    description: Decode X-VR-SPAMCAUSE header in OVH mails
+  x509-certificate-generator:
+    title: X509 certificate generator
+    description: Generate a self signed SSL/x509 certificate
+  xpath-memo:
+    title: XPath Syntax Cheatsheet
+    description: XPath Syntax Cheatsheet
+  xpath-tester:
+    title: XPath Tester
+    description: Test XPath expression against XML content
+  xslt-tester:
+    title: XSLT tester
+    description: Allows to test XML transformation using XSLT Stylesheets
+  cli-command-editor:
+    title: Cli command editor
+    description: ''
+    command: Command
+    placeholder: Paste command here
+  safelink-decoder:
+    title: Outlook Safelink decoder
+    description: Decode Outlook SafeLink links
+    input: 'Your input Outlook SafeLink Url:'
+    input-placeholder: Your input Outlook SafeLink Url...
+    output: 'Output decoded URL:'
+  ascii-text-drawer:
+    title: ASCII Art Text Generator
+    description: Create ASCII art text with many fonts and styles.
+    text: 'Your text:'
+    placeholder: Your text to draw
+    output: 'Ascii Art text:'
+    font: 'Font:'
+    width: 'Width:'
+    loading: Loading font...
+    error: Current settings resulted in error.
+  json-to-xml:
+    title: JSON to XML
+    description: Convert JSON to XML
+    input: Your JSON content
+    input-placeholder: Paste your JSON content here...
+    output: Converted XML
+    error: Provided JSON is not valid.
+  xml-to-json:
+    title: XML to JSON
+    description: Convert XML to JSON
+    input: Your XML content
+    input-placeholder: Paste your XML content here...
+    output: Converted JSON
+    error: Provided XML is not valid.
+  email-normalizer:
+    title: Email normalizer
+    description: >-
+      Normalize email addresses to a standard format for easier comparison.
+      Useful for deduplication and data cleaning.
+    input: 'Raw emails to normalize:'
+    output: 'Normalized emails:'
+    input-placeholder: Put your emails here (one per line)...
+    output-placeholder: Normalized emails will appear here...
+    button:
+      clear: Clear emails
+      copy: Copy normalized emails
+    copied: Normalized emails copied to the clipboard
+  markdown-to-html:
+    title: Markdown to HTML
+    description: Convert Markdown to HTML and allow to print (as PDF)
+    markdown: 'Your Markdown to convert:'
+    markdownInput: Your Markdown content...
+    html: 'Output HTML:'
+    button:
+      print: Print as PDF
+  regex-memo:
+    title: Regex cheatsheet
+    description: Javascript Regex/Regular Expression cheatsheet
+  regex-tester:
+    title: Regex Tester
+    description: Test your regular expressions with sample text.
+    regex-input: 'Regex to test:'
+    regex-input-placeholder: Put the regex to test
+    link: See Regular Expression Cheatsheet
+    text-input: 'Text to match:'
+    text-input-placeholder: Put the text to match
+    matches: Matches
+    text-index: Index in text
+    value: Value
+    captures: Captures
+    groups: Groups
+    sample: Sample matching text
+    diagram: Regex Diagram
+    global: Global search
+    ignoreCase: Case-insensitive search
+    multiline: Allows ^ and $ to match next to newline characters.
+    dotAll: Allows . to match newline characters.
+    unicode: Unicode; treat a pattern as a sequence of Unicode code points.
+    unicodeSets: An upgrade to the u mode with more Unicode features.
+    regex: Regex
+    no-match: No match
+  age-crypto:
+    title: AGE Cryptography
+    description: >-
+      Provides a simple and easy-to-use open-source Age tool for generating
+      keys, encrypting, and decrypting messages.
+  ansi-escape-tester:
+    title: ANSI Escape Tester
+    description: Create and test ANSI console escape sequences
+  bash-memo:
+    title: Bash Cheatsheet
+    description: Bash common commands
+  bimi-dns-generator:
+    title: BIMI DNS Generator
+    description: Generate BIMI DNS TXT record
+  bmi-calculator:
+    title: BMI Calculator
+    description: Body Mass Index Calculator (us or metric units)
+  citation-generator:
+    title: Citation Generator
+    description: Generate citation of papers/books in MLA or APA format
+  cookies-parser:
+    title: Cookies Parser
+    description: Parse Cookie HTTP Header
+  cron-alarm:
+    title: Cron/Weekday Alarm
+    description: Alarm based on time and weekdays expression
+  csv-to-data:
+    title: Csv to Data
+    description: Convert CSV file to JSON, YAML, CSV, SQL INSERT, XML or Markdown
+  curl-generator:
+    title: Curl Command Generator
+    description: Generate CURL command lines
+  data-faker:
+    title: Data Faker
+    description: Generate fake data using JSON template
+  distinct-words:
+    title: Distinct Words
+    description: Extract and count occurences of each unique word in a text
+  dkim-dns-generator:
+    title: DKIM DNS Generator
+    description: Generate DKIM DNS TXT record
+  dmarc-dns-generator:
+    title: DMARC DNS Generator
+    description: Generate DMARC DNS TXT record
+  excel-to-data:
+    title: Excel to data
+    description: Convert XLSX file to JSON, YAML, CSV, SQL INSERT, XML or Markdown
+  firewalld-generator:
+    title: FW command line generator
+    description: Generate fw command lines
+  fortune-wheel:
+    title: Fortune wheel
+    description: A configurable fortune wheel
+  fstab-generator:
+    title: FStab Generator
+    description: Generate /etc/fstab line
+  git-semantic-commit-memo:
+    title: Git Semantic Commit Cheatsheet
+    description: Cheatsheet for committing using semantic prefixes
+  htaccess-generator:
+    title: HTAccess generator
+    description: Generate .htaccess file
+  html-minifier:
+    title: HTML Minifier
+    description: Minify HTML content
+  iptables-generator:
+    title: Iptables Generator
+    description: Generate iptables command lines
+  json-query:
+    title: Json Query
+    description: Run JSON Query lang on a given JSON content
+  json-to-php:
+    title: Json to PHP Code
+    description: Generate PHP Classes from JSON
+  json-to-protobuf:
+    title: Json to Protobuf
+    description: Generate Protobuf declaration from JSON objects
+  json-to-python:
+    title: Json to Python
+    description: Convert JSON to Python classes
+  json-to-sql-ddl:
+    title: Json to SQL DDL
+    description: JSON to SQL CREATE TABLE
+  json-to-sql-insert:
+    title: Json to SQL INSERT
+    description: Convert JSON array to INSERT INTO
+  json-to-typescript:
+    title: Json to Typescript
+    description: Convert JSON to Typescript code
+  k8s-memo:
+    title: K8s Cheatsheet
+    description: Kubernetes useful commands
+  nginx-memo:
+    title: Nginx Cheatsheet
+    description: Nginx configuration and useful commands
+  paseto-encryption:
+    title: Paseto/PASERK Local
+    description: Generate local keys and encrypt/decrypt payloads
+  paseto-signing:
+    title: Paseto/PASERK Public/Private
+    description: Generate public/private key pairs and sign/verify payload
+  pdf-concat:
+    title: Pdf Concatener
+    description: Concatenate PDF into a single one
+  pdf-extract:
+    title: Pdf Page Extractor
+    description: Extract pages range from a PDF
+  pdf-text-extractor:
+    title: PDF Text Extractor
+    description: Extract text from PDF
+  pgp-keygen:
+    title: PGP keygen
+    description: >-
+      Generate new random PGP private and public keys (with or without
+      passphrase).
+  properties-converter:
+    title: Properties converter
+    description: Convert Java .properties file from/to YAML
+  punycode-converter:
+    title: Punycode Converter
+    description: >-
+      Convert international unicode domain names or emails from/to ASCII
+      Punycode version
+  qr-code-decoder:
+    title: QR Code decoder
+    description: QR Code Reader
+  quote-converter:
+    title: Quote Converter
+    description: Convert quoted string from/to \
+  rsync-generator:
+    title: Rsync Generator
+    description: Rsync command generator
+  spf-dns-generator:
+    title: SPF DNS generator
+    description: Generate SPF DNS TXT record
+  sql-minifier:
+    title: SQL Minifier
+    description: Minify SQL queries
+  string-escaper:
+    title: String Escaper
+    description: Escape string to code language version
+  tcpdump-generator:
+    title: TCPDump Generator
+    description: Generate tcpdump command line
+  text-to-unicode-names:
+    title: Text to Unicode Names
+    description: >-
+      Convert a text to its hexadecimal character codes and Unicode Names for
+      each character
+  time-alarm:
+    title: Time Alarm
+    description: Alarm at a specific date and time
+  traefik-compose-maker:
+    title: Traefik Docker Compose Maker
+    description: >-
+      Create a docker compose with Traefik labels ready for a given service and
+      options
+  vim-memo:
+    title: VIM Cheatsheet
+    description: Vim text editor commands
+  watermarker:
+    title: Watermarker
+    description: Add watermark or logo to one or more images
+formatTransformer.download: Download
+textareaCopyable.download: Download
+home.loading-more-tools: Loading more tools...
+locale-selector.select-a-language: Select a language
