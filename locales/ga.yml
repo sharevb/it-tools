@@ -140,7 +140,6 @@ tools:
   svg-placeholder-generator:
     title: Gineadóir áitsealbhóirí SVG
     description: Gin íomhánna svg le húsáid mar áitshealbhóir i d’fheidhmchláir.
-
   json-to-csv:
     title: JSON go CSV
     description: Tiontaigh JSON go CSV le brath ceanntásc go huathoibríoch.
@@ -150,75 +149,66 @@ tools:
   camera-recorder:
     title: Taifeadta ceamara
     description: Glac pictiúr nó taifead físeán ó do ceamara gréasáin nó ceamara.
-
   keycode-info:
     title: Faisnéis eochairchóid
     description: >-
       Faigh eochairchód javascript, cód, suíomh agus 
       mionathraithe aon eochair brúite.
-
   emoji-picker:
     title: Roghnóir Emoji
     description: Cóipeáil agus greamaigh emojis go héasca agus faigh an cód cód agus luach pointí gach emoji.
-
   color-converter:
     title: Tiontaire datha
     description: Tiontaigh dath idir na formáidí éagsúla (hex, rgb, hsl agus ainm css)
-
   bcrypt:
     title: Bcrypt
-    description: Hasháil agus comparáid a dhéanamh ar shlabhra téacs ag úsáid bcrypt. Is feidhm hashála 
-    pasfhocail é bcrypt atá bunaithe ar an gcipher Blowfish.
-
+    description: >-
+      Hasháil agus comparáid a dhéanamh ar shlabhra téacs ag úsáid bcrypt. Is feidhm hashála 
+      pasfhocail é bcrypt atá bunaithe ar an gcipher Blowfish.
   crontab-generator:
     title: Gineadóir Crontab
     description: >-
-    description: Bailíochtaigh agus gin crontab agus faigh an cur síos inléite ag an duine ar an sceideal cron.
-
+      Bailíochtaigh agus gin crontab agus faigh an cur síos inléite ag an duine ar an sceideal cron.
   http-status-codes:
     title: Cóid stádais HTTP
     description: An liosta de na cóid stádais HTTP go léir, a n-ainm, agus a gciall.
   sql-prettify:
     title: SQL prettify agus formáid
-    description: Déan do cheisteanna SQL a fhormáid agus a mhaisiú ar líne (tacaíonn sé le canúintí 
-    SQL éagsúla).
-      
+    description: >-
+      Déan do cheisteanna SQL a fhormáid agus a mhaisiú ar líne (tacaíonn sé le canúintí 
+      SQL éagsúla).      
   benchmark-builder:
     title: Tógálaí tagarmhairc
-    description: Déan comparáid éasca le ham feidhmithe na dtascanna leis an tógálaí 
-    tagarmharcála ar líne an-simplí seo.
-
-      benchmark builder.
+    description: >-
+      Déan comparáid éasca le ham feidhmithe na dtascanna leis an tógálaí 
+      tagarmharcála ar líne an-simplí seo.      
   git-memo:
     title: Bileog caimiléir Git
     description: Is bogearraí bainistíochta leagan díláraithe é Git. Leis an bhileog cheat seo, 
-    beidh rochtain thapa agat ar na horduithe git is coitianta.
-      
+      beidh rochtain thapa agat ar na horduithe git is coitianta.      
   slugify-string:
     title: Slabhra sluga a chruthú
     description: Déan slabhra URL, ainm comhad agus ID sábháilte.
   encryption:
     title: Criptigh / díchriptiú téacs
     description: >-
-    Criptigh téacs soiléir agus díchriptigh ciphertext ag baint úsáide as halgartaim 
-    crypto mar AES, TripleDES, Coinín nó RC4.
+      Criptigh téacs soiléir agus díchriptigh ciphertext ag baint úsáide as halgartaim 
+      crypto mar AES, TripleDES, Coinín nó RC4.
     defaultErrorMessage: Ní féidir do théacs a chipriú
     title-encrypt: Criptigh
     title-decrypt: Díchriptigh
   random-port-generator:
     title: Gineadóir port randamach
     description: >-
-    description: Gin uimhreacha randamacha poirt lasmuigh de raon na gcalafort "aitheanta" 
-    (0-1023).
-
+      description: Gin uimhreacha randamacha poirt lasmuigh de raon na gcalafort "aitheanta" 
+      (0-1023).
   yaml-prettify:
     title: YAML prettify agus formáid
     description: Cuir do theaghrán YAML i bhformáid chairdiúil inléite ag an duine.
   eta-calculator:
     title: Áireamhán ETA
     description: Áireamhán ETA (Am Measta na hAthalainne) chun an t-am críochnaithe garbh de 
-    thasc a chinneadh, mar shampla, am críochnaithe agus fad íoslódála comhad.
-
+      thasc a chinneadh, mar shampla, am críochnaithe agus fad íoslódála comhad.
   roman-numeral-converter:
     title: Tiontaire uimhreacha Rómhánacha
     description: Tiontaigh uimhreacha Rómhánacha go huimhreacha agus tiontaigh uimhreacha go huimhreacha Rómhánacha.
@@ -247,7 +237,6 @@ tools:
   toml-to-yaml:
     title: TOML go YAML
     description: Parsáil agus tiontaigh TOML go YAML.
-
   math-evaluator:
     title: Measúnaí mata
     description: >-
@@ -482,7 +471,6 @@ tools:
   text-to-nato-alphabet:
     title: Téacs go aibítir NATO
     description: Trasfhoirmigh téacs go aibítir foghraíochta NATO chun é a tharchur ó bhéal.
-
   basic-auth-generator:
     title: Gineadóir údaraithe bunúsach
     description: Gin ceanntásc aitheantais base64 ó ainm úsáideora agus pasfhocal.
