@@ -4,6 +4,35 @@ import { useStyleStore } from '@/stores/style.store';
 const styleStore = useStyleStore();
 const { isMenuCollapsed, isSmallScreen } = toRefs(styleStore);
 const siderPosition = computed(() => (isSmallScreen.value ? 'absolute' : 'static'));
+
+// Reactive window width
+const windowWidth = ref(window.innerWidth);
+
+// Update window width on resize
+function updateWindowWidth() {
+  windowWidth.value = window.innerWidth;
+}
+
+// Add resize listener
+onMounted(() => {
+  window.addEventListener('resize', updateWindowWidth);
+});
+
+// Clean up listener
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWindowWidth);
+});
+
+// Calculate the actual width to ensure minimum width is respected
+const siderWidth = computed(() => {
+  if (isMenuCollapsed.value) {
+    return 0;
+  }
+
+  // Get 10% of window width, but ensure it's at least 240px
+  const tenPercent = windowWidth.value * 0.1;
+  return Math.max(240, tenPercent);
+});
 </script>
 
 <template>
@@ -12,7 +41,7 @@ const siderPosition = computed(() => (isSmallScreen.value ? 'absolute' : 'static
       bordered
       collapse-mode="width"
       :collapsed-width="0"
-      :width="240"
+      :width="siderWidth"
       :collapsed="isMenuCollapsed"
       :show-trigger="false"
       :native-scrollbar="false"

@@ -28,11 +28,15 @@ const collapsedCategories = useStorage<Record<string, boolean>>(
 const isToggling = ref(false);
 
 function toggleCategoryCollapse({ name }: { name: string }) {
-  collapsedCategories.value[name] = !collapsedCategories.value[name];
+  // Fix: Handle undefined by defaulting to true (collapsed), then toggle
+  const currentState = collapsedCategories.value[name] ?? true;
+  collapsedCategories.value[name] = !currentState;
 }
 
 const areAllCollapsed = computed(() => {
-  return toolsByCategory.value.every(({ name }) => collapsedCategories.value[name] !== false);
+  return toolsByCategory.value.every(({ name }) =>
+    (collapsedCategories.value[name] ?? true) !== false,
+  );
 });
 
 async function toggleAllCategories() {
@@ -63,15 +67,14 @@ function getAnimationDuration(itemCount: number): number {
 
   const additionalDuration = (itemCount - baseItemCount) * durationIncrement;
 
-  // Ensure the duration doesn't go below the base duration
-  // This means that only if the item count is higher than the base item count, each extra element will add `durationIncrement` milliseconds to the animation
   return Math.max(baseDuration + additionalDuration, baseDuration);
 }
 
 const menuOptions = computed(() =>
   toolsByCategory.value.map(({ name, components }) => ({
     name,
-    isCollapsed: collapsedCategories.value[name] === undefined ? true : collapsedCategories.value[name],
+    // Fix: Use nullish coalescing to handle undefined consistently
+    isCollapsed: collapsedCategories.value[name] ?? true,
     animationDuration: getAnimationDuration(components.length),
     tools: components.map(tool => ({
       label: makeLabel(tool),

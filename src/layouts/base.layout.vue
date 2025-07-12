@@ -1,18 +1,16 @@
 <script lang="ts" setup>
-import { NIcon, useThemeVars } from 'naive-ui';
-
-import { RouterLink } from 'vue-router';
 import { Home2, Menu2 } from '@vicons/tabler';
-
+import { NIcon, useThemeVars } from 'naive-ui';
 import { storeToRefs } from 'pinia';
+import { RouterLink } from 'vue-router';
 import HeroGradient from '../assets/hero-gradient.svg?component';
 import MenuLayout from '../components/MenuLayout.vue';
 import NavbarButtons from '../components/NavbarButtons.vue';
-import { useStyleStore } from '@/stores/style.store';
-import { config } from '@/config';
-import type { ToolCategory } from '@/tools/tools.types';
-import { useToolStore } from '@/tools/tools.store';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
+import { config } from '@/config';
+import { useStyleStore } from '@/stores/style.store';
+import { useToolStore } from '@/tools/tools.store';
+import type { ToolCategory } from '@/tools/tools.types';
 
 const themeVars = useThemeVars();
 const styleStore = useStyleStore();
@@ -156,20 +154,26 @@ const tools = computed<ToolCategory[]>(() => [
 }
 
 .sider-content {
-  padding-top: 160px;
+  padding-top: 20px;
   padding-bottom: 200px;
 }
 
 .hero-wrapper {
-  position: absolute;
-  display: block;
+  position: sticky;
+  display: flex;
   left: 0;
-  width: 100%;
   z-index: 10;
+  height: 150px;
   overflow: hidden;
+  position: relative;
 
   .gradient {
-    margin-top: -65px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .text-wrapper {
