@@ -1,5 +1,6 @@
 import fs from 'node:fs';
-import path from 'node:path';
+import path, { basename } from 'node:path';
+import process from 'node:process';
 import yaml from 'yaml';
 
 const toolsDir = 'src/tools';
@@ -45,36 +46,38 @@ function processVueComponent(filePath, toolName) {
     return `${attr}: t('tools.${toolName}.texts.${key}')`;
   });
 
-  // Regex to find label or placeholder attributes
-  regex = /(?<!:)((?:input-|output-)?(?:label|placeholder|title))="([^"]+)"/g;
-  content = content.replace(regex, (match, attr, text) => {
-    if (!text?.trim()) {
-      return match;
-    }
-    const key = (attr + '-' + text.replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')).toLowerCase();
-    if (!localesData.tools[toolName].texts) {
-      localesData.tools[toolName].texts = {};
-    }
-    localesData.tools[toolName].texts[key] = text;
-    return `:${attr}="t('tools.${toolName}.texts.${key}')"`;
-  });
+  if (filePath.endsWith('.vue')) {
+    // Regex to find label or placeholder attributes
+    regex = /(?<!:)((?:input-|output-)?(?:label|placeholder|title))="([^"]+)"/g;
+    content = content.replace(regex, (match, attr, text) => {
+      if (!text?.trim()) {
+        return match;
+      }
+      const key = (attr + '-' + text.replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')).toLowerCase();
+      if (!localesData.tools[toolName].texts) {
+        localesData.tools[toolName].texts = {};
+      }
+      localesData.tools[toolName].texts[key] = text;
+      return `:${attr}="t('tools.${toolName}.texts.${key}')"`;
+    });
 
-  // Regex to find text inside HTML tags
-  const textInsideTagsRegex = /(?<!=)\>(?:\n\s*)?([^\<\>\n]+)(?:\n\s*)?\</g;
-  content = content.replace(textInsideTagsRegex, (match, text) => {
-    if (!text?.trim()) {
-      return match;
-    }
-    if (text.match(/[\}\{\|\[\<\>\]]/)) {
-      return match;
-    }
-    const key = ('tag-' + text.trim().replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')).toLowerCase();
-    if (!localesData.tools[toolName].texts) {
-      localesData.tools[toolName].texts = {};
-    }
-    localesData.tools[toolName].texts[key] = text.trim();
-    return `>{{ t('tools.${toolName}.texts.${key}') }}<`;
-  });
+    // Regex to find text inside HTML tags
+    const textInsideTagsRegex = /(?<!=)\>(?:\n\s*)?([^\<\>\n]+)(?:\n\s*)?\</g;
+    content = content.replace(textInsideTagsRegex, (match, text) => {
+      if (!text?.trim()) {
+        return match;
+      }
+      if (text.match(/[\}\{\|\[\<\>\]]/)) {
+        return match;
+      }
+      const key = ('tag-' + text.trim().replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')).toLowerCase();
+      if (!localesData.tools[toolName].texts) {
+        localesData.tools[toolName].texts = {};
+      }
+      localesData.tools[toolName].texts[key] = text.trim();
+      return `>{{ t('tools.${toolName}.texts.${key}') }}<`;
+    });
+  }
 
   if (origContent === content) {
     console.log(`Nothing to extract in ${filePath}`);
@@ -89,16 +92,20 @@ function processVueComponent(filePath, toolName) {
   console.log(`Processed: ${filePath}`);
 }
 
-fs.readdirSync(toolsDir)
-  .filter(toolName => {
-    const toolPath = path.join(toolsDir, toolName);
-    return fs.statSync(toolPath).isDirectory();
-  })
-  .forEach(toolName => {
-    const toolPath = path.join(toolsDir, toolName);
-    console.log(`Processing tool: ${toolName}`);
-    processVueComponents(toolPath, toolName);
-  });
+if (process.argv[1]) {
+  processVueComponent(process.argv[2], process.argv[3] || basename(process.argv[2]));
+} else {
+  fs.readdirSync(toolsDir)
+    .filter((toolName) => {
+      const toolPath = path.join(toolsDir, toolName);
+      return fs.statSync(toolPath).isDirectory();
+    })
+    .forEach((toolName) => {
+      const toolPath = path.join(toolsDir, toolName);
+      console.log(`Processing tool: ${toolName}`);
+      processVueComponents(toolPath, toolName);
+    });
+}
 
 // Write back the updated locales file
 fs.writeFileSync(localesFile, yaml.stringify(localesData), 'utf-8');
