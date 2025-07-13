@@ -321,6 +321,7 @@ declare module '@vue/runtime-core' {
     NLayoutSider: typeof import('naive-ui')['NLayoutSider']
     NMenu: typeof import('naive-ui')['NMenu']
     NSpace: typeof import('naive-ui')['NSpace']
+    NSpin: typeof import('naive-ui')['NSpin']
     NSwitch: typeof import('naive-ui')['NSwitch']
     NumberInput: typeof import('./src/tools/pomodoro-timer/app/components/NumberInput.vue')['default']
     NumeronymGenerator: typeof import('./src/tools/numeronym-generator/numeronym-generator.vue')['default']

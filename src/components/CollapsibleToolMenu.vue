@@ -28,7 +28,6 @@ const collapsedCategories = useStorage<Record<string, boolean>>(
 const isToggling = ref(false);
 
 function toggleCategoryCollapse({ name }: { name: string }) {
-  // Fix: Handle undefined by defaulting to true (collapsed), then toggle
   const currentState = collapsedCategories.value[name] ?? true;
   collapsedCategories.value[name] = !currentState;
 }
@@ -88,7 +87,7 @@ const themeVars = useThemeVars();
 </script>
 
 <template>
-  <div class="top-controls" ml-6px>
+  <div class="top-controls" mb-12px ml-12px>
     <c-button :disabled="isToggling" @click="toggleAllCategories">
       <span v-if="isToggling">
         {{ areAllCollapsed ? 'Expanding...' : 'Collapsing...' }}
@@ -100,7 +99,11 @@ const themeVars = useThemeVars();
   </div>
 
   <div v-for="{ name, tools, isCollapsed, animationDuration } of menuOptions" :key="name" class="category-container">
-    <div ml-6px mt-12px flex cursor-pointer items-center op-60 @click="toggleCategoryCollapse({ name })">
+    <button
+      class="category-button"
+      flex cursor-pointer items-center op-60
+      @click="toggleCategoryCollapse({ name })"
+    >
       <span :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }" text-16px lh-1 op-50 transition-transform>
         <icon-mdi-chevron-right />
       </span>
@@ -108,7 +111,7 @@ const themeVars = useThemeVars();
       <span ml-8px text-13px>
         {{ name }}
       </span>
-    </div>
+    </button>
 
     <div
       class="menu-container"
@@ -133,6 +136,20 @@ const themeVars = useThemeVars();
 </template>
 
 <style scoped lang="less">
+.category-button {
+  border: none;
+  background: transparent;
+  padding: 6px;
+  width: 100%;
+  color: v-bind('themeVars.textColor1');
+  text-align: left;
+  user-select: none;
+
+  &:hover {
+    background-color: v-bind('themeVars.buttonColor2Hover');
+    opacity: 0.8;
+  }
+}
 .category-container {
   .menu-container {
     display: grid;
@@ -155,6 +172,13 @@ const themeVars = useThemeVars();
         ::v-deep(.n-menu-item-content::before) {
           left: 0;
           right: 13px;
+          transition: none !important; // Disables hover transition effect to instantly show hover state
+
+        &::hover{
+          text-overflow: clip;
+          white-space: normal;
+          word-break: break-all;
+        }
         }
       }
 
