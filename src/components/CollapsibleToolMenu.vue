@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
 import { useThemeVars } from 'naive-ui';
-import { RouterLink, useRoute } from 'vue-router';
+import { useRoute } from 'vue-router';
 import MenuIconItem from './MenuIconItem.vue';
+import MenuItemWithTooltip from './MenuItemTooltip.vue';
 import type { Tool, ToolCategory } from '@/tools/tools.types';
 
 const props = withDefaults(defineProps<{ toolsByCategory?: ToolCategory[] }>(), { toolsByCategory: () => [] });
 const { toolsByCategory } = toRefs(props);
 const route = useRoute();
 
-const makeLabel = (tool: Tool) => () => h(RouterLink, { to: tool.path }, { default: () => tool.name });
+const makeLabel = (tool: Tool) => () => h(MenuItemWithTooltip, { tool });
 const makeIcon = (tool: Tool) => () => h(MenuIconItem, { tool });
 
 const collapsedCategories = useStorage<Record<string, boolean>>(
@@ -25,16 +26,25 @@ const collapsedCategories = useStorage<Record<string, boolean>>(
   },
 );
 
+// Initialize default values for all categories
+watchEffect(() => {
+  toolsByCategory.value.forEach(({ name }) => {
+    if (!(name in collapsedCategories.value)) {
+      collapsedCategories.value[name] = true;
+    }
+  });
+});
+
 const isToggling = ref(false);
 
 function toggleCategoryCollapse({ name }: { name: string }) {
-  const currentState = collapsedCategories.value[name] ?? true;
+  const currentState = collapsedCategories.value[name];
   collapsedCategories.value[name] = !currentState;
 }
 
 const areAllCollapsed = computed(() => {
   return toolsByCategory.value.every(({ name }) =>
-    (collapsedCategories.value[name] ?? true) !== false,
+    collapsedCategories.value[name] !== false,
   );
 });
 
@@ -72,8 +82,7 @@ function getAnimationDuration(itemCount: number): number {
 const menuOptions = computed(() =>
   toolsByCategory.value.map(({ name, components }) => ({
     name,
-    // Fix: Use nullish coalescing to handle undefined consistently
-    isCollapsed: collapsedCategories.value[name] ?? true,
+    isCollapsed: collapsedCategories.value[name],
     animationDuration: getAnimationDuration(components.length),
     tools: components.map(tool => ({
       label: makeLabel(tool),
@@ -173,12 +182,6 @@ const themeVars = useThemeVars();
           left: 0;
           right: 13px;
           transition: none !important; // Disables hover transition effect to instantly show hover state
-
-        &::hover{
-          text-overflow: clip;
-          white-space: normal;
-          word-break: break-all;
-        }
         }
       }
 
