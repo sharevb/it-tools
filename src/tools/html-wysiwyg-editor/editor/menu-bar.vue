@@ -59,14 +59,14 @@ const items: MenuItem[] = [
   {
     type: 'button',
     icon: Bold,
-    title: t('tools.__i18n_ally_root__.unicode-formatter.texts.title-bold'),
+    title: t('tools.unicode-formatter.texts.title-bold'),
     action: () => editor.value.chain().focus().toggleBold().run(),
     isActive: () => editor.value.isActive('bold'),
   },
   {
     type: 'button',
     icon: Italic,
-    title: t('tools.__i18n_ally_root__.unicode-formatter.texts.title-italic'),
+    title: t('tools.unicode-formatter.texts.title-italic'),
     action: () => editor.value.chain().focus().toggleItalic().run(),
     isActive: () => editor.value.isActive('italic'),
   },

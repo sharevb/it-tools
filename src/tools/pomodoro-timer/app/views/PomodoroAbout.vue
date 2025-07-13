@@ -1,6 +1,6 @@
 <template>
   <div class="about-root">
-    <h1>{{ $t('home.__i18n_ally_root__.nav.aboutLabel') }}</h1>
+    <h1>{{ $t('home.nav.aboutLabel') }}</h1>
 
     <h2>{{ $t('tools.pomodoro-timer.PomodoroAbout.text.the-pomodoro-technique') }}</h2>
 
