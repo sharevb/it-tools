@@ -16,7 +16,7 @@ const store = useStore('pomodoro-store');
     </p>
     <p>
       {{ $t('tools.pomodoro-timer.Home.text.go-to') }} <a style="cursor: pointer;" @click="store.commit('goToPage', 'settings')">
-        {{ $t('tools.__i18n_ally_root__.watermarker.texts.title-settings') }}
+        {{ $t('tools.watermarker.texts.title-settings') }}
       </a> {{ $t('tools.pomodoro-timer.Home.text.to-get-started') }}
     </p>
   </div>

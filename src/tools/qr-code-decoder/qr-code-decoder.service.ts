@@ -74,12 +74,12 @@ export function parseQRData(qrContent: string | null) {
   }
   if (/^(?:https?|ftp):\/\//.test(qrContent)) {
     return {
-      type: t('tools.__i18n_ally_root__.websocket-tester.texts.label-url'),
+      type: t('tools.websocket-tester.texts.label-url'),
       value: qrContent,
     };
   }
   return {
-    type: t('tools.__i18n_ally_root__.categories.text'),
+    type: t('tools.categories.text'),
     value: qrContent,
   };
 }

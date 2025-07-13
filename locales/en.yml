@@ -5203,7 +5203,7 @@ tools.raid-calculator.service.text.raid-1-requires-at-least-1-disk: RAID 1 requi
 tools.raid-calculator.service.text.raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
   RAID 1 consists of an exact copy of the data (mirror) across two or more
   disks. The array will operate as long as at least one drive is operational.
-tools.__i18n_ally_root__.mac-address-generator.texts.label-none: None
+tools.mac-address-generator.texts.label-none: None
 tools.raid-calculator.service.text.raid-0-requires-at-least-1-disk: RAID 0 requires at least 1 disk
 tools.raid-calculator.service.text.raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
   RAID 0 splits data evenly across 2 or more disks without redunancy or fault
@@ -5212,8 +5212,8 @@ tools.qr-code-decoder.service.text.unknown: Unknown
 tools.qr-code-decoder.service.text.phone: Phone
 tools.qr-code-decoder.service.text.ical: iCal
 tools.qr-code-decoder.service.text.sms: SMS
-tools.__i18n_ally_root__.categories.text: Text
-tools.__i18n_ally_root__.websocket-tester.texts.label-url: Url
+tools.categories.text: Text
+tools.websocket-tester.texts.label-url: Url
 tools.qr-code-decoder.service.text.wifi: Wifi
 tools.qr-code-decoder.service.text.email-1: Email
 tools.qr-code-decoder.service.text.email-0: Email
@@ -5238,9 +5238,9 @@ tools.pomodoro-timer.PomodoroAbout.text.the-pomodoro-technique-is-a-time-managem
   pomodoro, from the Italian word for tomato, after the tomato-shaped kitchen
   timer Cirillo used as a university student.
 tools.pomodoro-timer.PomodoroAbout.text.the-pomodoro-technique: The Pomodoro Technique
-home.__i18n_ally_root__.nav.aboutLabel: About
+home.nav.aboutLabel: About
 tools.pomodoro-timer.Home.text.to-get-started: to get started.
-tools.__i18n_ally_root__.watermarker.texts.title-settings: Settings
+tools.watermarker.texts.title-settings: Settings
 tools.pomodoro-timer.Home.text.go-to: Go to
 tools.pomodoro-timer.Home.text.welcome: Welcome!
 tools.pomodoro-timer.Settings.text.restore-defaults: RESTORE DEFAULTS
@@ -5280,9 +5280,9 @@ tools.pdf-signature-details.text.not-after: Not after
 tools.website.text.enter-the-url-of-your-website: Enter the url of your website...
 tools.website.text.page-url: Page URL
 tools.website.text.enter-the-description-of-your-website: Enter the description of your website...
-tools.__i18n_ally_root__.ical-generator.texts.label-description: Description
+tools.ical-generator.texts.label-description: Description
 tools.website.text.enter-the-title-of-your-website: Enter the title of your website...
-tools.__i18n_ally_root__.xslt-tester.texts.tag-title: Title
+tools.xslt-tester.texts.tag-title: Title
 tools.website.text.select-the-type-of-your-website: Select the type of your website...
 tools.website.text.page-type: Page type
 tools.website.text.general-information: General information
@@ -5301,7 +5301,7 @@ tools.website.text.music: Music
 tools.website.text.profile: Profile
 tools.website.text.book: Book
 tools.website.text.article: Article
-tools.__i18n_ally_root__.qr-contact-info-generator.texts.label-website: Website
+tools.qr-contact-info-generator.texts.label-website: Website
 tools.videoTVShow.text.tv-show-details: TV show details
 tools.pdf-signature-details.text.common-name: Common name
 tools.pdf-signature-details.text.organization-name: Organization name
@@ -5365,7 +5365,7 @@ tools.meta-tag-generator.image.text.the-alternative-text-of-your-website-social-
 tools.meta-tag-generator.image.text.image-alt: Image alt
 tools.meta-tag-generator.image.text.the-url-of-your-website-social-image: The url of your website social image...
 tools.meta-tag-generator.image.text.image-url: Image url
-tools.__i18n_ally_root__.qr-code-generator.texts.title-image: Image
+tools.qr-code-generator.texts.title-image: Image
 tools.meta-tag-generator.musicAlbum.text.the-date-the-album-was-released: The date the album was released...
 tools.meta-tag-generator.musicAlbum.text.the-musician-that-made-this-song: The musician that made this song...
 tools.meta-tag-generator.musicAlbum.text.musician: Musician
@@ -5383,7 +5383,7 @@ tools.meta-tag-generator.musicRadioStation.text.radio-station-details: Radio sta
 tools.meta-tag-generator.profile.text.enter-the-gender-of-the-person: Enter the gender of the person...
 tools.meta-tag-generator.profile.text.gender: Gender
 tools.meta-tag-generator.profile.text.enter-the-username-of-the-person: Enter the username of the person...
-tools.__i18n_ally_root__.basic-auth-generator.username: Username
+tools.basic-auth-generator.username: Username
 tools.meta-tag-generator.profile.text.enter-the-last-name-of-the-person: Enter the last name of the person...
 tools.meta-tag-generator.profile.text.last-name: Last name
 tools.meta-tag-generator.profile.text.enter-the-first-name-of-the-person: Enter the first name of the person...
@@ -5402,7 +5402,7 @@ tools.meta-tag-generator.twitter.text.site-account: Site account
 tools.meta-tag-generator.twitter.text.the-twitter-card-type: The Twitter card type...
 tools.meta-tag-generator.twitter.text.card-type: Card type
 tools.meta-tag-generator.twitter.text.player: Player
-tools.__i18n_ally_root__.ies-lighting-guidelines.texts.tag-application: Application
+tools.ies-lighting-guidelines.texts.tag-application: Application
 tools.meta-tag-generator.twitter.text.summary-with-large-image: Summary with large image
 tools.meta-tag-generator.twitter.text.summary: Summary
 tools.meta-tag-generator.twitter.text.twitter: Twitter
@@ -5422,7 +5422,7 @@ tools.meta-tag-generator.videoMovie.text.movie-details: Movie details
 tools.meta-tag-generator.videoOther.text.other-video-details: Other video details
 tools.jwt-parser.constants.text.token-introspection-response: Token introspection response
 tools.jwt-parser.constants.text.entitlements: Entitlements
-tools.__i18n_ally_root__.regex-tester.groups: Groups
+tools.regex-tester.groups: Groups
 tools.jwt-parser.constants.text.roles: Roles
 tools.jwt-parser.constants.text.expires-in: Expires in
 tools.jwt-parser.constants.text.client-nonce: Client nonce
@@ -5486,10 +5486,10 @@ tools.jwt-parser.constants.text.issued-at: Issued At
 tools.jwt-parser.constants.text.not-before: Not Before
 tools.jwt-parser.constants.text.expiration-time: Expiration Time
 tools.jwt-parser.constants.text.audience: Audience
-tools.__i18n_ally_root__.email-parser.texts.label-subject: Subject
+tools.email-parser.texts.label-subject: Subject
 tools.jwt-parser.constants.text.issuer: Issuer
 tools.jwt-parser.constants.text.algorithm: Algorithm
-tools.__i18n_ally_root__.user-agent-parser.texts.label-type: Type
+tools.user-agent-parser.texts.label-type: Type
 tools.jwt-parser.constants.text.no-digital-signature-or-mac-performed: No digital signature or MAC performed
 tools.jwt-parser.constants.text.rsassa-pss-using-sha-512-and-mgf1-with-sha-512: RSASSA-PSS using SHA-512 and MGF1 with SHA-512
 tools.jwt-parser.constants.text.rsassa-pss-using-sha-384-and-mgf1-with-sha-384: RSASSA-PSS using SHA-384 and MGF1 with SHA-384
@@ -5550,8 +5550,8 @@ tools.menu-bar.text.heading-2: Heading 2
 tools.menu-bar.text.heading-1: Heading 1
 tools.menu-bar.text.inline-code: Inline code
 tools.menu-bar.text.strike: Strike
-tools.__i18n_ally_root__.unicode-formatter.texts.title-italic: Italic
-tools.__i18n_ally_root__.unicode-formatter.texts.title-bold: Bold
+tools.unicode-formatter.texts.title-italic: Italic
+tools.unicode-formatter.texts.title-bold: Bold
 tools.hex-converter.service.text.unexpected-key-obj-key: Unexpected '{0}'='{1}'
 tools.hex-converter.service.text.unexpected-array-size-key-value-expected-coderoption-size-elements: Unexpected array size '{0}'='{1}' expected {2} elements
 tools.hex-converter.service.text.unexpected-non-array-key-value: Unexpected non array '{0}'='{1}'
@@ -5583,18 +5583,18 @@ tools.json-viewer.text.try-again-with-repairjsonlabel: Try again with "{0}"
 tools.json-viewer.text.repair-json: Repair JSON
 tools.spf-dns-generator.text.mechanisms: "Mechanisms:"
 tools.spf-dns-generator.text.policy: "Policy:"
-tools.__i18n_ally_root__.spf-dns-generator.texts.title-generated-spf-record: Generated SPF Record
-tools.__i18n_ally_root__.spf-dns-generator.texts.tag-neutral-all: Neutral (?all)
-tools.__i18n_ally_root__.spf-dns-generator.texts.tag-softfail-all: SoftFail (~all)
-tools.__i18n_ally_root__.spf-dns-generator.texts.tag-fail-all: Fail (-all)
-tools.__i18n_ally_root__.spf-dns-generator.texts.tag-pass-all: Pass (+all)
-tools.__i18n_ally_root__.spf-dns-generator.texts.tag-redirect: Redirect
-tools.__i18n_ally_root__.spf-dns-generator.texts.tag-exists: Exists
-tools.__i18n_ally_root__.spf-dns-generator.texts.label-include-domains: "Include Domains:"
-tools.__i18n_ally_root__.spf-dns-generator.texts.label-allowed-ipv6s: "Allowed IPv6s:"
-tools.__i18n_ally_root__.spf-dns-generator.texts.label-allowed-ipv4s: "Allowed IPv4s:"
-tools.__i18n_ally_root__.spf-dns-generator.texts.label-allowed-domains: "Allowed Domains:"
-tools.__i18n_ally_root__.spf-dns-generator.texts.title-spf-record-generator: SPF Record Generator
+tools.spf-dns-generator.texts.title-generated-spf-record: Generated SPF Record
+tools.spf-dns-generator.texts.tag-neutral-all: Neutral (?all)
+tools.spf-dns-generator.texts.tag-softfail-all: SoftFail (~all)
+tools.spf-dns-generator.texts.tag-fail-all: Fail (-all)
+tools.spf-dns-generator.texts.tag-pass-all: Pass (+all)
+tools.spf-dns-generator.texts.tag-redirect: Redirect
+tools.spf-dns-generator.texts.tag-exists: Exists
+tools.spf-dns-generator.texts.label-include-domains: "Include Domains:"
+tools.spf-dns-generator.texts.label-allowed-ipv6s: "Allowed IPv6s:"
+tools.spf-dns-generator.texts.label-allowed-ipv4s: "Allowed IPv4s:"
+tools.spf-dns-generator.texts.label-allowed-domains: "Allowed Domains:"
+tools.spf-dns-generator.texts.title-spf-record-generator: SPF Record Generator
 tools.certificate-key-parser.infos.text.type: "Type:"
 tools.certificate-key-parser.infos.text.public-key: Public Key
 tools.http-status-codes.constants.text.the-client-needs-to-authenticate-to-gain-network-access: The client needs to authenticate to gain network access.

@@ -19,10 +19,10 @@ export const ALGORITHM_DESCRIPTIONS: { [k: string]: string } = {
 
 // List extracted from IANA: https://www.iana.org/assignments/jwt/jwt.xhtml
 export const CLAIM_DESCRIPTIONS: Record<string, string> = {
-  typ: t('tools.__i18n_ally_root__.user-agent-parser.texts.label-type'),
+  typ: t('tools.user-agent-parser.texts.label-type'),
   alg: t('tools.jwt-parser.constants.text.algorithm'),
   iss: t('tools.jwt-parser.constants.text.issuer'),
-  sub: t('tools.__i18n_ally_root__.email-parser.texts.label-subject'),
+  sub: t('tools.email-parser.texts.label-subject'),
   aud: t('tools.jwt-parser.constants.text.audience'),
   exp: t('tools.jwt-parser.constants.text.expiration-time'),
   nbf: t('tools.jwt-parser.constants.text.not-before'),
@@ -88,7 +88,7 @@ export const CLAIM_DESCRIPTIONS: Record<string, string> = {
   cnonce: t('tools.jwt-parser.constants.text.client-nonce'),
   exi: t('tools.jwt-parser.constants.text.expires-in'),
   roles: t('tools.jwt-parser.constants.text.roles'),
-  groups: t('tools.__i18n_ally_root__.regex-tester.groups'),
+  groups: t('tools.regex-tester.groups'),
   entitlements: t('tools.jwt-parser.constants.text.entitlements'),
   token_introspection: t('tools.jwt-parser.constants.text.token-introspection-response'),
 };

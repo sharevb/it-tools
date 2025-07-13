@@ -27,7 +27,7 @@ const raidCalculations: { [key: string]: RaidType } = {
       return 100;
     },
     fault(_num: number, _size: number, _unit: number) {
-      return t('tools.__i18n_ally_root__.mac-address-generator.texts.label-none');
+      return t('tools.mac-address-generator.texts.label-none');
     },
   },
   raid_1: {
