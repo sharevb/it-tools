@@ -176,7 +176,7 @@ export function encodeStruct({ struct, jsonObject }: { struct: object; jsonObjec
             throw new TypeError(t('tools.hex-converter.service.text.unexpected-non-array-key-value', [key, value]));
           }
           if (Array.isArray(value) && value.length !== coderOption.size) {
-            throw new TypeError(t('tools.hex-converter.service.text.unexpected-array-size-key-value-expected-coderoption-size-elements', [key, value, coderOption.size]));
+            throw new TypeError(t('tools.hex-converter.service.text.unexpected-array-size-key-value-expected-coderoption-size-elements', [key, value.join(','), coderOption.size]));
           }
           const valueArr = !Array.isArray(value) ? [value] : value;
           for (let i = 0; i < coderOption.size; i++) {

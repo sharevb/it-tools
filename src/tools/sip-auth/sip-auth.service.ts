@@ -1,8 +1,7 @@
 import { MD5 } from 'crypto-js';
+import { translate as t } from '@/plugins/i18n.plugin';
 
 export { getAuthHeaderCheckResult };
-
-const { t } = useI18n();
 
 function getAuthHeaderCheckResult({ message, password }: { message: string; password: string }) {
   let calculatedHash;

@@ -1,8 +1,8 @@
 import { ValidationErrorsIBAN } from 'ibantools';
 
-export { getFriendlyErrors };
+import { translate as t } from '@/plugins/i18n.plugin';
 
-const { t } = useI18n();
+export { getFriendlyErrors };
 
 const ibanErrorToMessage = {
   [ValidationErrorsIBAN.NoIBANProvided]: t('tools.iban-validator-and-parser.service.text.no-iban-provided'),
