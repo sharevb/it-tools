@@ -1,5 +1,7 @@
 import type { DateTime } from 'luxon';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export type DayOfWeek =
   | 'monday'
   | 'tuesday'
@@ -18,8 +20,6 @@ const weekDayToName = {
   6: 'saturday',
   7: 'sunday',
 };
-
-import { translate as t } from '@/plugins/i18n.plugin';
 
 export type Holiday = `${3 | 2 | 1 | 0}${number}/${1 | 0}${number}` | `${3 | 2 | 1 | 0}${number}/${1 | 0}${number}/${number}${number}${number}${number}`;
 

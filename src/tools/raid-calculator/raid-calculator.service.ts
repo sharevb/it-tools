@@ -1,6 +1,6 @@
-export { raidCalculations };
-
 import { translate as t } from '@/plugins/i18n.plugin';
+
+export { raidCalculations };
 
 interface RaidType {
   about: string

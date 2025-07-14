@@ -1,8 +1,8 @@
 import { pack, unpack } from 'byte-data';
 
-export type Conversion = 'dec' | 'bin' | 'hex' | 'char';
-
 import { translate as t } from '@/plugins/i18n.plugin';
+
+export type Conversion = 'dec' | 'bin' | 'hex' | 'char';
 
 export function cleanHex(hex: string): string {
   return hex.replace(/\\x|0x/g, '');

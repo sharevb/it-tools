@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { generateMeta } from '@it-tools/oggen';
 import _ from 'lodash';
 import { image, ogSchemas, twitter, website } from './og-schemas';
@@ -84,7 +83,7 @@ const metaTags = computed(() => {
     </div>
   </div>
   <div>
-    <n-form-item :label="t('tools.meta-tag-generator.texts.label-your-meta-tags')">
+    <n-form-item :label="$t('tools.meta-tag-generator.texts.label-your-meta-tags')">
       <TextareaCopyable :value="metaTags" language="html" />
     </n-form-item>
   </div>

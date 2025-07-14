@@ -3,9 +3,9 @@ import { encrypt } from 'unixcrypt-browser';
 import md5 from 'apache-md5';
 import { multiRandFromArray } from '@/utils/random';
 
-const itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-
 import { translate as t } from '@/plugins/i18n.plugin';
+
+const itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 export function generateHtpasswd({
   username,

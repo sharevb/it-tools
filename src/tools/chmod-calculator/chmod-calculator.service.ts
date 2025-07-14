@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import type { GroupPermissions, Permissions, SpecialPermissions } from './chmod-calculator.types';
 
-export { computeUmaskRepresentation, computeChmodOctalRepresentation, computeChmodSymbolicRepresentation, computePermissionsFromChmodOctalRepresentation, computePermissionsFromChmodSymbolicRepresentation };
-
 import { translate as t } from '@/plugins/i18n.plugin';
+
+export { computeUmaskRepresentation, computeChmodOctalRepresentation, computeChmodSymbolicRepresentation, computePermissionsFromChmodOctalRepresentation, computePermissionsFromChmodSymbolicRepresentation };
 
 function computeChmodOctalRepresentation({ permissions }: { permissions: Permissions }): string {
   const permissionValue = { read: 4, write: 2, execute: 1 };

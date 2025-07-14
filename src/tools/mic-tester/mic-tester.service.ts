@@ -1,10 +1,10 @@
 import { onBeforeUnmount, ref } from 'vue';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 interface IMessageSender {
   error: (...messages: any[]) => void
 }
-
-import { translate as t } from '@/plugins/i18n.plugin';
 
 export function useMicrophoneService(messageSender: IMessageSender) {
   let audioContext: AudioContext | null = null;

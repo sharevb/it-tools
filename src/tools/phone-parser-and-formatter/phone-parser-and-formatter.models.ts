@@ -1,9 +1,9 @@
 import type { CountryCode, NumberType } from 'libphonenumber-js/types';
 import lookup from 'country-code-lookup';
 
-export { formatTypeToHumanReadable, getFullCountryName, getDefaultCountryCode };
-
 import { translate as t } from '@/plugins/i18n.plugin';
+
+export { formatTypeToHumanReadable, getFullCountryName, getDefaultCountryCode };
 
 const typeToLabel: Record<NonNullable<NumberType>, string> = {
   MOBILE: t('tools.phone-parser-and-formatter.models.text.mobile'),
