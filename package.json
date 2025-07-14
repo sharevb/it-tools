@@ -36,7 +36,8 @@
     "script:create:ui": "hygen generator ui-component",
     "release": "node ./scripts/release.mjs",
     "script:extract:desc": "node ./scripts/extract-tools-desc.mjs",
-    "script:extract:strings": "node ./scripts/extract-tools-strings.mjs"
+    "script:extract:strings": "node ./scripts/extract-tools-strings.mjs",
+    "vue-i18n-extract": "vue-i18n-extract report --vueFiles 'src/**/*.?(ts|vue)' --languageFiles 'locales/*.yml'"
   },
   "dependencies": {
     "@chenfengyuan/vue-barcode": "^2.0.2",
@@ -380,6 +381,7 @@
     "vite-plugin-wasm": "^3.4.1",
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.34.6",
+    "vue-i18n-extract": "^2.0.7",
     "workbox-window": "^7.3.0",
     "zx": "^7.2.3"
   },
