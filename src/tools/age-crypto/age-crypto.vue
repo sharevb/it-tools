@@ -167,7 +167,7 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
 <template>
   <n-tabs type="card">
     <!-- Generate Keys -->
-    <n-tab-pane name="keys" tab="Generate Keys">
+    <n-tab-pane name="keys" :tab="t('tools.age-crypto.text.generate-keys')">
       <n-card :title="t('tools.age-crypto.texts.title-private-key')" mb-1>
         <textarea-copyable v-model:value="privKey" rows="3" multiline :placeholder="t('tools.age-crypto.texts.placeholder-your-private-key-will-be-generated-here')" />
       </n-card>
@@ -180,7 +180,7 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
     </n-tab-pane>
 
     <!-- Encrypt Text -->
-    <n-tab-pane name="encrypt" tab="Encrypt">
+    <n-tab-pane name="encrypt" :tab="t('tools.age-crypto.text.encrypt')">
       <n-card :title="t('tools.age-crypto.texts.title-public-keys')" mb-1>
         <n-input v-model:value="recipients" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-recipient-key-or-keys-one-per-line')" required />
       </n-card>
@@ -196,7 +196,7 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
     </n-tab-pane>
 
     <!-- Encrypt Binary -->
-    <n-tab-pane name="encryptBinary" tab="Encrypt Binary">
+    <n-tab-pane name="encryptBinary" :tab="t('tools.age-crypto.text.encrypt-binary')">
       <n-card :title="t('tools.age-crypto.texts.title-public-keys')" mb-1>
         <n-input v-model:value="recipientsBinary" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-recipient-key-or-keys-one-per-line')" required />
       </n-card>
@@ -221,7 +221,7 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
     </n-tab-pane>
 
     <!-- Decrypt Text -->
-    <n-tab-pane name="decrypt" tab="Decrypt">
+    <n-tab-pane name="decrypt" :tab="t('tools.age-crypto.text.decrypt')">
       <n-card :title="t('tools.age-crypto.texts.title-private-keys')" mb-1>
         <n-input v-model:value="identities" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-identity-key-or-keys-one-per-line')" required />
       </n-card>
@@ -237,7 +237,7 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
     </n-tab-pane>
 
     <!-- Decrypt Binary -->
-    <n-tab-pane name="decryptBinary" tab="Decrypt Binary">
+    <n-tab-pane name="decryptBinary" :tab="t('tools.age-crypto.text.decrypt-binary')">
       <n-card :title="t('tools.age-crypto.texts.title-private-keys')" mb-1>
         <n-input v-model:value="identitiesBinary" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-identity-key-or-keys-one-per-line')" required />
       </n-card>
