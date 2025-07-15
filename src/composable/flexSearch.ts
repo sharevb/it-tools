@@ -55,9 +55,6 @@ export function useFlexSearch<Data extends Record<string, any>>({
   // Extract options
   const { keys, filterEmpty = true, shouldSort = true, tokenize = 'forward', ...indexOptions } = options;
 
-  // Add loading state and cancellation
-  const isInitializing = ref(false);
-
   // Normalize keys to include weights
   const normalizedKeys = keys.map((key) => {
     if (typeof key === 'string') {
@@ -89,58 +86,51 @@ export function useFlexSearch<Data extends Record<string, any>>({
 
   // Initialize indices with data
   const initializeIndices = async () => {
-    isInitializing.value = true;
+    dataMap.value.clear();
+    indices.forEach(({ index }) => index.clear());
 
-    try {
-      dataMap.value.clear();
-      indices.forEach(({ index }) => index.clear());
+    // Pre-calculate all the values to avoid repeated nested property access
+    const itemData = data.map((item, idx) => {
+      const itemKey = getItemKey(item, idx);
+      const values = new Map<string, string>();
 
-      // Pre-calculate all the values to avoid repeated nested property access
-      const itemData = data.map((item, idx) => {
-        const itemKey = getItemKey(item, idx);
-        const values = new Map<string, string>();
-
-        indices.forEach(({ key }) => {
-          const value = key.split('.').reduce((obj, path) => obj?.[path], item);
-          if (value) {
-            values.set(key, String(value));
-          }
-        });
-
-        return { itemKey, item, values };
-      });
-
-      // Batch add to dataMap
-      itemData.forEach(({ itemKey, item }) => {
-        dataMap.value.set(itemKey, item);
-      });
-
-      // Process indices sequentially to avoid event loop flooding
-      for (const { key, index } of indices) {
-        // Filter items that have values for this key upfront
-        const itemsForThisKey = itemData
-          .map(({ itemKey, values }) => ({ itemKey, value: values.get(key) }))
-          .filter(({ value }) => value);
-
-        const chunkSize = 5000;
-
-        for (let i = 0; i < itemsForThisKey.length; i += chunkSize) {
-          const chunk = itemsForThisKey.slice(i, i + chunkSize);
-
-          // Use requestAnimationFrame for better performance
-          await new Promise<void>((resolve) => {
-            requestAnimationFrame(() => {
-              chunk.forEach(({ itemKey, value }) => {
-                index.add(itemKey, value!);
-              });
-              resolve();
-            });
-          });
+      indices.forEach(({ key }) => {
+        const value = key.split('.').reduce((obj, path) => obj?.[path], item);
+        if (value) {
+          values.set(key, String(value));
         }
+      });
+
+      return { itemKey, item, values };
+    });
+
+    // Batch add to dataMap
+    itemData.forEach(({ itemKey, item }) => {
+      dataMap.value.set(itemKey, item);
+    });
+
+    // Process indices sequentially to avoid event loop flooding
+    for (const { key, index } of indices) {
+      // Filter items that have values for this key upfront
+      const itemsForThisKey = itemData
+        .map(({ itemKey, values }) => ({ itemKey, value: values.get(key) }))
+        .filter(({ value }) => value);
+
+      const chunkSize = 5000;
+
+      for (let i = 0; i < itemsForThisKey.length; i += chunkSize) {
+        const chunk = itemsForThisKey.slice(i, i + chunkSize);
+
+        // Use requestAnimationFrame for better performance
+        await new Promise<void>((resolve) => {
+          requestAnimationFrame(() => {
+            chunk.forEach(({ itemKey, value }) => {
+              index.add(itemKey, value!);
+            });
+            resolve();
+          });
+        });
       }
-    }
-    finally {
-      isInitializing.value = false;
     }
   };
 
@@ -293,5 +283,5 @@ export function useFlexSearch<Data extends Record<string, any>>({
     return searchAllIndices(query, searchLimit);
   });
 
-  return { searchResult, isInitializing };
+  return { searchResult };
 }
