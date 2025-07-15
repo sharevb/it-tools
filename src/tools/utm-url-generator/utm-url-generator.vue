@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useCopy } from '@/composable/copy';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const url = useStorage('utm-generator:url', '');
 const utmSource = useStorage('utm-generator:source', '');
@@ -31,7 +34,7 @@ const urlValidation = useValidation({
   source: url,
   rules: [
     {
-      message: 'Invalid url string',
+      message: t('tools.utm-url-generator.texts.message-invalid-url-string'),
       validator: (value) => {
         try {
           const _ = (new URL(value));
@@ -48,7 +51,7 @@ const utmMediumValidation = useValidation({
   source: utmMedium,
   rules: [
     {
-      message: 'UTM Medium is required',
+      message: t('tools.utm-url-generator.texts.message-utm-medium-is-required'),
       validator: value => value !== '',
     },
   ],
@@ -57,7 +60,7 @@ const utmSourceValidation = useValidation({
   source: utmSource,
   rules: [
     {
-      message: 'UTM Source is required',
+      message: t('tools.utm-url-generator.texts.message-utm-source-is-required'),
       validator: value => value !== '',
     },
   ],
@@ -66,72 +69,72 @@ const utmCampaignValidation = useValidation({
   source: utmCampaign,
   rules: [
     {
-      message: 'UTM Campaign is required',
+      message: t('tools.utm-url-generator.texts.message-utm-campaign-is-required'),
       validator: value => value !== '',
     },
   ],
 });
-const { copy } = useCopy({ source: utmifiedUrl, text: 'UTMified url copied.' });
+const { copy } = useCopy({ source: utmifiedUrl, text: t('tools.utm-url-generator.texts.text-utmified-url-copied') });
 </script>
 
 <template>
   <div>
     <n-p>
-      For more info about UTM, see <n-a href="https://en.wikipedia.org/wiki/UTM_parameters" target="_blank" rel="noopener noreferrer">
-        UTM Parameters
+      {{ t('tools.utm-url-generator.texts.tag-for-more-info-about-utm-see') }}<n-a href="https://en.wikipedia.org/wiki/UTM_parameters" target="_blank" rel="noopener noreferrer">
+        {{ t('tools.utm-url-generator.texts.tag-utm-parameters') }}
       </n-a>
     </n-p>
 
     <c-input-text
       v-model:value="url"
-      label="Website url"
-      placeholder="Put your website url here..."
+      :label="t('tools.utm-url-generator.texts.label-website-url')"
+      :placeholder="t('tools.utm-url-generator.texts.placeholder-put-your-website-url-here')"
       clearable
       mb-2
       :validation="urlValidation"
     />
     <c-input-text
       v-model:value="utmSource"
-      label="UTM Source (Identifies which site sent the traffic)"
-      placeholder="Put your UTM Source here..."
+      :label="t('tools.utm-url-generator.texts.label-utm-source-identifies-which-site-sent-the-traffic')"
+      :placeholder="t('tools.utm-url-generator.texts.placeholder-put-your-utm-source-here')"
       clearable
       mb-2
       :validation="utmSourceValidation"
     />
     <c-input-text
       v-model:value="utmMedium"
-      label="UTM Medium (Identifies what type of link was used)"
-      placeholder="Put your UTM Medium here..."
+      :label="t('tools.utm-url-generator.texts.label-utm-medium-identifies-what-type-of-link-was-used')"
+      :placeholder="t('tools.utm-url-generator.texts.placeholder-put-your-utm-medium-here')"
       clearable
       mb-2
       :validation="utmMediumValidation"
     />
     <c-input-text
       v-model:value="utmCampaign"
-      label="UTM Campaign (Identifies a specific product promotion or strategic campaign)"
-      placeholder="Put your UTM Campaign here..."
+      :label="t('tools.utm-url-generator.texts.label-utm-campaign-identifies-a-specific-product-promotion-or-strategic-campaign')"
+      :placeholder="t('tools.utm-url-generator.texts.placeholder-put-your-utm-campaign-here')"
       clearable
       mb-2
       :validation="utmCampaignValidation"
     />
     <c-input-text
       v-model:value="utmContent"
-      label="UTM Content (Identifies search terms)"
-      placeholder="Put your UTM Content here..."
+      :label="t('tools.utm-url-generator.texts.label-utm-content-identifies-search-terms')"
+      :placeholder="t('tools.utm-url-generator.texts.placeholder-put-your-utm-content-here')"
       clearable
       mb-2
     />
     <c-input-text
       v-model:value="utmTerm"
-      label="UTM Term (Identifies what specifically was clicked to bring the user to the site)"
-      placeholder="Put your UTM Term here..."
+      :label="t('tools.utm-url-generator.texts.label-utm-term-identifies-what-specifically-was-clicked-to-bring-the-user-to-the-site')"
+      :placeholder="t('tools.utm-url-generator.texts.placeholder-put-your-utm-term-here')"
       clearable
       mb-2
     />
 
     <div v-if="utmifiedUrl">
       <div mb-2>
-        Your url with UTM parameters added
+        {{ t('tools.utm-url-generator.texts.tag-your-url-with-utm-parameters-added') }}
       </div>
       <c-card>
         {{ utmifiedUrl }}
@@ -139,7 +142,7 @@ const { copy } = useCopy({ source: utmifiedUrl, text: 'UTMified url copied.' });
 
       <div mt-3 flex justify-center>
         <c-button autofocus @click="copy()">
-          Copy url
+          {{ t('tools.utm-url-generator.texts.tag-copy-url') }}
         </c-button>
       </div>
     </div>

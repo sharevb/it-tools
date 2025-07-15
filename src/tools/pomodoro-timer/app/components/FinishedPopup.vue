@@ -8,7 +8,7 @@ const store = useStore('pomodoro-store');
   <n-modal v-model:show="store.state.isShowFinishedPopup" :mask-closable="false">
     <n-card
       style="width: 600px"
-      title="Timer finished"
+      :title="$t('tools.pomodoro-timer.FinishedPopup.text.timer-finished')"
       :bordered="false"
       size="huge"
       role="dialog"
@@ -17,7 +17,7 @@ const store = useStore('pomodoro-store');
       <p>{{ store.state.finishedMessage }}</p>
       <template #footer>
         <n-button @click="store.commit('prepareNextTimerMode')">
-          OK
+          {{ $t('tools.pomodoro-timer.FinishedPopup.text.ok') }}
         </n-button>
       </template>
     </n-card>

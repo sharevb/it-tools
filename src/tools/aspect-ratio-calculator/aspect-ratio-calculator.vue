@@ -1,11 +1,14 @@
 <!-- AspectRatioCalculator.vue -->
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
 import { NButton, NInputNumber, NRadio, NRadioGroup, NSpace } from 'naive-ui';
 import {
   calculateAspectRatio,
   calculateDimensions,
 } from './aspect-ratio-calculator.service';
+
+const { t } = useI18n();
 
 const width = ref<number | null>(null);
 const height = ref<number | null>(null);
@@ -72,47 +75,47 @@ function clearRatio() {
   <NSpace vertical :size="24">
     <NRadioGroup v-model:value="mode">
       <NRadio value="ratio">
-        Calculate Aspect Ratio
+        {{ t('tools.aspect-ratio-calculator.texts.tag-calculate-aspect-ratio') }}
       </NRadio>
       <NRadio value="dimensions">
-        Calculate Dimensions
+        {{ t('tools.aspect-ratio-calculator.texts.tag-calculate-dimensions') }}
       </NRadio>
     </NRadioGroup>
 
     <div class="input-group">
       <div class="input-pair">
-        <label>Pixels width</label>
-        <NInputNumber v-model:value="width" placeholder="Pixels width" :min="1" />
+        <label>{{ t('tools.aspect-ratio-calculator.texts.tag-pixels-width') }}</label>
+        <NInputNumber v-model:value="width" :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-pixels-width')" :min="1" />
       </div>
       <div class="input-pair">
-        <label>Pixels height</label>
-        <NInputNumber v-model:value="height" placeholder="Pixels height" :min="1" />
+        <label>{{ t('tools.aspect-ratio-calculator.texts.tag-pixels-height') }}</label>
+        <NInputNumber v-model:value="height" :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-pixels-height')" :min="1" />
       </div>
     </div>
 
     <div class="input-group">
       <div class="input-pair">
-        <label>Ratio width</label>
-        <NInputNumber v-model:value="r1" placeholder="Ratio width" :min="1" />
+        <label>{{ t('tools.aspect-ratio-calculator.texts.tag-ratio-width') }}</label>
+        <NInputNumber v-model:value="r1" :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-ratio-width')" :min="1" />
       </div>
       <div class="separator">
-        :
+        {{ t('tools.aspect-ratio-calculator.texts.tag-') }}
       </div>
       <div class="input-pair">
-        <label>Ratio height</label>
-        <NInputNumber v-model:value="r2" placeholder="Ratio height" :min="1" />
+        <label>{{ t('tools.aspect-ratio-calculator.texts.tag-ratio-height') }}</label>
+        <NInputNumber v-model:value="r2" :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-ratio-height')" :min="1" />
       </div>
     </div>
 
     <div class="button-container">
       <NButton type="primary" @click="calculateResult">
-        Calculate
+        {{ t('tools.aspect-ratio-calculator.texts.tag-calculate') }}
       </NButton>
       <NButton v-if="mode === 'ratio'" @click="clearRatio">
-        Clear Ratio
+        {{ t('tools.aspect-ratio-calculator.texts.tag-clear-ratio') }}
       </NButton>
       <NButton @click="clearAll">
-        Clear All
+        {{ t('tools.aspect-ratio-calculator.texts.tag-clear-all') }}
       </NButton>
     </div>
 

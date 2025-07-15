@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import * as jose from 'jose';
 import JSON5 from 'json5';
 import { decodeJwt, getJwtAlgorithm } from './jwt-parser.service';
 import { useValidation } from '@/composable/validation';
 import { isNotThrowing } from '@/utils/boolean';
 import { withDefaultOnError } from '@/utils/defaults';
+
+const { t } = useI18n();
 
 const rawJwt = ref(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
@@ -24,7 +27,7 @@ const validation = useValidation({
   rules: [
     {
       validator: value => value.length > 0 && isNotThrowing(() => decodeJwt({ jwt: rawJwt.value })),
-      message: 'Invalid JWT',
+      message: t('tools.jwt-parser.texts.message-invalid-jwt'),
     },
   ],
 });
@@ -67,7 +70,7 @@ const signatureVerification = computedAsync(async () => {
 
 <template>
   <c-card>
-    <c-input-text v-model:value="rawJwt" label="JWT to decode" :validation="validation" placeholder="Put your token here..." rows="5" multiline raw-text autofocus mb-3 />
+    <c-input-text v-model:value="rawJwt" :label="t('tools.jwt-parser.texts.label-jwt-to-decode')" :validation="validation" :placeholder="t('tools.jwt-parser.texts.placeholder-put-your-token-here')" rows="5" multiline raw-text autofocus mb-3 />
 
     <n-table v-if="validation.isValid">
       <tbody>
@@ -95,10 +98,10 @@ const signatureVerification = computedAsync(async () => {
       </tbody>
     </n-table>
 
-    <c-card title="Signature Validation">
+    <c-card :title="t('tools.jwt-parser.texts.title-signature-validation')">
       <c-input-text
-        v-model:value="secretOrPublicKey" label="Secret or Public Key (SPKI or JWK)"
-        placeholder="Put your secret or Public key here..." rows="5" multiline raw-text autofocus mb-3
+        v-model:value="secretOrPublicKey" :label="t('tools.jwt-parser.texts.label-secret-or-public-key-spki-or-jwk')"
+        :placeholder="t('tools.jwt-parser.texts.placeholder-put-your-secret-or-public-key-here')" rows="5" multiline raw-text autofocus mb-3
       />
 
       <c-alert v-if="signatureVerification?.error">
@@ -106,7 +109,7 @@ const signatureVerification = computedAsync(async () => {
       </c-alert>
 
       <n-alert v-if="!signatureVerification?.error" type="success">
-        Signature verified
+        {{ t('tools.jwt-parser.texts.tag-signature-verified') }}
       </n-alert>
     </c-card>
   </c-card>

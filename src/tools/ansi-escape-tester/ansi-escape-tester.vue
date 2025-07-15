@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { onMounted, ref } from 'vue';
 import {
   NButton, NCheckbox, NCheckboxGroup, NInput,
@@ -8,6 +9,8 @@ import 'xterm/css/xterm.css';
 import styles from 'ansi-styles';
 import type { CSPair } from 'ansi-styles';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const terminalContainer = ref<HTMLElement | null>(null);
 
@@ -80,71 +83,71 @@ const escapeSequenceToTest = ref('');
 <template>
   <div>
     <NSpace justify="center">
-      <n-form-item label="Mode:" label-placement="left">
+      <n-form-item :label="t('tools.ansi-escape-tester.texts.label-mode')" label-placement="left">
         <n-radio-group v-model:value="colorMode">
           <n-radio value="basic">
-            Basic
+            {{ t('tools.ansi-escape-tester.texts.tag-basic') }}
           </n-radio>
           <n-radio value="256">
-            256-color
+            {{ t('tools.ansi-escape-tester.texts.tag-256-color') }}
           </n-radio>
           <n-radio value="truecolor">
-            Truecolor
+            {{ t('tools.ansi-escape-tester.texts.tag-truecolor') }}
           </n-radio>
         </n-radio-group>
       </n-form-item>
     </NSpace>
 
-    <n-form-item label="Foreground:" label-placement="left" mb-1>
+    <n-form-item :label="t('tools.ansi-escape-tester.texts.label-foreground')" label-placement="left" mb-1>
       <n-color-picker v-model:value="foregroundColor" :modes="['hex']" :show-alpha="false" :actions="['clear']" />
     </n-form-item>
-    <n-form-item label="Background:" label-placement="left" mb-1>
+    <n-form-item :label="t('tools.ansi-escape-tester.texts.label-background')" label-placement="left" mb-1>
       <n-color-picker v-model:value="backgroundColor" :modes="['hex']" :show-alpha="false" :actions="['clear']" />
     </n-form-item>
 
     <NSpace justify="center" mb-1>
-      <n-form-item label="Styles:" label-placement="left">
+      <n-form-item :label="t('tools.ansi-escape-tester.texts.label-styles')" label-placement="left">
         <NCheckboxGroup v-model:value="fontStyles">
           <NCheckbox value="bold">
-            Bold
+            {{ t('tools.ansi-escape-tester.texts.tag-bold') }}
           </NCheckbox>
           <NCheckbox value="italic">
-            Italic
+            {{ t('tools.ansi-escape-tester.texts.tag-italic') }}
           </NCheckbox>
           <NCheckbox value="underline">
-            Underline
+            {{ t('tools.ansi-escape-tester.texts.tag-underline') }}
           </NCheckbox>
           <NCheckbox value="overline">
-            Overline
+            {{ t('tools.ansi-escape-tester.texts.tag-overline') }}
           </NCheckbox>
           <NCheckbox value="inverse">
-            Inverse
+            {{ t('tools.ansi-escape-tester.texts.tag-inverse') }}
           </NCheckbox>
           <NCheckbox value="dim">
-            Dim
+            {{ t('tools.ansi-escape-tester.texts.tag-dim') }}
           </NCheckbox>
           <NCheckbox value="strikethrough">
-            Strikethrough
+            {{ t('tools.ansi-escape-tester.texts.tag-strikethrough') }}
           </NCheckbox>
         </NCheckboxGroup>
       </n-form-item>
     </NSpace>
 
-    <n-form-item label="Decorated text:" label-placement="left" mb-1>
-      <NInput v-model:value="decoratedText" placeholder="Enter text" />
+    <n-form-item :label="t('tools.ansi-escape-tester.texts.label-decorated-text')" label-placement="left" mb-1>
+      <NInput v-model:value="decoratedText" :placeholder="t('tools.ansi-escape-tester.texts.placeholder-enter-text')" />
     </n-form-item>
 
-    <c-card title="Output ANSI Escape Sequence:">
+    <c-card :title="t('tools.ansi-escape-tester.texts.title-output-ansi-escape-sequence')">
       <input-copyable v-model:value="outputEscapeSequence" readonly />
     </c-card>
-    <c-card title="Terminal Preview:">
-      <n-form-item label-placement="left" label="Custom ANSI Sequence:">
-        <NInput v-model:value="escapeSequenceToTest" placeholder="Enter ANSI escape sequence" />
+    <c-card :title="t('tools.ansi-escape-tester.texts.title-terminal-preview')">
+      <n-form-item label-placement="left" :label="t('tools.ansi-escape-tester.texts.label-custom-ansi-sequence')">
+        <NInput v-model:value="escapeSequenceToTest" :placeholder="t('tools.ansi-escape-tester.texts.placeholder-enter-ansi-escape-sequence')" />
         <NButton type="primary" ml-1 @click="term?.writeln(escapeSequenceToTest)">
-          Test
+          {{ t('tools.ansi-escape-tester.texts.tag-test') }}
         </NButton>
         <NButton type="primary" ml-1 @click="term?.clear()">
-          Clear
+          {{ t('tools.ansi-escape-tester.texts.tag-clear') }}
         </NButton>
       </n-form-item>
       <div ref="terminalContainer" class="terminal" />

@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import ports from 'port-numbers';
 import SpanCopyable from '@/components/SpanCopyable.vue';
+
+const { t } = useI18n();
 
 const port = ref(80);
 const protocol = ref('tcp');
@@ -12,25 +15,25 @@ const result = computed(() => {
 
 <template>
   <div>
-    <c-card title="Port search">
+    <c-card :title="t('tools.port-numbers.texts.title-port-search')">
       <n-space>
-        <n-form-item label="Port number">
+        <n-form-item :label="t('tools.port-numbers.texts.label-port-number')">
           <n-input-number v-model:value="port" :min="1" />
         </n-form-item>
-        <n-form-item label="Protocol">
+        <n-form-item :label="t('tools.port-numbers.texts.label-protocol')">
           <c-select
             v-model:value="protocol"
-            :options="[{ value: 'tcp', label: 'TCP' }, { value: 'udp', label: 'UDP' }]"
+            :options="[{ value: 'tcp', label: t('tools.port-numbers.texts.label-tcp') }, { value: 'udp', label: t('tools.port-numbers.texts.label-udp') }]"
           />
         </n-form-item>
       </n-space>
     </c-card>
 
     <c-card>
-      <n-form-item label="Type">
+      <n-form-item :label="t('tools.port-numbers.texts.label-type')">
         <SpanCopyable :value="result?.type" />
       </n-form-item>
-      <n-form-item label="Description">
+      <n-form-item :label="t('tools.port-numbers.texts.label-description')">
         <SpanCopyable :value="result?.description" />
       </n-form-item>
     </c-card>

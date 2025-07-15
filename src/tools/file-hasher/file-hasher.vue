@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
 import {
   createAdler32, // (): Promise<IHasher>
   createBLAKE2b, // (bits?: number, key?: IDataType): Promise<IHasher> // default is 512 bits
@@ -30,6 +32,8 @@ import InputCopyable from '../../components/InputCopyable.vue';
 import { convertHexToBin } from '../hash-text/hash-text.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { withDefaultOnError } from '@/utils/defaults';
+
+const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
@@ -168,7 +172,7 @@ const hashWasmValues = computed(() => withDefaultOnError(() => {
   <div>
     <c-card>
       <c-file-upload
-        title="Drag and drop a file here, or click to select a file"
+        :title="t('tools.file-hasher.texts.title-drag-and-drop-a-file-here-or-click-to-select-a-file')"
         @file-upload="onUpload"
       />
 
@@ -177,22 +181,22 @@ const hashWasmValues = computed(() => withDefaultOnError(() => {
       <c-select
         v-model:value="encoding"
         mb-4
-        label="Digest encoding"
+        :label="t('tools.file-hasher.texts.label-digest-encoding')"
         :options="[
           {
-            label: 'Binary (base 2)',
+            label: t('tools.file-hasher.texts.label-binary-base-2'),
             value: 'Bin',
           },
           {
-            label: 'Hexadecimal (base 16)',
+            label: t('tools.file-hasher.texts.label-hexadecimal-base-16'),
             value: 'Hex',
           },
           {
-            label: 'Base64 (base 64)',
+            label: t('tools.file-hasher.texts.label-base64-base-64'),
             value: 'Base64',
           },
           {
-            label: 'Base64url (base 64 with url safe chars)',
+            label: t('tools.file-hasher.texts.label-base64url-base-64-with-url-safe-chars'),
             value: 'Base64url',
           },
         ]"

@@ -1,7 +1,11 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n';
+
 import * as XLSX from 'xlsx';
 import { objectArrayToData } from '@/utils/objectarray.export';
 import type { ExportFormat } from '@/utils/objectarray.export';
+
+const { t } = useI18n();
 
 const workbook = ref<XLSX.WorkBook | null>(null);
 const convertedData = ref<string>('');
@@ -12,14 +16,14 @@ const sheetName = ref('');
 const error = ref('');
 
 const formats = [
-  { label: 'JSON', value: 'json' },
-  { label: 'YAML', value: 'yaml' },
-  { label: 'SQL INSERT', value: 'sql' },
-  { label: 'CSV (comma)', value: 'csv' },
-  { label: 'CSV (semicolon)', value: 'csv_semicolon' },
-  { label: 'CSV (tab)', value: 'tsv' },
-  { label: 'Markdown', value: 'markdown' },
-  { label: 'XML', value: 'xml' },
+  { label: t('tools.excel-to-data.texts.label-json'), value: 'json' },
+  { label: t('tools.excel-to-data.texts.label-yaml'), value: 'yaml' },
+  { label: t('tools.excel-to-data.texts.label-sql-insert'), value: 'sql' },
+  { label: t('tools.excel-to-data.texts.label-csv-comma'), value: 'csv' },
+  { label: t('tools.excel-to-data.texts.label-csv-semicolon'), value: 'csv_semicolon' },
+  { label: t('tools.excel-to-data.texts.label-csv-tab'), value: 'tsv' },
+  { label: t('tools.excel-to-data.texts.label-markdown'), value: 'markdown' },
+  { label: t('tools.excel-to-data.texts.label-xml'), value: 'xml' },
 ];
 
 async function handleFileUpload(file: File) {
@@ -52,31 +56,31 @@ function convertFile() {
 </script>
 
 <template>
-  <NCard title="XLSX Converter">
+  <NCard :title="t('tools.excel-to-data.texts.title-xlsx-converter')">
     <c-file-upload
-      title="Drag and drop a XLSX here, or click to select a file"
+      :title="t('tools.excel-to-data.texts.title-drag-and-drop-a-xlsx-here-or-click-to-select-a-file')"
       accept=".xlsx"
       mb-3
       @file-upload="handleFileUpload"
     />
 
-    <NFormItem v-if="workbook" label="Select Sheet to use:" label-placement="left">
-      <NSelect v-model:value="sheetName" :options="workbook.SheetNames?.map((s) => ({ label: s, value: s }))" placeholder="Select sheet" />
+    <NFormItem v-if="workbook" :label="t('tools.excel-to-data.texts.label-select-sheet-to-use')" label-placement="left">
+      <NSelect v-model:value="sheetName" :options="workbook.SheetNames?.map((s) => ({ label: s, value: s }))" :placeholder="t('tools.excel-to-data.texts.placeholder-select-sheet')" />
     </NFormItem>
 
-    <NFormItem label="Select output format:" label-placement="left">
-      <NSelect v-model:value="selectedFormat" :options="formats" placeholder="Select format" />
+    <NFormItem :label="t('tools.excel-to-data.texts.label-select-output-format')" label-placement="left">
+      <NSelect v-model:value="selectedFormat" :options="formats" :placeholder="t('tools.excel-to-data.texts.placeholder-select-format')" />
     </NFormItem>
 
-    <n-form-item label="Nestify ('a.b.c' to nested objects)" label-placement="left">
+    <n-form-item :label="t('tools.excel-to-data.texts.label-nestify-a-b-c-to-nested-objects')" label-placement="left">
       <n-checkbox v-model:checked="nestify" />
     </n-form-item>
 
-    <c-input-text v-if="selectedFormat === 'sql'" v-model:value="tableName" label="Table Name:" label-placement="left" />
+    <c-input-text v-if="selectedFormat === 'sql'" v-model:value="tableName" :label="t('tools.excel-to-data.texts.label-table-name')" label-placement="left" />
 
     <div mt-3 flex justify-center>
       <NButton :disabled="!workbook" @click="convertFile">
-        Convert
+        {{ t('tools.excel-to-data.texts.tag-convert') }}
       </NButton>
     </div>
 
@@ -84,7 +88,7 @@ function convertFile() {
       {{ error }}
     </c-alert>
 
-    <c-card v-if="convertedData" title="Converted data">
+    <c-card v-if="convertedData" :title="t('tools.excel-to-data.texts.title-converted-data')">
       <textarea-copyable :value="convertedData" :language="selectedFormat" />
     </c-card>
   </NCard>

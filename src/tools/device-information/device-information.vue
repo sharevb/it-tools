@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useWindowSize } from '@vueuse/core';
+
+const { t } = useI18n();
 
 const { width, height } = useWindowSize();
 
@@ -8,27 +11,27 @@ const sections = [
     name: 'Screen',
     information: [
       {
-        label: 'Screen size',
+        label: t('tools.device-information.texts.label-screen-size'),
         value: computed(() => `${window.screen.availWidth} x ${window.screen.availHeight}`),
       },
       {
-        label: 'Orientation',
+        label: t('tools.device-information.texts.label-orientation'),
         value: computed(() => window.screen.orientation.type),
       },
       {
-        label: 'Orientation angle',
+        label: t('tools.device-information.texts.label-orientation-angle'),
         value: computed(() => `${window.screen.orientation.angle}°`),
       },
       {
-        label: 'Color depth',
+        label: t('tools.device-information.texts.label-color-depth'),
         value: computed(() => `${window.screen.colorDepth} bits`),
       },
       {
-        label: 'Pixel ratio',
+        label: t('tools.device-information.texts.label-pixel-ratio'),
         value: computed(() => `${window.devicePixelRatio} dppx`),
       },
       {
-        label: 'Window size',
+        label: t('tools.device-information.texts.label-window-size'),
         value: computed(() => `${width.value} x ${height.value}`),
       },
     ],
@@ -37,19 +40,19 @@ const sections = [
     name: 'Device',
     information: [
       {
-        label: 'Browser vendor',
+        label: t('tools.device-information.texts.label-browser-vendor'),
         value: computed(() => navigator.vendor),
       },
       {
-        label: 'Languages',
+        label: t('tools.device-information.texts.label-languages'),
         value: computed(() => navigator.languages.join(', ')),
       },
       {
-        label: 'Platform',
+        label: t('tools.device-information.texts.label-platform'),
         value: computed(() => navigator.platform),
       },
       {
-        label: 'User agent',
+        label: t('tools.device-information.texts.label-user-agent'),
         value: computed(() => navigator.userAgent),
       },
     ],
@@ -58,11 +61,11 @@ const sections = [
     name: 'Time zone',
     information: [
       {
-        label: 'Time zone name',
+        label: t('tools.device-information.texts.label-time-zone-name'),
         value: computed(() => Intl.DateTimeFormat().resolvedOptions().timeZone),
       },
       {
-        label: 'UTC offset',
+        label: t('tools.device-information.texts.label-utc-offset'),
         value: computed(() => `${new Date().getTimezoneOffset()} minutes`),
       },
     ],
@@ -83,7 +86,7 @@ const sections = [
             {{ value }}
           </n-ellipsis>
           <div v-else class="undefined-value">
-            unknown
+            {{ t('tools.device-information.texts.tag-unknown') }}
           </div>
         </div>
       </n-gi>

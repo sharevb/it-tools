@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { decodeSharePointsURL } from './sharepoint-decoder.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const inputSharePointUrl = ref('');
 const outputDecodedUrl = computed(() => {
@@ -18,14 +21,14 @@ const outputDecodedUrl = computed(() => {
     <c-input-text
       v-model:value="inputSharePointUrl"
       raw-text
-      placeholder="Your input SharePoint Url..."
+      :placeholder="t('tools.sharepoint-decoder.texts.placeholder-your-input-sharepoint-url')"
       autofocus
-      label="Your input SharePoint Url:"
+      :label="t('tools.sharepoint-decoder.texts.label-your-input-sharepoint-url')"
     />
 
     <n-divider />
 
-    <n-form-item label="Output decoded URL:">
+    <n-form-item :label="t('tools.sharepoint-decoder.texts.label-output-decoded-url')">
       <TextareaCopyable :value="outputDecodedUrl" :word-wrap="true" />
     </n-form-item>
   </div>

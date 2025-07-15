@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Plus, Trash } from '@vicons/tabler';
 import { useStorage } from '@vueuse/core';
 import _ from 'lodash';
@@ -6,6 +7,8 @@ import _ from 'lodash';
 import { arrayToMarkdownTable, computeAverage, computeVariance } from './benchmark-builder.models';
 import DynamicValues from './dynamic-values.vue';
 import { useCopy } from '@/composable/copy';
+
+const { t } = useI18n();
 
 const suites = useStorage('benchmark-builder:suites', [
   { title: 'Suite 1', data: [5, 10] },
@@ -86,28 +89,26 @@ function copyAsBulletList() {
           <c-input-text
             v-model:value="suite.title"
             label-position="left"
-            label="Suite name"
-            placeholder="Suite name..."
+            :label="t('tools.benchmark-builder.texts.label-suite-name')"
+            :placeholder="t('tools.benchmark-builder.texts.placeholder-suite-name')"
             clearable
           />
 
           <n-divider />
-          <n-form-item label="Suite values" :show-feedback="false">
+          <n-form-item :label="t('tools.benchmark-builder.texts.label-suite-values')" :show-feedback="false">
             <DynamicValues v-model:values="suite.data" />
           </n-form-item>
         </c-card>
 
         <div flex justify-center>
           <c-button v-if="suites.length > 1" variant="text" @click="suites.splice(index, 1)">
-            <n-icon :component="Trash" depth="3" mr-2 size="18" />
-            Delete suite
+            <n-icon :component="Trash" depth="3" mr-2 size="18" />{{ t('tools.benchmark-builder.texts.tag-delete-suite') }}
           </c-button>
           <c-button
             variant="text"
             @click="suites.splice(index + 1, 0, { data: [0], title: `Suite ${suites.length + 1}` })"
           >
-            <n-icon :component="Plus" depth="3" mr-2 size="18" />
-            Add suite
+            <n-icon :component="Plus" depth="3" mr-2 size="18" />{{ t('tools.benchmark-builder.texts.tag-add-suite') }}
           </c-button>
         </div>
       </div>
@@ -117,7 +118,7 @@ function copyAsBulletList() {
   <div style="flex: 0 0 100%">
     <div style="max-width: 600px; margin: 0 auto">
       <div mx-auto max-w-sm flex justify-center gap-3>
-        <c-input-text v-model:value="unit" placeholder="Unit (eg: ms)" label="Unit" label-position="left" mb-4 />
+        <c-input-text v-model:value="unit" :placeholder="t('tools.benchmark-builder.texts.placeholder-unit-eg-ms')" :label="t('tools.benchmark-builder.texts.label-unit')" label-position="left" mb-4 />
 
         <c-button
           @click="
@@ -127,7 +128,7 @@ function copyAsBulletList() {
             ]
           "
         >
-          Reset suites
+          {{ t('tools.benchmark-builder.texts.tag-reset-suites') }}
         </c-button>
       </div>
 
@@ -135,10 +136,10 @@ function copyAsBulletList() {
 
       <div mt-5 flex justify-center gap-3>
         <c-button @click="copyAsMarkdown()">
-          Copy as markdown table
+          {{ t('tools.benchmark-builder.texts.tag-copy-as-markdown-table') }}
         </c-button>
         <c-button @click="copyAsBulletList()">
-          Copy as bullet list
+          {{ t('tools.benchmark-builder.texts.tag-copy-as-bullet-list') }}
         </c-button>
       </div>
     </div>

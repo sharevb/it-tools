@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import {
   validateDockerComposeToCommonSpec,
 } from 'composeverter';
+
+const { t } = useI18n();
 
 const dockerCompose = ref(
   `version: '3.3'
@@ -38,7 +41,7 @@ const MONACO_EDITOR_OPTIONS = {
 
 <template>
   <div>
-    <c-label label="Paste your Docker Compose file content:">
+    <c-label :label="t('tools.docker-compose-validator.texts.label-paste-your-docker-compose-file-content')">
       <div relative w-full>
         <c-monaco-editor
           v-model:value="dockerCompose"
@@ -51,19 +54,19 @@ const MONACO_EDITOR_OPTIONS = {
     </c-label>
 
     <div v-if="errors.length > 0">
-      <n-alert title="The following errors occured" type="error" mt-5>
+      <n-alert :title="t('tools.docker-compose-validator.texts.title-the-following-errors-occured')" type="error" mt-5>
         <ul>
           <li v-for="(message, index) of errors" :key="index">
             {{ message.message }} (<n-a v-if="message.helpLink" target="_blank" rel="noreferer noopener">
-              See Docker Compose help
-            </n-a>)
+              {{ t('tools.docker-compose-validator.texts.tag-see-docker-compose-help') }}
+            </n-a>{{ t('tools.docker-compose-validator.texts.tag-') }}
           </li>
         </ul>
       </n-alert>
     </div>
     <div v-else>
       <n-alert type="success" mt-5>
-        Validation successful!
+        {{ t('tools.docker-compose-validator.texts.tag-validation-successful') }}
       </n-alert>
     </div>
   </div>

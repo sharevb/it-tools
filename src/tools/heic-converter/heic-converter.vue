@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import heicConvert from 'heic-convert/browser';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+
+const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
@@ -10,8 +13,8 @@ const base64OutputImage = ref('');
 const fileName = ref('');
 const format = ref('jpg');
 const formats = [
-  { value: 'jpg', label: 'JPEG' },
-  { value: 'png', label: 'PNG' },
+  { value: 'jpg', label: t('tools.heic-converter.texts.label-jpeg') },
+  { value: 'png', label: t('tools.heic-converter.texts.label-png') },
 ];
 const { download } = useDownloadFileFromBase64(
   {
@@ -59,14 +62,14 @@ async function onFileUploaded(uploadedFile: File) {
     <c-select
       v-model:value="format"
       :options="formats"
-      label="Output format"
+      :label="t('tools.heic-converter.texts.label-output-format')"
       max-w-600px
     />
 
     <div style="flex: 0 0 100%" mt-3>
       <div mx-auto max-w-600px>
         <c-file-upload
-          title="Drag and drop a HEIC file here, or click to select a file"
+          :title="t('tools.heic-converter.texts.title-drag-and-drop-a-heic-file-here-or-click-to-select-a-file')"
           accept=".heic,.heif" @file-upload="onFileUploaded"
         />
       </div>

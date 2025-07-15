@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { NForm, NFormItem, NInput, NSelect } from 'naive-ui';
+
+const { t } = useI18n();
 
 const device = ref('');
 const mountPoint = ref('');
@@ -88,41 +91,41 @@ const fstabLine = computed(
 
 <template>
   <NForm>
-    <NFormItem label="Device:" label-placement="left" label-width="140px">
-      <NInput v-model:value="device" placeholder="/dev/sda1 or UUID=... or server:/path" />
+    <NFormItem :label="t('tools.fstab-generator.texts.label-device')" label-placement="left" label-width="140px">
+      <NInput v-model:value="device" :placeholder="t('tools.fstab-generator.texts.placeholder-dev-sda1-or-uuid-or-server-path')" />
     </NFormItem>
 
-    <NFormItem label="Mount Point:" label-placement="left" label-width="140px">
-      <NInput v-model:value="mountPoint" placeholder="/mnt/data or /home" />
+    <NFormItem :label="t('tools.fstab-generator.texts.label-mount-point')" label-placement="left" label-width="140px">
+      <NInput v-model:value="mountPoint" :placeholder="t('tools.fstab-generator.texts.placeholder-mnt-data-or-home')" />
     </NFormItem>
 
-    <NFormItem label="Filesystem Type:" label-placement="left" label-width="140px">
+    <NFormItem :label="t('tools.fstab-generator.texts.label-filesystem-type')" label-placement="left" label-width="140px">
       <NSelect v-model:value="fsType" :options="fileSystems.map(fs => ({ label: fs, value: fs }))" />
     </NFormItem>
 
-    <NFormItem label="Filesystem options:">
+    <NFormItem :label="t('tools.fstab-generator.texts.label-filesystem-options')">
       <NSelect
-        v-model:value="options" placeholder="By default: Standard mount options (rw, suid, dev, exec, auto, nouser, async)"
+        v-model:value="options" :placeholder="t('tools.fstab-generator.texts.placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async')"
         multiple
         :options="filesystemOptions.map(o => ({ value: o.value, label: `${o.description} (${o.value})` }))"
       />
     </NFormItem>
 
-    <NFormItem label="Dump (Determines whether the 'dump' utility should back up this filesystem):">
-      <NSelect v-model:value="dump" :options="[{ label: 'Do not include in backups', value: '0' }, { label: 'Include in backups', value: '1' }]" />
+    <NFormItem :label="t('tools.fstab-generator.texts.label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem')">
+      <NSelect v-model:value="dump" :options="[{ label: t('tools.fstab-generator.texts.label-do-not-include-in-backups'), value: '0' }, { label: t('tools.fstab-generator.texts.label-include-in-backups'), value: '1' }]" />
     </NFormItem>
 
-    <NFormItem label="Pass (Controls the order for filesystem checks at boot):">
+    <NFormItem :label="t('tools.fstab-generator.texts.label-pass-controls-the-order-for-filesystem-checks-at-boot')">
       <NSelect
         v-model:value="pass"
-        :options="[{ label: 'No check', value: '0' }, { label: 'Root filesystem first', value: '1' }, { label: 'Other filesystems after root', value: '2' }]"
+        :options="[{ label: t('tools.fstab-generator.texts.label-no-check'), value: '0' }, { label: t('tools.fstab-generator.texts.label-root-filesystem-first'), value: '1' }, { label: t('tools.fstab-generator.texts.label-other-filesystems-after-root'), value: '2' }]"
       />
     </NFormItem>
 
     <c-input-text
       v-model:value="username"
-      placeholder="Username"
-      label="Username:"
+      :placeholder="t('tools.fstab-generator.texts.placeholder-username')"
+      :label="t('tools.fstab-generator.texts.label-username')"
       label-position="left"
       label-width="140px"
       label-align="right"
@@ -133,8 +136,8 @@ const fstabLine = computed(
 
     <c-input-text
       v-model:value="password"
-      placeholder="Password"
-      label="Password:"
+      :placeholder="t('tools.fstab-generator.texts.placeholder-password')"
+      :label="t('tools.fstab-generator.texts.label-password')"
       label-position="left"
       label-width="140px"
       label-align="right"
@@ -142,7 +145,7 @@ const fstabLine = computed(
       flex-1
     />
 
-    <c-card title="Generated /etc/fstab line" mt-5>
+    <c-card :title="t('tools.fstab-generator.texts.title-generated-etc-fstab-line')" mt-5>
       <textarea-copyable :value="fstabLine" />
     </c-card>
   </NForm>

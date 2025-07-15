@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const url = ref('');
 const method = ref('POST'); // Default method set to POST for body support
@@ -69,7 +72,7 @@ const jsonBodyValidation = useValidation({
   source: jsonData,
   rules: [
     {
-      message: 'Invalid JSON string',
+      message: t('tools.curl-generator.texts.message-invalid-json-string'),
       validator: value => !value || JSON5.parse(value),
     },
   ],
@@ -78,38 +81,38 @@ const jsonBodyValidation = useValidation({
 
 <template>
   <div>
-    <NFormItem label="Url:" label-placement="left">
-      <NInput v-model:value="url" placeholder="Enter URL" />
+    <NFormItem :label="t('tools.curl-generator.texts.label-url')" label-placement="left">
+      <NInput v-model:value="url" :placeholder="t('tools.curl-generator.texts.placeholder-enter-url')" />
     </NFormItem>
-    <NFormItem label="Method:" label-placement="left">
+    <NFormItem :label="t('tools.curl-generator.texts.label-method')" label-placement="left">
       <NSelect v-model:value="method" :options="methods.map(m => ({ label: m, value: m }))" />
     </NFormItem>
 
     <NRadioGroup v-model:value="bodyType" mb-2>
       <NRadio value="json">
-        JSON Body
+        {{ t('tools.curl-generator.texts.tag-json-body') }}
       </NRadio>
       <NRadio value="form-data">
-        Multipart Form-Data
+        {{ t('tools.curl-generator.texts.tag-multipart-form-data') }}
       </NRadio>
     </NRadioGroup>
 
-    <c-card v-if="bodyType === 'json'" title="JSON Body:" mb-2>
+    <c-card v-if="bodyType === 'json'" :title="t('tools.curl-generator.texts.title-json-body')" mb-2>
       <c-input-text
         v-model:value="jsonData" multiline rows="6"
-        placeholder="Enter JSON body" :validation="jsonBodyValidation"
+        :placeholder="t('tools.curl-generator.texts.placeholder-enter-json-body')" :validation="jsonBodyValidation"
       />
     </c-card>
 
-    <c-card v-else title="Form entries:" mb-2>
-      <NDynamicInput v-model:value="formData" preset="pair" key-placeholder="Key" value-placeholder="Value" />
+    <c-card v-else :title="t('tools.curl-generator.texts.title-form-entries')" mb-2>
+      <NDynamicInput v-model:value="formData" preset="pair" key-:placeholder="t('tools.curl-generator.texts.placeholder-key')" value-:placeholder="t('tools.curl-generator.texts.placeholder-value')" />
     </c-card>
 
-    <c-card title="HTTP Headers:" mb-2>
-      <NDynamicInput v-model:value="headers" preset="pair" key-placeholder="Header" value-placeholder="Value" />
+    <c-card :title="t('tools.curl-generator.texts.title-http-headers')" mb-2>
+      <NDynamicInput v-model:value="headers" preset="pair" key-:placeholder="t('tools.curl-generator.texts.placeholder-header')" value-:placeholder="t('tools.curl-generator.texts.placeholder-value')" />
     </c-card>
 
-    <c-card title="Options:" mb-2>
+    <c-card :title="t('tools.curl-generator.texts.title-options')" mb-2>
       <template v-for="option in optionsList" :key="option.key">
         <NCheckbox v-model:checked="selectedOptions[option.key]">
           {{ `--${option.key}` }} <em>({{ option.description }})</em>
@@ -117,7 +120,7 @@ const jsonBodyValidation = useValidation({
       </template>
     </c-card>
 
-    <c-card title="Generated curl command">
+    <c-card :title="t('tools.curl-generator.texts.title-generated-curl-command')">
       <textarea-copyable :value="curlCommand" />
     </c-card>
   </div>

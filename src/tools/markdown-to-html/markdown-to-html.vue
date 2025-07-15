@@ -55,21 +55,21 @@ function printHtml() {
 
     <n-space justify="center" gap-1>
       <n-checkbox v-model:checked="handleHtml">
-        Allow HTML tags
+        {{ t('tools.markdown-to-html.texts.tag-allow-html-tags') }}
       </n-checkbox>
       <n-checkbox v-model:checked="sanitize" :disabled="!handleHtml">
-        Sanitize HTML
+        {{ t('tools.markdown-to-html.texts.tag-sanitize-html') }}
       </n-checkbox>
       <n-checkbox v-model:checked="handleSubSup">
-        Allow Superscript (^) and Subscript (~)
+        {{ t('tools.markdown-to-html.texts.tag-allow-superscript-and-subscript') }}
       </n-checkbox>
       <n-checkbox v-model:checked="handleAlign">
-        Handle <n-a href="https://mdit-plugins.github.io/align.html#syntax" target="blank">
-          alignment
+        {{ t('tools.markdown-to-html.texts.tag-handle') }}<n-a href="https://mdit-plugins.github.io/align.html#syntax" target="blank">
+          {{ t('tools.markdown-to-html.texts.tag-alignment') }}
         </n-a>
       </n-checkbox>
       <n-checkbox v-model:checked="handleMark">
-        Allow Mark (==)
+        {{ t('tools.markdown-to-html.texts.tag-allow-mark') }}
       </n-checkbox>
     </n-space>
 
@@ -81,7 +81,7 @@ function printHtml() {
 
     <div flex justify-center>
       <n-button @click="printHtml">
-        Print (ie, use a PDF Printer to get a PDF file)
+        {{ t('tools.markdown-to-html.texts.tag-print-ie-use-a-pdf-printer-to-get-a-pdf-file') }}
       </n-button>
     </div>
   </div>

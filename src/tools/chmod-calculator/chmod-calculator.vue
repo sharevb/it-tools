@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useThemeVars } from 'naive-ui';
 
 import InputCopyable from '../../components/InputCopyable.vue';
@@ -6,6 +7,8 @@ import { computeChmodOctalRepresentation, computeChmodSymbolicRepresentation, co
 
 import type { Group, Scope } from './chmod-calculator.types';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const themeVars = useThemeVars();
 
@@ -28,7 +31,7 @@ const octalPermissionsInputValidation = useValidation({
   source: octalPermissionsInput,
   rules: [
     {
-      message: 'Invalid octal permission string',
+      message: t('tools.chmod-calculator.texts.message-invalid-octal-permission-string'),
       validator: (value) => {
         try {
           computePermissionsFromChmodOctalRepresentation(value.trim());
@@ -56,7 +59,7 @@ const symbolicPermissionsInputValidation = useValidation({
   source: symbolicPermissionsInput,
   rules: [
     {
-      message: 'Invalid symbolic permission string',
+      message: t('tools.chmod-calculator.texts.message-invalid-symbolic-permission-string'),
       validator: (value) => {
         try {
           computePermissionsFromChmodSymbolicRepresentation(value.trim());
@@ -89,16 +92,16 @@ const umask = computed(() => computeUmaskRepresentation({ permissions: permissio
     <n-space justify="center">
       <c-input-text
         v-model:value="octalPermissionsInput"
-        placeholder="Put your octal permissions here..."
-        label="Copy your octal permissions"
+        :placeholder="t('tools.chmod-calculator.texts.placeholder-put-your-octal-permissions-here')"
+        :label="t('tools.chmod-calculator.texts.label-copy-your-octal-permissions')"
         :validation="octalPermissionsInputValidation"
         mb-2
       />
 
       <c-input-text
         v-model:value="symbolicPermissionsInput"
-        placeholder="Put your symbolic permissions here..."
-        label="Copy your symbolic permissions"
+        :placeholder="t('tools.chmod-calculator.texts.placeholder-put-your-symbolic-permissions-here')"
+        :label="t('tools.chmod-calculator.texts.label-copy-your-symbolic-permissions')"
         :validation="symbolicPermissionsInputValidation"
         mb-2
       />
@@ -111,13 +114,13 @@ const umask = computed(() => computeUmaskRepresentation({ permissions: permissio
         <tr>
           <th class="text-center" scope="col" />
           <th class="text-center" scope="col">
-            Owner (u)
+            {{ t('tools.chmod-calculator.texts.tag-owner-u') }}
           </th>
           <th class="text-center" scope="col">
-            Group (g)
+            {{ t('tools.chmod-calculator.texts.tag-group-g') }}
           </th>
           <th class="text-center" scope="col">
-            Public (o)
+            {{ t('tools.chmod-calculator.texts.tag-public-o') }}
           </th>
         </tr>
       </thead>
@@ -133,7 +136,7 @@ const umask = computed(() => computeUmaskRepresentation({ permissions: permissio
         </tr>
         <tr>
           <td class="line-header">
-            Flags
+            {{ t('tools.chmod-calculator.texts.tag-flags') }}
           </td>
           <td class="text-center">
             <n-checkbox v-model:checked="permissions.flags.setuid" size="large" />
@@ -155,13 +158,13 @@ const umask = computed(() => computeUmaskRepresentation({ permissions: permissio
       {{ symbolic }}
     </div>
 
-    <c-card title="Chmod command" mb-1>
+    <c-card :title="t('tools.chmod-calculator.texts.title-chmod-command')" mb-1>
       <InputCopyable label-position="left" :value="`chmod ${octal} path`" readonly />
     </c-card>
 
-    <c-card title="Umask">
-      <InputCopyable label="Octal:" label-position="left" label-width="100px" :value="umask.octal" readonly />
-      <InputCopyable label="Symbolic:" label-position="left" label-width="100px" :value="umask.symbolic" readonly />
+    <c-card :title="t('tools.chmod-calculator.texts.title-umask')">
+      <InputCopyable :label="t('tools.chmod-calculator.texts.label-octal')" label-position="left" label-width="100px" :value="umask.octal" readonly />
+      <InputCopyable :label="t('tools.chmod-calculator.texts.label-symbolic')" label-position="left" label-width="100px" :value="umask.symbolic" readonly />
     </c-card>
   </div>
 </template>

@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import InputCopyable from '../../components/InputCopyable.vue';
 import { isNotThrowing } from '@/utils/boolean';
 import { withDefaultOnError } from '@/utils/defaults';
+
+const { t } = useI18n();
 
 const urlToParse = ref('https://me:pwd@sharevb-it-tools.vercel.app:3000/url-parser?key=value&keyarr=value1&keyarr=value2&otherarg#the-hash');
 
@@ -32,7 +35,7 @@ const urlParsedParams = computed(() => {
 const urlValidationRules = [
   {
     validator: (value: string) => isNotThrowing(() => new URL(value)),
-    message: 'Invalid url',
+    message: t('tools.url-parser.texts.message-invalid-url'),
   },
 ];
 
@@ -53,8 +56,8 @@ const properties: { title: string; key: keyof URL }[] = [
   <c-card>
     <c-input-text
       v-model:value="urlToParse"
-      label="Your url to parse:"
-      placeholder="Your url to parse..."
+      :label="t('tools.url-parser.texts.label-your-url-to-parse')"
+      :placeholder="t('tools.url-parser.texts.placeholder-your-url-to-parse')"
       raw-text
       :validation-rules="urlValidationRules"
     />

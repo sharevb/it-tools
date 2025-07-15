@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { definePDFJSModule, extractText, getDocumentProxy } from 'unpdf';
 import * as pdfJS from 'pdfjs-dist';
 import pdfJSWorkerURL from 'pdfjs-dist/build/pdf.worker?url';
+
+const { t } = useI18n();
 
 pdfJS.GlobalWorkerOptions.workerSrc = pdfJSWorkerURL;
 
@@ -47,18 +50,18 @@ async function processPDF() {
   <div>
     <div style="flex: 0 0 100%" mb-1>
       <div mx-auto max-w-600px>
-        <c-file-upload title="Drag and drop a PDF file here, or click to select a file" accept=".pdf" @file-upload="onFileUploaded" />
+        <c-file-upload :title="t('tools.pdf-text-extractor.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')" accept=".pdf" @file-upload="onFileUploaded" />
       </div>
     </div>
 
     <div flex justify-center>
-      <n-form-item label="Merge pages" label-placement="left">
+      <n-form-item :label="t('tools.pdf-text-extractor.texts.label-merge-pages')" label-placement="left">
         <n-checkbox v-model:checked="mergePages" />
       </n-form-item>
     </div>
     <div flex justify-center>
       <c-button mb-1 :disabled="!file" @click="processPDF">
-        Extract text
+        {{ t('tools.pdf-text-extractor.texts.tag-extract-text') }}
       </c-button>
     </div>
 
@@ -72,10 +75,10 @@ async function processPDF() {
       />
     </div>
 
-    <c-card v-if="file && text" title="Output">
-      <input-copyable label="File name:" :value="file?.name" mb-1 />
-      <textarea-copyable label="Text:" :value="text" mb-1 />
-      <input-copyable label="Total Pages:" :value="totalPages.toString()" mb-1 />
+    <c-card v-if="file && text" :title="t('tools.pdf-text-extractor.texts.title-output')">
+      <input-copyable :label="t('tools.pdf-text-extractor.texts.label-file-name')" :value="file?.name" mb-1 />
+      <textarea-copyable :label="t('tools.pdf-text-extractor.texts.label-text')" :value="text" mb-1 />
+      <input-copyable :label="t('tools.pdf-text-extractor.texts.label-total-pages')" :value="totalPages.toString()" mb-1 />
     </c-card>
   </div>
 </template>

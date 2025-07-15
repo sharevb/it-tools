@@ -1,21 +1,23 @@
 import type { OGSchemaType } from '../OGSchemaType.type';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export const musicPlaylist: OGSchemaType = {
-  name: 'Playlist details',
+  name: t('tools.meta-tag-generator.musicPlaylist.text.playlist-details'),
   elements: [
-    { type: 'input', label: 'Song', key: 'music:song', placeholder: 'The song on this album...' },
+    { type: 'input', label: t('tools.meta-tag-generator.website.text.song'), key: 'music:song', placeholder: t('tools.meta-tag-generator.musicAlbum.text.the-song-on-this-album') },
     {
       type: 'input',
-      label: 'Disc',
+      label: t('tools.meta-tag-generator.musicAlbum.text.disc'),
       key: 'music:song:disc',
-      placeholder: 'The same as music:album:disc but in reverse...',
+      placeholder: t('tools.meta-tag-generator.musicAlbum.text.the-same-as-music-album-disc-but-in-reverse'),
     },
     {
       type: 'input',
-      label: 'Track',
+      label: t('tools.meta-tag-generator.musicAlbum.text.track'),
       key: 'music:song:track',
-      placeholder: 'The same as music:album:track but in reverse...',
+      placeholder: t('tools.meta-tag-generator.musicAlbum.text.the-same-as-music-album-track-but-in-reverse'),
     },
-    { type: 'input', label: 'Creator', key: 'music:creator', placeholder: 'The creator of this playlist...' },
+    { type: 'input', label: t('tools.meta-tag-generator.musicPlaylist.text.creator'), key: 'music:creator', placeholder: t('tools.meta-tag-generator.musicPlaylist.text.the-creator-of-this-playlist') },
   ],
 };

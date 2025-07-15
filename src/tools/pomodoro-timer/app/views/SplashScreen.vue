@@ -1,6 +1,8 @@
 <script setup>
 const store = useStore('pomodoro-store');
 
+const { t } = useI18n();
+
 function goToHomeOrSettings() {
   if (isWorkIntervalSet()) {
     store.commit('goToHome');
@@ -18,10 +20,10 @@ setTimeout(() => {
 <template>
   <div class="splash-screen">
     <p class="splash-title">
-      Pomodoro Timer
+      {{ t('tools.pomodoro-timer.SplashScreen.text.pomodoro-timer-0') }}
     </p>
     <p class="splash-loader">
-      Loading...
+      {{ t('tools.pomodoro-timer.SplashScreen.text.loading-0') }}
     </p>
   </div>
 </template>

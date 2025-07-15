@@ -1,6 +1,10 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n';
+
 import { computed, ref } from 'vue';
 import { countBy, orderBy } from 'lodash';
+
+const { t } = useI18n();
 
 const inputText = ref('');
 const sortedWordCounts = computed(() => {
@@ -15,13 +19,13 @@ const sortedWordCounts = computed(() => {
 
 <template>
   <div>
-    <c-input-text v-model:value="inputText" multiline rows="10" label="Text:" placeholder="Enter text..." mb-1 />
-    <c-card title="Distinct words">
+    <c-input-text v-model:value="inputText" multiline rows="10" :label="t('tools.distinct-words.texts.label-text')" :placeholder="t('tools.distinct-words.texts.placeholder-enter-text')" mb-1 />
+    <c-card :title="t('tools.distinct-words.texts.title-distinct-words')">
       <n-table>
         <thead>
           <tr>
-            <th>Word</th>
-            <th>Count</th>
+            <th>{{ t('tools.distinct-words.texts.tag-word') }}</th>
+            <th>{{ t('tools.distinct-words.texts.tag-count') }}</th>
           </tr>
         </thead>
         <tbody>

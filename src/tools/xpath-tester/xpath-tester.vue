@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import XPathEngine from 'xpath';
 import { DOMParser } from '@xmldom/xmldom';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const xpath = ref('//title');
 const xml = ref('<book><title>Harry Potter</title></book>');
@@ -25,7 +28,7 @@ const xmlValidation = useValidation({
         new DOMParser().parseFromString(v, 'text/xml');
         return true;
       },
-      message: 'Provided XML is not valid.',
+      message: t('tools.xpath-tester.texts.message-provided-xml-is-not-valid'),
     },
   ],
 });
@@ -33,33 +36,33 @@ const xmlValidation = useValidation({
 
 <template>
   <div>
-    <c-card title="Input" mb-2>
+    <c-card :title="t('tools.xpath-tester.texts.title-input')" mb-2>
       <c-input-text
         v-model:value="xpath"
-        label="XPath Expression"
-        placeholder="Put your XPath expression here..."
+        :label="t('tools.xpath-tester.texts.label-xpath-expression')"
+        :placeholder="t('tools.xpath-tester.texts.placeholder-put-your-xpath-expression-here')"
         mb-2
       />
 
       <c-input-text
         v-model:value="xml"
-        label="XML"
+        :label="t('tools.xpath-tester.texts.label-xml')"
         multiline
-        placeholder="Put your XML here..."
+        :placeholder="t('tools.xpath-tester.texts.placeholder-put-your-xml-here')"
         rows="5"
         :validation="xmlValidation"
         mb-2
       />
     </c-card>
 
-    <c-card title="Result(s)">
+    <c-card :title="t('tools.xpath-tester.texts.title-result-s')">
       <ul v-if="selectedNodes?.length > 0">
         <li v-for="(node, index) in selectedNodes" :key="index">
           {{ node }}
         </li>
       </ul>
       <c-alert v-if="!selectedNodes?.length">
-        XPath expression selected nothing
+        {{ t('tools.xpath-tester.texts.tag-xpath-expression-selected-nothing') }}
       </c-alert>
     </c-card>
   </div>

@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import iesData from './ies-lighting-data.json';
 import useDebouncedRef from '@/composable/debouncedref';
 import { useFlexSearch } from '@/composable/flexSearch';
+
+const { t } = useI18n();
 
 const data = iesData;
 const searchQuery = useDebouncedRef('', 250);
@@ -21,7 +24,7 @@ const { searchResult } = useFlexSearch({
     <div flex items-center gap-3>
       <c-input-text
         v-model:value="searchQuery"
-        placeholder="Search IES recommendation by industry or application"
+        :placeholder="t('tools.ies-lighting-guidelines.texts.placeholder-search-ies-recommendation-by-industry-or-application')"
         mx-auto max-w-600px
       >
         <template #prefix>
@@ -31,9 +34,9 @@ const { searchResult } = useFlexSearch({
     </div>
 
     <n-p style="text-align: center">
-      Individual applications will determine exact foot-candle levels. Please refer to the <n-a href="https://www.ies.org/standards/lighting-library/" target="_blank">
-        IES Lighting Handbook
-      </n-a> for a more detailed evaluation
+      {{ t('tools.ies-lighting-guidelines.texts.tag-individual-applications-will-determine-exact-foot-candle-levels-please-refer-to-the') }}<n-a href="https://www.ies.org/standards/lighting-library/" target="_blank">
+        {{ t('tools.ies-lighting-guidelines.texts.tag-ies-lighting-handbook') }}
+      </n-a>{{ t('tools.ies-lighting-guidelines.texts.tag-for-a-more-detailed-evaluation') }}
     </n-p>
 
     <div>
@@ -42,20 +45,20 @@ const { searchResult } = useFlexSearch({
 
         mt-4 text-center text-20px font-bold
       >
-        No results
+        {{ t('tools.ies-lighting-guidelines.texts.tag-no-results') }}
       </div>
 
       <div v-else>
         <div mt-4 text-20px font-bold>
-          Search result
+          {{ t('tools.ies-lighting-guidelines.texts.tag-search-result') }}
         </div>
 
         <n-table>
           <thead>
-            <th>Industry</th>
-            <th>Application</th>
-            <th>Foot Candles</th>
-            <th>Lighting type</th>
+            <th>{{ t('tools.ies-lighting-guidelines.texts.tag-industry') }}</th>
+            <th>{{ t('tools.ies-lighting-guidelines.texts.tag-application') }}</th>
+            <th>{{ t('tools.ies-lighting-guidelines.texts.tag-foot-candles') }}</th>
+            <th>{{ t('tools.ies-lighting-guidelines.texts.tag-lighting-type') }}</th>
           </thead>
           <tbody>
             <tr v-for="(result, ix) in searchResult" :key="ix">

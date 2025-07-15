@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { colord, extend } from 'colord';
 import a11yPlugin from 'colord/plugins/a11y';
 
@@ -6,6 +7,8 @@ import { computed, ref, watch } from 'vue';
 import { useDebounce } from '@vueuse/core';
 import type { Harmony, HarmonyType } from 'vue-color-wheel';
 import { VueColorWheel } from 'vue-color-wheel';
+
+const { t } = useI18n();
 
 extend([a11yPlugin]);
 
@@ -16,15 +19,15 @@ const isColorReadable = ref(false);
 const isDarkTheme = useDark();
 
 const harmonyTypes: { type: HarmonyType; label: string }[] = [
-  { type: 'monochromatic', label: 'Monochromatic' },
-  { type: 'complementary', label: 'Complementary' },
-  { type: 'analogous', label: 'Analogous' },
-  { type: 'triad', label: 'Triad' },
-  { type: 'split', label: 'Split' },
-  { type: 'compound', label: 'Compound' },
-  { type: 'tetradic', label: 'Tetradic' },
-  { type: 'square', label: 'Square' },
-  { type: 'doubleSplit', label: 'Double Split' },
+  { type: 'monochromatic', label: t('tools.color-wheel.texts.label-monochromatic') },
+  { type: 'complementary', label: t('tools.color-wheel.texts.label-complementary') },
+  { type: 'analogous', label: t('tools.color-wheel.texts.label-analogous') },
+  { type: 'triad', label: t('tools.color-wheel.texts.label-triad') },
+  { type: 'split', label: t('tools.color-wheel.texts.label-split') },
+  { type: 'compound', label: t('tools.color-wheel.texts.label-compound') },
+  { type: 'tetradic', label: t('tools.color-wheel.texts.label-tetradic') },
+  { type: 'square', label: t('tools.color-wheel.texts.label-square') },
+  { type: 'doubleSplit', label: t('tools.color-wheel.texts.label-double-split') },
 ];
 
 const colorList = computed(() => {
@@ -85,14 +88,14 @@ watch(
 
 <template>
   <div>
-    <c-card title="Pick a color" mb-2>
+    <c-card :title="t('tools.color-wheel.texts.title-pick-a-color')" mb-2>
       <n-color-picker :value="wheelColor" :show-alpha="false" />
       <div
         :style="{ backgroundColor: wheelColor }"
       />
     </c-card>
 
-    <c-card title="Pick a palette type" mb-2>
+    <c-card :title="t('tools.color-wheel.texts.title-pick-a-palette-type')" mb-2>
       <n-radio-group v-model:value="currentType" name="radiogroup">
         <n-space>
           <n-radio
@@ -104,7 +107,7 @@ watch(
         </n-space>
       </n-radio-group>
     </c-card>
-    <c-card title="Wheel" mb-2 style="text-align: center">
+    <c-card :title="t('tools.color-wheel.texts.title-wheel')" mb-2 style="text-align: center">
       <div style="display: inline-block">
         <VueColorWheel
           v-model:color="wheelColor"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import satisfies from 'spdx-satisfies';
 import { type ConditionTag, type LimitationTag, type PermissionTag, getLicenseFromId, licenses } from 'safe-license-list';
 import type { VNode } from 'vue';
@@ -8,6 +9,8 @@ import { NTooltip } from 'naive-ui';
 
 import { Check as CheckIcon, LetterX as CrossIcon } from '@vicons/tabler';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const firstLicence = ref('GPL-3.0');
 const secondLicence = ref('MIT');
@@ -104,22 +107,22 @@ function handleLicenceFallback() {
 
 <template>
   <div>
-    <n-card title="Software licences compatibility" mb-5>
-      <n-form-item label="First License (SPDX):" label-placement="left" label-width="120">
+    <n-card :title="t('tools.software-licence-compatibility.texts.title-software-licences-compatibility')" mb-5>
+      <n-form-item :label="t('tools.software-licence-compatibility.texts.label-first-license-spdx')" label-placement="left" label-width="120">
         <n-auto-complete
           v-model:value="firstLicence"
           :options="licenceInfos"
-          placeholder="Put your first licence SPDX licence..."
+          :placeholder="t('tools.software-licence-compatibility.texts.placeholder-put-your-first-licence-spdx-licence')"
           raw-text
           mb-5
         />
       </n-form-item>
 
-      <n-form-item label="Second License (SPDX):" label-placement="left" label-width="120">
+      <n-form-item :label="t('tools.software-licence-compatibility.texts.label-second-license-spdx')" label-placement="left" label-width="120">
         <n-auto-complete
           v-model:value="secondLicence"
           :options="licenceInfos"
-          placeholder="Put your second licence SPDX licence..."
+          :placeholder="t('tools.software-licence-compatibility.texts.placeholder-put-your-second-licence-spdx-licence')"
           raw-text
           mb-5
         />
@@ -129,26 +132,22 @@ function handleLicenceFallback() {
         <span v-if="compatibility === 'ok'">
           <n-icon color="green">
             <CheckIcon />
-          </n-icon>
-          Compatible
-        </span>
+          </n-icon>{{ t('tools.software-licence-compatibility.texts.tag-compatible') }}</span>
         <span v-if="compatibility === 'nok'">
           <n-icon color="red">
             <CrossIcon />
-          </n-icon>
-          Not compatible
-        </span>
+          </n-icon>{{ t('tools.software-licence-compatibility.texts.tag-not-compatible') }}</span>
         <n-alert v-if="compatibility !== 'nok' && compatibility !== 'ok'" type="error">
           {{ compatibility }}
         </n-alert>
       </div>
     </n-card>
 
-    <n-card label="Licence infos">
+    <n-card :label="t('tools.software-licence-compatibility.texts.label-licence-infos')">
       <n-grid x-gap="12" :cols="2">
         <n-gi>
           <n-form-item
-            label="Allowed permission(s):"
+            :label="t('tools.software-licence-compatibility.texts.label-allowed-permission-s')"
             label-placement="top"
           >
             <n-select
@@ -161,7 +160,7 @@ function handleLicenceFallback() {
         </n-gi>
         <n-gi>
           <n-form-item
-            label="Disallowed permission(s):"
+            :label="t('tools.software-licence-compatibility.texts.label-disallowed-permission-s')"
             label-placement="top"
           >
             <n-select
@@ -176,7 +175,7 @@ function handleLicenceFallback() {
       <n-grid x-gap="12" :cols="2">
         <n-gi>
           <n-form-item
-            label="Allowed condition(s):"
+            :label="t('tools.software-licence-compatibility.texts.label-allowed-condition-s')"
             label-placement="top"
           >
             <n-select
@@ -189,7 +188,7 @@ function handleLicenceFallback() {
         </n-gi>
         <n-gi>
           <n-form-item
-            label="Disallowed condition(s):"
+            :label="t('tools.software-licence-compatibility.texts.label-disallowed-condition-s')"
             label-placement="top"
           >
             <n-select
@@ -204,7 +203,7 @@ function handleLicenceFallback() {
       <n-grid x-gap="12" :cols="2">
         <n-gi>
           <n-form-item
-            label="Allowed limitation(s):"
+            :label="t('tools.software-licence-compatibility.texts.label-allowed-limitation-s')"
             label-placement="top"
           >
             <n-select
@@ -217,7 +216,7 @@ function handleLicenceFallback() {
         </n-gi>
         <n-gi>
           <n-form-item
-            label="Disallowed limitation(s):"
+            :label="t('tools.software-licence-compatibility.texts.label-disallowed-limitation-s')"
             label-placement="top"
           >
             <n-select
@@ -236,9 +235,9 @@ function handleLicenceFallback() {
         v-model:value="currentLicence"
         filterable
         label-position="left"
-        label="Select a licence:"
+        :label="t('tools.software-licence-compatibility.texts.label-select-a-licence')"
         :options="filteredLicencesInfos"
-        placeholder="Select a licence"
+        :placeholder="t('tools.software-licence-compatibility.texts.placeholder-select-a-licence')"
         :fallback-option="handleLicenceFallback"
       />
 
@@ -249,19 +248,19 @@ function handleLicenceFallback() {
       <n-divider />
 
       <div v-if="filteredLicencesInfos.length > 0">
-        <n-form-item label="Id:" label-placement="left">
+        <n-form-item :label="t('tools.software-licence-compatibility.texts.label-id')" label-placement="left">
           <n-input
             :value="currentLicenceInfo?.id"
             readonly mb-5
           />
         </n-form-item>
-        <n-form-item label="Title:" label-placement="left">
+        <n-form-item :label="t('tools.software-licence-compatibility.texts.label-title')" label-placement="left">
           <n-input
             :value="currentLicenceInfo?.title"
             readonly mb-5
           />
         </n-form-item>
-        <n-form-item label="Description:">
+        <n-form-item :label="t('tools.software-licence-compatibility.texts.label-description')">
           <TextareaCopyable
             :value="currentLicenceInfo?.description ?? ''"
             readonly
@@ -269,7 +268,7 @@ function handleLicenceFallback() {
             mb-5
           />
         </n-form-item>
-        <n-form-item label="How:">
+        <n-form-item :label="t('tools.software-licence-compatibility.texts.label-how')">
           <TextareaCopyable
             :value="currentLicenceInfo?.how ?? ''"
             word-wrap
@@ -277,14 +276,14 @@ function handleLicenceFallback() {
             mb-5
           />
         </n-form-item>
-        <n-form-item label="Used by:">
+        <n-form-item :label="t('tools.software-licence-compatibility.texts.label-used-by')">
           <TextareaCopyable
             :value="Object.keys(currentLicenceInfo?.using || []).join(', ')"
             mb-5
           />
         </n-form-item>
 
-        <n-card title="Permissions" mb-5>
+        <n-card :title="t('tools.software-licence-compatibility.texts.title-permissions')" mb-5>
           <n-p v-for="{ key, desc } in permissions" :key="key" :title="desc">
             <n-icon v-if="(currentLicenceInfo?.permissions || []).includes(key as PermissionTag)" color="green">
               <CheckIcon />
@@ -296,7 +295,7 @@ function handleLicenceFallback() {
           </n-p>
         </n-card>
 
-        <n-card title="Conditions" mb-5>
+        <n-card :title="t('tools.software-licence-compatibility.texts.title-conditions')" mb-5>
           <n-p v-for="{ key, desc } in conditions" :key="key" :title="desc">
             <n-icon v-if="(currentLicenceInfo?.conditions || []).includes(key as ConditionTag)" color="green">
               <CheckIcon />
@@ -308,7 +307,7 @@ function handleLicenceFallback() {
           </n-p>
         </n-card>
 
-        <n-card title="Limitations" mb-5>
+        <n-card :title="t('tools.software-licence-compatibility.texts.title-limitations')" mb-5>
           <n-p v-for="{ key, desc } in limitations" :key="key" :title="desc">
             <n-icon v-if="(currentLicenceInfo?.limitations || []).includes(key as LimitationTag)" color="green">
               <CheckIcon />
@@ -320,7 +319,7 @@ function handleLicenceFallback() {
           </n-p>
         </n-card>
 
-        <n-form-item label="Content:">
+        <n-form-item :label="t('tools.software-licence-compatibility.texts.label-content')">
           <TextareaCopyable
             :value="currentLicenceInfo?.body ?? ''"
             word-wrap

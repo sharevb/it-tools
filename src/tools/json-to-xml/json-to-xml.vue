@@ -22,10 +22,10 @@ const rules: UseValidationRule<string>[] = [
 
 <template>
   <format-transformer
-    :input-label="t('tools.json-to-xml.input')"
+    :input-:label="t('tools.json-to-xml.texts.label-t-tools-json-to-xml-input')"
     :input-default="defaultValue"
-    :input-placeholder="t('tools.json-to-xml.input-placeholder')"
-    :output-label="t('tools.json-to-xml.output')"
+    :input-:placeholder="t('tools.json-to-xml.texts.placeholder-t-tools-json-to-xml-input-placeholder')"
+    :output-:label="t('tools.json-to-xml.texts.label-t-tools-json-to-xml-output')"
     output-language="xml"
     :transformer="transformer"
     :input-validation-rules="rules"

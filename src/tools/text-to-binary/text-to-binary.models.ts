@@ -1,3 +1,5 @@
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export { convertTextToUtf8Binary, convertUtf8BinaryToText };
 
 export type EncodingBase = 2 | 8 | 10 | 16;
@@ -33,7 +35,7 @@ function convertUtf8BinaryToText(binary: string, { base = 2 }: { base?: Encoding
     const cleanBinary = binary.replace(/0b/g, '').replace(/[^01]/g, '').trim();
 
     if (cleanBinary.length % 8) {
-      throw new Error('Invalid binary string');
+      throw new Error(t('tools.text-to-binary.text.invalid-binary-string'));
     }
 
     codepoints = cleanBinary
@@ -45,7 +47,7 @@ function convertUtf8BinaryToText(binary: string, { base = 2 }: { base?: Encoding
     const cleanBinary = binary.replace(/0x|\\x/g, '').replace(/[^0-9A-Fa-f]/g, '');
 
     if (cleanBinary.length % 2) {
-      throw new Error('Invalid hexadecimal string');
+      throw new Error(t('tools.text-to-binary.text.invalid-hexadecimal-string'));
     }
 
     codepoints = cleanBinary

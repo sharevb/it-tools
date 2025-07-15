@@ -19,6 +19,8 @@ import * as openpgp from 'openpgp';
 import * as forge from 'node-forge';
 import { type LabelValue, getCSRLabelValues, getCertificateLabelValues, getFingerprintLabelValues, getPGPPrivateKeyLabelValuesAsync, getPGPPublicKeyLabelValuesAsync, getPrivateKeyLabelValues, getPublicKeyLabelValues, getSignatureLabelValues } from './certificate-key-parser.infos';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export async function getKeysOrCertificatesInfosAsync(keyOrCertificateValue: string | Buffer, passphrase: string) {
   const parts = keyOrCertificateValue.toString().trim().split(/(-----BEGIN [^-]+-----\n)/).filter(s => s !== '');
   if (!parts.length) {
@@ -140,8 +142,8 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
     return {
       values: [
         {
-          label: 'Type:',
-          value: 'Unknown format or invalid passphrase',
+          label: t('tools.certificate-key-parser.service.text.type'),
+          value: t('tools.certificate-key-parser.service.text.unknown-format-or-invalid-passphrase'),
         }],
     };
   }
@@ -149,7 +151,7 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
     return {
       values: [
         {
-          label: 'Error:',
+          label: t('tools.certificate-key-parser.service.text.error'),
           value: e.toString(),
         }] as LabelValue[],
     };

@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { minify } from 'htmlfy';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const inputHtml = ref('');
 const outputHtml = computed(() => {
@@ -18,16 +21,16 @@ const outputHtml = computed(() => {
     <c-input-text
       v-model:value="inputHtml"
       multiline raw-text
-      placeholder="Your HTML content..."
+      :placeholder="t('tools.html-minifier.texts.placeholder-your-html-content')"
       rows="8"
       autofocus
-      label="Your HTML to minify (can paste from clipboard):"
+      :label="t('tools.html-minifier.texts.label-your-html-to-minify-can-paste-from-clipboard')"
       paste-html
     />
 
     <n-divider />
 
-    <n-form-item label="Output minified HTML:">
+    <n-form-item :label="t('tools.html-minifier.texts.label-output-minified-html')">
       <TextareaCopyable
         :value="outputHtml"
         multiline
