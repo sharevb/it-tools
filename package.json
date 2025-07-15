@@ -181,7 +181,7 @@
     "js-beautify": "^1.15.2",
     "jsbarcode": "^3.11.6",
     "json-analyzer": "^1.2.2",
-    "json-editor-vue": "^0.16.0",
+    "json-editor-vue": "^0.18.0",
     "json-to-ts": "^1.7.0",
     "json5": "^2.2.3",
     "jsonar-mod": "^1.9.0",
