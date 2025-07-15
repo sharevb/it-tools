@@ -23,15 +23,11 @@ async function checkTruncation() {
     context.font = `${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
 
     const textWidth = context.measureText(text).width;
-<<<<<<< HEAD
 
     // Calculate precise container width by accounting for padding
     const containerWidth = textRef.value.clientWidth
       - Number.parseFloat(computedStyle.paddingLeft)
       - Number.parseFloat(computedStyle.paddingRight);
-=======
-    const containerWidth = textRef.value.clientWidth;
->>>>>>> chore/all-my-stuffs
 
     showTooltip.value = textWidth > containerWidth;
   }
