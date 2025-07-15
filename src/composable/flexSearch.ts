@@ -55,6 +55,9 @@ export function useFlexSearch<Data extends Record<string, any>>({
   // Extract options
   const { keys, filterEmpty = true, shouldSort = true, tokenize = 'forward', ...indexOptions } = options;
 
+  // Add loading state and cancellation
+  const isInitializing = ref(false);
+
   // Normalize keys to include weights
   const normalizedKeys = keys.map((key) => {
     if (typeof key === 'string') {
@@ -86,71 +89,63 @@ export function useFlexSearch<Data extends Record<string, any>>({
 
   // Initialize indices with data
   const initializeIndices = async () => {
-    dataMap.value.clear();
-    indices.forEach(({ index }) => index.clear());
+    isInitializing.value = true;
 
-    // Pre-calculate all the values to avoid repeated nested property access
-    const itemData = data.map((item, idx) => {
-      const itemKey = getItemKey(item, idx);
-      const values = new Map<string, string>();
+    try {
+      dataMap.value.clear();
+      indices.forEach(({ index }) => index.clear());
 
-      indices.forEach(({ key }) => {
-        const value = key.split('.').reduce((obj, path) => obj?.[path], item);
-        if (value) {
-          values.set(key, String(value));
-        }
+      // Pre-calculate all the values to avoid repeated nested property access
+      const itemData = data.map((item, idx) => {
+        const itemKey = getItemKey(item, idx);
+        const values = new Map<string, string>();
+
+        indices.forEach(({ key }) => {
+          const value = key.split('.').reduce((obj, path) => obj?.[path], item);
+          if (value) {
+            values.set(key, String(value));
+          }
+        });
+
+        return { itemKey, item, values };
       });
 
-      return { itemKey, item, values };
-    });
+      // Batch add to dataMap
+      itemData.forEach(({ itemKey, item }) => {
+        dataMap.value.set(itemKey, item);
+      });
 
-    // Batch add to dataMap
-    itemData.forEach(({ itemKey, item }) => {
-      dataMap.value.set(itemKey, item);
-    });
-
-    // Batch add to indices - parallel processing with chunking
-    await Promise.all(
-      indices.map(async ({ key, index }) => {
+      // Process indices sequentially to avoid event loop flooding
+      for (const { key, index } of indices) {
         // Filter items that have values for this key upfront
         const itemsForThisKey = itemData
           .map(({ itemKey, values }) => ({ itemKey, value: values.get(key) }))
           .filter(({ value }) => value);
 
-        // Process in chunks to avoid blocking the main thread
-        const chunkSize = 1000; // Adjust based on your data size
-        const chunks = [];
-        for (let i = 0; i < itemsForThisKey.length; i += chunkSize) {
-          chunks.push(itemsForThisKey.slice(i, i + chunkSize));
-        }
+        const chunkSize = 5000;
 
-        // Process each chunk asynchronously
-        for (const chunk of chunks) {
+        for (let i = 0; i < itemsForThisKey.length; i += chunkSize) {
+          const chunk = itemsForThisKey.slice(i, i + chunkSize);
+
+          // Use requestAnimationFrame for better performance
           await new Promise<void>((resolve) => {
-            // Use setTimeout to yield control back to the browser
-            setTimeout(() => {
+            requestAnimationFrame(() => {
               chunk.forEach(({ itemKey, value }) => {
                 index.add(itemKey, value!);
               });
               resolve();
-            }, 0);
+            });
           });
         }
-      }),
-    );
+      }
+    }
+    finally {
+      isInitializing.value = false;
+    }
   };
 
   // Initialize on creation
   initializeIndices();
-
-  // Watch for data changes (deep watch for array content)
-  watch(
-    () => data,
-    () => {
-      initializeIndices();
-    },
-    { immediate: true, deep: true },
-  );
 
   // Function to search across all indices with weight consideration
   const searchAllIndices = (query: string, searchLimit: number) => {
@@ -298,5 +293,5 @@ export function useFlexSearch<Data extends Record<string, any>>({
     return searchAllIndices(query, searchLimit);
   });
 
-  return { searchResult };
+  return { searchResult, isInitializing };
 }
