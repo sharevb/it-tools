@@ -34,12 +34,37 @@ const editor = new Editor({
 });
 
 watch(html, (newHtml) => {
-  if (editor.getHTML() !== newHtml) {
+  if (getCorrectedHtml() !== newHtml) {
     editor.commands.setContent(newHtml);
   }
 });
 
-editor.on('update', ({ editor }) => emit('update:html', editor.getHTML()));
+function getCorrectedHtml() {
+  return patchTipTapHTML(editor.getHTML());
+}
+
+function patchTipTapHTML(content: string | null) {
+  if (content === null) {
+    return null;
+  }
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(content, 'text/html');
+
+  const listItems = doc.querySelectorAll('li');
+  listItems.forEach((li) => {
+    const p = li.querySelector('p');
+    if (p) {
+      while (p.firstChild) {
+        li.insertBefore(p.firstChild, p);
+      }
+      p.remove();
+    }
+  });
+  return doc.body.innerHTML;
+}
+
+editor.on('update', () => emit('update:html', getCorrectedHtml()));
 
 tryOnBeforeUnmount(() => {
   editor.destroy();

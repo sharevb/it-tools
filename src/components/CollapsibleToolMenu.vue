@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
 import { useThemeVars } from 'naive-ui';
-import { RouterLink, useRoute } from 'vue-router';
+import { useRoute } from 'vue-router';
 import MenuIconItem from './MenuIconItem.vue';
+import MenuItemWithTooltip from './MenuItemTooltip.vue';
 import type { Tool, ToolCategory } from '@/tools/tools.types';
 
 const props = withDefaults(defineProps<{ toolsByCategory?: ToolCategory[] }>(), { toolsByCategory: () => [] });
 const { toolsByCategory } = toRefs(props);
 const route = useRoute();
 
-const makeLabel = (tool: Tool) => () => h(RouterLink, { to: tool.path }, { default: () => tool.name });
+const makeLabel = (tool: Tool) => () => h(MenuItemWithTooltip, { tool });
 const makeIcon = (tool: Tool) => () => h(MenuIconItem, { tool });
 
 const collapsedCategories = useStorage<Record<string, boolean>>(
@@ -25,14 +26,26 @@ const collapsedCategories = useStorage<Record<string, boolean>>(
   },
 );
 
+// Initialize default values for all categories
+watchEffect(() => {
+  toolsByCategory.value.forEach(({ name }) => {
+    if (!(name in collapsedCategories.value)) {
+      collapsedCategories.value[name] = true;
+    }
+  });
+});
+
 const isToggling = ref(false);
 
 function toggleCategoryCollapse({ name }: { name: string }) {
-  collapsedCategories.value[name] = !collapsedCategories.value[name];
+  const currentState = collapsedCategories.value[name];
+  collapsedCategories.value[name] = !currentState;
 }
 
 const areAllCollapsed = computed(() => {
-  return toolsByCategory.value.every(({ name }) => collapsedCategories.value[name] !== false);
+  return toolsByCategory.value.every(({ name }) =>
+    collapsedCategories.value[name] !== false,
+  );
 });
 
 async function toggleAllCategories() {
@@ -63,15 +76,13 @@ function getAnimationDuration(itemCount: number): number {
 
   const additionalDuration = (itemCount - baseItemCount) * durationIncrement;
 
-  // Ensure the duration doesn't go below the base duration
-  // This means that only if the item count is higher than the base item count, each extra element will add `durationIncrement` milliseconds to the animation
   return Math.max(baseDuration + additionalDuration, baseDuration);
 }
 
 const menuOptions = computed(() =>
   toolsByCategory.value.map(({ name, components }) => ({
     name,
-    isCollapsed: collapsedCategories.value[name] === undefined ? true : collapsedCategories.value[name],
+    isCollapsed: collapsedCategories.value[name],
     animationDuration: getAnimationDuration(components.length),
     tools: components.map(tool => ({
       label: makeLabel(tool),
@@ -85,7 +96,7 @@ const themeVars = useThemeVars();
 </script>
 
 <template>
-  <div class="top-controls" ml-6px>
+  <div class="top-controls" mb-12px ml-12px>
     <c-button :disabled="isToggling" @click="toggleAllCategories">
       <span v-if="isToggling">
         {{ areAllCollapsed ? 'Expanding...' : 'Collapsing...' }}
@@ -97,7 +108,11 @@ const themeVars = useThemeVars();
   </div>
 
   <div v-for="{ name, tools, isCollapsed, animationDuration } of menuOptions" :key="name" class="category-container">
-    <div ml-6px mt-12px flex cursor-pointer items-center op-60 @click="toggleCategoryCollapse({ name })">
+    <button
+      class="category-button"
+      flex cursor-pointer items-center op-60
+      @click="toggleCategoryCollapse({ name })"
+    >
       <span :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }" text-16px lh-1 op-50 transition-transform>
         <icon-mdi-chevron-right />
       </span>
@@ -105,7 +120,7 @@ const themeVars = useThemeVars();
       <span ml-8px text-13px>
         {{ name }}
       </span>
-    </div>
+    </button>
 
     <div
       class="menu-container"
@@ -130,6 +145,20 @@ const themeVars = useThemeVars();
 </template>
 
 <style scoped lang="less">
+.category-button {
+  border: none;
+  background: transparent;
+  padding: 6px;
+  width: 100%;
+  color: v-bind('themeVars.textColor1');
+  text-align: left;
+  user-select: none;
+
+  &:hover {
+    background-color: v-bind('themeVars.buttonColor2Hover');
+    opacity: 0.8;
+  }
+}
 .category-container {
   .menu-container {
     display: grid;
@@ -152,6 +181,7 @@ const themeVars = useThemeVars();
         ::v-deep(.n-menu-item-content::before) {
           left: 0;
           right: 13px;
+          transition: none !important; // Disables hover transition effect to instantly show hover state
         }
       }
 
