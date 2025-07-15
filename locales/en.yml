@@ -15,6 +15,7 @@ home:
   uiLib: UI Lib
   support: Support IT-Tools development
   buyMeACoffee: Buy me a coffee
+  loading-more-tools: Loading more tools...
   follow:
     title: You like it-tools?
     p1: Give us a star on
@@ -77,6 +78,7 @@ search:
 textareaCopyable:
   copy: Copy to clipboard
   copied: Copied!
+  download: Download
 spanCopyable:
   copy: Copy to clipboard
   copied: Copied!
@@ -84,6 +86,7 @@ inputCopyable:
   copy: Copy to clipboard
   copied: Copied!
 formatTransformer:
+  download: Download
   input: Input
   input-placeholder: Input...
   output: Output
@@ -1356,7 +1359,5 @@ tools:
   watermarker:
     title: Watermarker
     description: Add watermark or logo to one or more images
-formatTransformer.download: Download
-textareaCopyable.download: Download
-home.loading-more-tools: Loading more tools...
-locale-selector.select-a-language: Select a language
+locale-selector:
+  select-a-language: Select a language

@@ -4,10 +4,11 @@ import { getIPClass } from '../ipv4-subnet-calculator/ipv4-subnet-calculator.mod
 import { ipv4ToInt, ipv4ToIpv6, isValidIpv4 } from './ipv4-address-converter.service';
 import { getIPNetworkType, to6to4Prefix, toARPA, toIPv4MappedAddressDecimal } from '@/utils/ip';
 import { useValidation } from '@/composable/validation';
+import { withDefaultOnError } from '@/utils/defaults';
 
 const rawIpAddress = useStorage('ipv4-converter:ip', '192.168.1.1'); // NOSONAR
 
-const convertedSections = computed(() => {
+const convertedSections = computed(() => withDefaultOnError(() => {
   const ipInDecimal = ipv4ToInt({ ip: rawIpAddress.value });
 
   return [
@@ -56,7 +57,7 @@ const convertedSections = computed(() => {
       value: getIPNetworkType(rawIpAddress.value),
     },
   ];
-});
+}, []));
 
 const { attrs: validationAttrs } = useValidation({
   source: rawIpAddress,
