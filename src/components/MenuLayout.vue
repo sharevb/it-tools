@@ -29,8 +29,8 @@ const siderWidth = computed(() => {
     return 0;
   }
 
-  // Get 10% of window width, but ensure it's at least 240px
-  const tenPercent = windowWidth.value * 0.1;
+  // Use 12.5% of window width, but ensure it's at least 240px
+  const tenPercent = windowWidth.value * 0.125;
   return Math.max(240, tenPercent);
 });
 </script>
