@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n';
 import XPathEngine from 'xpath';
 import { DOMParser } from '@xmldom/xmldom';
 import { useValidation } from '@/composable/validation';
+import { isNotThrowing } from '@/utils/boolean';
 
 const { t } = useI18n();
 
@@ -12,7 +13,11 @@ const xml = ref('<book><title>Harry Potter</title></book>');
 const selectedNodes = computed(() => {
   try {
     const doc = new DOMParser().parseFromString(xml.value, 'text/xml');
-    const result = XPathEngine.select(xpath.value, doc);
+    const select = XPathEngine.useNamespaces(Object.fromEntries(
+      [...xml.value.matchAll(/xmlns\:([^\=]+)\=["']([^"']+)["']/g)].map(
+        ([_, prefix, uri]) => [prefix, uri],
+      )));
+    const result = select(xpath.value, doc);
     return Array.isArray(result) ? result : [result];
   }
   catch (e: any) {
@@ -24,10 +29,7 @@ const xmlValidation = useValidation({
   source: xml,
   rules: [
     {
-      validator: (v) => {
-        new DOMParser().parseFromString(v, 'text/xml');
-        return true;
-      },
+      validator: v => isNotThrowing(() => new DOMParser().parseFromString(v, 'text/xml')),
       message: t('tools.xpath-tester.texts.message-provided-xml-is-not-valid'),
     },
   ],
