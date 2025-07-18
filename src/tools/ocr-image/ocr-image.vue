@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
 import { createWorker } from 'tesseract.js';
 import { getDocument } from 'pdfjs-dist';
@@ -7,6 +8,8 @@ import pdfJSWorkerURL from 'pdfjs-dist/build/pdf.worker?url';
 import { textStatistics } from '../text-statistics/text-statistics.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const languages = [
   { name: 'English', code: 'eng' },
@@ -192,13 +195,13 @@ async function ocr(file: File, language: string) {
   <div>
     <c-select
       v-model:value="language"
-      label="Language"
+      :label="t('tools.ocr-image.texts.label-language')"
       :options="languagesOptions"
       searchable mb-2
     />
 
     <c-file-upload
-      title="Drag and drop a Image or PDF here, or click to select a file"
+      :title="t('tools.ocr-image.texts.title-drag-and-drop-a-image-or-pdf-here-or-click-to-select-a-file')"
       :paste-image="true"
       @file-upload="onUpload"
     />
@@ -208,7 +211,7 @@ async function ocr(file: File, language: string) {
     <div id="container" style="display: none;" />
 
     <div>
-      <h3>OCR</h3>
+      <h3>{{ t('tools.ocr-image.texts.tag-ocr') }}</h3>
       <TextareaCopyable
         v-if="!ocrInProgress"
         v-model:value="ocrText"
@@ -220,25 +223,25 @@ async function ocr(file: File, language: string) {
       />
     </div>
 
-    <c-card v-if="!ocrInProgress && stats" title="Statistics">
+    <c-card v-if="!ocrInProgress && stats" :title="t('tools.ocr-image.texts.title-statistics')">
       <n-space mt-3>
-        <n-statistic label="Character count" :value="stats.chars" />
-        <n-statistic label="Word count" :value="stats.words" />
-        <n-statistic label="Line count" :value="stats.lines" />
-        <n-statistic label="Pages count" :value="pageCount" />
-        <n-statistic label="Sentences count" :value="stats.sentences" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-character-count')" :value="stats.chars" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-word-count')" :value="stats.words" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-line-count')" :value="stats.lines" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-pages-count')" :value="pageCount" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-sentences-count')" :value="stats.sentences" />
       </n-space>
 
       <n-divider />
 
       <n-space>
-        <n-statistic label="Chars (no spaces)" :value="stats.chars_no_spaces" />
-        <n-statistic label="Uppercase chars" :value="stats.chars_upper" />
-        <n-statistic label="Lowercase chars" :value="stats.chars_lower" />
-        <n-statistic label="Digit chars" :value="stats.chars_digits" />
-        <n-statistic label="Punctuations" :value="stats.chars_puncts" />
-        <n-statistic label="Spaces chars" :value="stats.chars_spaces" />
-        <n-statistic label="Word count (no punct)" :value="stats.words_no_puncs" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-chars-no-spaces')" :value="stats.chars_no_spaces" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-uppercase-chars')" :value="stats.chars_upper" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-lowercase-chars')" :value="stats.chars_lower" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-digit-chars')" :value="stats.chars_digits" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-punctuations')" :value="stats.chars_puncts" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-spaces-chars')" :value="stats.chars_spaces" />
+        <n-statistic :label="t('tools.ocr-image.texts.label-word-count-no-punct')" :value="stats.words_no_puncs" />
       </n-space>
     </c-card>
   </div>

@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import unicodeNames from '@unicode/unicode-15.1.0/Names/index.js';
 import unicodeCategories from '@unicode/unicode-15.1.0/General_Category';
 import utf8 from 'utf8';
 
 import { useFlexSearch } from '@/composable/flexSearch';
 import useDebouncedRef from '@/composable/debouncedref';
+
+const { t } = useI18n();
 
 function toPaddedHex(num: number) {
   return num.toString(16).padStart(4, '0').toUpperCase();
@@ -61,37 +64,37 @@ const { searchResult } = useFlexSearch({
     <div mx-auto max-w-600px flex justify-center gap-3>
       <c-input-text
         v-model:value="searchQuery"
-        placeholder="Search Unicode by name (e.g. 'zero width') or code point..."
+        :placeholder="t('tools.unicode-search.texts.placeholder-search-unicode-by-name-e-g-zero-width-or-code-point')"
       >
         <template #prefix>
           <icon-mdi-search mr-6px color-black op-70 dark:color-white />
         </template>
       </c-input-text>
-      <n-form-item label="Max results:" label-placement="left">
+      <n-form-item :label="t('tools.unicode-search.texts.label-max-results')" label-placement="left">
         <n-input-number v-model:value="limit" :min="1" />
       </n-form-item>
     </div>
 
     <div v-if="searchQuery.trim().length > 0">
       <div v-if="searchResult.length === 0" mt-4 text-20px font-bold>
-        No results
+        {{ t('tools.unicode-search.texts.tag-no-results') }}
       </div>
 
       <div v-else>
         <div mt-4 text-20px font-bold>
-          Search result
+          {{ t('tools.unicode-search.texts.tag-search-result') }}
         </div>
 
         <n-table>
           <thead>
-            <th>UCOD</th>
-            <th>Display/UTF8</th>
+            <th>{{ t('tools.unicode-search.texts.tag-ucod') }}</th>
+            <th>{{ t('tools.unicode-search.texts.tag-display-utf8') }}</th>
             <th style="width: 30%">
-              Category
+              {{ t('tools.unicode-search.texts.tag-category') }}
             </th>
-            <th>Html</th>
+            <th>{{ t('tools.unicode-search.texts.tag-html') }}</th>
             <th style="width: 30%">
-              Name
+              {{ t('tools.unicode-search.texts.tag-name') }}
             </th>
           </thead>
           <tbody>
@@ -102,7 +105,7 @@ const { searchResult } = useFlexSearch({
                   :href="`https://unicodeplus.com/U+${toPaddedHex(result.codePoint)}`"
                   target="_blank"
                 >
-                  &gt; More info
+                  {{ t('tools.unicode-search.texts.tag-gt-more-info') }}
                 </n-a>
               </td>
               <td>

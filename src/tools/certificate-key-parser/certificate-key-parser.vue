@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
+import { useI18n } from 'vue-i18n';
 
 import { getKeysOrCertificatesInfosAsync } from './certificate-key-parser.service';
 import { type LabelValue } from './certificate-key-parser.infos';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+
+const { t } = useI18n();
 
 const inputKeyOrCertificate = ref('');
 const passphrase = ref('');
@@ -60,7 +63,7 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
   }
   catch (e: any) {
     return [
-      [{ label: 'Parsing Error', value: e.toString() }],
+      [{ label: t('tools.certificate-key-parser.texts.label-parsing-error'), value: e.toString() }],
     ];
   }
 });
@@ -73,26 +76,26 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
         <n-space>
           <n-radio
             value="file"
-            label="File"
+            :label="t('tools.certificate-key-parser.texts.label-file')"
           />
           <n-radio
             value="content"
-            label="Content"
+            :label="t('tools.certificate-key-parser.texts.label-content')"
           />
         </n-space>
       </n-radio-group>
 
       <c-file-upload
         v-if="inputType === 'file'"
-        title="Drag and drop a Certificate file here, or click to select a Certificate file"
+        :title="t('tools.certificate-key-parser.texts.title-drag-and-drop-a-certificate-file-here-or-click-to-select-a-certificate-file')"
         @file-upload="onUpload"
       />
 
       <c-input-text
         v-if="inputType === 'content'"
         v-model:value="inputKeyOrCertificate"
-        label="Paste your Public Key / Private Key / Signature / Fingerprint / Certificate:"
-        placeholder="Your Public Key / Private Key / Signature / Fingerprint / Certificate..."
+        :label="t('tools.certificate-key-parser.texts.label-paste-your-public-key-private-key-signature-fingerprint-certificate')"
+        :placeholder="t('tools.certificate-key-parser.texts.placeholder-your-public-key-private-key-signature-fingerprint-certificate')"
         multiline
         rows="8"
         data-test-id="input"
@@ -101,8 +104,8 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
 
     <c-input-text
       v-model:value="passphrase"
-      label="Passphrase (for encrypted keys):"
-      placeholder="Passphrase (for encrypted keys)..."
+      :label="t('tools.certificate-key-parser.texts.label-passphrase-for-encrypted-keys')"
+      :placeholder="t('tools.certificate-key-parser.texts.placeholder-passphrase-for-encrypted-keys')"
       type="password"
       data-test-id="pass"
     />
@@ -126,13 +129,13 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
         autosize mb-2
         :multiline="multiline"
         :value="value"
-        placeholder="Not Set"
+        :placeholder="t('tools.certificate-key-parser.texts.placeholder-not-set')"
       />
     </c-card>
 
     <div v-if="certificateX509DER !== ''" flex justify-center>
       <c-button @click="downloadX509DERFile()">
-        Download X509 DER certificate
+        {{ t('tools.certificate-key-parser.texts.tag-download-x509-der-certificate') }}
       </c-button>
     </div>
   </div>

@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { isIPv6 } from 'is-ip';
 import { parseCidr } from 'cidr-tools';
 import { stringifyIp } from 'ip-bigint';
 import { convertBase } from '../integer-base-converter/integer-base-converter.model';
 import { getIPNetworkType, toARPA, toMicrosoftTranscription } from '@/utils/ip';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const rawIpAddress = useStorage('ipv6-converter:ip', '2001:db8:0:85a3::ac1f:8001'); // NOSONAR
 
@@ -15,39 +18,39 @@ const convertedSections = computed(() => {
 
     return [
       {
-        label: 'Decimal: ',
+        label: t('tools.ipv6-address-converter.texts.label-decimal'),
         value: String(ipInDecimal),
       },
       {
-        label: 'Hexadecimal: ',
+        label: t('tools.ipv6-address-converter.texts.label-hexadecimal'),
         value: convertBase({ fromBase: 10, toBase: 16, value: String(ipInDecimal) }).toUpperCase(),
       },
       {
-        label: 'Binary: ',
+        label: t('tools.ipv6-address-converter.texts.label-binary'),
         value: convertBase({ fromBase: 10, toBase: 2, value: String(ipInDecimal) }),
       },
       {
-        label: 'CIDR: ',
+        label: t('tools.ipv6-address-converter.texts.label-cidr'),
         value: parsedIPv6.cidr,
       },
       {
-        label: 'Ipv6 (short): ',
+        label: t('tools.ipv6-address-converter.texts.label-ipv6-short'),
         value: stringifyIp({ number: ipInDecimal, version: 6 }, { compress: true }),
       },
       {
-        label: 'Ipv6 (long): ',
+        label: t('tools.ipv6-address-converter.texts.label-ipv6-long'),
         value: stringifyIp({ number: ipInDecimal, version: 6 }, { compress: false }),
       },
       {
-        label: 'ARPA: ',
+        label: t('tools.ipv6-address-converter.texts.label-arpa'),
         value: toARPA(parsedIPv6.ip),
       },
       {
-        label: 'Microsoft Transcription: ',
+        label: t('tools.ipv6-address-converter.texts.label-microsoft-transcription'),
         value: toMicrosoftTranscription(parsedIPv6.ip),
       },
       {
-        label: 'Type: ',
+        label: t('tools.ipv6-address-converter.texts.label-type'),
         value: getIPNetworkType(parsedIPv6.ip),
       },
     ];
@@ -59,13 +62,13 @@ const convertedSections = computed(() => {
 
 const { attrs: validationAttrs } = useValidation({
   source: rawIpAddress,
-  rules: [{ message: 'Invalid ipv6 address', validator: ip => isIPv6(ip) }],
+  rules: [{ message: t('tools.ipv6-address-converter.texts.message-invalid-ipv6-address'), validator: ip => isIPv6(ip) }],
 });
 </script>
 
 <template>
   <div>
-    <c-input-text v-model:value="rawIpAddress" label="The ipv6 address:" placeholder="The ipv6 address..." />
+    <c-input-text v-model:value="rawIpAddress" :label="t('tools.ipv6-address-converter.texts.label-the-ipv6-address')" :placeholder="t('tools.ipv6-address-converter.texts.placeholder-the-ipv6-address')" />
 
     <n-divider />
 
@@ -78,7 +81,7 @@ const { attrs: validationAttrs } = useValidation({
       label-align="right"
       mb-2
       :value="validationAttrs.validationStatus === 'error' ? '' : value"
-      placeholder="Set a correct ipv6 address"
+      :placeholder="t('tools.ipv6-address-converter.texts.placeholder-set-a-correct-ipv6-address')"
     />
   </div>
 </template>

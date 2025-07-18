@@ -12,17 +12,17 @@ store.commit('setFirstVisitStatus', { propValue: false });
 
 <template>
   <form>
-    <NumberInput id="workInterval" :min="1" :max="120" label="Work Interval" /><span>min</span><br>
-    <NumberInput id="shortBreak" :min="1" :max="120" label="Short break" /><span>min</span><br>
-    <NumberInput id="shortBreakCount" :min="1" :max="10" label="Short break count" /><span>breaks</span><br>
-    <NumberInput id="longBreak" :min="1" :max="120" label="Long break" /><span>min</span><br>
-    <AlarmSoundToggle id="prefersAlarmSound" label="Alarm Sound" /><br>
-    <AppColorPicker id="appAccentColor" label="App color" /><br>
+    <NumberInput id="workInterval" :min="1" :max="120" :label="$t('tools.pomodoro-timer.Settings.text.work-interval')" /><span>{{ $t('tools.pomodoro-timer.Settings.text.min') }}</span><br>
+    <NumberInput id="shortBreak" :min="1" :max="120" :label="$t('tools.pomodoro-timer.Settings.text.short-break')" /><span>{{ $t('tools.pomodoro-timer.Settings.text.min') }}</span><br>
+    <NumberInput id="shortBreakCount" :min="1" :max="10" :label="$t('tools.pomodoro-timer.Settings.text.short-break-count')" /><span>{{ $t('tools.pomodoro-timer.Settings.text.breaks') }}</span><br>
+    <NumberInput id="longBreak" :min="1" :max="120" :label="$t('tools.pomodoro-timer.Settings.text.long-break')" /><span>{{ $t('tools.pomodoro-timer.Settings.text.min') }}</span><br>
+    <AlarmSoundToggle id="prefersAlarmSound" :label="$t('tools.pomodoro-timer.Settings.text.alarm-sound')" /><br>
+    <AppColorPicker id="appAccentColor" :label="$t('tools.pomodoro-timer.Settings.text.app-color')" /><br>
     <a class="lets-go" @click="store.commit('goToPage', 'home')">
-      LET'S GO!
+      {{ $t('tools.pomodoro-timer.Settings.text.lets-go') }}
     </a>
     <button type="button" class="reset-btn" @click="store.commit('restoreDefaultSettings')">
-      RESTORE DEFAULTS
+      {{ $t('tools.pomodoro-timer.Settings.text.restore-defaults') }}
     </button>
   </form>
 </template>

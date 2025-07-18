@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import beautify from 'js-beautify';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const inputJS = ref('');
 const outputJS = computed(() => {
@@ -17,15 +20,15 @@ const outputJS = computed(() => {
     <c-input-text
       v-model:value="inputJS"
       multiline raw-text
-      placeholder="Your JS content..."
+      :placeholder="t('tools.javascript-prettifier.texts.placeholder-your-js-content')"
       rows="8"
       autofocus
-      label="Your JS to format (can paste from clipboard):"
+      :label="t('tools.javascript-prettifier.texts.label-your-js-to-format-can-paste-from-clipboard')"
     />
 
     <n-divider />
 
-    <n-form-item label="Output prettified JS:">
+    <n-form-item :label="t('tools.javascript-prettifier.texts.label-output-prettified-js')">
       <TextareaCopyable
         :value="outputJS"
         multiline

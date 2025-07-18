@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import ctz from 'countries-and-timezones';
 import getTimezoneOffset from 'get-timezone-offset';
+
+const { t } = useI18n();
 
 const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const allTimezones = Object.values(ctz.getAllTimezones()).map(tz => ({
@@ -47,16 +50,16 @@ const countryToTimezonesOutput = computed(() => ctz.getTimezonesForCountry(count
 
 <template>
   <div>
-    <c-card title="Timezones Date-Time Converter" mb-2>
+    <c-card :title="t('tools.timezone-converter.texts.title-timezones-date-time-converter')" mb-2>
       <c-select
         v-model:value="currentTimezone"
-        label="Timezone"
+        :label="t('tools.timezone-converter.texts.label-timezone')"
         label-position="left"
         searchable
         :options="allTimezones"
         mb-2
       />
-      <n-form-item label="Date/time interval to convert:" label-placement="top">
+      <n-form-item :label="t('tools.timezone-converter.texts.label-date-time-interval-to-convert')" label-placement="top">
         <n-date-picker
           :key="format"
           v-model:value="currentDatetimeRange"
@@ -69,15 +72,15 @@ const countryToTimezonesOutput = computed(() => ctz.getTimezonesForCountry(count
       </n-form-item>
 
       <n-space justify="space-evenly">
-        <n-form-item label="Current Timezone Offset:" label-placement="left">
+        <n-form-item :label="t('tools.timezone-converter.texts.label-current-timezone-offset')" label-placement="left">
           <n-input :value="currentTimezoneOffset" readonly style="width:5em" />
         </n-form-item>
-        <n-form-item label="Use 24 hour time format" label-placement="left">
+        <n-form-item :label="t('tools.timezone-converter.texts.label-use-24-hour-time-format')" label-placement="left">
           <n-switch v-model:value="use24HourTimeFormat" />
         </n-form-item>
       </n-space>
 
-      <c-card title="Date-Time in other timezones">
+      <c-card :title="t('tools.timezone-converter.texts.title-date-time-in-other-timezones')">
         <n-dynamic-input
           v-model:value="otherTimezones"
           show-sort-button
@@ -88,7 +91,7 @@ const countryToTimezonesOutput = computed(() => ctz.getTimezonesForCountry(count
               <n-select
                 v-model:value="value.name"
                 filterable
-                placeholder="Please select a timezone"
+                :placeholder="t('tools.timezone-converter.texts.placeholder-please-select-a-timezone')"
                 :options="allTimezones"
                 w-full
               />
@@ -102,10 +105,10 @@ const countryToTimezonesOutput = computed(() => ctz.getTimezonesForCountry(count
       </c-card>
     </c-card>
 
-    <c-card title="Country to Timezones" mb-2>
+    <c-card :title="t('tools.timezone-converter.texts.title-country-to-timezones')" mb-2>
       <c-select
         v-model:value="countryToTimezonesInput"
-        label="Country"
+        :label="t('tools.timezone-converter.texts.label-country')"
         label-position="left"
         searchable
         :options="allCountries"
@@ -120,10 +123,10 @@ const countryToTimezonesOutput = computed(() => ctz.getTimezonesForCountry(count
       </ul>
     </c-card>
 
-    <c-card title="Timezones to Countries" mb-2>
+    <c-card :title="t('tools.timezone-converter.texts.title-timezones-to-countries')" mb-2>
       <c-select
         v-model:value="tzToCountriesInput"
-        label="Timezone"
+        :label="t('tools.timezone-converter.texts.label-timezone')"
         label-position="left"
         searchable
         :options="allTimezones"

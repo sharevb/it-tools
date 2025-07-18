@@ -1,5 +1,5 @@
 import { type MaybeRef, get } from '@vueuse/core';
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import FlexSearch from 'flexsearch';
 
 // Define key types to match Fuse.js format
@@ -109,48 +109,33 @@ export function useFlexSearch<Data extends Record<string, any>>({
       dataMap.value.set(itemKey, item);
     });
 
-    // Batch add to indices - parallel processing with chunking
-    await Promise.all(
-      indices.map(async ({ key, index }) => {
-        // Filter items that have values for this key upfront
-        const itemsForThisKey = itemData
-          .map(({ itemKey, values }) => ({ itemKey, value: values.get(key) }))
-          .filter(({ value }) => value);
+    // Process indices sequentially to avoid event loop flooding
+    for (const { key, index } of indices) {
+      // Filter items that have values for this key upfront
+      const itemsForThisKey = itemData
+        .map(({ itemKey, values }) => ({ itemKey, value: values.get(key) }))
+        .filter(({ value }) => value);
 
-        // Process in chunks to avoid blocking the main thread
-        const chunkSize = 1000; // Adjust based on your data size
-        const chunks = [];
-        for (let i = 0; i < itemsForThisKey.length; i += chunkSize) {
-          chunks.push(itemsForThisKey.slice(i, i + chunkSize));
-        }
+      const chunkSize = 5000;
 
-        // Process each chunk asynchronously
-        for (const chunk of chunks) {
-          await new Promise<void>((resolve) => {
-            // Use setTimeout to yield control back to the browser
-            setTimeout(() => {
-              chunk.forEach(({ itemKey, value }) => {
-                index.add(itemKey, value!);
-              });
-              resolve();
-            }, 0);
+      for (let i = 0; i < itemsForThisKey.length; i += chunkSize) {
+        const chunk = itemsForThisKey.slice(i, i + chunkSize);
+
+        // Use requestAnimationFrame for better performance
+        await new Promise<void>((resolve) => {
+          requestAnimationFrame(() => {
+            chunk.forEach(({ itemKey, value }) => {
+              index.add(itemKey, value!);
+            });
+            resolve();
           });
-        }
-      }),
-    );
+        });
+      }
+    }
   };
 
   // Initialize on creation
   initializeIndices();
-
-  // Watch for data changes (deep watch for array content)
-  watch(
-    () => data,
-    () => {
-      initializeIndices();
-    },
-    { immediate: true, deep: true },
-  );
 
   // Function to search across all indices with weight consideration
   const searchAllIndices = (query: string, searchLimit: number) => {

@@ -11,6 +11,8 @@ import type {
 import * as forge from 'node-forge';
 import jks from 'jks-js';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 function convertPKCS12ToPem(p12base64: forge.Bytes | forge.util.ByteBuffer, password: string) {
   const p12Asn1 = forge.asn1.fromDer(p12base64, false);
   const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, false, password);
@@ -30,7 +32,7 @@ function getKeyFromP12(p12: forge.pkcs12.Pkcs12Pfx) {
   }
 
   if (!pkcs8Key?.key) {
-    throw new TypeError('Unable to get private key.');
+    throw new TypeError(t('tools.ssl-cert-converter.text.unable-to-get-private-key'));
   }
 
   return forge.pki.privateKeyToPem(pkcs8Key.key);

@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { randIntFromInterval } from '@/utils/random';
+
+const { t } = useI18n();
 
 const [coinFlip, refreshCoinFlip] = computedRefreshable(() => ({
   coin: randIntFromInterval(0, 10) % 2 === 0 ? 'Heads' : 'Tails',
@@ -19,7 +22,7 @@ const [coinFlip, refreshCoinFlip] = computedRefreshable(() => ({
     </Transition>
     <div mt-4 flex justify-center>
       <c-button @click="refreshCoinFlip">
-        Re flip
+        {{ t('tools.coin-flipper.texts.tag-re-flip') }}
       </c-button>
     </div>
   </div>

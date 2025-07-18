@@ -31,7 +31,7 @@ const { copy } = useCopy({ source: header, text: t('tools.basic-auth-generator.c
     />
 
     <c-card>
-      <n-statistic label="Authorization header:" class="header">
+      <n-statistic :label="t('tools.basic-auth-generator.texts.label-authorization-header')" class="header">
         <n-scrollbar x-scrollable style="max-width: 550px; margin-bottom: -10px; padding-bottom: 10px" trigger="none">
           {{ header }}
         </n-scrollbar>

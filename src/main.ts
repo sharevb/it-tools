@@ -9,6 +9,7 @@ import { registerSW } from 'virtual:pwa-register';
 import shadow from 'vue-shadow-dom';
 import { hideSplashScreen } from 'vite-plugin-splash-screen/runtime';
 import { plausible } from './plugins/plausible.plugin';
+import '@/utils/json5-bigint';
 
 import 'virtual:uno.css';
 
@@ -19,6 +20,11 @@ import router from './router';
 import { i18nPlugin } from './plugins/i18n.plugin';
 
 import store from './tools/pomodoro-timer/app/store';
+
+// eslint-disable-next-line no-extend-native
+BigInt.prototype.toJSON = function () {
+  return JSON.rawJSON ? JSON.rawJSON(this.toString()) : this.toString();
+};
 
 library.add(fas);
 

@@ -43,3 +43,12 @@ declare module 'pdf-signature-reader' {
 declare module 'vite-plugin-splash-screen/runtime' {
   export function hideSplashScreen();
 }
+
+interface BigInt {
+  toJSON: () => string;
+}
+
+interface JSON {
+  parseBigInt: (jsonStr: string, options?: { minDigits?: number; fallbackToString?: boolean; }) => any;
+  rawJSON(value: string): any;
+}

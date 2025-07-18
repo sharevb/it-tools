@@ -1,5 +1,4 @@
 import { type MaybeRef, get } from '@vueuse/core';
-import JSON5 from 'json5';
 
 export { sortObjectKeys, sortObjectValues, formatJson };
 
@@ -64,7 +63,7 @@ function formatJson({
   keyName: MaybeRef<string>
   indentSize?: MaybeRef<number>
 }) {
-  const parsedObject = JSON5.parse(get(rawJson));
+  const parsedObject = JSON.parseBigInt(get(rawJson));
 
   if (['key_name', 'key_name_desc'].includes(get(sortMethod))) {
     return JSON.stringify(sortObjectKeys(parsedObject, get(sortMethod)), null, get(indentSize));

@@ -1,17 +1,20 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import GenerateSchema from 'generate-schema';
 import { withDefaultOnError } from '../../utils/defaults';
 import type { UseValidationRule } from '@/composable/validation';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
+const { t } = useI18n();
+
 const formats = [
-  { value: 'generic', label: 'Generic' },
-  { value: 'json', label: 'JSON Schema' },
-  { value: 'mysql', label: 'MySQL Table Schema' },
-  { value: 'mongoose', label: 'Mongoose Schema' },
-  { value: 'bigquery', label: 'Google BigQuery schema' },
-  { value: 'clickhouse', label: 'ClickHouse Table Schema' },
+  { value: 'generic', label: t('tools.json-to-schema.texts.label-generic') },
+  { value: 'json', label: t('tools.json-to-schema.texts.label-json-schema') },
+  { value: 'mysql', label: t('tools.json-to-schema.texts.label-mysql-table-schema') },
+  { value: 'mongoose', label: t('tools.json-to-schema.texts.label-mongoose-schema') },
+  { value: 'bigquery', label: t('tools.json-to-schema.texts.label-google-bigquery-schema') },
+  { value: 'clickhouse', label: t('tools.json-to-schema.texts.label-clickhouse-table-schema') },
 ];
 
 const tableName = ref('TableName');
@@ -53,7 +56,7 @@ const schemaLanguage = computed(() => {
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || JSON5.parse(v),
-    message: 'Provided JSON is not valid.',
+    message: t('tools.json-to-schema.texts.message-provided-json-is-not-valid'),
   },
 ];
 </script>
@@ -63,21 +66,21 @@ const rules: UseValidationRule<string>[] = [
     <c-select
       v-model:value="format"
       :options="formats"
-      placeholder="Target Schema format"
+      :placeholder="t('tools.json-to-schema.texts.placeholder-target-schema-format')"
     />
     <c-input-text
       v-if="['clickhouse', 'json', 'mysql'].includes(format)"
       v-model:value="tableName"
-      label="Table Name"
-      placeholder="Table Name"
+      :label="t('tools.json-to-schema.texts.label-table-name')"
+      :placeholder="t('tools.json-to-schema.texts.placeholder-table-name')"
       mb-2
     />
     <n-divider />
 
     <format-transformer
-      input-label="Your JSON"
-      input-placeholder="Paste your JSON here..."
-      output-label="Your schema"
+      :input-label="t('tools.json-to-schema.texts.input-label-your-json')"
+      :input-placeholder="t('tools.json-to-schema.texts.input-placeholder-paste-your-json-here')"
+      :output-label="t('tools.json-to-schema.texts.output-label-your-schema')"
       :output-language="schemaLanguage"
       :input-validation-rules="rules"
       :transformer="transformer"

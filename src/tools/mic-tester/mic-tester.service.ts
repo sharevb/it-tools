@@ -1,5 +1,7 @@
 import { onBeforeUnmount, ref } from 'vue';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 interface IMessageSender {
   error: (...messages: any[]) => void
 }
@@ -46,7 +48,7 @@ export function useMicrophoneService(messageSender: IMessageSender) {
     }
     catch (err) {
       console.error('Microphone access denied:', err);
-      messageSender.error('Microphone access denied (the error is also in the console):', err);
+      messageSender.error(t('tools.mic-tester.service.text.microphone-access-denied-the-error-is-also-in-the-console'), err);
       return;
     }
 

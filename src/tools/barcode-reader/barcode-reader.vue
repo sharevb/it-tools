@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { BarcodeFormat, BrowserMultiFormatReader } from '@zxing/library';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const imageBase64 = ref('');
 const barCode = computedAsync(async () => {
@@ -38,7 +41,7 @@ async function onUpload(file: File) {
 <template>
   <div>
     <c-file-upload
-      title="Drag and drop a BarCode here, or click to select a file"
+      :title="t('tools.barcode-reader.texts.title-drag-and-drop-a-barcode-here-or-click-to-select-a-file')"
       :paste-image="true"
       mb-3
       @file-upload="onUpload"
@@ -47,7 +50,7 @@ async function onUpload(file: File) {
     <div v-if="barCode?.text">
       <n-divider />
 
-      <h3>Decoded <span v-if="barCode?.format">({{ barCode?.format }})</span></h3>
+      <h3>{{ t('tools.barcode-reader.texts.tag-decoded') }}<span v-if="barCode?.format">({{ barCode?.format }})</span></h3>
       <TextareaCopyable
         :value="barCode?.text"
         :word-wrap="true"

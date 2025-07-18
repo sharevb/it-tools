@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import {
   computed,
   ref,
@@ -17,6 +18,8 @@ import {
 } from 'naive-ui';
 import type { UploadFileInfo } from 'naive-ui';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const images = ref<HTMLImageElement[]>([]);
 const selectedIndex = ref(0);
@@ -235,7 +238,7 @@ watchEffect(() => drawImage(selectedIndex.value));
 <template>
   <div>
     <c-file-upload
-      title="Drag and drop images here, or click to select some files"
+      :title="t('tools.watermarker.texts.title-drag-and-drop-images-here-or-click-to-select-some-files')"
       multiple
       accept="image/*"
       @files-upload="onFileChanges"
@@ -259,43 +262,43 @@ watchEffect(() => drawImage(selectedIndex.value));
 
     <NSpace mt-2 justify="center">
       <NButton @click="applyWatermark">
-        Apply to Current
+        {{ t('tools.watermarker.texts.tag-apply-to-current') }}
       </NButton>
       <NButton @click="downloadImage(selectedIndex)">
-        Download Current
+        {{ t('tools.watermarker.texts.tag-download-current') }}
       </NButton>
       <NButton type="primary" @click="downloadAll">
-        Apply & Download All
+        {{ t('tools.watermarker.texts.tag-apply-download-all') }}
       </NButton>
     </NSpace>
 
-    <c-card title="Settings" mt-2>
-      <n-form-item label="Watermark text:" label-placement="left" mt-2>
-        <NInput v-model:value="watermarkText" placeholder="Watermark text" />
+    <c-card :title="t('tools.watermarker.texts.title-settings')" mt-2>
+      <n-form-item :label="t('tools.watermarker.texts.label-watermark-text')" label-placement="left" mt-2>
+        <NInput v-model:value="watermarkText" :placeholder="t('tools.watermarker.texts.placeholder-watermark-text')" />
       </n-form-item>
 
       <NSpace justify="center">
-        <n-form-item label="Font size:" label-placement="left" mt-2>
+        <n-form-item :label="t('tools.watermarker.texts.label-font-size')" label-placement="left" mt-2>
           <NSlider v-model:value="fontSize" :step="1" :min="1" :max="100" mr-2 />
           <n-input-number v-model:value="fontSize" size="small" :min="1" :max="100" />
         </n-form-item>
 
-        <n-form-item label="Opacity:" label-placement="left" mt-2>
+        <n-form-item :label="t('tools.watermarker.texts.label-opacity')" label-placement="left" mt-2>
           <NSlider v-model:value="opacity" :step="0.5" :min="0" :max="100" mr-2 />
           <n-input-number v-model:value="opacity" size="small" :min="0" :max="100" />
         </n-form-item>
 
-        <n-form-item label="Color:" label-placement="left" mt-2>
+        <n-form-item :label="t('tools.watermarker.texts.label-color')" label-placement="left" mt-2>
           <NColorPicker v-model:value="fontColor" style="width:100px" />
         </n-form-item>
-        <n-form-item label="Rotation (°):" label-placement="left" mt-2>
+        <n-form-item :label="t('tools.watermarker.texts.label-rotation')" label-placement="left" mt-2>
           <NSlider v-model:value="rotation" :step="0.5" :min="0" :max="360" mr-2 />
           <n-input-number v-model:value="rotation" size="small" :min="0" :max="360" />
         </n-form-item>
       </NSpace>
 
       <NSpace justify="center">
-        <n-form-item label="Repeat Watermark:" label-placement="left" mt-2>
+        <n-form-item :label="t('tools.watermarker.texts.label-repeat-watermark')" label-placement="left" mt-2>
           <NSwitch v-model:value="repeatWatermark" />
         </n-form-item>
 
@@ -304,42 +307,42 @@ watchEffect(() => drawImage(selectedIndex.value));
           <n-input-number v-model:value="tileSpacing" size="small" :min="1" :max="1000" />
         </n-form-item>
 
-        <n-form-item v-if="!repeatWatermark" label="Position:" label-placement="left" mt-2>
+        <n-form-item v-if="!repeatWatermark" :label="t('tools.watermarker.texts.label-position')" label-placement="left" mt-2>
           <NSelect
             v-model:value="watermarkPosition"
             style="min-width: 130px"
             :options="[
-              { label: 'Center', value: 'center' },
-              { label: 'Top Left', value: 'top-left' },
-              { label: 'Top Right', value: 'top-right' },
-              { label: 'Bottom Left', value: 'bottom-left' },
-              { label: 'Bottom Right', value: 'bottom-right' },
+              { label: t('tools.watermarker.texts.label-center'), value: 'center' },
+              { label: t('tools.watermarker.texts.label-top-left'), value: 'top-left' },
+              { label: t('tools.watermarker.texts.label-top-right'), value: 'top-right' },
+              { label: t('tools.watermarker.texts.label-bottom-left'), value: 'bottom-left' },
+              { label: t('tools.watermarker.texts.label-bottom-right'), value: 'bottom-right' },
             ]"
-            placeholder="Watermark Position"
+            :placeholder="t('tools.watermarker.texts.placeholder-watermark-position')"
           />
         </n-form-item>
       </NSpace>
 
-      <c-card title="Optional Logo">
+      <c-card :title="t('tools.watermarker.texts.title-optional-logo')">
         <NSpace justify="center">
           <NUpload :show-file-list="false" accept="image/*" @change="onLogoUpload">
-            <NButton>Upload Logo</NButton>
+            <NButton>{{ t('tools.watermarker.texts.tag-upload-logo') }}</NButton>
           </NUpload>
         </NSpace>
-        <n-form-item label="Logo Width:" label-placement="left" mt-2>
+        <n-form-item :label="t('tools.watermarker.texts.label-logo-width')" label-placement="left" mt-2>
           <NSlider v-model:value="logoWidth" :min="10" :max="200" mr-2 />
           <n-input-number v-model:value="logoWidth" size="small" :min="10" :max="200" />
         </n-form-item>
       </c-card>
 
-      <c-card title="Download Format" mt-2>
+      <c-card :title="t('tools.watermarker.texts.title-download-format')" mt-2>
         <NRadioGroup v-model:value="downloadFormat" name="format" flex justify-center>
           <NSpace>
             <NRadio value="png">
-              PNG
+              {{ t('tools.watermarker.texts.tag-png') }}
             </NRadio>
             <NRadio value="jpeg">
-              JPEG
+              {{ t('tools.watermarker.texts.tag-jpeg') }}
             </NRadio>
           </NSpace>
         </NRadioGroup>

@@ -178,6 +178,7 @@ docker run -d --name it-tools --restart unless-stopped -p 8080:8080 ghcr.io/core
 - [Cloudron](https://www.cloudron.io/store/tech.ittools.cloudron.html)
 - [Tipi](https://www.runtipi.io/docs/apps-available)
 - [Unraid](https://unraid.net/community/apps?q=it-tools)
+- [YunoHost](https://apps.yunohost.org/app/it-tools)
 
 ## Contribute
 

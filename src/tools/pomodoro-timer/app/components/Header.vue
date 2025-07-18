@@ -3,9 +3,9 @@
     <h1 @click="$router.push('/')">
       <div class="icon-container">
         <div class="circle" />
-        <img src="/stopwatch.png" alt="Picture of a stopwatch">
+        <img src="/stopwatch.png" :alt="$t('tools.pomodoro-timer.Header.text.picture-of-a-stopwatch')">
       </div>
-      Pomodoro Timer
+      {{ $t('tools.pomodoro-timer.SplashScreen.text.pomodoro-timer-0') }}
     </h1>
   </header>
 </template>

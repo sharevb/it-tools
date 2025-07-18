@@ -8,7 +8,7 @@ const { t } = useI18n();
 const defaultValue = '{"a":{"_attributes":{"x":"1.234","y":"It\'s"}}}';
 function transformer(value: string) {
   return withDefaultOnError(() => {
-    return convert.js2xml(JSON5.parse(value), { compact: true });
+    return convert.js2xml(JSON.parseBigInt(value), { compact: true });
   }, '');
 }
 
@@ -22,10 +22,10 @@ const rules: UseValidationRule<string>[] = [
 
 <template>
   <format-transformer
-    :input-label="t('tools.json-to-xml.input')"
+    :input-:label="t('tools.json-to-xml.texts.label-t-tools-json-to-xml-input')"
     :input-default="defaultValue"
-    :input-placeholder="t('tools.json-to-xml.input-placeholder')"
-    :output-label="t('tools.json-to-xml.output')"
+    :input-:placeholder="t('tools.json-to-xml.texts.placeholder-t-tools-json-to-xml-input-placeholder')"
+    :output-:label="t('tools.json-to-xml.texts.label-t-tools-json-to-xml-output')"
     output-language="xml"
     :transformer="transformer"
     :input-validation-rules="rules"

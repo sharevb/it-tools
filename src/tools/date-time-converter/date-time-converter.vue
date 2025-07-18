@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import {
   formatISO,
   formatISO9075,
@@ -39,6 +40,8 @@ import {
 } from './date-time-converter.models';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const inputDate = ref('');
 
@@ -167,7 +170,7 @@ const validation = useValidation({
   watch: [formatIndex],
   rules: [
     {
-      message: 'This date is invalid for this format',
+      message: t('tools.date-time-converter.texts.message-this-date-is-invalid-for-this-format'),
       validator: value =>
         withDefaultOnError(() => {
           if (value === '') {
@@ -196,7 +199,7 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
       <c-input-text
         v-model:value="inputDate"
         autofocus
-        placeholder="Put your date string here..."
+        :placeholder="t('tools.date-time-converter.texts.placeholder-put-your-date-string-here')"
         clearable
         test-id="date-time-converter-input"
         :validation="validation"
@@ -221,7 +224,7 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
       label-position="left"
       label-align="right"
       :value="formatDateUsingFormatter(fromDate, normalizedDate)"
-      placeholder="Invalid date..."
+      :placeholder="t('tools.date-time-converter.texts.placeholder-invalid-date')"
       :test-id="name"
       readonly
       mt-2
