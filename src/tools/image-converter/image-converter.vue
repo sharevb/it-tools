@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import type { MemoryImage } from 'image-in-browser';
 import { decodeImage, encodeBmp, encodeGif, encodeIco, encodeJpg, encodePng, encodePvr, encodeTga, encodeTiff } from 'image-in-browser';
@@ -7,6 +8,8 @@ import { createSvg2png, initialize } from 'svg2png-wasm';
 import { normal as robotoBase64 } from 'roboto-base64';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 function readAsText(file: File) {
   return new Promise<string>((resolve, reject) => {
@@ -133,32 +136,32 @@ async function onFileUploaded(uploadedFile: File) {
 
 <template>
   <div max-w-800px>
-    <h4>First, select output options:</h4>
+    <h4>{{ t('tools.image-converter.texts.tag-first-select-output-options') }}</h4>
 
     <c-select
       v-model:value="outputFormat"
-      label="Output format:"
+      :label="t('tools.image-converter.texts.label-output-format')"
       label-position="left"
       :options="Object.keys(outputFormats)"
-      placeholder="Select output format"
+      :placeholder="t('tools.image-converter.texts.placeholder-select-output-format')"
       mb-2
     />
 
     <div mb-2 flex justify-center>
-      <n-form-item v-if="outputFormatHasQuality" label="Output quality:" label-placement="left">
+      <n-form-item v-if="outputFormatHasQuality" :label="t('tools.image-converter.texts.label-output-quality')" label-placement="left">
         <n-input-number v-model:value="outputQuality" :max="100" :min="0" w-full />
       </n-form-item>
-      <n-form-item label="SVG scaling:" label-placement="left">
+      <n-form-item :label="t('tools.image-converter.texts.label-svg-scaling')" label-placement="left">
         <n-input-number v-model:value="svgScale" :min="0" />
       </n-form-item>
     </div>
 
-    <h4>Then, drag and drop your images below and they will be converted and downloaded immediately:</h4>
+    <h4>{{ t('tools.image-converter.texts.tag-then-drag-and-drop-your-images-below-and-they-will-be-converted-and-downloaded-immediately') }}</h4>
 
     <div style="flex: 0 0 100%" mb-2>
       <div mx-auto max-w-600px>
         <c-file-upload
-          title="Drag and drop images files here, or click to select some files"
+          :title="t('tools.image-converter.texts.title-drag-and-drop-images-files-here-or-click-to-select-some-files')"
           accept="image/*"
           paste-image
           multiple

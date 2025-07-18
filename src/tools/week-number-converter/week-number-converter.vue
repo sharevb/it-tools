@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { getISOWeek, getWeek, getWeekOfMonth } from 'date-fns';
 import { getFirstMondayFromISOWeek, getFirstMondayFromMonthWeek } from './week-number-converter.service';
+
+const { t } = useI18n();
 
 const now = new Date();
 
@@ -25,47 +28,47 @@ const outputWeekInYearMonday = computed(() => getFirstMondayFromISOWeek(inputWee
 
 <template>
   <div>
-    <c-card title="Date to Week numbers" mb-2>
-      <n-form-item label="Date:" label-placement="left">
+    <c-card :title="t('tools.week-number-converter.texts.title-date-to-week-numbers')" mb-2>
+      <n-form-item :label="t('tools.week-number-converter.texts.label-date')" label-placement="left">
         <n-date-picker v-model:value="inputDate" type="date" />
       </n-form-item>
 
       <n-divider />
 
-      <input-copyable readonly label="Local Week in Year:" label-position="left" label-width="130px" :value="outputLocalWeekInYear" mb-1 />
-      <input-copyable readonly label="ISO Week (in Year):" label-position="left" label-width="130px" :value="outputISOWeekInYear" mb-1 />
-      <input-copyable readonly label="Week in Month:" label-position="left" label-width="130px" :value="outputWeekInMonth" mb-1 />
+      <input-copyable readonly :label="t('tools.week-number-converter.texts.label-local-week-in-year')" label-position="left" label-width="130px" :value="outputLocalWeekInYear" mb-1 />
+      <input-copyable readonly :label="t('tools.week-number-converter.texts.label-iso-week-in-year')" label-position="left" label-width="130px" :value="outputISOWeekInYear" mb-1 />
+      <input-copyable readonly :label="t('tools.week-number-converter.texts.label-week-in-month')" label-position="left" label-width="130px" :value="outputWeekInMonth" mb-1 />
     </c-card>
-    <c-card title="ISO Week number to date" mb-2>
+    <c-card :title="t('tools.week-number-converter.texts.title-iso-week-number-to-date')" mb-2>
       <div flex items-baseline gap-2>
-        <n-form-item label="ISO Week number:" label-placement="left" flex-1>
+        <n-form-item :label="t('tools.week-number-converter.texts.label-iso-week-number')" label-placement="left" flex-1>
           <n-input-number v-model:value="inputWeekInYear.week" :min="1" :max="53" />
         </n-form-item>
-        <n-form-item label="Year:" label-placement="left" flex-1>
+        <n-form-item :label="t('tools.week-number-converter.texts.label-year')" label-placement="left" flex-1>
           <n-input-number v-model:value="inputWeekInYear.year" />
         </n-form-item>
       </div>
 
       <n-divider />
 
-      <input-copyable readonly label="First Monday" label-position="left" :value="outputWeekInYearMonday" />
+      <input-copyable readonly :label="t('tools.week-number-converter.texts.label-first-monday')" label-position="left" :value="outputWeekInYearMonday" />
     </c-card>
-    <c-card title="Week number in month to date" mb-2>
+    <c-card :title="t('tools.week-number-converter.texts.title-week-number-in-month-to-date')" mb-2>
       <div flex items-baseline gap-2>
-        <n-form-item label="Week in month:" label-placement="left" flex-1>
+        <n-form-item :label="t('tools.week-number-converter.texts.label-week-in-month')" label-placement="left" flex-1>
           <n-input-number v-model:value="inputWeekInMonth.week" :min="1" :max="5" />
         </n-form-item>
-        <n-form-item label="Month:" label-placement="left" flex-1>
+        <n-form-item :label="t('tools.week-number-converter.texts.label-month')" label-placement="left" flex-1>
           <n-input-number v-model:value="inputWeekInMonth.month" :min="1" :max="12" />
         </n-form-item>
-        <n-form-item label="Year:" label-placement="left" flex-1>
+        <n-form-item :label="t('tools.week-number-converter.texts.label-year')" label-placement="left" flex-1>
           <n-input-number v-model:value="inputWeekInMonth.year" />
         </n-form-item>
       </div>
 
       <n-divider />
 
-      <input-copyable readonly label="First Monday" label-position="left" :value="outputWeekInMonthMonday" />
+      <input-copyable readonly :label="t('tools.week-number-converter.texts.label-first-monday')" label-position="left" :value="outputWeekInMonthMonday" />
     </c-card>
   </div>
 </template>

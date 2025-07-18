@@ -3,6 +3,8 @@ import { encrypt } from 'unixcrypt-browser';
 import md5 from 'apache-md5';
 import { multiRandFromArray } from '@/utils/random';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 const itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 export function generateHtpasswd({
@@ -31,14 +33,14 @@ export function generateHtpasswd({
     case 'md5':
 
       if (non_ascii.test(password)) {
-        throw new Error('MD5 does not currently support non ASCII characters');
+        throw new Error(t('tools.htpasswd-generator.service.text.md5-does-not-currently-support-non-ascii-characters'));
       }
       hash = md5(password, `$1$${finalSalt}`);
       break;
     case 'apr1':
 
       if (non_ascii.test(password)) {
-        throw new Error('MD5 does not currently support non ASCII characters');
+        throw new Error(t('tools.htpasswd-generator.service.text.md5-does-not-currently-support-non-ascii-characters-0'));
       }
       hash = md5(password, `$apr1$${finalSalt}`);
       break;
@@ -49,7 +51,7 @@ export function generateHtpasswd({
       hash = encrypt(password, `$6$${finalSalt}`);
       break;
     default:
-      throw new Error('Unsupported algorithm');
+      throw new Error(t('tools.htpasswd-generator.service.text.unsupported-algorithm'));
   }
 
   return `${username}:${hash}`;

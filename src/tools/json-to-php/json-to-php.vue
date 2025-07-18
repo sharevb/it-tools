@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import { InputData, jsonInputForTargetLanguage, quicktype } from 'quicktype-core';
 import type { UseValidationRule } from '@/composable/validation';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const defaultValue = `{
   a:"n",
@@ -72,43 +75,43 @@ const phpOutput = computedAsync(async () => {
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || JSON5.parse(v),
-    message: 'Provided JSON is not valid.',
+    message: t('tools.json-to-php.texts.message-provided-json-is-not-valid'),
   },
 ];
 </script>
 
 <template>
-  <c-card title="JSON to PHP">
+  <c-card :title="t('tools.json-to-php.texts.title-json-to-php')">
     <c-input-text
       v-model:value="jsonInput"
       multiline
-      placeholder="Put your json string here..."
+      :placeholder="t('tools.json-to-php.texts.placeholder-put-your-json-string-here')"
       rows="20"
-      label="Your JSON object:"
+      :label="t('tools.json-to-php.texts.label-your-json-object')"
       :validation-rules="rules"
       raw-text
       mb-5
     />
-    <c-input-text v-model:value="rootName" label="Root Name:" label-position="left" mb-2 />
+    <c-input-text v-model:value="rootName" :label="t('tools.json-to-php.texts.label-root-name')" label-position="left" mb-2 />
     <n-space justify="center">
       <n-checkbox v-model:checked="createGetter">
-        Create Getter
+        {{ t('tools.json-to-php.texts.tag-create-getter') }}
       </n-checkbox>
       <n-checkbox v-model:checked="getterWithoutValidation">
-        Getter without validation
+        {{ t('tools.json-to-php.texts.tag-getter-without-validation') }}
       </n-checkbox>
       <n-checkbox v-model:checked="createSetter">
-        Create Setter
+        {{ t('tools.json-to-php.texts.tag-create-setter') }}
       </n-checkbox>
       <n-checkbox v-model:checked="phpClosingTag">
-        PHP Closing Tag
+        {{ t('tools.json-to-php.texts.tag-php-closing-tag') }}
       </n-checkbox>
       <n-checkbox v-model:checked="optionalProperties">
-        Make all properties optional
+        {{ t('tools.json-to-php.texts.tag-make-all-properties-optional') }}
       </n-checkbox>
     </n-space>
   </c-card>
-  <c-card title="Your PHP code">
+  <c-card :title="t('tools.json-to-php.texts.title-your-php-code')">
     <TextareaCopyable
       :value="phpOutput"
       language="php"

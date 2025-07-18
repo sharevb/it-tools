@@ -35,7 +35,9 @@
     "script:create:tool": "node scripts/create-tool.mjs",
     "script:create:ui": "hygen generator ui-component",
     "release": "node ./scripts/release.mjs",
-    "script:extract:desc": "node ./scripts/extract-tools-desc.mjs"
+    "script:extract:desc": "node ./scripts/extract-tools-desc.mjs",
+    "script:extract:strings": "node ./scripts/extract-tools-strings.mjs",
+    "vue-i18n-extract": "vue-i18n-extract report --vueFiles 'src/**/*.?(ts|vue)' --languageFiles 'locales/*.yml'"
   },
   "dependencies": {
     "@chenfengyuan/vue-barcode": "^2.0.2",
@@ -74,6 +76,7 @@
     "@tiptap/vue-3": "2.9.1",
     "@types/haversine": "^1.1.8",
     "@types/moment": "^2.13.0",
+    "@types/swagger-ui-dist": "^3.30.6",
     "@unicode/unicode-15.1.0": "^1.6.5",
     "@vicons/material": "^0.12.0",
     "@vicons/tabler": "^0.12.0",
@@ -265,6 +268,7 @@
     "stringify-object": "^5.0.0",
     "svg2png-wasm": "^1.4.1",
     "svgo": "^3.3.2",
+    "swagger-ui-dist": "^5.26.2",
     "tesseract.js": "^5.1.1",
     "text-encoding-utf-8": "^1.0.2",
     "tick-time": "^1.0.1",
@@ -284,7 +288,7 @@
     "vanilla-jsoneditor": "^0.23.8",
     "vue": "^3.3.4",
     "vue-color-wheel": "^0.1.1",
-    "vue-i18n": "^9.14.3",
+    "vue-i18n": "^11.1.9",
     "vue-loading-overlay": "^6.0",
     "vue-markdown-render": "^2.2.1",
     "vue-mathjax-next": "^0.0.6",
@@ -310,7 +314,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.41.0",
     "@iconify-json/mdi": "^1.1.50",
-    "@intlify/unplugin-vue-i18n": "^0.13.0",
+    "@intlify/unplugin-vue-i18n": "^6.0.8",
     "@playwright/test": "^1.50.1",
     "@rushstack/eslint-patch": "^1.2.0",
     "@tsconfig/node18": "^18.2.0",
@@ -379,6 +383,7 @@
     "vite-plugin-wasm": "^3.4.1",
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.34.6",
+    "vue-i18n-extract": "^2.0.7",
     "workbox-window": "^7.3.0",
     "zx": "^7.2.3"
   },
@@ -386,5 +391,8 @@
     "overrides": {
       "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
     }
+  },
+  "scarfSettings": {
+    "enabled": false
   }
 }

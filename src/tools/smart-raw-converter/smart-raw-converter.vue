@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { getSmartValue } from './smart-raw-converter.service';
 import { useValidation } from '@/composable/validation';
+
+const { t } = useI18n();
 
 const inputRegex = /^(?:0x(?<hex>[a-f\d]+)|(?<dec>\d+))$/i;
 const rawValue = ref('0xFE45E3');
@@ -11,7 +14,7 @@ const rawValueValidation = useValidation({
       validator: (v) => {
         return inputRegex.test(v?.trim());
       },
-      message: 'Smart Raw Value must be decimal or "0x" hexadecimal.',
+      message: t('tools.smart-raw-converter.texts.message-smart-raw-value-must-be-decimal-or-0x-hexadecimal'),
     },
   ],
 });
@@ -31,13 +34,13 @@ const smartDecodedValue = computed(() => {
   <div max-w-600px>
     <c-input-text
       v-model:value="rawValue"
-      label="Smart Raw Value"
-      placeholder="Put your Smart Raw Value (decimal or '0x' hexa)"
+      :label="t('tools.smart-raw-converter.texts.label-smart-raw-value')"
+      :placeholder="t('tools.smart-raw-converter.texts.placeholder-put-your-smart-raw-value-decimal-or-0x-hexa')"
       :validation="rawValueValidation"
       mb-2
     />
 
-    <c-card v-if="smartDecodedValue" title="Decoded">
+    <c-card v-if="smartDecodedValue" :title="t('tools.smart-raw-converter.texts.title-decoded')">
       <strong>{{ smartDecodedValue.errors }}</strong> in {{ smartDecodedValue.operations }} operations
     </c-card>
   </div>

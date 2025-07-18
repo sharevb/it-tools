@@ -7,14 +7,14 @@ const store = useStore('pomodoro-store');
 <template>
   <div class="dropup">
     <button class="dropup-btn" @click="store.commit('toggleResetDropup')">
-      RESET
+      {{ $t('tools.pomodoro-timer.ResetDropup.text.reset') }}
     </button>
     <div v-if="store.state.isResetDropupVisible" class="dropup-content">
       <button class="reset-btns" @click="store.commit('timerResetAll')">
-        Reset All
+        {{ $t('tools.pomodoro-timer.ResetDropup.text.reset-all') }}
       </button>
       <button class="reset-btns" @click="store.commit('timerResetCurrent')">
-        Reset Current
+        {{ $t('tools.pomodoro-timer.ResetDropup.text.reset-current') }}
       </button>
     </div>
   </div>

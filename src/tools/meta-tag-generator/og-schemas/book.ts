@@ -1,16 +1,18 @@
 import type { OGSchemaType } from '../OGSchemaType.type';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export const book: OGSchemaType = {
-  name: 'Book',
+  name: t('tools.meta-tag-generator.website.text.book'),
   elements: [
-    { type: 'input', label: 'Author', key: 'book:author', placeholder: 'Who wrote this book...' },
-    { type: 'input', label: 'ISBN', key: 'book:isbn', placeholder: 'The International Standard Book Number...' },
+    { type: 'input', label: t('tools.meta-tag-generator.article.text.author'), key: 'book:author', placeholder: t('tools.meta-tag-generator.book.text.who-wrote-this-book') },
+    { type: 'input', label: 'ISBN', key: 'book:isbn', placeholder: t('tools.meta-tag-generator.book.text.the-international-standard-book-number') },
     {
       type: 'input',
-      label: 'Release date',
+      label: t('tools.meta-tag-generator.book.text.release-date'),
       key: 'book:release_date',
-      placeholder: 'The date the book was released...',
+      placeholder: t('tools.meta-tag-generator.book.text.the-date-the-book-was-released'),
     },
-    { type: 'input', label: 'Tag', key: 'book:tag', placeholder: 'Tag words associated with this book...' },
+    { type: 'input', label: t('tools.meta-tag-generator.article.text.tag'), key: 'book:tag', placeholder: t('tools.meta-tag-generator.book.text.tag-words-associated-with-this-book') },
   ],
 };

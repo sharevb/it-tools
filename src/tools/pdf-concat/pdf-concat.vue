@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import createQPDFModule from 'qpdf-wasm-esm-embedded';
 import { IconChevronDown, IconChevronUp, IconCircleMinus } from '@tabler/icons-vue';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+
+const { t } = useI18n();
 
 const fileInputs = ref<Array<{ file: File; range: string }>>([]);
 function onUploads(files: Array<File>) {
@@ -88,17 +91,17 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
     <div style="flex: 0 0 100%">
       <div mx-auto mb-2 max-w-600px>
         <c-file-upload
-          title="Drag and drop a PDF files here, or click to select some files"
+          :title="t('tools.pdf-concat.texts.title-drag-and-drop-a-pdf-files-here-or-click-to-select-some-files')"
           multiple
           accept=".pdf"
           @files-upload="onUploads"
         />
         <div mt-2 text-center>
-          <c-input-text :value="fileName" label="Output file:" label-position="left" />
+          <c-input-text :value="fileName" :label="t('tools.pdf-concat.texts.label-output-file')" label-position="left" />
         </div>
       </div>
 
-      <c-card v-if="fileInputs" title="Files order">
+      <c-card v-if="fileInputs" :title="t('tools.pdf-concat.texts.title-files-order')">
         <n-dynamic-input
           v-model:value="fileInputs"
           show-sort-button
@@ -124,9 +127,9 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
               <input-copyable readonly :value="value.file.name" />
               <c-input-text
                 v-model:value="value.range"
-                label="Range:"
+                :label="t('tools.pdf-concat.texts.label-range')"
                 label-position="left"
-                placeholder="Qpdf Range"
+                :placeholder="t('tools.pdf-concat.texts.placeholder-qpdf-range')"
                 mb-2
               />
             </div>
@@ -136,14 +139,14 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
     </div>
 
     <n-p>
-      For details about Range options, see <n-a target="_blank" href="https://qpdf.readthedocs.io/en/stable/cli.html#page-selection">
-        QPDF Documentation
+      {{ t('tools.pdf-concat.texts.tag-for-details-about-range-options-see') }}<n-a target="_blank" href="https://qpdf.readthedocs.io/en/stable/cli.html#page-selection">
+        {{ t('tools.pdf-concat.texts.tag-qpdf-documentation') }}
       </n-a>
     </n-p>
 
     <div mt-3 flex justify-center>
       <c-button :disabled="!fileInputs" @click="onProcessClicked()">
-        Concat PDFs
+        {{ t('tools.pdf-concat.texts.tag-concat-pdfs') }}
       </c-button>
     </div>
 
@@ -159,8 +162,8 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
       />
     </div>
 
-    <c-card title="Logs">
-      <input-copyable label="qpdf" :value="qpdfCommand" mb-1 />
+    <c-card :title="t('tools.pdf-concat.texts.title-logs')">
+      <input-copyable :label="t('tools.pdf-concat.texts.label-qpdf')" :value="qpdfCommand" mb-1 />
       <pre>{{ logs.join('\n') }}</pre>
     </c-card>
   </div>

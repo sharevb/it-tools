@@ -1,24 +1,27 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { getPasswordCrackTimeEstimation } from './password-strength-analyser.service';
+
+const { t } = useI18n();
 
 const password = ref('');
 const crackTimeEstimation = computed(() => getPasswordCrackTimeEstimation({ password: password.value }));
 
 const details = computed(() => [
   {
-    label: 'Password length:',
+    label: t('tools.password-strength-analyser.texts.label-password-length'),
     value: crackTimeEstimation.value.passwordLength,
   },
   {
-    label: 'Entropy:',
+    label: t('tools.password-strength-analyser.texts.label-entropy'),
     value: Math.round(crackTimeEstimation.value.entropy * 100) / 100,
   },
   {
-    label: 'Character set size:',
+    label: t('tools.password-strength-analyser.texts.label-character-set-size'),
     value: crackTimeEstimation.value.charsetLength,
   },
   {
-    label: 'Score:',
+    label: t('tools.password-strength-analyser.texts.label-score'),
     value: `${Math.round(crackTimeEstimation.value.score * 100)} / 100`,
   },
 ]);
@@ -29,7 +32,7 @@ const details = computed(() => [
     <c-input-text
       v-model:value="password"
       type="password"
-      placeholder="Enter a password..."
+      :placeholder="t('tools.password-strength-analyser.texts.placeholder-enter-a-password')"
       clearable
       autofocus
       raw-text
@@ -38,7 +41,7 @@ const details = computed(() => [
 
     <c-card text-center>
       <div op-60>
-        Duration to crack this password with brute force
+        {{ t('tools.password-strength-analyser.texts.tag-duration-to-crack-this-password-with-brute-force') }}
       </div>
       <div text-2xl data-test-id="crack-duration">
         {{ crackTimeEstimation.crackDurationFormatted }}
@@ -55,8 +58,7 @@ const details = computed(() => [
       </div>
     </c-card>
     <div op-70>
-      <span font-bold>Note: </span>
-      The computed strength is based on the time it would take to crack the password using a brute force approach, it does not take into account the possibility of a dictionary attack.
+      <span font-bold>{{ t('tools.password-strength-analyser.texts.tag-note') }}</span>{{ t('tools.password-strength-analyser.texts.tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack') }}
     </div>
   </div>
 </template>

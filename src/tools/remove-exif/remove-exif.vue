@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
+import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import ExifTransformer from 'exif-be-gone';
 import MemoryStream from 'memorystream';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+
+const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
@@ -51,7 +54,7 @@ async function onFileUploaded(uploadedFile: File) {
   <div>
     <div style="flex: 0 0 100%">
       <div mx-auto max-w-600px>
-        <c-file-upload title="Drag and drop a Image file here, or click to select a file" accept="image/*" @file-upload="onFileUploaded" />
+        <c-file-upload :title="t('tools.remove-exif.texts.title-drag-and-drop-a-image-file-here-or-click-to-select-a-file')" accept="image/*" @file-upload="onFileUploaded" />
       </div>
     </div>
 

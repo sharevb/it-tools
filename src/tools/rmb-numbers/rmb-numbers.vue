@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useThemeVars } from 'naive-ui';
 import { rmb } from './rmb-numbers.service';
+
+const { t } = useI18n();
 
 const themeVars = useThemeVars();
 const inputRmb = ref(23);
@@ -9,13 +12,13 @@ const outputRmb = computed(() => rmb(inputRmb.value)); ;
 
 <template>
   <div flex flex-col gap-2>
-    <c-card title="Lower Case Amount">
-      <n-input-number v-model:value="inputRmb" max="100000000000" min="0" placeholder="Enter the amount in lowercase (example: 1314.52)" :show-button="false" w-full />
+    <c-card :title="t('tools.rmb-numbers.texts.title-lower-case-amount')">
+      <n-input-number v-model:value="inputRmb" max="100000000000" min="0" :placeholder="t('tools.rmb-numbers.texts.placeholder-enter-the-amount-in-lowercase-example-1314-52')" :show-button="false" w-full />
     </c-card>
 
     <div my-16px divider />
 
-    <c-card title="Amount in Capital Letters" flex flex-col>
+    <c-card :title="t('tools.rmb-numbers.texts.title-amount-in-capital-letters')" flex flex-col>
       <div m-0 m-x-auto>
         <span
           v-for="(item, index) in outputRmb"

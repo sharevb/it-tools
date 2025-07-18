@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { FileTypeResult } from 'file-type';
 import { fileTypeFromBuffer } from 'file-type';
 import InputCopyable from '../../components/InputCopyable.vue';
+
+const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
@@ -27,17 +30,17 @@ async function onFileUploaded(uploadedFile: File) {
     <div style="flex: 0 0 100%" mb-3>
       <div mx-auto max-w-600px>
         <c-file-upload
-          title="Drag and drop a file here, or click to select a file"
+          :title="t('tools.file-type.texts.title-drag-and-drop-a-file-here-or-click-to-select-a-file')"
           @file-upload="onFileUploaded"
         />
       </div>
     </div>
 
     <div mt-3 flex justify-center>
-      <c-card v-if="status === 'done'" title="Information">
+      <c-card v-if="status === 'done'" :title="t('tools.file-type.texts.title-information')">
         <InputCopyable
           :value="file?.name || ''"
-          label="File name:"
+          :label="t('tools.file-type.texts.label-file-name')"
           label-position="left"
           label-width="100px"
           label-align="right"
@@ -47,7 +50,7 @@ async function onFileUploaded(uploadedFile: File) {
 
         <InputCopyable
           :value="type?.ext || '<unknown>'"
-          label="Extension:"
+          :label="t('tools.file-type.texts.label-extension')"
           label-position="left"
           label-width="100px"
           label-align="right"
@@ -56,7 +59,7 @@ async function onFileUploaded(uploadedFile: File) {
         />
         <InputCopyable
           :value="type?.mime || '<unknown>'"
-          label="MIME Type:"
+          :label="t('tools.file-type.texts.label-mime-type')"
           label-position="left"
           label-width="100px"
           label-align="right"

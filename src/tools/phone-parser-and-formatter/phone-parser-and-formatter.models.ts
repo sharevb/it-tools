@@ -1,20 +1,22 @@
 import type { CountryCode, NumberType } from 'libphonenumber-js/types';
 import lookup from 'country-code-lookup';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export { formatTypeToHumanReadable, getFullCountryName, getDefaultCountryCode };
 
 const typeToLabel: Record<NonNullable<NumberType>, string> = {
-  MOBILE: 'Mobile',
-  FIXED_LINE: 'Fixed line',
-  FIXED_LINE_OR_MOBILE: 'Fixed line or mobile',
-  PERSONAL_NUMBER: 'Personal number',
-  PREMIUM_RATE: 'Premium rate',
-  SHARED_COST: 'Shared cost',
-  TOLL_FREE: 'Toll free',
-  UAN: 'Universal access number',
-  VOICEMAIL: 'Voicemail',
+  MOBILE: t('tools.phone-parser-and-formatter.models.text.mobile'),
+  FIXED_LINE: t('tools.phone-parser-and-formatter.models.text.fixed-line'),
+  FIXED_LINE_OR_MOBILE: t('tools.phone-parser-and-formatter.models.text.fixed-line-or-mobile'),
+  PERSONAL_NUMBER: t('tools.phone-parser-and-formatter.models.text.personal-number'),
+  PREMIUM_RATE: t('tools.phone-parser-and-formatter.models.text.premium-rate'),
+  SHARED_COST: t('tools.phone-parser-and-formatter.models.text.shared-cost'),
+  TOLL_FREE: t('tools.phone-parser-and-formatter.models.text.toll-free'),
+  UAN: t('tools.phone-parser-and-formatter.models.text.universal-access-number'),
+  VOICEMAIL: t('tools.phone-parser-and-formatter.models.text.voicemail'),
   VOIP: 'VoIP',
-  PAGER: 'Pager',
+  PAGER: t('tools.phone-parser-and-formatter.models.text.pager'),
 };
 
 function formatTypeToHumanReadable(type: NumberType): string | undefined {

@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { decode, encode } from 'morsee';
 import { computedCatch } from '@/composable/computed/catchedComputed';
+
+const { t } = useI18n();
 
 const encodeInput = ref('');
 const encodeOutput = computed(() => encode(encodeInput.value));
@@ -13,42 +16,42 @@ const [decodeOutput, decodeError] = computedCatch(() => decode(decodeInput.value
 </script>
 
 <template>
-  <c-card title="Encode">
+  <c-card :title="t('tools.morse-converter.texts.title-encode')">
     <div flex gap-3>
       <c-input-text
         v-model:value="encodeInput"
-        label="Your text:"
-        placeholder="The string to encode"
+        :label="t('tools.morse-converter.texts.label-your-text')"
+        :placeholder="t('tools.morse-converter.texts.placeholder-the-string-to-encode')"
         rows="4"
         multiline raw-text monospace autosize flex-1
       />
     </div>
     <c-input-text
-      label="Your text encoded to Morse code:"
+      :label="t('tools.morse-converter.texts.label-your-text-encoded-to-morse-code')"
       :value="encodeOutput"
       rows="3"
-      placeholder="Your string encoded"
+      :placeholder="t('tools.morse-converter.texts.placeholder-your-string-encoded')"
       multiline monospace readonly autosize mt-5
     />
   </c-card>
-  <c-card title="Decode">
+  <c-card :title="t('tools.morse-converter.texts.title-decode')">
     <div flex gap-3>
       <c-input-text
         v-model:value="decodeInput"
-        label="Your Morse encoded text:"
-        placeholder="The string to decode"
+        :label="t('tools.morse-converter.texts.label-your-morse-encoded-text')"
+        :placeholder="t('tools.morse-converter.texts.placeholder-the-string-to-decode')"
         rows="4"
         multiline raw-text monospace autosize flex-1
       />
     </div>
-    <c-alert v-if="decodeError" type="error" mt-12 title="Error while decoding">
+    <c-alert v-if="decodeError" type="error" mt-12 :title="t('tools.morse-converter.texts.title-error-while-decoding')">
       {{ decodeError }}
     </c-alert>
     <c-input-text
       v-else
-      label="Your decoded text:"
+      :label="t('tools.morse-converter.texts.label-your-decoded-text')"
       :value="decodeOutput"
-      placeholder="Your string decoded"
+      :placeholder="t('tools.morse-converter.texts.placeholder-your-string-decoded')"
       rows="3"
       multiline monospace readonly autosize mt-5
     />

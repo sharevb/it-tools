@@ -72,13 +72,13 @@ const currentTab = computed(
     <Header />
     <div class="page-container">
       <n-tabs v-model:value="currentTab" type="line" animated>
-        <n-tab-pane name="home" tab="Timer">
+        <n-tab-pane name="home" :tab="t('tools.pomodoro-timer.PomodoroApp.text.timer')">
           <PomodoroHome />
         </n-tab-pane>
-        <n-tab-pane name="about" tab="About">
+        <n-tab-pane name="about" :tab="t('tools.pomodoro-timer.PomodoroApp.text.about')">
           <PomodoroAbout />
         </n-tab-pane>
-        <n-tab-pane name="settings" tab="Settings">
+        <n-tab-pane name="settings" :tab="t('tools.pomodoro-timer.PomodoroApp.text.settings')">
           <PomodoroSettings />
         </n-tab-pane>
       </n-tabs>

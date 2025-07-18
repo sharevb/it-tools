@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { ImageToAsciiArt } from 'image-to-ascii-art';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { languages, printToLanguage } from '@/utils/ascii-lang-utils';
+
+const { t } = useI18n();
 
 const inputBase64 = ref('');
 const language = useStorage('image-to-ascii-art:language', 'raw');
@@ -60,14 +63,14 @@ async function onFileUploaded(uploadedFile: File) {
     <div style="flex: 0 0 100%">
       <div mx-auto max-w-600px>
         <c-file-upload
-          title="Drag and drop a Image file here, or click to select a file"
+          :title="t('tools.image-to-ascii-art.texts.title-drag-and-drop-a-image-file-here-or-click-to-select-a-file')"
           paste-image
           @file-upload="onFileUploaded"
         />
       </div>
     </div>
 
-    <n-form-item label="Output scale" label-placement="left" mt-2>
+    <n-form-item :label="t('tools.image-to-ascii-art.texts.label-output-scale')" label-placement="left" mt-2>
       <n-slider v-model:value="scale" :step="1" :min="1" :max="100" mr-2 />
       <n-input-number v-model:value="scale" size="small" :min="1" :max="100" />
     </n-form-item>
@@ -78,14 +81,14 @@ async function onFileUploaded(uploadedFile: File) {
 
     <div v-if="processing" flex items-center justify-center>
       <n-spin size="medium" />
-      <span class="ml-2">Processing...</span>
+      <span class="ml-2">{{ t('tools.image-to-ascii-art.texts.tag-processing') }}</span>
     </div>
 
     <c-alert v-if="errored" mt-1 text-center type="error">
-      Current settings resulted in error.
+      {{ t('tools.image-to-ascii-art.texts.tag-current-settings-resulted-in-error') }}
     </c-alert>
 
-    <n-form-item v-if="!processing && !errored" label="Ascii Art text:">
+    <n-form-item v-if="!processing && !errored" :label="t('tools.image-to-ascii-art.texts.label-ascii-art-text')">
       <TextareaCopyable
         :value="output"
         mb-1 mt-1

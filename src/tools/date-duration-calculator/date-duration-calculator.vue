@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { addToDate } from './date-duration-calculator.service';
+
+const { t } = useI18n();
 
 const now = Date.now();
 
@@ -11,8 +14,8 @@ const errorsDateAdder = computed(() => resultDateAdder.value.errors.join('\n'));
 
 <template>
   <div>
-    <c-card title="Date + Duration Calculator" mb-2>
-      <n-form-item label="Reference Date:" label-placement="left" mb-1>
+    <c-card :title="t('tools.date-duration-calculator.texts.title-date-duration-calculator')" mb-2>
+      <n-form-item :label="t('tools.date-duration-calculator.texts.label-reference-date')" label-placement="left" mb-1>
         <n-date-picker v-model:value="inputReferenceDate" type="datetime" />
       </n-form-item>
 
@@ -20,22 +23,22 @@ const errorsDateAdder = computed(() => resultDateAdder.value.errors.join('\n'));
         v-model:value="inputDurations"
         multiline
         rows="5"
-        label="Duration(s)"
-        placeholder="Please enter duration, one per line with optional sign"
+        :label="t('tools.date-duration-calculator.texts.label-duration-s')"
+        :placeholder="t('tools.date-duration-calculator.texts.placeholder-please-enter-duration-one-per-line-with-optional-sign')"
         mb-2
       />
-      <n-p>Supports: comment (# line), HH:MM:SS.FFF, 3d 1h 3s..., P4DT12H20M20.3S..</n-p>
+      <n-p>{{ t('tools.date-duration-calculator.texts.tag-supports-comment-line-hh-mm-ss-fff-3d-1h-3s-p4dt12h20m20-3s') }}</n-p>
 
-      <c-card v-if="errorsDateAdder" title="Lines errors">
+      <c-card v-if="errorsDateAdder" :title="t('tools.date-duration-calculator.texts.title-lines-errors')">
         <textarea-copyable :value="errorsDateAdder" />
       </c-card>
 
       <n-divider />
 
-      <input-copyable v-if="resultDateAdder" label="Result Date:" label-position="left" label-width="150px" :value="resultDateAdder.date.toString()" mb-1 />
-      <input-copyable v-if="resultDateAdder" label="Result ISO Date:" label-position="left" label-width="150px" :value="resultDateAdder.date.toISOString()" mb-1 />
-      <input-copyable v-if="resultDateAdder" label="Duration (seconds):" label-position="left" label-width="150px" :value="resultDateAdder.durationSeconds" mb-1 />
-      <input-copyable v-if="resultDateAdder" label="Duration:" label-position="left" label-width="150px" :value="resultDateAdder.durationPretty" mb-1 />
+      <input-copyable v-if="resultDateAdder" :label="t('tools.date-duration-calculator.texts.label-result-date')" label-position="left" label-width="150px" :value="resultDateAdder.date.toString()" mb-1 />
+      <input-copyable v-if="resultDateAdder" :label="t('tools.date-duration-calculator.texts.label-result-iso-date')" label-position="left" label-width="150px" :value="resultDateAdder.date.toISOString()" mb-1 />
+      <input-copyable v-if="resultDateAdder" :label="t('tools.date-duration-calculator.texts.label-duration-seconds')" label-position="left" label-width="150px" :value="resultDateAdder.durationSeconds" mb-1 />
+      <input-copyable v-if="resultDateAdder" :label="t('tools.date-duration-calculator.texts.label-duration')" label-position="left" label-width="150px" :value="resultDateAdder.durationPretty" mb-1 />
     </c-card>
   </div>
 </template>

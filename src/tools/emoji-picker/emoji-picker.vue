@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import emojiUnicodeData from 'unicode-emoji-json';
 import emojiKeywords from 'emojilib';
 import _ from 'lodash';
@@ -6,6 +7,8 @@ import type { EmojiInfo } from './emoji.types';
 import { escapeUnicodeComplete, getAllCodePoints } from './emoji-utils';
 import useDebouncedRef from '@/composable/debouncedref';
 import { useFlexSearch } from '@/composable/flexSearch';
+
+const { t } = useI18n();
 
 // Enhanced emoji processing functions
 const escapeUnicode = ({ emoji }: { emoji: string }) => escapeUnicodeComplete(emoji);
@@ -172,14 +175,14 @@ onUnmounted(() => {
     <div mx-auto mb-4 max-w-600px flex justify-center gap-3>
       <c-input-text
         v-model:value="rawSearchQuery"
-        placeholder="Search emojis (e.g. 'smile') or paste an emoji (e.g. '😄')"
+        :placeholder="t('tools.emoji-picker.texts.placeholder-search-emojis-e-g-smile-or-paste-an-emoji-e-g')"
         class="flex-1"
       >
         <template #prefix>
           <icon-mdi-search mr-6px color-black op-70 dark:color-white />
         </template>
       </c-input-text>
-      <n-form-item label="Max results:" label-placement="left">
+      <n-form-item :label="t('tools.emoji-picker.texts.label-max-results')" label-placement="left">
         <n-input-number v-model:value="limit" :min="10" :max="500" :step="10" style="width: 100px" />
       </n-form-item>
     </div>
@@ -187,16 +190,16 @@ onUnmounted(() => {
     <!-- Search Results -->
     <div v-if="searchQuery.trim().length > 0">
       <div v-if="displayedSearchResults.length === 0" mt-4 text-center text-20px font-bold op-70>
-        <div>No results found</div>
+        <div>{{ t('tools.emoji-picker.texts.tag-no-results-found') }}</div>
         <div mt-2 text-14px font-normal>
-          Try searching for something else like "smile", "flag", or "😄"
+          {{ t('tools.emoji-picker.texts.tag-try-searching-for-something-else-like-smile-flag-or') }}
         </div>
       </div>
 
       <div v-else>
         <div mb-3 mt-4 flex items-center gap-2 text-20px font-bold>
-          <span>Search Results</span>
-          <span text-14px font-normal op-70>({{ displayedSearchResults.length }} found)</span>
+          <span>{{ t('tools.emoji-picker.texts.tag-search-results') }}</span>
+          <span text-14px font-normal op-70>{{ $t('tools.emoji-picker.text.displayedsearchresults-length-found', [displayedSearchResults.length]) }}</span>
         </div>
 
         <emoji-grid :emoji-infos="displayedSearchResults" />
@@ -217,7 +220,7 @@ onUnmounted(() => {
       <!-- Loading indicator when more groups are coming -->
       <div v-if="visibleGroupsCount < emojisGroups.length" mt-6 text-center>
         <div text-14px op-70>
-          Loading more groups... ({{ visibleGroupsCount }}/{{ emojisGroups.length }})
+          <span>{{ $t('tools.emoji-picker.text.loading-more-groups') }}</span> ({{ visibleGroupsCount }}/{{ emojisGroups.length }})
         </div>
       </div>
     </div>

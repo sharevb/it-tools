@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { parseJavaEntitiesToUnicode, parseUnicodeToJavaEntities } from './unicode-characters-to-java-entities.service';
 import { useCopy } from '@/composable/copy';
+
+const { t } = useI18n();
 
 const inputUnicode = ref('');
 const entitiesFromUnicode = computed(() => inputUnicode.value.trim() === '' ? '' : parseUnicodeToJavaEntities(inputUnicode.value));
@@ -12,22 +15,22 @@ const { copy: copyUnicode } = useCopy({ source: unicodeFromEntities });
 </script>
 
 <template>
-  <c-card title="Unicode Characters to Java entities">
-    <c-input-text v-model:value="inputUnicode" placeholder="e.g. 'Hello Avengers'" label="Enter Unicode Characters to convert to Java entities" autosize raw-text multiline autofocus test-id="unicode-to-entities-input" />
-    <c-input-text v-model:value="entitiesFromUnicode" label="Java entities from your text" placeholder="The unicode representation of your text will be here" raw-text multiline readonly mt-2 test-id="unicode-to-entities-output" />
+  <c-card :title="t('tools.unicode-characters-to-java-entities-converter.texts.title-unicode-characters-to-java-entities')">
+    <c-input-text v-model:value="inputUnicode" :placeholder="t('tools.unicode-characters-to-java-entities-converter.texts.placeholder-e-g-hello-avengers')" :label="t('tools.unicode-characters-to-java-entities-converter.texts.label-enter-unicode-characters-to-convert-to-java-entities')" autosize raw-text multiline autofocus test-id="unicode-to-entities-input" />
+    <c-input-text v-model:value="entitiesFromUnicode" :label="t('tools.unicode-characters-to-java-entities-converter.texts.label-java-entities-from-your-text')" :placeholder="t('tools.unicode-characters-to-java-entities-converter.texts.placeholder-the-unicode-representation-of-your-text-will-be-here')" raw-text multiline readonly mt-2 test-id="unicode-to-entities-output" />
     <div mt-2 flex justify-center>
       <c-button :disabled="!entitiesFromUnicode" @click="copyJavaEntities()">
-        Copy Java entities to clipboard
+        {{ t('tools.unicode-characters-to-java-entities-converter.texts.tag-copy-java-entities-to-clipboard') }}
       </c-button>
     </div>
   </c-card>
 
-  <c-card title="Java entities to Unicode Characters">
-    <c-input-text v-model:value="inputJavaEntities" placeholder="Input Java entities" label="Enter Java entities to convert to Unicode Characters" autosize raw-text multiline test-id="entities-to-unicode-input" />
-    <c-input-text v-model:value="unicodeFromEntities" label="Text from your Java entities" placeholder="The text representation of your unicode will be here" multiline raw-text readonly mt-2 test-id="entities-to-unicode-output" />
+  <c-card :title="t('tools.unicode-characters-to-java-entities-converter.texts.title-java-entities-to-unicode-characters')">
+    <c-input-text v-model:value="inputJavaEntities" :placeholder="t('tools.unicode-characters-to-java-entities-converter.texts.placeholder-input-java-entities')" :label="t('tools.unicode-characters-to-java-entities-converter.texts.label-enter-java-entities-to-convert-to-unicode-characters')" autosize raw-text multiline test-id="entities-to-unicode-input" />
+    <c-input-text v-model:value="unicodeFromEntities" :label="t('tools.unicode-characters-to-java-entities-converter.texts.label-text-from-your-java-entities')" :placeholder="t('tools.unicode-characters-to-java-entities-converter.texts.placeholder-the-text-representation-of-your-unicode-will-be-here')" multiline raw-text readonly mt-2 test-id="entities-to-unicode-output" />
     <div mt-2 flex justify-center>
       <c-button :disabled="!unicodeFromEntities" @click="copyUnicode()">
-        Copy Unicode to clipboard
+        {{ t('tools.unicode-characters-to-java-entities-converter.texts.tag-copy-unicode-to-clipboard') }}
       </c-button>
     </div>
   </c-card>

@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Countdown } from 'vue3-flip-countdown';
 import { parseExpression } from 'cron-parser';
 import moment from 'moment';
 import { useQueryParam } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const allDays = '0,1,2,3,4,5,6';
 const alarmAt = useQueryParam({ name: 'at', defaultValue: '17:30:00' });
@@ -91,22 +94,22 @@ const isEnded = computed(() => status.value === 'ended');
 
 <template>
   <div max-w-600px>
-    <c-card :disabled="status !== 'stopped'" title="Alarm" mb-4>
+    <c-card :disabled="status !== 'stopped'" :title="t('tools.cron-alarm.texts.title-alarm')" mb-4>
       <div mb-1 flex justify-center>
-        <n-form-item label="Alarm at:" label-placement="left">
+        <n-form-item :label="t('tools.cron-alarm.texts.label-alarm-at')" label-placement="left">
           <n-time-picker v-model:formatted-value="alarmAt" />
         </n-form-item>
       </div>
       <div flex justify-center>
         <n-checkbox-group v-model:value="daysArray">
           <n-space item-style="display: flex;">
-            <n-checkbox value="1" label="Monday" />
-            <n-checkbox value="2" label="Tuesday" />
-            <n-checkbox value="3" label="Wednesday" />
-            <n-checkbox value="4" label="Thursday" />
-            <n-checkbox value="5" label="Friday" />
-            <n-checkbox value="6" label="Saturday" />
-            <n-checkbox value="0" label="Sunday" />
+            <n-checkbox value="1" :label="t('tools.cron-alarm.texts.label-monday')" />
+            <n-checkbox value="2" :label="t('tools.cron-alarm.texts.label-tuesday')" />
+            <n-checkbox value="3" :label="t('tools.cron-alarm.texts.label-wednesday')" />
+            <n-checkbox value="4" :label="t('tools.cron-alarm.texts.label-thursday')" />
+            <n-checkbox value="5" :label="t('tools.cron-alarm.texts.label-friday')" />
+            <n-checkbox value="6" :label="t('tools.cron-alarm.texts.label-saturday')" />
+            <n-checkbox value="0" :label="t('tools.cron-alarm.texts.label-sunday')" />
           </n-space>
         </n-checkbox-group>
       </div>
@@ -115,7 +118,7 @@ const isEnded = computed(() => status.value === 'ended');
         <c-button
           @click="start"
         >
-          Start
+          {{ t('tools.cron-alarm.texts.tag-start') }}
         </c-button>
       </div>
     </c-card>
@@ -128,7 +131,7 @@ const isEnded = computed(() => status.value === 'ended');
             :disabled="status === 'stopped'"
             @click="toggleFullScreen"
           >
-            Toggle Fullscreen
+            {{ t('tools.cron-alarm.texts.tag-toggle-fullscreen') }}
           </c-button>
         </div>
       </div>
@@ -139,7 +142,7 @@ const isEnded = computed(() => status.value === 'ended');
         :disabled="status === 'stopped'"
         @click="stop"
       >
-        Stop
+        {{ t('tools.cron-alarm.texts.tag-stop') }}
       </c-button>
     </div>
 
@@ -150,22 +153,22 @@ const isEnded = computed(() => status.value === 'ended');
     <n-modal v-model:show="isEnded" mask-closable="false">
       <n-card
         style="width: 600px"
-        title="Timer finished"
+        :title="t('tools.cron-alarm.texts.title-timer-finished')"
         :bordered="false"
         size="huge"
         role="dialog"
         aria-modal="true"
       >
-        <p>Timer elapsed!</p>
+        <p>{{ t('tools.cron-alarm.texts.tag-timer-elapsed') }}</p>
         <template #footer>
           <n-button @click="stop()">
-            OK
+            {{ t('tools.cron-alarm.texts.tag-ok') }}
           </n-button>
         </template>
       </n-card>
     </n-modal>
 
-    <c-card v-if="history" title="History">
+    <c-card v-if="history" :title="t('tools.cron-alarm.texts.title-history')">
       <div flex justify-center gap-1>
         <template v-for="(entry, index) in history" :key="index">
           {{ index > 0 ? ' / ' : '' }}
