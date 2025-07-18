@@ -20,21 +20,21 @@ const spfRecord = computed(() => {
 </script>
 
 <template>
-  <n-card title="SPF Record Generator">
+  <n-card :title="$t('tools.spf-dns-generator.texts.title-spf-record-generator')">
     <n-form>
-      <n-form-item label="Allowed Domains:" label-placement="left">
+      <n-form-item :label="$t('tools.spf-dns-generator.texts.label-allowed-domains')" label-placement="left">
         <n-dynamic-tags v-model:value="allowedDomains" />
       </n-form-item>
-      <n-form-item label="Allowed IPv4s:" label-placement="left">
+      <n-form-item :label="$t('tools.spf-dns-generator.texts.label-allowed-ipv4s')" label-placement="left">
         <n-dynamic-tags v-model:value="allowedIPv4s" />
       </n-form-item>
-      <n-form-item label="Allowed IPv6s:" label-placement="left">
+      <n-form-item :label="$t('tools.spf-dns-generator.texts.label-allowed-ipv6s')" label-placement="left">
         <n-dynamic-tags v-model:value="allowedIPv6s" />
       </n-form-item>
-      <n-form-item label="Include Domains:" label-placement="left">
+      <n-form-item :label="$t('tools.spf-dns-generator.texts.label-include-domains')" label-placement="left">
         <n-dynamic-tags v-model:value="includeDomains" />
       </n-form-item>
-      <n-form-item label="Mechanisms:" label-placement="left">
+      <n-form-item :label="$t('tools.spf-dns-generator.text.mechanisms')" label-placement="left">
         <n-checkbox-group v-model:value="mechanisms">
           <n-space>
             <n-checkbox value="a">
@@ -47,35 +47,35 @@ const spfRecord = computed(() => {
               PTR
             </n-checkbox>
             <n-checkbox value="exists">
-              Exists
+              {{ $t('tools.spf-dns-generator.texts.tag-exists') }}
             </n-checkbox>
             <n-checkbox value="redirect">
-              Redirect
+              {{ $t('tools.spf-dns-generator.texts.tag-redirect') }}
             </n-checkbox>
           </n-space>
         </n-checkbox-group>
       </n-form-item>
-      <n-form-item label="Policy:" label-placement="left">
+      <n-form-item :label="$t('tools.spf-dns-generator.text.policy')" label-placement="left">
         <n-radio-group v-model:value="policy">
           <n-space>
             <n-radio value="+all">
-              Pass (+all)
+              {{ $t('tools.spf-dns-generator.texts.tag-pass-all') }}
             </n-radio>
             <n-radio value="-all">
-              Fail (-all)
+              {{ $t('tools.spf-dns-generator.texts.tag-fail-all') }}
             </n-radio>
             <n-radio value="~all">
-              SoftFail (~all)
+              {{ $t('tools.spf-dns-generator.texts.tag-softfail-all') }}
             </n-radio>
             <n-radio value="?all">
-              Neutral (?all)
+              {{ $t('tools.spf-dns-generator.texts.tag-neutral-all') }}
             </n-radio>
           </n-space>
         </n-radio-group>
       </n-form-item>
     </n-form>
 
-    <c-card title="Generated SPF Record">
+    <c-card :title="$t('tools.spf-dns-generator.texts.title-generated-spf-record')">
       <textarea-copyable :value="spfRecord" />
     </c-card>
   </n-card>

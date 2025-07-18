@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
+import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
 import potrace from 'potrace';
 import { Base64 } from 'js-base64';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 async function traceAsync(input: Buffer) {
   return new Promise<string>((resolve, reject) => {
@@ -68,21 +71,21 @@ async function onUpload(file: File) {
 <template>
   <div>
     <c-file-upload
-      title="Drag and drop an image here, or click to select a file"
+      :title="t('tools.potrace.texts.title-drag-and-drop-an-image-here-or-click-to-select-a-file')"
       :paste-image="true"
       @file-upload="onUpload"
     />
 
     <div style="text-align: center;">
       <n-checkbox v-model:checked="posterize" mt-2>
-        Posterize?
+        {{ t('tools.potrace.texts.tag-posterize') }}
       </n-checkbox>
     </div>
 
     <n-divider />
 
     <div>
-      <h3>Potrace result</h3>
+      <h3>{{ t('tools.potrace.texts.tag-potrace-result') }}</h3>
       <TextareaCopyable
         :value="svg"
         word-wrap

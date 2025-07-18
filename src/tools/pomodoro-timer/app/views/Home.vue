@@ -11,11 +11,13 @@ const store = useStore('pomodoro-store');
 
 <template>
   <div v-if="$store.state.isFirstVisit" class="welcome-msg">
-    <p>Welcome!</p>
     <p>
-      Go to <a style="cursor: pointer;" @click="store.commit('goToPage', 'settings')">
-        Settings
-      </a> to get started.
+      {{ $t('tools.pomodoro-timer.Home.text.welcome') }}
+    </p>
+    <p>
+      {{ $t('tools.pomodoro-timer.Home.text.go-to') }} <a style="cursor: pointer;" @click="store.commit('goToPage', 'settings')">
+        {{ $t('tools.watermarker.texts.title-settings') }}
+      </a> {{ $t('tools.pomodoro-timer.Home.text.to-get-started') }}
     </p>
   </div>
   <div v-else class="home">

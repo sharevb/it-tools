@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useEventListener } from '@vueuse/core';
 
 import InputCopyable from '../../components/InputCopyable.vue';
+
+const { t } = useI18n();
 
 const event = ref<KeyboardEvent>();
 
@@ -16,28 +19,28 @@ const fields = computed(() => {
 
   return [
     {
-      label: 'Key :',
+      label: t('tools.keycode-info.texts.label-key'),
       value: event.value.key,
       placeholder: 'Key name...',
     },
     {
-      label: 'Keycode :',
+      label: t('tools.keycode-info.texts.label-keycode'),
       value: String(event.value.keyCode),
       placeholder: 'Keycode...',
     },
     {
-      label: 'Code :',
+      label: t('tools.keycode-info.texts.label-code'),
       value: event.value.code,
       placeholder: 'Code...',
     },
     {
-      label: 'Location :',
+      label: t('tools.keycode-info.texts.label-location'),
       value: String(event.value.location),
       placeholder: 'Code...',
     },
 
     {
-      label: 'Modifiers :',
+      label: t('tools.keycode-info.texts.label-modifiers'),
       value: [
         event.value.metaKey && 'Meta',
         event.value.shiftKey && 'Shift',
@@ -58,9 +61,7 @@ const fields = computed(() => {
       <div v-if="event" mb-2 text-3xl>
         {{ event.key }}
       </div>
-      <span lh-1 op-70>
-        Press the key on your keyboard you want to get info about this key
-      </span>
+      <span lh-1 op-70>{{ t('tools.keycode-info.texts.tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key') }}</span>
     </c-card>
 
     <n-input-group v-for="({ label, value, placeholder }, i) of fields" :key="i" style="margin-bottom: 5px">

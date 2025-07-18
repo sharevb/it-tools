@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import _ from 'lodash';
 
 import { useMediaRecorder } from './useMediaRecorder';
+
+const { t } = useI18n();
 
 interface Media { type: 'image' | 'video'; value: string; createdAt: Date }
 
@@ -106,20 +109,18 @@ function downloadMedia({ type, value, createdAt }: Media) {
 <template>
   <div>
     <c-card v-if="!isSupported">
-      Your browser does not support recording video from camera
+      {{ t('tools.camera-recorder.texts.tag-your-browser-does-not-support-recording-video-from-camera') }}
     </c-card>
 
     <c-card v-else-if="!permissionGranted" text-center>
-      You need to grant permission to use your camera and microphone
-
-      <c-alert v-if="permissionCannotBePrompted" mt-4 text-left>
+      {{ t('tools.camera-recorder.texts.tag-you-need-to-grant-permission-to-use-your-camera-and-microphone') }}<c-alert v-if="permissionCannotBePrompted" mt-4 text-left>
         Your browser has blocked permission request or does not support it. You need to grant permission manually in
         your browser settings (usually the lock icon in the address bar).
       </c-alert>
 
       <div v-else mt-4 flex justify-center>
         <c-button @click="requestPermissions">
-          Grant permission
+          {{ t('tools.camera-recorder.texts.tag-grant-permission') }}
         </c-button>
       </div>
     </c-card>
@@ -130,24 +131,24 @@ function downloadMedia({ type, value, createdAt }: Media) {
           v-model:value="currentCamera"
           label-position="left"
           label-width="60px"
-          label="Video:"
+          :label="t('tools.camera-recorder.texts.label-video')"
           :options="cameras.map(({ deviceId, label }) => ({ value: deviceId, label }))"
-          placeholder="Select camera"
+          :placeholder="t('tools.camera-recorder.texts.placeholder-select-camera')"
         />
         <c-select
           v-if="currentMicrophone && microphones.length > 0"
           v-model:value="currentMicrophone"
-          label="Audio:"
+          :label="t('tools.camera-recorder.texts.label-audio')"
           label-position="left"
           label-width="60px"
           :options="microphones.map(({ deviceId, label }) => ({ value: deviceId, label }))"
-          placeholder="Select microphone"
+          :placeholder="t('tools.camera-recorder.texts.placeholder-select-microphone')"
         />
       </div>
 
       <div v-if="!isMediaStreamAvailable" mt-3 flex justify-center>
         <c-button type="primary" @click="start">
-          Start webcam
+          {{ t('tools.camera-recorder.texts.tag-start-webcam') }}
         </c-button>
       </div>
 
@@ -158,33 +159,28 @@ function downloadMedia({ type, value, createdAt }: Media) {
 
         <div flex items-center justify-between gap-2>
           <c-button :disabled="!isMediaStreamAvailable" @click="takeScreenshot">
-            <span mr-2> <icon-mdi-camera /></span>
-            Take screenshot
+            <span mr-2> <icon-mdi-camera /></span>{{ t('tools.camera-recorder.texts.tag-take-screenshot') }}
           </c-button>
 
           <div v-if="isRecordingSupported" flex justify-center gap-2>
             <c-button v-if="recordingState === 'stopped'" @click="startRecording">
-              <span mr-2> <icon-mdi-video /></span>
-              Start recording
+              <span mr-2> <icon-mdi-video /></span>{{ t('tools.camera-recorder.texts.tag-start-recording') }}
             </c-button>
 
             <c-button v-if="recordingState === 'recording'" @click="pauseRecording">
-              <span mr-2> <icon-mdi-pause /></span>
-              Pause
+              <span mr-2> <icon-mdi-pause /></span>{{ t('tools.camera-recorder.texts.tag-pause') }}
             </c-button>
 
             <c-button v-if="recordingState === 'paused'" @click="resumeRecording">
-              <span mr-2> <icon-mdi-play /></span>
-              Resume
+              <span mr-2> <icon-mdi-play /></span>{{ t('tools.camera-recorder.texts.tag-resume') }}
             </c-button>
 
             <c-button v-if="recordingState !== 'stopped'" type="error" @click="stopRecording">
-              <span mr-2> <icon-mdi-record /></span>
-              Stop
+              <span mr-2> <icon-mdi-record /></span>{{ t('tools.camera-recorder.texts.tag-stop') }}
             </c-button>
           </div>
           <div v-else italic op-60>
-            Video recording is not supported in your browser
+            {{ t('tools.camera-recorder.texts.tag-video-recording-is-not-supported-in-your-browser') }}
           </div>
         </div>
       </div>

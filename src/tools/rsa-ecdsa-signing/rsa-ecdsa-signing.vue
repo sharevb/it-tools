@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import sshpk from 'sshpk';
 import { computedCatch } from '@/composable/computed/catchedComputed';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+
+const { t } = useI18n();
 
 const hashTypes = [
   'sha1', 'sha256', 'sha384', 'sha512', 'md5',
@@ -45,71 +48,71 @@ const [signOutput, signError] = computedCatch(() => {
 
 <template>
   <div>
-    <c-card title="Sign">
+    <c-card :title="t('tools.rsa-ecdsa-signing.texts.title-sign')">
       <div>
         <c-input-text
           v-model:value="signText"
-          label="Your text:"
-          placeholder="The string to sign"
+          :label="t('tools.rsa-ecdsa-signing.texts.label-your-text')"
+          :placeholder="t('tools.rsa-ecdsa-signing.texts.placeholder-the-string-to-sign')"
           rows="4"
           multiline raw-text monospace autosize flex-1
         />
         <c-select
           v-model:value="signHashType"
-          label="Hash Type:"
+          :label="t('tools.rsa-ecdsa-signing.texts.label-hash-type')"
           :options="hashTypes"
-          placeholder="Select the hashing algorithm"
+          :placeholder="t('tools.rsa-ecdsa-signing.texts.placeholder-select-the-hashing-algorithm')"
         />
         <div flex flex-1 flex-col gap-2>
           <c-input-text
             v-model:value="signPrivateKey"
-            label="Your private key:"
-            placeholder="The private key to use to sign message"
+            :label="t('tools.rsa-ecdsa-signing.texts.label-your-private-key')"
+            :placeholder="t('tools.rsa-ecdsa-signing.texts.placeholder-the-private-key-to-use-to-sign-message')"
             rows="5"
             multiline raw-text monospace autosize flex-1
           />
 
           <c-input-text
             v-model:value="signPrivateKeyPassphrase"
-            label="Your private key password:" clearable raw-text
+            :label="t('tools.rsa-ecdsa-signing.texts.label-your-private-key-password')" clearable raw-text
           />
         </div>
       </div>
 
-      <c-alert v-if="signError && signPrivateKey !== ''" type="error" mt-12 title="Error while signing">
+      <c-alert v-if="signError && signPrivateKey !== ''" type="error" mt-12 :title="t('tools.rsa-ecdsa-signing.texts.title-error-while-signing')">
         {{ signError }}
       </c-alert>
 
-      <n-form-item label="ASN1 Signature:" mt-3>
+      <n-form-item :label="t('tools.rsa-ecdsa-signing.texts.label-asn1-signature')" mt-3>
         <TextareaCopyable
           :value="signOutput?.asn1 || ''"
-          placeholder="ASN1 Signature"
+          :placeholder="t('tools.rsa-ecdsa-signing.texts.placeholder-asn1-signature')"
           multiline monospace readonly autosize mt-5
         />
       </n-form-item>
-      <n-form-item label="SSH Signature:" mt-3>
+      <n-form-item :label="t('tools.rsa-ecdsa-signing.texts.label-ssh-signature')" mt-3>
         <TextareaCopyable
           :value="signOutput?.ssh || ''"
-          placeholder="SSG Signature"
+          :placeholder="t('tools.rsa-ecdsa-signing.texts.placeholder-ssg-signature')"
           multiline monospace readonly autosize mt-5
         />
       </n-form-item>
     </c-card>
 
-    <c-card title="Verify">
+    <c-card :title="t('tools.rsa-ecdsa-signing.texts.title-verify')">
       <div>
         <c-input-text
           v-model:value="verifyText"
-          label="Your text to verify:"
-          placeholder="The string to verify"
+          :label="t('tools.rsa-ecdsa-signing.texts.label-your-text-to-verify')"
+          :placeholder="t('tools.rsa-ecdsa-signing.texts.placeholder-the-string-to-verify')"
           rows="4"
           multiline raw-text monospace autosize flex-1
         />
 
         <c-input-text
           v-model:value="verifySignature"
-          label="Associated signature:"
-          placeholder="Text signature"
+          :label="t('tools.rsa-ecdsa-signing.texts.label-associated-signature')"
+          :placeholder="t('tools.rsa-ecdsa-signing.texts.placeholder-text-signature')"
           rows="4"
           multiline raw-text monospace autosize flex-1
         />
@@ -117,22 +120,22 @@ const [signOutput, signError] = computedCatch(() => {
         <div flex flex-1 flex-col gap-2>
           <c-input-text
             v-model:value="verifyPublicKey"
-            label="Public key:"
-            placeholder="Public key"
+            :label="t('tools.rsa-ecdsa-signing.texts.label-public-key')"
+            :placeholder="t('tools.rsa-ecdsa-signing.texts.placeholder-public-key')"
             rows="5"
             multiline raw-text monospace autosize flex-1
           />
         </div>
       </div>
 
-      <c-alert v-if="verifyError && verifyPublicKey !== ''" type="error" mt-12 title="Error while verifying">
+      <c-alert v-if="verifyError && verifyPublicKey !== ''" type="error" mt-12 :title="t('tools.rsa-ecdsa-signing.texts.title-error-while-verifying')">
         {{ verifyError }}
       </c-alert>
-      <c-alert v-if="verifyOutput && verifyPublicKey !== ''" type="error" mt-12 title="Signature failed">
-        Signature is NOT valid for the given text
+      <c-alert v-if="verifyOutput && verifyPublicKey !== ''" type="error" mt-12 :title="t('tools.rsa-ecdsa-signing.texts.title-signature-failed')">
+        {{ t('tools.rsa-ecdsa-signing.texts.tag-signature-is-not-valid-for-the-given-text') }}
       </c-alert>
-      <n-alert v-if="!verifyOutput && verifyPublicKey !== ''" type="success" mt-12 title="Signature verified">
-        Signature is valid for the given text
+      <n-alert v-if="!verifyOutput && verifyPublicKey !== ''" type="success" mt-12 :title="t('tools.rsa-ecdsa-signing.texts.title-signature-verified')">
+        {{ t('tools.rsa-ecdsa-signing.texts.tag-signature-is-valid-for-the-given-text') }}
       </n-alert>
     </c-card>
   </div>

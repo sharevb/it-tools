@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import { Transform, decodeIco, decodeImage, encodeIcoImages, encodePng } from 'image-in-browser';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+
+const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
@@ -71,7 +74,7 @@ async function onFileUploaded(uploadedFile: File) {
     <div style="flex: 0 0 100%">
       <div mx-auto max-w-600px>
         <c-file-upload
-          title="Drag and drop an ICO or PNG/JPEG file here, or click to select a file"
+          :title="t('tools.ico-converter.texts.title-drag-and-drop-an-ico-or-png-jpeg-file-here-or-click-to-select-a-file')"
           accept=".ico,.png,.jpg"
           paste-image
           @file-upload="onFileUploaded"

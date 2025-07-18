@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { downloadFile } from './lib/downloadFile';
 import { defaultScrubItems, getHarInfo, sanitize } from './lib/har_sanitize';
+
+const { t } = useI18n();
 
 type ScrubState = Record<ScrubType, Record<string, boolean>>;
 type ScrubType =
@@ -118,13 +121,13 @@ function processHar() {
     <div style="flex: 0 0 100%" mb-3>
       <div mx-auto max-w-600px>
         <c-file-upload
-          title="Drag and drop a HAR file here, or click to select a file"
+          :title="t('tools.har-sanitizer.texts.title-drag-and-drop-a-har-file-here-or-click-to-select-a-file')"
           accept=".har" @file-upload="onFileUploaded"
         />
       </div>
     </div>
 
-    <c-alert v-if="error" title="Error">
+    <c-alert v-if="error" :title="t('tools.har-sanitizer.texts.title-error')">
       {{ error }}
     </c-alert>
 
@@ -143,7 +146,7 @@ function processHar() {
 
     <div v-if="!error" mt-3 flex justify-center>
       <c-button @click="processHar()">
-        Sanitize and download
+        {{ t('tools.har-sanitizer.texts.tag-sanitize-and-download') }}
       </c-button>
     </div>
   </div>

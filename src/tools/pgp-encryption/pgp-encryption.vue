@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import 'webcrypto-liner-shim';
 import * as openpgp from 'openpgp';
 import { computedCatchAsync } from '@/composable/computed/catchedComputed';
+
+const { t } = useI18n();
 
 openpgp.config.rejectCurves = new Set();
 
@@ -91,41 +94,41 @@ function isWindowSecureContext() {
 <template>
   <div>
     <c-alert v-if="!isWindowSecureContext()" mb-2>
-      Your browser is not in <n-a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts" target="_blank">
-        "Secure Context" (HTTPS)
-      </n-a>. This tool may not work correctly and require HTTPS to work fully.
+      {{ t('tools.pgp-encryption.texts.tag-your-browser-is-not-in') }}<n-a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts" target="_blank">
+        {{ t('tools.pgp-encryption.texts.tag-secure-context-https') }}
+      </n-a>{{ t('tools.pgp-encryption.texts.tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully') }}
     </c-alert>
-    <c-card title="Encrypt" mb-2>
+    <c-card :title="t('tools.pgp-encryption.texts.title-encrypt')" mb-2>
       <div>
         <c-input-text
           v-model:value="cryptInput"
-          label="Your text:"
-          placeholder="The string to encrypt"
+          :label="t('tools.pgp-encryption.texts.label-your-text')"
+          :placeholder="t('tools.pgp-encryption.texts.placeholder-the-string-to-encrypt')"
           rows="4"
           multiline raw-text monospace autosize flex-1
         />
         <div flex flex-1 flex-col gap-2>
           <c-input-text
             v-model:value="cryptPublicKey"
-            label="Target public key:"
-            placeholder="Target public key"
+            :label="t('tools.pgp-encryption.texts.label-target-public-key')"
+            :placeholder="t('tools.pgp-encryption.texts.placeholder-target-public-key')"
             rows="5"
             multiline raw-text monospace autosize flex-1
           />
 
           <details>
-            <summary>Signing private key (optional)</summary>
+            <summary>{{ t('tools.pgp-encryption.texts.tag-signing-private-key-optional') }}</summary>
             <c-input-text
               v-model:value="cryptPrivateKey"
-              label="Your private key:"
-              placeholder="The private key to use to sign message"
+              :label="t('tools.pgp-encryption.texts.label-your-private-key')"
+              :placeholder="t('tools.pgp-encryption.texts.placeholder-the-private-key-to-use-to-sign-message')"
               rows="5"
               multiline raw-text monospace autosize flex-1
             />
 
             <c-input-text
               v-model:value="cryptPrivateKeyPassphrase"
-              label="Your private key password:" clearable raw-text
+              :label="t('tools.pgp-encryption.texts.label-your-private-key-password')" clearable raw-text
             />
           </details>
         </div>
@@ -133,51 +136,51 @@ function isWindowSecureContext() {
 
       <c-alert
         v-if="cryptError && cryptPublicKey !== ''"
-        type="error" mt-12 title="Error while encrypting"
+        type="error" mt-12 :title="t('tools.pgp-encryption.texts.title-error-while-encrypting')"
       >
         {{ cryptError }}
       </c-alert>
 
-      <n-form-item label="Your text encrypted:" mt-3>
+      <n-form-item :label="t('tools.pgp-encryption.texts.label-your-text-encrypted')" mt-3>
         <TextareaCopyable
           :value="cryptOutput || ''"
           rows="3"
-          placeholder="Your string encrypted"
+          :placeholder="t('tools.pgp-encryption.texts.placeholder-your-string-encrypted')"
           multiline monospace readonly autosize mt-5
         />
       </n-form-item>
     </c-card>
 
-    <c-card title="Decrypt">
+    <c-card :title="t('tools.pgp-encryption.texts.title-decrypt')">
       <div>
         <c-input-text
           v-model:value="decryptInput"
-          label="Your PGP Message to decrypt:"
-          placeholder="The string to decrypt"
+          :label="t('tools.pgp-encryption.texts.label-your-pgp-message-to-decrypt')"
+          :placeholder="t('tools.pgp-encryption.texts.placeholder-the-string-to-decrypt')"
           rows="4"
           multiline raw-text monospace autosize flex-1
         />
         <div flex flex-1 flex-col gap-2>
           <c-input-text
             v-model:value="decryptPrivateKey"
-            label="Your private key:"
-            placeholder="The private key to use to decrypt message"
+            :label="t('tools.pgp-encryption.texts.label-your-private-key')"
+            :placeholder="t('tools.pgp-encryption.texts.placeholder-the-private-key-to-use-to-decrypt-message')"
             rows="5"
             multiline raw-text monospace autosize flex-1
           />
 
           <c-input-text
             v-model:value="decryptPrivateKeyPassphrase"
-            label="Your private key password:" clearable raw-text
+            :label="t('tools.pgp-encryption.texts.label-your-private-key-password')" clearable raw-text
           />
 
           <details>
-            <summary>Signing public key (optional)</summary>
+            <summary>{{ t('tools.pgp-encryption.texts.tag-signing-public-key-optional') }}</summary>
 
             <c-input-text
               v-model:value="decryptPublicKey"
-              label="Sender public key:"
-              placeholder="Sender public key"
+              :label="t('tools.pgp-encryption.texts.label-sender-public-key')"
+              :placeholder="t('tools.pgp-encryption.texts.placeholder-sender-public-key')"
               rows="5"
               multiline raw-text monospace autosize flex-1
             />
@@ -185,19 +188,19 @@ function isWindowSecureContext() {
         </div>
       </div>
 
-      <c-alert v-if="decryptError && decryptPrivateKey !== ''" type="error" mt-3 title="Error while decrypting">
+      <c-alert v-if="decryptError && decryptPrivateKey !== ''" type="error" mt-3 :title="t('tools.pgp-encryption.texts.title-error-while-decrypting')">
         {{ decryptError }}
       </c-alert>
 
-      <c-alert v-if="decryptOutput?.signatureError !== ''" type="error" mt-3 title="Signature verification">
+      <c-alert v-if="decryptOutput?.signatureError !== ''" type="error" mt-3 :title="t('tools.pgp-encryption.texts.title-signature-verification')">
         {{ decryptOutput?.signatureError }}
       </c-alert>
 
-      <n-form-item label="Your text decrypted:" mt-3>
+      <n-form-item :label="t('tools.pgp-encryption.texts.label-your-text-decrypted')" mt-3>
         <TextareaCopyable
           :value="decryptOutput?.decryptedText || ''"
           rows="3"
-          placeholder="Your string decrypted"
+          :placeholder="t('tools.pgp-encryption.texts.placeholder-your-string-decrypted')"
           multiline monospace readonly autosize mt-5
         />
       </n-form-item>

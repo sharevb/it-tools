@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import { InputData, jsonInputForTargetLanguage, quicktype } from 'quicktype-core';
 import type { UseValidationRule } from '@/composable/validation';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const defaultValue = `{
   a:"n",
@@ -80,42 +83,42 @@ const goOutput = computedAsync(async () => {
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || JSON5.parse(v),
-    message: 'Provided JSON is not valid.',
+    message: t('tools.json-to-go.texts.message-provided-json-is-not-valid'),
   },
 ];
 </script>
 
 <template>
-  <c-card title="JSON to Go">
+  <c-card :title="t('tools.json-to-go.texts.title-json-to-go')">
     <c-input-text
       v-model:value="jsonInput"
       multiline
-      placeholder="Put your json string here..."
+      :placeholder="t('tools.json-to-go.texts.placeholder-put-your-json-string-here')"
       rows="20"
-      label="JSON to Go"
+      :label="t('tools.json-to-go.texts.label-json-to-go')"
       :validation-rules="rules"
       raw-text
       mb-5
     />
     <n-space justify="center">
-      <c-input v-model:value="rootName" label="Root Name" />
-      <c-input v-model:value="packageName" label="Package Name" />
-      <c-input v-model:value="tags" label="List of tags which should be generated for fields" />
+      <c-input v-model:value="rootName" :label="t('tools.json-to-go.texts.label-root-name')" />
+      <c-input v-model:value="packageName" :label="t('tools.json-to-go.texts.label-package-name')" />
+      <c-input v-model:value="tags" :label="t('tools.json-to-go.texts.label-list-of-tags-which-should-be-generated-for-fields')" />
       <n-checkbox v-model:checked="plainTypesOnly">
-        Plain types only
+        {{ t('tools.json-to-go.texts.tag-plain-types-only') }}
       </n-checkbox>
       <n-checkbox v-model:checked="plainTypesWithPackageOnly">
-        Plain types with package only
+        {{ t('tools.json-to-go.texts.tag-plain-types-with-package-only') }}
       </n-checkbox>
       <n-checkbox v-model:checked="omitEmpty">
-        Omit empty
+        {{ t('tools.json-to-go.texts.tag-omit-empty') }}
       </n-checkbox>
       <n-checkbox v-model:checked="optionalProperties">
-        Make all properties optional
+        {{ t('tools.json-to-go.texts.tag-make-all-properties-optional') }}
       </n-checkbox>
     </n-space>
   </c-card>
-  <c-card title="Your Go code">
+  <c-card :title="t('tools.json-to-go.texts.title-your-go-code')">
     <TextareaCopyable
       :value="goOutput"
       language="go"

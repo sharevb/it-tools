@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { EmojiInfo } from './emoji.types';
 import { getAllCodePoints, isEmojiSupported } from './emoji-utils';
 import { useCopy } from '@/composable/copy';
 
 const props = defineProps<{ emojiInfo: EmojiInfo }>();
+
+const { t } = useI18n();
+
 const { emojiInfo } = toRefs(props);
 
 const { copy } = useCopy();
@@ -26,25 +30,25 @@ const isKeywordsTruncated = computed(() => {
 // Copy functions with better notifications
 async function copyEmoji() {
   await copy(emojiInfo.value.emoji, {
-    notificationMessage: `Emoji ${emojiInfo.value.emoji} copied to clipboard`,
+    notificationMessage: t('tools.emoji-card.text.emoji-emojiinfo-value-emoji-copied-to-clipboard', [emojiInfo.value.emoji]),
   });
 }
 
 async function copyCodePoints() {
   await copy(completeCodePoints.value, {
-    notificationMessage: `Code points '${completeCodePoints.value}' copied to clipboard`,
+    notificationMessage: t('tools.emoji-card.text.code-points-completecodepoints-value-copied-to-clipboard', [completeCodePoints.value]),
   });
 }
 
 async function copyUnicode() {
   await copy(emojiInfo.value.unicode, {
-    notificationMessage: `Unicode '${emojiInfo.value.unicode}' copied to clipboard`,
+    notificationMessage: t('tools.emoji-card.text.unicode-emojiinfo-value-unicode-copied-to-clipboard', [emojiInfo.value.unicode]),
   });
 }
 
 async function copyName() {
   await copy(emojiInfo.value.title, {
-    notificationMessage: `Name '${emojiInfo.value.title}' copied to clipboard`,
+    notificationMessage: t('tools.emoji-card.text.name-emojiinfo-value-title-copied-to-clipboard', [emojiInfo.value.title]),
   });
 }
 </script>
@@ -70,7 +74,7 @@ async function copyName() {
         'emoji-fallback': !emojiSupported,
         'emoji-supported': emojiSupported,
       }"
-      :title="`Click to copy ${emojiInfo.emoji}`"
+      :title="$t('tools.emoji-card.text.click-to-copy-emojiinfo-emoji', [emojiInfo.emoji])"
       @click="copyEmoji"
     >
       {{ emojiInfo.emoji }}
@@ -85,7 +89,7 @@ async function copyName() {
         font-bold
         transition
         hover:text-primary
-        :title="`Click to copy name: ${emojiInfo.title}`"
+        :title="$t('tools.emoji-card.text.click-to-copy-name-emojiinfo-title', [emojiInfo.title])"
         @click="copyName"
       >
         {{ emojiInfo.title }}
@@ -117,7 +121,7 @@ async function copyName() {
           hover:text-primary
           hover:op-100
           dark:hover:bg-gray-800
-          :title="`Click to copy: ${completeCodePoints}`"
+          :title="$t('tools.emoji-card.text.click-to-copy-completecodepoints', [completeCodePoints])"
           @click="copyCodePoints"
         >
           {{ completeCodePoints }}
@@ -135,7 +139,7 @@ async function copyName() {
           hover:text-primary
           hover:op-100
           dark:hover:bg-gray-800
-          :title="`Click to copy: ${emojiInfo.unicode}`"
+          :title="$t('tools.emoji-card.text.click-to-copy-emojiinfo-unicode', [emojiInfo.unicode])"
           @click="copyUnicode"
         >
           {{ emojiInfo.unicode }}
@@ -144,8 +148,8 @@ async function copyName() {
     </div>
 
     <!-- Support indicator -->
-    <div v-if="!emojiSupported" text-xs op-50 title="This emoji might not display correctly on your system">
-      ⚠️
+    <div v-if="!emojiSupported" text-xs op-50 :title="t('tools.emoji-picker.texts.title-this-emoji-might-not-display-correctly-on-your-system')">
+      {{ t('tools.emoji-picker.texts.tag-️') }}
     </div>
   </c-card>
 </template>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useScriptTag } from '@vueuse/core';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
+
+const { t } = useI18n();
 
 declare global {
   interface Window {
@@ -70,17 +73,17 @@ const [clientIPDetails, refreshClientIP] = computedRefreshableAsync(async () => 
 </script>
 
 <template>
-  <c-card title="Your IPv4/6 address details">
+  <c-card :title="t('tools.my-ip.texts.title-your-ipv4-6-address-details')">
     <div v-if="clientIPDetails">
-      <input-copyable v-model:value="clientIPDetails.ipv4" label-position="left" label-width="100px" label-align="right" readonly label="IPv4:" placeholder="Your IPv4" />
-      <input-copyable v-model:value="clientIPDetails.ipv6" label-position="left" label-width="100px" label-align="right" readonly label="IPv6:" placeholder="Your IPv6" />
-      <input-copyable v-model:value="clientIPDetails.location.country" label-position="left" label-width="100px" label-align="right" readonly label="Country:" />
-      <input-copyable v-model:value="clientIPDetails.location.country_name" label-position="left" label-width="100px" label-align="right" readonly label="Country Name:" />
-      <input-copyable v-model:value="clientIPDetails.location.continent" label-position="left" label-width="100px" label-align="right" readonly label="Continent Name:" />
+      <input-copyable v-model:value="clientIPDetails.ipv4" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-ipv4')" :placeholder="t('tools.my-ip.texts.placeholder-your-ipv4')" />
+      <input-copyable v-model:value="clientIPDetails.ipv6" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-ipv6')" :placeholder="t('tools.my-ip.texts.placeholder-your-ipv6')" />
+      <input-copyable v-model:value="clientIPDetails.location.country" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-country')" />
+      <input-copyable v-model:value="clientIPDetails.location.country_name" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-country-name')" />
+      <input-copyable v-model:value="clientIPDetails.location.continent" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-continent-name')" />
     </div>
     <div flex justify-center gap-3>
       <c-button @click="refreshClientIP">
-        Refresh
+        {{ t('tools.my-ip.texts.tag-refresh') }}
       </c-button>
     </div>
   </c-card>

@@ -1,6 +1,9 @@
 <!-- eslint-disable vue/no-side-effects-in-computed-properties -->
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useCopy } from '@/composable/copy';
+
+const { t } = useI18n();
 
 const str = ref('Lorem ipsum dolor sit amet DOLOR Lorem ipsum dolor sit amet DOLOR');
 const findWhat = ref('');
@@ -134,34 +137,34 @@ const { copy } = useCopy({ source: highlightedText });
 
 <template>
   <div>
-    <c-input-text v-model:value="str" raw-text placeholder="Enter text here..." label="Text to search and replace:" clearable multiline rows="10" />
+    <c-input-text v-model:value="str" raw-text :placeholder="t('tools.smart-text-replacer.texts.placeholder-enter-text-here')" :label="t('tools.smart-text-replacer.texts.label-text-to-search-and-replace')" clearable multiline rows="10" />
 
     <div mt-4 w-full flex gap-10px>
       <div flex-1>
-        <div>Find what:</div>
-        <c-input-text v-model:value="findWhat" placeholder="Search regex" @keyup.enter="findNext()" />
+        <div>{{ t('tools.smart-text-replacer.texts.tag-find-what') }}</div>
+        <c-input-text v-model:value="findWhat" :placeholder="t('tools.smart-text-replacer.texts.placeholder-search-regex')" @keyup.enter="findNext()" />
       </div>
       <div flex-1>
-        <div>Replace with:</div>
-        <c-input-text v-model:value="replaceWith" placeholder="Replacement expression" @keyup.enter="replaceSelected()" />
+        <div>{{ t('tools.smart-text-replacer.texts.tag-replace-with') }}</div>
+        <c-input-text v-model:value="replaceWith" :placeholder="t('tools.smart-text-replacer.texts.placeholder-replacement-expression')" @keyup.enter="replaceSelected()" />
       </div>
     </div>
 
     <n-space mt-4 gap-1 align="baseline" justify="space-between">
       <c-button @click="findNext()">
-        <label>Find Next</label>
+        <label>{{ t('tools.smart-text-replacer.texts.tag-find-next') }}</label>
       </c-button>
       <c-button @click="replaceSelected()">
-        <label>Replace</label>
+        <label>{{ t('tools.smart-text-replacer.texts.tag-replace') }}</label>
       </c-button>
       <c-button @click="replaceAll()">
-        <label>Replace All</label>
+        <label>{{ t('tools.smart-text-replacer.texts.tag-replace-all') }}</label>
       </c-button>
       <n-checkbox v-model:checked="matchCase">
-        <label>Match case</label>
+        <label>{{ t('tools.smart-text-replacer.texts.tag-match-case') }}</label>
       </n-checkbox>
       <n-checkbox v-model:checked="keepLineBreaks">
-        <label>Keep linebreaks</label>
+        <label>{{ t('tools.smart-text-replacer.texts.tag-keep-linebreaks') }}</label>
       </n-checkbox>
     </n-space>
 
@@ -170,16 +173,16 @@ const { copy } = useCopy({ source: highlightedText });
     <div mt-4 w-full flex items-baseline gap-10px>
       <c-select
         v-model:value="addLineBreakPlace"
-        :options="[{ value: 'before', label: 'Add linebreak before' }, { value: 'after', label: 'Add linebreak after' }, { value: 'place', label: 'Add linebreak in place of' }]"
+        :options="[{ value: 'before', label: t('tools.smart-text-replacer.texts.label-add-linebreak-before') }, { value: 'after', label: t('tools.smart-text-replacer.texts.label-add-linebreak-after') }, { value: 'place', label: t('tools.smart-text-replacer.texts.label-add-linebreak-in-place-of') }]"
       />
 
       <c-input-text
         v-model:value="addLineBreakRegex"
-        placeholder="Split text regex"
+        :placeholder="t('tools.smart-text-replacer.texts.placeholder-split-text-regex')"
       />
     </div>
     <div mt-4 w-full flex items-baseline gap-10px>
-      <n-form-item label="Split every characters:" label-placement="left">
+      <n-form-item :label="t('tools.smart-text-replacer.texts.label-split-every-characters')" label-placement="left">
         <n-input-number v-model:value="splitEveryCharacterCounts" :min="0" />
       </n-form-item>
     </div>

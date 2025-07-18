@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import verifyPDF from 'pdf-signature-reader';
 import type { SignatureInfo } from './pdf-signature-checker.types';
 import { formatBytes } from '@/utils/convert';
+
+const { t } = useI18n();
 
 const signatures = ref<SignatureInfo[]>([]);
 const status = ref<'idle' | 'parsed' | 'error' | 'loading'>('idle');
@@ -27,7 +30,7 @@ async function onVerifyClicked(uploadedFile: File) {
 <template>
   <div style="flex: 0 0 100%">
     <div mx-auto max-w-600px>
-      <c-file-upload title="Drag and drop a PDF file here, or click to select a file" accept=".pdf" @file-upload="onVerifyClicked" />
+      <c-file-upload :title="t('tools.pdf-signature-checker.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')" accept=".pdf" @file-upload="onVerifyClicked" />
 
       <c-card v-if="file" mt-4 flex gap-2>
         <div font-bold>
@@ -41,7 +44,7 @@ async function onVerifyClicked(uploadedFile: File) {
 
       <div v-if="status === 'error'">
         <c-alert mt-4>
-          No signatures found in the provided file.
+          {{ t('tools.pdf-signature-checker.texts.tag-no-signatures-found-in-the-provided-file') }}
         </c-alert>
       </div>
     </div>

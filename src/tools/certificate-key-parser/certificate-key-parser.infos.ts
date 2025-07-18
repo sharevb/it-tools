@@ -10,6 +10,8 @@ import type * as openpgp from 'openpgp';
 import * as forge from 'node-forge';
 import oids from './oids.json';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export interface LabelValue {
   label: string
   value: string
@@ -34,38 +36,38 @@ function buf2Hex(buffer: ArrayBuffer) { // buffer is an ArrayBuffer
 export function getPublicKeyLabelValues(publicKey: Key) {
   return [
     {
-      label: 'Type:',
-      value: 'Public Key',
+      label: t('tools.certificate-key-parser.infos.text.type'),
+      value: t('tools.certificate-key-parser.infos.text.public-key'),
     },
     {
-      label: 'Key Type:',
+      label: t('tools.certificate-key-parser.texts.label-key-type'),
       value: publicKey.type,
     },
     {
-      label: 'Size:',
+      label: t('tools.certificate-key-parser.texts.label-size'),
       value: publicKey.size,
     },
     {
-      label: 'Comment:',
+      label: t('tools.certificate-key-parser.texts.label-comment'),
       value: publicKey.comment,
       multiline: true,
     },
     {
-      label: 'Curve:',
+      label: t('tools.certificate-key-parser.texts.label-curve'),
       value: publicKey.curve ?? 'none',
     },
     {
-      label: 'Fingerprint (sha256):',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint-sha256'),
       value: onErrorReturnErrorMessage(() => publicKey.fingerprint('sha256')),
       multiline: true,
     },
     {
-      label: 'Fingerprint (sha512):',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint-sha512'),
       value: onErrorReturnErrorMessage(() => publicKey.fingerprint('sha512')),
       multiline: true,
     },
     {
-      label: 'Key (PEM):',
+      label: t('tools.certificate-key-parser.texts.label-key-pem'),
       value: onErrorReturnErrorMessage(() => publicKey.toString('pem')),
       multiline: true,
     },
@@ -75,38 +77,38 @@ export function getPublicKeyLabelValues(publicKey: Key) {
 export function getPrivateKeyLabelValues(privateKey: PrivateKey) {
   return [
     {
-      label: 'Type:',
+      label: t('tools.certificate-key-parser.texts.label-type'),
       value: 'Private Key',
     },
     {
-      label: 'Key Type:',
+      label: t('tools.certificate-key-parser.texts.label-key-type'),
       value: privateKey.type,
     },
     {
-      label: 'Size:',
+      label: t('tools.certificate-key-parser.texts.label-size'),
       value: privateKey.size,
     },
     {
-      label: 'Comment:',
+      label: t('tools.certificate-key-parser.texts.label-comment'),
       value: privateKey.comment,
       multiline: true,
     },
     {
-      label: 'Curve:',
+      label: t('tools.certificate-key-parser.texts.label-curve'),
       value: privateKey.curve,
     },
     {
-      label: 'Fingerprint (sha256):',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint-sha256'),
       value: onErrorReturnErrorMessage(() => privateKey.fingerprint('sha256')),
       multiline: true,
     },
     {
-      label: 'Fingerprint (sha512):',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint-sha512'),
       value: onErrorReturnErrorMessage(() => privateKey.fingerprint('sha512')),
       multiline: true,
     },
     {
-      label: 'Key (PEM):',
+      label: t('tools.certificate-key-parser.texts.label-key-pem'),
       value: onErrorReturnErrorMessage(() => privateKey.toString('pem')),
       multiline: true,
     },
@@ -116,64 +118,64 @@ export function getPrivateKeyLabelValues(privateKey: PrivateKey) {
 export function getCertificateLabelValues(cert: Certificate, forgeCertificate: forge.pki.Certificate | null) {
   return [
     {
-      label: 'Type:',
+      label: t('tools.certificate-key-parser.texts.label-type'),
       value: 'Certificate',
     },
     {
-      label: 'Subjects:',
+      label: t('tools.certificate-key-parser.texts.label-subjects'),
       value: cert.subjects?.map(s => s.toString()).join('\n'),
       multiline: true,
     },
     {
-      label: 'Valid From:',
+      label: t('tools.certificate-key-parser.texts.label-valid-from'),
       value: cert.validFrom.toISOString(),
     },
     {
-      label: 'Valid Until:',
+      label: t('tools.certificate-key-parser.texts.label-valid-until'),
       value: cert.validUntil.toISOString(),
     },
     {
-      label: 'Issuer:',
+      label: t('tools.certificate-key-parser.texts.label-issuer'),
       value: cert.issuer.toString(),
       multiline: true,
     },
     {
-      label: 'Subject Key:',
+      label: t('tools.certificate-key-parser.texts.label-subject-key'),
       value: onErrorReturnErrorMessage(() => cert.subjectKey?.toString('ssh')),
       multiline: true,
     },
     {
-      label: 'Subject Key Type:',
+      label: t('tools.certificate-key-parser.texts.label-subject-key-type'),
       value: cert.subjectKey?.type,
     },
     {
-      label: 'Subject Size:',
+      label: t('tools.certificate-key-parser.texts.label-subject-size'),
       value: cert.subjectKey?.size,
     },
     {
-      label: 'Subject Comment:',
+      label: t('tools.certificate-key-parser.texts.label-subject-comment'),
       value: cert.subjectKey?.comment,
       multiline: true,
     },
     {
-      label: 'Subject Curve:',
+      label: t('tools.certificate-key-parser.texts.label-subject-curve'),
       value: cert.subjectKey?.curve ?? 'none',
     },
     {
-      label: 'Issuer Key:',
+      label: t('tools.certificate-key-parser.texts.label-issuer-key'),
       value: onErrorReturnErrorMessage(() => cert.issuerKey?.toString('ssh')),
       multiline: true,
     },
     {
-      label: 'Serial:',
+      label: t('tools.certificate-key-parser.texts.label-serial'),
       value: buf2Hex(cert.serial),
     },
     {
-      label: 'Purposes:',
+      label: t('tools.certificate-key-parser.texts.label-purposes'),
       value: cert.purposes?.join(', '),
     },
     {
-      label: 'Extensions (parsed):',
+      label: t('tools.certificate-key-parser.texts.label-extensions-parsed'),
       value: JSON.stringify(cert.getExtensions().map(ext => ({
         oid: (<any>ext).oid,
         name: (<any>ext).name || (<any>oids)[(<any>ext).oid],
@@ -183,7 +185,7 @@ export function getCertificateLabelValues(cert: Certificate, forgeCertificate: f
       multiline: true,
     },
     {
-      label: 'Extensions (raw):',
+      label: t('tools.certificate-key-parser.texts.label-extensions-raw'),
       value: JSON.stringify(forgeCertificate?.extensions.map(ext => ({
         id: (<any>ext).id,
         name: (<any>ext).id || (<any>oids)[(<any>ext).id],
@@ -207,7 +209,7 @@ export function getCertificateLabelValues(cert: Certificate, forgeCertificate: f
       ],
     ),
     {
-      label: 'Certificate (pem):',
+      label: t('tools.certificate-key-parser.texts.label-certificate-pem'),
       value: onErrorReturnErrorMessage(() => cert.toString('pem')),
       multiline: true,
     },
@@ -217,31 +219,31 @@ export function getCertificateLabelValues(cert: Certificate, forgeCertificate: f
 export async function getPGPPublicKeyLabelValuesAsync(pgpPublicKey: openpgp.Key) {
   return [
     {
-      label: 'Type:',
+      label: t('tools.certificate-key-parser.texts.label-type'),
       value: 'PGP Public Key',
     },
     {
-      label: 'Creation Time:',
+      label: t('tools.certificate-key-parser.texts.label-creation-time'),
       value: pgpPublicKey.getCreationTime().toString(),
     },
     {
-      label: 'Expiration Time:',
+      label: t('tools.certificate-key-parser.texts.label-expiration-time'),
       value: (await pgpPublicKey.getExpirationTime())?.toString() || '',
     },
     {
-      label: 'Algorithm Info:',
+      label: t('tools.certificate-key-parser.texts.label-algorithm-info'),
       value: JSON.stringify(pgpPublicKey.getAlgorithmInfo()),
     },
     {
-      label: 'Fingerprint:',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint'),
       value: pgpPublicKey.getFingerprint(),
     },
     {
-      label: 'User ID(s):',
+      label: t('tools.certificate-key-parser.texts.label-user-id-s'),
       value: pgpPublicKey.getUserIDs().join(', '),
     },
     {
-      label: 'Key ID(s):',
+      label: t('tools.certificate-key-parser.texts.label-key-id-s'),
       value: pgpPublicKey.getKeyIDs().map(k => k.toHex()).join(' ; '),
     },
   ] as LabelValue[];
@@ -250,31 +252,31 @@ export async function getPGPPublicKeyLabelValuesAsync(pgpPublicKey: openpgp.Key)
 export async function getPGPPrivateKeyLabelValuesAsync(pgpPrivateKey: openpgp.Key) {
   return [
     {
-      label: 'Type:',
+      label: t('tools.certificate-key-parser.texts.label-type'),
       value: 'PGP Private Key',
     },
     {
-      label: 'Creation Time:',
+      label: t('tools.certificate-key-parser.texts.label-creation-time'),
       value: pgpPrivateKey.getCreationTime().toString(),
     },
     {
-      label: 'Expiration Time:',
+      label: t('tools.certificate-key-parser.texts.label-expiration-time'),
       value: (await pgpPrivateKey.getExpirationTime())?.toString() || '',
     },
     {
-      label: 'Algorithm Info:',
+      label: t('tools.certificate-key-parser.texts.label-algorithm-info'),
       value: JSON.stringify(pgpPrivateKey.getAlgorithmInfo()),
     },
     {
-      label: 'Fingerprint:',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint'),
       value: pgpPrivateKey.getFingerprint(),
     },
     {
-      label: 'User ID(s):',
+      label: t('tools.certificate-key-parser.texts.label-user-id-s'),
       value: pgpPrivateKey.getUserIDs().join(', '),
     },
     {
-      label: 'Key ID(s):',
+      label: t('tools.certificate-key-parser.texts.label-key-id-s'),
       value: pgpPrivateKey.getKeyIDs().map(k => k.toHex()).join(' ; '),
     },
   ] as LabelValue[];
@@ -283,47 +285,47 @@ export async function getPGPPrivateKeyLabelValuesAsync(pgpPrivateKey: openpgp.Ke
 export function getCSRLabelValues(csr: forge.pki.CertificateSigningRequest) {
   return [
     {
-      label: 'Type:',
+      label: t('tools.certificate-key-parser.texts.label-type'),
       value: 'Certificate Signing Request',
     },
     {
-      label: 'Subject:',
+      label: t('tools.certificate-key-parser.texts.label-subject'),
       value: csr.subject?.attributes?.map(a => JSON.stringify(a, null, 2)).join('\n'),
       multiline: true,
     },
     // {
-    //   label: 'Request Info:',
+    //   label: t('tools.certificate-key-parser.texts.label-request-info'),
     //   value: JSON.stringify(csr.certificationRequestInfo, null, 2),
     //   multiline: true,
     // },
     {
-      label: 'Signature:',
+      label: t('tools.certificate-key-parser.texts.label-signature'),
       value: csr.signature?.toString('hex'),
     },
     {
-      label: 'Signature Oid:',
+      label: t('tools.certificate-key-parser.texts.label-signature-oid'),
       value: csr.signatureOid?.toString(),
     },
     {
-      label: 'Signature parameters:',
+      label: t('tools.certificate-key-parser.texts.label-signature-parameters'),
       value: JSON.stringify(csr.signatureParameters, null, 2),
     },
     {
-      label: 'Signing info:',
+      label: t('tools.certificate-key-parser.texts.label-signing-info'),
       value: JSON.stringify(csr.siginfo, null, 2),
     },
     {
-      label: 'Extensions:',
+      label: t('tools.certificate-key-parser.texts.label-extensions'),
       value: JSON.stringify(csr.attributes, null, 2),
       multiline: true,
     },
     {
-      label: 'Public Key:',
+      label: t('tools.certificate-key-parser.texts.label-public-key'),
       value: onErrorReturnErrorMessage(() => forge.pki.publicKeyToPem(csr.publicKey as never)),
       multiline: true,
     },
     {
-      label: 'Public Key Fingerprint:',
+      label: t('tools.certificate-key-parser.texts.label-public-key-fingerprint'),
       value: onErrorReturnErrorMessage(() => forge.pki.getPublicKeyFingerprint(csr.publicKey as never)?.toHex()),
       multiline: true,
     },
@@ -333,15 +335,15 @@ export function getCSRLabelValues(csr: forge.pki.CertificateSigningRequest) {
 export function getFingerprintLabelValues(fingerprint: Fingerprint) {
   return [
     {
-      label: 'Type:',
+      label: t('tools.certificate-key-parser.texts.label-type'),
       value: 'Fingerprint',
     },
     {
-      label: 'Fingerprint (hex):',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint-hex'),
       value: fingerprint.toString('hex'),
     },
     {
-      label: 'Fingerprint (base64):',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint-base64'),
       value: fingerprint.toString('base64'),
     },
   ] as LabelValue[];
@@ -350,15 +352,15 @@ export function getFingerprintLabelValues(fingerprint: Fingerprint) {
 export function getSignatureLabelValues(signature: Signature) {
   return [
     {
-      label: 'Type:',
+      label: t('tools.certificate-key-parser.texts.label-type'),
       value: 'Signature',
     },
     {
-      label: 'Fingerprint (asn1):',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint-asn1'),
       value: signature.toString('asn1'),
     },
     {
-      label: 'Fingerprint (ssh):',
+      label: t('tools.certificate-key-parser.texts.label-fingerprint-ssh'),
       value: signature.toString('ssh'),
     },
   ] as LabelValue[];

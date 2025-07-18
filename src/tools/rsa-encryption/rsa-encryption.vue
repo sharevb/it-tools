@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { md, pki } from 'node-forge';
 import { Base64 } from 'js-base64';
 import { computedCatchAsync } from '@/composable/computed/catchedComputed';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
+const { t } = useI18n();
+
 const schemes = [
-  { value: 'RSAES-PKCS1-V1_5', label: 'RSAES PKCS#1 v1.5' },
-  { value: 'RSAES-OAEP', label: 'RSAES-OAEP' },
-  { value: 'RSAES-OAEP/SHA-256', label: 'RSAES-OAEP/SHA-256' },
-  { value: 'RSAES-OAEP/SHA-256/MGF1-SHA-1', label: 'RSAES-OAEP/SHA-256/MGF1-SHA-1 (RSA/ECB/OAEPWithSHA-256AndMGF1Padding)' },
+  { value: 'RSAES-PKCS1-V1_5', label: t('tools.rsa-encryption.texts.label-rsaes-pkcs-1-v1-5') },
+  { value: 'RSAES-OAEP', label: t('tools.rsa-encryption.texts.label-rsaes-oaep') },
+  { value: 'RSAES-OAEP/SHA-256', label: t('tools.rsa-encryption.texts.label-rsaes-oaep-sha-256') },
+  { value: 'RSAES-OAEP/SHA-256/MGF1-SHA-1', label: t('tools.rsa-encryption.texts.label-rsaes-oaep-sha-256-mgf1-sha-1-rsa-ecb-oaepwithsha-256andmgf1padding') },
 ];
 
 const cryptInput = ref('');
@@ -98,88 +101,88 @@ const [decryptOutput, decryptError] = computedCatchAsync(async () => {
 
 <template>
   <div>
-    <c-card title="Encrypt">
+    <c-card :title="t('tools.rsa-encryption.texts.title-encrypt')">
       <div>
         <c-input-text
           v-model:value="cryptInput"
-          label="Your text:"
-          placeholder="The string to encrypt"
+          :label="t('tools.rsa-encryption.texts.label-your-text')"
+          :placeholder="t('tools.rsa-encryption.texts.placeholder-the-string-to-encrypt')"
           rows="4"
           multiline raw-text monospace autosize flex-1
         />
         <c-select
           v-model:value="cryptScheme"
-          label="Scheme:"
+          :label="t('tools.rsa-encryption.texts.label-scheme')"
           :options="schemes"
-          placeholder="Select the encryption scheme"
+          :placeholder="t('tools.rsa-encryption.texts.placeholder-select-the-encryption-scheme')"
         />
         <div flex flex-1 flex-col gap-2>
           <c-input-text
             v-model:value="cryptPublicKey"
-            label="Target public key:"
-            placeholder="Target public key"
+            :label="t('tools.rsa-encryption.texts.label-target-public-key')"
+            :placeholder="t('tools.rsa-encryption.texts.placeholder-target-public-key')"
             rows="5"
             multiline raw-text monospace autosize flex-1
           />
         </div>
       </div>
 
-      <c-alert v-if="cryptError && cryptPublicKey !== ''" type="error" mt-12 title="Error while encrypting">
+      <c-alert v-if="cryptError && cryptPublicKey !== ''" type="error" mt-12 :title="t('tools.rsa-encryption.texts.title-error-while-encrypting')">
         {{ cryptError }}
       </c-alert>
 
-      <n-form-item label="Your text encrypted:" mt-3>
+      <n-form-item :label="t('tools.rsa-encryption.texts.label-your-text-encrypted')" mt-3>
         <TextareaCopyable
           :value="cryptOutput || ''"
           rows="3"
-          placeholder="Your string encrypted"
+          :placeholder="t('tools.rsa-encryption.texts.placeholder-your-string-encrypted')"
           multiline monospace readonly autosize mt-5
         />
       </n-form-item>
     </c-card>
 
-    <c-card title="Decrypt">
+    <c-card :title="t('tools.rsa-encryption.texts.title-decrypt')">
       <div>
         <c-input-text
           v-model:value="decryptInput"
-          label="Your PGP Message to decrypt:"
-          placeholder="The string to decrypt"
+          :label="t('tools.rsa-encryption.texts.label-your-pgp-message-to-decrypt')"
+          :placeholder="t('tools.rsa-encryption.texts.placeholder-the-string-to-decrypt')"
           rows="4"
           multiline raw-text monospace autosize flex-1
         />
 
         <c-select
           v-model:value="decryptScheme"
-          label="Scheme:"
+          :label="t('tools.rsa-encryption.texts.label-scheme')"
           :options="schemes"
-          placeholder="Select the encryption scheme"
+          :placeholder="t('tools.rsa-encryption.texts.placeholder-select-the-encryption-scheme')"
         />
 
         <div flex flex-1 flex-col gap-2>
           <c-input-text
             v-model:value="decryptPrivateKey"
-            label="Your private key:"
-            placeholder="The private key to use to decrypt message"
+            :label="t('tools.rsa-encryption.texts.label-your-private-key')"
+            :placeholder="t('tools.rsa-encryption.texts.placeholder-the-private-key-to-use-to-decrypt-message')"
             rows="5"
             multiline raw-text monospace autosize flex-1
           />
 
           <c-input-text
             v-model:value="decryptPrivateKeyPassphrase"
-            label="Your private key password:" clearable raw-text
+            :label="t('tools.rsa-encryption.texts.label-your-private-key-password')" clearable raw-text
           />
         </div>
       </div>
 
-      <c-alert v-if="decryptError && decryptPrivateKey !== ''" type="error" mt-12 title="Error while decrypting">
+      <c-alert v-if="decryptError && decryptPrivateKey !== ''" type="error" mt-12 :title="t('tools.rsa-encryption.texts.title-error-while-decrypting')">
         {{ decryptError }}
       </c-alert>
 
-      <n-form-item label="Your text decrypted:" mt-3>
+      <n-form-item :label="t('tools.rsa-encryption.texts.label-your-text-decrypted')" mt-3>
         <TextareaCopyable
           :value="decryptOutput || ''"
           rows="3"
-          placeholder="Your string decrypted"
+          :placeholder="t('tools.rsa-encryption.texts.placeholder-your-string-decrypted')"
           multiline monospace readonly autosize mt-5
         />
       </n-form-item>

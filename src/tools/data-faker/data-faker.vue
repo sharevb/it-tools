@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { type Faker, allFakers } from '@faker-js/faker';
 import JSON5 from 'json5';
 import { objectArrayToData } from '@/utils/objectarray.export';
 import type { ExportFormat } from '@/utils/objectarray.export';
 import type { UseValidationRule } from '@/composable/validation';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const jsonInput = useQueryParamOrStorage({
   name: 'template',
@@ -33,14 +36,14 @@ const selectedLocale = useQueryParamOrStorage({ name: 'locale', storageName: 'fa
 const faker = computed(() => (allFakers as Record<string, Faker>)[selectedLocale.value]);
 
 const formats = [
-  { label: 'JSON', value: 'json' },
-  { label: 'YAML', value: 'yaml' },
-  { label: 'SQL INSERT', value: 'sql' },
-  { label: 'CSV (comma)', value: 'csv' },
-  { label: 'CSV (semicolon)', value: 'csv_semicolon' },
-  { label: 'CSV (tab)', value: 'tsv' },
-  { label: 'Markdown', value: 'markdown' },
-  { label: 'XML', value: 'xml' },
+  { label: t('tools.data-faker.texts.label-json'), value: 'json' },
+  { label: t('tools.data-faker.texts.label-yaml'), value: 'yaml' },
+  { label: t('tools.data-faker.texts.label-sql-insert'), value: 'sql' },
+  { label: t('tools.data-faker.texts.label-csv-comma'), value: 'csv' },
+  { label: t('tools.data-faker.texts.label-csv-semicolon'), value: 'csv_semicolon' },
+  { label: t('tools.data-faker.texts.label-csv-tab'), value: 'tsv' },
+  { label: t('tools.data-faker.texts.label-markdown'), value: 'markdown' },
+  { label: t('tools.data-faker.texts.label-xml'), value: 'xml' },
 ];
 
 // Extract all faker methods dynamically
@@ -106,50 +109,50 @@ function insertMethodIntoJson() {
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || JSON5.parse(v),
-    message: 'Provided JSON is not valid.',
+    message: t('tools.data-faker.texts.message-provided-json-is-not-valid'),
   },
 ];
 </script>
 
 <template>
-  <NCard title="Fake Data Generator">
-    <c-input-text v-model:value="jsonInput" label="JSON Template:" multiline mb-1 rows="10" placeholder="Enter JSON template..." :validation-rules="rules" />
+  <NCard :title="t('tools.data-faker.texts.title-fake-data-generator')">
+    <c-input-text v-model:value="jsonInput" :label="t('tools.data-faker.texts.label-json-template')" multiline mb-1 rows="10" :placeholder="t('tools.data-faker.texts.placeholder-enter-json-template')" :validation-rules="rules" />
 
-    <c-card title="Faker Method insertion" mb-1>
+    <c-card :title="t('tools.data-faker.texts.title-faker-method-insertion')" mb-1>
       <n-space>
-        <c-select v-model:value="selectedMethod" style="width: 200px" :options="fakerMethods" searchable placeholder="Search Faker Method" />
+        <c-select v-model:value="selectedMethod" style="width: 200px" :options="fakerMethods" searchable :placeholder="t('tools.data-faker.texts.placeholder-search-faker-method')" />
         <NButton @click="insertMethodIntoJson">
-          Insert Selected Method
+          {{ t('tools.data-faker.texts.tag-insert-selected-method') }}
         </NButton>
       </n-space>
     </c-card>
 
     <n-space mb-1>
-      <NFormItem label="Number of objects to generate:" label-placement="left">
-        <NInputNumber v-model:value="itemCount" :min="1" placeholder="Number of objects to generate" />
+      <NFormItem :label="t('tools.data-faker.texts.label-number-of-objects-to-generate')" label-placement="left">
+        <NInputNumber v-model:value="itemCount" :min="1" :placeholder="t('tools.data-faker.texts.placeholder-number-of-objects-to-generate')" />
       </NFormItem>
-      <n-form-item label="Nestify (handle nested objects)" label-placement="left">
+      <n-form-item :label="t('tools.data-faker.texts.label-nestify-handle-nested-objects')" label-placement="left">
         <n-checkbox v-model:checked="nestify" />
       </n-form-item>
     </n-space>
 
-    <c-select v-model:value="selectedLocale" label="Locale:" label-position="left" :options="allLocales" searchable mb-1 placeholder="Search locale version" />
+    <c-select v-model:value="selectedLocale" :label="t('tools.data-faker.texts.label-locale')" label-position="left" :options="allLocales" searchable mb-1 :placeholder="t('tools.data-faker.texts.placeholder-search-locale-version')" />
 
-    <NFormItem label="Select output format:" label-placement="left" mb-1>
-      <NSelect v-model:value="selectedFormat" :options="formats" placeholder="Select format" />
+    <NFormItem :label="t('tools.data-faker.texts.label-select-output-format')" label-placement="left" mb-1>
+      <NSelect v-model:value="selectedFormat" :options="formats" :placeholder="t('tools.data-faker.texts.placeholder-select-format')" />
     </NFormItem>
 
-    <c-input-text v-if="selectedFormat === 'sql'" v-model:value="tableName" label="Table Name:" label-placement="left" mb-1 />
+    <c-input-text v-if="selectedFormat === 'sql'" v-model:value="tableName" :label="t('tools.data-faker.texts.label-table-name')" label-placement="left" mb-1 />
 
     <NButton mb-2 mt-2 @click="handleGenerate">
-      Generate Fake Data
+      {{ t('tools.data-faker.texts.tag-generate-fake-data') }}
     </NButton>
 
     <c-alert v-if="error">
       {{ error }}
     </c-alert>
 
-    <c-card v-if="generatedData" title="Generated data">
+    <c-card v-if="generatedData" :title="t('tools.data-faker.texts.title-generated-data')">
       <textarea-copyable :value="generatedData" :language="selectedFormat" />
     </c-card>
   </NCard>

@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import cronstrue from 'cronstrue';
 import ctz from 'countries-and-timezones';
 import getTimezoneOffset from 'get-timezone-offset';
 import { type CronType, getLastExecutionTimes, isCronValid } from './crontab-generator.service';
 import { useStyleStore } from '@/stores/style.store';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const styleStore = useStyleStore();
 
@@ -174,7 +177,7 @@ const cronString = computed(() => {
 const cronValidationRules = [
   {
     validator: (value: string) => isCronValid(value, cronType.value),
-    message: 'This cron is invalid',
+    message: t('tools.crontab-generator.texts.message-this-cron-is-invalid'),
   },
 ];
 
@@ -199,7 +202,7 @@ const executionTimesString = computed(() => {
       <c-input-text
         v-model:value="cron"
         size="large"
-        placeholder="* * * * *"
+        :placeholder="t('tools.crontab-generator.texts.placeholder-')"
         :validation-rules="cronValidationRules"
         mb-3
       />
@@ -209,11 +212,11 @@ const executionTimesString = computed(() => {
       <n-space>
         <n-radio
           value="standard"
-          label="Unix standard"
+          :label="t('tools.crontab-generator.texts.label-unix-standard')"
         />
         <n-radio
           value="aws"
-          label="AWS"
+          :label="t('tools.crontab-generator.texts.label-aws')"
         />
       </n-space>
     </n-radio-group>
@@ -230,22 +233,22 @@ const executionTimesString = computed(() => {
 
     <div flex justify-center>
       <n-form :show-feedback="false" label-width="170" label-placement="left">
-        <n-form-item label="Verbose">
+        <n-form-item :label="t('tools.crontab-generator.texts.label-verbose')">
           <n-switch v-model:value="cronstrueConfig.verbose" />
         </n-form-item>
-        <n-form-item label="Use 24 hour time format">
+        <n-form-item :label="t('tools.crontab-generator.texts.label-use-24-hour-time-format')">
           <n-switch v-model:value="cronstrueConfig.use24HourTimeFormat" />
         </n-form-item>
-        <n-form-item label="Days start at 0">
+        <n-form-item :label="t('tools.crontab-generator.texts.label-days-start-at-0')">
           <n-switch v-model:value="cronstrueConfig.dayOfWeekStartIndexZero" />
         </n-form-item>
-        <n-form-item label="Months start at 0">
+        <n-form-item :label="t('tools.crontab-generator.texts.label-months-start-at-0')">
           <n-switch v-model:value="cronstrueConfig.monthStartIndexZero" />
         </n-form-item>
         <c-select
           v-model:value="currentTimezone"
           searchable
-          label="Timezone:"
+          :label="t('tools.crontab-generator.texts.label-timezone')"
           :options="allTimezones"
         />
       </n-form>
@@ -277,17 +280,16 @@ const executionTimesString = computed(() => {
     <div v-if="styleStore.isSmallScreen">
       <c-card v-for="{ symbol, meaning, example, equivalent } in getHelpers" :key="symbol" mb-3 important:border-none>
         <div>
-          Symbol: <strong>{{ symbol }}</strong>
+          {{ t('tools.crontab-generator.texts.tag-symbol') }}<strong>{{ symbol }}</strong>
         </div>
         <div>
-          Meaning: <strong>{{ meaning }}</strong>
+          {{ t('tools.crontab-generator.texts.tag-meaning') }}<strong>{{ meaning }}</strong>
         </div>
         <div>
-          Example:
-          <strong><code>{{ example }}</code></strong>
+          {{ t('tools.crontab-generator.texts.tag-example') }}<strong><code>{{ example }}</code></strong>
         </div>
         <div>
-          Equivalent: <strong>{{ equivalent }}</strong>
+          {{ t('tools.crontab-generator.texts.tag-equivalent') }}<strong>{{ equivalent }}</strong>
         </div>
       </c-card>
     </div>

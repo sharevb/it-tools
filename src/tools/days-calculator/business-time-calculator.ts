@@ -1,5 +1,7 @@
 import type { DateTime } from 'luxon';
 
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export type DayOfWeek =
   | 'monday'
   | 'tuesday'
@@ -76,7 +78,7 @@ export class BusinessTime {
   isBusinessDay(datetime: DateTime) {
     const date = datetime.setZone(this.businessTimezone);
     if (!date.isValid) {
-      throw new Error('Invalid date');
+      throw new Error(t('tools.business-time-calculator.text.invalid-date'));
     }
 
     const dayMonth = date.toFormat('dd/MM') as Holiday;
@@ -144,7 +146,7 @@ export class BusinessTime {
     unit: 'hours' | 'minutes' | 'seconds'
   }) {
     if (start > end) {
-      throw new Error('start date is greater than end date');
+      throw new Error(t('tools.business-time-calculator.text.start-date-is-greater-than-end-date'));
     }
 
     const interval = {

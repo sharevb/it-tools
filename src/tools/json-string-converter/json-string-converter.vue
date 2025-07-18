@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { UseValidationRule } from '@/composable/validation';
 import { withDefaultOnError } from '@/utils/defaults';
+
+const { t } = useI18n();
 
 const defaultValue = '{\n\t"hello": [\n\t\t"world"\n\t]\n}';
 
@@ -24,14 +27,14 @@ const transformer = computed(() => {
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || (selectedMode.value === 'stringify' ? JSON.stringify(v) : JSON.parse(v)),
-    message: 'Provided text is not valid. (Make sure your JSON is in double quotes)',
+    message: t('tools.json-string-converter.texts.message-provided-text-is-not-valid-make-sure-your-json-is-in-double-quotes'),
   },
 ];
 
 // Dropdown options
 const dropdownOptions = computed(() => [
-  { label: 'JSON Stringify', value: 'stringify' },
-  { label: 'JSON Parse', value: 'parse' },
+  { label: t('tools.json-string-converter.texts.label-json-stringify'), value: 'stringify' },
+  { label: t('tools.json-string-converter.texts.label-json-parse'), value: 'parse' },
 ]);
 </script>
 
@@ -39,16 +42,16 @@ const dropdownOptions = computed(() => [
   <c-card>
     <c-select
       v-model:value="selectedMode"
-      label="Transformation Mode"
+      :label="t('tools.json-string-converter.texts.label-transformation-mode')"
       :options="dropdownOptions"
     />
   </c-card>
   <div />
   <format-transformer
-    input-label="Your text / JSON string"
+    :input-label="t('tools.json-string-converter.texts.input-label-your-text-json-string')"
     :input-default="defaultValue"
-    input-placeholder="Paste your text here..."
-    output-label="JSON string conversion of your input"
+    :input-placeholder="t('tools.json-string-converter.texts.input-placeholder-paste-your-text-here')"
+    :output-label="t('tools.json-string-converter.texts.output-label-json-string-conversion-of-your-input')"
     output-language="string"
     :input-validation-rules="rules"
     :transformer="transformer"

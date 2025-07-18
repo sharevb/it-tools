@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import {
   IconCircleArrowUpRight,
   IconCircleCheck,
@@ -10,6 +11,8 @@ import {
 } from '@tabler/icons-vue';
 import { codesByCategories } from './http-status-codes.constants';
 import { useFlexSearch } from '@/composable/flexSearch';
+
+const { t } = useI18n();
 
 const search = ref('');
 
@@ -60,7 +63,7 @@ function openMdnDocs(code: number) {
   <div>
     <c-input-text
       v-model:value="search"
-      placeholder="Search http status..."
+      :placeholder="t('tools.http-status-codes.texts.placeholder-search-http-status')"
       autofocus raw-text mb-10
     />
 
@@ -75,7 +78,7 @@ function openMdnDocs(code: number) {
           {{ code }} {{ name }}
           <div
             class="flex cursor-pointer items-center justify-center rounded text-gray-500 transition-colors hover:text-blue-600"
-            title="View MDN documentation"
+            :title="t('tools.http-status-codes.texts.title-view-mdn-documentation')"
             @click="openMdnDocs(code)"
           >
             <n-icon :component="IconExternalLink" size="18" />

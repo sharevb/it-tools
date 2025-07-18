@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Colord } from 'colord';
 import { colord, extend } from 'colord';
 import _ from 'lodash';
@@ -10,58 +11,60 @@ import xyzPlugin from 'colord/plugins/xyz';
 import labPlugin from 'colord/plugins/lab';
 import { buildColorFormat } from './color-converter.models';
 
+const { t } = useI18n();
+
 extend([cmykPlugin, hwbPlugin, namesPlugin, lchPlugin, xyzPlugin, labPlugin]);
 
 const formats = {
   picker: buildColorFormat({
-    label: 'color picker',
+    label: t('tools.color-converter.texts.label-color-picker'),
     format: (v: Colord) => v.toHex(),
     type: 'color-picker',
   }),
   hex: buildColorFormat({
-    label: 'hex',
+    label: t('tools.color-converter.texts.label-hex'),
     format: (v: Colord) => v.toHex(),
     placeholder: 'e.g. #ff0000',
   }),
   rgb: buildColorFormat({
-    label: 'rgb',
+    label: t('tools.color-converter.texts.label-rgb'),
     format: (v: Colord) => v.toRgbString(),
     placeholder: 'e.g. rgb(255, 0, 0)',
   }),
   hsl: buildColorFormat({
-    label: 'hsl',
+    label: t('tools.color-converter.texts.label-hsl'),
     format: (v: Colord) => v.toHslString(),
     placeholder: 'e.g. hsl(0, 100%, 50%)',
   }),
   hwb: buildColorFormat({
-    label: 'hwb',
+    label: t('tools.color-converter.texts.label-hwb'),
     format: (v: Colord) => v.toHwbString(),
     placeholder: 'e.g. hwb(0, 0%, 0%)',
   }),
   lch: buildColorFormat({
-    label: 'lch',
+    label: t('tools.color-converter.texts.label-lch'),
     format: (v: Colord) => v.toLchString(),
     placeholder: 'e.g. lch(53.24, 104.55, 40.85)',
   }),
   cmyk: buildColorFormat({
-    label: 'cmyk',
+    label: t('tools.color-converter.texts.label-cmyk'),
     format: (v: Colord) => v.toCmykString(),
     placeholder: 'e.g. cmyk(0, 100%, 100%, 0)',
   }),
   lab: buildColorFormat({
-    label: 'lab',
+    label: t('tools.color-converter.texts.label-lab'),
     format: (v: Colord) => JSON.stringify(v.toLab()),
     placeholder: 'e.g. { l: 14.89, a: 5.77, b: 14.41, alpha: 0.5 }',
     parse: value => colord(JSON.parse(value)),
   }),
   xyz: buildColorFormat({
-    label: 'xyz',
+    label: t('tools.color-converter.texts.label-xyz'),
     format: (v: Colord) => JSON.stringify(v.toXyz()),
     placeholder: 'e.g. { x: 95.047, y: 100, z: 108.883, a: 1 }',
     parse: value => colord(JSON.parse(value)),
   }),
   name: buildColorFormat({
-    label: 'name',
+    label: t('tools.color-converter.texts.label-name'),
     format: (v: Colord) => v.toName({ closest: true }) ?? 'Unknown',
     placeholder: 'e.g. red',
   }),
@@ -124,23 +127,23 @@ function updateColorValue(value: Colord | undefined, omitLabel?: string) {
 
 <template>
   <div>
-    <c-card title="Transformations">
-      <n-form-item label="Saturation" label-placement="left">
+    <c-card :title="t('tools.color-converter.texts.title-transformations')">
+      <n-form-item :label="t('tools.color-converter.texts.label-saturation')" label-placement="left">
         <n-slider v-model:value="saturation" :step="1" :min="-100" :max="100" mr-2 />
         <n-input-number v-model:value="saturation" size="small" />
       </n-form-item>
 
-      <n-form-item label="Brightness" label-placement="left">
+      <n-form-item :label="t('tools.color-converter.texts.label-brightness')" label-placement="left">
         <n-slider v-model:value="brightness" :step="1" :min="-100" :max="100" mr-2 />
         <n-input-number v-model:value="brightness" size="small" />
       </n-form-item>
 
       <n-space>
-        <n-form-item label="Grayscale" label-placement="left">
+        <n-form-item :label="t('tools.color-converter.texts.label-grayscale')" label-placement="left">
           <n-checkbox v-model:checked="grayscale" mr-2 />
         </n-form-item>
 
-        <n-form-item label="Invert" label-placement="left">
+        <n-form-item :label="t('tools.color-converter.texts.label-invert')" label-placement="left">
           <n-checkbox v-model:checked="invert" mr-2 />
         </n-form-item>
       </n-space>

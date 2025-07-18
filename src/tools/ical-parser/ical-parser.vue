@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
 import ICAL from 'ical.js';
+
+const { t } = useI18n();
 
 const inputType = ref<'file' | 'content'>('file');
 const icalContent = ref('');
@@ -55,26 +58,26 @@ function readFileAsString(file: File) {
       <n-space>
         <n-radio
           value="file"
-          label="File"
+          :label="t('tools.ical-parser.texts.label-file')"
         />
         <n-radio
           value="content"
-          label="Content"
+          :label="t('tools.ical-parser.texts.label-content')"
         />
       </n-space>
     </n-radio-group>
 
     <c-file-upload
       v-if="inputType === 'file'"
-      title="Drag and drop iCal file here, or click to select a file"
+      :title="t('tools.ical-parser.texts.title-drag-and-drop-ical-file-here-or-click-to-select-a-file')"
       @file-upload="onUpload"
     />
 
     <c-input-text
       v-if="inputType === 'content'"
       v-model:value="icalContent"
-      label="iCal Content"
-      placeholder="Paste your iCal content here"
+      :label="t('tools.ical-parser.texts.label-ical-content')"
+      :placeholder="t('tools.ical-parser.texts.placeholder-paste-your-ical-content-here')"
       multiline
       mb-2
     />
@@ -82,7 +85,7 @@ function readFileAsString(file: File) {
     <n-divider />
 
     <textarea-copyable
-      label="Parsed iCal"
+      :label="t('tools.ical-parser.texts.label-parsed-ical')"
       mb-2
       :value="JSON.stringify(icalInfosRaw, null, 2)"
     />

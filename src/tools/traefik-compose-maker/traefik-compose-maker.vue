@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { TraefikComposeOptions } from './traefik-compose-maker.service';
 import { generateCompose } from './traefik-compose-maker.service';
+
+const { t } = useI18n();
 
 const formModel = ref<TraefikComposeOptions>({
   logDebug: false,
@@ -21,61 +24,61 @@ const dockerComposeEntry = computed<string>(() => generateCompose(formModel.valu
 </script>
 
 <template>
-  <n-card title="Traefik Docker Compose Generator">
+  <n-card :title="t('tools.traefik-compose-maker.texts.title-traefik-docker-compose-generator')">
     <n-form :model="formModel" label-placement="left">
-      <n-form-item label="Proxied Service Name:">
-        <n-input v-model:value="formModel.proxiedServiceName" placeholder="Enter service name" />
+      <n-form-item :label="t('tools.traefik-compose-maker.texts.label-proxied-service-name')">
+        <n-input v-model:value="formModel.proxiedServiceName" :placeholder="t('tools.traefik-compose-maker.texts.placeholder-enter-service-name')" />
       </n-form-item>
 
-      <n-form-item label="Proxied Service Image:">
-        <n-input v-model:value="formModel.proxiedServiceImage" placeholder="Enter image name" />
+      <n-form-item :label="t('tools.traefik-compose-maker.texts.label-proxied-service-image')">
+        <n-input v-model:value="formModel.proxiedServiceImage" :placeholder="t('tools.traefik-compose-maker.texts.placeholder-enter-image-name')" />
       </n-form-item>
 
-      <n-form-item label="Proxied Service Host Name:">
-        <n-input v-model:value="formModel.proxiedServiceHostName" placeholder="Enter service hostname" />
+      <n-form-item :label="t('tools.traefik-compose-maker.texts.label-proxied-service-host-name')">
+        <n-input v-model:value="formModel.proxiedServiceHostName" :placeholder="t('tools.traefik-compose-maker.texts.placeholder-enter-service-hostname')" />
       </n-form-item>
 
       <n-space>
-        <n-form-item label="Proxied Service Load Balancer Port:">
-          <n-input-number v-model:value="formModel.proxiedServiceLoadBalancePort" placeholder="Enter port" />
+        <n-form-item :label="t('tools.traefik-compose-maker.texts.label-proxied-service-load-balancer-port')">
+          <n-input-number v-model:value="formModel.proxiedServiceLoadBalancePort" :placeholder="t('tools.traefik-compose-maker.texts.placeholder-enter-port')" />
         </n-form-item>
 
-        <n-form-item label="Enable Load Balancer">
+        <n-form-item :label="t('tools.traefik-compose-maker.texts.label-enable-load-balancer')">
           <n-switch v-model:value="formModel.loadBalance" />
         </n-form-item>
       </n-space>
 
-      <n-form-item label="Cert Resolver Name:">
-        <n-input v-model:value="formModel.certResolverName" placeholder="Enter cert resolver name" />
+      <n-form-item :label="t('tools.traefik-compose-maker.texts.label-cert-resolver-name')">
+        <n-input v-model:value="formModel.certResolverName" :placeholder="t('tools.traefik-compose-maker.texts.placeholder-enter-cert-resolver-name')" />
       </n-form-item>
 
-      <n-form-item label="Postmaster Email:">
-        <n-input v-model:value="formModel.postmasterEmail" placeholder="Enter email" />
+      <n-form-item :label="t('tools.traefik-compose-maker.texts.label-postmaster-email')">
+        <n-input v-model:value="formModel.postmasterEmail" :placeholder="t('tools.traefik-compose-maker.texts.placeholder-enter-email')" />
       </n-form-item>
 
       <n-space>
-        <n-form-item label="Let's Encrypt Test Mode">
+        <n-form-item :label="t('tools.traefik-compose-maker.texts.label-let-s-encrypt-test-mode')">
           <n-switch v-model:value="formModel.letEncryptTest" />
         </n-form-item>
 
-        <n-form-item label="Enable Dashboard">
+        <n-form-item :label="t('tools.traefik-compose-maker.texts.label-enable-dashboard')">
           <n-switch v-model:value="formModel.dashboard" />
         </n-form-item>
 
-        <n-form-item label="Log Level (DEBUG)">
+        <n-form-item :label="t('tools.traefik-compose-maker.texts.label-log-level-debug')">
           <n-switch v-model:value="formModel.logDebug" />
         </n-form-item>
       </n-space>
 
-      <n-form-item label="Traefik Dashboard Host Name:">
-        <n-input v-model:value="formModel.traefikDashboardHostName" placeholder="Enter dashboard host name" />
+      <n-form-item :label="t('tools.traefik-compose-maker.texts.label-traefik-dashboard-host-name')">
+        <n-input v-model:value="formModel.traefikDashboardHostName" :placeholder="t('tools.traefik-compose-maker.texts.placeholder-enter-dashboard-host-name')" />
       </n-form-item>
 
-      <n-form-item label="Dashboard User and Password:">
-        <n-input v-model:value="formModel.dashboardUserAndPass" placeholder="User:Password" />
+      <n-form-item :label="t('tools.traefik-compose-maker.texts.label-dashboard-user-and-password')">
+        <n-input v-model:value="formModel.dashboardUserAndPass" :placeholder="t('tools.traefik-compose-maker.texts.placeholder-user-password')" />
       </n-form-item>
 
-      <n-card v-if="dockerComposeEntry" title="Generated Compose Entry">
+      <n-card v-if="dockerComposeEntry" :title="t('tools.traefik-compose-maker.texts.title-generated-compose-entry')">
         <textarea-copyable :value="dockerComposeEntry" language="yaml" />
       </n-card>
     </n-form>
