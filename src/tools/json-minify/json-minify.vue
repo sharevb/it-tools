@@ -7,7 +7,7 @@ import { withDefaultOnError } from '@/utils/defaults';
 const { t } = useI18n();
 
 const defaultValue = '{\n\t"hello": [\n\t\t"world"\n\t]\n}';
-const transformer = (value: string) => withDefaultOnError(() => JSON.stringify(JSON5.parse(value), null, 0), '');
+const transformer = (value: string) => withDefaultOnError(() => JSON.stringify(JSON.parseBigInt(value), null, 0), '');
 
 const rules: UseValidationRule<string>[] = [
   {

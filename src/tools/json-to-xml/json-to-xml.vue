@@ -8,7 +8,7 @@ const { t } = useI18n();
 const defaultValue = '{"a":{"_attributes":{"x":"1.234","y":"It\'s"}}}';
 function transformer(value: string) {
   return withDefaultOnError(() => {
-    return convert.js2xml(JSON5.parse(value), { compact: true });
+    return convert.js2xml(JSON.parseBigInt(value), { compact: true });
   }, '');
 }
 

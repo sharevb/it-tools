@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import JSON5 from 'json5';
 import type { UseValidationRule } from '@/composable/validation';
 import { isNotThrowing } from '@/utils/boolean';
 import { withDefaultOnError } from '@/utils/defaults';
@@ -9,10 +8,10 @@ const { t } = useI18n();
 
 function parseJSON(value: string) {
   try {
-    return JSON5.parse(value);
+    return JSON.parseBigInt(value);
   }
   catch {
-    return JSON5.parse(value.replace(/`((?:[^`]|\\`)*)`/g, (_m, s) => `"${s.replace(/"/g, '\\""').replace(/\r/g, '\\r').replace(/\n/g, '\\n')}"`));
+    return JSON.parseBigInt(value.replace(/`((?:[^`]|\\`)*)`/g, (_m, s) => `"${s.replace(/"/g, '\\""').replace(/\r/g, '\\r').replace(/\n/g, '\\n')}"`));
   }
 }
 

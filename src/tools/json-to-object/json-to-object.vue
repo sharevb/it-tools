@@ -9,7 +9,7 @@ import { withDefaultOnError } from '@/utils/defaults';
 const { t } = useI18n();
 
 function transformer(value: string) {
-  return withDefaultOnError(() => stringifyObject(JSON5.parse(value), {
+  return withDefaultOnError(() => stringifyObject(JSON.parseBigInt(value), {
     indent: '  ',
     singleQuotes: false,
   }), '');

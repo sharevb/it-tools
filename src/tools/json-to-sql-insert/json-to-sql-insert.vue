@@ -21,7 +21,7 @@ const tableName = ref<string>('TableName');
 
 const sqlOutput = computed(() => {
   try {
-    let arr = JSON5.parse(jsonInput.value);
+    let arr = JSON.parseBigInt(jsonInput.value);
     if (!Array.isArray(arr)) {
       arr = [arr];
     }

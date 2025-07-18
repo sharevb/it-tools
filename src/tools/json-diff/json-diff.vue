@@ -11,8 +11,8 @@ const { t } = useI18n();
 const rawLeftJson = ref('');
 const rawRightJson = ref('');
 
-const leftJson = computed(() => withDefaultOnError(() => JSON5.parse(rawLeftJson.value), undefined));
-const rightJson = computed(() => withDefaultOnError(() => JSON5.parse(rawRightJson.value), undefined));
+const leftJson = computed(() => withDefaultOnError(() => JSON.parseBigInt(rawLeftJson.value), undefined));
+const rightJson = computed(() => withDefaultOnError(() => JSON.parseBigInt(rawRightJson.value), undefined));
 
 const jsonValidationRules = [
   {

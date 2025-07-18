@@ -8,7 +8,7 @@ import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 
-const transformer = (value: string) => withDefaultOnError(() => stringify(JSON5.parse(value)), '');
+const transformer = (value: string) => withDefaultOnError(() => stringify(JSON.parseBigInt(value)), '');
 
 const rules: UseValidationRule<string>[] = [
   {

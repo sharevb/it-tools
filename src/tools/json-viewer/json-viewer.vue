@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import JSON5 from 'json5';
 import { jsonrepair } from 'jsonrepair';
 import {
   get,
@@ -27,7 +26,7 @@ const rawJsonValidation = useValidation({
   source: rawJson,
   rules: [
     {
-      validator: v => v === '' || (get(repairJson) ? jsonrepair(v) : JSON5.parse(v)),
+      validator: v => v === '' || (get(repairJson) ? jsonrepair(v) : JSON.parseBigInt(v)),
       get message() {
         return t('tools.json-viewer.text.provided-json-is-not-valid') + (!get(repairJson) ? t('tools.json-viewer.text.try-again-with-repairjsonlabel', [repairJsonLabel]) : '');
       },

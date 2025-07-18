@@ -29,7 +29,7 @@ const json = ref(`{
 
 const result = computed(() => {
   try {
-    const obj = JSON5.parse(json.value);
+    const obj = JSON.parseBigInt(json.value);
     return JSON.stringify(jsonquery(obj, jsonQuery.value), null, indent);
   }
   catch (e: any) {
