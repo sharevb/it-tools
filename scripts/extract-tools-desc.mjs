@@ -29,10 +29,10 @@ function processFile(filePath) {
 
   // Modify name and description to use the translate function
   const transformedContent = originalContent
-    .replace(/name: '((?:[^']+|(?<=\\)')+)'/, `name: translate('tools.${parentDir}.title')`)
-    .replace(/description: '((?:[^']+|(?<=\\)')+)'/, `description: translate('tools.${parentDir}.description')`);
+    .replace(/name: '((?:[^']+|(?<=\\)')+)'/, `name: t('tools.${parentDir}.title')`)
+    .replace(/description: '((?:[^']+|(?<=\\)')+)'/, `description: t('tools.${parentDir}.description')`);
 
-  fs.writeFileSync(filePath, `import { translate } from '@/plugins/i18n.plugin';\n${transformedContent}`, 'utf-8');
+  fs.writeFileSync(filePath, `import { translate as t } from '@/plugins/i18n.plugin';\n${transformedContent}`, 'utf-8');
   console.log(`Transformed: ${filePath}`);
 
   // Update locales file with extracted name and description

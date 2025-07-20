@@ -21,6 +21,8 @@ function processVueComponents(toolDir, toolName) {
 
 // Function to process a Vue component file
 function processVueComponent(filePath, toolName) {
+  console.log(`Processing ${filePath} in ${toolName}`);
+
   let content = fs.readFileSync(filePath, 'utf8');
   const origContent = content;
 
@@ -83,17 +85,38 @@ function processVueComponent(filePath, toolName) {
     console.log(`Nothing to extract in ${filePath}`);
     return;
   }
-  // Ensure the useI18n import exists
-  if (!content.includes("const { t } = useI18n();")) {
-    content = content.replace(/\<script setup( lang="ts")?\>/, "<script setup lang=\"ts\">\nimport { useI18n } from 'vue-i18n';\nconst { t } = useI18n();");
-  }
 
+  if (filePath.endsWith('.vue')) {
+    // Ensure the useI18n import exists
+    if (!content.includes("const { t } = useI18n();")) {
+      content = content.replace(/\<script setup( lang="ts")?\>/, "<script setup lang=\"ts\">\nimport { useI18n } from 'vue-i18n';\nconst { t } = useI18n();");
+    }
+  }
+  else {
+    // Ensure the useI18n import exists
+    if (!content.includes("import { translate as t } from '@/plugins/i18n.plugin';")) {
+      content = 'import { translate as t } from "@/plugins/i18n.plugin";\n' + content;
+    }
+  }
   fs.writeFileSync(filePath, content, 'utf8');
   console.log(`Processed: ${filePath}`);
 }
 
-if (process.argv[1]) {
-  processVueComponent(process.argv[2], process.argv[3] || basename(process.argv[2]));
+const localFileOrDir = process.argv[2];
+if (localFileOrDir) {
+  if (fs.statSync(localFileOrDir).isDirectory()) {
+    fs.readdirSync(localFileOrDir)
+      .filter((fileName) => {
+        const filePath = path.join(localFileOrDir, fileName);
+        return fs.statSync(filePath).isFile();
+      })
+      .forEach((fileName) => {
+        const filePath = path.join(localFileOrDir, fileName);
+        processVueComponent(filePath, process.argv[3] || basename(localFileOrDir));
+      });
+  } else {
+    processVueComponent(localFileOrDir, process.argv[3] || basename(localFileOrDir));
+  }
 } else {
   fs.readdirSync(toolsDir)
     .filter((toolName) => {
