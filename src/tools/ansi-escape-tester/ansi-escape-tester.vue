@@ -4,8 +4,8 @@ import { onMounted, ref } from 'vue';
 import {
   NButton, NCheckbox, NCheckboxGroup, NInput,
 } from 'naive-ui';
-import { Terminal } from 'xterm';
-import 'xterm/css/xterm.css';
+import { Terminal } from '@xterm/xterm';
+import '@xterm/xterm/css/xterm.css';
 import styles from 'ansi-styles';
 import type { CSPair } from 'ansi-styles';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
