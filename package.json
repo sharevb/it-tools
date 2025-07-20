@@ -164,7 +164,7 @@
     "iconv-lite": "^0.6.3",
     "image-in-browser": "^3.2.1",
     "image-to-ascii-art": "^0.0.4",
-    "ip-address": "^9.0.5",
+    "ip-address": "^10.0.0",
     "ip-bigint": "^8.2.0",
     "ip-cidr": "^4.0.2",
     "ip-matching": "^2.1.2",
