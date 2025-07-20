@@ -52,6 +52,7 @@ hljs.registerLanguage('html', xmlHljs);
 hljs.registerLanguage('xml', xmlHljs);
 hljs.registerLanguage('yaml', yamlHljs);
 hljs.registerLanguage('toml', iniHljs);
+hljs.registerLanguage('ini', iniHljs);
 hljs.registerLanguage('ts', tsHljs);
 hljs.registerLanguage('typescript', tsHljs);
 hljs.registerLanguage('bash', bashHljs);
