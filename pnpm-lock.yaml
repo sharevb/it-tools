@@ -527,6 +527,9 @@ dependencies:
   memorystream:
     specifier: ^0.3.1
     version: 0.3.1
+  merge-anything:
+    specifier: ^6.0.6
+    version: 6.0.6
   mermaid:
     specifier: ^11.6.0
     version: 11.6.0
@@ -11312,7 +11315,7 @@ packages:
     resolution: {integrity: sha512-tNBpTytI180+uGpKu4dFupbkA7rmEl+ZFo27mSeR8Ov80rpMDBbmLORGTsCkCN8s50aOS79P0sg3YUKz3Tr/4Q==}
     engines: {node: '>=18'}
     dependencies:
-      is-what: 5.0.2
+      is-what: 5.2.1
       ts-toolbelt: 9.6.0
     dev: false
 

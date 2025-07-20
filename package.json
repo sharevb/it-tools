@@ -213,6 +213,7 @@
     "mathjs": "^14.2.1",
     "md-editor-v3": "^4.21.3",
     "memorystream": "^0.3.1",
+    "merge-anything": "^6.0.6",
     "mermaid": "^11.6.0",
     "mime-types": "^2.1.35",
     "mitex-wasm": "^0.2.5",
