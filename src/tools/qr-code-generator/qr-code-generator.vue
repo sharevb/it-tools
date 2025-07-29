@@ -86,7 +86,7 @@ const qrcodeTerminal = computedAsync(() => {
 });
 
 const filename = ref('qr-code');
-const extension = computed(() => outputType.value.toString());
+const extension = toRef(() => outputType.value.toString());
 const { download } = useDownloadFileFromBase64({ source: qrcode, filename, extension });
 
 const isCopied = ref(false);
