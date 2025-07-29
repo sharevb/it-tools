@@ -86,7 +86,11 @@ const qrcodeTerminal = computedAsync(() => {
 });
 
 const filename = ref('qr-code');
-const extension = toRef(() => outputType.value.toString());
+const extension = computed(() => {
+  // Explicitly access the reactive value
+  const type = outputType.value;
+  return type.toString();
+});
 const { download } = useDownloadFileFromBase64({ source: qrcode, filename, extension });
 
 const isCopied = ref(false);
@@ -97,10 +101,34 @@ async function copyQRCode() {
     const response = await fetch(qrcode.value);
     const blob = await response.blob();
 
+    // Convert to PNG if it's not already PNG for clipboard compatibility
+    let clipboardBlob = blob;
+    if (blob.type !== 'image/png') {
+      // Create a canvas to convert the image to PNG
+      const img = new Image();
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      await new Promise((resolve) => {
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx?.drawImage(img, 0, 0);
+          canvas.toBlob((pngBlob) => {
+            if (pngBlob) {
+              clipboardBlob = pngBlob;
+            }
+            resolve(undefined);
+          }, 'image/png');
+        };
+        img.src = qrcode.value;
+      });
+    }
+
     // Copy to clipboard using the Clipboard API
     await navigator.clipboard.write([
       new ClipboardItem({
-        [blob.type]: blob,
+        'image/png': clipboardBlob,
       }),
     ]);
 
@@ -112,7 +140,8 @@ async function copyQRCode() {
   }
   catch (error) {
     console.error('Failed to copy QR code:', error);
-    // Fallback: you could show an error message or try alternative methods
+    // Show error feedback and reset
+    isCopied.value = false;
   }
 }
 </script>
