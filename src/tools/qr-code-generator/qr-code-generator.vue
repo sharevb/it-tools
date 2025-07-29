@@ -8,6 +8,7 @@ import type {
   FileExtension,
 } from 'pp-qr-code';
 import qrcodeConsole from 'qrcode-terminal-nooctal';
+import { IconDownload } from '@tabler/icons-vue';
 import { useQRCodeStyling } from './useQRCode';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
@@ -87,6 +88,33 @@ const qrcodeTerminal = computedAsync(() => {
 const filename = ref('qr-code');
 const extension = computed(() => outputType.value.toString());
 const { download } = useDownloadFileFromBase64({ source: qrcode, filename, extension });
+
+const isCopied = ref(false);
+
+async function copyQRCode() {
+  try {
+    // Convert base64 to blob
+    const response = await fetch(qrcode.value);
+    const blob = await response.blob();
+
+    // Copy to clipboard using the Clipboard API
+    await navigator.clipboard.write([
+      new ClipboardItem({
+        [blob.type]: blob,
+      }),
+    ]);
+
+    // Show success feedback
+    isCopied.value = true;
+    setTimeout(() => {
+      isCopied.value = false;
+    }, 2000); // Reset after 2 seconds
+  }
+  catch (error) {
+    console.error('Failed to copy QR code:', error);
+    // Fallback: you could show an error message or try alternative methods
+  }
+}
 </script>
 
 <template>
@@ -99,11 +127,9 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename, exten
           label-width="130px"
           label-align="right"
           :label="t('tools.qr-code-generator.texts.label-text')"
-          multiline
           rows="1"
-          autosize
           :placeholder="t('tools.qr-code-generator.texts.placeholder-your-link-or-text')"
-          mb-6
+          autosize mb-6
         />
         <n-form label-width="130" label-placement="left">
           <n-form-item :label="t('tools.qr-code-generator.texts.label-foreground-color')">
@@ -125,6 +151,15 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename, exten
             label-width="130px"
             label-align="right"
             :options="errorCorrectionLevels.map((value) => ({ label: value, value }))"
+          />
+          <c-select
+            v-model:value="outputType"
+            mt-3
+            :label="t('tools.qr-code-generator.texts.label-output-format')"
+            label-position="left"
+            label-width="130px"
+            label-align="right"
+            :options="outputTypes.map((value) => ({ label: value.toUpperCase(), value }))"
           />
         </n-form>
         <c-card :title="t('tools.qr-code-generator.texts.title-image')" mt-3>
@@ -193,22 +228,21 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename, exten
             </n-form>
           </details>
         </c-card>
-        <c-select
-          v-model:value="outputType"
-          mt-3
-          :label="t('tools.qr-code-generator.texts.label-output-format')"
-          label-position="left"
-          label-width="130px"
-          label-align="right"
-          :options="outputTypes.map((value) => ({ label: value.toUpperCase(), value }))"
-        />
       </n-gi>
       <n-gi>
         <div flex flex-col items-center gap-3>
-          <n-image :src="qrcode" width="200" />
-          <c-button @click="download">
-            Download qr-code ({{ outputType.toString().toUpperCase() }})
-          </c-button>
+          <n-image :src="qrcode" width="250" />
+          <div flex gap-3>
+            <c-button @click="copyQRCode">
+              {{ isCopied ? 'Copied!' : 'Copy' }}
+              <icon-mdi-check v-if="isCopied" ml-2 style="color: #10b981;" />
+              <icon-mdi-content-copy v-else ml-2 />
+            </c-button>
+            <c-button @click="download">
+              Download ({{ outputType.toString().toUpperCase() }})
+              <icon-mdi-download ml-2 />
+            </c-button>
+          </div>
         </div>
 
         <n-divider />
