@@ -8,7 +8,6 @@ import type {
   FileExtension,
 } from 'pp-qr-code';
 import qrcodeConsole from 'qrcode-terminal-nooctal';
-import { IconDownload } from '@tabler/icons-vue';
 import { useQRCodeStyling } from './useQRCode';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
