@@ -108,7 +108,7 @@ export default defineConfig({
     wasm(),
     splashScreen({
       logoSrc: 'logo.svg',
-      splashBg: '#292929',
+      splashBg: '#383838',
     }),
   ],
   base: baseUrl,

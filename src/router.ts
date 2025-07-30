@@ -6,9 +6,9 @@ import NotFound from './pages/404.page.vue';
 import { tools } from './tools';
 import { config } from './config';
 import { routes as demoRoutes } from './ui/demo/demo.routes';
+import { useAppTheme } from './ui/theme/themes';
 
 const $loading = useLoading();
-
 const toolsRoutes = tools.map(({ path, name, component, ...config }) => ({
   path,
   name,
@@ -46,9 +46,9 @@ let loader: ActiveLoader | null = null;
 router.beforeEach((to, from) => {
   // Only show loading for actual route changes, not just query param changes
   if (to.path !== from.path) {
+    const theme = useAppTheme();
     loader = $loading?.show({
-      color: '#fff',
-      backgroundColor: '#292929',
+      color: theme.value.primary.color,
     });
   }
 });

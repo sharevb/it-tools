@@ -36,6 +36,7 @@ export const { themes: appThemes, useTheme: useAppTheme } = defineThemes({
       colorPressed: '#ab1f3f',
       colorFaded: '#d030502a',
     },
+    loading_background: '#f1f5f9',
   },
   dark: {
     background: '#1e1e1e',
@@ -72,5 +73,6 @@ export const { themes: appThemes, useTheme: useAppTheme } = defineThemes({
       colorPressed: '#e57272',
       colorFaded: '#e8808029',
     },
+    loading_background: '#1c1c1c',
   },
 });
