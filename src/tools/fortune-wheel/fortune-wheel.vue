@@ -332,7 +332,7 @@ function getTextPosition(index: number) {
                   :title="t('tools.fortune-wheel.texts.title-move-up')"
                   @click="moveOption(index, index - 1)"
                 >
-                  {{ t('tools.fortune-wheel.texts.tag-') }}
+                  <icon-mdi-arrow-up />
                 </c-button>
                 <c-button
                   size="small"
@@ -340,14 +340,14 @@ function getTextPosition(index: number) {
                   :title="t('tools.fortune-wheel.texts.title-move-down')"
                   @click="moveOption(index, index + 1)"
                 >
-                  {{ t('tools.fortune-wheel.texts.tag-') }}
+                  <icon-mdi-arrow-down />
                 </c-button>
                 <c-button
                   size="small"
                   :title="t('tools.fortune-wheel.texts.title-remove')"
                   @click="removeOption(option.id)"
                 >
-                  {{ t('tools.fortune-wheel.texts.tag-') }}
+                  <icon-mdi-close />
                 </c-button>
               </div>
             </div>
@@ -569,14 +569,14 @@ function getTextPosition(index: number) {
 
 .wheel-center {
   position: absolute;
-  top: 49.5%;
+  top: 50%;
   left: 50%;
   width: v-bind('`${WHEEL_CONFIG.centerSize}px`');
   height: v-bind('`${WHEEL_CONFIG.centerSize}px`');
   border-radius: 50%;
   background: #414141;
   border: 4px solid #333;
-  transform: t(-50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 10;
   display: flex;
   align-items: center;
