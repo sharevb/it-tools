@@ -7,6 +7,7 @@ on:
   push:
     branches-ignore:
       - chore/all-my-stuffs
+  pull_request:
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
