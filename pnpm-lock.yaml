@@ -116,6 +116,9 @@ dependencies:
   '@types/haversine':
     specifier: ^1.1.8
     version: 1.1.8
+  '@types/html-to-text':
+    specifier: ^9.0.4
+    version: 9.0.4
   '@types/swagger-ui-dist':
     specifier: ^3.30.6
     version: 3.30.6
@@ -371,6 +374,9 @@ dependencies:
   highlight.js:
     specifier: ^11.11.1
     version: 11.11.1
+  html-to-text:
+    specifier: ^9.0.5
+    version: 9.0.5
   htmlfy:
     specifier: ^0.8.1
     version: 0.8.1
@@ -6824,6 +6830,10 @@ packages:
     resolution: {integrity: sha512-H1QsLqz6k9QTioutUQUiBiyM4CMmE6A1prXHGotw42j8sN5H/ScC5OxIbcrXnipikrJ5Qn3aozWb9UXBKUscJQ==}
     dev: true
 
+  /@types/html-to-text@9.0.4:
+    resolution: {integrity: sha512-pUY3cKH/Nm2yYrEmDlPR1mR7yszjGx4DrwPjQ702C4/D5CwHuZTgZdIdwPkRbcuhs7BAh2L5rg3CL5cbRiGTCQ==}
+    dev: false
+
   /@types/js-beautify@1.14.3:
     resolution: {integrity: sha512-FMbQHz+qd9DoGvgLHxeqqVPaNRffpIu5ZjozwV8hf9JAGpIOzuAf4wGbRSo8LNITHqGjmmVjaMggTT5P4v4IHg==}
     dev: true
@@ -7447,7 +7457,7 @@ packages:
     dependencies:
       '@unhead/dom': 0.5.1
       '@unhead/schema': 0.5.1
-      '@vueuse/shared': 13.7.0(vue@3.3.4)
+      '@vueuse/shared': 13.8.0(vue@3.3.4)
       unhead: 0.5.1
       vue: 3.3.4
     dev: false
@@ -8109,8 +8119,8 @@ packages:
       - vue
     dev: false
 
-  /@vueuse/shared@13.7.0(vue@3.3.4):
-    resolution: {integrity: sha512-Wi2LpJi4UA9kM0OZ0FCZslACp92HlVNw1KPaDY6RAzvQ+J1s7seOtcOpmkfbD5aBSmMn9NvOakc8ZxMxmDXTIg==}
+  /@vueuse/shared@13.8.0(vue@3.3.4):
+    resolution: {integrity: sha512-x4nfM0ykW+RmNJ4/1IzZsuLuWWrNTxlTWUiehTGI54wnOxIgI9EDdu/O5S77ac6hvQ3hk2KpOVFHaM0M796Kbw==}
     peerDependencies:
       vue: ^3.5.0
     dependencies:

@@ -1,3 +1,5 @@
+import { convert } from 'html-to-text';
+
 function validateHtml(value: string) {
   try {
     new DOMParser().parseFromString(value, 'text/html');
@@ -13,10 +15,7 @@ function validateHtml(value: string) {
 }
 
 function getTextFromHtml(value: string) {
-  const element = document.createElement('div');
-  element.innerHTML = value;
-  const text = element?.innerText || element?.textContent || '';
-  return text.replace(/\s+/g, ' ');
+  return convert(value);
 }
 
 export { validateHtml, getTextFromHtml };
