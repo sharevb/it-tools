@@ -365,7 +365,7 @@
     "@types/morsee": "^1.0.2",
     "@types/nanoid-dictionary": "^4.2.3",
     "@types/netmask": "^2.0.5",
-    "@types/node": "^18.19.120",
+    "@types/node": "^22.0.0",
     "@types/node-forge": "^1.3.13",
     "@types/potrace": "^2.1.5",
     "@types/punycode": "^2.1.4",

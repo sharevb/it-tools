@@ -1448,7 +1448,7 @@ tools:
       label-code-snippet-to-format: 'Code snippet to format:'
       placeholder-put-your-code-snippet-here: Put your code snippet here
       label-show-line-numbers: Show line numbers
-      tag-: ''', '''
+      tag-: "', '"
       tag-copy-html-formatted: Copy HTML Formatted
       tag-copy-code-text: Copy Code Text
   coin-flipper:
@@ -2055,9 +2055,9 @@ tools:
       label-advanded-json-mode: Advanded JSON Mode
       title-prompts: Prompts
       placeholder-your-messages-json-array: Your 'messages' JSON array...
-      label-your-messages-json-array: 'Your ''messages'' JSON array:'
+      label-your-messages-json-array: "Your 'messages' JSON array:"
       placeholder-your-tools-json-array: Your 'tools' JSON array...
-      label-your-tools-json-array: 'Your ''tools'' JSON array:'
+      label-your-tools-json-array: "Your 'tools' JSON array:"
       title-input-json-s: Input JSON(s)
       placeholder-your-system-prompt-content: Your System Prompt content...
       label-your-system-prompt-content: 'Your System Prompt content:'
@@ -3685,7 +3685,8 @@ tools:
       placeholder-enter-cookie-header: Enter cookie header
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Tip: Navigate to a website to test, open F12 Console and run'
       tag-window-copy-document-cookie: window.copy(document.cookie)
-      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted: >-
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        >-
         . This will copy the cookie string to your clipboard. Note: This will
         only copy cookies available to javascript (HTTP only and secure cookies
         will be omitted).
@@ -4396,25 +4397,29 @@ tools:
       label-custom-expression: 'Custom Expression:'
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: e.g., src port 443 and dst 10.0.0.1
       title-generated-tcpdump-command: Generated tcpdump command
-      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap: >-
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        >-
         tcpdump is a utility commonly installed / available to many Linux
         distributions to quickly gather a network trace / packet capture. In
         short, it's the wireshark of linux to gathering packet captures. tcpdump
         is very versatile with many switches to granularly capture what you need
         to dubug network traffic; with options to output results via console,
         file, or wireshark pcap.
-      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp: >-
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        >-
         This utility is to help generate a tcpdump command using some of the
         more common switches / filters offered by the tcpdump. This utility is
         not encompassing of all options tcpdump offers; a complete list of
         options can be found via its manual:&nbsp;
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Note:'
-      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon: >-
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        >-
         &nbsp;Host, Source Host, and Destination Host can take multiple entries.
         Separate your entries with a comma, space, or semicolon.
       tag-note-2: 'Note 2:'
-      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow: >-
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        >-
         &nbsp;When you specify a source (src) or destination (dst) flags,
         tcpdump will only filter in that direction. If you are looking to
         capture full TCP handshake, make sure you use "host" vs "src host" or
@@ -4717,7 +4722,8 @@ tools:
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: >-
           RAID 70 requires at least 10 disks with 5 minimum per stripe. Stripes
           must contain an equal number of disks.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: >-
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          >-
           RAID 70 stripes multiple RAID 7 arrays together (RAID 7 + RAID 0).
           Each RAID 7 set can sustain three drive failures.
         2-drive-failures-per-raid-6-set: 2 drive failures per RAID 6 set
@@ -4731,40 +4737,47 @@ tools:
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: >-
           RAID 50 requires at least 6 disks with 3 minimum per stripe. Stripes
           must contain an equal number of disks.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: >-
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          >-
           RAID 50 stripes multiple RAID 5 arrays together (RAID 5 + RAID 0).
           Each RAID 5 set can sustain a single drive failure.
         1-drive-failure-per-mirrored-set: 1 drive failure per mirrored set
         raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10 requires an even number of at least 4 disks
-        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group: >-
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          >-
           RAID 10 is a stripe of mirrors (RAID 1 + RAID 0). Each set of drives
           is mirrored and striped together so that each drive in the set is
           fault tolerant within the group.
         3-drive-failures: 3 drive failures
         raid-7-requires-at-least-5-disks: RAID 7 requires at least 5 disks
-        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives: >-
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          >-
           RAID 7/RAID TP (non-standard) is similiar to RAID 5 and RAID 6 but
           with a third parity block. This allows for a third disk failure at the
           cost of storage reduction equal to three drives.
         2-drive-failures: 2 drive failures
         raid-6-requires-at-least-4-disks: RAID 6 requires at least 4 disks
-        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives: >-
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          >-
           RAID 6 is similiar to RAID 5 but with an additional parity block. This
           allows for an additional disk failure at the cost of storage reduction
           equal to two drives.
         1-drive-failure: 1 drive failure
         raid-5-requires-at-least-3-disks: RAID 5 requires at least 3 disks
-        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information: >-
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          >-
           RAID 5 uses block level striping with parity. This allows for fault
           tolerance with a storage reduction equal to one drive for the parity
           information.
         raid-1-requires-at-least-1-disk: RAID 1 requires at least 1 disk
-        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational: >-
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          >-
           RAID 1 consists of an exact copy of the data (mirror) across two or
           more disks. The array will operate as long as at least one drive is
           operational.
         raid-0-requires-at-least-1-disk: RAID 0 requires at least 1 disk
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: >-
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          >-
           RAID 0 splits data evenly across 2 or more disks without redunancy or
           fault tolerance creating one large storage space.
   categories:
@@ -4873,14 +4886,16 @@ tools:
       text:
         source-wikipedia: 'Source:    Wikipedia'
         once-the-long-break-is-finished-return-to-step-1: Once the long break is finished, return to Step 1.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: >-
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          >-
           Keep repeating Steps 1-3, but after your 4th task, take a long break
           instead of a short break (20-30 minutes is common).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: When the timer rings, take a short break (5-10 minutes is common).
         work-on-the-task-during-that-time: Work on the task during that time.
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Decide on a task and set the timer (25 minutes is common).
         five-steps-of-the-pomodoro-technique: Five steps of the Pomodoro Technique
-        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student: >-
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          >-
           The Pomodoro Technique is a time management method developed by
           Francesco Cirillo in the 1980s. It uses a timer to break work into
           intervals, typically 25 minutes in length, separated by short breaks.
@@ -5092,7 +5107,7 @@ tools:
     service:
       text:
         invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: 'Invalid octal permissions (must be 3 or 4 octal digits): {0}'
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: 'Invalid string permissions (must be in form ''rwxrwxrwx''): {0}'
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: "Invalid string permissions (must be in form 'rwxrwxrwx'): {0}"
   color-converter:
     title: Color converter
     description: Convert color between the different formats (hex, rgb, hsl and css name)
@@ -5128,7 +5143,8 @@ tools:
       placeholder-enter-a-password: Enter a password...
       tag-duration-to-crack-this-password-with-brute-force: Duration to crack this password with brute force
       tag-note: 'Note:'
-      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack: >-
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        >-
         The computed strength is based on the time it would take to crack the
         password using a brute force approach, it does not take into account the
         possibility of a dictionary attack.
@@ -5304,7 +5320,7 @@ tools:
         song-details: Song details
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'The name of the Twitter account of the creator (ex: {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "The name of the Twitter account of the creator (ex: {'@'}sharevb)..."
         creator-acc: Creator acc.
         the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: >-
           The name of the Twitter account of the site (ex:
@@ -5992,17 +6008,20 @@ tools:
           The server either does not recognize the request method, or it lacks
           the ability to fulfill the request.
         not-implemented: Not Implemented
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: >-
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          >-
           A generic error message, given when an unexpected condition was
           encountered and no more specific message is suitable.
         internal-server-error: Internal Server Error
         5xx-server-error: 5xx server error
-        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource: >-
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          >-
           A server operator has received a legal demand to deny access to a
           resource or to a set of resources that includes the requested
           resource.
         unavailable-for-legal-reasons: Unavailable For Legal Reasons
-        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large: >-
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          >-
           The server is unwilling to process the request because either an
           individual header field, or all the header fields collectively, are
           too large.
@@ -6059,7 +6078,8 @@ tools:
           Indicates that the resource requested is no longer available and will
           not be available again.
         gone: Gone
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: >-
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          >-
           Indicates that the request could not be processed because of conflict
           in the request, such as an edit conflict.
         conflict: Conflict
@@ -6067,7 +6087,8 @@ tools:
         request-timeout: Request Timeout
         the-client-must-first-authenticate-itself-with-the-proxy: The client must first authenticate itself with the proxy.
         proxy-authentication-required: Proxy Authentication Required
-        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request: >-
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          >-
           The requested resource is capable of generating only content not
           acceptable according to the Accept headers sent in the request.
         not-acceptable: Not Acceptable
@@ -6076,16 +6097,19 @@ tools:
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: >-
           The requested resource could not be found but may be available in the
           future.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: >-
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          >-
           The request was valid, but the server is refusing action. The user
           might not have the necessary permissions for a resource.
         forbidden: Forbidden
-        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme: >-
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          >-
           Reserved for future use. The original intention was that this code
           might be used as part of some form of digital cash or micropayment
           scheme.
         payment-required: Payment Required
-        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided: >-
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          >-
           Similar to 403 Forbidden, but specifically for use when authentication
           is required and has failed or has not yet been provided.
         unauthorized: Unauthorized
@@ -6098,7 +6122,8 @@ tools:
           The request and all future requests should be repeated using another
           URI.
         permanent-redirect: Permanent Redirect
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: >-
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          >-
           In this case, the request should be repeated with another URI;
           however, future requests should still use the original URI.
         temporary-redirect: Temporary Redirect
@@ -6474,6 +6499,25 @@ tools:
       placeholder-put-your-encoded-tokens-here: Put your encoded tokens here...
       label-tokens-to-decode: Tokens to decode
       label-decoded-text: Decoded text
+  image-color-inverter:
+    title: Image Color Inverter
+    description: >-
+      Invert the colors of an image to create a negative effect. Upload any
+      image and instantly get the color-inverted version.
+    texts:
+      title-drag-and-drop-an-image-here-or-click-to-select: Drag and drop an image here, or click to select
+      label-original-image: Original Image
+      label-inverted-image: Inverted Image
+      tag-download-png: Download PNG
+      tag-copy-base64: Copy Base64
+      tag-clear-and-upload-new: Clear & Upload New
+      error-file-must-be-an-image: File must be an image
+      error-image-file-size-must-be-less-than-10mb: Image file size must be less than 10MB
+      error-failed-to-get-canvas-context: Failed to get canvas context
+      error-failed-to-process-image: Failed to process image
+      error-failed-to-load-image: Failed to load image
+      error-failed-to-read-file: Failed to read file
+      success-inverted-image-base64-copied-to-clipboard: Inverted image base64 copied to clipboard
   image-comparer:
     title: Image Comparer
     description: A tool to visualy compare images
@@ -6644,7 +6688,8 @@ tools:
       label-failure-probability: 'Failure Probability:'
       tag-key-terms-explained: 🧠 Key Terms Explained
       tag-raid-level: RAID Level
-      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both: >-
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        >-
         RAID (Redundant Array of Independent Disks) is a method of combining
         multiple physical drives into one logical unit to improve performance,
         redundancy, or both.
@@ -6674,34 +6719,41 @@ tools:
         Stripe of RAID 5 arrays. Combines performance of RAID 0 with redundancy
         of RAID 5.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF (Mean Time Between Failures)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: >-
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        >-
         The average time (in hours) a drive is expected to operate before
         failing. Higher MTBF means more reliable hardware.
       tag-rebuild-time: 🔁 Rebuild Time
-      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery: >-
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        >-
         The time required to reconstruct data on a replacement drive after a
         failure. Longer rebuild times increase the risk of a second failure
         during recovery.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (Mean Time To Data Loss)
-      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system: >-
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        >-
         A statistical estimate of how long a RAID system can operate before data
         loss occurs. It considers drive failures, rebuild time, and RAID
         redundancy. Higher MTTDL means a safer system.
       tag-bit-error-rate-ber: 🧮 Bit Error Rate (BER)
-      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives: >-
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        >-
         The probability that a bit read from a disk will be incorrect due to
         hardware limitations. Even tiny BERs (like 1 in a trillion) can cause
         issues during rebuilds, especially with large drives.
       tag-unrecoverable-read-error-ure: 🧠 Unrecoverable Read Error (URE)
-      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery: >-
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        >-
         Occurs when a drive fails to read a sector during rebuild. BER
         contributes to URE risk, which can compromise RAID recovery.
       tag-drive-capacity-tb: 📦 Drive Capacity (TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: >-
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        >-
         Total storage per drive. Larger drives take longer to rebuild and are
         more susceptible to BER-related errors.
       tag-failure-probability: 📈 Failure Probability
-      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models: >-
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        >-
         The chance that the RAID system will experience data loss over a given
         time period (e.g., 5 years). Calculated using MTTDL and exponential
         failure models.
@@ -7050,7 +7102,8 @@ tools:
       tag-mirrors-stripes: Mirrors/Stripes
       tag-reset: Reset
       tag-see-zpool-openzfs-cheatsheet: See Zpool/OpenZFS Cheatsheet
-      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values: >-
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        >-
         Click on the section titles to expand/collapse and view calculated data.
         Hovering over a table cell loads the relevant data into the Calculation
         Values section below. You can click table cells to freeze or unfreeze
