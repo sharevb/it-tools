@@ -1,10 +1,10 @@
-Docker Compose is a powerful tool for defining and running multi-container Docker applications. It uses a YAML file (`docker-compose.yml`) to configure application services, networks, volumes, and more. This file allows developers to declaratively describe infrastructure and dependencies, making it easier to manage complex environments.
+Docker Compose is a powerful tool for defining and running multi-container Docker applications. It uses a YAML file (`compose.yaml`) to configure application services, networks, volumes, and more. This file allows developers to declaratively describe infrastructure and dependencies, making it easier to manage complex environments.
 
 Whether you're building a local dev stack or deploying to production, Compose simplifies orchestration and keeps your configuration readable and version-controlled.
 
 ## 📁 File Name
 ```yaml
-docker-compose.yml
+compose.yaml
 ```
 
 ### ✅ YAML Formatting Rules
@@ -18,7 +18,6 @@ docker-compose.yml
 ## 🧱 Basic Structure
 
 ```yaml
-version: '3.8'  # Compose file version
 services:
   service_name:
     image: image_name:tag
@@ -231,22 +230,22 @@ env_file:
 ## 🧹 Clean Up
 
 ```bash
-docker-compose down         # Stop and remove containers, networks, volumes
-docker-compose down -v      # Also remove named volumes
+docker compose down         # Stop and remove containers, networks, volumes
+docker compose down -v      # Also remove named volumes
 ```
 
 ## 🚀 Commands
 
 | Command | Description |
 |--------|-------------|
-| `docker-compose up` | Start services |
-| `docker-compose up -d` | Start in detached mode |
-| `docker-compose down` | Stop and remove services |
-| `docker-compose build` | Build images |
-| `docker-compose ps` | List containers |
-| `docker-compose logs` | View logs |
-| `docker-compose exec <service> <cmd>` | Run command in container |
-| `docker-compose config` | Validate and view config |
+| `docker compose up` | Start services |
+| `docker compose up -d` | Start in detached mode |
+| `docker compose down` | Stop and remove services |
+| `docker compose build` | Build images |
+| `docker compose ps` | List containers |
+| `docker compose logs` | View logs |
+| `docker compose exec <service> <cmd>` | Run command in container |
+| `docker compose config` | Validate and view config |
 
 
 ## 🧠 Mounting GPU / iGPU
@@ -282,7 +281,7 @@ services:
 
 ## 🔄 Compose vs Swarm YAML Differences
 
-| Feature            | Docker Compose (`docker-compose.yml`) | Docker Swarm (`stack.yml`) |
+| Feature            | Docker Compose (`compose.yaml`) | Docker Swarm (`stack.yml`) |
 |--------------------|----------------------------------------|-----------------------------|
 | `restart`          | ✅ Supported                          | ❌ Not supported             |
 | `depends_on`       | ✅ Supported                          | ❌ Not supported             |
@@ -292,7 +291,7 @@ services:
 | `configs`/`secrets`| ❌ Ignored                            | ✅ Supported                 |
 | `healthcheck`      | ✅ Supported                          | ✅ Supported                 |
 
-> 🧠 **Tip:** Use `docker-compose.yml` for local development and `stack.yml` for Swarm deployments.
+> 🧠 **Tip:** Use `compose.yaml` for local development and `stack.yml` for Swarm deployments.
 
 ## 🧬 Profiles (Compose v3.9+)
 
@@ -339,9 +338,8 @@ Docker Compose and Docker Swarm both use YAML files to define services, but they
 
 ### 🧩 Key Differences in YAML Structure
 
-| Feature              | Compose (`docker-compose.yml`) | Swarm (`stack.yml`) |
+| Feature              | Compose (`compose.yaml`) | Swarm (`stack.yml`) |
 |----------------------|-------------------------------|----------------------|
-| `version:`           | ✅ Required (e.g. `3.8`)       | ❌ Optional / Ignored |
 | `build:`             | ✅ Supported                   | ❌ Ignored            |
 | `restart:`           | ✅ Supported                   | ❌ Ignored            |
 | `depends_on:`        | ✅ Supported                   | ❌ Ignored            |
@@ -455,7 +453,7 @@ Swarm requires external volumes to be pre-created on all nodes.
 | Restart policies     | ✅       | ✅ (via `deploy`) |
 | Service dependencies | ✅       | ❌     |
 
-> 🧭 **Tip:** Use `docker-compose.yml` for development and `stack.yml` for Swarm. You can split your configuration into multiple files or use tools like `kompose` to convert Kubernetes manifests.
+> 🧭 **Tip:** Use `compose.yaml` for development and `stack.yml` for Swarm. You can split your configuration into multiple files or use tools like `kompose` to convert Kubernetes manifests.
 
 ## 📚 Resources
 
