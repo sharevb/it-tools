@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2025.08.31-13b8f041
+
+### Features
+- **new tool**: add image color inversion tool (#179) (b94a25c)
+
+### Bug fixes
+- **Extract Text from HTML**: display conversion errors (13b8f04)
+- **Docker Compose Cheatsheet**: new syntax (61d2bea)
+- **Extract Text From HTML**: use html-to-text for better result (91f5548)
+
+### Chores
+- **deps**: update node.js to v22 (#182) (b5b3aa0)
+- **preview workflow**: fix for running on pull requests (1234dca)
+-  fix env.VITE_VERCEL_ENV for prod (39c47a0)
+
+### Other
+-  - Fixed an issue where the center of the wheel was misaligned compared to the fortune wheel (#177) (fc36499)
+
+### I18n
+-  add fr translation (b4255a3)
+
+### Merge branch 'chore/all-my-stuffs' of https
+-  //github.com/sharevb/it-tools into chore/all-my-stuffs (44a2138)
+
 ## Version 2025.08.24-34373f1a
 
 ### Features
