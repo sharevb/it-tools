@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { getTextFromHtml, validateHtml } from './extract-text-from-html.service';
-import { withDefaultOnError } from '@/utils/defaults';
 import type { UseValidationRule } from '@/composable/validation';
 
 const { t } = useI18n();
 
 function transformer(value: string) {
-  return withDefaultOnError(() => {
-    if (value === '') {
-      return '';
-    }
+  if (value === '') {
+    return '';
+  }
+  try {
     return getTextFromHtml(value);
-  }, '');
+  }
+  catch (e: any) {
+    return e.toString();
+  }
 }
 
 const rules: UseValidationRule<string>[] = [
