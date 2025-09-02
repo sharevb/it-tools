@@ -1458,7 +1458,7 @@ tools:
       tag-re-flip: Re flip
   color-contrast-checker:
     title: Color Contrast Checker
-    description: Check the WCAG constrast level between two colors
+    description: Check the WCAG contrast level between two colors
     texts:
       text-very-poor: Very poor
       text-poor: Poor
@@ -1468,7 +1468,7 @@ tools:
       label-forecolor: 'Forecolor:'
       label-backcolor: 'Backcolor:'
       title-wcag-2-1: WCAG 2.1
-      label-wcag-constrast: 'WCAG Constrast:'
+      label-wcag-constrast: 'WCAG Contrast:'
       label-contrast-quality: 'Contrast quality:'
       label-small-texts: 'Small texts:'
       label-large-texts: 'Large texts:'
@@ -1477,7 +1477,7 @@ tools:
       label-wcag-2-1-aaa: 'WCAG 2.1 AAA:'
       title-large-text: Large text
       title-apca: APCA
-      label-apca-constrast: 'APCA Constrast:'
+      label-apca-constrast: 'APCA Contrast:'
       tag-text-that-is-14pt-18-67px-and-bold-or-any-text-bigger-than-18pt-24px-is-defined-as-large-scale-text: >-
         Text that is 14pt (18.67px) and bold or any text bigger than 18pt (24px)
         is defined as large scale text.
