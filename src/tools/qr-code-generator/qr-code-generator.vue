@@ -74,7 +74,7 @@ const qrcodeTerminal = computedAsync(() => {
   return new Promise<string>((resolve, _reject) => {
     try {
       qrcodeConsole.setErrorLevel(level);
-      qrcodeConsole.generate(textValue, { small }, (qrcode: string) => {
+      qrcodeConsole.generate(textValue.trim(), { small }, (qrcode: string) => {
         resolve(qrcode);
       });
     }
