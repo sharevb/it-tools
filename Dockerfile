@@ -13,10 +13,12 @@ RUN npm install -g pnpm && pnpm i --frozen-lockfile
 COPY . .
 ARG BASE_URL
 ENV BASE_URL=${BASE_URL}
+ENV VITE_VERCEL_ENV production
 RUN pnpm build
 
 # production stage
 FROM nginxinc/nginx-unprivileged:stable-alpine AS production-stage
+ENV VITE_VERCEL_ENV production
 ARG BASE_URL
 ENV BASE_URL=${BASE_URL}
 COPY --from=build-stage /app/dist /usr/share/nginx/html
