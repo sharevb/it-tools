@@ -78,6 +78,57 @@ const languageOptions = [
   { label: t('tools.translator.texts.label-welsh'), value: 'cy' },
 ];
 
+const languageNames = languageOptions.reduce((acc, { value, label }) => {
+  acc[value] = label;
+  return acc;
+}, {} as Record<string, string>);
+
+const langPairs = {
+  af: ['en'],
+  ar: ['en'],
+  cs: ['en'],
+  da: ['de', 'en'],
+  de: ['en', 'es', 'fr'],
+  en: [
+    'af', 'ar', 'cs', 'da', 'de', 'es', 'fi', 'fr', 'hi', 'hu', 'id', 'it',
+    'jap', 'nl', 'ro', 'ru', 'sv', 'uk', 'vi', 'xh', 'zh',
+  ],
+  es: ['de', 'en', 'fr', 'it', 'ru'],
+  et: ['en'],
+  fi: ['de', 'en'],
+  fr: ['de', 'en', 'es', 'ro', 'ru'],
+  hi: ['en'],
+  hu: ['en'],
+  id: ['en'],
+  it: ['en', 'es', 'fr'],
+  ja: ['en'],
+  jap: ['en'],
+  ko: ['en'],
+  nl: ['en', 'fr'],
+  no: ['de'],
+  pl: ['en'],
+  ro: ['fr'],
+  ru: ['en', 'es', 'fr', 'uk'],
+  sv: ['en'],
+  th: ['en'],
+  tr: ['en'],
+  uk: ['en', 'ru'],
+  vi: ['en'],
+  xh: ['en'],
+  zh: ['en'],
+};
+
+const fromLanguages = computed(() => {
+  return Object.keys(langPairs).map(lang => ({ label: languageNames[lang] || lang, value: lang }));
+});
+const toLanguages = computed(() => {
+  const toLangs = langPairs[sourceLang.value as keyof typeof langPairs] || [];
+  if (!toLangs.includes(targetLang.value)) {
+    targetLang.value = toLangs[0];
+  }
+  return toLangs.map(lang => ({ label: languageNames[lang] || lang, value: lang }));
+});
+
 // Cache the loaded model
 const translators = new Map<string, TranslationPipeline>();
 
@@ -90,7 +141,7 @@ async function translateText() {
   translatedText.value = '';
   error.value = '';
 
-  const modelId = `onnx-community/opus-mt-${sourceLang.value}-${targetLang.value}`;
+  const modelId = `Xenova/opus-mt-${sourceLang.value}-${targetLang.value}`;
 
   // Load model if not already loaded
   if (!translators.has(modelId)) {
@@ -125,11 +176,11 @@ async function translateText() {
 </script>
 
 <template>
-  <NCard :title="t('tools.translator.texts.title-text-translator')" style="max-width: 600px; margin: auto;">
+  <div max-w-600px>
     <NInput v-model:value="inputText" type="textarea" :placeholder="t('tools.translator.texts.placeholder-enter-text-to-translate')" mb-1 />
 
-    <c-select v-model:value="sourceLang" :label="t('tools.translator.texts.label-from')" label-position="left" label-width="70px" :options="languageOptions" :placeholder="t('tools.translator.texts.placeholder-from')" mb-1 />
-    <c-select v-model:value="targetLang" :label="t('tools.translator.texts.label-to')" label-position="left" label-width="70px" :options="languageOptions" :placeholder="t('tools.translator.texts.placeholder-to')" mb-1 />
+    <c-select v-model:value="sourceLang" searchable :label="t('tools.translator.texts.label-from')" label-position="left" label-width="70px" :options="fromLanguages" :placeholder="t('tools.translator.texts.placeholder-from')" mb-1 />
+    <c-select v-model:value="targetLang" searchable :label="t('tools.translator.texts.label-to')" label-position="left" label-width="70px" :options="toLanguages" :placeholder="t('tools.translator.texts.placeholder-to')" mb-1 />
 
     <n-space justify="center" mb-2 mt-2>
       <NButton type="primary" :disabled="loadingModel || translating" @click="translateText">
@@ -147,5 +198,5 @@ async function translateText() {
     </c-alert>
 
     <textarea-copyable v-if="translatedText" v-model:value="translatedText" :placeholder="t('tools.translator.texts.placeholder-translation-will-appear-here')" mb-2 />
-  </NCard>
+  </div>
 </template>
