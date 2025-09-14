@@ -25,6 +25,6 @@ const totalCost = computed(() => computeCost(wattage.value, durationHours.value,
 
     <n-divider />
 
-    <input-copyable :label="t('tools.energy-computer.texts.label-total-cost')" :value="totalCost" />
+    <input-copyable :label="t('tools.energy-computer.texts.label-total-cost')" :value="totalCost.toFixed(3)" />
   </div>
 </template>

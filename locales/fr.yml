@@ -1774,7 +1774,7 @@ tools:
   energy-computer:
     description: Calculer la consommation d'énergie et les dépenses
     texts:
-      label-device-wattage: Wattage de l'appareil
+      label-device-wattage: Wattage de l'appareil (W)
       label-kwh-cost: Coût KWH
       label-total-cost: Coût total
       label-usage-duration-hours: Durée d'utilisation (heures)
