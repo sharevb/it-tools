@@ -74,6 +74,12 @@ about:
     bug report in the [issues
     section](https://github.com/sharevb/it-tools/issues/new/choose) in the
     GitHub repository.
+  import-favorites: Import Favorites
+  export-favorites: Export Favorites
+  put-your-favorites-json-array-here: Put your favorites JSON array here...
+  import-button: Import
+  favorites-imported-successfully: Favorites imported successfully!
+  error-importing-favorites-e: 'Error importing favorites: {0}'
 favoriteButton:
   remove: Remove from favorites
   add: Add to favorites

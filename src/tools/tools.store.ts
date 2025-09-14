@@ -80,6 +80,7 @@ export const useToolStore = defineStore('tools', () => {
     tools,
     favoriteTools,
     toolsByCategory,
+    favoriteToolsName,
     newTools: computed(() => tools.value.filter(({ isNew }) => isNew)),
 
     addToolToFavorites({ tool }: { tool: MaybeRef<Tool> }) {
