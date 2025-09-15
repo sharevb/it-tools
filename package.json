@@ -226,7 +226,7 @@
     "markdown-table-prettify": "^3.6.0",
     "marked": "^10.0.0",
     "mathjs": "^14.5.3",
-    "md-editor-v3": "^4.21.3",
+    "md-editor-v3": "^5.0.0",
     "memorystream": "^0.3.1",
     "merge-anything": "^6.0.6",
     "mermaid": "^11.9.0",
