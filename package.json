@@ -308,7 +308,7 @@
     "unplugin-auto-import": "^0.16.4",
     "utf8": "^3.0.0",
     "uuid": "^11.1.0",
-    "vanilla-jsoneditor": "^0.23.8",
+    "vanilla-jsoneditor": "^3.0.0",
     "vue": "^3.3.4",
     "vue-color-wheel": "^0.1.1",
     "vue-i18n": "^11.1.9",
