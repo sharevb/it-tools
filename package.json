@@ -290,7 +290,7 @@
     "staveless-futhark": "^0.6.1",
     "stringify-object": "^5.0.0",
     "svg2png-wasm": "^1.4.1",
-    "svgo": "^3.3.2",
+    "svgo": "^4.0.0",
     "swagger-ui-dist": "^5.27.0",
     "tesseract.js": "^5.1.1",
     "text-encoding-utf-8": "^1.0.2",
