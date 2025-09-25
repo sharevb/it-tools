@@ -279,7 +279,7 @@
     "safe-license-list": "^0.1.2",
     "sandybox": "^1.1.2",
     "sanitize-html": "^2.14.0",
-    "shiki": "1.29.2",
+    "shiki": "3.13.0",
     "silly-password-generator": "^1.0.29",
     "slashes": "^3.0.12",
     "smol-toml": "^1.4.2",
