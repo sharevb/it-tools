@@ -224,7 +224,7 @@
     "markdown-it-sub": "^2.0.0",
     "markdown-it-sup": "^2.0.0",
     "markdown-table-prettify": "^3.6.0",
-    "marked": "^10.0.0",
+    "marked": "^16.0.0",
     "mathjs": "^14.5.3",
     "md-editor-v3": "^4.21.3",
     "memorystream": "^0.3.1",
