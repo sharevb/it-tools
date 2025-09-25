@@ -186,7 +186,7 @@ onUnmounted(() => {
                   label-width="150px"
                   :label="t('tools.iso-3166-searcher.texts.label-timezones')"
                   label-position="left"
-                  :value="result.timezones.join('\n')"
+                  :value="result.timezones.join(', ')"
                   :readonly="true"
                   mb-1
                 />
