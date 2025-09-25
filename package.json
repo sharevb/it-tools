@@ -292,7 +292,7 @@
     "svg2png-wasm": "^1.4.1",
     "svgo": "^3.3.2",
     "swagger-ui-dist": "^5.27.0",
-    "tesseract.js": "^5.1.1",
+    "tesseract.js": "^6.0.0",
     "text-encoding-utf-8": "^1.0.2",
     "tick-time": "^1.0.1",
     "tidy-url": "^1.18.3",
