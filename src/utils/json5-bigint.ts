@@ -1,8 +1,18 @@
 import JSON5 from 'json5';
 
 function quoteLargeNumbers(jsonStr: string, minDigits: number): string {
+  const strings: string[] = [];
+  // Replace each string with its index
+  const jsonWithoutStrings = jsonStr.replace(/"(?:\\.|[^"\\])*"/g, (str) => {
+    const replacement = `"@${strings.length}@"`;
+    strings.push(str);
+    return replacement;
+  });
   const regex = new RegExp(`(-?\\d{${minDigits},})(?=\\s*[,}\\]])`, 'g');
-  return jsonStr.replace(regex, '"$1"');
+  const jsonQuotedBigint = jsonWithoutStrings.replace(regex, '"$1"');
+  return jsonQuotedBigint.replace(/"@(\d+)@"/g, (_, ix) => {
+    return strings[Number(ix)];
+  });
 }
 
 JSON.parseBigInt = function (jsonStr: string, options?: { minDigits?: number; fallbackToString?: boolean }): unknown {
