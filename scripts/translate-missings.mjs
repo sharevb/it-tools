@@ -85,7 +85,7 @@ async function syncTranslations(englishFile, targetFiles, dryRun = false) {
     let langCharCount = 0;
 
     for (const [key, englishText] of Object.entries(englishFlat)) {
-      const needsTranslation = !targetFlat[key] || targetFlat[key] === englishText;
+      const needsTranslation = !targetFlat[key];
       if (needsTranslation) {
         if (dryRun) {
           langCharCount += englishText.length;
