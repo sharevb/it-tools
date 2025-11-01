@@ -1,8 +1,8 @@
 ## BREAKING CHANGE for Docker Image
 
-Since *Docker base image* is now `nginx-unpriviledged`, docker image now listen to **8080** and no more 80. So you need to update your port mapping, ie from `8080:80` to `8080:8080`.
+Since the *Docker base image* is now `nginx-unpriviledged` the container will now listen to port **8080** and not 80. So you need to update your port mapping, i.e. from `8080:80` to `8080:8080`.
 
-Docker image listen to IPv6, so it needs to be enabled: https://serverfault.com/questions/1147296/how-to-enable-ipv6-on-ubuntu-20-04. Alternatively, you can mount your own `nginx.conf` own using docker option `-v "./nginx.conf:/etc/nginx/conf.d/nginx.conf"` (with `listen [::]:8080;` removed)
+If the container needs to listen to IPv6, it needs to be enabled: https://serverfault.com/questions/1147296/how-to-enable-ipv6-on-ubuntu-20-04. Alternatively, you can mount your own `nginx.conf` own using docker option `-v "./nginx.conf:/etc/nginx/conf.d/nginx.conf"` (with `listen [::]:8080;` removed)
 
 ## PR Welcome
 
@@ -10,11 +10,11 @@ Especially for UI improvements and translation. And for anything else.
 
 Want to support this fork of IT Tools: [Buy me a coffee](https://www.buymeacoffee.com/sharevb)
 
-## HTTPS is recommanded
+## HTTPS is recommended
 
 Some tools like PGP encryption rely on WebCrypto API that is only available in HTTPS/SSL. Also, if you want to use PWA, HTTPS is required.
 
-So even on internal installations, you can enable HTTPS using Let's Encrypt using DNS Challenge
+So even on internal installations, you should enable HTTPS using Let's Encrypt using DNS Challenge
 
 Some docs about DNS Challenge:
 - https://medium.com/@life-is-short-so-enjoy-it/homelab-nginx-proxy-manager-setup-ssl-certificate-with-domain-name-in-cloudflare-dns-732af64ddc0b
@@ -39,7 +39,7 @@ Big thanks to all the people who have already contributed!
 
 ## Development under Windows
 
-Use of WSL2 is recommanded to develop using VSCode on Windows. Direct development is tricky (because of some dependencies)
+Use of WSL2 is recommended to develop using VSCode on Windows. Direct development is tricky (because of some dependencies)
 
 ## Added features
 
@@ -83,9 +83,9 @@ See (docker-tools-filter-and-home-content)[https://github.com/sharevb/it-tools]
 
 ## Setting default tools parameters / default UI language at runtime
 
-You can set default tools parameters by mounting a `tools-setting.json` in `/usr/share/nginx/html`.
+You can set default tool parameters by mounting a `tools-setting.json` in `/usr/share/nginx/html`.
 
-It is a two level json, first level for `tool name`, second level for `parameter name`:
+It is a two level json, with the first level being for `tool name` and the second level for `parameter name`:
 ```json
 {
   "regex-tester": {
@@ -97,7 +97,7 @@ It is a two level json, first level for `tool name`, second level for `parameter
 ```
 
 You can find `tool name` and `parameter name` in the tools source code `src/tools` subfolder :
-- for pattern like `const global = useQueryParamOrStorage({ storageName: 'regex-tester:g', name: 'global', defaultValue: true });`:
+- example pattern for `const global = useQueryParamOrStorage({ storageName: 'regex-tester:g', name: 'global', defaultValue: true });`:
 ```json
 {
   "regex-tester": {
@@ -105,7 +105,7 @@ You can find `tool name` and `parameter name` in the tools source code `src/tool
   }
 }
 ```
-- for pattern like `const value = useQueryParam({ tool: 'barcode-gen', name: 'text', defaultValue: '123456789' });`:
+- example pattern for `const value = useQueryParam({ tool: 'barcode-gen', name: 'text', defaultValue: '123456789' });`:
 ```json
 {
   "barcode-gen": {
@@ -113,7 +113,7 @@ You can find `tool name` and `parameter name` in the tools source code `src/tool
   }
 }
 ```
-- for pattern like `const width = useITStorage('ascii-text-drawer:width', 80);`:
+- example pattern for `const width = useITStorage('ascii-text-drawer:width', 80);`:
 ```json
 {
   "ascii-text-drawer": {
@@ -122,7 +122,7 @@ You can find `tool name` and `parameter name` in the tools source code `src/tool
 }
 ```
 
-To define default UI language, add a `default_locale` key to json:
+To define the default UI language, add a `default_locale` key to json:
 ```json
 {
   "default_locale": "fr"
