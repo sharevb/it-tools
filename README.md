@@ -1,6 +1,6 @@
-## BREAKING CHANGE for Docker Image
+## BREAKING CHANGE for Container Image
 
-Since the *Docker base image* is now `nginx-unpriviledged` the container will now listen to port **8080** and not 80. So you need to update your port mapping, i.e. from `8080:80` to `8080:8080`.
+Since the *base image* is now `nginx-unpriviledged` the container will now listen to port **8080** and not 80. So you need to update your port mapping, i.e. from `8080:80` to `8080:8080`.
 
 If the container needs to listen to IPv6, it needs to be enabled: https://serverfault.com/questions/1147296/how-to-enable-ipv6-on-ubuntu-20-04. Alternatively, you can mount your own `nginx.conf` own using docker option `-v "./nginx.conf:/etc/nginx/conf.d/nginx.conf"` (with `listen [::]:8080;` removed)
 
@@ -25,7 +25,7 @@ Related doc for CyberPanel: https://community.cyberpanel.net/t/reverse-proxy-tra
 
 ### Check out these change here: <https://sharevb-it-tools.vercel.app/> or <https://sharevb.github.io/it-tools/>
 
-You can use my image in your docker-compose file if you want an update to date version of it-tools (with my PR and some of others) until the main branch has been updated.
+You can use my image in your docker-compose/quadlet file if you want an up-to-date version of it-tools (with my PR and some of others) until the main branch has been updated.
 
 - github action triggers on every push to this branch - [view package here](https://github.com/sharevb/it-tools/pkgs/container/it-tools)
 
@@ -45,7 +45,7 @@ Use of WSL2 is recommended to develop using VSCode on Windows. Direct developmen
 
 Almost [all tools PR of it-tools](https://github.com/sharevb/it-tools/pulls).
 
-## Docker images
+## Container images
 
 [GitHub Container Registry](https://github.com/sharevb/it-tools/pkgs/container/it-tools): `ghcr.io/sharevb/it-tools:latest`
 
@@ -63,6 +63,27 @@ services:
     ports:
       - 8080:8080
 ```
+
+## Use in Podman Quadlet file
+
+```
+[Unit]
+Description=IT Tools container
+After=network-online.target
+
+[Container]
+AutoUpdate=registry
+Image=ghcr.io/sharevb/it-tools:latest
+PublishPort=8080:8080
+Label=io.containers.autoupdate=registry
+
+[Install]
+WantedBy=multi-user.target default.target
+
+[Service]
+Restart=always
+```
+
 
 ## Filter tools and add home custom content
 
@@ -136,7 +157,7 @@ docker build -t it-tools-fr --build-arg VITE_LANGUAGE=fr .
 docker run -d --name it-tools-fr --restart unless-stopped -p 8080:8080 it-tools-fr
 ```
 
-## Build docker image for a custom subfolder
+## Build container image for a custom subfolder
 
 According to https://github.com/sharevb/it-tools/pull/461#issuecomment-1602506049 and https://github.com/CorentinTh/it-tools/pull/461:
 ```
@@ -264,7 +285,7 @@ It will create a directory in `src/tools` with the correct files, and a the impo
 
 Local installation required installing first: `python3 make g++`
 
-| Docker Image                            | Local Installation                                                                                                          |
+| Container Image                         | Local Installation                                                                                                          |
 |-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | GitHub Container Registry: <span title="triple click me!">`ghcr.io/sharevb/it-tools:latest`</span><br/>Docker Hub: <span title="triple click me!">`sharevb/it-tools:latest`</span> | <span title="triple click me!">`sudo apt-get install python3 make g++ && git clone -b chore/all-my-stuffs https://github.com/sharevb/it-tools.git && cd it-tools/ && pnpm i && pnpm dev`</span> |
 | replace your current image with this image | copy & paste oneliner (from github repo) |
