@@ -21,6 +21,12 @@ import { i18nPlugin } from './plugins/i18n.plugin';
 
 import store from './tools/pomodoro-timer/app/store';
 
+window.addEventListener('vite:preloadError', (event: Event) => {
+  console.error('Vite preload error, forcing page reload:', event);
+  event.preventDefault(); // Prevent the original error from being thrown again
+  window.location.reload();
+});
+
 // eslint-disable-next-line no-extend-native
 BigInt.prototype.toJSON = function () {
   return JSON.rawJSON ? JSON.rawJSON(this.toString()) : this.toString();
