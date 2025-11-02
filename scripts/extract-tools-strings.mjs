@@ -54,8 +54,8 @@ function processVueComponent(filePath, toolName) {
   }
 
   const hasAlreayI18n = filePath.endsWith('.vue')
-    ? content.includes("const { t } = useI18n();")
-    : content.includes("import { translate as t } from '@/plugins/i18n.plugin';");
+    ? /const\s+\{.*?\bt\b.*?\}\s+=\s+useI18n\(.*?\)/s.test(content)
+    : /import\s+\{.*?\btranslate\b.*?\}\s+from\s+(['"])@\/plugins\/i18n\.plugin\1/s.test(content);
   if (hasAlreayI18n) {
     console.log(`Already extracted: ${filePath}`);
     return;

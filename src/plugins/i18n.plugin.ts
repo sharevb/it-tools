@@ -3,9 +3,11 @@ import { get } from '@vueuse/core';
 import type { Plugin } from 'vue';
 import { createI18n } from 'vue-i18n';
 
+const DEFAULT_LOCALE = String(import.meta.env.VITE_LANGUAGE || 'en');
+
 const i18n = createI18n({
   legacy: false,
-  locale: import.meta.env.VITE_LANGUAGE || 'en',
+  locale: DEFAULT_LOCALE,
   messages,
 });
 
@@ -15,7 +17,8 @@ export const i18nPlugin: Plugin = {
   },
 };
 
-export const translate = function (localeKey: string, list: unknown[] = []) {
-  const hasKey = i18n.global.te(localeKey, get(i18n.global.locale));
-  return hasKey ? i18n.global.t(localeKey, list) : localeKey;
-};
+export function getCurrentLocale(): string {
+  return get(i18n.global.locale);
+}
+
+export const translate = i18n.global.t as typeof i18n.global.t;

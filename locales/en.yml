@@ -226,8 +226,14 @@ tools:
       placeholder-your-string-to-compare: Your string to compare...
       label-your-hash: "Your hash: "
       placeholder-your-hash-to-compare: Your hash to compare...
-      label-do-they-match: "Do they match ? "
       tag-copy-hash: Copy hash
+      hashed-string: Hashed string
+      comparison-result: Comparison result
+      matched: Matched
+      no-match: No match
+      timed-out-after-timeout-period: Timed out after {timeoutPeriod}
+      hashed-in-elapsed-period: Hashed in {elapsedPeriod}
+      compared-in-elapsed-period: Compared in {elapsedPeriod}
   crontab-generator:
     title: Crontab generator
     description: Validate and generate crontab and get the human-readable
