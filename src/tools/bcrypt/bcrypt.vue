@@ -1,36 +1,9 @@
 <script setup lang="ts">
+import { compare, hash } from 'bcryptjs';
 import { useI18n } from 'vue-i18n';
 import { useThemeVars } from 'naive-ui';
 import { type BcryptFn, bcryptWithProgressUpdates } from './bcrypt.models';
 import { useCopy } from '@/composable/copy';
-
-declare global {
-  const scheduler: {
-    postTask?: typeof setImmediate
-  } | undefined;
-
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace Intl {
-    class DurationFormat {
-      constructor(locale?: Intl.LocalesArgument, options?: { style?: 'long' });
-      format(duration: { seconds?: number; milliseconds?: number }): string;
-    }
-  }
-}
-
-globalThis.setImmediate ??= (typeof scheduler === 'object' && typeof scheduler.postTask === 'function'
-  ? scheduler.postTask.bind(scheduler)
-  : setTimeout) as typeof globalThis.setImmediate;
-
-Intl.DurationFormat ??= class DurationFormat {
-  format(duration: { seconds?: number; milliseconds?: number }): string {
-    return 'seconds' in duration
-      ? `${duration.seconds} seconds`
-      : `${duration.milliseconds} milliseconds`;
-  }
-};
-
-const { compare, hash } = await import('bcryptjs');
 
 const { t, locale } = useI18n();
 

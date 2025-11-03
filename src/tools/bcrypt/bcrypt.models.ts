@@ -1,5 +1,13 @@
 import { getCurrentLocale, translate as t } from '@/plugins/i18n.plugin';
 
+Intl.DurationFormat ??= class DurationFormat {
+  format(duration: { seconds?: number; milliseconds?: number }): string {
+    return 'seconds' in duration
+      ? `${duration.seconds} seconds`
+      : `${duration.milliseconds} milliseconds`;
+  }
+};
+
 export type Update<Result> =
   | {
     kind: 'progress'

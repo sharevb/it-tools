@@ -55,3 +55,12 @@ interface Navigator {
 interface FontFaceSet {
   add(fontFace: FontFace)
 }
+
+// TODO remove once https://github.com/microsoft/TypeScript/issues/60608 is resolved
+// eslint-disable-next-line @typescript-eslint/no-namespace
+namespace Intl {
+  class DurationFormat {
+    constructor(locale?: Intl.LocalesArgument, options?: { style?: 'long' });
+    format(duration: { seconds?: number; milliseconds?: number }): string;
+  }
+}
