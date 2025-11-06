@@ -6529,16 +6529,6 @@ tools:
       label-issuer-identifier-number: "발급자 식별자 번호:"
       label-cvv-length: "CVV 길이:"
       tag-invlid-credit-card-number: 잘못된 신용 카드 번호
-  credit-card-generator:
-    title: 신용카드 번호 생성기
-    description: 무작위 신용 카드 번호 생성
-    texts:
-      label-credit-card-scheme: "신용카드 제도:"
-      placeholder-select-scheme: 계획 선택
-      label-number-of-credit-card-to-generate: "생성할 신용카드 번호:"
-      placeholder-number-of-cards: 카드 수
-      title-generated-credit-card-numbers: 생성된 신용 카드 번호
-      tag-generate-random-credit-card-numbers: 무작위 신용 카드 번호 생성
   database-connection-string-builder:
     title: 데이터베이스 연결 문자열 작성기
     description: 공통 데이터베이스에 대한 연결 문자열 빌드

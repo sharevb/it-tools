@@ -7112,16 +7112,6 @@ tools:
       label-issuer-identifier-number: "Aussteller-Identifikationsnummer:"
       label-cvv-length: "CVV-Länge:"
       tag-invlid-credit-card-number: Ungültige Kreditkartennummer
-  credit-card-generator:
-    title: Kreditkartennummerngenerator
-    description: Zufällige Kreditkartennummer generieren
-    texts:
-      label-credit-card-scheme: "Kreditkartensystem:"
-      placeholder-select-scheme: Schema auswählen
-      label-number-of-credit-card-to-generate: "Nummer der zu generierenden Kreditkarte:"
-      placeholder-number-of-cards: Anzahl der Karten
-      title-generated-credit-card-numbers: Generierte Kreditkartennummern
-      tag-generate-random-credit-card-numbers: Zufällige Kreditkartennummern generieren
   database-connection-string-builder:
     title: Generator für Datenbankverbindungszeichenfolgen
     description: Erstellen einer Verbindungszeichenfolge für eine gemeinsame Datenbank

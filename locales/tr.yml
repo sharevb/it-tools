@@ -134,8 +134,8 @@ tools:
       refresh: Yenile
     texts:
       label-denied-characters-ie-visually-similar-oo01li-or-punctuations:
-        Reddedilen Karakterler (yani görsel olarak benzer oO01lI veya
-        noktalama işaretleri)
+        Reddedilen Karakterler (yani görsel olarak benzer oO01lI veya noktalama
+        işaretleri)
       placeholder-put-characters-to-deny-from-token: Jetondan reddedilecek karakterleri koy
       label-number-of-token-to-generate: Üretilecek token sayısı
   percentage-calculator:
@@ -6916,16 +6916,6 @@ tools:
       label-issuer-identifier-number: "Veren Kuruluş Tanımlayıcı Numarası:"
       label-cvv-length: "CVV Uzunluğu:"
       tag-invlid-credit-card-number: Geçersiz Kredi Kartı Numarası
-  credit-card-generator:
-    title: Kredi Kartı Numarası Üreticisi
-    description: Rastgele Kredi Kartı Numarası Oluştur
-    texts:
-      label-credit-card-scheme: "Kredi Kartı Programı:"
-      placeholder-select-scheme: Şema Seçin
-      label-number-of-credit-card-to-generate: "Oluşturulacak Kredi Kartı Sayısı:"
-      placeholder-number-of-cards: Kart sayısı
-      title-generated-credit-card-numbers: Oluşturulan Kredi Kartı numaraları
-      tag-generate-random-credit-card-numbers: Rastgele Kredi Kartı numaraları üret
   database-connection-string-builder:
     title: Veritabanı Bağlantı Dizesi Oluşturucu
     description: Ortak veritabanı için bağlantı dizesi oluşturun

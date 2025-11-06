@@ -6958,16 +6958,6 @@ tools:
       label-issuer-identifier-number: "Идентификационный номер эмитента:"
       label-cvv-length: "Длина CVV:"
       tag-invlid-credit-card-number: Неверный номер кредитной карты
-  credit-card-generator:
-    title: Генератор номеров кредитных карт
-    description: Генерация случайного номера кредитной карты
-    texts:
-      label-credit-card-scheme: "Схема кредитной карты:"
-      placeholder-select-scheme: Выбрать схему
-      label-number-of-credit-card-to-generate: "Номер кредитной карты для создания:"
-      placeholder-number-of-cards: Количество карт
-      title-generated-credit-card-numbers: Сгенерированные номера кредитных карт
-      tag-generate-random-credit-card-numbers: Генерация случайных номеров кредитных карт
   database-connection-string-builder:
     title: Конструктор строк подключения к базе данных
     description: Создание строки подключения для общей базы данных

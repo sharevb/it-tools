@@ -6858,16 +6858,6 @@ tools:
       label-issuer-identifier-number: "Udstederidentifikationsnummer:"
       label-cvv-length: "CVV-længde:"
       tag-invlid-credit-card-number: Ugyldigt kreditkortnummer
-  credit-card-generator:
-    title: Kreditkortnummergenerator
-    description: Generer tilfældigt kreditkortnummer
-    texts:
-      label-credit-card-scheme: "Kreditkortordning:"
-      placeholder-select-scheme: Vælg skema
-      label-number-of-credit-card-to-generate: "Antal kreditkort, der skal genereres:"
-      placeholder-number-of-cards: Antal kort
-      title-generated-credit-card-numbers: Genererede kreditkortnumre
-      tag-generate-random-credit-card-numbers: Generer tilfældige kreditkortnumre
   database-connection-string-builder:
     title: Stringgenerator til databaseforbindelse
     description: Opbyg forbindelsesstreng til fælles database

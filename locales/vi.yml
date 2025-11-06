@@ -6896,16 +6896,6 @@ tools:
       label-issuer-identifier-number: "Số nhận dạng của bên phát hành:"
       label-cvv-length: "Chiều dài CVV:"
       tag-invlid-credit-card-number: Số thẻ tín dụng không hợp lệ
-  credit-card-generator:
-    title: Trình tạo số thẻ tín dụng
-    description: Tạo số thẻ tín dụng ngẫu nhiên
-    texts:
-      label-credit-card-scheme: "Chương trình thẻ tín dụng:"
-      placeholder-select-scheme: Chọn sơ đồ
-      label-number-of-credit-card-to-generate: "Số lượng thẻ tín dụng cần tạo:"
-      placeholder-number-of-cards: Số lượng thẻ
-      title-generated-credit-card-numbers: Số thẻ tín dụng đã tạo
-      tag-generate-random-credit-card-numbers: Tạo số thẻ tín dụng ngẫu nhiên
   database-connection-string-builder:
     title: Trình tạo chuỗi kết nối cơ sở dữ liệu
     description: Xây dựng chuỗi kết nối cho cơ sở dữ liệu chung

@@ -6930,16 +6930,6 @@ tools:
       label-issuer-identifier-number: "Ідентифікаційний номер емітента:"
       label-cvv-length: "Довжина CVV:"
       tag-invlid-credit-card-number: Недійсний номер кредитної картки
-  credit-card-generator:
-    title: Генератор номерів кредитних карток
-    description: Згенерувати випадковий номер кредитної картки
-    texts:
-      label-credit-card-scheme: "Схема кредитних карток:"
-      placeholder-select-scheme: Виберіть схему
-      label-number-of-credit-card-to-generate: "Номер кредитної картки для створення:"
-      placeholder-number-of-cards: Кількість карток
-      title-generated-credit-card-numbers: Згенеровані номери кредитних карток
-      tag-generate-random-credit-card-numbers: Генерація випадкових номерів кредитних карток
   database-connection-string-builder:
     title: Конструктор рядків підключення до бази даних
     description: Створення рядка підключення для загальної бази даних

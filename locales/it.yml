@@ -7001,16 +7001,6 @@ tools:
       label-issuer-identifier-number: "Numero identificativo dell'emittente:"
       label-cvv-length: "Lunghezza CVV:"
       tag-invlid-credit-card-number: Numero di carta di credito non valido
-  credit-card-generator:
-    title: Generatore di numeri di carte di credito
-    description: Genera un numero di carta di credito casuale
-    texts:
-      label-credit-card-scheme: "Schema di carte di credito:"
-      placeholder-select-scheme: Seleziona schema
-      label-number-of-credit-card-to-generate: "Numero di carta di credito da generare:"
-      placeholder-number-of-cards: Numero di carte
-      title-generated-credit-card-numbers: Numeri di carte di credito generati
-      tag-generate-random-credit-card-numbers: Genera numeri di carte di credito casuali
   database-connection-string-builder:
     title: Generatore di stringhe di connessione al database
     description: Crea una stringa di connessione per un database comune

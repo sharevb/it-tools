@@ -6974,16 +6974,6 @@ tools:
       label-issuer-identifier-number: "Número de Identificação do Emissor:"
       label-cvv-length: "Comprimento do CVV:"
       tag-invlid-credit-card-number: Número de cartão de crédito inválido
-  credit-card-generator:
-    title: Gerador de números de cartão de crédito
-    description: Gerar número de cartão de crédito aleatório
-    texts:
-      label-credit-card-scheme: "Esquema de cartão de crédito:"
-      placeholder-select-scheme: Selecione o esquema
-      label-number-of-credit-card-to-generate: "Número do cartão de crédito a ser gerado:"
-      placeholder-number-of-cards: Número de cartas
-      title-generated-credit-card-numbers: Números de cartão de crédito gerados
-      tag-generate-random-credit-card-numbers: Gerar números aleatórios de cartão de crédito
   database-connection-string-builder:
     title: Construtor de string de conexão de banco de dados
     description: Construir string de conexão para banco de dados comum

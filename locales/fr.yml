@@ -7234,16 +7234,6 @@ tools:
       label-issuer-identifier-number: "Numéro d&#39;identification de l&#39;émetteur :"
       label-cvv-length: "Longueur CVV :"
       tag-invlid-credit-card-number: Numéro de carte de crédit invalide
-  credit-card-generator:
-    title: Générateur de numéros de carte de crédit
-    description: Générer un numéro de carte de crédit aléatoire
-    texts:
-      label-credit-card-scheme: "Système de carte de crédit :"
-      placeholder-select-scheme: Sélectionnez le schéma
-      label-number-of-credit-card-to-generate: "Nombre de cartes de crédit à générer :"
-      placeholder-number-of-cards: Nombre de cartes
-      title-generated-credit-card-numbers: Numéros de carte de crédit générés
-      tag-generate-random-credit-card-numbers: Générer des numéros de carte de crédit aléatoires
   database-connection-string-builder:
     title: Générateur de chaînes de connexion à la base de données
     description: Créer une chaîne de connexion pour une base de données commune

@@ -6901,16 +6901,6 @@ tools:
       label-issuer-identifier-number: "Utstederidentifikasjonsnummer:"
       label-cvv-length: "CVV-lengde:"
       tag-invlid-credit-card-number: Ugyldig kredittkortnummer
-  credit-card-generator:
-    title: Kredittkortnummergenerator
-    description: Generer tilfeldig kredittkortnummer
-    texts:
-      label-credit-card-scheme: "Kredittkortordning:"
-      placeholder-select-scheme: Velg skjema
-      label-number-of-credit-card-to-generate: "Antall kredittkort som skal genereres:"
-      placeholder-number-of-cards: Antall kort
-      title-generated-credit-card-numbers: Genererte kredittkortnumre
-      tag-generate-random-credit-card-numbers: Generer tilfeldige kredittkortnumre
   database-connection-string-builder:
     title: Strengbygger for databasetilkobling
     description: Bygg tilkoblingsstreng for felles database

@@ -7020,16 +7020,6 @@ tools:
       label-issuer-identifier-number: "Uimhir Aitheantais Eisitheora:"
       label-cvv-length: "Fad CVV:"
       tag-invlid-credit-card-number: Uimhir Cárta Creidmheasa Neamhbhailí
-  credit-card-generator:
-    title: Gineadóir Uimhir Cárta Creidmheasa
-    description: Gin Uimhir Cárta Creidmheasa Randamach
-    texts:
-      label-credit-card-scheme: "Scéim Cárta Creidmheasa:"
-      placeholder-select-scheme: Roghnaigh Scéim
-      label-number-of-credit-card-to-generate: "Líon na gCártaí Creidmheasa le giniúint:"
-      placeholder-number-of-cards: Líon na gcártaí
-      title-generated-credit-card-numbers: Uimhreacha Cárta Creidmheasa Ginte
-      tag-generate-random-credit-card-numbers: Gin uimhreacha cárta creidmheasa randamacha
   database-connection-string-builder:
     title: Tógálaí Teaghrán Ceangail Bunachar Sonraí
     description: Tóg teaghrán nasc le haghaidh bunachar sonraí coiteann

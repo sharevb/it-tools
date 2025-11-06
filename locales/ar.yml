@@ -6792,16 +6792,6 @@ tools:
       label-issuer-identifier-number: "رقم معرف المُصدر:"
       label-cvv-length: "طول CVV:"
       tag-invlid-credit-card-number: رقم بطاقة الائتمان غير صالح
-  credit-card-generator:
-    title: مولد أرقام بطاقات الائتمان
-    description: إنشاء رقم بطاقة ائتمان عشوائي
-    texts:
-      label-credit-card-scheme: "مخطط بطاقة الائتمان:"
-      placeholder-select-scheme: حدد المخطط
-      label-number-of-credit-card-to-generate: "عدد بطاقات الائتمان المراد إنشاؤها:"
-      placeholder-number-of-cards: عدد البطاقات
-      title-generated-credit-card-numbers: أرقام بطاقات الائتمان المُولّدة
-      tag-generate-random-credit-card-numbers: إنشاء أرقام بطاقات ائتمان عشوائية
   database-connection-string-builder:
     title: منشئ سلسلة اتصال قاعدة البيانات
     description: إنشاء سلسلة اتصال لقاعدة بيانات مشتركة

@@ -6869,16 +6869,6 @@ tools:
       label-issuer-identifier-number: "Issuer Identifier Number:"
       label-cvv-length: "CVV Length:"
       tag-invlid-credit-card-number: Invlid Credit Card Number
-  credit-card-generator:
-    title: Credit Card Number Generator
-    description: Generate Random Credit Card Number
-    texts:
-      label-credit-card-scheme: "Credit Card Scheme:"
-      placeholder-select-scheme: Select Scheme
-      label-number-of-credit-card-to-generate: "Number of Credit Card to generate:"
-      placeholder-number-of-cards: Number of cards
-      title-generated-credit-card-numbers: Generated Credit Card numbers
-      tag-generate-random-credit-card-numbers: Generate Random Credit Card numbers
   database-connection-string-builder:
     title: Database Connection String Builder
     description: Build connection string for common database

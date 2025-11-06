@@ -6606,16 +6606,6 @@ tools:
       label-issuer-identifier-number: 发卡机构识别码：
       label-cvv-length: CVV 长度：
       tag-invlid-credit-card-number: 无效的信用卡号
-  credit-card-generator:
-    title: 信用卡号码生成器
-    description: 生成随机信用卡号
-    texts:
-      label-credit-card-scheme: 信用卡计划：
-      placeholder-select-scheme: 选择方案
-      label-number-of-credit-card-to-generate: 要生成的信用卡号：
-      placeholder-number-of-cards: 卡数
-      title-generated-credit-card-numbers: 生成的信用卡号
-      tag-generate-random-credit-card-numbers: 生成随机信用卡号
   database-connection-string-builder:
     title: 数据库连接字符串生成器
     description: 为常用数据库建立连接字符串

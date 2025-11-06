@@ -6946,16 +6946,6 @@ tools:
       label-issuer-identifier-number: "Numer identyfikacyjny wystawcy:"
       label-cvv-length: "Długość CVV:"
       tag-invlid-credit-card-number: Nieprawidłowy numer karty kredytowej
-  credit-card-generator:
-    title: Generator numerów kart kredytowych
-    description: Wygeneruj losowy numer karty kredytowej
-    texts:
-      label-credit-card-scheme: "System kart kredytowych:"
-      placeholder-select-scheme: Wybierz schemat
-      label-number-of-credit-card-to-generate: "Numer karty kredytowej do wygenerowania:"
-      placeholder-number-of-cards: Liczba kart
-      title-generated-credit-card-numbers: Wygenerowane numery kart kredytowych
-      tag-generate-random-credit-card-numbers: Generuj losowe numery kart kredytowych
   database-connection-string-builder:
     title: Konstruktor ciągów połączeń z bazą danych
     description: Zbuduj ciąg połączenia dla wspólnej bazy danych
