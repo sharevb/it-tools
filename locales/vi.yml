@@ -253,6 +253,8 @@ tools:
       label-location: "Vị trí :"
       label-modifiers: "Các từ bổ nghĩa:"
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key: Nhấn phím trên bàn phím của bạn nếu bạn muốn biết thông tin về phím này
+      label-scancode: "Scancode (hex) :"
+      label-scancode-dec: "Scancode (dec) :"
   emoji-picker:
     title: Bộ chọn biểu tượng cảm xúc
     description: Sao chép và dán biểu tượng cảm xúc một cách dễ dàng và nhận giá trị
@@ -2928,6 +2930,8 @@ tools:
       label-json-schema: "Sơ đồ JSON:"
       placeholder-paste-your-json-schema-here: Dán Sơ đồ JSON của bạn vào đây...
       title-schema-validation-errors: Lỗi xác thực lược đồ
+      title-formatted-version: Phiên bản đã định dạng
+      label-indent-size-0-compact: "Kích thước thụt lề (0 = Nhỏ gọn):"
   json-size-analyzer:
     title: Trình phân tích kích thước JSON
     description: Đo trọng số tương đối của các nút JSON
@@ -6896,16 +6900,6 @@ tools:
       label-issuer-identifier-number: "Số nhận dạng của bên phát hành:"
       label-cvv-length: "Chiều dài CVV:"
       tag-invlid-credit-card-number: Số thẻ tín dụng không hợp lệ
-  credit-card-generator:
-    title: Trình tạo số thẻ tín dụng
-    description: Tạo số thẻ tín dụng ngẫu nhiên
-    texts:
-      label-credit-card-scheme: "Chương trình thẻ tín dụng:"
-      placeholder-select-scheme: Chọn sơ đồ
-      label-number-of-credit-card-to-generate: "Số lượng thẻ tín dụng cần tạo:"
-      placeholder-number-of-cards: Số lượng thẻ
-      title-generated-credit-card-numbers: Số thẻ tín dụng đã tạo
-      tag-generate-random-credit-card-numbers: Tạo số thẻ tín dụng ngẫu nhiên
   database-connection-string-builder:
     title: Trình tạo chuỗi kết nối cơ sở dữ liệu
     description: Xây dựng chuỗi kết nối cho cơ sở dữ liệu chung

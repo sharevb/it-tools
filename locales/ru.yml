@@ -260,6 +260,8 @@ tools:
       label-location: "Расположение :"
       label-modifiers: "Модификаторы:"
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key: Нажмите клавишу на клавиатуре, чтобы получить информацию об этой клавише.
+      label-scancode: "Скан-код (шестнадцатеричный):"
+      label-scancode-dec: "Сканкод (десятичный):"
   emoji-picker:
     title: Выбор эмодзи
     description: Легко копируйте и вставляйте эмодзи и получайте значения юникода и
@@ -3255,6 +3257,8 @@ tools:
       label-json-schema: "Схема JSON:"
       placeholder-paste-your-json-schema-here: Вставьте сюда вашу схему JSON...
       title-schema-validation-errors: Ошибки проверки схемы
+      title-formatted-version: Форматированная версия
+      label-indent-size-0-compact: "Размер отступа (0 = Компактный):"
   json-size-analyzer:
     title: Анализатор размера JSON
     description: Измеряйте относительный вес узлов JSON
@@ -6958,16 +6962,6 @@ tools:
       label-issuer-identifier-number: "Идентификационный номер эмитента:"
       label-cvv-length: "Длина CVV:"
       tag-invlid-credit-card-number: Неверный номер кредитной карты
-  credit-card-generator:
-    title: Генератор номеров кредитных карт
-    description: Генерация случайного номера кредитной карты
-    texts:
-      label-credit-card-scheme: "Схема кредитной карты:"
-      placeholder-select-scheme: Выбрать схему
-      label-number-of-credit-card-to-generate: "Номер кредитной карты для создания:"
-      placeholder-number-of-cards: Количество карт
-      title-generated-credit-card-numbers: Сгенерированные номера кредитных карт
-      tag-generate-random-credit-card-numbers: Генерация случайных номеров кредитных карт
   database-connection-string-builder:
     title: Конструктор строк подключения к базе данных
     description: Создание строки подключения для общей базы данных

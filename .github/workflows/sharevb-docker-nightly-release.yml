@@ -44,7 +44,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm i --ignore-scripts
 
       - name: Run linters
         run: pnpm lint

@@ -6,7 +6,7 @@ export const tool = defineTool({
   name: t('tools.data-transfer-rate-converter.title'),
   path: '/data-transfer-rate-converter',
   description: t('tools.data-transfer-rate-converter.description'),
-  keywords: ['data', 'transfer', 'rate', 'convert', 'time'],
+  keywords: ['data', 'transfer', 'rate', 'convert', 'time', 'units'],
   component: () => import('./data-transfer-rate-converter.vue'),
   icon: TransferIn,
   createdAt: new Date('2024-08-15'),

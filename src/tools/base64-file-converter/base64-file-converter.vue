@@ -125,7 +125,11 @@ async function onUpload(file: File) {
   </c-card>
 
   <c-card :title="t('tools.base64-file-converter.texts.title-file-to-base64')">
-    <c-file-upload :title="t('tools.base64-file-converter.texts.title-drag-and-drop-a-file-here-or-click-to-select-a-file')" @file-upload="onUpload" />
+    <c-file-upload
+      :title="t('tools.base64-file-converter.texts.title-drag-and-drop-a-file-here-or-click-to-select-a-file')"
+      :paste-image="true"
+      @file-upload="onUpload"
+    />
     <c-input-text :value="fileBase64" multiline readonly :placeholder="t('tools.base64-file-converter.texts.placeholder-file-in-base64-will-be-here')" rows="5" my-2 />
 
     <div flex justify-center>

@@ -210,6 +210,8 @@ tools:
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key:
         Druk op de toets op uw toetsenbord waarvoor u informatie over deze toets
         wilt verkrijgen
+      label-scancode: "Scancode (hex):"
+      label-scancode-dec: "Scancode (dec):"
   emoji-picker:
     title: Emoji keuze
     description: Kopieer en plak eenvoudig emoji’s en verkrijg de Unicode en
@@ -2893,6 +2895,8 @@ tools:
       label-json-schema: "JSON-schema:"
       placeholder-paste-your-json-schema-here: Plak hier uw JSON-schema...
       title-schema-validation-errors: Schemavalidatiefouten
+      title-formatted-version: Geformatteerde versie
+      label-indent-size-0-compact: "Inspringingsgrootte (0 = Compact):"
   json-size-analyzer:
     title: Json-grootte-analysator
     description: Meet de relatieve gewichten van JSON-knooppunten
@@ -6930,16 +6934,6 @@ tools:
       label-issuer-identifier-number: "Uitgever-identificatienummer:"
       label-cvv-length: "CVV-lengte:"
       tag-invlid-credit-card-number: Ongeldig creditcardnummer
-  credit-card-generator:
-    title: Creditcardnummergenerator
-    description: Genereer een willekeurig creditcardnummer
-    texts:
-      label-credit-card-scheme: "Creditcardregeling:"
-      placeholder-select-scheme: Selecteer schema
-      label-number-of-credit-card-to-generate: "Aantal te genereren creditcards:"
-      placeholder-number-of-cards: Aantal kaarten
-      title-generated-credit-card-numbers: Gegenereerde creditcardnummers
-      tag-generate-random-credit-card-numbers: Genereer willekeurige creditcardnummers
   database-connection-string-builder:
     title: Databaseverbindingsreeksbouwer
     description: Verbindingsreeks voor algemene database maken

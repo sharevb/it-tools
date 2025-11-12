@@ -286,6 +286,8 @@ tools:
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key:
         Brúigh an eochair ar do mhéarchlár ar mhaith leat eolas a fháil faoin
         eochair seo
+      label-scancode: "Cód scanadh (heicsidheachúlach):"
+      label-scancode-dec: "Cód scanadh (dec):"
   emoji-picker:
     title: Roghnóir Emoji
     description: Cóipeáil agus greamaigh emojis go héasca agus faigh an cód cód agus
@@ -3198,6 +3200,8 @@ tools:
       label-json-schema: "Scéim JSON:"
       placeholder-paste-your-json-schema-here: Greamaigh do Scéim JSON anseo...
       title-schema-validation-errors: Earráidí Bailíochtaithe Scéime
+      title-formatted-version: Leagan formáidithe
+      label-indent-size-0-compact: "Méid an línithe (0 = Dlúth):"
   json-size-analyzer:
     title: Anailíseoir Méid Json
     description: Tomhas meáchain choibhneasta nóid JSON
@@ -7020,16 +7024,6 @@ tools:
       label-issuer-identifier-number: "Uimhir Aitheantais Eisitheora:"
       label-cvv-length: "Fad CVV:"
       tag-invlid-credit-card-number: Uimhir Cárta Creidmheasa Neamhbhailí
-  credit-card-generator:
-    title: Gineadóir Uimhir Cárta Creidmheasa
-    description: Gin Uimhir Cárta Creidmheasa Randamach
-    texts:
-      label-credit-card-scheme: "Scéim Cárta Creidmheasa:"
-      placeholder-select-scheme: Roghnaigh Scéim
-      label-number-of-credit-card-to-generate: "Líon na gCártaí Creidmheasa le giniúint:"
-      placeholder-number-of-cards: Líon na gcártaí
-      title-generated-credit-card-numbers: Uimhreacha Cárta Creidmheasa Ginte
-      tag-generate-random-credit-card-numbers: Gin uimhreacha cárta creidmheasa randamacha
   database-connection-string-builder:
     title: Tógálaí Teaghrán Ceangail Bunachar Sonraí
     description: Tóg teaghrán nasc le haghaidh bunachar sonraí coiteann

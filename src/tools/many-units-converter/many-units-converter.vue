@@ -4,8 +4,15 @@ import _ from 'lodash';
 import { type Unit, convertMany } from 'convert';
 import allUnits from './allunits.json';
 import { useQueryParam } from '@/composable/queryParams';
+import { useToolStore } from '@/tools/tools.store';
 
 const { t } = useI18n();
+
+const toolStore = useToolStore();
+
+const unitsConversionTools = computed(() => _.orderBy(
+  _.filter(toolStore.tools, t => t.keywords?.includes('units')),
+  'name', 'asc'));
 
 const allUnitsSorted = _.uniq(allUnits).sort();
 
@@ -59,10 +66,39 @@ const result = computed(() => {
 
     <c-card v-if="result.best" :title="t('tools.many-units-converter.texts.title-result')" mb-2>
       <input-copyable :label="t('tools.many-units-converter.texts.label-best-target-unit')" :value="result.best" mb-1 />
-      <input-copyable v-if="result.selected" :label="`Selected Target Unit (${outputUnit})`" :value="result.selected" />
+      <input-copyable v-if="result.selected" :label="$t('tools.many-units-converter.texts.label-selected-target-unit-outputunit', [outputUnit])" :value="result.selected" />
     </c-card>
-    <c-alert v-if="result.error && inputExpression">
+    <c-alert v-if="result.error && inputExpression" mb-2>
       {{ result.error }}
     </c-alert>
+
+    <n-card :title="$t('tools.many-units-converter.texts.title-other-units-conversion-tools')" mx-auto>
+      <n-table>
+        <thead>
+          <tr>
+            <th>
+              {{ $t('about.tools.name') }}
+            </th>
+            <th>
+              {{ $t('about.tools.desc') }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(tool, ix) in unitsConversionTools" :key="ix">
+            <td>
+              <router-link :to="tool.path" class="decoration-none" target="_blank">
+                {{ tool.name }}
+              </router-link>
+            </td>
+            <td>
+              {{ tool.description }}
+              <br>
+              -&gt; {{ tool.keywords?.join(', ') }}
+            </td>
+          </tr>
+        </tbody>
+      </n-table>
+    </n-card>
   </div>
 </template>

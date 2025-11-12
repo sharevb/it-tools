@@ -11,6 +11,7 @@ export const tool = defineTool({
     'info',
     'code',
     'javascript',
+    'scancode',
     'event',
     'keycodes',
     'which',

@@ -245,6 +245,8 @@ tools:
       label-location: "Ubicación :"
       label-modifiers: "Modificadores:"
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key: Presione la tecla de su teclado sobre la que desea obtener información
+      label-scancode: "Código de escaneo (hexadecimal):"
+      label-scancode-dec: "Código de escaneo (dec):"
   bcrypt:
     title: Bcrypt
     description: Hash y comparación de cadenas de texto con bcrypt. Bcrypt es una
@@ -2414,6 +2416,8 @@ tools:
       label-json-schema: "Esquema JSON:"
       placeholder-paste-your-json-schema-here: Pegue su esquema JSON aquí...
       title-schema-validation-errors: Errores de validación del esquema
+      title-formatted-version: Versión formateada
+      label-indent-size-0-compact: "Tamaño de sangría (0 = Compacto):"
   json-size-analyzer:
     title: Analizador de tamaño JSON
     description: Medir los pesos relativos de los nodos JSON
@@ -7060,16 +7064,6 @@ tools:
       label-issuer-identifier-number: "Número de identificación del emisor:"
       label-cvv-length: "Longitud del CVV:"
       tag-invlid-credit-card-number: Número de tarjeta de crédito no válido
-  credit-card-generator:
-    title: Generador de números de tarjetas de crédito
-    description: Generar un número de tarjeta de crédito aleatorio
-    texts:
-      label-credit-card-scheme: "Plan de tarjeta de crédito:"
-      placeholder-select-scheme: Seleccionar esquema
-      label-number-of-credit-card-to-generate: "Número de Tarjeta de Crédito a generar:"
-      placeholder-number-of-cards: Número de tarjetas
-      title-generated-credit-card-numbers: Números de tarjetas de crédito generados
-      tag-generate-random-credit-card-numbers: Generar números de tarjetas de crédito aleatorios
   database-connection-string-builder:
     title: Generador de cadenas de conexión a bases de datos
     description: Crear una cadena de conexión para una base de datos común

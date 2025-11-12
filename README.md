@@ -1,8 +1,8 @@
-## BREAKING CHANGE for Docker Image
+## BREAKING CHANGE for Container Image
 
-Since *Docker base image* is now `nginx-unpriviledged`, docker image now listen to **8080** and no more 80. So you need to update your port mapping, ie from `8080:80` to `8080:8080`.
+Since the *base image* is now `nginx-unpriviledged` the container will now listen to port **8080** and not 80. So you need to update your port mapping, i.e. from `8080:80` to `8080:8080`.
 
-Docker image listen to IPv6, so it needs to be enabled: https://serverfault.com/questions/1147296/how-to-enable-ipv6-on-ubuntu-20-04. Alternatively, you can mount your own `nginx.conf` own using docker option `-v "./nginx.conf:/etc/nginx/conf.d/nginx.conf"` (with `listen [::]:8080;` removed)
+If the container needs to listen to IPv6, it needs to be enabled: https://serverfault.com/questions/1147296/how-to-enable-ipv6-on-ubuntu-20-04. Alternatively, you can mount your own `nginx.conf` own using docker option `-v "./nginx.conf:/etc/nginx/conf.d/nginx.conf"` (with `listen [::]:8080;` removed)
 
 ## PR Welcome
 
@@ -10,11 +10,11 @@ Especially for UI improvements and translation. And for anything else.
 
 Want to support this fork of IT Tools: [Buy me a coffee](https://www.buymeacoffee.com/sharevb)
 
-## HTTPS is recommanded
+## HTTPS is recommended
 
 Some tools like PGP encryption rely on WebCrypto API that is only available in HTTPS/SSL. Also, if you want to use PWA, HTTPS is required.
 
-So even on internal installations, you can enable HTTPS using Let's Encrypt using DNS Challenge
+So even on internal installations, you should enable HTTPS using Let's Encrypt using DNS Challenge
 
 Some docs about DNS Challenge:
 - https://medium.com/@life-is-short-so-enjoy-it/homelab-nginx-proxy-manager-setup-ssl-certificate-with-domain-name-in-cloudflare-dns-732af64ddc0b
@@ -25,7 +25,7 @@ Related doc for CyberPanel: https://community.cyberpanel.net/t/reverse-proxy-tra
 
 ### Check out these change here: <https://sharevb-it-tools.vercel.app/> or <https://sharevb.github.io/it-tools/>
 
-You can use my image in your docker-compose file if you want an update to date version of it-tools (with my PR and some of others) until the main branch has been updated.
+You can use my image in your docker-compose/quadlet file if you want an up-to-date version of it-tools (with my PR and some of others) until the main branch has been updated.
 
 - github action triggers on every push to this branch - [view package here](https://github.com/sharevb/it-tools/pkgs/container/it-tools)
 
@@ -39,13 +39,13 @@ Big thanks to all the people who have already contributed!
 
 ## Development under Windows
 
-Use of WSL2 is recommanded to develop using VSCode on Windows. Direct development is tricky (because of some dependencies)
+Use of WSL2 is recommended to develop using VSCode on Windows. Direct development is tricky (because of some dependencies)
 
 ## Added features
 
 Almost [all tools PR of it-tools](https://github.com/sharevb/it-tools/pulls).
 
-## Docker images
+## Container images
 
 [GitHub Container Registry](https://github.com/sharevb/it-tools/pkgs/container/it-tools): `ghcr.io/sharevb/it-tools:latest`
 
@@ -63,6 +63,27 @@ services:
     ports:
       - 8080:8080
 ```
+
+## Use in Podman Quadlet file
+
+```
+[Unit]
+Description=IT Tools container
+After=network-online.target
+
+[Container]
+AutoUpdate=registry
+Image=ghcr.io/sharevb/it-tools:latest
+PublishPort=8080:8080
+Label=io.containers.autoupdate=registry
+
+[Install]
+WantedBy=multi-user.target default.target
+
+[Service]
+Restart=always
+```
+
 
 ## Filter tools and add home custom content
 
@@ -83,9 +104,9 @@ See (docker-tools-filter-and-home-content)[https://github.com/sharevb/it-tools]
 
 ## Setting default tools parameters / default UI language at runtime
 
-You can set default tools parameters by mounting a `tools-setting.json` in `/usr/share/nginx/html`.
+You can set default tool parameters by mounting a `tools-setting.json` in `/usr/share/nginx/html`.
 
-It is a two level json, first level for `tool name`, second level for `parameter name`:
+It is a two level json, with the first level being for `tool name` and the second level for `parameter name`:
 ```json
 {
   "regex-tester": {
@@ -97,7 +118,7 @@ It is a two level json, first level for `tool name`, second level for `parameter
 ```
 
 You can find `tool name` and `parameter name` in the tools source code `src/tools` subfolder :
-- for pattern like `const global = useQueryParamOrStorage({ storageName: 'regex-tester:g', name: 'global', defaultValue: true });`:
+- example pattern for `const global = useQueryParamOrStorage({ storageName: 'regex-tester:g', name: 'global', defaultValue: true });`:
 ```json
 {
   "regex-tester": {
@@ -105,7 +126,7 @@ You can find `tool name` and `parameter name` in the tools source code `src/tool
   }
 }
 ```
-- for pattern like `const value = useQueryParam({ tool: 'barcode-gen', name: 'text', defaultValue: '123456789' });`:
+- example pattern for `const value = useQueryParam({ tool: 'barcode-gen', name: 'text', defaultValue: '123456789' });`:
 ```json
 {
   "barcode-gen": {
@@ -113,7 +134,7 @@ You can find `tool name` and `parameter name` in the tools source code `src/tool
   }
 }
 ```
-- for pattern like `const width = useITStorage('ascii-text-drawer:width', 80);`:
+- example pattern for `const width = useITStorage('ascii-text-drawer:width', 80);`:
 ```json
 {
   "ascii-text-drawer": {
@@ -122,7 +143,7 @@ You can find `tool name` and `parameter name` in the tools source code `src/tool
 }
 ```
 
-To define default UI language, add a `default_locale` key to json:
+To define the default UI language, add a `default_locale` key to json:
 ```json
 {
   "default_locale": "fr"
@@ -136,7 +157,7 @@ docker build -t it-tools-fr --build-arg VITE_LANGUAGE=fr .
 docker run -d --name it-tools-fr --restart unless-stopped -p 8080:8080 it-tools-fr
 ```
 
-## Build docker image for a custom subfolder
+## Build container image for a custom subfolder
 
 According to https://github.com/sharevb/it-tools/pull/461#issuecomment-1602506049 and https://github.com/CorentinTh/it-tools/pull/461:
 ```
@@ -223,7 +244,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 ### Project Setup
 
 ```sh
-pnpm install
+pnpm install --ignore-scripts
 ```
 
 ### Compile and Hot-Reload for Development
@@ -264,9 +285,9 @@ It will create a directory in `src/tools` with the correct files, and a the impo
 
 Local installation required installing first: `python3 make g++`
 
-| Docker Image                            | Local Installation                                                                                                          |
+| Container Image                         | Local Installation                                                                                                          |
 |-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| GitHub Container Registry: <span title="triple click me!">`ghcr.io/sharevb/it-tools:latest`</span><br/>Docker Hub: <span title="triple click me!">`sharevb/it-tools:latest`</span> | <span title="triple click me!">`sudo apt-get install python3 make g++ && git clone -b chore/all-my-stuffs https://github.com/sharevb/it-tools.git && cd it-tools/ && pnpm i && pnpm dev`</span> |
+| GitHub Container Registry: <span title="triple click me!">`ghcr.io/sharevb/it-tools:latest`</span><br/>Docker Hub: <span title="triple click me!">`sharevb/it-tools:latest`</span> | <span title="triple click me!">`sudo apt-get install python3 make g++ && git clone -b chore/all-my-stuffs https://github.com/sharevb/it-tools.git && cd it-tools/ && pnpm i --ignore-scripts && pnpm dev`</span> |
 | replace your current image with this image | copy & paste oneliner (from github repo) |
 | You may need to clear cache and hard reload to get new features loading | Installing packages for the first time may take some time; please wait until it finishes |
 

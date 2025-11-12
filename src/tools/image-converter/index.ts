@@ -6,7 +6,7 @@ export const tool = defineTool({
   name: t('tools.image-converter.title'),
   path: '/image-converter',
   description: t('tools.image-converter.description'),
-  keywords: ['image', 'bmp', 'gif', 'ico', 'jpg', 'png', 'tga', 'pvr', 'tiff', 'pnm', 'pbm', 'pgm', 'ppm', 'psd', 'webp', 'converter'],
+  keywords: ['image', 'svg', 'bmp', 'gif', 'ico', 'jpg', 'png', 'tga', 'pvr', 'tiff', 'pnm', 'pbm', 'pgm', 'ppm', 'psd', 'webp', 'converter'],
   component: () => import('./image-converter.vue'),
   icon: PictureInPicture,
   createdAt: new Date('2024-08-15'),

@@ -6,7 +6,7 @@ export const tool = defineTool({
   name: t('tools.currency-converter.title'),
   path: '/currency-converter',
   description: t('tools.currency-converter.description'),
-  keywords: ['currency', 'converter'],
+  keywords: ['currency', 'converter', 'units'],
   component: () => import('./currency-converter.vue'),
   icon: Currency,
   createdAt: new Date('2024-08-15'),

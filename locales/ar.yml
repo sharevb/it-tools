@@ -261,6 +261,8 @@ tools:
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key:
         اضغط على المفتاح الموجود على لوحة المفاتيح لديك الذي تريد الحصول على
         معلومات حول هذا المفتاح
+      label-scancode: "رمز المسح الضوئي (سداسي عشري):"
+      label-scancode-dec: "رمز المسح الضوئي (dec):"
   emoji-picker:
     title: منتقي الرموز التعبيرية
     description: نسخ ولصق الرموز التعبيرية بسهولة والحصول على   الترميز الموحد
@@ -2921,6 +2923,8 @@ tools:
       label-json-schema: "مخطط JSON:"
       placeholder-paste-your-json-schema-here: قم بلصق مخطط JSON الخاص بك هنا...
       title-schema-validation-errors: أخطاء التحقق من صحة المخطط
+      title-formatted-version: النسخة المنسقة
+      label-indent-size-0-compact: "حجم المسافة البادئة (0 = مضغوط):"
   json-size-analyzer:
     title: محلل حجم JSON
     description: قياس الأوزان النسبية لعقد JSON
@@ -6792,16 +6796,6 @@ tools:
       label-issuer-identifier-number: "رقم معرف المُصدر:"
       label-cvv-length: "طول CVV:"
       tag-invlid-credit-card-number: رقم بطاقة الائتمان غير صالح
-  credit-card-generator:
-    title: مولد أرقام بطاقات الائتمان
-    description: إنشاء رقم بطاقة ائتمان عشوائي
-    texts:
-      label-credit-card-scheme: "مخطط بطاقة الائتمان:"
-      placeholder-select-scheme: حدد المخطط
-      label-number-of-credit-card-to-generate: "عدد بطاقات الائتمان المراد إنشاؤها:"
-      placeholder-number-of-cards: عدد البطاقات
-      title-generated-credit-card-numbers: أرقام بطاقات الائتمان المُولّدة
-      tag-generate-random-credit-card-numbers: إنشاء أرقام بطاقات ائتمان عشوائية
   database-connection-string-builder:
     title: منشئ سلسلة اتصال قاعدة البيانات
     description: إنشاء سلسلة اتصال لقاعدة بيانات مشتركة

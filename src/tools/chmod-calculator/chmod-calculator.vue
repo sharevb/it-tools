@@ -89,6 +89,12 @@ const umask = computed(() => computeUmaskRepresentation({ permissions: permissio
 
 <template>
   <div>
+    <div mb-2 flex justify-center>
+      <router-link target="_blank" to="/chmod-memo">
+        See <code>chmod</code> command cheatsheet.
+      </router-link>
+    </div>
+
     <n-space justify="center">
       <c-input-text
         v-model:value="octalPermissionsInput"

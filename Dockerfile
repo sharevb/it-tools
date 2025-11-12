@@ -9,7 +9,7 @@ RUN apk add --update python3 make g++\
 
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN npm install -g pnpm && pnpm i --frozen-lockfile
+RUN npm install -g pnpm && pnpm i --ignore-scripts --frozen-lockfile
 COPY . .
 ARG BASE_URL
 ENV BASE_URL=${BASE_URL}

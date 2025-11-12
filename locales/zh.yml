@@ -198,6 +198,8 @@ tools:
       label-location: 位置：
       label-modifiers: 修饰键：
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key: 按下您想获取信息的键盘按键
+      label-scancode: 扫描码（十六进制）：
+      label-scancode-dec: 扫描码（十进制）：
   bcrypt:
     title: 加密
     description: 使用bcrypt对文本字符串进行哈希和比较。bcrypt是一种基于Blowfish密码算法的密码哈希函数。
@@ -2268,6 +2270,8 @@ tools:
       label-json-schema: JSON 模式：
       placeholder-paste-your-json-schema-here: 将您的 JSON 模式粘贴到这里...
       title-schema-validation-errors: 架构验证错误
+      title-formatted-version: 格式化版本
+      label-indent-size-0-compact: 缩进大小（0 = 紧凑）：
   json-size-analyzer:
     title: JSON大小分析器
     description: 测量JSON节点的相对权重
@@ -6606,16 +6610,6 @@ tools:
       label-issuer-identifier-number: 发卡机构识别码：
       label-cvv-length: CVV 长度：
       tag-invlid-credit-card-number: 无效的信用卡号
-  credit-card-generator:
-    title: 信用卡号码生成器
-    description: 生成随机信用卡号
-    texts:
-      label-credit-card-scheme: 信用卡计划：
-      placeholder-select-scheme: 选择方案
-      label-number-of-credit-card-to-generate: 要生成的信用卡号：
-      placeholder-number-of-cards: 卡数
-      title-generated-credit-card-numbers: 生成的信用卡号
-      tag-generate-random-credit-card-numbers: 生成随机信用卡号
   database-connection-string-builder:
     title: 数据库连接字符串生成器
     description: 为常用数据库建立连接字符串

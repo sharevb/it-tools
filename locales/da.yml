@@ -207,6 +207,8 @@ tools:
       label-location: "Placering:"
       label-modifiers: "Modifikatorer:"
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key: Tryk på den tast på dit tastatur, du vil have information om
+      label-scancode: "Scankode (hex):"
+      label-scancode-dec: "Scankode (dec):"
   emoji-picker:
     title: Emoji vælger
     description: Kopiér og indsæt emojier nemt og få unicode og kode point værdi af
@@ -2858,6 +2860,8 @@ tools:
       label-json-schema: "JSON-skema:"
       placeholder-paste-your-json-schema-here: Indsæt dit JSON-skema her...
       title-schema-validation-errors: Fejl ved skemavalidering
+      title-formatted-version: Formateret version
+      label-indent-size-0-compact: "Indrykningsstørrelse (0 = Kompakt):"
   json-size-analyzer:
     title: Json-størrelsesanalysator
     description: Mål JSON-noders relative vægte
@@ -6858,16 +6862,6 @@ tools:
       label-issuer-identifier-number: "Udstederidentifikationsnummer:"
       label-cvv-length: "CVV-længde:"
       tag-invlid-credit-card-number: Ugyldigt kreditkortnummer
-  credit-card-generator:
-    title: Kreditkortnummergenerator
-    description: Generer tilfældigt kreditkortnummer
-    texts:
-      label-credit-card-scheme: "Kreditkortordning:"
-      placeholder-select-scheme: Vælg skema
-      label-number-of-credit-card-to-generate: "Antal kreditkort, der skal genereres:"
-      placeholder-number-of-cards: Antal kort
-      title-generated-credit-card-numbers: Genererede kreditkortnumre
-      tag-generate-random-credit-card-numbers: Generer tilfældige kreditkortnumre
   database-connection-string-builder:
     title: Stringgenerator til databaseforbindelse
     description: Opbyg forbindelsesstreng til fælles database

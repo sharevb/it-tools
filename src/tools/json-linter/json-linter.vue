@@ -34,6 +34,16 @@ const MONACO_EDITOR_OPTIONS = {
 
 const schemaUrl = useQueryParamOrStorage<string>({ name: 'schema', storageName: 'json-linter:schema', defaultValue: '' });
 const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: jsonContent, schemaUrl, schemaData });
+
+const indentSize = useITStorage('json-linter:indent-size', 3);
+const cleanJson = computed(() => {
+  try {
+    return JSON.stringify(JSON.parseBigInt(jsonContent.value), null, indentSize.value);
+  }
+  catch (e: any) {
+    return e.toString();
+  }
+});
 </script>
 
 <template>
@@ -98,5 +108,12 @@ const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: js
         {{ t('tools.json-linter.texts.tag-validation-successful') }}
       </n-alert>
     </div>
+
+    <c-card v-if="!conversionError" :title="t('tools.json-linter.texts.title-formatted-version')" mt-5>
+      <n-form-item :label="t('tools.json-linter.texts.label-indent-size-0-compact')" label-placement="left">
+        <n-input-number-i18n v-model:value="indentSize" min="0" max="10" style="width: 100px" />
+      </n-form-item>
+      <textarea-copyable :value="cleanJson" language="json" />
+    </c-card>
   </div>
 </template>

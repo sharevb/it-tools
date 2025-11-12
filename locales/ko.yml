@@ -201,6 +201,8 @@ tools:
       label-location: "위치 :"
       label-modifiers: "수정자 :"
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key: 이 키에 대한 정보를 얻고 싶은 키보드의 키를 누르세요
+      label-scancode: "스캔코드(16진수):"
+      label-scancode-dec: "스캔코드(10진수) :"
   emoji-picker:
     title: 이모지 선택기
     description: 이모지를 쉽게 복사하고 유니코드·코드포인트 값을 확인합니다.
@@ -2697,6 +2699,8 @@ tools:
       label-json-schema: "JSON 스키마:"
       placeholder-paste-your-json-schema-here: JSON 스키마를 여기에 붙여넣으세요...
       title-schema-validation-errors: 스키마 유효성 검사 오류
+      title-formatted-version: 포맷된 버전
+      label-indent-size-0-compact: "들여쓰기 크기(0 = 압축):"
   json-size-analyzer:
     title: JSON 크기 분석기
     description: JSON 노드의 상대적 가중치 측정
@@ -6529,16 +6533,6 @@ tools:
       label-issuer-identifier-number: "발급자 식별자 번호:"
       label-cvv-length: "CVV 길이:"
       tag-invlid-credit-card-number: 잘못된 신용 카드 번호
-  credit-card-generator:
-    title: 신용카드 번호 생성기
-    description: 무작위 신용 카드 번호 생성
-    texts:
-      label-credit-card-scheme: "신용카드 제도:"
-      placeholder-select-scheme: 계획 선택
-      label-number-of-credit-card-to-generate: "생성할 신용카드 번호:"
-      placeholder-number-of-cards: 카드 수
-      title-generated-credit-card-numbers: 생성된 신용 카드 번호
-      tag-generate-random-credit-card-numbers: 무작위 신용 카드 번호 생성
   database-connection-string-builder:
     title: 데이터베이스 연결 문자열 작성기
     description: 공통 데이터베이스에 대한 연결 문자열 빌드

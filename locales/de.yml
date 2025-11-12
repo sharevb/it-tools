@@ -276,6 +276,8 @@ tools:
       tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key:
         Drücken Sie die Taste auf Ihrer Tastatur, zu der Sie Informationen
         erhalten möchten
+      label-scancode: "Scancode (hex):"
+      label-scancode-dec: "Scancode (dec) :"
   emoji-picker:
     title: Emoji-Picker
     description: Einfaches Kopieren und Einfügen von Emojis. Erhalte außerdem den
@@ -3157,6 +3159,8 @@ tools:
       label-json-schema: "JSON-Schema:"
       placeholder-paste-your-json-schema-here: Fügen Sie hier Ihr JSON-Schema ein ...
       title-schema-validation-errors: Schemavalidierungsfehler
+      title-formatted-version: Formatierte Version
+      label-indent-size-0-compact: "Einrückungsgröße (0 = Kompakt):"
   json-size-analyzer:
     title: JSON-Größenanalysator
     description: Messen Sie die relativen Gewichte von JSON-Knoten
@@ -7112,16 +7116,6 @@ tools:
       label-issuer-identifier-number: "Aussteller-Identifikationsnummer:"
       label-cvv-length: "CVV-Länge:"
       tag-invlid-credit-card-number: Ungültige Kreditkartennummer
-  credit-card-generator:
-    title: Kreditkartennummerngenerator
-    description: Zufällige Kreditkartennummer generieren
-    texts:
-      label-credit-card-scheme: "Kreditkartensystem:"
-      placeholder-select-scheme: Schema auswählen
-      label-number-of-credit-card-to-generate: "Nummer der zu generierenden Kreditkarte:"
-      placeholder-number-of-cards: Anzahl der Karten
-      title-generated-credit-card-numbers: Generierte Kreditkartennummern
-      tag-generate-random-credit-card-numbers: Zufällige Kreditkartennummern generieren
   database-connection-string-builder:
     title: Generator für Datenbankverbindungszeichenfolgen
     description: Erstellen einer Verbindungszeichenfolge für eine gemeinsame Datenbank
