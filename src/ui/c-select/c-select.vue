@@ -94,7 +94,7 @@ function toggleOpen() {
   isOpen.value = !isOpen.value;
 }
 
-function selectOption({ option }: { option: CSelectOption<T> }) {
+function selectOption({ option }) {
   selectedOption.value = option;
   value.value = option.value;
   isOpen.value = false;
