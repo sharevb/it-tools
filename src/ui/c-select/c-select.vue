@@ -1,4 +1,5 @@
-<script setup lang="ts" generic="T extends unknown">
+<script setup lang="ts">
+import { IconX } from '@tabler/icons-vue';
 import { useAppTheme } from '../theme/themes';
 import type { CLabelProps } from '../c-label/c-label.types';
 import type { CSelectOption } from './c-select.types';
@@ -6,29 +7,30 @@ import { useTheme } from './c-select.theme';
 import { clamp } from '@/modules/shared/number.models';
 import { useFlexSearch } from '@/composable/flexSearch';
 
-const props = withDefaults(
-  defineProps<{
-    options?: CSelectOption<T>[] | string[]
-    value?: T
-    placeholder?: string
-    size?: 'small' | 'medium' | 'large'
-    searchable?: boolean
-  } & CLabelProps >(),
-  {
-    options: () => [],
-    value: undefined,
-    placeholder: undefined,
-    size: 'medium',
-    searchable: false,
-  },
-);
+interface Props extends CLabelProps {
+  options?: CSelectOption<T>[] | string[]
+  value?: T
+  placeholder?: string
+  size?: 'small' | 'medium' | 'large'
+  searchable?: boolean
+  clearable?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  options: () => [],
+  value: undefined,
+  placeholder: undefined,
+  size: 'medium',
+  searchable: false,
+  clearable: false,
+});
 
 const emits = defineEmits(['update:value']);
 
 const { options: rawOptions, placeholder, size: sizeName, searchable } = toRefs(props);
 
 const options = computed(() => {
-  return rawOptions.value.map((option: string | CSelectOption<T>) => {
+  return rawOptions.value.map((option) => {
     if (typeof option === 'string') {
       return { label: option, value: option };
     }
@@ -43,7 +45,7 @@ const theme = useTheme();
 const appTheme = useAppTheme();
 
 const isOpen = ref(false);
-const selectedOption = shallowRef<CSelectOption<T> | undefined>(options.value.find((option: CSelectOption<T>) => option.value === value.value));
+const selectedOption = shallowRef<CSelectOption<T> | undefined>(options.value.find(option => option.value === value.value));
 const focusIndex = ref(0);
 const elementRef = ref(null);
 
@@ -67,7 +69,7 @@ whenever(keys.escape, close);
 watch(
   value,
   (newValue) => {
-    const option = options.value.find((option: CSelectOption<T>) => option.value === newValue);
+    const option = options.value.find(option => option.value === newValue);
     if (option) {
       selectedOption.value = option;
     }
@@ -92,7 +94,7 @@ function toggleOpen() {
   isOpen.value = !isOpen.value;
 }
 
-function selectOption({ option }: { option: CSelectOption<T> }) {
+function selectOption({ option }) {
   selectedOption.value = option;
   // @ts-expect-error vue template generic is a bit flacky thanks to withDefaults
   value.value = option.value;
@@ -160,7 +162,15 @@ function onSearchInput() {
           </slot>
         </div>
 
-        <icon-mdi-chevron-down class="chevron" />
+        <n-icon
+          v-if="selectedOption"
+          :component="IconX"
+          size="16"
+          class="clear-icon"
+          :class="{ 'cursor-default': !clearable }"
+          @click.stop="if (clearable) { value = undefined; selectedOption = undefined; }"
+        />
+        <icon-mdi-chevron-down v-else class="chevron" />
       </div>
 
       <transition name="dropdown">
@@ -211,9 +221,29 @@ function onSearchInput() {
     font-size: v-bind('size.fontSize');
     height: v-bind('size.height');
     transition: border-color 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
 
-    .placeholder, .chevron {
+    .placeholder, .chevron, .clear-icon {
       color: v-bind('appTheme.text.mutedColor');
+    }
+
+    .clear-icon {
+      margin-left: 8px;
+      cursor: pointer;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: v-bind('appTheme.background.mutedColor');
+      }
+
+      &.cursor-default {
+        cursor: default;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
     }
   }
 
