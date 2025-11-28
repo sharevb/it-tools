@@ -5,7 +5,7 @@
 // Read more: https://github.com/vuejs/core/pull/3399
 import '@vue/runtime-core'
 
-export {}
+export { }
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
@@ -357,6 +357,7 @@ declare module '@vue/runtime-core' {
     MttdlCalculator: typeof import('./src/tools/mttdl-calculator/mttdl-calculator.vue')['default']
     MultiLinkDownloader: typeof import('./src/tools/multi-link-downloader/multi-link-downloader.vue')['default']
     MyIp: typeof import('./src/tools/my-ip/my-ip.vue')['default']
+    NA: typeof import('naive-ui')['NA']
     NanoidGenerator: typeof import('./src/tools/nanoid-generator/nanoid-generator.vue')['default']
     NanoMemo: typeof import('./src/tools/nano-memo/nano-memo.vue')['default']
     'NanoMemo.content': typeof import('./src/tools/nano-memo/nano-memo.content.md')['default']
