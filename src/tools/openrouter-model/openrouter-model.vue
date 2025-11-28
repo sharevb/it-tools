@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import { computed, h, onMounted, ref } from 'vue';
-import { NDataTable, NSpin, NSwitch, NTag, NText } from 'naive-ui';
+import { NDataTable, NIcon, NSpin, NSwitch, NTag, NText } from 'naive-ui';
+import { Copy } from '@vicons/tabler';
+
+// import {
+//   IconCopy,
+// } from '@tabler/icons-vue';
 import type { ModelData } from './fetcher';
 import { capitalizeFirstLetter, fetchModels, formatContextSize, formatPrice } from './fetcher';
+import { useCopy } from '@/composable/copy';
 
 // Components
 import CCard from '@/ui/c-card/c-card.vue';
@@ -61,8 +67,8 @@ const filteredModels = computed(() => {
     const matchesProvider = !selectedProvider.value || model.provider === selectedProvider.value;
     const isFree
       = model.name.includes('(free)')
-      || Number.parseFloat(model.inputCost.replace('$', '')) === 0
-      || Number.parseFloat(model.outputCost.replace('$', '')) === 0;
+      || (Number.parseFloat(model.inputCost.replace('$', '')) === 0
+      && Number.parseFloat(model.outputCost.replace('$', '')) === 0);
 
     return matchesSearch && matchesProvider && (!showFreeModels.value || isFree);
   });
@@ -75,16 +81,32 @@ const columns = computed(() => [
     key: 'name',
     sorter: (rowA: ModelData, rowB: ModelData) => rowA.name.localeCompare(rowB.name),
     render: (row: ModelData) => {
-      return h(
-        'a',
-        {
-          href: row.url,
-          target: '_blank',
-          rel: 'noopener noreferrer',
-          class: 'text-blue-500 hover:underline',
-        },
-        row.name,
-      );
+      const { copy } = useCopy({ createToast: false });
+
+      return h('div', { class: 'flex items-center gap-2' }, [
+        h(
+          'a',
+          {
+            href: row.url,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            class: 'text-blue-500 hover:underline',
+          },
+          row.name,
+        ),
+        h(
+          'button',
+          {
+            class: 'text-gray-500 hover:text-gray-700 cursor-pointer bg-transparent border-none p-0',
+            onClick: (e: Event) => {
+              e.preventDefault();
+              copy(row.id);
+            },
+            title: 'Copy model ID',
+          },
+          h(Copy, { component: Copy, style: { width: '16px', height: '16px' } }),
+        ),
+      ]);
     },
   },
   {
