@@ -6,7 +6,7 @@ env:
 on:
   push:
     branches:
-      - chore/all-my-stuffs
+      - dev
 
 jobs:
   ci:
@@ -75,8 +75,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            sharevb/it-tools:baseurl-it-tools
-            ghcr.io/sharevb/it-tools:baseurl-it-tools
+            baobinhday/it-tools:baseurl-it-tools
+            ghcr.io/baobinhday/it-tools:baseurl-it-tools
 
       # Optionally log out
       - name: Log out from GitHub Container Registry

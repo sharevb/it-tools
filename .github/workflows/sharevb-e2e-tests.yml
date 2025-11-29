@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     branches:
-      - chore/all-my-stuffs
+      - dev
 jobs:
   test:
     timeout-minutes: 30

@@ -47,12 +47,12 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            sharevb/it-tools:baseurl-it-tools
-            sharevb/it-tools:stable-baseurl-it-tools
-            sharevb/it-tools:${{ env.RELEASE_VERSION}}-baseurl-it-tools
-            ghcr.io/sharevb/it-tools:baseurl-it-tools
-            ghcr.io/sharevb/it-tools:stable-baseurl-it-tools
-            ghcr.io/sharevb/it-tools:${{ env.RELEASE_VERSION}}-baseurl-it-tools
+            baobinhday/it-tools:baseurl-it-tools
+            baobinhday/it-tools:stable-baseurl-it-tools
+            baobinhday/it-tools:${{ env.RELEASE_VERSION}}-baseurl-it-tools
+            ghcr.io/baobinhday/it-tools:baseurl-it-tools
+            ghcr.io/baobinhday/it-tools:stable-baseurl-it-tools
+            ghcr.io/baobinhday/it-tools:${{ env.RELEASE_VERSION}}-baseurl-it-tools
 
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -62,12 +62,12 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            sharevb/it-tools:latest
-            sharevb/it-tools:stable
-            sharevb/it-tools:${{ env.RELEASE_VERSION}}
-            ghcr.io/sharevb/it-tools:latest
-            ghcr.io/sharevb/it-tools:stable
-            ghcr.io/sharevb/it-tools:${{ env.RELEASE_VERSION}}
+            baobinhday/it-tools:latest
+            baobinhday/it-tools:stable
+            baobinhday/it-tools:${{ env.RELEASE_VERSION}}
+            ghcr.io/baobinhday/it-tools:latest
+            ghcr.io/baobinhday/it-tools:stable
+            ghcr.io/baobinhday/it-tools:${{ env.RELEASE_VERSION}}
 
   github-release:
     runs-on: ubuntu-latest
@@ -120,14 +120,14 @@ jobs:
             ## Docker images
 
             - Docker Hub Registry
-              - `sharevb/it-tools:latest`
-              - `sharevb/it-tools:stable`
-              - `sharevb/it-tools:${{ env.RELEASE_VERSION}}`
+              - `baobinhday/it-tools:latest`
+              - `baobinhday/it-tools:stable`
+              - `baobinhday/it-tools:${{ env.RELEASE_VERSION}}`
 
             - GitHub Container Registry
-              - `ghcr.io/sharevb/it-tools:latest`
-              - `ghcr.io/sharevb/it-tools:stable`
-              - `ghcr.io/sharevb/it-tools:${{ env.RELEASE_VERSION}}`
+              - `ghcr.io/baobinhday/it-tools:latest`
+              - `ghcr.io/baobinhday/it-tools:stable`
+              - `ghcr.io/baobinhday/it-tools:${{ env.RELEASE_VERSION}}`
 
             ## Changelog
 
