@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, h, onMounted, ref } from 'vue';
-import { NDataTable, NIcon, NSpin, NSwitch, NTag, NText } from 'naive-ui';
+import { NDataTable, NSpin, NSwitch, NTag, NText } from 'naive-ui';
 import { Copy } from '@vicons/tabler';
 
 // import {
 //   IconCopy,
 // } from '@tabler/icons-vue';
 import type { ModelData } from './fetcher';
-import { capitalizeFirstLetter, fetchModels, formatContextSize, formatPrice } from './fetcher';
+import { fetchModels, formatContextSize } from './fetcher';
 import { useCopy } from '@/composable/copy';
 
 // Components
@@ -182,12 +182,12 @@ const pagination = computed(() => ({
   showSizePicker: true,
   pageSizes: [10, 20, 50, 100],
   itemCount: filteredModels.value.length,
-  onUpdatePage: (page: number) => {
-    // Handle page updates if needed
-  },
-  onUpdatePageSize: (pageSize: number) => {
-    // Handle page size updates if needed
-  },
+  // onUpdatePage: (page: number) => {
+  //   // Handle page updates if needed
+  // },
+  // onUpdatePageSize: (pageSize: number) => {
+  //   // Handle page size updates if needed
+  // },
 }));
 
 // Lifecycle
