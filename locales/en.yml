@@ -2094,6 +2094,14 @@ tools:
       placeholder-your-html-content: Your Html content...
       label-your-html-to-convert-can-paste-from-clipboard: 'Your Html to convert (can paste from clipboard):'
       label-output-markdown: 'Output markdown:'
+      label-heading-style: 'Headings Style:'
+      label-emphasis-style: 'Emphasis Style:'
+      label-hash: Hash (#)
+      label-underline: Underline (=/-)
+      label-surround-heading: Surround (= Heading =)
+      label-asterisk: Asterisk (*)
+      label-underscore: Underscore (_)
+      label-tilde: Tilde (~)
   ical-parser:
     title: ICAL File Parser
     description: Parse ICAL/ICS file to event display
