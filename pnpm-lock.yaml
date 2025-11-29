@@ -398,6 +398,9 @@ importers:
       get-timezone-offset:
         specifier: ^1.0.5
         version: 1.0.5
+      ghostscript-wasm-esm:
+        specifier: ^1.0.1
+        version: 1.0.1
       gtin-validator:
         specifier: ^1.0.0
         version: 1.0.0
@@ -6985,6 +6988,9 @@ packages:
 
   getpass@0.1.7:
     resolution: {integrity: sha512-0fzj9JxOLfJ+XGLhR8ze3unN0KZCgZwiSSDz168VERjK8Wl8kVSdcu2kspd4s4wtAa1y/qrVRiAA0WclVsu0ng==}
+
+  ghostscript-wasm-esm@1.0.1:
+    resolution: {integrity: sha512-b4/nIROy6hygl9IWjIrwaaPo83ziUClo+1QOdHM0zjxOZ1QyfIrCR7EWW8HJO1GOe68GEBVLBCy9QlkgOGaRFQ==}
 
   gifwrap@0.9.4:
     resolution: {integrity: sha512-MDMwbhASQuVeD4JKd1fKgNgCRL3fGqMM4WaqpNhWO0JiMOAjbQdumbs4BbBZEy9/M00EHEjKN3HieVhCUlwjeQ==}
@@ -18449,6 +18455,10 @@ snapshots:
   getpass@0.1.7:
     dependencies:
       assert-plus: 1.0.0
+
+  ghostscript-wasm-esm@1.0.1:
+    dependencies:
+      '@types/emscripten': 1.40.1
 
   gifwrap@0.9.4:
     dependencies:

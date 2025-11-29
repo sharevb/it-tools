@@ -170,6 +170,7 @@
     "fuse.js": "^7.1.0",
     "generate-schema": "^2.6.0",
     "get-timezone-offset": "^1.0.5",
+    "ghostscript-wasm-esm": "^1.0.1",
     "gtin-validator": "^1.0.0",
     "hash-wasm": "^4.12.0",
     "haversine": "^1.1.1",
