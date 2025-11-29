@@ -64,7 +64,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: (process.env.VITE_VERCEL_DEPLOY ? ["**\/*.{css,html}"] : ["**\/*.{js,wasm,css,html}"]),
+        globPatterns: (process.env.VITE_VERCEL_DEPLOY ? ['**\/*.{css,html}'] : ['**\/*.{js,wasm,css,html}']),
         maximumFileSizeToCacheInBytes: 25 * 1024 ** 2,
       },
       strategies: 'generateSW',
@@ -139,6 +139,7 @@ export default defineConfig({
   build: {
     target: 'esnext',
     // sourcemap: !process.env.VERCEL,
+    sourcemap: false,
     minify: !process.env.VERCEL,
     reportCompressedSize: !process.env.VERCEL,
     // cssMinify: false,
