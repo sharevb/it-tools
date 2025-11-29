@@ -7,7 +7,7 @@ env:
 on:
   push:
     branches:
-      - chore/all-my-stuffs
+      - dev
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
