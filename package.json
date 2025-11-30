@@ -434,6 +434,7 @@
   },
   "pnpm": {
     "overrides": {
+      "@vueuse/shared": "13.9.0",
       "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
     }
   },

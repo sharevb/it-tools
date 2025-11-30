@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@vueuse/shared': 13.9.0
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz
 
 importers:
@@ -4673,12 +4674,6 @@ packages:
     resolution: {integrity: sha512-d8rasUUhJOzh/xpVmjHc3hmc6Nnn5yjtMio2oXVqwFGNCNDqACTCGERLBnwpgyTT+xz9oMoW37dQuseADOTIBA==}
     peerDependencies:
       vue-router: '>=4.0.0-rc.1'
-
-  '@vueuse/shared@10.0.0':
-    resolution: {integrity: sha512-Zh3LgJqvUBWVY3SiMvXanTcfAneGbt63QPczBRDNgQ6jd/ehodO9a1lCFzaA6SWJJoI+ugVTjHFYJdoR656DVQ==}
-
-  '@vueuse/shared@10.11.1':
-    resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
   '@vueuse/shared@13.9.0':
     resolution: {integrity: sha512-e89uuTLMh0U5cZ9iDpEI2senqPGfbPRTHM/0AaQkcxnpqjkZqDYP8rpfm7edOz8s+pOCOROEy1PIveSW8+fL5g==}
@@ -15863,7 +15858,7 @@ snapshots:
     dependencies:
       '@types/web-bluetooth': 0.0.20
       '@vueuse/metadata': 10.11.1
-      '@vueuse/shared': 10.11.1(vue@3.3.4)
+      '@vueuse/shared': 13.9.0(vue@3.3.4)
       vue-demi: 0.14.10(vue@3.3.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -15880,23 +15875,9 @@ snapshots:
 
   '@vueuse/router@10.0.0(vue-router@4.1.6(vue@3.3.4))(vue@3.3.4)':
     dependencies:
-      '@vueuse/shared': 10.0.0(vue@3.3.4)
+      '@vueuse/shared': 13.9.0(vue@3.3.4)
       vue-demi: 0.14.5(vue@3.3.4)
       vue-router: 4.1.6(vue@3.3.4)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
-
-  '@vueuse/shared@10.0.0(vue@3.3.4)':
-    dependencies:
-      vue-demi: 0.14.10(vue@3.3.4)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
-
-  '@vueuse/shared@10.11.1(vue@3.3.4)':
-    dependencies:
-      vue-demi: 0.14.10(vue@3.3.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
