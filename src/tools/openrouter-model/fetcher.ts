@@ -39,7 +39,8 @@ export interface ModelData {
   name: string
   url: string
   provider: string
-  contextWindow: string
+  contextWindow: number
+  contextWindowDisplay: string
   maxOutputToken?: number
   inputCost: string
   outputCost: string
@@ -104,7 +105,7 @@ export async function fetchModels() {
   const transformedData: ModelData[] = data.data.map((model) => {
     const providerFromId = model.id.split('/')[0];
     const provider = capitalizeFirstLetter(providerFromId);
-    const contextWindow = formatContextSize(model.context_length);
+    const contextWindowDisplay = formatContextSize(model.context_length);
     const features = extractFeatures(model);
 
     return {
@@ -112,7 +113,8 @@ export async function fetchModels() {
       name: model.name,
       url: `https://openrouter.ai/models/${model.id}`,
       provider,
-      contextWindow,
+      contextWindow: model.context_length,
+      contextWindowDisplay,
       maxOutputToken: model.top_provider.max_completion_tokens,
       inputCost: formatPrice(model.pricing.prompt),
       outputCost: formatPrice(model.pricing.completion),

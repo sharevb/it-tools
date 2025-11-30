@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, h, onMounted, ref } from 'vue';
-import { NDataTable, NIcon, NSpin, NSwitch, NTag, NText } from 'naive-ui';
+import { NDataTable, NSpin, NSwitch, NTag, NText } from 'naive-ui';
 import { Copy } from '@vicons/tabler';
 
 // import {
 //   IconCopy,
 // } from '@tabler/icons-vue';
 import type { ModelData } from './fetcher';
-import { capitalizeFirstLetter, fetchModels, formatContextSize, formatPrice } from './fetcher';
+import { fetchModels, formatContextSize } from './fetcher';
 import { useCopy } from '@/composable/copy';
 
 // Components
@@ -23,6 +23,7 @@ const allModels = ref<ModelData[]>([]);
 const searchQuery = ref('');
 const selectedProvider = ref<string | null>(null);
 const showFreeModels = ref(false);
+const selectedModels = ref<Set<string>>(new Set());
 
 // Fetch data
 async function fetchData() {
@@ -77,6 +78,49 @@ const filteredModels = computed(() => {
 // Table columns
 const columns = computed(() => [
   {
+    title: () => {
+      return h('div', { class: 'flex items-center gap-2' }, [
+        h(
+          'button',
+          {
+            class: 'text-gray-500 hover:text-gray-700 cursor-pointer bg-transparent border-none p-0',
+            onClick: () => {
+              if (selectedModels.value.size === filteredModels.value.length) {
+                // If all are selected, deselect all
+                selectedModels.value.clear();
+              }
+              else {
+                // Otherwise select all
+                selectedModels.value.clear();
+                filteredModels.value.forEach(model => selectedModels.value.add(model.id));
+              }
+            },
+            title: 'Select all/deselect all',
+          },
+          h(Copy, { component: Copy, style: { width: '16px', height: '16px' } }),
+        ),
+      ]);
+    },
+    key: 'selection',
+    render: (row: ModelData) => {
+      return h('input', {
+        type: 'checkbox',
+        checked: selectedModels.value.has(row.id),
+        onChange: (e: Event) => {
+          const target = e.target as HTMLInputElement;
+          if (target.checked) {
+            selectedModels.value.add(row.id);
+          }
+          else {
+            selectedModels.value.delete(row.id);
+          }
+        },
+        class: 'cursor-pointer',
+      });
+    },
+    width: 30,
+  },
+  {
     title: 'Model Name',
     key: 'name',
     sorter: (rowA: ModelData, rowB: ModelData) => rowA.name.localeCompare(rowB.name),
@@ -119,7 +163,7 @@ const columns = computed(() => [
     key: 'contextWindow',
     sorter: (rowA: ModelData, rowB: ModelData) => rowA.contextWindow - rowB.contextWindow,
     render: (row: ModelData) => {
-      return h(NText, {}, formatContextSize(row.contextWindow));
+      return h(NText, {}, row.contextWindowDisplay);
     },
   },
   {
@@ -182,12 +226,12 @@ const pagination = computed(() => ({
   showSizePicker: true,
   pageSizes: [10, 20, 50, 100],
   itemCount: filteredModels.value.length,
-  onUpdatePage: (page: number) => {
-    // Handle page updates if needed
-  },
-  onUpdatePageSize: (pageSize: number) => {
-    // Handle page size updates if needed
-  },
+  // onUpdatePage: (page: number) => {
+  //   // Handle page updates if needed
+  // },
+  // onUpdatePageSize: (pageSize: number) => {
+  //   // Handle page size updates if needed
+  // },
 }));
 
 // Lifecycle
@@ -227,6 +271,18 @@ onMounted(() => {
               Loading providers...
             </div>
           </div>
+          <CButton
+            :disabled="selectedModels.size === 0"
+            title="Copy selected model IDs"
+            class="ml-2"
+            @click="() => {
+              const { copy } = useCopy({ createToast: false });
+              const selectedIds = Array.from(selectedModels);
+              copy(selectedIds.join('\n'));
+            }"
+          >
+            Copy Selected IDs
+          </CButton>
         </div>
       </div>
 

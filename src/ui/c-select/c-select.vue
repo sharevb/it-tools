@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T = unknown">
 import { IconX } from '@tabler/icons-vue';
 import { useAppTheme } from '../theme/themes';
 import type { CLabelProps } from '../c-label/c-label.types';
@@ -94,9 +94,8 @@ function toggleOpen() {
   isOpen.value = !isOpen.value;
 }
 
-function selectOption({ option }) {
+function selectOption({ option }: { option: CSelectOption<T> }) {
   selectedOption.value = option;
-  // @ts-expect-error vue template generic is a bit flacky thanks to withDefaults
   value.value = option.value;
   isOpen.value = false;
 }
@@ -234,7 +233,7 @@ function onSearchInput() {
       border-radius: 2px;
 
       &:hover {
-        background-color: v-bind('appTheme.background.mutedColor');
+        background-color: v-bind('appTheme.text.mutedColor');
       }
 
       &.cursor-default {
