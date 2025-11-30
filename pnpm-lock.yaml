@@ -779,6 +779,9 @@ importers:
       sanitize-html:
         specifier: ^2.14.0
         version: 2.14.0
+      shamirs-secret-sharing:
+        specifier: ^2.0.1
+        version: 2.0.1
       shiki:
         specifier: 1.29.2
         version: 1.29.2
@@ -9824,6 +9827,9 @@ packages:
   sha.js@2.4.11:
     resolution: {integrity: sha512-QMEp5B7cftE7APOjk5Y6xgrbWu+WkLVQwk8JNjZ8nKRciZaByEW6MubieAiToS7+dwvrjGhH8jRXz3MVd0AYqQ==}
     hasBin: true
+
+  shamirs-secret-sharing@2.0.1:
+    resolution: {integrity: sha512-gB2iE9Wb7BXfO+ExUU+i7/fdjOK7h4+Mtp9ZGRjmdGSeUq3czN+f/gX2KsKJdebXwG09D3SCRH0aqHmEuR2P6A==}
 
   sharp@0.34.3:
     resolution: {integrity: sha512-eX2IQ6nFohW4DbvHIOLRB3MHFpYqaqvXd3Tp5e/T/dSH83fxaNJQRvDMhASmkNTsNTVF2/OOopzRCt7xokgPfg==}
@@ -21561,6 +21567,8 @@ snapshots:
     dependencies:
       inherits: 2.0.4
       safe-buffer: 5.2.1
+
+  shamirs-secret-sharing@2.0.1: {}
 
   sharp@0.34.3:
     dependencies:

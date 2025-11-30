@@ -297,6 +297,7 @@
     "safe-license-list": "^0.1.2",
     "sandybox": "^1.1.2",
     "sanitize-html": "^2.14.0",
+    "shamirs-secret-sharing": "^2.0.1",
     "shiki": "1.29.2",
     "silly-password-generator": "^1.0.29",
     "slashes": "^3.0.12",
