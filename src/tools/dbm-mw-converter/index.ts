@@ -10,5 +10,5 @@ export const tool = defineTool({
   component: () => import('./dbm-mw-converter.vue'),
   icon: DeviceAudioTape,
   createdAt: new Date('2025-10-03'),
-  category: 'Default',
+  category: 'Converters',
 });
