@@ -3075,7 +3075,7 @@ tools:
       tag-category: 类别
       tag-html: HTML
       tag-name: 名称
-      tag-gt-more-info: "&gt; 更多信息"
+      tag-gt-more-info: '关于这个角色的更多信息'
   url-cleaner:
     title: URL清理器
     description: |

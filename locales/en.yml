@@ -3236,7 +3236,7 @@ tools:
       tag-category: Category
       tag-html: Html
       tag-name: Name
-      tag-gt-more-info: '&gt; More info'
+      tag-gt-more-info: 'More info about this character'
   url-cleaner:
     title: Url Cleaner
     description: >-
