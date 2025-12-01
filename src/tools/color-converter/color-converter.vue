@@ -29,12 +29,12 @@ const formats = {
   }),
   rgb: buildColorFormat({
     label: t('tools.color-converter.texts.label-rgb'),
-    format: (v: Colord) => v.toRgbString(),
+    format: (v: Colord) => v.toRgbString({}),
     placeholder: 'e.g. rgb(255, 0, 0)',
   }),
   rgba: buildColorFormat({
     label: t('tools.color-converter.texts.label-rgba'),
-    format: (v: Colord) => v.toRgbString(),
+    format: (v: Colord) => v.toRgbString({ alpha: 'always' }),
     placeholder: 'e.g. rgba(255, 0, 0, 0.5)',
   }),
   oklch: buildColorFormat({
@@ -48,9 +48,11 @@ const formats = {
     parse: (value: string) => {
       // Use colorizr to convert oklch string back to hex
       try {
-        if (value.startsWith('oklch(')) {
+        // Normalize the input to handle leading/trailing whitespace and case variations
+        const normalizedValue = value.trim().toLowerCase();
+        if (normalizedValue.startsWith('oklch(')) {
           // Convert oklch string back to hex using colorizr
-          const hexValue = convert(value, 'hex');
+          const hexValue = convert(value.trim(), 'hex'); // Use original value (just trimmed) for convert function
           return colord(hexValue);
         }
         return colord(value);
