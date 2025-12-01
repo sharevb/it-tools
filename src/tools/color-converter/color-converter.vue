@@ -34,7 +34,7 @@ const formats = {
   }),
   rgba: buildColorFormat({
     label: t('tools.color-converter.texts.label-rgba'),
-    format: (v: Colord) => v.toRgbaString(),
+    format: (v: Colord) => v.toRgbString(),
     placeholder: 'e.g. rgba(255, 0, 0, 0.5)',
   }),
   oklch: buildColorFormat({
