@@ -1,0 +1,116 @@
+name: Release new versions
+
+env:
+  VITE_VERCEL_ENV: production
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  docker-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get release version
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push (BASE_URL)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          build-args: |
+            "BASE_URL=/it-tools/"
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/baobinhday/it-tools:baseurl-it-tools
+            ghcr.io/baobinhday/it-tools:stable-baseurl-it-tools
+            ghcr.io/baobinhday/it-tools:${{ env.RELEASE_VERSION }}-baseurl-it-tools
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/baobinhday/it-tools:latest
+            ghcr.io/baobinhday/it-tools:stable
+            ghcr.io/baobinhday/it-tools:${{ env.RELEASE_VERSION }}
+
+  github-release:
+    runs-on: ubuntu-latest
+    needs: docker-release
+    steps:
+      - name: Get release version
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - run: |
+          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
+          npm install -g corepack@latest
+          echo "After : corepack version => $(corepack --version)"
+          corepack enable
+          pnpm --version
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i --ignore-scripts
+
+      - name: Build the app
+        run: pnpm build
+
+      - name: Zip the app
+        run: zip -r it-tools-${{ env.RELEASE_VERSION }}.zip dist/*
+
+      - name: Get changelog
+        id: changelog
+        run: |
+          EOF=$(openssl rand -hex 8)
+          echo "changelog<<$EOF" >> $GITHUB_OUTPUT
+          node ./scripts/getLatestChangelog.mjs >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: it-tools-${{ env.RELEASE_VERSION }}.zip
+          tag_name: v${{ env.RELEASE_VERSION }}
+          draft: true
+          prerelease: false
+          body: |
+            ## GHCR images
+
+            - `ghcr.io/baobinhday/it-tools:latest`
+            - `ghcr.io/baobinhday/it-tools:stable`
+            - `ghcr.io/baobinhday/it-tools:${{ env.RELEASE_VERSION }}`
+
+            ## Changelog
+
+            ${{ steps.changelog.outputs.changelog }}
