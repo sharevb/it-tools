@@ -75,30 +75,34 @@ const filteredModels = computed(() => {
   });
 });
 
+// Computed property to determine if all models are selected
+const areAllModelsSelected = computed(() => {
+  return selectedModels.value.size === filteredModels.value.length && filteredModels.value.length > 0;
+});
+
 // Table columns
 const columns = computed(() => [
   {
     title: () => {
       return h('div', { class: 'flex items-center gap-2' }, [
-        h(
-          'button',
-          {
-            class: 'text-gray-500 hover:text-gray-700 cursor-pointer bg-transparent border-none p-0',
-            onClick: () => {
-              if (selectedModels.value.size === filteredModels.value.length) {
-                // If all are selected, deselect all
-                selectedModels.value.clear();
-              }
-              else {
-                // Otherwise select all
-                selectedModels.value.clear();
-                filteredModels.value.forEach(model => selectedModels.value.add(model.id));
-              }
-            },
-            title: 'Select all/deselect all',
+        h('input', {
+          type: 'checkbox',
+          checked: areAllModelsSelected.value,
+          onChange: (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            if (target.checked) {
+              // Select all
+              selectedModels.value.clear();
+              filteredModels.value.forEach(model => selectedModels.value.add(model.id));
+            }
+            else {
+              // Deselect all
+              selectedModels.value.clear();
+            }
           },
-          h(Copy, { component: Copy, style: { width: '16px', height: '16px' } }),
-        ),
+          title: 'Select all/deselect all',
+          class: 'cursor-pointer',
+        }),
       ]);
     },
     key: 'selection',
