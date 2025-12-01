@@ -29,12 +29,12 @@ const formats = {
   }),
   rgb: buildColorFormat({
     label: t('tools.color-converter.texts.label-rgb'),
-    format: (v: Colord) => v.toRgbString({}),
+    format: (v: Colord) => v.toRgbString(),
     placeholder: 'e.g. rgb(255, 0, 0)',
   }),
   rgba: buildColorFormat({
     label: t('tools.color-converter.texts.label-rgba'),
-    format: (v: Colord) => v.toRgbString({ alpha: 'always' }),
+    format: (v: Colord) => v.toRgbaString(),
     placeholder: 'e.g. rgba(255, 0, 0, 0.5)',
   }),
   oklch: buildColorFormat({
