@@ -115,6 +115,7 @@
     "cidr-tools": "^11.0.3",
     "citation-formatter": "^1.0.1",
     "colord": "^2.9.3",
+    "colorizr": "^3.0.8",
     "composerize": "^1.7.5",
     "composeverter": "^1.7.5",
     "convert": "^5.7.0",

@@ -9,6 +9,7 @@ import namesPlugin from 'colord/plugins/names';
 import lchPlugin from 'colord/plugins/lch';
 import xyzPlugin from 'colord/plugins/xyz';
 import labPlugin from 'colord/plugins/lab';
+import { convert } from 'colorizr';
 import { buildColorFormat } from './color-converter.models';
 
 const { t } = useI18n();
@@ -30,6 +31,36 @@ const formats = {
     label: t('tools.color-converter.texts.label-rgb'),
     format: (v: Colord) => v.toRgbString(),
     placeholder: 'e.g. rgb(255, 0, 0)',
+  }),
+  rgba: buildColorFormat({
+    label: t('tools.color-converter.texts.label-rgba'),
+    format: (v: Colord) => v.toRgbString(),
+    placeholder: 'e.g. rgba(255, 0, 0, 0.5)',
+  }),
+  oklch: buildColorFormat({
+    label: t('tools.color-converter.texts.label-oklch'),
+    format: (v: Colord) => {
+      // Use colorizr to convert to oklch
+      const hex = v.toHex();
+      return convert(hex, 'oklch');
+    },
+    placeholder: 'e.g. oklch(0.45 0.12 270 / 0.8)',
+    parse: (value: string) => {
+      // Use colorizr to convert oklch string back to hex
+      try {
+        // Normalize the input to handle leading/trailing whitespace and case variations
+        const normalizedValue = value.trim().toLowerCase();
+        if (normalizedValue.startsWith('oklch(')) {
+          // Convert oklch string back to hex using colorizr
+          const hexValue = convert(value.trim(), 'hex'); // Use original value (just trimmed) for convert function
+          return colord(hexValue);
+        }
+        return colord(value);
+      }
+      catch {
+        return colord('#ffffff');
+      }
+    },
   }),
   hsl: buildColorFormat({
     label: t('tools.color-converter.texts.label-hsl'),
