@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="T = unknown">
 import { IconX } from '@tabler/icons-vue';
+import type { WritableComputedRef } from 'vue';
 import { useAppTheme } from '../theme/themes';
 import type { CLabelProps } from '../c-label/c-label.types';
 import type { CSelectOption } from './c-select.types';
@@ -9,7 +10,7 @@ import { useFlexSearch } from '@/composable/flexSearch';
 
 interface Props extends CLabelProps {
   options?: CSelectOption<T>[] | string[]
-  value?: T
+  value?: T | undefined
   placeholder?: string
   size?: 'small' | 'medium' | 'large'
   searchable?: boolean
@@ -30,7 +31,7 @@ const emits = defineEmits(['update:value']);
 const { options: rawOptions, placeholder, size: sizeName, searchable } = toRefs(props);
 
 const options = computed(() => {
-  return rawOptions.value.map((option) => {
+  return rawOptions.value.map((option: CSelectOption<T> | string) => {
     if (typeof option === 'string') {
       return { label: option, value: option };
     }
@@ -40,12 +41,12 @@ const options = computed(() => {
 });
 
 const keys = useMagicKeys();
-const value = useVModel(props, 'value', emits);
+const value = useVModel(props, 'value', emits) as WritableComputedRef<T | undefined>;
 const theme = useTheme();
 const appTheme = useAppTheme();
 
 const isOpen = ref(false);
-const selectedOption = shallowRef<CSelectOption<T> | undefined>(options.value.find(option => option.value === value.value));
+const selectedOption = shallowRef<CSelectOption<T> | undefined>(options.value.find((option: CSelectOption<T>) => option.value === value.value));
 const focusIndex = ref(0);
 const elementRef = ref(null);
 
@@ -69,7 +70,7 @@ whenever(keys.escape, close);
 watch(
   value,
   (newValue) => {
-    const option = options.value.find(option => option.value === newValue);
+    const option = options.value.find((option: CSelectOption<T>) => option.value === newValue);
     if (option) {
       selectedOption.value = option;
     }
@@ -94,9 +95,9 @@ function toggleOpen() {
   isOpen.value = !isOpen.value;
 }
 
-function selectOption({ option }) {
+function selectOption({ option }: { option: CSelectOption<T> }) {
   selectedOption.value = option;
-  value.value = option.value;
+  value.value = option.value as T | undefined;
   isOpen.value = false;
 }
 
@@ -130,6 +131,11 @@ function handleKeydown(event: KeyboardEvent) {
 
     event.preventDefault();
   }
+}
+
+function clearValue() {
+  value.value = undefined as T | undefined;
+  selectedOption.value = undefined;
 }
 
 function onSearchInput() {
@@ -167,7 +173,7 @@ function onSearchInput() {
           size="16"
           class="clear-icon"
           :class="{ 'cursor-default': !clearable }"
-          @click.stop="if (clearable) { value = undefined; selectedOption = undefined; }"
+          @click.stop="if (clearable) { clearValue(); }"
         />
         <icon-mdi-chevron-down v-else class="chevron" />
       </div>
@@ -231,10 +237,6 @@ function onSearchInput() {
       margin-left: 8px;
       cursor: pointer;
       border-radius: 2px;
-
-      &:hover {
-        background-color: v-bind('appTheme.text.mutedColor');
-      }
 
       &.cursor-default {
         cursor: default;
