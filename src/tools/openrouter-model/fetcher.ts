@@ -41,7 +41,6 @@ export interface ModelData {
   provider: string
   contextWindow: number
   contextWindowDisplay: string
-  contextWindow: string
   maxOutputToken?: number
   inputCost: string
   outputCost: string
