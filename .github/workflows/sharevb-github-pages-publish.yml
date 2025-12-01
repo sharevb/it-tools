@@ -48,7 +48,7 @@ jobs:
 
       - name: Build
         run: |
-          BASE_URL="/it-tools/" pnpm build
+          pnpm build
           cp dist/index.html dist/404.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
