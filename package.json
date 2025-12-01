@@ -170,6 +170,7 @@
     "fuse.js": "^7.1.0",
     "generate-schema": "^2.6.0",
     "get-timezone-offset": "^1.0.5",
+    "ghostscript-wasm-esm": "^1.0.1",
     "gtin-validator": "^1.0.0",
     "hash-wasm": "^4.12.0",
     "haversine": "^1.1.1",
@@ -296,6 +297,7 @@
     "safe-license-list": "^0.1.2",
     "sandybox": "^1.1.2",
     "sanitize-html": "^2.14.0",
+    "shamirs-secret-sharing": "^2.0.1",
     "shiki": "1.29.2",
     "silly-password-generator": "^1.0.29",
     "slashes": "^3.0.12",
@@ -432,6 +434,7 @@
   },
   "pnpm": {
     "overrides": {
+      "@vueuse/shared": "13.9.0",
       "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
     }
   },

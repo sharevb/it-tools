@@ -21,6 +21,21 @@ function toUTF8(codePoint: number) {
 
 const searchQuery = useDebouncedRef('', 250);
 const parsedSearchQuery = computed(() => {
+  const trimmedQuery = searchQuery.value.trim();
+
+  // Check if input is a single character (or a multi-byte Unicode character)
+  if (trimmedQuery.length > 0) {
+    const firstCodePoint = trimmedQuery.codePointAt(0);
+    if (firstCodePoint != null) {
+      // If it's a single character, convert to hex for exact search
+      const charLength = firstCodePoint > 0xFFFF ? 2 : 1;
+      if (trimmedQuery.length === charLength) {
+        return `=${toPaddedHex(firstCodePoint)}`;
+      }
+    }
+  }
+
+  // Check for various Unicode notation formats
   const parsedRegex = /^\s*(?:\&#x(?<hex1>[\da-f]+);|\&#(?<dec>\d+);|(?:U\+|\\u)?\s*(?<hex2>[\da-f]+))\s*$/gi; // NOSONAR
   const parsedQuery = parsedRegex.exec(searchQuery.value);
   if (parsedQuery) {
@@ -31,6 +46,7 @@ const parsedSearchQuery = computed(() => {
       return `=${toPaddedHex(Number.parseInt(parsedQuery.groups.dec, 10))}`;
     }
   }
+
   return searchQuery.value;
 });
 
@@ -38,13 +54,12 @@ const unicodeSearchData = [...unicodeNames].map(([codePoint, characterName]) => 
   const hex = toPaddedHex(codePoint);
   return {
     codePoint,
-    characterName: `${characterName} (U+${hex})`,
+    characterName,
     hex,
   };
 });
 
 const limit = ref(40);
-// Using FlexSearch instead of FuzzySearch for better performance
 const { searchResult } = useFlexSearch({
   search: parsedSearchQuery,
   data: unicodeSearchData,
@@ -119,7 +134,7 @@ const { searchResult } = useFlexSearch({
                 <input-copyable :value="`\&\#x${toPaddedHex(result.codePoint)};`" :readonly="true" mb-1 />
                 <input-copyable :value="`\&\#${result.codePoint};`" :readonly="true" />
               </td>
-              <td><input-copyable :value="result.characterName" :readonly="true" /></td>
+              <td><input-copyable :value="`${result.characterName} (U+${result.hex})`" :readonly="true" /></td>
             </tr>
           </tbody>
         </n-table>

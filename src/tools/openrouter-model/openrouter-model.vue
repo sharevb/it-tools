@@ -265,6 +265,7 @@ onMounted(() => {
             :placeholder="providerOptions.length === 0 ? (loading ? 'Loading providers...' : 'No providers available') : 'Filter by provider...'"
             class="flex-1 sm:w-64"
             :clearable="true"
+            searchable
           />
           <div v-else-if="loading" class="w-full sm:w-64">
             <div class="h-10 flex items-center border border-gray-300 rounded-md bg-white px-3 text-gray-500">

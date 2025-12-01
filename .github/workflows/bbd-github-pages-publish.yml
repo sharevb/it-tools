@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Deploy static content to My Pages
 
 env:
   VITE_VERCEL_ENV: production
