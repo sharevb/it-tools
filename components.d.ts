@@ -532,6 +532,7 @@ declare module '@vue/runtime-core' {
     StringObfuscator: typeof import('./src/tools/string-obfuscator/string-obfuscator.vue')['default']
     SvgPlaceholderGenerator: typeof import('./src/tools/svg-placeholder-generator/svg-placeholder-generator.vue')['default']
     SwaggerUiTester: typeof import('./src/tools/swagger-ui-tester/swagger-ui-tester.vue')['default']
+    TailwindPlay: typeof import('./src/tools/tailwind-play/tailwind-play.vue')['default']
     TcpdumpGenerator: typeof import('./src/tools/tcpdump-generator/tcpdump-generator.vue')['default']
     TemperatureConverter: typeof import('./src/tools/temperature-converter/temperature-converter.vue')['default']
     TextareaCopyable: typeof import('./src/components/TextareaCopyable.vue')['default']
