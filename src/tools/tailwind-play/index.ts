@@ -4,7 +4,7 @@ import { defineTool } from '../tool';
 export const tool = defineTool({
   name: 'Tailwind play',
   path: '/tailwind-play',
-  description: '',
+  description: 'An online playground for Tailwind CSS, embedded for your convenience.',
   keywords: ['tailwind', 'play'],
   component: () => import('./tailwind-play.vue'),
   icon: ArrowsShuffle,

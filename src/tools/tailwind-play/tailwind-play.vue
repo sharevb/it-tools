@@ -5,8 +5,10 @@
 <template>
   <iframe
     src="https://play.tailwindcss.com"
-    class="h-full min-h-[calc(100vh-64px)] w-full basis-full!"
-    border="0"
+    class="h-full min-h-[calc(100vh-64px)] w-full border-0 basis-full!"
+    title="Tailwind CSS Playground"
+    loading="lazy"
+    sandbox="allow-scripts allow-forms allow-same-origin"
   />
 </template>
 
