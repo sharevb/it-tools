@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { type ConvertedClass, convertCssToTailwind } from './css-to-tailwind.service';
 import InputCopyable from '@/components/InputCopyable.vue';
 
 const cssInput = ref('');
 const convertedClasses = ref<ConvertedClass[]>([]);
-
-function handleInputChange() {
-  // Optional: Update output automatically when input changes
-  // convertCss();
-}
+const remInPx = ref(16);
 
 function convertCss() {
-  convertedClasses.value = convertCssToTailwind(cssInput.value);
+  const result = convertCssToTailwind(cssInput.value, remInPx.value);
+  // Ensure the result is an array before assigning
+  convertedClasses.value = Array.isArray(result) ? result : [];
 }
 
 function copyToClipboard(text: string) {
@@ -46,7 +44,11 @@ cssInput.value = `.my-button {
 .card:active {
   transform: scale(0.98);
 }`;
-convertCss();
+
+// Watch for changes to both cssInput and remInPx, and convert when either changes
+watch([cssInput, remInPx], () => {
+  convertCss();
+}, { immediate: true });
 </script>
 
 <template>
@@ -59,7 +61,6 @@ convertCss();
           multiline
           :rows="15"
           placeholder="Paste your CSS here..."
-          @change="handleInputChange"
         />
       </div>
 
@@ -89,6 +90,18 @@ convertCss();
     </div>
 
     <div class="action-section">
+      <div class="settings-section">
+        <label for="rem-input">1 rem =</label>
+        <input
+          id="rem-input"
+          v-model.number="remInPx"
+          type="number"
+          min="1"
+          step="1"
+          class="rem-input"
+        >
+        <label for="rem-input">px</label>
+      </div>
       <button
         class="convert-button"
         @click="convertCss"
@@ -179,7 +192,9 @@ h2 {
 .action-section {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 1rem;
+  gap: 1rem;
 }
 
 .convert-button {
@@ -195,5 +210,20 @@ h2 {
 
 .convert-button:hover {
   background-color: #38a169;
+}
+
+.settings-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 1rem;
+}
+
+.rem-input {
+  width: 60px;
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  text-align: center;
 }
 </style>
