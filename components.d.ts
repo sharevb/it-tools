@@ -104,6 +104,7 @@ declare module '@vue/runtime-core' {
     CssPrettifier: typeof import('./src/tools/css-prettifier/css-prettifier.vue')['default']
     CssSelectors: typeof import('./src/tools/css-selectors-memo/css-selectors.md')['default']
     CssSelectorsMemo: typeof import('./src/tools/css-selectors-memo/css-selectors-memo.vue')['default']
+    CssToTailwind: typeof import('./src/tools/css-to-tailwind/css-to-tailwind.vue')['default']
     CssUnitsConverter: typeof import('./src/tools/css-units-converter/css-units-converter.vue')['default']
     CssXpathConverter: typeof import('./src/tools/css-xpath-converter/css-xpath-converter.vue')['default']
     CsvToData: typeof import('./src/tools/csv-to-data/csv-to-data.vue')['default']
