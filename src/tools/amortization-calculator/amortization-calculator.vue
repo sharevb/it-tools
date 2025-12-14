@@ -12,7 +12,7 @@ const amortizationCalculator = ref(new StandardAmortizationCalculator());
 const currencyDisplayNames = computed(() => new Intl.DisplayNames(locale.value, { type: 'currency' }));
 
 const supportedCurrencies = ref(
-  Intl.supportedValuesOf('currency').map((value) => ({
+  Intl.supportedValuesOf('currency').map(value => ({
     value,
     label: currencyDisplayNames.value.of(value),
   })),
@@ -78,17 +78,19 @@ const allValid = computed(
 
 const payment = computed(() =>
   amortizationCalculator.value.getPayment({
-    principle: parsedLoanAmount.value,
+    principal: parsedLoanAmount.value,
     periodInterestRate: parsedInterestRate.value / 1200,
     numberOfPayments: parsedLoanMonths.value,
   }),
 );
 
 const amortizationSchedule = computed(() => {
-  // Re-initialize generator when currency changes
+  // Force re-render on currency changes
+  // i.e. redeclare generator
+  // eslint-disable-next-line no-unused-expressions
   selectedCurrency.value;
   return amortizationCalculator.value.getAmortizationSchedule({
-    principle: parsedLoanAmount.value,
+    principal: parsedLoanAmount.value,
     periodInterestRate: parsedInterestRate.value / 1200,
     numberOfPayments: parsedLoanMonths.value,
   });
@@ -109,7 +111,7 @@ function formatCurrency(num: number): string {
   <c-card :title="t('tools.amortization-calculator.texts.title-loan-parameters')" mb-5>
     <c-input-text
       v-model:value="loanAmount"
-      :placeholder="'e.g. 200000'"
+      placeholder="e.g. 200000"
       :label="t('tools.amortization-calculator.texts.label-loan-amount')"
       raw-text
       mb-5
@@ -118,7 +120,7 @@ function formatCurrency(num: number): string {
 
     <c-input-text
       v-model:value="loanMonths"
-      :placeholder="'e.g. 360'"
+      placeholder="e.g. 360"
       :label="t('tools.amortization-calculator.texts.label-loan-term')"
       raw-text
       mb-5
@@ -127,7 +129,7 @@ function formatCurrency(num: number): string {
 
     <c-input-text
       v-model:value="interestRate"
-      :placeholder="'e.g. 6.0'"
+      placeholder="e.g. 6.0"
       :label="t('tools.amortization-calculator.texts.label-interest-rate')"
       raw-text
       mb-5
@@ -168,15 +170,15 @@ function formatCurrency(num: number): string {
       <tbody>
         <tr v-for="period in amortizationSchedule" :key="period.type + period.paymentIndex">
           <template v-if="period.type === 'month'">
-            <td v-if="period.type === 'month'">{{ period.paymentIndex }}</td>
+            <td>{{ period.paymentIndex }}</td>
             <td>{{ formatCurrency(period.interestPayment) }}</td>
-            <td>{{ formatCurrency(period.principlePayment) }}</td>
+            <td>{{ formatCurrency(period.principalPayment) }}</td>
             <td>{{ formatCurrency(period.remainingBalance) }}</td>
           </template>
           <template v-else>
             <th>{{ t('tools.amortization-calculator.texts.label-end-of-year', { year: period.paymentIndex }) }}</th>
             <th>{{ formatCurrency(period.interestPayment) }}</th>
-            <th>{{ formatCurrency(period.principlePayment) }}</th>
+            <th>{{ formatCurrency(period.principalPayment) }}</th>
             <th>{{ formatCurrency(period.remainingBalance) }}</th>
           </template>
         </tr>
@@ -184,5 +186,3 @@ function formatCurrency(num: number): string {
     </n-table>
   </div>
 </template>
-
-<style lang="less" scoped></style>

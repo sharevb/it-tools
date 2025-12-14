@@ -120,7 +120,7 @@ test.describe('Tool - Amortization Calculator', () => {
     await interestRateInput.fill('101');
     await interestRateInput.blur();
 
-    await expect(page.locator('text=Interest rate must be a positive value between 1 and 100')).toBeVisible();
+    await expect(page.locator('text=Interest rate must be a positive value between 0 and 100')).toBeVisible();
   });
 
   test('Shows validation error for zero interest rate', async ({ page }) => {
@@ -130,7 +130,7 @@ test.describe('Tool - Amortization Calculator', () => {
     await interestRateInput.fill('0');
     await interestRateInput.blur();
 
-    await expect(page.locator('text=Interest rate must be a positive value between 1 and 100')).toBeVisible();
+    await expect(page.locator('text=Interest rate must be a positive value between 0 and 100')).toBeVisible();
   });
 
   test('Hides results when inputs are invalid', async ({ page }) => {
@@ -181,9 +181,9 @@ test.describe('Tool - Amortization Calculator', () => {
     const lastMonthBalance = await scheduleTable.locator('tbody tr').nth(11).locator('td').nth(3).textContent();
 
     // The values may contain country code in e2e tests
-    const firstBalanceValue = Number.parseFloat(firstBalance!.replace(/[A-z$,]/g, ''));
-    const sixthBalanceValue = Number.parseFloat(sixthBalance!.replace(/[A-z$,]/g, ''));
-    const lastBalanceValue = Number.parseFloat(lastMonthBalance!.replace(/[A-z$,]/g, ''));
+    const firstBalanceValue = Number.parseFloat(firstBalance!.replace(/[A-Za-z$,]/g, ''));
+    const sixthBalanceValue = Number.parseFloat(sixthBalance!.replace(/[A-Za-z$,]/g, ''));
+    const lastBalanceValue = Number.parseFloat(lastMonthBalance!.replace(/[A-Za-z$,]/g, ''));
 
     expect(firstBalanceValue).toBeGreaterThan(sixthBalanceValue);
     expect(sixthBalanceValue).toBeGreaterThan(lastBalanceValue);

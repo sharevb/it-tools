@@ -1192,7 +1192,7 @@ tools:
       label-total-interest: Total Interest
       message-loan-amount-must-be-positive: Loan amount must be a positive value
       message-loan-term-must-be-positive-integer: Loan term must be a positive integer
-      message-interest-rate-must-be-between-1-and-100: Interest rate must be a positive value between 1 and 100
+      message-interest-rate-must-be-between-1-and-100: Interest rate must be a positive value between 0 and 100
   angle-converter:
     title: Angle Units Converter
     description: Convert values between angle units

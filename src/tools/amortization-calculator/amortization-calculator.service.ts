@@ -1,26 +1,26 @@
 export interface AmortizationParams {
-  readonly principle: number;
-  readonly periodInterestRate: number;
-  readonly numberOfPayments: number;
+  readonly principal: number
+  readonly periodInterestRate: number
+  readonly numberOfPayments: number
 }
 
 export interface CachedPaymentResults {
-  readonly payment: number;
-  readonly totalPayments: number;
+  readonly payment: number
+  readonly totalPayments: number
 }
 
 export interface GetNthResult extends CachedPaymentResults {
-  readonly paymentIndex: number;
-  readonly principlePayment: number;
-  readonly interestPayment: number;
-  readonly remainingBalance: number;
+  readonly paymentIndex: number
+  readonly principalPayment: number
+  readonly interestPayment: number
+  readonly remainingBalance: number
 }
 
 export interface AmortizationScheduleItem extends GetNthResult {
-  readonly type: 'month' | 'year';
+  readonly type: 'month' | 'year'
 }
 
-type AmortizationPaymentCacheKey = `principle:${number};interest-rate:${number};number-of-payments:${number}`;
+type AmortizationPaymentCacheKey = `principal:${number};interest-rate:${number};number-of-payments:${number}`;
 
 export abstract class AmortizationCalculator {
   public static validateLoanAmount(str: string): boolean {
@@ -39,13 +39,13 @@ export abstract class AmortizationCalculator {
 
   public *getAmortizationSchedule(params: AmortizationParams): Generator<AmortizationScheduleItem> {
     let period = 0;
-    let periodTotalPrinciple = 0;
+    let periodTotalPrincipal = 0;
     let periodTotalInterest = 0;
 
     while (period < params.numberOfPayments) {
       const periodResults = this.getNth(params, ++period);
 
-      periodTotalPrinciple += periodResults.principlePayment;
+      periodTotalPrincipal += periodResults.principalPayment;
       periodTotalInterest += periodResults.interestPayment;
 
       yield {
@@ -58,12 +58,12 @@ export abstract class AmortizationCalculator {
         yield {
           ...periodResults,
           paymentIndex: period / 12,
-          principlePayment: periodTotalPrinciple,
+          principalPayment: periodTotalPrincipal,
           interestPayment: periodTotalInterest,
           type: 'year',
         };
 
-        periodTotalPrinciple = 0;
+        periodTotalPrincipal = 0;
         periodTotalInterest = 0;
       }
     }
@@ -85,23 +85,23 @@ export abstract class AmortizationCalculator {
       this.paymentCache.set(cacheKey, paymentResult);
 
       return paymentResult;
-    } else {
-      return cache;
     }
+
+    return cache;
   }
 
   /** Private Methods */
   private paymentCache: Map<AmortizationPaymentCacheKey, CachedPaymentResults> = new Map();
 
-  private calculatePayment({ principle, periodInterestRate, numberOfPayments }: AmortizationParams): number {
+  private calculatePayment({ principal, periodInterestRate, numberOfPayments }: AmortizationParams): number {
     if (periodInterestRate === 0) {
-      return principle / numberOfPayments;
+      return principal / numberOfPayments;
     }
 
     const numerator = periodInterestRate * (1 + periodInterestRate) ** numberOfPayments;
     const denominator = (1 + periodInterestRate) ** numberOfPayments - 1;
 
-    return principle * (numerator / denominator);
+    return principal * (numerator / denominator);
   }
 
   private calculateTotalPayments({ numberOfPayments }: AmortizationParams, payment: number): number {
@@ -109,11 +109,11 @@ export abstract class AmortizationCalculator {
   }
 
   private getCacheString({
-    principle,
+    principal,
     periodInterestRate,
     numberOfPayments,
   }: AmortizationParams): AmortizationPaymentCacheKey {
-    return `principle:${principle};interest-rate:${periodInterestRate};number-of-payments:${numberOfPayments}`;
+    return `principal:${principal};interest-rate:${periodInterestRate};number-of-payments:${numberOfPayments}`;
   }
 
   private static validatePositiveInteger(str: string): boolean {
@@ -144,39 +144,39 @@ export class StandardAmortizationCalculator extends AmortizationCalculator {
   getNth(params: AmortizationParams, paymentIndex: number): GetNthResult {
     const { payment, totalPayments } = this.getPayment(params);
 
-    const { principle, periodInterestRate, numberOfPayments } = params;
+    const { principal, periodInterestRate, numberOfPayments } = params;
 
     if (periodInterestRate === 0) {
-      const principlePayment = principle / numberOfPayments;
-      const remainingBalance = principle - principlePayment * paymentIndex;
+      const principalPayment = principal / numberOfPayments;
+      const remainingBalance = principal - principalPayment * paymentIndex;
 
       return {
         payment,
         totalPayments,
         remainingBalance: Math.max(0, remainingBalance),
         interestPayment: 0,
-        principlePayment,
+        principalPayment,
         paymentIndex,
       };
     }
 
     const r = 1 + periodInterestRate;
 
-    const balanceBeforePayment =
-      principle * r ** (paymentIndex - 1) - payment * ((r ** (paymentIndex - 1) - 1) / periodInterestRate);
+    const balanceBeforePayment
+      = principal * r ** (paymentIndex - 1) - payment * ((r ** (paymentIndex - 1) - 1) / periodInterestRate);
 
     const interestPayment = balanceBeforePayment * periodInterestRate;
 
-    const principlePayment = payment - interestPayment;
+    const principalPayment = payment - interestPayment;
 
-    const remainingBalance = balanceBeforePayment - principlePayment;
+    const remainingBalance = balanceBeforePayment - principalPayment;
 
     return {
       payment,
       totalPayments,
       remainingBalance,
       interestPayment,
-      principlePayment,
+      principalPayment,
       paymentIndex,
     };
   }

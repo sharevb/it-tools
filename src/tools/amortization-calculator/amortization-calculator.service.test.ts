@@ -2,8 +2,6 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import {
   AmortizationCalculator,
   type AmortizationParams,
-  type CachedPaymentResults,
-  type GetNthResult,
   StandardAmortizationCalculator,
 } from './amortization-calculator.service';
 
@@ -95,7 +93,7 @@ describe('StandardAmortizationCalculator', () => {
   describe('getPayment', () => {
     it('calculates correct payment for standard loan parameters', () => {
       const params: AmortizationParams = {
-        principle: 100000,
+        principal: 100000,
         periodInterestRate: 0.005, // 0.5% monthly (6% annual)
         numberOfPayments: 360, // 30 years
       };
@@ -111,7 +109,7 @@ describe('StandardAmortizationCalculator', () => {
 
     it('calculates correct payment for short-term loan', () => {
       const params: AmortizationParams = {
-        principle: 10000,
+        principal: 10000,
         periodInterestRate: 0.01, // 1% monthly
         numberOfPayments: 12,
       };
@@ -124,21 +122,21 @@ describe('StandardAmortizationCalculator', () => {
 
     it('calculates correct payment with zero interest rate', () => {
       const params: AmortizationParams = {
-        principle: 12000,
+        principal: 12000,
         periodInterestRate: 0,
         numberOfPayments: 12,
       };
 
       const result = calculator.getPayment(params);
 
-      // With 0% interest, payment should be principle / numberOfPayments
+      // With 0% interest, payment should be principal / numberOfPayments
       expect(result.payment).toBe(1000);
       expect(result.totalPayments).toBe(12000);
     });
 
     it('caches payment calculations', () => {
       const params: AmortizationParams = {
-        principle: 50000,
+        principal: 50000,
         periodInterestRate: 0.004,
         numberOfPayments: 180,
       };
@@ -153,13 +151,13 @@ describe('StandardAmortizationCalculator', () => {
 
     it('calculates different payments for different parameters', () => {
       const params1: AmortizationParams = {
-        principle: 100000,
+        principal: 100000,
         periodInterestRate: 0.005,
         numberOfPayments: 360,
       };
 
       const params2: AmortizationParams = {
-        principle: 100000,
+        principal: 100000,
         periodInterestRate: 0.004,
         numberOfPayments: 360,
       };
@@ -175,7 +173,7 @@ describe('StandardAmortizationCalculator', () => {
   describe('getNth', () => {
     it('calculates correct values for first payment', () => {
       const params: AmortizationParams = {
-        principle: 100000,
+        principal: 100000,
         periodInterestRate: 0.005,
         numberOfPayments: 360,
       };
@@ -187,16 +185,16 @@ describe('StandardAmortizationCalculator', () => {
 
       // First payment: more interest, less principal in standard amortization
       expect(result.interestPayment).toBeCloseTo(500, 2); // 100000 * 0.005
-      expect(result.principlePayment).toBeCloseTo(99.55, 2); // 599.55 - 500
+      expect(result.principalPayment).toBeCloseTo(99.55, 2); // 599.55 - 500
       expect(result.remainingBalance).toBeCloseTo(99900.45, 2); // 100000 - 99.55
 
       // Payment should equal principal + interest
-      expect(result.principlePayment + result.interestPayment).toBeCloseTo(result.payment, 2);
+      expect(result.principalPayment + result.interestPayment).toBeCloseTo(result.payment, 2);
     });
 
     it('calculates correct values for middle payment', () => {
       const params: AmortizationParams = {
-        principle: 100000,
+        principal: 100000,
         periodInterestRate: 0.005,
         numberOfPayments: 360,
       };
@@ -205,13 +203,13 @@ describe('StandardAmortizationCalculator', () => {
 
       expect(result.paymentIndex).toBe(180);
       expect(result.remainingBalance).toBeGreaterThan(0);
-      expect(result.remainingBalance).toBeLessThan(params.principle);
-      expect(result.principlePayment + result.interestPayment).toBeCloseTo(result.payment, 2);
+      expect(result.remainingBalance).toBeLessThan(params.principal);
+      expect(result.principalPayment + result.interestPayment).toBeCloseTo(result.payment, 2);
     });
 
     it('calculates correct values for final payment', () => {
       const params: AmortizationParams = {
-        principle: 100000,
+        principal: 100000,
         periodInterestRate: 0.005,
         numberOfPayments: 360,
       };
@@ -221,12 +219,12 @@ describe('StandardAmortizationCalculator', () => {
       expect(result.paymentIndex).toBe(360);
       // Last payment should have remaining balance close to 0
       expect(result.remainingBalance).toBeCloseTo(0, 0);
-      expect(result.principlePayment + result.interestPayment).toBeCloseTo(result.payment, 2);
+      expect(result.principalPayment + result.interestPayment).toBeCloseTo(result.payment, 2);
     });
 
     it('shows increasing principal payment over time for standard amortization', () => {
       const params: AmortizationParams = {
-        principle: 100000,
+        principal: 100000,
         periodInterestRate: 0.005,
         numberOfPayments: 360,
       };
@@ -236,13 +234,13 @@ describe('StandardAmortizationCalculator', () => {
       const payment360 = calculator.getNth(params, 360);
 
       // In standard amortization, principal payment increases as balance decreases
-      expect(payment1.principlePayment).toBeLessThan(payment180.principlePayment);
-      expect(payment180.principlePayment).toBeLessThan(payment360.principlePayment);
+      expect(payment1.principalPayment).toBeLessThan(payment180.principalPayment);
+      expect(payment180.principalPayment).toBeLessThan(payment360.principalPayment);
     });
 
     it('shows decreasing interest payment over time', () => {
       const params: AmortizationParams = {
-        principle: 100000,
+        principal: 100000,
         periodInterestRate: 0.005,
         numberOfPayments: 360,
       };
@@ -258,7 +256,7 @@ describe('StandardAmortizationCalculator', () => {
 
     it('handles zero interest rate correctly', () => {
       const params: AmortizationParams = {
-        principle: 12000,
+        principal: 12000,
         periodInterestRate: 0,
         numberOfPayments: 12,
       };
@@ -267,14 +265,14 @@ describe('StandardAmortizationCalculator', () => {
 
       expect(result.payment).toBe(1000);
       expect(result.interestPayment).toBe(0);
-      expect(result.principlePayment).toBeGreaterThan(0);
+      expect(result.principalPayment).toBeGreaterThan(0);
     });
   });
 
   describe('getAmortizationSchedule', () => {
     it('generates complete amortization schedule with month and year rows', () => {
       const params: AmortizationParams = {
-        principle: 10000,
+        principal: 10000,
         periodInterestRate: 0.01,
         numberOfPayments: 12,
       };
@@ -293,7 +291,7 @@ describe('StandardAmortizationCalculator', () => {
 
     it('ensures each payment has consistent structure', () => {
       const params: AmortizationParams = {
-        principle: 50000,
+        principal: 50000,
         periodInterestRate: 0.004,
         numberOfPayments: 60,
       };
@@ -312,20 +310,20 @@ describe('StandardAmortizationCalculator', () => {
       monthRows.forEach((payment, index) => {
         expect(payment).toHaveProperty('paymentIndex');
         expect(payment).toHaveProperty('payment');
-        expect(payment).toHaveProperty('principlePayment');
+        expect(payment).toHaveProperty('principalPayment');
         expect(payment).toHaveProperty('interestPayment');
         expect(payment).toHaveProperty('remainingBalance');
         expect(payment).toHaveProperty('totalPayments');
         expect(payment).toHaveProperty('type');
 
         expect(payment.paymentIndex).toBe(index + 1);
-        expect(payment.principlePayment + payment.interestPayment).toBeCloseTo(payment.payment, 2);
+        expect(payment.principalPayment + payment.interestPayment).toBeCloseTo(payment.payment, 2);
       });
     });
 
     it('shows decreasing remaining balance over time', () => {
       const params: AmortizationParams = {
-        principle: 20000,
+        principal: 20000,
         periodInterestRate: 0.005,
         numberOfPayments: 24,
       };
@@ -342,7 +340,7 @@ describe('StandardAmortizationCalculator', () => {
 
     it('ends with near-zero remaining balance', () => {
       const params: AmortizationParams = {
-        principle: 15000,
+        principal: 15000,
         periodInterestRate: 0.0075,
         numberOfPayments: 36,
       };
@@ -356,7 +354,7 @@ describe('StandardAmortizationCalculator', () => {
 
     it('handles single payment loan', () => {
       const params: AmortizationParams = {
-        principle: 1000,
+        principal: 1000,
         periodInterestRate: 0.05,
         numberOfPayments: 1,
       };
@@ -372,7 +370,7 @@ describe('StandardAmortizationCalculator', () => {
 
     it('maintains consistent payment amount throughout schedule', () => {
       const params: AmortizationParams = {
-        principle: 25000,
+        principal: 25000,
         periodInterestRate: 0.006,
         numberOfPayments: 48,
       };
@@ -388,7 +386,7 @@ describe('StandardAmortizationCalculator', () => {
 
     it('includes year summary rows after every 12 months', () => {
       const params: AmortizationParams = {
-        principle: 100000,
+        principal: 100000,
         periodInterestRate: 0.005,
         numberOfPayments: 24,
       };
@@ -403,7 +401,7 @@ describe('StandardAmortizationCalculator', () => {
 
     it('year summary rows contain cumulative totals', () => {
       const params: AmortizationParams = {
-        principle: 10000,
+        principal: 10000,
         periodInterestRate: 0.01,
         numberOfPayments: 12,
       };
@@ -413,10 +411,10 @@ describe('StandardAmortizationCalculator', () => {
       const yearRows = schedule.filter(row => row.type === 'year');
 
       // Calculate cumulative totals for the year
-      const totalPrinciple = monthRows.reduce((sum, row) => sum + row.principlePayment, 0);
+      const totalPrincipal = monthRows.reduce((sum, row) => sum + row.principalPayment, 0);
       const totalInterest = monthRows.reduce((sum, row) => sum + row.interestPayment, 0);
 
-      expect(yearRows[0].principlePayment).toBeCloseTo(totalPrinciple, 2);
+      expect(yearRows[0].principalPayment).toBeCloseTo(totalPrincipal, 2);
       expect(yearRows[0].interestPayment).toBeCloseTo(totalInterest, 2);
     });
   });
@@ -424,19 +422,19 @@ describe('StandardAmortizationCalculator', () => {
   describe('edge cases', () => {
     it('handles very small loan amounts', () => {
       const params: AmortizationParams = {
-        principle: 100,
+        principal: 100,
         periodInterestRate: 0.01,
         numberOfPayments: 12,
       };
 
       const result = calculator.getPayment(params);
       expect(result.payment).toBeGreaterThan(0);
-      expect(result.totalPayments).toBeGreaterThan(params.principle);
+      expect(result.totalPayments).toBeGreaterThan(params.principal);
     });
 
     it('handles very large loan amounts', () => {
       const params: AmortizationParams = {
-        principle: 10000000,
+        principal: 10000000,
         periodInterestRate: 0.003,
         numberOfPayments: 360,
       };
@@ -448,18 +446,18 @@ describe('StandardAmortizationCalculator', () => {
 
     it('handles very low interest rates', () => {
       const params: AmortizationParams = {
-        principle: 50000,
+        principal: 50000,
         periodInterestRate: 0.0001,
         numberOfPayments: 60,
       };
 
       const result = calculator.getPayment(params);
-      expect(result.payment).toBeGreaterThan(params.principle / params.numberOfPayments);
+      expect(result.payment).toBeGreaterThan(params.principal / params.numberOfPayments);
     });
 
     it('handles short loan terms', () => {
       const params: AmortizationParams = {
-        principle: 5000,
+        principal: 5000,
         periodInterestRate: 0.02,
         numberOfPayments: 3,
       };
@@ -473,7 +471,7 @@ describe('StandardAmortizationCalculator', () => {
 
     it('handles long loan terms', () => {
       const params: AmortizationParams = {
-        principle: 200000,
+        principal: 200000,
         periodInterestRate: 0.004,
         numberOfPayments: 480, // 40 years
       };
