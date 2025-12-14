@@ -1169,6 +1169,30 @@ tools:
       placeholder-put-your-full-prompt-here: Put your full prompt here...
       label-character-length-for-each-chunk: Character length for each chunk
       title-divided-prompts: Divided prompts
+  amortization-calculator:
+    title: Amortization Calculator
+    description: Calculate loan amortization schedules with monthly payment breakdowns
+    footer: Amortization Calculator
+    texts:
+      title-loan-parameters: Loan Parameters
+      title-overview: Overview
+      title-amortization-schedule: Amortization Schedule
+      label-loan-amount: Loan Amount
+      label-loan-term: Loan Term
+      label-interest-rate: Interest Rate
+      label-displayed-currency: Displayed Currency
+      label-end-of-year: "End of Year {year}"
+      label-year: Year
+      label-month: Month
+      label-interest: Interest
+      label-principal: Principal
+      label-ending-balance: Ending Balance
+      label-monthly-payment: Monthly Payment
+      label-total-of-payments: Total of Payments
+      label-total-interest: Total Interest
+      message-loan-amount-must-be-positive: Loan amount must be a positive value
+      message-loan-term-must-be-positive-integer: Loan term must be a positive integer
+      message-interest-rate-must-be-between-1-and-100: Interest rate must be a positive value between 1 and 100
   angle-converter:
     title: Angle Units Converter
     description: Convert values between angle units
