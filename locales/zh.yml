@@ -544,11 +544,14 @@ tools:
       label-pathcase: 路径式（斜杠分隔）：
       label-sentencecase: 句子式（首字母大写）：
       label-snakecase: 蛇形式（下划线分隔）：
-      label-mockingcase: 随机大小写：
+      label-mockingcase: 大小写交替：
       label-your-string: 您的字符串：
       placeholder-your-string: 输入字符串...
       label-cleaning-regex: 清理正则表达式：
       placeholder-your-cleaning-regex: 输入清理用的正则表达式...
+      label-titlecase: '首字母大写：'
+      label-spongecase: '随机大小写：'
+      label-swapcase: '大小写互换：'
   html-entities:
     title: HTML实体转义
     description: 转义或反转义HTML实体（将<、>、&、"、'等字符替换为对应的HTML实体编码）。
@@ -1112,6 +1115,30 @@ tools:
       placeholder-put-your-full-prompt-here: 在此输入完整提示...
       label-character-length-for-each-chunk: 每个块字符长度
       title-divided-prompts: 分割后的提示
+  amortization-calculator:
+    title: 贷款计算器
+    description: 计算贷款分期计划与月供明细
+    footer: 贷款计算器
+    texts:
+      title-loan-parameters: 贷款参数
+      title-overview: 概览
+      title-amortization-schedule: 分期还款计划表
+      label-loan-amount: 贷款金额
+      label-loan-term: 贷款期限
+      label-interest-rate: 利率
+      label-displayed-currency: 显示货币
+      label-end-of-year: 第 {year} 年末
+      label-year: 年份
+      label-month: 月份
+      label-interest: 利息
+      label-principal: 本金
+      label-ending-balance: 期末余额
+      label-monthly-payment: 月付款额
+      label-total-of-payments: 付款总额
+      label-total-interest: 利息总额
+      message-loan-amount-must-be-positive: 贷款金额必须为正值
+      message-loan-term-must-be-positive-integer: 贷款期限必须为正整数
+      message-interest-rate-must-be-between-1-and-100: 利率必须是介于0到100之间的正值
   angle-converter:
     title: 角度单位转换器
     description: 在角度单位之间转换值。
@@ -2259,6 +2286,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: 当前选中节点JSONPath：
       label-your-edited-json: 您编辑的JSON：
+      title-the-following-errors-occured: 发生以下错误
+      tag-validation-successful: 验证成功！
+      label-no-validation: 无验证
+      label-custom: 自定义
+      label-json-schema: JSON模式：
+      placeholder-paste-your-json-schema-here: 在此处粘贴您的JSON模式...
+      title-schema-validation-errors: 模式验证错误
+      label-indent-size-0-compact: 缩进大小（0 = 紧凑格式）：
+      repair-json: 修复JSON
   json-escaper:
     title: JSON转义器/反转义器
     description: 转义和反转义JSON字符串
@@ -6905,6 +6941,9 @@ tools:
     title: ETH交易解码器
     description: 以太坊交易解码器，支持智能合约ABI
     texts:
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: >-
+        {'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{'}'}
+        or raw 0x....
       label-smart-contract-abi: 智能合约ABI：
       placeholder-paste-abi-json-here: 在此处粘贴 ABI JSON
       label-raw-transaction-0x-or-json-transaction: 原始交易（0x...）或 JSON 交易：
