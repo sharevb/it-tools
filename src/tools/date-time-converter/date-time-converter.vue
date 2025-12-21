@@ -14,6 +14,8 @@ import {
 } from 'date-fns';
 import { ticksFromDate, ticksToDate } from 'tick-time';
 import { UTCDate } from '@date-fns/utc';
+import { formatInTimeZone } from 'date-fns-tz';
+import { getAllTimezones } from 'countries-and-timezones';
 import type { DateFormat, ToDateMapper } from './date-time-converter.types';
 import {
   dateToExcelFormat,
@@ -144,6 +146,23 @@ const formats: DateFormat[] = [
 const formatIndex = ref(6);
 const now = useNow();
 
+// Timezone conversion functionality
+const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+const selectedTimezones = useStorage<{ name: string }[]>(
+  'date-time-converter:timezones',
+  [],
+);
+
+const allTimezones = computed(() => {
+  return Object.values(getAllTimezones())
+    .map(tz => ({
+      value: tz.name,
+      label: `${tz.name} (${tz.utcOffsetStr})`,
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+});
+
 const normalizedDate = computed(() => {
   if (!inputDate.value) {
     return now.value;
@@ -192,6 +211,16 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
 
   return withDefaultOnError(() => formatter(date), '');
 }
+
+function formatDateInTimezone(date: Date | undefined, timezone: string): string {
+  if (!date || !validation.isValid || !timezone) {
+    return '';
+  }
+
+  return withDefaultOnError(() => {
+    return formatInTimeZone(date, timezone, 'yyyy-MM-dd HH:mm:ss XXX');
+  }, '');
+}
 </script>
 
 <template>
@@ -213,6 +242,46 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
         :options="formats.map(({ name }, i) => ({ label: name, value: i }))"
         data-test-id="date-time-converter-format-select"
       />
+    </div>
+
+    <!-- Timezone conversion section -->
+    <div v-if="selectedTimezones.length > 0" mb-4 mt-4>
+      <n-dynamic-input
+        v-model:value="selectedTimezones"
+        show-sort-button
+        :on-create="() => ({ name: browserTimezone })"
+      >
+        <template #default="{ value }">
+          <div w-full flex items-center gap-2>
+            <c-select
+              v-model:value="value.name"
+              searchable
+              filterable
+              :placeholder="t('tools.date-time-converter.texts.placeholder-select-timezone')"
+              :options="allTimezones"
+              style="flex: 0 0 350px"
+            />
+
+            <input-copyable
+              :value="formatDateInTimezone(normalizedDate, value.name)"
+              :placeholder="t('tools.date-time-converter.texts.placeholder-invalid-date')"
+              readonly
+              label-width="0"
+              style="flex: 1; min-width: 0"
+            />
+          </div>
+        </template>
+      </n-dynamic-input>
+    </div>
+
+    <!-- Add timezone button (shown when list is empty) -->
+    <div v-else mb-4 mt-4>
+      <c-button
+        size="small"
+        @click="selectedTimezones.push({ name: browserTimezone })"
+      >
+        {{ t('tools.date-time-converter.texts.button-add-timezone') }}
+      </c-button>
     </div>
 
     <n-divider />
