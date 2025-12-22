@@ -11,6 +11,8 @@ const { t } = useI18n();
 
 const password = ref('');
 const comment = ref('');
+const debouncedComment = useDebounce(comment, 250);
+const debouncedPassword = useDebounce(password, 250);
 const emptyCerts = { publicKey: '', privateKey: '' };
 const curve = useITStorage('ecdsa-key-pair-generator:curve', 'nistp256');
 const curveOptions = [
@@ -32,10 +34,10 @@ const supportsPassphrase = computed(() => format.value === 'ssh');
 const [certs, refreshCerts] = computedRefreshableAsync(
   () => withDefaultOnErrorAsync(() => generateKeyPair(
     {
-      password: password.value,
+      password: debouncedPassword.value,
       format: format.value as sshpk.PrivateKeyFormatType,
       curve: curve.value as sshpk.CurveType,
-      comment: comment.value,
+      comment: debouncedComment.value,
     },
   ), emptyCerts),
   emptyCerts,

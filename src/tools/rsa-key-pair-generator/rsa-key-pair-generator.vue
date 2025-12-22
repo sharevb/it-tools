@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import type sshpk from 'sshpk';
+import { useDebounceFn } from '@vueuse/core';
 import { generateKeyPair } from './rsa-key-pair-generator.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { withDefaultOnErrorAsync } from '@/utils/defaults';
@@ -13,6 +14,8 @@ const { t } = useI18n();
 const bits = ref(2048);
 const comment = ref('');
 const password = ref('');
+const debouncedComment = useDebounce(comment, 250);
+const debouncedPassword = useDebounce(password, 250);
 const emptyCerts = { publicKey: '', privateKey: '' };
 
 const format = useITStorage('rsa-key-pair-generator:format', 'ssh');
@@ -40,9 +43,9 @@ const { attrs: bitsValidationAttrs } = useValidation({
 const [certs, refreshCerts] = computedRefreshableAsync(
   () => withDefaultOnErrorAsync(() => generateKeyPair({
     bits: bits.value,
-    password: password.value,
+    password: debouncedPassword.value,
     format: format.value as sshpk.PrivateKeyFormatType,
-    comment: comment.value,
+    comment: debouncedComment.value,
   }), emptyCerts),
   emptyCerts,
 );

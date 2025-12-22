@@ -11,6 +11,8 @@ const { t } = useI18n();
 
 const password = ref('');
 const comment = ref('');
+const debouncedComment = useDebounce(comment, 250);
+const debouncedPassword = useDebounce(password, 250);
 const emptyCerts = { publicKey: '', privateKey: '' };
 
 const format = useITStorage('ed25519-key-pair-generator:format', 'ssh');
@@ -27,9 +29,9 @@ const supportsPassphrase = computed(() => format.value === 'ssh');
 const [certs, refreshCerts] = computedRefreshableAsync(
   () => withDefaultOnErrorAsync(() => generateKeyPair(
     {
-      password: password.value,
+      password: debouncedPassword.value,
       format: format.value as sshpk.PrivateKeyFormatType,
-      comment: comment.value,
+      comment: debouncedComment.value,
     },
   ), emptyCerts),
   emptyCerts,
