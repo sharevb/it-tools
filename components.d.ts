@@ -364,6 +364,7 @@ declare module '@vue/runtime-core' {
     NavbarButtons: typeof import('./src/components/NavbarButtons.vue')['default']
     NCode: typeof import('naive-ui')['NCode']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NDivider: typeof import('naive-ui')['NDivider']
     NEllipsis: typeof import('naive-ui')['NEllipsis']
     NFormItem: typeof import('naive-ui')['NFormItem']
     NginxFormatter: typeof import('./src/tools/nginx-formatter/nginx-formatter.vue')['default']
