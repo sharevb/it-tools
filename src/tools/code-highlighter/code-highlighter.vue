@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { bundledLanguagesInfo, createHighlighter } from 'shiki/bundle/full';
 import { bundledThemesInfo } from 'shiki/themes';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { useCopy, useCopyClipboardItems } from '@/composable/copy';
+import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
 
@@ -75,11 +75,7 @@ const formattedCodeHtml = computedAsync(async () => {
     ],
   });
 });
-const htmlClipboardItems = computed(() => [{
-  mime: 'text/html',
-  content: formattedCodeHtml.value,
-}]);
-const { copy: copyHtml } = useCopyClipboardItems({ source: htmlClipboardItems });
+const { copy: copyHtml } = useCopy({ source: formattedCodeHtml });
 const { copy: copyText } = useCopy({ source: code });
 </script>
 
