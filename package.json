@@ -185,7 +185,7 @@
     "hyparquet": "^1.9.0",
     "hyparquet-compressors": "^1.0.0",
     "ibantools": "^4.5.1",
-    "ical-generator": "^8.1.1",
+    "ical-generator": "^10.0.0",
     "ical.js": "^2.2.0",
     "iconv-lite": "^0.7.0",
     "image-compare-viewer": "^1.6.2",
