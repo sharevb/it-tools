@@ -251,7 +251,7 @@
     "mime-types": "^3.0.1",
     "mitex-wasm": "^0.2.5",
     "moment": "^2.30.1",
-    "monaco-editor": "^0.54.0",
+    "monaco-editor": "^0.55.0",
     "morsee": "^1.0.10",
     "msgpackr": "^1.11.5",
     "naive-ui": "^2.35.0",
