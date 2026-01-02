@@ -10,5 +10,5 @@ export const tool = defineTool({
   component: () => import('./dead-pixel.vue'),
   icon: DeviceDesktop,
   createdAt: new Date('2026-01-02'),
-  category: 'Default',
+  category: 'Forensic',
 });
