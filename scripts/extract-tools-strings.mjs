@@ -63,7 +63,7 @@ function processVueComponent(filePath, toolName) {
 
   if (filePath.endsWith('.vue')) {
     // Regex to find label or placeholder attributes
-    regex = /(?<!:)((?:[a-z]+-)?(?:label|placeholder|title))="([^"]+)"/g;
+    regex = /(?<!:)((?:[a-z]+-)?(?:label|placeholder|title|download-button-text))="([^"]+)"/g;
     content = content.replace(regex, (match, attr, text) => {
       if (!text?.trim()) {
         return match;
