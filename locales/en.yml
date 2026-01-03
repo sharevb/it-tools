@@ -5796,6 +5796,7 @@ tools:
       label-json-schema: 'JSON schema:'
       placeholder-paste-your-json-schema-here: Paste your JSON Schema here...
       title-schema-validation-errors: Schema Validation Errors
+      label-unescape-json-string: 'Unescape JSON string:'
     text:
       provided-json-is-not-valid: Provided JSON is not valid.
       try-again-with-repairjsonlabel: Try again with "{0}"

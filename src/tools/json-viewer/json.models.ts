@@ -32,15 +32,27 @@ function formatJson({
   sortKeys = true,
   indentSize = 3,
   unescapeUnicode = false,
+  unescapeJsonString = false,
   repairJson = false,
 }: {
   rawJson: MaybeRef<string>
   sortKeys?: MaybeRef<boolean>
   indentSize?: MaybeRef<number>
   unescapeUnicode?: MaybeRef<boolean>
+  unescapeJsonString?: MaybeRef<boolean>
   repairJson?: MaybeRef<boolean>
 }) {
-  const unwrappedJson = get(rawJson);
+  let unwrappedJson = get(rawJson);
+  if (get(unescapeJsonString)) {
+    if (unwrappedJson.startsWith('\'') && unwrappedJson.endsWith('\'')) {
+      unwrappedJson = unwrappedJson.slice(1, -1);
+    }
+    unwrappedJson = JSON.parse(
+      (!unwrappedJson.startsWith('"') ? '"' : '')
+      + unwrappedJson
+      + (!unwrappedJson.endsWith('"') ? '"' : ''),
+    );
+  }
   const jsonString = get(repairJson) ? jsonrepair(unwrappedJson) : unwrappedJson;
   const parsedObject = JSON.parseBigNum(get(unescapeUnicode) ? unescapeUnicodeJSON(jsonString) : jsonString);
 
