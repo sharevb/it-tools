@@ -62,7 +62,7 @@
     "@mdit/plugin-align": "^0.16.0",
     "@noble/ciphers": "^1.2.1",
     "@regexper/render": "^1.0.0",
-    "@sindresorhus/slugify": "^2.2.1",
+    "@sindresorhus/slugify": "^3.0.0",
     "@skeepit/unicode-to-gsm7": "^1.0.0",
     "@tabler/icons-vue": "^3.20.0",
     "@tiptap/core": "3.14.0",
