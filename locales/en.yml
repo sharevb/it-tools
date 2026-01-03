@@ -5514,6 +5514,8 @@ tools:
       label-merged-ical: Merged ICAL
       tag-delete: Delete
       tag-merge-ical-files: Merge iCal files
+      file-to-merge-file-name: 'File to merge: {0}'
+      download-merged-ical: Download merged iCal
     service:
       text:
         no-icals-parsed-successfully: No icals parsed successfully

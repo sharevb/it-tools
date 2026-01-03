@@ -76,7 +76,7 @@ function readFileAsString(file: File) {
         <n-button mr-2 @click="deleteFile(index)">
           {{ t('tools.ical-merger.texts.tag-delete') }}
         </n-button>
-        File to merge: {{ file.name }}
+        {{ t('tools.ical-merger.texts.file-to-merge-file-name', [file.name]) }}
       </li>
     </ul>
 
@@ -96,7 +96,7 @@ function readFileAsString(file: File) {
       v-if="mergedOutput"
       v-model:value="mergedOutput"
       download-file-name="merge.ics"
-      download-button-text="Download merged iCal"
+      :download-button-text="t('tools.ical-merger.texts.download-merged-ical')"
       :label="t('tools.ical-merger.texts.label-merged-ical')"
       mb-2
     />
