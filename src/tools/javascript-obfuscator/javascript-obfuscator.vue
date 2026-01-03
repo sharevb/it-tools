@@ -51,7 +51,6 @@ const obfuscated = useObfuscateJavascript(code, method);
         :value="obfuscated"
         language="js"
         download-file-name="obfuscated.js"
-        download-button-text="Download obfuscated.js"
       />
     </c-card>
   </div>

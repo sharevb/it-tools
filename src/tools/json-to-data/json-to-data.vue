@@ -145,7 +145,7 @@ function downloadXLSX<T extends Record<string, any>>(data: T[], fileName: string
     </c-alert>
 
     <c-card v-if="convertedData" :title="t('tools.csv-to-data.texts.title-converted-data')">
-      <textarea-copyable :value="convertedData" :language="selectedFormat" />
+      <textarea-copyable :value="convertedData" :language="selectedFormat" :download-file-name="`output.${selectedFormat}`" />
     </c-card>
   </NCard>
 </template>

@@ -33,6 +33,7 @@ const outputJS = computed(() => {
         :value="outputJS"
         multiline
         language="javascript"
+        download-file-name="output.js"
         word-wrap
       />
     </n-form-item>

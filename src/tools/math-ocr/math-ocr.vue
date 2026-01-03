@@ -74,6 +74,7 @@ async function ocr(file: File) {
         v-if="!ocrInProgress"
         v-model:value="latexResult"
         :word-wrap="true" mb-2
+        download-file-name="output.tex"
       />
 
       <div style="text-align: center">

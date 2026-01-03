@@ -147,6 +147,7 @@ const rules: UseValidationRule<string>[] = [
     <TextareaCopyable
       :value="tsOutput"
       language="typescript"
+      download-file-name="output.ts"
     />
   </c-card>
 </template>

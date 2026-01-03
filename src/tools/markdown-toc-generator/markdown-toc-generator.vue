@@ -124,6 +124,7 @@ const markdownWithTOC = computed(() => withDefaultOnError(() => {
       <textarea-copyable
         language="markdown"
         :value="markdownWithTOC"
+        download-file-name="toc.md"
       />
     </c-card>
   </div>

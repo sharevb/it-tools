@@ -98,13 +98,13 @@ function onUpload(file: File) {
       <c-card v-if="parsedEmail.text" :title="t('tools.email-parser.texts.title-plain-content')" mb-2>
         <details>
           <summary>{{ t('tools.email-parser.texts.tag-see-content') }}</summary>
-          <textarea-copyable :value="parsedEmail.text" word-wrap />
+          <textarea-copyable :value="parsedEmail.text" word-wrap download-file-name="body.txt" />
         </details>
       </c-card>
       <c-card v-if="parsedEmail.html" :title="t('tools.email-parser.texts.title-html-content')" mb-2>
         <details>
           <summary>{{ t('tools.email-parser.texts.tag-see-content') }}</summary>
-          <textarea-copyable :value="parsedEmail.html" word-wrap />
+          <textarea-copyable :value="parsedEmail.html" word-wrap download-file-name="body.htm" />
         </details>
       </c-card>
       <c-card v-if="parsedEmail?.attachments?.length" :title="t('tools.email-parser.texts.title-attachments')" mb-2>

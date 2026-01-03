@@ -48,6 +48,7 @@ const outputHtml = computed(() => {
         :value="outputHtml"
         multiline
         language="html"
+        download-file-name="output.xhtml"
         :word-wrap="true"
       />
     </c-card>

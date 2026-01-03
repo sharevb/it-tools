@@ -53,5 +53,5 @@ const formattedHtml = computed(() => {
       <NSwitch v-model:value="xhtmlOutput" />
     </n-form-item>
   </NSpace>
-  <TextareaCopyable :value="formattedHtml" language="html" />
+  <TextareaCopyable :value="formattedHtml" language="html" download-file-name="output.htm" />
 </template>

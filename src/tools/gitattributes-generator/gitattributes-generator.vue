@@ -115,7 +115,6 @@ onMounted(loadOptions);
         :value="output"
         language="bash"
         download-file-name=".gitattributes"
-        download-button-text="Download .gitattributes"
       />
     </c-card>
 

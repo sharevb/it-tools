@@ -75,7 +75,7 @@ const { download } = useDownloadFileFromBase64({ source: base64 });
     </n-form>
 
     <n-form-item :label="t('tools.svg-placeholder-generator.texts.label-svg-html-element')">
-      <TextareaCopyable :value="svgString" copy-placement="none" />
+      <TextareaCopyable :value="svgString" copy-placement="none" download-file-name="output.svg" />
     </n-form-item>
     <n-form-item :label="t('tools.svg-placeholder-generator.texts.label-svg-in-base64')">
       <TextareaCopyable :value="base64" copy-placement="none" />

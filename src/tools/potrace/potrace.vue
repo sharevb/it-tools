@@ -89,6 +89,7 @@ async function onUpload(file: File) {
       <TextareaCopyable
         :value="svg"
         word-wrap
+        download-file-name="output.svg"
       />
 
       <n-divider />

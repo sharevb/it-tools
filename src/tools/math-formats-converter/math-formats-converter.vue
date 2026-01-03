@@ -96,7 +96,7 @@ const target = computedAsync(async () => {
     />
 
     <c-card :title="t('tools.math-formats-converter.texts.title-converted-expression')">
-      <textarea-copyable :value="target" :language="targetFormat" word-wrap />
+      <textarea-copyable :value="target" :language="targetFormat" word-wrap :download-file-name="`math.${targetFormat}`" />
     </c-card>
   </div>
 </template>

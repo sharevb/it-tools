@@ -116,7 +116,7 @@ const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: ra
   </div>
 
   <n-form-item :label="t('tools.json-viewer.texts.label-prettified-version-of-your-json')">
-    <textarea-copyable :value="cleanJson" language="json" :follow-height-of="inputElement" />
+    <textarea-copyable :value="cleanJson" language="json" :follow-height-of="inputElement" download-file-name="output.json" />
   </n-form-item>
 </template>
 

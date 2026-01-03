@@ -77,7 +77,7 @@ async function processPDF() {
 
     <c-card v-if="file && text" :title="t('tools.pdf-text-extractor.texts.title-output')">
       <input-copyable :label="t('tools.pdf-text-extractor.texts.label-file-name')" :value="file?.name" mb-1 />
-      <textarea-copyable :label="t('tools.pdf-text-extractor.texts.label-text')" :value="text" mb-1 />
+      <textarea-copyable :label="t('tools.pdf-text-extractor.texts.label-text')" :value="text" mb-1 download-file-name="output.txt" />
       <input-copyable :label="t('tools.pdf-text-extractor.texts.label-total-pages')" :value="totalPages.toString()" mb-1 />
     </c-card>
   </div>

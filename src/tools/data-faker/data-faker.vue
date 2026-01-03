@@ -176,7 +176,7 @@ const rules: UseValidationRule<string>[] = [
     </c-alert>
 
     <c-card v-if="generatedData" :title="t('tools.data-faker.texts.title-generated-data')">
-      <textarea-copyable :value="generatedData" :language="selectedFormat" />
+      <textarea-copyable :value="generatedData" :language="selectedFormat" :download-file-name="`data.${selectedFormat}`" />
     </c-card>
   </NCard>
 </template>

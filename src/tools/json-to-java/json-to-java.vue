@@ -8,9 +8,9 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 const { t } = useI18n();
 
 const jsonInput = ref('');
-const clazzInput = ref('Result');
-const goOutput = computed(() => {
-  return jsonInput.value ? convert(clazzInput.value, jsonInput.value) : '';
+const classInput = ref('Result');
+const javaOutput = computed(() => {
+  return jsonInput.value ? convert(classInput.value, jsonInput.value) : '';
 });
 
 const rules: UseValidationRule<string>[] = [
@@ -24,7 +24,7 @@ const rules: UseValidationRule<string>[] = [
 <template>
   <c-card :title="t('tools.json-to-java.texts.title-json-to-java-entity')">
     <c-input-text
-      v-model:value="clazzInput"
+      v-model:value="classInput"
       :placeholder="t('tools.json-to-java.texts.placeholder-custom-class-name')"
       raw-text
       :label="t('tools.json-to-java.texts.label-classname')"
@@ -45,8 +45,9 @@ const rules: UseValidationRule<string>[] = [
   </c-card>
   <c-card :title="t('tools.json-to-java.texts.title-you-java-string')">
     <TextareaCopyable
-      :value="goOutput"
-      language="json"
+      :value="javaOutput"
+      language="java"
+      download-file-name="output.java"
     />
   </c-card>
 </template>

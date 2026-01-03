@@ -115,6 +115,7 @@ const rules: UseValidationRule<string>[] = [
     <TextareaCopyable
       :value="phpOutput"
       language="php"
+      download-file-name="output.php"
     />
   </c-card>
 </template>

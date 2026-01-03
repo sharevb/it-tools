@@ -155,7 +155,7 @@ onMounted(generate);
     </n-form>
 
     <c-card :title="t('tools.markdown-lorem-ipsum.texts.title-generated-markdown')" mt-2>
-      <textarea-copyable :value="markdown" language="markdown" />
+      <textarea-copyable :value="markdown" language="markdown" download-file-name="lorem.md" />
       <n-space justify="center" mt-2>
         <c-button @click="printLorem">
           {{ t('tools.markdown-lorem-ipsum.texts.tag-print-ie-use-a-pdf-printer-to-get-a-pdf-file') }}

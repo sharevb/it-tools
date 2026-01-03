@@ -210,7 +210,7 @@ function generateSQL() {
     </n-space>
 
     <c-card v-if="sqlOutput" title="Generated SQL" mt-1>
-      <textarea-copyable :value="sqlOutput" language="sql" />
+      <textarea-copyable :value="sqlOutput" language="sql" download-file-name="create-tables.sql" />
     </c-card>
   </div>
 </template>

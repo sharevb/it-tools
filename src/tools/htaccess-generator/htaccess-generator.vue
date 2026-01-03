@@ -269,7 +269,7 @@ function onCreateIpRule() {
     </NForm>
 
     <c-card :title="t('tools.htaccess-generator.texts.title-generated-htaccess-file')" mt-2>
-      <textarea-copyable :value="htaccessContent" />
+      <textarea-copyable :value="htaccessContent" download-file-name=".htaccess" />
     </c-card>
   </NCard>
 </template>

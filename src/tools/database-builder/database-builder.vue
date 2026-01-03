@@ -157,7 +157,7 @@ GRANT ${perms} TO ${account.value};
     </NForm>
 
     <c-card v-if="sqlOutput" title="Generated SQL Instructions:" mt-2>
-      <textarea-copyable :value="sqlOutput" language="sql" />
+      <textarea-copyable :value="sqlOutput" language="sql" download-file-name="create-db.sql" />
     </c-card>
   </div>
 </template>

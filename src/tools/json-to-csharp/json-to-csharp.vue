@@ -99,6 +99,7 @@ const rules: UseValidationRule<string>[] = [
       <TextareaCopyable
         :value="csharpOutput"
         language="csharp"
+        download-file-name="output.cs"
       />
     </c-card>
   </div>

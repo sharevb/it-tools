@@ -58,6 +58,7 @@ const rules: UseValidationRule<string>[] = [
     <TextareaCopyable
       :value="sqlOutput"
       language="sql"
+      download-file-name="output.sql"
     />
   </c-card>
 </template>
