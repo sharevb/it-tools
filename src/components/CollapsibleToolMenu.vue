@@ -79,10 +79,16 @@ function getAnimationDuration(itemCount: number): number {
   return Math.max(baseDuration + additionalDuration, baseDuration);
 }
 
+// Function to check if any tool in the category is active
+function isCategoryActive(components: Tool[]): boolean {
+  return components.some(tool => tool.path === route.path);
+}
+
 const menuOptions = computed(() =>
   toolsByCategory.value.map(({ name, components }) => ({
     name,
     isCollapsed: collapsedCategories.value[name],
+    isActive: isCategoryActive(components),
     animationDuration: getAnimationDuration(components.length),
     tools: components.map(tool => ({
       label: makeLabel(tool),
@@ -107,9 +113,10 @@ const themeVars = useThemeVars();
     </c-button>
   </div>
 
-  <div v-for="{ name, tools, isCollapsed, animationDuration } of menuOptions" :key="name" class="category-container">
+  <div v-for="{ name, tools, isCollapsed, isActive, animationDuration } of menuOptions" :key="name" class="category-container">
     <button
       class="category-button"
+      :class="{ 'category-active': isActive }"
       flex cursor-pointer items-center op-60
       @click="toggleCategoryCollapse({ name })"
     >
@@ -157,6 +164,16 @@ const themeVars = useThemeVars();
   &:hover {
     background-color: v-bind('themeVars.buttonColor2Hover');
     opacity: 0.8;
+  }
+
+  &.category-active {
+    background-color: v-bind('themeVars.primaryColor');
+    opacity: 1;
+    color: white;
+
+    &:hover {
+      background-color: v-bind('themeVars.primaryColorHover');
+    }
   }
 }
 .category-container {
