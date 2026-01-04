@@ -10,8 +10,9 @@ const props = withDefaults(defineProps<{ toolsByCategory?: ToolCategory[] }>(), 
 const { toolsByCategory } = toRefs(props);
 const route = useRoute();
 
-const makeLabel = (tool: Tool) => () => h(MenuItemWithTooltip, { tool });
-const makeIcon = (tool: Tool) => () => h(MenuIconItem, { tool });
+// Memoize component creation functions
+const makeLabel = (tool: Tool) => () => h(MenuItemWithTooltip, { tool, key: tool.path });
+const makeIcon = (tool: Tool) => () => h(MenuIconItem, { tool, key: tool.path });
 
 const collapsedCategories = useStorage<Record<string, boolean>>(
   'menu-tool-option:collapsed-categories',
@@ -28,18 +29,25 @@ const collapsedCategories = useStorage<Record<string, boolean>>(
 
 // Initialize default values for all categories
 watchEffect(() => {
+  const updates: Record<string, boolean> = {};
+  let hasChanges = false;
+
   toolsByCategory.value.forEach(({ name }) => {
     if (!(name in collapsedCategories.value)) {
-      collapsedCategories.value[name] = true;
+      updates[name] = true;
+      hasChanges = true;
     }
   });
+
+  if (hasChanges) {
+    Object.assign(collapsedCategories.value, updates);
+  }
 });
 
 const isToggling = ref(false);
 
 function toggleCategoryCollapse({ name }: { name: string }) {
-  const currentState = collapsedCategories.value[name];
-  collapsedCategories.value[name] = !currentState;
+  collapsedCategories.value[name] = !collapsedCategories.value[name];
 }
 
 const areAllCollapsed = computed(() => {
@@ -70,13 +78,10 @@ async function toggleAllCategories() {
 
 // Function to calculate animation duration based on number of items
 function getAnimationDuration(itemCount: number): number {
-  const baseDuration = 325;
-  const baseItemCount = 10;
+  const baseDuration = 250;
   const durationIncrement = 5;
 
-  const additionalDuration = (itemCount - baseItemCount) * durationIncrement;
-
-  return Math.max(baseDuration + additionalDuration, baseDuration);
+  return baseDuration + (Math.min(itemCount, 30) * durationIncrement);
 }
 
 const menuOptions = computed(() =>
@@ -113,7 +118,7 @@ const themeVars = useThemeVars();
       flex cursor-pointer items-center op-60
       @click="toggleCategoryCollapse({ name })"
     >
-      <span :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }" text-16px lh-1 op-50 transition-transform>
+      <span :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }" text-16px lh-1 op-50 transition-transform duration-200>
         <icon-mdi-chevron-right />
       </span>
 
@@ -160,10 +165,11 @@ const themeVars = useThemeVars();
   }
 }
 .category-container {
-  .menu-container {
-    display: grid;
-    grid-template-rows: 1fr;
-    transition: grid-template-rows var(--animation-duration, 350ms) ease-in-out;
+.menu-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--animation-duration, 250ms) ease-out;
+  will-change: grid-template-rows;
 
     &.collapsed {
       grid-template-rows: 0fr;
