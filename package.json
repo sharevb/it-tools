@@ -60,7 +60,7 @@
     "@kenjiuno/msgreader": "^1.27.0",
     "@langfreak/convert-layout": "^0.11.2",
     "@mdit/plugin-align": "^0.16.0",
-    "@noble/ciphers": "^1.2.1",
+    "@noble/ciphers": "^2.0.0",
     "@regexper/render": "^1.0.0",
     "@sindresorhus/slugify": "^3.0.0",
     "@skeepit/unicode-to-gsm7": "^1.0.0",
