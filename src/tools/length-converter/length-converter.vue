@@ -23,7 +23,7 @@ const supportedUnits = {
   mi: 'mile',
   nmi: 'nautical mile (M/NM)',
   ly: 'light-year',
-  pc: 'pica',
+  pc: 'parsec',
 };
 </script>
 
