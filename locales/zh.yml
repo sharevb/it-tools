@@ -4422,9 +4422,9 @@ tools:
     description: 根据磁盘数量、大小和RAID类型，计算阵列的存储容量、容错能力和空间效率
     texts:
       label-mb: MB
-      label-gb: 英国
-      label-tb: 结核病
-      label-pb: 铅
+      label-gb: GB
+      label-tb: TB
+      label-pb: PB
       label-raid-0-stripe: RAID 0（条带）
       label-raid-1-mirror: RAID 1（镜像）
       label-raid-5-parity: RAID 5（奇偶校验）
