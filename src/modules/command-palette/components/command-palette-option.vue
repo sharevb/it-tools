@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Lock, World } from '@vicons/tabler';
+import { DeviceDesktop, World } from '@vicons/tabler';
 import type { PaletteOption } from '../command-palette.types';
 
 const props = withDefaults(defineProps<{ option: PaletteOption; selected?: boolean }>(), {
@@ -31,7 +31,7 @@ const { selected } = toRefs(props);
           v-if="option.externAccessDescription"
           class="tool-privacy-icon"
         />
-        <Lock
+        <DeviceDesktop
           v-else
           class="tool-privacy-icon"
         />

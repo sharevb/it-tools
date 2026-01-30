@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Lock, World } from '@vicons/tabler';
+import { DeviceDesktop, World } from '@vicons/tabler';
 
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
@@ -76,6 +76,23 @@ const toolFooter = computed<string>(() => {
 const themeVars = useThemeVars();
 
 const linkTheme = useTheme();
+
+const h1Ref = ref<HTMLElement | null>(null);
+const separatorWidth = ref('200px');
+
+onMounted(() => {
+  if (h1Ref.value) {
+    separatorWidth.value = `${h1Ref.value.offsetWidth}px`;
+  }
+});
+
+watch(() => route.path, () => {
+  nextTick(() => {
+    if (h1Ref.value) {
+      separatorWidth.value = `${h1Ref.value.offsetWidth}px`;
+    }
+  });
+});
 </script>
 
 <template>
@@ -83,7 +100,7 @@ const linkTheme = useTheme();
     <div class="tool-layout">
       <div class="tool-header">
         <div flex flex-nowrap items-center justify-between>
-          <n-h1>
+          <n-h1 ref="h1Ref">
             {{ toolTitle }}
             <n-tooltip
               placement="right"
@@ -95,7 +112,7 @@ const linkTheme = useTheme();
                   v-if="route.meta.externAccessDescription"
                   class="tool-privacy-icon"
                 />
-                <Lock
+                <DeviceDesktop
                   v-else
                   class="tool-privacy-icon"
                 />
@@ -186,7 +203,7 @@ const linkTheme = useTheme();
     }
 
     .separator {
-      width: 200px;
+      width: v-bind(separatorWidth);
       height: 2px;
       background: rgb(161, 161, 161);
       opacity: 0.2;
