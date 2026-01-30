@@ -76,23 +76,6 @@ const toolFooter = computed<string>(() => {
 const themeVars = useThemeVars();
 
 const linkTheme = useTheme();
-
-const h1Ref = ref<HTMLElement | null>(null);
-const separatorWidth = ref('200px');
-
-onMounted(() => {
-  if (h1Ref.value) {
-    separatorWidth.value = `${h1Ref.value.offsetWidth}px`;
-  }
-});
-
-watch(() => route.path, () => {
-  nextTick(() => {
-    if (h1Ref.value) {
-      separatorWidth.value = `${h1Ref.value.offsetWidth}px`;
-    }
-  });
-});
 </script>
 
 <template>
@@ -100,7 +83,7 @@ watch(() => route.path, () => {
     <div class="tool-layout">
       <div class="tool-header">
         <div flex flex-nowrap items-center justify-between>
-          <n-h1 ref="h1Ref">
+          <n-h1>
             {{ toolTitle }}
             <n-tooltip
               placement="right"
@@ -203,7 +186,7 @@ watch(() => route.path, () => {
     }
 
     .separator {
-      width: v-bind(separatorWidth);
+      width:'100%';
       height: 2px;
       background: rgb(161, 161, 161);
       opacity: 0.2;
