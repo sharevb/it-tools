@@ -45,7 +45,7 @@ const cleanJson = computed(() => {
       jsonContentValue = jsonrepair(jsonContentValue);
     }
     return JSON.stringify(
-      JSON.parseBigInt(jsonContentValue),
+      JSON.parseBigNum(jsonContentValue),
       null, indentSize.value);
   }
   catch (e: any) {
@@ -125,9 +125,9 @@ const cleanJson = computed(() => {
 
     <c-card v-if="!conversionError || autoRepair" :title="autoRepair ? t('tools.json-linter.texts.title-repaired-version') : t('tools.json-linter.texts.title-formatted-version')" mt-5>
       <n-form-item :label="t('tools.json-linter.texts.label-indent-size-0-compact')" label-placement="left">
-        <n-input-number-i18n v-model:value="indentSize" min="0" max="10" style="width: 100px" />
+        <n-input-number v-model:value="indentSize" min="0" max="10" style="width: 100px" />
       </n-form-item>
-      <textarea-copyable :value="cleanJson" language="json" />
+      <textarea-copyable :value="cleanJson" language="json" download-file-name="output.json" />
     </c-card>
   </div>
 </template>

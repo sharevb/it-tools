@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Chart, registerables } from 'chart.js';
 import zoomPlugin from 'chartjs-plugin-zoom';
 import { evaluate } from 'mathjs';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 Chart.register(...registerables, zoomPlugin);
 
@@ -73,10 +76,10 @@ function initChart() {
         maintainAspectRatio: false,
         scales: {
           x: {
-            title: { display: true, text: 'Degrees (°)' },
+            title: { display: true, text: t('tools.trigo-viewer.texts.text-degrees') },
           },
           y: {
-            title: { display: true, text: 'Value' },
+            title: { display: true, text: t('tools.trigo-viewer.texts.text-value') },
           },
         },
         plugins: {
@@ -111,13 +114,13 @@ onMounted(() => {
   <div>
     <c-input-text
       v-model:value="equation"
-      placeholder="Enter equation in terms of x (e.g. sin(x) + cos(2*x))"
-      label="Equation in term of x:"
+      :placeholder="t('tools.trigo-viewer.texts.placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x')"
+      :label="t('tools.trigo-viewer.texts.label-equation-in-term-of-x')"
       label-position="left"
       mb-1
     />
 
-    <n-form-item label="Domain:" label-placement="left">
+    <n-form-item :label="t('tools.trigo-viewer.texts.label-domain')" label-placement="left">
       <NInputNumber
         v-model:value="xmin"
         :min="-720"
@@ -139,7 +142,7 @@ onMounted(() => {
     </n-card>
     <n-space justify="center">
       <n-button @click="chartInstance?.resetZoom()">
-        Reset Zoom
+        {{ t('tools.trigo-viewer.texts.tag-reset-zoom') }}
       </n-button>
     </n-space>
   </div>

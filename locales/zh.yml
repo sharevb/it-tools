@@ -438,6 +438,7 @@ tools:
       label-remove-duplicates: 移除重复项
       label-convert-to-lowercase: 转换为小写
       label-keep-line-breaks: 保留换行符
+      label-output-as-column: Output as column
       label-sort-list: 排序列表
       placeholder-sort-alphabetically: 按字母顺序排序
       label-items-separator: 项分隔符
@@ -549,9 +550,9 @@ tools:
       placeholder-your-string: 输入字符串...
       label-cleaning-regex: 清理正则表达式：
       placeholder-your-cleaning-regex: 输入清理用的正则表达式...
-      label-titlecase: '首字母大写：'
-      label-spongecase: '随机大小写：'
-      label-swapcase: '大小写互换：'
+      label-titlecase: 首字母大写：
+      label-spongecase: 随机大小写：
+      label-swapcase: 大小写互换：
   html-entities:
     title: HTML实体转义
     description: 转义或反转义HTML实体（将<、>、&、"、'等字符替换为对应的HTML实体编码）。
@@ -693,6 +694,7 @@ tools:
       tag-hey: 嗨！
       tag-welcome-to-this-html-wysiwyg-editor: 欢迎使用此HTML富文本编辑器
       tag-click-here-to-paste-or-edit-raw-html: 点击此处粘贴或编辑原始HTML
+      label-xhtmlfy: XHTML：
   yaml-to-toml:
     title: YAML转TOML
     description: 解析YAML并转换为TOML格式。
@@ -1312,6 +1314,7 @@ tools:
       tag-: "'"
       tag-copy-html-formatted: 复制HTML格式
       tag-copy-code-text: 复制代码文本
+      tag-copy-html-word: 在 Word 中复制到 HTML/富文本
   coin-flipper:
     title: 抛硬币工具
     description: 抛硬币。
@@ -4420,9 +4423,9 @@ tools:
     description: 根据磁盘数量、大小和RAID类型，计算阵列的存储容量、容错能力和空间效率
     texts:
       label-mb: MB
-      label-gb: 英国
-      label-tb: 结核病
-      label-pb: 铅
+      label-gb: GB
+      label-tb: TB
+      label-pb: PB
       label-raid-0-stripe: RAID 0（条带）
       label-raid-1-mirror: RAID 1（镜像）
       label-raid-5-parity: RAID 5（奇偶校验）
@@ -5259,6 +5262,8 @@ tools:
       label-merged-ical: 合并后的ICAL
       tag-delete: 删除
       tag-merge-ical-files: 合并iCal文件
+      file-to-merge-file-name: 待合并文件：{0}
+      download-merged-ical: 下载合并后的 iCal
     service:
       text:
         no-icals-parsed-successfully: 未成功解析任何iCal文件
@@ -5320,6 +5325,12 @@ tools:
       heading-1: 标题1
       inline-code: 行内代码
       strike: 删除线
+      heading-5: 标题 5
+      text-left: 左对齐
+      text-center: 居中对齐
+      text-right: 右对齐
+      text-justify: 对齐/两端对齐
+      clear-align: 清晰对齐
   unicode-formatter:
     title: Unicode格式化工具
     description: 使用Unicode字体格式化文本
@@ -5536,6 +5547,7 @@ tools:
       label-json-schema: JSON 模式：
       placeholder-paste-your-json-schema-here: 将您的 JSON 模式粘贴到这里...
       title-schema-validation-errors: 架构验证错误
+      label-unescape-json-string: 转义 JSON 字符串：
     text:
       provided-json-is-not-valid: 提供的JSON无效
       try-again-with-repairjsonlabel: 尝试使用"{0}"重新输入
@@ -6943,9 +6955,9 @@ tools:
     title: ETH交易解码器
     description: 以太坊交易解码器，支持智能合约ABI
     texts:
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: >-
-        {'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{'}'}
-        or raw 0x....
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quo\
+        t;{'}'} or raw 0x...."
       label-smart-contract-abi: 智能合约ABI：
       placeholder-paste-abi-json-here: 在此处粘贴 ABI JSON
       label-raw-transaction-0x-or-json-transaction: 原始交易（0x...）或 JSON 交易：
@@ -6981,9 +6993,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: 选择模板（例如 node、python、vue）
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: const availableTemplates = ref
-      tag-this-tool-use: 此工具用途：
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: 产生
   i-and-l-checker:
     title: 我和 L 检查器
@@ -7132,8 +7141,6 @@ tools:
       label-short-urls-to-expand: 展开后的短链接：
       placeholder-enter-short-urls-one-per-line: 输入短链接（每行一个）
       title-result: 结果
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server: 此工具利用 https://cors-anywhere.com 来绕过 CORS。这是一个社区驱动的服务器。
-      tag-see-here-for-more-information: 更多信息请点击此处查看。
       tag-expand-all: 全部展开
       tag-download-resuls-as-csv: 将结果下载为 CSV 文件
       tag-short-url: 短网址
@@ -7141,3 +7148,236 @@ tools:
       tag-link: 关联
       tag-status: 地位
       tag-open-url: 打开网址
+      cors-anywhere-configuration: CORS Anywhere 配置
+      self-hosted-cors-anywhere: 自托管 CORS Anywhere
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a: 此工具需要 CORS Anywhere 实例来绕过 CORS 策略。您可以使用
+      put-your-cors-anywhere-instance-url: 请输入您的 CORS Anywhere 实例 URL...
+      cors-anywhere-instance-url: CORS Anywhere实例URL：
+      expanded-url: 展开后的网址
+      short-url: 短链接
+      failed-to-expand-some-urls: 部分URL展开失败。
+      failed: 失败的
+      no-redirect: 无重定向
+      expanded: 扩展
+  copy:
+    text:
+      copied-to-the-clipboard: 已复制到剪贴板
+  arpa-decoder:
+    title: ARPA解码器
+    description: 解码 IPv4/6 ARPA 地址或 PTR 记录
+    texts:
+      label-arpa-address: ARPA地址：
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: 例如 10.1.168.192.in-addr.arpa 或 xxxx.ip6.arpa。
+  database-builder:
+    title: 数据库创建构建器
+    description: 为各种数据库构建 SQL CREATE DATABASE 查询
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: SQL Server
+      label-oracle: 甲骨文
+      label-sqlite: SQLite
+      label-database-type: 数据库类型：
+      label-database-name: 数据库名称：
+      placeholder-test: 测试
+      label-server-address: 服务器地址：
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: 帐户：
+      label-password-leave-empty-to-generate: 密码（留空则自动生成）：
+      placeholder-leave-empty-for-random: 留空表示随机
+      label-permissions-all-privileges-if-none-selected: 权限（如果未选择任何权限，则为所有权限）：
+      title-generated-sql-instructions: 生成的 SQL 指令：
+      tag-select: 选择
+      tag-insert: 插入
+      tag-update: 更新
+      tag-delete: 删除
+      tag-create: 创造
+      tag-drop: 降低
+      tag-alter: 改变
+      tag-index: 指数
+      tag-execute: 执行
+      tag-references: 参考
+      tag-trigger: 扳机
+      tag-usage: 用法
+      tag-replication-client: 复制客户端
+      tag-replication-slave: 复制从属
+      tag-generate-sql-instructions: 生成 SQL 指令
+  database-table-generator:
+    title: 数据库表生成器
+    description: 为常用数据库生成 SQL CREATE TABLE 语句
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: SQL Server
+      label-database-type: 数据库类型：
+      label-database-name: 数据库名称：
+      placeholder-enter-database-name: 输入数据库名称
+      placeholder-table-name: 表名
+      placeholder-column-name: 列名
+      placeholder-default-value: 默认值
+      title-generated-sql: 生成的 SQL
+      tag-remove-table: 移除表格
+      tag-add-column: 添加列
+      tag-nullable: 可空
+      tag-pk: PK
+      tag-unique: 独特的
+      tag-autoinc: 汽车公司
+      tag-add-table: 添加表格
+      tag-generate-sql: 生成 SQL
+  gitattributes-generator:
+    title: Gitattributes 生成器
+    description: 从 https://github.com/alexkaratarakis/gitattributes 的通用配置生成
+      .gitattributes 文件
+    texts:
+      label-gitattributes-templates: Gitattributes 模板：
+      placeholder-select-templates: 选择模板
+      title-preview: 预览
+      tag-fetch-generate: 获取并生成
+  html-to-xhtml:
+    title: HTML 转 XHTML
+    description: 将 HTML 转换为严格的 XHTML（可解析 XML，带有自闭合标签……）
+    texts:
+      placeholder-your-html-content: 您的HTML内容...
+      label-your-html-to-convert-to-xhtml: 要转换为 XHTML 的 HTML 代码：
+      label-add-xhtml-xmlns: 添加 XHTML xmlns：
+      label-indentation: 缩进：
+      title-output-xhtml: 输出 XHTML：
+  javascript-obfuscator:
+    title: Javascript 混淆器
+    description: 使用 base64 或 rot13 编码的 JavaScript 代码混淆器
+    texts:
+      label-base-64: 64进制
+      label-rot-13: 旋转13
+      label-obfuscator-io: 混淆器.io
+      label-your-javascript-code-to-obfuscate: 需要混淆的 JavaScript 代码：
+      label-obfuscation-method: 混淆方法：
+      title-obfuscted-js-code: 混淆的 JS 代码
+      placeholder-enter-your-javascript-code-here: // 在此处输入您的 JavaScript 代码
+  online-wiktionary:
+    title: 在线词典
+    description: 在维基词典中搜索词语
+    texts:
+      label-english: 英语
+      label-french: 法语
+      label-german: 德语
+      label-spanish: 西班牙语
+      label-italian: 意大利语
+      label-russian: 俄语
+      label-chinese: 中国人
+      label-japanese: 日本人
+      label-arabic: 阿拉伯
+      placeholder-enter-a-word: 请输入一个词……
+      placeholder-select-a-language: 选择一种语言
+      tag-search-on-wiktionary: 在维基词典上搜索
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: 输入单词并选择语言以加载维基词典
+  ptr-dns-generator:
+    title: PTR DNS生成器
+    description: 生成 DNS PTR 记录
+    texts:
+      label-ip-address-ipv4-or-ipv6: IP地址（IPv4或IPv6）：
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: 例如：192.168.1.10 或 2001:db8::1
+  screen-memo:
+    title: 屏幕命令速查表
+    description: 屏幕 Linux 命令备忘录
+  svg-previewer:
+    title: SVG预览器
+    description: 预览 SVG 文件
+    texts:
+      title-upload-a-svg-file: 上传 SVG 文件
+      title-raw-svg-content: 原始SVG内容：
+      placeholder-paste-raw-svg-content-here: 请在此处粘贴原始SVG内容……
+      label-select-background: 选择背景：
+      title-svg-preview: SVG预览
+      tag-const-svgcontent-ref: const svgContent = ref
+  tmux-memo:
+    title: Tmux 命令速查表
+    description: Tmux Linux 命令备忘录
+  trigo-viewer:
+    title: 三角函数/方程曲线可视化工具
+    description: 可视化取决于 x 的三角函数或方程
+    texts:
+      text-degrees: 度数（°）
+      text-value: 价值
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: 输入以 x 表示的方程（例如 sin(x) + cos(2*x)）
+      label-equation-in-term-of-x: 用 x 表示的方程：
+      label-domain: 领域：
+      tag-reset-zoom: 重置缩放
+  zellij-memo:
+    title: Zellij 命令速查表
+    description: Zellij Linux 命令备忘录
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: 死像素 iframe
+      tag-: "`;"
+      tag-keyboard-shortcuts: 键盘快捷键：
+      tag-arrow-right-arrow-down-space: 右箭头，下箭头，空格
+      tag-next-color: 下一个颜色
+      tag-arrow-left-arrow-up: 左箭头，上箭头
+      tag-previous-color: 之前的颜色
+      tag-esc: ESC键
+      tag-exit-dead-pixel-mode: 退出死像素模式
+      tag-start-dead-pixel: 开始死像素
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: 排除SI前缀
+    text:
+      si-converter: 转到 SI 前缀转换器
+  geo-coordinates-converter:
+    title: 地理坐标转换器
+    description: 在 WGS84、GCJ02、BD09 和 CGCS2000 之间转换地理坐标
+    texts:
+      label-latitude: 纬度：
+      label-longitude: 经度：
+      label-csv-content-lng-lat: CSV 内容（经度，纬度）：
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert: 请按此顺序输入您的经度和纬度 CSV 文件进行转换……
+      title-conversion-results: 转化结果
+      title-notes: 笔记
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326（全球标准）
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap（高德地图、QQ地图）
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap（百度地图）
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09米（百度米）
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000（中国大地测量系统2000）
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: 转换单个
+      tag-convert-batch: 批量转换
+      tag-longitude-east-is-positive-west-is-negative: 经度：东为正，西为负。
+      tag-latitude-north-is-positive-south-is-negative: 纬度：北纬为正，南纬为负。
+  si-prefixes-converter:
+    title: SI 前缀转换器
+    description: 公制前缀转换
+    texts:
+      label-quetta-q: 奎达（Q）
+      label-ronna-r: 罗娜（R）
+      label-yotta-y: 约塔 (Y)
+      label-zetta-z: zetta (Z)
+      label-exa-e: exa (E)
+      label-peta-p: 地图（P）
+      label-tera-t: 太拉（T）
+      label-giga-g: 吉（G）
+      label-mega-m: 兆（M）
+      label-kilo-k: 千克
+      label-hecto-h: 百（h）
+      label-deca-da: 十（来自）
+      label-unit: 单元
+      label-deci-d: 所以（d）
+      label-centi-c: 厘（c）
+      label-milli-m: 国民（m）
+      label-micro-µ: 微米 (µ)
+      label-nano-n: 纳米（n）
+      label-pico-p: 皮克（p）
+      label-femto-f: 飞秒 (f)
+      label-atto-a: （a）
+      label-zepto-z: zepto (z)
+      label-yocto-y: yocto (y)
+      label-ronto-r: ronto (r)
+      label-quecto-q: 我饿了。
+      label-auto: 汽车
+      label-fixed: 固定的
+      label-exponential: 指数
+      label-convert: 转变：
+      label-mode: 模式：
+      label-decimals: 小数：
+      label-thousand-separators: 千位分隔符：
+      label-to: 到：
+      tag-: =

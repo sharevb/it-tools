@@ -34,6 +34,7 @@ const outputCSS = computed(() => {
         multiline
         language="css"
         word-wrap
+        download-file-name="output.css"
       />
     </n-form-item>
   </div>

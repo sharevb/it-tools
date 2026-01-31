@@ -90,7 +90,7 @@ function convertFile() {
     </c-alert>
 
     <c-card v-if="convertedData" :title="t('tools.excel-to-data.texts.title-converted-data')">
-      <textarea-copyable :value="convertedData" :language="selectedFormat" />
+      <textarea-copyable :value="convertedData" :language="selectedFormat" :download-file-name="`output.${selectedFormat}`" />
     </c-card>
   </NCard>
 </template>

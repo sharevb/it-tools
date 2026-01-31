@@ -12,6 +12,7 @@ import shadow from 'vue-shadow-dom';
 import { hideSplashScreen } from 'vite-plugin-splash-screen/runtime';
 import { plausible } from './plugins/plausible.plugin';
 import '@/utils/json5-bigint';
+import '@/utils/json5-bignum';
 
 import 'virtual:uno.css';
 
@@ -30,11 +31,6 @@ window.addEventListener('vite:preloadError', (event: Event) => {
 });
 
 installAbortSignalPolyfill();
-
-// eslint-disable-next-line no-extend-native
-BigInt.prototype.toJSON = function () {
-  return JSON.rawJSON ? JSON.rawJSON(this.toString()) : this.toString();
-};
 
 library.add(fas);
 

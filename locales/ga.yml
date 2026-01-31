@@ -822,6 +822,7 @@ tools:
       label-remove-duplicates: Bain dúblaigh
       label-convert-to-lowercase: Tiontaigh go litreacha beaga
       label-keep-line-breaks: Coinnigh briseadh líne
+      label-output-as-column: Output as column
       label-sort-list: Liosta sórtála
       placeholder-sort-alphabetically: Sórtáil in ord aibítre
       label-items-separator: Deighilteoir Míreanna
@@ -988,6 +989,9 @@ tools:
       placeholder-your-string: Do shreangán...
       label-cleaning-regex: "Glanadh rialta:"
       placeholder-your-cleaning-regex: Do ghnáthghnéas glantacháin...
+      label-titlecase: "Cás Teidil:"
+      label-spongecase: "Cás spúinse:"
+      label-swapcase: "Cás malartaithe:"
   html-entities:
     title: Éalú aonáin HTML
     description: Éalú nó dí-éalaigh aonáin HTML (cuir a leagan HTML in ionad
@@ -1192,6 +1196,7 @@ tools:
       tag-hey: Haigh!
       tag-welcome-to-this-html-wysiwyg-editor: Fáilte chuig an eagarthóir html wysiwyg seo
       tag-click-here-to-paste-or-edit-raw-html: Cliceáil anseo chun html amh a ghreamú nó a chur in eagar
+      label-xhtmlfy: "XHtml:"
   yaml-to-toml:
     title: YAML go TOML
     description: Parsáil agus tiontaigh YAML go TOML.
@@ -2009,6 +2014,7 @@ tools:
       tag-: "&#39;, &#39;"
       tag-copy-html-formatted: Cóipeáil HTML Formáidithe
       tag-copy-code-text: Cóipeáil Téacs an Chóid
+      tag-copy-html-word: Cóipeáil chuig HTML/Téacs Saibhir i Word
   coin-flipper:
     title: Flipper Bonn
     description: Smeach bonn airgid
@@ -2886,6 +2892,8 @@ tools:
       label-merged-ical: ICAL Cumaiscthe
       tag-delete: Scrios
       tag-merge-ical-files: Comhaid iCal a chumasc
+      file-to-merge-file-name: "Comhad le cumasc: {0}"
+      download-merged-ical: Íoslódáil iCal comhcheangailte
     service:
       text:
         no-icals-parsed-successfully: Níor parsáladh aon icals go rathúil
@@ -3190,6 +3198,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: "JSONPath an Nóid Roghnaithe Reatha:"
       label-your-edited-json: "Do JSON eagarthóireachta:"
+      title-the-following-errors-occured: Tharla na hearráidí seo a leanas
+      tag-validation-successful: Bailíochtú rathúil!
+      label-no-validation: Gan bailíochtú
+      label-custom: Saincheaptha
+      label-json-schema: "Scéim JSON:"
+      placeholder-paste-your-json-schema-here: Greamaigh do Scéim JSON anseo...
+      title-schema-validation-errors: Earráidí Bailíochtaithe Scéime
+      label-indent-size-0-compact: "Méid an línithe (0 = Dlúth):"
+      repair-json: Deisigh JSON
   json-escaper:
     title: Éalú Json/Unescape
     description: Teaghrán JSON éalaithe agus dí-éalaithe
@@ -5746,6 +5763,8 @@ tools:
       message-this-date-is-invalid-for-this-format: Tá an dáta seo neamhbhailí don fhormáid seo
       placeholder-put-your-date-string-here: Cuir do theaghrán dáta anseo...
       placeholder-invalid-date: Dáta neamhbhailí...
+      button-add-timezone: Cuir Crios Ama leis
+      placeholder-select-timezone: Roghnaigh crios ama...
   extract-text-from-html:
     texts:
       message-provided-html-is-not-valid: Níl an HTML a cuireadh ar fáil bailí.
@@ -6050,6 +6069,12 @@ tools:
       heading-1: Ceannteideal 1
       inline-code: Cód inlíne
       strike: Stailc
+      heading-5: Ceannteideal 5
+      text-left: Ailínigh ar Chlé
+      text-center: Ailínigh Lár
+      text-right: Ailínigh ar Dheis
+      text-justify: Ailínigh/Fíoraigh
+      clear-align: Glan-ailíniú
   floating-point-number-converter:
     texts:
       label-32-bit-single-precision: 32-Giotán (Cruinneas aonair)
@@ -6125,6 +6150,7 @@ tools:
       label-json-schema: "Scéim JSON:"
       placeholder-paste-your-json-schema-here: Greamaigh do Scéim JSON anseo...
       title-schema-validation-errors: Earráidí Bailíochtaithe Scéime
+      label-unescape-json-string: "Dí-éalú teaghrán JSON:"
     text:
       provided-json-is-not-valid: Ar choinníoll nach bhfuil JSON bailí.
       try-again-with-repairjsonlabel: Déan iarracht arís le &quot;{0}&quot;
@@ -7339,6 +7365,7 @@ tools:
       label-signature: Síniú
       label-arguments: Argóintí
       title-structured-output-json: Aschur Struchtúrtha JSON
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: "{'{'}\"go\":\"0x...\",\"sonraí\":\"0x...\"{'}'} nó 0x amh...."
   file-splitter:
     title: Scoilteoir Comhad
     description: Scoilt comhad JSON, XML nó téacs de réir grúpa nóid nó de réir grúpa línte
@@ -7362,9 +7389,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: Roghnaigh teimpléid (e.g. node, python, vue)
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: constTeimpléid atá ar Fáil = tag
-      tag-this-tool-use: "Úsáideann an uirlis seo:"
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: Gin
   i-and-l-checker:
     title: Seiceálaí I agus L
@@ -7515,10 +7539,6 @@ tools:
       label-short-urls-to-expand: "URLanna gearra le leathnú:"
       placeholder-enter-short-urls-one-per-line: Cuir isteach URLanna gearra (ceann amháin in aghaidh na líne)
       title-result: Toradh
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server:
-        Úsáideann an uirlis seo https://cors-anywhere.com chun CORS a
-        sheachaint. Is freastalaí pobail-thiomáinte é seo.
-      tag-see-here-for-more-information: Féach anseo le haghaidh tuilleadh eolais
       tag-expand-all: Leathnaigh Uile
       tag-download-resuls-as-csv: Íoslódáil na torthaí mar CSV
       tag-short-url: URL Gearr
@@ -7526,5 +7546,266 @@ tools:
       tag-link: Nasc
       tag-status: Stádas
       tag-open-url: Oscail URL
+      cors-anywhere-configuration: Cumraíocht CORS Áit ar bith
+      self-hosted-cors-anywhere: CORS Féinóstáilte Áit Ar Bith
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
+        Éilíonn an uirlis seo sampla CORS Anywhere chun Polasaí CORS a
+        sheachbhóthar. Is féidir leat úsáid a bhaint as
+      put-your-cors-anywhere-instance-url: Cuir URL d’eispéireas CORS Anywhere isteach...
+      cors-anywhere-instance-url: "URL sampla CORS Anywhere:"
+      expanded-url: URL leathnaithe
+      short-url: URL Gearr
+      failed-to-expand-some-urls: Theip ar roinnt URLanna a leathnú.
+      failed: Theip air
+      no-redirect: Gan atreorú
+      expanded: Leathnaithe
+  amortization-calculator:
+    title: Áireamhán Amúchta
+    description: Ríomh sceidil amúchta iasachta le miondealú íocaíochta míosúla
+    footer: Áireamhán Amúchta
+    texts:
+      title-loan-parameters: Paraiméadair Iasachta
+      title-overview: Forbhreathnú
+      title-amortization-schedule: Sceideal Amúchta
+      label-loan-amount: Méid Iasachta
+      label-loan-term: Téarma Iasachta
+      label-interest-rate: Ráta Úis
+      label-displayed-currency: Airgeadra Taispeánta
+      label-end-of-year: Deireadh na Bliana {year}
+      label-year: Bliain
+      label-month: Mí
+      label-interest: Ús
+      label-principal: Príomhoide
+      label-ending-balance: Iarmhéid Deiridh
+      label-monthly-payment: Íocaíocht Mhíosúil
+      label-total-of-payments: Iomlán na nÍocaíochtaí
+      label-total-interest: Ús Iomlán
+      message-loan-amount-must-be-positive: Ní mór luach dearfach a bheith i méid na hiasachta
+      message-loan-term-must-be-positive-integer: Ní mór don téarma iasachta a bheith ina shlánuimhir dhearfach
+      message-interest-rate-must-be-between-1-and-100: Ní mór don ráta úis a bheith ina luach dearfach idir 0 agus 100
+  copy:
+    text:
+      copied-to-the-clipboard: Cóipeáilte chuig an ghearrthaisce
+  arpa-decoder:
+    title: Díchódóir ARPA
+    description: Seoltaí IPv4/6 ARPA nó taifead PTR a dhíchódú
+    texts:
+      label-arpa-address: "Seoladh ARPA:"
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: m.sh. 10.1.168.192.in-addr.arpa. nó xxxx.ip6.arpa.
+  database-builder:
+    title: Tógálaí Cruthaithe Bunachar Sonraí
+    description: Tóg ceisteanna SQL CREATE DATABASE do bhunachair shonraí éagsúla
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: Freastalaí SQL
+      label-oracle: Oracle
+      label-sqlite: SQLite
+      label-database-type: "Cineál Bunachar Sonraí:"
+      label-database-name: "Ainm an Bhunachair Sonraí:"
+      placeholder-test: tástáil
+      label-server-address: "Seoladh an Fhreastalaí:"
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: "Cuntas:"
+      label-password-leave-empty-to-generate: "Pasfhocal (fág folamh le giniúint):"
+      placeholder-leave-empty-for-random: fág folamh le haghaidh randamach
+      label-permissions-all-privileges-if-none-selected: "Ceadanna (GACH PRÍBHÉIL mura bhfuil aon cheann roghnaithe):"
+      title-generated-sql-instructions: "Treoracha SQL ginte:"
+      tag-select: ROGHNAIGH
+      tag-insert: IONSÁIGH
+      tag-update: NUASHONRÚ
+      tag-delete: SCRÍOS
+      tag-create: CRUTHAIGH
+      tag-drop: TITIGH
+      tag-alter: ATHRAIGH
+      tag-index: INNÉACS
+      tag-execute: FORGHNÍOMH
+      tag-references: TAGAIRTÍ
+      tag-trigger: GRÉASÁN
+      tag-usage: ÚSÁID
+      tag-replication-client: CLIAINT MACSAMHLAÍOCHTA
+      tag-replication-slave: SCLABHAIR MACSAMHLAÍOCHTA
+      tag-generate-sql-instructions: Gin Treoracha SQL
+  database-table-generator:
+    title: Gineadóir Tábla Bunachar Sonraí
+    description: Gin SQL CREATE TABLE do bhunachair shonraí coitianta
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: Freastalaí SQL
+      label-database-type: "Cineál Bunachar Sonraí:"
+      label-database-name: "Ainm an Bhunachair Sonraí:"
+      placeholder-enter-database-name: Cuir isteach ainm an bhunachair shonraí
+      placeholder-table-name: Ainm an tábla
+      placeholder-column-name: Ainm an cholúin
+      placeholder-default-value: Luach réamhshocraithe
+      title-generated-sql: SQL ginte
+      tag-remove-table: Bain an Tábla
+      tag-add-column: Cuir colún leis
+      tag-nullable: Nullaitheach
+      tag-pk: PK
+      tag-unique: Uathúil
+      tag-autoinc: AutoInc
+      tag-add-table: Cuir Tábla leis
+      tag-generate-sql: Gin SQL
+  gitattributes-generator:
+    title: Gineadóir Tréithe Git
+    description: Gin .gitattributes ó chumraíocht choiteann
+      https://github.com/alexkaratarakis/gitattributes
+    texts:
+      label-gitattributes-templates: "Teimpléid Gitattributes:"
+      placeholder-select-templates: Roghnaigh teimpléid
+      title-preview: Réamhamharc
+      tag-fetch-generate: Faigh & Gin
+  html-to-xhtml:
+    title: HTML go XHTML
+    description: Tiontaigh HTML go XHTML dian (parsáil XML, clibeanna féindhúnta...)
+    texts:
+      placeholder-your-html-content: Do chuid ábhair HTML...
+      label-your-html-to-convert-to-xhtml: "Do HTML le tiontú go XHTML:"
+      label-add-xhtml-xmlns: "Cuir xmln XHTML leis:"
+      label-indentation: "Líonadh:"
+      title-output-xhtml: "Aschur XHTML:"
+  javascript-obfuscator:
+    title: Ceo Javascript
+    description: Mícheartóir cód Javascript ag baint úsáide as ionchódú base64 nó rot13
+    texts:
+      label-base-64: Bonn 64
+      label-rot-13: ROT 13
+      label-obfuscator-io: Obfuscator.io
+      label-your-javascript-code-to-obfuscate: "Do chód JavaScript le cur i bhfolach:"
+      label-obfuscation-method: "Modh doiléire:"
+      title-obfuscted-js-code: Cód JS Doiléir
+      placeholder-enter-your-javascript-code-here: // Cuir isteach do chód JavaScript anseo
+  online-wiktionary:
+    title: Foclóir Ar Líne
+    description: Cuardaigh focail i Vicífhoclóir
+    texts:
+      label-english: Béarla
+      label-french: Fraincis
+      label-german: Gearmáinis
+      label-spanish: Spáinnis
+      label-italian: Iodáilis
+      label-russian: Rúisis
+      label-chinese: Sínis
+      label-japanese: Seapáinis
+      label-arabic: Araibis
+      placeholder-enter-a-word: Cuir isteach focal…
+      placeholder-select-a-language: Roghnaigh teanga
+      tag-search-on-wiktionary: Cuardaigh ar Vicífhoclóir
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: Cuir isteach focal agus roghnaigh teanga chun an Vicífhoclóir a luchtú
+  ptr-dns-generator:
+    title: Gineadóir DNS PTR
+    description: Gin taifid DNS PTR
+    texts:
+      label-ip-address-ipv4-or-ipv6: "Seoladh IP (IPv4 nó IPv6):"
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: m.sh. 192.168.1.10 nó 2001:db8::1
+  screen-memo:
+    title: Bileog Cheat Ordú Scáileáin
+    description: Meamram ordaithe linux scáileáin
+  svg-previewer:
+    title: Réamhamharcóir SVG
+    description: Réamhamharc ar chomhaid SVG
+    texts:
+      title-upload-a-svg-file: Uaslódáil Comhad SVG
+      title-raw-svg-content: "Ábhar SVG Amh:"
+      placeholder-paste-raw-svg-content-here: Greamaigh ábhar SVG amh anseo...
+      label-select-background: "Roghnaigh cúlra:"
+      title-svg-preview: Réamhamharc SVG
+      tag-const-svgcontent-ref: const svgContent = tag
+  tmux-memo:
+    title: Bileog Cheat Ordú Tmux
+    description: Meamram ordaithe Tmux Linux
+  trigo-viewer:
+    title: Amharcléiritheoir Cuar Triantánach/Cothromóideach
+    description: Samhlaigh triantánacht nó cothromóidí ag brath ar x
+    texts:
+      text-degrees: Céimeanna (°)
+      text-value: Luach
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: Cuir isteach cothromóid i dtéarmaí x (m.sh. sin(x) + cos(2*x))
+      label-equation-in-term-of-x: "Cothromóid i dtéarma x:"
+      label-domain: "Fearann:"
+      tag-reset-zoom: Athshocraigh Zúmáil
+  zellij-memo:
+    title: Bileog Cheat Ordú Zellij
+    description: Meamram ordaithe Zellij Linux
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: iframe-picteilín-marbh
+      tag-: "`;"
+      tag-keyboard-shortcuts: "Aicearraí méarchláir:"
+      tag-arrow-right-arrow-down-space: Saighead Ar Dheis, Saighead Síos, Spás
+      tag-next-color: An chéad dath eile
+      tag-arrow-left-arrow-up: Saighead Ar Chlé, Saighead Suas
+      tag-previous-color: Dath roimhe seo
+      tag-esc: ESC
+      tag-exit-dead-pixel-mode: Scoir Mód Picteilín Marbh
+      tag-start-dead-pixel: Tosaigh Dead Pixel
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: Eisiamh Réimíreanna SI
+    text:
+      si-converter: Tiontaire Réimíreanna Goto SI
+  geo-coordinates-converter:
+    title: Tiontaire Comhordanáidí Geografacha
+    description: Tiontaigh comhordanáidí geografacha idir WGS84, GCJ02, BD09 agus CGCS2000
+    texts:
+      label-latitude: "Domhanleithead:"
+      label-longitude: "Domhanfhad:"
+      label-csv-content-lng-lat: "Ábhar CSV (Fán, Laidin):"
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert:
+        Cuir do Domhanfhad agus Domhanleithead (san ord seo) i bhformáid CSV le
+        tiontú...
+      title-conversion-results: Torthaí Comhshó
+      title-notes: Nótaí
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (Caighdeán Domhanda)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (Léarscáileanna Gaode, QQ)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (Léarscáileanna Baidu)
+      tag-bd09mc-bd09meter-baidu-meter: Méadar BD09MC/BD09 (méadar Baidu)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (Córas Geodéiseach na Síne 2000)
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: Tiontaigh Singil
+      tag-convert-batch: Baisc a Thiontú
+      tag-longitude-east-is-positive-west-is-negative: "Domhanfhad: Tá an oirthear dearfach, tá an tIarthar diúltach."
+      tag-latitude-north-is-positive-south-is-negative: "Domhanleithead: Tá an tuaisceart dearfach, tá an deisceart diúltach."
+  si-prefixes-converter:
+    title: Tiontaire Réimíreanna SI
+    description: Tiontaigh idir Réimíreanna Méadracha
+    texts:
+      label-quetta-q: ceatán (Q)
+      label-ronna-r: Ronna (R)
+      label-yotta-y: yota (Y)
+      label-zetta-z: zetta (Z)
+      label-exa-e: exa (E)
+      label-peta-p: léarscáil (P)
+      label-tera-t: teir (T)
+      label-giga-g: giga (G)
+      label-mega-m: meigea (M)
+      label-kilo-k: cileagram (k)
+      label-hecto-h: heicte (h)
+      label-deca-da: deich (ó)
+      label-unit: aonad
+      label-deci-d: mar sin (d)
+      label-centi-c: ceint (c)
+      label-milli-m: náisiúnta (m)
+      label-micro-µ: micrea (µ)
+      label-nano-n: nana(n)
+      label-pico-p: pico (p)
+      label-femto-f: femto (f)
+      label-atto-a: gníomh (a)
+      label-zepto-z: zepto (z)
+      label-yocto-y: yocto (y)
+      label-ronto-r: ronto (r)
+      label-quecto-q: Tá ocras orm.
+      label-auto: Uathoibríoch
+      label-fixed: Seasta
+      label-exponential: Easpónantúil
+      label-convert: "Tiontaigh:"
+      label-mode: "Mód:"
+      label-decimals: "Deicheamháin:"
+      label-thousand-separators: "Míle deighilteoirí:"
+      label-to: "Chuig:"
+      tag-: =
 locale-selector:
   select-a-language: Roghnaigh teanga

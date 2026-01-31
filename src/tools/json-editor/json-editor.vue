@@ -54,7 +54,7 @@ const formattedJson = computed(() => {
   const jsonTextValue = jsonText.value;
   try {
     return JSON.stringify(
-      JSON.parseBigInt(jsonTextValue),
+      JSON.parseBigNum(jsonTextValue),
       null, indentSize.value);
   }
   catch {
@@ -89,7 +89,7 @@ const formattedJson = computed(() => {
       <n-input-number-i18n v-model:value="indentSize" min="0" max="10" style="width: 100px" />
     </n-form-item>
     <n-form-item :label="t('tools.json-editor.texts.label-your-edited-json')">
-      <textarea-copyable :value="formattedJson" language="json" />
+      <textarea-copyable :value="formattedJson" language="json" download-file-name="output.json" />
     </n-form-item>
 
     <n-form-item :label="t('tools.json-editor.texts.label-json-schema')" label-placement="left" label-width="130px" label-align="right">

@@ -29,7 +29,7 @@ function deserializeValue(value: string, tryParseValues: boolean): unknown {
     return valueAsString;
   }
   try {
-    return JSON.parse(valueAsString);
+    return JSON.parseBigNum(valueAsString);
   }
   catch (_) {
     return valueAsString;

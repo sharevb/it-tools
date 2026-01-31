@@ -765,6 +765,7 @@ tools:
       label-remove-duplicates: Удалить дубликаты
       label-convert-to-lowercase: Преобразовать в нижний регистр
       label-keep-line-breaks: Сохраняйте разрывы строк
+      label-output-as-column: Output as column
       label-sort-list: Сортировать список
       placeholder-sort-alphabetically: Сортировать по алфавиту
       label-items-separator: Разделитель элементов
@@ -910,6 +911,9 @@ tools:
       placeholder-your-string: Ваша строка...
       label-cleaning-regex: "Очищающее регулярное выражение:"
       placeholder-your-cleaning-regex: Ваше регулярное выражение очистки...
+      label-titlecase: "Заглавная буква:"
+      label-spongecase: "Чехол-губка:"
+      label-swapcase: "Swapcase:"
   html-entities:
     title: Экранирование HTML сущностей
     description: Экранируйте или разэкранируйте HTML сущности (заменяйте символы,
@@ -1086,6 +1090,7 @@ tools:
       tag-welcome-to-this-html-wysiwyg-editor: Добро пожаловать в этот HTML-редактор WYSIWYG
       tag-click-here-to-paste-or-edit-raw-html: Нажмите здесь, чтобы вставить или
         отредактировать необработанный HTML-код.
+      label-xhtmlfy: "XHtml:"
   yaml-to-toml:
     title: YAML в TOML
     description: Парсинг и конвертация YAML в TOML.
@@ -2069,6 +2074,7 @@ tools:
       tag-: "&#39;, &#39;"
       tag-copy-html-formatted: Копировать в формате HTML
       tag-copy-code-text: Скопировать текст кода
+      tag-copy-html-word: Скопировать в HTML/форматированный текст в Word
   coin-flipper:
     title: Монетка
     description: Подбросьте монетку
@@ -2955,6 +2961,8 @@ tools:
       label-merged-ical: Объединенный ICAL
       tag-delete: Удалить
       tag-merge-ical-files: Объединить файлы iCal
+      file-to-merge-file-name: "Файл для слияния: {0}"
+      download-merged-ical: Скачать объединенный iCal
     service:
       text:
         no-icals-parsed-successfully: Ни один icals не был успешно проанализирован
@@ -3254,6 +3262,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: "Текущий выбранный узел JSONPath:"
       label-your-edited-json: "Ваш отредактированный JSON:"
+      title-the-following-errors-occured: Произошли следующие ошибки.
+      tag-validation-successful: Проверка прошла успешно!
+      label-no-validation: Нет проверки
+      label-custom: Обычай
+      label-json-schema: "Схема JSON:"
+      placeholder-paste-your-json-schema-here: Вставьте сюда вашу JSON-схему...
+      title-schema-validation-errors: Ошибки проверки схемы
+      label-indent-size-0-compact: "Размер отступа (0 = Компактный):"
+      repair-json: Исправить JSON
   json-escaper:
     title: Экранирование/разэкранирование JSON
     description: Экранируйте и разэкранируйте строки JSON
@@ -5615,6 +5632,8 @@ tools:
       message-this-date-is-invalid-for-this-format: Эта дата недопустима для этого формата.
       placeholder-put-your-date-string-here: Введите здесь строку даты...
       placeholder-invalid-date: Неверная дата...
+      button-add-timezone: Добавить часовой пояс
+      placeholder-select-timezone: Выберите часовой пояс...
   extract-text-from-html:
     texts:
       message-provided-html-is-not-valid: Предоставленный HTML недействителен.
@@ -5964,6 +5983,12 @@ tools:
       heading-1: Заголовок 1
       inline-code: Встроенный код
       strike: Ударять
+      heading-5: Заголовок 5
+      text-left: Выровнять по левому краю
+      text-center: Выровнять по центру
+      text-right: Выровнять справа
+      text-justify: Выровнять по ширине
+      clear-align: Четкое выравнивание
   floating-point-number-converter:
     texts:
       label-32-bit-single-precision: 32-бит (одинарная точность)
@@ -6039,6 +6064,7 @@ tools:
       label-json-schema: "Схема JSON:"
       placeholder-paste-your-json-schema-here: Вставьте сюда вашу схему JSON...
       title-schema-validation-errors: Ошибки проверки схемы
+      label-unescape-json-string: "Расшифровка JSON-строки:"
     text:
       provided-json-is-not-valid: Указанный JSON недействителен.
       try-again-with-repairjsonlabel: Попробуйте еще раз с &quot;{0}&quot;
@@ -7277,6 +7303,9 @@ tools:
       label-signature: Подпись
       label-arguments: Аргументы
       title-structured-output-json: Структурированный вывод JSON
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quo\
+        t;{'}'} или необработанный 0x...."
   file-splitter:
     title: Разделитель файлов
     description: Разделить JSON, XML или текстовый файл по группе узлов или по группе строк
@@ -7298,9 +7327,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: Выберите шаблоны (например, node, python, vue)
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: const availableTemplates = ref
-      tag-this-tool-use: "Этот инструмент использует:"
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: Генерировать
   i-and-l-checker:
     title: Проверка I и L
@@ -7451,10 +7477,6 @@ tools:
       label-short-urls-to-expand: "Короткие URL-адреса для расширения:"
       placeholder-enter-short-urls-one-per-line: Введите короткие URL-адреса (по одному в строке)
       title-result: Результат
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server:
-        Этот инструмент использует https://cors-anywhere.com для обхода CORS.
-        Это сервер, управляемый сообществом.
-      tag-see-here-for-more-information: Более подробную информацию смотрите здесь.
       tag-expand-all: Развернуть все
       tag-download-resuls-as-csv: Загрузить результаты в формате CSV
       tag-short-url: Короткий URL
@@ -7462,6 +7484,271 @@ tools:
       tag-link: Связь
       tag-status: Статус
       tag-open-url: Открыть URL
+      cors-anywhere-configuration: Конфигурация CORS Anywhere
+      self-hosted-cors-anywhere: Самостоятельно размещенный CORS Anywhere
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
+        Для обхода политики CORS этому инструменту требуется экземпляр CORS
+        Anywhere. Вы можете использовать...
+      put-your-cors-anywhere-instance-url: Укажите URL-адрес вашего экземпляра CORS Anywhere...
+      cors-anywhere-instance-url: "URL экземпляра CORS Anywhere:"
+      expanded-url: Расширенный URL
+      short-url: Короткая ссылка
+      failed-to-expand-some-urls: Не удалось развернуть некоторые URL-адреса.
+      failed: Неуспешный
+      no-redirect: Перенаправление отсутствует
+      expanded: Расширенный
+  amortization-calculator:
+    title: Калькулятор амортизации
+    description: Рассчитайте график амортизации кредита с разбивкой по ежемесячным платежам.
+    footer: Калькулятор амортизации
+    texts:
+      title-loan-parameters: Параметры кредита
+      title-overview: Обзор
+      title-amortization-schedule: График амортизации
+      label-loan-amount: Сумма кредита
+      label-loan-term: Срок кредита
+      label-interest-rate: Процентная ставка
+      label-displayed-currency: Отображаемая валюта
+      label-end-of-year: Конец года {year}
+      label-year: Год
+      label-month: Месяц
+      label-interest: Интерес
+      label-principal: Главный
+      label-ending-balance: Конечный баланс
+      label-monthly-payment: Ежемесячный платеж
+      label-total-of-payments: Общая сумма платежей
+      label-total-interest: Общая сумма процентов
+      message-loan-amount-must-be-positive: Сумма кредита должна быть положительной.
+      message-loan-term-must-be-positive-integer: Срок кредита должен быть положительным целым числом.
+      message-interest-rate-must-be-between-1-and-100: Процентная ставка должна быть положительным значением от 0 до 100.
+  copy:
+    text:
+      copied-to-the-clipboard: Скопировано в буфер обмена
+  arpa-decoder:
+    title: Декодер ARPA
+    description: Расшифровка IPv4/6 ARPA-адресов или записей PTR.
+    texts:
+      label-arpa-address: "Адрес ARPA:"
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: например, 10.1.168.192.in-addr.arpa. или xxxx.ip6.arpa.
+  database-builder:
+    title: Конструктор создания баз данных
+    description: Создавайте SQL-запросы типа CREATE DATABASE для различных баз данных.
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: SQL Server
+      label-oracle: Оракул
+      label-sqlite: SQLite
+      label-database-type: "Тип базы данных:"
+      label-database-name: "Название базы данных:"
+      placeholder-test: тест
+      label-server-address: "Адрес сервера:"
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: "Счет:"
+      label-password-leave-empty-to-generate: "Пароль (оставьте поле пустым для генерации):"
+      placeholder-leave-empty-for-random: Оставьте поле пустым для случайного выбора
+      label-permissions-all-privileges-if-none-selected: "Права доступа (ВСЕ ПРАВА, если ни одно не выбрано):"
+      title-generated-sql-instructions: "Сгенерированные SQL-инструкции:"
+      tag-select: ВЫБИРАТЬ
+      tag-insert: ВСТАВЛЯТЬ
+      tag-update: ОБНОВЛЯТЬ
+      tag-delete: УДАЛИТЬ
+      tag-create: СОЗДАВАТЬ
+      tag-drop: УРОНИТЬ
+      tag-alter: АЛЬТЕР
+      tag-index: УКАЗАТЕЛЬ
+      tag-execute: ВЫПОЛНЯТЬ
+      tag-references: СПИСОК ЛИТЕРАТУРЫ
+      tag-trigger: КУРОК
+      tag-usage: ИСПОЛЬЗОВАНИЕ
+      tag-replication-client: КЛИЕНТ РЕПЛИКАЦИИ
+      tag-replication-slave: РАБ-РЕПЛИКАЦИЯ
+      tag-generate-sql-instructions: Сгенерировать инструкции SQL
+  database-table-generator:
+    title: Генератор таблиц базы данных
+    description: Сгенерируйте SQL-запрос CREATE TABLE для распространенных баз данных.
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: SQL Server
+      label-database-type: "Тип базы данных:"
+      label-database-name: "Название базы данных:"
+      placeholder-enter-database-name: Введите название базы данных
+      placeholder-table-name: Название таблицы
+      placeholder-column-name: Название столбца
+      placeholder-default-value: Значение по умолчанию
+      title-generated-sql: Сгенерированный SQL-запрос
+      tag-remove-table: Удалить таблицу
+      tag-add-column: Добавить столбец
+      tag-nullable: Недействительный
+      tag-pk: ПК
+      tag-unique: Уникальный
+      tag-autoinc: АвтоИнк
+      tag-add-table: Добавить таблицу
+      tag-generate-sql: Сгенерировать SQL
+  gitattributes-generator:
+    title: Генератор атрибутов Gita
+    description: Сгенерируйте файл .gitattributes из стандартной конфигурации
+      https://github.com/alexkaratarakis/gitattributes
+    texts:
+      label-gitattributes-templates: "Шаблоны Gitattributes:"
+      placeholder-select-templates: Выберите шаблоны
+      title-preview: Предварительный просмотр
+      tag-fetch-generate: Получить и сгенерировать
+  html-to-xhtml:
+    title: HTML в XHTML
+    description: Преобразование HTML в строгий XHTML (XML-парсируемый,
+      самозакрывающиеся теги...).
+    texts:
+      placeholder-your-html-content: Ваш HTML-контент...
+      label-your-html-to-convert-to-xhtml: "Ваш HTML-код для преобразования в XHTML:"
+      label-add-xhtml-xmlns: "Добавить XHTML xmlns:"
+      label-indentation: "Отступ:"
+      title-output-xhtml: "Вывод XHTML:"
+  javascript-obfuscator:
+    title: Обфускатор JavaScript
+    description: Обфускатор JavaScript-кода с использованием кодировки base64 или rot13
+    texts:
+      label-base-64: База 64
+      label-rot-13: РОТ 13
+      label-obfuscator-io: Obfuscator.io
+      label-your-javascript-code-to-obfuscate: "Ваш JavaScript-код для обфускации:"
+      label-obfuscation-method: "Метод обфускации:"
+      title-obfuscted-js-code: Зашифрованный код JavaScript
+      placeholder-enter-your-javascript-code-here: // Введите свой JavaScript-код здесь
+  online-wiktionary:
+    title: Онлайн-словарь
+    description: Поиск слов в Викисловаре
+    texts:
+      label-english: Английский
+      label-french: Французский
+      label-german: немецкий
+      label-spanish: испанский
+      label-italian: итальянского
+      label-russian: Русский
+      label-chinese: китайский
+      label-japanese: японский
+      label-arabic: арабский
+      placeholder-enter-a-word: Введите слово…
+      placeholder-select-a-language: Выберите язык
+      tag-search-on-wiktionary: Поиск в Викисловаре
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: Введите слово и выберите язык, чтобы загрузить Викисловарь.
+  ptr-dns-generator:
+    title: Генератор DNS-запросов PTR
+    description: Генерация записей DNS PTR
+    texts:
+      label-ip-address-ipv4-or-ipv6: "IP-адрес (IPv4 или IPv6):"
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: например, 192.168.1.10 или 2001:db8::1
+  screen-memo:
+    title: Шпаргалка по командам экрана
+    description: Заметка о командах Linux для экрана
+  svg-previewer:
+    title: Предварительный просмотр SVG
+    description: Предварительный просмотр SVG-файлов
+    texts:
+      title-upload-a-svg-file: Загрузите SVG-файл
+      title-raw-svg-content: "Исходный SVG-контент:"
+      placeholder-paste-raw-svg-content-here: Вставьте сюда исходный SVG-контент...
+      label-select-background: "Выберите фон:"
+      title-svg-preview: Предварительный просмотр SVG
+      tag-const-svgcontent-ref: const svgContent = ref
+  tmux-memo:
+    title: Шпаргалка по командам Tmux
+    description: Заметка о командах Tmux Linux
+  trigo-viewer:
+    title: Визуализатор тригонометрических уравнений/кривых
+    description: Визуализируйте тригонометрические уравнения или уравнения в
+      зависимости от x.
+    texts:
+      text-degrees: Градусы (°)
+      text-value: Ценить
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: Введите уравнение в терминах x (например, sin(x) + cos(2*x)).
+      label-equation-in-term-of-x: "Уравнение в терминах x:"
+      label-domain: "Домен:"
+      tag-reset-zoom: Сбросить масштаб
+  zellij-memo:
+    title: Шпаргалка по командам Zellij
+    description: Заметка о команде Zellij Linux
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: мертвый пиксель-iframe
+      tag-: "`;"
+      tag-keyboard-shortcuts: "Клавиатурные сочетания:"
+      tag-arrow-right-arrow-down-space: Стрелка вправо, Стрелка вниз, Пробел
+      tag-next-color: ": Следующий цвет"
+      tag-arrow-left-arrow-up: Стрелка влево, стрелка вверх
+      tag-previous-color: ": Предыдущий цвет"
+      tag-esc: ESC
+      tag-exit-dead-pixel-mode: Выход из режима битых пикселей
+      tag-start-dead-pixel: Начало работы над мертвым пикселем
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: Исключить префиксы СИ
+    text:
+      si-converter: Перейти к конвертеру префиксов СИ
+  geo-coordinates-converter:
+    title: Конвертер географических координат
+    description: Преобразование географических координат между системами WGS84,
+      GCJ02, BD09 и CGCS2000.
+    texts:
+      label-latitude: "Широта:"
+      label-longitude: "Долгота:"
+      label-csv-content-lng-lat: "Содержимое CSV-файла (долгота, широта):"
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert:
+        Введите координаты долготы и широты (в указанном порядке) в формате CSV
+        для преобразования...
+      title-conversion-results: Результаты конверсии
+      title-notes: Примечания
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (глобальный стандарт)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (Gaode, QQ Maps)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (Карты Baidu)
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09Meter (счетчик Baidu)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (Китайская геодезическая система 2000)
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: Преобразовать в одиночный
+      tag-convert-batch: Преобразовать пакет
+      tag-longitude-east-is-positive-west-is-negative: "Долгота: Восток – положительное значение, Запад – отрицательное."
+      tag-latitude-north-is-positive-south-is-negative: "Широта: Северная широта —
+        положительное значение, южная — отрицательное."
+  si-prefixes-converter:
+    title: Конвертер префиксов СИ
+    description: Преобразование между метрическими префиксами
+    texts:
+      label-quetta-q: кветта (Q)
+      label-ronna-r: Ронна (Р)
+      label-yotta-y: йотта (Y)
+      label-zetta-z: зетта (Z)
+      label-exa-e: экса (Е)
+      label-peta-p: карта (P)
+      label-tera-t: тера (Т)
+      label-giga-g: giga (G)
+      label-mega-m: мега (М)
+      label-kilo-k: кило (к)
+      label-hecto-h: гекто (г)
+      label-deca-da: десять (из)
+      label-unit: единица
+      label-deci-d: дерн)
+      label-centi-c: санти (с)
+      label-milli-m: национальный (м)
+      label-micro-µ: микро (мк)
+      label-nano-n: нано (н)
+      label-pico-p: пико (п)
+      label-femto-f: фемто (ф)
+      label-atto-a: акт (а)
+      label-zepto-z: зепто (z)
+      label-yocto-y: йокто (y)
+      label-ronto-r: ронто (р)
+      label-quecto-q: Я голоден.
+      label-auto: Авто
+      label-fixed: Зафиксированный
+      label-exponential: Экспоненциальный
+      label-convert: "Преобразовать:"
+      label-mode: "Режим:"
+      label-decimals: "Десятичные дроби:"
+      label-thousand-separators: "Тысяча разделителей:"
+      label-to: "К:"
+      tag-: =
 spanCopyable:
   copy: Копировать в буфер обмена
   copied: Скопировано!

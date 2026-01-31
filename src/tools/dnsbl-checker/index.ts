@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: MailForward,
   createdAt: new Date('2025-08-15'),
   category: 'Network',
+  externAccessDescription: 'This tool checks and sends provided IP to DNSBL throught https://cloudflare-dns.com/dns-query',
 });

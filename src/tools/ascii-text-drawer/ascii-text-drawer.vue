@@ -26,8 +26,8 @@ watchEffect(async () => {
   const widthValue = width.value;
   processing.value = true;
   try {
-    const options: figlet.Options = {
-      font: fontValue as figlet.Fonts,
+    const options: figlet.FigletOptions = {
+      font: fontValue as figlet.FontName,
       width: widthValue,
       whitespaceBreak: true,
     };

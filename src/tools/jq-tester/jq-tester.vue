@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import jsonpath from 'jsonpath';
-import jq from 'jq-wasm';
+import * as jq from 'jq-wasm';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useValidation } from '@/composable/validation';
 import { useQueryParam } from '@/composable/queryParams';
@@ -26,7 +26,7 @@ const result = computedAsync(async () => {
   const jqtypeValue = jqtype.value;
 
   try {
-    const obj = JSON.parseBigInt(jsonString);
+    const obj = JSON.parseBigNum(jsonString);
     if (jqtypeValue === 'jq') {
       return JSON.stringify(await jq.json(obj, jqOrJsonPathString), null, indent);
     }
@@ -73,7 +73,11 @@ const jsonValidation = useValidation({
 
       <div mb-2 flex justify-center>
         <c-link v-if="jqtype === 'jq'" target="_blank" to="/jq-memo" mb-1 mt-1>
-          {{ t('tools.jq-tester.texts.tag-see') }}<code>{{ t('tools.jq-tester.texts.tag-jq') }}</code>{{ t('tools.jq-tester.texts.tag-cheatsheet') }}
+          {{ t('tools.jq-tester.texts.tag-see') }}
+          <code>
+            {{ t('tools.jq-tester.texts.tag-jq') }}
+          </code>
+          {{ t('tools.jq-tester.texts.tag-cheatsheet') }}
         </c-link>
         <c-link v-if="jqtype === 'jsonpath'" target="_blank" to="/jsonpath-memo" mb-1 mt-1>
           {{ t('tools.jq-tester.texts.tag-see-jsonpath-cheatsheet') }}

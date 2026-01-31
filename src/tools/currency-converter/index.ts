@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: Currency,
   createdAt: new Date('2024-08-15'),
   category: 'Data',
+  externAccessDescription: 'This tool downloads fresh currency data from https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api',
 });

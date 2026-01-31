@@ -1,10 +1,11 @@
 import { ScreenShare } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate as t } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Tmux Command Cheatsheet',
+  name: t('tools.tmux-memo.title'),
   path: '/tmux-memo',
-  description: 'Tmux linux command memo',
+  description: t('tools.tmux-memo.description'),
   keywords: ['terminal', 'linux', 'shell', 'tmux'],
   component: () => import('./tmux-memo.vue'),
   icon: ScreenShare,

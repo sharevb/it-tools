@@ -16,7 +16,7 @@ function sortObjectKeys<T>(obj: T, sortMethod: string): T {
     .reduce((sortedObj, key) => {
       sortedObj[key] = sortObjectKeys((obj as Record<string, unknown>)[key], sortMethod);
       return sortedObj;
-    }, {} as Record<string, unknown>) as T;
+    }, Object.create(obj, {}) as Record<string, unknown>) as T;
 }
 
 function sortObjectValues<T>(obj: T, sortMethod: string, keyName: string): T {
@@ -46,7 +46,7 @@ function sortObjectValues<T>(obj: T, sortMethod: string, keyName: string): T {
     return sortedKeys.reduce((sortedObj, key) => {
       sortedObj[key] = sortObjectValues((obj as Record<string, unknown>)[key], sortMethod, keyName);
       return sortedObj;
-    }, {} as Record<string, unknown>) as T;
+    }, Object.create(obj, {}) as Record<string, unknown>) as T;
   }
 
   return obj;
@@ -63,7 +63,7 @@ function formatJson({
   keyName: MaybeRef<string>
   indentSize?: MaybeRef<number>
 }) {
-  const parsedObject = JSON.parseBigInt(get(rawJson));
+  const parsedObject = JSON.parseBigNum(get(rawJson));
 
   if (['key_name', 'key_name_desc'].includes(get(sortMethod))) {
     return JSON.stringify(sortObjectKeys(parsedObject, get(sortMethod)), null, get(indentSize));

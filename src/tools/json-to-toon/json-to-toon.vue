@@ -19,7 +19,7 @@ function transformer(value: string) {
     if (value === '') {
       return '';
     }
-    return encode(JSON.parseBigInt(value));
+    return encode(JSON.parseBigNum(value));
   }, '');
 }
 

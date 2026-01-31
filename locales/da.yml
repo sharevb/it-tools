@@ -725,6 +725,7 @@ tools:
       label-remove-duplicates: Fjern dubletter
       label-convert-to-lowercase: Konvertér til små bogstaver
       label-keep-line-breaks: Behold linjeskift
+      label-output-as-column: Output as column
       label-sort-list: Sortér liste
       placeholder-sort-alphabetically: Sortér alfabetisk
       label-items-separator: Elementseparator
@@ -870,6 +871,9 @@ tools:
       placeholder-your-string: Din streng...
       label-cleaning-regex: "Rengøringsregeks:"
       placeholder-your-cleaning-regex: Din rengøringsregel...
+      label-titlecase: "Titelbog:"
+      label-spongecase: "Svampeæske:"
+      label-swapcase: "Byttekasse:"
   html-entities:
     title: Undslip HTML
     description: Undslip og omvendt HTML (erstat tegn som <, >, &, " og \' med deres
@@ -1040,6 +1044,7 @@ tools:
       tag-hey: Hej!
       tag-welcome-to-this-html-wysiwyg-editor: Velkommen til denne html wysiwyg-editor
       tag-click-here-to-paste-or-edit-raw-html: Klik her for at indsætte eller redigere rå html
+      label-xhtmlfy: "XHtml:"
   yaml-to-toml:
     title: YAML til TOML
     description: Fortolk og konverter YAML til TOML.
@@ -1859,6 +1864,7 @@ tools:
       tag-: "', '"
       tag-copy-html-formatted: Kopiér HTML-formateret
       tag-copy-code-text: Kopiér kodetekst
+      tag-copy-html-word: Kopiér til HTML/Rich Text i Word
   coin-flipper:
     title: Møntflipper
     description: Kast en mønt
@@ -2857,6 +2863,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: "Aktuelt valgte node JSONPath:"
       label-your-edited-json: "Din redigerede JSON:"
+      title-the-following-errors-occured: Følgende fejl opstod
+      tag-validation-successful: Validering vellykket!
+      label-no-validation: Ingen validering
+      label-custom: Skik
+      label-json-schema: "JSON-skema:"
+      placeholder-paste-your-json-schema-here: Indsæt dit JSON-skema her...
+      title-schema-validation-errors: Fejl ved skemavalidering
+      label-indent-size-0-compact: "Indrykningsstørrelse (0 = Kompakt):"
+      repair-json: Reparer JSON
   json-escaper:
     title: Json Escaper/Unescaper
     description: Escape og unescape JSON-streng
@@ -4874,6 +4889,8 @@ tools:
       message-this-date-is-invalid-for-this-format: Denne dato er ugyldig for dette format
       placeholder-put-your-date-string-here: Sæt din dato her...
       placeholder-invalid-date: Ugyldig dato...
+      button-add-timezone: Tilføj tidszone
+      placeholder-select-timezone: Vælg en tidszone...
   extract-text-from-html:
     texts:
       message-provided-html-is-not-valid: Den angivne HTML er ikke gyldig.
@@ -5616,6 +5633,8 @@ tools:
       label-merged-ical: Sammenflettede ICAL
       tag-delete: Slet
       tag-merge-ical-files: Flet iCal-filer
+      file-to-merge-file-name: "Fil der skal flettes: {0}"
+      download-merged-ical: Download fusioneret iCal
     service:
       text:
         no-icals-parsed-successfully: Ingen icals blev parset
@@ -5677,6 +5696,12 @@ tools:
       heading-1: Overskrift 1
       inline-code: Inline-kode
       strike: Strejke
+      heading-5: Overskrift 5
+      text-left: Juster til venstre
+      text-center: Juster center
+      text-right: Juster til højre
+      text-justify: Juster/Færdiggør
+      clear-align: Ryd justering
   unicode-formatter:
     title: Unicode-formatering
     description: Formatér tekst ved hjælp af Unicode-skrifttyper
@@ -5875,6 +5900,7 @@ tools:
       label-json-schema: "JSON-skema:"
       placeholder-paste-your-json-schema-here: Indsæt dit JSON-skema her...
       title-schema-validation-errors: Fejl ved skemavalidering
+      label-unescape-json-string: "Unescape JSON-streng:"
     text:
       provided-json-is-not-valid: Forudsat at JSON ikke er gyldig.
       try-again-with-repairjsonlabel: Prøv igen med "{0}"
@@ -7175,6 +7201,7 @@ tools:
       label-signature: Signatur
       label-arguments: Argumenter
       title-structured-output-json: Struktureret output JSON
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: "{'{'}\"til\":\"0x...\",\"data\":\"0x...\"{'}'} eller rå 0x...."
   file-splitter:
     title: Fildeler
     description: Opdel JSON-, XML- eller tekstfil enten efter gruppe af noder eller
@@ -7199,9 +7226,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: Vælg skabeloner (f.eks. node, python, vue)
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: const tilgængeligeSkabeloner = ref
-      tag-this-tool-use: "Dette værktøj bruger:"
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: Frembringe
   i-and-l-checker:
     title: I og L Checker
@@ -7352,10 +7376,6 @@ tools:
       label-short-urls-to-expand: "Korte URL'er til udvidelse:"
       placeholder-enter-short-urls-one-per-line: Indtast korte webadresser (én pr. linje)
       title-result: Resultat
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server:
-        Dette værktøj bruger https://cors-anywhere.com til at omgå CORS. Dette
-        er en community-drevet server.
-      tag-see-here-for-more-information: Se her for mere information
       tag-expand-all: Udvid alle
       tag-download-resuls-as-csv: Download resultater som CSV
       tag-short-url: Kort URL
@@ -7363,6 +7383,267 @@ tools:
       tag-link: Forbindelse
       tag-status: Status
       tag-open-url: Åbn URL
+      cors-anywhere-configuration: CORS Anywhere-konfiguration
+      self-hosted-cors-anywhere: Selvhostet CORS Anywhere
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
+        Dette værktøj kræver en CORS Anywhere-instans for at omgå
+        CORS-politikken. Du kan bruge en
+      put-your-cors-anywhere-instance-url: Indsæt din CORS Anywhere-instans-URL...
+      cors-anywhere-instance-url: "URL til CORS Anywhere-instans:"
+      expanded-url: Udvidet URL
+      short-url: Kort URL
+      failed-to-expand-some-urls: Kunne ikke udvide nogle webadresser.
+      failed: Mislykkedes
+      no-redirect: Ingen omdirigering
+      expanded: Udvidet
+  amortization-calculator:
+    title: Amortiseringsberegner
+    description: Beregn låneafdragsplaner med månedlige betalingsfordelinger
+    footer: Amortiseringsberegner
+    texts:
+      title-loan-parameters: Låneparametre
+      title-overview: Oversigt
+      title-amortization-schedule: Amortiseringsplan
+      label-loan-amount: Lånebeløb
+      label-loan-term: Låneperiode
+      label-interest-rate: Rentesats
+      label-displayed-currency: Vist valuta
+      label-end-of-year: Slutningen af året {year}
+      label-year: År
+      label-month: Måned
+      label-interest: Interesse
+      label-principal: Rektor
+      label-ending-balance: Slutsaldo
+      label-monthly-payment: Månedlig betaling
+      label-total-of-payments: Samlede betalinger
+      label-total-interest: Samlet rente
+      message-loan-amount-must-be-positive: Lånebeløbet skal være en positiv værdi
+      message-loan-term-must-be-positive-integer: Låneperioden skal være et positivt heltal
+      message-interest-rate-must-be-between-1-and-100: Rentesatsen skal være en positiv værdi mellem 0 og 100
+  copy:
+    text:
+      copied-to-the-clipboard: Kopieret til udklipsholderen
+  arpa-decoder:
+    title: ARPA-dekoder
+    description: Afkod IPv4/6 ARPA-adresser eller PTR-poster
+    texts:
+      label-arpa-address: "ARPA-adresse:"
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: f.eks. 10.1.168.192.in-addr.arpa. eller xxxx.ip6.arpa.
+  database-builder:
+    title: Databaseoprettelsesværktøj
+    description: Byg SQL CREATE DATABASE-forespørgsler til forskellige databaser
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: SQL Server
+      label-oracle: Orakel
+      label-sqlite: SQLite
+      label-database-type: "Databasetype:"
+      label-database-name: "Databasenavn:"
+      placeholder-test: prøve
+      label-server-address: "Serveradresse:"
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: "Konto:"
+      label-password-leave-empty-to-generate: "Adgangskode (lad stå tomt for at generere):"
+      placeholder-leave-empty-for-random: Lad være tomt for tilfældige
+      label-permissions-all-privileges-if-none-selected: "Tilladelser (ALLE PRIVILEGIER hvis ingen er valgt):"
+      title-generated-sql-instructions: "Genererede SQL-instruktioner:"
+      tag-select: VÆLGE
+      tag-insert: INDSÆT
+      tag-update: OPDATERING
+      tag-delete: SLET
+      tag-create: SKABE
+      tag-drop: DRÅBE
+      tag-alter: ÆNDRE
+      tag-index: INDEKS
+      tag-execute: UDFØR
+      tag-references: REFERENCER
+      tag-trigger: UDLØSER
+      tag-usage: BRUG
+      tag-replication-client: REPLIKATIONSKLIENT
+      tag-replication-slave: REPLIKATIONSSLAVE
+      tag-generate-sql-instructions: Generer SQL-instruktioner
+  database-table-generator:
+    title: Databasetabelgenerator
+    description: Generer SQL CREATE TABLE til almindelige databaser
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: SQL Server
+      label-database-type: "Databasetype:"
+      label-database-name: "Databasenavn:"
+      placeholder-enter-database-name: Indtast databasenavn
+      placeholder-table-name: Tabelnavn
+      placeholder-column-name: Kolonnenavn
+      placeholder-default-value: Standardværdi
+      title-generated-sql: Genereret SQL
+      tag-remove-table: Fjern tabel
+      tag-add-column: Tilføj kolonne
+      tag-nullable: Nullable
+      tag-pk: PK
+      tag-unique: Enestående
+      tag-autoinc: AutoInc
+      tag-add-table: Tilføj tabel
+      tag-generate-sql: Generer SQL
+  gitattributes-generator:
+    title: Gitaattributgenerator
+    description: Generer .gitattributes fra den almindelige konfiguration af
+      https://github.com/alexkaratarakis/gitattributes
+    texts:
+      label-gitattributes-templates: "Gitattributes-skabeloner:"
+      placeholder-select-templates: Vælg skabeloner
+      title-preview: Forhåndsvisning
+      tag-fetch-generate: Hent og generer
+  html-to-xhtml:
+    title: HTML til XHTML
+    description: Konverter HTML til strict XHTML (XML-parsbar, selvlukkende tags...)
+    texts:
+      placeholder-your-html-content: Dit HTML-indhold...
+      label-your-html-to-convert-to-xhtml: "Din HTML, der skal konverteres til XHTML:"
+      label-add-xhtml-xmlns: "Tilføj XHTML xmlns:"
+      label-indentation: "Indrykning:"
+      title-output-xhtml: "XHTML-output:"
+  javascript-obfuscator:
+    title: Javascript Obfuscator
+    description: Javascript-kodeforvirring ved hjælp af base64- eller rot13-kodning
+    texts:
+      label-base-64: Basis 64
+      label-rot-13: ROT 13
+      label-obfuscator-io: Obfuscator.io
+      label-your-javascript-code-to-obfuscate: "Din JavaScript-kode, der skal obfusqueres:"
+      label-obfuscation-method: "Forvirringsmetode:"
+      title-obfuscted-js-code: Obfuskteret JS-kode
+      placeholder-enter-your-javascript-code-here: // Indtast din JavaScript-kode her
+  online-wiktionary:
+    title: Online ordbog
+    description: Søg efter ord i Wiktionary
+    texts:
+      label-english: Engelsk
+      label-french: Fransk
+      label-german: Tysk
+      label-spanish: Spansk
+      label-italian: Italiensk
+      label-russian: Russisk
+      label-chinese: kinesisk
+      label-japanese: Japansk
+      label-arabic: Arabisk
+      placeholder-enter-a-word: Indtast et ord…
+      placeholder-select-a-language: Vælg et sprog
+      tag-search-on-wiktionary: Søg på Wiktionary
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: Indtast et ord og vælg et sprog for at indlæse Wiktionary
+  ptr-dns-generator:
+    title: PTR DNS-generator
+    description: Generer DNS PTR-poster
+    texts:
+      label-ip-address-ipv4-or-ipv6: "IP-adresse (IPv4 eller IPv6):"
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: f.eks. 192.168.1.10 eller 2001:db8::1
+  screen-memo:
+    title: Snydeark til skærmkommandoer
+    description: Skærm Linux-kommandomemo
+  svg-previewer:
+    title: SVG-forhåndsvisning
+    description: Forhåndsvisning af SVG-filer
+    texts:
+      title-upload-a-svg-file: Upload en SVG-fil
+      title-raw-svg-content: "Rå SVG-indhold:"
+      placeholder-paste-raw-svg-content-here: Indsæt råt SVG-indhold her...
+      label-select-background: "Vælg baggrund:"
+      title-svg-preview: SVG-forhåndsvisning
+      tag-const-svgcontent-ref: const svgIndhold = ref
+  tmux-memo:
+    title: Tmux-kommando-snydeark
+    description: Tmux Linux-kommandomemo
+  trigo-viewer:
+    title: Trigonometrisk/ligningskurvevisualisator
+    description: Visualiser trigonometriske ligninger eller ligninger afhængigt af x
+    texts:
+      text-degrees: Grader (°)
+      text-value: Værdi
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: Indtast ligning som form af x (f.eks. sin(x) + cos(2*x))
+      label-equation-in-term-of-x: "Ligning i termen af x:"
+      label-domain: "Domæne:"
+      tag-reset-zoom: Nulstil zoom
+  zellij-memo:
+    title: Zellij-kommando-snydeark
+    description: Zellij Linux-kommandomemo
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: død-pixel-iframe
+      tag-: "`;"
+      tag-keyboard-shortcuts: "Tastaturgenveje:"
+      tag-arrow-right-arrow-down-space: Pil til højre, pil ned, mellemrum
+      tag-next-color: Næste farve
+      tag-arrow-left-arrow-up: Pil til venstre, pil op
+      tag-previous-color: Forrige farve
+      tag-esc: ESC
+      tag-exit-dead-pixel-mode: ": Afslut død pixel-tilstand"
+      tag-start-dead-pixel: Start død pixel
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: Udeluk SI-præfikser
+    text:
+      si-converter: Goto SI-præfikskonverter
+  geo-coordinates-converter:
+    title: Geografiske koordinatkonverter
+    description: Konverter geografiske koordinater mellem WGS84, GCJ02, BD09 og CGCS2000
+    texts:
+      label-latitude: "Breddegrad:"
+      label-longitude: "Længde:"
+      label-csv-content-lng-lat: "CSV-indhold (lang, lat):"
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert:
+        Indsæt din længdegrad og breddegrad (i denne rækkefølge) i CSV-format
+        for at konvertere...
+      title-conversion-results: Konverteringsresultater
+      title-notes: Noter
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (Global standard)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (Gaode, QQ-kort)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (Baidu-kort)
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09 Meter (Baidu Meter)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (Kinas geodætiske system 2000)
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: Konverter enkelt
+      tag-convert-batch: Konvertér batch
+      tag-longitude-east-is-positive-west-is-negative: "Længdegrad: Øst er positiv, vest er negativ."
+      tag-latitude-north-is-positive-south-is-negative: "Breddegrad: Nord er positiv, syd er negativ."
+  si-prefixes-converter:
+    title: SI-præfikser konverter
+    description: Konverter mellem metriske præfikser
+    texts:
+      label-quetta-q: quetta (Q)
+      label-ronna-r: Ronna (R)
+      label-yotta-y: yotta (Y)
+      label-zetta-z: zetta (Z)
+      label-exa-e: exa (E)
+      label-peta-p: kort (P)
+      label-tera-t: tera (T)
+      label-giga-g: giga (G)
+      label-mega-m: mega (M)
+      label-kilo-k: kilo (k)
+      label-hecto-h: hekto (h)
+      label-deca-da: ti (fra)
+      label-unit: enhed
+      label-deci-d: så (d)
+      label-centi-c: centi (c)
+      label-milli-m: national (m)
+      label-micro-µ: mikro (µ)
+      label-nano-n: nano (n)
+      label-pico-p: pico (p)
+      label-femto-f: femto (f)
+      label-atto-a: handling (a)
+      label-zepto-z: zepto (z)
+      label-yocto-y: yocto (y)
+      label-ronto-r: ronto (r)
+      label-quecto-q: Jeg er sulten.
+      label-auto: Bil
+      label-fixed: Fast
+      label-exponential: Eksponentiel
+      label-convert: "Konvertere:"
+      label-mode: "Mode:"
+      label-decimals: "Decimaler:"
+      label-thousand-separators: "Tusindseparatorer:"
+      label-to: "Til:"
+      tag-: =
 about:
   alltools-title: Alle {toolsCount} værktøjer
   tools:

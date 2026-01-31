@@ -818,6 +818,7 @@ tools:
       label-remove-duplicates: Duplikate entfernen
       label-convert-to-lowercase: In Kleinbuchstaben umwandeln
       label-keep-line-breaks: Zeilenumbrüche beibehalten
+      label-output-as-column: Output as column
       label-sort-list: Liste sortieren
       placeholder-sort-alphabetically: Alphabetisch sortieren
       label-items-separator: Elementtrennzeichen
@@ -965,6 +966,9 @@ tools:
       placeholder-your-string: Ihre Saite...
       label-cleaning-regex: "Reguläre Ausdrücke bereinigen:"
       placeholder-your-cleaning-regex: Ihr Reinigungs-Regex ...
+      label-titlecase: "Titelformat:"
+      label-spongecase: "Spongecase:"
+      label-swapcase: "Gehäusetausch:"
   html-entities:
     title: HTML-Entity-Escape
     description: Escape oder unescape HTML-Entitäten (ersetze <, >, &, " und ' durch
@@ -1154,6 +1158,7 @@ tools:
       tag-hey: Hey!
       tag-welcome-to-this-html-wysiwyg-editor: Willkommen bei diesem HTML-WYSIWYG-Editor
       tag-click-here-to-paste-or-edit-raw-html: Klicken Sie hier, um Roh-HTML einzufügen oder zu bearbeiten
+      label-xhtmlfy: "XHTML:"
   yaml-to-toml:
     title: YAML zu TOML
     description: Parse und konvertiere YAML zu TOML.
@@ -2131,6 +2136,7 @@ tools:
       tag-: "&#39;, &#39;"
       tag-copy-html-formatted: HTML-formatiert kopieren
       tag-copy-code-text: Codetext kopieren
+      tag-copy-html-word: In Word als HTML/Rich-Text nach HTML kopieren
   coin-flipper:
     title: Münzwerfer
     description: Wirf eine Münze
@@ -3157,6 +3163,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: "JSON-Pfad des aktuell ausgewählten Knotens:"
       label-your-edited-json: "Ihr bearbeitetes JSON:"
+      title-the-following-errors-occured: Folgende Fehler sind aufgetreten.
+      tag-validation-successful: Validierung erfolgreich!
+      label-no-validation: Keine Validierung
+      label-custom: Brauch
+      label-json-schema: "JSON-Schema:"
+      placeholder-paste-your-json-schema-here: Fügen Sie hier Ihr JSON-Schema ein...
+      title-schema-validation-errors: Schema-Validierungsfehler
+      label-indent-size-0-compact: "Einrückungsgröße (0 = Kompakt):"
+      repair-json: JSON reparieren
   json-escaper:
     title: Json Escaper/Unescaper
     description: Escapen und Aufheben der Escapezeichenfolge in JSON-Zeichenfolgen
@@ -5165,6 +5180,8 @@ tools:
       message-this-date-is-invalid-for-this-format: Dieses Datum ist für dieses Format ungültig
       placeholder-put-your-date-string-here: Geben Sie hier Ihre Datumszeichenfolge ein ...
       placeholder-invalid-date: Ungültiges Datum...
+      button-add-timezone: Zeitzone hinzufügen
+      placeholder-select-timezone: Wählen Sie eine Zeitzone aus...
   extract-text-from-html:
     texts:
       message-provided-html-is-not-valid: Das bereitgestellte HTML ist ungültig.
@@ -5852,6 +5869,8 @@ tools:
       label-merged-ical: Zusammengeführtes ICAL
       tag-delete: Löschen
       tag-merge-ical-files: iCal-Dateien zusammenführen
+      file-to-merge-file-name: "Zusammenzuführende Datei: {0}"
+      download-merged-ical: Zusammengeführte iCal-Dateien herunterladen
     service:
       text:
         no-icals-parsed-successfully: Keine Icals erfolgreich analysiert
@@ -5913,6 +5932,12 @@ tools:
       heading-1: Überschrift 1
       inline-code: Inline-Code
       strike: Schlagen
+      heading-5: Überschrift 5
+      text-left: Linksbündig ausrichten
+      text-center: Zentrieren
+      text-right: Rechtsbündig ausrichten
+      text-justify: Ausrichten Blocksatz
+      clear-align: Klare Ausrichtung
   unicode-formatter:
     title: Unicode-Formatierer
     description: Formatieren von Text mit Unicode-Schriftarten
@@ -6119,6 +6144,7 @@ tools:
       label-json-schema: "JSON-Schema:"
       placeholder-paste-your-json-schema-here: Fügen Sie hier Ihr JSON-Schema ein ...
       title-schema-validation-errors: Schemavalidierungsfehler
+      label-unescape-json-string: "JSON-String entschlüsseln:"
     text:
       provided-json-is-not-valid: Das bereitgestellte JSON ist ungültig.
       try-again-with-repairjsonlabel: Versuchen Sie es erneut mit „{0}“
@@ -7432,6 +7458,9 @@ tools:
       label-signature: Unterschrift
       label-arguments: Argumente
       title-structured-output-json: Strukturierte Ausgabe im JSON-Format
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quo\
+        t;{'}'} oder Rohdaten 0x...."
   file-splitter:
     title: Dateisplitter
     description: JSON-, XML- oder Textdateien entweder anhand von Knotengruppen oder
@@ -7456,9 +7485,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: Vorlagen auswählen (z. B. Node, Python, Vue)
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: const availableTemplates = ref
-      tag-this-tool-use: "Dieses Tool verwendet:"
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: Erzeugen
   i-and-l-checker:
     title: I und L Prüfer
@@ -7617,10 +7643,6 @@ tools:
       label-short-urls-to-expand: "Kurze URLs zum Erweitern:"
       placeholder-enter-short-urls-one-per-line: Geben Sie kurze URLs ein (eine pro Zeile)
       title-result: Ergebnis
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server:
-        Dieses Tool nutzt https://cors-anywhere.com, um CORS zu umgehen. Es
-        handelt sich um einen Community-Server.
-      tag-see-here-for-more-information: Weitere Informationen finden Sie hier.
       tag-expand-all: Alle erweitern
       tag-download-resuls-as-csv: Ergebnisse als CSV herunterladen
       tag-short-url: Kurz-URL
@@ -7628,5 +7650,270 @@ tools:
       tag-link: Link
       tag-status: Status
       tag-open-url: URL öffnen
+      cors-anywhere-configuration: CORS Anywhere-Konfiguration
+      self-hosted-cors-anywhere: Selbst gehostetes CORS Anywhere
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
+        Dieses Tool benötigt eine CORS Anywhere-Instanz, um die CORS-Richtlinie
+        zu umgehen. Sie können eine solche verwenden.
+      put-your-cors-anywhere-instance-url: Geben Sie hier Ihre CORS Anywhere-Instanz-URL ein...
+      cors-anywhere-instance-url: "CORS Anywhere-Instanz-URL:"
+      expanded-url: Erweiterte URL
+      short-url: Kurz-URL
+      failed-to-expand-some-urls: Einige URLs konnten nicht erweitert werden.
+      failed: Fehlgeschlagen
+      no-redirect: Keine Weiterleitung
+      expanded: Erweiterte
+  amortization-calculator:
+    title: Tilgungsrechner
+    description: Berechnen Sie Tilgungspläne mit monatlichen Zahlungsaufschlüsselungen.
+    footer: Tilgungsrechner
+    texts:
+      title-loan-parameters: Kreditparameter
+      title-overview: Überblick
+      title-amortization-schedule: Tilgungsplan
+      label-loan-amount: Darlehensbetrag
+      label-loan-term: Darlehenslaufzeit
+      label-interest-rate: Zinssatz
+      label-displayed-currency: Angezeigte Währung
+      label-end-of-year: Jahresende {year}
+      label-year: Jahr
+      label-month: Monat
+      label-interest: Interesse
+      label-principal: Rektor
+      label-ending-balance: Endsaldo
+      label-monthly-payment: Monatliche Zahlung
+      label-total-of-payments: Gesamtbetrag der Zahlungen
+      label-total-interest: Gesamtzinsen
+      message-loan-amount-must-be-positive: Der Darlehensbetrag muss ein positiver Wert sein.
+      message-loan-term-must-be-positive-integer: Die Kreditlaufzeit muss eine positive ganze Zahl sein.
+      message-interest-rate-must-be-between-1-and-100: Der Zinssatz muss ein positiver Wert zwischen 0 und 100 sein.
+  copy:
+    text:
+      copied-to-the-clipboard: In die Zwischenablage kopiert
+  arpa-decoder:
+    title: ARPA-Decoder
+    description: IPv4/6 ARPA-Adressen oder PTR-Einträge dekodieren
+    texts:
+      label-arpa-address: "ARPA-Adresse:"
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: z.B. 10.1.168.192.in-addr.arpa oder xxxx.ip6.arpa.
+  database-builder:
+    title: Datenbank-Erstellungs-Generator
+    description: Erstellen Sie SQL-CREATE DATABASE-Abfragen für verschiedene Datenbanken
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: SQL Server
+      label-oracle: Orakel
+      label-sqlite: SQLite
+      label-database-type: "Datenbanktyp:"
+      label-database-name: "Datenbankname:"
+      placeholder-test: prüfen
+      label-server-address: "Serveradresse:"
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: "Konto:"
+      label-password-leave-empty-to-generate: "Passwort (leer lassen, um ein Passwort zu generieren):"
+      placeholder-leave-empty-for-random: Für zufällige Ereignisse leer lassen.
+      label-permissions-all-privileges-if-none-selected: "Berechtigungen (ALLE PRIVILEGIEN, falls keine ausgewählt):"
+      title-generated-sql-instructions: "Anweisungen für die generierte SQL-Abfrage:"
+      tag-select: WÄHLEN
+      tag-insert: EINFÜGEN
+      tag-update: AKTUALISIEREN
+      tag-delete: LÖSCHEN
+      tag-create: ERSTELLEN
+      tag-drop: FALLEN
+      tag-alter: ÄNDERN
+      tag-index: INDEX
+      tag-execute: AUSFÜHREN
+      tag-references: LITERATURVERZEICHNIS
+      tag-trigger: AUSLÖSEN
+      tag-usage: VERWENDUNG
+      tag-replication-client: Replikationskunde
+      tag-replication-slave: REPLIKATIONSSKLAVE
+      tag-generate-sql-instructions: SQL-Anweisungen generieren
+  database-table-generator:
+    title: Datenbanktabellengenerator
+    description: SQL-Anweisung zum Erstellen von Tabellen für gängige Datenbanken generieren
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: SQL Server
+      label-database-type: "Datenbanktyp:"
+      label-database-name: "Datenbankname:"
+      placeholder-enter-database-name: Datenbanknamen eingeben
+      placeholder-table-name: Tabellenname
+      placeholder-column-name: Spaltenname
+      placeholder-default-value: Standardwert
+      title-generated-sql: Generiertes SQL
+      tag-remove-table: Tabelle entfernen
+      tag-add-column: Spalte hinzufügen
+      tag-nullable: Nullable
+      tag-pk: PK
+      tag-unique: Einzigartig
+      tag-autoinc: AutoInc
+      tag-add-table: Tabelle hinzufügen
+      tag-generate-sql: SQL generieren
+  gitattributes-generator:
+    title: Gitattributes-Generator
+    description: Generieren Sie .gitattributes aus der allgemeinen Konfiguration von
+      https://github.com/alexkaratarakis/gitattributes
+    texts:
+      label-gitattributes-templates: "Gitattributes-Vorlagen:"
+      placeholder-select-templates: Vorlagen auswählen
+      title-preview: Vorschau
+      tag-fetch-generate: Abrufen und Generieren
+  html-to-xhtml:
+    title: HTML zu XHTML
+    description: HTML in striktes XHTML konvertieren (XML-analysierbar,
+      selbstschließende Tags...).
+    texts:
+      placeholder-your-html-content: Ihr HTML-Inhalt...
+      label-your-html-to-convert-to-xhtml: "Ihr HTML-Code, der in XHTML konvertiert werden soll:"
+      label-add-xhtml-xmlns: "XHTML xmlns hinzufügen:"
+      label-indentation: "Vertiefung:"
+      title-output-xhtml: "XHTML-Ausgabe:"
+  javascript-obfuscator:
+    title: Javascript-Verschleierung
+    description: JavaScript-Code-Verschleierung mittels Base64- oder Rot13-Kodierung
+    texts:
+      label-base-64: Base 64
+      label-rot-13: ROT 13
+      label-obfuscator-io: Obfuscator.io
+      label-your-javascript-code-to-obfuscate: "Ihr zu verschleiernder JavaScript-Code:"
+      label-obfuscation-method: "Verschleierungsmethode:"
+      title-obfuscted-js-code: Verschleierter JS-Code
+      placeholder-enter-your-javascript-code-here: // Hier Ihren JavaScript-Code eingeben
+  online-wiktionary:
+    title: Online-Wörterbuch
+    description: Wörter in Wiktionary suchen
+    texts:
+      label-english: Englisch
+      label-french: Französisch
+      label-german: Deutsch
+      label-spanish: Spanisch
+      label-italian: Italienisch
+      label-russian: Russisch
+      label-chinese: chinesisch
+      label-japanese: japanisch
+      label-arabic: Arabisch
+      placeholder-enter-a-word: Geben Sie ein Wort ein…
+      placeholder-select-a-language: Wählen Sie eine Sprache aus
+      tag-search-on-wiktionary: Suche auf Wiktionary
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: Geben Sie ein Wort
+        ein und wählen Sie eine Sprache aus, um Wiktionary zu laden.
+  ptr-dns-generator:
+    title: PTR-DNS-Generator
+    description: DNS-PTR-Einträge generieren
+    texts:
+      label-ip-address-ipv4-or-ipv6: "IP-Adresse (IPv4 oder IPv6):"
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: z. B. 192.168.1.10 oder 2001:db8::1
+  screen-memo:
+    title: Spickzettel für Bildschirmbefehle
+    description: Screen Linux-Befehlsnotiz
+  svg-previewer:
+    title: SVG-Vorschau
+    description: Vorschau der SVG-Dateien
+    texts:
+      title-upload-a-svg-file: Laden Sie eine SVG-Datei hoch.
+      title-raw-svg-content: "Unverarbeiteter SVG-Inhalt:"
+      placeholder-paste-raw-svg-content-here: Fügen Sie hier den rohen SVG-Inhalt ein...
+      label-select-background: "Hintergrund auswählen:"
+      title-svg-preview: SVG-Vorschau
+      tag-const-svgcontent-ref: const svgContent = ref
+  tmux-memo:
+    title: Tmux-Befehlsübersicht
+    description: Tmux Linux-Befehlsmemo
+  trigo-viewer:
+    title: Visualisierung trigonometrischer Kurven/Gleichungskurven
+    description: Visualisierung trigonometrischer Gleichungen in Abhängigkeit von x
+    texts:
+      text-degrees: Grad (°)
+      text-value: Wert
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: Geben Sie die
+        Gleichung in Abhängigkeit von x ein (z. B. sin(x) + cos(2*x)).
+      label-equation-in-term-of-x: "Gleichung in Abhängigkeit von x:"
+      label-domain: "Domain:"
+      tag-reset-zoom: Zoom zurücksetzen
+  zellij-memo:
+    title: Zellij-Befehlsübersicht
+    description: Zellij Linux-Befehlsmemo
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: totes Pixel-iFrame
+      tag-: "`;"
+      tag-keyboard-shortcuts: "Tastenkombinationen:"
+      tag-arrow-right-arrow-down-space: Pfeil nach rechts, Pfeil nach unten, Leertaste
+      tag-next-color: Nächste Farbe
+      tag-arrow-left-arrow-up: Pfeil nach links, Pfeil nach oben
+      tag-previous-color: Vorherige Farbe
+      tag-esc: ESC
+      tag-exit-dead-pixel-mode: ": Pixelfehlermodus beenden"
+      tag-start-dead-pixel: Start Dead Pixel
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: SI-Präfixe ausschließen
+    text:
+      si-converter: Gehe zum SI-Präfixkonverter
+  geo-coordinates-converter:
+    title: Geografische Koordinatenkonverter
+    description: Geografische Koordinaten zwischen WGS84, GCJ02, BD09 und CGCS2000
+      konvertieren
+    texts:
+      label-latitude: "Breite:"
+      label-longitude: "Länge:"
+      label-csv-content-lng-lat: "CSV-Inhalt (Länge, Breite):"
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert:
+        Geben Sie Ihre Längen- und Breitengrad-CSV-Datei (in dieser Reihenfolge)
+        zur Konvertierung ein...
+      title-conversion-results: Konvertierungsergebnisse
+      title-notes: Anmerkungen
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (Globaler Standard)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (Gaode, QQ Maps)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (Baidu Maps)
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09Meter (Baidu-Meter)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (Chinesisches Geodätisches System 2000)
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: Konvertieren Sie einzelne
+      tag-convert-batch: Stapelkonvertierung
+      tag-longitude-east-is-positive-west-is-negative: "Längengrad: Osten ist positiv, Westen ist negativ."
+      tag-latitude-north-is-positive-south-is-negative: "Breitengrad: Norden ist positiv, Süden ist negativ."
+  si-prefixes-converter:
+    title: SI-Präfix-Konverter
+    description: Umrechnung zwischen metrischen Präfixen
+    texts:
+      label-quetta-q: quetta (Q)
+      label-ronna-r: Ronna (R)
+      label-yotta-y: Yotta (Y)
+      label-zetta-z: zetta (Z)
+      label-exa-e: exa (E)
+      label-peta-p: Karte (P)
+      label-tera-t: tera (T)
+      label-giga-g: Giga (G)
+      label-mega-m: Mega (M)
+      label-kilo-k: Kilo (k)
+      label-hecto-h: Hekto (h)
+      label-deca-da: zehn (von)
+      label-unit: Einheit
+      label-deci-d: so (d)
+      label-centi-c: centi (c)
+      label-milli-m: national (m)
+      label-micro-µ: Mikro (µ)
+      label-nano-n: Nano (n)
+      label-pico-p: Pico (p)
+      label-femto-f: Femto (f)
+      label-atto-a: Akt (a)
+      label-zepto-z: zepto (z)
+      label-yocto-y: yocto (y)
+      label-ronto-r: ronto (r)
+      label-quecto-q: Ich habe Hunger.
+      label-auto: Auto
+      label-fixed: Behoben
+      label-exponential: Exponentiell
+      label-convert: "Konvertieren:"
+      label-mode: "Modus:"
+      label-decimals: "Dezimalzahlen:"
+      label-thousand-separators: "Tausend Trennzeichen:"
+      label-to: "Zu:"
+      tag-: =
 locale-selector:
   select-a-language: Wählen Sie eine Sprache

@@ -2,6 +2,74 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.01.04
+
+### Features
+- **JSON Viewer**: add unescape JSON string (c4c6d38)
+- **new tool**: Wiktionary Search (ea37ca6)
+-  add download buttons for many tools (3c7e690)
+- **string extraction**: add attribute download-button-text (12c821f)
+- **HTML WYSIWYG Editor**: add XHTML output option (252b5e7)
+- **new tool**: HTML to XHTML (7ba56bf)
+- **HTML WYSIWYG Editor**: upgrade tiptap + add aligments + enhance cell selection (ebad961)
+- **new tool**: JavaScript Obfuscator (529c7da)
+- **new tool**: Database Table Generator (08ac203)
+- **new tool**: Database Creation Generator (53c447a)
+- **Git Attributes Generator**: get all .gitattributes on subfolders + fallback in case of API Rate (8e379e4)
+- **new-tool**: Add Dead Pixel detection tool (#256) (aebb3f2)
+- **new tool**: PTR/ARPA generator/decoder (ed2519e)
+- **new tool**: Gitattributes Generator (1cafdfa)
+- **new tool**: Zellij Cheatsheet (4fd5d89)
+- **JSON tools**: handle big float (0c334e9)
+- **datetime converter**: add custom timezone (#248) (abd685b)
+- **new tool**: implement amortization-calculator tool (#242) (bf58335)
+- **new tool**: Trigo/equation visualizer (23fbd21)
+- **Case Converter**: add title, sponge and swap case (acb95af)
+- **Git Semantic Commit Memo**: enhanced version (19d494f)
+- **new tool**: SVG Preview (bae6175)
+- **JSON Editor**: add Repair and schema validation (fbe9c58)
+- **new tools**: Screen and Tmux Cheatsheets (20c0791)
+
+### Bug fixes
+- **README**: add better new features + typo (d6d5179)
+- **README**: enhance create new tool description (5ee3c18)
+- **README**: add explaination for PORT env var (bfbfee8)
+- **Docker**: allow PORT environment variable (be14d3a)
+- **Code Highlighter**: copy HTML for Word (text/html) and for code editors (text/plain) (0715b28)
+- **JSON Schema Validation**: handle JSON parse error (19da4e3)
+-  implement JSON.parseBigNum with decimal.js (93b688a)
+-  handle quoted big numbers + fix unit tests (1eb6ec6)
+- **JQ Tester**: fix import and typo (be41dd6)
+-  json schema validation 'no validation' reset errors (b700c2c)
+-  enable json repair by default (a875596)
+-  correct docker compose with subfolder sample and links (2b9f4f8)
+- **Barcode Generator**: linear UI (5943dc4)
+
+### Performance
+- **ssh-key-generators**: Added debounce to key pair generators (#249) (c24f94c)
+
+### Chores
+- **README**: link to VSCode installation (f2e13aa)
+- **deps**: update some packages (b8deacf)
+-  update some deps (95590f1)
+-  enhance github issue/pr models (28eedcf)
+-  update renovate.json with better grouping (f36451f)
+
+### Other
+-  Add components.d.ts to .gitignore (32a680f)
+
+### I18n
+-  translate remaining tools (9a1c825)
+-  string extractions (6c862d6)
+-  useCopy messages (4351e57)
+- **zh**: add new translation keys for tools (#247) (15ca81d)
+
+### Fixup! feat
+- **JSON tools**: handle big float (2cf9c75)
+
+### Documentation
+-  add lxc container instructions (209988a)
+
 ## Version 2025.12.07
 
 ### Features

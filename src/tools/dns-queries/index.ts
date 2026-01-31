@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: World,
   createdAt: new Date('2024-08-15'),
   category: 'Network',
+  externAccessDescription: 'This tool send DNS query throught a responding DOH endpoint in the following list: https://martinheidegger.github.io/dns-query/resolvers.json',
 });

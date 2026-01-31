@@ -44,7 +44,8 @@ interface BigInt {
 }
 
 interface JSON {
-  parseBigInt: (jsonStr: string, options?: { minDigits?: number; fallbackToString?: boolean; }) => any;
+  parseBigInt: (jsonStr: string, options?: { minDigits?: number; }) => any;
+  parseBigNum: (jsonStr: string) => any;
   rawJSON(value: string): any;
 }
 

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Lock, World } from '@vicons/tabler';
+
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import type { HeadObject } from '@vueuse/head';
@@ -69,7 +71,7 @@ const toolFooter = computed<string>(() => {
         packageName,
         packageName.includes('://') ? packageName : `https://www.npmjs.com/package/${packageName}`),
     );
-  return ((npmPackages.length > 0 ? t('tools.tool.layout.text.made-with-npmpackages-join-n', [npmPackages.join(', ')]) : '') + footer).trim();
+  return ((npmPackages.length > 0 ? `${t('tools.tool.layout.text.made-with-npmpackages', [npmPackages.join(', ')])}\n` : '') + footer).trim();
 });
 const themeVars = useThemeVars();
 
@@ -83,6 +85,30 @@ const linkTheme = useTheme();
         <div flex flex-nowrap items-center justify-between>
           <n-h1>
             {{ toolTitle }}
+            <n-tooltip
+              placement="right"
+              trigger="click"
+              content-class="tool-privacy-info"
+            >
+              <template #trigger>
+                <World
+                  v-if="route.meta.externAccessDescription"
+                  class="tool-privacy-icon"
+                />
+                <Lock
+                  v-else
+                  class="tool-privacy-icon"
+                />
+              </template>
+              <VueMarkdown
+                v-if="route.meta.externAccessDescription"
+                :source="route.meta.externAccessDescription"
+                :options="{ linkify: true }"
+              />
+              <template v-else>
+                Runs entirely in your browser. No external requests.
+              </template>
+            </n-tooltip>
           </n-h1>
 
           <div>
@@ -110,7 +136,23 @@ const linkTheme = useTheme();
   </BaseLayout>
 </template>
 
+<style lang="less">
+.tool-privacy-info {
+  p {
+    margin:0;
+  }
+  a {
+    color: inherit !important;
+    font-style: italic;
+  }
+}
+</style>
+
 <style lang="less" scoped>
+.tool-privacy-icon {
+  display: inline-block;
+  height: .6em;
+}
 .tool-content {
   display: flex;
   flex-direction: row;

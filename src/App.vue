@@ -24,11 +24,20 @@ const cssVars = computed(() => ({
   '--loading-background-color': colorPalette.value.loading_background,
 }));
 
-// Apply CSS variables to the document root
+// Apply CSS variables to the document root - batch updates to avoid thrashing
+let pendingCssUpdate = false;
 watchEffect(() => {
-  const root = document.documentElement;
-  Object.entries(cssVars.value).forEach(([key, value]) => {
-    root.style.setProperty(key, value);
+  if (pendingCssUpdate) {
+    return;
+  }
+
+  pendingCssUpdate = true;
+  requestAnimationFrame(() => {
+    const root = document.documentElement;
+    Object.entries(cssVars.value).forEach(([key, value]) => {
+      root.style.setProperty(key, value);
+    });
+    pendingCssUpdate = false;
   });
 });
 
@@ -45,7 +54,7 @@ syncRef(
     <NGlobalStyle />
     <NMessageProvider placement="bottom">
       <NNotificationProvider placement="bottom-right">
-        <div>
+        <div class="app-root">
           <component :is="layout">
             <RouterView />
           </component>
@@ -56,20 +65,31 @@ syncRef(
 </template>
 
 <style>
-body {
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 html {
   height: 100%;
   margin: 0;
   padding: 0;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.app-root {
+  contain: layout style paint;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-overflow-scrolling: touch;
 }
 
 body .vld-container {
@@ -81,6 +101,11 @@ body .vld-container {
   background-color: var(--loading-background-color);
   z-index: 9999;
   text-align: center;
+  pointer-events: none;
+}
+
+body .vld-container.vl-active {
+  pointer-events: auto;
 }
 
 body .vld-container .vl-overlay.vl-active {

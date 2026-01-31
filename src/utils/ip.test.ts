@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getIPNetworkType, getNetworksCount, getSubnets, parseAsCIDR, to6to4Prefix, toARPA, toIPv4MappedAddress, toIPv4MappedAddressDecimal } from './ip';
+import { fromARPA, getIPNetworkType, getNetworksCount, getSubnets, parseAsCIDR, to6to4Prefix, toARPA, toIPv4MappedAddress, toIPv4MappedAddressDecimal } from './ip';
 
 describe('ipv4/6 util', () => {
   describe('parseAsCIDR', () => {
@@ -195,10 +195,10 @@ describe('ipv4/6 util', () => {
 
   describe('toARPA', () => {
     it('returns ARPA address', () => {
-      expect(toARPA('1.1.1.1')).to.eql('1.1.1.1.in-addr.arpa'); // NOSONAR
-      expect(toARPA('10.10.1.1')).to.eql('1.1.10.10.in-addr.arpa'); // NOSONAR
-      expect(toARPA('192.168.1.1')).to.eql('1.1.168.192.in-addr.arpa'); // NOSONAR
-      expect(toARPA('255.255.255.0')).to.eql('0.255.255.255.in-addr.arpa'); // NOSONAR
+      expect(toARPA('1.1.1.1')).to.eql('1.1.1.1.in-addr.arpa.'); // NOSONAR
+      expect(toARPA('10.10.1.1')).to.eql('1.1.10.10.in-addr.arpa.'); // NOSONAR
+      expect(toARPA('192.168.1.1')).to.eql('1.1.168.192.in-addr.arpa.'); // NOSONAR
+      expect(toARPA('255.255.255.0')).to.eql('0.255.255.255.in-addr.arpa.'); // NOSONAR
       expect(toARPA('FF02::2')).to.eql('2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.f.f.ip6.arpa.'); // NOSONAR
       expect(toARPA('2345:0425:2CA1:0000:0000:0567:5673:23b5')).to.eql('5.b.3.2.3.7.6.5.7.6.5.0.0.0.0.0.0.0.0.0.1.a.c.2.5.2.4.0.5.4.3.2.ip6.arpa.'); // NOSONAR
       expect(toARPA('fdf8:f53b:82e4::53')).to.eql('3.5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4.e.2.8.b.3.5.f.8.f.d.f.ip6.arpa.'); // NOSONAR
@@ -233,6 +233,14 @@ describe('ipv4/6 util', () => {
       expect(to6to4Prefix('192.168.1.1')).to.eql('2002:c0:a:8:01:01::/48'); // NOSONAR
       expect(to6to4Prefix('255.255.255.0')).to.eql('2002:ff:f:f:ff:00::/48'); // NOSONAR
       expect(to6to4Prefix('2001:db8:0:85a3::ac1f:8001')).to.eql(''); // NOSONAR
+    }); // NOSONAR
+  }); // NOSONAR
+  describe('fromARPA', () => {
+    it('returns IP', () => {
+      expect(fromARPA('42.2.0.192.in-addr.arpa.')).to.eql('192.0.2.42'); // NOSONAR
+      expect(fromARPA('42.2.0.192.in-addr.arpa')).to.eql('192.0.2.42'); // NOSONAR
+      expect(fromARPA('e.f.f.f.3.c.2.6.f.f.f.e.6.6.8.e.1.0.6.7.9.4.e.c.0.0.0.0.1.0.0.2.ip6.arpa.')).to.eql('2001:0:ce49:7601:e866:efff:62c3:fffe'); // NOSONAR
+      expect(fromARPA('e.f.f.f.3.c.2.6.f.f.f.e.6.6.8.e.1.0.6.7.9.4.e.c.0.0.0.0.1.0.0.2.ip6.arpa')).to.eql('2001:0:ce49:7601:e866:efff:62c3:fffe'); // NOSONAR
     }); // NOSONAR
   }); // NOSONAR
 }); // NOSONAR

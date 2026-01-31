@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { convertCsvToArray, getHeaders } from './csv-to-json.service';
+import '@/utils/json5-bignum';
 
 describe('csv-to-json service', () => {
   describe('getHeaders', () => {

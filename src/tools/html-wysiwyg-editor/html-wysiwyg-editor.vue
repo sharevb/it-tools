@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { minify, prettify } from 'htmlfy';
+import { toStrictXhtml } from '../html-to-xhtml/html-to-xhtml.service';
 import Editor from './editor/editor.vue';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
@@ -9,15 +10,20 @@ const { t } = useI18n();
 
 const html = useITStorage('html-wysiwyg-editor--html', '<h1>Hey!</h1><p>Welcome to this html wysiwyg editor</p>');
 
+const xhtmlOutput = useQueryParamOrStorage({ name: 'xhtml', storageName: 'html-wysiwyg-editor--xhtml', defaultValue: false });
 const minifyOutput = useQueryParamOrStorage({ name: 'minify', storageName: 'html-wysiwyg-editor--min', defaultValue: false });
 
 const formattedHtml = computed(() => {
   try {
+    let htmlValue = html.value;
+    if (xhtmlOutput.value) {
+      htmlValue = toStrictXhtml(htmlValue);
+    }
     if (minifyOutput.value) {
-      return minify(html.value);
+      return minify(htmlValue);
     }
 
-    return prettify(html.value);
+    return prettify(htmlValue);
   }
   catch {
     return html.value;
@@ -43,6 +49,9 @@ const formattedHtml = computed(() => {
     <n-form-item :label="t('tools.html-wysiwyg-editor.texts.label-minify')" label-placement="left" mt-2>
       <NSwitch v-model:value="minifyOutput" />
     </n-form-item>
+    <n-form-item :label="t('tools.html-wysiwyg-editor.texts.label-xhtmlfy')" label-placement="left" mt-2>
+      <NSwitch v-model:value="xhtmlOutput" />
+    </n-form-item>
   </NSpace>
-  <TextareaCopyable :value="formattedHtml" language="html" />
+  <TextareaCopyable :value="formattedHtml" language="html" download-file-name="output.htm" />
 </template>

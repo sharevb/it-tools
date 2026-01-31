@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: WorldDownload,
   createdAt: new Date('2025-11-29'),
   category: 'Forensic',
+  externAccessDescription: 'This tool use a CORS Anywhere instance (by default, https://cors.outils-libre.org) to send HEAD http request (no data downloaded) to get HTTP headers and redirects',
 });

@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: World,
   createdAt: new Date('2024-05-11'),
   category: 'Development',
+  externAccessDescription: 'This tool calls API endpoint you provide in you browser only.',
 });

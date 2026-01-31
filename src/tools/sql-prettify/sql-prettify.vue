@@ -126,7 +126,7 @@ const sqlDialects = [
   </n-form-item>
 
   <n-form-item v-if="!prettySQL.error" :label="t('tools.sql-prettify.texts.label-prettify-version-of-your-query')">
-    <TextareaCopyable :value="prettySQL.prettyQuery" language="sql" :follow-height-of="inputElement" />
+    <TextareaCopyable :value="prettySQL.prettyQuery" language="sql" :follow-height-of="inputElement" download-file-name="output.sql" />
   </n-form-item>
 
   <c-alert v-if="prettySQL.error" :title="t('tools.sql-prettify.texts.title-parsing-error')">

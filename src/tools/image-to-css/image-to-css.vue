@@ -92,6 +92,7 @@ watch(svgContent, (newValue) => {
       <h3>{{ t('tools.image-to-css.texts.tag-css-code') }}</h3>
       <TextareaCopyable
         :value="cssCode"
+        download-file-name="output.css"
         word-wrap
       />
     </div>

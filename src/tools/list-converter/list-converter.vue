@@ -51,6 +51,7 @@ const conversionConfig = useStorage<ConvertOptions>('list-converter:conversionCo
   trimItems: true,
   removeDuplicates: true,
   keepLineBreaks: false,
+  outputAsColumn: false,
   itemPrefix: '',
   itemSuffix: '',
   removeItemPrefix: '',
@@ -92,7 +93,10 @@ function transformer(value: string) {
               <n-switch v-model:value="conversionConfig.lowerCase" />
             </n-form-item>
             <n-form-item :label="t('tools.list-converter.texts.label-keep-line-breaks')" label-placement="left" label-width="150" :show-feedback="false" mb-2>
-              <n-switch v-model:value="conversionConfig.keepLineBreaks" />
+              <n-switch v-model:value="conversionConfig.keepLineBreaks" :disabled="conversionConfig.outputAsColumn" />
+            </n-form-item>
+            <n-form-item :label="t('tools.list-converter.texts.label-output-as-column')" label-placement="left" label-width="150" :show-feedback="false" mb-2>
+              <n-switch v-model:value="conversionConfig.outputAsColumn" data-test-id="outputAsColumn" />
             </n-form-item>
           </div>
           <div>
@@ -117,6 +121,8 @@ function transformer(value: string) {
               label-width="120px"
               label-align="right"
               mb-2
+              :disabled="conversionConfig.outputAsColumn"
+              test-id="itemsSeparator"
               :placeholder="t('tools.list-converter.texts.placeholder-items-separator')"
             />
 
@@ -127,6 +133,7 @@ function transformer(value: string) {
               label-width="120px"
               label-align="right"
               mb-2
+              test-id="splitBySeparator"
               :placeholder="t('tools.list-converter.texts.placeholder-separator-for-splitting')"
             />
 
@@ -191,5 +198,8 @@ function transformer(value: string) {
     :output-label="t('tools.list-converter.texts.output-label-your-transformed-data')"
     :transformer="transformer"
     download-file-name="output.txt"
+    input-line-numbers
+    :rows="25"
+    :input-autosize="false"
   />
 </template>

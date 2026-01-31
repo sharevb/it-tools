@@ -3,47 +3,75 @@ import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-const availableTemplates = ref<{ label: string; value: string }[]>([]);
-const selectedTemplates = ref<string[]>([]);
-const gitignoreContent = ref('');
+const options = useLocalStorage<{ label: string; value: string }[]>('gitignore-gen:opts', []);
+const selected = ref<string[]>([]);
+const output = ref<string>('');
+const error = ref<string>('');
 const loading = ref(false);
-const error = ref('');
 
-// Fetch available templates from gitignore.io
-async function fetchTemplates() {
-  try {
-    const response = await fetch('https://cors-anywhere.com/https://www.toptal.com/developers/gitignore/api/list');
-    if (!response.ok) {
-      throw new Error('Failed to fetch template list');
-    }
-    const text = await response.text();
-    availableTemplates.value = text
-      .split(/[,\n]/)
-      .map(tpl => ({ label: tpl, value: tpl }))
-      .sort((a, b) => a.label.localeCompare(b.label));
+// Timestamp cache to allow refresh after X hours
+const lastFetched = useLocalStorage<number>('gitignore-gen:ts', 0);
+const CACHE_TTL = 1000 * 60 * 60 * 24; // 24h
+
+async function loadOptions() {
+  const now = Date.now();
+  const isStale = !options.value.length || (now - lastFetched.value > CACHE_TTL);
+
+  if (!isStale) {
+    // Use cached options
+    return;
   }
-  catch (err: any) {
-    error.value = err.toString();
+
+  try {
+    const res = await fetch('https://api.github.com/repos/github/gitignore/git/trees/main?recursive=true');
+    const files = await res.json();
+    options.value = files.tree
+      .filter((f: any) => f.path.endsWith('.gitignore'))
+      .map((f: any) => f.path.replace('.gitignore', ''))
+      .filter(Boolean)
+      .map((name: string) => ({
+        label: name,
+        value: name,
+      }));
+    lastFetched.value = now;
+  }
+  catch {
+    if (!options.value?.length) {
+      options.value = [
+        'C++',
+        'CMake',
+        'Dotnet',
+        'Node',
+        'Java',
+        'Swift',
+        'Symfony',
+        'Python',
+        'VisualStudio',
+        'WordPress',
+      ].map(name => ({
+        label: name,
+        value: name,
+      }));
+    }
   }
 }
 
 async function generateGitignore() {
-  if (!selectedTemplates.value.length) {
+  if (!selected.value.length) {
     return;
   }
 
   error.value = '';
   loading.value = true;
   try {
-    const response = await fetch(
-      `https://cors-anywhere.com/https://www.toptal.com/developers/gitignore/api/${encodeURIComponent(
-        selectedTemplates.value.join(','),
-      )}`,
-    );
-    if (!response.ok) {
-      throw new Error('Failed to fetch gitignore');
+    let gitignores = '';
+    for (const lang of selected.value) {
+      const url = `https://raw.githubusercontent.com/github/gitignore/main/${lang}.gitignore`;
+      const res = await fetch(url);
+      const text = await res.text();
+      gitignores += `${gitignores ? '\n\n' : ''}# === .gitignore for ${lang} (${url}) ===\n\n${text}`;
     }
-    gitignoreContent.value = await response.text();
+    output.value = gitignores;
   }
   catch (err: any) {
     error.value = err.toString();
@@ -53,25 +81,19 @@ async function generateGitignore() {
   }
 }
 
-onMounted(fetchTemplates);
+onMounted(loadOptions);
 </script>
 
 <template>
   <div>
-    <n-p>
-      {{ t('tools.gitignore-generator.texts.tag-this-tool-use') }}<n-a target="_blank" href="https://www.toptal.com/developers/gitignore">
-        {{ t('tools.gitignore-generator.texts.tag-https-www-toptal-com-developers-gitignore') }}
-      </n-a>
-    </n-p>
-
     <NSelect
-      v-model:value="selectedTemplates"
-      :options="availableTemplates"
+      v-model:value="selected"
+      :options="options"
       multiple
       filterable
       :placeholder="t('tools.gitignore-generator.texts.placeholder-select-templates-e-g-node-python-vue')"
       style="width: 100%;"
-      :disable="!availableTemplates"
+      :disable="!options"
     />
 
     <n-space justify="center">
@@ -79,15 +101,15 @@ onMounted(fetchTemplates);
         type="primary"
         style="margin-top: 12px;"
         :loading="loading"
-        :disable="!availableTemplates"
+        :disable="!options"
         @click="generateGitignore"
       >
         {{ t('tools.gitignore-generator.texts.tag-generate') }}
       </NButton>
     </n-space>
 
-    <c-card v-if="gitignoreContent" :title="t('tools.gitignore-generator.texts.title-gitignore')" mt-2>
-      <textarea-copyable :value="gitignoreContent" language="bash" download-file-name=".gitignore" />
+    <c-card v-if="output" :title="t('tools.gitignore-generator.texts.title-gitignore')" mt-2>
+      <textarea-copyable :value="output" language="bash" download-file-name=".gitignore" />
     </c-card>
   </div>
 </template>

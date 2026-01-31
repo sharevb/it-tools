@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: BrandGit,
   createdAt: new Date('2025-12-06'),
   category: 'Development',
+  externAccessDescription: 'This tool download .gitignore from https://github.com/github/gitignore using Github API',
 });

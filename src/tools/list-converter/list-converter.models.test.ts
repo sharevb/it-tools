@@ -85,6 +85,36 @@ describe('list-converter', () => {
       expect(convert(input, options)).toEqual(expected);
     });
 
+    it('should output as column', () => {
+      const options: ConvertOptions = {
+        trimItems: true,
+        outputAsColumn: true,
+        splitBySeparator: ',',
+      };
+      const input = '1,2,3';
+      const expected = `1
+2
+3`;
+      expect(convert(input, options)).toEqual(expected);
+    });
+
+    it('should strip list and item wrappers when outputting as column', () => {
+      const options: ConvertOptions = {
+        trimItems: true,
+        outputAsColumn: true,
+        splitBySeparator: ',',
+        itemPrefix: '\'',
+        itemSuffix: '\'',
+        listPrefix: '(',
+        listSuffix: ')',
+      };
+      const input = '(\'1\',\'2\',\'3\')';
+      const expected = `1
+2
+3`;
+      expect(convert(input, options)).toEqual(expected);
+    });
+
     it('should sort by asc-num', () => {
       const options: ConvertOptions = {
         trimItems: true,

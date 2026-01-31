@@ -1,10 +1,11 @@
 import { ScreenShare } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate as t } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'Screen Command Cheatsheet',
+  name: t('tools.screen-memo.title'),
   path: '/screen-memo',
-  description: 'Screen linux command memo',
+  description: t('tools.screen-memo.description'),
   keywords: ['terminal', 'linux', 'shell', 'screen'],
   component: () => import('./screen-memo.vue'),
   icon: ScreenShare,

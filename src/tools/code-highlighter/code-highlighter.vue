@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { computed, ref } from 'vue';
 import { bundledLanguagesInfo, createHighlighter } from 'shiki/bundle/full';
 import { bundledThemesInfo } from 'shiki/themes';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { useCopy, useCopyClipboardItems } from '@/composable/copy';
+import { useCopy, useCopyHtml } from '@/composable/copy';
 
 const { t } = useI18n();
 
@@ -75,11 +74,7 @@ const formattedCodeHtml = computedAsync(async () => {
     ],
   });
 });
-const htmlClipboardItems = computed(() => [{
-  mime: 'text/html',
-  content: formattedCodeHtml.value,
-}]);
-const { copy: copyHtml } = useCopyClipboardItems({ source: htmlClipboardItems });
+const { copy: copyHtml } = useCopyHtml({ sourceHtml: formattedCodeHtml });
 const { copy: copyText } = useCopy({ source: code });
 </script>
 
@@ -118,7 +113,7 @@ const { copy: copyText } = useCopy({ source: code });
         <n-switch v-model:value="showLineNumbers" />
       </n-form-item>
       <c-button @click="copyHtml()">
-        {{ t('tools.code-highlighter.texts.tag-copy-html-formatted') }}
+        {{ t('tools.code-highlighter.texts.tag-copy-html-word') }}
       </c-button>
       <c-button @click="copyText()">
         {{ t('tools.code-highlighter.texts.tag-copy-code-text') }}

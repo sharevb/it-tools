@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: Scan,
   createdAt: new Date('2024-03-09'),
   category: 'Images',
+  externAccessDescription: 'This tool downloads OCR languages models on https://cdn.jsdelivr.net',
 });

@@ -128,7 +128,7 @@ const xmlInputValidation = useValidation({
     </c-card>
 
     <c-card :title="t('tools.xslt-tester.texts.title-output')">
-      <TextareaCopyable :value="xmlOutput" language="xml" />
+      <TextareaCopyable :value="xmlOutput" language="xml" download-file-name="output.xml" />
     </c-card>
   </div>
 </template>

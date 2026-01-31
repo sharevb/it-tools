@@ -479,6 +479,7 @@ tools:
       label-remove-duplicates: Remove duplicates
       label-convert-to-lowercase: Convert to lowercase
       label-keep-line-breaks: Keep line breaks
+      label-output-as-column: Output as column
       label-sort-list: Sort list
       placeholder-sort-alphabetically: Sort alphabetically
       label-items-separator: Items Separator
@@ -749,6 +750,7 @@ tools:
       tag-hey: Hey!
       tag-welcome-to-this-html-wysiwyg-editor: Welcome to this html wysiwyg editor
       tag-click-here-to-paste-or-edit-raw-html: Click here to paste or edit raw html
+      label-xhtmlfy: 'XHtml:'
   yaml-to-toml:
     title: YAML to TOML
     description: Parse and convert YAML to TOML.
@@ -1097,6 +1099,7 @@ tools:
     texts:
       tag-const-wordwrap-ref-false: const wordWrap = ref(false);
       tag-word-wrap: Word Wrap?
+      tag-ignore-whitespaces: Ignore Trailing Whitespaces?
   otp-generator:
     title: OTP code generator
     description: >-
@@ -1222,7 +1225,7 @@ tools:
       label-loan-term: Loan Term
       label-interest-rate: Interest Rate
       label-displayed-currency: Displayed Currency
-      label-end-of-year: "End of Year {year}"
+      label-end-of-year: End of Year {year}
       label-year: Year
       label-month: Month
       label-interest: Interest
@@ -1408,6 +1411,7 @@ tools:
       tag-: ''', '''
       tag-copy-html-formatted: Copy HTML Formatted
       tag-copy-code-text: Copy Code Text
+      tag-copy-html-word: Copy to HTML/Rich text in Word
   coin-flipper:
     title: Coin Flipper
     description: Flip a coin
@@ -5512,6 +5516,8 @@ tools:
       label-merged-ical: Merged ICAL
       tag-delete: Delete
       tag-merge-ical-files: Merge iCal files
+      file-to-merge-file-name: 'File to merge: {0}'
+      download-merged-ical: Download merged iCal
     service:
       text:
         no-icals-parsed-successfully: No icals parsed successfully
@@ -5573,6 +5579,12 @@ tools:
       heading-1: Heading 1
       inline-code: Inline code
       strike: Strike
+      heading-5: Heading 5
+      text-left: Align Left
+      text-center: Align Center
+      text-right: Align Right
+      text-justify: Align Justify
+      clear-align: Clear Alignment
   unicode-formatter:
     title: Unicode Formatter
     description: Format text using Unicode fonts
@@ -5774,7 +5786,7 @@ tools:
   tool:
     layout:
       text:
-        made-with-npmpackages-join-n: Made with {0}\n
+        made-with-npmpackages: Made with {0}
   json-viewer:
     texts:
       label-sort-keys: 'Sort keys :'
@@ -5788,6 +5800,7 @@ tools:
       label-json-schema: 'JSON schema:'
       placeholder-paste-your-json-schema-here: Paste your JSON Schema here...
       title-schema-validation-errors: Schema Validation Errors
+      label-unescape-json-string: 'Unescape JSON string:'
     text:
       provided-json-is-not-valid: Provided JSON is not valid.
       try-again-with-repairjsonlabel: Try again with "{0}"
@@ -7343,9 +7356,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: Select templates (e.g. node, python, vue)
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: const availableTemplates = ref
-      tag-this-tool-use: 'This tool use:'
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: Generate
   i-and-l-checker:
     title: I and L Checker
@@ -7494,10 +7504,6 @@ tools:
       label-short-urls-to-expand: 'Short URLs to expand:'
       placeholder-enter-short-urls-one-per-line: Enter short URLs (one per line)
       title-result: Result
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server: >-
-        This tool make use of https://cors-anywhere.com to bypass CORS. This is
-        a community driven server.
-      tag-see-here-for-more-information: See here for more information
       tag-expand-all: Expand All
       tag-download-resuls-as-csv: Download resuls as CSV
       tag-short-url: Short Url
@@ -7505,3 +7511,239 @@ tools:
       tag-link: Link
       tag-status: Status
       tag-open-url: Open Url
+      cors-anywhere-configuration: CORS Anywhere Configuration
+      self-hosted-cors-anywhere: Self Hosted CORS Anywhere
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a: >-
+        This tools requires a CORS Anywhere instance to bypass CORS Policy. You
+        can use a
+      put-your-cors-anywhere-instance-url: Put your CORS Anywhere instance URL...
+      cors-anywhere-instance-url: 'CORS Anywhere instance URL:'
+      expanded-url: Expanded URL
+      short-url: Short URL
+      failed-to-expand-some-urls: Failed to expand some URLs.
+      failed: Failed
+      no-redirect: No redirect
+      expanded: Expanded
+  copy:
+    text:
+      copied-to-the-clipboard: Copied to the clipboard
+  arpa-decoder:
+    title: ARPA Decoder
+    description: Decode IPv4/6 ARPA addresses or PTR record
+    texts:
+      label-arpa-address: 'ARPA Address:'
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: e.g. 10.1.168.192.in-addr.arpa. or xxxx.ip6.arpa.
+  database-builder:
+    title: Database Creation Builder
+    description: Build SQL CREATE DATABASE queries for various databases
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: SQL Server
+      label-oracle: Oracle
+      label-sqlite: SQLite
+      label-database-type: 'Database Type:'
+      label-database-name: 'Database Name:'
+      placeholder-test: test
+      label-server-address: 'Server Address:'
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: 'Account:'
+      label-password-leave-empty-to-generate: 'Password (leave empty to generate):'
+      placeholder-leave-empty-for-random: leave empty for random
+      label-permissions-all-privileges-if-none-selected: 'Permissions (ALL PRIVILEGES if none selected):'
+      title-generated-sql-instructions: 'Generated SQL Instructions:'
+      tag-select: SELECT
+      tag-insert: INSERT
+      tag-update: UPDATE
+      tag-delete: DELETE
+      tag-create: CREATE
+      tag-drop: DROP
+      tag-alter: ALTER
+      tag-index: INDEX
+      tag-execute: EXECUTE
+      tag-references: REFERENCES
+      tag-trigger: TRIGGER
+      tag-usage: USAGE
+      tag-replication-client: REPLICATION CLIENT
+      tag-replication-slave: REPLICATION SLAVE
+      tag-generate-sql-instructions: Generate SQL Instructions
+  database-table-generator:
+    title: Database Table Generator
+    description: Generate SQL CREATE TABLE for common databases
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: SQL Server
+      label-database-type: 'Database Type:'
+      label-database-name: 'Database Name:'
+      placeholder-enter-database-name: Enter database name
+      placeholder-table-name: Table name
+      placeholder-column-name: Column name
+      placeholder-default-value: Default value
+      title-generated-sql: Generated SQL
+      tag-remove-table: Remove Table
+      tag-add-column: Add column
+      tag-nullable: Nullable
+      tag-pk: PK
+      tag-unique: Unique
+      tag-autoinc: AutoInc
+      tag-add-table: Add Table
+      tag-generate-sql: Generate SQL
+  gitattributes-generator:
+    title: Gitattributes Generator
+    description: >-
+      Generate .gitattributes from common configuration of
+      https://github.com/alexkaratarakis/gitattributes
+    texts:
+      label-gitattributes-templates: 'Gitattributes Templates:'
+      placeholder-select-templates: Select templates
+      title-preview: Preview
+      tag-fetch-generate: Fetch & Generate
+  html-to-xhtml:
+    title: HTML to XHTML
+    description: Convert HTML to strict XHTML (XML parsable, self closing tags...)
+    texts:
+      placeholder-your-html-content: Your HTML content...
+      label-your-html-to-convert-to-xhtml: 'Your HTML to convert to XHTML:'
+      label-add-xhtml-xmlns: 'Add XHTML xmlns:'
+      label-indentation: 'Indentation:'
+      title-output-xhtml: 'Output XHTML:'
+  javascript-obfuscator:
+    title: Javascript Obfuscator
+    description: Javascript code obfuscator using base64 or rot13 encoding
+    texts:
+      label-base-64: Base 64
+      label-rot-13: ROT 13
+      label-obfuscator-io: Obfuscator.io
+      label-your-javascript-code-to-obfuscate: 'Your JavaScript code to obfuscate:'
+      placeholder-enter-your-javascript-code-here: // Enter your JavaScript code here
+      label-obfuscation-method: 'Obfuscation method:'
+      title-obfuscted-js-code: Obfuscted JS Code
+  online-wiktionary:
+    title: Online Dictionary
+    description: Search words in Wiktionary
+    texts:
+      label-english: English
+      label-french: French
+      label-german: German
+      label-spanish: Spanish
+      label-italian: Italian
+      label-russian: Russian
+      label-chinese: Chinese
+      label-japanese: Japanese
+      label-arabic: Arabic
+      placeholder-enter-a-word: Enter a word…
+      placeholder-select-a-language: Select a language
+      tag-search-on-wiktionary: Search on Wiktionary
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: Enter a word and select a language to load Wiktionary
+  ptr-dns-generator:
+    title: PTR DNS Generator
+    description: Generate DNS PTR records
+    texts:
+      label-ip-address-ipv4-or-ipv6: 'IP Address (IPv4 or IPv6):'
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: e.g. 192.168.1.10 or 2001:db8::1
+  screen-memo:
+    title: Screen Command Cheatsheet
+    description: Screen linux command memo
+  svg-previewer:
+    title: SVG Previewer
+    description: Preview SVG files
+    texts:
+      title-upload-a-svg-file: Upload a SVG File
+      title-raw-svg-content: 'Raw SVG Content:'
+      placeholder-paste-raw-svg-content-here: Paste raw SVG content here...
+      label-select-background: 'Select background:'
+      title-svg-preview: SVG Preview
+      tag-const-svgcontent-ref: const svgContent = ref
+  tmux-memo:
+    title: Tmux Command Cheatsheet
+    description: Tmux linux command memo
+  trigo-viewer:
+    title: Trigonometric/Equation Curve Visualizer
+    description: Visualize trigonometric or equations depending on x
+    texts:
+      text-degrees: Degrees (°)
+      text-value: Value
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: Enter equation in terms of x (e.g. sin(x) + cos(2*x))
+      label-equation-in-term-of-x: 'Equation in term of x:'
+      label-domain: 'Domain:'
+      tag-reset-zoom: Reset Zoom
+  zellij-memo:
+    title: Zellij Command Cheatsheet
+    description: Zellij linux command memo
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: dead-pixel-iframe
+      tag-: '`;'
+      tag-keyboard-shortcuts: 'Keyboard shortcuts:'
+      tag-arrow-right-arrow-down-space: Arrow Right, Arrow Down, Space
+      tag-next-color: ': Next color'
+      tag-arrow-left-arrow-up: Arrow Left, Arrow Up
+      tag-previous-color: ': Previous color'
+      tag-esc: ESC
+      tag-exit-dead-pixel-mode: ': Exit Dead Pixel Mode'
+      tag-start-dead-pixel: Start Dead Pixel
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: Exclude SI Prefixes
+    text:
+      si-converter: Goto SI Prefixes Converter
+  geo-coordinates-converter:
+    title: Geographic Coordinates Converter
+    description: Convert geographic coordinates between WGS84, GCJ02, BD09 and CGCS2000
+    texts:
+      label-latitude: 'Latitude:'
+      label-longitude: 'Longitude:'
+      label-csv-content-lng-lat: 'CSV Content (Lng, Lat):'
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert: Put your Longitude and Latitude (in this order) CSV to convert...
+      title-conversion-results: Conversion Results
+      title-notes: Notes
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (Global Standard)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (Gaode, QQ Maps)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (Baidu Maps)
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09Meter (Baidu Meter)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (China Geodetic System 2000)
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: Convert Single
+      tag-convert-batch: Convert Batch
+      tag-longitude-east-is-positive-west-is-negative: 'Longitude: East is positive, West is negative.'
+      tag-latitude-north-is-positive-south-is-negative: 'Latitude: North is positive, South is negative.'
+  si-prefixes-converter:
+    title: SI Prefixes Converter
+    description: Convert between Metric Prefixes
+    texts:
+      label-quetta-q: quetta (Q)
+      label-ronna-r: ronna (R)
+      label-yotta-y: yotta (Y)
+      label-zetta-z: zetta (Z)
+      label-exa-e: exa (E)
+      label-peta-p: peta (P)
+      label-tera-t: tera (T)
+      label-giga-g: giga (G)
+      label-mega-m: mega (M)
+      label-kilo-k: kilo (k)
+      label-hecto-h: hecto (h)
+      label-deca-da: deca (da)
+      label-unit: unit
+      label-deci-d: deci (d)
+      label-centi-c: centi (c)
+      label-milli-m: milli (m)
+      label-micro-µ: micro (µ)
+      label-nano-n: nano (n)
+      label-pico-p: pico (p)
+      label-femto-f: femto (f)
+      label-atto-a: atto (a)
+      label-zepto-z: zepto (z)
+      label-yocto-y: yocto (y)
+      label-ronto-r: ronto (r)
+      label-quecto-q: quecto (q)
+      label-auto: Auto
+      label-fixed: Fixed
+      label-exponential: Exponential
+      label-convert: 'Convert:'
+      label-mode: 'Mode:'
+      label-decimals: 'Decimals:'
+      label-thousand-separators: 'Thousand separators:'
+      label-to: 'To:'
+      tag-: '='

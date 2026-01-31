@@ -4,12 +4,10 @@ import { Editor, EditorContent } from '@tiptap/vue-3';
 import StarterKit from '@tiptap/starter-kit';
 import { useThemeVars } from 'naive-ui';
 import { Color } from '@tiptap/extension-color';
-import TextStyle from '@tiptap/extension-text-style';
+import { TextStyleKit } from '@tiptap/extension-text-style';
 import Highlight from '@tiptap/extension-highlight';
-import Table from '@tiptap/extension-table';
-import TableCell from '@tiptap/extension-table-cell';
-import TableHeader from '@tiptap/extension-table-header';
-import TableRow from '@tiptap/extension-table-row';
+import { TableKit } from '@tiptap/extension-table';
+import TextAlign from '@tiptap/extension-text-align';
 import MenuBar from './menu-bar.vue';
 
 const props = defineProps<{ html: string }>();
@@ -21,15 +19,15 @@ const editor = new Editor({
   content: html.value,
   extensions: [
     StarterKit,
-    TextStyle,
     Color,
+    TextStyleKit,
     Highlight.configure({ multicolor: true }),
-    Table.configure({
-      resizable: true,
+    TextAlign.configure({
+      types: ['heading', 'paragraph'],
     }),
-    TableRow,
-    TableHeader,
-    TableCell,
+    TableKit.configure({
+      table: { resizable: true },
+    }),
   ],
 });
 
@@ -141,6 +139,7 @@ tryOnBeforeUnmount(() => {
     }
 
     .selectedCell:after {
+      background: v-bind('themeVars.tableColorHover');
       content: "";
       left: 0; right: 0; top: 0; bottom: 0;
       pointer-events: none;

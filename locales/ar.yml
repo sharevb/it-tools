@@ -730,6 +730,7 @@ tools:
       label-remove-duplicates: إزالة التكرارات
       label-convert-to-lowercase: تحويل إلى أحرف صغيرة
       label-keep-line-breaks: الحفاظ على فواصل الأسطر
+      label-output-as-column: Output as column
       label-sort-list: قائمة الفرز
       placeholder-sort-alphabetically: فرز أبجديًا
       label-items-separator: فاصل العناصر
@@ -896,6 +897,9 @@ tools:
       placeholder-your-string: سلسلتك...
       label-cleaning-regex: "تنظيف التعابير العادية:"
       placeholder-your-cleaning-regex: تعبير التنظيف الخاص بك...
+      label-titlecase: "حالة الأحرف الأولى:"
+      label-spongecase: "سبونج كيس:"
+      label-swapcase: "علبة تبديل:"
   html-entities:
     title: تهريب كيانات HTML (HTML Entities)
     description: تهريب أو الغاء تهريب كيانات HTML ( استبدال أحرف مثل < و > و & و " و
@@ -1097,6 +1101,7 @@ tools:
       tag-hey: يا!
       tag-welcome-to-this-html-wysiwyg-editor: مرحبًا بك في محرر html wysiwyg هذا
       tag-click-here-to-paste-or-edit-raw-html: انقر هنا للصق أو تحرير HTML الخام
+      label-xhtmlfy: "XHtml:"
   yaml-to-toml:
     title: YAML إلى TOML
     description: تحليل YAML وتحويله إلى TOML.
@@ -1930,6 +1935,7 @@ tools:
       tag-: "&#39;, &#39;"
       tag-copy-html-formatted: نسخ بتنسيق HTML
       tag-copy-code-text: نسخ نص الكود
+      tag-copy-html-word: انسخ إلى HTML/نص منسق في برنامج Word
   coin-flipper:
     title: قاذفة العملة
     description: اقلب العملة المعدنية
@@ -2920,6 +2926,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: "العقدة المحددة الحالية JSONPath:"
       label-your-edited-json: "JSON الذي قمت بتحريره:"
+      title-the-following-errors-occured: حدثت الأخطاء التالية
+      tag-validation-successful: تم التحقق بنجاح!
+      label-no-validation: لا يوجد تحقق
+      label-custom: مخصص
+      label-json-schema: "مخطط JSON:"
+      placeholder-paste-your-json-schema-here: ألصق مخطط JSON الخاص بك هنا...
+      title-schema-validation-errors: أخطاء التحقق من صحة المخطط
+      label-indent-size-0-compact: "حجم المسافة البادئة (0 = مضغوط):"
+      repair-json: إصلاح JSON
   json-escaper:
     title: Json Escaper/Unescaper
     description: الهروب وإلغاء الهروب من سلسلة JSON
@@ -4913,6 +4928,8 @@ tools:
       message-this-date-is-invalid-for-this-format: هذا التاريخ غير صالح لهذا التنسيق
       placeholder-put-your-date-string-here: ضع سلسلة التاريخ الخاصة بك هنا...
       placeholder-invalid-date: تاريخ غير صالح...
+      button-add-timezone: إضافة المنطقة الزمنية
+      placeholder-select-timezone: اختر المنطقة الزمنية...
   extract-text-from-html:
     texts:
       message-provided-html-is-not-valid: تم توفير HTML غير صالح.
@@ -5564,6 +5581,8 @@ tools:
       label-merged-ical: تم دمج ICAL
       tag-delete: يمسح
       tag-merge-ical-files: دمج ملفات iCal
+      file-to-merge-file-name: "الملف المراد دمجه: {0}"
+      download-merged-ical: تنزيل ملف iCal المدمج
     service:
       text:
         no-icals-parsed-successfully: لم يتم تحليل أي ملفات ical بنجاح
@@ -5625,6 +5644,12 @@ tools:
       heading-1: العنوان 1
       inline-code: الكود المضمن
       strike: يضرب
+      heading-5: العنوان 5
+      text-left: محاذاة إلى اليسار
+      text-center: مركز المحاذاة
+      text-right: محاذاة إلى اليمين
+      text-justify: محاذاة وتبرير
+      clear-align: محاذاة واضحة
   unicode-formatter:
     title: مُنسّق Unicode
     description: تنسيق النص باستخدام خطوط Unicode
@@ -5823,6 +5848,7 @@ tools:
       label-json-schema: "مخطط JSON:"
       placeholder-paste-your-json-schema-here: قم بلصق مخطط JSON الخاص بك هنا...
       title-schema-validation-errors: أخطاء التحقق من صحة المخطط
+      label-unescape-json-string: "فك تشفير سلسلة JSON:"
     text:
       provided-json-is-not-valid: بشرط أن يكون JSON غير صالح.
       try-again-with-repairjsonlabel: حاول مرة أخرى باستخدام &quot;{0}&quot;
@@ -7108,6 +7134,9 @@ tools:
       label-signature: إمضاء
       label-arguments: الحجج
       title-structured-output-json: إخراج JSON منظم
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quo\
+        t;{'}'} or raw 0x...."
   file-splitter:
     title: مقسم الملفات
     description: تقسيم ملف JSON أو XML أو النص إما حسب مجموعة العقد أو حسب مجموعة الأسطر
@@ -7129,9 +7158,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: حدد القوالب (على سبيل المثال، node، python، vue)
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: ثابت القوالب المتاحة = ref
-      tag-this-tool-use: "تستخدم هذه الأداة:"
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: يولد
   i-and-l-checker:
     title: أنا و ل تشيكر
@@ -7280,10 +7306,6 @@ tools:
       label-short-urls-to-expand: "عناوين URL القصيرة للتوسيع:"
       placeholder-enter-short-urls-one-per-line: أدخل عناوين URL القصيرة (واحدة لكل سطر)
       title-result: نتيجة
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server:
-        تستخدم هذه الأداة https://cors-anywhere.com لتجاوز بروتوكول CORS. هذا
-        خادم مُدار من قِبل المجتمع.
-      tag-see-here-for-more-information: انظر هنا لمزيد من المعلومات
       tag-expand-all: توسيع الكل
       tag-download-resuls-as-csv: تنزيل النتائج بصيغة CSV
       tag-short-url: رابط قصير
@@ -7291,6 +7313,265 @@ tools:
       tag-link: وصلة
       tag-status: حالة
       tag-open-url: فتح الرابط
+      cors-anywhere-configuration: تكوين CORS في أي مكان
+      self-hosted-cors-anywhere: CORS مُستضاف ذاتيًا في أي مكان
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
+        تتطلب هذه الأداة وجود نسخة من CORS Anywhere لتجاوز سياسة CORS. يمكنك
+        استخدام
+      put-your-cors-anywhere-instance-url: أدخل عنوان URL الخاص بمثيل CORS Anywhere الخاص بك...
+      cors-anywhere-instance-url: "عنوان URL لمثيل CORS Anywhere:"
+      expanded-url: عنوان URL موسع
+      short-url: رابط مختصر
+      failed-to-expand-some-urls: فشل توسيع بعض عناوين URL.
+      failed: فشل
+      no-redirect: لا يوجد تحويل
+      expanded: موسع
+  amortization-calculator:
+    title: حاسبة الاستهلاك
+    description: احسب جداول سداد القروض مع تفاصيل الدفعات الشهرية
+    footer: حاسبة الاستهلاك
+    texts:
+      title-loan-parameters: معايير القرض
+      title-overview: ملخص
+      title-amortization-schedule: جدول الاستهلاك
+      label-loan-amount: مبلغ القرض
+      label-loan-term: مدة القرض
+      label-interest-rate: سعر الفائدة
+      label-displayed-currency: العملة المعروضة
+      label-end-of-year: نهاية العام {year}
+      label-year: سنة
+      label-month: شهر
+      label-interest: اهتمام
+      label-principal: رئيسي
+      label-ending-balance: الرصيد النهائي
+      label-monthly-payment: الدفعة الشهرية
+      label-total-of-payments: إجمالي المدفوعات
+      label-total-interest: إجمالي الفائدة
+      message-loan-amount-must-be-positive: يجب أن يكون مبلغ القرض قيمة موجبة
+      message-loan-term-must-be-positive-integer: يجب أن تكون مدة القرض عددًا صحيحًا موجبًا
+      message-interest-rate-must-be-between-1-and-100: يجب أن يكون معدل الفائدة قيمة موجبة بين 0 و 100
+  copy:
+    text:
+      copied-to-the-clipboard: تم نسخها إلى الحافظة
+  arpa-decoder:
+    title: جهاز فك تشفير ARPA
+    description: فك تشفير عناوين IPv4/6 ARPA أو سجل PTR
+    texts:
+      label-arpa-address: "عنوان وكالة مشاريع الأبحاث المتقدمة (ARPA):"
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: على سبيل المثال 10.1.168.192.in-addr.arpa. أو xxxx.ip6.arpa.
+  database-builder:
+    title: أداة إنشاء قواعد البيانات
+    description: إنشاء استعلامات SQL لإنشاء قواعد بيانات متنوعة
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: خادم SQL
+      label-oracle: أوراكل
+      label-sqlite: SQLite
+      label-database-type: "نوع قاعدة البيانات:"
+      label-database-name: "اسم قاعدة البيانات:"
+      placeholder-test: امتحان
+      label-server-address: "عنوان الخادم:"
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: "حساب:"
+      label-password-leave-empty-to-generate: "كلمة المرور (اتركها فارغة ليتم إنشاؤها):"
+      placeholder-leave-empty-for-random: اترك الفراغات للعناصر العشوائية
+      label-permissions-all-privileges-if-none-selected: "الأذونات (جميع الامتيازات إذا لم يتم تحديد أي منها):"
+      title-generated-sql-instructions: "تعليمات SQL المُولَّدة:"
+      tag-select: يختار
+      tag-insert: أدخل
+      tag-update: تحديث
+      tag-delete: يمسح
+      tag-create: يخلق
+      tag-drop: يسقط
+      tag-alter: تغيير
+      tag-index: فِهرِس
+      tag-execute: ينفذ
+      tag-references: مراجع
+      tag-trigger: مشغل
+      tag-usage: الاستخدام
+      tag-replication-client: عميل النسخ المتماثل
+      tag-replication-slave: خادم النسخ المتماثل
+      tag-generate-sql-instructions: إنشاء تعليمات SQL
+  database-table-generator:
+    title: مولد جداول قواعد البيانات
+    description: إنشاء جداول SQL CREATE TABLE لقواعد البيانات الشائعة
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: خادم SQL
+      label-database-type: "نوع قاعدة البيانات:"
+      label-database-name: "اسم قاعدة البيانات:"
+      placeholder-enter-database-name: أدخل اسم قاعدة البيانات
+      placeholder-table-name: اسم الجدول
+      placeholder-column-name: اسم العمود
+      placeholder-default-value: القيمة الافتراضية
+      title-generated-sql: SQL المُولّد
+      tag-remove-table: حذف الجدول
+      tag-add-column: إضافة عمود
+      tag-nullable: قابل للإلغاء
+      tag-pk: PK
+      tag-unique: فريد
+      tag-autoinc: أوتو إنك
+      tag-add-table: إضافة جدول
+      tag-generate-sql: إنشاء SQL
+  gitattributes-generator:
+    title: مولد سمات Gita
+    description: "قم بإنشاء ملف .gitattributes من الإعدادات الشائعة الموجودة على
+      الرابط التالي: https://github.com/alexkaratarakis/gitattributes"
+    texts:
+      label-gitattributes-templates: "قوالب Gitattributes:"
+      placeholder-select-templates: اختر القوالب
+      title-preview: معاينة
+      tag-fetch-generate: جلب وإنشاء
+  html-to-xhtml:
+    title: تحويل HTML إلى XHTML
+    description: تحويل HTML إلى XHTML صارم (قابل للتحليل، علامات إغلاق ذاتي...)
+    texts:
+      placeholder-your-html-content: محتوى HTML الخاص بك...
+      label-your-html-to-convert-to-xhtml: "كود HTML الخاص بك لتحويله إلى XHTML:"
+      label-add-xhtml-xmlns: "أضف XHTML xmlns:"
+      label-indentation: "المسافة البادئة:"
+      title-output-xhtml: "مخرجات XHTML:"
+  javascript-obfuscator:
+    title: أداة إخفاء جافا سكريبت
+    description: أداة لإخفاء كود جافا سكريبت باستخدام ترميز base64 أو rot13
+    texts:
+      label-base-64: الأساس 64
+      label-rot-13: ROT 13
+      label-obfuscator-io: Obfuscator.io
+      label-your-javascript-code-to-obfuscate: "كود جافا سكريبت الخاص بك لإخفاء البيانات:"
+      label-obfuscation-method: "أسلوب التمويه:"
+      title-obfuscted-js-code: كود جافا سكريبت مُشفر
+      placeholder-enter-your-javascript-code-here: أدخل كود جافا سكريبت الخاص بك هنا
+  online-wiktionary:
+    title: قاموس إلكتروني
+    description: ابحث عن الكلمات في ويكشنري
+    texts:
+      label-english: إنجليزي
+      label-french: فرنسي
+      label-german: الألمانية
+      label-spanish: الأسبانية
+      label-italian: إيطالي
+      label-russian: الروسية
+      label-chinese: الصينية
+      label-japanese: اليابانية
+      label-arabic: عربي
+      placeholder-enter-a-word: أدخل كلمة…
+      placeholder-select-a-language: اختر لغة
+      tag-search-on-wiktionary: ابحث في ويكاموس
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: أدخل كلمة واختر لغة لتحميل قاموس ويكشنري
+  ptr-dns-generator:
+    title: مولد نظام أسماء النطاقات PTR
+    description: إنشاء سجلات PTR لنظام أسماء النطاقات (DNS)
+    texts:
+      label-ip-address-ipv4-or-ipv6: "عنوان IP (IPv4 أو IPv6):"
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: "مثال: 192.168.1.10 أو 2001:db8::1"
+  screen-memo:
+    title: دليل أوامر الشاشة
+    description: مذكرة أوامر سكرين لينكس
+  svg-previewer:
+    title: معاينة ملفات SVG
+    description: معاينة ملفات SVG
+    texts:
+      title-upload-a-svg-file: قم بتحميل ملف SVG
+      title-raw-svg-content: "محتوى SVG الخام:"
+      placeholder-paste-raw-svg-content-here: ألصق محتوى SVG الخام هنا...
+      label-select-background: "اختر الخلفية:"
+      title-svg-preview: معاينة SVG
+      tag-const-svgcontent-ref: const svgContent = ref
+  tmux-memo:
+    title: دليل أوامر Tmux
+    description: مذكرة أوامر Tmux في نظام لينكس
+  trigo-viewer:
+    title: مُصوِّر المنحنيات المثلثية/المعادلات
+    description: تخيل المعادلات المثلثية أو المعادلات التي تعتمد على x
+    texts:
+      text-degrees: الدرجات (°)
+      text-value: قيمة
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: أدخل المعادلة بدلالة x (على سبيل المثال sin(x) + cos(2*x))
+      label-equation-in-term-of-x: "المعادلة بدلالة x:"
+      label-domain: "اِختِصاص:"
+      tag-reset-zoom: إعادة ضبط التكبير
+  zellij-memo:
+    title: دليل أوامر Zellij
+    description: مذكرة أوامر لينكس Zellij
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: إطار البكسل الميت
+      tag-: "`;"
+      tag-keyboard-shortcuts: "اختصارات لوحة المفاتيح:"
+      tag-arrow-right-arrow-down-space: السهم لليمين، السهم للأسفل، مسافة
+      tag-next-color: "اللون التالي:"
+      tag-arrow-left-arrow-up: سهم لليسار، سهم للأعلى
+      tag-previous-color: اللون السابق
+      tag-esc: خروج
+      tag-exit-dead-pixel-mode: الخروج من وضع البكسل الميت
+      tag-start-dead-pixel: ابدأ تشغيل Dead Pixel
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: استبعاد البادئات الدولية
+    text:
+      si-converter: انتقل إلى محول البادئات SI
+  geo-coordinates-converter:
+    title: محول الإحداثيات الجغرافية
+    description: تحويل الإحداثيات الجغرافية بين WGS84 و GCJ02 و BD09 و CGCS2000
+    texts:
+      label-latitude: "خط العرض:"
+      label-longitude: "خط الطول:"
+      label-csv-content-lng-lat: "محتوى ملف CSV (خط الطول، خط العرض):"
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert: أدخل خط الطول وخط العرض (بهذا الترتيب) في ملف CSV لتحويلهما...
+      title-conversion-results: نتائج التحويل
+      title-notes: ملحوظات
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (المعيار العالمي)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (Gaode, QQ Maps)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (خرائط بايدو)
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09Meter (عداد بايدو)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (نظام الجيوديسيا الصيني 2000)
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: تحويل فردي
+      tag-convert-batch: تحويل الدفعة
+      tag-longitude-east-is-positive-west-is-negative: "خط الطول: الشرق موجب، والغرب سالب."
+      tag-latitude-north-is-positive-south-is-negative: "خط العرض: الشمال موجب، والجنوب سالب."
+  si-prefixes-converter:
+    title: محول بادئات النظام الدولي للوحدات
+    description: التحويل بين البادئات المترية
+    texts:
+      label-quetta-q: كيتا (Q)
+      label-ronna-r: رونا (يمين)
+      label-yotta-y: يوتا (Y)
+      label-zetta-z: زيتا (Z)
+      label-exa-e: exa (E)
+      label-peta-p: خريطة (P)
+      label-tera-t: تيرا (T)
+      label-giga-g: جيجا (G)
+      label-mega-m: ميجا (M)
+      label-kilo-k: كيلو (ك)
+      label-hecto-h: هيكتو (ح)
+      label-deca-da: عشرة (من)
+      label-unit: وحدة
+      label-deci-d: لذا (د)
+      label-centi-c: سنتي (ج)
+      label-milli-m: وطني (م)
+      label-micro-µ: ميكرو (µ)
+      label-nano-n: نانو (ن)
+      label-pico-p: بيكو (ص)
+      label-femto-f: فيمتو (أنثى)
+      label-atto-a: الفعل (أ)
+      label-zepto-z: زيبتو (ز)
+      label-yocto-y: yocto (y)
+      label-ronto-r: رونتو (ر)
+      label-quecto-q: أنا جائع.
+      label-auto: آلي
+      label-fixed: مُثَبَّت
+      label-exponential: النمو الأسي
+      label-convert: "يتحول:"
+      label-mode: "وضع:"
+      label-decimals: "الأعداد العشرية:"
+      label-thousand-separators: "ألف فاصل:"
+      label-to: "ل:"
+      tag-: =
 spanCopyable:
   copy: نسخ إلى الحافظة
   copied: تم النسخ!

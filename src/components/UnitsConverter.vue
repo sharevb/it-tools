@@ -12,6 +12,36 @@ const props = withDefaults(defineProps<{
   unitMinWidth: '50px',
 });
 const { supportedUnits, defaultUnit, labelWidth, unitMinWidth } = toRefs(props);
+
+const SI_PREFIX_NAMES = [
+  'quetta',
+  'ronna',
+  'yotta',
+  'zetta',
+  'exa',
+  'peta',
+  'tera',
+  'giga',
+  'mega',
+  'kilo',
+  'hecto',
+  'deca',
+  'deci',
+  'centi',
+  'milli',
+  'micro',
+  'nano',
+  'pico',
+  'femto',
+  'atto',
+  'zepto',
+  'yocto',
+  'ronto',
+  'quecto',
+] as const;
+
+const SI_PREFIX_NAMES_REGEX = new RegExp(`^(${SI_PREFIX_NAMES.join('|')})`);
+
 const units = reactive<
   Record<
     string,
@@ -25,6 +55,17 @@ const units = reactive<
         ...prev,
         [current.unit]: current,
       }), {}));
+
+const excludeSIPrefixes = ref(true);
+const filteredUnits = computed(() => {
+  if (!excludeSIPrefixes.value) {
+    return Object.entries(units);
+  }
+
+  return Object.entries(units).filter(
+    ([_, { title }]) => !SI_PREFIX_NAMES_REGEX.test(title),
+  );
+});
 
 function update(key: string) {
   if (!units[key]) {
@@ -52,7 +93,15 @@ update(defaultUnit.value);
 
 <template>
   <div>
-    <n-input-group v-for="[key, { title, unit }] in Object.entries(units)" :key="key" mb-3 w-full>
+    <n-space justify="center" mb-3>
+      <n-checkbox v-model:checked="excludeSIPrefixes">
+        {{ $t('tools.UnitsConverter.texts.exclude-si-prefixes') }}
+      </n-checkbox>
+      <c-link target="_blank" to="/si-prefixes-converter">
+        {{ $t('tools.UnitsConverter.text.si-converter') }}
+      </c-link>
+    </n-space>
+    <n-input-group v-for="[key, { title, unit }] in filteredUnits" :key="key" mb-3 w-full>
       <n-input-group-label :style="{ width: labelWidth }">
         {{ title }}
       </n-input-group-label>

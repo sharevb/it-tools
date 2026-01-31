@@ -109,7 +109,7 @@ const { schemas, errors: validationErrors } = useYamlSchemaValidation({ yaml: ra
     <n-divider />
 
     <n-form-item :label="t('tools.yaml-viewer.texts.label-prettified-version-of-your-yaml')">
-      <TextareaCopyable :value="cleanYaml" language="yaml" />
+      <TextareaCopyable :value="cleanYaml" language="yaml" download-file-name="output.yml" />
     </n-form-item>
   </div>
 </template>

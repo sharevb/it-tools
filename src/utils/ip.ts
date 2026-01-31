@@ -122,10 +122,24 @@ export function toARPA(address: string) {
         (bigInt >> BigInt(24) & BigInt(255)),
       ].join('.')
     );
-    return `${reverseIP}.in-addr.arpa`;
+    return `${reverseIP}.in-addr.arpa.`;
   }
 
   return (new Address6(address)).reverseForm();
+}
+
+export function fromARPA(arpa: string) {
+  if (!arpa) {
+    return null;
+  }
+  if (!arpa.endsWith('.')) {
+    arpa = `${arpa}.`;
+  }
+  if (arpa.includes('.in-addr.arpa')) {
+    return Address4.fromArpa(arpa).correctForm();
+  }
+
+  return Address6.fromArpa(arpa).correctForm();
 }
 
 export function toIPv4MappedAddress(address: string) {

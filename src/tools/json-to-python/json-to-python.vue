@@ -127,6 +127,7 @@ const rules: UseValidationRule<string>[] = [
     <TextareaCopyable
       :value="pythonOutput"
       language="python"
+      download-file-name="output.py"
     />
   </c-card>
 </template>

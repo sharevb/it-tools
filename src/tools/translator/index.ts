@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: ArrowsShuffle,
   createdAt: new Date('2025-08-15'),
   category: 'Text',
+  externAccessDescription: 'This tool downloads translation models (Xenova/opus-mt-[source]-[target]) on https://huggingface.co/',
 });

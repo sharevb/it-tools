@@ -135,7 +135,7 @@ const outputMarkdown = computed(() => {
     <n-divider />
 
     <n-form-item :label="t('tools.html-to-markdown.texts.label-output-markdown')">
-      <TextareaCopyable :value="outputMarkdown" />
+      <TextareaCopyable :value="outputMarkdown" download-file-name="output.md" />
     </n-form-item>
   </div>
 </template>

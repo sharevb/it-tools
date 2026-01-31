@@ -14,7 +14,7 @@ function transformer(value: string) {
     if (value === '') {
       return '';
     }
-    return convertArrayToCsv({ arrayOrObject: JSON.parseBigInt(value) });
+    return convertArrayToCsv({ arrayOrObject: JSON.parseBigNum(value) });
   }, '');
 }
 

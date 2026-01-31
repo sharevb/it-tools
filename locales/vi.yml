@@ -765,6 +765,7 @@ tools:
       label-remove-duplicates: Xóa các bản sao
       label-convert-to-lowercase: Chuyển đổi thành chữ thường
       label-keep-line-breaks: Giữ ngắt dòng
+      label-output-as-column: Output as column
       label-sort-list: Sắp xếp danh sách
       placeholder-sort-alphabetically: Sắp xếp theo thứ tự bảng chữ cái
       label-items-separator: Bộ phân tách mục
@@ -910,6 +911,9 @@ tools:
       placeholder-your-string: Dây của bạn...
       label-cleaning-regex: "Dọn dẹp regex:"
       placeholder-your-cleaning-regex: Quy trình dọn dẹp của bạn...
+      label-titlecase: "Viết hoa chữ cái đầu câu:"
+      label-spongecase: "Vỏ xốp:"
+      label-swapcase: "Swapcase:"
   html-entities:
     title: Thay thế các ký tự HTML
     description: Thay thế hoặc bỏ thẻ các ký tự HTML (thay thế <,>, &, " và \' thành
@@ -1094,6 +1098,7 @@ tools:
       tag-hey: Chào!
       tag-welcome-to-this-html-wysiwyg-editor: Chào mừng đến với trình soạn thảo html wysiwyg này
       tag-click-here-to-paste-or-edit-raw-html: Nhấp vào đây để dán hoặc chỉnh sửa HTML thô
+      label-xhtmlfy: "XHtml:"
   yaml-to-toml:
     title: YAML sang TOML
     description: Phân tích và chuyển đổi YAML sang TOML.
@@ -1931,6 +1936,7 @@ tools:
       tag-: "&#39;, &#39;"
       tag-copy-html-formatted: Sao chép định dạng HTML
       tag-copy-code-text: Sao chép mã văn bản
+      tag-copy-html-word: Sao chép sang HTML/Văn bản đa dạng trong Word
   coin-flipper:
     title: Người lật đồng xu
     description: Lật một đồng xu
@@ -2927,6 +2933,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: "JSONPath của nút được chọn hiện tại:"
       label-your-edited-json: "JSON đã chỉnh sửa của bạn:"
+      title-the-following-errors-occured: Các lỗi sau đã xảy ra
+      tag-validation-successful: Xác thực thành công!
+      label-no-validation: Không xác thực
+      label-custom: Phong tục
+      label-json-schema: "Lược đồ JSON:"
+      placeholder-paste-your-json-schema-here: Dán lược đồ JSON của bạn vào đây...
+      title-schema-validation-errors: Lỗi xác thực lược đồ
+      label-indent-size-0-compact: "Kích thước thụt lề (0 = Thu gọn):"
+      repair-json: Sửa chữa JSON
   json-escaper:
     title: Json Escaper/Unescaper
     description: Thoát và bỏ thoát chuỗi JSON
@@ -4935,6 +4950,8 @@ tools:
       message-this-date-is-invalid-for-this-format: Ngày này không hợp lệ cho định dạng này
       placeholder-put-your-date-string-here: Đặt chuỗi ngày của bạn vào đây...
       placeholder-invalid-date: Ngày không hợp lệ...
+      button-add-timezone: Thêm múi giờ
+      placeholder-select-timezone: Chọn múi giờ...
   extract-text-from-html:
     texts:
       message-provided-html-is-not-valid: Mã HTML được cung cấp không hợp lệ.
@@ -5651,6 +5668,8 @@ tools:
       label-merged-ical: ICAL đã sáp nhập
       tag-delete: Xóa bỏ
       tag-merge-ical-files: Hợp nhất các tệp iCal
+      file-to-merge-file-name: "Tệp cần hợp nhất: {0}"
+      download-merged-ical: Tải xuống tệp iCal đã hợp nhất
     service:
       text:
         no-icals-parsed-successfully: Không có ical nào được phân tích thành công
@@ -5712,6 +5731,12 @@ tools:
       heading-1: Tiêu đề 1
       inline-code: Mã nội tuyến
       strike: Đánh đập
+      heading-5: Tiêu đề 5
+      text-left: Căn trái
+      text-center: Căn giữa
+      text-right: Căn phải
+      text-justify: Căn chỉnh
+      clear-align: Căn chỉnh rõ ràng
   unicode-formatter:
     title: Trình định dạng Unicode
     description: Định dạng văn bản bằng phông chữ Unicode
@@ -5916,6 +5941,7 @@ tools:
       label-json-schema: "Sơ đồ JSON:"
       placeholder-paste-your-json-schema-here: Dán Sơ đồ JSON của bạn vào đây...
       title-schema-validation-errors: Lỗi xác thực lược đồ
+      label-unescape-json-string: "Giải mã chuỗi JSON:"
     text:
       provided-json-is-not-valid: JSON được cung cấp không hợp lệ.
       try-again-with-repairjsonlabel: Thử lại với &quot;{0}&quot;
@@ -7212,6 +7238,9 @@ tools:
       label-signature: Chữ ký
       label-arguments: Các đối số
       title-structured-output-json: JSON đầu ra có cấu trúc
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quo\
+        t;{'}'} hoặc 0x thô...."
   file-splitter:
     title: Bộ chia tệp
     description: Chia tách tệp JSON, XML hoặc văn bản theo nhóm nút hoặc theo nhóm dòng
@@ -7233,9 +7262,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: "Chọn mẫu (ví dụ: node, python, vue)"
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: const availableTemplates = ref
-      tag-this-tool-use: "Công cụ này sử dụng:"
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: Phát ra
   i-and-l-checker:
     title: Kiểm tra I và L
@@ -7386,10 +7412,6 @@ tools:
       label-short-urls-to-expand: "URL ngắn để mở rộng:"
       placeholder-enter-short-urls-one-per-line: Nhập URL ngắn (mỗi dòng một URL)
       title-result: Kết quả
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server:
-        Công cụ này sử dụng https://cors-anywhere.com để vượt qua CORS. Đây là
-        một máy chủ do cộng đồng điều hành.
-      tag-see-here-for-more-information: Xem tại đây để biết thêm thông tin
       tag-expand-all: Mở rộng tất cả
       tag-download-resuls-as-csv: Tải xuống kết quả dưới dạng CSV
       tag-short-url: URL ngắn
@@ -7397,6 +7419,270 @@ tools:
       tag-link: Liên kết
       tag-status: Trạng thái
       tag-open-url: Mở URL
+      cors-anywhere-configuration: Cấu hình CORS mọi nơi
+      self-hosted-cors-anywhere: CORS tự lưu trữ ở bất cứ đâu
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
+        Công cụ này yêu cầu một phiên bản CORS Anywhere để bỏ qua Chính sách
+        CORS. Bạn có thể sử dụng một
+      put-your-cors-anywhere-instance-url: Hãy nhập URL của phiên bản CORS Anywhere của bạn...
+      cors-anywhere-instance-url: "URL của phiên bản CORS Anywhere:"
+      expanded-url: URL mở rộng
+      short-url: URL rút gọn
+      failed-to-expand-some-urls: Không thể mở rộng một số URL.
+      failed: Thất bại
+      no-redirect: Không chuyển hướng
+      expanded: Mở rộng
+  amortization-calculator:
+    title: Máy tính khấu hao
+    description: Tính toán lịch trả nợ vay với phân tích chi tiết các khoản thanh
+      toán hàng tháng.
+    footer: Máy tính khấu hao
+    texts:
+      title-loan-parameters: Thông số khoản vay
+      title-overview: Tổng quan
+      title-amortization-schedule: Bảng khấu hao
+      label-loan-amount: Số tiền vay
+      label-loan-term: Thời hạn vay
+      label-interest-rate: Lãi suất
+      label-displayed-currency: Loại tiền tệ được hiển thị
+      label-end-of-year: Cuối năm {year}
+      label-year: Năm
+      label-month: Tháng
+      label-interest: Quan tâm
+      label-principal: Hiệu trưởng
+      label-ending-balance: Số dư cuối kỳ
+      label-monthly-payment: Thanh toán hàng tháng
+      label-total-of-payments: Tổng số tiền thanh toán
+      label-total-interest: Tổng lãi suất
+      message-loan-amount-must-be-positive: Số tiền vay phải là một giá trị dương.
+      message-loan-term-must-be-positive-integer: Thời hạn vay phải là một số nguyên dương.
+      message-interest-rate-must-be-between-1-and-100: Lãi suất phải là một giá trị dương nằm trong khoảng từ 0 đến 100.
+  copy:
+    text:
+      copied-to-the-clipboard: Đã sao chép vào clipboard
+  arpa-decoder:
+    title: Bộ giải mã ARPA
+    description: Giải mã địa chỉ ARPA IPv4/6 hoặc bản ghi PTR.
+    texts:
+      label-arpa-address: "Địa chỉ ARPA:"
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: "Ví dụ: 10.1.168.192.in-addr.arpa. hoặc xxxx.ip6.arpa."
+  database-builder:
+    title: Công cụ tạo cơ sở dữ liệu
+    description: Xây dựng các câu lệnh SQL CREATE DATABASE cho nhiều cơ sở dữ liệu
+      khác nhau.
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: Máy chủ SQL
+      label-oracle: Oracle
+      label-sqlite: SQLite
+      label-database-type: "Loại cơ sở dữ liệu:"
+      label-database-name: "Tên cơ sở dữ liệu:"
+      placeholder-test: Bài kiểm tra
+      label-server-address: "Địa chỉ máy chủ:"
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: "Tài khoản:"
+      label-password-leave-empty-to-generate: "Mật khẩu (để trống để tạo tự động):"
+      placeholder-leave-empty-for-random: Để trống cho ngẫu nhiên
+      label-permissions-all-privileges-if-none-selected: "Quyền hạn (TẤT CẢ QUYỀN nếu chưa chọn quyền nào):"
+      title-generated-sql-instructions: "Các lệnh SQL được tạo tự động:"
+      tag-select: LỰA CHỌN
+      tag-insert: CHÈN
+      tag-update: CẬP NHẬT
+      tag-delete: XÓA BỎ
+      tag-create: TẠO NÊN
+      tag-drop: LÀM RƠI
+      tag-alter: THAY ĐỔI
+      tag-index: MỤC LỤC
+      tag-execute: THỰC HIỆN
+      tag-references: TÀI LIỆU THAM KHẢO
+      tag-trigger: CÒ SÚNG
+      tag-usage: CÁCH SỬ DỤNG
+      tag-replication-client: MÁY KHÁCH SAO CHÉP
+      tag-replication-slave: NÔ LỆ SAO CHÉP
+      tag-generate-sql-instructions: Tạo hướng dẫn SQL
+  database-table-generator:
+    title: Trình tạo bảng cơ sở dữ liệu
+    description: Tạo câu lệnh SQL CREATE TABLE cho các cơ sở dữ liệu thông dụng.
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: Máy chủ SQL
+      label-database-type: "Loại cơ sở dữ liệu:"
+      label-database-name: "Tên cơ sở dữ liệu:"
+      placeholder-enter-database-name: Nhập tên cơ sở dữ liệu
+      placeholder-table-name: Tên bảng
+      placeholder-column-name: Tên cột
+      placeholder-default-value: Giá trị mặc định
+      title-generated-sql: SQL được tạo
+      tag-remove-table: Xóa bảng
+      tag-add-column: Thêm cột
+      tag-nullable: Có thể null
+      tag-pk: PK
+      tag-unique: Độc nhất
+      tag-autoinc: AutoInc
+      tag-add-table: Thêm bảng
+      tag-generate-sql: Tạo SQL
+  gitattributes-generator:
+    title: Trình tạo thuộc tính Git
+    description: Tạo tệp .gitattributes từ cấu hình chung của
+      https://github.com/alexkaratarakis/gitattributes
+    texts:
+      label-gitattributes-templates: "Mẫu Gitattributes:"
+      placeholder-select-templates: Chọn mẫu
+      title-preview: Xem trước
+      tag-fetch-generate: Tìm nạp & Tạo
+  html-to-xhtml:
+    title: Chuyển đổi HTML sang XHTML
+    description: Chuyển đổi HTML sang định dạng XHTML chuẩn (có thể phân tích cú
+      pháp XML, thẻ tự đóng...).
+    texts:
+      placeholder-your-html-content: Nội dung HTML của bạn...
+      label-your-html-to-convert-to-xhtml: "Mã HTML cần chuyển đổi sang XHTML:"
+      label-add-xhtml-xmlns: "Thêm XHTML xmlns:"
+      label-indentation: "Thụt lề:"
+      title-output-xhtml: "Xuất ra định dạng XHTML:"
+  javascript-obfuscator:
+    title: Trình làm xáo trộn Javascript
+    description: Công cụ làm xáo trộn mã Javascript sử dụng mã hóa base64 hoặc rot13
+    texts:
+      label-base-64: Cơ số 64
+      label-rot-13: ROT 13
+      label-obfuscator-io: Obfuscator.io
+      label-your-javascript-code-to-obfuscate: "Mã JavaScript cần làm mờ:"
+      label-obfuscation-method: "Phương pháp làm mờ mã nguồn:"
+      title-obfuscted-js-code: Mã JavaScript bị làm mờ
+      placeholder-enter-your-javascript-code-here: // Nhập mã JavaScript của bạn vào đây
+  online-wiktionary:
+    title: Từ điển trực tuyến
+    description: Tìm kiếm từ khóa trong Wiktionary
+    texts:
+      label-english: Tiếng Anh
+      label-french: tiếng Pháp
+      label-german: tiếng Đức
+      label-spanish: tiếng Tây Ban Nha
+      label-italian: Ý
+      label-russian: Tiếng Nga
+      label-chinese: Trung Quốc
+      label-japanese: Tiếng Nhật
+      label-arabic: tiếng Ả Rập
+      placeholder-enter-a-word: Nhập một từ…
+      placeholder-select-a-language: Chọn ngôn ngữ
+      tag-search-on-wiktionary: Tìm kiếm trên Wiktionary
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: Nhập một từ và chọn ngôn ngữ để tải Wiktionary.
+  ptr-dns-generator:
+    title: Trình tạo DNS PTR
+    description: Tạo bản ghi DNS PTR
+    texts:
+      label-ip-address-ipv4-or-ipv6: "Địa chỉ IP (IPv4 hoặc IPv6):"
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: "ví dụ: 192.168.1.10 hoặc 2001:db8::1"
+  screen-memo:
+    title: Bảng tóm tắt lệnh màn hình
+    description: Ghi chú lệnh Screen linux
+  svg-previewer:
+    title: Trình xem trước SVG
+    description: Xem trước các tệp SVG
+    texts:
+      title-upload-a-svg-file: Tải lên tệp SVG
+      title-raw-svg-content: "Nội dung SVG thô:"
+      placeholder-paste-raw-svg-content-here: Dán nội dung SVG thô vào đây...
+      label-select-background: "Chọn hình nền:"
+      title-svg-preview: Xem trước SVG
+      tag-const-svgcontent-ref: const svgContent = ref
+  tmux-memo:
+    title: Bảng tóm tắt các lệnh Tmux
+    description: Ghi chú lệnh Tmux linux
+  trigo-viewer:
+    title: Công cụ trực quan hóa đường cong lượng giác/phương trình
+    description: Hình dung các phương trình lượng giác hoặc phương trình phụ thuộc vào x
+    texts:
+      text-degrees: Độ (°)
+      text-value: Giá trị
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: "Nhập phương trình theo x (ví dụ: sin(x) + cos(2*x))"
+      label-equation-in-term-of-x: "Phương trình theo x:"
+      label-domain: "Lãnh địa:"
+      tag-reset-zoom: Đặt lại thu phóng
+  zellij-memo:
+    title: Bảng tóm tắt các lệnh Zellij
+    description: Ghi chú lệnh Zellij linux
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: khung iframe điểm ảnh chết
+      tag-: "`;"
+      tag-keyboard-shortcuts: "Phím tắt bàn phím:"
+      tag-arrow-right-arrow-down-space: Mũi tên phải, Mũi tên xuống, Phím cách
+      tag-next-color: Màu tiếp theo
+      tag-arrow-left-arrow-up: Mũi tên sang trái, Mũi tên lên
+      tag-previous-color: Màu trước đó
+      tag-esc: THOÁT
+      tag-exit-dead-pixel-mode: Thoát khỏi Chế độ điểm ảnh chết
+      tag-start-dead-pixel: Điểm ảnh chết khởi đầu
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: Loại trừ các tiền tố SI
+    text:
+      si-converter: Chuyển đến công cụ chuyển đổi tiền tố SI
+  geo-coordinates-converter:
+    title: Công cụ chuyển đổi tọa độ địa lý
+    description: Chuyển đổi tọa độ địa lý giữa các hệ tọa độ WGS84, GCJ02, BD09 và CGCS2000.
+    texts:
+      label-latitude: "Vĩ độ:"
+      label-longitude: "Kinh độ:"
+      label-csv-content-lng-lat: "Nội dung CSV (Kinh độ, Vĩ độ):"
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert:
+        Nhập tọa độ Kinh độ và Vĩ độ (theo thứ tự này) dưới dạng tệp CSV để
+        chuyển đổi...
+      title-conversion-results: Kết quả chuyển đổi
+      title-notes: Ghi chú
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (Tiêu chuẩn toàn cầu)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (Gaode, QQ Maps)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (Bản đồ Baidu)
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09Meter (Máy đo Baidu)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (Hệ thống trắc địa Trung Quốc 2000)
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: Chuyển đổi đơn lẻ
+      tag-convert-batch: Chuyển đổi hàng loạt
+      tag-longitude-east-is-positive-west-is-negative: "Kinh độ: Hướng Đông là dương, hướng Tây là âm."
+      tag-latitude-north-is-positive-south-is-negative: "Vĩ độ: Hướng Bắc là dương, hướng Nam là âm."
+  si-prefixes-converter:
+    title: Bộ chuyển đổi tiền tố SI
+    description: Chuyển đổi giữa các tiền tố hệ mét
+    texts:
+      label-quetta-q: Quetta (Q)
+      label-ronna-r: Ronna (R)
+      label-yotta-y: yotta (Y)
+      label-zetta-z: zetta (Z)
+      label-exa-e: ví dụ (E)
+      label-peta-p: bản đồ (P)
+      label-tera-t: tera (T)
+      label-giga-g: giga (G)
+      label-mega-m: mega (M)
+      label-kilo-k: kilôgam (k)
+      label-hecto-h: hecto (h)
+      label-deca-da: mười (từ)
+      label-unit: đơn vị
+      label-deci-d: vậy (d)
+      label-centi-c: centi (c)
+      label-milli-m: quốc gia (m)
+      label-micro-µ: vi mô (µ)
+      label-nano-n: nano (n)
+      label-pico-p: pico (p)
+      label-femto-f: femto (f)
+      label-atto-a: hành động (a)
+      label-zepto-z: zepto (z)
+      label-yocto-y: yocto (y)
+      label-ronto-r: ronto (r)
+      label-quecto-q: Tôi đói bụng.
+      label-auto: Tự động
+      label-fixed: Đã sửa
+      label-exponential: Theo cấp số mũ
+      label-convert: "Chuyển thành:"
+      label-mode: "Cách thức:"
+      label-decimals: "Số thập phân:"
+      label-thousand-separators: "Dấu phân cách hàng nghìn:"
+      label-to: "ĐẾN:"
+      tag-: =
 spanCopyable:
   copy: Sao chép vào bảng tạm
   copied: Đã sao chép!

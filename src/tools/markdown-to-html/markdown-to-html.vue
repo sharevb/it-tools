@@ -76,7 +76,7 @@ function printHtml() {
     <n-divider />
 
     <n-form-item :label="t('tools.markdown-to-html.html')">
-      <TextareaCopyable :value="outputHtml" :word-wrap="true" language="html" />
+      <TextareaCopyable :value="outputHtml" :word-wrap="true" language="html" download-file-name="output.htm" />
     </n-form-item>
 
     <div flex justify-center>

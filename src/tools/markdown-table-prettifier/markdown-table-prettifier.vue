@@ -25,7 +25,7 @@ const outputMarkdown = computed(() => {
     <n-divider />
 
     <n-form-item :label="t('tools.markdown-table-prettifier.texts.label-prettified-markdown')">
-      <TextareaCopyable :value="outputMarkdown" :word-wrap="true" language="markdown" />
+      <TextareaCopyable :value="outputMarkdown" :word-wrap="true" language="markdown" download-file-name="output.md" />
     </n-form-item>
   </div>
 </template>

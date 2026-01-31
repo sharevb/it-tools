@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: World,
   createdAt: new Date('2025-10-03'),
   category: 'Network',
+  externAccessDescription: 'This tool launch a new tab with domain to check at https://www.iana.org/whois',
 });

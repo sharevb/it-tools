@@ -615,6 +615,7 @@ tools:
       label-remove-duplicates: 중복 제거
       label-convert-to-lowercase: 소문자로 변환
       label-keep-line-breaks: 줄 바꿈을 유지하세요
+      label-output-as-column: Output as column
       label-sort-list: 목록 정렬
       placeholder-sort-alphabetically: 알파벳순으로 정렬
       label-items-separator: 항목 구분 기호
@@ -752,6 +753,9 @@ tools:
       placeholder-your-string: 당신의 줄은...
       label-cleaning-regex: "정규식 정리:"
       placeholder-your-cleaning-regex: 청소 정규 표현식은...
+      label-titlecase: "제목 대소문자:"
+      label-spongecase: "스폰지케이스:"
+      label-swapcase: "스왑케이스:"
   html-entities:
     title: HTML 엔티티 이스케이프
     description: <, >, &, ", \' 등을 HTML 엔티티로 변환/복원합니다.
@@ -915,6 +919,7 @@ tools:
       tag-hey: 여기요!
       tag-welcome-to-this-html-wysiwyg-editor: 이 HTML WYSIWYG 편집기에 오신 것을 환영합니다
       tag-click-here-to-paste-or-edit-raw-html: 여기를 클릭하여 원시 HTML을 붙여넣거나 편집하세요.
+      label-xhtmlfy: "XHTML:"
   yaml-to-toml:
     title: YAML → TOML
     description: YAML을 파싱해 TOML로 변환합니다.
@@ -1725,6 +1730,7 @@ tools:
       tag-: "', '"
       tag-copy-html-formatted: HTML 형식으로 복사
       tag-copy-code-text: 코드 텍스트 복사
+      tag-copy-html-word: Word에서 HTML/서식 있는 텍스트로 복사
   coin-flipper:
     title: 동전 던지기
     description: 동전 던지기
@@ -2696,6 +2702,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: "현재 선택된 노드 JSONPath:"
       label-your-edited-json: "편집한 JSON:"
+      title-the-following-errors-occured: 다음과 같은 오류가 발생했습니다.
+      tag-validation-successful: 유효성 검사 성공!
+      label-no-validation: 유효성 검사 없음
+      label-custom: 관습
+      label-json-schema: "JSON 스키마:"
+      placeholder-paste-your-json-schema-here: 여기에 JSON 스키마를 붙여넣으세요...
+      title-schema-validation-errors: 스키마 유효성 검사 오류
+      label-indent-size-0-compact: "들여쓰기 크기 (0 = 간결함):"
+      repair-json: JSON 복구
   json-escaper:
     title: JSON Escaper/Unescaper
     description: JSON 문자열 이스케이프 및 이스케이프 해제
@@ -4652,6 +4667,8 @@ tools:
       message-this-date-is-invalid-for-this-format: 이 날짜는 이 형식에 유효하지 않습니다.
       placeholder-put-your-date-string-here: 여기에 날짜를 입력하세요...
       placeholder-invalid-date: 잘못된 날짜입니다.
+      button-add-timezone: 시간대 추가
+      placeholder-select-timezone: 시간대를 선택하세요...
   extract-text-from-html:
     texts:
       message-provided-html-is-not-valid: 제공된 HTML이 유효하지 않습니다.
@@ -5341,6 +5358,8 @@ tools:
       label-merged-ical: ICAL 병합
       tag-delete: 삭제
       tag-merge-ical-files: iCal 파일 병합
+      file-to-merge-file-name: "병합할 파일: {0}"
+      download-merged-ical: iCal 병합 파일 다운로드
     service:
       text:
         no-icals-parsed-successfully: 성공적으로 구문 분석된 ical이 없습니다.
@@ -5402,6 +5421,12 @@ tools:
       heading-1: 제목 1
       inline-code: 인라인 코드
       strike: 스트라이크
+      heading-5: 제목 5
+      text-left: 왼쪽 정렬
+      text-center: 정렬 센터
+      text-right: 오른쪽 정렬
+      text-justify: 정렬
+      clear-align: 명확한 정렬
   unicode-formatter:
     title: 유니코드 포매터
     description: 유니코드 글꼴을 사용하여 텍스트 서식 지정
@@ -5595,6 +5620,7 @@ tools:
       label-json-schema: "JSON 스키마:"
       placeholder-paste-your-json-schema-here: JSON 스키마를 여기에 붙여넣으세요...
       title-schema-validation-errors: 스키마 유효성 검사 오류
+      label-unescape-json-string: "JSON 문자열의 이스케이프 해제:"
     text:
       provided-json-is-not-valid: 제공된 JSON이 유효하지 않습니다.
       try-again-with-repairjsonlabel: '"{0}"으로 다시 시도하세요.'
@@ -6843,6 +6869,7 @@ tools:
       label-signature: 서명
       label-arguments: 인수
       title-structured-output-json: 구조화된 출력 JSON
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: "{'{'}\"to\":\"0x...\",\"data\":\"0x...\" 또는 원시 0x...."
   file-splitter:
     title: 파일 분할기
     description: 노드 그룹 또는 줄 그룹별로 JSON, XML 또는 텍스트 파일을 분할합니다.
@@ -6864,9 +6891,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: "템플릿 선택(예: node, python, vue)"
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: const 사용 가능한 템플릿 = 참조
-      tag-this-tool-use: 이 도구는 다음을 사용합니다.
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: 생성하다
   i-and-l-checker:
     title: I 및 L 체커
@@ -7015,8 +7039,6 @@ tools:
       label-short-urls-to-expand: "확장할 수 있는 짧은 URL:"
       placeholder-enter-short-urls-one-per-line: 짧은 URL을 입력하세요(한 줄에 하나씩)
       title-result: 결과
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server: 이 도구는 https://cors-anywhere.com을 활용하여 CORS를 우회합니다. 이는 커뮤니티 기반 서버입니다.
-      tag-see-here-for-more-information: 자세한 내용은 여기를 참조하세요
       tag-expand-all: 모두 확장
       tag-download-resuls-as-csv: 결과를 CSV로 다운로드
       tag-short-url: 짧은 URL
@@ -7024,6 +7046,265 @@ tools:
       tag-link: 링크
       tag-status: 상태
       tag-open-url: URL 열기
+      cors-anywhere-configuration: CORS Anywhere 구성
+      self-hosted-cors-anywhere: 자체 호스팅 CORS Anywhere
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
+        이 도구를 사용하려면 CORS 정책을 우회하기 위해 CORS Anywhere 인스턴스가 필요합니다. CORS Anywhere
+        인스턴스를 사용할 수 있습니다.
+      put-your-cors-anywhere-instance-url: CORS Anywhere 인스턴스 URL을 입력하세요...
+      cors-anywhere-instance-url: "CORS Anywhere 인스턴스 URL:"
+      expanded-url: 확장된 URL
+      short-url: 짧은 URL
+      failed-to-expand-some-urls: 일부 URL을 펼치는 데 실패했습니다.
+      failed: 실패한
+      no-redirect: 리디렉션 없음
+      expanded: 퍼지는
+  amortization-calculator:
+    title: 상환 계산기
+    description: 월별 상환 내역을 포함한 대출 상환 일정을 계산하세요.
+    footer: 상환 계산기
+    texts:
+      title-loan-parameters: 대출 매개변수
+      title-overview: 개요
+      title-amortization-schedule: 상환 일정표
+      label-loan-amount: 대출 금액
+      label-loan-term: 대출 기간
+      label-interest-rate: 이자율
+      label-displayed-currency: 표시된 통화
+      label-end-of-year: "{year} 연말"
+      label-year: 년도
+      label-month: 월
+      label-interest: 관심
+      label-principal: 주요한
+      label-ending-balance: 최종 잔액
+      label-monthly-payment: 월별 납부액
+      label-total-of-payments: 지불 총액
+      label-total-interest: 총 이자
+      message-loan-amount-must-be-positive: 대출 금액은 양수여야 합니다.
+      message-loan-term-must-be-positive-integer: 대출 기간은 양의 정수여야 합니다.
+      message-interest-rate-must-be-between-1-and-100: 이자율은 0에서 100 사이의 양수 값이어야 합니다.
+  copy:
+    text:
+      copied-to-the-clipboard: 클립보드에 복사되었습니다
+  arpa-decoder:
+    title: ARPA 디코더
+    description: IPv4/6 ARPA 주소 또는 PTR 레코드 디코딩
+    texts:
+      label-arpa-address: "ARPA 주소:"
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: "예: 10.1.168.192.in-addr.arpa 또는 xxxx.ip6.arpa."
+  database-builder:
+    title: 데이터베이스 생성 빌더
+    description: 다양한 데이터베이스에 대한 SQL CREATE DATABASE 쿼리를 작성합니다.
+    texts:
+      label-mysql: MySQL
+      label-postgresql: 포스트그레스 SQL
+      label-sql-server: SQL Server
+      label-oracle: 신탁
+      label-sqlite: SQLite
+      label-database-type: "데이터베이스 유형:"
+      label-database-name: "데이터베이스 이름:"
+      placeholder-test: 시험
+      label-server-address: "서버 주소:"
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: "계정:"
+      label-password-leave-empty-to-generate: "비밀번호 (생성하려면 비워 두세요):"
+      placeholder-leave-empty-for-random: 무작위로 선택하려면 비워 두세요.
+      label-permissions-all-privileges-if-none-selected: "권한 (아무것도 선택하지 않은 경우 모든 권한):"
+      title-generated-sql-instructions: "생성된 SQL 명령어:"
+      tag-select: 선택하다
+      tag-insert: 끼워 넣다
+      tag-update: 업데이트
+      tag-delete: 삭제
+      tag-create: 만들다
+      tag-drop: 떨어지다
+      tag-alter: 바꾸다
+      tag-index: 색인
+      tag-execute: 실행하다
+      tag-references: 참고문헌
+      tag-trigger: 방아쇠
+      tag-usage: 용법
+      tag-replication-client: 복제 클라이언트
+      tag-replication-slave: 복제 노예
+      tag-generate-sql-instructions: SQL 명령어 생성
+  database-table-generator:
+    title: 데이터베이스 테이블 생성기
+    description: 일반적인 데이터베이스에 대한 SQL CREATE TABLE 문을 생성합니다.
+    texts:
+      label-mysql: MySQL
+      label-postgresql: 포스트그레스 SQL
+      label-sqlite: SQLite
+      label-sql-server: SQL Server
+      label-database-type: "데이터베이스 유형:"
+      label-database-name: "데이터베이스 이름:"
+      placeholder-enter-database-name: 데이터베이스 이름을 입력하세요
+      placeholder-table-name: 테이블 이름
+      placeholder-column-name: 열 이름
+      placeholder-default-value: 기본값
+      title-generated-sql: 생성된 SQL
+      tag-remove-table: 테이블 제거
+      tag-add-column: 열을 추가합니다
+      tag-nullable: 널 가능
+      tag-pk: PK
+      tag-unique: 고유한
+      tag-autoinc: 오토인크
+      tag-add-table: 테이블 추가
+      tag-generate-sql: SQL 생성
+  gitattributes-generator:
+    title: Gitattributes 생성기
+    description: https://github.com/alexkaratarakis/gitattributes의 공통 설정에서
+      .gitattributes 파일을 생성합니다.
+    texts:
+      label-gitattributes-templates: "Gitattributes 템플릿:"
+      placeholder-select-templates: 템플릿을 선택하세요
+      title-preview: 시사
+      tag-fetch-generate: 가져오기 및 생성
+  html-to-xhtml:
+    title: HTML을 XHTML로 변환
+    description: HTML을 엄격한 XHTML(XML 파싱 가능, 자체 닫힘 태그 등)로 변환합니다.
+    texts:
+      placeholder-your-html-content: HTML 콘텐츠...
+      label-your-html-to-convert-to-xhtml: "XHTML로 변환할 HTML:"
+      label-add-xhtml-xmlns: "XHTML xmlns를 추가합니다:"
+      label-indentation: "톱니 모양:"
+      title-output-xhtml: "XHTML 출력:"
+  javascript-obfuscator:
+    title: 자바스크립트 난독화 도구
+    description: base64 또는 rot13 인코딩을 사용하는 자바스크립트 코드 난독화 도구
+    texts:
+      label-base-64: 64진법
+      label-rot-13: 로트 13
+      label-obfuscator-io: 난독화기.io
+      label-your-javascript-code-to-obfuscate: "난독화할 JavaScript 코드:"
+      label-obfuscation-method: "난독화 방법:"
+      title-obfuscted-js-code: 난독화된 자바스크립트 코드
+      placeholder-enter-your-javascript-code-here: // 여기에 자바스크립트 코드를 입력하세요
+  online-wiktionary:
+    title: 온라인 사전
+    description: 위키낱말사전에서 단어를 검색하세요
+    texts:
+      label-english: 영어
+      label-french: 프랑스 국민
+      label-german: 독일 사람
+      label-spanish: 스페인 사람
+      label-italian: 이탈리아 사람
+      label-russian: 러시아인
+      label-chinese: 중국인
+      label-japanese: 일본어
+      label-arabic: 아라비아 말
+      placeholder-enter-a-word: 단어를 입력하세요…
+      placeholder-select-a-language: 언어를 선택하세요
+      tag-search-on-wiktionary: 위키낱말사전에서 검색
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: 단어를 입력하고 언어를 선택하여 위키낱말사전을 불러오세요.
+  ptr-dns-generator:
+    title: PTR DNS 생성기
+    description: DNS PTR 레코드 생성
+    texts:
+      label-ip-address-ipv4-or-ipv6: "IP 주소(IPv4 또는 IPv6):"
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: "예: 192.168.1.10 또는 2001:db8::1"
+  screen-memo:
+    title: 화면 명령어 치트 시트
+    description: 화면 리눅스 명령어 메모
+  svg-previewer:
+    title: SVG 미리보기
+    description: SVG 파일 미리보기
+    texts:
+      title-upload-a-svg-file: SVG 파일을 업로드하세요
+      title-raw-svg-content: "원본 SVG 콘텐츠:"
+      placeholder-paste-raw-svg-content-here: 여기에 원본 SVG 콘텐츠를 붙여넣으세요...
+      label-select-background: "배경을 선택하세요:"
+      title-svg-preview: SVG 미리보기
+      tag-const-svgcontent-ref: const svgContent = ref
+  tmux-memo:
+    title: Tmux 명령어 치트 시트
+    description: Tmux 리눅스 명령어 메모
+  trigo-viewer:
+    title: 삼각함수/방정식 곡선 시각화 도구
+    description: x에 따라 달라지는 삼각 함수 또는 방정식을 시각화하세요.
+    texts:
+      text-degrees: 도(°)
+      text-value: 값
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: "x에 대한 식으로 방정식을 입력하세요 (예: sin(x) + cos(2*x))"
+      label-equation-in-term-of-x: "x에 대한 방정식:"
+      label-domain: "도메인:"
+      tag-reset-zoom: 줌 재설정
+  zellij-memo:
+    title: Zellij 명령어 치트 시트
+    description: Zellij 리눅스 명령어 메모
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: 데드픽셀-iframe
+      tag-: "`;"
+      tag-keyboard-shortcuts: "키보드 단축키:"
+      tag-arrow-right-arrow-down-space: 오른쪽 화살표, 아래 화살표, 스페이스
+      tag-next-color: 다음 색상
+      tag-arrow-left-arrow-up: 왼쪽 화살표, 위쪽 화살표
+      tag-previous-color: ": 이전 색상"
+      tag-esc: ESC
+      tag-exit-dead-pixel-mode: ": 데드 픽셀 모드 종료"
+      tag-start-dead-pixel: 데드 픽셀 시작
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: SI 접두사를 제외합니다
+    text:
+      si-converter: SI 접두사 변환기로 이동
+  geo-coordinates-converter:
+    title: 지리적 좌표 변환기
+    description: WGS84, GCJ02, BD09 및 CGCS2000 좌표계 간 변환
+    texts:
+      label-latitude: "위도:"
+      label-longitude: "경도:"
+      label-csv-content-lng-lat: "CSV 콘텐츠(경도, 위도):"
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert: 변환할 경도와 위도(이 순서대로) CSV 파일을 입력하세요...
+      title-conversion-results: 전환 결과
+      title-notes: 메모
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (글로벌 표준)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (가오드, QQ 지도)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (바이두 지도)
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09Meter(바이두 미터)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (중국 측지 시스템 2000)
+      tag-webmercator-epsg3857-epsg900913: 웹머케이터/EPSG3857/EPSG900913
+      tag-convert-single: 단일 변환
+      tag-convert-batch: 일괄 변환
+      tag-longitude-east-is-positive-west-is-negative: "경도: 동쪽은 양수, 서쪽은 음수입니다."
+      tag-latitude-north-is-positive-south-is-negative: "위도: 북쪽은 양수, 남쪽은 음수입니다."
+  si-prefixes-converter:
+    title: SI 접두사 변환기
+    description: 미터법 접두사 간 변환
+    texts:
+      label-quetta-q: 퀘타(Q)
+      label-ronna-r: 로나(R)
+      label-yotta-y: yotta (Y)
+      label-zetta-z: 제타(Z)
+      label-exa-e: exa(E)
+      label-peta-p: 지도(P)
+      label-tera-t: 테라(T)
+      label-giga-g: 기가(G)
+      label-mega-m: 메가(M)
+      label-kilo-k: 킬로그램(k)
+      label-hecto-h: 헥토(h)
+      label-deca-da: 10 (부터)
+      label-unit: 단위
+      label-deci-d: 그래서 (d)
+      label-centi-c: 센티(c)
+      label-milli-m: 국가 (m)
+      label-micro-µ: 마이크로(µ)
+      label-nano-n: 나노 (n)
+      label-pico-p: 피코(p)
+      label-femto-f: 펨토(f)
+      label-atto-a: 행위 (a)
+      label-zepto-z: 제프토(z)
+      label-yocto-y: 요크토(y)
+      label-ronto-r: 론토(r)
+      label-quecto-q: 나는 배고프다.
+      label-auto: 자동
+      label-fixed: 결정된
+      label-exponential: 지수적
+      label-convert: "전환하다:"
+      label-mode: "방법:"
+      label-decimals: "소수:"
+      label-thousand-separators: "천 단위 구분 기호:"
+      label-to: "에게:"
+      tag-: =
 about:
   alltools-title: 모든 {toolsCount}개 도구
   tools:

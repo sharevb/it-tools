@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: Braces,
   createdAt: new Date('2024-05-11'),
   category: 'JSON',
+  externAccessDescription: 'This tool may download a JSON schema from https://www.schemastore.org when validation is requested. No data is send externally.',
 });

@@ -17,4 +17,5 @@ export interface ConvertOptions {
   keepLineBreaks?: boolean
   filterRegex?: string
   notFilterRegex?: string
+  outputAsColumn?: boolean
 }

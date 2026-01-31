@@ -756,6 +756,7 @@ tools:
       label-remove-duplicates: Видалити дублікати
       label-convert-to-lowercase: Перетворити на малі регістри
       label-keep-line-breaks: Зберігати розриви рядків
+      label-output-as-column: Output as column
       label-sort-list: Сортувати список
       placeholder-sort-alphabetically: Сортувати за алфавітом
       label-items-separator: Роздільник елементів
@@ -899,6 +900,9 @@ tools:
       placeholder-your-string: Твій рядок...
       label-cleaning-regex: "Очищення регулярного виразу:"
       placeholder-your-cleaning-regex: Ваш регулярний вираз очищення...
+      label-titlecase: "Заголовок:"
+      label-spongecase: "Губка:"
+      label-swapcase: "Корпус для заміни:"
   html-entities:
     title: Екранування HTML сутностей
     description: Екрануйте або розекрануйте HTML сутності (замінюйте символи, такі
@@ -1072,6 +1076,7 @@ tools:
       tag-hey: Гей!
       tag-welcome-to-this-html-wysiwyg-editor: Ласкаво просимо до цього WYSIWYG-редактора HTML
       tag-click-here-to-paste-or-edit-raw-html: Натисніть тут, щоб вставити або відредагувати необроблений html-код
+      label-xhtmlfy: "XHTML:"
   yaml-to-toml:
     title: YAML в TOML
     description: Парсинг та конвертація YAML в TOML.
@@ -2057,6 +2062,7 @@ tools:
       tag-: "&#39;, &#39;"
       tag-copy-html-formatted: Копіювати у форматі HTML
       tag-copy-code-text: Скопіювати текст коду
+      tag-copy-html-word: Копіювати в HTML/RFT у Word
   coin-flipper:
     title: Монетний кидок
     description: Кидайте монету
@@ -2936,6 +2942,8 @@ tools:
       label-merged-ical: Об&#39;єднаний ICAL
       tag-delete: Видалити
       tag-merge-ical-files: Об&#39;єднання файлів iCal
+      file-to-merge-file-name: "Файл для об'єднання: {0}"
+      download-merged-ical: Завантажити об'єднаний iCal
     service:
       text:
         no-icals-parsed-successfully: Ікали не проаналізовано успішно
@@ -3234,6 +3242,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: "Поточний вибраний вузол JSONPath:"
       label-your-edited-json: "Ваш відредагований JSON:"
+      title-the-following-errors-occured: Виникли такі помилки
+      tag-validation-successful: Перевірка успішна!
+      label-no-validation: Без перевірки
+      label-custom: Користувацька
+      label-json-schema: "Схема JSON:"
+      placeholder-paste-your-json-schema-here: Вставте сюди свою JSON-схему...
+      title-schema-validation-errors: Помилки перевірки схеми
+      label-indent-size-0-compact: "Розмір відступу (0 = Компактний):"
+      repair-json: Відновлення JSON
   json-escaper:
     title: Екранування/Розекранування JSON
     description: Екрануйте та розекрануйте JSON рядки
@@ -5585,6 +5602,8 @@ tools:
       message-this-date-is-invalid-for-this-format: Ця дата недійсна для цього формату
       placeholder-put-your-date-string-here: Введіть тут свою дату...
       placeholder-invalid-date: Недійсна дата...
+      button-add-timezone: Додати часовий пояс
+      placeholder-select-timezone: Виберіть часовий пояс...
   extract-text-from-html:
     texts:
       message-provided-html-is-not-valid: Наданий HTML-код недійсний.
@@ -5937,6 +5956,12 @@ tools:
       heading-1: Заголовок 1
       inline-code: Вбудований код
       strike: Страйк
+      heading-5: Заголовок 5
+      text-left: Вирівняти за лівим краєм
+      text-center: Вирівняти по центру
+      text-right: Вирівняти по правому краю
+      text-justify: Вирівняти по ширині
+      clear-align: Очистити вирівнювання
   floating-point-number-converter:
     texts:
       label-32-bit-single-precision: 32-бітний (одинарна точність)
@@ -6012,6 +6037,7 @@ tools:
       label-json-schema: "Схема JSON:"
       placeholder-paste-your-json-schema-here: Вставте сюди свою JSON-схему...
       title-schema-validation-errors: Помилки перевірки схеми
+      label-unescape-json-string: "Рядок JSON для скасування екранування:"
     text:
       provided-json-is-not-valid: Наданий JSON недійсний.
       try-again-with-repairjsonlabel: Спробуйте ще раз з &quot;{0}&quot;
@@ -7247,6 +7273,7 @@ tools:
       label-signature: Підпис
       label-arguments: Аргументи
       title-structured-output-json: Структурований вихідний JSON
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: "{'{'}\"до\":\"0x...\",\"дані\":\"0x...\"{'}'} або необроблені 0x...."
   file-splitter:
     title: Роздільник файлів
     description: Розділити JSON, XML або текстовий файл або за групою вузлів, або за
@@ -7269,9 +7296,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: Виберіть шаблони (наприклад, node, python, vue)
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: const availableTemplates = ref
-      tag-this-tool-use: "Цей інструмент використовується:"
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: Згенерувати
   i-and-l-checker:
     title: Перевірка I та L
@@ -7422,10 +7446,6 @@ tools:
       label-short-urls-to-expand: "Короткі URL-адреси для розгортання:"
       placeholder-enter-short-urls-one-per-line: Введіть короткі URL-адреси (по одній на рядок)
       title-result: Результат
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server:
-        Цей інструмент використовує https://cors-anywhere.com для обходу CORS.
-        Це сервер, керований спільнотою.
-      tag-see-here-for-more-information: Дивіться тут для отримання додаткової інформації
       tag-expand-all: Розгорнути все
       tag-download-resuls-as-csv: Завантажити результати у форматі CSV
       tag-short-url: Коротка URL-адреса
@@ -7433,6 +7453,268 @@ tools:
       tag-link: Посилання
       tag-status: Статус
       tag-open-url: Відкрити URL-адресу
+      cors-anywhere-configuration: Конфігурація CORS Anywhere
+      self-hosted-cors-anywhere: Самостійно розміщений CORS будь-де
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
+        Для обходу політики CORS цьому інструменту потрібен екземпляр CORS
+        Anywhere. Ви можете використовувати
+      put-your-cors-anywhere-instance-url: Введіть URL-адресу вашого екземпляра CORS Anywhere...
+      cors-anywhere-instance-url: "URL-адреса екземпляра CORS Anywhere:"
+      expanded-url: Розгорнута URL-адреса
+      short-url: Коротка URL-адреса
+      failed-to-expand-some-urls: Не вдалося розгорнути деякі URL-адреси.
+      failed: Не вдалося
+      no-redirect: Без перенаправлення
+      expanded: Розгорнуто
+  amortization-calculator:
+    title: Калькулятор амортизації
+    description: Розрахуйте графіки амортизації кредиту з щомісячною розбивкою платежів
+    footer: Калькулятор амортизації
+    texts:
+      title-loan-parameters: Параметри кредиту
+      title-overview: Огляд
+      title-amortization-schedule: Графік амортизації
+      label-loan-amount: Сума позики
+      label-loan-term: Термін позики
+      label-interest-rate: Процентна ставка
+      label-displayed-currency: Відображена валюта
+      label-end-of-year: Кінець року {year}
+      label-year: Рік
+      label-month: Місяць
+      label-interest: Відсоток
+      label-principal: Директор
+      label-ending-balance: Кінцевий баланс
+      label-monthly-payment: Щомісячний платіж
+      label-total-of-payments: Загальна сума платежів
+      label-total-interest: Загальна сума відсотків
+      message-loan-amount-must-be-positive: Сума позики має бути додатним числом
+      message-loan-term-must-be-positive-integer: Термін позики має бути додатним цілим числом
+      message-interest-rate-must-be-between-1-and-100: Процентна ставка має бути додатним значенням від 0 до 100
+  copy:
+    text:
+      copied-to-the-clipboard: Скопійовано в буфер обміну
+  arpa-decoder:
+    title: Декодер ARPA
+    description: Декодування IPv4/6 ARPA-адрес або PTR-запису
+    texts:
+      label-arpa-address: "Адреса ARPA:"
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: наприклад, 10.1.168.192.in-addr.arpa. або xxxx.ip6.arpa.
+  database-builder:
+    title: Конструктор створення баз даних
+    description: Створення SQL-запитів CREATE DATABASE для різних баз даних
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: SQL Server
+      label-oracle: Оракул
+      label-sqlite: SQLite
+      label-database-type: "Тип бази даних:"
+      label-database-name: "Ім'я бази даних:"
+      placeholder-test: тест
+      label-server-address: "Адреса сервера:"
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: "Обліковий запис:"
+      label-password-leave-empty-to-generate: "Пароль (залиште порожнім для генерації):"
+      placeholder-leave-empty-for-random: залиште порожнім для випадкового
+      label-permissions-all-privileges-if-none-selected: "Дозволи (УСІ ПРИВІЛЕГІЇ, якщо не вибрано жодного):"
+      title-generated-sql-instructions: "Згенеровані SQL-інструкції:"
+      tag-select: ВИБРАТИ
+      tag-insert: ВСТАВИТИ
+      tag-update: ОНОВЛЕННЯ
+      tag-delete: ВИДАЛИТИ
+      tag-create: СТВОРИТИ
+      tag-drop: ПАДІННЯ
+      tag-alter: ЗМІНИТИ
+      tag-index: ІНДЕКС
+      tag-execute: ВИКОНУВАТИ
+      tag-references: ПОСИЛАННЯ
+      tag-trigger: ТРИГЕР
+      tag-usage: ВИКОРИСТАННЯ
+      tag-replication-client: КЛІЄНТ РЕПЛІКАЦІЇ
+      tag-replication-slave: РЕПЛІКАЦІЙНИЙ РАБ
+      tag-generate-sql-instructions: Генерація SQL-інструкцій
+  database-table-generator:
+    title: Генератор таблиць бази даних
+    description: Генерація SQL CREATE TABLE для поширених баз даних
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: SQL Server
+      label-database-type: "Тип бази даних:"
+      label-database-name: "Ім'я бази даних:"
+      placeholder-enter-database-name: Введіть назву бази даних
+      placeholder-table-name: Назва таблиці
+      placeholder-column-name: Назва стовпця
+      placeholder-default-value: Значення за замовчуванням
+      title-generated-sql: Згенерований SQL
+      tag-remove-table: Видалити таблицю
+      tag-add-column: Додати стовпець
+      tag-nullable: Null-доступ
+      tag-pk: ПК
+      tag-unique: Унікальний
+      tag-autoinc: АвтоІнк
+      tag-add-table: Додати таблицю
+      tag-generate-sql: Згенерувати SQL
+  gitattributes-generator:
+    title: Генератор атрибутів Git
+    description: Згенерувати .gitattributes зі загальної конфігурації
+      https://github.com/alexkaratarakis/gitattributes
+    texts:
+      label-gitattributes-templates: "Шаблони атрибутів Git:"
+      placeholder-select-templates: Вибрати шаблони
+      title-preview: Попередній перегляд
+      tag-fetch-generate: Отримати та згенерувати
+  html-to-xhtml:
+    title: З HTML до XHTML
+    description: Конвертувати HTML у строгий XHTML (XML, що піддається аналізу,
+      самозакриваючі теги...)
+    texts:
+      placeholder-your-html-content: Ваш HTML-контент...
+      label-your-html-to-convert-to-xhtml: "Ваш HTML-код для конвертації в XHTML:"
+      label-add-xhtml-xmlns: "Додати XHTML-файли XML:"
+      label-indentation: "Відступ:"
+      title-output-xhtml: "Вихідний XHTML:"
+  javascript-obfuscator:
+    title: Обфускатор Javascript
+    description: Обфускатор коду Javascript з використанням кодування base64 або rot13
+    texts:
+      label-base-64: База 64
+      label-rot-13: ГНИЛЬ 13
+      label-obfuscator-io: Обфускатор.іо
+      label-your-javascript-code-to-obfuscate: "Ваш JavaScript-код для обфускації:"
+      label-obfuscation-method: "Метод обфускації:"
+      title-obfuscted-js-code: Заплутаний JS-код
+      placeholder-enter-your-javascript-code-here: // Введіть тут свій JavaScript-код
+  online-wiktionary:
+    title: Онлайн-словник
+    description: Пошук слів у Вікісловнику
+    texts:
+      label-english: Англійська
+      label-french: Французька
+      label-german: Німецька
+      label-spanish: Іспанська
+      label-italian: італійська
+      label-russian: Російська
+      label-chinese: китайська
+      label-japanese: Японська
+      label-arabic: Арабська
+      placeholder-enter-a-word: Введіть слово…
+      placeholder-select-a-language: Виберіть мову
+      tag-search-on-wiktionary: Пошук у Вікісловнику
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: Введіть слово та виберіть мову для завантаження Вікісловника
+  ptr-dns-generator:
+    title: Генератор DNS PTR
+    description: Генерація PTR-записів DNS
+    texts:
+      label-ip-address-ipv4-or-ipv6: "IP-адреса (IPv4 або IPv6):"
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: наприклад, 192.168.1.10 або 2001:db8::1
+  screen-memo:
+    title: Шпаргалка з екранних команд
+    description: Екранна нотатка команд Linux
+  svg-previewer:
+    title: Попередній перегляд SVG
+    description: Попередній перегляд SVG-файлів
+    texts:
+      title-upload-a-svg-file: Завантажте SVG-файл
+      title-raw-svg-content: "Необроблений SVG-контент:"
+      placeholder-paste-raw-svg-content-here: Вставити сюди необроблений SVG-контент...
+      label-select-background: "Виберіть фон:"
+      title-svg-preview: Попередній перегляд SVG
+      tag-const-svgcontent-ref: const svgContent = ref
+  tmux-memo:
+    title: Шпаргалка по команді Tmux
+    description: Командний меморандум Tmux для Linux
+  trigo-viewer:
+    title: Візуалізатор тригонометричних/рівняльних кривих
+    description: Візуалізуйте тригонометричні рівняння або рівняння залежно від x
+    texts:
+      text-degrees: Градуси (°)
+      text-value: Значення
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: Введіть рівняння через x (наприклад, sin(x) + cos(2*x))
+      label-equation-in-term-of-x: "Рівняння відносно x:"
+      label-domain: "Домен:"
+      tag-reset-zoom: Скинути масштаб
+  zellij-memo:
+    title: Шпаргалка по команді Zellij
+    description: Командний меморандум Zellij для Linux
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: мертвий-піксель-iframe
+      tag-: "`;"
+      tag-keyboard-shortcuts: "Сполучення клавіш:"
+      tag-arrow-right-arrow-down-space: Стрілка вправо, стрілка вниз, пробіл
+      tag-next-color: Наступний колір
+      tag-arrow-left-arrow-up: Стрілка вліво, стрілка вгору
+      tag-previous-color: Попередній колір
+      tag-esc: ESC
+      tag-exit-dead-pixel-mode: Вихід з режиму мертвих пікселів
+      tag-start-dead-pixel: Початок роботи з мертвими пікселями
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: Виключити префікси СІ
+    text:
+      si-converter: Конвертер префіксів СІ Goto
+  geo-coordinates-converter:
+    title: Конвертер географічних координат
+    description: Конвертувати географічні координати між WGS84, GCJ02, BD09 та CGCS2000
+    texts:
+      label-latitude: "Широта:"
+      label-longitude: "Довгота:"
+      label-csv-content-lng-lat: "Вміст CSV (Lng, Lat):"
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert:
+        Вставте CSV-файл із даними про довготу та широту (у такому порядку) для
+        конвертації...
+      title-conversion-results: Результати конверсії
+      title-notes: Нотатки
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (глобальний стандарт)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (Gaode, QQ Maps)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (Карти Baidu)
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09Meter (Baidu Meter)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (Китайська геодезична система 2000)
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: Конвертувати одинарний
+      tag-convert-batch: Пакетне перетворення
+      tag-longitude-east-is-positive-west-is-negative: "Довгота: схід – додатна, захід – від’ємна."
+      tag-latitude-north-is-positive-south-is-negative: "Широта: Північ – додатна, Південь – від’ємна."
+  si-prefixes-converter:
+    title: Конвертер префіксів СІ
+    description: Конвертувати між метричними префіксами
+    texts:
+      label-quetta-q: кветта (Q)
+      label-ronna-r: Ронна (R)
+      label-yotta-y: йотта (Y)
+      label-zetta-z: зетта (Z)
+      label-exa-e: екса (Е)
+      label-peta-p: карта (П)
+      label-tera-t: тера (Т)
+      label-giga-g: giga (G)
+      label-mega-m: мега (М)
+      label-kilo-k: кілограм (к)
+      label-hecto-h: гекто (год)
+      label-deca-da: десять (від)
+      label-unit: одиниця
+      label-deci-d: отже (г)
+      label-centi-c: центи (c)
+      label-milli-m: національний (м)
+      label-micro-µ: мікро (µ)
+      label-nano-n: нано (n)
+      label-pico-p: піко (п)
+      label-femto-f: фемто (ф)
+      label-atto-a: дія (а)
+      label-zepto-z: зепто (з)
+      label-yocto-y: йокто (у)
+      label-ronto-r: ронто (r)
+      label-quecto-q: Я голодний.
+      label-auto: Авто
+      label-fixed: Виправлено
+      label-exponential: Експоненціальний
+      label-convert: "Конвертувати:"
+      label-mode: "Режим:"
+      label-decimals: "Десяткові дроби:"
+      label-thousand-separators: "Роздільники тисяч:"
+      label-to: "До:"
+      tag-: =
 spanCopyable:
   copy: Копіювати в буфер обміну
   copied: Скопійовано!

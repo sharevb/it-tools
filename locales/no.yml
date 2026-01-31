@@ -775,6 +775,7 @@ tools:
       label-remove-duplicates: Fjern duplikater
       label-convert-to-lowercase: Konverter til små bokstaver
       label-keep-line-breaks: Behold linjeskift
+      label-output-as-column: Output as column
       label-sort-list: Sorter liste
       placeholder-sort-alphabetically: Sorter alfabetisk
       label-items-separator: Elementseparator
@@ -920,6 +921,9 @@ tools:
       placeholder-your-string: Strengen din...
       label-cleaning-regex: "Rengjøringsregeks:"
       placeholder-your-cleaning-regex: Din rengjøringsregeks...
+      label-titlecase: "Tittelboks:"
+      label-spongecase: "Svampeskjul:"
+      label-swapcase: "Byttekasse:"
   html-entities:
     title: HTML streng rensing
     description: Rens bort eller omsvøp HTML entiteter (erstatt tegn som <,>, &, "
@@ -1092,6 +1096,7 @@ tools:
       tag-hey: Hei!
       tag-welcome-to-this-html-wysiwyg-editor: Velkommen til denne html wysiwyg-editoren
       tag-click-here-to-paste-or-edit-raw-html: Klikk her for å lime inn eller redigere rå html
+      label-xhtmlfy: "XHtml:"
   yaml-to-toml:
     title: YAML til TOML
     description: Parser og konverter YAML til TOML.
@@ -1938,6 +1943,7 @@ tools:
       tag-: "&#39;, &#39;"
       tag-copy-html-formatted: Kopier HTML-formatert
       tag-copy-code-text: Kopier kodetekst
+      tag-copy-html-word: Kopier til HTML/rik tekst i Word
   coin-flipper:
     title: Myntflipper
     description: Kast en mynt
@@ -2933,6 +2939,15 @@ tools:
     texts:
       label-current-selected-node-jsonpath: "Gjeldende valgte node JSONPath:"
       label-your-edited-json: "Din redigerte JSON:"
+      title-the-following-errors-occured: Følgende feil oppsto
+      tag-validation-successful: Validering vellykket!
+      label-no-validation: Ingen validering
+      label-custom: Skikk
+      label-json-schema: "JSON-skjema:"
+      placeholder-paste-your-json-schema-here: Lim inn JSON-skjemaet ditt her ...
+      title-schema-validation-errors: Skjemavalideringsfeil
+      label-indent-size-0-compact: "Innrykksstørrelse (0 = Kompakt):"
+      repair-json: Reparer JSON
   json-escaper:
     title: Json Escaper/Unscaper
     description: Escape- og unescape-JSON-streng
@@ -4944,6 +4959,8 @@ tools:
       message-this-date-is-invalid-for-this-format: Denne datoen er ugyldig for dette formatet
       placeholder-put-your-date-string-here: Sett inn datoen din her...
       placeholder-invalid-date: Ugyldig dato...
+      button-add-timezone: Legg til tidssone
+      placeholder-select-timezone: Velg en tidssone...
   extract-text-from-html:
     texts:
       message-provided-html-is-not-valid: Den oppgitte HTML-koden er ikke gyldig.
@@ -5656,6 +5673,8 @@ tools:
       label-merged-ical: Sammenslåtte ICAL-er
       tag-delete: Slett
       tag-merge-ical-files: Slå sammen iCal-filer
+      file-to-merge-file-name: "Fil som skal slås sammen: {0}"
+      download-merged-ical: Last ned sammenslåtte iCal-filer
     service:
       text:
         no-icals-parsed-successfully: Ingen icals ble analysert
@@ -5717,6 +5736,12 @@ tools:
       heading-1: Overskrift 1
       inline-code: Innebygd kode
       strike: Streik
+      heading-5: Overskrift 5
+      text-left: Juster til venstre
+      text-center: Juster sentrum
+      text-right: Juster til høyre
+      text-justify: Juster/Befest
+      clear-align: Fjern justering
   unicode-formatter:
     title: Unicode-formatering
     description: Formater tekst ved hjelp av Unicode-skrifter
@@ -5921,6 +5946,7 @@ tools:
       label-json-schema: "JSON-skjema:"
       placeholder-paste-your-json-schema-here: Lim inn JSON-skjemaet ditt her ...
       title-schema-validation-errors: Skjemavalideringsfeil
+      label-unescape-json-string: "Unescape JSON-streng:"
     text:
       provided-json-is-not-valid: Forutsatt at JSON ikke er gyldig.
       try-again-with-repairjsonlabel: Prøv igjen med «{0}»
@@ -7218,6 +7244,7 @@ tools:
       label-signature: Signatur
       label-arguments: Argumenter
       title-structured-output-json: Strukturert utdata JSON
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: "{'{'}\"til\":\"0x...\",\"data\":\"0x...\"{'}'} eller rå 0x...."
   file-splitter:
     title: Fildeler
     description: Del JSON-, XML- eller tekstfilen enten etter gruppe noder eller
@@ -7242,9 +7269,6 @@ tools:
     texts:
       placeholder-select-templates-e-g-node-python-vue: Velg maler (f.eks. node, python, vue)
       title-gitignore: .gitignore
-      tag-const-availabletemplates-ref: const tilgjengeligeMaler = ref
-      tag-this-tool-use: "Dette verktøyet bruker:"
-      tag-https-www-toptal-com-developers-gitignore: https://www.toptal.com/developers/gitignore
       tag-generate: Generere
   i-and-l-checker:
     title: I og L Checker
@@ -7395,10 +7419,6 @@ tools:
       label-short-urls-to-expand: "Korte nettadresser for utvidelse:"
       placeholder-enter-short-urls-one-per-line: Skriv inn korte nettadresser (én per linje)
       title-result: Resultat
-      tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server:
-        Dette verktøyet bruker https://cors-anywhere.com for å omgå CORS. Dette
-        er en fellesskapsdrevet server.
-      tag-see-here-for-more-information: Se her for mer informasjon
       tag-expand-all: Utvid alle
       tag-download-resuls-as-csv: Last ned resultatene som CSV
       tag-short-url: Kort URL
@@ -7406,6 +7426,267 @@ tools:
       tag-link: Lenke
       tag-status: Status
       tag-open-url: Åpne URL
+      cors-anywhere-configuration: CORS Anywhere-konfigurasjon
+      self-hosted-cors-anywhere: Selvhostet CORS hvor som helst
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
+        Dette verktøyet krever en CORS Anywhere-instans for å omgå
+        CORS-policyen. Du kan bruke en
+      put-your-cors-anywhere-instance-url: Sett inn URL-en til CORS Anywhere-instansen din...
+      cors-anywhere-instance-url: "URL-adresse for CORS Anywhere-forekomst:"
+      expanded-url: Utvidet URL
+      short-url: Kort URL
+      failed-to-expand-some-urls: Kunne ikke utvide enkelte nettadresser.
+      failed: Mislyktes
+      no-redirect: Ingen omdirigering
+      expanded: Utvidet
+  amortization-calculator:
+    title: Amortiseringskalkulator
+    description: Beregn låneavdragsplaner med månedlige betalingsfordelinger
+    footer: Amortiseringskalkulator
+    texts:
+      title-loan-parameters: Låneparametere
+      title-overview: Oversikt
+      title-amortization-schedule: Amortiseringsplan
+      label-loan-amount: Lånebeløp
+      label-loan-term: Låneperiode
+      label-interest-rate: Rentesats
+      label-displayed-currency: Vist valuta
+      label-end-of-year: Slutt på året {year}
+      label-year: År
+      label-month: Måned
+      label-interest: Interesse
+      label-principal: Rektor
+      label-ending-balance: Sluttsaldo
+      label-monthly-payment: Månedlig betaling
+      label-total-of-payments: Totalt antall betalinger
+      label-total-interest: Total rente
+      message-loan-amount-must-be-positive: Lånebeløpet må være en positiv verdi
+      message-loan-term-must-be-positive-integer: Låneperioden må være et positivt heltall
+      message-interest-rate-must-be-between-1-and-100: Renten må være en positiv verdi mellom 0 og 100
+  copy:
+    text:
+      copied-to-the-clipboard: Kopiert til utklippstavlen
+  arpa-decoder:
+    title: ARPA-dekoder
+    description: Dekode IPv4/6 ARPA-adresser eller PTR-poster
+    texts:
+      label-arpa-address: "ARPA-adresse:"
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: f.eks. 10.1.168.192.in-addr.arpa. eller xxxx.ip6.arpa.
+  database-builder:
+    title: Databaseopprettingsbygger
+    description: Bygg SQL CREATE DATABASE-spørringer for ulike databaser
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sql-server: SQL Server
+      label-oracle: Orakel
+      label-sqlite: SQLite
+      label-database-type: "Databasetype:"
+      label-database-name: "Databasenavn:"
+      placeholder-test: test
+      label-server-address: "Serveradresse:"
+      placeholder-127-0-0-1: 127.0.0.1
+      label-account: "Konto:"
+      label-password-leave-empty-to-generate: "Passord (la stå tomt for å generere):"
+      placeholder-leave-empty-for-random: la stå tomt for tilfeldig
+      label-permissions-all-privileges-if-none-selected: "Tillatelser (ALLE RETTIGHETER hvis ingen er valgt):"
+      title-generated-sql-instructions: "Genererte SQL-instruksjoner:"
+      tag-select: VELGE
+      tag-insert: INNSETT
+      tag-update: OPPDATERING
+      tag-delete: SLETT
+      tag-create: SKAPE
+      tag-drop: SLIPPE
+      tag-alter: ENDRE
+      tag-index: INDEKST
+      tag-execute: HENRETTE
+      tag-references: REFERANSER
+      tag-trigger: AVTREKKER
+      tag-usage: BRUK
+      tag-replication-client: REPLIKASJONSKLIENT
+      tag-replication-slave: REPLIKASJONSSLAVE
+      tag-generate-sql-instructions: Generer SQL-instruksjoner
+  database-table-generator:
+    title: Databasetabelgenerator
+    description: Generer SQL CREATE TABLE for vanlige databaser
+    texts:
+      label-mysql: MySQL
+      label-postgresql: PostgreSQL
+      label-sqlite: SQLite
+      label-sql-server: SQL Server
+      label-database-type: "Databasetype:"
+      label-database-name: "Databasenavn:"
+      placeholder-enter-database-name: Skriv inn databasenavnet
+      placeholder-table-name: Tabellnavn
+      placeholder-column-name: Kolonnenavn
+      placeholder-default-value: Standardverdi
+      title-generated-sql: Generert SQL
+      tag-remove-table: Fjern tabell
+      tag-add-column: Legg til kolonne
+      tag-nullable: Nullbar
+      tag-pk: PK
+      tag-unique: Unik
+      tag-autoinc: AutoInc
+      tag-add-table: Legg til tabell
+      tag-generate-sql: Generer SQL
+  gitattributes-generator:
+    title: Gitattributes Generator
+    description: Generer .gitattributes fra den vanlige konfigurasjonen av
+      https://github.com/alexkaratarakis/gitattributes
+    texts:
+      label-gitattributes-templates: "Gitattributes-maler:"
+      placeholder-select-templates: Velg maler
+      title-preview: Forhåndsvisning
+      tag-fetch-generate: Hent og generer
+  html-to-xhtml:
+    title: HTML til XHTML
+    description: Konverter HTML til streng XHTML (XML-parsbar, selvlukkende tagger...)
+    texts:
+      placeholder-your-html-content: HTML-innholdet ditt...
+      label-your-html-to-convert-to-xhtml: "HTML-koden din som skal konverteres til XHTML:"
+      label-add-xhtml-xmlns: "Legg til XHTML xml-filer:"
+      label-indentation: "Innrykk:"
+      title-output-xhtml: "Utdata XHTML:"
+  javascript-obfuscator:
+    title: Javascript-forvirring
+    description: Javascript-kodeforvirrer ved bruk av base64- eller rot13-koding
+    texts:
+      label-base-64: Grunnlag 64
+      label-rot-13: ROT 13
+      label-obfuscator-io: Obfuscator.io
+      label-your-javascript-code-to-obfuscate: "JavaScript-koden din som skal obfuseres:"
+      label-obfuscation-method: "Forvirringsmetode:"
+      title-obfuscted-js-code: Obfusktert JS-kode
+      placeholder-enter-your-javascript-code-here: // Skriv inn JavaScript-koden din her
+  online-wiktionary:
+    title: Online ordbok
+    description: Søk etter ord i Wiktionary
+    texts:
+      label-english: Engelsk
+      label-french: Fransk
+      label-german: Tysk
+      label-spanish: Spansk
+      label-italian: Italiensk
+      label-russian: Russisk
+      label-chinese: kinesisk
+      label-japanese: japansk
+      label-arabic: Arabisk
+      placeholder-enter-a-word: Skriv inn et ord…
+      placeholder-select-a-language: Velg et språk
+      tag-search-on-wiktionary: Søk på Wiktionary
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: Skriv inn et ord og velg et språk for å laste Wiktionary
+  ptr-dns-generator:
+    title: PTR DNS-generator
+    description: Generer DNS PTR-oppføringer
+    texts:
+      label-ip-address-ipv4-or-ipv6: "IP-adresse (IPv4 eller IPv6):"
+      placeholder-e-g-192-168-1-10-or-2001-db8-1: f.eks. 192.168.1.10 eller 2001:db8::1
+  screen-memo:
+    title: Skjermkommando-jukseark
+    description: Skjerm Linux-kommandonotat
+  svg-previewer:
+    title: SVG-forhåndsvisning
+    description: Forhåndsvis SVG-filer
+    texts:
+      title-upload-a-svg-file: Last opp en SVG-fil
+      title-raw-svg-content: "Rå SVG-innhold:"
+      placeholder-paste-raw-svg-content-here: Lim inn rått SVG-innhold her ...
+      label-select-background: "Velg bakgrunn:"
+      title-svg-preview: SVG-forhåndsvisning
+      tag-const-svgcontent-ref: const svgInnhold = ref
+  tmux-memo:
+    title: Tmux-kommando-jukseark
+    description: Tmux Linux-kommandonotat
+  trigo-viewer:
+    title: Visualisator for trigonometrisk/ligningskurve
+    description: Visualiser trigonometriske ligninger eller ligninger avhengig av x
+    texts:
+      text-degrees: Grader (°)
+      text-value: Verdi
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: Skriv inn ligningen i form av x (f.eks. sin(x) + cos(2*x))
+      label-equation-in-term-of-x: "Ligning i termen av x:"
+      label-domain: "Domene:"
+      tag-reset-zoom: Tilbakestill zoom
+  zellij-memo:
+    title: Zellij-kommandoen jukseark
+    description: Zellij Linux-kommandonotat
+  dead-pixel:
+    texts:
+      title-dead-pixel-iframe: dødpiksel-iframe
+      tag-: "`;"
+      tag-keyboard-shortcuts: "Tastatursnarveier:"
+      tag-arrow-right-arrow-down-space: Pil høyre, pil ned, mellomrom
+      tag-next-color: Neste farge
+      tag-arrow-left-arrow-up: Pil venstre, pil opp
+      tag-previous-color: Forrige farge
+      tag-esc: ESC
+      tag-exit-dead-pixel-mode: ": Avslutt dødpikselmodus"
+      tag-start-dead-pixel: Start død piksel
+  UnitsConverter:
+    texts:
+      exclude-si-prefixes: Ekskluder SI-prefikser
+    text:
+      si-converter: Goto SI-prefikskonverterer
+  geo-coordinates-converter:
+    title: Geografiske koordinatkonverterer
+    description: Konverter geografiske koordinater mellom WGS84, GCJ02, BD09 og CGCS2000
+    texts:
+      label-latitude: "Breddegrad:"
+      label-longitude: "Lengdegrad:"
+      label-csv-content-lng-lat: "CSV-innhold (lang, lat):"
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert:
+        Sett inn lengdegrad og breddegrad (i denne rekkefølgen) i CSV-format for
+        å konvertere...
+      title-conversion-results: Konverteringsresultater
+      title-notes: Notater
+      tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (Global standard)
+      tag-gcj02-amap-gaode-qq-maps: GCJ02/AMap (Gaode, QQ-kart)
+      tag-bd09-bd09ll-bmap-baidu-maps: BD09/BD09LL/BMap (Baidu-kart)
+      tag-bd09mc-bd09meter-baidu-meter: BD09MC/BD09 Meter (Baidu Meter)
+      tag-cgcs2000-china-geodetic-system-2000: CGCS2000 (Kinas geodetiske system 2000)
+      tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
+      tag-convert-single: Konverter enkelt
+      tag-convert-batch: Konverter batch
+      tag-longitude-east-is-positive-west-is-negative: "Lengdegrad: Øst er positiv, vest er negativ."
+      tag-latitude-north-is-positive-south-is-negative: "Breddegrad: Nord er positiv, sør er negativ."
+  si-prefixes-converter:
+    title: SI-prefikskonverterer
+    description: Konverter mellom metriske prefikser
+    texts:
+      label-quetta-q: quetta (Q)
+      label-ronna-r: Ronna (R)
+      label-yotta-y: yotta (Y)
+      label-zetta-z: zetta (Z)
+      label-exa-e: eksa (E)
+      label-peta-p: kart (P)
+      label-tera-t: tera (T)
+      label-giga-g: giga (G)
+      label-mega-m: mega (M)
+      label-kilo-k: kilo (k)
+      label-hecto-h: hekto (h)
+      label-deca-da: ti (fra)
+      label-unit: enhet
+      label-deci-d: så (d)
+      label-centi-c: centi (c)
+      label-milli-m: nasjonal (m)
+      label-micro-µ: mikro (µ)
+      label-nano-n: nano (n)
+      label-pico-p: piko (p)
+      label-femto-f: femto (f)
+      label-atto-a: handling (a)
+      label-zepto-z: zepto (z)
+      label-yocto-y: yocto (y)
+      label-ronto-r: ronto (r)
+      label-quecto-q: Jeg er sulten.
+      label-auto: Bil
+      label-fixed: Fast
+      label-exponential: Eksponentiell
+      label-convert: "Konvertere:"
+      label-mode: "Modus:"
+      label-decimals: "Desimaltall:"
+      label-thousand-separators: "Tusenskilletegn:"
+      label-to: "Til:"
+      tag-: =
 spanCopyable:
   copy: Kopier til utklippstavlen
   copied: Kopiert!

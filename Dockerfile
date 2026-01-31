@@ -22,6 +22,9 @@ ENV VITE_VERCEL_ENV production
 ARG BASE_URL
 ENV BASE_URL=${BASE_URL}
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 8080
+
+COPY nginx.conf /etc/nginx/templates/default.conf.template
+ENV PORT=8080
+EXPOSE $PORT
+
 CMD ["nginx", "-g", "daemon off;"]

@@ -122,6 +122,7 @@ const rules: UseValidationRule<string>[] = [
     <TextareaCopyable
       :value="goOutput"
       language="go"
+      download-file-name="output.go"
     />
   </c-card>
 </template>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { jsonrepair } from 'jsonrepair';
 import {
   get,
 } from '@vueuse/core';
@@ -21,20 +20,21 @@ const schemaData = useITStorage('json-prettify:schema-data', '');
 const indentSize = useITStorage('json-prettify:indent-size', 3);
 const sortKeys = useITStorage('json-prettify:sort-keys', true);
 const unescapeUnicode = useITStorage('json-prettify:unescape-unicode', false);
+const unescapeJsonString = useITStorage('json-prettify:unescape-json', false);
 const repairJson = useITStorage('json-prettify:repair-json', true);
-const cleanJson = computed(() => withDefaultOnError(() => formatJson({ rawJson, indentSize, sortKeys, unescapeUnicode, repairJson }), ''));
+const cleanJson = computed(() => withDefaultOnError(() => formatJson({ rawJson, indentSize, sortKeys, unescapeUnicode, unescapeJsonString, repairJson }), ''));
 
 const rawJsonValidation = useValidation({
   source: rawJson,
   rules: [
     {
-      validator: v => v === '' || (get(repairJson) ? jsonrepair(v) : JSON.parseBigInt(v)),
+      validator: v => v === '' || formatJson({ rawJson, indentSize: 0, sortKeys: false, unescapeUnicode, unescapeJsonString, repairJson }),
       get message() {
         return t('tools.json-viewer.text.provided-json-is-not-valid') + (!get(repairJson) ? t('tools.json-viewer.text.try-again-with-repairjsonlabel', [repairJsonLabel]) : '');
       },
     },
   ],
-  watch: [repairJson],
+  watch: [repairJson, unescapeUnicode, unescapeJsonString],
 });
 
 const schemaUrl = useQueryParamOrStorage<string>({ name: 'schema', storageName: 'json-prettify:schema', defaultValue: '' });
@@ -48,6 +48,9 @@ const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: ra
     </n-form-item>
     <n-form-item :label="t('tools.json-viewer.texts.label-unescape-unicode')" label-placement="left" label-width="150">
       <n-switch v-model:value="unescapeUnicode" />
+    </n-form-item>
+    <n-form-item :label="t('tools.json-viewer.texts.label-unescape-json-string')" label-placement="left" label-width="180">
+      <n-switch v-model:value="unescapeJsonString" />
     </n-form-item>
     <n-form-item :label="t('tools.json-viewer.texts.label-indent-size')" label-placement="left" label-width="100" :show-feedback="false">
       <n-input-number-i18n v-model:value="indentSize" min="0" max="10" style="width: 100px" />
@@ -113,7 +116,7 @@ const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: ra
   </div>
 
   <n-form-item :label="t('tools.json-viewer.texts.label-prettified-version-of-your-json')">
-    <textarea-copyable :value="cleanJson" language="json" :follow-height-of="inputElement" />
+    <textarea-copyable :value="cleanJson" language="json" :follow-height-of="inputElement" download-file-name="output.json" />
   </n-form-item>
 </template>
 

@@ -9,10 +9,10 @@ const { t } = useI18n();
 
 function parseJSON(value: string) {
   try {
-    return JSON.parseBigInt(value);
+    return JSON.parseBigNum(value);
   }
   catch {
-    return JSON.parseBigInt(value.replace(/`((?:[^`]|\\`)*)`/g, (_m, s) => `"${s.replace(/"/g, '\\""').replace(/\r/g, '\\r').replace(/\n/g, '\\n')}"`));
+    return JSON.parseBigNum(value.replace(/`((?:[^`]|\\`)*)`/g, (_m, s) => `"${s.replace(/"/g, '\\""').replace(/\r/g, '\\r').replace(/\n/g, '\\n')}"`));
   }
 }
 

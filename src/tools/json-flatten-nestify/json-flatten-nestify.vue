@@ -13,7 +13,7 @@ const defaultValue = '{a: {b: 2}}';
 function transformer(value: string) {
   return withDefaultOnError(
     () => {
-      let o = JSON.parseBigInt(value);
+      let o = JSON.parseBigNum(value);
       if (mode.value === 'flatten') {
         o = flatten(o);
       }

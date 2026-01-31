@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3';
 import {
+  AlignCenter,
+  AlignJustified,
+  AlignLeft,
+  AlignRight,
   ArrowBack,
   ArrowForwardUp,
   Blockquote,
@@ -16,17 +20,15 @@ import {
   H2,
   H3,
   H4,
+  H5,
   Heading,
   Italic,
   LayersIntersect2,
   LayersUnion,
   LayoutDistributeHorizontal,
   LayoutDistributeVertical,
-  List,
-  ListNumbers,
-  RowInsertBottom,
-  RowInsertTop,
-  SeparatorVertical, Strikethrough, Table, TableOff, TextWrap, Tool,
+  List, ListNumbers, RowInsertBottom, RowInsertTop, SeparatorVertical, Strikethrough,
+  Table, TableOff, TextWrap, TextWrapDisabled, Tool,
 } from '@vicons/tabler';
 import type { Component } from 'vue';
 import MenuBarItem from './menu-bar-item.vue';
@@ -53,9 +55,25 @@ type MenuItem =
     value: () => string
     type: 'color'
   }
+  | { type: 'br' }
   | { type: 'divider' };
 
 const items: MenuItem[] = [
+  {
+    type: 'button',
+    icon: ArrowBack,
+    title: t('tools.menu-bar.text.undo'),
+    action: () => editor.value.chain().focus().undo().run(),
+  },
+  {
+    type: 'button',
+    icon: ArrowForwardUp,
+    title: t('tools.menu-bar.text.redo'),
+    action: () => editor.value.chain().focus().redo().run(),
+  },
+  {
+    type: 'divider',
+  },
   {
     type: 'button',
     icon: Bold,
@@ -114,6 +132,50 @@ const items: MenuItem[] = [
     title: t('tools.menu-bar.text.heading-4'),
     action: () => editor.value.chain().focus().toggleHeading({ level: 4 }).run(),
     isActive: () => editor.value.isActive('heading', { level: 4 }),
+  },
+  {
+    type: 'button',
+    icon: H5,
+    title: t('tools.menu-bar.text.heading-5'),
+    action: () => editor.value.chain().focus().toggleHeading({ level: 4 }).run(),
+    isActive: () => editor.value.isActive('heading', { level: 4 }),
+  },
+  {
+    type: 'divider',
+  },
+  {
+    type: 'button',
+    icon: AlignLeft,
+    title: t('tools.menu-bar.text.text-left'),
+    action: () => editor.value.chain().focus().setTextAlign('left').run(),
+    isActive: () => editor.value.isActive({ textAlign: 'left' }),
+  },
+  {
+    type: 'button',
+    icon: AlignCenter,
+    title: t('tools.menu-bar.text.text-center'),
+    action: () => editor.value.chain().focus().setTextAlign('center').run(),
+    isActive: () => editor.value.isActive({ textAlign: 'center' }),
+  },
+  {
+    type: 'button',
+    icon: AlignRight,
+    title: t('tools.menu-bar.text.text-right'),
+    action: () => editor.value.chain().focus().setTextAlign('right').run(),
+    isActive: () => editor.value.isActive({ textAlign: 'right' }),
+  },
+  {
+    type: 'button',
+    icon: AlignJustified,
+    title: t('tools.menu-bar.text.text-justify'),
+    action: () => editor.value.chain().focus().setTextAlign('justify').run(),
+    isActive: () => editor.value.isActive({ textAlign: 'justify' }),
+  },
+  {
+    type: 'button',
+    icon: TextWrapDisabled,
+    title: t('tools.menu-bar.text.clear-align'),
+    action: () => editor.value.chain().focus().unsetTextAlign().run(),
   },
   {
     type: 'divider',
@@ -196,22 +258,7 @@ const items: MenuItem[] = [
     isActive: () => editor.value.isActive('highlight'),
   },
   {
-    type: 'divider',
-  },
-  {
-    type: 'button',
-    icon: ArrowBack,
-    title: t('tools.menu-bar.text.undo'),
-    action: () => editor.value.chain().focus().undo().run(),
-  },
-  {
-    type: 'button',
-    icon: ArrowForwardUp,
-    title: t('tools.menu-bar.text.redo'),
-    action: () => editor.value.chain().focus().redo().run(),
-  },
-  {
-    type: 'divider',
+    type: 'br',
   },
   {
     type: 'button',
@@ -343,6 +390,7 @@ const items: MenuItem[] = [
   <div flex flex-wrap items-center>
     <template v-for="(item, index) in items">
       <n-divider v-if="item.type === 'divider'" :key="`divider${index}`" vertical />
+      <div v-if="item.type === 'br'" :key="`br${index}`" style="width: 100%" />
       <MenuBarItem v-else-if="item.type === 'button'" :key="index" v-bind="item" />
       <c-tooltip
         v-if="item.type === 'color'" :key="`color${index}`"

@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: World,
   createdAt: new Date('2024-01-17'),
   category: 'Network',
+  externAccessDescription: 'This tool sends provided IP(s) to https://ipinfo.io/ to get IP Geolocation information',
 });

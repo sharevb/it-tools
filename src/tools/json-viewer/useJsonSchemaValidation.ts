@@ -58,9 +58,14 @@ export function useJsonSchemaValidation({ json, schemaUrl, schemaData }: { json:
       errors.value = [];
       return;
     }
-    const validator = new Validator();
-    const validationResult = validator.validate(JSON.parse(jsonValue), schemaValue);
-    errors.value = validationResult.errors.map(error => error.stack ?? '');
+    try {
+      const validator = new Validator();
+      const validationResult = validator.validate(JSON.parseBigNum(jsonValue), schemaValue);
+      errors.value = validationResult.errors.map(error => error.stack ?? '');
+    }
+    catch (e: any) {
+      errors.value = [`JSON validation error:${e.toString()}`];
+    }
   }, { immediate: true });
 
   return { schemas, errors };

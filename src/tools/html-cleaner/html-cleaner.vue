@@ -49,6 +49,7 @@ const outputHtml = computed(() => {
         :value="outputHtml"
         multiline
         language="html"
+        download-file-name="output.htm"
         :word-wrap="true"
       />
     </n-form-item>

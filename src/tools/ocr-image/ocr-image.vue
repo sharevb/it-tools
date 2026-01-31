@@ -216,6 +216,7 @@ async function ocr(file: File, language: string) {
         v-if="!ocrInProgress"
         v-model:value="ocrText"
         :word-wrap="true"
+        download-file-name="output.txt"
       />
       <n-spin
         v-if="ocrInProgress"

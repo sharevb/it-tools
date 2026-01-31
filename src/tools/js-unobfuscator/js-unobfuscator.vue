@@ -50,9 +50,9 @@ const result = computedAsync(async () => {
   />
 
   <n-form-item :label="t('tools.js-unobfuscator.texts.label-deobfuscated-code')">
-    <textarea-copyable :value="result?.code" language="javascript" />
+    <textarea-copyable :value="result?.code" language="javascript" download-file-name="output.js" />
   </n-form-item>
   <n-form-item :label="t('tools.js-unobfuscator.texts.label-bundle')">
-    <textarea-copyable :value="result?.bundle" language="javascript" />
+    <textarea-copyable :value="result?.bundle" language="javascript" download-file-name="output.bundle.js" />
   </n-form-item>
 </template>

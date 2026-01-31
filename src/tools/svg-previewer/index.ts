@@ -1,10 +1,11 @@
 import { PictureInPicture } from '@vicons/tabler';
 import { defineTool } from '../tool';
+import { translate as t } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
-  name: 'SVG Previewer',
+  name: t('tools.svg-previewer.title'),
   path: '/svg-previewer',
-  description: 'Preview SVG files',
+  description: t('tools.svg-previewer.description'),
   keywords: ['svg', 'previewer'],
   component: () => import('./svg-previewer.vue'),
   icon: PictureInPicture,

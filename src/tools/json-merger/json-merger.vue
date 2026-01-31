@@ -12,8 +12,8 @@ const merged = computed(() => {
   try {
     return JSON.stringify(
       merge(
-        JSON.parseBigInt(json1.value),
-        JSON.parseBigInt(json2.value),
+        JSON.parseBigNum(json1.value),
+        JSON.parseBigNum(json2.value),
       ),
       null, 2,
     );

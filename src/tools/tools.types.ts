@@ -11,6 +11,7 @@ export interface Tool {
   isNew: boolean
   createdAt?: Date
   npmPackages?: string[]
+  externAccessDescription?: string
   footer?: string
   category: string
 }

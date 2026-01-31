@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Lock, World } from '@vicons/tabler';
 import type { PaletteOption } from '../command-palette.types';
 
 const props = withDefaults(defineProps<{ option: PaletteOption; selected?: boolean }>(), {
@@ -26,6 +27,14 @@ const { selected } = toRefs(props);
     <div flex-1 overflow-hidden>
       <div truncate font-bold lh-tight op-90>
         {{ option.name }}
+        <World
+          v-if="option.externAccessDescription"
+          class="tool-privacy-icon"
+        />
+        <Lock
+          v-else
+          class="tool-privacy-icon"
+        />
       </div>
 
       <div v-if="option.description" truncate lh-tight op-60>
@@ -34,3 +43,10 @@ const { selected } = toRefs(props);
     </div>
   </div>
 </template>
+
+<style lang="css" scoped>
+.tool-privacy-icon {
+  display: inline-block;
+  height: .9em;
+}
+</style>

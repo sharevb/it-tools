@@ -12,4 +12,5 @@ export const tool = defineTool({
   redirectFrom: ['/json-viewer'],
   npmPackages: ['json5'],
   category: 'JSON',
+  externAccessDescription: 'This tool may download a JSON schema from https://www.schemastore.org when validation is requested. No data is send externally.',
 });

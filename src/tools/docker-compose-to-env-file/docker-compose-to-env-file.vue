@@ -39,6 +39,7 @@ const envOutput = computed(() => {
       <textarea-copyable
         v-model:value="envOutput"
         rows="3"
+        download-file-name=".env"
         multiline
       />
     </n-card>

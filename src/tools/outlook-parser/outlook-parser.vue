@@ -118,23 +118,23 @@ function onUpload(file: File) {
       <c-card v-if="parsedEmail.body" :title="t('tools.outlook-parser.texts.title-plain-content')" mb-2>
         <details>
           <summary>{{ t('tools.outlook-parser.texts.tag-see-content') }}</summary>
-          <textarea-copyable :value="parsedEmail.body" />
+          <textarea-copyable :value="parsedEmail.body" download-file-name="body.txt" />
         </details>
       </c-card>
       <c-card v-if="parsedEmail.bodyHtml" :title="t('tools.outlook-parser.texts.title-html-content')" mb-2>
         <details>
           <summary>{{ t('tools.outlook-parser.texts.tag-see-content') }}</summary>
-          <textarea-copyable :value="parsedEmail.bodyHtml" word-wrap />
+          <textarea-copyable :value="parsedEmail.bodyHtml" word-wrap download-file-name="body.htm" />
         </details>
       </c-card>
       <c-card v-if="parsedRtf.rtf || parsedRtf.html" :title="t('tools.outlook-parser.texts.title-rtf-content')" mb-2>
         <details>
           <summary>{{ t('tools.outlook-parser.texts.tag-see-raw-rtf') }}</summary>
-          <textarea-copyable :value="parsedRtf.rtf" word-wrap />
+          <textarea-copyable :value="parsedRtf.rtf" word-wrap download-file-name="body.rtf" />
         </details>
         <details>
           <summary>{{ t('tools.outlook-parser.texts.tag-see-rtf-converted-html') }}</summary>
-          <textarea-copyable :value="parsedRtf.html" word-wrap />
+          <textarea-copyable :value="parsedRtf.html" word-wrap download-file-name="body.htm" />
         </details>
       </c-card>
       <c-card v-if="parsedEmail?.attachments?.length" :title="t('tools.outlook-parser.texts.title-attachments')" mb-2>

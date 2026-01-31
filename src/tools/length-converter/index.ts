@@ -7,7 +7,7 @@ export const tool = defineTool({
   path: '/length-converter',
   description: t('tools.length-converter.description'),
   keywords: ['length', 'converter',
-    'units', 'meter', 'foot', 'feet', 'inch', 'yard', 'mile', 'pica', 'light',
+    'units', 'meter', 'foot', 'feet', 'inch', 'yard', 'mile', 'pica', 'parsec', 'light',
   ],
   component: () => import('./length-converter.vue'),
   icon: SquareHalf,

@@ -53,7 +53,7 @@ function generateSQL() {
       </n-space>
 
       <NFormItem v-if="generatedSQL" :label="t('tools.sql-parameters.texts.label-generated-sql')" mt-2>
-        <textarea-copyable :value="generatedSQL" />
+        <textarea-copyable :value="generatedSQL" download-file-name="output.sql" />
       </NFormItem>
 
       <NAlert v-if="errorMessage" type="error" mt-2 @close="errorMessage = ''">

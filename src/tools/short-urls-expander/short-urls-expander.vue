@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 const inputUrls = ref('');
 const results = ref<{ short: string; expanded: string | null; ok: boolean; status: string }[]>([]);
 const error = ref('');
 const loading = ref(false);
+const corsAnywhereUrl = useITStorage('short-urls-expander:cors-anywhere-url', '//cors.outils-libre.org');
 
 function expandSingleUrl(url: string): Promise<{ short: string; expanded: string | null; ok: boolean; status: string }> {
   return new Promise((resolve) => {
     try {
-      const corsUrl = `https://cors-anywhere.com/${url}`;
+      const corsUrl = `${corsAnywhereUrl.value.replace(/\/+$/g, '')}/${url}`;
       const xhr = new XMLHttpRequest();
       xhr.open('HEAD', corsUrl, true);
       xhr.onreadystatechange = function () {
@@ -18,20 +20,20 @@ function expandSingleUrl(url: string): Promise<{ short: string; expanded: string
           // In browsers, xhr.responseURL gives the final resolved URL after redirects
           const finalUrl = xhr.getResponseHeader('X-Final-Url') || xhr.responseURL;
           if (finalUrl && finalUrl !== corsUrl) {
-            resolve({ short: url, expanded: finalUrl, status: 'Expanded', ok: true });
+            resolve({ short: url, expanded: finalUrl, status: t('tools.short-urls-expander.texts.expanded'), ok: true });
           }
           else {
-            resolve({ short: url, expanded: null, status: 'No redirect', ok: true });
+            resolve({ short: url, expanded: null, status: t('tools.short-urls-expander.texts.no-redirect'), ok: true });
           }
         }
       };
       xhr.onerror = function () {
-        resolve({ short: url, expanded: null, status: 'Failed', ok: false });
+        resolve({ short: url, expanded: null, status: t('tools.short-urls-expander.texts.failed'), ok: false });
       };
       xhr.send();
     }
     catch {
-      resolve({ short: url, expanded: null, status: 'Failed', ok: false });
+      resolve({ short: url, expanded: null, status: t('tools.short-urls-expander.texts.failed'), ok: false });
     }
   });
 }
@@ -54,7 +56,7 @@ async function expandUrls() {
     results.value = await Promise.all(promises);
   }
   catch (err) {
-    error.value = 'Failed to expand some URLs.';
+    error.value = t('tools.short-urls-expander.texts.failed-to-expand-some-urls');
   }
   finally {
     loading.value = false;
@@ -66,7 +68,7 @@ function downloadCsv() {
     return;
   }
 
-  const header = ['Short URL', 'Expanded URL', 'Status'];
+  const header = [t('tools.short-urls-expander.texts.short-url'), t('tools.short-urls-expander.texts.expanded-url'), t('tools.short-urls-expander.texts.tag-status')];
   const rows = results.value.map(r => [
     r.short,
     r.expanded ?? '',
@@ -90,12 +92,24 @@ function downloadCsv() {
 <template>
   <div>
     <NSpace vertical>
-      <n-p mb-1>
-        <strong>{{ t('tools.short-urls-expander.texts.tag-this-tool-make-use-of-https-cors-anywhere-com-to-bypass-cors-this-is-a-community-driven-server') }}</strong>
-        <n-a href="https://cors-anywhere.com" target="_blank">
-          {{ t('tools.short-urls-expander.texts.tag-see-here-for-more-information') }}
-        </n-a>
-      </n-p>
+      <details>
+        <summary>{{ t('tools.short-urls-expander.texts.cors-anywhere-configuration') }}</summary>
+        <n-card>
+          <c-input-text
+            v-model:value="corsAnywhereUrl"
+            :label="t('tools.short-urls-expander.texts.cors-anywhere-instance-url')"
+            label-position="left"
+            :placeholder="t('tools.short-urls-expander.texts.put-your-cors-anywhere-instance-url')"
+            mb-1
+          />
+          <n-p>
+            {{ t('tools.short-urls-expander.texts.this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a') }}
+            <a href="https://github.com/sharevb/cors-anywhere?tab=readme-ov-file#run-with-docker" target="_blank">
+              {{ t('tools.short-urls-expander.texts.self-hosted-cors-anywhere') }}
+            </a>
+          </n-p>
+        </n-card>
+      </details>
       <c-input-text
         v-model:value="inputUrls"
         :label="t('tools.short-urls-expander.texts.label-short-urls-to-expand')"

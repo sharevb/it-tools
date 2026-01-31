@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: World,
   createdAt: new Date('2025-01-01'),
   category: 'Network',
+  externAccessDescription: 'This tool get IPv4/6 using API of https://www.ipify.org/ and download IP Info data from https://cdn.jsdelivr.net/npm/@iplookup/country-extra/',
 });

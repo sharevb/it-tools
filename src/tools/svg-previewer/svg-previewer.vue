@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
 const svgContent = ref<string | null>(null);
 const backgroundColor = ref<string>('#ffffff');
+
+const { t } = useI18n();
 
 function readAsTextAsync(file: File) {
   return new Promise<string>((resolve, reject) => {
@@ -19,7 +23,7 @@ async function onFileUploaded(uploadedFile: File) {
 <template>
   <div style="padding: 16px;">
     <c-file-upload
-      title="Upload a SVG File"
+      :title="t('tools.svg-previewer.texts.title-upload-a-svg-file')"
       paste-image
       accept=".svg"
       mb-1
@@ -28,19 +32,19 @@ async function onFileUploaded(uploadedFile: File) {
 
     <c-input-text
       v-model:value="svgContent"
-      title="Raw SVG Content:"
+      :title="t('tools.svg-previewer.texts.title-raw-svg-content')"
       rows="6"
       multiline
-      placeholder="Paste raw SVG content here..."
+      :placeholder="t('tools.svg-previewer.texts.placeholder-paste-raw-svg-content-here')"
       mb-1
     />
 
-    <n-form-item label="Select background:" label-placement="left" mb-1>
+    <n-form-item :label="t('tools.svg-previewer.texts.label-select-background')" label-placement="left" mb-1>
       <NColorPicker v-model:value="backgroundColor" />
     </n-form-item>
 
     <NCard
-      title="SVG Preview"
+      :title="t('tools.svg-previewer.texts.title-svg-preview')"
       style="margin-top: 16px; min-height: 300px;"
     >
       <div
