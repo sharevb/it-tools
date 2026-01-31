@@ -169,7 +169,7 @@ const tools = computed<ToolCategory[]>(() => [
 
 .sider-content {
   padding-top: 20px;
-  padding-bottom: 200px;
+  padding-bottom: 50px;
 }
 
 .hero-wrapper {
@@ -178,7 +178,7 @@ const tools = computed<ToolCategory[]>(() => [
   top: 0;
   left: 0;
   z-index: 10;
-  height: 150px;
+  height: 125px;
   overflow: hidden;
   width: inherit;
 
