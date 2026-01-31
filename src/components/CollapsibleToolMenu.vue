@@ -104,7 +104,7 @@ const menuOptions = computed(() =>
   })),
 );
 
-function scrollToActiveItem() {
+async function scrollToActiveItem() {
   const activeCategory = toolsByCategory.value.find(({ components }) =>
     isCategoryActive(components),
   );
@@ -113,17 +113,17 @@ function scrollToActiveItem() {
     // Expand the active category
     collapsedCategories.value[activeCategory.name] = false;
 
-    // Wait for DOM to update
-    nextTick(() => {
-      // Scroll to the active menu item
-      const menuContainer = menuContainerRefs.value[activeCategory.name];
-      if (menuContainer) {
-        const activeItem = menuContainer.querySelector('.router-link-exact-active, .router-link-active');
-        if (activeItem) {
-          activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+    // Wait for the entire animation to complete
+    await new Promise(resolve => setTimeout(resolve, getAnimationDuration(activeCategory.components.length) + 50));
+
+    // Scroll to the active menu item
+    const menuContainer = menuContainerRefs.value[activeCategory.name];
+    if (menuContainer) {
+      const activeItem = menuContainer.querySelector('.router-link-exact-active, .router-link-active');
+      if (activeItem) {
+        activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-    });
+    }
   }
 }
 
