@@ -175,11 +175,12 @@ const tools = computed<ToolCategory[]>(() => [
 .hero-wrapper {
   position: sticky;
   display: flex;
+  top: 0;
   left: 0;
   z-index: 10;
   height: 150px;
   overflow: hidden;
-  position: relative;
+  width: inherit;
 
   .gradient {
     position: absolute;

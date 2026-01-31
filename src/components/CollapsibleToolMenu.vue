@@ -10,9 +10,9 @@ const props = withDefaults(defineProps<{ toolsByCategory?: ToolCategory[] }>(), 
 const { toolsByCategory } = toRefs(props);
 const route = useRoute();
 
-// Memoize component creation functions
-const makeLabel = (tool: Tool) => () => h(MenuItemWithTooltip, { tool, key: tool.path });
-const makeIcon = (tool: Tool) => () => h(MenuIconItem, { tool, key: tool.path });
+// Memoize component creation functions - wrap in markRaw to prevent reactivity
+const makeLabel = (tool: Tool) => () => markRaw(h(MenuItemWithTooltip, { tool, key: tool.path }));
+const makeIcon = (tool: Tool) => () => markRaw(h(MenuIconItem, { tool, key: tool.path }));
 
 const collapsedCategories = useStorage<Record<string, boolean>>(
   'menu-tool-option:collapsed-categories',
@@ -104,7 +104,7 @@ const menuOptions = computed(() =>
   })),
 );
 
-onMounted(async () => {
+function scrollToActiveItem() {
   const activeCategory = toolsByCategory.value.find(({ components }) =>
     isCategoryActive(components),
   );
@@ -114,17 +114,25 @@ onMounted(async () => {
     collapsedCategories.value[activeCategory.name] = false;
 
     // Wait for DOM to update
-    await nextTick();
-
-    // Scroll to the active menu item
-    const menuContainer = menuContainerRefs.value[activeCategory.name];
-    if (menuContainer) {
-      const activeItem = menuContainer.querySelector('.router-link-exact-active, .router-link-active');
-      if (activeItem) {
-        activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    nextTick(() => {
+      // Scroll to the active menu item
+      const menuContainer = menuContainerRefs.value[activeCategory.name];
+      if (menuContainer) {
+        const activeItem = menuContainer.querySelector('.router-link-exact-active, .router-link-active');
+        if (activeItem) {
+          activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       }
-    }
+    });
   }
+}
+
+onMounted(() => {
+  scrollToActiveItem();
+});
+
+watch(() => route.path, () => {
+  scrollToActiveItem();
 });
 
 const themeVars = useThemeVars();
