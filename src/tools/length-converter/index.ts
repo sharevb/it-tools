@@ -1,6 +1,6 @@
-import { SquareHalf } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconRuler3 } from '@tabler/icons-vue';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.length-converter.title'),
@@ -10,7 +10,7 @@ export const tool = defineTool({
     'units', 'meter', 'foot', 'feet', 'inch', 'yard', 'mile', 'pica', 'parsec', 'light',
   ],
   component: () => import('./length-converter.vue'),
-  icon: SquareHalf,
+  icon: IconRuler3,
   createdAt: new Date('2024-08-15'),
   category: 'Physics',
 });

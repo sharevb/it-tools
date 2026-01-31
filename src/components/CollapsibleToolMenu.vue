@@ -45,6 +45,7 @@ watchEffect(() => {
 });
 
 const isToggling = ref(false);
+const menuContainerRefs = ref<Record<string, HTMLElement>>({});
 
 function toggleCategoryCollapse({ name }: { name: string }) {
   collapsedCategories.value[name] = !collapsedCategories.value[name];
@@ -103,6 +104,29 @@ const menuOptions = computed(() =>
   })),
 );
 
+onMounted(async () => {
+  const activeCategory = toolsByCategory.value.find(({ components }) =>
+    isCategoryActive(components),
+  );
+
+  if (activeCategory) {
+    // Expand the active category
+    collapsedCategories.value[activeCategory.name] = false;
+
+    // Wait for DOM to update
+    await nextTick();
+
+    // Scroll to the active menu item
+    const menuContainer = menuContainerRefs.value[activeCategory.name];
+    if (menuContainer) {
+      const activeItem = menuContainer.querySelector('.router-link-exact-active, .router-link-active');
+      if (activeItem) {
+        activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }
+});
+
 const themeVars = useThemeVars();
 </script>
 
@@ -135,6 +159,7 @@ const themeVars = useThemeVars();
     </button>
 
     <div
+      :ref="el => { if (el) menuContainerRefs[name] = el as HTMLElement }"
       class="menu-container"
       :class="{ collapsed: isCollapsed }"
       :style="{ '--animation-duration': `${animationDuration}ms` }"
@@ -172,12 +197,12 @@ const themeVars = useThemeVars();
   }
 
   &.category-active {
-    background-color: v-bind('themeVars.primaryColor');
+    background-color: color-mix(in srgb, v-bind('themeVars.primaryColor') 40%, transparent);
     opacity: 1;
     color: white;
 
     &:hover {
-      background-color: v-bind('themeVars.primaryColorHover');
+      background-color: color-mix(in srgb, v-bind('themeVars.primaryColorHover') 50%, transparent);
     }
   }
 }

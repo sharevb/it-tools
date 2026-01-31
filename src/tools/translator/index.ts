@@ -1,6 +1,6 @@
-import { ArrowsShuffle } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { Language } from '@vicons/tabler';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.translator.title'),
@@ -8,7 +8,7 @@ export const tool = defineTool({
   description: t('tools.translator.description'),
   keywords: ['translate', 'language'],
   component: () => import('./translator.vue'),
-  icon: ArrowsShuffle,
+  icon: Language,
   createdAt: new Date('2025-08-15'),
   category: 'Text',
   externAccessDescription: 'This tool downloads translation models (Xenova/opus-mt-[source]-[target]) on https://huggingface.co/',

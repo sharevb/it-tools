@@ -1,6 +1,6 @@
-import { Database } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconDatabaseMinus } from '@tabler/icons-vue';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.sql-minifier.title'),
@@ -8,7 +8,7 @@ export const tool = defineTool({
   description: t('tools.sql-minifier.description'),
   keywords: ['sql', 'query', 'minifier'],
   component: () => import('./sql-minifier.vue'),
-  icon: Database,
+  icon: IconDatabaseMinus,
   createdAt: new Date('2025-05-01'),
   category: 'Development',
 });

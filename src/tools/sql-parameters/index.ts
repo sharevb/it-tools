@@ -1,6 +1,6 @@
-import { Database } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconDatabaseCog } from '@tabler/icons-vue';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.sql-parameters.title'),
@@ -8,7 +8,7 @@ export const tool = defineTool({
   description: t('tools.sql-parameters.description'),
   keywords: ['sql', 'select', 'insert', 'parameters'],
   component: () => import('./sql-parameters.vue'),
-  icon: Database,
+  icon: IconDatabaseCog,
   createdAt: new Date('2025-08-15'),
   category: 'Development',
 });

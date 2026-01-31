@@ -1,6 +1,6 @@
-import { ImageOutlined } from '@vicons/material';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconFileTypeSvg } from '@tabler/icons-vue';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.svg-placeholder-generator.title'),
@@ -8,6 +8,6 @@ export const tool = defineTool({
   description: t('tools.svg-placeholder-generator.description'),
   keywords: ['svg', 'placeholder', 'generator', 'image', 'size', 'mockup'],
   component: () => import('./svg-placeholder-generator.vue'),
-  icon: ImageOutlined,
+  icon: IconFileTypeSvg,
   category: 'Web',
 });

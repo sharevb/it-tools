@@ -1,6 +1,6 @@
-import { Brightness2 } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { Sun } from '@vicons/tabler';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.illuminance-converter.title'),
@@ -13,7 +13,7 @@ export const tool = defineTool({
     'foot', 'candles', 'fc', 'flame',
     'nox', 'phot', 'units'],
   component: () => import('./illuminance-converter.vue'),
-  icon: Brightness2,
+  icon: Sun,
   createdAt: new Date('2025-02-09'),
   category: 'Physics',
 });

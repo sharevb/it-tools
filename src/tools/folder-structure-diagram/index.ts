@@ -1,6 +1,6 @@
-import { Folder } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconFolderSymlink } from '@tabler/icons-vue';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.folder-structure-diagram.title'),
@@ -8,7 +8,7 @@ export const tool = defineTool({
   description: t('tools.folder-structure-diagram.description'),
   keywords: ['folder', 'structure', 'diagram', 'tree', 'ascii'],
   component: () => import('./folder-structure-diagram.vue'),
-  icon: Folder,
+  icon: IconFolderSymlink,
   createdAt: new Date('2024-04-20'),
   category: 'Text',
 });

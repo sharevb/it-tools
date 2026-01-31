@@ -1,6 +1,6 @@
-import { Database } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconDatabaseStar } from '@tabler/icons-vue';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.sql-prettify.title'),
@@ -23,7 +23,7 @@ export const tool = defineTool({
     'SQL Server Transact-SQL',
   ],
   component: () => import('./sql-prettify.vue'),
-  icon: Database,
+  icon: IconDatabaseStar,
   npmPackages: ['sql-formatter'],
   category: 'Development',
 });

@@ -1,6 +1,6 @@
-import { Gauge } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconMeterCube } from '@tabler/icons-vue';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.volume-converter.title'),
@@ -10,7 +10,7 @@ export const tool = defineTool({
     'units', 'meter', 'stere', 'cubic', 'liter', 'barrel', 'gallon', 'pint', 'ounce', 'quart', 'm3',
   ],
   component: () => import('./volume-converter.vue'),
-  icon: Gauge,
+  icon: IconMeterCube,
   createdAt: new Date('2024-08-15'),
   category: 'Physics',
 });

@@ -1,6 +1,6 @@
-import { World } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconWorldPin } from '@tabler/icons-vue';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.geo-coordinates-converter.title'),
@@ -8,7 +8,7 @@ export const tool = defineTool({
   description: t('tools.geo-coordinates-converter.description'),
   keywords: ['geo', 'latitude', 'longitude', 'coordinates', 'converter'],
   component: () => import('./geo-coordinates-converter.vue'),
-  icon: World,
+  icon: IconWorldPin,
   createdAt: new Date('2026-01-09'),
   category: 'Converters',
 });
