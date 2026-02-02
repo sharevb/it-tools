@@ -5,7 +5,7 @@
 // Read more: https://github.com/vuejs/core/pull/3399
 import '@vue/runtime-core'
 
-export {}
+export { }
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
@@ -238,6 +238,7 @@ declare module '@vue/runtime-core' {
     IcalParser: typeof import('./src/tools/ical-parser/ical-parser.vue')['default']
     IcoConverter: typeof import('./src/tools/ico-converter/ico-converter.vue')['default']
     'IconMdi:brushVariant': typeof import('~icons/mdi/brush-variant')['default']
+    'IconMdi:contentCopy': typeof import('~icons/mdi/content-copy')['default']
     'IconMdi:kettleSteamOutline': typeof import('~icons/mdi/kettle-steam-outline')['default']
     IconMdiCheck: typeof import('~icons/mdi/check')['default']
     IconMdiChevronDown: typeof import('~icons/mdi/chevron-down')['default']
@@ -408,6 +409,8 @@ declare module '@vue/runtime-core' {
     NP: typeof import('naive-ui')['NP']
     NRadio: typeof import('naive-ui')['NRadio']
     NRadioGroup: typeof import('naive-ui')['NRadioGroup']
+    NRate: typeof import('naive-ui')['NRate']
+    NResult: typeof import('naive-ui')['NResult']
     NScrollbar: typeof import('naive-ui')['NScrollbar']
     NSelect: typeof import('naive-ui')['NSelect']
     NSlider: typeof import('naive-ui')['NSlider']
