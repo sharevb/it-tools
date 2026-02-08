@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
+import { Base64 } from 'js-base64';
 
 const message = useMessage();
 const notification = useNotification();
@@ -11,6 +12,7 @@ const image = useQueryParamOrStorage({ name: 'image', storageName: 'docker-dl:i'
 const platform = useQueryParamOrStorage({ name: 'platform', storageName: 'docker-dl:p', defaultValue: '' });
 const registry = useQueryParamOrStorage({ name: 'registry', storageName: 'docker-dl:r', defaultValue: '' });
 const serverHost = useITStorage('docker-dl:url', 'http://localhost:3000');
+const serverAuth = useITStorage('docker-dl:auth', '');
 
 const loading = ref(false);
 const error = ref<string | null>(null);
@@ -55,7 +57,13 @@ async function downloadImage() {
 
     const url = `${serverHost.value}/download?${params.toString()}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url,
+      serverAuth.value
+        ? {
+            method: 'GET',
+            headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
+          }
+        : undefined);
 
     if (!response.ok) {
       const text = await response.text();
@@ -94,10 +102,13 @@ async function downloadImage() {
   <div>
     <NForm label-width="120px" label-placement="left">
       <details mb-2>
-        <summary>Docker Image Download Service</summary>
+        <summary>Docker Image Download Service Configuration (self hosted)</summary>
         <n-card>
           <NFormItem label="Docker Image Download Service Url:" label-placement="top">
             <NInput v-model:value="serverHost" placeholder="http://localhost:3000" />
+          </NFormItem>
+          <NFormItem label="Basic Authentication:" label-placement="left" label-width="auto">
+            <NInput v-model:value="serverAuth" placeholder="username:password" />
           </NFormItem>
           <n-p>
             You must self host Docker Image Download Service. See:
