@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Lock, World } from '@vicons/tabler';
+import { DeviceDesktop, World } from '@vicons/tabler';
 
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
@@ -95,7 +95,7 @@ const linkTheme = useTheme();
                   v-if="route.meta.externAccessDescription"
                   class="tool-privacy-icon"
                 />
-                <Lock
+                <DeviceDesktop
                   v-else
                   class="tool-privacy-icon"
                 />
@@ -186,7 +186,7 @@ const linkTheme = useTheme();
     }
 
     .separator {
-      width: 200px;
+      width:'100%';
       height: 2px;
       background: rgb(161, 161, 161);
       opacity: 0.2;

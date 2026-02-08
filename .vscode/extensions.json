@@ -1,3 +1,8 @@
 {
-  "recommendations": ["Vue.volar", "dbaeumer.vscode-eslint", "lokalise.i18n-ally", "ms-vscode-remote.remote-wsl"]
+  "recommendations": [
+    "Vue.volar",
+    "dbaeumer.vscode-eslint",
+    "lokalise.i18n-ally",
+    "ms-vscode-remote.remote-wsl"
+  ]
 }

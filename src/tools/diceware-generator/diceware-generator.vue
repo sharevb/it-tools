@@ -5,6 +5,7 @@ import enWL from 'diceware-wordlist-en';
 import enEffWL from 'diceware-wordlist-en-eff';
 import jpWL from 'diceware-wordlist-jp';
 import spWL from 'diceware-wordlist-sp';
+import ruWL from 'diceware-wordlist-ru';
 import sweWL from 'diceware-wordlist-swe';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
@@ -22,6 +23,7 @@ const langs = [
   { value: 'sp', label: t('tools.diceware-generator.texts.label-spanish') },
   { value: 'jp', label: t('tools.diceware-generator.texts.label-japanese') },
   { value: 'swe', label: t('tools.diceware-generator.texts.label-swedish') },
+  { value: 'ru', label: t('tools.diceware-generator.texts.label-russian') },
 ];
 
 const [dicewares, refreshDicewares] = computedRefreshable(
@@ -41,6 +43,9 @@ const [dicewares, refreshDicewares] = computedRefreshable(
         case 'swe':
           language = sweWL;
           break;
+        case 'ru':
+          language = ruWL;
+          break;
       }
       return dwGen({
         language,
@@ -54,7 +59,7 @@ const { copy } = useCopy({ source: dicewares, text: t('tools.diceware-generator.
 </script>
 
 <template>
-  <div>
+  <div style="min-height: 80vh">
     <c-card>
       <n-space>
         <n-form-item :label="`Words (${words})`" label-placement="left">

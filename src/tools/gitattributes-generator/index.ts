@@ -11,5 +11,5 @@ export const tool = defineTool({
   icon: BrandGit,
   createdAt: new Date('2026-01-01'),
   category: 'Development',
-  externAccessDescription: 'This tool download .gitattributes from https://github.com/gitattributes/gitattributes using Github API',
+  externAccessDescription: t('tools.gitattributes-generator.externalAccess'),
 });

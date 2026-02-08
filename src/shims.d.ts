@@ -39,6 +39,19 @@ declare module 'vite-plugin-splash-screen/runtime' {
   export function hideSplashScreen();
 }
 
+declare module 'units-converter' {
+  interface ITo{
+    to(unit: string): { value: number }
+  }
+  interface IFrom{
+    from(unit: string): ITo
+  }
+  export function frequency(value: number): IFrom;
+  export function volumeFlowRate(value: number): IFrom;
+  export function acceleration(value: number): IFrom;
+  export function speed(value: number): IFrom;
+}
+
 interface BigInt {
   toJSON: () => string;
 }
@@ -64,4 +77,57 @@ namespace Intl {
     constructor(locale?: Intl.LocalesArgument, options?: { style?: 'long' });
     format(duration: { seconds?: number; milliseconds?: number }): string;
   }
+}
+
+declare module '@vueuse/integrations/useIDBKeyval' {
+  interface Serializer<T> {
+    read: (raw: unknown) => T
+    write: (value: T) => unknown
+  }
+  export interface UseIDBOptions<T> extends ConfigurableFlush {
+    /**
+     * Watch for deep changes
+     *
+     * @default true
+     */
+    deep?: boolean
+    /**
+     * On error callback
+     *
+     * Default log error to `console.error`
+     */
+    onError?: (error: unknown) => void
+    /**
+     * Use shallow ref as reference
+     *
+     * @default false
+     */
+    shallow?: boolean
+    /**
+     * Write the default value to the storage when it does not exist
+     *
+     * @default true
+     */
+    writeDefaults?: boolean
+    /**
+     * Custom data serialization
+     */
+    serializer?: Serializer<T>
+  }
+  export interface UseIDBKeyvalReturn<T> {
+    data: RemovableRef<T>
+    isFinished: ShallowRef<boolean>
+    set: (value: T) => Promise<void>
+  }
+  /**
+   *
+   * @param key
+   * @param initialValue
+   * @param options
+   */
+  export declare function useIDBKeyval<T>(
+    key: IDBValidKey,
+    initialValue: MaybeRefOrGetter<T>,
+    options?: UseIDBOptions<T>,
+  ): UseIDBKeyvalReturn<T>
 }

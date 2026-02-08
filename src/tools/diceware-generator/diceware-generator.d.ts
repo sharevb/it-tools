@@ -30,3 +30,7 @@ declare module 'diceware-wordlist-swe' {
     const wl: any;
     export default wl;
 }
+declare module 'diceware-wordlist-ru' {
+    const wl: any;
+    export default wl;
+}

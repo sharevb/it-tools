@@ -620,6 +620,9 @@ tools:
   json-prettify:
     title: JSON prettify and format
     description: Prettify your JSON string into a friendly, human-readable format.
+    externalAccess: >-
+      This tool may download a JSON schema from https://www.schemastore.org when
+      validation is requested. No data is send externally.
   docker-run-to-docker-compose-converter:
     title: Docker run to Docker compose converter
     description: Transforms "docker run" commands into docker-compose files!
@@ -1280,6 +1283,7 @@ tools:
       tag-add-a-new-query-parameter: Add a new Query Parameter
       tag-no-cors: No CORS
       tag-call-api: Call API
+    externalAccess: This tool calls API endpoint you provide in you browser only.
   area-converter:
     title: Area Units Converter
     description: Convert values between area units
@@ -1567,6 +1571,9 @@ tools:
       label-country: Country
       title-currencies-to-countries: Currencies to Countries
       label-currency: Currency
+    externalAccess: >-
+      This tool downloads fresh currency data from
+      https://cdn.jsdelivr.net/npm/{'@'}fawazahmed0/currency-api
   data-storage-unit-converter:
     title: Data Storage Unit converter
     description: >-
@@ -1785,6 +1792,9 @@ tools:
       label-dns-record-type: 'DNS record type:'
       title-query-results: Query results
       tag-send-dns-query: Send DNS query
+    externalAccess: >-
+      This tool send DNS query throught a responding DOH endpoint in the
+      following list: https://martinheidegger.github.io/dns-query/resolvers.json
   docker-compose-converter:
     title: Docker Compose Format Converter
     description: >-
@@ -2252,6 +2262,9 @@ tools:
       tag-signup-for-a-free-token: Signup for a free token
       tag-click-on-button-above-to-get-latest-infos: Click on button above to get latest infos
       tag-localize-on-open-street-map: Localize on Open Street Map
+    externalAccess: >-
+      This tool sends provided IP(s) to https://ipinfo.io/ to get IP Geolocation
+      information
   ip-include-exclude:
     title: IP Subnets Exclude Calculator
     description: >-
@@ -2420,6 +2433,9 @@ tools:
       title-schema-validation-errors: Schema Validation Errors
       label-indent-size-0-compact: 'Indent size (0 = Compact):'
       repair-json: Repair JSON
+    externalAccess: >-
+      This tool may download a JSON schema from https://www.schemastore.org when
+      validation is requested. No data is send externally.
   json-escaper:
     title: Json Escaper/Unescaper
     description: Escape and unescape JSON string
@@ -2449,6 +2465,9 @@ tools:
       label-indent-size-0-compact: 'Indent size (0 = Compact):'
       title-repaired-version: Auto Repaired and Formatted version
       label-auto-repair-json: 'Auto Repair JSON:'
+    externalAccess: >-
+      This tool may download a JSON schema from https://www.schemastore.org when
+      validation is requested. No data is send externally.
   json-size-analyzer:
     title: Json Size Analyzer
     description: Measure JSON nodes relative weights
@@ -2687,6 +2706,9 @@ tools:
         take a while
       tag-this-tool-required-internet-connection-to-access-models: This tool required internet connection (to access models)
       tag-latex-result: Latex Result
+    externalAccess: >-
+      This tool downloads MathJaX from https://cdnjs.cloudflare.com and download
+      Latex OCR recognition model (Xenova/texify) from https://huggingface.co/
   mermaid-exporter:
     title: Mermaid exporter
     description: Convert Markdown (Mermaid) to image and allow to export to PNG, JPG & SVG
@@ -2752,6 +2774,9 @@ tools:
       label-country-name: 'Country Name:'
       label-continent-name: 'Continent Name:'
       tag-refresh: Refresh
+    externalAccess: >-
+      This tool get IPv4/6 using API of https://www.ipify.org/ and download IP
+      Info data from https://cdn.jsdelivr.net/npm/{'@'}iplookup/country-extra/
   nano-memo:
     title: Nano CheatSheet
     description: Nano Editor Cheatsheet
@@ -2783,6 +2808,7 @@ tools:
       label-spaces-chars: Spaces chars
       label-word-count-no-punct: Word count (no punct)
       tag-ocr: OCR
+    externalAccess: This tool downloads OCR languages models on https://cdn.jsdelivr.net
   option43-generator:
     title: Option43 generator
     description: Generate Option43 Wifi DHCP configuration
@@ -4761,6 +4787,8 @@ tools:
         email-1: Email
         email-0: Email
         email: Email
+        otpauth: OTP Auth
+        otpmigration: OTP Migration
   SplashScreen:
     text:
       pomodoro-timer: Pomodoro Timer
@@ -5104,6 +5132,7 @@ tools:
       text:
         failed-to-fetch-linkurl-0: Failed to fetch {0}
         failed-to-fetch-linkurl: Failed to fetch {0}
+    externalAccess: This tool downloads provided URLs in your browser only.
   mic-tester:
     title: Microphone Tester
     description: >-
@@ -6287,6 +6316,9 @@ tools:
       tag-want-to-understand-why-an-ip-might-be-blacklisted-check-out: Want to understand why an IP might be blacklisted? Check out
       tag-this-dnsbl-explanation-and-removal-guide: this DNSBL explanation and removal guide
       tag-: .
+    externalAccess: >-
+      This tool checks and sends provided IP to DNSBL throught
+      https://cloudflare-dns.com/dns-query
   docker-compose-memo:
     title: Docker Compose cheatsheet
     description: Docker Compose format cheatsheet
@@ -6868,6 +6900,9 @@ tools:
       placeholder-to: To
       placeholder-translation-will-appear-here: Translation will appear here...
       tag-translate: Translate
+    externalAccess: >-
+      This tool downloads translation models (Xenova/opus-mt-[source]-[target])
+      on https://huggingface.co/
   unicode-to-gsm7:
     title: Unicode to GSM-7
     description: >-
@@ -7119,6 +7154,7 @@ tools:
       placeholder-diceware-passwords: Diceware passwords...
       tag-copy: Copy
       tag-refresh: Refresh
+      label-russian: Russian
   gtin-validator:
     title: GTIN Validator
     description: >-
@@ -7140,6 +7176,9 @@ tools:
       label-domain-to-check: 'Domain to check:'
       placeholder-enter-a-domain-e-g-example-com: Enter a domain (e.g. example.com)
       tag-lookup-whois: Lookup WHOIS
+    externalAccess: >-
+      This tool launch a new tab with domain to check at
+      https://www.iana.org/whois
   keyboard-layout-converter:
     title: Keyboard Layout Converter
     description: Convert keys sequence from one keyboard layout to another
@@ -7357,6 +7396,9 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Select templates (e.g. node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Generate
+    externalAccess: >-
+      This tool download .gitignore from https://github.com/github/gitignore
+      using Github API
   i-and-l-checker:
     title: I and L Checker
     description: Check a password or text with highlighting of 1, l, I, 0, O
@@ -7524,6 +7566,10 @@ tools:
       failed: Failed
       no-redirect: No redirect
       expanded: Expanded
+    externalAccess: >-
+      This tool use a CORS Anywhere instance (by default,
+      https://cors.outils-libre.org) to send HEAD http request (no data
+      downloaded) to get HTTP headers and redirects
   copy:
     text:
       copied-to-the-clipboard: Copied to the clipboard
@@ -7600,6 +7646,9 @@ tools:
       placeholder-select-templates: Select templates
       title-preview: Preview
       tag-fetch-generate: Fetch & Generate
+    externalAccess: >-
+      This tool download .gitattributes from
+      https://github.com/gitattributes/gitattributes using Github API
   html-to-xhtml:
     title: HTML to XHTML
     description: Convert HTML to strict XHTML (XML parsable, self closing tags...)
@@ -7637,6 +7686,9 @@ tools:
       placeholder-select-a-language: Select a language
       tag-search-on-wiktionary: Search on Wiktionary
       tag-enter-a-word-and-select-a-language-to-load-wiktionary: Enter a word and select a language to load Wiktionary
+    externalAccess: >-
+      This tool search words definitions in https://www.wiktionary.org/ (by
+      language) in an iframe.
   ptr-dns-generator:
     title: PTR DNS Generator
     description: Generate DNS PTR records

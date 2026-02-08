@@ -11,5 +11,5 @@ export const tool = defineTool({
   icon: MathSymbols,
   createdAt: new Date('2024-08-15'),
   category: 'Maths',
-  externAccessDescription: 'This tool downloads MathJaX from https://cdnjs.cloudflare.com and download Latex OCR recognition model (Xenova/texify) from https://huggingface.co/',
+  externAccessDescription: t('tools.math-ocr.externalAccess'),
 });

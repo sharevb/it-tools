@@ -64,6 +64,63 @@ describe('qr-code-decoder', () => {
         password: 'password', // NOSONAR
       },
     });
+    expect(parseQRData('otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30')).toEqual({
+      type: 'OTP Auth',
+      value: {
+        label: {
+          account: 'john.doe@email.com',
+          issuer: 'ACME Co',
+          raw: 'ACME Co:john.doe@email.com',
+        },
+        params: {
+          algorithm: 'SHA1',
+          digits: '6',
+          issuer: 'ACME Co',
+          period: '30',
+          secret: 'HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ',
+        },
+        type: 'totp',
+        uri: 'otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30',
+      },
+    });
+    expect(parseQRData('otpauth-migration://offline?data=CigKFFVUVURPbmFMMXd1cDlBSVZHOUVjEgRUZXN0GgRUZXN0IAEoAjACCi8KCkhlbGxvId6tvu8SEGFsaWNlQGdvb2dsZS5jb20aB0V4YW1wbGUgASgBMAE4BxABGAEgAA%3D%3D')).toEqual({
+      type: 'OTP Migration',
+      value: [
+        {
+          label: {
+            account: 'Test',
+            issuer: 'Test',
+            raw: 'Test:Test',
+          },
+          params: {
+            algorithm: 'SHA1',
+            digits: '8',
+            issuer: 'Test',
+            secret: 'KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD',
+          },
+          type: 'totp',
+          uri: 'otpauth://totp/Test%3ATest?issuer=Test&algorithm=SHA1&digits=8&secret=KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD',
+        },
+        {
+          label: {
+            account: 'alice@google.com',
+            issuer: 'Example',
+            raw: 'Example:alice@google.com',
+          },
+          params: {
+            algorithm: 'SHA1',
+            counter: '7',
+            digits: '6',
+            issuer: 'Example',
+            secret: 'JBSWY3DPEHPK3PXP',
+          },
+          type: 'hotp',
+          uri: 'otpauth://hotp/Example%3Aalice%40google.com?issuer=Example&algorithm=SHA1&digits=6&counter=7&secret=JBSWY3DPEHPK3PXP',
+        },
+      ],
+    },
+
+    );
     expect(parseQRData('BEGIN:VCALENDAR\nPRODID:-//xyz Corp//NONSGML PDA Calendar Version 1.0//EN\nVERSION:2.0\nBEGIN:VEVENT\nDTSTAMP:19960704T120000Z\nUID:uid1@example.com\nORGANIZER:mailto:jsmith@example.com\nDTSTART:19960918T143000Z\nDTEND:19960920T220000Z\nSTATUS:CONFIRMED\nCATEGORIES:CONFERENCE\nSUMMARY:Networld+Interop Conference\nDESCRIPTION:Networld+Interop Conference\n  and Exhibit\\nAtlanta World Congress Center\\n\n Atlanta\\, Georgia\nEND:VEVENT\nEND:VCALENDAR'))
       .toEqual({
         type: 'iCal',

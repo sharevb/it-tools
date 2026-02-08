@@ -11,5 +11,5 @@ export const tool = defineTool({
   icon: IconFileDownload,
   createdAt: new Date('2024-10-18'),
   category: 'Network',
-  externAccessDescription: 'This tool downloads provided URLs in your browser only.',
+  externAccessDescription: t('tools.multi-link-downloader.externalAccess'),
 });
