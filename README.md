@@ -138,7 +138,7 @@ See [docker-tools-filter-and-home-content](https://github.com/sharevb/it-tools)
 
 ## Setting default tools parameters / default UI language at runtime
 
-You can set default tool parameters by mounting a `tools-setting.json` in `/usr/share/nginx/html`.
+You can set default tool parameters by mounting a `tools-settings.json` in `/usr/share/nginx/html`.
 
 It is a two level json, with the first level being for `tool name` and the second level for `parameter name`:
 ```json
