@@ -877,7 +877,7 @@ tools:
       input-label-your-yaml: 您的YAML
       input-placeholder-paste-your-yaml-here: 在此粘贴YAML...
       output-label-json-from-your-yaml: 由您的YAML转换的JSON
-      label-nestify-a-b-c-to-nested-objects: Nestify（&#39;abc&#39; 为嵌套对象）
+      label-nestify-a-b-c-to-nested-objects: 嵌套化（将'a.b.c'转为嵌套对象）
   uuid-generator:
     title: UUID生成器
     description: 通用唯一标识符（UUID）是128位数字，用于在计算机系统中标识信息。可能的UUID数量为16^32（即2^128，约3.4×10^38，数量极其庞大）。
