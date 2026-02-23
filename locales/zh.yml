@@ -5061,18 +5061,18 @@ tools:
     texts:
       message-invalid-regex-0: 无效的正则表达式：{0}
       tag-global-search: 全局搜索（
-      tag-g: 克
+      tag-g: g
       tag-: ）
       tag-case-insensitive-search: 忽略大小写搜索（
-      tag-i: 我
+      tag-i: i
       tag-multiline: 多行搜索（
-      tag-m: 米
+      tag-m: m
       tag-singleline: 单行搜索（
-      tag-s: 秒
+      tag-s: s
       tag-unicode: Unicode（
-      tag-u: 在
+      tag-u: u
       tag-unicode-sets: Unicode Sets（
-      tag-v: 在
+      tag-v: v
       tag-xa0: "&#xa0;"
     groups: 分组
   email-parser:
