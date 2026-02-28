@@ -2268,7 +2268,7 @@ tools:
     title: JQ/JSONPath测试器
     description: 针对JSON内容测试jq/JSONPath表达式
     texts:
-      label-jq: 杰奇
+      label-jq: jq
       label-jsonpath: JSONPath
       message-provided-json-is-not-valid: 提供的JSON无效。
       title-input: 输入
@@ -2278,7 +2278,7 @@ tools:
       placeholder-put-your-json-here: 在此输入JSON...
       title-result: 结果
       tag-see: 查看
-      tag-jq: 杰奇
+      tag-jq: jq
       tag-cheatsheet: 备忘单
       tag-see-jsonpath-cheatsheet: 查看JSONPath备忘单
   js-unobfuscator:
