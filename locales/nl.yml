@@ -3443,6 +3443,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: Sleep een PDF-bestand hierheen of klik om een bestand te selecteren
       title-logs: Logboeken
       label-qpdf: qpdf
+      label-password: 'Wachtwoord:'
+      placeholder-password: Wachtwoord
+      tag-decrypt-pdf: PDF decoderen
+      tag-output-file: 'Uitvoerbestand:'
   pgp-encryption:
     title: PGP-encryptie
     description: Versleutel en ontsleutel tekst met behulp van PGP-sleutels.

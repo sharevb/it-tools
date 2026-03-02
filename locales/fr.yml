@@ -2076,7 +2076,7 @@ tools:
       label-pass-controls-the-order-for-filesystem-checks-at-boot:
         "Passer (contrôle la commande pour les vérifications du système de
         fichiers au démarrage):"
-      label-password: "Mot de passe :"
+      label-password: "Mot de passe:"
       label-root-filesystem-first: Système de fichiers racine d'abord
       label-username: "Nom d'utilisateur :"
       placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async:
@@ -5038,6 +5038,10 @@ tools:
         Faites glisser et déposez un fichier PDF ici, ou cliquez pour
         sélectionner un fichier
       title-logs: Bûches
+      label-password: 'Mot de passe :'
+      placeholder-password: Mot de passe
+      tag-decrypt-pdf: Déchiffrer le PDF
+      tag-output-file: 'Fichier de sortie :'
     title: PDF décrypter et déverrouiller
   percentage-calculator:
     description: Calculez facilement les pourcentages d'une valeur à une autre

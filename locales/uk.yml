@@ -3812,6 +3812,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: Перетягніть PDF-файл сюди або клацніть, щоб вибрати файл
       title-logs: Журнали
       label-qpdf: qpdf
+      label-password: 'Пароль:'
+      placeholder-password: Пароль
+      tag-decrypt-pdf: Розшифрувати PDF
+      tag-output-file: 'Вихідний файл:'
   pgp-encryption:
     title: PGP шифрування
     description: Шифруйте та дешифруйте текст за допомогою PGP ключів

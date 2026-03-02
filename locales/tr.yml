@@ -3190,6 +3190,10 @@ tools:
         tıklayın
       title-logs: Günlükler
       label-qpdf: qpdf
+      label-password: 'Şifre:'
+      placeholder-password: Şifre
+      tag-decrypt-pdf: PDF'yi Şifrele
+      tag-output-file: 'Çıktı dosyası:'
   pgp-encryption:
     title: PGP şifrelemesi
     description: PGP Anahtarlarını kullanarak metni şifreleyin ve şifresini çözün.

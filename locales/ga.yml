@@ -3848,6 +3848,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: Tarraing agus scaoil comhad PDF anseo, nó cliceáil chun comhad a roghnú
       title-logs: Logaí
       label-qpdf: qpdf
+      label-password: 'Pasfhocal:'
+      placeholder-password: Pasfhocal
+      tag-decrypt-pdf: Díchriptiú PDF
+      tag-output-file: 'Comhad aschur:'
   pgp-encryption:
     title: Criptiú PGP
     description: Criptigh agus díchriptigh téacs soiléir ag baint úsáide as Eochracha PGP.

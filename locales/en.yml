@@ -2948,6 +2948,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: Drag and drop a PDF file here, or click to select a file
       title-logs: Logs
       label-qpdf: qpdf
+      label-password: 'Password:'
+      placeholder-password: Password
+      tag-decrypt-pdf: Decrypt PDF
+      tag-output-file: 'Output file:'
   pgp-encryption:
     title: PGP encryption
     description: Encrypt and decrypt text clear text using PGP Keys.

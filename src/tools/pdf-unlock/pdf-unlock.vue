@@ -8,6 +8,7 @@ const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
+const password = ref('');
 
 const base64OutputPDF = ref('');
 const fileName = ref('');
@@ -21,21 +22,29 @@ const { download } = useDownloadFileFromBase64(
   });
 const qpdfCommand = ref('');
 
-async function onPDFFileUploaded(uploadedFile: File) {
+function onPDFFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;
-  const fileBuffer = await uploadedFile.arrayBuffer();
-
   fileName.value = `decrypted_${uploadedFile.name}`;
+}
+
+async function onProcessClicked() {
+  if (!file.value) {
+    return;
+  }
+  const fileBuffer = await file.value.arrayBuffer();
+
   status.value = 'processing';
   try {
+    const args = [
+      '--decrypt',
+      `--password=${password.value}`,
+      '--warning-exit-0',
+      '--verbose',
+      'in.pdf',
+      'out.pdf',
+    ];
     const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
-      [
-        '--decrypt',
-        '--warning-exit-0',
-        '--verbose',
-        'in.pdf',
-        'out.pdf',
-      ],
+      args,
       0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
@@ -72,7 +81,30 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
     <div style="flex: 0 0 100%">
       <div mx-auto max-w-600px>
         <c-file-upload :title="t('tools.pdf-unlock.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')" accept=".pdf" @file-upload="onPDFFileUploaded" />
+        <div v-if="file" mt-2 text-center>
+          <strong>{{ t('tools.pdf-unlock.texts.tag-output-file') }}</strong> {{ fileName }}
+        </div>
       </div>
+    </div>
+
+    <n-form-item
+      v-if="file"
+      :label="t('tools.pdf-unlock.texts.label-password')"
+      label-placement="left"
+      mb-1
+      mt-3
+    >
+      <n-input
+        v-model:value="password"
+        type="password"
+        :placeholder="t('tools.pdf-unlock.texts.placeholder-password')"
+      />
+    </n-form-item>
+
+    <div v-if="file" mt-3 flex justify-center>
+      <c-button :disabled="!file" @click="onProcessClicked()">
+        {{ t('tools.pdf-unlock.texts.tag-decrypt-pdf') }}
+      </c-button>
     </div>
 
     <div mt-3 flex justify-center>

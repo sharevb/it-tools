@@ -3828,6 +3828,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: Перетащите PDF-файл сюда или щелкните, чтобы выбрать файл.
       title-logs: Журналы
       label-qpdf: qpdf
+      label-password: 'Пароль:'
+      placeholder-password: Пароль
+      tag-decrypt-pdf: Расшифровать PDF
+      tag-output-file: 'Выходной файл:'
   pgp-encryption:
     title: Шифрование PGP
     description: Шифруйте и дешифруйте текст с использованием PGP-ключей

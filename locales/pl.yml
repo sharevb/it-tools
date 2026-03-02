@@ -2953,6 +2953,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: Przeciągnij i upuść plik PDF tutaj lub kliknij, aby wybrać plik
       title-logs: Dzienniki
       label-qpdf: qpdf
+      label-password: 'Hasło:'
+      placeholder-password: Hasło
+      tag-decrypt-pdf: Odszyfruj PDF
+      tag-output-file: 'Plik wyjściowy:'
   pgp-encryption:
     title: Szyfrowanie PGP
     description: Szyfruj i odszyfrowuj tekst jawny za pomocą kluczy PGP.

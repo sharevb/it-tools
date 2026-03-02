@@ -2804,6 +2804,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: 将PDF文件拖放到此处，或点击选择文件
       title-logs: 日志
       label-qpdf: qpdf
+      label-password: '密码:'
+      placeholder-password: 密码
+      tag-decrypt-pdf: 解密PDF
+      tag-output-file: '输出文件:'
   pgp-encryption:
     title: PGP加密
     description: 使用PGP密钥加密和解密明文

@@ -3018,6 +3018,10 @@ tools:
         αρχείο
       title-logs: Αρχεία καταγραφής
       label-qpdf: qpdf
+      label-password: 'Κωδικός πρόσβασης:'
+      placeholder-password: Κωδικός πρόσβασης
+      tag-decrypt-pdf: Αποκρυπτογραφία PDF
+      tag-output-file: 'Αρχείο εξόδου:'
   pgp-encryption:
     title: Κρυπτογράφηση PGP
     description: Κρυπτογράφηση και αποκρυπτογράφηση κειμένου με χρήση κλειδιών PGP.

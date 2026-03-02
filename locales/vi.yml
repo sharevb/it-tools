@@ -3471,6 +3471,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: Kéo và thả tệp PDF vào đây hoặc nhấp để chọn tệp
       title-logs: Nhật ký
       label-qpdf: qpdf
+      label-password: 'Mật khẩu:'
+      placeholder-password: Mật khẩu
+      tag-decrypt-pdf: Giải mã PDF
+      tag-output-file: 'Tệp đầu ra:'
   pgp-encryption:
     title: Mã hóa PGP
     description: Mã hóa và giải mã văn bản rõ ràng bằng khóa PGP.

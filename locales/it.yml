@@ -3490,6 +3490,10 @@ tools:
         file
       title-logs: Registri
       label-qpdf: qpdf
+      label-password: 'Password:'
+      placeholder-password: Password
+      tag-decrypt-pdf: Decripta PDF
+      tag-output-file: 'File di output:'
   pgp-encryption:
     title: Crittografia PGP
     description: Crittografa e decrittografa il testo in chiaro utilizzando le chiavi PGP.

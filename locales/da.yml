@@ -3403,6 +3403,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: Træk og slip en PDF-fil hertil, eller klik for at vælge en fil
       title-logs: Logfiler
       label-qpdf: qpdf
+      label-password: 'Adgangskode:'
+      placeholder-password: Adgangskode
+      tag-decrypt-pdf: Dekrypter PDF
+      tag-output-file: 'Outputfil:'
   pgp-encryption:
     title: PGP-kryptering
     description: Krypter og dekrypter tekst i klar tekst ved hjælp af PGP-nøgler.

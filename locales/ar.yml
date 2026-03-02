@@ -3464,6 +3464,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: اسحب وأفلِت ملف PDF هنا، أو انقر لتحديد ملف
       title-logs: السجلات
       label-qpdf: كيو بي دي إف
+      label-password: 'كلمة السر:'
+      placeholder-password: كلمة السر
+      tag-decrypt-pdf: فك تشفير PDF
+      tag-output-file: 'ملف الإخراج:'
   pgp-encryption:
     title: تشفير PGP
     description: تشفير وفك تشفير النص العادي باستخدام مفاتيح PGP.

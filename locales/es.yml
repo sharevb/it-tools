@@ -2969,6 +2969,10 @@ tools:
         archivo
       title-logs: Registros
       label-qpdf: qpdf
+      label-password: 'Contraseña:'
+      placeholder-password: Contraseña
+      tag-decrypt-pdf: Descifrar PDF
+      tag-output-file: 'Archivo de salida:'
   pgp-encryption:
     title: Cifrado PGP
     description: Cifrar y descifrar texto sin cifrar utilizando claves PGP.

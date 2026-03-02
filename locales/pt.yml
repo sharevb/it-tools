@@ -2938,6 +2938,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: Arraste e solte um arquivo PDF aqui ou clique para selecionar um arquivo
       title-logs: Registros
       label-qpdf: qpdf
+      label-password: 'Senha:'
+      placeholder-password: Senha
+      tag-decrypt-pdf: Descriptografar PDF
+      tag-output-file: 'Arquivo de saída:'
   pgp-encryption:
     title: Criptografia PGP
     description: Criptografe e descriptografe texto não criptografado usando chaves PGP.

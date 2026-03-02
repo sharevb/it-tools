@@ -3725,6 +3725,10 @@ tools:
         auszuwählen
       title-logs: Protokolle
       label-qpdf: qpdf
+      label-password: 'Passwort:'
+      placeholder-password: Passwort
+      tag-decrypt-pdf: PDF entschlüsseln
+      tag-output-file: 'Ausgabedatei:'
   pgp-encryption:
     title: PGP-Verschlüsselung
     description: Verschlüsseln und entschlüsseln Sie Klartext mit PGP-Schlüsseln.
