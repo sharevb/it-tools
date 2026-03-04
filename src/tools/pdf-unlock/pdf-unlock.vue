@@ -26,6 +26,8 @@ const qpdfCommand = ref('');
 function onPDFFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;
   fileName.value = `decrypted_${uploadedFile.name}`;
+  usePassword.value = false;
+  password.value = '';
 }
 
 async function onProcessClicked() {
