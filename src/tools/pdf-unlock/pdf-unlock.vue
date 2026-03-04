@@ -10,6 +10,8 @@ const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
 const usePassword = ref(false);
 const password = ref('');
+const fileBuffer = ref<ArrayBuffer | null>(null);
+const isPasswordError = ref(false);
 
 const base64OutputPDF = ref('');
 const fileName = ref('');
@@ -23,24 +25,20 @@ const { download } = useDownloadFileFromBase64(
   });
 const qpdfCommand = ref('');
 
-function onPDFFileUploaded(uploadedFile: File) {
+async function onPDFFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;
   fileName.value = `decrypted_${uploadedFile.name}`;
-  usePassword.value = false;
-  password.value = '';
+  fileBuffer.value = await uploadedFile.arrayBuffer();
+  isPasswordError.value = false;
+  processFile();
 }
 
-async function onProcessClicked() {
-  if (!file.value) {
-    return;
-  }
-  const fileBuffer = await file.value.arrayBuffer();
+async function processFile() {
+  if (!fileBuffer.value) return;
 
   status.value = 'processing';
   try {
-    const args = [
-      '--decrypt',
-    ];
+    const args = ['--decrypt'];
     if (usePassword.value) {
       args.push(`--password=${password.value}`);
     }
@@ -48,18 +46,22 @@ async function onProcessClicked() {
     args.push('--verbose');
     args.push('in.pdf');
     args.push('out.pdf');
-    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
-      args,
-      0);
+    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer.value, args, 0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
-
     download();
+    fileBuffer.value = null;
+    usePassword.value = false;
+    password.value = '';
+    isPasswordError.value = false;
   }
   catch (e) {
     status.value = 'error';
+    const errorLog = logs.value.join('\n').toLowerCase();
+    isPasswordError.value = errorLog.includes('password') || errorLog.includes('encrypted');
   }
 }
+
 
 async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_exitcode: number) {
   qpdfCommand.value = args.join(' ');
@@ -86,34 +88,33 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
     <div style="flex: 0 0 100%">
       <div mx-auto max-w-600px>
         <c-file-upload :title="t('tools.pdf-unlock.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')" accept=".pdf" @file-upload="onPDFFileUploaded" />
-        <div v-if="file" mt-2 text-center>
-          <strong>{{ t('tools.pdf-unlock.texts.tag-output-file') }}</strong> {{ fileName }}
-        </div>
       </div>
     </div>
 
-    <n-checkbox v-if="file" v-model:checked="usePassword" mt-3 mb-2>
-      {{ t('tools.pdf-unlock.texts.label-password') }}
-    </n-checkbox>
+    <div v-if="isPasswordError">
+      <n-checkbox v-model:checked="usePassword" mt-3 mb-2>
+        {{ t('tools.pdf-unlock.texts.label-password') }}
+      </n-checkbox>
 
-    <n-form-item
-      v-if="file && usePassword"
-      :label="t('tools.pdf-unlock.texts.label-password')"
-      label-placement="left"
-      mb-1
-      mt-2
-    >
-      <n-input
-        v-model:value="password"
-        type="password"
-        :placeholder="t('tools.pdf-unlock.texts.placeholder-password')"
-      />
-    </n-form-item>
+      <n-form-item
+        v-if="usePassword"
+        :label="t('tools.pdf-unlock.texts.label-password')"
+        label-placement="left"
+        mb-1
+        mt-2
+      >
+        <n-input
+          v-model:value="password"
+          type="password"
+          :placeholder="t('tools.pdf-unlock.texts.placeholder-password')"
+        />
+      </n-form-item>
 
-    <div v-if="file" mt-3 flex justify-center>
-      <c-button :disabled="!file" @click="onProcessClicked()">
-        {{ t('tools.pdf-unlock.texts.tag-decrypt-pdf') }}
-      </c-button>
+      <div mt-3 flex justify-center>
+        <c-button @click="processFile()">
+          {{ t('tools.pdf-unlock.texts.tag-decrypt-pdf') }}
+        </c-button>
+      </div>
     </div>
 
     <div mt-3 flex justify-center>
