@@ -8,6 +8,7 @@ const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
+const usePassword = ref(false);
 const password = ref('');
 
 const base64OutputPDF = ref('');
@@ -37,12 +38,14 @@ async function onProcessClicked() {
   try {
     const args = [
       '--decrypt',
-      `--password=${password.value}`,
-      '--warning-exit-0',
-      '--verbose',
-      'in.pdf',
-      'out.pdf',
     ];
+    if (usePassword.value) {
+      args.push(`--password=${password.value}`);
+    }
+    args.push('--warning-exit-0');
+    args.push('--verbose');
+    args.push('in.pdf');
+    args.push('out.pdf');
     const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
       args,
       0);
@@ -87,12 +90,16 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
       </div>
     </div>
 
+    <n-checkbox v-if="file" v-model:checked="usePassword" mt-3 mb-2>
+      {{ t('tools.pdf-unlock.texts.label-password') }}
+    </n-checkbox>
+
     <n-form-item
-      v-if="file"
+      v-if="file && usePassword"
       :label="t('tools.pdf-unlock.texts.label-password')"
       label-placement="left"
       mb-1
-      mt-3
+      mt-2
     >
       <n-input
         v-model:value="password"
