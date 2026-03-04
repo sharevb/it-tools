@@ -218,7 +218,7 @@ function formatDateInTimezone(date: Date | undefined, timezone: string): string 
   }
 
   return withDefaultOnError(() => {
-    return formatInTimeZone(date, timezone, 'yyyy-MM-dd HH:mm:ss XXX');
+    return formatInTimeZone(date, timezone, 'yyyy-MM-dd\'T\'HH:mm:ssXXX');
   }, '');
 }
 </script>
