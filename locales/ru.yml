@@ -6458,6 +6458,8 @@ tools:
     description: Инструмент для визуального сравнения изображений
     texts:
       title-image-compare-viewer: Средство сравнения изображений
+      tab-compare-by-url: Сравнить по URL
+      tab-compare-by-upload: Сравнить по загрузке
       label-left-image-url: 'URL левого изображения:'
       placeholder-enter-left-image-url: Введите URL-адрес левого изображения
       label-right-image-url: 'URL-адрес правого изображения:'

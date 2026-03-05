@@ -6686,6 +6686,8 @@ tools:
     description: Ένα εργαλείο για οπτική σύγκριση εικόνων
     texts:
       title-image-compare-viewer: Προβολή σύγκρισης εικόνων
+      tab-compare-by-url: Σύγκριση μέσω URL
+      tab-compare-by-upload: Σύγκριση μέσω μεταφόρτωσης
       label-left-image-url: 'URL αριστερής εικόνας:'
       placeholder-enter-left-image-url: Εισαγάγετε τη διεύθυνση URL της αριστερής εικόνας
       label-right-image-url: 'URL δεξιάς εικόνας:'

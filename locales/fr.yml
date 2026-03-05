@@ -2849,6 +2849,8 @@ tools:
     title: Convertisseur d'illuminance
   image-comparer:
     texts:
+      tab-compare-by-url: Comparer par URL
+      tab-compare-by-upload: Comparer par téléchargement
       label-left-image-url: "URL de l'image gauche :"
       label-upload-left-image: "Téléchargez l'image de gauche :"
       label-upload-right-image: "Téléchargez l'image de droite :"

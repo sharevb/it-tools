@@ -6068,6 +6068,8 @@ tools:
     description: 이미지를 시각적으로 비교하는 도구
     texts:
       title-image-compare-viewer: 이미지 비교 뷰어
+      tab-compare-by-url: URL로 비교
+      tab-compare-by-upload: 업로드로 비교
       label-left-image-url: '왼쪽 이미지 URL:'
       placeholder-enter-left-image-url: 왼쪽 이미지 URL을 입력하세요
       label-right-image-url: '오른쪽 이미지 URL:'

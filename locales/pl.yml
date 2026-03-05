@@ -6456,6 +6456,8 @@ tools:
     description: Narzędzie do wizualnego porównywania obrazów
     texts:
       title-image-compare-viewer: Przeglądarka porównawcza obrazów
+      tab-compare-by-url: Porównaj przez URL
+      tab-compare-by-upload: Porównaj przez przesłanie
       label-left-image-url: 'Adres URL lewego obrazu:'
       placeholder-enter-left-image-url: Wprowadź adres URL lewego obrazu
       label-right-image-url: 'Adres URL prawego obrazu:'

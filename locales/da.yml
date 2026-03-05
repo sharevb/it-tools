@@ -6364,6 +6364,8 @@ tools:
     description: Et værktøj til visuel sammenligning af billeder
     texts:
       title-image-compare-viewer: Billedsammenligningsfremviser
+      tab-compare-by-url: Sammenlign via URL
+      tab-compare-by-upload: Sammenlign via upload
       label-left-image-url: 'URL til venstre billede:'
       placeholder-enter-left-image-url: Indtast URL-adressen til venstre billede
       label-right-image-url: 'Højre billede-URL:'

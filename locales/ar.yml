@@ -6311,6 +6311,8 @@ tools:
     description: أداة لمقارنة الصور بصريًا
     texts:
       title-image-compare-viewer: عارض مقارنة الصور
+      tab-compare-by-url: مقارنة عبر الرابط
+      tab-compare-by-upload: مقارنة عبر التحميل
       label-left-image-url: 'رابط الصورة اليسرى:'
       placeholder-enter-left-image-url: أدخل عنوان URL للصورة اليسرى
       label-right-image-url: 'رابط الصورة اليمنى:'

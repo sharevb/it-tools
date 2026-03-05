@@ -6505,6 +6505,8 @@ tools:
     description: Uno strumento per confrontare visivamente le immagini
     texts:
       title-image-compare-viewer: Visualizzatore di confronto immagini
+      tab-compare-by-url: Confronta per URL
+      tab-compare-by-upload: Confronta per caricamento
       label-left-image-url: "URL dell'immagine a sinistra:"
       placeholder-enter-left-image-url: Inserisci l'URL dell'immagine a sinistra
       label-right-image-url: "URL dell'immagine a destra:"

@@ -6424,6 +6424,8 @@ tools:
     description: Görüntüleri görsel olarak karşılaştırmak için bir araç
     texts:
       title-image-compare-viewer: Görüntü Karşılaştırma Görüntüleyicisi
+      tab-compare-by-url: URL ile karşılaştır
+      tab-compare-by-upload: Yükleme ile karşılaştır
       label-left-image-url: "Sol Resim URL'si:"
       placeholder-enter-left-image-url: Sol resim URL'sini girin
       label-right-image-url: "Sağ Resim URL'si:"

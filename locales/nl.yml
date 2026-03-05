@@ -6433,6 +6433,8 @@ tools:
     description: Een hulpmiddel om afbeeldingen visueel te vergelijken
     texts:
       title-image-compare-viewer: Afbeelding Vergelijk Viewer
+      tab-compare-by-url: Vergelijken via URL
+      tab-compare-by-upload: Vergelijken via upload
       label-left-image-url: 'URL van linkerafbeelding:'
       placeholder-enter-left-image-url: Voer de URL van de linkerafbeelding in
       label-right-image-url: 'URL van de rechterafbeelding:'

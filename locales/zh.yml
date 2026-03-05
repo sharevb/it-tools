@@ -6190,6 +6190,8 @@ tools:
     description: 视觉比较图像的工具
     texts:
       title-image-compare-viewer: 图像比较查看器
+      tab-compare-by-url: 通过网址比较
+      tab-compare-by-upload: 通过上传比较
       label-left-image-url: 左图网址：
       placeholder-enter-left-image-url: 输入左侧图片网址
       label-right-image-url: 右图网址：

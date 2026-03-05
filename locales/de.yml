@@ -6618,6 +6618,8 @@ tools:
     description: Ein Tool zum visuellen Vergleichen von Bildern
     texts:
       title-image-compare-viewer: Bildvergleichs-Viewer
+      tab-compare-by-url: Nach URL vergleichen
+      tab-compare-by-upload: Nach Upload vergleichen
       label-left-image-url: 'URL des linken Bildes:'
       placeholder-enter-left-image-url: Geben Sie die URL des linken Bildes ein
       label-right-image-url: 'URL des rechten Bildes:'

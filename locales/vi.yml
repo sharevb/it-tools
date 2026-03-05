@@ -6407,6 +6407,8 @@ tools:
     description: Một công cụ để so sánh hình ảnh một cách trực quan
     texts:
       title-image-compare-viewer: Trình xem so sánh hình ảnh
+      tab-compare-by-url: So sánh theo URL
+      tab-compare-by-upload: So sánh bằng tải lên
       label-left-image-url: 'URL hình ảnh bên trái:'
       placeholder-enter-left-image-url: Nhập URL hình ảnh bên trái
       label-right-image-url: 'URL hình ảnh bên phải:'

@@ -6523,6 +6523,8 @@ tools:
     description: Uirlis chun íomhánna a chur i gcomparáid go hamhairc
     texts:
       title-image-compare-viewer: Amharcóir Comparáide Íomhá
+      tab-compare-by-url: Déan comparáid de réir URL
+      tab-compare-by-upload: Déan comparáid trí uaslódáil
       label-left-image-url: 'URL na hÍomhá Clé:'
       placeholder-enter-left-image-url: Cuir isteach URL na híomhá ar chlé
       label-right-image-url: 'URL na híomhá ar dheis:'

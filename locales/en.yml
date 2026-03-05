@@ -6533,6 +6533,8 @@ tools:
     description: A tool to visualy compare images
     texts:
       title-image-compare-viewer: Image Compare Viewer
+      tab-compare-by-url: Compare by URL
+      tab-compare-by-upload: Compare by Upload
       label-left-image-url: 'Left Image URL:'
       placeholder-enter-left-image-url: Enter left image URL
       label-right-image-url: 'Right Image URL:'
