@@ -15,7 +15,7 @@ const CACHE_TTL = 1000 * 60 * 60 * 24; // 24h
 
 async function loadOptions() {
   const now = Date.now();
-  const isStale = !options.value.length || (now - lastFetched.value > CACHE_TTL);
+  const isStale = !options.value.length || now - lastFetched.value > CACHE_TTL;
 
   if (!isStale) {
     // Use cached options
@@ -23,7 +23,9 @@ async function loadOptions() {
   }
 
   try {
-    const res = await fetch('https://api.github.com/repos/alexkaratarakis/gitattributes/git/trees/master?recursive=true');
+    const res = await fetch(
+      'https://api.github.com/repos/alexkaratarakis/gitattributes/git/trees/master?recursive=true',
+    );
     const files = await res.json();
     options.value = files.tree
       .filter((f: any) => f.path.endsWith('.gitattributes'))
@@ -34,8 +36,7 @@ async function loadOptions() {
         value: name,
       }));
     lastFetched.value = now;
-  }
-  catch {
+  } catch {
     if (!options.value?.length) {
       options.value = [
         'ActionScript',
@@ -61,7 +62,7 @@ async function loadOptions() {
         'Servoy',
         'VisualStudio',
         'Web',
-      ].map(name => ({
+      ].map((name) => ({
         label: name,
         value: name,
       }));
@@ -86,7 +87,7 @@ const commands = computed(() => {
     return {};
   }
   const urls = selected.value
-    .map(lang => `https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/${lang}.gitattributes`)
+    .map((lang) => `https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/${lang}.gitattributes`)
     .join(' ');
   return {
     curl: `curl ${urls} > .gitattributes`,
@@ -116,24 +117,20 @@ onMounted(loadOptions);
       </NButton>
     </n-space>
     <c-card v-if="output" :title="t('tools.gitattributes-generator.texts.title-preview')" mb-2>
-      <textarea-copyable
-        :value="output"
-        language="bash"
-        download-file-name=".gitattributes"
-      />
+      <textarea-copyable :value="output" language="bash" download-file-name=".gitattributes" />
     </c-card>
 
     <NTabs v-if="output" type="line" animated>
-      <NTabPane name="curl" tab="Curl">
+      <NTabPane name="curl" :tab="t('tools.gitattributes-generator.texts.tab-curl')">
         <textarea-copyable :value="commands.curl" word-wrap />
       </NTabPane>
-      <NTabPane name="wget" tab="Wget">
+      <NTabPane name="wget" :tab="t('tools.gitattributes-generator.texts.tab-wget')">
         <textarea-copyable :value="commands.wget" word-wrap />
       </NTabPane>
-      <NTabPane name="powershell" tab="PowerShell">
+      <NTabPane name="powershell" :tab="t('tools.gitattributes-generator.texts.tab-powershell')">
         <textarea-copyable :value="commands.powershell" word-wrap />
       </NTabPane>
-      <NTabPane name="cmd" tab="Windows CMD">
+      <NTabPane name="cmd" :tab="t('tools.gitattributes-generator.texts.tab-windows-cmd')">
         <textarea-copyable :value="commands.cmd" word-wrap />
       </NTabPane>
     </NTabs>

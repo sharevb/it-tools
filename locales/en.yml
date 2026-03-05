@@ -7721,6 +7721,10 @@ tools:
       placeholder-select-templates: Select templates
       title-preview: Preview
       tag-fetch-generate: Fetch & Generate
+      tab-curl: Curl
+      tab-wget: Wget
+      tab-powershell: PowerShell
+      tab-windows-cmd: Windows CMD
     externalAccess: >-
       This tool download .gitattributes from
       https://github.com/gitattributes/gitattributes using Github API
@@ -8008,6 +8012,10 @@ tools:
       tag-jump-to-start: Jump to start
       tag-end: End
       tag-jump-to-end: Jump to end
+      tab-display: Display
+      tab-text: Text
+      tab-settings: Settings
+      tab-keyboard-shortcuts: Keyboard Shortcuts
   speed-converter:
     title: Speed Converter
     description: Convert values between speed units

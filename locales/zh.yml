@@ -7301,6 +7301,10 @@ tools:
       placeholder-select-templates: 选择模板
       title-preview: 预览
       tag-fetch-generate: 获取并生成
+      tab-curl: Curl
+      tab-wget: Wget
+      tab-powershell: PowerShell
+      tab-windows-cmd: Windows CMD
     externalAccess: 此工具使用 GitHub API 从
       https://github.com/gitattributes/gitattributes 下载 .gitattributes 文件。
   html-to-xhtml:
@@ -7580,6 +7584,10 @@ tools:
       tag-jump-to-start: 跳转至开头
       tag-end: 结尾
       tag-jump-to-end: 跳转至结尾
+      tab-display: 显示
+      tab-text: 文本
+      tab-settings: 设置
+      tab-keyboard-shortcuts: 键盘快捷键
   speed-converter:
     title: 速度转换器
     description: 速度单位之间的数值转换
