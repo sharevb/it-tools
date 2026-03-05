@@ -6729,6 +6729,16 @@ tools:
       tag-convert: Konwertować
       tag-axial: Osiowy
       tag-radial: Promieniowy
+      tab-bands-to-notation: Pasma → Notacja
+      tab-notation-to-bands: Notacja → Pasma
+      tab-number-to-notation: Liczba → Notacja
+      tab-notation-to-number: Notacja → Liczba
+      error-enter-exactly-bands: 'Wprowadź dokładnie {count} prawidłowych pasm kolorów ({colors}).'
+      error-conversion-failed: 'Konwersja nie powiodła się. Sprawdź kolejność i wartości pasm: {error}'
+      error-invalid-notation-format: 'Nieprawidłowy format notacji: {error}'
+      error-valid-positive-number: Wprowadź prawidłową liczbę dodatnią.
+      label-valid-colors: 'Prawidłowe kolory:'
+      label-result: 'Wynik:'
   sed-command-generator:
     title: Generator poleceń Sed
     description: Generuj polecenia sed systemu UNIX

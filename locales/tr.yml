@@ -6701,6 +6701,16 @@ tools:
       tag-convert: Dönüştürmek
       tag-axial: Eksenel
       tag-radial: Radyal
+      tab-bands-to-notation: Bantlar → Notasyon
+      tab-notation-to-bands: Notasyon → Bantlar
+      tab-number-to-notation: Sayı → Notasyon
+      tab-notation-to-number: Notasyon → Sayı
+      error-enter-exactly-bands: 'Lütfen tam olarak {count} geçerli renk bandı girin ({colors}).'
+      error-conversion-failed: 'Dönüştürme başarısız. Bant sırasını ve değerlerini kontrol edin: {error}'
+      error-invalid-notation-format: 'Geçersiz notasyon biçimi: {error}'
+      error-valid-positive-number: Lütfen geçerli bir pozitif sayı girin.
+      label-valid-colors: 'Geçerli renkler:'
+      label-result: 'Sonuç:'
   sed-command-generator:
     title: Sed Komut üreteci
     description: Unix sed komutları oluşturun

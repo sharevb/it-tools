@@ -6712,6 +6712,16 @@ tools:
       tag-convert: Конвертувати
       tag-axial: Осьовий
       tag-radial: Радіальний
+      tab-bands-to-notation: Смуги → Нотація
+      tab-notation-to-bands: Нотація → Смуги
+      tab-number-to-notation: Число → Нотація
+      tab-notation-to-number: Нотація → Число
+      error-enter-exactly-bands: 'Будь ласка, введіть рівно {count} допустимих кольорових смуг ({colors}).'
+      error-conversion-failed: 'Помилка перетворення. Перевірте порядок та значення смуг: {error}'
+      error-invalid-notation-format: 'Невірний формат нотації: {error}'
+      error-valid-positive-number: Будь ласка, введіть допустиме додатне число.
+      label-valid-colors: 'Допустимі кольори:'
+      label-result: 'Результат:'
   sed-command-generator:
     title: Генератор команд Sed
     description: Генерація команд sed для Unix

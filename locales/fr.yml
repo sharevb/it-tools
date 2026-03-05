@@ -2039,6 +2039,11 @@ tools:
       placeholder-paste-font-face-css-here: Coller {'@'} Font-Face CSS ici
       placeholder-select-font-name: Sélectionner le nom de la police
       tag-defineprops: définiprops
+      tab-by-font-name: Par nom de police
+      tab-by-font-url: Par URL de police
+      tab-by-font-file: Par fichier de police
+      tab-by-inline-css: Par CSS intégré
+      tab-by-css-url: Par URL CSS
       tag-upload-font-file: Télécharger le fichier de police
       label-comic-sans-ms: Bande dessinée sans ms
     title: Comparer la police
@@ -5640,10 +5645,16 @@ tools:
       tag-axial: Axial
       tag-convert: Convertir
       tag-radial: Radial
-      title-numeric-value: Valeur numérique
-      title-resistor-bands: Bandes résistantes
-      title-resistor-converter: Convertisseur de résistance
-      title-standard-notation: Notation standard
+      tab-bands-to-notation: Bandes → Notation
+      tab-notation-to-bands: Notation → Bandes
+      tab-number-to-notation: Nombre → Notation
+      tab-notation-to-number: Notation → Nombre
+      error-enter-exactly-bands: 'Veuillez entrer exactement {count} bandes de couleur valides ({colors}).'
+      error-conversion-failed: 'Échec de la conversion. Vérifiez l\'ordre et les valeurs des bandes : {error}'
+      error-invalid-notation-format: 'Format de notation invalide : {error}'
+      error-valid-positive-number: Veuillez entrer un nombre positif valide.
+      label-valid-colors: 'Couleurs valides :'
+      label-result: 'Résultat :'
     title: Calculateur de résistance
   rmb-numbers:
     description: Outil de conversion de capitalisation RMB / Renminbi

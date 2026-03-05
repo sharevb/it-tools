@@ -6312,9 +6312,19 @@ tools:
       placeholder-e-g-2700: 예를 들어 2700
       label-tolerance: 용인
       title-numeric-value: 숫자 값
-      tag-convert: 전환하다
+      tag-convert: 변환
       tag-axial: 축방향
       tag-radial: 방사형
+      tab-bands-to-notation: 밴드 → 표기법
+      tab-notation-to-bands: 표기법 → 밴드
+      tab-number-to-notation: 숫자 → 표기법
+      tab-notation-to-number: 표기법 → 숫자
+      error-enter-exactly-bands: '유효한 색상 밴드 {count}개를 입력하세요 ({colors}).'
+      error-conversion-failed: '변환 실패. 밴드 순서와 값을 확인하세요: {error}'
+      error-invalid-notation-format: '잘못된 표기법 형식: {error}'
+      error-valid-positive-number: 유효한 양수를 입력하세요.
+      label-valid-colors: '유효한 색상:'
+      label-result: '결과:'
   sed-command-generator:
     title: Sed 명령 생성기
     description: 유닉스 sed 명령어 생성

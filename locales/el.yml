@@ -6968,6 +6968,16 @@ tools:
       tag-convert: Μετατρέπω
       tag-axial: Αξονικός
       tag-radial: Ακτινικός
+      tab-bands-to-notation: Ζώνες → Σημειογραφία
+      tab-notation-to-bands: Σημειογραφία → Ζώνες
+      tab-number-to-notation: Αριθμός → Σημειογραφία
+      tab-notation-to-number: Σημειογραφία → Αριθμός
+      error-enter-exactly-bands: 'Εισαγάγετε ακριβώς {count} έγκυρες ζώνες χρώματος ({colors}).'
+      error-conversion-failed: 'Η μετατροπή απέτυχαν. Ελέγξτε τη σειρά και τις τιμές των ζωνών: {error}'
+      error-invalid-notation-format: 'Μη έγκυρη μορφή σημειογραφίας: {error}'
+      error-valid-positive-number: Εισαγάγετε έναν έγκυρο θετικό αριθμό.
+      label-valid-colors: 'Έγκυρα χρώματα:'
+      label-result: 'Αποτέλεσμα:'
   sed-command-generator:
     title: Γεννήτρια εντολών Sed
     description: Δημιουργία εντολών sed σε unix

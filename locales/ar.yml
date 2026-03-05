@@ -6576,9 +6576,19 @@ tools:
       placeholder-e-g-2700: على سبيل المثال 2700
       label-tolerance: تسامح
       title-numeric-value: القيمة العددية
-      tag-convert: يتحول
+      tag-convert: تحويل
       tag-axial: محوري
       tag-radial: شعاعي
+      tab-bands-to-notation: النطاقات ← التدوين
+      tab-notation-to-bands: التدوين ← النطاقات
+      tab-number-to-notation: الرقم ← التدوين
+      tab-notation-to-number: التدوين ← الرقم
+      error-enter-exactly-bands: 'الرجاء إدخال {count} نطاقات لونية صالحة بالضبط ({colors}).'
+      error-conversion-failed: 'فشل التحويل. تحقق من ترتيب النطاقات وقيمها: {error}'
+      error-invalid-notation-format: 'تنسيق التدوين غير صالح: {error}'
+      error-valid-positive-number: الرجاء إدخال رقم موجب صالح.
+      label-valid-colors: 'الألوان الصالحة:'
+      label-result: 'النتيجة:'
   sed-command-generator:
     title: مولد أوامر Sed
     description: إنشاء أوامر unix sed

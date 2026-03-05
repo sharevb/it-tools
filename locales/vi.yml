@@ -6680,6 +6680,16 @@ tools:
       tag-convert: Chuyển thành
       tag-axial: Trục
       tag-radial: Xuyên tâm
+      tab-bands-to-notation: Dải → Ký hiệu
+      tab-notation-to-bands: Ký hiệu → Dải
+      tab-number-to-notation: Số → Ký hiệu
+      tab-notation-to-number: Ký hiệu → Số
+      error-enter-exactly-bands: 'Vui lòng nhập chính xác {count} dải màu hợp lệ ({colors}).'
+      error-conversion-failed: 'Chuyển đổi thất bại. Kiểm tra thứ tự và giá trị dải: {error}'
+      error-invalid-notation-format: 'Định dạng ký hiệu không hợp lệ: {error}'
+      error-valid-positive-number: Vui lòng nhập một số dương hợp lệ.
+      label-valid-colors: 'Màu hợp lệ:'
+      label-result: 'Kết quả:'
   sed-command-generator:
     title: Trình tạo lệnh Sed
     description: Tạo lệnh sed unix

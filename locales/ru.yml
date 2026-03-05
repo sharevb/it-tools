@@ -6737,6 +6737,16 @@ tools:
       tag-convert: Конвертировать
       tag-axial: Осевой
       tag-radial: Радиальный
+      tab-bands-to-notation: Полосы → Нотация
+      tab-notation-to-bands: Нотация → Полосы
+      tab-number-to-notation: Число → Нотация
+      tab-notation-to-number: Нотация → Число
+      error-enter-exactly-bands: 'Пожалуйста, введите ровно {count} допустимых цветовых полос ({colors}).'
+      error-conversion-failed: 'Ошибка преобразования. Проверьте порядок и значения полос: {error}'
+      error-invalid-notation-format: 'Неверный формат нотации: {error}'
+      error-valid-positive-number: Пожалуйста, введите допустимое положительное число.
+      label-valid-colors: 'Допустимые цвета:'
+      label-result: 'Результат:'
   sed-command-generator:
     title: Генератор команд Sed
     description: Генерация команд sed для Unix

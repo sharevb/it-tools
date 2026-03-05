@@ -6639,6 +6639,16 @@ tools:
       tag-convert: Konvertere
       tag-axial: Aksial
       tag-radial: Radial
+      tab-bands-to-notation: Bänder → Notation
+      tab-notation-to-bands: Notation → Bänder
+      tab-number-to-notation: Tal → Notation
+      tab-notation-to-number: Notation → Tal
+      error-enter-exactly-bands: 'Indtast venligst nøjagtigt {count} gyldige farvebänder ({colors}).'
+      error-conversion-failed: 'Konvertering mislykkedes. Kontroller bändrækkefølge og -værdier: {error}'
+      error-invalid-notation-format: 'Ugyldigt notationsformat: {error}'
+      error-valid-positive-number: Indtast venligst et gyldigt positivt tal.
+      label-valid-colors: 'Gyldige farver:'
+      label-result: 'Resultat:'
   sed-command-generator:
     title: Sed-kommandogenerator
     description: Generer unix sed-kommandoer

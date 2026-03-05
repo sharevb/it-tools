@@ -6146,6 +6146,11 @@ tools:
       label-fallback: 倒退：
       placeholder-fallback-font: 后备字体
       tag-defineprops: 定义Props
+      tab-by-font-name: 按字体名称
+      tab-by-font-url: 按字体网址
+      tab-by-font-file: 按字体文件
+      tab-by-inline-css: 按内联 CSS
+      tab-by-css-url: 按 CSS 网址
   gpt-token-encoder:
     title: GPT 令牌编码器/解码器
     description: 将文本编码为 GPT 令牌，并将 GPT 令牌解码回文本
@@ -6419,9 +6424,19 @@ tools:
       placeholder-e-g-2700: 例如 2700
       label-tolerance: 宽容
       title-numeric-value: 数值
-      tag-convert: 转变
+      tag-convert: 转换
       tag-axial: 轴向
       tag-radial: 径向
+      tab-bands-to-notation: 颜色 → 符号
+      tab-notation-to-bands: 符号 → 颜色
+      tab-number-to-notation: 数值 → 符号
+      tab-notation-to-number: 符号 → 数值
+      error-enter-exactly-bands: '请输入 {count} 个有效的颜色波段 ({colors})。'
+      error-conversion-failed: '转换失败。请检查波段顺序和值：{error}'
+      error-invalid-notation-format: '符号格式无效：{error}'
+      error-valid-positive-number: 请输入有效的正数。
+      label-valid-colors: '有效颜色：'
+      label-result: '结果：'
   sed-command-generator:
     title: Sed 命令生成器
     description: 生成 unix sed 命令

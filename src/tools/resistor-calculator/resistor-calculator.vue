@@ -39,12 +39,22 @@ const notationToNumberResult = ref(0);
 const notationToNumberError = ref('');
 
 const validColors = [
-  'black', 'brown', 'red', 'orange', 'yellow', 'green',
-  'blue', 'violet', 'gray', 'white', 'gold', 'silver',
+  'black',
+  'brown',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'violet',
+  'gray',
+  'white',
+  'gold',
+  'silver',
 ];
 
 function validateBands(bands: string[], count: number) {
-  return bands.length === count && bands.every(b => validColors.includes(b));
+  return bands.length === count && bands.every((b) => validColors.includes(b));
 }
 
 function convertBandsToNotation() {
@@ -52,9 +62,12 @@ function convertBandsToNotation() {
   bandsResult.value = '';
   bandPreview.value = [];
 
-  const bands = bandsInput.value.split(',').map(b => b.trim().toLowerCase());
+  const bands = bandsInput.value.split(',').map((b) => b.trim().toLowerCase());
   if (!validateBands(bands, bandCount.value)) {
-    bandsError.value = `Please enter exactly ${bandCount.value} valid color bands (${validColors.join(', ')}).`;
+    bandsError.value = t('tools.resistor-calculator.texts.error-enter-exactly-bands', {
+      count: bandCount.value,
+      colors: validColors.join(', '),
+    });
     return;
   }
 
@@ -62,8 +75,15 @@ function convertBandsToNotation() {
     const [notation, tolerance] = bandsToNotation(bands, bands.length);
     bandsResult.value = `${notation}Ω ±${tolerance}%`;
     bandPreview.value = bands;
+  } catch (e: any) {
+    bandsError.value = t('tools.resistor-calculator.texts.error-conversion-failed', { error: e.toString() });
   }
-  catch (e: any) {
+
+  try {
+    const [notation, tolerance] = bandsToNotation(bands, bands.length);
+    bandsResult.value = `${notation}Ω ±${tolerance}%`;
+    bandPreview.value = bands;
+  } catch (e: any) {
     bandsError.value = `Conversion failed. Check band order and values: ${e.toString()}`;
   }
 }
@@ -76,9 +96,8 @@ function convertNotationToBands() {
     const [notation, tolerance] = notationInput.value.replace(/[Ω±%]/g, '').replace(/\s+/g, ' ').trim().split(' ');
     const bands = notationToBands([notation, Number(tolerance) || 1], notationBandCount.value);
     notationBandsResult.value = bands;
-  }
-  catch (e: any) {
-    notationError.value = `Invalid notation format: ${e.toString()}`;
+  } catch (e: any) {
+    notationError.value = t('tools.resistor-calculator.texts.error-invalid-notation-format', { error: e.toString() });
   }
 }
 
@@ -87,14 +106,19 @@ function convertNumberToNotation() {
   numberNotationResult.value = '';
 
   if (typeof numberInput.value !== 'number' || numberInput.value <= 0) {
-    numberError.value = 'Please enter a valid positive number.';
+    numberError.value = t('tools.resistor-calculator.texts.error-valid-positive-number');
     return;
   }
 
   try {
     numberNotationResult.value = `${valueToNotation(numberInput.value)}Ω ±${tolerance.value}%`;
+  } catch (e: any) {
+    numberError.value = t('tools.resistor-calculator.texts.error-conversion-failed', { error: e.toString() });
   }
-  catch (e: any) {
+
+  try {
+    numberNotationResult.value = `${valueToNotation(numberInput.value)}Ω ±${tolerance.value}%`;
+  } catch (e: any) {
     numberError.value = `Conversion failed: ${e.toString()}`;
   }
 }
@@ -105,28 +129,49 @@ function convertNotationToNumber() {
 
   try {
     notationToNumberResult.value = notationToValue(notationToNumberInput.value);
-  }
-  catch (e: any) {
-    notationToNumberError.value = `Invalid notation format: ${e.toString()}`;
+  } catch (e: any) {
+    notationToNumberError.value = t('tools.resistor-calculator.texts.error-invalid-notation-format', {
+      error: e.toString(),
+    });
   }
 }
 
 function getColorHex(color: string) {
-  const map = { black: '#000000', brown: '#8B4513', red: '#FF0000', orange: '#FFA500', yellow: '#FFFF00', green: '#008000', blue: '#0000FF', violet: '#8A2BE2', gray: '#808080', white: '#FFFFFF', gold: '#FFD700', silver: '#C0C0C0' };
+  const map = {
+    black: '#000000',
+    brown: '#8B4513',
+    red: '#FF0000',
+    orange: '#FFA500',
+    yellow: '#FFFF00',
+    green: '#008000',
+    blue: '#0000FF',
+    violet: '#8A2BE2',
+    gray: '#808080',
+    white: '#FFFFFF',
+    gold: '#FFD700',
+    silver: '#C0C0C0',
+  };
   return map[color as keyof typeof map] || '#ccc';
 }
 </script>
 
 <template>
-  <n-card :title="t('tools.resistor-calculator.texts.title-resistor-converter')" style="max-width: 700px; margin: auto;">
+  <n-card :title="t('tools.resistor-calculator.texts.title-resistor-converter')" style="max-width: 700px; margin: auto">
     <n-tabs type="line" animated>
       <!-- Bands → Notation -->
-      <n-tab-pane name="bands-to-notation" tab="Bands → Notation">
-        <n-select v-model:value="bandCount" mb-1 :options="bandOptions" :label="t('tools.resistor-calculator.texts.label-band-count')" style="margin-bottom: 10px" />
-        <n-input v-model:value="bandsInput" :placeholder="t('tools.resistor-calculator.texts.placeholder-e-g-red-violet-brown-gold')" />
-        <n-p mb-2>
-          Valid colors: {{ validColors.join(', ') }}
-        </n-p>
+      <n-tab-pane name="bands-to-notation" :tab="t('tools.resistor-calculator.texts.tab-bands-to-notation')">
+        <n-select
+          v-model:value="bandCount"
+          mb-1
+          :options="bandOptions"
+          :label="t('tools.resistor-calculator.texts.label-band-count')"
+          style="margin-bottom: 10px"
+        />
+        <n-input
+          v-model:value="bandsInput"
+          :placeholder="t('tools.resistor-calculator.texts.placeholder-e-g-red-violet-brown-gold')"
+        />
+        <n-p mb-2> {{ t('tools.resistor-calculator.texts.label-valid-colors') }} {{ validColors.join(', ') }} </n-p>
         <n-space justify="center" mb-2>
           <n-button @click="convertBandsToNotation">
             {{ t('tools.resistor-calculator.texts.tag-convert') }}
@@ -135,9 +180,20 @@ function getColorHex(color: string) {
         <n-alert v-if="bandsError" type="error">
           {{ bandsError }}
         </n-alert>
-        <n-result v-if="bandsResult" mb-2 status="success" :title="t('tools.resistor-calculator.texts.title-standard-notation')" :description="bandsResult" />
+        <n-result
+          v-if="bandsResult"
+          mb-2
+          status="success"
+          :title="t('tools.resistor-calculator.texts.title-standard-notation')"
+          :description="bandsResult"
+        />
         <n-space v-if="bandPreview.length" justify="center" mb-2>
-          <n-tag v-for="(color, index) in bandPreview" :key="index" :style="{ 'background-color': getColorHex(color) }" round>
+          <n-tag
+            v-for="(color, index) in bandPreview"
+            :key="index"
+            :style="{ 'background-color': getColorHex(color) }"
+            round
+          >
             {{ color }}
           </n-tag>
         </n-space>
@@ -186,9 +242,19 @@ function getColorHex(color: string) {
       </n-tab-pane>
 
       <!-- Notation → Bands -->
-      <n-tab-pane name="notation-to-bands" tab="Notation → Bands">
-        <n-input v-model:value="notationInput" :placeholder="t('tools.resistor-calculator.texts.placeholder-e-g-2k7ω-5-or-2k7-5')" mb-2 />
-        <n-select v-model:value="notationBandCount" mb-1 :options="bandOptions" :label="t('tools.resistor-calculator.texts.label-band-count')" style="margin-bottom: 10px" />
+      <n-tab-pane name="notation-to-bands" :tab="t('tools.resistor-calculator.texts.tab-notation-to-bands')">
+        <n-input
+          v-model:value="notationInput"
+          :placeholder="t('tools.resistor-calculator.texts.placeholder-e-g-2k7ω-5-or-2k7-5')"
+          mb-2
+        />
+        <n-select
+          v-model:value="notationBandCount"
+          mb-1
+          :options="bandOptions"
+          :label="t('tools.resistor-calculator.texts.label-band-count')"
+          style="margin-bottom: 10px"
+        />
         <n-space justify="center" mb-1>
           <n-button @click="convertNotationToBands">
             {{ t('tools.resistor-calculator.texts.tag-convert') }}
@@ -197,9 +263,20 @@ function getColorHex(color: string) {
         <n-alert v-if="notationError" type="error" mb-1>
           {{ notationError }}
         </n-alert>
-        <n-result v-if="notationBandsResult.length" mb-1 status="success" :title="t('tools.resistor-calculator.texts.title-resistor-bands')" :description="`Result: ${notationBandsResult.join(', ')}`" />
+        <n-result
+          v-if="notationBandsResult.length"
+          mb-1
+          status="success"
+          :title="t('tools.resistor-calculator.texts.title-resistor-bands')"
+          :description="`${t('tools.resistor-calculator.texts.label-result')} ${notationBandsResult.join(', ')}`"
+        />
         <n-space v-if="notationBandsResult.length" justify="center" mb-3>
-          <n-tag v-for="(color, index) in notationBandsResult" :key="index" :style="{ 'background-color': getColorHex(color) }" round>
+          <n-tag
+            v-for="(color, index) in notationBandsResult"
+            :key="index"
+            :style="{ 'background-color': getColorHex(color) }"
+            round
+          >
             {{ color }}
           </n-tag>
         </n-space>
@@ -248,9 +325,18 @@ function getColorHex(color: string) {
       </n-tab-pane>
 
       <!-- Number → Notation -->
-      <n-tab-pane name="number-to-notation" tab="Number → Notation">
-        <n-input-number v-model:value="numberInput" :placeholder="t('tools.resistor-calculator.texts.placeholder-e-g-2700')" mb-1 />
-        <n-select v-model:value="tolerance" :options="toleranceOptions" :label="t('tools.resistor-calculator.texts.label-tolerance')" mb-1 />
+      <n-tab-pane name="number-to-notation" :tab="t('tools.resistor-calculator.texts.tab-number-to-notation')">
+        <n-input-number
+          v-model:value="numberInput"
+          :placeholder="t('tools.resistor-calculator.texts.placeholder-e-g-2700')"
+          mb-1
+        />
+        <n-select
+          v-model:value="tolerance"
+          :options="toleranceOptions"
+          :label="t('tools.resistor-calculator.texts.label-tolerance')"
+          mb-1
+        />
         <n-space justify="center" mb-1>
           <n-button @click="convertNumberToNotation">
             {{ t('tools.resistor-calculator.texts.tag-convert') }}
@@ -259,12 +345,20 @@ function getColorHex(color: string) {
         <n-alert v-if="numberError" type="error">
           {{ numberError }}
         </n-alert>
-        <n-result v-if="numberNotationResult" status="success" :title="t('tools.resistor-calculator.texts.title-standard-notation')" :description="`Result: ${numberNotationResult}`" />
+        <n-result
+          v-if="numberNotationResult"
+          status="success"
+          :title="t('tools.resistor-calculator.texts.title-standard-notation')"
+          :description="`${t('tools.resistor-calculator.texts.label-result')} ${numberNotationResult}`"
+        />
       </n-tab-pane>
 
       <!-- Notation → Number -->
-      <n-tab-pane name="notation-to-number" tab="Notation → Number">
-        <n-input v-model:value="notationToNumberInput" :placeholder="t('tools.resistor-calculator.texts.placeholder-e-g-2k7ω-5-or-2k7-5')" />
+      <n-tab-pane name="notation-to-number" :tab="t('tools.resistor-calculator.texts.tab-notation-to-number')">
+        <n-input
+          v-model:value="notationToNumberInput"
+          :placeholder="t('tools.resistor-calculator.texts.placeholder-e-g-2k7ω-5-or-2k7-5')"
+        />
         <n-space justify="center" mb-1>
           <n-button @click="convertNotationToNumber">
             {{ t('tools.resistor-calculator.texts.tag-convert') }}
@@ -273,7 +367,12 @@ function getColorHex(color: string) {
         <n-alert v-if="notationToNumberError" type="error">
           {{ notationToNumberError }}
         </n-alert>
-        <n-result v-if="notationToNumberResult !== null" status="success" :title="t('tools.resistor-calculator.texts.title-numeric-value')" :description="`Result: ${notationToNumberResult}Ω`" />
+        <n-result
+          v-if="notationToNumberResult !== null"
+          status="success"
+          :title="t('tools.resistor-calculator.texts.title-numeric-value')"
+          :description="`${t('tools.resistor-calculator.texts.label-result')} ${notationToNumberResult}Ω`"
+        />
       </n-tab-pane>
     </n-tabs>
   </n-card>

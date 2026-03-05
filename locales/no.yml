@@ -6685,6 +6685,16 @@ tools:
       tag-convert: Konvertere
       tag-axial: Aksial
       tag-radial: Radial
+      tab-bands-to-notation: Bånd → Notasjon
+      tab-notation-to-bands: Notasjon → Bånd
+      tab-number-to-notation: Tall → Notasjon
+      tab-notation-to-number: Notasjon → Tall
+      error-enter-exactly-bands: 'Vennligst skriv inn nøyaktig {count} gyldige fargebånd ({colors}).'
+      error-conversion-failed: 'Konvertering mislyktes. Sjekk båndrekkefølge og verdier: {error}'
+      error-invalid-notation-format: 'Ugyldig notasjonsformat: {error}'
+      error-valid-positive-number: Vennligst skriv inn et gyldig positivt tall.
+      label-valid-colors: 'Gyldige farger:'
+      label-result: 'Resultat:'
   sed-command-generator:
     title: Sed-kommandogenerator
     description: Generer unix sed-kommandoer

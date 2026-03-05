@@ -6487,6 +6487,11 @@ tools:
       label-fallback: 'Fallback:'
       placeholder-fallback-font: Fallback Font
       tag-defineprops: defineProps
+      tab-by-font-name: By Font Name
+      tab-by-font-url: By Font URL
+      tab-by-font-file: By Font File
+      tab-by-inline-css: By Inline CSS
+      tab-by-css-url: By CSS URL
   gpt-token-encoder:
     title: GPT Token Encoder/Decoder
     description: Encode text to GPT tokens and decode GPT tokens back to text
@@ -6810,6 +6815,16 @@ tools:
       tag-convert: Convert
       tag-axial: Axial
       tag-radial: Radial
+      tab-bands-to-notation: Bands → Notation
+      tab-notation-to-bands: Notation → Bands
+      tab-number-to-notation: Number → Notation
+      tab-notation-to-number: Notation → Number
+      error-enter-exactly-bands: 'Please enter exactly {count} valid color bands ({colors}).'
+      error-conversion-failed: 'Conversion failed. Check band order and values: {error}'
+      error-invalid-notation-format: 'Invalid notation format: {error}'
+      error-valid-positive-number: Please enter a valid positive number.
+      label-valid-colors: 'Valid colors:'
+      label-result: 'Result:'
   sed-command-generator:
     title: Sed Command generator
     description: Generate unix sed commands

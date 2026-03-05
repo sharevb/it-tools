@@ -6805,6 +6805,16 @@ tools:
       tag-convert: Tiontaigh
       tag-axial: Aiseach
       tag-radial: Gathach
+      tab-bands-to-notation: Bandaí → Nótaíocht
+      tab-notation-to-bands: Nótaíocht → Bandaí
+      tab-number-to-notation: Uimhir → Nótaíocht
+      tab-notation-to-number: Nótaíocht → Uimhir
+      error-enter-exactly-bands: 'Cuir isteach go beacht {count} banda datha bailí ({colors}).'
+      error-conversion-failed: Theip ar an tiontú. Seiceáil ord na mbandai agus luachanna: {error}
+      error-invalid-notation-format: Formáid nótaíochta neamhbhailí: {error}
+      error-valid-positive-number: Cuir isteach uimhir dhearfach bhailí.
+      label-valid-colors: Dthanna bailí:
+      label-result: Toradh:
   sed-command-generator:
     title: Gineadóir Ordú Sed
     description: Gin orduithe sed unix

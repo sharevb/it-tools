@@ -6710,6 +6710,16 @@ tools:
       tag-convert: Overzetten
       tag-axial: Axiaal
       tag-radial: Radiaal
+      tab-bands-to-notation: Banden → Notatie
+      tab-notation-to-bands: Notatie → Banden
+      tab-number-to-notation: Getal → Notatie
+      tab-notation-to-number: Notatie → Getal
+      error-enter-exactly-bands: 'Voer exact {count} geldige kleurenbanden in ({colors}).'
+      error-conversion-failed: 'Conversie mislukt. Controleer de bandvolgorde en -waarden: {error}'
+      error-invalid-notation-format: 'Ongeldige notatie-indeling: {error}'
+      error-valid-positive-number: Voer een geldig positief getal in.
+      label-valid-colors: 'Geldige kleuren:'
+      label-result: 'Resultaat:'
   sed-command-generator:
     title: Sed Command-generator
     description: Unix sed-opdrachten genereren

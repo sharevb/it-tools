@@ -6757,6 +6757,16 @@ tools:
       tag-convert: Converter
       tag-axial: Axial
       tag-radial: Radial
+      tab-bands-to-notation: Bandas → Notação
+      tab-notation-to-bands: Notação → Bandas
+      tab-number-to-notation: Número → Notação
+      tab-notation-to-number: Notação → Número
+      error-enter-exactly-bands: 'Por favor, insira exatamente {count} bandas de cor válidas ({colors}).'
+      error-conversion-failed: 'Falha na conversão. Verifique a ordem e os valores das bandas: {error}'
+      error-invalid-notation-format: 'Formato de notação inválido: {error}'
+      error-valid-positive-number: Por favor, insira um número positivo válido.
+      label-valid-colors: 'Cores válidas:'
+      label-result: 'Resultado:'
   sed-command-generator:
     title: Gerador de comandos Sed
     description: Gerar comandos sed unix
