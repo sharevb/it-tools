@@ -7608,3 +7608,9 @@ tools:
         embolismic-regular-384-days: embolismic 年正规 (384天)
         embolismic-complete-385-days: embolismic 年完整 (385天)
         invalid-year-length-hebrew_year_days-hebcal-0-days: 无效的年份长度：{0} 天
+  shell-linearizer:
+    title: Shell 命令线性化工具
+    description: 将多行 Shell 命令转换为单行命令
+  shell-formatter:
+    title: Shell 命令格式化工具
+    description: 将 Shell 命令格式化为多行形式，按参数拆分
