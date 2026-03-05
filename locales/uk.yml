@@ -959,7 +959,7 @@ tools:
       button-extract-blueprint: Витягти схему Pangolin
       button-convert-to-labels: Перетворити на мітки Docker
       switch-array-format: 'Масив (- key=value)'
-      switch-object-format: 'Об'єкт (key: value)'
+      switch-object-format: "Об'єкт (key: value)"
       error-invalid-compose: Недійсний docker-compose.yml
       error-invalid-blueprint: Недійсна схема YAML
   mac-address-lookup:

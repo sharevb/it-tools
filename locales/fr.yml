@@ -5652,7 +5652,7 @@ tools:
       tab-number-to-notation: Nombre → Notation
       tab-notation-to-number: Notation → Nombre
       error-enter-exactly-bands: 'Veuillez entrer exactement {count} bandes de couleur valides ({colors}).'
-      error-conversion-failed: 'Échec de la conversion. Vérifiez l\'ordre et les valeurs des bandes : {error}'
+      error-conversion-failed: "Échec de la conversion. Vérifiez l'ordre et les valeurs des bandes : {error}"
       error-invalid-notation-format: 'Format de notation invalide : {error}'
       error-valid-positive-number: Veuillez entrer un nombre positif valide.
       label-valid-colors: 'Couleurs valides :'
