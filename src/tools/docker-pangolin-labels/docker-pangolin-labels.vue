@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import yaml from 'yaml';
-import { blueprintToLabels, extractPangolinLabelsFromCompose, pangolinLabelsToBlueprint } from './docker-pangolin-labels.service';
+import { useI18n } from 'vue-i18n';
+import {
+  blueprintToLabels,
+  extractPangolinLabelsFromCompose,
+  pangolinLabelsToBlueprint,
+} from './docker-pangolin-labels.service';
+
+const { t } = useI18n();
 
 const composeInput = ref('');
 const blueprintOutput = ref('');
@@ -18,15 +25,14 @@ function convertComposeToBlueprint() {
   try {
     const compose = yaml.parse(composeInput.value) as any;
     if (!compose?.services) {
-      throw new Error('Invalid docker-compose.yml');
+      throw new Error(t('tools.docker-pangolin-labels.texts.error-invalid-compose'));
     }
 
     const labels = extractPangolinLabelsFromCompose(compose);
     const blueprint = pangolinLabelsToBlueprint(labels);
 
     blueprintOutput.value = yaml.stringify(blueprint);
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err.toString();
   }
 }
@@ -41,14 +47,13 @@ function convertBlueprintToLabels() {
   try {
     const blueprint = yaml.parse(blueprintInput.value) as any;
     if (!blueprint || typeof blueprint !== 'object') {
-      throw new Error('Invalid blueprint YAML');
+      throw new Error(t('tools.docker-pangolin-labels.texts.error-invalid-blueprint'));
     }
 
     const labels = blueprintToLabels(blueprint, labelsAsArray.value ? 'array' : 'object');
 
     labelsOutput.value = yaml.stringify(labels);
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err?.message ?? String(err);
   }
 }
@@ -58,19 +63,19 @@ function convertBlueprintToLabels() {
   <div>
     <n-tabs type="segment">
       <!-- COMPOSE → BLUEPRINT -->
-      <n-tab-pane name="compose-to-blueprint" tab="Compose → Blueprint">
+      <n-tab-pane name="compose-to-blueprint" :tab="t('tools.docker-pangolin-labels.texts.tab-compose-to-blueprint')">
         <c-input-text
           v-model:value="composeInput"
-          label="Docker Compose YAML:"
+          :label="t('tools.docker-pangolin-labels.texts.label-docker-compose-yaml')"
           multiline
           rows="10"
-          placeholder="Paste full docker-compose.yml here…"
+          :placeholder="t('tools.docker-pangolin-labels.texts.placeholder-docker-compose-yaml')"
           mb-2
         />
 
         <n-space justify="center" mb-2>
           <n-button type="primary" @click="convertComposeToBlueprint">
-            Extract Pangolin Blueprint
+            {{ t('tools.docker-pangolin-labels.texts.button-extract-blueprint') }}
           </n-button>
         </n-space>
 
@@ -81,48 +86,48 @@ function convertBlueprintToLabels() {
         <textarea-copyable
           v-if="blueprintOutput"
           v-model:value="blueprintOutput"
-          label="Generated Blueprint:"
+          :label="t('tools.docker-pangolin-labels.texts.label-generated-blueprint')"
           language="yaml"
           readonly
-          placeholder="Blueprint YAML will appear here…"
+          :placeholder="t('tools.docker-pangolin-labels.texts.placeholder-generated-blueprint')"
         />
       </n-tab-pane>
 
       <!-- BLUEPRINT → LABELS -->
-      <n-tab-pane name="blueprint-to-labels" tab="Blueprint → Labels">
+      <n-tab-pane name="blueprint-to-labels" :tab="t('tools.docker-pangolin-labels.texts.tab-blueprint-to-labels')">
         <c-input-text
           v-model:value="blueprintInput"
-          label="Blueprint YAML:"
+          :label="t('tools.docker-pangolin-labels.texts.label-blueprint-yaml')"
           multiline
           rows="5"
-          placeholder="Paste Pangolin blueprint YAML here…"
+          :placeholder="t('tools.docker-pangolin-labels.texts.placeholder-blueprint-yaml')"
           mb-2
         />
 
         <n-space justify="center" mb-2>
           <n-switch v-model:value="labelsAsArray">
             <template #checked>
-              Array (- key=value)
+              {{ t('tools.docker-pangolin-labels.texts.switch-array-format') }}
             </template>
             <template #unchecked>
-              Object (key: value)
+              {{ t('tools.docker-pangolin-labels.texts.switch-object-format') }}
             </template>
           </n-switch>
         </n-space>
 
         <n-space justify="center" mb-2>
           <n-button type="primary" @click="convertBlueprintToLabels">
-            Convert to Docker Labels
+            {{ t('tools.docker-pangolin-labels.texts.button-convert-to-labels') }}
           </n-button>
         </n-space>
 
         <textarea-copyable
           v-if="labelsOutput"
           v-model:value="labelsOutput"
-          label="Generated Docker labels:"
+          :label="t('tools.docker-pangolin-labels.texts.label-generated-docker-labels')"
           rows="16"
           language="yaml"
-          placeholder="Docker labels will appear here..."
+          :placeholder="t('tools.docker-pangolin-labels.texts.placeholder-generated-docker-labels')"
         />
       </n-tab-pane>
     </n-tabs>

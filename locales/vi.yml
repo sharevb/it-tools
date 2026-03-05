@@ -967,6 +967,26 @@ tools:
       label-indent-size: 'Kích thước thụt lề:'
       title-the-following-errors-occured: Các lỗi sau đây đã xảy ra
       tag-download-docker-compose-yml: Tải xuống docker-compose.yml
+  docker-pangolin-labels:
+    title: Nhãn Docker Pangolin
+    description: Chuyển đổi nhãn Docker Compose Pangolin thành blueprint và ngược lại
+    texts:
+      tab-compose-to-blueprint: Compose → Blueprint
+      tab-blueprint-to-labels: Blueprint → Nhãn
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'Blueprint YAML:'
+      label-generated-blueprint: 'Blueprint đã tạo:'
+      label-generated-docker-labels: 'Nhãn Docker đã tạo:'
+      placeholder-docker-compose-yaml: Dán docker-compose.yml đầy đủ của bạn vào đây…
+      placeholder-blueprint-yaml: Dán blueprint Pangolin YAML của bạn vào đây…
+      placeholder-generated-blueprint: Blueprint YAML sẽ xuất hiện ở đây…
+      placeholder-generated-docker-labels: Nhãn Docker sẽ xuất hiện ở đây…
+      button-extract-blueprint: Trích xuất Pangolin Blueprint
+      button-convert-to-labels: Chuyển đổi thành nhãn Docker
+      switch-array-format: 'Mảng (- key=value)'
+      switch-object-format: 'Đối tượng (key: value)'
+      error-invalid-compose: docker-compose.yml không hợp lệ
+      error-invalid-blueprint: Blueprint YAML không hợp lệ
   mac-address-lookup:
     title: Tra cứu địa chỉ MAC
     description: Tìm nhà sản xuất và nhà cung cấp của thiết bị dựa trên địa chỉ MAC.

@@ -4056,6 +4056,26 @@ tools:
       tag-copy: Copie
       tag-refresh: Rafraîchir
     title: Générateur d'adresses MAC
+  docker-pangolin-labels:
+    title: Labels Docker Pangolin
+    description: Convertir les labels Docker Compose Pangolin en blueprints et vice versa
+    texts:
+      tab-compose-to-blueprint: Compose → Blueprint
+      tab-blueprint-to-labels: Blueprint → Labels
+      label-docker-compose-yaml: 'Docker Compose YAML :'
+      label-blueprint-yaml: 'Blueprint YAML :'
+      label-generated-blueprint: 'Blueprint généré :'
+      label-generated-docker-labels: 'Labels Docker générés :'
+      placeholder-docker-compose-yaml: Collez votre docker-compose.yml complet ici…
+      placeholder-blueprint-yaml: Collez votre blueprint Pangolin YAML ici…
+      placeholder-generated-blueprint: Le blueprint YAML apparaîtra ici…
+      placeholder-generated-docker-labels: Les labels Docker apparaîtront ici…
+      button-extract-blueprint: Extraire le blueprint Pangolin
+      button-convert-to-labels: Convertir en labels Docker
+      switch-array-format: 'Tableau (- key=value)'
+      switch-object-format: 'Objet (key: value)'
+      error-invalid-compose: docker-compose.yml invalide
+      error-invalid-blueprint: Blueprint YAML invalide
   mac-address-lookup:
     description: Trouvez le vendeur et le fabricant d'un appareil par son adresse MAC.
     texts:

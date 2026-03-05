@@ -877,6 +877,26 @@ tools:
       label-indent-size: 'Girinti boyutu:'
       title-the-following-errors-occured: Aşağıdaki hatalar oluştu
       tag-download-docker-compose-yml: docker-compose.yml dosyasını indirin
+  docker-pangolin-labels:
+    title: Docker Pangolin Etiketleri
+    description: Docker Compose Pangolin etiketlerini blueprint'lere ve tersine dönüştürün
+    texts:
+      tab-compose-to-blueprint: Compose → Blueprint
+      tab-blueprint-to-labels: Blueprint → Etiketler
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'Blueprint YAML:'
+      label-generated-blueprint: 'Oluşturulan Blueprint:'
+      label-generated-docker-labels: 'Oluşturulan Docker etiketleri:'
+      placeholder-docker-compose-yaml: Tam docker-compose.yml dosyanızı buraya yapıştırın…
+      placeholder-blueprint-yaml: Pangolin blueprint YAML dosyanızı buraya yapıştırın…
+      placeholder-generated-blueprint: Blueprint YAML burada görünecek…
+      placeholder-generated-docker-labels: Docker etiketleri burada görünecek…
+      button-extract-blueprint: Pangolin Blueprint'i çıkar
+      button-convert-to-labels: Docker etiketlerine dönüştür
+      switch-array-format: 'Dizi (- key=value)'
+      switch-object-format: 'Nesne (key: value)'
+      error-invalid-compose: Geçersiz docker-compose.yml
+      error-invalid-blueprint: Geçersiz blueprint YAML
   mac-address-lookup:
     title: MAC adresi araması
     description: Bir cihazın satıcısını ve üreticisini MAC adresine göre bulun.

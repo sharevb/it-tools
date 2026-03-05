@@ -1031,6 +1031,26 @@ tools:
       label-indent-size: 'Méid an línithe:'
       title-the-following-errors-occured: Tharla na hearráidí seo a leanas
       tag-download-docker-compose-yml: Íoslódáil docker-compose.yml
+  docker-pangolin-labels:
+    title: Lipéid Docker Pangolin
+    description: Tiontaigh lipéid Docker Compose Pangolin go blueprints agus ar ais
+    texts:
+      tab-compose-to-blueprint: Compose → Blueprint
+      tab-blueprint-to-labels: Blueprint → Lipéid
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'Blueprint YAML:'
+      label-generated-blueprint: 'Ginte Blueprint:'
+      label-generated-docker-labels: 'Ginte lipéid Docker:'
+      placeholder-docker-compose-yaml: Greamaigh do docker-compose.yml iomlán anseo…
+      placeholder-blueprint-yaml: Greamaigh do Pangolin blueprint YAML anseo…
+      placeholder-generated-blueprint: Beifear an blueprint YAML anseo…
+      placeholder-generated-docker-labels: Beifear na lipéid Docker anseo…
+      button-extract-blueprint: Bain amach Pangolin Blueprint
+      button-convert-to-labels: Tiontaigh go lipéid Docker
+      switch-array-format: 'Eagar (- key=value)'
+      switch-object-format: 'Cruth (key: value)'
+      error-invalid-compose: docker-compose.yml neamhbhailí
+      error-invalid-blueprint: Blueprint YAML neamhbhailí
   mac-address-lookup:
     title: Cuardach seoladh MAC
     description: Faigh díoltóir agus monaróir feiste ag a sheoladh MAC.

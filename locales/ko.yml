@@ -793,6 +793,26 @@ tools:
       label-indent-size: '들여쓰기 크기:'
       title-the-following-errors-occured: 다음 오류가 발생했습니다.
       tag-download-docker-compose-yml: docker-compose.yml을 다운로드하세요
+  docker-pangolin-labels:
+    title: Docker Pangolin 레이블
+    description: Docker Compose Pangolin 레이블을 블루프린트로 변환하거나 그 반대로 변환
+    texts:
+      tab-compose-to-blueprint: Compose → 블루프린트
+      tab-blueprint-to-labels: 블루프린트 → 레이블
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: '블루프린트 YAML:'
+      label-generated-blueprint: '생성된 블루프린트:'
+      label-generated-docker-labels: '생성된 Docker 레이블:'
+      placeholder-docker-compose-yaml: 전체 docker-compose.yml을 여기에 붙여넣으세요…
+      placeholder-blueprint-yaml: Pangolin 블루프린트 YAML을 여기에 붙여넣으세요…
+      placeholder-generated-blueprint: 블루프린트 YAML이 여기에 표시됩니다…
+      placeholder-generated-docker-labels: Docker 레이블이 여기에 표시됩니다…
+      button-extract-blueprint: Pangolin 블루프린트 추출
+      button-convert-to-labels: Docker 레이블로 변환
+      switch-array-format: '배열 (- key=value)'
+      switch-object-format: '객체 (key: value)'
+      error-invalid-compose: 유효하지 않은 docker-compose.yml
+      error-invalid-blueprint: 유효하지 않은 블루프린트 YAML
   mac-address-lookup:
     title: MAC 주소 조회
     description: MAC 주소로 제조사·벤더를 확인합니다.

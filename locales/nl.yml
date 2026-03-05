@@ -905,6 +905,26 @@ tools:
       label-indent-size: 'Inspringgrootte:'
       title-the-following-errors-occured: De volgende fouten zijn opgetreden
       tag-download-docker-compose-yml: Docker-compose.yml downloaden
+  docker-pangolin-labels:
+    title: Docker Pangolin Labels
+    description: Converteer Docker Compose Pangolin labels naar blueprints en vice versa
+    texts:
+      tab-compose-to-blueprint: Compose → Blueprint
+      tab-blueprint-to-labels: Blueprint → Labels
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'Blueprint YAML:'
+      label-generated-blueprint: 'Gegenereerde blueprint:'
+      label-generated-docker-labels: 'Gegenereerde Docker labels:'
+      placeholder-docker-compose-yaml: Plak hier je volledige docker-compose.yml…
+      placeholder-blueprint-yaml: Plak hier je Pangolin blueprint YAML…
+      placeholder-generated-blueprint: Blueprint YAML verschijnt hier…
+      placeholder-generated-docker-labels: Docker labels verschijnen hier…
+      button-extract-blueprint: Pangolin Blueprint extraheren
+      button-convert-to-labels: Naar Docker labels converteren
+      switch-array-format: 'Array (- key=value)'
+      switch-object-format: 'Object (key: value)'
+      error-invalid-compose: Ongeldige docker-compose.yml
+      error-invalid-blueprint: Ongeldige blueprint YAML
   mac-address-lookup:
     title: MAC-adres opzoeken
     description: Vind de leverancier en fabrikant van een apparaat op basis van zijn

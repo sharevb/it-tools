@@ -952,6 +952,26 @@ tools:
       label-indent-size: 'Размер отступа:'
       title-the-following-errors-occured: Произошли следующие ошибки
       tag-download-docker-compose-yml: Загрузить docker-compose.yml
+  docker-pangolin-labels:
+    title: Метки Docker Pangolin
+    description: Преобразование меток Docker Compose Pangolin в схемы и наоборот
+    texts:
+      tab-compose-to-blueprint: Compose → Схема
+      tab-blueprint-to-labels: Схема → Метки
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'Схема YAML:'
+      label-generated-blueprint: 'Созданная схема:'
+      label-generated-docker-labels: 'Созданные метки Docker:'
+      placeholder-docker-compose-yaml: Вставьте полный docker-compose.yml здесь…
+      placeholder-blueprint-yaml: Вставьте схему Pangolin YAML здесь…
+      placeholder-generated-blueprint: Схема YAML появится здесь…
+      placeholder-generated-docker-labels: Метки Docker появятся здесь…
+      button-extract-blueprint: Извлечь схему Pangolin
+      button-convert-to-labels: Преобразовать в метки Docker
+      switch-array-format: 'Массив (- key=value)'
+      switch-object-format: 'Объект (key: value)'
+      error-invalid-compose: Неверный docker-compose.yml
+      error-invalid-blueprint: Неверная схема YAML
   mac-address-lookup:
     title: Поиск MAC-адреса
     description: Найдите поставщика и производителя устройства по его MAC-адресу.

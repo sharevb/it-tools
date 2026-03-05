@@ -963,6 +963,26 @@ tools:
       label-indent-size: 'Innrykksstørrelse:'
       title-the-following-errors-occured: Følgende feil oppsto
       tag-download-docker-compose-yml: Last ned docker-compose.yml
+  docker-pangolin-labels:
+    title: Docker Pangolin Labels
+    description: Konverter Docker Compose Pangolin labels til blueprints og omvendt
+    texts:
+      tab-compose-to-blueprint: Compose → Blueprint
+      tab-blueprint-to-labels: Blueprint → Labels
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'Blueprint YAML:'
+      label-generated-blueprint: 'Generert blueprint:'
+      label-generated-docker-labels: 'Genererte Docker labels:'
+      placeholder-docker-compose-yaml: Lim inn din komplette docker-compose.yml her…
+      placeholder-blueprint-yaml: Lim inn din Pangolin blueprint YAML her…
+      placeholder-generated-blueprint: Blueprint YAML vises her…
+      placeholder-generated-docker-labels: Docker labels vises her…
+      button-extract-blueprint: Ekstraher Pangolin Blueprint
+      button-convert-to-labels: Konverter til Docker labels
+      switch-array-format: 'Array (- key=value)'
+      switch-object-format: 'Objekt (key: value)'
+      error-invalid-compose: Ugyldig docker-compose.yml
+      error-invalid-blueprint: Ugyldig blueprint YAML
   mac-address-lookup:
     title: MAC address oppslagsverk
     description: Finn forhandler og produsent basert på MAC adressen.

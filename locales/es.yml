@@ -661,6 +661,26 @@ tools:
       label-indent-size: 'Tamaño de sangría:'
       title-the-following-errors-occured: Se produjeron los siguientes errores
       tag-download-docker-compose-yml: Descargar docker-compose.yml
+  docker-pangolin-labels:
+    title: Etiquetas Docker Pangolin
+    description: Convertir etiquetas Docker Compose Pangolin a blueprints y viceversa
+    texts:
+      tab-compose-to-blueprint: Compose → Blueprint
+      tab-blueprint-to-labels: Blueprint → Etiquetas
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'Blueprint YAML:'
+      label-generated-blueprint: 'Blueprint generado:'
+      label-generated-docker-labels: 'Etiquetas Docker generadas:'
+      placeholder-docker-compose-yaml: Pegue su docker-compose.yml completo aquí…
+      placeholder-blueprint-yaml: Pegue su blueprint Pangolin YAML aquí…
+      placeholder-generated-blueprint: El blueprint YAML aparecerá aquí…
+      placeholder-generated-docker-labels: Las etiquetas Docker aparecerán aquí…
+      button-extract-blueprint: Extraer Pangolin Blueprint
+      button-convert-to-labels: Convertir a etiquetas Docker
+      switch-array-format: 'Array (- key=value)'
+      switch-object-format: 'Objeto (key: value)'
+      error-invalid-compose: docker-compose.yml inválido
+      error-invalid-blueprint: Blueprint YAML inválido
   mac-address-lookup:
     title: Búsqueda de dirección MAC
     description: Encuentre el proveedor y fabricante de un dispositivo por su dirección MAC.

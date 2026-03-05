@@ -592,6 +592,26 @@ tools:
       label-indent-size: 缩进大小：
       title-the-following-errors-occured: 发生以下错误
       tag-download-docker-compose-yml: 下载docker-compose.yml
+  docker-pangolin-labels:
+    title: Docker Pangolin 标签
+    description: 在 Docker Compose Pangolin 标签和蓝图之间相互转换
+    texts:
+      tab-compose-to-blueprint: Compose → 蓝图
+      tab-blueprint-to-labels: 蓝图 → 标签
+      label-docker-compose-yaml: 'Docker Compose YAML：'
+      label-blueprint-yaml: '蓝图 YAML：'
+      label-generated-blueprint: '生成的蓝图：'
+      label-generated-docker-labels: '生成的 Docker 标签：'
+      placeholder-docker-compose-yaml: 在此粘贴完整的 docker-compose.yml…
+      placeholder-blueprint-yaml: 在此粘贴 Pangolin 蓝图 YAML…
+      placeholder-generated-blueprint: 蓝图 YAML 将显示在此处…
+      placeholder-generated-docker-labels: Docker 标签将显示在此处…
+      button-extract-blueprint: 提取 Pangolin 蓝图
+      button-convert-to-labels: 转换为 Docker 标签
+      switch-array-format: '数组 (- key=value)'
+      switch-object-format: '对象 (key: value)'
+      error-invalid-compose: 无效的 docker-compose.yml
+      error-invalid-blueprint: 无效的蓝图 YAML
   mac-address-lookup:
     title: MAC地址查询
     description: 通过MAC地址查找设备的厂商和制造商信息。

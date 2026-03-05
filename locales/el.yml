@@ -649,6 +649,26 @@ tools:
       label-indent-size: 'Μέγεθος εσοχής:'
       title-the-following-errors-occured: Παρουσιάστηκαν τα ακόλουθα σφάλματα
       tag-download-docker-compose-yml: Λήψη docker-compose.yml
+  docker-pangolin-labels:
+    title: Ετικέτες Docker Pangolin
+    description: Μετατροπή ετικετών Docker Compose Pangolin σε blueprints και αντίστροφα
+    texts:
+      tab-compose-to-blueprint: Compose → Blueprint
+      tab-blueprint-to-labels: Blueprint → Ετικέτες
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'Blueprint YAML:'
+      label-generated-blueprint: 'Δημιουργημένο Blueprint:'
+      label-generated-docker-labels: 'Δημιουργημένες ετικέτες Docker:'
+      placeholder-docker-compose-yaml: Επικολλήστε το πλήρες docker-compose.yml σας εδώ…
+      placeholder-blueprint-yaml: Επικολλήστε το blueprint Pangolin YAML σας εδώ…
+      placeholder-generated-blueprint: Το blueprint YAML θα εμφανιστεί εδώ…
+      placeholder-generated-docker-labels: Οι ετικέτες Docker θα εμφανιστούν εδώ…
+      button-extract-blueprint: Εξαγωγή Pangolin Blueprint
+      button-convert-to-labels: Μετατροπή σε ετικέτες Docker
+      switch-array-format: 'Πίνακας (- key=value)'
+      switch-object-format: 'Αντικείμενο (key: value)'
+      error-invalid-compose: Μη έγκυρο docker-compose.yml
+      error-invalid-blueprint: Μη έγκυρο blueprint YAML
   mac-address-lookup:
     title: Αναζήτηση διεύθυνσης MAC
     description: Βρείτε τον προμηθευτή και τον κατασκευαστή μιας συσκευής με βάση τη

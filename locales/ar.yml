@@ -939,6 +939,26 @@ tools:
       label-indent-size: 'حجم المسافة البادئة:'
       title-the-following-errors-occured: لقد حدثت الأخطاء التالية
       tag-download-docker-compose-yml: تنزيل docker-compose.yml
+  docker-pangolin-labels:
+    title: تسميات Docker Pangolin
+    description: تحويل تسميات Docker Compose Pangolin إلى مخططات وعكس ذلك
+    texts:
+      tab-compose-to-blueprint: Compose → مخطط
+      tab-blueprint-to-labels: مخطط → تسميات
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'مخطط YAML:'
+      label-generated-blueprint: 'المخطط المُنشأ:'
+      label-generated-docker-labels: 'تسميات Docker المُنشأة:'
+      placeholder-docker-compose-yaml: الصق docker-compose.yml الكامل هنا…
+      placeholder-blueprint-yaml: الصق مخطط Pangolin YAML هنا…
+      placeholder-generated-blueprint: سيظهر مخطط YAML هنا…
+      placeholder-generated-docker-labels: ستظهر تسميات Docker هنا…
+      button-extract-blueprint: استخراج مخطط Pangolin
+      button-convert-to-labels: تحويل إلى تسميات Docker
+      switch-array-format: 'مصفوفة (- key=value)'
+      switch-object-format: 'كائن (key: value)'
+      error-invalid-compose: docker-compose.yml غير صالح
+      error-invalid-blueprint: مخطط YAML غير صالح
   mac-address-lookup:
     title: التحقق من عنوان MAC
     description: العثور على البائع والشركة المصنعة لجهاز ما من خلال عنوان MAC الخاص به.

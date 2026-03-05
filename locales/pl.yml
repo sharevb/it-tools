@@ -655,6 +655,26 @@ tools:
       label-indent-size: 'Rozmiar wcięcia:'
       title-the-following-errors-occured: Wystąpiły następujące błędy
       tag-download-docker-compose-yml: Pobierz docker-compose.yml
+  docker-pangolin-labels:
+    title: Etykiety Docker Pangolin
+    description: Konwertuj etykiety Docker Compose Pangolin na schematy i odwrotnie
+    texts:
+      tab-compose-to-blueprint: Compose → Schemat
+      tab-blueprint-to-labels: Schemat → Etykiety
+      label-docker-compose-yaml: 'Docker Compose YAML:'
+      label-blueprint-yaml: 'Schemat YAML:'
+      label-generated-blueprint: 'Wygenerowany schemat:'
+      label-generated-docker-labels: 'Wygenerowane etykiety Docker:'
+      placeholder-docker-compose-yaml: Wklej tutaj pełny docker-compose.yml…
+      placeholder-blueprint-yaml: Wklej tutaj schemat Pangolin YAML…
+      placeholder-generated-blueprint: Schemat YAML pojawi się tutaj…
+      placeholder-generated-docker-labels: Etykiety Docker pojawią się tutaj…
+      button-extract-blueprint: Ekstrahuj schemat Pangolin
+      button-convert-to-labels: Konwertuj na etykiety Docker
+      switch-array-format: 'Tablica (- key=value)'
+      switch-object-format: 'Obiekt (key: value)'
+      error-invalid-compose: Nieprawidłowy docker-compose.yml
+      error-invalid-blueprint: Nieprawidłowy schemat YAML
   mac-address-lookup:
     title: Wyszukiwanie adresu MAC
     description: Znajdź dostawcę i producenta urządzenia na podstawie jego adresu MAC.
