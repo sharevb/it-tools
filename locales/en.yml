@@ -4772,6 +4772,7 @@ tools:
     physics: Physics
     cheatsheets: Cheatsheets
     forensic: Forensic
+    default: Default
   websocket-tester:
     title: Websocket tester
     description: Allows to test WebSocket connections
