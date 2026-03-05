@@ -4772,6 +4772,7 @@ tools:
     physics: Physics
     cheatsheets: Cheatsheets
     forensic: Forensic
+    finance: Finance
     default: Default
   websocket-tester:
     title: Websocket tester

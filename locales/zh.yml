@@ -4525,6 +4525,7 @@ tools:
     physics: 物理计算
     cheatsheets: 备忘单
     forensic: 取证工具
+    finance: 金融工具
     default: 默认
   websocket-tester:
     title: WebSocket测试工具
