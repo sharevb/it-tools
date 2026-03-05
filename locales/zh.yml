@@ -95,6 +95,10 @@ home:
     lightMode: 浅色模式
     mode: 切换暗黑/浅色模式
     aboutLabel: 关于
+  collapseAllTools: 折叠所有工具
+  expandAllTools: 展开所有工具
+  collapsing: 折叠中...
+  expanding: 展开中...
 tools:
   chronometer:
     title: 秒表
