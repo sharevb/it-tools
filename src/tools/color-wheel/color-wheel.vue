@@ -91,9 +91,9 @@ watch(
 <template>
   <div>
     <c-card :title="t('tools.color-wheel.texts.title-pick-a-color')" mb-2>
-      <n-color-picker :value="wheelColor" :show-alpha="false" />
+      <n-color-picker v-model:value="inputColor" :show-alpha="false" />
       <div
-        :style="{ backgroundColor: wheelColor }"
+        :style="{ backgroundColor: inputColor }"
       />
     </c-card>
 
@@ -112,11 +112,11 @@ watch(
     <c-card :title="t('tools.color-wheel.texts.title-wheel')" mb-2 style="text-align: center">
       <div style="display: inline-block">
         <VueColorWheel
-          v-model:color="wheelColor"
+          v-model:color="inputColor"
           wheel="aurora"
           :harmony="currentType"
           :radius="160"
-          :default-color="wheelColor"
+          :default-color="inputColor"
           :show-brightness="false"
           @change="handleChangeColors"
         />
