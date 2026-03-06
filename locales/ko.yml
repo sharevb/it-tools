@@ -33,6 +33,10 @@ home:
     lightMode: 라이트 모드
     mode: 다크/라이트 모드 전환
   loading-more-tools: 더 많은 도구를 로딩 중입니다...
+  expanding: Expanding...
+  collapseAllTools: Collapse All Tools
+  collapsing: Collapsing...
+  expandAllTools: Expand All Tools
 favoriteButton:
   remove: 즐겨찾기 제거
   add: 즐겨찾기 추가
@@ -71,6 +75,7 @@ tools:
     cheatsheets: 치트시트
     forensic: 법의학
     finance: 금융
+    default: Default
   password-strength-analyser:
     title: 비밀번호 강도 분석기
     description: 클라이언트 사이드에서만 동작하는 비밀번호 강도 분석 및 해킹 예상 시간 추정 도구입니다.
@@ -80,11 +85,11 @@ tools:
       label-character-set-size: '문자 집합 크기:'
       label-score: '점수:'
       placeholder-enter-a-password: 비밀번호를 입력하세요...
-      tag-duration-to-crack-this-password-with-brute-force: 이 비밀번호를 무차별 대입 공격으로 해독하는 데 걸리는 시간
+      tag-duration-to-crack-this-password-with-brute-force: 이 비밀번호를 무차별 대입 공격으로 해독하는
+        데 걸리는 시간
       tag-note: '메모:'
-      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
-        계산된 강도는 무차별 대입 공격을 사용하여 비밀번호를 해독하는 데 걸리는 시간을 기준으로 하며, 사전 공격의 가능성은 고려하지
-        않습니다.
+      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
+      : 계산된 강도는 무차별 대입 공격을 사용하여 비밀번호를 해독하는 데 걸리는 시간을 기준으로 하며, 사전 공격의 가능성은 고려하지 않습니다.
     service:
       text:
         instantly: 곧
@@ -130,7 +135,8 @@ tools:
       copy: 복사
       refresh: 새로고침
     texts:
-      label-denied-characters-ie-visually-similar-oo01li-or-punctuations: 거부된 문자(즉, 시각적으로 유사한 { oO01lI } 또는 구두점)
+      label-denied-characters-ie-visually-similar-oo01li-or-punctuations: 거부된 문자(즉,
+        시각적으로 유사한 { oO01lI } 또는 구두점)
       placeholder-put-characters-to-deny-from-token: 토큰에서 거부할 문자를 넣으세요
       label-number-of-token-to-generate: 생성할 토큰의 수
   percentage-calculator:
@@ -182,8 +188,10 @@ tools:
       placeholder-select-camera: 카메라 선택
       label-audio: '오디오:'
       placeholder-select-microphone: 마이크 선택
-      tag-your-browser-does-not-support-recording-video-from-camera: 귀하의 브라우저는 카메라에서 비디오 녹화를 지원하지 않습니다.
-      tag-you-need-to-grant-permission-to-use-your-camera-and-microphone: 카메라와 마이크 사용 권한을 부여해야 합니다.
+      tag-your-browser-does-not-support-recording-video-from-camera: 귀하의 브라우저는 카메라에서
+        비디오 녹화를 지원하지 않습니다.
+      tag-you-need-to-grant-permission-to-use-your-camera-and-microphone: 카메라와 마이크
+        사용 권한을 부여해야 합니다.
       tag-grant-permission: 허가를 내리다
       tag-start-webcam: 웹캠 시작
       tag-take-screenshot: 스크린샷 찍기
@@ -191,7 +199,8 @@ tools:
       tag-pause: 정지시키다
       tag-resume: 재개하다
       tag-stop: 멈추다
-      tag-video-recording-is-not-supported-in-your-browser: 귀하의 브라우저에서는 비디오 녹화가 지원되지 않습니다.
+      tag-video-recording-is-not-supported-in-your-browser: 귀하의 브라우저에서는 비디오 녹화가 지원되지
+        않습니다.
   keycode-info:
     title: 키코드 정보
     description: 눌린 키의 keycode·code·location·modifier 값을 확인합니다.
@@ -201,19 +210,23 @@ tools:
       label-code: '코드 :'
       label-location: '위치 :'
       label-modifiers: '수정자 :'
-      tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key: 이 키에 대한 정보를 얻고 싶은 키보드의 키를 누르세요
+      tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key: 이 키에
+        대한 정보를 얻고 싶은 키보드의 키를 누르세요
       label-scancode: '스캔코드(16진수):'
       label-scancode-dec: '스캔코드(10진수) :'
   emoji-picker:
     title: 이모지 선택기
     description: 이모지를 쉽게 복사하고 유니코드·코드포인트 값을 확인합니다.
     texts:
-      title-this-emoji-might-not-display-correctly-on-your-system: 이 이모티콘은 시스템에서 올바르게 표시되지 않을 수 있습니다.
+      title-this-emoji-might-not-display-correctly-on-your-system: 이 이모티콘은 시스템에서 올바르게
+        표시되지 않을 수 있습니다.
       tag-️: ⚠️
-      placeholder-search-emojis-e-g-smile-or-paste-an-emoji-e-g: "이모티콘을 검색하세요(예: '미소') 또는 이모티콘을 붙여넣으세요(예: '😄')"
+      placeholder-search-emojis-e-g-smile-or-paste-an-emoji-e-g: '이모티콘을 검색하세요(예: ''미소'')
+        또는 이모티콘을 붙여넣으세요(예: ''😄'')'
       label-max-results: '최대 결과:'
       tag-no-results-found: 검색 결과가 없습니다
-      tag-try-searching-for-something-else-like-smile-flag-or: '"미소", "깃발", "😄" 등 다른 단어를 검색해 보세요.'
+      tag-try-searching-for-something-else-like-smile-flag-or: '"미소", "깃발", "😄" 등
+        다른 단어를 검색해 보세요.'
       tag-search-results: 검색 결과
     text:
       loading-more-groups: 더 많은 그룹을 불러오는 중...
@@ -287,134 +300,191 @@ tools:
       title-view-mdn-documentation: MDN 문서 보기
     constants:
       text:
-        the-client-needs-to-authenticate-to-gain-network-access: 클라이언트는 네트워크 접근 권한을 얻기 위해 인증을 받아야 합니다.
+        the-client-needs-to-authenticate-to-gain-network-access: 클라이언트는 네트워크 접근 권한을
+          얻기 위해 인증을 받아야 합니다.
         network-authentication-required: 네트워크 인증이 필요합니다
-        further-extensions-to-the-request-are-required-for-the-server-to-fulfill-it: 서버가 요청을 이행하려면 요청에 대한 추가 확장이 필요합니다.
+        further-extensions-to-the-request-are-required-for-the-server-to-fulfill-it: 서버가
+          요청을 이행하려면 요청에 대한 추가 확장이 필요합니다.
         not-extended: 확장되지 않음
-        the-server-detected-an-infinite-loop-while-processing-the-request: 서버가 요청을 처리하는 동안 무한 루프를 감지했습니다.
+        the-server-detected-an-infinite-loop-while-processing-the-request: 서버가 요청을
+          처리하는 동안 무한 루프를 감지했습니다.
         loop-detected: 루프 감지됨
-        the-server-is-unable-to-store-the-representation-needed-to-complete-the-request: 서버는 요청을 완료하는 데 필요한 표현을 저장할 수 없습니다.
+        the-server-is-unable-to-store-the-representation-needed-to-complete-the-request: 서버는
+          요청을 완료하는 데 필요한 표현을 저장할 수 없습니다.
         insufficient-storage: 저장 공간 부족
-        transparent-content-negotiation-for-the-request-results-in-a-circular-reference: 요청에 대한 투명한 콘텐츠 협상으로 인해 순환 참조가 발생합니다.
+        transparent-content-negotiation-for-the-request-results-in-a-circular-reference: 요청에
+          대한 투명한 콘텐츠 협상으로 인해 순환 참조가 발생합니다.
         variant-also-negotiates: 변형도 협상합니다
-        the-server-does-not-support-the-http-protocol-version-used-in-the-request: 서버가 요청에 사용된 HTTP 프로토콜 버전을 지원하지 않습니다.
+        the-server-does-not-support-the-http-protocol-version-used-in-the-request: 서버가
+          요청에 사용된 HTTP 프로토콜 버전을 지원하지 않습니다.
         http-version-not-supported: HTTP 버전이 지원되지 않습니다
-        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server: 서버가 게이트웨이 또는 프록시 역할을 했기 때문에 업스트림 서버로부터 적절한 응답을 받지 못했습니다.
+        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server: 서버가
+          게이트웨이 또는 프록시 역할을 했기 때문에 업스트림 서버로부터 적절한 응답을 받지 못했습니다.
         gateway-timeout: 게이트웨이 시간 초과
-        the-server-is-currently-unavailable-because-it-is-overloaded-or-down-for-maintenance: 현재 서버를 사용할 수 없습니다(서버 과부하 또는 유지 관리로 인해).
+        the-server-is-currently-unavailable-because-it-is-overloaded-or-down-for-maintenance: 현재
+          서버를 사용할 수 없습니다(서버 과부하 또는 유지 관리로 인해).
         service-unavailable: 서비스를 이용할 수 없습니다
-        the-server-was-acting-as-a-gateway-or-proxy-and-received-an-invalid-response-from-the-upstream-server: 서버가 게이트웨이 또는 프록시 역할을 했으며 업스트림 서버로부터 잘못된 응답을 받았습니다.
+        the-server-was-acting-as-a-gateway-or-proxy-and-received-an-invalid-response-from-the-upstream-server: 서버가
+          게이트웨이 또는 프록시 역할을 했으며 업스트림 서버로부터 잘못된 응답을 받았습니다.
         bad-gateway: 배드 게이트웨이
-        the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: 서버가 요청 방법을 인식하지 못하거나, 요청을 처리할 능력이 없습니다.
+        the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: 서버가
+          요청 방법을 인식하지 못하거나, 요청을 처리할 능력이 없습니다.
         not-implemented: 구현되지 않음
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: 예상치 못한 상황이 발생하여 더 이상 구체적인 메시지가 적합하지 않을 때 표시되는 일반적인 오류 메시지입니다.
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: 예상치
+          못한 상황이 발생하여 더 이상 구체적인 메시지가 적합하지 않을 때 표시되는 일반적인 오류 메시지입니다.
         internal-server-error: 내부 서버 오류
         5xx-server-error: 5xx 서버 오류
-        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource: 서버 운영자는 요청된 리소스를 포함하는 리소스 또는 리소스 집합에 대한 액세스를 거부하라는 법적 요구를 받았습니다.
+        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
+        : 서버 운영자는 요청된 리소스를 포함하는 리소스 또는 리소스 집합에 대한 액세스를 거부하라는 법적 요구를 받았습니다.
         unavailable-for-legal-reasons: 법적 이유로 사용할 수 없음
-        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large: 개별 헤더 필드가 너무 크거나 모든 헤더 필드가 합쳐서 너무 크기 때문에 서버가 요청을 처리하지 않습니다.
+        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
+        : 개별 헤더 필드가 너무 크거나 모든 헤더 필드가 합쳐서 너무 크기 때문에 서버가 요청을 처리하지 않습니다.
         request-header-fields-too-large: 요청 헤더 필드가 너무 큽니다
-        the-user-has-sent-too-many-requests-in-a-given-amount-of-time: 사용자가 지정된 시간 내에 너무 많은 요청을 보냈습니다.
+        the-user-has-sent-too-many-requests-in-a-given-amount-of-time: 사용자가 지정된 시간
+          내에 너무 많은 요청을 보냈습니다.
         too-many-requests: 요청이 너무 많습니다
-        the-origin-server-requires-the-request-to-be-conditional: 원본 서버에서는 요청이 조건부여야 합니다.
+        the-origin-server-requires-the-request-to-be-conditional: 원본 서버에서는 요청이 조건부여야
+          합니다.
         precondition-required: 전제 조건 필요
-        the-client-should-switch-to-a-different-protocol-such-as-tls-1-0: 클라이언트는 TLS/1.0과 같은 다른 프로토콜로 전환해야 합니다.
+        the-client-should-switch-to-a-different-protocol-such-as-tls-1-0: 클라이언트는 TLS/1.0과
+          같은 다른 프로토콜로 전환해야 합니다.
         upgrade-required: 업그레이드 필요
-        indicates-that-the-server-is-unwilling-to-risk-processing-a-request-that-might-be-replayed: 서버가 재생될 수 있는 요청을 처리하는 위험을 감수하고 싶지 않음을 나타냅니다.
+        indicates-that-the-server-is-unwilling-to-risk-processing-a-request-that-might-be-replayed: 서버가
+          재생될 수 있는 요청을 처리하는 위험을 감수하고 싶지 않음을 나타냅니다.
         too-early: 너무 이르다
         the-request-failed-due-to-failure-of-a-previous-request: 이전 요청이 실패하여 요청이 실패했습니다.
         failed-dependency: 실패한 종속성
         the-resource-that-is-being-accessed-is-locked: 접근 중인 리소스가 잠겨 있습니다.
         locked: 잠김
-        the-request-was-well-formed-but-was-unable-to-be-followed-due-to-semantic-errors: 요청은 올바르게 구성되었지만 의미적 오류로 인해 따르지 못했습니다.
+        the-request-was-well-formed-but-was-unable-to-be-followed-due-to-semantic-errors: 요청은
+          올바르게 구성되었지만 의미적 오류로 인해 따르지 못했습니다.
         unprocessable-entity: 처리할 수 없는 엔터티
-        the-request-was-directed-at-a-server-that-is-not-able-to-produce-a-response: 해당 요청은 응답을 생성할 수 없는 서버로 전송되었습니다.
+        the-request-was-directed-at-a-server-that-is-not-able-to-produce-a-response: 해당
+          요청은 응답을 생성할 수 없는 서버로 전송되었습니다.
         misdirected-request: 잘못된 요청
-        the-server-refuses-the-attempt-to-brew-coffee-with-a-teapot: 웨이터는 찻주전자로 커피를 내리려는 시도를 거부합니다.
+        the-server-refuses-the-attempt-to-brew-coffee-with-a-teapot: 웨이터는 찻주전자로 커피를
+          내리려는 시도를 거부합니다.
         i-m-a-teapot: 나는 찻주전자다
-        the-server-cannot-meet-the-requirements-of-the-expect-request-header-field: 서버가 Expect 요청 헤더 필드의 요구 사항을 충족할 수 없습니다.
+        the-server-cannot-meet-the-requirements-of-the-expect-request-header-field: 서버가
+          Expect 요청 헤더 필드의 요구 사항을 충족할 수 없습니다.
         expectation-failed: 기대가 실패했습니다
-        the-client-has-asked-for-a-portion-of-the-file-but-the-server-cannot-supply-that-portion: 클라이언트가 파일의 일부를 요청했지만, 서버가 해당 부분을 제공할 수 없습니다.
+        the-client-has-asked-for-a-portion-of-the-file-but-the-server-cannot-supply-that-portion: 클라이언트가
+          파일의 일부를 요청했지만, 서버가 해당 부분을 제공할 수 없습니다.
         range-not-satisfiable: 범위가 만족스럽지 않음
-        the-request-entity-has-a-media-type-which-the-server-or-resource-does-not-support: 요청 엔터티에 서버 또는 리소스가 지원하지 않는 미디어 유형이 있습니다.
+        the-request-entity-has-a-media-type-which-the-server-or-resource-does-not-support: 요청
+          엔터티에 서버 또는 리소스가 지원하지 않는 미디어 유형이 있습니다.
         unsupported-media-type: 지원되지 않는 미디어 유형
-        the-uri-provided-was-too-long-for-the-server-to-process: 제공된 URI가 너무 길어서 서버에서 처리할 수 없습니다.
+        the-uri-provided-was-too-long-for-the-server-to-process: 제공된 URI가 너무 길어서 서버에서
+          처리할 수 없습니다.
         uri-too-long: URI가 너무 깁니다
-        the-request-is-larger-than-the-server-is-willing-or-able-to-process: 요청이 서버가 처리할 수 있는 용량이나 용량보다 큽니다.
+        the-request-is-larger-than-the-server-is-willing-or-able-to-process: 요청이 서버가
+          처리할 수 있는 용량이나 용량보다 큽니다.
         payload-too-large: 탑재량이 너무 큼
-        the-server-does-not-meet-one-of-the-preconditions-that-the-requester-put-on-the-request: 서버는 요청자가 요청에 설정한 전제 조건 중 하나를 충족하지 않습니다.
+        the-server-does-not-meet-one-of-the-preconditions-that-the-requester-put-on-the-request: 서버는
+          요청자가 요청에 설정한 전제 조건 중 하나를 충족하지 않습니다.
         precondition-failed: 전제 조건 실패
-        the-request-did-not-specify-the-length-of-its-content-which-is-required-by-the-requested-resource: 요청은 요청된 리소스에 필요한 콘텐츠 길이를 지정하지 않았습니다.
+        the-request-did-not-specify-the-length-of-its-content-which-is-required-by-the-requested-resource: 요청은
+          요청된 리소스에 필요한 콘텐츠 길이를 지정하지 않았습니다.
         length-required: 필요한 길이
-        indicates-that-the-resource-requested-is-no-longer-available-and-will-not-be-available-again: 요청된 리소스를 더 이상 사용할 수 없으며 앞으로도 사용할 수 없음을 나타냅니다.
+        indicates-that-the-resource-requested-is-no-longer-available-and-will-not-be-available-again: 요청된
+          리소스를 더 이상 사용할 수 없으며 앞으로도 사용할 수 없음을 나타냅니다.
         gone: 다 쓴
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: 편집 충돌 등 요청 내 충돌로 인해 요청을 처리할 수 없음을 나타냅니다.
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: 편집
+          충돌 등 요청 내 충돌로 인해 요청을 처리할 수 없음을 나타냅니다.
         conflict: 갈등
         the-server-timed-out-waiting-for-the-request: 요청을 기다리는 동안 서버 시간이 초과되었습니다.
         request-timeout: 요청 시간 초과
-        the-client-must-first-authenticate-itself-with-the-proxy: 클라이언트는 먼저 프록시를 통해 자신을 인증해야 합니다.
+        the-client-must-first-authenticate-itself-with-the-proxy: 클라이언트는 먼저 프록시를 통해
+          자신을 인증해야 합니다.
         proxy-authentication-required: 프록시 인증이 필요합니다
-        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request: 요청된 리소스는 요청에 포함된 Accept 헤더에 따라 허용되지 않는 콘텐츠만 생성할 수 있습니다.
+        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
+        : 요청된 리소스는 요청에 포함된 Accept 헤더에 따라 허용되지 않는 콘텐츠만 생성할 수 있습니다.
         not-acceptable: 허용되지 않음
-        a-request-method-is-not-supported-for-the-requested-resource: 요청된 리소스에 대한 요청 방법이 지원되지 않습니다.
+        a-request-method-is-not-supported-for-the-requested-resource: 요청된 리소스에 대한
+          요청 방법이 지원되지 않습니다.
         method-not-allowed: 허용되지 않는 메서드
-        the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: 요청하신 리소스를 찾을 수 없지만 나중에 사용할 수 있을 수도 있습니다.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: 요청은 유효했지만 서버가 작업을 거부하고 있습니다. 사용자에게 리소스에 필요한 권한이 없을 수 있습니다.
+        the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: 요청하신
+          리소스를 찾을 수 없지만 나중에 사용할 수 있을 수도 있습니다.
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: 요청은
+          유효했지만 서버가 작업을 거부하고 있습니다. 사용자에게 리소스에 필요한 권한이 없을 수 있습니다.
         forbidden: 금지됨
-        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
-          향후 사용을 위해 예약되었습니다. 원래 의도는 이 코드가 일종의 디지털 현금 또는 소액 결제 시스템의 일부로 사용될 수 있도록
-          하는 것이었습니다.
+        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
+        : 향후 사용을 위해 예약되었습니다. 원래 의도는 이 코드가 일종의 디지털 현금 또는 소액 결제 시스템의 일부로 사용될 수 있도록 하는
+          것이었습니다.
         payment-required: 결제 필요
-        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided: 403 Forbidden과 비슷하지만, 인증이 필요하고 실패했거나 아직 제공되지 않은 경우에 특별히 사용됩니다.
+        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
+        : 403 Forbidden과 비슷하지만, 인증이 필요하고 실패했거나 아직 제공되지 않은 경우에 특별히 사용됩니다.
         unauthorized: 허가받지 않음
-        the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: 서버가 클라이언트 오류로 인해 요청을 처리할 수 없거나 처리하지 않습니다.
+        the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: 서버가
+          클라이언트 오류로 인해 요청을 처리할 수 없거나 처리하지 않습니다.
         bad-request: 잘못된 요청
         4xx-client-error: 4xx 클라이언트 오류
-        the-request-and-all-future-requests-should-be-repeated-using-another-uri: 해당 요청과 이후의 모든 요청은 다른 URI를 사용하여 반복해야 합니다.
+        the-request-and-all-future-requests-should-be-repeated-using-another-uri: 해당
+          요청과 이후의 모든 요청은 다른 URI를 사용하여 반복해야 합니다.
         permanent-redirect: 영구 리디렉션
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: 이 경우 다른 URI로 요청을 반복해야 합니다. 그러나 이후 요청에서는 여전히 원래 URI를 사용해야 합니다.
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: 이
+          경우 다른 URI로 요청을 반복해야 합니다. 그러나 이후 요청에서는 여전히 원래 URI를 사용해야 합니다.
         temporary-redirect: 임시 리디렉션
-        no-longer-used-originally-meant-subsequent-requests-should-use-the-specified-proxy: 더 이상 사용되지 않습니다. 원래는 "이후 요청은 지정된 프록시를 사용해야 합니다."라는 의미였습니다.
+        no-longer-used-originally-meant-subsequent-requests-should-use-the-specified-proxy: 더
+          이상 사용되지 않습니다. 원래는 "이후 요청은 지정된 프록시를 사용해야 합니다."라는 의미였습니다.
         switch-proxy: 프록시 전환
-        the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response: 요청된 리소스는 프록시를 통해서만 사용할 수 있으며, 해당 주소는 응답에 제공됩니다.
+        the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response: 요청된
+          리소스는 프록시를 통해서만 사용할 수 있으며, 해당 주소는 응답에 제공됩니다.
         use-proxy: 프록시 사용
-        indicates-that-the-resource-has-not-been-modified-since-the-version-specified-by-the-request-headers: 요청 헤더에 지정된 버전 이후로 리소스가 수정되지 않았음을 나타냅니다.
+        indicates-that-the-resource-has-not-been-modified-since-the-version-specified-by-the-request-headers: 요청
+          헤더에 지정된 버전 이후로 리소스가 수정되지 않았음을 나타냅니다.
         not-modified: 수정되지 않음
-        the-response-to-the-request-can-be-found-under-another-uri-using-a-get-method: 요청에 대한 응답은 GET 메서드를 사용하여 다른 URI에서 찾을 수 있습니다.
+        the-response-to-the-request-can-be-found-under-another-uri-using-a-get-method: 요청에
+          대한 응답은 GET 메서드를 사용하여 다른 URI에서 찾을 수 있습니다.
         see-other: 다른 것을 보세요
-        redirect-to-another-url-this-is-an-example-of-industry-practice-contradicting-the-standard: 다른 URL로 리디렉션합니다. 이는 표준에 위배되는 업계 관행의 예입니다.
+        redirect-to-another-url-this-is-an-example-of-industry-practice-contradicting-the-standard: 다른
+          URL로 리디렉션합니다. 이는 표준에 위배되는 업계 관행의 예입니다.
         found: 설립하다
-        this-and-all-future-requests-should-be-directed-to-the-given-uri: 이 요청과 향후 모든 요청은 해당 URI로 전달되어야 합니다.
+        this-and-all-future-requests-should-be-directed-to-the-given-uri: 이 요청과 향후
+          모든 요청은 해당 URI로 전달되어야 합니다.
         moved-permanently: 영구적으로 이전됨
-        indicates-multiple-options-for-the-resource-that-the-client-may-follow: 클라이언트가 따를 수 있는 리소스에 대한 여러 옵션을 나타냅니다.
+        indicates-multiple-options-for-the-resource-that-the-client-may-follow: 클라이언트가
+          따를 수 있는 리소스에 대한 여러 옵션을 나타냅니다.
         multiple-choices: 다중 선택
         3xx-redirection: 3xx 리디렉션
-        the-server-has-fulfilled-a-request-for-the-resource-and-the-response-is-a-representation-of-the-result: 서버는 리소스에 대한 요청을 이행했으며, 응답은 그 결과를 나타냅니다.
+        the-server-has-fulfilled-a-request-for-the-resource-and-the-response-is-a-representation-of-the-result: 서버는
+          리소스에 대한 요청을 이행했으며, 응답은 그 결과를 나타냅니다.
         im-used: IM 사용됨
-        the-members-of-a-dav-binding-have-already-been-enumerated-in-a-preceding-part-of-the-multistatus-response: DAV 바인딩의 멤버는 (다중 상태) 응답의 이전 부분에서 이미 열거되었습니다.
+        the-members-of-a-dav-binding-have-already-been-enumerated-in-a-preceding-part-of-the-multistatus-response: DAV
+          바인딩의 멤버는 (다중 상태) 응답의 이전 부분에서 이미 열거되었습니다.
         already-reported: 이미 보고됨
-        the-message-body-that-follows-is-an-xml-message-and-can-contain-a-number-of-separate-response-codes: 다음 메시지 본문은 XML 메시지이며 여러 개의 개별 응답 코드를 포함할 수 있습니다.
-        the-server-is-delivering-only-part-of-the-resource-due-to-a-range-header-sent-by-the-client: 클라이언트가 보낸 범위 헤더로 인해 서버는 리소스의 일부만 전달하고 있습니다.
+        the-message-body-that-follows-is-an-xml-message-and-can-contain-a-number-of-separate-response-codes: 다음
+          메시지 본문은 XML 메시지이며 여러 개의 개별 응답 코드를 포함할 수 있습니다.
+        the-server-is-delivering-only-part-of-the-resource-due-to-a-range-header-sent-by-the-client: 클라이언트가
+          보낸 범위 헤더로 인해 서버는 리소스의 일부만 전달하고 있습니다.
         partial-content: 일부 콘텐츠
-        the-server-indicates-to-reinitialize-the-document-view-which-sent-this-request: 서버는 이 요청을 보낸 문서 보기를 다시 초기화하도록 표시합니다.
+        the-server-indicates-to-reinitialize-the-document-view-which-sent-this-request: 서버는
+          이 요청을 보낸 문서 보기를 다시 초기화하도록 표시합니다.
         reset-content: 콘텐츠 재설정
-        the-server-successfully-processed-the-request-and-is-not-returning-any-content: 서버가 요청을 성공적으로 처리했지만 아무런 콘텐츠도 반환하지 않습니다.
+        the-server-successfully-processed-the-request-and-is-not-returning-any-content: 서버가
+          요청을 성공적으로 처리했지만 아무런 콘텐츠도 반환하지 않습니다.
         no-content: 콘텐츠 없음
-        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy: 요청은 성공적이었지만 원래 요청의 내용이 변환 프록시에 의해 수정되었습니다.
+        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy: 요청은
+          성공적이었지만 원래 요청의 내용이 변환 프록시에 의해 수정되었습니다.
         non-authoritative-information: 권위 없는 정보
-        the-request-has-been-accepted-for-processing-but-the-processing-has-not-been-completed: 요청이 처리되도록 승인되었으나, 처리가 완료되지 않았습니다.
+        the-request-has-been-accepted-for-processing-but-the-processing-has-not-been-completed: 요청이
+          처리되도록 승인되었으나, 처리가 완료되지 않았습니다.
         accepted: 수락됨
-        the-request-has-been-fulfilled-resulting-in-the-creation-of-a-new-resource: 요청이 처리되어 새로운 리소스가 생성되었습니다.
+        the-request-has-been-fulfilled-resulting-in-the-creation-of-a-new-resource: 요청이
+          처리되어 새로운 리소스가 생성되었습니다.
         created: 생성됨
         standard-response-for-successful-http-requests: 성공적인 HTTP 요청에 대한 표준 응답입니다.
         2xx-success: 2xx 성공
-        the-server-returns-some-response-headers-before-final-http-message: 서버는 최종 HTTP 메시지 전에 일부 응답 헤더를 반환합니다.
+        the-server-returns-some-response-headers-before-final-http-message: 서버는 최종
+          HTTP 메시지 전에 일부 응답 헤더를 반환합니다.
         early-hints: 초기 힌트
-        the-server-is-processing-the-request-but-no-response-is-available-yet: 서버가 요청을 처리 중이지만 아직 응답이 없습니다.
+        the-server-is-processing-the-request-but-no-response-is-available-yet: 서버가
+          요청을 처리 중이지만 아직 응답이 없습니다.
         processing: 처리 중
         the-server-has-agreed-to-change-protocol: 서버가 프로토콜 변경에 동의했습니다.
         switching-protocols: 프로토콜 전환
-        waiting-for-the-client-to-emit-the-body-of-the-request: 클라이언트가 요청 본문을 내보낼 때까지 기다립니다.
+        waiting-for-the-client-to-emit-the-body-of-the-request: 클라이언트가 요청 본문을 내보낼
+          때까지 기다립니다.
         continue: 계속하다
         1xx-informational-response: 1xx 정보 응답
   sql-prettify:
@@ -484,7 +554,8 @@ tools:
       label-your-string-to-slugify: slugify에 대한 문자열
       placeholder-put-separator-char-here: 여기에 구분 문자를 넣으세요
       label-separator-character: 구분 문자
-      placeholder-you-slug-will-be-generated-here-ex-my-file-path: '여기에 슬러그가 생성됩니다(예: my-file-path)'
+      placeholder-you-slug-will-be-generated-here-ex-my-file-path: '여기에 슬러그가 생성됩니다(예:
+        my-file-path)'
       label-your-slug: 당신의 달팽이
       tag-copy-slug: 복사 슬러그
   encryption:
@@ -537,7 +608,8 @@ tools:
     title: 로마 숫자 변환기
     description: 로마 숫자와 아라비아 숫자를 상호 변환합니다.
     texts:
-      message-the-input-you-entered-is-not-a-valid-roman-number: 입력하신 문자는 유효한 로마 숫자가 아닙니다.
+      message-the-input-you-entered-is-not-a-valid-roman-number: 입력하신 문자는 유효한 로마 숫자가
+        아닙니다.
       text-roman-number-copied-to-the-clipboard: 로마 숫자가 클립보드에 복사되었습니다.
       text-arabic-number-copied-to-the-clipboard: 클립보드에 복사된 아라비아 숫자
       title-arabic-to-roman: 아랍어에서 로마자로
@@ -553,7 +625,8 @@ tools:
       label-binary-base-2: 이진법(2진법)
       label-hexadecimal-base-16: 16진법(16진법)
       label-base64-base-64: Base64(기수 64)
-      label-base64-url-base-64-with-url-safe-chars: Base64-url(URL 안전 문자를 사용한 Base 64)
+      label-base64-url-base-64-with-url-safe-chars: Base64-url(URL 안전 문자를 사용한 Base
+        64)
       placeholder-plain-text-to-compute-the-hash: 해시를 계산하기 위한 일반 텍스트...
       label-plain-text-to-compute-the-hash: 해시를 계산하기 위한 일반 텍스트
       placeholder-enter-the-secret-key: 비밀 키를 입력하세요...
@@ -571,7 +644,8 @@ tools:
     title: BIP39 패스프레이즈 생성기
     description: 니모닉 ↔ 패스프레이즈 변환 및 랜덤 패스프레이즈 생성을 지원합니다.
     texts:
-      message-entropy-length-should-be-16-32-and-be-a-multiple-of-4: 엔트로피 길이는 16 이상, 32 이하이어야 하며 4의 배수여야 합니다.
+      message-entropy-length-should-be-16-32-and-be-a-multiple-of-4: 엔트로피 길이는 16 이상,
+        32 이하이어야 하며 4의 배수여야 합니다.
       message-entropy-should-be-an-hexadecimal-string: 엔트로피는 16진수 문자열이어야 합니다.
       message-invalid-mnemonic: 잘못된 니모닉
       text-entropy-copied-to-the-clipboard: 엔트로피가 클립보드에 복사되었습니다.
@@ -594,7 +668,8 @@ tools:
       placeholder-extension: 확대
       placeholder-put-your-base64-file-string-here: 여기에 base64 파일 문자열을 입력하세요...
       title-file-to-base64: 파일을 base64로 변환
-      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여
+        파일을 선택하세요.
       placeholder-file-in-base64-will-be-here: base64 파일은 여기에 있습니다
       tag-preview-image: 미리보기 이미지
       tag-download-file: 파일 다운로드
@@ -650,7 +725,8 @@ tools:
       placeholder-put-your-string-here: 여기에 문자열을 넣으세요...
       label-string-to-encode: 인코딩할 문자열
       label-base64-of-string: 문자열의 Base64
-      placeholder-the-base64-encoding-of-your-string-will-be-here: 문자열의 base64 인코딩은 여기에 있습니다.
+      placeholder-the-base64-encoding-of-your-string-will-be-here: 문자열의 base64 인코딩은
+        여기에 있습니다.
       title-base64-to-string: Base64를 문자열로
       label-decode-url-safe: URL 디코딩 안전
       placeholder-your-base64-string: base64 문자열은...
@@ -730,7 +806,7 @@ tools:
     description: “i18n” 같은 숫자 약어(누메로님)를 만듭니다.
     texts:
       placeholder-enter-a-word-e-g-internationalization: 예를 들어 '국제화'와 같은 단어를 입력하세요.
-      placeholder-your-numeronym-will-be-here-e-g-i18n: "귀하의 숫자 이름은 여기에 표시됩니다(예: 'i18n')."
+      placeholder-your-numeronym-will-be-here-e-g-i18n: '귀하의 숫자 이름은 여기에 표시됩니다(예: ''i18n'').'
   case-converter:
     title: 대소문자 변환기
     description: 문자열을 원하는 케이스 형식으로 변환합니다.
@@ -776,8 +852,8 @@ tools:
   json-prettify:
     title: JSON 포매터
     description: JSON 문자열을 사람이 읽기 쉬운 형식으로 변환합니다.
-    externalAccess: 이 도구는 유효성 검사가 요청될 때 https://www.schemastore.org에서 JSON 스키마를
-      다운로드할 수 있습니다. 외부로 데이터가 전송되지는 않습니다.
+    externalAccess: 이 도구는 유효성 검사가 요청될 때 https://www.schemastore.org에서 JSON 스키마를 다운로드할
+      수 있습니다. 외부로 데이터가 전송되지는 않습니다.
   docker-run-to-docker-compose-converter:
     title: docker run → docker-compose 변환기
     description: “docker run” 명령을 docker-compose 파일로 변환합니다!
@@ -787,7 +863,8 @@ tools:
       label-commonspec: 공통 사양
       label-your-docker-run-command-s: 'docker run 명령:'
       placeholder-your-docker-run-command-s-to-convert: 변환할 docker run 명령어...
-      label-eventually-paste-your-existing-docker-compose: 마지막으로 기존 Docker Compose를 붙여넣습니다.
+      label-eventually-paste-your-existing-docker-compose: 마지막으로 기존 Docker Compose를
+        붙여넣습니다.
       label-docker-compose-format: 'Docker Compose 형식:'
       placeholder-select-docker-compose-format: Docker Compose 형식 선택
       label-indent-size: '들여쓰기 크기:'
@@ -809,7 +886,7 @@ tools:
       placeholder-generated-docker-labels: Docker 레이블이 여기에 표시됩니다…
       button-extract-blueprint: Pangolin 블루프린트 추출
       button-convert-to-labels: Docker 레이블로 변환
-      switch-array-format: '배열 (- key=value)'
+      switch-array-format: 배열 (- key=value)
       switch-object-format: '객체 (key: value)'
       error-invalid-compose: 유효하지 않은 docker-compose.yml
       error-invalid-blueprint: 유효하지 않은 블루프린트 YAML
@@ -827,13 +904,16 @@ tools:
     title: MIME 유형 변환기
     description: MIME 유형과 파일 확장자를 상호 변환합니다.
     texts:
-      placeholder-select-your-mimetype-here-ex-application-pdf: '여기서 MIME 유형을 선택하세요... (예: application/pdf)'
+      placeholder-select-your-mimetype-here-ex-application-pdf: '여기서 MIME 유형을 선택하세요...
+        (예: application/pdf)'
       tag-mime-type-to-extension: MIME 유형을 확장자로
-      tag-know-which-file-extensions-are-associated-to-a-mime-type: MIME 유형과 연결된 파일 확장자를 알아보세요
+      tag-know-which-file-extensions-are-associated-to-a-mime-type: MIME 유형과 연결된 파일
+        확장자를 알아보세요
       tag-extensions-of-files-with-the: 파일의 확장자
       tag-mime-type: 'MIME 유형:'
       tag-file-extension-to-mime-type: 파일 확장자를 MIME 유형으로
-      tag-know-which-mime-type-is-associated-to-a-file-extension: 파일 확장자와 연결된 MIME 유형을 알아보세요
+      tag-know-which-mime-type-is-associated-to-a-file-extension: 파일 확장자와 연결된 MIME
+        유형을 알아보세요
       tag-mime-type-associated-to-the-extension: 확장자와 연관된 MIME 유형
       tag-mime-types: 마임 유형
       tag-extensions: 확장 프로그램
@@ -859,7 +939,8 @@ tools:
       placeholder-your-lorem-ipsum: 당신의 로렘 입숨...
       tag-copy: 복사
       tag-refresh: 새로 고치다
-      tag-print-ie-use-a-pdf-printer-to-get-a-pdf-file: 인쇄(즉, PDF 프린터를 사용하여 PDF 파일을 얻습니다)
+      tag-print-ie-use-a-pdf-printer-to-get-a-pdf-file: 인쇄(즉, PDF 프린터를 사용하여 PDF 파일을
+        얻습니다)
   qrcode-generator:
     title: QR 코드 생성기
     description: URL/텍스트용 QR 코드를 생성·다운로드하고 색상을 지정합니다.
@@ -908,8 +989,10 @@ tools:
       tag-flags: 깃발
     service:
       text:
-        invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: '잘못된 8진수 권한(3자리 또는 4자리 8진수여야 함): {0}'
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: "잘못된 문자열 권한(형식은 'rwxrwxrwx'여야 함): {0}"
+        invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: '잘못된
+          8진수 권한(3자리 또는 4자리 8진수여야 함): {0}'
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: '잘못된
+          문자열 권한(형식은 ''rwxrwxrwx''여야 함): {0}'
   rsa-key-pair-generator:
     title: RSA 키 페어 생성기
     description: 랜덤 RSA 개인·공개 PEM 키 페어를 생성합니다.
@@ -920,7 +1003,8 @@ tools:
       label-openssh-standard: OpenSSH 표준
       label-openssh-new: OpenSSH 새 버전
       label-putty: 퍼티
-      message-bits-should-be-256-bits-16384-and-be-a-multiple-of-8: 비트는 256 <= 비트 <= 16384이어야 하며 8의 배수여야 합니다.
+      message-bits-should-be-256-bits-16384-and-be-a-multiple-of-8: 비트는 256 <= 비트
+        <= 16384이어야 하며 8의 배수여야 합니다.
       label-format: '체재:'
       placeholder-select-a-key-format: 키 형식을 선택하세요
       label-bits: '비트 :'
@@ -1003,16 +1087,21 @@ tools:
         client-nonce: 클라이언트 nonce
         ace-profile-a-token-is-supposed-to-be-used-with: ACE 프로필은 토큰과 함께 사용되어야 합니다.
         sip-priority-header-field: SIP 우선 순위 헤더 필드
-        verifiable-presentation-as-specified-in-the-w3c-recommendation: W3C 권장사항에 명시된 검증 가능한 프레젠테이션
-        verifiable-credential-as-specified-in-the-w3c-recommendation: W3C 권장 사항에 명시된 검증 가능한 자격 증명
+        verifiable-presentation-as-specified-in-the-w3c-recommendation: W3C 권장사항에
+          명시된 검증 가능한 프레젠테이션
+        verifiable-credential-as-specified-in-the-w3c-recommendation: W3C 권장 사항에 명시된
+          검증 가능한 자격 증명
         original-passport-in-full-form: 원본 PASSporT (전체 형식)
         diverted-target-of-a-call: 통화의 전환된 대상
-        number-of-api-requests-for-which-the-access-token-can-be-used: 액세스 토큰을 사용할 수 있는 API 요청 수
+        number-of-api-requests-for-which-the-access-token-can-be-used: 액세스 토큰을 사용할
+          수 있는 API 요청 수
         jcard-data: jCard 데이터
-        authorized-actor-the-party-that-is-authorized-to-become-the-actor: 공인된 행위자 - 행위자가 되도록 허가받은 당사자
+        authorized-actor-the-party-that-is-authorized-to-become-the-actor: 공인된 행위자
+          - 행위자가 되도록 허가받은 당사자
         client-identifier: 클라이언트 식별자
         scope-values: 범위 값
-        originating-identifier-as-defined-in-shaken-framework: SHAKEN 프레임워크에 정의된 발신 식별자
+        originating-identifier-as-defined-in-shaken-framework: SHAKEN 프레임워크에 정의된 발신
+          식별자
         attestation-level-as-defined-in-shaken-framework: SHAKEN 프레임워크에 정의된 증명 수준
         vector-of-trust-trustmark-url: 신뢰 신뢰 마크 URL 벡터
         vector-of-trust-value: 신뢰 값 벡터
@@ -1030,27 +1119,33 @@ tools:
         sip-date-header-field-value: SIP 날짜 헤더 필드 값
         sip-from-tag-header-field-parameter-value: SIP From 태그 헤더 필드 매개변수 값
         confirmation: 확인
-        public-key-used-to-check-the-signature-of-an-id-token: ID 토큰의 서명을 확인하는 데 사용되는 공개 키
+        public-key-used-to-check-the-signature-of-an-id-token: ID 토큰의 서명을 확인하는 데 사용되는
+          공개 키
         authentication-methods-references: 인증 방법 참조
         authentication-context-class-reference: 인증 컨텍스트 클래스 참조
         code-hash-value: 코드 해시 값
         access-token-hash-value: 액세스 토큰 해시 값
         time-when-the-authentication-occurred: 인증이 발생한 시간
-        value-used-to-associate-a-client-session-with-an-id-token: 클라이언트 세션을 ID 토큰과 연결하는 데 사용되는 값
-        authorized-party-the-party-to-which-the-id-token-was-issued: 승인된 당사자 - ID 토큰이 발급된 당사자
+        value-used-to-associate-a-client-session-with-an-id-token: 클라이언트 세션을 ID 토큰과
+          연결하는 데 사용되는 값
+        authorized-party-the-party-to-which-the-id-token-was-issued: 승인된 당사자 - ID
+          토큰이 발급된 당사자
         time-the-information-was-last-updated: 정보가 마지막으로 업데이트된 시간
         preferred-postal-address: 선호하는 우편 주소
-        true-if-the-phone-number-has-been-verified-otherwise-false: 전화번호가 검증된 경우 True, 그렇지 않은 경우 False
+        true-if-the-phone-number-has-been-verified-otherwise-false: 전화번호가 검증된 경우 True,
+          그렇지 않은 경우 False
         preferred-telephone-number: 선호하는 전화번호
         locale: 현지의
         time-zone: 시간대
         birthday: 생일
-        true-if-the-e-mail-address-has-been-verified-otherwise-false: 이메일 주소가 검증된 경우 True, 그렇지 않은 경우 False
+        true-if-the-e-mail-address-has-been-verified-otherwise-false: 이메일 주소가 검증된
+          경우 True, 그렇지 않은 경우 False
         preferred-e-mail-address: 선호하는 이메일 주소
         web-page-or-blog-url: 웹 페이지 또는 블로그 URL
         profile-picture-url: 프로필 사진 URL
         profile-page-url: 프로필 페이지 URL
-        shorthand-name-by-which-the-end-user-wishes-to-be-referred-to: 최종 사용자가 지칭하고자 하는 약어 이름
+        shorthand-name-by-which-the-end-user-wishes-to-be-referred-to: 최종 사용자가 지칭하고자
+          하는 약어 이름
         casual-name: 캐주얼 이름
         middle-name-s: 중간 이름(들)
         surname-s-or-last-name-s: 성(들) 또는 성(들)
@@ -1064,9 +1159,12 @@ tools:
         issuer: 발급자
         algorithm: 연산
         no-digital-signature-or-mac-performed: 디지털 서명이나 MAC이 수행되지 않았습니다.
-        rsassa-pss-using-sha-512-and-mgf1-with-sha-512: SHA-512를 사용하는 RSASSA-PSS 및 SHA-512를 사용하는 MGF1
-        rsassa-pss-using-sha-384-and-mgf1-with-sha-384: SHA-384를 사용하는 RSASSA-PSS 및 SHA-384를 사용하는 MGF1
-        rsassa-pss-using-sha-256-and-mgf1-with-sha-256: SHA-256을 사용하는 RSASSA-PSS 및 SHA-256을 사용하는 MGF1
+        rsassa-pss-using-sha-512-and-mgf1-with-sha-512: SHA-512를 사용하는 RSASSA-PSS 및
+          SHA-512를 사용하는 MGF1
+        rsassa-pss-using-sha-384-and-mgf1-with-sha-384: SHA-384를 사용하는 RSASSA-PSS 및
+          SHA-384를 사용하는 MGF1
+        rsassa-pss-using-sha-256-and-mgf1-with-sha-256: SHA-256을 사용하는 RSASSA-PSS 및
+          SHA-256을 사용하는 MGF1
         ecdsa-using-p-521-and-sha-512: P-521 및 SHA-512를 사용한 ECDSA
         ecdsa-using-p-384-and-sha-384: P-384 및 SHA-384를 사용한 ECDSA
         ecdsa-using-p-256-and-sha-256: P-256 및 SHA-256을 사용한 ECDSA
@@ -1119,7 +1217,8 @@ tools:
     title: IPv4 서브넷 계산기
     description: IPv4 CIDR 블록을 분석해 서브넷 정보를 제공합니다.
     texts:
-      message-we-cannot-parse-this-address-check-the-format: 이 주소를 구문 분석할 수 없습니다. 형식을 확인하세요.
+      message-we-cannot-parse-this-address-check-the-format: 이 주소를 구문 분석할 수 없습니다.
+        형식을 확인하세요.
       label-netmask: 넷마스크
       label-network-address: 네트워크 주소
       label-network-mask: 네트워크 마스크
@@ -1138,7 +1237,8 @@ tools:
       label-6to4-prefix: 6to4 접두사
       label-ip-class: IP 클래스
       label-type: 유형
-      label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask: 마스크(CIDR/IP 범위/와일드카드 IP/IP 마스크)가 있거나 없는 IPv4 주소
+      label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask: 마스크(CIDR/IP
+        범위/와일드카드 IP/IP 마스크)가 있거나 없는 IPv4 주소
       placeholder-the-ipv4-address: IPv4 주소는...
       tag-previous-block: 이전 블록
       tag-next-block: 다음 블록
@@ -1199,7 +1299,8 @@ tools:
     title: PDF 서명 검증기
     description: PDF 파일의 디지털 서명을 검증합니다.
     texts:
-      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       tag-no-signatures-found-in-the-provided-file: 제공된 파일에서 서명을 찾을 수 없습니다.
   json-minify:
     title: JSON 최소화
@@ -1340,12 +1441,14 @@ tools:
       placeholder-e-g-hello-avengers: 예를 들어 '안녕, 어벤져스'
       label-enter-text-to-convert-to-unicode: 유니코드로 변환할 텍스트를 입력하세요
       label-unicode-from-your-text: 텍스트의 유니코드
-      placeholder-the-unicode-representation-of-your-text-will-be-here: 텍스트의 유니코드 표현은 여기에 있습니다.
+      placeholder-the-unicode-representation-of-your-text-will-be-here: 텍스트의 유니코드
+        표현은 여기에 있습니다.
       title-unicode-to-text: 유니코드에서 텍스트로
       placeholder-input-unicode: 유니코드 입력
       label-enter-unicode-to-convert-to-text: 텍스트로 변환하려면 유니코드를 입력하세요
       label-text-from-your-unicode: 유니코드의 텍스트
-      placeholder-the-text-representation-of-your-unicode-will-be-here: 유니코드의 텍스트 표현은 여기에 있습니다.
+      placeholder-the-text-representation-of-your-unicode-will-be-here: 유니코드의 텍스트
+        표현은 여기에 있습니다.
       tag-skip-ascii-characters: ASCII 문자 건너뛰기
       tag-copy-unicode-to-clipboard: 유니코드를 클립보드에 복사
       tag-copy-text-to-clipboard: 텍스트를 클립보드에 복사
@@ -1360,7 +1463,8 @@ tools:
       message-invalid-ipv4-address: 잘못된 IPv4 주소
       placeholder-start-ipv4-address: IPv4 주소 시작...
       placeholder-end-ipv4-address: IPv4 주소 종료...
-      title-invalid-combination-of-start-and-end-ipv4-address: 시작 및 종료 IPv4 주소의 조합이 잘못되었습니다.
+      title-invalid-combination-of-start-and-end-ipv4-address: 시작 및 종료 IPv4 주소의 조합이
+        잘못되었습니다.
       tag-nbsp: '&nbsp;'
       tag-old-value: 이전 값
       tag-new-value: 새로운 가치
@@ -1403,7 +1507,8 @@ tools:
     title: 텍스트 ↔ ASCII 바이너리
     description: 텍스트를 ASCII 바이너리로, 또는 반대로 변환합니다.
     texts:
-      message-binary-should-be-a-valid-utf-8-binary-string-with-multiples-of-8-bits: 바이너리는 8비트의 배수로 구성된 유효한 UTF-8 바이너리 문자열이어야 합니다.
+      message-binary-should-be-a-valid-utf-8-binary-string-with-multiples-of-8-bits: 바이너리는
+        8비트의 배수로 구성된 유효한 UTF-8 바이너리 문자열이어야 합니다.
       label-binary: 이진법
       label-octal: 8진법
       label-decimal: 소수
@@ -1413,12 +1518,15 @@ tools:
       placeholder-e-g-hello-world: 예를 들어 'Hello world'
       label-enter-text-to-convert-to-binary: 이진법으로 변환할 텍스트를 입력하세요
       label-binary-from-your-text: 텍스트에서 이진화
-      placeholder-the-binary-representation-of-your-text-will-be-here: 텍스트의 이진 표현은 여기에 있습니다.
+      placeholder-the-binary-representation-of-your-text-will-be-here: 텍스트의 이진 표현은
+        여기에 있습니다.
       title-utf-8-binary-to-text: UTF-8 바이너리를 텍스트로
-      placeholder-e-g-01001000-01100101-01101100-01101100-01101111: 예를 들어 '01001000 01100101 01101100 01101100 01101111'
+      placeholder-e-g-01001000-01100101-01101100-01101100-01101111: 예를 들어 '01001000
+        01100101 01101100 01101100 01101111'
       label-enter-binary-to-convert-to-text: 텍스트로 변환하려면 이진수를 입력하세요
       label-text-from-your-binary: 바이너리의 텍스트
-      placeholder-the-text-representation-of-your-binary-will-be-here: 바이너리의 텍스트 표현은 여기에 있습니다.
+      placeholder-the-text-representation-of-your-binary-will-be-here: 바이너리의 텍스트 표현은
+        여기에 있습니다.
       tag-copy-binary-to-clipboard: 바이너리를 클립보드에 복사
       tag-copy-text-to-clipboard: 텍스트를 클립보드에 복사
     text:
@@ -1476,7 +1584,8 @@ tools:
     title: JSON 문자열 변환기
     description: 텍스트나 JavaScript 객체를 JSON 문자열 형식으로 변환하거나 그 반대로 변환합니다.
     texts:
-      message-provided-text-is-not-valid-make-sure-your-json-is-in-double-quotes: 제공된 텍스트가 유효하지 않습니다. (JSON을 큰따옴표로 묶어주세요.)
+      message-provided-text-is-not-valid-make-sure-your-json-is-in-double-quotes: 제공된
+        텍스트가 유효하지 않습니다. (JSON을 큰따옴표로 묶어주세요.)
       label-json-stringify: JSON 문자열화
       label-json-parse: JSON 파싱
       label-transformation-mode: 변형 모드
@@ -1535,7 +1644,8 @@ tools:
       tag-aspect-ratio-presets: 화면 비율 사전 설정
       tag-apply: 적용하다
       tag-: ':'
-      tag-preview-is-disabled-when-width-or-height-exceeds-7-680-pixels-for-performance-reasons: 성능상의 이유로 너비 또는 높이가 7,680픽셀을 초과하면 미리 보기가 비활성화됩니다.
+      tag-preview-is-disabled-when-width-or-height-exceeds-7-680-pixels-for-performance-reasons: 성능상의
+        이유로 너비 또는 높이가 7,680픽셀을 초과하면 미리 보기가 비활성화됩니다.
       tag-download-options: '다운로드 옵션:'
       tag-download-jpg: JPG 다운로드
       tag-download-png: PNG 다운로드
@@ -1665,7 +1775,8 @@ tools:
     title: 바코드 리더
     description: 바코드 리더기
     texts:
-      title-drag-and-drop-a-barcode-here-or-click-to-select-a-file: 바코드를 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-barcode-here-or-click-to-select-a-file: 바코드를 여기에 끌어다 놓거나
+        클릭하여 파일을 선택하세요.
       tag-decoded: 디코딩됨
   base64-hex-converter:
     title: Base64 16진수 배열 인코더/디코더
@@ -1678,7 +1789,8 @@ tools:
       placeholder-put-your-hex-array-here: 16진수 배열을 여기에 넣으세요...
       label-hex-array-to-encode: 인코딩할 16진수 배열
       label-base64-of-hex-array: 16진수 배열의 Base64
-      placeholder-the-base64-encoding-of-your-hex-array-will-be-here: Hex 배열의 Base64 인코딩은 여기에 있습니다.
+      placeholder-the-base64-encoding-of-your-hex-array-will-be-here: Hex 배열의 Base64
+        인코딩은 여기에 있습니다.
       title-base64-to-hex-array: Base64에서 Hex 배열로
       label-uppercase: 대문자
       label-group-by: 그룹화 기준
@@ -1735,10 +1847,13 @@ tools:
     description: CIDR/IP 범위/와일드카드 IP/IP 마스크가 주어졌을 때, 주어진 IPv4-6/범위/CIDR/와일드카드 IP/IP
       마스크가 서브넷 범위에 있는지 알려줍니다.
     texts:
-      message-we-cannot-parse-this-cidr-ip-range-mask-wildcard-check-the-format: 이 CIDR/IP 범위/마스크/와일드카드를 구문 분석할 수 없습니다. 형식을 확인하세요.
-      label-an-ipv4-6-cidr-range-mask-wildcard-base-network: IPv4/6 CIDR/범위/마스크/와일드카드(기본 네트워크)
+      message-we-cannot-parse-this-cidr-ip-range-mask-wildcard-check-the-format: 이
+        CIDR/IP 범위/마스크/와일드카드를 구문 분석할 수 없습니다. 형식을 확인하세요.
+      label-an-ipv4-6-cidr-range-mask-wildcard-base-network: IPv4/6 CIDR/범위/마스크/와일드카드(기본
+        네트워크)
       placeholder-the-ipv4-6-cidr: IPv4/6 CIDR...
-      label-an-ipv4-6-cidr-range-mask-wildcard-to-test-for-inclusion: IPv4/6 CIDR/범위/마스크/와일드카드(포함 여부를 테스트하기 위한)
+      label-an-ipv4-6-cidr-range-mask-wildcard-to-test-for-inclusion: IPv4/6 CIDR/범위/마스크/와일드카드(포함
+        여부를 테스트하기 위한)
       placeholder-the-an-ipv4-6-cidr-range-mask-wildcard: IPv4/6 CIDR/범위/마스크/와일드카드...
       title-subnets: 서브넷
       tag-included: 포함됨
@@ -1752,7 +1867,7 @@ tools:
       label-code-snippet-to-format: '형식을 지정할 코드 조각:'
       placeholder-put-your-code-snippet-here: 여기에 코드 조각을 넣으세요
       label-show-line-numbers: 줄 번호 표시
-      tag-: "', '"
+      tag-: ''', '''
       tag-copy-html-formatted: HTML 형식으로 복사
       tag-copy-code-text: 코드 텍스트 복사
       tag-copy-html-word: Word에서 HTML/서식 있는 텍스트로 복사
@@ -1783,7 +1898,8 @@ tools:
       title-large-text: 큰 텍스트
       title-apca: APCA
       label-apca-constrast: 'APCA 대조:'
-      tag-text-that-is-14pt-18-67px-and-bold-or-any-text-bigger-than-18pt-24px-is-defined-as-large-scale-text: 14pt(18.67px) 크기의 굵은 텍스트 또는 18pt(24px)보다 큰 텍스트는 대형 텍스트로 정의됩니다.
+      tag-text-that-is-14pt-18-67px-and-bold-or-any-text-bigger-than-18pt-24px-is-defined-as-large-scale-text: 14pt(18.67px)
+        크기의 굵은 텍스트 또는 18pt(24px)보다 큰 텍스트는 대형 텍스트로 정의됩니다.
   color-wheel:
     title: 색상환
     description: 휠과 모드를 사용하여 색상 팔레트/테마를 선택하세요
@@ -1822,14 +1938,15 @@ tools:
   crc-calculator:
     title: CRC 계산기
     description: 텍스트 또는 파일 CRC(CRC1, CRC8, CRC8 1-Wire, CRC8 DVB-S2, CRC16, CRC16
-      CCITT, CRC16 Modbus, CRC16 Kermit, CRC16 XModem, CRC24, CRC32, CRC32
-      MPEG-2, CRCJAM)를 계산합니다.
+      CCITT, CRC16 Modbus, CRC16 Kermit, CRC16 XModem, CRC24, CRC32, CRC32 MPEG-2,
+      CRCJAM)를 계산합니다.
     texts:
       label-binary-base-2: 이진법(2진법)
       label-hexadecimal-base-16: 16진법(16진법)
       label-base64-base-64: Base64(기수 64)
       label-base64url-base-64-with-url-safe-chars: Base64url(URL 안전 문자를 사용한 Base 64)
-      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여
+        파일을 선택하세요.
       placeholder-paste-string-to-crc: CRC에 문자열 붙여넣기...
       label-your-text-to-crc: 'CRC에 보내는 텍스트:'
       label-digest-encoding: 다이제스트 인코딩
@@ -1867,7 +1984,8 @@ tools:
     description: CSS 프리티파이
     texts:
       placeholder-your-css-content: CSS 콘텐츠...
-      label-your-css-to-format-can-paste-from-clipboard: '서식을 지정할 CSS(클립보드에서 붙여넣기 가능):'
+      label-your-css-to-format-can-paste-from-clipboard: '서식을 지정할 CSS(클립보드에서 붙여넣기
+        가능):'
       label-output-prettified-css: '예쁘게 꾸민 CSS 출력:'
   css-selectors-memo:
     title: CSS 선택자 치트시트
@@ -1950,7 +2068,8 @@ tools:
       placeholder-precision: 정도...
       label-output-value: 출력값
       placeholder-output-value-will-be-here: 출력 값은 여기에 있습니다...
-      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB ; 1MB = 1000kB ; 1GiB = 1024MiB ; 1GB = 1000MB ;
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB ; 1MB =
+        1000kB ; 1GiB = 1024MiB ; 1GB = 1000MB ;
       tag-see-here-for-details: 자세한 내용은 여기를 참조하세요
       tag-show-unit: 단위를 보여 주시겠습니까?
   data-transfer-rate-converter:
@@ -2003,7 +2122,8 @@ tools:
       title-amount-transferable: 이체 가능 금액
       label-amount-transferable: '이체 가능 금액:'
       placeholder-amount-transferable-will-be-here: 이체 가능한 금액은 여기에 있습니다...
-      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB ; 1MB = 1000kB ; 1GiB = 1024MiB ; 1GB = 1000MB ;
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB ; 1MB =
+        1000kB ; 1GiB = 1024MiB ; 1GB = 1000MB ;
       tag-see-here-for-details: 자세한 내용은 여기를 참조하세요
   date-duration-calculator:
     title: 날짜+기간 계산기
@@ -2012,13 +2132,15 @@ tools:
       title-date-duration-calculator: 날짜 + 기간 계산기
       label-reference-date: '참조 날짜:'
       label-duration-s: 기간(들)
-      placeholder-please-enter-duration-one-per-line-with-optional-sign: 한 줄에 하나씩 기간을 입력하세요. 선택 기호도 함께 입력하세요.
+      placeholder-please-enter-duration-one-per-line-with-optional-sign: 한 줄에 하나씩
+        기간을 입력하세요. 선택 기호도 함께 입력하세요.
       title-lines-errors: 라인 오류
       label-result-date: '결과 날짜:'
       label-result-iso-date: '결과 ISO 날짜:'
       label-duration-seconds: '지속 시간(초):'
       label-duration: '지속:'
-      tag-supports-comment-line-hh-mm-ss-fff-3d-1h-3s-p4dt12h20m20-3s: '지원: 주석(# 줄), HH:MM:SS.FFF, 3d 1h 3s..., P4DT12H20M20.3S..'
+      tag-supports-comment-line-hh-mm-ss-fff-3d-1h-3s-p4dt12h20m20-3s: '지원: 주석(# 줄),
+        HH:MM:SS.FFF, 3d 1h 3s..., P4DT12H20M20.3S..'
   days-calculator:
     title: 일 계산기
     description: 일수 간격, 휴일, 차이, 영업 시간 계산
@@ -2027,7 +2149,8 @@ tools:
       label-date-range: '날짜 범위:'
       label-country: '국가:'
       label-state: '상태:'
-      placeholder-select-a-specific-state-or-let-empty-for-general-info: 특정 상태를 선택하거나 일반 정보를 보려면 비워 두세요.
+      placeholder-select-a-specific-state-or-let-empty-for-general-info: 특정 상태를 선택하거나
+        일반 정보를 보려면 비워 두세요.
       label-region: '지역:'
       label-timezone: '시간대:'
       label-business-start-hour: '영업 시작 시간:'
@@ -2097,7 +2220,8 @@ tools:
       title-input: 입력
       label-dmarc-xml-file: DMARC XML 파일
       label-eml-content: EML 콘텐츠
-      title-drag-and-drop-dmarc-xml-report-file-here-or-click-to-select-a-file: DMARC XML 보고서 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-dmarc-xml-report-file-here-or-click-to-select-a-file: DMARC
+        XML 보고서 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
       label-raw-email-content: 원시 이메일 콘텐츠
       placeholder-put-your-eml-email-content-here: 여기에 eml/이메일 내용을 입력하세요...
       title-output: 산출
@@ -2126,11 +2250,11 @@ tools:
       label-dns-record-type: 'DNS 레코드 유형:'
       title-query-results: 쿼리 결과
       tag-send-dns-query: DNS 쿼리 보내기
-    externalAccess: 이 도구는 다음 목록에 있는 응답 DOH 엔드포인트를 통해 DNS 쿼리를 전송합니다.
-      https://martinheidegger.github.io/dns-query/resolvers.json
+    externalAccess: 이 도구는 다음 목록에 있는 응답 DOH 엔드포인트를 통해 DNS 쿼리를 전송합니다. https://martinheidegger.github.io/dns-query/resolvers.json
   docker-compose-converter:
     title: Docker Compose 형식 변환기
-    description: Docker Compose 파일을 V1, 2.x, 3.x 또는 CommonSpec 간에 변환하고 포트/볼륨 구문을 확장할 수 있습니다.
+    description: Docker Compose 파일을 V1, 2.x, 3.x 또는 CommonSpec 간에 변환하고 포트/볼륨 구문을 확장할
+      수 있습니다.
     texts:
       label-v1-to-v2-2-x: V1에서 V2 2.x로
       label-v1-to-v2-3-x: V1에서 V2 3.x로
@@ -2196,7 +2320,8 @@ tools:
     description: 기간 계산/구문 분석
     texts:
       label-duration-s: 기간(들)
-      placeholder-please-enter-duration-one-per-line-with-optional-sign: 한 줄에 하나씩 기간을 입력하세요. 선택 기호도 함께 입력하세요.
+      placeholder-please-enter-duration-one-per-line-with-optional-sign: 한 줄에 하나씩
+        기간을 입력하세요. 선택 기호도 함께 입력하세요.
       title-total: 총
       label-prettified: 예쁘게 꾸며졌다
       label-prettified-full: 예쁘게 꾸며짐 (전체)
@@ -2212,7 +2337,8 @@ tools:
       label-weeks: 주
       label-years: 연령
       title-lines-errors: 라인 오류
-      tag-supports-comment-line-hh-mm-ss-fff-3d-1h-3s-p4dt12h20m20-3s: '지원: 주석(# 줄), HH:MM:SS.FFF, 3d 1h 3s..., P4DT12H20M20.3S..'
+      tag-supports-comment-line-hh-mm-ss-fff-3d-1h-3s-p4dt12h20m20-3s: '지원: 주석(# 줄),
+        HH:MM:SS.FFF, 3d 1h 3s..., P4DT12H20M20.3S..'
   ecdsa-key-pair-generator:
     title: ECDSA 키 쌍 생성기
     description: 새로운 무작위 ECDSA 개인 및 공개 키(암호 문구 포함 또는 미포함)를 생성합니다.
@@ -2273,9 +2399,11 @@ tools:
       label-hexadecimal-base-16: 16진법(16진법)
       label-base64-base-64: Base64(기수 64)
       label-base64url-base-64-with-url-safe-chars: Base64url(URL 안전 문자를 사용한 Base 64)
-      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여
+        파일을 선택하세요.
       label-digest-encoding: 다이제스트 인코딩
-      tag-createblake2b-bits-number-key-idatatype-promise: 'createBLAKE2b, // (비트?: 숫자, 키?: IDataType): 약속'
+      tag-createblake2b-bits-number-key-idatatype-promise: 'createBLAKE2b, // (비트?:
+        숫자, 키?: IDataType): 약속'
       tag-createmd5-promise: 'createMD5, // (): 약속'
       tag-createripemd160-promise: 'createRIPEMD160, // (): 약속'
       tag-createsha1-promise: 'createSHA1, // (): 약속'
@@ -2285,23 +2413,33 @@ tools:
       tag-createsm3-promise: 'createSM3, // (): 약속'
       tag-createwhirlpool-promise: 'createWhirlpool, // (): 약속'
       tag-createxxhash32-seed-number-promise: '// createXXHash32, //(시드: 숫자): 약속'
-      tag-createxxhash64-seedlow-number-seedhigh-number-promise: '// createXXHash64, //(seedLow: 숫자, seedHigh: 숫자): 약속'
-      tag-createxxhash3-seedlow-number-seedhigh-number-promise: '// createXXHash3, //(seedLow: 숫자, seedHigh: 숫자): Promise'
-      tag-createxxhash128-seedlow-number-seedhigh-number-promise: '// createXXHash128, //(seedLow: 숫자, seedHigh: 숫자): Promise'
-      tag-blake2b-await-createblake2b-bits-number-key-idatatype-promise: 'BLAKE2b: createBLAKE2b()를 기다립니다. // (비트?: 숫자, 키?: IDataType): 약속'
+      tag-createxxhash64-seedlow-number-seedhigh-number-promise: '// createXXHash64,
+        //(seedLow: 숫자, seedHigh: 숫자): 약속'
+      tag-createxxhash3-seedlow-number-seedhigh-number-promise: '// createXXHash3,
+        //(seedLow: 숫자, seedHigh: 숫자): Promise'
+      tag-createxxhash128-seedlow-number-seedhigh-number-promise: '// createXXHash128,
+        //(seedLow: 숫자, seedHigh: 숫자): Promise'
+      tag-blake2b-await-createblake2b-bits-number-key-idatatype-promise: 'BLAKE2b:
+        createBLAKE2b()를 기다립니다. // (비트?: 숫자, 키?: IDataType): 약속'
       tag-md5-await-createmd5-promise: 'MD5: createMD5()를 기다립니다. // (): 약속'
-      tag-ripemd160-await-createripemd160-promise: 'RIPEMD160: createRIPEMD160()을 기다립니다. // (): 약속'
+      tag-ripemd160-await-createripemd160-promise: 'RIPEMD160: createRIPEMD160()을
+        기다립니다. // (): 약속'
       tag-sha1-await-createsha1-promise: 'SHA1: createSHA1()을 기다립니다. // (): 약속'
-      tag-sha224-await-createsha224-promise: 'SHA224: createSHA224()를 기다립니다. // (): 약속'
-      tag-sha256-await-createsha256-promise: 'SHA256: createSHA256()을 기다립니다. // (): 약속'
-      tag-sha512-await-createsha512-promise: 'SHA512: createSHA512()를 기다립니다. // (): 약속'
+      tag-sha224-await-createsha224-promise: 'SHA224: createSHA224()를 기다립니다. // ():
+        약속'
+      tag-sha256-await-createsha256-promise: 'SHA256: createSHA256()을 기다립니다. // ():
+        약속'
+      tag-sha512-await-createsha512-promise: 'SHA512: createSHA512()를 기다립니다. // ():
+        약속'
       tag-sm3-await-createsm3-promise: 'SM3: createSM3()를 기다립니다. // (): 약속'
-      tag-whirlpool-await-createwhirlpool-promise: 'Whirlpool: await createWhirlpool(), // (): Promise'
+      tag-whirlpool-await-createwhirlpool-promise: 'Whirlpool: await createWhirlpool(),
+        // (): Promise'
   file-type:
     title: 파일 유형 감지기
     description: 파일 유형 식별
     texts:
-      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여
+        파일을 선택하세요.
       title-information: 정보
       label-file-name: '파일 이름:'
       label-extension: '확대:'
@@ -2347,10 +2485,10 @@ tools:
       placeholder-select-gpt-model: GPT 모델 선택
       label-advanded-json-mode: 고급 JSON 모드
       title-prompts: 프롬프트
-      placeholder-your-messages-json-array: "'메시지' JSON 배열..."
-      label-your-messages-json-array: "'메시지' JSON 배열:"
-      placeholder-your-tools-json-array: "'도구' JSON 배열..."
-      label-your-tools-json-array: "'도구' JSON 배열:"
+      placeholder-your-messages-json-array: '''메시지'' JSON 배열...'
+      label-your-messages-json-array: '''메시지'' JSON 배열:'
+      placeholder-your-tools-json-array: '''도구'' JSON 배열...'
+      label-your-tools-json-array: '''도구'' JSON 배열:'
       title-input-json-s: JSON 입력
       placeholder-your-system-prompt-content: 시스템 프롬프트 내용...
       label-your-system-prompt-content: '시스템 프롬프트 내용:'
@@ -2368,9 +2506,12 @@ tools:
       title-compress-string: 문자열 압축
       placeholder-put-your-string-here: 여기에 문자열을 넣으세요...
       label-string-to-compress: 압축할 문자열
-      placeholder-the-gzip-compressed-version-of-your-string-will-be-here: 문자열의 GZip 압축 버전이 여기에 있습니다.
-      placeholder-the-zlib-compressed-version-of-your-string-will-be-here: 문자열의 Zlib 압축 버전은 여기에 있습니다.
-      placeholder-the-deflate-compressed-version-of-your-string-will-be-here: 문자열의 압축된 Deflate 버전이 여기에 있습니다.
+      placeholder-the-gzip-compressed-version-of-your-string-will-be-here: 문자열의 GZip
+        압축 버전이 여기에 있습니다.
+      placeholder-the-zlib-compressed-version-of-your-string-will-be-here: 문자열의 Zlib
+        압축 버전은 여기에 있습니다.
+      placeholder-the-deflate-compressed-version-of-your-string-will-be-here: 문자열의
+        압축된 Deflate 버전이 여기에 있습니다.
       title-decompress-string: 문자열 압축 해제
       placeholder-your-compressed-string: 압축된 문자열...
       label-compressed-string-to-decompress: 압축 해제를 위한 압축 문자열
@@ -2383,13 +2524,14 @@ tools:
     title: HAS 살균제
     description: HAR 파일 살균제
     texts:
-      title-drag-and-drop-a-har-file-here-or-click-to-select-a-file: HAR 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-har-file-here-or-click-to-select-a-file: HAR 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       title-error: 오류
       tag-sanitize-and-download: 정리하고 다운로드하세요
   hdd-calculator:
     title: HDD 계산기
-    description: 저장 장치 제조업체는 용량을 십진수(GB 등)로 보고하는 반면, 운영 체제 및 기타 소프트웨어는 이진수(GiB)를
-      사용하는데, 여전히 십진수 단위(GiB)를 잘못 사용하고 있습니다. 이 도구는 십진수 용량을 다양한 이진수로 변환합니다.
+    description: 저장 장치 제조업체는 용량을 십진수(GB 등)로 보고하는 반면, 운영 체제 및 기타 소프트웨어는 이진수(GiB)를 사용하는데,
+      여전히 십진수 단위(GiB)를 잘못 사용하고 있습니다. 이 도구는 십진수 용량을 다양한 이진수로 변환합니다.
     texts:
       label-kb: 킬로바이트
       label-mb: 엠비
@@ -2403,7 +2545,8 @@ tools:
       label-pib: 피비
       label-claimed-capacity: '청구된 용량:'
       label-unit: '단위:'
-      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB ; 1MB = 1000kB ; 1GiB = 1024MiB ; 1GB = 1000MB ;
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB ; 1MB =
+        1000kB ; 1GiB = 1024MiB ; 1GB = 1000MB ;
       tag-see-here-for-details: 자세한 내용은 여기를 참조하세요
   heic-converter:
     title: HEIC 변환기
@@ -2412,7 +2555,8 @@ tools:
       label-jpeg: 제이피
       label-png: PNG
       label-output-format: 출력 형식
-      title-drag-and-drop-a-heic-file-here-or-click-to-select-a-file: HEIC 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-heic-file-here-or-click-to-select-a-file: HEIC 파일을 여기에
+        끌어다 놓거나 클릭하여 파일을 선택하세요.
   hex-file-converter:
     title: HEX 파일 변환기
     description: 파일과 16진수 표현 간 변환
@@ -2426,7 +2570,8 @@ tools:
       label-content-in-hex: 16진수 콘텐츠
       placeholder-put-your-hex-file-string-here: Hex 파일 문자열을 여기에 입력하세요...
       title-file-to-hex: HEX로 파일
-      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-file-here-or-click-to-select-a-file: 여기에 파일을 끌어다 놓거나 클릭하여
+        파일을 선택하세요.
       label-separator: 분리 기호
       placeholder-separator: 분리 기호
       label-prefix: 접두사
@@ -2470,7 +2615,8 @@ tools:
     texts:
       label-file: 파일
       label-content: 콘텐츠
-      title-drag-and-drop-ical-file-here-or-click-to-select-a-file: iCal 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-ical-file-here-or-click-to-select-a-file: iCal 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       label-ical-content: iCal 콘텐츠
       placeholder-paste-your-ical-content-here: 여기에 iCal 콘텐츠를 붙여넣으세요
       label-parsed-ical: iCal 분석됨
@@ -2478,7 +2624,8 @@ tools:
     title: ICO/PNG 변환기
     description: PNG/JPEG에서 ICO로 변환
     texts:
-      title-drag-and-drop-an-ico-or-png-jpeg-file-here-or-click-to-select-a-file: ICO 또는 PNG/JPEG 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-an-ico-or-png-jpeg-file-here-or-click-to-select-a-file: ICO
+        또는 PNG/JPEG 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
   illuminance-converter:
     title: 조도 변환기
     description: 조도 단위 변환기(룩스, 풋캔들, 녹스, 포토, 화염)
@@ -2490,14 +2637,17 @@ tools:
       placeholder-select-output-format: 출력 형식 선택
       label-output-quality: '출력 품질:'
       label-svg-scaling: 'SVG 크기 조정:'
-      title-drag-and-drop-images-files-here-or-click-to-select-some-files: 여기에 이미지 파일을 끌어다 놓거나 클릭하여 일부 파일을 선택하세요.
+      title-drag-and-drop-images-files-here-or-click-to-select-some-files: 여기에 이미지
+        파일을 끌어다 놓거나 클릭하여 일부 파일을 선택하세요.
       tag-first-select-output-options: 먼저 출력 옵션을 선택하세요.
-      tag-then-drag-and-drop-your-images-below-and-they-will-be-converted-and-downloaded-immediately: 그런 다음 이미지를 아래로 끌어다 놓으면 이미지가 즉시 변환되어 다운로드됩니다.
+      tag-then-drag-and-drop-your-images-below-and-they-will-be-converted-and-downloaded-immediately: 그런
+        다음 이미지를 아래로 끌어다 놓으면 이미지가 즉시 변환되어 다운로드됩니다.
   image-exif-reader:
     title: 이미지 EXIF/메타데이터/GPS/JPEG 품질 리더
     description: 이미지 파일에서 EXIF, IPTC, XMP, GPS 및 기타 메타데이터, JPEG 품질 및 기타 정보를 읽습니다.
     texts:
-      title-drag-and-drop-a-image-file-here-or-click-to-select-a-file: 여기에 이미지 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-image-file-here-or-click-to-select-a-file: 여기에 이미지 파일을
+        끌어다 놓거나 클릭하여 파일을 선택하세요.
       title-jpeg-quality: JPEG 품질
       label-jpeg-quality: JPEG 품질(%)
       title-gps-infos: GPS 정보
@@ -2512,7 +2662,8 @@ tools:
     title: ASCII Art로 이미지 변환
     description: 이미지를 ASCII 아트 생성기로 변환
     texts:
-      title-drag-and-drop-a-image-file-here-or-click-to-select-a-file: 여기에 이미지 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-image-file-here-or-click-to-select-a-file: 여기에 이미지 파일을
+        끌어다 놓거나 클릭하여 파일을 선택하세요.
       label-output-scale: 출력 규모
       label-ascii-art-text: '아스키 아트 텍스트:'
       tag-processing: 처리 중...
@@ -2527,7 +2678,8 @@ tools:
       label-css-data-url: CSS 데이터 URL
       label-file: 파일
       label-content: 콘텐츠
-      title-drag-and-drop-an-image-here-or-click-to-select-a-file: 여기에 이미지를 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-an-image-here-or-click-to-select-a-file: 여기에 이미지를 끌어다 놓거나
+        클릭하여 파일을 선택하세요.
       label-svg-content: SVG 콘텐츠
       placeholder-paste-your-svg-content-here: SVG 콘텐츠를 여기에 붙여넣으세요
       label-css-type: 'CSS 유형:'
@@ -2554,12 +2706,10 @@ tools:
     description: CIDR(IPv4/6)에서 IP 범위 계산
     texts:
       message-invalid-ipv4-6-cidr: 잘못된 IPv4/6 CIDR
-      label-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0:
-        'IPv4/6 CIDR(예: 1.0.0.0/23 또는 1.1.1.1/255.255.252.0 또는 1.1.1.1-2.2.2.2
-        또는 10.0.0.*)'
-      placeholder-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0:
-        'IPv4/6 CIDR(예: 1.0.0.0/23 또는 1.1.1.1/255.255.252.0 또는 1.1.1.1-2.2.2.2
-        또는 10.0.0.*)'
+      label-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0: 'IPv4/6
+        CIDR(예: 1.0.0.0/23 또는 1.1.1.1/255.255.252.0 또는 1.1.1.1-2.2.2.2 또는 10.0.0.*)'
+      placeholder-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0: 'IPv4/6
+        CIDR(예: 1.0.0.0/23 또는 1.1.1.1/255.255.252.0 또는 1.1.1.1-2.2.2.2 또는 10.0.0.*)'
       title-resulting-cidr: 결과 CIDR
       label-cidr: CIDR
       title-ipv4-6-range: IPv4/6 범위
@@ -2599,10 +2749,12 @@ tools:
       label-end-address: 끝 주소
       placeholder-end-ipv4-6-address: IPv4/6 주소 종료...
       title-cidr: CIDR
-      title-invalid-combination-of-start-and-end-ipv4-6-address: 시작 및 종료 IPv4/6 주소의 조합이 잘못되었습니다.
+      title-invalid-combination-of-start-and-end-ipv4-6-address: 시작 및 종료 IPv4/6 주소의
+        조합이 잘못되었습니다.
       title-invalid-combination-of-ip-version-4-6: IP 버전 4/6의 조합이 잘못되었습니다.
       tag-switch-start-and-end-ipv4-6-address: 시작 및 종료 IPv4/6 주소 전환
-      tag-start-ip-and-end-ip-must-be-of-same-version-ipv4-or-ipv6: '시작 IP와 종료 IP는 동일한 버전이어야 합니다: IPv4 또는 IPv6'
+      tag-start-ip-and-end-ip-must-be-of-same-version-ipv4-or-ipv6: '시작 IP와 종료 IP는
+        동일한 버전이어야 합니다: IPv4 또는 IPv6'
   ipv6-address-converter:
     title: IPv6 주소 변환기
     description: IP 주소를 10진수, 2진수, 16진수로 변환하고 정보를 얻으세요
@@ -2624,7 +2776,8 @@ tools:
     title: IPv6 서브넷 계산기
     description: IPv6 CIDR 블록을 구문 분석하여 하위 네트워크에 대한 필요한 모든 정보를 얻으세요.
     texts:
-      message-we-cannot-parse-this-address-check-the-format: 이 주소를 구문 분석할 수 없습니다. 형식을 확인하세요.
+      message-we-cannot-parse-this-address-check-the-format: 이 주소를 구문 분석할 수 없습니다.
+        형식을 확인하세요.
       label-full-address: 전체 주소
       label-short-address: 짧은 주소
       label-address-as-binary: 이진 주소
@@ -2718,8 +2871,8 @@ tools:
       tag-see-jsonpath-cheatsheet: JSONPath 치트시트 보기
   js-unobfuscator:
     title: Javascript Unobfuscator/Unpacker
-    description: 웹크랙은 자바스크립트 리버스 엔지니어링 도구입니다. obfuscator.io의 난독화를 해제하고, 최소화 해제,
-      트랜스파일링, 그리고 webpack/browserify를 압축 해제하여 원본 소스 코드와 최대한 유사하게 만들 수 있습니다.
+    description: 웹크랙은 자바스크립트 리버스 엔지니어링 도구입니다. obfuscator.io의 난독화를 해제하고, 최소화 해제, 트랜스파일링,
+      그리고 webpack/browserify를 압축 해제하여 원본 소스 코드와 최대한 유사하게 만들 수 있습니다.
     texts:
       title-sandbox: 모래 상자
       placeholder-your-obfuscate-javascript-code: 난독화된 Javascript 코드
@@ -2741,8 +2894,8 @@ tools:
       title-schema-validation-errors: 스키마 유효성 검사 오류
       label-indent-size-0-compact: '들여쓰기 크기 (0 = 간결함):'
       repair-json: JSON 복구
-    externalAccess: 이 도구는 유효성 검사가 요청될 때 https://www.schemastore.org에서 JSON 스키마를
-      다운로드할 수 있습니다. 외부로 데이터가 전송되지는 않습니다.
+    externalAccess: 이 도구는 유효성 검사가 요청될 때 https://www.schemastore.org에서 JSON 스키마를 다운로드할
+      수 있습니다. 외부로 데이터가 전송되지는 않습니다.
   json-escaper:
     title: JSON Escaper/Unescaper
     description: JSON 문자열 이스케이프 및 이스케이프 해제
@@ -2772,8 +2925,8 @@ tools:
       label-indent-size-0-compact: '들여쓰기 크기(0 = 압축):'
       title-repaired-version: 자동 복구 및 포맷 버전
       label-auto-repair-json: '자동 복구 JSON:'
-    externalAccess: 이 도구는 유효성 검사가 요청될 때 https://www.schemastore.org에서 JSON 스키마를
-      다운로드할 수 있습니다. 외부로 데이터가 전송되지는 않습니다.
+    externalAccess: 이 도구는 유효성 검사가 요청될 때 https://www.schemastore.org에서 JSON 스키마를 다운로드할
+      수 있습니다. 외부로 데이터가 전송되지는 않습니다.
   json-size-analyzer:
     title: JSON 크기 분석기
     description: JSON 노드의 상대적 가중치 측정
@@ -2817,7 +2970,8 @@ tools:
       label-json-to-go: JSON으로 이동
       label-root-name: 루트 이름
       label-package-name: 패키지 이름
-      label-list-of-tags-which-should-be-generated-for-fields: 필드에 대해 생성되어야 하는 태그 목록
+      label-list-of-tags-which-should-be-generated-for-fields: 필드에 대해 생성되어야 하는 태그
+        목록
       title-your-go-code: 귀하의 Go 코드
       tag-plain-types-only: 일반 유형만
       tag-plain-types-with-package-only: 패키지만 있는 일반 유형
@@ -2844,8 +2998,8 @@ tools:
       output-label-php-array-version: PHP 배열 버전
   json-to-schema:
     title: JSON에서 스키마로
-    description: JSON 데이터를 JSON 스키마, MySQL DDL, Mongoose 스키마, Google BigQuery 스키마 또는
-      ClickHouse 테이블 스키마로 변환
+    description: JSON 데이터를 JSON 스키마, MySQL DDL, Mongoose 스키마, Google BigQuery 스키마
+      또는 ClickHouse 테이블 스키마로 변환
     texts:
       label-generic: 일반적인
       label-json-schema: JSON 스키마
@@ -2885,7 +3039,7 @@ tools:
       verify-description: '{0}: {1} ({2}로 확인)'
       token-secret: 토큰 비밀
       token-keys: 토큰 키
-      cannot-parse-secret-as-encoding: "'{0}'을 '{1}'로 구문 분석할 수 없습니다: {2}"
+      cannot-parse-secret-as-encoding: '''{0}''을 ''{1}''로 구문 분석할 수 없습니다: {2}'
       invalid-base64-string: 잘못된 Base64 문자열
       placeholder-input-token: JWT 토큰을 붙여넣어 편집하세요...
       click-to-input-a-existing-jwt-token-to-modify: 기존 JWT 토큰을 수정하려면 클릭하세요.
@@ -2913,7 +3067,7 @@ tools:
       label-is-valid: 유효합니까?
       label-luhn-key: 룬 키
       label-value-with-luhn-key: Luhn Key로 가치를 높이세요
-      placeholder-enter-a-luhn-validated-value: "'Luhn 검증' 값을 입력하세요..."
+      placeholder-enter-a-luhn-validated-value: '''Luhn 검증'' 값을 입력하세요...'
       label-probably-correct: 아마도 맞을 것 같아요
       title-infos: 정보
       tag-invalid-luhn-key: 잘못된 Luhn 키입니다.
@@ -2941,7 +3095,8 @@ tools:
     description: 모든 종류의 단위를 변환합니다
     texts:
       label-units-expression: 단위 표현
-      placeholder-please-enter-an-unit-expression-ie-1d-2m: "단위 표현식을 입력하세요. 예: '1d 2m'"
+      placeholder-please-enter-an-unit-expression-ie-1d-2m: '단위 표현식을 입력하세요. 예: ''1d
+        2m'''
       label-target-unit: '대상 단위:'
       placeholder-select-the-target-unit: 대상 단위를 선택하세요
       title-result: 결과
@@ -2975,7 +3130,8 @@ tools:
       tag-generate-anchors: 앵커 생성
       tag-advanced: 고급의
       tag-concat-spaces: 연결 공간
-      tag-you-can-paste-a-document-with-existing-toc-generated-by-this-tool-or-add-a: 기존 TOC(이 도구에서 생성)가 있는 문서를 붙여넣거나 추가할 수 있습니다.
+      tag-you-can-paste-a-document-with-existing-toc-generated-by-this-tool-or-add-a: 기존
+        TOC(이 도구에서 생성)가 있는 문서를 붙여넣거나 추가할 수 있습니다.
       tag-marker-in-your-document-on-a-single-line: 문서의 마커(한 줄에)
   mass-converter:
     title: 질량 단위 변환기
@@ -3001,12 +3157,15 @@ tools:
     title: 수학 OCR
     description: 수학 공식 이미지를 Latex로 변환
     texts:
-      title-drag-and-drop-a-image-here-or-click-to-select-a-file: 이미지를 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
-      tag-nb-processing-is-done-in-your-browser-so-be-patient-processing-can-take-a-while: '참고: 처리가 브라우저에서 이루어지므로 처리에 시간이 걸릴 수 있으니 인내심을 가지십시오.'
-      tag-this-tool-required-internet-connection-to-access-models: 이 도구에는 인터넷 연결(모델에 접근하기 위해)이 필요합니다.
+      title-drag-and-drop-a-image-here-or-click-to-select-a-file: 이미지를 여기에 끌어다 놓거나
+        클릭하여 파일을 선택하세요.
+      tag-nb-processing-is-done-in-your-browser-so-be-patient-processing-can-take-a-while: '참고:
+        처리가 브라우저에서 이루어지므로 처리에 시간이 걸릴 수 있으니 인내심을 가지십시오.'
+      tag-this-tool-required-internet-connection-to-access-models: 이 도구에는 인터넷 연결(모델에
+        접근하기 위해)이 필요합니다.
       tag-latex-result: 라텍스 결과
-    externalAccess: 이 도구는 https://cdnjs.cloudflare.com에서 MathJaX를 다운로드하고
-      https://huggingface.co/에서 LaTeX OCR 인식 모델(Xenova/texify)을 다운로드합니다.
+    externalAccess: 이 도구는 https://cdnjs.cloudflare.com에서 MathJaX를 다운로드하고 https://huggingface.co/에서
+      LaTeX OCR 인식 모델(Xenova/texify)을 다운로드합니다.
   mermaid-exporter:
     title: 인어 수출업체
     description: Markdown(Mermaid)을 이미지로 변환하고 PNG, JPG 및 SVG로 내보낼 수 있도록 합니다.
@@ -3026,8 +3185,10 @@ tools:
       title-encode-string-in-encoded-word-format: Encoded-Word 형식으로 문자열을 인코딩합니다.
       placeholder-put-your-string-here: 여기에 문자열을 넣으세요...
       label-string-to-encode: 인코딩할 문자열
-      placeholder-the-quotted-printable-encoded-version-of-your-string-will-be-here: 문자열의 인용된 인쇄 가능한 인코딩된 버전은 여기에 있습니다.
-      placeholder-the-base64-encoded-version-of-your-string-will-be-here: 문자열의 Base64 인코딩된 버전은 여기에 있습니다.
+      placeholder-the-quotted-printable-encoded-version-of-your-string-will-be-here: 문자열의
+        인용된 인쇄 가능한 인코딩된 버전은 여기에 있습니다.
+      placeholder-the-base64-encoded-version-of-your-string-will-be-here: 문자열의 Base64
+        인코딩된 버전은 여기에 있습니다.
       title-decode-string-in-encoded-word-format: 인코딩된 단어 형식으로 문자열 디코딩
       placeholder-your-encoded-string: 인코딩된 문자열...
       label-encoded-string-to-decode: 디코딩할 인코딩된 문자열
@@ -3072,9 +3233,8 @@ tools:
       label-country-name: '국가 이름:'
       label-continent-name: '대륙 이름:'
       tag-refresh: 새로 고치다
-    externalAccess: 이 도구는 https://www.ipify.org/의 API를 사용하여 IPv4/6 주소를 가져오고
-      https://cdn.jsdelivr.net/npm/{'@'}iplookup/country-extra/에서 IP 정보 데이터를
-      다운로드합니다.
+    externalAccess: 이 도구는 https://www.ipify.org/의 API를 사용하여 IPv4/6 주소를 가져오고 https://cdn.jsdelivr.net/npm/{'@'}iplookup/country-extra/에서
+      IP 정보 데이터를 다운로드합니다.
   nano-memo:
     title: 나노 치트시트
     description: 나노 에디터 치트시트
@@ -3091,7 +3251,8 @@ tools:
     description: 이미지 또는 PDF에 OCR(Tesseract) 수행
     texts:
       label-language: 언어
-      title-drag-and-drop-a-image-or-pdf-here-or-click-to-select-a-file: 이미지나 PDF를 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-image-or-pdf-here-or-click-to-select-a-file: 이미지나 PDF를
+        여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
       title-statistics: 통계
       label-character-count: 문자 수
       label-word-count: 단어 수
@@ -3140,7 +3301,8 @@ tools:
     description: Outlook MSG 파일 구문 분석
     texts:
       title-input: 입력
-      title-drag-and-drop-msg-file-here-or-click-to-select-a-file: MSG 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-msg-file-here-or-click-to-select-a-file: MSG 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       title-output: 산출
       label-file-name: 파일 이름
       label-creation-date: 생성 날짜
@@ -3168,7 +3330,8 @@ tools:
     description: Parquet 파일을 JSON 객체 배열로 읽기
     texts:
       title-input: 입력
-      title-drag-and-drop-parquet-file-here-or-click-to-select-a-file: 여기에 Parquet 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-parquet-file-here-or-click-to-select-a-file: 여기에 Parquet
+        파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
       tag-export-as-csv: CSV로 내보내기
     text:
       json-content: JSON 콘텐츠
@@ -3184,7 +3347,8 @@ tools:
       label-separator: 분리 기호
       placeholder-put-separator-char: 구분 문자를 넣으세요
       label-ending-salt-chars: 소금 숯 끝내기
-      placeholder-put-characters-to-appended-to-end-of-passphrase: 암호문구 끝에 추가할 문자 넣기
+      placeholder-put-characters-to-appended-to-end-of-passphrase: 암호문구 끝에 추가할 문자
+        넣기
       label-number-of-passphrase-to-generate: 생성할 암호문구의 수
       placeholder-passphrase: 암호문구...
       tag-copy: 복사
@@ -3195,9 +3359,11 @@ tools:
     texts:
       title-paste-in-markdown: 마크다운으로 붙여넣기
       placeholder-paste-your-content-here: 여기에 내용을 붙여넣으세요...
-      tag-paste-spreadsheet-cells-and-html-tables-as-a-markdown-tables: 스프레드시트 셀과 HTML 표를 마크다운 표로 붙여넣습니다.
+      tag-paste-spreadsheet-cells-and-html-tables-as-a-markdown-tables: 스프레드시트 셀과
+        HTML 표를 마크다운 표로 붙여넣습니다.
       tag-paste-urls-on-selected-text-as-markdown-links: 선택한 텍스트에 URL을 마크다운 링크로 붙여넣습니다.
-      tag-paste-text-containing-links-as-text-containing-markdown-links: 링크가 포함된 텍스트를 Markdown 링크가 포함된 텍스트로 붙여넣습니다.
+      tag-paste-text-containing-links-as-text-containing-markdown-links: 링크가 포함된 텍스트를
+        Markdown 링크가 포함된 텍스트로 붙여넣습니다.
       tag-paste-image-urls-as-markdown-image-links: 이미지 URL을 마크다운 이미지 링크로 붙여넣습니다.
   pdf-encrypt:
     title: PDF 암호화
@@ -3208,10 +3374,13 @@ tools:
       label-allow-full-printing: 전체 인쇄 허용
       label-allow-no-modifications: 수정을 허용하지 않습니다
       label-allow-document-assembly-only: 문서 조립만 허용
-      label-allow-document-assembly-only-filling-in-form-fields-and-signing: 문서 조립만 허용 + 양식 필드 작성 및 서명
-      label-allow-document-assembly-only-filling-in-form-fields-and-signing-commenting-and-modifying-forms: 문서 조립만 허용 + 양식 필드 작성 및 서명 + 양식에 주석 달기 및 수정
+      label-allow-document-assembly-only-filling-in-form-fields-and-signing: 문서 조립만
+        허용 + 양식 필드 작성 및 서명
+      label-allow-document-assembly-only-filling-in-form-fields-and-signing-commenting-and-modifying-forms: 문서
+        조립만 허용 + 양식 필드 작성 및 서명 + 양식에 주석 달기 및 수정
       label-allow-full-document-modification: 전체 문서 수정 허용
-      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       title-permissions: 권한
       label-control-modify-access-by-level: 레벨별 접근 제어 수정
       label-control-printing-access: 인쇄 액세스 제어
@@ -3234,14 +3403,16 @@ tools:
     title: PDF 선형화/FastWeb
     description: PDF의 선형화된 버전 만들기(FastWeb으로 전환)
     texts:
-      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       title-logs: 로그
       label-qpdf: qpdf
   pdf-unlock:
     title: PDF 복호화 및 잠금 해제
     description: PDF 암호 해독 및 잠금 해제(보안 권한 제거)
     texts:
-      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       title-logs: 로그
       label-qpdf: qpdf
   pgp-encryption:
@@ -3271,7 +3442,8 @@ tools:
       placeholder-your-string-decrypted: 문자열이 해독되었습니다
       tag-your-browser-is-not-in: 귀하의 브라우저가 작동하지 않습니다
       tag-secure-context-https: '"보안 컨텍스트"(HTTPS)'
-      tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully: . 이 도구는 제대로 작동하지 않을 수 있으며, 완벽하게 작동하려면 HTTPS가 필요할 수 있습니다.
+      tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully: . 이 도구는
+        제대로 작동하지 않을 수 있으며, 완벽하게 작동하려면 HTTPS가 필요할 수 있습니다.
       tag-signing-private-key-optional: 개인 키 서명(선택 사항)
       tag-signing-public-key-optional: 공개 키 서명(선택 사항)
   pgp-key-pair-generator:
@@ -3310,7 +3482,8 @@ tools:
     title: 이미지를 SVG로(potrace)
     description: 래스터 이미지를 벡터 SVG로 변환
     texts:
-      title-drag-and-drop-an-image-here-or-click-to-select-a-file: 여기에 이미지를 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-an-image-here-or-click-to-select-a-file: 여기에 이미지를 끌어다 놓거나
+        클릭하여 파일을 선택하세요.
       tag-posterize: 포스터화?
       tag-potrace-result: 검색 결과
   power-converter:
@@ -3336,13 +3509,15 @@ tools:
     title: EXIF 제거
     description: JPEG 파일에서 Exif 제거
     texts:
-      title-drag-and-drop-a-image-file-here-or-click-to-select-a-file: 여기에 이미지 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-image-file-here-or-click-to-select-a-file: 여기에 이미지 파일을
+        끌어다 놓거나 클릭하여 파일을 선택하세요.
   rmb-numbers:
     title: RMB 대문자 변환기
     description: RMB/RMB 자본화 변환 도구
     texts:
       title-lower-case-amount: 소문자 금액
-      placeholder-enter-the-amount-in-lowercase-example-1314-52: '금액을 소문자로 입력하세요 (예: 1314.52)'
+      placeholder-enter-the-amount-in-lowercase-example-1314-52: '금액을 소문자로 입력하세요 (예:
+        1314.52)'
       title-amount-in-capital-letters: 대문자로 표시된 금액
   rsa-ecdsa-signing:
     title: RSA/DSA/ECDSA 서명자 및 검증자
@@ -3410,19 +3585,22 @@ tools:
       placeholder-e-g-hello-avengers: 예를 들어 '안녕, 어벤져스'
       label-enter-text-to-convert-to-runes: 룬으로 변환할 텍스트를 입력하세요
       label-runes-from-your-text: 당신의 텍스트에서 룬
-      placeholder-the-runes-representation-of-your-text-will-be-here: 텍스트의 룬 문자 표현은 여기에 있습니다.
+      placeholder-the-runes-representation-of-your-text-will-be-here: 텍스트의 룬 문자 표현은
+        여기에 있습니다.
       title-runes-to-text: 룬을 텍스트로
       placeholder-input-runes: 입력 룬
       label-enter-runes-to-convert-to-text: 텍스트로 변환하려면 룬을 입력하세요
       label-text-from-your-runes: 룬의 텍스트
-      placeholder-the-text-representation-of-your-runes-will-be-here: 룬의 텍스트 표현은 여기에 있습니다.
+      placeholder-the-text-representation-of-your-runes-will-be-here: 룬의 텍스트 표현은 여기에
+        있습니다.
       tag-copy-runes-to-clipboard: 룬을 클립보드에 복사
       tag-copy-text-to-clipboard: 텍스트를 클립보드에 복사
   sensitive-data-masker:
     title: 민감한 데이터 마스커
     description: '텍스트 콘텐츠(예: 로그)에서 민감한 데이터를 정리합니다.'
     texts:
-      label-your-custom-cleaning-regex-es-case-insensitive: '사용자 정의 정리 정규식(대소문자 구분 없음):'
+      label-your-custom-cleaning-regex-es-case-insensitive: '사용자 정의 정리 정규식(대소문자 구분
+        없음):'
       placeholder-your-custom-cleaning-regex-es: 사용자 정의 청소 정규식
       placeholder-no-fallback: 폴백 없음
       input-label-your-log-textual-data: '로그/텍스트 데이터:'
@@ -3460,15 +3638,16 @@ tools:
     title: SMART 원시 변환기
     description: SMART 원시 값을 사람이 읽을 수 있는 값으로 변환
     texts:
-      message-smart-raw-value-must-be-decimal-or-0x-hexadecimal: 스마트 원시 값은 10진수 또는 "0x" 16진수여야 합니다.
+      message-smart-raw-value-must-be-decimal-or-0x-hexadecimal: 스마트 원시 값은 10진수 또는
+        "0x" 16진수여야 합니다.
       label-smart-raw-value: 스마트 원시 가치
-      placeholder-put-your-smart-raw-value-decimal-or-0x-hexa: Smart Raw Value(10진수 또는 '0x' 16진수)를 입력하세요.
+      placeholder-put-your-smart-raw-value-decimal-or-0x-hexa: Smart Raw Value(10진수
+        또는 '0x' 16진수)를 입력하세요.
       title-decoded: 디코딩됨
   smart-text-replacer:
     title: 스마트 텍스트 교체 및 줄바꿈
-    description:
-      Windows 메모장 검색 및 바꾸기처럼 단일 또는 여러 단어가 나타나는 곳을 검색하고 바꿀 수 있습니다. 줄 바꿈 및
-      텍스트 분할도 관리할 수 있습니다.
+    description: Windows 메모장 검색 및 바꾸기처럼 단일 또는 여러 단어가 나타나는 곳을 검색하고 바꿀 수 있습니다. 줄 바꿈
+      및 텍스트 분할도 관리할 수 있습니다.
     texts:
       label-add-linebreak-before: 줄바꿈을 추가하세요
       label-add-linebreak-after: 줄바꿈 추가
@@ -3491,9 +3670,11 @@ tools:
     description: Snowflake ID에서 타임스탬프, 머신 ID 및 시퀀스 번호 추출
     texts:
       label-snowflake-id: 눈송이 ID
-      placeholder-put-snowflake-id-here-eg-1263785187301658678: '여기에 Snowflake ID를 입력하세요(예: 1263785187301658678)'
+      placeholder-put-snowflake-id-here-eg-1263785187301658678: '여기에 Snowflake ID를
+        입력하세요(예: 1263785187301658678)'
       label-epoch: 시대
-      placeholder-put-epoch-timestamp-here-optional-eg-1420070400000: '여기에 Epoch 타임스탬프를 입력하세요(선택 사항, 예: 1420070400000)'
+      placeholder-put-epoch-timestamp-here-optional-eg-1420070400000: '여기에 Epoch 타임스탬프를
+        입력하세요(선택 사항, 예: 1420070400000)'
       label-local-date: 현지 날짜
       placeholder-epoch-timestamp-will-be-here: Epoch 타임스탬프가 여기에 표시됩니다.
       label-timestamp: 타임스탬프
@@ -3535,7 +3716,8 @@ tools:
     description: .Net 및 JS 스택 추적 강조
     texts:
       text-formatted-stacktrace-copied-to-the-clipboard: 포맷된 스택 추적이 클립보드에 복사되었습니다.
-      text-markdown-formatted-stacktrace-copied-to-the-clipboard: 마크다운 형식의 스택 추적이 클립보드에 복사되었습니다.
+      text-markdown-formatted-stacktrace-copied-to-the-clipboard: 마크다운 형식의 스택 추적이
+        클립보드에 복사되었습니다.
       label-net: .그물
       label-javascript: 자바스크립트
       label-python: 파이썬
@@ -3567,7 +3749,8 @@ tools:
       message-invalid-torrent-content: 잘못된 토런트 콘텐츠
       label-file: 파일
       label-content: 콘텐츠
-      title-drag-and-drop-torrent-file-here-or-click-to-select-a-file: 토런트 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-torrent-file-here-or-click-to-select-a-file: 토런트 파일을 여기에
+        끌어다 놓거나 클릭하여 파일을 선택하세요.
       label-torrent-magnet-content: 토런트/마그넷 콘텐츠
       placeholder-paste-your-torrent-magnet-content-here: 여기에 토런트/마그넷 콘텐츠를 붙여넣으세요
       label-magnet-uri: 자석 URI
@@ -3588,7 +3771,8 @@ tools:
     title: 유니코드 검색
     description: 유니코드 문자로 검색
     texts:
-      placeholder-search-unicode-by-name-e-g-zero-width-or-code-point: "이름(예: '0 너비')이나 코드 포인트로 유니코드를 검색합니다."
+      placeholder-search-unicode-by-name-e-g-zero-width-or-code-point: '이름(예: ''0
+        너비'')이나 코드 포인트로 유니코드를 검색합니다.'
       label-max-results: '최대 결과:'
       tag-no-results: 결과가 없습니다
       tag-search-result: 검색 결과
@@ -3617,7 +3801,8 @@ tools:
       placeholder-put-your-string-here: 여기에 문자열을 넣으세요...
       label-string-to-refang: refang할 문자열
       label-string-fanged: 송곳니가 있는 끈
-      placeholder-the-refang-encoding-of-your-string-will-be-here: 문자열의 refang 인코딩은 여기에 있습니다.
+      placeholder-the-refang-encoding-of-your-string-will-be-here: 문자열의 refang 인코딩은
+        여기에 있습니다.
       title-defang-string: 디팡 문자열
       placeholder-your-fanged-string: 송곳니가 난 줄...
       label-fanged-string-to-decode: 디코딩할 송곳니 모양의 문자열
@@ -3638,7 +3823,8 @@ tools:
       label-suffix: 접미사
       placeholder-suffix-search: 접미사 검색
       label-searchable-url: '검색 가능한 URL:'
-      tag-url-with-text-fragments-allows-to-make-link-to-content-that-has-no-anchor-or-id: 텍스트 조각이 포함된 URL을 사용하면 앵커나 {'@'}id가 없는 콘텐츠에 대한 링크를 만들 수 있습니다.
+      tag-url-with-text-fragments-allows-to-make-link-to-content-that-has-no-anchor-or-id: 텍스트
+        조각이 포함된 URL을 사용하면 앵커나 {'@'}id가 없는 콘텐츠에 대한 링크를 만들 수 있습니다.
       tag-see-mdn-for-more-info: 자세한 내용은 MDN을 참조하세요.
       tag-test-searchable-url: 검색 가능한 URL 테스트
   utm-url-generator:
@@ -3652,15 +3838,18 @@ tools:
       text-utmified-url-copied: UTM화된 URL이 복사되었습니다.
       label-website-url: 웹사이트 URL
       placeholder-put-your-website-url-here: 여기에 귀하의 웹사이트 URL을 입력하세요...
-      label-utm-source-identifies-which-site-sent-the-traffic: UTM 소스(트래픽을 보낸 사이트를 식별)
+      label-utm-source-identifies-which-site-sent-the-traffic: UTM 소스(트래픽을 보낸 사이트를
+        식별)
       placeholder-put-your-utm-source-here: UTM 소스를 여기에 입력하세요...
       label-utm-medium-identifies-what-type-of-link-was-used: UTM 매체(사용된 링크 유형을 식별)
       placeholder-put-your-utm-medium-here: 여기에 UTM Medium을 넣으세요...
-      label-utm-campaign-identifies-a-specific-product-promotion-or-strategic-campaign: UTM 캠페인(특정 제품 프로모션 또는 전략적 캠페인을 식별)
+      label-utm-campaign-identifies-a-specific-product-promotion-or-strategic-campaign: UTM
+        캠페인(특정 제품 프로모션 또는 전략적 캠페인을 식별)
       placeholder-put-your-utm-campaign-here: 여기에 UTM 캠페인을 넣으세요...
       label-utm-content-identifies-search-terms: UTM 콘텐츠(검색어 식별)
       placeholder-put-your-utm-content-here: 여기에 UTM 콘텐츠를 넣으세요...
-      label-utm-term-identifies-what-specifically-was-clicked-to-bring-the-user-to-the-site: UTM 용어(사용자가 사이트로 이동하기 위해 구체적으로 무엇을 클릭했는지 식별)
+      label-utm-term-identifies-what-specifically-was-clicked-to-bring-the-user-to-the-site: UTM
+        용어(사용자가 사이트로 이동하기 위해 구체적으로 무엇을 클릭했는지 식별)
       placeholder-put-your-utm-term-here: 여기에 UTM 용어를 입력하세요...
       tag-for-more-info-about-utm-see: UTM에 대한 자세한 내용은 다음을 참조하세요.
       tag-utm-parameters: UTM 매개변수
@@ -3827,7 +4016,8 @@ tools:
       tag-handle: 핸들
       tag-alignment: 조정
       tag-allow-mark: 마크 허용 (==)
-      tag-print-ie-use-a-pdf-printer-to-get-a-pdf-file: 인쇄(즉, PDF 프린터를 사용하여 PDF 파일을 얻습니다)
+      tag-print-ie-use-a-pdf-printer-to-get-a-pdf-file: 인쇄(즉, PDF 프린터를 사용하여 PDF 파일을
+        얻습니다)
   regex-memo:
     title: 정규식 치트시트
     description: Javascript 정규식/정규 표현식 치트시트
@@ -3846,7 +4036,8 @@ tools:
       title-output: 산출
       placeholder-encrypted-output-will-be-generated-here: 암호화된 출력이 여기에 생성됩니다.
       title-files: 파일
-      title-drag-and-drop-files-here-or-click-to-select-some-files: 여기에 파일을 끌어다 놓거나 클릭하여 일부 파일을 선택하세요.
+      title-drag-and-drop-files-here-or-click-to-select-some-files: 여기에 파일을 끌어다 놓거나
+        클릭하여 일부 파일을 선택하세요.
       title-private-keys: 개인 키
       placeholder-identity-key-or-keys-one-per-line: 한 줄에 하나씩 ID 키
       title-encrypted-text: 암호화된 텍스트
@@ -3932,7 +4123,7 @@ tools:
       label-title: '제목:'
       placeholder-e-g-introduction-to-vue-3: '예: Vue 3 소개'
       label-publisher: '발행자:'
-      placeholder-e-g-o-reilly-media: "예: O'Reilly Media"
+      placeholder-e-g-o-reilly-media: '예: O''Reilly Media'
       label-publication-year: '출판년도:'
       label-url-optional: 'URL(선택 사항):'
       placeholder-e-g-https-example-com: '예: https://example.com'
@@ -3945,11 +4136,12 @@ tools:
     texts:
       title-cookie-parser: 쿠키 파서
       placeholder-enter-cookie-header: 쿠키 헤더를 입력하세요
-      tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: '팁: 테스트할 웹사이트로 이동하여 F12 콘솔을 열고 실행하세요.'
+      tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: '팁: 테스트할 웹사이트로
+        이동하여 F12 콘솔을 열고 실행하세요.'
       tag-window-copy-document-cookie: window.copy(문서.쿠키)
-      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
-        '. 이렇게 하면 쿠키 문자열이 클립보드에 복사됩니다. 참고: 이 작업은 자바스크립트에서 사용 가능한 쿠키만 복사합니다(HTTP만
-        복사되며 보안 쿠키는 제외됩니다).'
+      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
+      : '. 이렇게 하면 쿠키 문자열이 클립보드에 복사됩니다. 참고: 이 작업은 자바스크립트에서 사용 가능한 쿠키만 복사합니다(HTTP만 복사되며
+        보안 쿠키는 제외됩니다).'
       tag-name: 이름
       tag-value: 값
       tag-no-cookies-found: 쿠키를 찾을 수 없습니다
@@ -3988,7 +4180,8 @@ tools:
       title-csv-converter: CSV 변환기
       label-file: 파일
       label-content: 콘텐츠
-      title-drag-and-drop-a-csv-file-here-or-click-to-select-a-file: CSV 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-csv-file-here-or-click-to-select-a-file: CSV 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       label-paste-your-csv-content: 'CSV 콘텐츠를 붙여넣으세요:'
       placeholder-your-csv: 귀하의 CSV...
       label-typed-values: 입력된 값
@@ -4066,9 +4259,11 @@ tools:
       label-4096-bit-stronger-security-but-slower: 4096비트(보안성이 강화되었지만 속도가 느림)
       label-domain-name: '도메인 이름:'
       placeholder-enter-domain-e-g-example-com: '도메인을 입력하세요(예: example.com)'
-      label-selector-unique-name-used-to-distinguish-dkim-records-for-the-same-domain: '선택기(동일한 도메인에 대한 DKIM 레코드를 구별하는 데 사용되는 고유 이름):'
+      label-selector-unique-name-used-to-distinguish-dkim-records-for-the-same-domain: '선택기(동일한
+        도메인에 대한 DKIM 레코드를 구별하는 데 사용되는 고유 이름):'
       placeholder-enter-selector-e-g-default: '선택기 입력(예: 기본값)'
-      label-key-size-of-the-rsa-key-used-for-signing-emails: '키 크기(이메일 서명에 사용되는 RSA 키):'
+      label-key-size-of-the-rsa-key-used-for-signing-emails: '키 크기(이메일 서명에 사용되는 RSA
+        키):'
       placeholder-select-key-size: 키 크기 선택
       label-passphrase-of-private-key: '암호문구(개인 키):'
       placeholder-passphrase: 암호문구
@@ -4091,15 +4286,19 @@ tools:
       label-policy: '정책:'
       placeholder-select-policy: 정책 선택
       label-subdomain-policy: '하위 도메인 정책:'
-      label-percentage-of-emails-subject-to-dmarc-policy-enforcement-0-100: '비율(DMARC 정책 적용 대상 이메일 중, 0~100%):'
+      label-percentage-of-emails-subject-to-dmarc-policy-enforcement-0-100: '비율(DMARC
+        정책 적용 대상 이메일 중, 0~100%):'
       placeholder-enter-percentage: 백분율을 입력하세요
-      label-aggregate-email-where-aggregate-dmarc-reports-should-be-sent: '집계 이메일(집계 DMARC 보고서를 보내야 하는 곳):'
+      label-aggregate-email-where-aggregate-dmarc-reports-should-be-sent: '집계 이메일(집계
+        DMARC 보고서를 보내야 하는 곳):'
       placeholder-admin-example-com: 관리자{'@'}example.com
-      label-forensic-email-where-forensic-dmarc-failure-reports-should-be-sent: '포렌식 이메일(포렌식 DMARC 실패 보고서를 보내야 하는 곳):'
+      label-forensic-email-where-forensic-dmarc-failure-reports-should-be-sent: '포렌식
+        이메일(포렌식 DMARC 실패 보고서를 보내야 하는 곳):'
       label-alignment-spf: '정렬(SPF):'
       placeholder-select-alignment: 정렬 선택
       label-alignment-dkim: '정렬(DKIM):'
-      label-reporting-interval-for-sending-dmarc-aggregate-reports: '보고 간격(DMARC 집계 보고서 전송용):'
+      label-reporting-interval-for-sending-dmarc-aggregate-reports: '보고 간격(DMARC 집계
+        보고서 전송용):'
       placeholder-enter-interval: 간격을 입력하세요
       title-generated-dmarc-record: 생성된 DMARC 레코드
       tag-seconds: 초
@@ -4116,7 +4315,8 @@ tools:
       label-markdown: 가격 인하
       label-xml: XML
       title-xlsx-converter: XLSX 변환기
-      title-drag-and-drop-a-xlsx-here-or-click-to-select-a-file: XLSX를 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-xlsx-here-or-click-to-select-a-file: XLSX를 여기에 끌어다 놓거나
+        클릭하여 파일을 선택하세요.
       label-select-sheet-to-use: '사용할 시트를 선택하세요:'
       placeholder-select-sheet: 시트 선택
       label-select-output-format: '출력 형식을 선택하세요:'
@@ -4161,7 +4361,8 @@ tools:
       tag-add-new-option: 새로운 옵션 추가
       tag-add-option: 옵션 추가
       tag-clear-all-options: 모든 옵션 지우기
-      tag-no-options-added-yet-add-some-options-to-start-spinning: 아직 추가된 옵션이 없습니다. 옵션을 추가하여 회전을 시작하세요!
+      tag-no-options-added-yet-add-some-options-to-start-spinning: 아직 추가된 옵션이 없습니다.
+        옵션을 추가하여 회전을 시작하세요!
       tag-: ✕
   fstab-generator:
     title: FStab 생성기
@@ -4178,9 +4379,12 @@ tools:
       placeholder-mnt-data-or-home: /mnt/data 또는 /home
       label-filesystem-type: '파일 시스템 유형:'
       label-filesystem-options: '파일 시스템 옵션:'
-      placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async: '기본적으로: 표준 마운트 옵션(rw, suid, dev, exec, auto, nouser, async)'
-      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: '덤프(덤프 유틸리티가 이 파일 시스템을 백업해야 하는지 여부를 결정합니다):'
-      label-pass-controls-the-order-for-filesystem-checks-at-boot: '통과(부팅 시 파일 시스템 검사 순서를 제어):'
+      placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async: '기본적으로:
+        표준 마운트 옵션(rw, suid, dev, exec, auto, nouser, async)'
+      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: '덤프(덤프
+        유틸리티가 이 파일 시스템을 백업해야 하는지 여부를 결정합니다):'
+      label-pass-controls-the-order-for-filesystem-checks-at-boot: '통과(부팅 시 파일 시스템
+        검사 순서를 제어):'
       placeholder-username: 사용자 이름
       label-username: '사용자 이름:'
       placeholder-password: 비밀번호
@@ -4287,10 +4491,13 @@ tools:
       tag-delete-the-second-rule-in-the-input-chain: INPUT 체인의 두 번째 규칙을 삭제합니다.
       tag-iptables-t-nat-d-prerouting-2: iptables -t nat -D 프리라우팅 2
       tag-delete-the-second-rule-in-the-nat-table: NAT 테이블에서 두 번째 규칙을 삭제합니다.
-      tag-iptables-a-input-s-lt-ip-address-gt-j-drop: iptables -A 입력 -s "&lt;ip 주소&gt;" -j 삭제
+      tag-iptables-a-input-s-lt-ip-address-gt-j-drop: iptables -A 입력 -s "&lt;ip 주소&gt;"
+        -j 삭제
       tag-block-a-specific-ip-address: 특정 IP 주소 차단
-      tag-iptables-a-input-p-tcp-dport-80-m-limit-limit-25-minute-limit-burst-100-j-accept: iptables -A 입력 -p tcp --dport 80 -m 제한 --제한 25/분 --제한-버스트 100 -j 허용
-      tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached: 100개의 연결에 도달한 후 포트 80에서 분당 25개로 연결을 제한합니다.
+      tag-iptables-a-input-p-tcp-dport-80-m-limit-limit-25-minute-limit-burst-100-j-accept: iptables
+        -A 입력 -p tcp --dport 80 -m 제한 --제한 25/분 --제한-버스트 100 -j 허용
+      tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached: 100개의
+        연결에 도달한 후 포트 80에서 분당 25개로 연결을 제한합니다.
       tag-iptables-n-mychain: iptables -N 마이체인
       tag-create-a-new-chain-called-mychain: '"MYCHAIN"이라는 새로운 체인을 만듭니다.'
   json-query:
@@ -4381,7 +4588,8 @@ tools:
       tag-verify-json-parse-results-at-runtime: 런타임에 JSON.parse 결과 확인
       tag-use-union-type-instead-of-enum: Enum 대신 Union Type을 사용하세요
       tag-use-types-instead-of-interfaces: 인터페이스 대신 유형을 사용하세요
-      tag-use-string-instead-of-enum-for-single-value-enums: 단일 값 열거형의 경우 열거형 대신 문자열을 사용하세요
+      tag-use-string-instead-of-enum-for-single-value-enums: 단일 값 열거형의 경우 열거형 대신 문자열을
+        사용하세요
       tag-use-readonly-type-members: 읽기 전용 유형 멤버 사용
       tag-make-all-properties-optional: 모든 속성을 선택 사항으로 만들기
   k8s-memo:
@@ -4440,7 +4648,8 @@ tools:
     title: PDF 연결기
     description: PDF를 하나로 연결
     texts:
-      title-drag-and-drop-a-pdf-files-here-or-click-to-select-some-files: PDF 파일을 여기에 끌어다 놓거나 클릭하여 일부 파일을 선택하세요.
+      title-drag-and-drop-a-pdf-files-here-or-click-to-select-some-files: PDF 파일을
+        여기에 끌어다 놓거나 클릭하여 일부 파일을 선택하세요.
       label-output-file: '출력 파일:'
       title-files-order: 파일 순서
       label-range: '범위:'
@@ -4454,7 +4663,8 @@ tools:
     title: PDF 페이지 추출기
     description: PDF에서 페이지 범위 추출
     texts:
-      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       label-output-file: '출력 파일:'
       title-extraction-range: 추출 범위
       label-range: '범위:'
@@ -4468,7 +4678,8 @@ tools:
     title: PDF 텍스트 추출기
     description: PDF에서 텍스트 추출
     texts:
-      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       label-merge-pages: 페이지 병합
       title-output: 산출
       label-file-name: '파일 이름:'
@@ -4479,7 +4690,8 @@ tools:
     title: PGP 키젠
     description: 새로운 무작위 PGP 개인 및 공개 키(암호 문구 포함 또는 미포함)를 생성합니다.
     texts:
-      message-bits-should-be-256-bits-16384-and-be-a-multiple-of-8: 비트는 256 <= 비트 <= 16384이어야 하며 8의 배수여야 합니다.
+      message-bits-should-be-256-bits-16384-and-be-a-multiple-of-8: 비트는 256 <= 비트
+        <= 16384이어야 하며 8의 배수여야 합니다.
       label-format: '체재:'
       placeholder-select-a-key-format: 키 형식을 선택하세요
       label-rsa-bits: 'RSA 비트 :'
@@ -4492,7 +4704,8 @@ tools:
       tag-256-value: = 256 && 값
       tag-your-browser-is-not-in: 귀하의 브라우저가 작동하지 않습니다
       tag-secure-context-https: '"보안 컨텍스트"(HTTPS)'
-      tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully: . 이 도구는 제대로 작동하지 않을 수 있으며, 완벽하게 작동하려면 HTTPS가 필요할 수 있습니다.
+      tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully: . 이 도구는
+        제대로 작동하지 않을 수 있으며, 완벽하게 작동하려면 HTTPS가 필요할 수 있습니다.
       tag-refresh-key-pair: 키 쌍 새로 고침
       tag-public-key: 공개 키
       tag-private-key: 개인 키
@@ -4514,11 +4727,13 @@ tools:
     description: 국제 유니코드 도메인 이름 또는 이메일을 ASCII 퓨니코드 버전으로 변환
     texts:
       title-punycode-to-international: 퓨니코드에서 국제로
-      placeholder-put-your-punycode-domain-name-or-email-to-decode: 디코딩하려면 퓨니코드 도메인 이름이나 이메일을 입력하세요...
+      placeholder-put-your-punycode-domain-name-or-email-to-decode: 디코딩하려면 퓨니코드 도메인
+        이름이나 이메일을 입력하세요...
       label-punycode-domain-name-email: Punycode 도메인 이름/이메일
       label-decoded-domain-name-email: 디코딩된 도메인 이름/이메일
       title-international-to-punycode: 국제에서 퓨니코드로
-      placeholder-put-your-international-domain-or-email-name-here: 여기에 귀하의 국제 도메인이나 이메일 이름을 입력하세요...
+      placeholder-put-your-international-domain-or-email-name-here: 여기에 귀하의 국제 도메인이나
+        이메일 이름을 입력하세요...
       label-domain-name-or-email-to-encode: 인코딩할 도메인 이름 또는 이메일
   quote-converter:
     title: 견적 변환기
@@ -4594,9 +4809,12 @@ tools:
       label-current-time-hh-mm-ss-microsecond: 현재 시간(HH:MM:SS.마이크로초)
       label-no-timestamp-t: 타임스탬프 없음(-t)
       label-timestamp-as-seconds-since-jan-1-1970-tt: 1970년 1월 1일 이후의 초 단위 타임스탬프(-tt)
-      label-delta-micro-second-resolution-between-current-and-previous-line-ttt: 현재 줄과 이전 줄 사이의 델타(마이크로초 해상도)(-ttt)
-      label-current-time-with-date-yyyy-mm-dd-hh-mm-ss-microsecond-tttt: 날짜가 포함된 현재 시간(YYYY-MM-DD HH:MM:SS.마이크로초)(-tttt)
-      label-delta-micro-second-resolution-between-current-and-first-line-ttttt: 현재 라인과 첫 번째 라인 사이의 델타(마이크로초 해상도)(-ttttt)
+      label-delta-micro-second-resolution-between-current-and-previous-line-ttt: 현재
+        줄과 이전 줄 사이의 델타(마이크로초 해상도)(-ttt)
+      label-current-time-with-date-yyyy-mm-dd-hh-mm-ss-microsecond-tttt: 날짜가 포함된 현재
+        시간(YYYY-MM-DD HH:MM:SS.마이크로초)(-tttt)
+      label-delta-micro-second-resolution-between-current-and-first-line-ttttt: 현재
+        라인과 첫 번째 라인 사이의 델타(마이크로초 해상도)(-ttttt)
       label-interface: '인터페이스:'
       placeholder-e-g-eth0: 예를 들어, eth0
       label-source-host: '소스 호스트:'
@@ -4619,25 +4837,22 @@ tools:
       label-custom-expression: '사용자 정의 표현:'
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: '예: src 포트 443 및 dst 10.0.0.1'
       title-generated-tcpdump-command: 생성된 tcpdump 명령
-      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
-        tcpdump는 네트워크 추적/패킷 캡처를 빠르게 수집하기 위해 많은 Linux 배포판에 일반적으로 설치/사용 가능한
-        유틸리티입니다. 간단히 말해, 패킷 캡처를 수집하는 Linux의 Wireshark라고 할 수 있습니다. tcpdump는 다양한
-        스위치를 통해 네트워크 트래픽 디버깅에 필요한 정보를 세부적으로 캡처할 수 있는 매우 다재다능한 도구입니다. 콘솔, 파일 또는
-        Wireshark(PCAP)를 통해 결과를 출력하는 옵션도 제공합니다.
-      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
-        이 유틸리티는 tcpdump에서 제공하는 일반적인 스위치/필터를 사용하여 tcpdump 명령을 생성하는 데 도움을 줍니다. 이
-        유틸리티는 tcpdump가 제공하는 모든 옵션을 제공하지는 않습니다. 전체 옵션 목록은 해당 유틸리티의 매뉴얼에서 확인할 수
-        있습니다.
+      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
+      : tcpdump는 네트워크 추적/패킷 캡처를 빠르게 수집하기 위해 많은 Linux 배포판에 일반적으로 설치/사용 가능한 유틸리티입니다.
+        간단히 말해, 패킷 캡처를 수집하는 Linux의 Wireshark라고 할 수 있습니다. tcpdump는 다양한 스위치를 통해 네트워크
+        트래픽 디버깅에 필요한 정보를 세부적으로 캡처할 수 있는 매우 다재다능한 도구입니다. 콘솔, 파일 또는 Wireshark(PCAP)를
+        통해 결과를 출력하는 옵션도 제공합니다.
+      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
+      : 이 유틸리티는 tcpdump에서 제공하는 일반적인 스위치/필터를 사용하여 tcpdump 명령을 생성하는 데 도움을 줍니다. 이 유틸리티는
+        tcpdump가 제공하는 모든 옵션을 제공하지는 않습니다. 전체 옵션 목록은 해당 유틸리티의 매뉴얼에서 확인할 수 있습니다.
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: '메모:'
-      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
-        '&nbsp;호스트, 소스 호스트, 대상 호스트에 여러 항목을 입력할 수 있습니다. 각 항목은 쉼표, 공백 또는 세미콜론으로
-        구분하세요.'
+      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
+      : '&nbsp;호스트, 소스 호스트, 대상 호스트에 여러 항목을 입력할 수 있습니다. 각 항목은 쉼표, 공백 또는 세미콜론으로 구분하세요.'
       tag-note-2: '참고사항 2:'
-      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
-        '&nbsp;소스(src) 또는 대상(dst) 플래그를 지정하면 tcpdump는 해당 방향으로만 필터링합니다. 전체 TCP
-        핸드셰이크를 캡처하려면 요청 및 응답 흐름을 모두 확인하려면 "src host" 또는 "dst host" 대신 "host"를
-        사용해야 합니다.'
+      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
+      : '&nbsp;소스(src) 또는 대상(dst) 플래그를 지정하면 tcpdump는 해당 방향으로만 필터링합니다. 전체 TCP 핸드셰이크를
+        캡처하려면 요청 및 응답 흐름을 모두 확인하려면 "src host" 또는 "dst host" 대신 "host"를 사용해야 합니다.'
       tag-the-network-interface-to-capture-packets-from: 패킷을 캡처할 네트워크 인터페이스입니다.
       tag-capture-packets-originating-from-this-host: 이 호스트에서 발생한 패킷을 캡처합니다.
       tag-capture-packets-destined-for-this-host: 이 호스트로 전송되는 패킷을 캡처합니다.
@@ -4660,7 +4875,8 @@ tools:
       placeholder-e-g-hello-world: 예를 들어 'Hello world'
       label-enter-text-to-convert-to-unicode-names: 유니코드 이름으로 변환할 텍스트를 입력하세요
       label-unicode-names-from-your-text: 텍스트에서 유니코드 이름
-      placeholder-the-unicode-names-representation-of-your-text-will-be-here: 텍스트의 유니코드 이름 표현은 여기에 있습니다.
+      placeholder-the-unicode-names-representation-of-your-text-will-be-here: 텍스트의
+        유니코드 이름 표현은 여기에 있습니다.
   time-alarm:
     title: 시간 알람
     description: 특정 날짜와 시간에 알람이 울립니다
@@ -4718,9 +4934,8 @@ tools:
       output-label-text-from-your-html: HTML의 텍스트
     title: HTML에서 텍스트 추출
     description: '왼쪽의 입력 폼에 HTML을 붙여넣으면 텍스트가 즉시 표시됩니다. 경우에 따라 CSS 속성(예: user-select:
-      none;)으로 인해 텍스트 선택이 불가능한 HTML 페이지에서 일반 텍스트를 추출해야 할 수 있습니다. 일반적인 해결 방법은
-      DevTools(F12)에서 "복사 → 외부 HTML"을 선택하는 것입니다. 제안된 도구는 복사된 HTML에서 "내부 텍스트"를 직접
-      추출하여 이 과정을 간소화합니다.'
+      none;)으로 인해 텍스트 선택이 불가능한 HTML 페이지에서 일반 텍스트를 추출해야 할 수 있습니다. 일반적인 해결 방법은 DevTools(F12)에서
+      "복사 → 외부 HTML"을 선택하는 것입니다. 제안된 도구는 복사된 HTML에서 "내부 텍스트"를 직접 추출하여 이 과정을 간소화합니다.'
   otp-code-generator-and-validator:
     texts:
       message-secret-should-be-a-base32-string: 비밀은 base32 문자열이어야 합니다.
@@ -4747,14 +4962,18 @@ tools:
     texts:
       title-unicode-characters-to-java-entities: 유니코드 문자에서 Java 엔터티로
       placeholder-e-g-hello-avengers: 예를 들어 '안녕, 어벤져스'
-      label-enter-unicode-characters-to-convert-to-java-entities: Java 엔터티로 변환하려면 유니코드 문자를 입력하세요.
+      label-enter-unicode-characters-to-convert-to-java-entities: Java 엔터티로 변환하려면
+        유니코드 문자를 입력하세요.
       label-java-entities-from-your-text: 텍스트의 Java 엔터티
-      placeholder-the-unicode-representation-of-your-text-will-be-here: 텍스트의 유니코드 표현은 여기에 있습니다.
+      placeholder-the-unicode-representation-of-your-text-will-be-here: 텍스트의 유니코드
+        표현은 여기에 있습니다.
       title-java-entities-to-unicode-characters: Java 엔터티를 유니코드 문자로
       placeholder-input-java-entities: Java 엔터티 입력
-      label-enter-java-entities-to-convert-to-unicode-characters: 유니코드 문자로 변환할 Java 엔터티를 입력하세요.
+      label-enter-java-entities-to-convert-to-unicode-characters: 유니코드 문자로 변환할 Java
+        엔터티를 입력하세요.
       label-text-from-your-java-entities: Java 엔터티의 텍스트
-      placeholder-the-text-representation-of-your-unicode-will-be-here: 유니코드의 텍스트 표현은 여기에 있습니다.
+      placeholder-the-text-representation-of-your-unicode-will-be-here: 유니코드의 텍스트
+        표현은 여기에 있습니다.
       tag-copy-java-entities-to-clipboard: Java 엔터티를 클립보드에 복사
       tag-copy-unicode-to-clipboard: 유니코드를 클립보드에 복사
   wifi-qr-code-generator:
@@ -4787,14 +5006,16 @@ tools:
     texts:
       label-file: 파일
       label-content: 콘텐츠
-      title-drag-and-drop-a-pem-der-jks-or-pkcs-12-file-here-or-click-to-select-a-file: PEM, DER, JKS 또는 PKCS#12 파일을 여기로 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-pem-der-jks-or-pkcs-12-file-here-or-click-to-select-a-file: PEM,
+        DER, JKS 또는 PKCS#12 파일을 여기로 끌어다 놓거나 클릭하여 파일을 선택하세요.
       label-paste-your-certificate-store: '인증서/매장을 붙여넣으세요:'
       placeholder-your-certificate-store: 귀하의 인증서/매장...
       label-passphrase-for-encrypted-certificate-store: '암호문구(암호화된 인증서/저장소용):'
       placeholder-passphrase-for-encrypted-certificate-store: 암호문구(암호화된 인증서/저장소용)...
       label-key-pem: 키(PEM)
       label-certificate-pem: 인증서(PEM)
-      tag-please-provide-an-input-or-enter-the-good-password: 입력 내용을 입력하거나 올바른 비밀번호를 입력하세요!
+      tag-please-provide-an-input-or-enter-the-good-password: 입력 내용을 입력하거나 올바른 비밀번호를
+        입력하세요!
       tag-download-der: 다운로드
       tag-download-pem: PEM 다운로드
       tag-download-key-pem: 다운로드 키(PEM)
@@ -4802,8 +5023,7 @@ tools:
       unable-to-get-private-key: 개인 키를 가져올 수 없습니다.
   sip-auth:
     title: SIP 인증
-    description:
-      이 도구는 SIP 권한 헤더를 확인하는 데 도움이 됩니다. 이 도구는 모든 계산을 브라우저에서 수행하며 네트워크를 통해
+    description: 이 도구는 SIP 권한 헤더를 확인하는 데 도움이 됩니다. 이 도구는 모든 계산을 브라우저에서 수행하며 네트워크를 통해
       민감한 정보를 전송하지 않으므로 자유롭게 사용하세요.
     password: SIP 비밀번호
     password-tips: 비밀번호를 입력하세요...
@@ -4862,52 +5082,51 @@ tools:
     service:
       text:
         3-drive-failures-per-raid-7-set: RAID 7 세트당 3개의 드라이브 오류
-        raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks:
-          RAID 70에는 스트라이프당 최소 5개씩, 총 10개의 디스크가 필요합니다. 각 스트라이프에는 동일한 수의 디스크가
-          포함되어야 합니다.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
-          RAID 70은 여러 개의 RAID 7 어레이를 함께 스트라이핑합니다(RAID 7 + RAID 0). 각 RAID 7 세트는
-          최대 3개의 드라이브 장애를 견딜 수 있습니다.
+        raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
+          70에는 스트라이프당 최소 5개씩, 총 10개의 디스크가 필요합니다. 각 스트라이프에는 동일한 수의 디스크가 포함되어야 합니다.
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: RAID
+          70은 여러 개의 RAID 7 어레이를 함께 스트라이핑합니다(RAID 7 + RAID 0). 각 RAID 7 세트는 최대 3개의
+          드라이브 장애를 견딜 수 있습니다.
         2-drive-failures-per-raid-6-set: RAID 6 세트당 2개의 드라이브 오류
-        raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks:
-          RAID 60에는 최소 8개의 디스크가 필요하며, 스트라이프당 최소 4개가 필요합니다. 스트라이프는 동일한 수의 디스크를
-          포함해야 합니다.
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
-          RAID 60은 여러 개의 RAID 6 어레이를 함께 스트라이핑합니다(RAID 6 + RAID 0). 각 RAID 6 세트는
-          두 개의 드라이브 장애를 견딜 수 있습니다.
+        raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
+          60에는 최소 8개의 디스크가 필요하며, 스트라이프당 최소 4개가 필요합니다. 스트라이프는 동일한 수의 디스크를 포함해야 합니다.
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: RAID
+          60은 여러 개의 RAID 6 어레이를 함께 스트라이핑합니다(RAID 6 + RAID 0). 각 RAID 6 세트는 두 개의 드라이브
+          장애를 견딜 수 있습니다.
         1-drive-failure-per-raid-5-set: RAID 5 세트당 1개의 드라이브 오류
-        raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks:
-          RAID 50에는 스트라이프당 최소 3개씩, 총 6개의 디스크가 필요합니다. 각 스트라이프에는 동일한 수의 디스크가 포함되어야
-          합니다.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
-          RAID 50은 여러 개의 RAID 5 어레이를 함께 스트라이핑합니다(RAID 5 + RAID 0). 각 RAID 5 세트는
-          단일 드라이브 장애를 견딜 수 있습니다.
+        raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
+          50에는 스트라이프당 최소 3개씩, 총 6개의 디스크가 필요합니다. 각 스트라이프에는 동일한 수의 디스크가 포함되어야 합니다.
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: RAID
+          50은 여러 개의 RAID 5 어레이를 함께 스트라이핑합니다(RAID 5 + RAID 0). 각 RAID 5 세트는 단일 드라이브
+          장애를 견딜 수 있습니다.
         1-drive-failure-per-mirrored-set: 미러링된 세트당 1개의 드라이브 오류
-        raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10에는 최소 4개 이상의 짝수 개의 디스크가 필요합니다.
-        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
-          RAID 10은 미러링 스트라이프(RAID 1 + RAID 0)입니다. 각 드라이브 세트는 미러링되고 함께 스트라이프되어 세트
-          내 각 드라이브가 그룹 내에서 내결함성을 갖도록 합니다.
+        raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10에는 최소 4개 이상의 짝수
+          개의 디스크가 필요합니다.
+        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
+        : RAID 10은 미러링 스트라이프(RAID 1 + RAID 0)입니다. 각 드라이브 세트는 미러링되고 함께 스트라이프되어 세트 내
+          각 드라이브가 그룹 내에서 내결함성을 갖도록 합니다.
         3-drive-failures: 3개의 드라이브 오류
         raid-7-requires-at-least-5-disks: RAID 7에는 최소 5개의 디스크가 필요합니다.
-        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
-          RAID 7/RAID TP(비표준)는 RAID 5 및 RAID 6과 유사하지만 세 번째 패리티 블록이 있습니다. 이 구성은 세
-          번째 디스크 장애 발생 시 세 개의 드라이브에 해당하는 저장 공간 감소를 감수해야 합니다.
+        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
+        : RAID 7/RAID TP(비표준)는 RAID 5 및 RAID 6과 유사하지만 세 번째 패리티 블록이 있습니다. 이 구성은 세 번째
+          디스크 장애 발생 시 세 개의 드라이브에 해당하는 저장 공간 감소를 감수해야 합니다.
         2-drive-failures: 2개의 드라이브 오류
         raid-6-requires-at-least-4-disks: RAID 6에는 최소 4개의 디스크가 필요합니다.
-        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
-          RAID 6는 RAID 5와 유사하지만 패리티 블록이 하나 더 있습니다. 따라서 디스크 장애가 하나 더 발생하더라도 두 개의
-          드라이브에 해당하는 저장 공간이 감소합니다.
+        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
+        : RAID 6는 RAID 5와 유사하지만 패리티 블록이 하나 더 있습니다. 따라서 디스크 장애가 하나 더 발생하더라도 두 개의 드라이브에
+          해당하는 저장 공간이 감소합니다.
         1-drive-failure: 1개 드라이브 오류
         raid-5-requires-at-least-3-disks: RAID 5에는 최소 3개의 디스크가 필요합니다.
-        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
-          RAID 5는 패리티를 포함한 블록 레벨 스트라이핑을 사용합니다. 이를 통해 패리티 정보를 위한 드라이브 하나만큼의 저장
-          공간이 감소하여 장애 복구가 가능합니다.
+        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
+        : RAID 5는 패리티를 포함한 블록 레벨 스트라이핑을 사용합니다. 이를 통해 패리티 정보를 위한 드라이브 하나만큼의 저장 공간이
+          감소하여 장애 복구가 가능합니다.
         raid-1-requires-at-least-1-disk: RAID 1에는 최소 1개의 디스크가 필요합니다.
-        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
-          RAID 1은 두 개 이상의 디스크에 데이터를 정확히 복사(미러링)하는 방식으로 구성됩니다. 최소 하나의 드라이브가 작동하는
-          한 어레이는 계속 작동합니다.
+        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
+        : RAID 1은 두 개 이상의 디스크에 데이터를 정확히 복사(미러링)하는 방식으로 구성됩니다. 최소 하나의 드라이브가 작동하는 한
+          어레이는 계속 작동합니다.
         raid-0-requires-at-least-1-disk: RAID 0에는 최소 1개의 디스크가 필요합니다.
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID 0은 중복성이나 장애 허용성 없이 2개 이상의 디스크에 데이터를 균등하게 분할하여 하나의 큰 저장 공간을 만듭니다.
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID
+          0은 중복성이나 장애 허용성 없이 2개 이상의 디스크에 데이터를 균등하게 분할하여 하나의 큰 저장 공간을 만듭니다.
   websocket-tester:
     title: 웹소켓 테스트
     description: WebSocket 연결을 테스트할 수 있습니다.
@@ -4927,7 +5146,8 @@ tools:
     title: QR 코드 디코더
     description: QR 코드 리더
     texts:
-      title-drag-and-drop-a-qr-code-here-or-click-to-select-a-file: QR 코드를 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-qr-code-here-or-click-to-select-a-file: QR 코드를 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       tag-decoded: 디코딩됨
       tag-parsed: 구문 분석됨
     service:
@@ -4955,7 +5175,8 @@ tools:
       label-top-right: 오른쪽 상단
       label-bottom-left: 왼쪽 하단
       label-bottom-right: 오른쪽 하단
-      title-drag-and-drop-images-here-or-click-to-select-some-files: 여기에 이미지를 끌어다 놓거나 클릭하여 일부 파일을 선택하세요.
+      title-drag-and-drop-images-here-or-click-to-select-some-files: 여기에 이미지를 끌어다
+        놓거나 클릭하여 일부 파일을 선택하세요.
       label-watermark-text: '워터마크 텍스트:'
       placeholder-watermark-text: 워터마크 텍스트
       label-font-size: '글꼴 크기:'
@@ -4979,7 +5200,8 @@ tools:
     title: 포모도로 타이머
     description: 기본 포모도로 타이머
     texts:
-      tag-import-pomodoroapp-from-app-pomodoroapp-vue: "'./app/PomodoroApp.vue'에서 PomodoroApp을 가져옵니다."
+      tag-import-pomodoroapp-from-app-pomodoroapp-vue: '''./app/PomodoroApp.vue''에서
+        PomodoroApp을 가져옵니다.'
     SplashScreen:
       text:
         pomodoro-timer-0: 포모도로 타이머
@@ -4988,15 +5210,18 @@ tools:
       text:
         source-wikipedia: '출처: 위키피디아'
         once-the-long-break-is-finished-return-to-step-1: 긴 휴식이 끝나면 1단계로 돌아가세요.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: 1~3단계를 계속 반복하지만, 4번째 작업을 마친 후에는 짧은 휴식 대신 긴 휴식을 취하세요(일반적으로 20~30분).
-        when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: 타이머가 울리면 짧은 휴식을 취하세요(일반적으로 5~10분).
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: 1~3단계를
+          계속 반복하지만, 4번째 작업을 마친 후에는 짧은 휴식 대신 긴 휴식을 취하세요(일반적으로 20~30분).
+        when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: 타이머가 울리면 짧은
+          휴식을 취하세요(일반적으로 5~10분).
         work-on-the-task-during-that-time: 그 시간 동안 작업을 진행하세요.
-        decide-on-a-task-and-set-the-timer-25-minutes-is-common: 작업을 결정하고 타이머를 설정합니다(일반적으로 25분).
+        decide-on-a-task-and-set-the-timer-25-minutes-is-common: 작업을 결정하고 타이머를 설정합니다(일반적으로
+          25분).
         five-steps-of-the-pomodoro-technique: 포모도로 테크닉의 5단계
-        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
-          포모도로 기법은 프란체스코 치릴로가 1980년대에 개발한 시간 관리 방법입니다. 타이머를 사용하여 작업을 보통 25분 길이의
-          간격으로 나누고, 그 사이에 짧은 휴식 시간을 둡니다. 각 간격은 시릴로가 대학생 시절 사용했던 토마토 모양의 주방 타이머에서
-          유래한 이탈리아어로 토마토를 뜻하는 포모도로(pomodoro)에서 유래했습니다.
+        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
+        : 포모도로 기법은 프란체스코 치릴로가 1980년대에 개발한 시간 관리 방법입니다. 타이머를 사용하여 작업을 보통 25분 길이의 간격으로
+          나누고, 그 사이에 짧은 휴식 시간을 둡니다. 각 간격은 시릴로가 대학생 시절 사용했던 토마토 모양의 주방 타이머에서 유래한 이탈리아어로
+          토마토를 뜻하는 포모도로(pomodoro)에서 유래했습니다.
         the-pomodoro-technique: 포모도로 테크닉
     Home:
       text:
@@ -5140,7 +5365,8 @@ tools:
       state-or-province-name: 주 또는 도 이름
   multi-link-downloader:
     title: 멀티 링크 다운로더
-    description: 이 도구는 제공된 링크의 내용을 비동기적으로 하나의 zip 파일로 결합하여 다운로드할 수 있도록 합니다. (인터넷 연결 필요)
+    description: 이 도구는 제공된 링크의 내용을 비동기적으로 하나의 zip 파일로 결합하여 다운로드할 수 있도록 합니다. (인터넷 연결
+      필요)
     texts:
       placeholder-add-links-separated-by-new-lines: 새 줄로 구분된 링크를 추가합니다...
       tag-start-download: 다운로드 시작
@@ -5157,7 +5383,8 @@ tools:
     stop-button-text: 마이크 재생 중지
     service:
       text:
-        microphone-access-denied-the-error-is-also-in-the-console: '마이크 접근이 거부되었습니다(오류는 콘솔에도 있습니다):'
+        microphone-access-denied-the-error-is-also-in-the-console: '마이크 접근이 거부되었습니다(오류는
+          콘솔에도 있습니다):'
   qr-code-generator:
     texts:
       label-text: '텍스트:'
@@ -5167,7 +5394,8 @@ tools:
       label-width: '너비:'
       label-margin: '여유:'
       label-error-resistance: '오류 저항성:'
-      title-drag-and-drop-an-image-here-or-click-to-select-an-image: 여기에 이미지를 끌어다 놓거나 클릭하여 이미지를 선택하세요.
+      title-drag-and-drop-an-image-here-or-click-to-select-an-image: 여기에 이미지를 끌어다
+        놓거나 클릭하여 이미지를 선택하세요.
       label-size: '크기:'
       label-color: '색상:'
       label-type: '유형:'
@@ -5182,8 +5410,10 @@ tools:
     title: IES 조명 지침
     description: 조명공학회(IES)의 현재 조도 권장 사항을 검색해 보세요.
     texts:
-      placeholder-search-ies-recommendation-by-industry-or-application: 산업 또는 응용 분야별 IES 추천 검색
-      tag-individual-applications-will-determine-exact-foot-candle-levels-please-refer-to-the: 개별 응용 프로그램을 통해 정확한 피트 캔들 수준이 결정됩니다.
+      placeholder-search-ies-recommendation-by-industry-or-application: 산업 또는 응용 분야별
+        IES 추천 검색
+      tag-individual-applications-will-determine-exact-foot-candle-levels-please-refer-to-the: 개별
+        응용 프로그램을 통해 정확한 피트 캔들 수준이 결정됩니다.
       tag-ies-lighting-handbook: IES 조명 핸드북
       tag-for-a-more-detailed-evaluation: 더 자세한 평가를 위해
       tag-no-results: 결과가 없습니다
@@ -5203,7 +5433,7 @@ tools:
         section: 부분
         writers-of-the-article: 이 기사를 쓴 사람들은...
         author: 작가
-        when-the-article-is-out-of-date-after: ...이후에 기사가 오래되었을 때
+        when-the-article-is-out-of-date-after: '...이후에 기사가 오래되었을 때'
         expiration-date: 유통기한
         when-the-article-was-last-changed: 이 기사가 마지막으로 바뀐 날짜는...
         modification-date: 수정 날짜
@@ -5266,9 +5496,11 @@ tools:
         song-details: 노래 세부 정보
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "작성자의 트위터 계정 이름(예: {'@'}sharevb)..."
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: '작성자의 트위터 계정 이름(예:
+          {''@''}sharevb)...'
         creator-acc: 생성자 계정
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "사이트의 Twitter 계정 이름(예: {'@'}ittoolsdottech)..."
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: '사이트의 Twitter
+          계정 이름(예: {''@''}ittoolsdottech)...'
         site-account: 사이트 계정
         the-twitter-card-type: 트위터 카드 유형은...
         card-type: 카드 종류
@@ -5342,7 +5574,8 @@ tools:
       title-input: 입력
       label-file: 파일
       label-content: 콘텐츠
-      title-drag-and-drop-eml-file-here-or-click-to-select-a-file: EML 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-eml-file-here-or-click-to-select-a-file: EML 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       label-email-content: 이메일 내용
       placeholder-put-your-eml-email-content-here: 여기에 eml/이메일 내용을 입력하세요...
       title-output: 산출
@@ -5389,13 +5622,16 @@ tools:
     service:
       text:
         unsupported-algorithm: 지원되지 않는 알고리즘
-        md5-does-not-currently-support-non-ascii-characters-0: MD5는 현재 ASCII가 아닌 문자를 지원하지 않습니다.
-        md5-does-not-currently-support-non-ascii-characters: MD5는 현재 ASCII가 아닌 문자를 지원하지 않습니다.
+        md5-does-not-currently-support-non-ascii-characters-0: MD5는 현재 ASCII가 아닌 문자를
+          지원하지 않습니다.
+        md5-does-not-currently-support-non-ascii-characters: MD5는 현재 ASCII가 아닌 문자를
+          지원하지 않습니다.
   ical-merger:
     title: iCal 합병
     description: 여러 iCal 파일을 하나로 병합
     texts:
-      title-drag-and-drop-ical-file-here-or-click-to-select-a-file: iCal 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-ical-file-here-or-click-to-select-a-file: iCal 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       label-title: '제목:'
       placeholder-please-input-merge-calendar-title: 병합 일정 제목을 입력하세요...
       label-description: '설명:'
@@ -5408,7 +5644,7 @@ tools:
     service:
       text:
         no-icals-parsed-successfully: 성공적으로 구문 분석된 ical이 없습니다.
-        failed-to-merge-e-n-nwith-input-input: "병합 실패: {0}\\n\\n입력: {1}"
+        failed-to-merge-e-n-nwith-input-input: '병합 실패: {0}\n\n입력: {1}'
     text:
       regenerate-uids: UID 재생성
   integer-base-converter:
@@ -5582,15 +5818,20 @@ tools:
       tag-digits-0-no-grouping: 숫자(0 = 그룹화 없음)
       tag-group-of-digits-0-no-rows: 숫자 그룹(0 = 행 없음)
       tag-instructions: 지침
-      tag-define-you-struct-definition-in-json-format-keys-struct-member-names-value-type: JSON 형식으로 구조체 정의를 정의합니다. 키 = 구조체 멤버 이름; 값 = 유형
-      tag-can-prefix-integer-with-0x-or-0b-to-display-as-hex-and-binary: 정수 앞에 0x 또는 0b를 붙여 16진수와 2진수로 표시할 수 있습니다.
+      tag-define-you-struct-definition-in-json-format-keys-struct-member-names-value-type: JSON
+        형식으로 구조체 정의를 정의합니다. 키 = 구조체 멤버 이름; 값 = 유형
+      tag-can-prefix-integer-with-0x-or-0b-to-display-as-hex-and-binary: 정수 앞에 0x
+        또는 0b를 붙여 16진수와 2진수로 표시할 수 있습니다.
     service:
       text:
         unexpected-key-obj-key: 예상치 못한 '{0}'='{1}'
-        unexpected-array-size-key-value-expected-coderoption-size-elements: 예상치 못한 배열 크기 '{0}'='{1}' 예상 요소 수 {2}개
+        unexpected-array-size-key-value-expected-coderoption-size-elements: 예상치 못한
+          배열 크기 '{0}'='{1}' 예상 요소 수 {2}개
         unexpected-non-array-key-value: 예상치 못한 비배열 '{0}'='{1}'
-        bad-buffer-length-reading-key-obj-key-at-offset-offset: 오프셋 {2}에서 잘못된 버퍼 길이 읽기 {0}({1})
-        cannot-decode-a-struct-with-array-key-key-must-be-expressed-as-string-with-fixed-length: 배열(키={0})을 사용하여 구조체를 디코딩할 수 없습니다. 고정 길이의 문자열로 표현해야 합니다.
+        bad-buffer-length-reading-key-obj-key-at-offset-offset: 오프셋 {2}에서 잘못된 버퍼 길이
+          읽기 {0}({1})
+        cannot-decode-a-struct-with-array-key-key-must-be-expressed-as-string-with-fixed-length: 배열(키={0})을
+          사용하여 구조체를 디코딩할 수 없습니다. 고정 길이의 문자열로 표현해야 합니다.
         unsupported-unsized-array-typename: '지원되지 않는 크기가 지정되지 않은 배열: {0}'
   floating-point-number-converter:
     texts:
@@ -5609,17 +5850,21 @@ tools:
       label-error-due-to-conversion: 변환으로 인한 오류
       placeholder-error-due-to-conversion: 변환으로 인한 오류
       title-binary-to-decimal: 2진수에서 10진수로
-      placeholder-put-your-binary-number-here-ex-01000010001010011010111000010100: '여기에 이진수를 입력하세요(예: 01000010001010011010111000010100)'
+      placeholder-put-your-binary-number-here-ex-01000010001010011010111000010100: '여기에
+        이진수를 입력하세요(예: 01000010001010011010111000010100)'
       label-decimal-precision: 십진수 정밀도
-      placeholder-choose-the-decimal-precision-digits-after-the-decimal-point: 소수점 이하의 자릿수를 선택합니다.
+      placeholder-choose-the-decimal-precision-digits-after-the-decimal-point: 소수점
+        이하의 자릿수를 선택합니다.
       label-show-trailing-zeros: 후행 0 표시
       placeholder-decimal-number: 10진수
     model:
       text:
-        invalid-length-supply-a-binary-string-with-length-32-or-64: 길이가 잘못되었습니다. 길이가 32 또는 64인 이진 문자열을 입력하세요.
+        invalid-length-supply-a-binary-string-with-length-32-or-64: 길이가 잘못되었습니다. 길이가
+          32 또는 64인 이진 문자열을 입력하세요.
         decimal-precision-must-be-a-positive-whole-number: 소수점 정밀도는 양의 정수여야 합니다.
         not-a-binary-number: 이진수가 아닙니다.
-        unsupported-bit-count-only-32-and-64-are-allowed: 지원되지 않는 비트 수입니다. 32와 64만 허용됩니다.
+        unsupported-bit-count-only-32-and-64-are-allowed: 지원되지 않는 비트 수입니다. 32와 64만
+          허용됩니다.
   yaml-viewer:
     texts:
       label-sort-keys: '정렬 키 :'
@@ -5641,7 +5886,8 @@ tools:
   emoji-card:
     text:
       emoji-emojiinfo-value-emoji-copied-to-clipboard: 이모티콘 {0}이 클립보드에 복사되었습니다.
-      code-points-completecodepoints-value-copied-to-clipboard: 코드 포인트 '{0}'이 클립보드에 복사되었습니다.
+      code-points-completecodepoints-value-copied-to-clipboard: 코드 포인트 '{0}'이 클립보드에
+        복사되었습니다.
       unicode-emojiinfo-value-unicode-copied-to-clipboard: 유니코드 '{0}'이 클립보드에 복사되었습니다.
       name-emojiinfo-value-title-copied-to-clipboard: 이름 '{0}'이 클립보드에 복사되었습니다.
       click-to-copy-emojiinfo-emoji: '{0}을 복사하려면 클릭하세요'
@@ -5698,9 +5944,12 @@ tools:
       label-parsing-error: 구문 분석 오류
       label-file: 파일
       label-content: 콘텐츠
-      title-drag-and-drop-a-certificate-file-here-or-click-to-select-a-certificate-file: 인증서 파일을 여기에 끌어다 놓거나 클릭하여 인증서 파일을 선택하세요.
-      label-paste-your-public-key-private-key-signature-fingerprint-certificate: '공개 키 / 개인 키 / 서명 / 지문 / 인증서를 붙여넣으세요:'
-      placeholder-your-public-key-private-key-signature-fingerprint-certificate: 귀하의 공개 키 / 개인 키 / 서명 / 지문 / 인증서...
+      title-drag-and-drop-a-certificate-file-here-or-click-to-select-a-certificate-file: 인증서
+        파일을 여기에 끌어다 놓거나 클릭하여 인증서 파일을 선택하세요.
+      label-paste-your-public-key-private-key-signature-fingerprint-certificate: '공개
+        키 / 개인 키 / 서명 / 지문 / 인증서를 붙여넣으세요:'
+      placeholder-your-public-key-private-key-signature-fingerprint-certificate: 귀하의
+        공개 키 / 개인 키 / 서명 / 지문 / 인증서...
       label-passphrase-for-encrypted-keys: '암호문구(암호화된 키의 경우):'
       placeholder-passphrase-for-encrypted-keys: 암호문구(암호화된 키용)...
       placeholder-not-set: 설정되지 않음
@@ -5763,7 +6012,8 @@ tools:
       label-no: 아니요
       label-always: 언제나
       label-on-failure: 실패 시
-      label-paste-your-docker-compose-file-content-here: Docker Compose 파일 내용을 여기에 붙여넣으세요.
+      label-paste-your-docker-compose-file-content-here: Docker Compose 파일 내용을 여기에
+        붙여넣으세요.
       title-options: 옵션
       label-description: '설명:'
       label-after-targets: '타겟 이후:'
@@ -5790,8 +6040,8 @@ tools:
       label-typical-storage-location: '일반적인 보관 위치:'
   json-flatten-nestify:
     title: JSON 플래터너/플래터너 해제
-    description: 'JSON 콘텐츠를 평면화하거나 중첩/평평화 해제합니다(예: {''{''}a:{''{''}b:1{''}''}{''}''} 대
-      {''{''}"a.b":1{''}''}'
+    description: 'JSON 콘텐츠를 평면화하거나 중첩/평평화 해제합니다(예: {''{''}a:{''{''}b:1{''}''}{''}''}
+      대 {''{''}"a.b":1{''}''}'
     texts:
       message-provided-json-is-not-valid: 제공된 JSON이 유효하지 않습니다.
       label-mode: 방법
@@ -5826,7 +6076,8 @@ tools:
     title: Swagger UI 테스터
     description: Swagger 매니페스트 테스트
     texts:
-      placeholder-paste-your-swagger-openapi-json-manifest-here: 여기에 Swagger/OpenAPI JSON 매니페스트를 붙여넣으세요.
+      placeholder-paste-your-swagger-openapi-json-manifest-here: 여기에 Swagger/OpenAPI
+        JSON 매니페스트를 붙여넣으세요.
       title-swagger-ui: 스웨거 UI
       tag-swagger-manifest: '스웨거 매니페스트:'
       tag-render-swagger-ui: Swagger UI 렌더링
@@ -5854,7 +6105,8 @@ tools:
   json-to-data:
     texts:
       title-json-converter: JSON 변환기
-      title-drag-and-drop-a-json-file-here-or-click-to-select-a-file: JSON 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-json-file-here-or-click-to-select-a-file: JSON 파일을 여기에
+        끌어다 놓거나 클릭하여 파일을 선택하세요.
       label-paste-your-json-content: JSON 콘텐츠를 붙여넣으세요
       placeholder-your-json: 귀하의 JSON
     title: JSON을 데이터로
@@ -5881,7 +6133,8 @@ tools:
       title-input: 입력
       label-file: 파일
       label-content: 콘텐츠
-      title-drag-and-drop-txt-file-here-or-click-to-select-a-file: TXT 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-txt-file-here-or-click-to-select-a-file: TXT 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       label-file-content: 파일 내용
       placeholder-put-your-text-content-here: 여기에 텍스트 내용을 입력하세요...
       title-possible-encodings: 가능한 인코딩
@@ -5907,7 +6160,8 @@ tools:
       label-show-listed-only: 나열된 항목만 표시
       label-resolved-ip: '해결된 IP:'
       tag-check-all: 모두 확인
-      tag-want-to-understand-why-an-ip-might-be-blacklisted-check-out: IP가 블랙리스트에 등록되는 이유를 알고 싶으신가요? 확인해 보세요.
+      tag-want-to-understand-why-an-ip-might-be-blacklisted-check-out: IP가 블랙리스트에
+        등록되는 이유를 알고 싶으신가요? 확인해 보세요.
       tag-this-dnsbl-explanation-and-removal-guide: 이 DNSBL 설명 및 제거 가이드
       tag-: .
     externalAccess: 이 도구는 제공된 IP 주소를 확인하고 https://cloudflare-dns.com/dns-query를 통해
@@ -6006,7 +6260,8 @@ tools:
       placeholder-enter-font-url: 글꼴 URL을 입력하세요
       placeholder-paste-font-face-css-here: 여기에 {'@'}font-face CSS를 붙여넣으세요
       placeholder-font-family-name-from-css: CSS의 글꼴 패밀리 이름
-      placeholder-enter-css-url-e-g-https-example-com-fonts-css: 'CSS URL을 입력하세요(예: https://example.com/fonts.css)'
+      placeholder-enter-css-url-e-g-https-example-com-fonts-css: 'CSS URL을 입력하세요(예:
+        https://example.com/fonts.css)'
       placeholder-font-family-name-from-imported-css: 가져온 CSS에서 글꼴 패밀리 이름
       tag-upload-font-file: 글꼴 파일 업로드
       label-normal: 정상
@@ -6029,6 +6284,11 @@ tools:
       label-fallback: '폴백:'
       placeholder-fallback-font: 폴백 글꼴
       tag-defineprops: 정의소품
+      tab-by-font-url: By Font URL
+      tab-by-css-url: By CSS URL
+      tab-by-inline-css: By Inline CSS
+      tab-by-font-file: By Font File
+      tab-by-font-name: By Font Name
   gpt-token-encoder:
     title: GPT 토큰 인코더/디코더
     description: 텍스트를 GPT 토큰으로 인코딩하고 GPT 토큰을 다시 텍스트로 디코딩합니다.
@@ -6046,7 +6306,8 @@ tools:
     title: 이미지 컬러 인버터
     description: 이미지의 색상을 반전시켜 부정적인 효과를 만들어 보세요. 이미지를 업로드하면 색상이 반전된 버전을 바로 받아볼 수 있습니다.
     texts:
-      title-drag-and-drop-an-image-here-or-click-to-select: 여기에 이미지를 끌어다 놓거나 클릭하여 선택하세요
+      title-drag-and-drop-an-image-here-or-click-to-select: 여기에 이미지를 끌어다 놓거나 클릭하여
+        선택하세요
       label-original-image: 원본 이미지
       label-inverted-image: 반전된 이미지
       tag-download-png: PNG 다운로드
@@ -6231,46 +6492,55 @@ tools:
       label-failure-probability: '실패 확률:'
       tag-key-terms-explained: 🧠 주요 용어 설명
       tag-raid-level: RAID 레벨
-      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
-        RAID(Redundant Array of Independent Disks)는 여러 개의 물리적 드라이브를 하나의 논리적 장치로
-        결합하여 성능이나 중복성 또는 둘 다를 개선하는 방법입니다.
+      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
+      : RAID(Redundant Array of Independent Disks)는 여러 개의 물리적 드라이브를 하나의 논리적 장치로 결합하여
+        성능이나 중복성 또는 둘 다를 개선하는 방법입니다.
       tag-description: 설명
       tag-raid-0: RAID 0
-      tag-striping-only-no-redundancy-fast-but-risky-if-one-drive-fails-all-data-is-lost: 스트라이핑만 가능합니다. 중복성은 없습니다. 빠르지만 위험합니다. 드라이브 하나에 장애가 발생하면 모든 데이터가 손실됩니다.
+      tag-striping-only-no-redundancy-fast-but-risky-if-one-drive-fails-all-data-is-lost: 스트라이핑만
+        가능합니다. 중복성은 없습니다. 빠르지만 위험합니다. 드라이브 하나에 장애가 발생하면 모든 데이터가 손실됩니다.
       tag-raid-1: 레이드 1
-      tag-mirroring-data-is-duplicated-across-drives-high-redundancy-low-capacity-efficiency: 미러링. 데이터가 여러 드라이브에 복제됩니다. 중복성은 높지만 용량 효율성은 낮습니다.
+      tag-mirroring-data-is-duplicated-across-drives-high-redundancy-low-capacity-efficiency: 미러링.
+        데이터가 여러 드라이브에 복제됩니다. 중복성은 높지만 용량 효율성은 낮습니다.
       tag-raid-5: 레이드 5
-      tag-striping-with-parity-can-tolerate-one-drive-failure-balanced-speed-and-redundancy: 패리티를 사용한 스트라이핑. 드라이브 하나 장애 허용. 속도와 중복성 균형.
+      tag-striping-with-parity-can-tolerate-one-drive-failure-balanced-speed-and-redundancy: 패리티를
+        사용한 스트라이핑. 드라이브 하나 장애 허용. 속도와 중복성 균형.
       tag-raid-6: 레이드 6
-      tag-double-parity-can-survive-two-drive-failures: 이중 패리티. 드라이브 장애가 두 번 발생해도 복구 가능.
+      tag-double-parity-can-survive-two-drive-failures: 이중 패리티. 드라이브 장애가 두 번 발생해도
+        복구 가능.
       tag-raid-10: 레이드 10
-      tag-mirrored-pairs-striped-together-high-performance-and-redundancy: 미러링된 쌍을 스트라이프로 연결하여 높은 성능과 중복성을 제공합니다.
+      tag-mirrored-pairs-striped-together-high-performance-and-redundancy: 미러링된 쌍을
+        스트라이프로 연결하여 높은 성능과 중복성을 제공합니다.
       tag-raid-z1-z2-z3: RAID-Z1/Z2/Z3
-      tag-zfs-based-raid-levels-with-single-double-or-triple-parity-designed-for-data-integrity: 단일, 이중 또는 삼중 패리티를 지원하는 ZFS 기반 RAID 레벨입니다. 데이터 무결성을 위해 설계되었습니다.
+      tag-zfs-based-raid-levels-with-single-double-or-triple-parity-designed-for-data-integrity: 단일,
+        이중 또는 삼중 패리티를 지원하는 ZFS 기반 RAID 레벨입니다. 데이터 무결성을 위해 설계되었습니다.
       tag-raid-50: 레이드 50
-      tag-stripe-of-raid-5-arrays-combines-performance-of-raid-0-with-redundancy-of-raid-5: RAID 5 어레이의 스트라이프. RAID 0의 성능과 RAID 5의 중복성을 결합합니다.
+      tag-stripe-of-raid-5-arrays-combines-performance-of-raid-0-with-redundancy-of-raid-5: RAID
+        5 어레이의 스트라이프. RAID 0의 성능과 RAID 5의 중복성을 결합합니다.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF(평균 고장 간격)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: 드라이브가 고장 나기 전까지 작동할 것으로 예상되는 평균 시간(시간)입니다. MTBF가 높을수록 하드웨어의 안정성이 높아집니다.
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: 드라이브가
+        고장 나기 전까지 작동할 것으로 예상되는 평균 시간(시간)입니다. MTBF가 높을수록 하드웨어의 안정성이 높아집니다.
       tag-rebuild-time: 🔁 재건 시간
-      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
-        장애 발생 후 교체 드라이브의 데이터를 재구성하는 데 걸리는 시간입니다. 재구성 시간이 길어질수록 복구 중 두 번째 장애 발생
-        위험이 커집니다.
+      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
+      : 장애 발생 후 교체 드라이브의 데이터를 재구성하는 데 걸리는 시간입니다. 재구성 시간이 길어질수록 복구 중 두 번째 장애 발생 위험이
+        커집니다.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL(평균 데이터 손실 시간)
-      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
-        RAID 시스템이 데이터 손실이 발생하기 전까지 작동할 수 있는 시간을 통계적으로 추정한 값입니다. 드라이브 고장, 재구축 시간,
-        RAID 중복성을 고려합니다. MTTDL이 높을수록 시스템이 더 안전합니다.
+      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
+      : RAID 시스템이 데이터 손실이 발생하기 전까지 작동할 수 있는 시간을 통계적으로 추정한 값입니다. 드라이브 고장, 재구축 시간, RAID
+        중복성을 고려합니다. MTTDL이 높을수록 시스템이 더 안전합니다.
       tag-bit-error-rate-ber: 🧮 비트 오류율(BER)
-      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
-        '하드웨어 제한으로 인해 디스크에서 읽은 비트가 정확하지 않을 가능성이 있습니다. BER이 매우 낮더라도(예: 1조 분의 1)
-        특히 대용량 드라이브의 경우 재구축 과정에서 문제가 발생할 수 있습니다.'
+      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
+      : '하드웨어 제한으로 인해 디스크에서 읽은 비트가 정확하지 않을 가능성이 있습니다. BER이 매우 낮더라도(예: 1조 분의 1) 특히
+        대용량 드라이브의 경우 재구축 과정에서 문제가 발생할 수 있습니다.'
       tag-unrecoverable-read-error-ure: 🧠 복구할 수 없는 읽기 오류(URE)
-      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery: 드라이브가 재구축 중 섹터를 읽지 못할 때 발생합니다. BER은 URE 위험을 증가시켜 RAID 복구를 손상시킬 수 있습니다.
+      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
+      : 드라이브가 재구축 중 섹터를 읽지 못할 때 발생합니다. BER은 URE 위험을 증가시켜 RAID 복구를 손상시킬 수 있습니다.
       tag-drive-capacity-tb: 📦 드라이브 용량(TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: 드라이브당 총 저장 용량입니다. 드라이브 용량이 클수록 재구축 시간이 더 오래 걸리고 BER 관련 오류에 더 취약합니다.
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: 드라이브당
+        총 저장 용량입니다. 드라이브 용량이 클수록 재구축 시간이 더 오래 걸리고 BER 관련 오류에 더 취약합니다.
       tag-failure-probability: 📈 실패 확률
-      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
-        'RAID 시스템이 특정 기간(예: 5년) 동안 데이터 손실을 경험할 확률입니다. MTTDL 및 지수적 실패 모델을 사용하여
-        계산됩니다.'
+      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
+      : 'RAID 시스템이 특정 기간(예: 5년) 동안 데이터 손실을 경험할 확률입니다. MTTDL 및 지수적 실패 모델을 사용하여 계산됩니다.'
   pack-files-for-ai:
     title: AI용 팩 파일
     description: 코드 소스 파일 디렉토리를 단일 AI 구문 분석 가능 형식(repomix 등)으로 압축합니다.
@@ -6287,7 +6557,8 @@ tools:
       label-markdown: 가격 인하
       label-output-preview: '출력 미리보기:'
       tag-this-section-contains-a-summary-of-this-file: 이 섹션에는 이 파일의 요약이 포함되어 있습니다.
-      tag-click-or-drag-code-source-files-or-folder-to-this-area-to-add-to-package: 패키지에 추가하려면 이 영역으로 코드 소스 파일이나 폴더를 클릭하거나 끌어다 놓으세요.
+      tag-click-or-drag-code-source-files-or-folder-to-this-area-to-add-to-package: 패키지에
+        추가하려면 이 영역으로 코드 소스 파일이나 폴더를 클릭하거나 끌어다 놓으세요.
       tag-show-uploaded-files: 업로드된 파일 표시
       tag-include-file-summary: 파일 요약 포함
       tag-include-directory-structure: 디렉토리 구조 포함
@@ -6321,7 +6592,7 @@ tools:
       tab-notation-to-bands: 표기법 → 밴드
       tab-number-to-notation: 숫자 → 표기법
       tab-notation-to-number: 표기법 → 숫자
-      error-enter-exactly-bands: '유효한 색상 밴드 {count}개를 입력하세요 ({colors}).'
+      error-enter-exactly-bands: 유효한 색상 밴드 {count}개를 입력하세요 ({colors}).
       error-conversion-failed: '변환 실패. 밴드 순서와 값을 확인하세요: {error}'
       error-invalid-notation-format: '잘못된 표기법 형식: {error}'
       error-valid-positive-number: 유효한 양수를 입력하세요.
@@ -6389,14 +6660,14 @@ tools:
     texts:
       title-sql-generator: SQL 생성기
       label-parameterized-sql-statement: '매개변수화된 SQL 문:'
-      placeholder-e-g-select-from-users-where-name-name-and-age-and-type-type:
-        "예: SELECT * FROM users WHERE name = :name AND age > ? AND type =
-        {'@'}type"
+      placeholder-e-g-select-from-users-where-name-name-and-age-and-type-type: '예:
+        SELECT * FROM users WHERE name = :name AND age > ? AND type = {''@''}type'
       title-parameters: 매개변수
       placeholder-name-e-g-name-or-type: '이름(예: 이름 또는 유형)'
       placeholder-value-e-g-alice-or-42-or-1-3: '값(예: Alice 또는 42 또는 1.3)'
       label-generated-sql: '생성된 SQL:'
-      tag-for-positional-parameters-leave-name-empty-for-named-parameters-enter-name-without-or-prefix: 위치 매개변수의 경우 이름을 비워 두세요. 명명된 매개변수의 경우 '?' 또는 '{'@'}' 접두사 없이 이름을 입력하세요.
+      tag-for-positional-parameters-leave-name-empty-for-named-parameters-enter-name-without-or-prefix: 위치
+        매개변수의 경우 이름을 비워 두세요. 명명된 매개변수의 경우 '?' 또는 '{'@'}' 접두사 없이 이름을 입력하세요.
       tag-generate-sql: SQL 생성
   toml-linter:
     title: TOML 린터
@@ -6474,7 +6745,8 @@ tools:
       placeholder-to: 에게
       placeholder-translation-will-appear-here: 번역은 여기에 표시됩니다...
       tag-translate: 번역하다
-    externalAccess: 이 도구는 https://huggingface.co/ 에서 번역 모델(Xenova/opus-mt-[원본]-[대상])을 다운로드합니다.
+    externalAccess: 이 도구는 https://huggingface.co/ 에서 번역 모델(Xenova/opus-mt-[원본]-[대상])을
+      다운로드합니다.
   unicode-to-gsm7:
     title: 유니코드에서 GSM-7로
     description: 유니코드 텍스트를 SMS GSM-7 인코딩으로 인코딩하고 관련 SMS 전송 정보를 표시합니다.
@@ -6617,9 +6889,9 @@ tools:
       tag-mirrors-stripes: 거울/줄무늬
       tag-reset: 다시 놓기
       tag-see-zpool-openzfs-cheatsheet: Zpool/OpenZFS 치트시트 보기
-      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
-        섹션 제목을 클릭하면 확장/축소되어 계산된 데이터를 볼 수 있습니다. 표 셀 위에 마우스를 올리면 관련 데이터가 아래 '계산 값'
-        섹션에 로드됩니다. 표 셀을 클릭하면 해당 값을 고정하거나 고정 해제할 수 있습니다.
+      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
+      : 섹션 제목을 클릭하면 확장/축소되어 계산된 데이터를 볼 수 있습니다. 표 셀 위에 마우스를 올리면 관련 데이터가 아래 '계산 값' 섹션에
+        로드됩니다. 표 셀을 클릭하면 해당 값을 고정하거나 고정 해제할 수 있습니다.
       tag-common-layouts: 일반적인 레이아웃
       tag-raw-stripes-mirrors: 원시, 줄무늬, 거울
       tag-calculation-values: 계산 값
@@ -6903,9 +7175,8 @@ tools:
       tag-description: 설명
       tag-bit-level-interpretation: 비트 수준 해석
       label-tlv-hex-input: TLV 16진수 입력
-      placeholder-paste-emv-tlv-hex-string-e-g-6f1a8407a0000000031010a50f500b5649534120435245444954:
-        'EMV TLV 16진수 문자열을 붙여넣습니다(예:
-        6F1A8407A0000000031010A50F500B5649534120435245444954)'
+      placeholder-paste-emv-tlv-hex-string-e-g-6f1a8407a0000000031010a50f500b5649534120435245444954: 'EMV
+        TLV 16진수 문자열을 붙여넣습니다(예: 6F1A8407A0000000031010A50F500B5649534120435245444954)'
       label-kernel-type: '커널 유형:'
       title-decoded-emv-tags: 디코딩된 EMV 태그
       tag-parse-tlv: TLV 구문 분석
@@ -6927,13 +7198,15 @@ tools:
       label-signature: 서명
       label-arguments: 인수
       title-structured-output-json: 구조화된 출력 JSON
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}"to":"0x...","data":"0x..." 또는 원시 0x....'
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}"to":"0x...","data":"0x..."
+        또는 원시 0x....'
   file-splitter:
     title: 파일 분할기
     description: 노드 그룹 또는 줄 그룹별로 JSON, XML 또는 텍스트 파일을 분할합니다.
     texts:
       placeholder-strategy-value: 전략적 가치...
-      title-drag-and-drop-a-txt-json-or-xml-file-here-or-click-to-select-a-file: TXT, JSON 또는 XML 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-txt-json-or-xml-file-here-or-click-to-select-a-file: TXT,
+        JSON 또는 XML 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
       tag-split-by-lines: 줄별로 분할
       tag-split-by-nodes: 노드별로 분할
       tag-max-chunk-size-kb: '최대 청크 크기(KB):'
@@ -6950,8 +7223,8 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: '템플릿 선택(예: node, python, vue)'
       title-gitignore: .gitignore
       tag-generate: 생성하다
-    externalAccess: 이 도구는 GitHub API를 사용하여 https://github.com/github/gitignore에서
-      .gitignore 파일을 다운로드합니다.
+    externalAccess: 이 도구는 GitHub API를 사용하여 https://github.com/github/gitignore에서 .gitignore
+      파일을 다운로드합니다.
   i-and-l-checker:
     title: I 및 L 체커
     description: 1, l, I, 0, O를 강조하여 비밀번호 또는 텍스트를 확인하세요.
@@ -6973,8 +7246,10 @@ tools:
     title: IPv4 서브넷 리스터
     description: 주어진 CIDR의 모든 가능한 서브넷을 나열합니다.
     texts:
-      message-we-cannot-parse-this-address-check-the-format: 이 주소를 구문 분석할 수 없습니다. 형식을 확인하세요.
-      label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask: 마스크(CIDR/IP 범위/와일드카드 IP/IP 마스크)가 있거나 없는 IPv4 주소
+      message-we-cannot-parse-this-address-check-the-format: 이 주소를 구문 분석할 수 없습니다.
+        형식을 확인하세요.
+      label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask: 마스크(CIDR/IP
+        범위/와일드카드 IP/IP 마스크)가 있거나 없는 IPv4 주소
       placeholder-ipv4-or-cidr: IPv4 또는 CIDR...
       tag-network: 회로망
       tag-first-ip: 첫 번째 IP
@@ -7023,7 +7298,8 @@ tools:
       tag-links: 모래밭
       tag-inline-code: 인라인 코드
       tag-generate: 생성하다
-      tag-print-ie-use-a-pdf-printer-to-get-a-pdf-file: 인쇄(즉, PDF 프린터를 사용하여 PDF 파일을 얻습니다)
+      tag-print-ie-use-a-pdf-printer-to-get-a-pdf-file: 인쇄(즉, PDF 프린터를 사용하여 PDF 파일을
+        얻습니다)
   msgpack-to-json:
     title: JSON으로 메시지 팩
     description: MessagePack 파일을 JSON으로 변환
@@ -7031,7 +7307,8 @@ tools:
       title-input-message-pack-file-or-content: 입력 메시지 팩 파일 또는 콘텐츠
       label-file: 파일
       label-hex-content: '16진수 콘텐츠:'
-      title-drag-and-drop-msgpack-file-here-or-click-to-select-a-file: 여기에 MsgPack 파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-msgpack-file-here-or-click-to-select-a-file: 여기에 MsgPack
+        파일을 끌어다 놓거나 클릭하여 파일을 선택하세요.
       title-json-content: JSON 콘텐츠
   pdf-compressor:
     title: PDF 압축기
@@ -7049,7 +7326,8 @@ tools:
       placeholder-select-compression-quality: 압축 품질 선택
       label-compatibility-level: '호환성 수준:'
       placeholder-select-compatibility-level: 호환성 수준을 선택하세요
-      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다 놓거나 클릭하여 파일을 선택하세요.
+      title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: PDF 파일을 여기에 끌어다
+        놓거나 클릭하여 파일을 선택하세요.
       title-logs: 로그
       label-ghostscript: 고스트스크립트
   serial-console:
@@ -7108,9 +7386,9 @@ tools:
       tag-open-url: URL 열기
       cors-anywhere-configuration: CORS Anywhere 구성
       self-hosted-cors-anywhere: 자체 호스팅 CORS Anywhere
-      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a:
-        이 도구를 사용하려면 CORS 정책을 우회하기 위해 CORS Anywhere 인스턴스가 필요합니다. CORS Anywhere
-        인스턴스를 사용할 수 있습니다.
+      this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a: 이
+        도구를 사용하려면 CORS 정책을 우회하기 위해 CORS Anywhere 인스턴스가 필요합니다. CORS Anywhere 인스턴스를
+        사용할 수 있습니다.
       put-your-cors-anywhere-instance-url: CORS Anywhere 인스턴스 URL을 입력하세요...
       cors-anywhere-instance-url: 'CORS Anywhere 인스턴스 URL:'
       expanded-url: 확장된 URL
@@ -7153,7 +7431,8 @@ tools:
     description: IPv4/6 ARPA 주소 또는 PTR 레코드 디코딩
     texts:
       label-arpa-address: 'ARPA 주소:'
-      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: '예: 10.1.168.192.in-addr.arpa 또는 xxxx.ip6.arpa.'
+      placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: '예: 10.1.168.192.in-addr.arpa
+        또는 xxxx.ip6.arpa.'
   database-builder:
     title: 데이터베이스 생성 빌더
     description: 다양한 데이터베이스에 대한 SQL CREATE DATABASE 쿼리를 작성합니다.
@@ -7213,16 +7492,19 @@ tools:
       tag-generate-sql: SQL 생성
   gitattributes-generator:
     title: Gitattributes 생성기
-    description: https://github.com/alexkaratarakis/gitattributes의 공통 설정에서
-      .gitattributes 파일을 생성합니다.
+    description: https://github.com/alexkaratarakis/gitattributes의 공통 설정에서 .gitattributes
+      파일을 생성합니다.
     texts:
       label-gitattributes-templates: 'Gitattributes 템플릿:'
       placeholder-select-templates: 템플릿을 선택하세요
       title-preview: 시사
       tag-fetch-generate: 가져오기 및 생성
-    externalAccess: 이 도구는 GitHub API를 사용하여
-      https://github.com/gitattributes/gitattributes에서 .gitattributes 파일을
-      다운로드합니다.
+      tab-powershell: PowerShell
+      tab-wget: Wget
+      tab-windows-cmd: Windows CMD
+      tab-curl: Curl
+    externalAccess: 이 도구는 GitHub API를 사용하여 https://github.com/gitattributes/gitattributes에서
+      .gitattributes 파일을 다운로드합니다.
   html-to-xhtml:
     title: HTML을 XHTML로 변환
     description: HTML을 엄격한 XHTML(XML 파싱 가능, 자체 닫힘 태그 등)로 변환합니다.
@@ -7259,7 +7541,8 @@ tools:
       placeholder-enter-a-word: 단어를 입력하세요…
       placeholder-select-a-language: 언어를 선택하세요
       tag-search-on-wiktionary: 위키낱말사전에서 검색
-      tag-enter-a-word-and-select-a-language-to-load-wiktionary: 단어를 입력하고 언어를 선택하여 위키낱말사전을 불러오세요.
+      tag-enter-a-word-and-select-a-language-to-load-wiktionary: 단어를 입력하고 언어를 선택하여
+        위키낱말사전을 불러오세요.
     externalAccess: 이 도구는 iframe 내에서 https://www.wiktionary.org/ (언어별)에서 단어 정의를 검색합니다.
   ptr-dns-generator:
     title: PTR DNS 생성기
@@ -7289,7 +7572,8 @@ tools:
     texts:
       text-degrees: 도(°)
       text-value: 값
-      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: 'x에 대한 식으로 방정식을 입력하세요 (예: sin(x) + cos(2*x))'
+      placeholder-enter-equation-in-terms-of-x-e-g-sin-x-cos-2-x: 'x에 대한 식으로 방정식을
+        입력하세요 (예: sin(x) + cos(2*x))'
       label-equation-in-term-of-x: 'x에 대한 방정식:'
       label-domain: '도메인:'
       tag-reset-zoom: 줌 재설정
@@ -7320,7 +7604,8 @@ tools:
       label-latitude: '위도:'
       label-longitude: '경도:'
       label-csv-content-lng-lat: 'CSV 콘텐츠(경도, 위도):'
-      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert: 변환할 경도와 위도(이 순서대로) CSV 파일을 입력하세요...
+      placeholder-put-your-longitude-and-latitude-in-this-order-csv-to-convert: 변환할
+        경도와 위도(이 순서대로) CSV 파일을 입력하세요...
       title-conversion-results: 전환 결과
       title-notes: 메모
       tag-wgs84-wsg1984-epsg4326-global-standard: WGS84/WSG1984/EPSG4326 (글로벌 표준)
@@ -7370,7 +7655,7 @@ tools:
       label-decimals: '소수:'
       label-thousand-separators: '천 단위 구분 기호:'
       label-to: '에게:'
-      tag-: =
+      tag-: '='
   tool:
     layout:
       text:
@@ -7404,8 +7689,10 @@ tools:
       placeholder-optional: 선택 과목
       label-password: '비밀번호:'
       title-error: 오류
-      tag-docker-image-download-service-configuration-self-hosted: Docker 이미지 다운로드 서비스 구성(자체 호스팅)
-      tag-you-must-self-host-docker-image-download-service-see: Docker 이미지 다운로드 서비스는 직접 호스팅해야 합니다. 자세한 내용은 다음을 참조하세요.
+      tag-docker-image-download-service-configuration-self-hosted: Docker 이미지 다운로드
+        서비스 구성(자체 호스팅)
+      tag-you-must-self-host-docker-image-download-service-see: Docker 이미지 다운로드 서비스는
+        직접 호스팅해야 합니다. 자세한 내용은 다음을 참조하세요.
       tag-docker-image-download-service-install: Docker 이미지 다운로드 서비스 설치
       tag-download-image: 이미지 다운로드
   epub-to-markdown:
@@ -7416,7 +7703,8 @@ tools:
       label-markdown: 가격 인하
       label-plain-text: 일반 텍스트
       label-format: '체재:'
-      title-drop-an-epub-file-here-or-click-to-select-a-file: EPUB 파일을 여기에 드롭하거나 클릭하여 파일을 선택하세요.
+      title-drop-an-epub-file-here-or-click-to-select-a-file: EPUB 파일을 여기에 드롭하거나 클릭하여
+        파일을 선택하세요.
       title-metadata: 메타데이터
       label-title: '제목:'
       label-creator: '창조자:'
@@ -7429,14 +7717,17 @@ tools:
   explainshell:
     title: Shell 명령어를 설명하세요
     description: explainshell.com(또는 자체 호스팅 서비스)을 사용하여 셸 명령어를 설명하세요.
-    externalAccess: 이 도구는 (자체 호스팅하지 않는 한) https://explainshell.com을 호출하여 제공된 셸 명령어를 실행합니다.
+    externalAccess: 이 도구는 (자체 호스팅하지 않는 한) https://explainshell.com을 호출하여 제공된 셸 명령어를
+      실행합니다.
     texts:
       label-custom-explain-shell-url: '사용자 지정 Explain Shell URL:'
-      placeholder-put-your-custom-explainshell-url-here: 여기에 사용자 지정 explainshell URL을 입력하세요...
+      placeholder-put-your-custom-explainshell-url-here: 여기에 사용자 지정 explainshell URL을
+        입력하세요...
       label-shell-command: '셸 명령어:'
       placeholder-shell-command-to-explain: 셸 명령어를 설명합니다
       tag-explain-shell-configuration: 셸 구성에 대해 설명하세요
-      tag-you-can-self-host-explain-shell-to-get-total-privacy-see: Explain Shell을 직접 호스팅하여 완벽한 개인 정보 보호를 누릴 수 있습니다. 자세한 내용은 다음을 참조하세요.
+      tag-you-can-self-host-explain-shell-to-get-total-privacy-see: Explain Shell을
+        직접 호스팅하여 완벽한 개인 정보 보호를 누릴 수 있습니다. 자세한 내용은 다음을 참조하세요.
       tag-local-explain-shell-docker-install: 로컬 Explain Shell docker 설치
       tag-explain: 설명하다
       tag-enter-a-shell-command-to-explain: 설명할 셸 명령어를 입력하세요.
@@ -7458,14 +7749,14 @@ tools:
     externalAccess: 널
   rsvp-reader:
     title: RSVP 독자
-    description:
-      텍스트를 붙여넣으면 사용자가 설정한 분당 단어 수(WPM)로 단어가 하나씩 순차적으로 표시되는 고속 연속 시각
-      프레젠테이션(RSVP) 도구입니다.
+    description: 텍스트를 붙여넣으면 사용자가 설정한 분당 단어 수(WPM)로 단어가 하나씩 순차적으로 표시되는 고속 연속 시각 프레젠테이션(RSVP)
+      도구입니다.
     externalAccess: 널
     texts:
       label-text-to-read: '읽을 텍스트:'
       placeholder-paste-or-type-your-text-here: 여기에 텍스트를 붙여넣거나 입력하세요...
-      title-drop-an-pdf-epub-or-txt-file-here-or-click-to-select-a-file: PDF, EPUB 또는 txt 파일을 여기에 드롭하거나 클릭하여 파일을 선택하세요.
+      title-drop-an-pdf-epub-or-txt-file-here-or-click-to-select-a-file: PDF, EPUB
+        또는 txt 파일을 여기에 드롭하거나 클릭하여 파일을 선택하세요.
       label-word-per-minute: '분당 단어 수:'
       label-chunk-size: '청크 크기:'
       label-large-chunk-slowdown: 대용량 청크 처리 속도 저하율(%)
@@ -7477,7 +7768,8 @@ tools:
       label-font-size: '글자 크기:'
       label-font-color: '글꼴 색상:'
       label-background: '배경:'
-      tag-no-text-to-read-please-input-some-text-in-text-tab: 읽을 텍스트가 없습니다. 텍스트 탭에 텍스트를 입력해 주세요.
+      tag-no-text-to-read-please-input-some-text-in-text-tab: 읽을 텍스트가 없습니다. 텍스트 탭에
+        텍스트를 입력해 주세요.
       tag-play-space: 플레이(공간)
       tag-pause-space: 일시 정지(스페이스)
       tag-back: 뒤로 (←)
@@ -7485,7 +7777,8 @@ tools:
       tag-reset: 다시 놓기
       tag-: ↓
       tag-or: '- 또는 -'
-      tag-control-playback-and-navigation-without-touching-the-mouse: 마우스를 사용하지 않고 재생 및 탐색을 제어하세요.
+      tag-control-playback-and-navigation-without-touching-the-mouse: 마우스를 사용하지 않고
+        재생 및 탐색을 제어하세요.
       tag-shortcut: 지름길
       tag-action: 행동
       tag-space: 공간
@@ -7502,6 +7795,10 @@ tools:
       tag-jump-to-start: 시작 부분으로 이동
       tag-end: 끝
       tag-jump-to-end: 맨 끝으로 이동
+      tab-keyboard-shortcuts: Keyboard Shortcuts
+      tab-settings: Settings
+      tab-text: Text
+      tab-display: Display
   speed-converter:
     title: 속도 변환기
     description: 속도 단위 간 값 변환
@@ -7524,8 +7821,8 @@ tools:
   tcp-udp-port-tester:
     title: TCP/UDP 포트 테스터
     description: TCP/UDP 테스트를 허용합니다(서버 측에서 웹소켓 프록시 사용).
-    externalAccess: 이 도구를 사용하려면 서버 측 WebSocket
-      서버(https://github.com/sharevb/ws-tcp-udp-bridge)가 필요합니다.
+    externalAccess: 이 도구를 사용하려면 서버 측 WebSocket 서버(https://github.com/sharevb/ws-tcp-udp-bridge)가
+      필요합니다.
     texts:
       label-tcp: TCP
       label-udp: UDP
@@ -7542,7 +7839,8 @@ tools:
       label-send-hex-payload: '16진수 페이로드를 전송하세요:'
       placeholder-hex-payload-e-g-48656c6c6f: '16진수 페이로드(예: 48656c6c6f)'
       tag-websocket-tcp-udp-bridge-configuration: WebSocket TCP/UDP 브리지 구성
-      tag-to-use-this-tool-you-need-to-host-a-websocket-tcp-udp-bridge-based-on: 이 도구를 사용하려면 WebSocket TCP/UDP 브리지를 호스팅해야 합니다.
+      tag-to-use-this-tool-you-need-to-host-a-websocket-tcp-udp-bridge-based-on: 이
+        도구를 사용하려면 WebSocket TCP/UDP 브리지를 호스팅해야 합니다.
       tag-https-github-com-sharevb-ws-tcp-udp-bridge: https://github.com/sharevb/ws-tcp-udp-bridge
       tag-connect: 연결하다
       tag-disconnect: 연결을 끊으세요
@@ -7553,38 +7851,56 @@ tools:
     title: 체적 유량 변환기
     description: 체적 유량 단위 간 값 변환
     externalAccess: 널
+  calendar-converter:
+    service:
+      text:
+        friday: Friday
+        monday: Monday
+        thursday: Thursday
+        tuesday: Tuesday
+        embolismic-regular-384-days: Embolismic regular (384 days)
+        embolismic-complete-385-days: Embolismic complete (385 days)
+        saturday: Saturday
+        common-complete-355-days: Common complete (355 days)
+        wednesday: Wednesday
+        common-regular-354-days: Common regular (354 days)
+        leap-year: Leap year
+        invalid-year-length-hebrew_year_days-hebcal-0-days: 'Invalid year length:
+          {0} days.'
+        sunday: Sunday
+        common-deficient-353-days: Common deficient (353 days)
+        embolismic-deficient-383-days: Embolismic deficient (383 days)
+        normal-year: Normal year
 about:
   alltools-title: 모든 {toolsCount}개 도구
   tools:
     name: 이름
     desc: 설명
     category: 범주
-  content-fork: >
-    # IT-Tools 소개
+  content-fork: '# IT-Tools 소개
 
-    [Corentin
-    Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about)이 ❤의
-    마음으로 제작하고 ShareVB로 확장한 이 멋진 웹사이트는 개발자와 IT 종사자를 위한 유용한 도구들을 모아놓았습니다. 유용하다고
-    생각되시면, 유용할 것 같은 다른 사람들과 공유해 주시고, 바로가기 모음에 북마크하는 것도 잊지 마세요!
+    [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about)이
+    ❤의 마음으로 제작하고 ShareVB로 확장한 이 멋진 웹사이트는 개발자와 IT 종사자를 위한 유용한 도구들을 모아놓았습니다. 유용하다고 생각되시면,
+    유용할 것 같은 다른 사람들과 공유해 주시고, 바로가기 모음에 북마크하는 것도 잊지 마세요!
 
-    IT Tools는 오픈 소스(GPL-3.0 라이선스)이며 무료이며, 앞으로도 계속 무료입니다. 이 포크에서 제 작업을 후원하고 더 많은
-    도구나 기능을 추가하도록 격려해 주시고 싶으시다면 [후원](https://www.buymeacoffee.com/sharevb)을 통해
-    후원해 주세요.
+    IT Tools는 오픈 소스(GPL-3.0 라이선스)이며 무료이며, 앞으로도 계속 무료입니다. 이 포크에서 제 작업을 후원하고 더 많은 도구나
+    기능을 추가하도록 격려해 주시고 싶으시다면 [후원](https://www.buymeacoffee.com/sharevb)을 통해 후원해 주세요.
 
     ## 기술
 
-    IT Tools는 Naive UI 컴포넌트 라이브러리를 사용하여 Vue.js(Vue 3)로 제작되었으며, Vercel에서 호스팅 및
-    지속적으로 배포됩니다. 일부 도구에는 타사 오픈소스 라이브러리가 사용되며, 전체 목록은 저장소의
-    [package.json](https://github.com/sharevb/it-tools/blob/main/package.json)
+    IT Tools는 Naive UI 컴포넌트 라이브러리를 사용하여 Vue.js(Vue 3)로 제작되었으며, Vercel에서 호스팅 및 지속적으로
+    배포됩니다. 일부 도구에는 타사 오픈소스 라이브러리가 사용되며, 전체 목록은 저장소의 [package.json](https://github.com/sharevb/it-tools/blob/main/package.json)
     파일에서 확인할 수 있습니다.
 
     ## 버그를 발견하셨나요? 도구가 누락되었나요?
 
-    현재 여기에 없는 도구가 필요하고 유용하다고 생각되시면 GitHub 저장소의 [문제
-    섹션](https://github.com/sharevb/it-tools/issues/new/choose)에 기능 요청을 제출해 주세요.
+    현재 여기에 없는 도구가 필요하고 유용하다고 생각되시면 GitHub 저장소의 [문제 섹션](https://github.com/sharevb/it-tools/issues/new/choose)에
+    기능 요청을 제출해 주세요.
 
-    버그를 발견했거나 예상대로 작동하지 않는 경우 GitHub 저장소의 [문제
-    섹션](https://github.com/sharevb/it-tools/issues/new/choose)에 버그 보고서를 제출해 주세요.
+    버그를 발견했거나 예상대로 작동하지 않는 경우 GitHub 저장소의 [문제 섹션](https://github.com/sharevb/it-tools/issues/new/choose)에
+    버그 보고서를 제출해 주세요.
+
+    '
   import-favorites: 즐겨찾기 가져오기
   export-favorites: 즐겨찾기 내보내기
   put-your-favorites-json-array-here: 좋아하는 JSON 배열을 여기에 넣으세요...

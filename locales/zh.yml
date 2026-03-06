@@ -6511,7 +6511,7 @@ tools:
       tag-for-positional-parameters-leave-name-empty-for-named-parameters-enter-name-without-or-prefix: 对于位置参数，请将“名称”留空。对于命名参数，请输入不带“?”或“{'@'}”前缀的名称
       tag-generate-sql: 生成 SQL
   toml-linter:
-    title: TOML Linter
+    title: TOML 检查器
     description: Lint 和检查 TOML 内容
     texts:
       title-your-toml-content: 您的 TOML 内容：
@@ -6646,7 +6646,7 @@ tools:
       tag-input-server-configuration: 输入服务器配置
       tag-generate-configurations: 生成配置
   xml-linter:
-    title: XML Linter
+    title: XML 检查器
     description: 检查 XML 内容的语法错误
     texts:
       title-your-xml-content: 您的 XML 内容：
@@ -7102,7 +7102,7 @@ tools:
       tag-convert: 转变
       tag-download-msgpack-file: 下载 MsgPack 文件
   markdown-lorem-ipsum:
-    title: Markdown Lorem Ipsum
+    title: Markdown Lorem Ipsum 生成器
     description: 在 markdown 中生成 Lorem Ipsum
     texts:
       label-atx: ATX（#，##，###）
