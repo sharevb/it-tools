@@ -1,4 +1,4 @@
-"404":
+'404':
   notFound: 404 页面不存在
   sorry: 抱歉，该页面似乎不存在
   maybe: 也许缓存出现了一些问题，试试强制刷新页面？
@@ -95,6 +95,10 @@ home:
     lightMode: 浅色模式
     mode: 切换暗黑/浅色模式
     aboutLabel: 关于
+  collapseAllTools: 折叠所有工具
+  expandAllTools: 展开所有工具
+  collapsing: 折叠中...
+  expanding: 展开中...
 tools:
   chronometer:
     title: 秒表
@@ -130,7 +134,7 @@ tools:
       placeholder-from: 从
       placeholder-to: 到
       tag-what-is: 什么是
-      tag-of: "%的"
+      tag-of: '%的'
       tag-x-is-what-percent-of-y: X是Y的百分之几
       tag-is-what-percent-of: 是百分之多少
       tag-what-is-the-percentage-increase-decrease: 增减百分比是多少
@@ -227,7 +231,7 @@ tools:
     description: 验证并生成crontab，并获取cron计划的易读描述。
     texts:
       message-this-cron-is-invalid: 此cron无效
-      placeholder-: "* * * * *"
+      placeholder-: '* * * * *'
       label-unix-standard: Unix标准
       label-aws: AWS
       label-verbose: 详细
@@ -588,6 +592,26 @@ tools:
       label-indent-size: 缩进大小：
       title-the-following-errors-occured: 发生以下错误
       tag-download-docker-compose-yml: 下载docker-compose.yml
+  docker-pangolin-labels:
+    title: Docker Pangolin 标签
+    description: 在 Docker Compose Pangolin 标签和蓝图之间相互转换
+    texts:
+      tab-compose-to-blueprint: Compose → 蓝图
+      tab-blueprint-to-labels: 蓝图 → 标签
+      label-docker-compose-yaml: 'Docker Compose YAML：'
+      label-blueprint-yaml: '蓝图 YAML：'
+      label-generated-blueprint: '生成的蓝图：'
+      label-generated-docker-labels: '生成的 Docker 标签：'
+      placeholder-docker-compose-yaml: 在此粘贴完整的 docker-compose.yml…
+      placeholder-blueprint-yaml: 在此粘贴 Pangolin 蓝图 YAML…
+      placeholder-generated-blueprint: 蓝图 YAML 将显示在此处…
+      placeholder-generated-docker-labels: Docker 标签将显示在此处…
+      button-extract-blueprint: 提取 Pangolin 蓝图
+      button-convert-to-labels: 转换为 Docker 标签
+      switch-array-format: '数组 (- key=value)'
+      switch-object-format: '对象 (key: value)'
+      error-invalid-compose: 无效的 docker-compose.yml
+      error-invalid-blueprint: 无效的蓝图 YAML
   mac-address-lookup:
     title: MAC地址查询
     description: 通过MAC地址查找设备的厂商和制造商信息。
@@ -1005,7 +1029,7 @@ tools:
       placeholder-start-ipv4-address: 起始IPv4地址...
       placeholder-end-ipv4-address: 结束IPv4地址...
       title-invalid-combination-of-start-and-end-ipv4-address: 起始和结束IPv4地址组合无效
-      tag-nbsp: "&nbsp;"
+      tag-nbsp: '&nbsp;'
       tag-old-value: 旧值
       tag-new-value: 新值
       tag-switch-start-and-end-ipv4-address: 交换起始和结束IPv4地址
@@ -1617,7 +1641,7 @@ tools:
       label-total-difference-years: 总差异年数
       label-total-difference: 总差异
       label-difference-seconds: 差异秒数
-      label-difference: "差异 "
+      label-difference: '差异 '
       label-business-seconds: 营业秒数
       label-business-time: 营业时间
       label-business-hours: 营业小时
@@ -1751,9 +1775,9 @@ tools:
     texts:
       message-invalid-regex-0: 无效的正则表达式：{0}
       placeholder-your-string-to-list-duplicated-lines: 您的字符串（用于列出重复行）...
-      label-your-text: "您的文本： "
+      label-your-text: '您的文本： '
       placeholder-your-cleaning-regex: 您的清理正则表达式...
-      label-cleaning-regex: "清理正则表达式： "
+      label-cleaning-regex: '清理正则表达式： '
       label-duplicated-lines: 重复行：
   duration-calculator:
     title: 持续时间计算器
@@ -1850,10 +1874,10 @@ tools:
       tag-createsha512-promise: createSHA512，//（）：承诺
       tag-createsm3-promise: createSM3，//（）：承诺
       tag-createwhirlpool-promise: createWhirlpool，//（）：承诺
-      tag-createxxhash32-seed-number-promise: "// createXXHash32, //(种子: 数字): 承诺"
+      tag-createxxhash32-seed-number-promise: '// createXXHash32, //(种子: 数字): 承诺'
       tag-createxxhash64-seedlow-number-seedhigh-number-promise: // createXXHash64，//（seedLow：数字，seedHigh：数字）：承诺
       tag-createxxhash3-seedlow-number-seedhigh-number-promise: // createXXHash3，//（seedLow：数字，seedHigh：数字）：承诺
-      tag-createxxhash128-seedlow-number-seedhigh-number-promise: "// createXXHash128, //(seedLow: number, seedHigh: number): Promise"
+      tag-createxxhash128-seedlow-number-seedhigh-number-promise: '// createXXHash128, //(seedLow: number, seedHigh: number): Promise'
       tag-blake2b-await-createblake2b-bits-number-key-idatatype-promise: BLAKE2b：等待 createBLAKE2b()，//（位？：数字，键？：IDataType）：承诺
       tag-md5-await-createmd5-promise: MD5：等待 createMD5()，//()：承诺
       tag-ripemd160-await-createripemd160-promise: RIPEMD160：等待 createRIPEMD160()，//（）：承诺
@@ -2172,15 +2196,15 @@ tools:
     title: IPv6地址转换器
     description: 将IP地址转换为十进制、二进制、十六进制并获取信息
     texts:
-      label-decimal: "十进制： "
-      label-hexadecimal: "十六进制： "
-      label-binary: "二进制： "
-      label-cidr: "CIDR： "
-      label-ipv6-short: "IPv6（短格式）： "
-      label-ipv6-long: "IPv6（长格式）： "
-      label-arpa: "ARPA： "
-      label-microsoft-transcription: "微软转录： "
-      label-type: "类型： "
+      label-decimal: '十进制： '
+      label-hexadecimal: '十六进制： '
+      label-binary: '二进制： '
+      label-cidr: 'CIDR： '
+      label-ipv6-short: 'IPv6（短格式）： '
+      label-ipv6-long: 'IPv6（长格式）： '
+      label-arpa: 'ARPA： '
+      label-microsoft-transcription: '微软转录： '
+      label-type: '类型： '
       message-invalid-ipv6-address: 无效的IPv6地址
       label-the-ipv6-address: IPv6地址：
       placeholder-the-ipv6-address: IPv6地址...
@@ -2253,7 +2277,7 @@ tools:
       tag-search-result: 搜索结果
       tag-iso2-iso3: ISO2/ISO3
       tag-name-and-info: 名称与信息
-      tag-gt-see-on-openstreetmap: "&gt; 在OpenStreetMap上查看"
+      tag-gt-see-on-openstreetmap: '&gt; 在OpenStreetMap上查看'
   javascript-prettifier:
     title: JavaScript美化器
     description: JS/JavaScript美化器
@@ -2443,7 +2467,7 @@ tools:
       label-secret-encoding: 秘密编码：
       label-raw-text: 原始文本
       label-hex-array: 十六进制数组
-      verify-description: "{0}: {1}（与 {2} 验证）"
+      verify-description: '{0}: {1}（与 {2} 验证）'
       token-secret: 令牌密钥
       token-keys: 令牌密钥
       cannot-parse-secret-as-encoding: 无法将“{0}”解析为“{1}”：{2}
@@ -2526,7 +2550,7 @@ tools:
       placeholder-bullet-chars: 项目符号字符
       label-anchors-prefix: 锚点前缀
       placeholder-anchors-prefix: 锚点前缀
-      label-indents: "缩进： "
+      label-indents: '缩进： '
       placeholder-indents: 缩进...
       label-comment-styles: 注释样式
       placeholder-comment-styles: 注释样式
@@ -4189,11 +4213,10 @@ tools:
       tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
         tcpdump是许多Linux发行版中常用的实用工具，可快速收集网络跟踪/数据包捕获。简言之，它是Linux版的Wireshark，用于数据包捕获。tcpdump功能多样，可通过多种开关精细捕获所需内容，并支持通过控制台、文件或Wireshark
         pcap输出结果。
-      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
-        此工具旨在帮助使用tcpdump提供的一些常用开关/过滤器生成tcpdump命令。此工具未涵盖所有选项，tcpdump的完整选项列表可通过其手册查看：&nbsp;
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp: 此工具旨在帮助使用tcpdump提供的一些常用开关/过滤器生成tcpdump命令。此工具未涵盖所有选项，tcpdump的完整选项列表可通过其手册查看：&nbsp;
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 注意：
-      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon: "&nbsp;主机、源主机和目标主机可接受多个条目，用逗号、空格或分号分隔。"
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon: '&nbsp;主机、源主机和目标主机可接受多个条目，用逗号、空格或分号分隔。'
       tag-note-2: 注意2：
       tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
         '&nbsp;当指定源(src)或目标(dst)标志时，tcpdump仅会按该方向过滤。若要捕获完整的TCP握手过程，请确保使用"host"而非"src
@@ -4464,7 +4487,7 @@ tools:
       tag-fault-tolerance: 容错能力
       tag-space-efficiency: 空间效率
     text:
-      num-1-drive-failures: "{0}个磁盘故障"
+      num-1-drive-failures: '{0}个磁盘故障'
     service:
       text:
         3-drive-failures-per-raid-7-set: 每个RAID 7集支持3个磁盘故障
@@ -4522,6 +4545,8 @@ tools:
     physics: 物理计算
     cheatsheets: 备忘单
     forensic: 取证工具
+    finance: 金融工具
+    default: 默认
   websocket-tester:
     title: WebSocket测试工具
     description: 允许测试WebSocket连接
@@ -4603,8 +4628,7 @@ tools:
         work-on-the-task-during-that-time: 在此期间处理任务。
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: 确定任务并设置计时器（通常25分钟）。
         five-steps-of-the-pomodoro-technique: 番茄工作法的五个步骤
-        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
-          番茄工作法是由弗朗切斯科·西里洛于20世纪80年代开发的时间管理方法。它使用计时器将工作分解为间隔（通常25分钟），间隔之间有短暂休息。每个间隔称为一个“番茄钟”，名称源自意大利语中的“番茄”（因西里洛大学时期使用的厨房计时器形状类似番茄）。
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student: 番茄工作法是由弗朗切斯科·西里洛于20世纪80年代开发的时间管理方法。它使用计时器将工作分解为间隔（通常25分钟），间隔之间有短暂休息。每个间隔称为一个“番茄钟”，名称源自意大利语中的“番茄”（因西里洛大学时期使用的厨房计时器形状类似番茄）。
         the-pomodoro-technique: 番茄工作法
     Home:
       text:
@@ -4714,14 +4738,14 @@ tools:
       tag-bob-dylan: 鲍勃·迪伦
       tag-usa: 美国
       tag-columbia: 哥伦比亚
-      tag-10-90: "10.90"
-      tag-1985: "1985"
+      tag-10-90: '10.90'
+      tag-1985: '1985'
       tag-hide-your-heart: 隐藏你的心
       tag-bonnie-tyler: 邦妮·泰勒
       tag-uk: 英国
       tag-cbs-records: CBS唱片
-      tag-9-90: "9.90"
-      tag-1988: "1988"
+      tag-9-90: '9.90'
+      tag-1988: '1988'
       tag-format-xml-output: 格式化XML输出？
       tag-title: 标题
   website:
@@ -5073,7 +5097,7 @@ tools:
       tag-u: u
       tag-unicode-sets: Unicode Sets（
       tag-v: v
-      tag-xa0: "&#xa0;"
+      tag-xa0: '&#xa0;'
     groups: 分组
   email-parser:
     title: 电子邮件解析器
@@ -5517,7 +5541,7 @@ tools:
       placeholder-paste-your-json-schema-here: 将您的 JSON 模式粘贴到这里...
       title-schema-validation-errors: 架构验证错误
     text:
-      see-error-messages: "#查看错误消息"
+      see-error-messages: '#查看错误消息'
   business-time-calculator:
     text:
       invalid-date: 无效日期
@@ -5694,14 +5718,17 @@ tools:
         the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: |
           服务器不识别请求方法或缺乏完成请求的能力
         not-implemented: 未实现
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: |
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          |
           当遇到意外情况且无更具体的消息时提供的通用错误消息
         internal-server-error: 内部服务器错误
         5xx-server-error: 5xx服务器错误
-        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource: |
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          |
           服务器运营商收到法律要求，拒绝访问某个资源或包含请求资源的资源集
         unavailable-for-legal-reasons: 因法律原因不可用
-        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large: |
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          |
           服务器不愿处理请求，因为单个头部字段或所有头部字段整体过大
         request-header-fields-too-large: 请求头部字段过大
         the-user-has-sent-too-many-requests-in-a-given-amount-of-time: 用户在给定时间内发送了过多请求
@@ -5754,20 +5781,24 @@ tools:
         request-timeout: 请求超时
         the-client-must-first-authenticate-itself-with-the-proxy: 客户端必须首先向代理认证
         proxy-authentication-required: 需要代理认证
-        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request: |
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          |
           请求的资源仅能生成请求中Accept头部不接受的内容
         not-acceptable: 不可接受
         a-request-method-is-not-supported-for-the-requested-resource: 请求方法不支持请求的资源
         method-not-allowed: 方法不允许
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: |
           请求的资源未找到，但未来可能可用
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: |
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          |
           请求有效，但服务器拒绝操作（用户可能无资源权限）
         forbidden: 禁止
-        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme: |
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          |
           保留供未来使用（原意图是作为数字现金或小额支付方案的一部分）
         payment-required: 需要支付
-        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided: |
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          |
           类似403禁止，但专门用于需要认证但失败或未提供的情况
         unauthorized: 未授权
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: |
@@ -5777,7 +5808,8 @@ tools:
         the-request-and-all-future-requests-should-be-repeated-using-another-uri: |
           请求及所有未来请求应使用其他URI重试
         permanent-redirect: 永久重定向
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: |
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          |
           在此情况下，请求应使用其他URI重试，但未来请求仍应使用原始URI
         temporary-redirect: 临时重定向
         no-longer-used-originally-meant-subsequent-requests-should-use-the-specified-proxy: |
@@ -5917,7 +5949,7 @@ tools:
       tag-render-swagger-ui: 渲染Swagger UI
   yaml-flatten-nestify:
     title: YAML展开/嵌套化工具
-    description: "展开或嵌套化YAML内容（例如a.b: 1与a: b: 1）"
+    description: '展开或嵌套化YAML内容（例如a.b: 1与a: b: 1）'
     texts:
       message-provided-yaml-is-not-valid: 提供的YAML无效
       label-mode: 模式
@@ -5949,6 +5981,7 @@ tools:
       refresh: 刷新
       copy: 复制
     numberPlaceholder: 生成随机数...
+    length: 长度
     texts:
       label-number-of-number-to-generate: 要生成的号码数量：
       placeholder-put-characters-to-deny-from-number: 在此处输入被拒绝的字符...
@@ -6096,9 +6129,9 @@ tools:
       label-normal: 普通的
       label-bold: 大胆的
       label-lighter: 打火机
-      label-100: "100"
-      label-400: "400"
-      label-700: "700"
+      label-100: '100'
+      label-400: '400'
+      label-700: '700'
       label-italic: 斜体
       label-oblique: 斜
       label-sans-serif: 无衬线字体
@@ -6113,6 +6146,11 @@ tools:
       label-fallback: 倒退：
       placeholder-fallback-font: 后备字体
       tag-defineprops: 定义Props
+      tab-by-font-name: 按字体名称
+      tab-by-font-url: 按字体网址
+      tab-by-font-file: 按字体文件
+      tab-by-inline-css: 按内联 CSS
+      tab-by-css-url: 按 CSS 网址
   gpt-token-encoder:
     title: GPT 令牌编码器/解码器
     description: 将文本编码为 GPT 令牌，并将 GPT 令牌解码回文本
@@ -6152,6 +6190,8 @@ tools:
     description: 视觉比较图像的工具
     texts:
       title-image-compare-viewer: 图像比较查看器
+      tab-compare-by-url: 通过网址比较
+      tab-compare-by-upload: 通过上传比较
       label-left-image-url: 左图网址：
       placeholder-enter-left-image-url: 输入左侧图片网址
       label-right-image-url: 右图网址：
@@ -6236,7 +6276,7 @@ tools:
       lastAction: 旋转结束后运行的脚本。
   mailto-generator:
     title: Mailto 生成器
-    description: "生成 mailto: 链接 href"
+    description: '生成 mailto: 链接 href'
     texts:
       title-mailto-link-generator: Mailto 链接生成器
       label-to: 到：
@@ -6303,10 +6343,10 @@ tools:
       label-raid-level: RAID 级别：
       placeholder-select-raid-level: 选择 RAID 级别
       label-number-of-drives: 驱动器数量：
-      label-drive-mtbf-hours: "驱动器平均无故障时间 (小时):"
+      label-drive-mtbf-hours: '驱动器平均无故障时间 (小时):'
       label-rebuild-time-hours: 重建时间（小时）：
       label-bit-error-rate-ber-in-1ex: 误码率（BER in 1eX）：
-      label-drive-capacity-tb: "硬盘容量 (TB):"
+      label-drive-capacity-tb: '硬盘容量 (TB):'
       label-years-for-failure-probability: 失效概率年限：
       label-mttdl-hours: 平均工作日（小时）：
       label-mttdl-years: 平均生存期（年）：
@@ -6386,9 +6426,19 @@ tools:
       placeholder-e-g-2700: 例如 2700
       label-tolerance: 宽容
       title-numeric-value: 数值
-      tag-convert: 转变
+      tag-convert: 转换
       tag-axial: 轴向
       tag-radial: 径向
+      tab-bands-to-notation: 颜色 → 符号
+      tab-notation-to-bands: 符号 → 颜色
+      tab-number-to-notation: 数值 → 符号
+      tab-notation-to-number: 符号 → 数值
+      error-enter-exactly-bands: '请输入 {count} 个有效的颜色波段 ({colors})。'
+      error-conversion-failed: '转换失败。请检查波段顺序和值：{error}'
+      error-invalid-notation-format: '符号格式无效：{error}'
+      error-valid-positive-number: 请输入有效的正数。
+      label-valid-colors: '有效颜色：'
+      label-result: '结果：'
   sed-command-generator:
     title: Sed 命令生成器
     description: 生成 unix sed 命令
@@ -6399,7 +6449,7 @@ tools:
       label-replacement: 替代品：
       placeholder-e-g-bar: 例如，酒吧
       label-delimiter: 分隔符：
-      placeholder-e-g-or: "例如 / 或 #"
+      placeholder-e-g-or: '例如 / 或 #'
       label-flags: 标志：
       label-options: 选项：
       label-target-file: 目标文件
@@ -6461,7 +6511,7 @@ tools:
       tag-for-positional-parameters-leave-name-empty-for-named-parameters-enter-name-without-or-prefix: 对于位置参数，请将“名称”留空。对于命名参数，请输入不带“?”或“{'@'}”前缀的名称
       tag-generate-sql: 生成 SQL
   toml-linter:
-    title: TOML Linter
+    title: TOML 检查器
     description: Lint 和检查 TOML 内容
     texts:
       title-your-toml-content: 您的 TOML 内容：
@@ -6596,7 +6646,7 @@ tools:
       tag-input-server-configuration: 输入服务器配置
       tag-generate-configurations: 生成配置
   xml-linter:
-    title: XML Linter
+    title: XML 检查器
     description: 检查 XML 内容的语法错误
     texts:
       title-your-xml-content: 您的 XML 内容：
@@ -6609,14 +6659,14 @@ tools:
     texts:
       tag-: ？
       tag-total-disks-in-pool: 池中的磁盘总数：
-      tag-add-disk-tb: "添加磁盘 (TB):"
-      tag-1: "1"
-      tag-10: "10"
-      tag-100: "100"
-      tag-12: "12"
-      tag-24: "24"
-      tag-60: "60"
-      tag-102: "102"
+      tag-add-disk-tb: '添加磁盘 (TB):'
+      tag-1: '1'
+      tag-10: '10'
+      tag-100: '100'
+      tag-12: '12'
+      tag-24: '24'
+      tag-60: '60'
+      tag-102: '102'
       tag-add-disk: 添加磁盘
       tag-tb-gb: 结核病/英国
       tag-minimum-spares: 最低备件数量：
@@ -6644,9 +6694,9 @@ tools:
       tag-16-mib: 16 MB
       tag-add-vdev-layout: 添加 vdev 布局
       tag-zfs-ashift-value: ZFS ashift 值：
-      tag-9: "9"
+      tag-9: '9'
       tag-13: 十三
-      tag-14: "14"
+      tag-14: '14'
       tag-disk-swap-size: 磁盘交换大小：
       tag-0-gib: 0 GiB
       tag-2-gib: 2 GiB
@@ -6655,21 +6705,21 @@ tools:
       tag-table-data: 表格数据：
       tag-usable-capacity-tib: 可用容量 (TiB)
       tag-decimal-places: 小数位数：
-      tag-0: "0"
-      tag-2: "2"
-      tag-3: "3"
-      tag-4: "4"
-      tag-5: "5"
-      tag-6: "6"
-      tag-7: "7"
-      tag-8: "8"
+      tag-0: '0'
+      tag-2: '2'
+      tag-3: '3'
+      tag-4: '4'
+      tag-5: '5'
+      tag-6: '6'
+      tag-7: '7'
+      tag-8: '8'
       tag-bytes: 字节
       tag-usable-capacity-tb: 可用容量（TB）
       tag-show-deflate-ratio: 显示放气率：
       tag-capacity-efficiency: 产能效率
       tag-show-pool-afr: 显示池 AFR：
       tag-zfs-overhead: ZFS 开销
-      tag-disk-afr: "磁盘 AFR (%):"
+      tag-disk-afr: '磁盘 AFR (%):'
       tag-cap-w-reservation: 有保留的上限
       tag-fast-draid-calculation: 快速 dRAID 计算：
       tag-reservation: 预订 （％）：
@@ -6678,8 +6728,7 @@ tools:
       tag-mirrors-stripes: 镜子/条纹
       tag-reset: 重置
       tag-see-zpool-openzfs-cheatsheet: 请参阅 Zpool/OpenZFS 备忘单
-      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
-        点击各部分标题即可展开/折叠并查看计算数据。将鼠标悬停在表格单元格上，相关数据会加载到下方的“计算值”部分。您可以点击表格单元格来冻结或解冻这些值。
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values: 点击各部分标题即可展开/折叠并查看计算数据。将鼠标悬停在表格单元格上，相关数据会加载到下方的“计算值”部分。您可以点击表格单元格来冻结或解冻这些值。
       tag-common-layouts: 常见布局
       tag-raw-stripes-mirrors: 原始、条纹和镜面
       tag-calculation-values: 计算值
@@ -7020,15 +7069,15 @@ tools:
       placeholder-paste-your-text-here: 将您的文本粘贴到此处……
       title-legend: 传奇
       tag-i: 我
-      tag-uppercase-letter-i: "- 大写字母 i"
+      tag-uppercase-letter-i: '- 大写字母 i'
       tag-l: 我
       tag-lowercase-letter-l: 小写字母 L
-      tag-1: "1"
-      tag-number-1: "- 第一名"
-      tag-0: "0"
-      tag-number-0: "- 0号"
+      tag-1: '1'
+      tag-number-1: '- 第一名'
+      tag-0: '0'
+      tag-number-0: '- 0号'
       tag-o: 这
-      tag-uppercase-letter-o: "- 大写字母 O"
+      tag-uppercase-letter-o: '- 大写字母 O'
   ipv4-subnets-list:
     title: IPv4 子网列表
     description: 列出给定 CIDR 的所有可能子网
@@ -7053,7 +7102,7 @@ tools:
       tag-convert: 转变
       tag-download-msgpack-file: 下载 MsgPack 文件
   markdown-lorem-ipsum:
-    title: Markdown Lorem Ipsum
+    title: Markdown Lorem Ipsum 生成器
     description: 在 markdown 中生成 Lorem Ipsum
     texts:
       label-atx: ATX（#，##，###）
@@ -7116,11 +7165,11 @@ tools:
     title: 串口控制台
     description: 连接、读取和发送消息至串口
     texts:
-      label-9600: "9600"
-      label-19200: "19200"
-      label-38400: "38400"
-      label-57600: "57600"
-      label-115200: "115200"
+      label-9600: '9600'
+      label-19200: '19200'
+      label-38400: '38400'
+      label-57600: '57600'
+      label-115200: '115200'
       label-lf-n: LF (\\n)
       label-cr-r: CR (\\r)
       label-crlf-r-n: CRLF（\\r\\n）
@@ -7254,6 +7303,10 @@ tools:
       placeholder-select-templates: 选择模板
       title-preview: 预览
       tag-fetch-generate: 获取并生成
+      tab-curl: Curl
+      tab-wget: Wget
+      tab-powershell: PowerShell
+      tab-windows-cmd: Windows CMD
     externalAccess: 此工具使用 GitHub API 从
       https://github.com/gitattributes/gitattributes 下载 .gitattributes 文件。
   html-to-xhtml:
@@ -7332,7 +7385,7 @@ tools:
   dead-pixel:
     texts:
       title-dead-pixel-iframe: 死像素 iframe
-      tag-: "`;"
+      tag-: '`;'
       tag-keyboard-shortcuts: 键盘快捷键：
       tag-arrow-right-arrow-down-space: 右箭头，下箭头，空格
       tag-next-color: 下一个颜色
@@ -7515,7 +7568,7 @@ tools:
       tag-next: 下一页（→）
       tag-reset: 重置
       tag-: ↓
-      tag-or: "- 或者 -"
+      tag-or: '- 或者 -'
       tag-control-playback-and-navigation-without-touching-the-mouse: 无需触碰鼠标即可控制播放和导航。
       tag-shortcut: 捷径
       tag-action: 行动
@@ -7533,6 +7586,10 @@ tools:
       tag-jump-to-start: 跳转至开头
       tag-end: 结尾
       tag-jump-to-end: 跳转至结尾
+      tab-display: 显示
+      tab-text: 文本
+      tab-settings: 设置
+      tab-keyboard-shortcuts: 键盘快捷键
   speed-converter:
     title: 速度转换器
     description: 速度单位之间的数值转换
@@ -7583,3 +7640,28 @@ tools:
     title: 体积流量转换器
     description: 在体积流量单位之间转换数值
     externalAccess: 无效的
+  calendar-converter:
+    service:
+      text:
+        sunday: 星期日
+        monday: 星期一
+        tuesday: 星期二
+        wednesday: 星期三
+        thursday: 星期四
+        friday: 星期五
+        saturday: 星期六
+        normal-year: 平年
+        leap-year: 闰年
+        common-deficient-353-days: 普通年缺失 (353天)
+        common-regular-354-days: 普通年正规 (354天)
+        common-complete-355-days: 普通年完整 (355天)
+        embolismic-deficient-383-days: embolismic 年缺失 (383天)
+        embolismic-regular-384-days: embolismic 年正规 (384天)
+        embolismic-complete-385-days: embolismic 年完整 (385天)
+        invalid-year-length-hebrew_year_days-hebcal-0-days: 无效的年份长度：{0} 天
+  shell-linearizer:
+    title: Shell 命令线性化工具
+    description: 将多行 Shell 命令转换为单行命令
+  shell-formatter:
+    title: Shell 命令格式化工具
+    description: 将 Shell 命令格式化为多行形式，按参数拆分

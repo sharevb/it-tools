@@ -68,14 +68,14 @@ const fontOptions = [
 ];
 
 interface FontData {
-  value: string
-  url: string
-  css: string
-  cssUrl: string
-  dynamicName: string
-  weight: string
-  style: string
-  fallback: string
+  value: string;
+  url: string;
+  css: string;
+  cssUrl: string;
+  dynamicName: string;
+  weight: string;
+  style: string;
+  fallback: string;
 }
 
 const fontA = useITStorage('font-comparer:a', {
@@ -128,8 +128,7 @@ async function loadCSSFromURL(url: string) {
     const styleTag = document.createElement('style');
     styleTag.textContent = cssText;
     document.head.appendChild(styleTag);
-  }
-  catch (error) {
+  } catch (error) {
     console.error('Failed to load CSS:', error);
   }
 }
@@ -137,13 +136,17 @@ async function loadCSSFromURL(url: string) {
 function loadFontFromURL(url: string, index: number) {
   const fontName = `CustomFont${index}`;
   const font = new FontFace(fontName, `url(${url})`);
-  font.load().then((loadedFont) => {
-    document.fonts.add(loadedFont);
-    if (index === 0) {
-      fontA.value.dynamicName = fontName;
-    }
-    else { fontB.value.dynamicName = fontName; }
-  }).catch(console.error);
+  font
+    .load()
+    .then((loadedFont) => {
+      document.fonts.add(loadedFont);
+      if (index === 0) {
+        fontA.value.dynamicName = fontName;
+      } else {
+        fontB.value.dynamicName = fontName;
+      }
+    })
+    .catch(console.error);
 }
 
 function handleFontUpload(file: UploadFileInfo, index: number) {
@@ -151,19 +154,23 @@ function handleFontUpload(file: UploadFileInfo, index: number) {
   reader.onload = () => {
     const fontName = `UploadedFont${index}`;
     const font = new FontFace(fontName, reader.result as ArrayBuffer);
-    font.load().then((loadedFont) => {
-      document.fonts.add(loadedFont);
-      if (index === 0) {
-        fontA.value.dynamicName = fontName;
-      }
-      else { fontB.value.dynamicName = fontName; }
-    }).catch(console.error);
+    font
+      .load()
+      .then((loadedFont) => {
+        document.fonts.add(loadedFont);
+        if (index === 0) {
+          fontA.value.dynamicName = fontName;
+        } else {
+          fontB.value.dynamicName = fontName;
+        }
+      })
+      .catch(console.error);
   };
   reader.readAsArrayBuffer(file!.file!);
 }
 
 interface UploadEvents {
-  file: UploadFileInfo
+  file: UploadFileInfo;
 }
 </script>
 
@@ -171,11 +178,17 @@ interface UploadEvents {
   <div>
     <details>
       <summary />
-      <c-input-text v-model:value="sampleText" multiline rows="3" :placeholder="t('tools.font-compare.texts.placeholder-enter-sample-text')" mb-2 />
+      <c-input-text
+        v-model:value="sampleText"
+        multiline
+        rows="3"
+        :placeholder="t('tools.font-compare.texts.placeholder-enter-sample-text')"
+        mb-2
+      />
     </details>
 
     <NTabs v-model:value="activeTab" type="segment">
-      <NTabPane name="fontname" tab="By Font Name">
+      <NTabPane name="fontname" :tab="t('tools.font-compare.texts.tab-by-font-name')">
         <NGrid :cols="2" :x-gap="24">
           <NGi v-for="(font, index) in [fontA, fontB]" :key="index">
             <NSelect
@@ -192,7 +205,7 @@ interface UploadEvents {
         </NGrid>
       </NTabPane>
 
-      <NTabPane name="fonturl" tab="By Font URL">
+      <NTabPane name="fonturl" :tab="t('tools.font-compare.texts.tab-by-font-url')">
         <NGrid :cols="2" :x-gap="24">
           <NGi v-for="(font, index) in [fontA, fontB]" :key="index">
             <NInput
@@ -209,7 +222,7 @@ interface UploadEvents {
         </NGrid>
       </NTabPane>
 
-      <NTabPane name="fontfile" tab="By Font File">
+      <NTabPane name="fontfile" :tab="t('tools.font-compare.texts.tab-by-font-file')">
         <NGrid :cols="2" :x-gap="24">
           <NGi v-for="(font, index) in [fontA, fontB]" :key="index">
             <NUpload
@@ -227,7 +240,7 @@ interface UploadEvents {
           </NGi>
         </NGrid>
       </NTabPane>
-      <NTabPane name="inlinecss" tab="By Inline CSS">
+      <NTabPane name="inlinecss" :tab="t('tools.font-compare.texts.tab-by-inline-css')">
         <NGrid :cols="2" :x-gap="24">
           <NGi v-for="(font, index) in [fontA, fontB]" :key="index">
             <NInput
@@ -250,7 +263,7 @@ interface UploadEvents {
           </NGi>
         </NGrid>
       </NTabPane>
-      <NTabPane name="cssurl" tab="By CSS URL">
+      <NTabPane name="cssurl" :tab="t('tools.font-compare.texts.tab-by-css-url')">
         <NGrid :cols="2" :x-gap="24">
           <NGi v-for="(font, index) in [fontA, fontB]" :key="index">
             <NInput

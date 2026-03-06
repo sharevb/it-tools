@@ -3,7 +3,7 @@ import { get } from '@vueuse/core';
 import type { Plugin } from 'vue';
 import { createI18n } from 'vue-i18n';
 
-const DEFAULT_LOCALE = String(import.meta.env.VITE_LANGUAGE || 'en');
+const DEFAULT_LOCALE = String(import.meta.env.VITE_LANGUAGE || 'zh');
 
 const i18n = createI18n({
   legacy: false,
