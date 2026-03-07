@@ -15,8 +15,8 @@ import {
 import { ticksFromDate, ticksToDate } from 'tick-time';
 import { UTCDate } from '@date-fns/utc';
 import { formatInTimeZone } from 'date-fns-tz';
-import { getAllTimezones } from 'countries-and-timezones';
 import type { DateFormat, ToDateMapper } from './date-time-converter.types';
+import { getBrowserTimeZone, getIanaTimeZoneOptions, isAllowedTimeZone } from './date-time-converter.timezones';
 import {
   dateToExcelFormat,
   dateToLDAPTimestamp,
@@ -147,21 +147,23 @@ const formatIndex = ref(6);
 const now = useNow();
 
 // Timezone conversion functionality
-const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const browserTimezone = getBrowserTimeZone();
+const defaultStoredTimezone = isAllowedTimeZone(browserTimezone) ? browserTimezone : 'Etc/UTC';
 
 const selectedTimezones = useStorage<{ name: string }[]>(
   'date-time-converter:timezones',
   [],
 );
 
-const allTimezones = computed(() => {
-  return Object.values(getAllTimezones())
-    .map(tz => ({
-      value: tz.name,
-      label: `${tz.name} (${tz.utcOffsetStr})`,
-    }))
-    .sort((a, b) => a.label.localeCompare(b.label));
-});
+watch(selectedTimezones, (timezones) => {
+  const filteredTimezones = timezones.filter(({ name }) => isAllowedTimeZone(name));
+
+  if (filteredTimezones.length !== timezones.length) {
+    selectedTimezones.value = filteredTimezones;
+  }
+}, { deep: true, immediate: true });
+
+const allTimezones = computed(() => getIanaTimeZoneOptions(browserTimezone));
 
 const normalizedDate = computed(() => {
   if (!inputDate.value) {
@@ -249,7 +251,7 @@ function formatDateInTimezone(date: Date | undefined, timezone: string): string 
       <n-dynamic-input
         v-model:value="selectedTimezones"
         show-sort-button
-        :on-create="() => ({ name: browserTimezone })"
+        :on-create="() => ({ name: defaultStoredTimezone })"
       >
         <template #default="{ value }">
           <div w-full flex items-center gap-2>
@@ -278,7 +280,7 @@ function formatDateInTimezone(date: Date | undefined, timezone: string): string 
     <div v-else mb-4 mt-4>
       <c-button
         size="small"
-        @click="selectedTimezones.push({ name: browserTimezone })"
+        @click="selectedTimezones.push({ name: defaultStoredTimezone })"
       >
         {{ t('tools.date-time-converter.texts.button-add-timezone') }}
       </c-button>

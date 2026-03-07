@@ -1,6 +1,17 @@
+import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 
-test.describe('Date time converter - json to yaml', () => {
+const timezoneOutput = '.n-dynamic-input input[readonly]';
+
+async function openConverterWithTimezone(page: Page, timezone: string) {
+  await page.addInitScript(({ timezone }: { timezone: string }) => {
+    localStorage.setItem('date-time-converter:timezones', JSON.stringify([{ name: timezone }]));
+  }, { timezone });
+
+  await page.goto('/date-converter');
+}
+
+test.describe('Date time converter', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/date-converter');
   });
@@ -31,5 +42,41 @@ test.describe('Date time converter - json to yaml', () => {
     expect((await page.getByTestId('UTC format').inputValue()).trim()).toEqual('Wed, 12 Apr 2023 21:10:24 GMT');
     expect((await page.getByTestId('Mongo ObjectID').inputValue()).trim()).toEqual('64371e400000000000000000');
     expect((await page.getByTestId('Excel date/time').inputValue()).trim()).toEqual('45028.88222222222');
+  });
+
+  test.describe('DST-aware timezone conversion', () => {
+    test.beforeEach(async ({ page }) => {
+      await page.goto('about:blank');
+    });
+
+    [
+      {
+        expected: '2026-03-08T03:30:00-04:00',
+        input: '2026-03-08T07:30:00Z',
+        timezone: 'America/New_York',
+      },
+      {
+        expected: '2026-04-15T13:30:00+01:00',
+        input: '2026-04-15T12:30:00Z',
+        timezone: 'Europe/London',
+      },
+      {
+        expected: '2026-10-04T03:30:00+11:00',
+        input: '2026-10-03T16:30:00Z',
+        timezone: 'Australia/Sydney',
+      },
+      {
+        expected: '2026-03-08T03:30:00-07:00',
+        input: '2026-03-08T10:30:00Z',
+        timezone: 'America/Los_Angeles',
+      },
+    ].forEach(({ expected, input, timezone }) => {
+      test(`uses the correct DST offset for ${timezone}`, async ({ page }) => {
+        await openConverterWithTimezone(page, timezone);
+        await page.getByTestId('date-time-converter-input').fill(input);
+
+        await expect(page.locator(timezoneOutput).first()).toHaveValue(expected);
+      });
+    });
   });
 });
