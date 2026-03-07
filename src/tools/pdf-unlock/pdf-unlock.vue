@@ -34,7 +34,9 @@ async function onPDFFileUploaded(uploadedFile: File) {
 }
 
 async function processFile() {
-  if (!fileBuffer.value) return;
+  if (!fileBuffer.value) {
+    return;
+  }
 
   status.value = 'processing';
   try {
@@ -61,7 +63,6 @@ async function processFile() {
     isPasswordError.value = errorLog.includes('password') || errorLog.includes('encrypted');
   }
 }
-
 
 async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_exitcode: number) {
   qpdfCommand.value = args.join(' ');
@@ -92,7 +93,7 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
     </div>
 
     <div v-if="isPasswordError">
-      <n-checkbox v-model:checked="usePassword" mt-3 mb-2>
+      <n-checkbox v-model:checked="usePassword" mb-2 mt-3>
         {{ t('tools.pdf-unlock.texts.label-password') }}
       </n-checkbox>
 
