@@ -1977,7 +1977,7 @@ tools:
     description: 将HEIC转换为JPEG或PNG的转换器
     texts:
       label-jpeg: JPEG
-      label-png: 巴布亚新几内亚
+      label-png: PNG
       label-output-format: 输出格式
       title-drag-and-drop-a-heic-file-here-or-click-to-select-a-file: 将HEIC文件拖放到此处，或点击选择文件
   hex-file-converter:
@@ -4590,7 +4590,7 @@ tools:
       tag-download-current: 下载当前
       tag-apply-download-all: 应用并下载全部
       tag-upload-logo: 上传Logo
-      tag-png: 巴布亚新几内亚
+      tag-png: PNG
       tag-jpeg: JPEG
       title-settings: 设置
   pomodoro-timer:
