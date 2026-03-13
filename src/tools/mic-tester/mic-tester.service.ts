@@ -3,7 +3,7 @@ import { onBeforeUnmount, ref } from 'vue';
 import { translate as t } from '@/plugins/i18n.plugin';
 
 interface IMessageSender {
-  error: (...messages: any[]) => void
+  error: (...messages: any[]) => void;
 }
 
 export function useMicrophoneService(messageSender: IMessageSender) {
@@ -18,14 +18,22 @@ export function useMicrophoneService(messageSender: IMessageSender) {
 
   // Measure loudness and update loudness bar
   function measureLoudness() {
-    const dataArray = new Uint8Array(analyserNode!.frequencyBinCount);
+    if (!analyserNode) {
+      return;
+    }
+
+    const dataArray = new Uint8Array(analyserNode.frequencyBinCount);
 
     const updateLoudness = () => {
-      analyserNode!.getByteFrequencyData(dataArray);
+      if (!analyserNode) {
+        return;
+      }
+
+      analyserNode.getByteFrequencyData(dataArray);
 
       // Calculate average loudness
       let sum = 0;
-      dataArray.forEach(value => sum += value);
+      dataArray.forEach((value) => (sum += value));
       const average = sum / dataArray.length;
 
       // Update the observable loudness level
@@ -36,7 +44,7 @@ export function useMicrophoneService(messageSender: IMessageSender) {
       }
     };
     updateLoudness();
-  };
+  }
 
   const startMicReplay = async () => {
     if (!audioContext) {
@@ -45,10 +53,12 @@ export function useMicrophoneService(messageSender: IMessageSender) {
 
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    }
-    catch (err) {
+    } catch (err) {
       console.error('Microphone access denied:', err);
-      messageSender.error(t('tools.mic-tester.service.text.microphone-access-denied-the-error-is-also-in-the-console'), err);
+      messageSender.error(
+        t('tools.mic-tester.service.text.microphone-access-denied-the-error-is-also-in-the-console'),
+        err,
+      );
       return;
     }
 
@@ -71,23 +81,15 @@ export function useMicrophoneService(messageSender: IMessageSender) {
   function stopMicReplay() {
     if (audioContext && stream) {
       const tracks = stream.getTracks();
-      tracks.forEach(track => track.stop());
+      tracks.forEach((track) => track.stop());
       audioContext.close();
       audioContext = null;
+      stream = null;
+      sourceNode = null;
+      delayNode = null;
+      analyserNode = null;
       isPlaying.value = false;
       loudnessLevel.value = 0;
     }
-  };
-
-  // Cleanup on service destruction
-  onBeforeUnmount(() => {
-    stopMicReplay();
-  });
-
-  return {
-    startMicReplay,
-    stopMicReplay,
-    loudnessLevel,
-    isPlaying,
-  };
+  }
 }

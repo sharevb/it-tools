@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { NButton, NGi, NGrid, NInput, NSelect, NTabPane, NTabs, NUpload, type UploadFileInfo } from 'naive-ui';
+import { onBeforeUnmount } from 'vue';
 
 import FontControls from './font-controls.vue'; // Separate component for weight/style/fallback
 import { useITStorage } from '@/composable/queryParams';
@@ -114,20 +115,31 @@ function fontStyle(font: FontData) {
   };
 }
 
+const injectedStyleTags: HTMLStyleElement[] = [];
+
 function injectFontCSS(cssText: string) {
   const styleTag = document.createElement('style');
   styleTag.type = 'text/css';
   styleTag.textContent = cssText;
   document.head.appendChild(styleTag);
+  injectedStyleTags.push(styleTag);
 }
 
 async function loadCSSFromURL(url: string) {
+  if (!url) {
+    return;
+  }
+
   try {
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const cssText = await response.text();
     const styleTag = document.createElement('style');
     styleTag.textContent = cssText;
     document.head.appendChild(styleTag);
+    injectedStyleTags.push(styleTag);
   } catch (error) {
     console.error('Failed to load CSS:', error);
   }
@@ -150,6 +162,10 @@ function loadFontFromURL(url: string, index: number) {
 }
 
 function handleFontUpload(file: UploadFileInfo, index: number) {
+  if (!file.file) {
+    return;
+  }
+
   const reader = new FileReader();
   reader.onload = () => {
     const fontName = `UploadedFont${index}`;
@@ -166,8 +182,21 @@ function handleFontUpload(file: UploadFileInfo, index: number) {
       })
       .catch(console.error);
   };
-  reader.readAsArrayBuffer(file!.file!);
+  reader.readAsArrayBuffer(file.file);
 }
+
+function cleanupInjectedStyles() {
+  injectedStyleTags.forEach((tag) => {
+    if (tag.parentNode) {
+      tag.parentNode.removeChild(tag);
+    }
+  });
+  injectedStyleTags.length = 0;
+}
+
+onBeforeUnmount(() => {
+  cleanupInjectedStyles();
+});
 
 interface UploadEvents {
   file: UploadFileInfo;
