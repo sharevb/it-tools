@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { onBeforeUnmount } from 'vue';
 import type { UploadFileInfo } from 'naive-ui';
 import ImageCompare from 'image-compare-viewer';
 import 'image-compare-viewer/dist/image-compare-viewer.min.css';
@@ -13,18 +14,30 @@ const rightImage = ref<string | null>(null);
 const viewerContainer = ref<HTMLDivElement | null>(null);
 let viewerInstance = null;
 
+function cleanupObjectUrls() {
+  if (leftImage.value && leftImage.value.startsWith('blob:')) {
+    URL.revokeObjectURL(leftImage.value);
+  }
+  if (rightImage.value && rightImage.value.startsWith('blob:')) {
+    URL.revokeObjectURL(rightImage.value);
+  }
+}
+
 function loadFromUrl() {
+  cleanupObjectUrls();
   leftImage.value = leftUrl.value;
   rightImage.value = rightUrl.value;
   renderViewer();
 }
 
 function handleLeftUpload({ file }: { file: UploadFileInfo }) {
+  cleanupObjectUrls();
   leftImage.value = URL.createObjectURL(file.file!);
   renderViewer();
 }
 
 function handleRightUpload({ file }: { file: UploadFileInfo }) {
+  cleanupObjectUrls();
   rightImage.value = URL.createObjectURL(file.file!);
   renderViewer();
 }
@@ -50,6 +63,13 @@ function renderViewer() {
   });
   viewerInstance.mount();
 }
+
+onBeforeUnmount(() => {
+  cleanupObjectUrls();
+  if (viewerInstance) {
+    viewerInstance.destroy();
+  }
+});
 </script>
 
 <template>

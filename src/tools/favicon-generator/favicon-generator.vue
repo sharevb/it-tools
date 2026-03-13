@@ -18,14 +18,16 @@ async function generateIcon(file: File) {
 
   if (decodedImage == null) {
     throw new Error('Invalid PNG file!');
-  };
+  }
 
   return encodeIcoImages({
-    images: [16, 32, 64, 128, 256].map(size => Transform.copyResize({
-      image: decodedImage,
-      width: size,
-      maintainAspect: true,
-    })),
+    images: [16, 32, 64, 128, 256].map((size) =>
+      Transform.copyResize({
+        image: decodedImage,
+        width: size,
+        maintainAspect: true,
+      }),
+    ),
   });
 }
 
@@ -72,18 +74,25 @@ async function generateAssets(img: HTMLImageElement, file: File) {
 
   tags.push('<link rel="manifest" href="site.webmanifest">');
 
-  zip.file('site.webmanifest', JSON.stringify({
-    name: '',
-    short_name: '',
-    icons: sizes.map(size => ({
-      src: `favicon-${size}x${size}.png`,
-      sizes: `${size}x${size}`,
-      type: 'image/png',
-    })),
-    theme_color: '#ffffff',
-    background_color: '#ffffff',
-    display: 'standalone',
-  }, null, 2));
+  zip.file(
+    'site.webmanifest',
+    JSON.stringify(
+      {
+        name: '',
+        short_name: '',
+        icons: sizes.map((size) => ({
+          src: `favicon-${size}x${size}.png`,
+          sizes: `${size}x${size}`,
+          type: 'image/png',
+        })),
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
+        display: 'standalone',
+      },
+      null,
+      2,
+    ),
+  );
 
   zip.file('favicon.ico', await generateIcon(file));
 
@@ -108,19 +117,23 @@ function downloadURL(data: string, fileName: string) {
 
 function downloadZip() {
   if (zipBlob.value) {
-    downloadURL(window.URL.createObjectURL(zipBlob.value), 'favicons.zip');
+    const url = window.URL.createObjectURL(zipBlob.value);
+    downloadURL(url, 'favicons.zip');
+    // Cleanup the blob URL after download
+    setTimeout(() => {
+      window.URL.revokeObjectURL(url);
+    }, 1000);
   }
 }
 </script>
 
 <template>
-  <NCard :title="t('tools.favicon-generator.texts.title-favicon-pack-generator')" style="max-width: 700px; margin: auto;">
+  <NCard
+    :title="t('tools.favicon-generator.texts.title-favicon-pack-generator')"
+    style="max-width: 700px; margin: auto"
+  >
     <n-space justify="center">
-      <NUpload
-        :show-file-list="false"
-        accept="image/png"
-        :custom-request="handleUpload"
-      >
+      <NUpload :show-file-list="false" accept="image/png" :custom-request="handleUpload">
         <NButton type="primary">
           {{ t('tools.favicon-generator.texts.tag-upload-png-image') }}
         </NButton>
@@ -128,9 +141,9 @@ function downloadZip() {
     </n-space>
 
     <n-card v-if="previews.length" :title="t('tools.favicon-generator.texts.title-️-previews')" mt-2>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <div v-for="icon in previews" :key="icon.size" style="text-align: center;">
-          <img :src="icon.dataUrl" :alt="`Favicon ${icon.size}`" :width="icon.size" :height="icon.size">
+      <div style="display: flex; gap: 16px; flex-wrap: wrap">
+        <div v-for="icon in previews" :key="icon.size" style="text-align: center">
+          <img :src="icon.dataUrl" :alt="`Favicon ${icon.size}`" :width="icon.size" :height="icon.size" />
           <p>{{ icon.size }}×{{ icon.size }}</p>
         </div>
       </div>
