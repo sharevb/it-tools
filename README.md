@@ -1,6 +1,12 @@
+## Languages / Idiomas / Langues
+
+[English](README.md) | [中文](README.zh.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Português](README.pt.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Polski](README.pl.md) | [Русский](README.ru.md) | [Türkçe](README.tr.md) | [Українська](README.uk.md) | [Tiếng Việt](README.vi.md)
+
+---
+
 ## BREAKING CHANGE for Container Image
 
-Since the *base image* is now `nginx-unpriviledged` the container will now listen to port **8080** and not 80. So you need to update your port mapping, i.e. from `8080:80` to `8080:8080`.
+Since the _base image_ is now `nginx-unpriviledged` the container will now listen to port **8080** and not 80. So you need to update your port mapping, i.e. from `8080:80` to `8080:8080`.
 
 You can override listening port using environment variable `PORT` (docker option `-e PORT=8888`).
 
@@ -19,6 +25,7 @@ Some tools like PGP encryption rely on WebCrypto API that is only available in H
 So even on internal installations, you should enable HTTPS using Let's Encrypt using DNS Challenge
 
 Some docs about DNS Challenge:
+
 - https://medium.com/@life-is-short-so-enjoy-it/homelab-nginx-proxy-manager-setup-ssl-certificate-with-domain-name-in-cloudflare-dns-732af64ddc0b
 - https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/
 - https://medium.com/@svenvanginkel/traefik-letsencrypt-dns01-challenge-with-ovhcloud-52f2a2c6d08a
@@ -91,12 +98,12 @@ WantedBy=multi-user.target default.target
 Restart=always
 ```
 
-
 ## Filter tools and add home custom content
 
 You can add custom content in Home page by mounting a `home.custom.md` in `/usr/share/nginx/html`.
 
 You can filter available tools by mounting `tools-filter.json` in `/usr/share/nginx/html`. It can contains the following filtering regex:
+
 ```json
 {
   "excludeCategoryFilterRegex": "",
@@ -105,6 +112,7 @@ You can filter available tools by mounting `tools-filter.json` in `/usr/share/ng
   "includeToolsFilterRegex": ""
 }
 ```
+
 Category matches on category (English) names ; Tools matches on tools path/url.
 
 See [docker-tools-filter-and-home-content](https://github.com/sharevb/it-tools)
@@ -141,6 +149,7 @@ See [docker-tools-filter-and-home-content](https://github.com/sharevb/it-tools)
 You can set default tool parameters by mounting a `tools-settings.json` in `/usr/share/nginx/html`.
 
 It is a two level json, with the first level being for `tool name` and the second level for `parameter name`:
+
 ```json
 {
   "regex-tester": {
@@ -152,7 +161,9 @@ It is a two level json, with the first level being for `tool name` and the secon
 ```
 
 You can find `tool name` and `parameter name` in the tools source code `src/tools` subfolder :
+
 - example pattern for `const global = useQueryParamOrStorage({ storageName: 'regex-tester:g', name: 'global', defaultValue: true });`:
+
 ```json
 {
   "regex-tester": {
@@ -160,7 +171,9 @@ You can find `tool name` and `parameter name` in the tools source code `src/tool
   }
 }
 ```
+
 - example pattern for `const value = useQueryParam({ tool: 'barcode-gen', name: 'text', defaultValue: '123456789' });`:
+
 ```json
 {
   "barcode-gen": {
@@ -168,7 +181,9 @@ You can find `tool name` and `parameter name` in the tools source code `src/tool
   }
 }
 ```
+
 - example pattern for `const width = useITStorage('ascii-text-drawer:width', 80);`:
+
 ```json
 {
   "ascii-text-drawer": {
@@ -178,6 +193,7 @@ You can find `tool name` and `parameter name` in the tools source code `src/tool
 ```
 
 To define the default UI language, add a `default_locale` key to json:
+
 ```json
 {
   "default_locale": "fr"
@@ -194,6 +210,7 @@ docker run -d --name it-tools-fr --restart unless-stopped -p 8080:8080 it-tools-
 ## Build container image for a custom subfolder
 
 According to https://github.com/sharevb/it-tools/pull/461#issuecomment-1602506049 and https://github.com/CorentinTh/it-tools/pull/461:
+
 ```
 docker build -t it-tools  --build-arg BASE_URL="/my-folder/" .
 docker run -d --name it-tools --restart unless-stopped -p 8080:8080 it-tools
@@ -207,7 +224,7 @@ So you would need to put another server in front of it, like [Nginx Proxy Manage
 
 For `/it-tools/` subfolder, you can use `baseurl-it-tools` tag.
 
-See [sample of docker-compose.yml and nginx.conf](https://github.com/sharevb/it-tools/tree/chore/all-my-stuffs/docker-subfolder-sample), this docker image needs to have another reverse proxy in front of it, like [Nginx Proxy Manager](https://nginxproxymanager.com/), [Traefik](https://traefik.io/traefik/), [caddy](https://caddyserver.com/) etc. 
+See [sample of docker-compose.yml and nginx.conf](https://github.com/sharevb/it-tools/tree/chore/all-my-stuffs/docker-subfolder-sample), this docker image needs to have another reverse proxy in front of it, like [Nginx Proxy Manager](https://nginxproxymanager.com/), [Traefik](https://traefik.io/traefik/), [caddy](https://caddyserver.com/) etc.
 
 Setup a reverse proxy pass using `/it-tools/`. And you should be able to access it-tools in `/it-tools/` of your server.
 
@@ -237,14 +254,15 @@ Then navigate to http://localhost:8080/it-tools/
 
 Assuming you're already hosting it-tools behind a reverse proxy, you can configure forward-auth and enforce authentication from the reverse proxy
 
-* [Official guides](https://docs.goauthentik.io/docs/add-secure-apps/providers/proxy/server_nginx) with nginx. Guides with other reverse proxy setups are available
-* [Step-by-step setup guide with nginx-proxy-manager](https://geekscircuit.com/set-up-authentik-sso-with-nginx-proxy-manager/)
+- [Official guides](https://docs.goauthentik.io/docs/add-secure-apps/providers/proxy/server_nginx) with nginx. Guides with other reverse proxy setups are available
+- [Step-by-step setup guide with nginx-proxy-manager](https://geekscircuit.com/set-up-authentik-sso-with-nginx-proxy-manager/)
 
 (thanks @jogerj)
 
 ## Deploy as LXC container
 
 In Proxmox VE, you can use docker image directly:
+
 ```bash
 sudo lxc-create -n sharevb-it-tools -t oci -- --url docker://ghcr.io/sharevb/it-tools:latest
 ```
@@ -338,11 +356,11 @@ It will create a directory in `src/tools` with the correct files. You will need 
 
 Local installation required installing first: `python3 make g++`
 
-| Container Image                         | Local Installation                                                                                                          |
-|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Container Image                                                                                                                                                                    | Local Installation                                                                                                                                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | GitHub Container Registry: <span title="triple click me!">`ghcr.io/sharevb/it-tools:latest`</span><br/>Docker Hub: <span title="triple click me!">`sharevb/it-tools:latest`</span> | <span title="triple click me!">`sudo apt-get install python3 make g++ && git clone -b chore/all-my-stuffs https://github.com/sharevb/it-tools.git && cd it-tools/ && pnpm i --ignore-scripts && pnpm dev`</span> |
-| replace your current image with this image | copy & paste oneliner (from github repo) |
-| You may need to clear cache and hard reload to get new features loading | Installing packages for the first time may take some time; please wait until it finishes |
+| replace your current image with this image                                                                                                                                         | copy & paste oneliner (from github repo)                                                                                                                                                                         |
+| You may need to clear cache and hard reload to get new features loading                                                                                                            | Installing packages for the first time may take some time; please wait until it finishes                                                                                                                         |
 
 <picture>
     <source srcset="./.github/logo-dark.png" media="(prefers-color-scheme: light)">
