@@ -6159,12 +6159,12 @@ tools:
       label-left-image-url: 左图网址：
       placeholder-enter-left-image-url: 输入左侧图片网址
       label-right-image-url: 右图网址：
-      placeholder-enter-right-image-url: 输入正确的图片网址
+      placeholder-enter-right-image-url: 输入右侧图片网址
       label-upload-left-image: 上传左侧图片：
-      label-upload-right-image: 上传正确的图片：
+      label-upload-right-image: 上传右侧图片：
       tag-compare: 比较
       tag-upload-left: 上传左侧
-      tag-upload-right: 上传权利
+      tag-upload-right: 上传右侧
   logrotate-generator:
     title: Apache LogRotate 生成器
     description: 生成 Apache .log 轮换配置
