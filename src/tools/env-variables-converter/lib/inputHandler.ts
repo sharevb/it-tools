@@ -13,10 +13,9 @@ function inputHandler(type: Formats, text: string) {
     // https://github.com/jusufazer/yaml2properties/blob/master/src/scripts/processor.js
     data = yaml.parse(text);
     if (typeof data !== 'object') {
-      throw new TypeError('I could be wrong, but YAML doesn\'t seem valid.');
+      throw new TypeError("I could be wrong, but YAML doesn't seem valid.");
     }
-  }
-  else if (type === Formats.PROPERTIES) {
+  } else if (type === Formats.PROPERTIES) {
     // const flattened = deflated.join("\r\n")
     data = text
       .split('\n') // divides lines
@@ -25,17 +24,14 @@ function inputHandler(type: Formats, text: string) {
         if (line.includes('=')) {
           // https://stackoverflow.com/a/4607799/1098564
           setAcc(acc, ...line.split(/=(.+)/));
-        }
-        else if (line.includes(': ')) {
+        } else if (line.includes(': ')) {
           setAcc(acc, ...line.split(/: (.+)/));
-        }
-        else {
-          throw new Error('Doesn\'t look like a valid .properties file');
+        } else {
+          throw new Error("Doesn't look like a valid .properties file");
         }
         return acc;
       }, {});
-  }
-  else if (type === Formats.SIMPLE) {
+  } else if (type === Formats.SIMPLE) {
     data = text
       .split('\n') // divides lines
       .filter(Boolean) // removes empty lines
@@ -43,8 +39,7 @@ function inputHandler(type: Formats, text: string) {
         setAcc(acc, ...line.split('='));
         return acc;
       }, {});
-  }
-  else if (type === Formats.TERMINAL) {
+  } else if (type === Formats.TERMINAL) {
     data = text
       .split(' ') // divides lines
       .filter(Boolean) // removes empty lines
@@ -52,8 +47,7 @@ function inputHandler(type: Formats, text: string) {
         setAcc(acc, ...line.split('='));
         return acc;
       }, {});
-  }
-  else if (type === Formats.KUBERNETES) {
+  } else if (type === Formats.KUBERNETES) {
     data = text
       .replace(/>-/gm, '')
       .replace(/(\r\n|\n|\r)/gm, '')
@@ -64,16 +58,15 @@ function inputHandler(type: Formats, text: string) {
         const pair = line.split('  value: ');
         if (pair[1]) {
           pair[1] = pair[1]
-          // trim single quotes at beginning and end
-            .replace(/^['](.+(?=[']$))[']$/, '$1') // https://stackoverflow.com/a/19156197/1098564
-          // trim out double quotes (TODO: this needs improvement and is definitely bug prone...but works for most simple values I come across)
-            .replace(/"([^"]+(?="))"/g, '$1');
+            // trim single quotes at beginning and end
+            .replace(/^['](.+(?=[']$))[']$/, '$1')
+            // trim out double quotes
+            .replace(/^"(.+)"$/, '$1');
         }
         setAcc(acc, ...pair);
         return acc;
       }, {});
-  }
-  else {
+  } else {
     throw new Error('Unsupported input type');
   }
   // https://stackoverflow.com/a/33510710/1098564

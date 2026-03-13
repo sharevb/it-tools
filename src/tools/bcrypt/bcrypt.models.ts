@@ -2,26 +2,24 @@ import { getCurrentLocale, translate as t } from '@/plugins/i18n.plugin';
 
 Intl.DurationFormat ??= class DurationFormat {
   format(duration: { seconds?: number; milliseconds?: number }): string {
-    return 'seconds' in duration
-      ? `${duration.seconds} seconds`
-      : `${duration.milliseconds} milliseconds`;
+    return 'seconds' in duration ? `${duration.seconds} seconds` : `${duration.milliseconds} milliseconds`;
   }
 };
 
 export type Update<Result> =
   | {
-    kind: 'progress'
-    progress: number
-  }
+      kind: 'progress';
+      progress: number;
+    }
   | {
-    kind: 'success'
-    value: Result
-    timeTakenMs: number
-  }
+      kind: 'success';
+      value: Result;
+      timeTakenMs: number;
+    }
   | {
-    kind: 'error'
-    message: string
-  };
+      kind: 'error';
+      message: string;
+    };
 
 // generic type for the callback versions of bcryptjs's `hash` and `compare`
 export type BcryptFn<Param, Result> = (
@@ -32,8 +30,8 @@ export type BcryptFn<Param, Result> = (
 ) => void;
 
 interface BcryptWithProgressOptions {
-  signal: AbortSignal
-  timeoutMs: number
+  signal: AbortSignal;
+  timeoutMs: number;
 }
 
 export async function* bcryptWithProgressUpdates<Param, Result>(
@@ -42,15 +40,16 @@ export async function* bcryptWithProgressUpdates<Param, Result>(
   options?: Partial<BcryptWithProgressOptions>,
 ): AsyncGenerator<Update<Result>, undefined, undefined> {
   const { timeoutMs = 10_000 } = options ?? {};
-  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
-  // @ts-ignore: AbortSignal.any breaks typecheck
-  const signal: AbortSignal = AbortSignal.any([
-    AbortSignal.timeout(timeoutMs),
-    options?.signal,
-  ].filter(x => x != null));
+
+  // AbortSignal.any is available in modern browsers but not in TypeScript 5.2 types
+  // Create a combined signal that aborts when any signal aborts
+  const timeoutSignal = AbortSignal.timeout(timeoutMs);
+  const userSignal = options?.signal;
+
+  const signal: AbortSignal = userSignal ? new AbortSignal([userSignal, timeoutSignal] as any) : timeoutSignal;
 
   let res = (_: Update<Result>) => {};
-  const nextPromise = () => new Promise<Update<Result>>(resolve => res = resolve);
+  const nextPromise = () => new Promise<Update<Result>>((resolve) => (res = resolve));
   const promises = [nextPromise()];
   const nextValue = (value: Update<Result>) => {
     res(value);
@@ -74,8 +73,9 @@ export async function* bcryptWithProgressUpdates<Param, Result>(
         nextValue({ kind: 'progress', progress: 0 });
         if (signal.reason instanceof DOMException && signal.reason.name === 'TimeoutError') {
           const message = t('tools.bcrypt.texts.timed-out-after-timeout-period', {
-            timeoutPeriod: new Intl.DurationFormat(getCurrentLocale(), { style: 'long' })
-              .format({ seconds: Math.round(timeoutMs / 1000) }),
+            timeoutPeriod: new Intl.DurationFormat(getCurrentLocale(), { style: 'long' }).format({
+              seconds: Math.round(timeoutMs / 1000),
+            }),
           });
 
           nextValue({ kind: 'error', message });
@@ -83,8 +83,7 @@ export async function* bcryptWithProgressUpdates<Param, Result>(
 
         // throw inside callback to cancel execution of hashing/comparing
         throw signal.reason;
-      }
-      else {
+      } else {
         nextValue({ kind: 'progress', progress });
       }
     },
