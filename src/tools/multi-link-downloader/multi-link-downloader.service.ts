@@ -4,7 +4,7 @@ import { translate as t } from '@/plugins/i18n.plugin';
 
 export async function downloadLinks(links: string): Promise<void> {
   // Split links by newline and filter out empty ones
-  const linksArray: string[] = links.split('\n').filter(link => link.trim() !== '');
+  const linksArray: string[] = links.split('\n').filter((link) => link.trim() !== '');
 
   // Helper function to handle duplicate filenames
   function getUniqueFileName(existingNames: Set<string>, originalName: string): string {
@@ -57,12 +57,10 @@ export async function downloadLinks(links: string): Promise<void> {
       // Clean up
       document.body.removeChild(a);
       window.URL.revokeObjectURL(downloadUrl);
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error downloading the file:', error);
     }
-  }
-  else if (linksArray.length > 1) {
+  } else if (linksArray.length > 1) {
     // Multiple links: create a zip file
     const zip = new JSZip();
     const fileNamesSet = new Set<string>(); // To track file names for duplicates
@@ -84,27 +82,31 @@ export async function downloadLinks(links: string): Promise<void> {
 
           // Add file to the zip
           zip.file(fileName, blob);
-        }
-        catch (error) {
+        } catch (error) {
           console.error(`Error downloading file from ${linkUrl}:${error}`);
         }
       }),
     );
 
     // Generate the zip file and trigger download
-    zip.generateAsync({ type: 'blob' }).then((zipBlob: Blob) => {
-      const downloadUrl: string = window.URL.createObjectURL(zipBlob);
+    zip
+      .generateAsync({ type: 'blob' })
+      .then((zipBlob: Blob) => {
+        const downloadUrl: string = window.URL.createObjectURL(zipBlob);
 
-      // Trigger download of the zip file
-      const a: HTMLAnchorElement = document.createElement('a');
-      a.href = downloadUrl;
-      a.download = 'downloaded_files.zip';
-      document.body.appendChild(a);
-      a.click();
+        // Trigger download of the zip file
+        const a: HTMLAnchorElement = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = 'downloaded_files.zip';
+        document.body.appendChild(a);
+        a.click();
 
-      // Clean up
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(downloadUrl);
-    });
+        // Clean up
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(downloadUrl);
+      })
+      .catch((error) => {
+        console.error('Error generating ZIP file:', error);
+      });
   }
 }

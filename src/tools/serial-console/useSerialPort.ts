@@ -27,10 +27,9 @@ export function useSerialPort() {
 
   async function connect(selectedPort?: SerialPort) {
     try {
-      port = selectedPort || await navigator.serial.requestPort();
+      port = selectedPort || (await navigator.serial.requestPort());
       await openPort();
-    }
-    catch (err) {
+    } catch (err) {
       appendOutput(`[Connect error] ${err}`);
     }
   }
@@ -51,8 +50,7 @@ export function useSerialPort() {
       writer = encoder.writable.getWriter();
 
       appendOutput('[Connected]');
-    }
-    catch (err) {
+    } catch (err) {
       appendOutput(`[Open error] ${err}`);
       attemptReconnect();
     }
@@ -67,20 +65,34 @@ export function useSerialPort() {
 
     try {
       reader?.cancel();
-      await inputDone?.catch(() => {});
+      if (inputDone) {
+        try {
+          await inputDone;
+        } catch {
+          // Ignore cancellation errors during disconnect
+        }
+      }
       reader?.releaseLock();
 
-      await writer?.close().catch(() => {});
-      await outputDone?.catch(() => {});
+      try {
+        await writer?.close();
+      } catch {
+        // Ignore close errors during disconnect
+      }
+      if (outputDone) {
+        try {
+          await outputDone;
+        } catch {
+          // Ignore close errors during disconnect
+        }
+      }
       writer?.releaseLock();
 
       await port.close();
       appendOutput('[Disconnected]');
-    }
-    catch (err) {
+    } catch (err) {
       appendOutput(`[Teardown error] ${err}`);
-    }
-    finally {
+    } finally {
       isConnected.value = false;
       disconnecting = false;
     }
@@ -97,8 +109,7 @@ export function useSerialPort() {
           appendOutput(value);
         }
       }
-    }
-    catch (err) {
+    } catch (err) {
       if (!disconnecting) {
         appendOutput(`[Read error] ${err}`);
         attemptReconnect();
@@ -110,18 +121,14 @@ export function useSerialPort() {
     if (!writer || !isConnected.value) {
       return;
     }
-    const ending = lineEnding.value === 'CR'
-      ? '\r'
-      : lineEnding.value === 'CRLF'
-        ? '\r\n'
-        : '\n';
+    const ending = lineEnding.value === 'CR' ? '\r' : lineEnding.value === 'CRLF' ? '\r\n' : '\n';
     writer.write(data + ending);
     appendOutput(`> ${data}`);
   }
 
   async function attemptReconnect() {
     if (reconnectAttempts >= maxReconnects) {
-      appendOutput('[Reconnect failed]');
+      appendOutput('[Reconnect failed: max attempts reached]');
       return;
     }
     reconnectAttempts++;
@@ -131,6 +138,20 @@ export function useSerialPort() {
       await openPort();
     }
     catch (err) {
+      if (reconnectAttempts < maxReconnects) {
+        attemptReconnect();
+      }
+      else {
+        appendOutput(`[Reconnect failed] ${err}`);
+      }
+    }
+  }
+    reconnectAttempts++;
+    appendOutput(`[Reconnecting... attempt ${reconnectAttempts}]`);
+    await new Promise((resolve) => setTimeout(resolve, 1000 * reconnectAttempts));
+    try {
+      await openPort();
+    } catch (err) {
       attemptReconnect();
     }
   }
