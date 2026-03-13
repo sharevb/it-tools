@@ -1,5 +1,6 @@
 <script setup>
 import { useStore } from 'vuex';
+import { onBeforeUnmount } from 'vue';
 import Header from './components/Header.vue';
 import FinishedPopup from './components/FinishedPopup.vue';
 import { startTimer } from './storeUtils';
@@ -10,25 +11,35 @@ import PomodoroSettings from './views/Settings.vue';
 const store = useStore('pomodoro-store');
 
 // Save state on visibilitychange
-document.addEventListener('visibilitychange', () => {
+function handleVisibilityChange() {
   if (document.hidden) {
     localStorage.setItem('pomodoro-state', JSON.stringify(store.state));
   }
-});
+}
+
+document.addEventListener('visibilitychange', handleVisibilityChange);
 
 // Save state on mutation
+let unsubscribe = null;
+
 function subscribeToSavingState() {
-  store.subscribe((mutation, state) => {
+  unsubscribe = store.subscribe((mutation, state) => {
     localStorage.setItem('pomodoro-state', JSON.stringify(state));
   });
 }
 
+// Cleanup on unmount
+onBeforeUnmount(() => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
+  if (unsubscribe) {
+    unsubscribe();
+  }
+});
+
 // Restore state on load
 function restoreStateIfAvaiable() {
   if (localStorage.getItem('pomodoro-state')) {
-    store.replaceState(
-      Object.assign(store.state, JSON.parse(localStorage.getItem('pomodoro-state'))),
-    );
+    store.replaceState(Object.assign(store.state, JSON.parse(localStorage.getItem('pomodoro-state'))));
     store.commit('updateAppColor', {
       propName: 'appAccentColor',
       propValue: store.state.appAccentColor,
@@ -49,25 +60,22 @@ function isWorkIntervalSet() {
 
 if (isWorkIntervalSet()) {
   store.commit('goToPage', 'home');
-}
-else {
+} else {
   store.commit('goToPage', 'settings');
 }
 
-const currentTab = computed(
-  {
-    get() {
-      return store.state.currentTab;
-    },
-    set(newPage) {
-      store.commit('goToPage', newPage);
-    },
+const currentTab = computed({
+  get() {
+    return store.state.currentTab;
   },
-);
+  set(newPage) {
+    store.commit('goToPage', newPage);
+  },
+});
 </script>
 
 <template>
-  <link href="//fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
   <div class="pomodoro-timer-app">
     <Header />
     <div class="page-container">
@@ -90,68 +98,77 @@ const currentTab = computed(
 </template>
 
 <style>
-@import url("//fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url('//fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 :root {
-    --pomodoro-app-accent-color: #3b83b0;
-    --pomodoro-dark-text-color: #303030;
-    --pomodoro-light-gray-text-color: #767676;
-    --pomodoro-text-contrast-color: #ffffff;
+  --pomodoro-app-accent-color: #3b83b0;
+  --pomodoro-dark-text-color: #303030;
+  --pomodoro-light-gray-text-color: #767676;
+  --pomodoro-text-contrast-color: #ffffff;
 }
 
 .pomodoro-timer-app *,
 .pomodoro-timer-app *::before,
 .pomodoro-timer-app *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .pomodoro-timer-app {
   -webkit-text-size-adjust: 100%;
   font-size: 1rem;
-    font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-        sans-serif;
-    color: var(--pomodoro-dark-text-color);
-    min-height: 100vh;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  font-family:
+    'Varela Round',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  color: var(--pomodoro-dark-text-color);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .pomodoro-timer-app input,
 .pomodoro-timer-app textarea,
 .pomodoro-timer-app button {
-    font: inherit;
+  font: inherit;
 }
 
 .pomodoro-timer-app button {
-    outline: none !important;
-    border-style: none;
-    border: white 0.0625rem solid;
-    box-shadow: 1px 1px 7px -4px black;
-    font-size: 1.125rem;
-    border-radius: 0.375rem;
-    background-color: var(--pomodoro-app-accent-color);
-    color: var(--pomodoro-text-contrast-color);
-    padding: 10px 15px 9px 15px;
-    cursor: pointer;
-    text-align: center;
+  outline: none !important;
+  border-style: none;
+  border: white 0.0625rem solid;
+  box-shadow: 1px 1px 7px -4px black;
+  font-size: 1.125rem;
+  border-radius: 0.375rem;
+  background-color: var(--pomodoro-app-accent-color);
+  color: var(--pomodoro-text-contrast-color);
+  padding: 10px 15px 9px 15px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .pomodoro-timer-app a {
-    color: var(--pomodoro-app-accent-color);
+  color: var(--pomodoro-app-accent-color);
 }
 
 .pomodoro-timer-app .settings-label {
-    display: inline-block;
-    width: 12.5rem;
-    padding: 0.625rem 0rem;
+  display: inline-block;
+  width: 12.5rem;
+  padding: 0.625rem 0rem;
 }
 
 .pomodoro-timer-app .page-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 </style>

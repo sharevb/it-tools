@@ -21,23 +21,37 @@ async function traceAsync(input: Buffer) {
 
 async function posterizeAsync(input: Buffer) {
   return new Promise<string>((resolve, reject) => {
-    potrace.posterize(input,
-      (err: Error | null, svg: string) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(svg);
-      });
+    potrace.posterize(input, (err: Error | null, svg: string) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(svg);
+    });
   });
 }
 
 function file2Buffer(file: File) {
-  return new Promise<Buffer>((resolve, _reject) => {
+  return new Promise<Buffer>((resolve, reject) => {
     const reader = new FileReader();
-    reader.addEventListener('load', () => {
+
+    const cleanup = () => {
+      reader.removeEventListener('load', handleLoad);
+      reader.removeEventListener('error', handleError);
+    };
+
+    const handleLoad = () => {
+      cleanup();
       const buffer = Buffer.from(reader.result as ArrayBuffer);
       resolve(buffer);
-    });
+    };
+
+    const handleError = (error: ProgressEvent<FileReader>) => {
+      cleanup();
+      reject(new Error(`Failed to read file: ${error.type}`));
+    };
+
+    reader.addEventListener('load', handleLoad);
+    reader.addEventListener('error', handleError);
     reader.readAsArrayBuffer(file);
   });
 }
@@ -52,14 +66,13 @@ const svg = computedAsync(async () => {
   }
   try {
     const buffer = await file2Buffer(file);
-    return (trace ? await traceAsync(buffer) : await posterizeAsync(buffer));
-  }
-  catch (e: any) {
+    return trace ? await traceAsync(buffer) : await posterizeAsync(buffer);
+  } catch (e: any) {
     return e.toString();
   }
 });
 
-const svgBase64 = computed(() => svg.value ? `data:image/svg+xml;base64,${Base64.encode(svg.value)}` : '');
+const svgBase64 = computed(() => (svg.value ? `data:image/svg+xml;base64,${Base64.encode(svg.value)}` : ''));
 
 async function onUpload(file: File) {
   if (file) {
@@ -76,7 +89,7 @@ async function onUpload(file: File) {
       @file-upload="onUpload"
     />
 
-    <div style="text-align: center;">
+    <div style="text-align: center">
       <n-checkbox v-model:checked="posterize" mt-2>
         {{ t('tools.potrace.texts.tag-posterize') }}
       </n-checkbox>
@@ -86,16 +99,12 @@ async function onUpload(file: File) {
 
     <div>
       <h3>{{ t('tools.potrace.texts.tag-potrace-result') }}</h3>
-      <TextareaCopyable
-        :value="svg"
-        word-wrap
-        download-file-name="output.svg"
-      />
+      <TextareaCopyable :value="svg" word-wrap download-file-name="output.svg" />
 
       <n-divider />
 
-      <div style="text-align: center;">
-        <img width="150" :src="svgBase64" style="background-color: white">
+      <div style="text-align: center">
+        <img width="150" :src="svgBase64" style="background-color: white" />
       </div>
     </div>
   </div>
