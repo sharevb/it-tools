@@ -67,16 +67,19 @@ const linkTheme = useTheme();
 
 const isOrderingFavorites = ref(false);
 
-window.addEventListener('contextmenu', (e) => {
+function handleContextMenu(e: Event) {
   if (isOrderingFavorites.value) {
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
     return false;
   }
-});
+}
 
-function startOrderingFavorites() {
+onMounted(() => {
+  window.addEventListener('contextmenu', handleContextMenu);
+
+  nextTick(() => {
   isOrderingFavorites.value = true;
 }
 
@@ -133,6 +136,8 @@ onMounted(() => {
 
 // Clean up on component unmount
 onUnmounted(() => {
+  window.removeEventListener('contextmenu', handleContextMenu);
+
   if (loadingObserver) {
     loadingObserver.disconnect();
     loadingObserver = null;
@@ -151,7 +156,8 @@ onUnmounted(() => {
             rel="noopener"
             target="_blank"
             :aria-label="$t('home.follow.githubRepository')"
-          >GitHub</a>
+            >GitHub</a
+          >
           {{ $t('home.follow.thankYou') }}
           <n-icon :component="IconHeart" />
         </ColoredCard>
@@ -243,7 +249,7 @@ onUnmounted(() => {
   }
   100% {
     opacity: 0.4;
-    transform: scale(1.0);
+    transform: scale(1);
   }
 }
 
