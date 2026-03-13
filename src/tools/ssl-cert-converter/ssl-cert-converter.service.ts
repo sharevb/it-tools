@@ -48,7 +48,8 @@ function getCertificateFromP12(p12: any) {
   }
 
   const pemCertificate = forge.pki.certificateToPem(certificate.cert);
-  const commonName = certificate.cert.subject.attributes[0].value;
+  const firstAttribute = certificate.cert.subject.attributes[0];
+  const commonName = firstAttribute?.value ?? '';
   return { pemCertificate, commonName };
 }
 

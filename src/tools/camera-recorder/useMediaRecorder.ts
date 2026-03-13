@@ -3,25 +3,34 @@ import { type Ref, computed, ref } from 'vue';
 export { useMediaRecorder };
 
 function useMediaRecorder({ stream }: { stream: Ref<MediaStream | undefined> }): {
-  isRecordingSupported: Ref<boolean>
-  recordingState: Ref<'stopped' | 'recording' | 'paused'>
-  startRecording: () => void
-  stopRecording: () => void
-  pauseRecording: () => void
-  resumeRecording: () => void
-  onRecordAvailable: (cb: (url: string) => void) => void
+  isRecordingSupported: Ref<boolean>;
+  recordingState: Ref<'stopped' | 'recording' | 'paused'>;
+  startRecording: () => void;
+  stopRecording: () => void;
+  pauseRecording: () => void;
+  resumeRecording: () => void;
+  onRecordAvailable: (cb: (url: string) => void) => void;
 } {
   const isRecordingSupported = computed(() => MediaRecorder.isTypeSupported('video/webm'));
   const mediaRecorder = ref<MediaRecorder | null>(null);
   const recordedChunks = ref<Blob[]>([]);
   const recordAvailable = createEventHook();
   const recordingState = ref<'stopped' | 'recording' | 'paused'>('stopped');
+  const createdUrls = ref<string[]>([]);
 
   const createVideo = () => {
     const blob = new Blob(recordedChunks.value, { type: 'video/webm' });
     const url = URL.createObjectURL(blob);
+    createdUrls.value.push(url);
     recordedChunks.value = [];
     return url;
+  };
+
+  const cleanupUrls = () => {
+    createdUrls.value.forEach((url) => {
+      URL.revokeObjectURL(url);
+    });
+    createdUrls.value = [];
   };
 
   const startRecording = () => {
@@ -34,6 +43,8 @@ function useMediaRecorder({ stream }: { stream: Ref<MediaStream | undefined> }):
     if (recordingState.value !== 'stopped') {
       return;
     }
+
+    cleanupUrls();
 
     mediaRecorder.value = new MediaRecorder(stream.value, { mimeType: 'video/webm' });
 
