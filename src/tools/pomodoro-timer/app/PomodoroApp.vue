@@ -3,7 +3,7 @@ import { useStore } from 'vuex';
 import { onBeforeUnmount } from 'vue';
 import Header from './components/Header.vue';
 import FinishedPopup from './components/FinishedPopup.vue';
-import { startTimer } from './storeUtils';
+import { startTimer, stopAllTimers } from './storeUtils';
 import PomodoroAbout from './views/PomodoroAbout.vue';
 import PomodoroHome from './views/Home.vue';
 import PomodoroSettings from './views/Settings.vue';
@@ -34,6 +34,7 @@ onBeforeUnmount(() => {
   if (unsubscribe) {
     unsubscribe();
   }
+  stopAllTimers();
 });
 
 // Restore state on load

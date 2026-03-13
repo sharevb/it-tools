@@ -133,26 +133,15 @@ export function useSerialPort() {
     }
     reconnectAttempts++;
     appendOutput(`[Reconnecting... attempt ${reconnectAttempts}]`);
-    await new Promise(resolve => setTimeout(resolve, 1000 * reconnectAttempts));
-    try {
-      await openPort();
-    }
-    catch (err) {
-      if (reconnectAttempts < maxReconnects) {
-        attemptReconnect();
-      }
-      else {
-        appendOutput(`[Reconnect failed] ${err}`);
-      }
-    }
-  }
-    reconnectAttempts++;
-    appendOutput(`[Reconnecting... attempt ${reconnectAttempts}]`);
     await new Promise((resolve) => setTimeout(resolve, 1000 * reconnectAttempts));
     try {
       await openPort();
     } catch (err) {
-      attemptReconnect();
+      if (reconnectAttempts < maxReconnects) {
+        attemptReconnect();
+      } else {
+        appendOutput(`[Reconnect failed] ${err}`);
+      }
     }
   }
 

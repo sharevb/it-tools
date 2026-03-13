@@ -249,8 +249,6 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-onUnmounted(() => { if (socket.value) { socket.value.close(); socket.value = null; } });
-
 <style scoped>
 .log {
   margin-top: 20px;
