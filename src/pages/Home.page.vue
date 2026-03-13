@@ -17,13 +17,13 @@ const homeCustomMarkdown = computedAsync(async () => {
     if (remoteCustomHomeMarkdownResponse.ok) {
       return await remoteCustomHomeMarkdownResponse.text();
     }
-  }
-  catch {}
+  } catch {}
   return '';
 });
 
 const toolStore = useToolStore();
-const desc = 'Collection of handy online tools for developers, with great UX. IT Tools is a free and open-source collection of handy online tools for developers & people working in IT.';
+const desc =
+  'Collection of handy online tools for developers, with great UX. IT Tools is a free and open-source collection of handy online tools for developers & people working in IT.';
 const title = 'IT Tools - Handy online tools for developers';
 
 useHead({
@@ -80,8 +80,9 @@ onMounted(() => {
   window.addEventListener('contextmenu', handleContextMenu);
 
   nextTick(() => {
-  isOrderingFavorites.value = true;
-}
+    isOrderingFavorites.value = true;
+  });
+});
 
 // Update favorite tools order when drag is finished
 function stopOrderingFavorites() {
@@ -105,10 +106,7 @@ const visibleTools = computed(() => {
 // Function to load next batch
 function loadNextBatch() {
   if (visibleToolsCount.value < toolStore.tools.length) {
-    visibleToolsCount.value = Math.min(
-      visibleToolsCount.value + TOOLS_PER_BATCH,
-      toolStore.tools.length,
-    );
+    visibleToolsCount.value = Math.min(visibleToolsCount.value + TOOLS_PER_BATCH, toolStore.tools.length);
   }
 }
 
