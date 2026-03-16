@@ -1,0 +1,17 @@
+name: Sync to Gitee
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync to Gitee
+        uses: Yikun/gitee-sync-action@v0.4.0
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          gitee_token: ${{ secrets.GITEE_TOKEN }}
+          gitee_username: ${{ secrets.GITEE_USERNAME }}
+          gitee_repo: ${{ secrets.GITEE_REPO }}
