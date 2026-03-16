@@ -6,13 +6,13 @@
 about:
   alltools-title: 所有 {toolsCount} 个工具
   tools:
-    name: 姓名
+    name: 名称
     desc: 描述
     category: 类别
   import-favorites: 导入收藏夹
   export-favorites: 导出收藏夹
   put-your-favorites-json-array-here: 将您最喜欢的 JSON 数组放在这里...
-  import-button: 进口
+  import-button: 导入
   favorites-imported-successfully: 收藏夹导入成功！
   error-importing-favorites-e: 导入收藏夹时出错：{0}
   content-fork: >
@@ -110,10 +110,10 @@ tools:
   token-generator:
     title: 令牌生成器
     description: 生成包含你所需字符的随机字符串，包括大写或小写字母、数字和/或符号。
-    uppercase: 大写字母：大写字母（ABC...）
-    lowercase: 小写字母：小写字母（abc...）
-    numbers: 数字：数字（123...）
-    symbols: 符号：符号（!important;...）
+    uppercase: 大写字母 (ABC...)
+    lowercase: 小写字母 (abc...)
+    numbers: 数字 (123...)
+    symbols: 符号 (!-;...)
     length: 长度
     tokenPlaceholder: 令牌...
     copied: 令牌已复制到剪贴板
@@ -128,8 +128,8 @@ tools:
     title: 百分比计算器
     description: 轻松计算从一个值到另一个值的百分比，或从百分比到值。
     texts:
-      placeholder-x: 十
-      placeholder-y: 和
+      placeholder-x: X
+      placeholder-y: Y
       placeholder-result: 结果
       placeholder-from: 从
       placeholder-to: 到
@@ -263,11 +263,9 @@ tools:
       label-postgresql: PostgreSQL
       label-amazon-redshift: 亚马逊 Redshift
       label-singlestoredb: 单存储数据库
-      label-snowflake: 雪花
-      label-spark: 火花
-      label-sqlite: SQLite
-      label-sql-server-transact-sql: SQL Server 事务处理
-      label-trino-presto: 特里诺/很快
+      label-snowflake: Snowflake
+      label-spark: Spark
+      label-trino-presto: Trino/Presto
       label-standard: 标准
       label-tabular-left: 表格左对齐
       label-tabular-right: 表格右对齐
@@ -442,7 +440,7 @@ tools:
       label-remove-duplicates: 移除重复项
       label-convert-to-lowercase: 转换为小写
       label-keep-line-breaks: 保留换行符
-      label-output-as-column: Output as column
+      label-output-as-column: 输出为列
       label-sort-list: 排序列表
       placeholder-sort-alphabetically: 按字母顺序排序
       label-items-separator: 项分隔符

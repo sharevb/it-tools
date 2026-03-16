@@ -33,10 +33,10 @@ home:
     lightMode: Modh solais
     mode: Scoránaigh mód dorcha/éadrom
   loading-more-tools: Ag lódáil tuilleadh uirlisí...
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: Á leathnú...
+  collapseAllTools: Comhlaigh gach uirlis
+  collapsing: Á chomhlaigh...
+  expandAllTools: Leathnaigh gach uirlis
 about:
   alltools-title: Gach uirlis {toolsCount}
   tools:
@@ -49,13 +49,13 @@ about:
   import-button: Iompórtáil
   favorites-imported-successfully: Iompórtáladh na cinn is ansa leat go rathúil!
   error-importing-favorites-e: 'Earráid ag iompórtáil rogha pearsanta: {0}'
-  content-fork: '# Maidir le hUirlisí TF
+  content-fork: "# Maidir le hUirlisí TF
 
     Tá uirlisí úsáideacha comhiomlánaithe ag an suíomh Gréasáin iontach seo, arna
     chruthú le ❤ ar dtús ag [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about)
     agus arna leathnú ag ShareVB, do fhorbróirí agus do dhaoine atá ag obair in TF.
     Má fhaigheann tú é úsáideach, bíodh leisce ort é a roinnt le daoine a cheapann
-    tú a d''fhéadfadh a bheith úsáideach dóibh freisin agus ná déan dearmad é a leabharmharcáil
+    tú a d'fhéadfadh a bheith úsáideach dóibh freisin agus ná déan dearmad é a leabharmharcáil
     i do bharra aicearra!
 
     Is foinse oscailte é Uirlisí TF (faoin gceadúnas GPL-3.0) agus saor in aisce,
@@ -82,7 +82,7 @@ about:
     comhdaigh tuarascáil fabht sa [rannán saincheisteanna](https://github.com/sharevb/it-tools/issues/new/choose)
     sa stórlann GitHub.
 
-    '
+    "
 favoriteButton:
   remove: Bain ó cheanáin
   add: Cuir le ceanáin
@@ -150,8 +150,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Fad ama chun an focal
         faire seo a bhriseadh le fórsa brúidiúil
       tag-note: 'Nóta:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : Tá an neart ríofa bunaithe ar an am a thógfadh sé an pasfhocal a bhriseadh
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        Tá an neart ríofa bunaithe ar an am a thógfadh sé an pasfhocal a bhriseadh
         ag baint úsáide as cur chuige brúidiúil, ní chuireann sé san áireamh an fhéidearthacht
         go ndéanfaí ionsaí foclóra.
     service:
@@ -421,17 +421,18 @@ tools:
           aithníonn an freastalaí an modh iarrata, nó níl sé in ann an t-iarratas
           a chomhlíonadh.
         not-implemented: Níor cuireadh i bhfeidhm é
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: Teachtaireacht
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          Teachtaireacht
           earráide ghinearálta, a thugtar nuair a bhíonn riocht gan choinne ann agus
           nach bhfuil aon teachtaireacht níos sainiúla oiriúnach.
         internal-server-error: Earráid Inmheánach Freastalaí
         5xx-server-error: Earráid freastalaí 5xx
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : Tá éileamh dlíthiúil faighte ag oibreoir freastalaí chun rochtain ar acmhainn
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          Tá éileamh dlíthiúil faighte ag oibreoir freastalaí chun rochtain ar acmhainn
           nó ar shraith acmhainní ina bhfuil an acmhainn iarrtha a dhiúltú.
         unavailable-for-legal-reasons: Gan Fáil Ar Chúiseanna Dlíthiúla
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : Níl an freastalaí sásta an t-iarratas a phróiseáil mar go bhfuil réimse
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          Níl an freastalaí sásta an t-iarratas a phróiseáil mar go bhfuil réimse
           ceanntásc aonair, nó na réimsí ceanntásc go léir le chéile, rómhór.
         request-header-fields-too-large: Réimsí Ceanntásc Iarratais Ró-Mhór
         the-user-has-sent-too-many-requests-in-a-given-amount-of-time: Tá an iomarca
@@ -491,7 +492,8 @@ tools:
           sé nach bhfuil an acmhainn iarrtha ar fáil a thuilleadh agus nach mbeidh
           sí ar fáil arís.
         gone: Imithe
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: Léiríonn
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          Léiríonn
           sé nach bhféadfaí an t-iarratas a phróiseáil mar gheall ar choinbhleacht
           san iarratas, amhail coimhlint eagarthóireachta.
         conflict: Coimhlint
@@ -501,8 +503,8 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: Caithfidh an cliant
           é féin a fhíordheimhniú leis an seachfhreastalaí ar dtús.
         proxy-authentication-required: Fíordheimhniú Seachfhreastalaí Riachtanach
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : Ní féidir leis an acmhainn iarrtha ach ábhar nach bhfuil inghlactha a ghiniúint
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          Ní féidir leis an acmhainn iarrtha ach ábhar nach bhfuil inghlactha a ghiniúint
           de réir na gceanntásca Glactha a seoladh san iarratas.
         not-acceptable: Ní ghlactar leis
         a-request-method-is-not-supported-for-the-requested-resource: Ní thacaítear
@@ -511,17 +513,18 @@ tools:
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: Níorbh
           fhéidir an acmhainn iarrtha a aimsiú ach d&#39;fhéadfadh sí a bheith ar
           fáil amach anseo.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: Bhí
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          Bhí
           an iarratas bailí, ach tá an freastalaí ag diúltú gníomhú. B’fhéidir nach
           bhfuil na ceadanna riachtanacha ag an úsáideoir le haghaidh acmhainne.
         forbidden: Toirmiscthe
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : Curtha in áirithe lena úsáid sa todhchaí. Ba é an cuspóir bunaidh ná go
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          Curtha in áirithe lena úsáid sa todhchaí. Ba é an cuspóir bunaidh ná go
           bhféadfaí an cód seo a úsáid mar chuid de chineál éigin airgid dhigitigh
           nó scéim micrea-íocaíochta.
         payment-required: Íocaíocht Riachtanach
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : Cosúil le 403 Toirmiscthe, ach go sonrach le húsáid nuair is gá fíordheimhniú
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          Cosúil le 403 Toirmiscthe, ach go sonrach le húsáid nuair is gá fíordheimhniú
           agus gur theip air nó nár soláthraíodh é fós.
         unauthorized: Neamhúdaraithe
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: Ní
@@ -533,7 +536,8 @@ tools:
           chóir an iarratas agus gach iarratas amach anseo a athdhéanamh ag baint
           úsáide as URI eile.
         permanent-redirect: Atreorú Buan
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: Sa
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          Sa
           chás seo, ba cheart an t-iarratas a athdhéanamh le URI eile; áfach, ba cheart
           d&#39;iarratais amach anseo an URI bunaidh a úsáid fós.
         temporary-redirect: Atreorú Sealadach
@@ -2136,7 +2140,8 @@ tools:
       title-large-text: Téacs mór
       title-apca: APCA
       label-apca-constrast: 'Codarsnacht APCA:'
-      tag-text-that-is-14pt-18-67px-and-bold-or-any-text-bigger-than-18pt-24px-is-defined-as-large-scale-text: Sainmhínítear
+      tag-text-that-is-14pt-18-67px-and-bold-or-any-text-bigger-than-18pt-24px-is-defined-as-large-scale-text:
+        Sainmhínítear
         téacs atá 14pt (18.67px) agus trom nó aon téacs atá níos mó ná 18pt (24px)
         mar théacs ar scála mór.
   color-wheel:
@@ -3507,8 +3512,8 @@ tools:
       verify-description: '{0}: {1} (fíoraigh le {2})'
       token-secret: Rún na Comharthaí
       token-keys: Eochracha Comhartha
-      cannot-parse-secret-as-encoding: 'Ní féidir ''{0}'' a pharsáil mar ''{1}'':
-        {2}'
+      cannot-parse-secret-as-encoding: "Ní féidir '{0}' a pharsáil mar '{1}':
+        {2}"
       invalid-base64-string: Teaghrán Base64 neamhbhailí
       placeholder-input-token: Greamaigh do chomhartha JWT le heagarthóireacht...
       click-to-input-a-existing-jwt-token-to-modify: Cliceáil chun comhartha JWT atá
@@ -4101,7 +4106,8 @@ tools:
         source-wikipedia: 'Foinse: Vicipéid'
         once-the-long-break-is-finished-return-to-step-1: Nuair a bheidh an sos fada
           thart, téigh ar ais go Céim 1.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: Coinnigh
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          Coinnigh
           ort ag déanamh Céimeanna 1-3 arís, ach tar éis do 4ú tasc, glac sos fada
           in ionad sos gearr (is gnách go nglacann tú 20-30 nóiméad).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: Nuair a bhuaileann
@@ -4110,8 +4116,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Cinneadh a dhéanamh
           ar thasc agus an lasc ama a shocrú (is gnách go mbíonn 25 nóiméad ann).
         five-steps-of-the-pomodoro-technique: Cúig chéim den Teicníc Pomodoro
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : Is modh bainistíochta ama é Teicníc Pomodoro a d&#39;fhorbair Francesco
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          Is modh bainistíochta ama é Teicníc Pomodoro a d&#39;fhorbair Francesco
           Cirillo sna 1980idí. Úsáideann sé lasc ama chun obair a bhriseadh síos ina
           eatraimh, 25 nóiméad ar fhad de ghnáth, scartha le sosanna gearra. Tugtar
           pomodoro ar gach eatramh, ón bhfocal Iodáilise do thráta, i ndiaidh an lasc
@@ -4219,61 +4225,68 @@ tools:
       text:
         3-drive-failures-per-raid-7-set: 3 theip tiomántáin in aghaidh an tsraith
           RAID 7
-        raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: Éilíonn
+        raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks:
+          Éilíonn
           RAID 70 10 ndiosca ar a laghad agus 5 ar a laghad in aghaidh an stríoca.
           Caithfidh líon comhionann dioscaí a bheith sna stríoca.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: Cuireann
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          Cuireann
           RAID 70 il-eagar RAID 7 le chéile (RAID 7 + RAID 0). Is féidir le gach tacar
           RAID 7 trí theip tiomántáin a sheasamh.
         2-drive-failures-per-raid-6-set: 2 theip tiomántáin in aghaidh an tsraith
           RAID 6
-        raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: Éilíonn
+        raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks:
+          Éilíonn
           RAID 60 8 ndiosca ar a laghad agus 4 ar a laghad in aghaidh an stríoca.
           Caithfidh líon comhionann dioscaí a bheith sna stríoca.
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: Cuireann
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
+          Cuireann
           RAID 60 il-eagar RAID 6 le chéile (RAID 6 + RAID 0). Is féidir le gach tacar
           RAID 6 dhá theip tiomántáin a sheasamh.
         1-drive-failure-per-raid-5-set: Teip tiomántáin amháin in aghaidh an tsraith
           RAID 5
-        raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: Éilíonn
+        raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks:
+          Éilíonn
           RAID 50 6 dhiosca ar a laghad agus 3 ar a laghad in aghaidh an stríoca.
           Caithfidh líon comhionann dioscaí a bheith sna stríoca.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: Cuireann
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          Cuireann
           RAID 50 roinnt eagar RAID 5 le chéile (RAID 5 + RAID 0). Is féidir le gach
           tacar RAID 5 teip tiomántáin amháin a sheasamh.
         1-drive-failure-per-mirrored-set: Teip tiomántáin amháin in aghaidh an tsraith
           scáthánaithe
         raid-10-requires-an-even-number-of-at-least-4-disks: Éilíonn RAID 10 líon
           cothrom de 4 dhiosca ar a laghad
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : Is stríoc scáthán é RAID 10 (RAID 1 + RAID 0). Déantar gach sraith tiomántán
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          Is stríoc scáthán é RAID 10 (RAID 1 + RAID 0). Déantar gach sraith tiomántán
           a scáthánú agus a stríocadh le chéile ionas go mbeidh gach tiomántán sa
           tsraith frithsheasmhach in aghaidh lochtanna laistigh den ghrúpa.
         3-drive-failures: 3 theip ar thiomántáin
         raid-7-requires-at-least-5-disks: Éilíonn RAID 7 5 dhiosca ar a laghad
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : Tá RAID 7/RAID TP (neamhchaighdeánach) cosúil le RAID 5 agus RAID 6 ach
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          Tá RAID 7/RAID TP (neamhchaighdeánach) cosúil le RAID 5 agus RAID 6 ach
           le bloc tríú paireachta. Ligeann sé seo do theip tríú diosca ar chostas
           laghdaithe stórála atá cothrom le trí thiomántán.
         2-drive-failures: 2 theip ar thiomántán
         raid-6-requires-at-least-4-disks: Éilíonn RAID 6 4 dhiosca ar a laghad
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : Tá RAID 6 cosúil le RAID 5 ach le bloc comhionannais breise. Fágann sé seo
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          Tá RAID 6 cosúil le RAID 5 ach le bloc comhionannais breise. Fágann sé seo
           go dtarlaíonn teip diosca breise ar chostas laghdaithe stórála atá cothrom
           le dhá thiomántán.
         1-drive-failure: Teip 1 tiomántáin
         raid-5-requires-at-least-3-disks: Éilíonn RAID 5 3 dhiosca ar a laghad
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : Úsáideann RAID 5 stialladh ar leibhéal bloc le comhionannas. Ligeann sé
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          Úsáideann RAID 5 stialladh ar leibhéal bloc le comhionannas. Ligeann sé
           seo lamháltas locht le laghdú stórála atá cothrom le tiomántán amháin don
           fhaisnéis chomhionannais.
         raid-1-requires-at-least-1-disk: Éilíonn RAID 1 diosca amháin ar a laghad
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : Is éard atá i RAID 1 cóip chruinn de na sonraí (scáthán) thar dhá dhiosca
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          Is éard atá i RAID 1 cóip chruinn de na sonraí (scáthán) thar dhá dhiosca
           nó níos mó. Feidhmeoidh an t-eagar chomh fada agus a bheidh tiomántán amháin
           ar a laghad ag feidhmiú.
         raid-0-requires-at-least-1-disk: Éilíonn RAID 0 diosca amháin ar a laghad
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: Roinneann
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          Roinneann
           RAID 0 sonraí go cothrom idir 2 dhiosca nó níos mó gan iomarcaíocht ná lamháltas
           locht agus cruthaíonn sé spás stórála mór amháin.
   rem-px-converter:
@@ -5141,8 +5154,8 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Leid: Téigh
         chuig suíomh Gréasáin le tástáil a dhéanamh, oscail Consól F12 agus rith'
       tag-window-copy-document-cookie: fuinneog.cóip(doiciméad.fianán)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : 'Cóipeálfaidh sé seo an teaghrán fianán chuig do ghearrthaisce. Tabhair faoi
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        'Cóipeálfaidh sé seo an teaghrán fianán chuig do ghearrthaisce. Tabhair faoi
         deara: Ní chóipeálfaidh sé seo ach fianáin atá ar fáil do javascript (fágfar
         fianáin HTTP amháin agus fianáin shlána ar lár).'
       tag-name: Ainm
@@ -5913,26 +5926,26 @@ tools:
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: m.sh., port src 443 agus dst
         10.0.0.1
       title-generated-tcpdump-command: Gineadh ordú tcpdump
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : Is fóntais é tcpdump atá suiteáilte / ar fáil go coitianta i mórán dáiltí
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        Is fóntais é tcpdump atá suiteáilte / ar fáil go coitianta i mórán dáiltí
         Linux chun rian líonra / gabháil paicéad a bhailiú go tapa. Go hachomair,
         is é Wireshark Linux é chun gabhálacha paicéad a bhailiú. Tá tcpdump an-ildánach
         le go leor lasca chun a bhfuil uait a ghabháil go mion chun trácht líonra
         a dhubsáil; le roghanna chun torthaí a aschur trí chonsól, comhad, nó Wireshark
         pcap.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : 'Tá an fóntais seo ann chun cabhrú le hordú tcpdump a ghiniúint ag baint úsáide
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        'Tá an fóntais seo ann chun cabhrú le hordú tcpdump a ghiniúint ag baint úsáide
         as cuid de na lasca/scagairí is coitianta a chuireann tcpdump ar fáil. Ní
         chuimsíonn an fóntais seo gach rogha a chuireann tcpdump ar fáil; is féidir
         liosta iomlán de na roghanna a fháil trína lámhleabhar:'
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Nóta:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : Is féidir le hÓstach, Óstach Foinseach, agus Óstach Ceann Scríbe glacadh le
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        Is féidir le hÓstach, Óstach Foinseach, agus Óstach Ceann Scríbe glacadh le
         hiontrálacha iolracha. Deighil do chuid iontrálacha le camóg, spás nó leathstad.
       tag-note-2: 'Nóta 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : Nuair a shonraíonn tú bratacha foinse (src) nó ceann scríbe (dst), ní dhéanfaidh
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        Nuair a shonraíonn tú bratacha foinse (src) nó ceann scríbe (dst), ní dhéanfaidh
         tcpdump scagadh ach sa treo sin. Más mian leat croitheadh láimhe TCP iomlán
         a ghabháil, déan cinnte go n-úsáideann tú &quot;host&quot; seachas &quot;src
         host&quot; nó &quot;dst host&quot; chun sreabhadh an iarratais agus an fhreagartha
@@ -6293,11 +6306,11 @@ tools:
         song-details: Sonraí an amhráin
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'Ainm chuntas Twitter
-          an chruthaitheora (m.sh.: {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "Ainm chuntas Twitter
+          an chruthaitheora (m.sh.: {'@'}sharevb)..."
         creator-acc: Cunt cruthaitheora.
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 'Ainm chuntas
-          Twitter an tsuímh (m.sh.: {''@''}ittoolsdottech)...'
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "Ainm chuntas
+          Twitter an tsuímh (m.sh.: {'@'}ittoolsdottech)..."
         site-account: Cuntas suímh
         the-twitter-card-type: An cineál cárta Twitter...
         card-type: Cineál cárta
@@ -6981,8 +6994,8 @@ tools:
       label-failure-probability: 'Dóchúlacht Teipe:'
       tag-key-terms-explained: 🧠 Mínithe ar na Príomhthéarmaí
       tag-raid-level: Leibhéal RAID
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : Is modh é RAID (Eagar Iomarcach Dioscaí Neamhspleácha) chun ilthiomántáin
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        Is modh é RAID (Eagar Iomarcach Dioscaí Neamhspleácha) chun ilthiomántáin
         fhisiciúla a chomhcheangal in aonad loighciúil amháin chun feidhmíocht, iomarcaíocht,
         nó an dá rud a fheabhsú.
       tag-description: Cur síos
@@ -7013,39 +7026,41 @@ tools:
         d&#39;eagair RAID 5. Comhcheanglaíonn sé feidhmíocht RAID 0 le hiomarcaíocht
         RAID 5.
       tag-️-mtbf-mean-time-between-failures: ⏱️ Meán-Am Idir Teipeanna (MTBF)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: An
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        An
         meán-am (in uaireanta) a bhfuiltear ag súil go n-oibreoidh tiomántán sula
         dteipeann air. Ciallaíonn MTBF níos airde crua-earraí níos iontaofa.
       tag-rebuild-time: 🔁 Am Athchóirithe
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : An t-am a theastaíonn chun sonraí a atógáil ar thiomántán athsholáthair tar
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        An t-am a theastaíonn chun sonraí a atógáil ar thiomántán athsholáthair tar
         éis teipe. Méadaíonn amanna atógála níos faide an baol go dtarlóidh teip eile
         le linn téarnaimh.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (Meán-Am go Caillteanas Sonraí)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : Meastachán staitistiúil ar cé chomh fada is féidir le córas RAID feidhmiú
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        Meastachán staitistiúil ar cé chomh fada is féidir le córas RAID feidhmiú
         sula gcailltear sonraí. Cuireann sé teipeanna tiomántáin, am atógála, agus
         iomarcaíocht RAID san áireamh. Ciallaíonn MTTDL níos airde córas níos sábháilte.
       tag-bit-error-rate-ber: 🧮 Ráta Earráide Giotáin (BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : An dóchúlacht go mbeidh giotán a léitear ó dhiosca mícheart mar gheall ar
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        An dóchúlacht go mbeidh giotán a léitear ó dhiosca mícheart mar gheall ar
         theorainneacha crua-earraí. Is féidir le BERanna beaga bídeacha fiú (cosúil
         le 1 i dtrilliún) fadhbanna a chruthú le linn atógála, go háirithe le tiomántáin
         mhóra.
       tag-unrecoverable-read-error-ure: 🧠 Earráid Léitheoireachta Neamh-aisghabhála
         (URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : Tarlaíonn sé seo nuair a theipeann ar thiomántán earnáil a léamh le linn atógála.
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        Tarlaíonn sé seo nuair a theipeann ar thiomántán earnáil a léamh le linn atógála.
         Cuireann BER le riosca URE, rud a d&#39;fhéadfadh cur isteach ar aisghabháil
         RAID.
       tag-drive-capacity-tb: 📦 Cumas Tiomántáin (TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: Stóráil
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        Stóráil
         iomlán in aghaidh an tiomántáin. Tógann sé níos faide tiomántáin níos mó a
         atógáil agus bíonn siad níos so-ghabhálaí i leith earráidí a bhaineann le
         BER.
       tag-failure-probability: 📈 Dóchúlacht Teipe
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : An seans go gcaillfear sonraí sa chóras RAID thar thréimhse áirithe ama (m.sh.,
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        An seans go gcaillfear sonraí sa chóras RAID thar thréimhse áirithe ama (m.sh.,
         5 bliana). Ríomhtar é seo ag baint úsáide as samhlacha MTTDL agus teipe easpónantúla.
   pack-files-for-ai:
     title: Pacáil comhaid le haghaidh AI
@@ -7411,8 +7426,8 @@ tools:
       tag-mirrors-stripes: Scátháin/Stríocaí
       tag-reset: Athshocraigh
       tag-see-zpool-openzfs-cheatsheet: Féach ar bhileog cheat Zpool/OpenZFS
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : Cliceáil ar theidil na rannóga chun iad a leathnú/a laghdú agus sonraí ríofa
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        Cliceáil ar theidil na rannóga chun iad a leathnú/a laghdú agus sonraí ríofa
         a fheiceáil. Má chuireann tú an luchóg thar chill tábla, lódálfar na sonraí
         ábhartha isteach sa rannán Luachanna Ríomha thíos. Is féidir leat cliceáil
         ar chealla tábla chun na luachanna sin a reo nó a dhíreo.
@@ -7740,7 +7755,8 @@ tools:
       label-signature: Síniú
       label-arguments: Argóintí
       title-structured-output-json: Aschur Struchtúrtha JSON
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}"go":"0x...","sonraí":"0x..."{''}''}
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        '{''{''}"go":"0x...","sonraí":"0x..."{''}''}
         nó 0x amh....'
   file-splitter:
     title: Scoilteoir Comhad

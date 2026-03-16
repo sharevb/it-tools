@@ -33,10 +33,10 @@ home:
     lightMode: Lichte modus
     mode: Schakel tussen donkere/licht modus
   loading-more-tools: Meer hulpmiddelen laden...
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: Uitbreiden...
+  collapseAllTools: Alle hulpmiddelen samenvouwen
+  collapsing: Samenvouwen...
+  expandAllTools: Alle hulpmiddelen uitvouwen
 favoriteButton:
   remove: Verwijder uit favorieten
   add: Voeg toe aan favorieten
@@ -89,8 +89,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Hoe lang duurt het om
         dit wachtwoord met brute force te kraken?
       tag-note: 'Opmerking:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : De berekende sterkte is gebaseerd op de tijd die nodig is om het wachtwoord
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        De berekende sterkte is gebaseerd op de tijd die nodig is om het wachtwoord
         te kraken met behulp van brute force. Er wordt geen rekening gehouden met
         de mogelijkheid van een woordenboekaanval.
     service:
@@ -325,18 +325,19 @@ tools:
         the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: De
           server herkent de aanvraagmethode niet of kan de aanvraag niet uitvoeren.
         not-implemented: Niet geïmplementeerd
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: Een
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          Een
           algemeen foutbericht dat wordt weergegeven wanneer er sprake is van een
           onverwachte situatie en er geen specifieker bericht geschikt is.
         internal-server-error: Interne serverfout
         5xx-server-error: 5xx serverfout
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : Een serverbeheerder heeft een juridische aanmaning ontvangen om toegang
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          Een serverbeheerder heeft een juridische aanmaning ontvangen om toegang
           te weigeren tot een bron of tot een set bronnen waartoe de gevraagde bron
           behoort.
         unavailable-for-legal-reasons: Niet beschikbaar om juridische redenen
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : De server wil het verzoek niet verwerken omdat een afzonderlijk header-veld,
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          De server wil het verzoek niet verwerken omdat een afzonderlijk header-veld,
           of alle header-velden samen, te groot zijn.
         request-header-fields-too-large: Aanvraagheadervelden te groot
         the-user-has-sent-too-many-requests-in-a-given-amount-of-time: De gebruiker
@@ -397,7 +398,8 @@ tools:
           aan dat de aangevraagde bron niet langer beschikbaar is en niet meer beschikbaar
           zal zijn.
         gone: Weg
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: Geeft
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          Geeft
           aan dat het verzoek niet kon worden verwerkt vanwege een conflict in het
           verzoek, bijvoorbeeld een bewerkingsconflict.
         conflict: Conflict
@@ -407,8 +409,8 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: De client moet zich
           eerst verifiëren bij de proxy.
         proxy-authentication-required: Proxy-authenticatie vereist
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : De aangevraagde bron kan alleen inhoud genereren die niet acceptabel is
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          De aangevraagde bron kan alleen inhoud genereren die niet acceptabel is
           volgens de Accept-headers die in de aanvraag zijn meegestuurd.
         not-acceptable: Niet acceptabel
         a-request-method-is-not-supported-for-the-requested-resource: Een aanvraagmethode
@@ -417,17 +419,18 @@ tools:
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: De
           gevraagde bron kon niet worden gevonden, maar is mogelijk in de toekomst
           beschikbaar.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: Het
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          Het
           verzoek was geldig, maar de server weigert actie. De gebruiker heeft mogelijk
           niet de benodigde rechten voor een resource.
         forbidden: Verboden
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : Gereserveerd voor toekomstig gebruik. Het was oorspronkelijk de bedoeling
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          Gereserveerd voor toekomstig gebruik. Het was oorspronkelijk de bedoeling
           dat deze code gebruikt zou worden als onderdeel van een vorm van digitaal
           geld of microbetalingssysteem.
         payment-required: Betaling vereist
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : Vergelijkbaar met 403 Forbidden, maar specifiek voor gebruik wanneer authenticatie
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          Vergelijkbaar met 403 Forbidden, maar specifiek voor gebruik wanneer authenticatie
           vereist is en is mislukt of nog niet is verstrekt.
         unauthorized: Ongeautoriseerd
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: De
@@ -439,7 +442,8 @@ tools:
           verzoek en alle toekomstige verzoeken moeten worden herhaald met een andere
           URI.
         permanent-redirect: Permanente omleiding
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: In
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          In
           dit geval moet de aanvraag worden herhaald met een andere URI. Toekomstige
           aanvragen moeten echter nog steeds de oorspronkelijke URI gebruiken.
         temporary-redirect: Tijdelijke omleiding
@@ -1065,8 +1069,8 @@ tools:
       text:
         invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: 'Ongeldige
           octale machtigingen (moeten 3 of 4 octale cijfers zijn): {0}'
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: 'Ongeldige
-          tekenreeksrechten (moet in de vorm ''rwxrwxrwx'' zijn): {0}'
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: "Ongeldige
+          tekenreeksrechten (moet in de vorm 'rwxrwxrwx' zijn): {0}"
   rsa-key-pair-generator:
     title: RSA-sleutelpaar generator
     description: Genereer een nieuw willekeurig RSA privé- en publieke pem-certificaat-sleutelpaar.
@@ -1991,7 +1995,7 @@ tools:
       label-code-snippet-to-format: 'Codefragment om op te maken:'
       placeholder-put-your-code-snippet-here: Plaats hier uw codefragment
       label-show-line-numbers: Regelnummers weergeven
-      tag-: ''', '''
+      tag-: "', '"
       tag-copy-html-formatted: Kopieer HTML geformatteerd
       tag-copy-code-text: Kopieer codetekst
       tag-copy-html-word: Kopieer naar HTML/opgemaakte tekst in Word
@@ -2382,8 +2386,8 @@ tools:
       label-dns-record-type: 'DNS-recordtype:'
       title-query-results: Zoekresultaten
       tag-send-dns-query: DNS-query verzenden
-    externalAccess: 'Deze tool verstuurt DNS-query''s via een reagerend DOH-eindpunt
-      in de volgende lijst: https://martinheidegger.github.io/dns-query/resolvers.json'
+    externalAccess: "Deze tool verstuurt DNS-query's via een reagerend DOH-eindpunt
+      in de volgende lijst: https://martinheidegger.github.io/dns-query/resolvers.json"
   docker-compose-converter:
     title: Docker Compose-formaatconverter
     description: Converteer Docker Compose-bestanden tussen V1, 2.x, 3.x of CommonSpec
@@ -2629,9 +2633,9 @@ tools:
       label-advanded-json-mode: Geavanceerde JSON-modus
       title-prompts: Aanwijzingen
       placeholder-your-messages-json-array: Uw 'berichten' JSON-array...
-      label-your-messages-json-array: 'Uw ''berichten'' JSON-array:'
+      label-your-messages-json-array: "Uw 'berichten' JSON-array:"
       placeholder-your-tools-json-array: Uw 'tools' JSON-array...
-      label-your-tools-json-array: 'Uw ''tools'' JSON-array:'
+      label-your-tools-json-array: "Uw 'tools' JSON-array:"
       title-input-json-s: Invoer JSON(s)
       placeholder-your-system-prompt-content: Inhoud van uw systeemprompt...
       label-your-system-prompt-content: 'Inhoud van uw systeemprompt:'
@@ -2897,7 +2901,7 @@ tools:
       placeholder-an-ipv4-6-cidr-range-mask-wildcard: Een IPv4/6 CIDR/bereik/masker/wildcard...
       label-disallowedips-ipv4-6-cidr-range-mask-wildcard: Niet-toegestane IP's (IPv4/6
         CIDR/bereik/masker/wildcard)
-      label-final-allowedips: 'Definitieve toegestane IP''s:'
+      label-final-allowedips: "Definitieve toegestane IP's:"
       title-allowed-subnets: Toegestane subnetten
       title-disallowed-subnets: Niet-toegestane subnetten
   ip-range-to-cidr:
@@ -3208,7 +3212,7 @@ tools:
       verify-description: '{0}: {1} (controleer met {2})'
       token-secret: Tokengeheim
       token-keys: Tokensleutels
-      cannot-parse-secret-as-encoding: 'Kan ''{0}'' niet parseren als ''{1}'': {2}'
+      cannot-parse-secret-as-encoding: "Kan '{0}' niet parseren als '{1}': {2}"
       invalid-base64-string: Ongeldige Base64-tekenreeks
       placeholder-input-token: Plak uw JWT-token om te bewerken...
       click-to-input-a-existing-jwt-token-to-modify: Klik om een bestaand JWT-token
@@ -4364,8 +4368,8 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Tip: Navigeer
         naar een website om te testen, open F12 Console en voer uit'
       tag-window-copy-document-cookie: venster.kopie(document.cookie)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : 'Hiermee kopieert u de cookiestring naar uw klembord. Let op: hiermee kopieert
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        'Hiermee kopieert u de cookiestring naar uw klembord. Let op: hiermee kopieert
         u alleen cookies die beschikbaar zijn voor JavaScript (alleen HTTP en beveiligde
         cookies worden weggelaten).'
       tag-name: Naam
@@ -4613,9 +4617,9 @@ tools:
       label-filesystem-options: 'Bestandssysteemopties:'
       placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async: 'Standaard:
         Standaard koppelingsopties (rw, suid, dev, exec, auto, nouser, async)'
-      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: 'Dump
-        (bepaalt of het hulpprogramma ''dump'' een back-up van dit bestandssysteem
-        moet maken):'
+      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: "Dump
+        (bepaalt of het hulpprogramma 'dump' een back-up van dit bestandssysteem
+        moet maken):"
       label-pass-controls-the-order-for-filesystem-checks-at-boot: 'Pass (bepaalt
         de volgorde van bestandssysteemcontroles bij het opstarten):'
       placeholder-username: Gebruikersnaam
@@ -4929,7 +4933,7 @@ tools:
       title-output: Uitvoer
       label-file-name: 'Bestandsnaam:'
       label-text: 'Tekst:'
-      label-total-pages: 'Totaal aantal pagina''s:'
+      label-total-pages: "Totaal aantal pagina's:"
       tag-extract-text: Tekst extraheren
   pgp-keygen:
     title: PGP-sleutelgenerator
@@ -5089,27 +5093,27 @@ tools:
       label-custom-expression: 'Aangepaste expressie:'
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: bijv. src-poort 443 en dst 10.0.0.1
       title-generated-tcpdump-command: Gegenereerde tcpdump-opdracht
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : tcpdump is een hulpprogramma dat veel geïnstalleerd is op/beschikbaar is voor
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        tcpdump is een hulpprogramma dat veel geïnstalleerd is op/beschikbaar is voor
         veel Linux-distributies en waarmee je snel een netwerktracering/pakketregistratie
         kunt verzamelen. Kortom, het is de Wireshark van Linux voor het verzamelen
         van pakketregistratie. tcpdump is zeer veelzijdig en beschikt over veel switches
         om gedetailleerd vast te leggen wat je nodig hebt om netwerkverkeer te dubuggen;
         met opties om resultaten uit te voeren via de console, een bestand of Wireshark
         pcap.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : 'Dit hulpprogramma helpt bij het genereren van een tcpdump-opdracht met behulp
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        'Dit hulpprogramma helpt bij het genereren van een tcpdump-opdracht met behulp
         van enkele van de meest voorkomende switches/filters die tcpdump biedt. Dit
         hulpprogramma omvat niet alle opties die tcpdump biedt; een volledige lijst
         met opties is te vinden in de handleiding:'
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Opmerking:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : Host, Source Host en Destination Host kunnen meerdere items bevatten. Scheid
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        Host, Source Host en Destination Host kunnen meerdere items bevatten. Scheid
         uw items met een komma, spatie of puntkomma.
       tag-note-2: 'Opmerking 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : Wanneer u een bron- (src) of bestemmingsvlag (dst) opgeeft, filtert tcpdump
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        Wanneer u een bron- (src) of bestemmingsvlag (dst) opgeeft, filtert tcpdump
         alleen in die richting. Als u de volledige TCP-handshake wilt vastleggen,
         gebruik dan "host" in plaats van "src host" of "dst host" om zowel de aanvraag-
         als de responsstroom te zien.
@@ -5400,55 +5404,59 @@ tools:
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           70 vereist minimaal 10 schijven, met minimaal 5 per stripe. Stripes moeten
           evenveel schijven bevatten.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: RAID
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          RAID
           70 combineert meerdere RAID 7-arrays (RAID 7 + RAID 0). Elke RAID 7-set
           kan drie schijfstoringen aan.
         2-drive-failures-per-raid-6-set: 2 schijffouten per RAID 6-set
         raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           60 vereist minimaal 8 schijven, met minimaal 4 per stripe. Stripes moeten
           evenveel schijven bevatten.
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: RAID
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
+          RAID
           60 combineert meerdere RAID 6-arrays (RAID 6 + RAID 0). Elke RAID 6-set
           kan twee schijfstoringen aan.
         1-drive-failure-per-raid-5-set: 1 schijffout per RAID 5-set
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           50 vereist minimaal 6 schijven, met minimaal 3 per stripe. Stripes moeten
           evenveel schijven bevatten.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: RAID
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          RAID
           50 combineert meerdere RAID 5-arrays (RAID 5 + RAID 0). Elke RAID 5-set
           kan één schijfstoring opvangen.
         1-drive-failure-per-mirrored-set: 1 schijffout per gespiegelde set
         raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10 vereist een even
           aantal van minimaal 4 schijven
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : RAID 10 is een reeks mirrors (RAID 1 + RAID 0). Elke set schijven wordt
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          RAID 10 is een reeks mirrors (RAID 1 + RAID 0). Elke set schijven wordt
           gespiegeld en samen gestriped, zodat elke schijf in de set fouttolerant
           is binnen de groep.
         3-drive-failures: 3 schijfstoringen
         raid-7-requires-at-least-5-disks: RAID 7 vereist minimaal 5 schijven
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : RAID 7/RAID TP (niet-standaard) is vergelijkbaar met RAID 5 en RAID 6, maar
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          RAID 7/RAID TP (niet-standaard) is vergelijkbaar met RAID 5 en RAID 6, maar
           met een derde pariteitsblok. Dit maakt een derde schijfstoring mogelijk
           ten koste van een opslagcapaciteit die gelijk is aan drie schijven.
         2-drive-failures: 2 schijfstoringen
         raid-6-requires-at-least-4-disks: RAID 6 vereist minimaal 4 schijven
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : RAID 6 is vergelijkbaar met RAID 5, maar met een extra pariteitsblok. Dit
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          RAID 6 is vergelijkbaar met RAID 5, maar met een extra pariteitsblok. Dit
           zorgt voor een extra schijfstoring ten koste van een opslagcapaciteit die
           gelijk is aan twee schijven.
         1-drive-failure: 1 schijf defect
         raid-5-requires-at-least-3-disks: RAID 5 vereist minimaal 3 schijven
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : RAID 5 maakt gebruik van striping op blokniveau met pariteit. Dit zorgt
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          RAID 5 maakt gebruik van striping op blokniveau met pariteit. Dit zorgt
           voor fouttolerantie met een opslagreductie gelijk aan één schijf voor de
           pariteitsinformatie.
         raid-1-requires-at-least-1-disk: RAID 1 vereist minimaal 1 schijf
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : RAID 1 bestaat uit een exacte kopie van de gegevens (mirror) over twee of
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          RAID 1 bestaat uit een exacte kopie van de gegevens (mirror) over twee of
           meer schijven. De array blijft werken zolang er ten minste één schijf operationeel
           is.
         raid-0-requires-at-least-1-disk: RAID 0 vereist minimaal 1 schijf
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          RAID
           0 verdeelt gegevens gelijkmatig over 2 of meer schijven zonder redundantie
           of fouttolerantie, waardoor één grote opslagruimte ontstaat.
   websocket-tester:
@@ -5535,7 +5543,8 @@ tools:
         source-wikipedia: 'Bron: Wikipedia'
         once-the-long-break-is-finished-return-to-step-1: Zodra de lange pauze voorbij
           is, ga je terug naar stap 1.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: Blijf
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          Blijf
           stap 1-3 herhalen, maar neem na de vierde taak een lange pauze in plaats
           van een korte pauze (20-30 minuten is gebruikelijk).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: Neem een korte
@@ -5544,8 +5553,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Kies een taak en
           stel de timer in (25 minuten is gebruikelijk).
         five-steps-of-the-pomodoro-technique: Vijf stappen van de Pomodoro-techniek
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : De Pomodoro-techniek is een timemanagementmethode die in de jaren 80 werd
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          De Pomodoro-techniek is een timemanagementmethode die in de jaren 80 werd
           ontwikkeld door Francesco Cirillo. Hierbij wordt een timer gebruikt om werk
           op te delen in intervallen van doorgaans 25 minuten, gescheiden door korte
           pauzes. Elk interval staat bekend als een pomodoro, van het Italiaanse woord
@@ -6298,8 +6307,8 @@ tools:
       tag-redirect: Omleiden
       tag-exists: Bestaat
       label-include-domains: 'Domeinen opnemen:'
-      label-allowed-ipv6s: 'Toegestane IPv6''s:'
-      label-allowed-ipv4s: 'Toegestane IPv4''s:'
+      label-allowed-ipv6s: "Toegestane IPv6's:"
+      label-allowed-ipv4s: "Toegestane IPv4's:"
       label-allowed-domains: 'Toegestane domeinen:'
       title-spf-record-generator: SPF-recordgenerator
   certificate-key-parser:
@@ -6346,8 +6355,8 @@ tools:
       label-expiration-time: 'Vervaldatum:'
       label-algorithm-info: 'Algoritme-info:'
       label-fingerprint: 'Vingerafdruk:'
-      label-user-id-s: 'Gebruikers-ID(''s):'
-      label-key-id-s: 'Sleutel-ID(''s):'
+      label-user-id-s: "Gebruikers-ID('s):"
+      label-key-id-s: "Sleutel-ID('s):"
       label-subject: 'Onderwerp:'
       label-request-info: 'Informatie aanvragen:'
       label-signature: 'Handtekening:'
@@ -6875,8 +6884,8 @@ tools:
       label-failure-probability: 'Waarschijnlijkheid van falen:'
       tag-key-terms-explained: 🧠 Belangrijke termen uitgelegd
       tag-raid-level: RAID-niveau
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : RAID (Redundant Array of Independent Disks) is een methode om meerdere fysieke
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        RAID (Redundant Array of Independent Disks) is een methode om meerdere fysieke
         schijven te combineren tot één logische eenheid om de prestaties, redundantie
         of beide te verbeteren.
       tag-description: Beschrijving
@@ -6905,35 +6914,37 @@ tools:
         strook RAID 5-arrays. Combineert de prestaties van RAID 0 met de redundantie
         van RAID 5.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF (gemiddelde tijd tussen storingen)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: De
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        De
         gemiddelde tijd (in uren) dat een schijf naar verwachting kan werken voordat
         deze defect raakt. Een hogere MTBF betekent betrouwbaardere hardware.
       tag-rebuild-time: 🔁 Tijd voor heropbouw
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : De tijd die nodig is om gegevens op een vervangende schijf te reconstrueren
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        De tijd die nodig is om gegevens op een vervangende schijf te reconstrueren
         na een storing. Langere herbouwtijden verhogen het risico op een tweede storing
         tijdens het herstel.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (gemiddelde tijd tot gegevensverlies)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : Een statistische schatting van hoe lang een RAID-systeem kan werken voordat
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        Een statistische schatting van hoe lang een RAID-systeem kan werken voordat
         er gegevensverlies optreedt. Hierbij wordt rekening gehouden met schijfstoringen,
         herbouwtijd en RAID-redundantie. Een hogere MTTDL betekent een veiliger systeem.
       tag-bit-error-rate-ber: 🧮 Bitfoutpercentage (BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : De kans dat een bit die van een schijf wordt gelezen onjuist is vanwege hardwarebeperkingen.
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        De kans dat een bit die van een schijf wordt gelezen onjuist is vanwege hardwarebeperkingen.
         Zelfs kleine BER's (zoals 1 op een biljoen) kunnen problemen veroorzaken tijdens
         herbouw, vooral bij grote schijven.
       tag-unrecoverable-read-error-ure: 🧠 Onherstelbare leesfout (URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : Treedt op wanneer een schijf een sector niet kan lezen tijdens het herbouwen.
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        Treedt op wanneer een schijf een sector niet kan lezen tijdens het herbouwen.
         BER draagt bij aan het URE-risico, wat het RAID-herstel in gevaar kan brengen.
       tag-drive-capacity-tb: 📦 Schijfcapaciteit (TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: Totale
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        Totale
         opslag per schijf. Grotere schijven hebben meer tijd nodig om opnieuw op te
         bouwen en zijn gevoeliger voor BER-gerelateerde fouten.
       tag-failure-probability: 📈 Faalkans
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : De kans dat het RAID-systeem binnen een bepaalde periode (bijv. 5 jaar) gegevensverlies
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        De kans dat het RAID-systeem binnen een bepaalde periode (bijv. 5 jaar) gegevensverlies
         zal ondervinden. Berekend met behulp van MTTDL en exponentiële faalmodellen.
   pack-files-for-ai:
     title: Bestanden inpakken voor AI
@@ -7194,7 +7205,7 @@ tools:
       label-start-ip-number: 'Start IP-nummer:'
       label-number-of-clients: 'Aantal cliënten:'
       label-use-pre-shared-keys: Gebruik vooraf gedeelde sleutels
-      label-client-allowed-ips: 'Door de client toegestane IP''s:'
+      label-client-allowed-ips: "Door de client toegestane IP's:"
       placeholder-client-allowed-ips: Door de client toegestane IP's
       label-endpoint-optional: 'Eindpunt (optioneel):'
       placeholder-endpoint: Eindpunt
@@ -7291,8 +7302,8 @@ tools:
       tag-mirrors-stripes: Spiegels/Strepen
       tag-reset: Reset
       tag-see-zpool-openzfs-cheatsheet: Zie Zpool/OpenZFS Cheatsheet
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : Klik op de sectietitels om de berekende gegevens uit te vouwen/samen te vouwen
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        Klik op de sectietitels om de berekende gegevens uit te vouwen/samen te vouwen
         en te bekijken. Door de muisaanwijzer op een tabelcel te plaatsen, worden
         de relevante gegevens geladen in de sectie Berekende waarden eronder. U kunt
         op tabelcellen klikken om die waarden te bevriezen of te deblokkeren.
@@ -7615,8 +7626,9 @@ tools:
       label-signature: Handtekening
       label-arguments: Argumenten
       title-structured-output-json: Gestructureerde uitvoer JSON
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{''}''}
-        of ruwe 0x....'
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{'}'}
+        of ruwe 0x...."
   file-splitter:
     title: Bestandssplitter
     description: Splits JSON, XML of tekstbestand per groep knooppunten of per groep
@@ -7796,7 +7808,7 @@ tools:
     title: Korte URL's Expander
     description: Breid korte URL's uit om volledige URL's te targeten
     texts:
-      label-short-urls-to-expand: 'Korte URL''s om uit te breiden:'
+      label-short-urls-to-expand: "Korte URL's om uit te breiden:"
       placeholder-enter-short-urls-one-per-line: Voer korte URL's in (één per regel)
       title-result: Resultaat
       tag-expand-all: Alles uitvouwen

@@ -34,10 +34,10 @@ home:
     twitterX: X hesabı
     twitterXAccount: BT Araçları X hesabı
   loading-more-tools: Daha fazla araç yükleniyor...
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: Genişletiliyor...
+  collapseAllTools: Tüm araçları daralt
+  collapsing: Daraltılıyor...
+  expandAllTools: Tüm araçları genişlet
 favoriteButton:
   remove: Favorilerden kaldır
   add: Favorilere ekle
@@ -91,8 +91,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Bu şifreyi kaba kuvvetle
         kırmak için gereken süre
       tag-note: 'Not:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : Hesaplanan güç, kaba kuvvet yaklaşımı kullanılarak şifrenin kırılmasının ne
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        Hesaplanan güç, kaba kuvvet yaklaşımı kullanılarak şifrenin kırılmasının ne
         kadar zaman alacağına dayanmaktadır; sözlük saldırısı olasılığı hesaba katılmamıştır.
     service:
       text:
@@ -274,7 +274,7 @@ tools:
       placeholder-salt-rounds: Tuzlu turlar...
       title-compare-string-with-hash: Dizeyi karma ile karşılaştırın
       placeholder-your-string-to-compare: Karşılaştırılacak dizeniz...
-      label-your-hash: 'Hash''iniz:'
+      label-your-hash: "Hash'iniz:"
       placeholder-your-hash-to-compare: Karşılaştırılacak hash'iniz...
       tag-copy-hash: Karmayı kopyala
       hashed-string: Karma dize
@@ -330,7 +330,8 @@ tools:
         the-server-does-not-support-the-http-protocol-version-used-in-the-request: Sunucu,
           istekte kullanılan HTTP protokol sürümünü desteklemiyor.
         http-version-not-supported: HTTP Sürümü Desteklenmiyor
-        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server: Sunucu
+        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server:
+          Sunucu
           bir ağ geçidi veya proxy gibi davranıyordu ve yukarı akış sunucusundan zamanında
           yanıt alamadı.
         gateway-timeout: Ağ Geçidi Zaman Aşımı
@@ -344,17 +345,18 @@ tools:
         the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: Sunucu
           ya istek yöntemini tanımıyor ya da isteği yerine getirme yeteneğinden yoksun.
         not-implemented: Uygulanmadı
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: Beklenmeyen
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          Beklenmeyen
           bir durumla karşılaşıldığında ve daha spesifik bir mesajın uygun olmadığı
           durumlarda verilen genel bir hata mesajı.
         internal-server-error: İç Sunucu Hatası
         5xx-server-error: 5xx sunucu hatası
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : Bir sunucu operatörü, talep edilen kaynağı içeren bir kaynağa veya kaynak
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          Bir sunucu operatörü, talep edilen kaynağı içeren bir kaynağa veya kaynak
           kümesine erişimin engellenmesi yönünde yasal bir talep aldı.
         unavailable-for-legal-reasons: Yasal Nedenlerden Dolayı Kullanılamıyor
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : Sunucu, tek bir başlık alanının veya tüm başlık alanlarının toplu olarak
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          Sunucu, tek bir başlık alanının veya tüm başlık alanlarının toplu olarak
           çok büyük olması nedeniyle isteği işlemek istemiyor.
         request-header-fields-too-large: İstek Başlık Alanları Çok Büyük
         the-user-has-sent-too-many-requests-in-a-given-amount-of-time: Kullanıcı belirli
@@ -407,7 +409,8 @@ tools:
         indicates-that-the-resource-requested-is-no-longer-available-and-will-not-be-available-again: İstenen
           kaynağın artık mevcut olmadığını ve tekrar mevcut olmayacağını belirtir.
         gone: Gitmiş
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: İstekteki
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          İstekteki
           bir çakışma (örneğin düzenleme çakışması) nedeniyle isteğin işlenemediğini
           belirtir.
         conflict: Anlaşmazlık
@@ -417,8 +420,8 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: İstemcinin öncelikle
           proxy ile kimliğini doğrulaması gerekir.
         proxy-authentication-required: Proxy Kimlik Doğrulaması Gerekli
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : İstenen kaynak, istekte gönderilen Kabul başlıklarına göre yalnızca kabul
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          İstenen kaynak, istekte gönderilen Kabul başlıklarına göre yalnızca kabul
           edilemez içerik üretebilir.
         not-acceptable: Kabul Edilemez
         a-request-method-is-not-supported-for-the-requested-resource: İstenen kaynak
@@ -426,16 +429,17 @@ tools:
         method-not-allowed: Yönteme İzin Verilmiyor
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: İstenen
           kaynak bulunamadı ancak gelecekte bulunabilir.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: İstek
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          İstek
           geçerliydi, ancak sunucu işlemi reddediyor. Kullanıcının bir kaynak için
           gerekli izinleri olmayabilir.
         forbidden: Yasaklı
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : Gelecekte kullanılmak üzere ayrılmıştır. Asıl amaç, bu kodun bir tür dijital
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          Gelecekte kullanılmak üzere ayrılmıştır. Asıl amaç, bu kodun bir tür dijital
           nakit veya mikro ödeme planının parçası olarak kullanılabilmesiydi.
         payment-required: Ödeme Gerekli
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : 403 Yasak'a benzer, ancak özellikle kimlik doğrulamanın gerekli olduğu ve
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          403 Yasak'a benzer, ancak özellikle kimlik doğrulamanın gerekli olduğu ve
           başarısız olduğu veya henüz sağlanmadığı durumlarda kullanılır.
         unauthorized: Yetkisiz
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: Görünen
@@ -445,7 +449,8 @@ tools:
         the-request-and-all-future-requests-should-be-repeated-using-another-uri: İstek
           ve gelecekteki tüm istekler başka bir URI kullanılarak tekrarlanmalıdır.
         permanent-redirect: Kalıcı Yönlendirme
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: Bu
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          Bu
           durumda isteğin başka bir URI ile tekrarlanması gerekir; ancak gelecekteki
           isteklerde yine orijinal URI kullanılmalıdır.
         temporary-redirect: Geçici Yönlendirme
@@ -453,7 +458,8 @@ tools:
           kullanılmıyor. Başlangıçta "Sonraki istekler belirtilen proxy'yi kullanmalıdır."
           anlamına geliyordu.
         switch-proxy: Anahtar Proxy
-        the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response: İstenen
+        the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response:
+          İstenen
           kaynak yalnızca yanıtta adresi verilen bir proxy aracılığıyla kullanılabilir.
         use-proxy: Proxy Kullan
         indicates-that-the-resource-has-not-been-modified-since-the-version-specified-by-the-request-headers: Kaynağın
@@ -491,7 +497,8 @@ tools:
         the-server-successfully-processed-the-request-and-is-not-returning-any-content: Sunucu
           isteği başarıyla işledi ve herhangi bir içerik döndürmüyor.
         no-content: İçerik Yok
-        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy: İstek
+        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy:
+          İstek
           başarılı ancak orijinal isteğin içeriği dönüştürücü bir proxy tarafından
           değiştirildi.
         non-authoritative-information: Yetkisiz Bilgiler
@@ -807,8 +814,8 @@ tools:
       label-your-string-to-slugify: Yavaşlatmak için dizeniz
       placeholder-put-separator-char-here: Ayırıcı karakteri buraya koy
       label-separator-character: Ayırıcı karakter
-      placeholder-you-slug-will-be-generated-here-ex-my-file-path: 'Slug''ınız burada
-        oluşturulacak (örn: my-file-path)'
+      placeholder-you-slug-will-be-generated-here-ex-my-file-path: "Slug'ınız burada
+        oluşturulacak (örn: my-file-path)"
       label-your-slug: Senin sümüklüböceğin
       tag-copy-slug: Kopyalama sümüklüböceği
   json-to-javascript:
@@ -864,7 +871,7 @@ tools:
       label-mockingcase: 'Alay konusu:'
       label-your-string: 'Diziniz:'
       placeholder-your-string: Senin ipin...
-      label-cleaning-regex: 'Regex''i temizleme:'
+      label-cleaning-regex: "Regex'i temizleme:"
       placeholder-your-cleaning-regex: Temizleme regex'iniz...
       label-titlecase: 'Başlık büyük harfle yazılıyor:'
       label-spongecase: 'Sünger kılıf:'
@@ -901,8 +908,8 @@ tools:
       label-your-docker-run-command-s: 'Docker çalıştırma komutunuz(larınız):'
       placeholder-your-docker-run-command-s-to-convert: Dönüştürülecek docker çalıştırma
         komutunuz(larınız)...
-      label-eventually-paste-your-existing-docker-compose: 'Son olarak mevcut Docker
-        Compose''unuzu yapıştırın:'
+      label-eventually-paste-your-existing-docker-compose: "Son olarak mevcut Docker
+        Compose'unuzu yapıştırın:"
       label-docker-compose-format: 'Docker Compose formatı:'
       placeholder-select-docker-compose-format: Docker Compose formatını seçin
       label-indent-size: 'Girinti boyutu:'
@@ -1039,8 +1046,8 @@ tools:
       WYSIWYG HTML düzenleyicisi.
     texts:
       placeholder-your-html-content: HTML içeriğiniz...
-      label-your-html-to-convert-can-paste-from-clipboard: 'Dönüştürülecek Html''iniz
-        (panodan yapıştırabilirsiniz):'
+      label-your-html-to-convert-can-paste-from-clipboard: "Dönüştürülecek Html'iniz
+        (panodan yapıştırabilirsiniz):"
       label-minify: 'Küçült:'
       tag-hey: Hey!
       tag-welcome-to-this-html-wysiwyg-editor: Bu HTML wysiwyg düzenleyicisine hoş
@@ -1690,7 +1697,7 @@ tools:
       label-code-snippet-to-format: 'Biçimlendirilecek kod parçası:'
       placeholder-put-your-code-snippet-here: Kod parçacığınızı buraya koyun
       label-show-line-numbers: Satır numaralarını göster
-      tag-: ''', '''
+      tag-: "', '"
       tag-copy-html-formatted: HTML Biçimli Kopyala
       tag-copy-code-text: Kod Metnini Kopyala
       tag-copy-html-word: Word'de HTML/Zengin Metin Olarak Kopyala
@@ -1773,7 +1780,7 @@ tools:
       title-drag-and-drop-a-file-here-or-click-to-select-a-file: Bir dosyayı buraya
         sürükleyip bırakın veya bir dosyayı seçmek için tıklayın
       placeholder-paste-string-to-crc: Dizeyi CRC'ye yapıştır...
-      label-your-text-to-crc: 'CRC''ye göndereceğiniz metin:'
+      label-your-text-to-crc: "CRC'ye göndereceğiniz metin:"
       label-digest-encoding: Özet kodlama
       tag-or: VEYA
       tag-an-error-occured-hashing-file: Dosya karma işleminde bir hata oluştu.
@@ -1809,8 +1816,8 @@ tools:
     description: CSS Güzelleştirme
     texts:
       placeholder-your-css-content: CSS içeriğiniz...
-      label-your-css-to-format-can-paste-from-clipboard: 'Biçimlendirmek için CSS''niz
-        (panodan yapıştırabilirsiniz):'
+      label-your-css-to-format-can-paste-from-clipboard: "Biçimlendirmek için CSS'niz
+        (panodan yapıştırabilirsiniz):"
       label-output-prettified-css: 'Çıktı güzelleştirilmiş CSS:'
   css-selectors-memo:
     title: CSS Seçiciler Hile Sayfası
@@ -2092,7 +2099,7 @@ tools:
       label-v2-2-x-to-3-x: V2 - 2.x'ten 3.x'e
       label-v2-3-x-to-2-x: V2 - 3.x'ten 2.x'e
       label-to-commonspec: CommonSpec'e
-      label-paste-your-existing-docker-compose: 'Mevcut Docker Compose''unuzu yapıştırın:'
+      label-paste-your-existing-docker-compose: "Mevcut Docker Compose'unuzu yapıştırın:"
       title-the-following-errors-occured: Aşağıdaki hatalar oluştu
       label-docker-compose-conversion: 'Docker Compose dönüşümü:'
       placeholder-select-docker-compose-conversion: Docker Compose dönüşümünü seçin
@@ -2150,7 +2157,7 @@ tools:
         için dizeniz...
       label-your-text: 'Metniniz:'
       placeholder-your-cleaning-regex: Temizleme regex'iniz...
-      label-cleaning-regex: 'Regex''i temizleme:'
+      label-cleaning-regex: "Regex'i temizleme:"
       label-duplicated-lines: 'Tekrarlanan satırlar:'
   duration-calculator:
     title: Süre Hesaplayıcısı
@@ -2260,20 +2267,20 @@ tools:
         //(seedLow: sayı, seedHigh: sayı): Söz'
       tag-createxxhash128-seedlow-number-seedhigh-number-promise: '// createXXHash128,
         //(seedLow: sayı, seedHigh: sayı): Söz'
-      tag-blake2b-await-createblake2b-bits-number-key-idatatype-promise: 'BLAKE2b:
-        createBLAKE2b()''yi bekle, // (bitler?: sayı, anahtar?: IDataType): Söz'
-      tag-md5-await-createmd5-promise: 'MD5: createMD5()''i bekle, // (): Söz ver'
-      tag-ripemd160-await-createripemd160-promise: 'RIPEMD160: createRIPEMD160()''ı
-        bekle, // (): Söz ver'
-      tag-sha1-await-createsha1-promise: 'SHA1: createSHA1()''i bekle, // (): Söz
-        ver'
-      tag-sha224-await-createsha224-promise: 'SHA224: createSHA224()''ü bekle, //
-        (): Söz ver'
+      tag-blake2b-await-createblake2b-bits-number-key-idatatype-promise: "BLAKE2b:
+        createBLAKE2b()'yi bekle, // (bitler?: sayı, anahtar?: IDataType): Söz"
+      tag-md5-await-createmd5-promise: "MD5: createMD5()'i bekle, // (): Söz ver"
+      tag-ripemd160-await-createripemd160-promise: "RIPEMD160: createRIPEMD160()'ı
+        bekle, // (): Söz ver"
+      tag-sha1-await-createsha1-promise: "SHA1: createSHA1()'i bekle, // (): Söz
+        ver"
+      tag-sha224-await-createsha224-promise: "SHA224: createSHA224()'ü bekle, //
+        (): Söz ver"
       tag-sha256-await-createsha256-promise: 'SHA256: await createSHA256(), // ():
         Söz'
       tag-sha512-await-createsha512-promise: 'SHA512: await createSHA512(), // ():
         Söz'
-      tag-sm3-await-createsm3-promise: 'SM3: createSM3()''ü bekle, // (): Söz ver'
+      tag-sm3-await-createsm3-promise: "SM3: createSM3()'ü bekle, // (): Söz ver"
       tag-whirlpool-await-createwhirlpool-promise: 'Whirlpool: await createWhirlpool(),
         // (): Söz'
   file-type:
@@ -2329,10 +2336,10 @@ tools:
       placeholder-select-gpt-model: GPT modelini seçin
       label-advanded-json-mode: Gelişmiş JSON Modu
       title-prompts: İstemler
-      placeholder-your-messages-json-array: '''Mesajlarınız'' JSON dizisi...'
-      label-your-messages-json-array: '''Mesajlarınız'' JSON dizisi:'
-      placeholder-your-tools-json-array: '''Araçlar'' JSON diziniz...'
-      label-your-tools-json-array: '''Araçlar'' JSON diziniz:'
+      placeholder-your-messages-json-array: "'Mesajlarınız' JSON dizisi..."
+      label-your-messages-json-array: "'Mesajlarınız' JSON dizisi:"
+      placeholder-your-tools-json-array: "'Araçlar' JSON diziniz..."
+      label-your-tools-json-array: "'Araçlar' JSON diziniz:"
       title-input-json-s: Giriş JSON(lar)ı
       placeholder-your-system-prompt-content: Sisteminiz İstem içeriği...
       label-your-system-prompt-content: 'Sistem İstemi içeriğiniz:'
@@ -2433,24 +2440,24 @@ tools:
     description: Temiz HTML
     texts:
       placeholder-your-html-content: HTML içeriğiniz...
-      label-your-html-to-clean-can-paste-from-clipboard: 'Temizlenecek HTML''niz (panodan
-        yapıştırabilirsiniz):'
+      label-your-html-to-clean-can-paste-from-clipboard: "Temizlenecek HTML'niz (panodan
+        yapıştırabilirsiniz):"
       label-output-cleaned-html: 'Çıktı temizlenmiş HTML:'
   html-prettifier:
     title: HTML Güzelleştirici
     description: HTML kodunu güzelleştir
     texts:
       placeholder-your-html-content: HTML içeriğiniz...
-      label-your-html-to-format-can-paste-from-clipboard: 'Biçimlendirilecek HTML''niz
-        (panodan yapıştırabilirsiniz):'
+      label-your-html-to-format-can-paste-from-clipboard: "Biçimlendirilecek HTML'niz
+        (panodan yapıştırabilirsiniz):"
       label-output-prettified-html: 'Çıktı güzelleştirilmiş HTML:'
   html-to-markdown:
     title: Html'den Markdown'a
     description: HTML'yi (panodan) Markdown'a dönüştürün
     texts:
       placeholder-your-html-content: HTML içeriğiniz...
-      label-your-html-to-convert-can-paste-from-clipboard: 'Dönüştürülecek Html''iniz
-        (panodan yapıştırabilirsiniz):'
+      label-your-html-to-convert-can-paste-from-clipboard: "Dönüştürülecek Html'iniz
+        (panodan yapıştırabilirsiniz):"
       label-output-markdown: 'Çıktı işaretlemesi:'
       label-heading-style: 'Başlık Stili:'
       label-emphasis-style: 'Vurgu Stili:'
@@ -2598,7 +2605,7 @@ tools:
         Karakter...
       label-disallowedips-ipv4-6-cidr-range-mask-wildcard: İzin Verilmeyen IP'ler
         (IPv4/6 CIDR/Aralık/Maske/Joker Karakter)
-      label-final-allowedips: 'Son İzin Verilen IP''ler:'
+      label-final-allowedips: "Son İzin Verilen IP'ler:"
       title-allowed-subnets: İzin Verilen Alt Ağlar
       title-disallowed-subnets: İzin Verilmeyen Alt Ağlar
   ip-range-to-cidr:
@@ -2615,8 +2622,8 @@ tools:
         IPv4/6 adresinin geçersiz birleşimi
       title-invalid-combination-of-ip-version-4-6: IP sürüm 4/6'nın geçersiz kombinasyonu
       tag-switch-start-and-end-ipv4-6-address: Anahtar başlangıç ve bitiş IPv4/6 adresi
-      tag-start-ip-and-end-ip-must-be-of-same-version-ipv4-or-ipv6: 'Başlangıç IP''si
-        ve Bitiş IP''si aynı sürümde olmalıdır: IPv4 veya IPv6'
+      tag-start-ip-and-end-ip-must-be-of-same-version-ipv4-or-ipv6: "Başlangıç IP'si
+        ve Bitiş IP'si aynı sürümde olmalıdır: IPv4 veya IPv6"
   ipv6-address-converter:
     title: IPv6 adres dönüştürücü
     description: Bir IP adresini ondalık, ikili, onaltılık biçime dönüştürün ve bilgi
@@ -2707,14 +2714,14 @@ tools:
       tag-search-result: Arama sonucu
       tag-iso2-iso3: İzo2/İzo3
       tag-name-and-info: İsim ve Bilgi
-      tag-gt-see-on-openstreetmap: '&gt; OpenStreetMap''te görün'
+      tag-gt-see-on-openstreetmap: "&gt; OpenStreetMap'te görün"
   javascript-prettifier:
     title: Javascript Güzelleştirici
     description: JS/Javascript Güzelleştirici
     texts:
       placeholder-your-js-content: JS içeriğiniz...
-      label-your-js-to-format-can-paste-from-clipboard: 'Biçimlendirilecek JS''niz
-        (panodan yapıştırabilirsiniz):'
+      label-your-js-to-format-can-paste-from-clipboard: "Biçimlendirilecek JS'niz
+        (panodan yapıştırabilirsiniz):"
       label-output-prettified-js: 'Çıktı güzelleştirilmiş JS:'
   jq-memo:
     title: Jq Hile Sayfası
@@ -2792,7 +2799,7 @@ tools:
       title-formatted-version: Biçimlendirilmiş sürüm
       label-indent-size-0-compact: 'Girinti boyutu (0 = Sıkıştırılmış):'
       title-repaired-version: Otomatik Onarılmış ve Biçimlendirilmiş sürüm
-      label-auto-repair-json: 'Otomobil Tamir JSON''u:'
+      label-auto-repair-json: "Otomobil Tamir JSON'u:"
     externalAccess: Bu araç, doğrulama isteği yapıldığında https://www.schemastore.org
       adresinden bir JSON şeması indirebilir. Dışarıya hiçbir veri gönderilmez.
   json-size-analyzer:
@@ -2908,7 +2915,7 @@ tools:
       verify-description: '{0}: {1} ({2} ile doğrulayın)'
       token-secret: Jeton Sırrı
       token-keys: Jeton Anahtarları
-      cannot-parse-secret-as-encoding: '''{0}'' ''{1}'' olarak ayrıştırılamıyor: {2}'
+      cannot-parse-secret-as-encoding: "'{0}' '{1}' olarak ayrıştırılamıyor: {2}"
       invalid-base64-string: Geçersiz Base64 dizesi
       placeholder-input-token: Düzenlemek için JWT token'ınızı yapıştırın...
       click-to-input-a-existing-jwt-token-to-modify: Mevcut bir JWT belirtecini değiştirmek
@@ -2940,7 +2947,7 @@ tools:
       label-is-valid: Geçerli mi?
       label-luhn-key: Luhn Anahtarı
       label-value-with-luhn-key: Luhn Anahtarı ile Değer
-      placeholder-enter-a-luhn-validated-value: '''Luhn validated'' değerini girin...'
+      placeholder-enter-a-luhn-validated-value: "'Luhn validated' değerini girin..."
       label-probably-correct: Muhtemelen doğru
       title-infos: Bilgi
       tag-invalid-luhn-key: Geçersiz Luhn Anahtarı.
@@ -3501,8 +3508,8 @@ tools:
     title: Hassas veri maskeleyici
     description: Metinsel içerikten hassas verileri temizleyin (örneğin günlükler)
     texts:
-      label-your-custom-cleaning-regex-es-case-insensitive: 'Özel temizleme regex''iniz
-        (büyük/küçük harfe duyarlı değil):'
+      label-your-custom-cleaning-regex-es-case-insensitive: "Özel temizleme regex'iniz
+        (büyük/küçük harfe duyarlı değil):"
       placeholder-your-custom-cleaning-regex-es: Özel temizleme regex'leriniz
       placeholder-no-fallback: Geri Dönüş Yok
       input-label-your-log-textual-data: 'Logunuz/metinsel verileriniz:'
@@ -3878,9 +3885,9 @@ tools:
   safelink-decoder:
     title: Outlook Safelink kod çözücü
     description: Outlook SafeLink bağlantılarını çözün
-    input: 'Girdiğiniz Outlook SafeLink URL''si:'
+    input: "Girdiğiniz Outlook SafeLink URL'si:"
     input-placeholder: Girdiğiniz Outlook SafeLink URL'si...
-    output: 'Kodlanmış URL''yi çıktı olarak al:'
+    output: "Kodlanmış URL'yi çıktı olarak al:"
   ascii-text-drawer:
     title: ASCII Art Metin Oluşturucu
     description: Birçok yazı tipi ve stil ile ASCII art metinleri oluşturun.
@@ -3923,7 +3930,7 @@ tools:
   markdown-to-html:
     title: Markdown'dan HTML'ye
     description: Markdown'u HTML'ye dönüştürün ve yazdırmaya izin verin (PDF olarak)
-    markdown: 'Dönüştürülecek Markdown''unuz:'
+    markdown: "Dönüştürülecek Markdown'unuz:"
     markdownInput: Markdown içeriğiniz...
     html: 'Çıktı HTML:'
     button:
@@ -4019,9 +4026,9 @@ tools:
       title-bimi-dns-record-generator: BIMI DNS Kayıt Oluşturucu
       label-domain: 'İhtisas:'
       placeholder-example-com: example.com
-      label-logo-url: 'Logo URL''si:'
+      label-logo-url: "Logo URL'si:"
       placeholder-https-example-com-logo-svg: https://example.com/logo.svg
-      label-vmc-certificate-url: 'VMC Sertifika URL''si:'
+      label-vmc-certificate-url: "VMC Sertifika URL'si:"
       placeholder-https-example-com-vmc-pem: https://example.com/vmc.pem
       title-generated-bimi-record: Oluşturulan BIMI kaydı
   bmi-calculator:
@@ -4065,10 +4072,10 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'İpucu: Test
         etmek için bir web sitesine gidin, F12 Konsolunu açın ve çalıştırın'
       tag-window-copy-document-cookie: pencere.kopyala(belge.çerez)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : 'Bu, çerez dizesini panonuza kopyalayacaktır. Not: Bu, yalnızca JavaScript''e
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        "Bu, çerez dizesini panonuza kopyalayacaktır. Not: Bu, yalnızca JavaScript'e
         erişilebilen çerezleri kopyalayacaktır (yalnızca HTTP ve güvenli çerezler
-        hariç tutulacaktır).'
+        hariç tutulacaktır)."
       tag-name: İsim
       tag-value: Değer
       tag-no-cookies-found: Hiçbir çerez bulunamadı
@@ -4312,9 +4319,9 @@ tools:
       label-filesystem-options: 'Dosya sistemi seçenekleri:'
       placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async: 'Varsayılan
         olarak: Standart bağlama seçenekleri (rw, suid, dev, exec, auto, nouser, async)'
-      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: 'Dump
-        (''dump'' yardımcı programının bu dosya sistemini yedekleyip yedeklemeyeceğini
-        belirler):'
+      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: "Dump
+        ('dump' yardımcı programının bu dosya sistemini yedekleyip yedeklemeyeceğini
+        belirler):"
       label-pass-controls-the-order-for-filesystem-checks-at-boot: 'Geçiş (Önyükleme
         sırasında dosya sistemi kontrollerinin sırasını kontrol eder):'
       placeholder-username: Kullanıcı adı
@@ -4385,8 +4392,8 @@ tools:
     description: HTML içeriğini küçült
     texts:
       placeholder-your-html-content: HTML içeriğiniz...
-      label-your-html-to-minify-can-paste-from-clipboard: 'Küçültülecek HTML''niz
-        (panodan yapıştırabilirsiniz):'
+      label-your-html-to-minify-can-paste-from-clipboard: "Küçültülecek HTML'niz
+        (panodan yapıştırabilirsiniz):"
       label-output-minified-html: 'Küçültülmüş HTML çıktısı:'
   iptables-generator:
     title: Iptables Üreticisi
@@ -4560,7 +4567,7 @@ tools:
       title-decryption: Şifre çözme
       label-token: 'Jeton:'
       placeholder-paserk-token: PASERK belirteci
-      title-decoded-paserk: 'PASERK''in kodu çözüldü:'
+      title-decoded-paserk: "PASERK'in kodu çözüldü:"
       tag-refresh-key: Yenileme Anahtarı
   paseto-signing:
     title: Paseto/PASERK Kamu/Özel
@@ -4790,27 +4797,27 @@ tools:
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: örneğin, kaynak portu 443 ve
         dst 10.0.0.1
       title-generated-tcpdump-command: tcpdump komutu oluşturuldu
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : tcpdump, ağ izleme/paket yakalama verilerini hızlıca toplamak için birçok
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        tcpdump, ağ izleme/paket yakalama verilerini hızlıca toplamak için birçok
         Linux dağıtımında yaygın olarak yüklü/kullanılabilir bir yardımcı programdır.
         Kısacası, paket yakalama verilerini toplamak için Linux'un Wireshark'ıdır.
         tcpdump, ağ trafiğini ayrıntılı olarak yakalamak için ihtiyacınız olan her
         şeyi ayrıntılı olarak yakalamak için birçok anahtarla oldukça çok yönlüdür;
         sonuçları konsol, dosya veya Wireshark Pcap aracılığıyla çıktı olarak alma
         seçenekleri sunar.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : Bu yardımcı program, tcpdump tarafından sunulan en yaygın anahtarlardan/filtrelerden
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        Bu yardımcı program, tcpdump tarafından sunulan en yaygın anahtarlardan/filtrelerden
         bazılarını kullanarak bir tcpdump komutu oluşturmanıza yardımcı olur. Bu yardımcı
         program, tcpdump'ın sunduğu tüm seçenekleri kapsamaz; seçeneklerin tam listesine
         kullanım kılavuzundan ulaşabilirsiniz:&nbsp;
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Not:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : '&nbsp;Ana Bilgisayar, Kaynak Ana Bilgisayar ve Hedef Ana Bilgisayar birden
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        '&nbsp;Ana Bilgisayar, Kaynak Ana Bilgisayar ve Hedef Ana Bilgisayar birden
         fazla giriş alabilir. Girişlerinizi virgül, boşluk veya noktalı virgülle ayırın.'
       tag-note-2: 'Not 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : '&nbsp;Bir kaynak (src) veya hedef (dst) bayrağı belirttiğinizde, tcpdump
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        '&nbsp;Bir kaynak (src) veya hedef (dst) bayrağı belirttiğinizde, tcpdump
         yalnızca o yönde filtreleme yapar. TCP el sıkışmasının tamamını yakalamak
         istiyorsanız, hem istek hem de yanıt akışını görmek için "host" yerine "src
         host" veya "dst host" kullandığınızdan emin olun.'
@@ -4988,7 +4995,7 @@ tools:
       bağlantı noktası, kullanıcı adı-şifre, ...)
     texts:
       message-invalid-url: Geçersiz URL
-      label-your-url-to-parse: 'Ayrıştırılacak url''niz:'
+      label-your-url-to-parse: "Ayrıştırılacak url'niz:"
       placeholder-your-url-to-parse: Ayrıştırılacak url'niz...
       url-must-have-http-or-https-prefix: Url'nin http:// veya https:// öneki olması
         gerekir
@@ -5066,8 +5073,8 @@ tools:
     description: Sharepoint.com paylaşım URL'lerini "normal" Sharepoint URL'sine dönüştürün
     texts:
       placeholder-your-input-sharepoint-url: Girdiğiniz SharePoint URL'si...
-      label-your-input-sharepoint-url: 'Girdiğiniz SharePoint URL''si:'
-      label-output-decoded-url: 'Kodlanmış URL''yi çıktı olarak al:'
+      label-your-input-sharepoint-url: "Girdiğiniz SharePoint URL'si:"
+      label-output-decoded-url: "Kodlanmış URL'yi çıktı olarak al:"
     text:
       invalid-sharepoint-url-provided: Geçersiz SharePoint URL'si sağlandı
   safelin-decoder:
@@ -5132,51 +5139,55 @@ tools:
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           70, şerit başına en az 5 olmak üzere en az 10 disk gerektirir. Şeritler
           eşit sayıda disk içermelidir.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: RAID
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          RAID
           70, birden fazla RAID 7 dizisini bir araya getirir (RAID 7 + RAID 0). Her
           RAID 7 seti üç sürücü arızasına dayanabilir.
         2-drive-failures-per-raid-6-set: RAID 6 seti başına 2 sürücü arızası
         raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           60, şerit başına en az 4 olmak üzere en az 8 disk gerektirir. Şeritler eşit
           sayıda disk içermelidir.
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: RAID
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
+          RAID
           60, birden fazla RAID 6 dizisini bir araya getirir (RAID 6 + RAID 0). Her
           RAID 6 seti iki sürücü arızasına dayanabilir.
         1-drive-failure-per-raid-5-set: RAID 5 seti başına 1 sürücü arızası
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           50, şerit başına en az 3 olmak üzere en az 6 disk gerektirir. Şeritler eşit
           sayıda disk içermelidir.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: RAID
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          RAID
           50, birden fazla RAID 5 dizisini bir araya getirir (RAID 5 + RAID 0). Her
           RAID 5 seti tek bir sürücü arızasına dayanabilir.
         1-drive-failure-per-mirrored-set: Yansıtılmış set başına 1 sürücü arızası
         raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10 en az 4 çift
           disk gerektirir
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : RAID 10, bir ayna şerididir (RAID 1 + RAID 0). Her sürücü seti, grup içinde
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          RAID 10, bir ayna şerididir (RAID 1 + RAID 0). Her sürücü seti, grup içinde
           hata toleranslı olacak şekilde yansıtılır ve şeritlenir.
         3-drive-failures: 3 sürücü arızası
         raid-7-requires-at-least-5-disks: RAID 7 en az 5 disk gerektirir
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : RAID 7/RAID TP (standart dışı), RAID 5 ve RAID 6'ya benzer, ancak üçüncü
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          RAID 7/RAID TP (standart dışı), RAID 5 ve RAID 6'ya benzer, ancak üçüncü
           bir eşlik bloğu içerir. Bu, üç sürücüye eşit depolama alanı kaybı pahasına
           üçüncü bir disk arızasına olanak tanır.
         2-drive-failures: 2 sürücü arızası
         raid-6-requires-at-least-4-disks: RAID 6 en az 4 disk gerektirir
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : RAID 6, RAID 5'e benzer ancak ek bir eşlik bloğu içerir. Bu, iki sürücüye
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          RAID 6, RAID 5'e benzer ancak ek bir eşlik bloğu içerir. Bu, iki sürücüye
           eşit depolama alanı kaybı pahasına ek bir disk arızasına olanak tanır.
         1-drive-failure: 1 sürücü arızası
         raid-5-requires-at-least-3-disks: RAID 5 en az 3 disk gerektirir
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : RAID 5, pariteli blok düzeyinde şeritleme kullanır. Bu, parite bilgisi için
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          RAID 5, pariteli blok düzeyinde şeritleme kullanır. Bu, parite bilgisi için
           bir sürücüye eşit depolama alanı azaltımıyla hata toleransı sağlar.
         raid-1-requires-at-least-1-disk: RAID 1 en az 1 disk gerektirir
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : RAID 1, iki veya daha fazla diske dağıtılmış verilerin birebir kopyasından
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          RAID 1, iki veya daha fazla diske dağıtılmış verilerin birebir kopyasından
           (ayna) oluşur. Dizi, en az bir sürücü çalışır durumda olduğu sürece çalışır.
         raid-0-requires-at-least-1-disk: RAID 0 en az 1 disk gerektirir
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          RAID
           0, verileri yedeklilik veya hata toleransı olmadan 2 veya daha fazla diske
           eşit şekilde bölerek tek bir büyük depolama alanı oluşturur.
   websocket-tester:
@@ -5264,7 +5275,8 @@ tools:
         source-wikipedia: 'Kaynak: Wikipedia'
         once-the-long-break-is-finished-return-to-step-1: Uzun mola bittikten sonra
           1. Adıma geri dönün.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: 1-3.
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          1-3.
           Adımları tekrarlamaya devam edin, ancak 4. görevinizden sonra kısa bir mola
           yerine uzun bir mola verin (genellikle 20-30 dakika).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: Zamanlayıcı
@@ -5273,8 +5285,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Bir görev belirleyin
           ve zamanlayıcıyı ayarlayın (genellikle 25 dakika).
         five-steps-of-the-pomodoro-technique: Pomodoro Tekniğinin Beş Adımı
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : Pomodoro Tekniği, 1980'lerde Francesco Cirillo tarafından geliştirilen bir
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          Pomodoro Tekniği, 1980'lerde Francesco Cirillo tarafından geliştirilen bir
           zaman yönetimi yöntemidir. Çalışmayı genellikle 25 dakika uzunluğunda ve
           kısa molalarla ayrılmış aralıklara bölmek için bir zamanlayıcı kullanır.
           Her aralığa, Cirillo'nun üniversite öğrencisiyken kullandığı domates şeklindeki
@@ -5485,8 +5497,8 @@ tools:
       text:
         invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: 'Geçersiz
           sekizli izinler (3 veya 4 sekizli basamak olmalıdır): {0}'
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: 'Geçersiz
-          dize izinleri (''rwxrwxrwx'' biçiminde olmalıdır): {0}'
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: "Geçersiz
+          dize izinleri ('rwxrwxrwx' biçiminde olmalıdır): {0}"
   multi-link-downloader:
     title: Çoklu bağlantı indirici
     description: Araç, sağlanan bağlantıların içeriklerini eş zamanlı olmayan bir
@@ -5642,11 +5654,11 @@ tools:
         song-details: Şarkı detayları
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'Yaratıcının Twitter
-          hesabının adı (örn: {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "Yaratıcının Twitter
+          hesabının adı (örn: {'@'}sharevb)..."
         creator-acc: Yaratıcı hesap.
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 'Sitenin Twitter
-          hesabının adı (örn: {''@''}ittoolsdottech)...'
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "Sitenin Twitter
+          hesabının adı (örn: {'@'}ittoolsdottech)..."
         site-account: Site hesabı
         the-twitter-card-type: Twitter kart türü...
         card-type: Kart türü
@@ -6193,7 +6205,7 @@ tools:
     texts:
       label-sort-keys: 'Sıralama anahtarları :'
       label-indent-size: 'Girinti boyutu :'
-      label-your-raw-yaml: 'Ham YAML''niz:'
+      label-your-raw-yaml: "Ham YAML'niz:"
       title-the-following-errors-occured: Aşağıdaki hatalar oluştu
       label-prettified-version-of-your-yaml: YAML'nizin güzelleştirilmiş versiyonu
       label-no-validation: Doğrulama yok
@@ -6210,10 +6222,10 @@ tools:
   emoji-card:
     text:
       emoji-emojiinfo-value-emoji-copied-to-clipboard: Emoji {0} panoya kopyalandı
-      code-points-completecodepoints-value-copied-to-clipboard: '''{0}'' kod noktaları
-        panoya kopyalandı'
+      code-points-completecodepoints-value-copied-to-clipboard: "'{0}' kod noktaları
+        panoya kopyalandı"
       unicode-emojiinfo-value-unicode-copied-to-clipboard: Unicode '{0}' panoya kopyalandı
-      name-emojiinfo-value-title-copied-to-clipboard: '''{0}'' adı panoya kopyalandı'
+      name-emojiinfo-value-title-copied-to-clipboard: "'{0}' adı panoya kopyalandı"
       click-to-copy-emojiinfo-emoji: '{0} kopyalamak için tıklayın'
       click-to-copy-name-emojiinfo-title: 'Adı kopyalamak için tıklayın: {0}'
       click-to-copy-completecodepoints: 'Kopyalamak için tıklayın: {0}'
@@ -6221,7 +6233,7 @@ tools:
   json-viewer:
     texts:
       label-sort-keys: 'Sıralama anahtarları :'
-      label-unescape-unicode: 'Unicode''u Kaçıştan Çıkar:'
+      label-unescape-unicode: "Unicode'u Kaçıştan Çıkar:"
       label-indent-size: 'Girinti boyutu :'
       label-your-raw-json: Ham JSON'unuz
       placeholder-paste-your-raw-json-here: Ham JSON'unuzu buraya yapıştırın...
@@ -6257,8 +6269,8 @@ tools:
       tag-redirect: Yönlendirme
       tag-exists: Vardır
       label-include-domains: 'Alan Adlarını Dahil Et:'
-      label-allowed-ipv6s: 'İzin verilen IPv6''lar:'
-      label-allowed-ipv4s: 'İzin verilen IPv4''ler:'
+      label-allowed-ipv6s: "İzin verilen IPv6'lar:"
+      label-allowed-ipv4s: "İzin verilen IPv4'ler:"
       label-allowed-domains: 'İzin Verilen Alan Adları:'
       title-spf-record-generator: SPF Kayıt Oluşturucu
   certificate-key-parser:
@@ -6592,7 +6604,7 @@ tools:
       placeholder-enter-sample-text: Örnek metni girin...
       placeholder-select-font-name: Yazı tipi adını seçin
       placeholder-enter-font-url: Yazı tipi URL'sini girin
-      placeholder-paste-font-face-css-here: '{''@''}font-face CSS''sini buraya yapıştırın'
+      placeholder-paste-font-face-css-here: "{'@'}font-face CSS'sini buraya yapıştırın"
       placeholder-font-family-name-from-css: CSS'den font-family adı
       placeholder-enter-css-url-e-g-https-example-com-fonts-css: CSS URL'sini girin
         (örneğin https://example.com/fonts.css)
@@ -6672,9 +6684,9 @@ tools:
       title-image-compare-viewer: Görüntü Karşılaştırma Görüntüleyicisi
       tab-compare-by-url: URL ile karşılaştır
       tab-compare-by-upload: Yükleme ile karşılaştır
-      label-left-image-url: 'Sol Resim URL''si:'
+      label-left-image-url: "Sol Resim URL'si:"
       placeholder-enter-left-image-url: Sol resim URL'sini girin
-      label-right-image-url: 'Sağ Resim URL''si:'
+      label-right-image-url: "Sağ Resim URL'si:"
       placeholder-enter-right-image-url: Doğru resim URL'sini girin
       label-upload-left-image: 'Soldaki Resmi Yükle:'
       label-upload-right-image: 'Sağdaki Resmi Yükle:'
@@ -6707,11 +6719,11 @@ tools:
       label-delay-compress: 'Gecikmeli Sıkıştırma:'
       label-compress-ext: 'Sıkıştır Uzantısı:'
       placeholder-enter-compression-extension: Sıkıştırma uzantısına girin...
-      label-compress-cmd: 'Cmd''yi Sıkıştır:'
+      label-compress-cmd: "Cmd'yi Sıkıştır:"
       placeholder-enter-command: Komutu girin...
       label-compress-options: 'Sıkıştırma Seçenekleri:'
       placeholder-enter-compression-options: Sıkıştırma seçeneklerini girin...
-      label-uncompress-cmd: 'Cmd''yi sıkıştırın:'
+      label-uncompress-cmd: "Cmd'yi sıkıştırın:"
       label-old-dir: 'Eski Yönetmen:'
       placeholder-enter-old-directory: Eski dizine gir...
       label-mail: 'Posta:'
@@ -6836,8 +6848,8 @@ tools:
       label-failure-probability: 'Başarısızlık Olasılığı:'
       tag-key-terms-explained: 🧠 Anahtar Terimlerin Açıklaması
       tag-raid-level: RAID Seviyesi
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : RAID (Bağımsız Disklerin Yedekli Dizisi), performansı, yedekliliği veya her
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        RAID (Bağımsız Disklerin Yedekli Dizisi), performansı, yedekliliği veya her
         ikisini birden artırmak için birden fazla fiziksel sürücüyü tek bir mantıksal
         birimde birleştirme yöntemidir.
       tag-description: Tanım
@@ -6865,36 +6877,38 @@ tools:
       tag-stripe-of-raid-5-arrays-combines-performance-of-raid-0-with-redundancy-of-raid-5: RAID
         5 dizilerinin şeridi. RAID 0'ın performansını RAID 5'in yedekliliğiyle birleştirir.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF (Arızalar Arası Ortalama Süre)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: Bir
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        Bir
         sürücünün arızalanmadan önce çalışması beklenen ortalama süre (saat cinsinden).
         Daha yüksek MTBF, daha güvenilir donanım anlamına gelir.
       tag-rebuild-time: 🔁 Yeniden İnşa Zamanı
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : Bir arızadan sonra yedek sürücüdeki verileri yeniden oluşturmak için gereken
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        Bir arızadan sonra yedek sürücüdeki verileri yeniden oluşturmak için gereken
         süre. Daha uzun yeniden oluşturma süreleri, kurtarma sırasında ikinci bir
         arıza riskini artırır.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (Veri Kaybına Kadar Ortalama Süre)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : Bir RAID sisteminin veri kaybı meydana gelmeden önce ne kadar süre çalışabileceğine
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        Bir RAID sisteminin veri kaybı meydana gelmeden önce ne kadar süre çalışabileceğine
         dair istatistiksel bir tahmindir. Sürücü arızalarını, yeniden oluşturma süresini
         ve RAID yedekliliğini dikkate alır. Daha yüksek MTTDL, daha güvenli bir sistem
         anlamına gelir.
       tag-bit-error-rate-ber: 🧮 Bit Hata Oranı (BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : Bir diskten okunan bir bitin donanım kısıtlamaları nedeniyle hatalı olma olasılığı.
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        Bir diskten okunan bir bitin donanım kısıtlamaları nedeniyle hatalı olma olasılığı.
         Çok küçük BER'ler (trilyonda 1 gibi) bile, özellikle büyük sürücülerde, yeniden
         yapılandırmalar sırasında sorunlara neden olabilir.
       tag-unrecoverable-read-error-ure: 🧠 Kurtarılamaz Okuma Hatası (URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : Yeniden oluşturma sırasında bir sürücünün bir sektörü okuyamaması durumunda
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        Yeniden oluşturma sırasında bir sürücünün bir sektörü okuyamaması durumunda
         oluşur. BER, RAID kurtarmayı tehlikeye atabilecek URE riskine katkıda bulunur.
       tag-drive-capacity-tb: 📦 Sürücü Kapasitesi (TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: Sürücü
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        Sürücü
         başına toplam depolama alanı. Daha büyük sürücülerin yeniden oluşturulması
         daha uzun sürer ve BER ile ilgili hatalara daha yatkındır.
       tag-failure-probability: 📈 Başarısızlık Olasılığı
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : RAID sisteminin belirli bir zaman diliminde (örneğin 5 yıl) veri kaybı yaşama
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        RAID sisteminin belirli bir zaman diliminde (örneğin 5 yıl) veri kaybı yaşama
         olasılığı. MTTDL ve üstel arıza modelleri kullanılarak hesaplanır.
   pack-files-for-ai:
     title: AI için dosyaları paketle
@@ -7157,7 +7171,7 @@ tools:
       label-start-ip-number: 'Başlangıç IP numarası:'
       label-number-of-clients: 'Müşteri sayısı:'
       label-use-pre-shared-keys: Önceden Paylaşılan Anahtarları Kullanın
-      label-client-allowed-ips: 'İstemcinin İzin Verdiği IP''ler:'
+      label-client-allowed-ips: "İstemcinin İzin Verdiği IP'ler:"
       placeholder-client-allowed-ips: İstemcinin İzin Verdiği IP'ler
       label-endpoint-optional: 'Son nokta (isteğe bağlı):'
       placeholder-endpoint: Son nokta
@@ -7255,8 +7269,8 @@ tools:
       tag-mirrors-stripes: Aynalar/Çizgiler
       tag-reset: Sıfırla
       tag-see-zpool-openzfs-cheatsheet: Zpool/OpenZFS Hile Sayfasına bakın
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : Hesaplanan verileri genişletmek/daraltmak ve görüntülemek için bölüm başlıklarına
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        Hesaplanan verileri genişletmek/daraltmak ve görüntülemek için bölüm başlıklarına
         tıklayın. Bir tablo hücresinin üzerine geldiğinizde, ilgili veriler aşağıdaki
         Hesaplama Değerleri bölümüne yüklenir. Tablo hücrelerine tıklayarak bu değerleri
         dondurabilir veya çözebilirsiniz.
@@ -7448,8 +7462,8 @@ tools:
     texts:
       message-provided-json-is-not-valid: JSON geçerli değilse.
       input-placeholder-paste-your-raw-json-here: Ham JSON'unuzu buraya yapıştırın...
-      input-label-your-raw-json: 'Ham JSON''unuz:'
-      output-label-toon-version-of-your-json: 'JSON''unuzun TOON versiyonu:'
+      input-label-your-raw-json: "Ham JSON'unuz:"
+      output-label-toon-version-of-your-json: "JSON'unuzun TOON versiyonu:"
     title: JSON'dan TOON'a
     description: LLM/GPT kullanımı için JSON nesnesini TOON gösterimine dönüştürün
   external-link-goto: 'Bu aracı açmak için şu bağlantıyı takip edin:'
@@ -7579,7 +7593,8 @@ tools:
       label-signature: İmza
       label-arguments: Argümanlar
       title-structured-output-json: Yapılandırılmış Çıktı JSON
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}"to":"0x...","data":"0x..."{''}''}
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        '{''{''}"to":"0x...","data":"0x..."{''}''}
         veya ham 0x....'
   file-splitter:
     title: Dosya Bölücü
@@ -7760,7 +7775,7 @@ tools:
     title: Kısa URL Genişletici
     description: Kısa URL'leri tam URL'leri hedefleyecek şekilde genişletin
     texts:
-      label-short-urls-to-expand: 'Genişletilecek kısa URL''ler:'
+      label-short-urls-to-expand: "Genişletilecek kısa URL'ler:"
       placeholder-enter-short-urls-one-per-line: Kısa URL'leri girin (satır başına
         bir tane)
       title-result: Sonuç
@@ -7778,7 +7793,7 @@ tools:
         Bunu şu şekilde kullanabilirsiniz:'
       put-your-cors-anywhere-instance-url: CORS Anywhere örneğinizin URL'sini buraya
         yazın...
-      cors-anywhere-instance-url: 'CORS Anywhere örneği URL''si:'
+      cors-anywhere-instance-url: "CORS Anywhere örneği URL'si:"
       expanded-url: Genişletilmiş URL
       short-url: Kısa URL
       failed-to-expand-some-urls: Bazı URL'lerin genişletilmesi başarısız oldu.
@@ -7903,8 +7918,8 @@ tools:
       kapatan etiketler...).
     texts:
       placeholder-your-html-content: HTML içeriğiniz...
-      label-your-html-to-convert-to-xhtml: 'XHTML''e dönüştürmek istediğiniz HTML
-        kodunuz:'
+      label-your-html-to-convert-to-xhtml: "XHTML'e dönüştürmek istediğiniz HTML
+        kodunuz:"
       label-add-xhtml-xmlns: 'XHTML xmlns ekleyin:'
       label-indentation: 'Girinti:'
       title-output-xhtml: 'Çıktı XHTML:'
@@ -8078,14 +8093,14 @@ tools:
       label-linux-ppc64le: linux/ppc64le
       label-linux-s390x: linux/s390x
       label-windows-amd64: Windows/amd64
-      label-docker-image-download-service-url: 'Docker Görüntüsü İndirme Servisi URL''si:'
+      label-docker-image-download-service-url: "Docker Görüntüsü İndirme Servisi URL'si:"
       placeholder-http-localhost-3000: http://localhost:3000
       label-basic-authentication: 'Temel Kimlik Doğrulama:'
       placeholder-username-password: kullanıcı adı:şifre
       label-docker-image: 'Docker Görüntüsü:'
       placeholder-alpine-latest: alp:son
       label-platform: 'Platform:'
-      label-registry-url: 'Kayıt URL''si:'
+      label-registry-url: "Kayıt URL'si:"
       placeholder-myregistry-com-optional: myregistry.com (isteğe bağlı)
       label-username: 'Kullanıcı adı:'
       placeholder-optional: İsteğe bağlı
@@ -8123,14 +8138,14 @@ tools:
     externalAccess: Bu araç, (kendi sunucunuzda barındırmadığınız sürece) https://explainshell.com
       adresine sağlanan bu shell komutunu çağırır.
     texts:
-      label-custom-explain-shell-url: 'Özel Explain Shell URL''si:'
+      label-custom-explain-shell-url: "Özel Explain Shell URL'si:"
       placeholder-put-your-custom-explainshell-url-here: Özel explainshell URL'nizi
         buraya yazın...
       label-shell-command: 'Kabuk komutu:'
       placeholder-shell-command-to-explain: Shell komutunu açıklamak
       tag-explain-shell-configuration: Kabuk Yapılandırmasını Açıklayın
-      tag-you-can-self-host-explain-shell-to-get-total-privacy-see: 'Tamamen gizlilik
-        sağlamak için Explain Shell''i kendi sunucunuzda barındırabilirsiniz. Bakınız:'
+      tag-you-can-self-host-explain-shell-to-get-total-privacy-see: "Tamamen gizlilik
+        sağlamak için Explain Shell'i kendi sunucunuzda barındırabilirsiniz. Bakınız:"
       tag-local-explain-shell-docker-install: Yerel Açıklama Kabuğu docker kurulumu
       tag-explain: Açıklamak
       tag-enter-a-shell-command-to-explain: Açıklamak için bir kabuk komutu girin.
@@ -8143,7 +8158,7 @@ tools:
     description: Markdown'ı düz metne dönüştür
     externalAccess: hükümsüz
     texts:
-      label-input-mardown: 'Mardown''u girin:'
+      label-input-mardown: "Mardown'u girin:"
       placeholder-enter-your-markdown-here: Markdown kodunuzu buraya girin...
       title-output-text: Çıktı metni
   rj45-memo:
@@ -8231,7 +8246,7 @@ tools:
     texts:
       label-tcp: TCP
       label-udp: UDP
-      label-websocket-tcp-udp-bridge-url: 'WebSocket TCP/UDP Köprü URL''si:'
+      label-websocket-tcp-udp-bridge-url: "WebSocket TCP/UDP Köprü URL'si:"
       placeholder-websocket-url: WebSocket URL
       label-target: 'Hedef:'
       placeholder-target-ip: Hedef IP

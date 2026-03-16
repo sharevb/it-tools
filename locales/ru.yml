@@ -33,10 +33,10 @@ home:
     lightMode: Светлый режим
     mode: Переключение темного/светлого режима
   loading-more-tools: Загрузка дополнительных инструментов...
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: Расширение...
+  collapseAllTools: Свернуть все инструменты
+  collapsing: Свертывание...
+  expandAllTools: Развернуть все инструменты
 about:
   alltools-title: Все {toolsCount} инструменты
   tools:
@@ -132,8 +132,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Продолжительность взлома
         этого пароля методом перебора
       tag-note: 'Примечание:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : Расчетная стойкость основана на времени, которое потребуется для взлома пароля
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        Расчетная стойкость основана на времени, которое потребуется для взлома пароля
         методом полного перебора; при этом не учитывается возможность атаки по словарю.
     service:
       text:
@@ -373,7 +373,8 @@ tools:
         the-server-does-not-support-the-http-protocol-version-used-in-the-request: Сервер
           не поддерживает версию протокола HTTP, используемую в запросе.
         http-version-not-supported: Версия HTTP не поддерживается
-        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server: Сервер
+        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server:
+          Сервер
           действовал как шлюз или прокси-сервер и не получил своевременного ответа
           от вышестоящего сервера.
         gateway-timeout: Тайм-аут шлюза
@@ -387,17 +388,18 @@ tools:
         the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: Сервер
           либо не распознает метод запроса, либо не имеет возможности выполнить запрос.
         not-implemented: Не реализовано
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: Общее
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          Общее
           сообщение об ошибке, выдаваемое при возникновении непредвиденной ситуации
           и отсутствии подходящего более конкретного сообщения.
         internal-server-error: Внутренняя ошибка сервера
         5xx-server-error: 5xx ошибка сервера
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : Оператор сервера получил законное требование отказать в доступе к ресурсу
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          Оператор сервера получил законное требование отказать в доступе к ресурсу
           или набору ресурсов, включающему запрашиваемый ресурс.
         unavailable-for-legal-reasons: Недоступно по юридическим причинам
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : Сервер не может обработать запрос, поскольку либо отдельное поле заголовка,
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          Сервер не может обработать запрос, поскольку либо отдельное поле заголовка,
           либо все поля заголовков вместе слишком велики.
         request-header-fields-too-large: Поля заголовка запроса слишком большие
         the-user-has-sent-too-many-requests-in-a-given-amount-of-time: Пользователь
@@ -455,7 +457,8 @@ tools:
         indicates-that-the-resource-requested-is-no-longer-available-and-will-not-be-available-again: Указывает,
           что запрошенный ресурс больше не доступен и не будет доступен снова.
         gone: Ушел
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: Указывает
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          Указывает
           на то, что запрос не может быть обработан из-за конфликта в запросе, например
           конфликта редактирования.
         conflict: Конфликт
@@ -465,8 +468,8 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: Клиент должен сначала
           пройти аутентификацию на прокси-сервере.
         proxy-authentication-required: Требуется аутентификация прокси
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : Запрошенный ресурс способен генерировать только контент, неприемлемый в
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          Запрошенный ресурс способен генерировать только контент, неприемлемый в
           соответствии с заголовками Accept, отправленными в запросе.
         not-acceptable: Неприемлемо
         a-request-method-is-not-supported-for-the-requested-resource: Метод запроса
@@ -474,17 +477,18 @@ tools:
         method-not-allowed: Метод не разрешен
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: Запрошенный
           ресурс не найден, но может быть доступен в будущем.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: Запрос
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          Запрос
           был корректным, но сервер отказывает в выполнении. Возможно, у пользователя
           нет необходимых прав доступа к ресурсу.
         forbidden: Запрещенный
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : Зарезервировано для использования в будущем. Изначально предполагалось,
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          Зарезервировано для использования в будущем. Изначально предполагалось,
           что этот код может быть использован в рамках какой-либо схемы цифровых денег
           или микроплатежей.
         payment-required: Требуется оплата
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : Аналогично 403 Forbidden, но специально для использования в случаях, когда
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          Аналогично 403 Forbidden, но специально для использования в случаях, когда
           требуется аутентификация, которая не прошла или еще не была выполнена.
         unauthorized: Несанкционированный
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: Сервер
@@ -494,7 +498,8 @@ tools:
         the-request-and-all-future-requests-should-be-repeated-using-another-uri: Запрос
           и все будущие запросы следует повторять с использованием другого URI.
         permanent-redirect: Постоянное перенаправление
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: В
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          В
           этом случае запрос следует повторить с другим URI; однако будущие запросы
           должны по-прежнему использовать исходный URI.
         temporary-redirect: Временное перенаправление
@@ -502,7 +507,8 @@ tools:
           не используется. Первоначально означало: «Последующие запросы должны использовать
           указанный прокси-сервер».'
         switch-proxy: Переключить прокси
-        the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response: Запрошенный
+        the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response:
+          Запрошенный
           ресурс доступен только через прокси, адрес которого указан в ответе.
         use-proxy: Использовать прокси
         indicates-that-the-resource-has-not-been-modified-since-the-version-specified-by-the-request-headers: Указывает,
@@ -542,7 +548,8 @@ tools:
         the-server-successfully-processed-the-request-and-is-not-returning-any-content: Сервер
           успешно обработал запрос и не возвращает никакого контента.
         no-content: Нет контента
-        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy: Запрос
+        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy:
+          Запрос
           выполнен успешно, но содержимое исходного запроса было изменено преобразующим
           прокси-сервером.
         non-authoritative-information: Неавторитетная информация
@@ -4090,7 +4097,8 @@ tools:
         source-wikipedia: 'Источник: Википедия'
         once-the-long-break-is-finished-return-to-step-1: После окончания длительного
           перерыва вернитесь к шагу 1.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: Продолжайте
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          Продолжайте
           повторять шаги 1–3, но после четвертой задачи сделайте длительный перерыв
           вместо короткого (обычно 20–30 минут).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: Когда таймер
@@ -4099,8 +4107,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Определитесь с задачей
           и установите таймер (обычно 25 минут).
         five-steps-of-the-pomodoro-technique: Пять шагов метода Помодоро
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : Метод «Помодоро» — это метод управления временем, разработанный Франческо
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          Метод «Помодоро» — это метод управления временем, разработанный Франческо
           Чирилло в 1980-х годах. Он использует таймер для разбиения работы на интервалы,
           обычно продолжительностью 25 минут, разделенные короткими перерывами. Каждый
           интервал называется «помидором» (от итальянского слова «помидор»), которое
@@ -4211,54 +4219,58 @@ tools:
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: Для
           RAID 70 требуется не менее 10 дисков, по 5 на полосу. Полосы должны содержать
           одинаковое количество дисков.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: RAID
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          RAID
           70 объединяет несколько массивов RAID 7 (RAID 7 + RAID 0). Каждый массив
           RAID 7 может выдержать отказ трёх дисков.
         2-drive-failures-per-raid-6-set: 2 отказа дисков на набор RAID 6
         raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: Для
           RAID 60 требуется не менее 8 дисков, по 4 на полосу. Полосы должны содержать
           одинаковое количество дисков.
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: RAID
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
+          RAID
           60 объединяет несколько массивов RAID 6 (RAID 6 + RAID 0). Каждый массив
           RAID 6 может выдержать отказ двух дисков.
         1-drive-failure-per-raid-5-set: 1 отказ диска на набор RAID 5
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: Для
           RAID 50 требуется не менее 6 дисков, по 3 на полосу. Полосы должны содержать
           одинаковое количество дисков.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: RAID
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          RAID
           50 объединяет несколько массивов RAID 5 (RAID 5 + RAID 0). Каждый массив
           RAID 5 может выдержать отказ одного диска.
         1-drive-failure-per-mirrored-set: 1 отказ диска на зеркальный набор
         raid-10-requires-an-even-number-of-at-least-4-disks: Для RAID 10 требуется
           четное количество дисков (не менее 4)
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : RAID 10 — это чередование зеркал (RAID 1 + RAID 0). Каждый набор дисков
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          RAID 10 — это чередование зеркал (RAID 1 + RAID 0). Каждый набор дисков
           зеркалируется и чередуется, что обеспечивает отказоустойчивость каждого
           диска в группе.
         3-drive-failures: 3 отказа дисков
         raid-7-requires-at-least-5-disks: RAID 7 требует не менее 5 дисков
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : RAID 7/RAID TP (нестандартный) аналогичен RAID 5 и RAID 6, но с третьим
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          RAID 7/RAID TP (нестандартный) аналогичен RAID 5 и RAID 6, но с третьим
           блоком четности. Это допускает отказ третьего диска за счет сокращения объема
           хранилища на три диска.
         2-drive-failures: 2 отказа дисков
         raid-6-requires-at-least-4-disks: RAID 6 требует не менее 4 дисков
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : RAID 6 аналогичен RAID 5, но с дополнительным блоком чётности. Это допускает
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          RAID 6 аналогичен RAID 5, но с дополнительным блоком чётности. Это допускает
           отказ ещё одного диска за счёт сокращения объёма хранилища, равного двум
           дискам.
         1-drive-failure: 1 отказ диска
         raid-5-requires-at-least-3-disks: RAID 5 требует как минимум 3 диска
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : RAID 5 использует чередование на уровне блоков с контролем чётности. Это
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          RAID 5 использует чередование на уровне блоков с контролем чётности. Это
           обеспечивает отказоустойчивость и сокращает объём хранилища для информации
           о чётности на один диск.
         raid-1-requires-at-least-1-disk: Для RAID 1 требуется как минимум 1 диск
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : RAID 1 представляет собой точную копию данных (зеркалирование) на двух или
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          RAID 1 представляет собой точную копию данных (зеркалирование) на двух или
           более дисках. Массив будет работать до тех пор, пока хотя бы один диск работоспособен.
         raid-0-requires-at-least-1-disk: Для RAID 0 требуется как минимум 1 диск
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          RAID
           0 равномерно распределяет данные по 2 или более дискам без избыточности
           или отказоустойчивости, создавая одно большое пространство хранения.
   regex-memo:
@@ -5092,8 +5104,8 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Совет: перейдите
         на веб-сайт для проверки, откройте консоль F12 и запустите'
       tag-window-copy-document-cookie: окно.копия(документ.куки)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : '. Строка cookie будет скопирована в буфер обмена. Примечание: будут скопированы
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        '. Строка cookie будет скопирована в буфер обмена. Примечание: будут скопированы
         только файлы cookie, доступные для JavaScript (только HTTP, а защищённые файлы
         cookie будут пропущены).'
       tag-name: Имя
@@ -5821,26 +5833,26 @@ tools:
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: например, порт src 443 и dst
         10.0.0.1
       title-generated-tcpdump-command: Сгенерированная команда tcpdump
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : tcpdump — это утилита, обычно устанавливаемая/доступная во многих дистрибутивах
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        tcpdump — это утилита, обычно устанавливаемая/доступная во многих дистрибутивах
         Linux для быстрого сбора данных сетевой трассировки и захвата пакетов. Короче
         говоря, это аналог Wireshark для Linux в плане сбора данных о пакетах. tcpdump
         очень универсален и обладает множеством опций для точного сбора необходимого
         сетевого трафика для анализа ошибок; с возможностью вывода результатов через
         консоль, файл или Wireshark PCAP.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : 'Эта утилита предназначена для генерации команды tcpdump с использованием
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        'Эта утилита предназначена для генерации команды tcpdump с использованием
         некоторых наиболее распространённых параметров/фильтров, предлагаемых tcpdump.
         Эта утилита не охватывает все возможности tcpdump; полный список параметров
         можно найти в руководстве пользователя:'
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Примечание:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : Параметрам «Хост», «Исходный хост» и «Хост назначения» можно присваивать несколько
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        Параметрам «Хост», «Исходный хост» и «Хост назначения» можно присваивать несколько
         значений. Разделяйте значения запятой, пробелом или точкой с запятой.
       tag-note-2: 'Примечание 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : При указании флагов источника (src) или назначения (dst) tcpdump будет фильтровать
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        При указании флагов источника (src) или назначения (dst) tcpdump будет фильтровать
         данные только в этом направлении. Если вы хотите захватить полное TCP-рукопожатие,
         убедитесь, что вы используете «host», а не «src host» или «dst host», чтобы
         увидеть как поток запросов, так и поток ответов.
@@ -6218,11 +6230,11 @@ tools:
         song-details: Подробности песни
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'Имя учетной записи
-          Twitter создателя (например: {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "Имя учетной записи
+          Twitter создателя (например: {'@'}sharevb)..."
         creator-acc: Аккаунт создателя
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 'Имя учетной
-          записи Twitter сайта (например: {''@''}ittoolsdottech)...'
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "Имя учетной
+          записи Twitter сайта (например: {'@'}ittoolsdottech)..."
         site-account: Аккаунт сайта
         the-twitter-card-type: Тип карты Twitter...
         card-type: Тип карты
@@ -6934,8 +6946,8 @@ tools:
       label-failure-probability: 'Вероятность отказа:'
       tag-key-terms-explained: 🧠 Объяснение ключевых терминов
       tag-raid-level: Уровень RAID
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : RAID (избыточный массив независимых дисков) — это метод объединения нескольких
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        RAID (избыточный массив независимых дисков) — это метод объединения нескольких
         физических дисков в одну логическую единицу для повышения производительности,
         избыточности или и того, и другого.
       tag-description: Описание
@@ -6965,35 +6977,37 @@ tools:
       tag-stripe-of-raid-5-arrays-combines-performance-of-raid-0-with-redundancy-of-raid-5: Чередование
         массивов RAID 5. Сочетает производительность RAID 0 с избыточностью RAID 5.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF (среднее время наработки на отказ)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: Среднее
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        Среднее
         ожидаемое время работы накопителя (в часах) до выхода из строя. Чем выше среднее
         время безотказной работы, тем надёжнее оборудование.
       tag-rebuild-time: 🔁 Время перестройки
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : Время, необходимое для восстановления данных на новом диске после сбоя. Более
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        Время, необходимое для восстановления данных на новом диске после сбоя. Более
         длительное время восстановления увеличивает риск повторного сбоя во время
         восстановления.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (среднее время до потери данных)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : Статистическая оценка срока службы RAID-системы до потери данных. Она учитывает
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        Статистическая оценка срока службы RAID-системы до потери данных. Она учитывает
         отказы дисков, время восстановления и избыточность RAID. Чем выше MTTDL, тем
         безопаснее система.
       tag-bit-error-rate-ber: 🧮 Коэффициент битовых ошибок (BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : Вероятность того, что бит, прочитанный с диска, окажется некорректным из-за
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        Вероятность того, что бит, прочитанный с диска, окажется некорректным из-за
         аппаратных ограничений. Даже мизерные значения BER (например, 1 на триллион)
         могут вызвать проблемы при восстановлении, особенно на больших дисках.
       tag-unrecoverable-read-error-ure: 🧠 Неисправимая ошибка чтения (URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : Происходит, когда диску не удаётся прочитать сектор во время восстановления.
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        Происходит, когда диску не удаётся прочитать сектор во время восстановления.
         BER повышает риск URE, что может поставить под угрозу восстановление RAID.
       tag-drive-capacity-tb: 📦 Емкость диска (ТБ)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: Общий
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        Общий
         объём хранилища на диске. Диски большего объёма требуют больше времени на
         восстановление и более подвержены ошибкам, связанным с BER.
       tag-failure-probability: 📈 Вероятность отказа
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : Вероятность потери данных в RAID-системе в течение заданного периода времени
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        Вероятность потери данных в RAID-системе в течение заданного периода времени
         (например, 5 лет). Рассчитывается с использованием MTTDL и экспоненциальной
         модели отказов.
   pack-files-for-ai:
@@ -7355,8 +7369,8 @@ tools:
       tag-mirrors-stripes: Зеркала/Полосы
       tag-reset: Перезагрузить
       tag-see-zpool-openzfs-cheatsheet: См. шпаргалку по Zpool/OpenZFS
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : Нажмите на заголовок раздела, чтобы развернуть/свернуть и просмотреть расчётные
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        Нажмите на заголовок раздела, чтобы развернуть/свернуть и просмотреть расчётные
         данные. При наведении курсора на ячейку таблицы соответствующие данные загружаются
         в раздел «Значения расчётов» ниже. Вы можете нажать на ячейки таблицы, чтобы
         зафиксировать или разблокировать эти значения.
@@ -7689,8 +7703,9 @@ tools:
       label-signature: Подпись
       label-arguments: Аргументы
       title-structured-output-json: Структурированный вывод JSON
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{''}''}
-        или необработанный 0x....'
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{'}'}
+        или необработанный 0x...."
   file-splitter:
     title: Разделитель файлов
     description: Разделить JSON, XML или текстовый файл по группе узлов или по группе

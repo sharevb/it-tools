@@ -33,10 +33,10 @@ home:
     lightMode: 라이트 모드
     mode: 다크/라이트 모드 전환
   loading-more-tools: 더 많은 도구를 로딩 중입니다...
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: 확장 중...
+  collapseAllTools: 모든 도구 접기
+  collapsing: 접는 중...
+  expandAllTools: 모든 도구 펼치기
 favoriteButton:
   remove: 즐겨찾기 제거
   add: 즐겨찾기 추가
@@ -62,7 +62,7 @@ tools:
     pdf: PDF
     xml: XML
     maths: 수학
-    markdown: 가격 인하
+    markdown: 마크다운
     docker: 도커
     json: JSON
     datetime: 날짜시간
@@ -88,8 +88,7 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: 이 비밀번호를 무차별 대입 공격으로 해독하는
         데 걸리는 시간
       tag-note: '메모:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : 계산된 강도는 무차별 대입 공격을 사용하여 비밀번호를 해독하는 데 걸리는 시간을 기준으로 하며, 사전 공격의 가능성은 고려하지 않습니다.
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack: 계산된 강도는 무차별 대입 공격을 사용하여 비밀번호를 해독하는 데 걸리는 시간을 기준으로 하며, 사전 공격의 가능성은 고려하지 않습니다.
     service:
       text:
         instantly: 곧
@@ -221,8 +220,8 @@ tools:
       title-this-emoji-might-not-display-correctly-on-your-system: 이 이모티콘은 시스템에서 올바르게
         표시되지 않을 수 있습니다.
       tag-️: ⚠️
-      placeholder-search-emojis-e-g-smile-or-paste-an-emoji-e-g: '이모티콘을 검색하세요(예: ''미소'')
-        또는 이모티콘을 붙여넣으세요(예: ''😄'')'
+      placeholder-search-emojis-e-g-smile-or-paste-an-emoji-e-g: "이모티콘을 검색하세요(예: '미소')
+        또는 이모티콘을 붙여넣으세요(예: '😄')"
       label-max-results: '최대 결과:'
       tag-no-results-found: 검색 결과가 없습니다
       tag-try-searching-for-something-else-like-smile-flag-or: '"미소", "깃발", "😄" 등
@@ -318,7 +317,8 @@ tools:
         the-server-does-not-support-the-http-protocol-version-used-in-the-request: 서버가
           요청에 사용된 HTTP 프로토콜 버전을 지원하지 않습니다.
         http-version-not-supported: HTTP 버전이 지원되지 않습니다
-        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server: 서버가
+        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server:
+          서버가
           게이트웨이 또는 프록시 역할을 했기 때문에 업스트림 서버로부터 적절한 응답을 받지 못했습니다.
         gateway-timeout: 게이트웨이 시간 초과
         the-server-is-currently-unavailable-because-it-is-overloaded-or-down-for-maintenance: 현재
@@ -330,15 +330,14 @@ tools:
         the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: 서버가
           요청 방법을 인식하지 못하거나, 요청을 처리할 능력이 없습니다.
         not-implemented: 구현되지 않음
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: 예상치
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          예상치
           못한 상황이 발생하여 더 이상 구체적인 메시지가 적합하지 않을 때 표시되는 일반적인 오류 메시지입니다.
         internal-server-error: 내부 서버 오류
         5xx-server-error: 5xx 서버 오류
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : 서버 운영자는 요청된 리소스를 포함하는 리소스 또는 리소스 집합에 대한 액세스를 거부하라는 법적 요구를 받았습니다.
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource: 서버 운영자는 요청된 리소스를 포함하는 리소스 또는 리소스 집합에 대한 액세스를 거부하라는 법적 요구를 받았습니다.
         unavailable-for-legal-reasons: 법적 이유로 사용할 수 없음
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : 개별 헤더 필드가 너무 크거나 모든 헤더 필드가 합쳐서 너무 크기 때문에 서버가 요청을 처리하지 않습니다.
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large: 개별 헤더 필드가 너무 크거나 모든 헤더 필드가 합쳐서 너무 크기 때문에 서버가 요청을 처리하지 않습니다.
         request-header-fields-too-large: 요청 헤더 필드가 너무 큽니다
         the-user-has-sent-too-many-requests-in-a-given-amount-of-time: 사용자가 지정된 시간
           내에 너무 많은 요청을 보냈습니다.
@@ -389,7 +388,8 @@ tools:
         indicates-that-the-resource-requested-is-no-longer-available-and-will-not-be-available-again: 요청된
           리소스를 더 이상 사용할 수 없으며 앞으로도 사용할 수 없음을 나타냅니다.
         gone: 다 쓴
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: 편집
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          편집
           충돌 등 요청 내 충돌로 인해 요청을 처리할 수 없음을 나타냅니다.
         conflict: 갈등
         the-server-timed-out-waiting-for-the-request: 요청을 기다리는 동안 서버 시간이 초과되었습니다.
@@ -397,23 +397,22 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: 클라이언트는 먼저 프록시를 통해
           자신을 인증해야 합니다.
         proxy-authentication-required: 프록시 인증이 필요합니다
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : 요청된 리소스는 요청에 포함된 Accept 헤더에 따라 허용되지 않는 콘텐츠만 생성할 수 있습니다.
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request: 요청된 리소스는 요청에 포함된 Accept 헤더에 따라 허용되지 않는 콘텐츠만 생성할 수 있습니다.
         not-acceptable: 허용되지 않음
         a-request-method-is-not-supported-for-the-requested-resource: 요청된 리소스에 대한
           요청 방법이 지원되지 않습니다.
         method-not-allowed: 허용되지 않는 메서드
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: 요청하신
           리소스를 찾을 수 없지만 나중에 사용할 수 있을 수도 있습니다.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: 요청은
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          요청은
           유효했지만 서버가 작업을 거부하고 있습니다. 사용자에게 리소스에 필요한 권한이 없을 수 있습니다.
         forbidden: 금지됨
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : 향후 사용을 위해 예약되었습니다. 원래 의도는 이 코드가 일종의 디지털 현금 또는 소액 결제 시스템의 일부로 사용될 수 있도록 하는
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          향후 사용을 위해 예약되었습니다. 원래 의도는 이 코드가 일종의 디지털 현금 또는 소액 결제 시스템의 일부로 사용될 수 있도록 하는
           것이었습니다.
         payment-required: 결제 필요
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : 403 Forbidden과 비슷하지만, 인증이 필요하고 실패했거나 아직 제공되지 않은 경우에 특별히 사용됩니다.
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided: 403 Forbidden과 비슷하지만, 인증이 필요하고 실패했거나 아직 제공되지 않은 경우에 특별히 사용됩니다.
         unauthorized: 허가받지 않음
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: 서버가
           클라이언트 오류로 인해 요청을 처리할 수 없거나 처리하지 않습니다.
@@ -422,13 +421,15 @@ tools:
         the-request-and-all-future-requests-should-be-repeated-using-another-uri: 해당
           요청과 이후의 모든 요청은 다른 URI를 사용하여 반복해야 합니다.
         permanent-redirect: 영구 리디렉션
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: 이
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          이
           경우 다른 URI로 요청을 반복해야 합니다. 그러나 이후 요청에서는 여전히 원래 URI를 사용해야 합니다.
         temporary-redirect: 임시 리디렉션
         no-longer-used-originally-meant-subsequent-requests-should-use-the-specified-proxy: 더
           이상 사용되지 않습니다. 원래는 "이후 요청은 지정된 프록시를 사용해야 합니다."라는 의미였습니다.
         switch-proxy: 프록시 전환
-        the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response: 요청된
+        the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response:
+          요청된
           리소스는 프록시를 통해서만 사용할 수 있으며, 해당 주소는 응답에 제공됩니다.
         use-proxy: 프록시 사용
         indicates-that-the-resource-has-not-been-modified-since-the-version-specified-by-the-request-headers: 요청
@@ -464,7 +465,8 @@ tools:
         the-server-successfully-processed-the-request-and-is-not-returning-any-content: 서버가
           요청을 성공적으로 처리했지만 아무런 콘텐츠도 반환하지 않습니다.
         no-content: 콘텐츠 없음
-        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy: 요청은
+        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy:
+          요청은
           성공적이었지만 원래 요청의 내용이 변환 프록시에 의해 수정되었습니다.
         non-authoritative-information: 권위 없는 정보
         the-request-has-been-accepted-for-processing-but-the-processing-has-not-been-completed: 요청이
@@ -806,7 +808,7 @@ tools:
     description: “i18n” 같은 숫자 약어(누메로님)를 만듭니다.
     texts:
       placeholder-enter-a-word-e-g-internationalization: 예를 들어 '국제화'와 같은 단어를 입력하세요.
-      placeholder-your-numeronym-will-be-here-e-g-i18n: '귀하의 숫자 이름은 여기에 표시됩니다(예: ''i18n'').'
+      placeholder-your-numeronym-will-be-here-e-g-i18n: "귀하의 숫자 이름은 여기에 표시됩니다(예: 'i18n')."
   case-converter:
     title: 대소문자 변환기
     description: 문자열을 원하는 케이스 형식으로 변환합니다.
@@ -991,8 +993,8 @@ tools:
       text:
         invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: '잘못된
           8진수 권한(3자리 또는 4자리 8진수여야 함): {0}'
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: '잘못된
-          문자열 권한(형식은 ''rwxrwxrwx''여야 함): {0}'
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: "잘못된
+          문자열 권한(형식은 'rwxrwxrwx'여야 함): {0}"
   rsa-key-pair-generator:
     title: RSA 키 페어 생성기
     description: 랜덤 RSA 개인·공개 PEM 키 페어를 생성합니다.
@@ -1867,7 +1869,7 @@ tools:
       label-code-snippet-to-format: '형식을 지정할 코드 조각:'
       placeholder-put-your-code-snippet-here: 여기에 코드 조각을 넣으세요
       label-show-line-numbers: 줄 번호 표시
-      tag-: ''', '''
+      tag-: "', '"
       tag-copy-html-formatted: HTML 형식으로 복사
       tag-copy-code-text: 코드 텍스트 복사
       tag-copy-html-word: Word에서 HTML/서식 있는 텍스트로 복사
@@ -1898,7 +1900,8 @@ tools:
       title-large-text: 큰 텍스트
       title-apca: APCA
       label-apca-constrast: 'APCA 대조:'
-      tag-text-that-is-14pt-18-67px-and-bold-or-any-text-bigger-than-18pt-24px-is-defined-as-large-scale-text: 14pt(18.67px)
+      tag-text-that-is-14pt-18-67px-and-bold-or-any-text-bigger-than-18pt-24px-is-defined-as-large-scale-text:
+        14pt(18.67px)
         크기의 굵은 텍스트 또는 18pt(24px)보다 큰 텍스트는 대형 텍스트로 정의됩니다.
   color-wheel:
     title: 색상환
@@ -2485,10 +2488,10 @@ tools:
       placeholder-select-gpt-model: GPT 모델 선택
       label-advanded-json-mode: 고급 JSON 모드
       title-prompts: 프롬프트
-      placeholder-your-messages-json-array: '''메시지'' JSON 배열...'
-      label-your-messages-json-array: '''메시지'' JSON 배열:'
-      placeholder-your-tools-json-array: '''도구'' JSON 배열...'
-      label-your-tools-json-array: '''도구'' JSON 배열:'
+      placeholder-your-messages-json-array: "'메시지' JSON 배열..."
+      label-your-messages-json-array: "'메시지' JSON 배열:"
+      placeholder-your-tools-json-array: "'도구' JSON 배열..."
+      label-your-tools-json-array: "'도구' JSON 배열:"
       title-input-json-s: JSON 입력
       placeholder-your-system-prompt-content: 시스템 프롬프트 내용...
       label-your-system-prompt-content: '시스템 프롬프트 내용:'
@@ -2530,7 +2533,8 @@ tools:
       tag-sanitize-and-download: 정리하고 다운로드하세요
   hdd-calculator:
     title: HDD 계산기
-    description: 저장 장치 제조업체는 용량을 십진수(GB 등)로 보고하는 반면, 운영 체제 및 기타 소프트웨어는 이진수(GiB)를 사용하는데,
+    description:
+      저장 장치 제조업체는 용량을 십진수(GB 등)로 보고하는 반면, 운영 체제 및 기타 소프트웨어는 이진수(GiB)를 사용하는데,
       여전히 십진수 단위(GiB)를 잘못 사용하고 있습니다. 이 도구는 십진수 용량을 다양한 이진수로 변환합니다.
     texts:
       label-kb: 킬로바이트
@@ -2871,7 +2875,8 @@ tools:
       tag-see-jsonpath-cheatsheet: JSONPath 치트시트 보기
   js-unobfuscator:
     title: Javascript Unobfuscator/Unpacker
-    description: 웹크랙은 자바스크립트 리버스 엔지니어링 도구입니다. obfuscator.io의 난독화를 해제하고, 최소화 해제, 트랜스파일링,
+    description:
+      웹크랙은 자바스크립트 리버스 엔지니어링 도구입니다. obfuscator.io의 난독화를 해제하고, 최소화 해제, 트랜스파일링,
       그리고 webpack/browserify를 압축 해제하여 원본 소스 코드와 최대한 유사하게 만들 수 있습니다.
     texts:
       title-sandbox: 모래 상자
@@ -3039,7 +3044,7 @@ tools:
       verify-description: '{0}: {1} ({2}로 확인)'
       token-secret: 토큰 비밀
       token-keys: 토큰 키
-      cannot-parse-secret-as-encoding: '''{0}''을 ''{1}''로 구문 분석할 수 없습니다: {2}'
+      cannot-parse-secret-as-encoding: "'{0}'을 '{1}'로 구문 분석할 수 없습니다: {2}"
       invalid-base64-string: 잘못된 Base64 문자열
       placeholder-input-token: JWT 토큰을 붙여넣어 편집하세요...
       click-to-input-a-existing-jwt-token-to-modify: 기존 JWT 토큰을 수정하려면 클릭하세요.
@@ -3067,7 +3072,7 @@ tools:
       label-is-valid: 유효합니까?
       label-luhn-key: 룬 키
       label-value-with-luhn-key: Luhn Key로 가치를 높이세요
-      placeholder-enter-a-luhn-validated-value: '''Luhn 검증'' 값을 입력하세요...'
+      placeholder-enter-a-luhn-validated-value: "'Luhn 검증' 값을 입력하세요..."
       label-probably-correct: 아마도 맞을 것 같아요
       title-infos: 정보
       tag-invalid-luhn-key: 잘못된 Luhn 키입니다.
@@ -3095,8 +3100,8 @@ tools:
     description: 모든 종류의 단위를 변환합니다
     texts:
       label-units-expression: 단위 표현
-      placeholder-please-enter-an-unit-expression-ie-1d-2m: '단위 표현식을 입력하세요. 예: ''1d
-        2m'''
+      placeholder-please-enter-an-unit-expression-ie-1d-2m: "단위 표현식을 입력하세요. 예: '1d
+        2m'"
       label-target-unit: '대상 단위:'
       placeholder-select-the-target-unit: 대상 단위를 선택하세요
       title-result: 결과
@@ -3233,7 +3238,8 @@ tools:
       label-country-name: '국가 이름:'
       label-continent-name: '대륙 이름:'
       tag-refresh: 새로 고치다
-    externalAccess: 이 도구는 https://www.ipify.org/의 API를 사용하여 IPv4/6 주소를 가져오고 https://cdn.jsdelivr.net/npm/{'@'}iplookup/country-extra/에서
+    externalAccess:
+      이 도구는 https://www.ipify.org/의 API를 사용하여 IPv4/6 주소를 가져오고 https://cdn.jsdelivr.net/npm/{'@'}iplookup/country-extra/에서
       IP 정보 데이터를 다운로드합니다.
   nano-memo:
     title: 나노 치트시트
@@ -3646,7 +3652,8 @@ tools:
       title-decoded: 디코딩됨
   smart-text-replacer:
     title: 스마트 텍스트 교체 및 줄바꿈
-    description: Windows 메모장 검색 및 바꾸기처럼 단일 또는 여러 단어가 나타나는 곳을 검색하고 바꿀 수 있습니다. 줄 바꿈
+    description:
+      Windows 메모장 검색 및 바꾸기처럼 단일 또는 여러 단어가 나타나는 곳을 검색하고 바꿀 수 있습니다. 줄 바꿈
       및 텍스트 분할도 관리할 수 있습니다.
     texts:
       label-add-linebreak-before: 줄바꿈을 추가하세요
@@ -3771,8 +3778,8 @@ tools:
     title: 유니코드 검색
     description: 유니코드 문자로 검색
     texts:
-      placeholder-search-unicode-by-name-e-g-zero-width-or-code-point: '이름(예: ''0
-        너비'')이나 코드 포인트로 유니코드를 검색합니다.'
+      placeholder-search-unicode-by-name-e-g-zero-width-or-code-point: "이름(예: '0
+        너비')이나 코드 포인트로 유니코드를 검색합니다."
       label-max-results: '최대 결과:'
       tag-no-results: 결과가 없습니다
       tag-search-result: 검색 결과
@@ -4123,7 +4130,7 @@ tools:
       label-title: '제목:'
       placeholder-e-g-introduction-to-vue-3: '예: Vue 3 소개'
       label-publisher: '발행자:'
-      placeholder-e-g-o-reilly-media: '예: O''Reilly Media'
+      placeholder-e-g-o-reilly-media: "예: O'Reilly Media"
       label-publication-year: '출판년도:'
       label-url-optional: 'URL(선택 사항):'
       placeholder-e-g-https-example-com: '예: https://example.com'
@@ -4139,8 +4146,8 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: '팁: 테스트할 웹사이트로
         이동하여 F12 콘솔을 열고 실행하세요.'
       tag-window-copy-document-cookie: window.copy(문서.쿠키)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : '. 이렇게 하면 쿠키 문자열이 클립보드에 복사됩니다. 참고: 이 작업은 자바스크립트에서 사용 가능한 쿠키만 복사합니다(HTTP만 복사되며
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        '. 이렇게 하면 쿠키 문자열이 클립보드에 복사됩니다. 참고: 이 작업은 자바스크립트에서 사용 가능한 쿠키만 복사합니다(HTTP만 복사되며
         보안 쿠키는 제외됩니다).'
       tag-name: 이름
       tag-value: 값
@@ -4837,21 +4844,20 @@ tools:
       label-custom-expression: '사용자 정의 표현:'
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: '예: src 포트 443 및 dst 10.0.0.1'
       title-generated-tcpdump-command: 생성된 tcpdump 명령
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : tcpdump는 네트워크 추적/패킷 캡처를 빠르게 수집하기 위해 많은 Linux 배포판에 일반적으로 설치/사용 가능한 유틸리티입니다.
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        tcpdump는 네트워크 추적/패킷 캡처를 빠르게 수집하기 위해 많은 Linux 배포판에 일반적으로 설치/사용 가능한 유틸리티입니다.
         간단히 말해, 패킷 캡처를 수집하는 Linux의 Wireshark라고 할 수 있습니다. tcpdump는 다양한 스위치를 통해 네트워크
         트래픽 디버깅에 필요한 정보를 세부적으로 캡처할 수 있는 매우 다재다능한 도구입니다. 콘솔, 파일 또는 Wireshark(PCAP)를
         통해 결과를 출력하는 옵션도 제공합니다.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : 이 유틸리티는 tcpdump에서 제공하는 일반적인 스위치/필터를 사용하여 tcpdump 명령을 생성하는 데 도움을 줍니다. 이 유틸리티는
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        이 유틸리티는 tcpdump에서 제공하는 일반적인 스위치/필터를 사용하여 tcpdump 명령을 생성하는 데 도움을 줍니다. 이 유틸리티는
         tcpdump가 제공하는 모든 옵션을 제공하지는 않습니다. 전체 옵션 목록은 해당 유틸리티의 매뉴얼에서 확인할 수 있습니다.
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: '메모:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : '&nbsp;호스트, 소스 호스트, 대상 호스트에 여러 항목을 입력할 수 있습니다. 각 항목은 쉼표, 공백 또는 세미콜론으로 구분하세요.'
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon: '&nbsp;호스트, 소스 호스트, 대상 호스트에 여러 항목을 입력할 수 있습니다. 각 항목은 쉼표, 공백 또는 세미콜론으로 구분하세요.'
       tag-note-2: '참고사항 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : '&nbsp;소스(src) 또는 대상(dst) 플래그를 지정하면 tcpdump는 해당 방향으로만 필터링합니다. 전체 TCP 핸드셰이크를
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        '&nbsp;소스(src) 또는 대상(dst) 플래그를 지정하면 tcpdump는 해당 방향으로만 필터링합니다. 전체 TCP 핸드셰이크를
         캡처하려면 요청 및 응답 흐름을 모두 확인하려면 "src host" 또는 "dst host" 대신 "host"를 사용해야 합니다.'
       tag-the-network-interface-to-capture-packets-from: 패킷을 캡처할 네트워크 인터페이스입니다.
       tag-capture-packets-originating-from-this-host: 이 호스트에서 발생한 패킷을 캡처합니다.
@@ -5023,7 +5029,8 @@ tools:
       unable-to-get-private-key: 개인 키를 가져올 수 없습니다.
   sip-auth:
     title: SIP 인증
-    description: 이 도구는 SIP 권한 헤더를 확인하는 데 도움이 됩니다. 이 도구는 모든 계산을 브라우저에서 수행하며 네트워크를 통해
+    description:
+      이 도구는 SIP 권한 헤더를 확인하는 데 도움이 됩니다. 이 도구는 모든 계산을 브라우저에서 수행하며 네트워크를 통해
       민감한 정보를 전송하지 않으므로 자유롭게 사용하세요.
     password: SIP 비밀번호
     password-tips: 비밀번호를 입력하세요...
@@ -5084,48 +5091,52 @@ tools:
         3-drive-failures-per-raid-7-set: RAID 7 세트당 3개의 드라이브 오류
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           70에는 스트라이프당 최소 5개씩, 총 10개의 디스크가 필요합니다. 각 스트라이프에는 동일한 수의 디스크가 포함되어야 합니다.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: RAID
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          RAID
           70은 여러 개의 RAID 7 어레이를 함께 스트라이핑합니다(RAID 7 + RAID 0). 각 RAID 7 세트는 최대 3개의
           드라이브 장애를 견딜 수 있습니다.
         2-drive-failures-per-raid-6-set: RAID 6 세트당 2개의 드라이브 오류
         raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           60에는 최소 8개의 디스크가 필요하며, 스트라이프당 최소 4개가 필요합니다. 스트라이프는 동일한 수의 디스크를 포함해야 합니다.
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: RAID
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
+          RAID
           60은 여러 개의 RAID 6 어레이를 함께 스트라이핑합니다(RAID 6 + RAID 0). 각 RAID 6 세트는 두 개의 드라이브
           장애를 견딜 수 있습니다.
         1-drive-failure-per-raid-5-set: RAID 5 세트당 1개의 드라이브 오류
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           50에는 스트라이프당 최소 3개씩, 총 6개의 디스크가 필요합니다. 각 스트라이프에는 동일한 수의 디스크가 포함되어야 합니다.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: RAID
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          RAID
           50은 여러 개의 RAID 5 어레이를 함께 스트라이핑합니다(RAID 5 + RAID 0). 각 RAID 5 세트는 단일 드라이브
           장애를 견딜 수 있습니다.
         1-drive-failure-per-mirrored-set: 미러링된 세트당 1개의 드라이브 오류
         raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10에는 최소 4개 이상의 짝수
           개의 디스크가 필요합니다.
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : RAID 10은 미러링 스트라이프(RAID 1 + RAID 0)입니다. 각 드라이브 세트는 미러링되고 함께 스트라이프되어 세트 내
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          RAID 10은 미러링 스트라이프(RAID 1 + RAID 0)입니다. 각 드라이브 세트는 미러링되고 함께 스트라이프되어 세트 내
           각 드라이브가 그룹 내에서 내결함성을 갖도록 합니다.
         3-drive-failures: 3개의 드라이브 오류
         raid-7-requires-at-least-5-disks: RAID 7에는 최소 5개의 디스크가 필요합니다.
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : RAID 7/RAID TP(비표준)는 RAID 5 및 RAID 6과 유사하지만 세 번째 패리티 블록이 있습니다. 이 구성은 세 번째
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          RAID 7/RAID TP(비표준)는 RAID 5 및 RAID 6과 유사하지만 세 번째 패리티 블록이 있습니다. 이 구성은 세 번째
           디스크 장애 발생 시 세 개의 드라이브에 해당하는 저장 공간 감소를 감수해야 합니다.
         2-drive-failures: 2개의 드라이브 오류
         raid-6-requires-at-least-4-disks: RAID 6에는 최소 4개의 디스크가 필요합니다.
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : RAID 6는 RAID 5와 유사하지만 패리티 블록이 하나 더 있습니다. 따라서 디스크 장애가 하나 더 발생하더라도 두 개의 드라이브에
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          RAID 6는 RAID 5와 유사하지만 패리티 블록이 하나 더 있습니다. 따라서 디스크 장애가 하나 더 발생하더라도 두 개의 드라이브에
           해당하는 저장 공간이 감소합니다.
         1-drive-failure: 1개 드라이브 오류
         raid-5-requires-at-least-3-disks: RAID 5에는 최소 3개의 디스크가 필요합니다.
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : RAID 5는 패리티를 포함한 블록 레벨 스트라이핑을 사용합니다. 이를 통해 패리티 정보를 위한 드라이브 하나만큼의 저장 공간이
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          RAID 5는 패리티를 포함한 블록 레벨 스트라이핑을 사용합니다. 이를 통해 패리티 정보를 위한 드라이브 하나만큼의 저장 공간이
           감소하여 장애 복구가 가능합니다.
         raid-1-requires-at-least-1-disk: RAID 1에는 최소 1개의 디스크가 필요합니다.
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : RAID 1은 두 개 이상의 디스크에 데이터를 정확히 복사(미러링)하는 방식으로 구성됩니다. 최소 하나의 드라이브가 작동하는 한
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          RAID 1은 두 개 이상의 디스크에 데이터를 정확히 복사(미러링)하는 방식으로 구성됩니다. 최소 하나의 드라이브가 작동하는 한
           어레이는 계속 작동합니다.
         raid-0-requires-at-least-1-disk: RAID 0에는 최소 1개의 디스크가 필요합니다.
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          RAID
           0은 중복성이나 장애 허용성 없이 2개 이상의 디스크에 데이터를 균등하게 분할하여 하나의 큰 저장 공간을 만듭니다.
   websocket-tester:
     title: 웹소켓 테스트
@@ -5200,8 +5211,8 @@ tools:
     title: 포모도로 타이머
     description: 기본 포모도로 타이머
     texts:
-      tag-import-pomodoroapp-from-app-pomodoroapp-vue: '''./app/PomodoroApp.vue''에서
-        PomodoroApp을 가져옵니다.'
+      tag-import-pomodoroapp-from-app-pomodoroapp-vue: "'./app/PomodoroApp.vue'에서
+        PomodoroApp을 가져옵니다."
     SplashScreen:
       text:
         pomodoro-timer-0: 포모도로 타이머
@@ -5210,7 +5221,8 @@ tools:
       text:
         source-wikipedia: '출처: 위키피디아'
         once-the-long-break-is-finished-return-to-step-1: 긴 휴식이 끝나면 1단계로 돌아가세요.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: 1~3단계를
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          1~3단계를
           계속 반복하지만, 4번째 작업을 마친 후에는 짧은 휴식 대신 긴 휴식을 취하세요(일반적으로 20~30분).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: 타이머가 울리면 짧은
           휴식을 취하세요(일반적으로 5~10분).
@@ -5218,8 +5230,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: 작업을 결정하고 타이머를 설정합니다(일반적으로
           25분).
         five-steps-of-the-pomodoro-technique: 포모도로 테크닉의 5단계
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : 포모도로 기법은 프란체스코 치릴로가 1980년대에 개발한 시간 관리 방법입니다. 타이머를 사용하여 작업을 보통 25분 길이의 간격으로
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          포모도로 기법은 프란체스코 치릴로가 1980년대에 개발한 시간 관리 방법입니다. 타이머를 사용하여 작업을 보통 25분 길이의 간격으로
           나누고, 그 사이에 짧은 휴식 시간을 둡니다. 각 간격은 시릴로가 대학생 시절 사용했던 토마토 모양의 주방 타이머에서 유래한 이탈리아어로
           토마토를 뜻하는 포모도로(pomodoro)에서 유래했습니다.
         the-pomodoro-technique: 포모도로 테크닉
@@ -5365,7 +5377,8 @@ tools:
       state-or-province-name: 주 또는 도 이름
   multi-link-downloader:
     title: 멀티 링크 다운로더
-    description: 이 도구는 제공된 링크의 내용을 비동기적으로 하나의 zip 파일로 결합하여 다운로드할 수 있도록 합니다. (인터넷 연결
+    description:
+      이 도구는 제공된 링크의 내용을 비동기적으로 하나의 zip 파일로 결합하여 다운로드할 수 있도록 합니다. (인터넷 연결
       필요)
     texts:
       placeholder-add-links-separated-by-new-lines: 새 줄로 구분된 링크를 추가합니다...
@@ -5496,11 +5509,11 @@ tools:
         song-details: 노래 세부 정보
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: '작성자의 트위터 계정 이름(예:
-          {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "작성자의 트위터 계정 이름(예:
+          {'@'}sharevb)..."
         creator-acc: 생성자 계정
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: '사이트의 Twitter
-          계정 이름(예: {''@''}ittoolsdottech)...'
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "사이트의 Twitter
+          계정 이름(예: {'@'}ittoolsdottech)..."
         site-account: 사이트 계정
         the-twitter-card-type: 트위터 카드 유형은...
         card-type: 카드 종류
@@ -6492,8 +6505,8 @@ tools:
       label-failure-probability: '실패 확률:'
       tag-key-terms-explained: 🧠 주요 용어 설명
       tag-raid-level: RAID 레벨
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : RAID(Redundant Array of Independent Disks)는 여러 개의 물리적 드라이브를 하나의 논리적 장치로 결합하여
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        RAID(Redundant Array of Independent Disks)는 여러 개의 물리적 드라이브를 하나의 논리적 장치로 결합하여
         성능이나 중복성 또는 둘 다를 개선하는 방법입니다.
       tag-description: 설명
       tag-raid-0: RAID 0
@@ -6518,29 +6531,29 @@ tools:
       tag-stripe-of-raid-5-arrays-combines-performance-of-raid-0-with-redundancy-of-raid-5: RAID
         5 어레이의 스트라이프. RAID 0의 성능과 RAID 5의 중복성을 결합합니다.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF(평균 고장 간격)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: 드라이브가
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        드라이브가
         고장 나기 전까지 작동할 것으로 예상되는 평균 시간(시간)입니다. MTBF가 높을수록 하드웨어의 안정성이 높아집니다.
       tag-rebuild-time: 🔁 재건 시간
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : 장애 발생 후 교체 드라이브의 데이터를 재구성하는 데 걸리는 시간입니다. 재구성 시간이 길어질수록 복구 중 두 번째 장애 발생 위험이
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        장애 발생 후 교체 드라이브의 데이터를 재구성하는 데 걸리는 시간입니다. 재구성 시간이 길어질수록 복구 중 두 번째 장애 발생 위험이
         커집니다.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL(평균 데이터 손실 시간)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : RAID 시스템이 데이터 손실이 발생하기 전까지 작동할 수 있는 시간을 통계적으로 추정한 값입니다. 드라이브 고장, 재구축 시간, RAID
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        RAID 시스템이 데이터 손실이 발생하기 전까지 작동할 수 있는 시간을 통계적으로 추정한 값입니다. 드라이브 고장, 재구축 시간, RAID
         중복성을 고려합니다. MTTDL이 높을수록 시스템이 더 안전합니다.
       tag-bit-error-rate-ber: 🧮 비트 오류율(BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : '하드웨어 제한으로 인해 디스크에서 읽은 비트가 정확하지 않을 가능성이 있습니다. BER이 매우 낮더라도(예: 1조 분의 1) 특히
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        '하드웨어 제한으로 인해 디스크에서 읽은 비트가 정확하지 않을 가능성이 있습니다. BER이 매우 낮더라도(예: 1조 분의 1) 특히
         대용량 드라이브의 경우 재구축 과정에서 문제가 발생할 수 있습니다.'
       tag-unrecoverable-read-error-ure: 🧠 복구할 수 없는 읽기 오류(URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : 드라이브가 재구축 중 섹터를 읽지 못할 때 발생합니다. BER은 URE 위험을 증가시켜 RAID 복구를 손상시킬 수 있습니다.
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery: 드라이브가 재구축 중 섹터를 읽지 못할 때 발생합니다. BER은 URE 위험을 증가시켜 RAID 복구를 손상시킬 수 있습니다.
       tag-drive-capacity-tb: 📦 드라이브 용량(TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: 드라이브당
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        드라이브당
         총 저장 용량입니다. 드라이브 용량이 클수록 재구축 시간이 더 오래 걸리고 BER 관련 오류에 더 취약합니다.
       tag-failure-probability: 📈 실패 확률
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : 'RAID 시스템이 특정 기간(예: 5년) 동안 데이터 손실을 경험할 확률입니다. MTTDL 및 지수적 실패 모델을 사용하여 계산됩니다.'
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models: 'RAID 시스템이 특정 기간(예: 5년) 동안 데이터 손실을 경험할 확률입니다. MTTDL 및 지수적 실패 모델을 사용하여 계산됩니다.'
   pack-files-for-ai:
     title: AI용 팩 파일
     description: 코드 소스 파일 디렉토리를 단일 AI 구문 분석 가능 형식(repomix 등)으로 압축합니다.
@@ -6660,8 +6673,8 @@ tools:
     texts:
       title-sql-generator: SQL 생성기
       label-parameterized-sql-statement: '매개변수화된 SQL 문:'
-      placeholder-e-g-select-from-users-where-name-name-and-age-and-type-type: '예:
-        SELECT * FROM users WHERE name = :name AND age > ? AND type = {''@''}type'
+      placeholder-e-g-select-from-users-where-name-name-and-age-and-type-type: "예:
+        SELECT * FROM users WHERE name = :name AND age > ? AND type = {'@'}type"
       title-parameters: 매개변수
       placeholder-name-e-g-name-or-type: '이름(예: 이름 또는 유형)'
       placeholder-value-e-g-alice-or-42-or-1-3: '값(예: Alice 또는 42 또는 1.3)'
@@ -6889,8 +6902,8 @@ tools:
       tag-mirrors-stripes: 거울/줄무늬
       tag-reset: 다시 놓기
       tag-see-zpool-openzfs-cheatsheet: Zpool/OpenZFS 치트시트 보기
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : 섹션 제목을 클릭하면 확장/축소되어 계산된 데이터를 볼 수 있습니다. 표 셀 위에 마우스를 올리면 관련 데이터가 아래 '계산 값' 섹션에
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        섹션 제목을 클릭하면 확장/축소되어 계산된 데이터를 볼 수 있습니다. 표 셀 위에 마우스를 올리면 관련 데이터가 아래 '계산 값' 섹션에
         로드됩니다. 표 셀을 클릭하면 해당 값을 고정하거나 고정 해제할 수 있습니다.
       tag-common-layouts: 일반적인 레이아웃
       tag-raw-stripes-mirrors: 원시, 줄무늬, 거울
@@ -7749,7 +7762,8 @@ tools:
     externalAccess: 널
   rsvp-reader:
     title: RSVP 독자
-    description: 텍스트를 붙여넣으면 사용자가 설정한 분당 단어 수(WPM)로 단어가 하나씩 순차적으로 표시되는 고속 연속 시각 프레젠테이션(RSVP)
+    description:
+      텍스트를 붙여넣으면 사용자가 설정한 분당 단어 수(WPM)로 단어가 하나씩 순차적으로 표시되는 고속 연속 시각 프레젠테이션(RSVP)
       도구입니다.
     externalAccess: 널
     texts:

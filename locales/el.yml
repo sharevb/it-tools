@@ -103,10 +103,10 @@ home:
     lightMode: Λειτουργία φωτισμού
     mode: Εναλλαγή λειτουργίας σκούρου/φωτεινού
     aboutLabel: Για
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: Επεκτείνεται...
+  collapseAllTools: Σύμπτυξη όλων των εργαλείων
+  collapsing: Συμπτύσσεται...
+  expandAllTools: Ανάπτυξη όλων των εργαλείων
 tools:
   chronometer:
     title: Χρονόμετρο
@@ -1527,7 +1527,7 @@ tools:
       label-code-snippet-to-format: 'Απόσπασμα κώδικα για μορφοποίηση:'
       placeholder-put-your-code-snippet-here: Τοποθετήστε το απόσπασμα κώδικα εδώ
       label-show-line-numbers: Εμφάνιση αριθμών γραμμών
-      tag-: ''', '''
+      tag-: "', '"
       tag-copy-html-formatted: Αντιγραφή σε μορφή HTML
       tag-copy-code-text: Αντιγραφή κειμένου κώδικα
       tag-copy-html-word: Αντιγραφή σε HTML/Εμπλουτισμένο κείμενο στο Word
@@ -2177,7 +2177,7 @@ tools:
       label-advanded-json-mode: Προηγμένη λειτουργία JSON
       title-prompts: Προτροπές
       placeholder-your-messages-json-array: Ο πίνακας JSON σας 'messages'...
-      label-your-messages-json-array: 'Ο πίνακας JSON σας ''messages'':'
+      label-your-messages-json-array: "Ο πίνακας JSON σας 'messages':"
       placeholder-your-tools-json-array: Ο πίνακας JSON σας με τα «εργαλεία»...
       label-your-tools-json-array: 'Ο πίνακας JSON σας με τα «εργαλεία»:'
       title-input-json-s: Εισαγωγή JSON(s)
@@ -2774,8 +2774,8 @@ tools:
       verify-description: '{0}: {1} (επαλήθευση με {2})'
       token-secret: Μυστικό διακριτικού
       token-keys: Κλειδιά διακριτικών
-      cannot-parse-secret-as-encoding: 'Δεν είναι δυνατή η ανάλυση του ''{0}'' ως
-        ''{1}'': {2}'
+      cannot-parse-secret-as-encoding: "Δεν είναι δυνατή η ανάλυση του '{0}' ως
+        '{1}': {2}"
       invalid-base64-string: Μη έγκυρη συμβολοσειρά Base64
       placeholder-input-token: Επικολλήστε το διακριτικό JWT για επεξεργασία...
       click-to-input-a-existing-jwt-token-to-modify: Κάντε κλικ για να εισαγάγετε
@@ -3959,8 +3959,8 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Συμβουλή: Μεταβείτε
         σε έναν ιστότοπο για να δοκιμάσετε, ανοίξτε την Κονσόλα F12 και εκτελέστε'
       tag-window-copy-document-cookie: window.copy(document.cookie)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : 'Αυτό θα αντιγράψει τη συμβολοσειρά cookie στο πρόχειρό σας. Σημείωση: Αυτό
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        'Αυτό θα αντιγράψει τη συμβολοσειρά cookie στο πρόχειρό σας. Σημείωση: Αυτό
         θα αντιγράψει μόνο τα cookie που είναι διαθέσιμα σε javascript (θα παραλειφθούν
         μόνο τα HTTP και τα ασφαλή cookie).'
       tag-name: Ονομα
@@ -4210,9 +4210,9 @@ tools:
       placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async: 'Από
         προεπιλογή: Τυπικές επιλογές προσάρτησης (rw, suid, dev, exec, auto, nouser,
         async)'
-      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: 'Dump
-        (Καθορίζει εάν το βοηθητικό πρόγραμμα ''dump'' θα πρέπει να δημιουργεί αντίγραφα
-        ασφαλείας αυτού του συστήματος αρχείων):'
+      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: "Dump
+        (Καθορίζει εάν το βοηθητικό πρόγραμμα 'dump' θα πρέπει να δημιουργεί αντίγραφα
+        ασφαλείας αυτού του συστήματος αρχείων):"
       label-pass-controls-the-order-for-filesystem-checks-at-boot: 'Pass (Ελέγχει
         τη σειρά των ελέγχων του συστήματος αρχείων κατά την εκκίνηση):'
       placeholder-username: Όνομα χρήστη
@@ -4699,29 +4699,29 @@ tools:
       label-custom-expression: 'Προσαρμοσμένη έκφραση:'
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: π.χ., θύρα src 443 και dst 10.0.0.1
       title-generated-tcpdump-command: Δημιουργήθηκε εντολή tcpdump
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : Το tcpdump είναι ένα βοηθητικό πρόγραμμα που εγκαθίσταται/διατίθεται συνήθως
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        Το tcpdump είναι ένα βοηθητικό πρόγραμμα που εγκαθίσταται/διατίθεται συνήθως
         σε πολλές διανομές Linux για τη γρήγορη συλλογή ιχνών δικτύου / καταγραφής
         πακέτων. Με λίγα λόγια, είναι το Wireshark του Linux στη συλλογή καταγραφών
         πακέτων. Το tcpdump είναι πολύ ευέλικτο με πολλούς διακόπτες για την λεπτομερή
         καταγραφή ό,τι χρειάζεστε για την αντιγραφή σφαλμάτων στην κυκλοφορία δικτύου,
         με επιλογές για την εξαγωγή αποτελεσμάτων μέσω κονσόλας, αρχείου ή Wireshark
         pcap.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : 'Αυτό το βοηθητικό πρόγραμμα έχει ως στόχο να βοηθήσει στη δημιουργία μιας
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        'Αυτό το βοηθητικό πρόγραμμα έχει ως στόχο να βοηθήσει στη δημιουργία μιας
         εντολής tcpdump χρησιμοποιώντας μερικούς από τους πιο συνηθισμένους διακόπτες/φίλτρα
         που προσφέρει το tcpdump. Αυτό το βοηθητικό πρόγραμμα δεν περιλαμβάνει όλες
         τις επιλογές που προσφέρει το tcpdump. Μια πλήρης λίστα επιλογών μπορεί να
         βρεθεί στο εγχειρίδιό του:'
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Σημείωμα:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : Οι κεντρικοί υπολογιστές, οι κεντρικοί υπολογιστές προέλευσης και οι κεντρικοί
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        Οι κεντρικοί υπολογιστές, οι κεντρικοί υπολογιστές προέλευσης και οι κεντρικοί
         υπολογιστές προορισμού μπορούν να δεχθούν πολλαπλές καταχωρήσεις. Διαχωρίστε
         τις καταχωρίσεις σας με κόμμα, κενό ή ερωτηματικό.
       tag-note-2: 'Σημείωση 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : Όταν καθορίζετε σημαίες προέλευσης (src) ή προορισμού (dst), το tcpdump θα
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        Όταν καθορίζετε σημαίες προέλευσης (src) ή προορισμού (dst), το tcpdump θα
         φιλτράρει μόνο προς αυτήν την κατεύθυνση. Εάν θέλετε να καταγράψετε πλήρη
         χειραψία TCP, βεβαιωθείτε ότι χρησιμοποιείτε "host" έναντι "src host" ή "dst
         host" για να δείτε τη ροή αιτήματος και απόκρισης.
@@ -5056,7 +5056,8 @@ tools:
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: Το
           RAID 70 απαιτεί τουλάχιστον 10 δίσκους με ελάχιστο αριθμό 5 ανά λωρίδα.
           Οι λωρίδες πρέπει να περιέχουν ίσο αριθμό δίσκων.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: Το
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          Το
           RAID 70 συνδέει πολλαπλές συστοιχίες RAID 7 μαζί (RAID 7 + RAID 0). Κάθε
           σύνολο RAID 7 μπορεί να αντέξει τρεις βλάβες μονάδας δίσκου.
         2-drive-failures-per-raid-6-set: 2 βλάβες μονάδας δίσκου ανά σετ RAID 6
@@ -5070,41 +5071,43 @@ tools:
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: Το
           RAID 50 απαιτεί τουλάχιστον 6 δίσκους, με ελάχιστο 3 ανά stripe. Οι stripes
           πρέπει να περιέχουν ίσο αριθμό δίσκων.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: Το
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          Το
           RAID 50 συνδέει πολλαπλές συστοιχίες RAID 5 μαζί (RAID 5 + RAID 0). Κάθε
           σύνολο RAID 5 μπορεί να υποστεί βλάβη σε μία μόνο μονάδα δίσκου.
         1-drive-failure-per-mirrored-set: 1 βλάβη μονάδας δίσκου ανά σετ κατοπτρισμού
         raid-10-requires-an-even-number-of-at-least-4-disks: Το RAID 10 απαιτεί άρτιο
           αριθμό τουλάχιστον 4 δίσκων
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : Το RAID 10 είναι μια λωρίδα κατοπτρισμών (RAID 1 + RAID 0). Κάθε σύνολο
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          Το RAID 10 είναι μια λωρίδα κατοπτρισμών (RAID 1 + RAID 0). Κάθε σύνολο
           μονάδων δίσκου είναι κατοπτριζόμενο και διαγραμμισμένο, έτσι ώστε κάθε μονάδα
           δίσκου στο σύνολο να είναι ανεκτική σε σφάλματα εντός της ομάδας.
         3-drive-failures: 3 βλάβες μονάδας δίσκου
         raid-7-requires-at-least-5-disks: Το RAID 7 απαιτεί τουλάχιστον 5 δίσκους
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : Το RAID 7/RAID TP (μη τυπικό) είναι παρόμοιο με το RAID 5 και το RAID 6
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          Το RAID 7/RAID TP (μη τυπικό) είναι παρόμοιο με το RAID 5 και το RAID 6
           αλλά με ένα τρίτο μπλοκ ισοτιμίας. Αυτό επιτρέπει την αστοχία ενός τρίτου
           δίσκου με κόστος μείωσης χώρου αποθήκευσης ίσο με τρεις μονάδες δίσκου.
         2-drive-failures: 2 βλάβες μονάδας δίσκου
         raid-6-requires-at-least-4-disks: Το RAID 6 απαιτεί τουλάχιστον 4 δίσκους
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : Το RAID 6 είναι παρόμοιο με το RAID 5 αλλά με ένα επιπλέον μπλοκ ισοτιμίας.
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          Το RAID 6 είναι παρόμοιο με το RAID 5 αλλά με ένα επιπλέον μπλοκ ισοτιμίας.
           Αυτό επιτρέπει μια επιπλέον βλάβη δίσκου με κόστος μείωσης χώρου αποθήκευσης
           ίσο με δύο μονάδες δίσκου.
         1-drive-failure: 1 βλάβη μονάδας δίσκου
         raid-5-requires-at-least-3-disks: Το RAID 5 απαιτεί τουλάχιστον 3 δίσκους
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : Το RAID 5 χρησιμοποιεί διαγράμμιση σε επίπεδο μπλοκ με ισοτιμία. Αυτό επιτρέπει
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          Το RAID 5 χρησιμοποιεί διαγράμμιση σε επίπεδο μπλοκ με ισοτιμία. Αυτό επιτρέπει
           ανοχή σφαλμάτων με μείωση χώρου αποθήκευσης ίση με μία μονάδα δίσκου για
           τις πληροφορίες ισοτιμίας.
         raid-1-requires-at-least-1-disk: Το RAID 1 απαιτεί τουλάχιστον 1 δίσκο
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : Το RAID 1 αποτελείται από ένα ακριβές αντίγραφο των δεδομένων (mirror) σε
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          Το RAID 1 αποτελείται από ένα ακριβές αντίγραφο των δεδομένων (mirror) σε
           δύο ή περισσότερους δίσκους. Ο πίνακας θα λειτουργεί εφόσον τουλάχιστον
           μία μονάδα δίσκου είναι λειτουργική.
         raid-0-requires-at-least-1-disk: Το RAID 0 απαιτεί τουλάχιστον 1 δίσκο
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: Το
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          Το
           RAID 0 διαιρεί τα δεδομένα ομοιόμορφα σε 2 ή περισσότερους δίσκους χωρίς
           πλεονασμό ή ανοχή σφαλμάτων, δημιουργώντας έναν μεγάλο χώρο αποθήκευσης.
   categories:
@@ -5222,7 +5225,8 @@ tools:
         source-wikipedia: 'Πηγή: Wikipedia'
         once-the-long-break-is-finished-return-to-step-1: Μόλις τελειώσει το μεγάλο
           διάλειμμα, επιστρέψτε στο Βήμα 1.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: Συνεχίστε
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          Συνεχίστε
           να επαναλαμβάνετε τα βήματα 1-3, αλλά μετά την 4η εργασία σας, κάντε ένα
           μεγάλο διάλειμμα αντί για ένα σύντομο διάλειμμα (συνήθως 20-30 λεπτά).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: Όταν χτυπήσει
@@ -5232,8 +5236,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Αποφασίστε για μια
           εργασία και ρυθμίστε το χρονόμετρο (συνήθως 25 λεπτά).
         five-steps-of-the-pomodoro-technique: Πέντε βήματα της τεχνικής Pomodoro
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : Η Τεχνική Pomodoro είναι μια μέθοδος διαχείρισης χρόνου που αναπτύχθηκε
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          Η Τεχνική Pomodoro είναι μια μέθοδος διαχείρισης χρόνου που αναπτύχθηκε
           από τον Francesco Cirillo τη δεκαετία του 1980. Χρησιμοποιεί ένα χρονόμετρο
           για να χωρίσει την εργασία σε διαστήματα, συνήθως 25 λεπτών, χωρισμένα από
           σύντομα διαλείμματα. Κάθε διάστημα είναι γνωστό ως pomodoro, από την ιταλική
@@ -5447,9 +5451,9 @@ tools:
       text:
         invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: 'Μη
           έγκυρα οκταδικά δικαιώματα (πρέπει να είναι 3 ή 4 οκταδικά ψηφία): {0}'
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: 'Μη
-          έγκυρα δικαιώματα συμβολοσειράς (πρέπει να είναι στη μορφή ''rwxrwxrwx''):
-          {0}'
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: "Μη
+          έγκυρα δικαιώματα συμβολοσειράς (πρέπει να είναι στη μορφή 'rwxrwxrwx'):
+          {0}"
   color-converter:
     title: Μετατροπέας χρωμάτων
     description: Μετατροπή χρώματος μεταξύ των διαφορετικών μορφών (hex, rgb, hsl
@@ -5487,8 +5491,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Διάρκεια για την παραβίαση
         αυτού του κωδικού πρόσβασης με ωμή βία
       tag-note: 'Σημείωμα:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : Η υπολογισμένη ισχύς βασίζεται στον χρόνο που θα χρειαζόταν για να σπάσει
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        Η υπολογισμένη ισχύς βασίζεται στον χρόνο που θα χρειαζόταν για να σπάσει
         ο κωδικός πρόσβασης χρησιμοποιώντας μια προσέγγιση ωμής βίας, δεν λαμβάνει
         υπόψη την πιθανότητα επίθεσης μέσω λεξικού.
     service:
@@ -5677,11 +5681,11 @@ tools:
         song-details: Λεπτομέρειες τραγουδιού
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'Το όνομα του λογαριασμού
-          Twitter του δημιουργού (π.χ.: {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "Το όνομα του λογαριασμού
+          Twitter του δημιουργού (π.χ.: {'@'}sharevb)..."
         creator-acc: Λογαριασμός δημιουργού
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 'Το όνομα του
-          λογαριασμού Twitter του ιστότοπου (π.χ.: {''@''}ittoolsdottech)...'
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "Το όνομα του
+          λογαριασμού Twitter του ιστότοπου (π.χ.: {'@'}ittoolsdottech)..."
         site-account: Λογαριασμός ιστότοπου
         the-twitter-card-type: Ο τύπος κάρτας Twitter...
         card-type: Τύπος κάρτας
@@ -6451,17 +6455,18 @@ tools:
           διακομιστής είτε δεν αναγνωρίζει τη μέθοδο αιτήματος είτε δεν έχει τη δυνατότητα
           να εκπληρώσει το αίτημα.
         not-implemented: Δεν έχει υλοποιηθεί
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: Ένα
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          Ένα
           γενικό μήνυμα σφάλματος, που δίνεται όταν παρουσιαστεί μια απροσδόκητη συνθήκη
           και δεν είναι κατάλληλο κάποιο πιο συγκεκριμένο μήνυμα.
         internal-server-error: Εσωτερικό σφάλμα διακομιστή
         5xx-server-error: Σφάλμα διακομιστή 5xx
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : Ένας χειριστής διακομιστή έχει λάβει νομική απαίτηση να αρνηθεί την πρόσβαση
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          Ένας χειριστής διακομιστή έχει λάβει νομική απαίτηση να αρνηθεί την πρόσβαση
           σε έναν πόρο ή σε ένα σύνολο πόρων που περιλαμβάνει τον αιτούμενο πόρο.
         unavailable-for-legal-reasons: Μη διαθέσιμο για νομικούς λόγους
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : Ο διακομιστής δεν επιθυμεί να επεξεργαστεί το αίτημα επειδή είτε ένα μεμονωμένο
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          Ο διακομιστής δεν επιθυμεί να επεξεργαστεί το αίτημα επειδή είτε ένα μεμονωμένο
           πεδίο κεφαλίδας είτε όλα τα πεδία κεφαλίδας συνολικά είναι πολύ μεγάλα.
         request-header-fields-too-large: Τα πεδία κεφαλίδας αιτήματος είναι πολύ μεγάλα
         the-user-has-sent-too-many-requests-in-a-given-amount-of-time: Ο χρήστης έχει
@@ -6523,7 +6528,8 @@ tools:
           ότι ο πόρος που ζητήθηκε δεν είναι πλέον διαθέσιμος και δεν θα είναι ξανά
           διαθέσιμος.
         gone: Χαμένος
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: Υποδεικνύει
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          Υποδεικνύει
           ότι το αίτημα δεν ήταν δυνατό να υποβληθεί σε επεξεργασία λόγω διένεξης
           στο αίτημα, όπως μια διένεξη επεξεργασίας.
         conflict: Σύγκρουση
@@ -6533,8 +6539,8 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: Ο πελάτης πρέπει
           πρώτα να επαληθεύσει τον εαυτό του με τον διακομιστή μεσολάβησης.
         proxy-authentication-required: Απαιτείται έλεγχος ταυτότητας διακομιστή μεσολάβησης
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : Ο αιτούμενος πόρος είναι ικανός να δημιουργεί μόνο περιεχόμενο που δεν είναι
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          Ο αιτούμενος πόρος είναι ικανός να δημιουργεί μόνο περιεχόμενο που δεν είναι
           αποδεκτό σύμφωνα με τις κεφαλίδες Αποδοχής που αποστέλλονται στο αίτημα.
         not-acceptable: Μη αποδεκτό
         a-request-method-is-not-supported-for-the-requested-resource: Δεν υποστηρίζεται
@@ -6542,17 +6548,18 @@ tools:
         method-not-allowed: Η μέθοδος δεν επιτρέπεται
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: Ο
           πόρος που ζητήθηκε δεν βρέθηκε, αλλά ενδέχεται να είναι διαθέσιμος στο μέλλον.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: Το
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          Το
           αίτημα ήταν έγκυρο, αλλά ο διακομιστής αρνείται την ενέργεια. Ο χρήστης
           ενδέχεται να μην έχει τα απαραίτητα δικαιώματα για έναν πόρο.
         forbidden: Απαγορευμένος
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : Διατηρείται για μελλοντική χρήση. Η αρχική πρόθεση ήταν ότι αυτός ο κωδικός
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          Διατηρείται για μελλοντική χρήση. Η αρχική πρόθεση ήταν ότι αυτός ο κωδικός
           θα μπορούσε να χρησιμοποιηθεί ως μέρος κάποιας μορφής ψηφιακού χρήματος
           ή συστήματος μικροπληρωμής.
         payment-required: Απαιτείται πληρωμή
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : Παρόμοιο με το 403 Forbidden, αλλά ειδικά για χρήση όταν απαιτείται έλεγχος
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          Παρόμοιο με το 403 Forbidden, αλλά ειδικά για χρήση όταν απαιτείται έλεγχος
           ταυτότητας και έχει αποτύχει ή δεν έχει παρασχεθεί ακόμη.
         unauthorized: Ανεξουσιοδότητος
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: Ο
@@ -6564,7 +6571,8 @@ tools:
           αίτημα και όλα τα μελλοντικά αιτήματα θα πρέπει να επαναληφθούν χρησιμοποιώντας
           ένα άλλο URI.
         permanent-redirect: Μόνιμη ανακατεύθυνση
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: Σε
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          Σε
           αυτήν την περίπτωση, το αίτημα θα πρέπει να επαναληφθεί με ένα άλλο URI.
           Ωστόσο, τα μελλοντικά αιτήματα θα πρέπει να εξακολουθούν να χρησιμοποιούν
           το αρχικό URI.
@@ -6577,7 +6585,8 @@ tools:
           ζητούμενος πόρος είναι διαθέσιμος μόνο μέσω ενός διακομιστή μεσολάβησης,
           η διεύθυνση του οποίου παρέχεται στην απάντηση.
         use-proxy: Χρήση διακομιστή μεσολάβησης
-        indicates-that-the-resource-has-not-been-modified-since-the-version-specified-by-the-request-headers: Υποδεικνύει
+        indicates-that-the-resource-has-not-been-modified-since-the-version-specified-by-the-request-headers:
+          Υποδεικνύει
           ότι ο πόρος δεν έχει τροποποιηθεί από την έκδοση που καθορίζεται από τις
           κεφαλίδες αιτήματος.
         not-modified: Δεν έχει τροποποιηθεί
@@ -7162,8 +7171,8 @@ tools:
       label-failure-probability: 'Πιθανότητα αποτυχίας:'
       tag-key-terms-explained: 🧠 Επεξήγηση βασικών όρων
       tag-raid-level: Επίπεδο RAID
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : Το RAID (Redundant Array of Independent Disks - Πλεονάζουσα Συστοιχία Ανεξάρτητων
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        Το RAID (Redundant Array of Independent Disks - Πλεονάζουσα Συστοιχία Ανεξάρτητων
         Δίσκοι) είναι μια μέθοδος συνδυασμού πολλαπλών φυσικών μονάδων δίσκου σε μία
         λογική μονάδα για βελτίωση της απόδοσης, πλεονασμό ή και τα δύο.
       tag-description: Περιγραφή
@@ -7194,40 +7203,42 @@ tools:
         συστοιχιών RAID 5. Συνδυάζει την απόδοση του RAID 0 με την πλεονάζουσα ικανότητα
         του RAID 5.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF (Μέσος Χρόνος Μεταξύ Βλαβών)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: Ο
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        Ο
         μέσος χρόνος (σε ώρες) που αναμένεται να λειτουργήσει μια μονάδα δίσκου πριν
         από την εμφάνιση βλάβης. Υψηλότερος χρόνος μεταξύ πόλων (MTBF) σημαίνει πιο
         αξιόπιστο υλικό.
       tag-rebuild-time: 🔁 Ώρα για Αναδόμηση
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : Ο χρόνος που απαιτείται για την ανακατασκευή δεδομένων σε μια μονάδα δίσκου
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        Ο χρόνος που απαιτείται για την ανακατασκευή δεδομένων σε μια μονάδα δίσκου
         αντικατάστασης μετά από μια βλάβη. Οι μεγαλύτεροι χρόνοι ανακατασκευής αυξάνουν
         τον κίνδυνο δεύτερης βλάβης κατά την αποκατάσταση.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (Μέσος Χρόνος έως την Απώλεια Δεδομένων)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : Μια στατιστική εκτίμηση για το χρονικό διάστημα που μπορεί να λειτουργήσει
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        Μια στατιστική εκτίμηση για το χρονικό διάστημα που μπορεί να λειτουργήσει
         ένα σύστημα RAID πριν από την απώλεια δεδομένων. Λαμβάνει υπόψη τις βλάβες
         των μονάδων δίσκου, τον χρόνο ανακατασκευής και την πλεονάζουσα RAID. Υψηλότερο
         MTTDL σημαίνει ασφαλέστερο σύστημα.
       tag-bit-error-rate-ber: 🧮 Ρυθμός σφάλματος bit (BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : Η πιθανότητα ένα bit που διαβάζεται από έναν δίσκο να είναι λανθασμένο λόγω
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        Η πιθανότητα ένα bit που διαβάζεται από έναν δίσκο να είναι λανθασμένο λόγω
         περιορισμών υλικού. Ακόμα και μικροσκοπικά BER (όπως 1 στο τρισεκατομμύριο)
         μπορούν να προκαλέσουν προβλήματα κατά τις ανακατασκευές, ειδικά με μεγάλους
         δίσκους.
       tag-unrecoverable-read-error-ure: 🧠 Μη ανακτήσιμο σφάλμα ανάγνωσης (URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : Εμφανίζεται όταν μια μονάδα δίσκου δεν μπορεί να διαβάσει έναν τομέα κατά
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        Εμφανίζεται όταν μια μονάδα δίσκου δεν μπορεί να διαβάσει έναν τομέα κατά
         την αναδόμηση. Το BER συμβάλλει στον κίνδυνο URE, ο οποίος μπορεί να θέσει
         σε κίνδυνο την αποκατάσταση RAID.
       tag-drive-capacity-tb: 📦 Χωρητικότητα δίσκου (TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: Συνολικός
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        Συνολικός
         χώρος αποθήκευσης ανά μονάδα δίσκου. Οι μεγαλύτεροι δίσκοι χρειάζονται περισσότερο
         χρόνο για να ανακατασκευαστούν και είναι πιο ευάλωτοι σε σφάλματα που σχετίζονται
         με το BER.
       tag-failure-probability: 📈 Πιθανότητα Αποτυχίας
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : Η πιθανότητα το σύστημα RAID να υποστεί απώλεια δεδομένων σε μια δεδομένη
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        Η πιθανότητα το σύστημα RAID να υποστεί απώλεια δεδομένων σε μια δεδομένη
         χρονική περίοδο (π.χ., 5 έτη). Υπολογίζεται με χρήση μοντέλων MTTDL και εκθετικών
         μοντέλων αστοχίας.
   pack-files-for-ai:
@@ -7593,8 +7604,8 @@ tools:
       tag-mirrors-stripes: Καθρέφτες/Λωρίδες
       tag-reset: Επαναφορά
       tag-see-zpool-openzfs-cheatsheet: Δείτε το φύλλο οδηγιών χρήσης του Zpool/OpenZFS
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : Κάντε κλικ στους τίτλους των ενοτήτων για να αναπτύξετε/συμπτύξετε και να
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        Κάντε κλικ στους τίτλους των ενοτήτων για να αναπτύξετε/συμπτύξετε και να
         δείτε τα υπολογισμένα δεδομένα. Τοποθετήστε τον δείκτη του ποντικιού πάνω
         από ένα κελί πίνακα και φορτώστε τα σχετικά δεδομένα στην ενότητα Τιμές Υπολογισμού
         παρακάτω. Μπορείτε να κάνετε κλικ στα κελιά του πίνακα για να παγώσετε ή να
@@ -7919,7 +7930,8 @@ tools:
       placeholder-paste-abi-json-here: Επικολλήστε εδώ το ABI JSON
       label-raw-transaction-0x-or-json-transaction: 'Ακατέργαστη συναλλαγή (0x...)
         ή συναλλαγή JSON:'
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}"προς":"0x...","δεδομένα":"0x..."{''}''}
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        '{''{''}"προς":"0x...","δεδομένα":"0x..."{''}''}
         ή ακατέργαστα 0x....'
       title-decoded-transaction: Αποκωδικοποιημένη Συναλλαγή
       label-from: Από
