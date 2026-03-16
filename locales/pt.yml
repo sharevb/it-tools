@@ -33,10 +33,10 @@ home:
     lightMode: Modo Claro
     mode: Trocar modo escuro/claro
   loading-more-tools: Carregando mais ferramentas...
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: Expandindo...
+  collapseAllTools: Recolher todas as ferramentas
+  collapsing: Recolhendo...
+  expandAllTools: Expandir todas as ferramentas
 about:
   alltools-title: Todas as ferramentas {toolsCount}
   tools:
@@ -2690,8 +2690,8 @@ tools:
       verify-description: '{0}: {1} (verificar com {2})'
       token-secret: Segredo do Token
       token-keys: Chaves de token
-      cannot-parse-secret-as-encoding: 'Não é possível analisar ''{0}'' como ''{1}'':
-        {2}'
+      cannot-parse-secret-as-encoding: "Não é possível analisar '{0}' como '{1}':
+        {2}"
       invalid-base64-string: String Base64 inválida
       placeholder-input-token: Cole seu token JWT para editar...
       click-to-input-a-existing-jwt-token-to-modify: Clique para inserir um token
@@ -3851,8 +3851,8 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Dica: Navegue
         até um site para testar, abra o F12 Console e execute'
       tag-window-copy-document-cookie: janela.cópia(documento.cookie)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : '. Isso copiará a sequência de caracteres do cookie para a sua área de transferência.
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        '. Isso copiará a sequência de caracteres do cookie para a sua área de transferência.
         Observação: isso copiará apenas os cookies disponíveis para JavaScript (somente
         HTTP e cookies seguros serão omitidos).'
       tag-name: Nome
@@ -4575,26 +4575,26 @@ tools:
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: por exemplo, porta src 443 e
         dst 10.0.0.1
       title-generated-tcpdump-command: Comando tcpdump gerado
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : O tcpdump é um utilitário comumente instalado/disponível em muitas distribuições
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        O tcpdump é um utilitário comumente instalado/disponível em muitas distribuições
         Linux para coletar rapidamente um rastreamento de rede/captura de pacotes.
         Em resumo, é o Wireshark do Linux para coletar capturas de pacotes. O tcpdump
         é muito versátil, com diversas opções para capturar granularmente o que você
         precisa para depurar o tráfego de rede; com opções para enviar resultados
         via console, arquivo ou Wireshark pcap.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : 'Este utilitário ajuda a gerar um comando tcpdump usando algumas das opções/filtros
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        'Este utilitário ajuda a gerar um comando tcpdump usando algumas das opções/filtros
         mais comuns oferecidos pelo tcpdump. Este utilitário não abrange todas as
         opções oferecidas pelo tcpdump; uma lista completa de opções pode ser encontrada
         no manual:'
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Observação:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : Host, Host de Origem e Host de Destino podem receber várias entradas. Separe
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        Host, Host de Origem e Host de Destino podem receber várias entradas. Separe
         suas entradas com vírgula, espaço ou ponto e vírgula.
       tag-note-2: 'Nota 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : Ao especificar um sinalizador de origem (src) ou destino (dst), o tcpdump
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        Ao especificar um sinalizador de origem (src) ou destino (dst), o tcpdump
         filtrará apenas nessa direção. Se você deseja capturar o handshake TCP completo,
         certifique-se de usar &quot;host&quot; em vez de &quot;src host&quot; ou &quot;dst
         host&quot; para visualizar o fluxo de solicitação e resposta.
@@ -4917,7 +4917,8 @@ tools:
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: O
           RAID 70 requer pelo menos 10 discos, com no mínimo 5 por faixa. As faixas
           devem conter um número igual de discos.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: O
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          O
           RAID 70 distribui vários conjuntos RAID 7 juntos (RAID 7 + RAID 0). Cada
           conjunto RAID 7 pode suportar três falhas de unidade.
         2-drive-failures-per-raid-6-set: 2 falhas de unidade por conjunto RAID 6
@@ -4931,40 +4932,42 @@ tools:
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: O
           RAID 50 requer pelo menos 6 discos, com no mínimo 3 por faixa. As faixas
           devem conter um número igual de discos.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: O
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          O
           RAID 50 distribui vários conjuntos RAID 5 juntos (RAID 5 + RAID 0). Cada
           conjunto RAID 5 pode suportar uma única falha de unidade.
         1-drive-failure-per-mirrored-set: 1 falha de unidade por conjunto espelhado
         raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10 requer um número
           par de pelo menos 4 discos
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : RAID 10 é uma faixa de espelhos (RAID 1 + RAID 0). Cada conjunto de unidades
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          RAID 10 é uma faixa de espelhos (RAID 1 + RAID 0). Cada conjunto de unidades
           é espelhado e distribuído em faixas, de modo que cada unidade do conjunto
           seja tolerante a falhas dentro do grupo.
         3-drive-failures: 3 falhas de unidade
         raid-7-requires-at-least-5-disks: RAID 7 requer pelo menos 5 discos
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : RAID 7/RAID TP (não padrão) é semelhante ao RAID 5 e RAID 6, mas com um
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          RAID 7/RAID TP (não padrão) é semelhante ao RAID 5 e RAID 6, mas com um
           terceiro bloco de paridade. Isso permite uma falha no terceiro disco ao
           custo de uma redução de armazenamento equivalente a três unidades.
         2-drive-failures: 2 falhas de unidade
         raid-6-requires-at-least-4-disks: RAID 6 requer pelo menos 4 discos
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : O RAID 6 é semelhante ao RAID 5, mas com um bloco de paridade adicional.
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          O RAID 6 é semelhante ao RAID 5, mas com um bloco de paridade adicional.
           Isso permite uma falha adicional no disco ao custo de uma redução de armazenamento
           equivalente a duas unidades.
         1-drive-failure: 1 falha de unidade
         raid-5-requires-at-least-3-disks: RAID 5 requer pelo menos 3 discos
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : O RAID 5 utiliza striping em nível de bloco com paridade. Isso permite tolerância
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          O RAID 5 utiliza striping em nível de bloco com paridade. Isso permite tolerância
           a falhas com uma redução de armazenamento equivalente a uma unidade para
           as informações de paridade.
         raid-1-requires-at-least-1-disk: RAID 1 requer pelo menos 1 disco
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : O RAID 1 consiste em uma cópia exata dos dados (espelho) em dois ou mais
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          O RAID 1 consiste em uma cópia exata dos dados (espelho) em dois ou mais
           discos. O array funcionará enquanto pelo menos um disco estiver operacional.
         raid-0-requires-at-least-1-disk: RAID 0 requer pelo menos 1 disco
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: O
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          O
           RAID 0 divide os dados uniformemente em 2 ou mais discos, sem redundância
           ou tolerância a falhas, criando um grande espaço de armazenamento.
   websocket-tester:
@@ -5051,7 +5054,8 @@ tools:
         source-wikipedia: 'Fonte: Wikipédia'
         once-the-long-break-is-finished-return-to-step-1: Quando o intervalo longo
           terminar, retorne ao Passo 1.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: Continue
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          Continue
           repetindo os passos 1 a 3, mas após a quarta tarefa, faça uma pausa longa
           em vez de uma curta (20 a 30 minutos é o normal).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: Quando o cronômetro
@@ -5060,8 +5064,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Escolha uma tarefa
           e defina um cronômetro (25 minutos é o normal).
         five-steps-of-the-pomodoro-technique: Cinco passos da Técnica Pomodoro
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : A Técnica Pomodoro é um método de gerenciamento de tempo desenvolvido por
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          A Técnica Pomodoro é um método de gerenciamento de tempo desenvolvido por
           Francesco Cirillo na década de 1980. Ela utiliza um cronômetro para dividir
           o trabalho em intervalos, normalmente de 25 minutos, separados por pequenos
           intervalos. Cada intervalo é conhecido como pomodoro, palavra italiana para
@@ -5312,8 +5316,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Duração para quebrar esta
         senha com força bruta
       tag-note: 'Observação:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : A força calculada é baseada no tempo que levaria para quebrar a senha usando
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        A força calculada é baseada no tempo que levaria para quebrar a senha usando
         uma abordagem de força bruta; ela não leva em consideração a possibilidade
         de um ataque de dicionário.
     service:
@@ -5500,11 +5504,11 @@ tools:
         song-details: Detalhes da música
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'O nome da conta
-          do Twitter do criador (ex: {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "O nome da conta
+          do Twitter do criador (ex: {'@'}sharevb)..."
         creator-acc: Criador de acordo.
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 'O nome da
-          conta do Twitter do site (ex: {''@''}ittoolsdottech)...'
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "O nome da
+          conta do Twitter do site (ex: {'@'}ittoolsdottech)..."
         site-account: Conta do site
         the-twitter-card-type: O tipo de cartão do Twitter...
         card-type: Tipo de cartão
@@ -6257,17 +6261,18 @@ tools:
           servidor não reconhece o método de solicitação ou não tem capacidade de
           atender à solicitação.
         not-implemented: Não implementado
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: Uma
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          Uma
           mensagem de erro genérica, exibida quando uma condição inesperada foi encontrada
           e nenhuma mensagem mais específica é adequada.
         internal-server-error: Erro do Servidor Interno
         5xx-server-error: erro de servidor 5xx
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : Um operador de servidor recebeu uma demanda legal para negar acesso a um
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          Um operador de servidor recebeu uma demanda legal para negar acesso a um
           recurso ou a um conjunto de recursos que inclui o recurso solicitado.
         unavailable-for-legal-reasons: Indisponível por motivos legais
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : O servidor não deseja processar a solicitação porque um campo de cabeçalho
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          O servidor não deseja processar a solicitação porque um campo de cabeçalho
           individual ou todos os campos de cabeçalho coletivamente são muito grandes.
         request-header-fields-too-large: Campos de cabeçalho de solicitação muito
           grandes
@@ -6330,7 +6335,8 @@ tools:
           que o recurso solicitado não está mais disponível e não estará disponível
           novamente.
         gone: Perdido
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: Indica
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          Indica
           que a solicitação não pôde ser processada devido a um conflito na solicitação,
           como um conflito de edição.
         conflict: Conflito
@@ -6340,8 +6346,8 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: O cliente deve primeiro
           se autenticar com o proxy.
         proxy-authentication-required: Autenticação de proxy necessária
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : O recurso solicitado é capaz de gerar apenas conteúdo não aceitável de acordo
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          O recurso solicitado é capaz de gerar apenas conteúdo não aceitável de acordo
           com os cabeçalhos Accept enviados na solicitação.
         not-acceptable: Não aceitável
         a-request-method-is-not-supported-for-the-requested-resource: Um método de
@@ -6350,16 +6356,17 @@ tools:
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: O
           recurso solicitado não pôde ser encontrado, mas poderá estar disponível
           no futuro.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: A
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          A
           solicitação foi válida, mas o servidor está recusando a ação. O usuário
           pode não ter as permissões necessárias para um recurso.
         forbidden: Proibido
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : Reservado para uso futuro. A intenção original era que este código pudesse
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          Reservado para uso futuro. A intenção original era que este código pudesse
           ser usado como parte de algum tipo de dinheiro digital ou esquema de micropagamento.
         payment-required: Pagamento necessário
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : Semelhante ao 403 Forbidden, mas especificamente para uso quando a autenticação
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          Semelhante ao 403 Forbidden, mas especificamente para uso quando a autenticação
           é necessária e falhou ou ainda não foi fornecida.
         unauthorized: Não autorizado
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: O
@@ -6371,7 +6378,8 @@ tools:
           solicitação e todas as solicitações futuras devem ser repetidas usando outro
           URI.
         permanent-redirect: Redirecionamento Permanente
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: Nesse
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          Nesse
           caso, a solicitação deve ser repetida com outro URI; no entanto, solicitações
           futuras ainda devem usar o URI original.
         temporary-redirect: Redirecionamento temporário
@@ -6956,8 +6964,8 @@ tools:
       label-failure-probability: 'Probabilidade de falha:'
       tag-key-terms-explained: 🧠 Termos-chave explicados
       tag-raid-level: Nível RAID
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : RAID (Redundant Array of Independent Disks) é um método de combinar várias
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        RAID (Redundant Array of Independent Disks) é um método de combinar várias
         unidades físicas em uma unidade lógica para melhorar o desempenho, a redundância
         ou ambos.
       tag-description: Descrição
@@ -6988,36 +6996,38 @@ tools:
         de matrizes RAID 5. Combina o desempenho do RAID 0 com a redundância do RAID
         5.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF (Tempo Médio Entre Falhas)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: Tempo
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        Tempo
         médio (em horas) que um disco rígido deve operar antes de falhar. MTBF mais
         alto significa hardware mais confiável.
       tag-rebuild-time: 🔁 Tempo de reconstrução
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : Tempo necessário para reconstruir dados em uma unidade de substituição após
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        Tempo necessário para reconstruir dados em uma unidade de substituição após
         uma falha. Tempos de reconstrução mais longos aumentam o risco de uma segunda
         falha durante a recuperação.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (Tempo Médio para Perda de Dados)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : Uma estimativa estatística de quanto tempo um sistema RAID pode operar antes
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        Uma estimativa estatística de quanto tempo um sistema RAID pode operar antes
         que ocorra perda de dados. Ela considera falhas de unidade, tempo de reconstrução
         e redundância de RAID. Um MTTDL mais alto significa um sistema mais seguro.
       tag-bit-error-rate-ber: 🧮 Taxa de erro de bits (BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : A probabilidade de um bit lido de um disco estar incorreto devido a limitações
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        A probabilidade de um bit lido de um disco estar incorreto devido a limitações
         de hardware. Mesmo BERs minúsculos (como 1 em um trilhão) podem causar problemas
         durante reconstruções, especialmente com discos grandes.
       tag-unrecoverable-read-error-ure: 🧠 Erro de leitura irrecuperável (URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : Ocorre quando uma unidade falha ao ler um setor durante a reconstrução. O
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        Ocorre quando uma unidade falha ao ler um setor durante a reconstrução. O
         BER contribui para o risco de URE, o que pode comprometer a recuperação do
         RAID.
       tag-drive-capacity-tb: 📦 Capacidade de unidade (TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: Armazenamento
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        Armazenamento
         total por unidade. Unidades maiores levam mais tempo para serem reconstruídas
         e são mais suscetíveis a erros relacionados a BER.
       tag-failure-probability: 📈 Probabilidade de falha
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : A probabilidade de o sistema RAID sofrer perda de dados em um determinado
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        A probabilidade de o sistema RAID sofrer perda de dados em um determinado
         período (por exemplo, 5 anos). Calculada usando MTTDL e modelos de falha exponencial.
   pack-files-for-ai:
     title: Arquivos de pacote para IA
@@ -7381,8 +7391,8 @@ tools:
       tag-mirrors-stripes: Espelhos/Listras
       tag-reset: Reiniciar
       tag-see-zpool-openzfs-cheatsheet: Veja a folha de dicas do Zpool/OpenZFS
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : Clique nos títulos das seções para expandir/recolher e visualizar os dados
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        Clique nos títulos das seções para expandir/recolher e visualizar os dados
         calculados. Passar o mouse sobre uma célula da tabela carrega os dados relevantes
         na seção Valores de Cálculo abaixo. Você pode clicar nas células da tabela
         para congelar ou descongelar esses valores.
@@ -7711,8 +7721,9 @@ tools:
       label-signature: Assinatura
       label-arguments: Argumentos
       title-structured-output-json: JSON de saída estruturada
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{''}''}
-        ou raw 0x....'
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{'}'}
+        ou raw 0x...."
   file-splitter:
     title: Divisor de Arquivos
     description: Dividir arquivos JSON, XML ou de texto por grupo de nós ou por grupo

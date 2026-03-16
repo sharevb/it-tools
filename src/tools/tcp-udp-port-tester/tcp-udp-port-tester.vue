@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -9,7 +10,11 @@ const socket = ref<WebSocket | null>(null);
 const isConnected = ref(false);
 const logs = ref<string[]>([]);
 
-const targetHost = useQueryParamOrStorage({ name: 'target', storageName: 'tcp-udp-port-tester:t', defaultValue: 'localhost' });
+const targetHost = useQueryParamOrStorage({
+  name: 'target',
+  storageName: 'tcp-udp-port-tester:t',
+  defaultValue: 'localhost',
+});
 const targetPort = useQueryParamOrStorage({ name: 'port', storageName: 'tcp-udp-port-tester:p', defaultValue: 9000 });
 const protocol = useQueryParamOrStorage({ name: 'proto', storageName: 'tcp-udp-port-tester:o', defaultValue: 'tcp' });
 
@@ -51,7 +56,11 @@ function connect() {
       }
       else {
         const buffer = new Uint8Array(event.data);
-        addLog(`📩 Binary: ${Array.from(buffer).map(b => b.toString(16).padStart(2, '0')).join(' ')}`);
+        addLog(
+          `📩 Binary: ${Array.from(buffer)
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join(' ')}`,
+        );
         try {
           addLog(`📩 Text: ${new TextDecoder().decode(buffer)}`);
         }
@@ -93,7 +102,9 @@ function configureTarget() {
 
 function sendText() {
   if (socket.value && isConnected.value && textPayload.value.trim() !== '') {
-    socket.value.send(JSON.stringify({ type: 'send', payload: textPayload.value.replace(/\\n/g, '\n').replace(/\\r/g, '\r') }));
+    socket.value.send(
+      JSON.stringify({ type: 'send', payload: textPayload.value.replace(/\\n/g, '\n').replace(/\\r/g, '\r') }),
+    );
     addLog(`➡️ Sent text: ${textPayload.value}`);
   }
 }
@@ -140,9 +151,22 @@ onBeforeUnmount(() => {
         <summary mb-1>
           {{ t('tools.tcp-udp-port-tester.texts.tag-websocket-tcp-udp-bridge-configuration') }}
         </summary>
-        <c-input-text v-model:value="wsUrl" :label="t('tools.tcp-udp-port-tester.texts.label-websocket-tcp-udp-bridge-url')" label-position="left" :placeholder="t('tools.tcp-udp-port-tester.texts.placeholder-websocket-url')" mb-1 />
+        <c-input-text
+          v-model:value="wsUrl"
+          :label="t('tools.tcp-udp-port-tester.texts.label-websocket-tcp-udp-bridge-url')"
+          label-position="left"
+          :placeholder="t('tools.tcp-udp-port-tester.texts.placeholder-websocket-url')"
+          mb-1
+        />
         <n-p mb-1>
-          {{ t('tools.tcp-udp-port-tester.texts.tag-to-use-this-tool-you-need-to-host-a-websocket-tcp-udp-bridge-based-on') }}<c-link target="_blank" href="https://github.com/sharevb/ws-tcp-udp-bridge?tab=readme-ov-file#running-with-it-tools">
+          {{
+            t(
+              'tools.tcp-udp-port-tester.texts.tag-to-use-this-tool-you-need-to-host-a-websocket-tcp-udp-bridge-based-on',
+            )
+          }}<c-link
+            target="_blank"
+            href="https://github.com/sharevb/ws-tcp-udp-bridge?tab=readme-ov-file#running-with-it-tools"
+          >
             {{ t('tools.tcp-udp-port-tester.texts.tag-https-github-com-sharevb-ws-tcp-udp-bridge') }}
           </c-link>
         </n-p>
@@ -159,14 +183,23 @@ onBeforeUnmount(() => {
 
       <n-space justify="center">
         <n-tag :type="isConnected ? 'success' : 'error'">
-          {{ isConnected ? "Connected" : "Disconnected" }}
+          {{ isConnected ? 'Connected' : 'Disconnected' }}
         </n-tag>
       </n-space>
     </div>
 
     <n-form-item :label="t('tools.tcp-udp-port-tester.texts.label-target')" label-placement="left">
-      <n-input v-model:value="targetHost" :placeholder="t('tools.tcp-udp-port-tester.texts.placeholder-target-ip')" mr-1 />
-      <n-input-number v-model:value="targetPort" :placeholder="t('tools.tcp-udp-port-tester.texts.placeholder-port')" style="width: 250px" mr-1 />
+      <n-input
+        v-model:value="targetHost"
+        :placeholder="t('tools.tcp-udp-port-tester.texts.placeholder-target-ip')"
+        mr-1
+      />
+      <n-input-number
+        v-model:value="targetPort"
+        :placeholder="t('tools.tcp-udp-port-tester.texts.placeholder-port')"
+        style="width: 250px"
+        mr-1
+      />
 
       <n-select
         v-model:value="protocol"
@@ -186,13 +219,16 @@ onBeforeUnmount(() => {
           {{ t('tools.tcp-udp-port-tester.texts.tag-clear-logs') }}
         </n-button>
       </n-space>
-      <div ref="logsRef" style="font-size: .8em; height: 250px; overflow-y: scroll">
+      <div ref="logsRef" style="font-size: 0.8em; height: 250px; overflow-y: scroll">
         <pre v-for="(msg, idx) in logs" :key="idx" style="white-space: pre-wrap">{{ msg }}</pre>
       </div>
     </n-card>
 
     <n-card :title="t('tools.tcp-udp-port-tester.texts.title-payload-builder')" mb-1>
-      <n-form-item :label="t('tools.tcp-udp-port-tester.texts.label-send-text-payload-can-add-r-n')" label-placement="left">
+      <n-form-item
+        :label="t('tools.tcp-udp-port-tester.texts.label-send-text-payload-can-add-r-n')"
+        label-placement="left"
+      >
         <n-input
           v-model:value="textPayload"
           :placeholder="t('tools.tcp-udp-port-tester.texts.placeholder-text-payload')"

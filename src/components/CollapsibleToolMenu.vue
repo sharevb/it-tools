@@ -9,6 +9,7 @@ import type { Tool, ToolCategory } from '@/tools/tools.types';
 
 const { t } = useI18n();
 const props = withDefaults(defineProps<{ toolsByCategory?: ToolCategory[] }>(), { toolsByCategory: () => [] });
+const { t } = useI18n();
 const { toolsByCategory } = toRefs(props);
 const route = useRoute();
 

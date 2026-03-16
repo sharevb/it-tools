@@ -64,10 +64,10 @@ function inputHandler(type: Formats, text: string) {
         const pair = line.split('  value: ');
         if (pair[1]) {
           pair[1] = pair[1]
-          // trim single quotes at beginning and end
-            .replace(/^['](.+(?=[']$))[']$/, '$1') // https://stackoverflow.com/a/19156197/1098564
-          // trim out double quotes (TODO: this needs improvement and is definitely bug prone...but works for most simple values I come across)
-            .replace(/"([^"]+(?="))"/g, '$1');
+            // trim single quotes at beginning and end
+            .replace(/^['](.+(?=[']$))[']$/, '$1')
+            // trim out double quotes
+            .replace(/^"(.+)"$/, '$1');
         }
         setAcc(acc, ...pair);
         return acc;

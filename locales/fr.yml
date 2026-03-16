@@ -32,12 +32,11 @@ home:
     darkMode: Mode sombre
     lightMode: Mode clair
     mode: Basculer le mode sombre/clair
-  loading-more-tools: Chargement de plus d'outils…
-  support: Soutenez le développement des outils iT-Tools
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  loading-more-tools: Chargement de plus doutils...
+  expanding: Expansion...
+  collapseAllTools: Réduire tous les outils
+  collapsing: Réduction...
+  expandAllTools: Développer tous les outils
 about:
   alltools-title: Tous les outils {outils}
   tools:
@@ -50,16 +49,16 @@ about:
   import-button: Importer
   favorites-imported-successfully: Favoris importés avec succès !
   error-importing-favorites-e: 'Erreur lors de l&#39;importation des favoris : {0}'
-  content-fork: '# À propos d''IT-Tools
+  content-fork: "# À propos d'IT-Tools
 
     Ce superbe site web, initialement créé avec ❤ par [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about)
     et enrichi par ShareVB, regroupe des outils utiles aux développeurs et aux professionnels
-    de l''informatique. Si vous le trouvez utile, n''hésitez pas à le partager et
-    n''oubliez pas de l''ajouter à vos favoris !
+    de l'informatique. Si vous le trouvez utile, n'hésitez pas à le partager et
+    n'oubliez pas de l'ajouter à vos favoris !
 
     IT Tools est open source (sous licence GPL-3.0) et gratuit, et le restera toujours.
-    Si vous souhaitez soutenir mon travail sur ce fork et m''encourager à ajouter
-    de nouveaux outils ou fonctionnalités, n''hésitez pas à me [sponsoriser](https://www.buymeacoffee.com/sharevb).
+    Si vous souhaitez soutenir mon travail sur ce fork et m'encourager à ajouter
+    de nouveaux outils ou fonctionnalités, n'hésitez pas à me [sponsoriser](https://www.buymeacoffee.com/sharevb).
 
     ## Technologies
 
@@ -71,15 +70,15 @@ about:
 
     ## Vous avez trouvé un bug ? Un outil est manquant ?
 
-    Si vous avez besoin d''un outil actuellement absent et que vous pensez utile,
-    n''hésitez pas à soumettre une demande de fonctionnalité dans la section [problèmes](https://github.com/sharevb/it-tools/issues/new/choose)
+    Si vous avez besoin d'un outil actuellement absent et que vous pensez utile,
+    n'hésitez pas à soumettre une demande de fonctionnalité dans la section [problèmes](https://github.com/sharevb/it-tools/issues/new/choose)
     du dépôt GitHub.
 
     Si vous avez trouvé un bug ou si quelque chose ne fonctionne pas comme prévu,
     veuillez signaler un bug dans la section [problèmes](https://github.com/sharevb/it-tools/issues/new/choose)
     du dépôt GitHub.
 
-    '
+    "
 toolCard:
   new: Nouveau
 search:
@@ -257,7 +256,7 @@ tools:
       tag-test: Test
       tag-truecolor: Couleurs vraies
       tag-underline: Souligner
-      title-output-ansi-escape-sequence: 'Séquence d''échappement ANSI de sortie :'
+      title-output-ansi-escape-sequence: "Séquence d'échappement ANSI de sortie :"
       title-terminal-preview: 'Aperçu du terminal :'
     title: Testeur d&#39;échappement ANSI
   ansible-vault-crypt-decrypt:
@@ -626,7 +625,7 @@ tools:
       placeholder-your-string: Votre chaîne…
       label-titlecase: 'Majuscule de titre :'
       label-spongecase: 'Spongecase :'
-      label-swapcase: 'Boîtier d''échange :'
+      label-swapcase: "Boîtier d'échange :"
     title: Convertisseur de cas
   certificate-key-parser:
     description: Clé et certificat d'analyse
@@ -641,7 +640,7 @@ tools:
         unknown-format-or-invalid-passphrase: Format inconnu ou phrase de passe non
           valide
     texts:
-      label-algorithm-info: 'Informations sur l''algorithme :'
+      label-algorithm-info: "Informations sur l'algorithme :"
       label-certificate-pem: 'Certificat (PEM) :'
       label-comment: 'Commentaire :'
       label-creation-time: 'Temps de création :'
@@ -681,7 +680,7 @@ tools:
       label-type: 'Taper :'
       label-user-id-s: 'ID utilisateur (s) :'
       label-valid-from: 'Valable de :'
-      label-valid-until: 'Valide jusqu''à :'
+      label-valid-until: "Valide jusqu'à :"
       placeholder-not-set: Pas réglé
       placeholder-passphrase-for-encrypted-keys: Phrase de passe (pour les clés cryptées)…
       placeholder-your-public-key-private-key-signature-fingerprint-certificate: Votre
@@ -692,7 +691,7 @@ tools:
         un fichier de certificat
       label-content: Contenu
       label-curve: 'Courbe :'
-      label-expiration-time: 'Temps d''expiration :'
+      label-expiration-time: "Temps d'expiration :"
       label-extensions-parsed: 'Extensions (analysé) :'
       label-extensions-raw: 'Extensions (brut) :'
       label-file: Déposer
@@ -723,8 +722,8 @@ tools:
       text:
         invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: 'Permissions
           octales non valides (doit être 3 ou 4 chiffres octaux): {0}'
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: 'Autorisations
-          de chaîne non valides (doit être sous forme ''rwxrwxrwx''): {0}'
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: "Autorisations
+          de chaîne non valides (doit être sous forme 'rwxrwxrwx'): {0}"
     texts:
       label-copy-your-octal-permissions: Copiez vos autorisations octales
       label-copy-your-symbolic-permissions: Copiez vos autorisations symboliques
@@ -882,8 +881,8 @@ tools:
       placeholder-enter-cookie-header: Entrez en en-tête de cookie
       tag-name: Nom
       tag-no-cookies-found: Pas de cookies trouvés
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : ". \nCela copiera la chaîne de cookie dans votre presse-papiers. \nRemarque:\
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        ". \nCela copiera la chaîne de cookie dans votre presse-papiers. \nRemarque:\
         \ Cela ne copiera que les cookies disponibles pour JavaScript (HTTP uniquement\
         \ et les cookies sécurisés seront omis)."
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Astuce: accédez
@@ -971,8 +970,8 @@ tools:
       label-common-name-domain-name: 'Nom commun / nom de domaine :'
       label-contact-email: 'Contacter Email :'
       label-country: 'Pays :'
-      label-organization-name: 'Nom de l''organisation :'
-      label-organization-unit: 'Unité d''organisation :'
+      label-organization-name: "Nom de l'organisation :"
+      label-organization-unit: "Unité d'organisation :"
       label-private-key-passphrase: 'Clé privée en phrase de passe :'
       label-state: 'État :'
       label-subject-alternative-names: 'Sujet Noms alternatifs :'
@@ -1100,7 +1099,7 @@ tools:
       label-locale: 'Lieu :'
       label-markdown: Réduction
       label-nestify-handle-nested-objects: Nestify (gérer les objets imbriqués)
-      label-number-of-objects-to-generate: 'Nombre d''objets à générer :'
+      label-number-of-objects-to-generate: "Nombre d'objets à générer :"
       label-select-output-format: 'Sélectionnez le format de sortie :'
       label-sql-insert: Insert SQL
       label-table-name: 'Nom du tableau :'
@@ -1392,8 +1391,8 @@ tools:
         médico-légal (où les rapports de défaillance du DMARC médico-légal doivent
         être envoyés):'
       label-none: Aucun
-      label-percentage-of-emails-subject-to-dmarc-policy-enforcement-0-100: 'Pourcentage
-        (des e-mails soumis à l''application de la politique DMARC (0-100%)):'
+      label-percentage-of-emails-subject-to-dmarc-policy-enforcement-0-100: "Pourcentage
+        (des e-mails soumis à l'application de la politique DMARC (0-100%)):"
       label-policy: 'Politique :'
       label-quarantine: Quarantaine
       label-reject: Rejeter
@@ -1401,8 +1400,8 @@ tools:
       tag-seconds: secondes
       title-dmarc-record-generator: Générateur d'enregistrements DMARC
       title-generated-dmarc-record: Enregistrement DMARC généré
-      label-reporting-interval-for-sending-dmarc-aggregate-reports: 'Intervalle de
-        rapport (pour l''envoi de rapports d''agrégats DMARC) :'
+      label-reporting-interval-for-sending-dmarc-aggregate-reports: "Intervalle de
+        rapport (pour l'envoi de rapports d'agrégats DMARC) :"
       label-strict-s: Strict(s)
       label-subdomain-policy: 'Politique du sous-domaine :'
       placeholder-admin-example-com: admin {'@' }example.com
@@ -1789,7 +1788,7 @@ tools:
     description: Convertir entre le format Env Vars et Yaml commun
     texts:
       label-input: 'Saisir :'
-      label-input-type: 'Type d''entrée :'
+      label-input-type: "Type d'entrée :"
       label-output-type: 'Type de sortie :'
       title-output: Sortir
     title: Convertisseur de format de variables Env
@@ -2099,8 +2098,8 @@ tools:
     texts:
       label-device: 'Appareil :'
       label-do-not-include-in-backups: N'incluez pas dans les sauvegardes
-      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: 'Dump
-        (détermine si l''utilitaire «Dump» doit sauvegarder ce système de fichiers):'
+      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: "Dump
+        (détermine si l'utilitaire «Dump» doit sauvegarder ce système de fichiers):"
       label-filesystem-options: 'Options du système de fichiers :'
       label-filesystem-type: 'Type de système de fichiers :'
       label-include-in-backups: Inclure dans les sauvegardes
@@ -2111,7 +2110,7 @@ tools:
         la commande pour les vérifications du système de fichiers au démarrage):'
       label-password: 'Mot de passe :'
       label-root-filesystem-first: Système de fichiers racine d'abord
-      label-username: 'Nom d''utilisateur :'
+      label-username: "Nom d'utilisateur :"
       placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async: 'Par
         défaut: Options de montage standard (RW, Suid, Dev, Exec, Auto, Nouser, Async)'
       placeholder-dev-sda1-or-uuid-or-server-path: '/ dev / sda1 ou uuid =… ou serveur :
@@ -2169,9 +2168,9 @@ tools:
     texts:
       label-advanded-json-mode: Mode JSON avancé
       label-your-messages-json-array: 'Votre tableau JSON «Messages» :'
-      label-your-system-prompt-content: 'Votre contenu d''invite système :'
+      label-your-system-prompt-content: "Votre contenu d'invite système :"
       label-your-tools-json-array: 'Votre tableau JSON «Tools» :'
-      label-your-user-prompt-content: 'Votre contenu de l''invite utilisateur :'
+      label-your-user-prompt-content: "Votre contenu de l'invite utilisateur :"
       message-invalid-messages-array: Tableau de "messages" non valide
       message-invalid-tools-array: Tableau "outils" non valide
       placeholder-select-gpt-model: Sélectionner le modèle GPT
@@ -2182,7 +2181,7 @@ tools:
       tag-see-openapi-pricings: Voir OpenAPI Pricings
       title-input-json-s: Entrée JSON (s)
       title-prompts: Invite
-      label-completion-tokens: 'Tokens d''achèvement :'
+      label-completion-tokens: "Tokens d'achèvement :"
       label-model: 'Modèle :'
       label-prompt-tokens: 'Tokens rapides :'
       label-used-tokens: 'Tokens utilisés :'
@@ -2401,7 +2400,7 @@ tools:
       label-minutes: Minutes
       label-months: Mois
       label-must-revalidate: Doit revalider
-      label-no-hotlinking-image: 'Pas d''image de Hotlinking :'
+      label-no-hotlinking-image: "Pas d'image de Hotlinking :"
       label-path-to-protect: 'Chemin à protéger :'
       label-prevent-directory-listing: Empêcher la liste des répertoires
       label-prevent-viewing-of-htaccess-file: Empêcher l'affichage du fichier .htaccess
@@ -2450,7 +2449,7 @@ tools:
     texts:
       label-your-escaped-string: 'Votre chaîne échappée :'
       label-your-string: 'Votre chaîne :'
-      label-your-string-escaped: 'Votre chaîne s''est échappée :'
+      label-your-string-escaped: "Votre chaîne s'est échappée :"
       label-your-string-unescaped: 'Votre chaîne non basse :'
       placeholder-the-string-to-escape: La chaîne à échapper
       placeholder-the-string-to-unescape: La chaîne à désécher
@@ -2485,7 +2484,7 @@ tools:
         (peut coller à partir du presse-papiers) :'
       placeholder-your-html-content: Votre contenu HTML…
       label-heading-style: 'Style des titres :'
-      label-emphasis-style: 'Style d''accentuation :'
+      label-emphasis-style: "Style d'accentuation :"
       label-hash: Hash (#)
       label-underline: Souligner (=/-)
       label-surround-heading: Entourer (= Titre =)
@@ -2539,7 +2538,8 @@ tools:
         3xx-redirection: Redirection 3xx
         4xx-client-error: Erreur du client 4xx
         5xx-server-error: Erreur de serveur 5xx
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: Un
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          Un
           message d'erreur générique, donné lorsqu'une condition inattendue a été
           rencontrée et qu'aucun message plus spécifique ne convient.
         accepted: Accepté
@@ -2557,7 +2557,8 @@ tools:
         gateway-timeout: Timeout de passerelle
         gone: Disparu
         i-m-a-teapot: Je suis une théière
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: "Dans\
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          "Dans\
           \ ce cas, la demande doit être répétée avec un autre URI; \nCependant, les\
           \ demandes futures devraient toujours utiliser l'URI d'origine."
         indicates-multiple-options-for-the-resource-that-the-client-may-follow: Indique
@@ -2634,7 +2635,8 @@ tools:
         the-request-was-directed-at-a-server-that-is-not-able-to-produce-a-response: La
           demande a été dirigée vers un serveur qui n'est pas en mesure de produire
           une réponse.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: "La\
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          "La\
           \ demande était valide, mais le serveur refuse l'action. \nL'utilisateur\
           \ peut ne pas avoir les autorisations nécessaires pour une ressource."
         the-request-was-well-formed-but-was-unable-to-be-followed-due-to-semantic-errors: La
@@ -2645,8 +2647,8 @@ tools:
         the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response: La
           ressource demandée n'est disponible que via un proxy, dont l'adresse est
           fournie dans la réponse.
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : La ressource demandée est capable de générer uniquement du contenu non acceptable
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          La ressource demandée est capable de générer uniquement du contenu non acceptable
           en fonction des en-têtes d'acceptation envoyés dans la demande.
         the-resource-that-is-being-accessed-is-locked: La ressource accessible est
           verrouillée.
@@ -2688,8 +2690,8 @@ tools:
         the-server-is-unable-to-store-the-representation-needed-to-complete-the-request: Le
           serveur n'est pas en mesure de stocker la représentation nécessaire pour
           terminer la demande.
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : Le serveur ne veut pas traiter la demande car un champ d'en-tête individuel,
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          Le serveur ne veut pas traiter la demande car un champ d'en-tête individuel,
           ou tous les champs d'en-tête collectivement, sont trop grands.
         the-server-refuses-the-attempt-to-brew-coffee-with-a-teapot: Le serveur refuse
           la tentative de brasser du café avec une théière.
@@ -2728,8 +2730,8 @@ tools:
           client émet le corps de la demande.
         a-request-method-is-not-supported-for-the-requested-resource: Une méthode
           de demande n'est pas prise en charge pour la ressource demandée.
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : Un opérateur de serveur a reçu une demande légale pour refuser l'accès à
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          Un opérateur de serveur a reçu une demande légale pour refuser l'accès à
           une ressource ou à un ensemble de ressources qui comprend la ressource demandée.
         continue: Continuer
         partial-content: Contenu partiel
@@ -2739,15 +2741,15 @@ tools:
         redirect-to-another-url-this-is-an-example-of-industry-practice-contradicting-the-standard: "Rediriger\
           \ vers une autre URL. \nCeci est un exemple de pratique de l'industrie contredisant\
           \ la norme."
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : "Réservé pour une utilisation future. \nL'intention initiale était que ce\
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          "Réservé pour une utilisation future. \nL'intention initiale était que ce\
           \ code puisse être utilisé dans le cadre d'une forme de trésorerie numérique\
           \ ou de micropaie."
         reset-content: Réinitialiser le contenu
         see-other: Voir les autres
         service-unavailable: service non disponible
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : Semblable à 403 interdit, mais spécifiquement pour une utilisation lorsque
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          Semblable à 403 interdit, mais spécifiquement pour une utilisation lorsque
           l'authentification est requise et a échoué ou n'a pas encore été fournie.
         standard-response-for-successful-http-requests: Réponse standard pour les
           demandes HTTP réussies.
@@ -2758,7 +2760,8 @@ tools:
         created: Créé
         http-version-not-supported: La version HTTP n'est pas prise en charge
         im-used: Je suis utilisé
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: Indique
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          Indique
           que la demande n'a pas pu être traitée en raison d'un conflit dans la demande,
           comme un conflit d'édition.
         multiple-choices: Choix multiples
@@ -2879,9 +2882,9 @@ tools:
     texts:
       tab-compare-by-url: Comparer par URL
       tab-compare-by-upload: Comparer par téléchargement
-      label-left-image-url: 'URL de l''image gauche :'
-      label-upload-left-image: 'Téléchargez l''image de gauche :'
-      label-upload-right-image: 'Téléchargez l''image de droite :'
+      label-left-image-url: "URL de l'image gauche :"
+      label-upload-left-image: "Téléchargez l'image de gauche :"
+      label-upload-right-image: "Téléchargez l'image de droite :"
       placeholder-enter-left-image-url: Entrez l'URL de l'image gauche
       placeholder-enter-right-image-url: Entrez URL de l'image droite
       tag-compare: Comparer
@@ -2898,7 +2901,7 @@ tools:
       label-output-quality: 'Qualité de sortie :'
       label-svg-scaling: 'Échelle SVG :'
       placeholder-select-output-format: Sélectionner le format de sortie
-      tag-first-select-output-options: 'Tout d''abord, sélectionnez Options de sortie :'
+      tag-first-select-output-options: "Tout d'abord, sélectionnez Options de sortie :"
       tag-then-drag-and-drop-your-images-below-and-they-will-be-converted-and-downloaded-immediately: 'Ensuite,
         faites glisser et déposez vos images ci-dessous et elles seront converties
         et téléchargées immédiatement:'
@@ -3010,8 +3013,8 @@ tools:
       placeholder-decimal-version-will-be-here: La version décimale sera là…
       placeholder-hexadecimal-version-will-be-here: La version hexadécimale sera là…
       placeholder-octal-version-will-be-here: La version octale sera là…
-      placeholder-put-your-input-base-here-ex-10: 'Mettez votre base d''entrée ici
-        (ex : 10)'
+      placeholder-put-your-input-base-here-ex-10: "Mettez votre base d'entrée ici
+        (ex : 10)"
       placeholder-put-your-number-here-ex-42: 'Mettez votre numéro ici (ex : 42)'
       tag-custom: 'Coutume :'
   integers-to-ip:
@@ -3164,7 +3167,7 @@ tools:
       placeholder-the-ipv4-address: L'adresse IPv4…
       label-ipv6-decimal: 'IPv6 (décimal) :'
       label-ipv6-short: 'IPv6 (court) :'
-      label-the-ipv4-address: 'L''adresse IPv4 :'
+      label-the-ipv4-address: "L'adresse IPv4 :"
       label-type: Taper
       message-invalid-ipv4-address: Adresse IPv4 non valide
     title: Convertisseur d'adresse IPv4
@@ -3228,7 +3231,7 @@ tools:
       label-ipv6-long: 'Ipv6 (long) :'
       label-ipv6-short: 'IPv6 (court) :'
       label-microsoft-transcription: 'Microsoft Transcription :'
-      label-the-ipv6-address: 'L''adresse IPv6 :'
+      label-the-ipv6-address: "L'adresse IPv6 :"
       label-type: 'Taper :'
       message-invalid-ipv6-address: Adresse IPv6 non valide
       placeholder-set-a-correct-ipv6-address: Définir une adresse IPv6 correcte
@@ -3771,8 +3774,8 @@ tools:
       verify-description: '{0}: {1} (à vérifier avec {2})'
       token-secret: Secret du jeton
       token-keys: Clés de jeton
-      cannot-parse-secret-as-encoding: 'Impossible d''analyser ''{0}'' comme ''{1}''
-        : {2}'
+      cannot-parse-secret-as-encoding: "Impossible d'analyser '{0}' comme '{1}'
+        : {2}"
       invalid-base64-string: Chaîne Base64 invalide
       placeholder-input-token: Collez votre jeton JWT pour le modifier...
       click-to-input-a-existing-jwt-token-to-modify: Cliquez pour saisir un jeton
@@ -4405,10 +4408,10 @@ tools:
         musician: Musicien
         the-date-the-album-was-released: La date de la sortie de l'album…
         the-musician-that-made-this-song: Le musicien qui a fait cette chanson…
-        the-same-as-music-album-disc-but-in-reverse: 'La même chose que la musique :
-          album : disque mais à l''envers…'
-        the-same-as-music-album-track-but-in-reverse: 'La même chose que la musique :
-          album : piste mais à l''envers…'
+        the-same-as-music-album-disc-but-in-reverse: "La même chose que la musique :
+          album : disque mais à l'envers…"
+        the-same-as-music-album-track-but-in-reverse: "La même chose que la musique :
+          album : piste mais à l'envers…"
         the-song-on-this-album: La chanson sur cet album…
         track: Piste
     musicPlaylist:
@@ -4449,10 +4452,10 @@ tools:
         site-account: Compte de site
         summary: Résumé
         summary-with-large-image: Résumé avec une grande image
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'Le nom du compte
-          Twitter du Créateur (ex : {''@''} Sharevb)…'
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 'Le nom du
-          compte Twitter du site (ex : {''@''} ittoolsdottech)…'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "Le nom du compte
+          Twitter du Créateur (ex : {'@'} Sharevb)…"
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "Le nom du
+          compte Twitter du site (ex : {'@'} ittoolsdottech)…"
         the-twitter-card-type: Le type de carte Twitter…
         twitter: Gazouillement
     videoEpisode:
@@ -4480,8 +4483,8 @@ tools:
       ajoutée de retard
     service:
       text:
-        microphone-access-denied-the-error-is-also-in-the-console: 'Accès au microphone
-          refusé (l''erreur est également dans la console) :'
+        microphone-access-denied-the-error-is-also-in-the-console: "Accès au microphone
+          refusé (l'erreur est également dans la console) :"
     start-button-text: Commencer à rejouer le microphone
     stop-button-text: Arrêtez de rejouer le microphone
     title: Testeur de microphone
@@ -4572,8 +4575,8 @@ tools:
     description: Calcule la fiabilité du système de stockage à l'aide de méthodologie
       MTTDL bien connue
     texts:
-      label-bit-error-rate-ber-in-1ex: 'Taux d''erreur bit (ber dans 1EX) :'
-      label-drive-capacity-tb: 'Capacité d''entraînement (TB) :'
+      label-bit-error-rate-ber-in-1ex: "Taux d'erreur bit (ber dans 1EX) :"
+      label-drive-capacity-tb: "Capacité d'entraînement (TB) :"
       label-drive-mtbf-hours: 'Conduire MTBF (heures) :'
       label-failure-probability: 'Probabilité de défaillance :'
       label-mttdl-hours: 'MTTDL (heures) :'
@@ -4590,10 +4593,10 @@ tools:
       label-raid-z2: Raid-z2
       label-raid-z3: Raid-z3
       label-rebuild-time-hours: 'Reconstruire le temps (heures) :'
-      label-years-for-failure-probability: 'Ans pour la probabilité d''échec :'
+      label-years-for-failure-probability: "Ans pour la probabilité d'échec :"
       placeholder-select-raid-level: Sélectionner le niveau de raid
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : "Une estimation statistique de la durée du fonctionnement d'un système RAID\
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        "Une estimation statistique de la durée du fonctionnement d'un système RAID\
         \ avant la perte de données. \nIl considère les échecs de conduite, la reconstruction\
         \ du temps et la redondance des raids. \nMTTDL plus élevé signifie un système\
         \ plus sûr."
@@ -4610,8 +4613,8 @@ tools:
         \ \nLes données sont dupliquées entre les disques. \nRedondance élevée et\
         \ efficacité de faible capacité."
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (temps moyen vers la perte de données)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : "Se produit lorsqu'un lecteur ne parvient pas à lire un secteur pendant la\
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        "Se produit lorsqu'un lecteur ne parvient pas à lire un secteur pendant la\
         \ reconstruction. \nLe BER contribue au risque URE, ce qui peut compromettre\
         \ la récupération des raids."
       tag-raid-0: Raid 0
@@ -4621,8 +4624,8 @@ tools:
       tag-raid-50: Raid 50
       tag-raid-6: Raid 6
       tag-raid-level: Niveau de raid
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : RAID (tableau redondant de disques indépendants) est une méthode de combinaison
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        RAID (tableau redondant de disques indépendants) est une méthode de combinaison
         de plusieurs lecteurs physiques dans une unité logique pour améliorer les
         performances, la redondance ou les deux.
       tag-raid-z1-z2-z3: RAID-Z1 / Z2 / Z3
@@ -4636,23 +4639,25 @@ tools:
       tag-striping-with-parity-can-tolerate-one-drive-failure-balanced-speed-and-redundancy: "Striping\
         \ avec parité. \nPeut tolérer une panne de lecteur. \nVitesse et redondance\
         \ équilibrées."
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: "Le\
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        "Le\
         \ temps moyen (en heures) un entraînement devrait fonctionner avant d'échouer.\
         \ \nLe MTBF plus élevé signifie un matériel plus fiable."
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : "La chance que le système RAID subisse la perte de données sur une période\
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        "La chance que le système RAID subisse la perte de données sur une période\
         \ donnée (par exemple, 5 ans). \nCalculé à l'aide de MTTDL et de modèles de\
         \ défaillance exponentielle."
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : "La probabilité qu'une lecture un peu à partir d'un disque soit incorrecte\
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        "La probabilité qu'une lecture un peu à partir d'un disque soit incorrecte\
         \ en raison des limitations matérielles. \nMême les petits bers (comme 1 d'un\
         \ billion) peuvent provoquer des problèmes lors des reconstructions, en particulier\
         \ avec de grands entraînements."
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : "Le temps nécessaire pour reconstruire les données sur un lecteur de remplacement\
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        "Le temps nécessaire pour reconstruire les données sur un lecteur de remplacement\
         \ après une défaillance. \nLes temps de reconstruction plus longs augmentent\
         \ le risque d'un deuxième échec pendant la récupération."
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: "Stockage\
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        "Stockage\
         \ total par lecteur. \nLes entraînements plus importants prennent plus de\
         \ temps à reconstruire et sont plus sensibles aux erreurs liées au BER."
       tag-unrecoverable-read-error-ure: 🧠 Erreur de lecture irréalisable (URE)
@@ -4990,8 +4995,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Durée pour casser ce mot
         de passe avec une force brute
       tag-note: 'Note :'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : La force calculée est basée sur le temps qu'il faudrait pour casser le mot
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        La force calculée est basée sur le temps qu'il faudrait pour casser le mot
         de passe en utilisant une approche de force brute, il ne prend pas en compte
         la possibilité d'une attaque de dictionnaire.
     title: Analyseur de force de mot de passe
@@ -5157,7 +5162,7 @@ tools:
     description: Crypter et décrypter le texte du texte effacer à l'aide des touches
       PGP.
     texts:
-      label-sender-public-key: 'Clé public de l''expéditeur :'
+      label-sender-public-key: "Clé public de l'expéditeur :"
       label-target-public-key: 'Target Public Key :'
       label-your-pgp-message-to-decrypt: 'Votre message PGP à décrypter :'
       label-your-private-key: 'Votre clé privée :'
@@ -5199,8 +5204,8 @@ tools:
       label-format: 'Format :'
       label-passphrase: 'Phrase de passe :'
       label-rsa-bits: 'Bits RSA :'
-      label-user-email: 'E-mail de l''utilisateur :'
-      label-user-name: 'Nom d''utilisateur :'
+      label-user-email: "E-mail de l'utilisateur :"
+      label-user-name: "Nom d'utilisateur :"
       message-bits-should-be-256-bits-16384-and-be-a-multiple-of-8: Les bits doivent
         être 256 <= bits <= 16384 et être un multiple de 8
       placeholder-passphrase: Phrase secrète
@@ -5292,15 +5297,16 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Décidez d'une tâche
           et définissez la minuterie (25 minutes sont courantes).
         five-steps-of-the-pomodoro-technique: Cinq étapes de la technique Pomodoro
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: Continuez
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          Continuez
           à répéter les étapes 1-3, mais après votre 4ème tâche, faites une longue
           pause au lieu d'une courte pause (20-30 minutes est courante).
         once-the-long-break-is-finished-return-to-step-1: Une fois la longue pause
           terminée, revenez à l'étape 1.
         source-wikipedia: 'Source : Wikipedia'
         the-pomodoro-technique: La technique de Pomodoro
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : "La technique de Pomodoro est une méthode de gestion du temps développée\
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          "La technique de Pomodoro est une méthode de gestion du temps développée\
           \ par Francesco Cirillo dans les années 1980. \nIl utilise une minuterie\
           \ pour briser le travail en intervalles, généralement 25 minutes de longueur,\
           \ séparés par de courtes pauses. \nChaque intervalle est connu sous le nom\
@@ -5418,7 +5424,7 @@ tools:
     title: Décodeur de code QR
   qr-code-generator:
     texts:
-      label-background-color: 'Couleur d''arrière-plan :'
+      label-background-color: "Couleur d'arrière-plan :"
       label-color: 'Couleur :'
       label-error-resistance: 'Résistance aux erreurs :'
       label-foreground-color: 'Couleur de premier plan :'
@@ -5490,40 +5496,45 @@ tools:
         3-drive-failures: 3 échecs de lecteur
         3-drive-failures-per-raid-7-set: 3 échecs de conduite par Raid 7 Set
         raid-0-requires-at-least-1-disk: Raid 0 nécessite au moins 1 disque
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          RAID
           0 divise uniformément les données sur 2 disques ou plus sans réduction ou
           tolérance à la défaillance, créant un grand espace de stockage.
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : "RAID 1 se compose d'une copie exacte des données (miroir) sur deux disques\
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          "RAID 1 se compose d'une copie exacte des données (miroir) sur deux disques\
           \ ou plus. \nLe tableau fonctionnera tant qu'au moins un entraînement est\
           \ opérationnel."
         raid-1-requires-at-least-1-disk: RAID 1 nécessite au moins 1 disque
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : "Raid 10 est une bande de miroirs (raid 1 raid 0). \nChaque ensemble de\
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          "Raid 10 est une bande de miroirs (raid 1 raid 0). \nChaque ensemble de\
           \ disques est en miroir et rayé ensemble de sorte que chaque lecteur de\
           \ l'ensemble est tolérant aux pannes dans le groupe."
         raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10 nécessite un
           nombre égal d'au moins 4 disques
         raid-5-requires-at-least-3-disks: Raid 5 nécessite au moins 3 disques
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : "RAID 5 utilise un rayage au niveau du bloc avec parité. \nCela permet une\
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          "RAID 5 utilise un rayage au niveau du bloc avec parité. \nCela permet une\
           \ tolérance aux défauts avec une réduction de stockage égale à un lecteur\
           \ pour les informations de parité."
-        raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: "RAID\
+        raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks:
+          "RAID\
           \ 50 nécessite au moins 6 disques avec 3 minimum par bande. \nLes rayures\
           \ doivent contenir un nombre égal de disques."
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: "Raid\
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          "Raid\
           \ 50 rayures multiples raids 5 tableaux ensemble (raid 5 raid 0). \nChaque\
           \ ensemble de 5 raids peut maintenir une défaillance unique."
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : "RAID 6 est similaire à RAID 5 mais avec un bloc de parité supplémentaire.\
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          "RAID 6 est similaire à RAID 5 mais avec un bloc de parité supplémentaire.\
           \ \nCela permet une panne de disque supplémentaire au coût de réduction\
           \ de stockage égale à deux disques."
         raid-6-requires-at-least-4-disks: Raid 6 nécessite au moins 4 disques
-        raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: "RAID\
+        raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks:
+          "RAID\
           \ 60 nécessite au moins 8 disques avec 4 minimum par bande. \nLes rayures\
           \ doivent contenir un nombre égal de disques."
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: "RAID\
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          "RAID\
           \ 70 rayures plusieurs tableaux RAID 7 ensemble (RAID 7 RAID 0). \nChaque\
           \ ensemble de RAID 7 peut maintenir trois échecs de lecteur."
         1-drive-failure: 1 défaillance du lecteur
@@ -5532,15 +5543,17 @@ tools:
         1-drive-failure-per-raid-5-set: 1 défaillance d'entraînement par raid 5 set
         2-drive-failures: 2 échecs de lecteur
         2-drive-failures-per-raid-6-set: 2 défaillances de conduite par raid 6 set
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : "RAID 7 / RAID TP (non standard) est similaire à RAID 5 et RAID 6 mais avec\
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          "RAID 7 / RAID TP (non standard) est similaire à RAID 5 et RAID 6 mais avec\
           \ un troisième bloc de parité. \nCela permet une troisième panne de disque\
           \ au coût de réduction de stockage égale à trois disques."
         raid-7-requires-at-least-5-disks: RAID 7 nécessite au moins 5 disques
-        raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: "RAID\
+        raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks:
+          "RAID\
           \ 70 nécessite au moins 10 disques avec 5 minimum par bande. \nLes rayures\
           \ doivent contenir un nombre égal de disques."
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: "RAID\
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
+          "RAID\
           \ 60 rayures multiples raids 6 tableaux ensemble (raid 6 raid 0). \nChaque\
           \ ensemble de 6 raids peut maintenir deux échecs de lecteur."
     text:
@@ -5683,8 +5696,8 @@ tools:
       tab-notation-to-number: Notation → Nombre
       error-enter-exactly-bands: Veuillez entrer exactement {count} bandes de couleur
         valides ({colors}).
-      error-conversion-failed: 'Échec de la conversion. Vérifiez l''ordre et les valeurs
-        des bandes : {error}'
+      error-conversion-failed: "Échec de la conversion. Vérifiez l'ordre et les valeurs
+        des bandes : {error}"
       error-invalid-notation-format: 'Format de notation invalide : {error}'
       error-valid-positive-number: Veuillez entrer un nombre positif valide.
       label-valid-colors: 'Couleurs valides :'
@@ -5811,7 +5824,7 @@ tools:
       label-delete: Supprimer
       label-destination: 'Destination :'
       label-destination-ssh-host: 'Hôte SSH de destination :'
-      label-destination-ssh-username: 'Nom d''utilisateur SSH de destination :'
+      label-destination-ssh-username: "Nom d'utilisateur SSH de destination :"
       label-destination-type: 'Type de destination :'
       label-human-readable: Lisible par l'homme
       label-options: 'Options :'
@@ -5820,7 +5833,7 @@ tools:
       label-remove-source: Supprimer la source
       label-show-progress: Montrer les progrès
       label-source: 'Source :'
-      label-source-ssh-username: 'Nom d''utilisateur SSH source :'
+      label-source-ssh-username: "Nom d'utilisateur SSH source :"
       label-source-type: 'Type de source :'
       label-update: Mise à jour
       placeholder-enter-destination-directory: Entrez le répertoire de destination
@@ -5915,7 +5928,7 @@ tools:
       invalid-sharepoint-url-provided: URL de SharePoint non valide fournie
     texts:
       label-output-decoded-url: 'URL décodée de sortie :'
-      label-your-input-sharepoint-url: 'Votre URL de SharePoint d''entrée :'
+      label-your-input-sharepoint-url: "Votre URL de SharePoint d'entrée :"
       placeholder-your-input-sharepoint-url: Votre URL de SharePoint d'entrée…
     title: Décodeur URL de partage SharePoint
   sip-auth:
@@ -6228,7 +6241,7 @@ tools:
     texts:
       label-string-to-obfuscate: 'Chaîne pour obscurcir :'
       placeholder-enter-string-to-obfuscate: Entrez la chaîne pour obscurcir
-      tag-keep-first: 'Gardez d''abord :'
+      tag-keep-first: "Gardez d'abord :"
       tag-keep-last: 'Gardez en dernier :'
       tag-keep-nbsp-spaces: Garder
     title: Obfuscateur de cordes
@@ -6281,7 +6294,7 @@ tools:
       label-minimal-verbosity-v: Verbosité minimale (-v)
       label-no-timestamp-t: Pas d'horodatage (-t)
       label-packet-limit: 'Limite de paquets :'
-      label-print-link-level-header: 'En-tête d''impression au niveau du lien :'
+      label-print-link-level-header: "En-tête d'impression au niveau du lien :"
       label-quick-print: 'Impression rapide :'
       label-source-host: 'Hôte source :'
       label-source-port: 'Port source :'
@@ -6324,8 +6337,8 @@ tools:
         moins verbeux.
       tag-stop-capturing-after-this-number-of-packets: Arrêtez de capturer après ce
         nombre de paquets.
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : "TCPDUmp est un utilitaire couramment installé / disponible pour de nombreuses\
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        "TCPDUmp est un utilitaire couramment installé / disponible pour de nombreuses\
         \ distributions Linux pour rassembler rapidement une capture de trace / paquet\
         \ réseau. \nEn bref, c'est le Wireshark de Linux pour rassembler des captures\
         \ de paquets. \nTCPDUMM est très polyvalent avec de nombreux commutateurs\
@@ -6334,18 +6347,18 @@ tools:
         \ fichier ou le PCAP Wireshark."
       tag-the-network-interface-to-capture-packets-from: L'interface réseau pour capturer
         des paquets à partir de.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : "Cet utilitaire est d'aider à générer une commande TCPDUmp en utilisant certains\
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        "Cet utilitaire est d'aider à générer une commande TCPDUmp en utilisant certains\
         \ des commutateurs / filtres les plus courants offerts par le TCPDUmp. \n\
         Cet utilitaire ne comprend pas toutes les options que TCPDump offre; \nUne\
         \ liste complète des options peut être trouvée via son manuel:"
       title-generated-tcpdump-command: Commande TCPDUmp générée
       label-normal: Normale
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : Les champs Hôte, Hôte source et Hôte de destination peuvent accepter plusieurs
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        Les champs Hôte, Hôte source et Hôte de destination peuvent accepter plusieurs
         entrées. Séparez-les par une virgule, un espace ou un point-virgule.
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : Lorsque vous spécifiez une source (src) ou une destination (dst), tcpdump
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        Lorsque vous spécifiez une source (src) ou une destination (dst), tcpdump
         filtre uniquement dans cette direction. Si vous souhaitez capturer l&#39;intégralité
         du protocole TCP, veillez à utiliser « hôte » plutôt que « hôte source » ou
         « hôte dst » pour visualiser le flux des requêtes et des réponses.
@@ -6545,12 +6558,12 @@ tools:
         bord :'
       label-log-level-debug: Niveau de journal (débogage)
       label-postmaster-email: 'Courriel du maître de poste :'
-      label-proxied-service-host-name: 'Nom d''hôte de service proxé :'
+      label-proxied-service-host-name: "Nom d'hôte de service proxé :"
       label-proxied-service-image: 'Image de service proxie :'
-      label-proxied-service-load-balancer-port: 'Port d''équilibreur de charge de
-        service proxied :'
+      label-proxied-service-load-balancer-port: "Port d'équilibreur de charge de
+        service proxied :"
       label-proxied-service-name: 'Nom du service proxé :'
-      label-traefik-dashboard-host-name: 'Nom d''hôte du tableau de bord Traefik :'
+      label-traefik-dashboard-host-name: "Nom d'hôte du tableau de bord Traefik :"
       placeholder-enter-cert-resolver-name: Entrez le nom de résolveur de certificat
       placeholder-enter-dashboard-host-name: Entrez le nom d'hôte du tableau de bord
       placeholder-enter-image-name: Entrez le nom de l'image
@@ -7037,7 +7050,7 @@ tools:
       label-first-monday: Premier lundi
       label-iso-week-in-year: 'Semaine ISO (en année) :'
       label-iso-week-number: 'Numéro de la semaine ISO :'
-      label-local-week-in-year: 'Semaine locale de l''année :'
+      label-local-week-in-year: "Semaine locale de l'année :"
       label-month: 'Mois :'
       label-week-in-month: 'Semaine en mois :'
       label-year: 'Année :'
@@ -7149,7 +7162,7 @@ tools:
       label-contact-email: 'Contacter Email :'
       label-country: 'Pays :'
       label-duration-days: 'Durée (jours) :'
-      label-organization-name: 'Nom de l''organisation :'
+      label-organization-name: "Nom de l'organisation :"
       label-organizational-unit: 'Unité organisationnelle :'
       label-private-key-passphrase: 'Clé privée en phrase de passe :'
       label-state: 'État :'
@@ -7177,7 +7190,7 @@ tools:
     texts:
       input-label-your-xml: Votre XML
       input-placeholder-paste-your-xml-here: Collez votre XML ici…
-      label-collapse-content: 'Contenu de l''effondrement :'
+      label-collapse-content: "Contenu de l'effondrement :"
       label-indent-size: 'Taille du retrait :'
       message-provided-xml-is-not-valid: Fourni XML n'est pas valide.
       output-label-formatted-xml-from-your-xml: XML formaté de votre XML
@@ -7247,8 +7260,8 @@ tools:
       tag-my-cd-collection: Ma collection de CD
     title: Testeur XSLT
   yaml-flatten-nestify:
-    description: 'APLAPER OU NESTIFICE / NON STANDER YAML CONTENU (c''est-à-dire A.B :
-      1 VS A: B: 1)'
+    description: "APLAPER OU NESTIFICE / NON STANDER YAML CONTENU (c'est-à-dire A.B :
+      1 VS A: B: 1)"
     texts:
       input-label-your-yaml-content: 'Votre contenu YAML :'
       input-placeholder-paste-your-yaml-content-here: Collez votre contenu Yaml ici
@@ -7351,8 +7364,8 @@ tools:
       tag-calculation-values: Valeurs de calcul
       tag-cap-w-reservation: "Capuchon. \navec réservation"
       tag-capacity-efficiency: Efficacité de la capacité
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : "Cliquez sur les titres de la section pour étendre / effondrer et afficher\
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        "Cliquez sur les titres de la section pour étendre / effondrer et afficher\
         \ les données calculées. \nSur planant sur une cellule de table charge les\
         \ données pertinentes dans la section Valeurs de calcul ci-dessous. \nVous\
         \ pouvez cliquer sur les cellules de la table pour congeler ou dégeler ces\
@@ -7362,7 +7375,7 @@ tools:
       tag-common-layouts: Dispositions communes
       tag-decimal-places: 'Décimaux :'
       tag-disk-afr: 'Disque AFR (%) :'
-      tag-disk-swap-size: 'Taille d''échange de disque :'
+      tag-disk-swap-size: "Taille d'échange de disque :"
       tag-draid: bêtise
       tag-fast-draid-calculation: 'Calcul rapide Draid :'
       tag-minimum-spares: 'Repares minimaux :'
@@ -7699,8 +7712,8 @@ tools:
       label-viewport-width-vw: Largeur de la fenêtre d'affichage (vw)
       label-viewport-height-vh: Hauteur de la fenêtre d'affichage (vh)
       label-value-to-convert: 'Valeur à convertir :'
-      label-from-unit: 'De l''unité :'
-      label-to-unit: 'À l''unité :'
+      label-from-unit: "De l'unité :"
+      label-to-unit: "À l'unité :"
       label-base-font-size-px: Taille de police de base (px)
       label-viewport-width-px: Largeur de la fenêtre d'affichage (px)
       label-viewport-height-px: Hauteur de la fenêtre d'affichage (px)
@@ -7751,8 +7764,9 @@ tools:
       label-signature: Signature
       label-arguments: Arguments
       title-structured-output-json: Sortie structurée JSON
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{''}''}
-        ou 0x brut....'
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{'}'}
+        ou 0x brut...."
   file-splitter:
     title: Séparateur de fichiers
     description: Divisez un fichier JSON, XML ou texte par groupe de nœuds ou par
@@ -7838,7 +7852,7 @@ tools:
       title-styles: Styles
       label-block-types: 'Types de blocs :'
       label-inline-styles: Styles en ligne
-      label-header-style: 'Style d''en-tête :'
+      label-header-style: "Style d'en-tête :"
       label-list-style: 'Style de liste :'
       title-block-frequencies: Fréquences de blocage
       label-headers: 'En-têtes :'
@@ -7922,7 +7936,7 @@ tools:
       placeholder-enter-secret-text: Saisissez le texte secret
       label-threshold-minimum-shares-to-recover: 'Seuil (parts minimales à recouvrer)
         :'
-      label-number-of-shares: 'Nombre d''actions :'
+      label-number-of-shares: "Nombre d'actions :"
       title-generated-shares: Actions générées
       title-recombine-a-secret: Recombiner un secret
       label-your-shares: 'Vos parts :'
@@ -7952,7 +7966,7 @@ tools:
         Vous pouvez utiliser un
       put-your-cors-anywhere-instance-url: Saisissez l'URL de votre instance CORS
         Anywhere...
-      cors-anywhere-instance-url: 'URL de l''instance CORS Anywhere :'
+      cors-anywhere-instance-url: "URL de l'instance CORS Anywhere :"
       expanded-url: URL développée
       short-url: URL courte
       failed-to-expand-some-urls: Impossible de développer certaines URL.
@@ -8019,8 +8033,8 @@ tools:
       label-password-leave-empty-to-generate: 'Mot de passe (laisser vide pour générer
         un mot de passe) :'
       placeholder-leave-empty-for-random: laisser vide pour un effet aléatoire
-      label-permissions-all-privileges-if-none-selected: 'Autorisations (TOUS LES
-        PRIVILÈGES si aucun n''est sélectionné) :'
+      label-permissions-all-privileges-if-none-selected: "Autorisations (TOUS LES
+        PRIVILÈGES si aucun n'est sélectionné) :"
       title-generated-sql-instructions: 'Instructions SQL générées :'
       tag-select: SÉLECTIONNER
       tag-insert: INSÉRER
@@ -8092,7 +8106,7 @@ tools:
       label-rot-13: ROT 13
       label-obfuscator-io: Obfuscateur.io
       label-your-javascript-code-to-obfuscate: 'Votre code JavaScript à obfusquer :'
-      label-obfuscation-method: 'Méthode d''obfuscation :'
+      label-obfuscation-method: "Méthode d'obfuscation :"
       title-obfuscted-js-code: Code JS obscurci
       placeholder-enter-your-javascript-code-here: // Saisissez votre code JavaScript
         ici
@@ -8191,8 +8205,8 @@ tools:
       tag-webmercator-epsg3857-epsg900913: WebMercator/EPSG3857/EPSG900913
       tag-convert-single: Convertir un seul
       tag-convert-batch: Convertir par lots
-      tag-longitude-east-is-positive-west-is-negative: 'Longitude : L''est est positif,
-        l''ouest est négatif.'
+      tag-longitude-east-is-positive-west-is-negative: "Longitude : L'est est positif,
+        l'ouest est négatif."
       tag-latitude-north-is-positive-south-is-negative: 'Latitude : le nord est positif,
         le sud est négatif.'
   si-prefixes-converter:
@@ -8255,8 +8269,8 @@ tools:
       label-linux-ppc64le: linux/ppc64le
       label-linux-s390x: linux/s390x
       label-windows-amd64: Windows/AMD64
-      label-docker-image-download-service-url: 'URL du service de téléchargement d''images
-        Docker :'
+      label-docker-image-download-service-url: "URL du service de téléchargement d'images
+        Docker :"
       placeholder-http-localhost-3000: http://localhost:3000
       label-basic-authentication: 'Authentification de base :'
       placeholder-username-password: nom d'utilisateur :mot de passe
@@ -8271,8 +8285,8 @@ tools:
       title-error: Erreur
       tag-docker-image-download-service-configuration-self-hosted: Configuration du
         service de téléchargement d'images Docker (auto-hébergé)
-      tag-you-must-self-host-docker-image-download-service-see: 'Vous devez héberger
-        vous-même le service de téléchargement d''images Docker. Voir :'
+      tag-you-must-self-host-docker-image-download-service-see: "Vous devez héberger
+        vous-même le service de téléchargement d'images Docker. Voir :"
       tag-docker-image-download-service-install: Installation du service de téléchargement
         d'images Docker
       tag-download-image: Télécharger l'image
@@ -8302,14 +8316,14 @@ tools:
     externalAccess: Cet outil appelle https://explainshell.com (sauf si vous l'hébergez
       vous-même) cette commande shell fournie.
     texts:
-      label-custom-explain-shell-url: 'URL du shell d''explication personnalisé :'
+      label-custom-explain-shell-url: "URL du shell d'explication personnalisé :"
       placeholder-put-your-custom-explainshell-url-here: Saisissez ici l'URL personnalisée
         de votre script explainshell...
       label-shell-command: 'Commande shell :'
       placeholder-shell-command-to-explain: Commande shell pour expliquer
       tag-explain-shell-configuration: Explication de la configuration du shell
-      tag-you-can-self-host-explain-shell-to-get-total-privacy-see: 'Vous pouvez héberger
-        vous-même Explain Shell pour bénéficier d''une confidentialité totale. Voir :'
+      tag-you-can-self-host-explain-shell-to-get-total-privacy-see: "Vous pouvez héberger
+        vous-même Explain Shell pour bénéficier d'une confidentialité totale. Voir :"
       tag-local-explain-shell-docker-install: Installation Docker Shell locale
       tag-explain: Expliquer
       tag-enter-a-shell-command-to-explain: Saisissez une commande shell pour expliquer

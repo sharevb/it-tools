@@ -33,10 +33,10 @@ home:
     twitterX: X-konto
     twitterXAccount: IT Tools X-konto
   loading-more-tools: Indlæser flere værktøjer...
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: Udfolder...
+  collapseAllTools: Skjul alle værktøjer
+  collapsing: Skjuler...
+  expandAllTools: Vis alle værktøjer
 favoriteButton:
   remove: Fjern fra favoritter
   add: Tilføj til favoritter
@@ -89,8 +89,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Varighed til at knække
         denne adgangskode med brute force
       tag-note: 'Note:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : Den beregnede styrke er baseret på den tid, det ville tage at knække adgangskoden
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        Den beregnede styrke er baseret på den tid, det ville tage at knække adgangskoden
         ved hjælp af en brute-force-tilgang. Den tager ikke højde for muligheden for
         et ordbogsangreb.
     service:
@@ -330,7 +330,8 @@ tools:
         the-server-does-not-support-the-http-protocol-version-used-in-the-request: Serveren
           understøtter ikke den HTTP-protokolversion, der bruges i anmodningen.
         http-version-not-supported: HTTP-versionen understøttes ikke
-        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server: Serveren
+        the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server:
+          Serveren
           fungerede som en gateway eller proxy og modtog ikke et rettidigt svar fra
           upstream-serveren.
         gateway-timeout: Gateway-timeout
@@ -344,17 +345,18 @@ tools:
         the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: Serveren
           genkender enten ikke anmodningsmetoden, eller den kan ikke opfylde anmodningen.
         not-implemented: Ikke implementeret
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: En
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          En
           generisk fejlmeddelelse, der gives, når der opstår en uventet tilstand,
           og ingen mere specifik meddelelse er passende.
         internal-server-error: Intern serverfejl
         5xx-server-error: 5xx serverfejl
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : En serveroperatør har modtaget et juridisk krav om at nægte adgang til en
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          En serveroperatør har modtaget et juridisk krav om at nægte adgang til en
           ressource eller til et sæt af ressourcer, der indeholder den anmodede ressource.
         unavailable-for-legal-reasons: Ikke tilgængelig af juridiske årsager
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : Serveren er ikke villig til at behandle anmodningen, fordi enten et individuelt
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          Serveren er ikke villig til at behandle anmodningen, fordi enten et individuelt
           headerfelt eller alle headerfelterne tilsammen er for store.
         request-header-fields-too-large: Anmodningshovedfelter er for store
         the-user-has-sent-too-many-requests-in-a-given-amount-of-time: Brugeren har
@@ -410,7 +412,8 @@ tools:
           at den anmodede ressource ikke længere er tilgængelig og ikke vil være tilgængelig
           igen.
         gone: Væk
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: Angiver,
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          Angiver,
           at anmodningen ikke kunne behandles på grund af en konflikt i anmodningen,
           f.eks. en redigeringskonflikt.
         conflict: Konflikt
@@ -420,8 +423,8 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: Klienten skal først
           godkende sig selv hos proxyen.
         proxy-authentication-required: Proxy-godkendelse påkrævet
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : Den anmodede ressource kan kun generere indhold, der ikke er acceptabelt
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          Den anmodede ressource kan kun generere indhold, der ikke er acceptabelt
           i henhold til de Accept-headere, der blev sendt i anmodningen.
         not-acceptable: Ikke acceptabelt
         a-request-method-is-not-supported-for-the-requested-resource: En anmodningsmetode
@@ -430,17 +433,18 @@ tools:
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: Den
           ønskede ressource kunne ikke findes, men den kan muligvis være tilgængelig
           i fremtiden.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: Anmodningen
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          Anmodningen
           var gyldig, men serveren nægter at udføre handlingen. Brugeren har muligvis
           ikke de nødvendige tilladelser til en ressource.
         forbidden: Forbudt
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : Reserveret til fremtidig brug. Den oprindelige hensigt var, at denne kode
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          Reserveret til fremtidig brug. Den oprindelige hensigt var, at denne kode
           kunne bruges som en del af en eller anden form for digital kontantbetaling
           eller mikrobetalingsordning.
         payment-required: Betaling påkrævet
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : Ligner 403 Forbidden, men specifikt til brug når godkendelse er påkrævet
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          Ligner 403 Forbidden, men specifikt til brug når godkendelse er påkrævet
           og er mislykket eller endnu ikke er leveret.
         unauthorized: Uberettiget
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: Serveren
@@ -451,7 +455,8 @@ tools:
         the-request-and-all-future-requests-should-be-repeated-using-another-uri: Anmodningen
           og alle fremtidige anmodninger skal gentages ved hjælp af en anden URI.
         permanent-redirect: Permanent omdirigering
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: I
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          I
           dette tilfælde skal anmodningen gentages med en anden URI; fremtidige anmodninger
           skal dog stadig bruge den oprindelige URI.
         temporary-redirect: Midlertidig omdirigering
@@ -484,7 +489,8 @@ tools:
           har opfyldt en anmodning om ressourcen, og svaret er en repræsentation af
           resultatet.
         im-used: Brugt IM
-        the-members-of-a-dav-binding-have-already-been-enumerated-in-a-preceding-part-of-the-multistatus-response: Medlemmerne
+        the-members-of-a-dav-binding-have-already-been-enumerated-in-a-preceding-part-of-the-multistatus-response:
+          Medlemmerne
           af en DAV-binding er allerede blevet opregnet i en foregående del af (multistatus)-responset.
         already-reported: Allerede rapporteret
         the-message-body-that-follows-is-an-xml-message-and-can-contain-a-number-of-separate-response-codes: Den
@@ -500,7 +506,8 @@ tools:
         the-server-successfully-processed-the-request-and-is-not-returning-any-content: Serveren
           har behandlet anmodningen og returnerer ikke noget indhold.
         no-content: Intet indhold
-        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy: Anmodningen
+        the-request-is-successful-but-the-content-of-the-original-request-has-been-modified-by-a-transforming-proxy:
+          Anmodningen
           er vellykket, men indholdet af den oprindelige anmodning er blevet ændret
           af en transformerende proxy.
         non-authoritative-information: Ikke-autoritative oplysninger
@@ -1064,8 +1071,8 @@ tools:
       text:
         invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: 'Ugyldige
           oktale tilladelser (skal være 3 eller 4 oktale cifre): {0}'
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: 'Ugyldige
-          strengtilladelser (skal være i formatet ''rwxrwxrwx''): {0}'
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: "Ugyldige
+          strengtilladelser (skal være i formatet 'rwxrwxrwx'): {0}"
   rsa-key-pair-generator:
     title: RSA nøglepar generator
     description: Generer et nyt tilfældigt RSA privat og offentligt pem certifikat
@@ -4324,8 +4331,8 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Tip: Gå til
         et websted for at teste, åbn F12-konsollen og kør'
       tag-window-copy-document-cookie: vindue.kopi(dokument.cookie)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : 'Dette vil kopiere cookiestrengen til din udklipsholder. Bemærk: Dette vil
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        'Dette vil kopiere cookiestrengen til din udklipsholder. Bemærk: Dette vil
         kun kopiere cookies, der er tilgængelige for JavaScript (kun HTTP og sikre
         cookies vil blive udeladt).'
       tag-name: Navn
@@ -4572,8 +4579,8 @@ tools:
       placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async: 'Som
         standard: Standard monteringsindstillinger (rw, suid, dev, exec, auto, nouser,
         async)'
-      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: 'Dump
-        (Bestemmer om ''dump''-værktøjet skal sikkerhedskopiere dette filsystem):'
+      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: "Dump
+        (Bestemmer om 'dump'-værktøjet skal sikkerhedskopiere dette filsystem):"
       label-pass-controls-the-order-for-filesystem-checks-at-boot: 'Bestå (Styrer
         rækkefølgen for filsystemkontroller ved opstart):'
       placeholder-username: Brugernavn
@@ -5048,26 +5055,26 @@ tools:
       label-custom-expression: 'Brugerdefineret udtryk:'
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: f.eks. src port 443 og dst 10.0.0.1
       title-generated-tcpdump-command: Genereret tcpdump-kommando
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : tcpdump er et værktøj, der almindeligvis er installeret/tilgængeligt i mange
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        tcpdump er et værktøj, der almindeligvis er installeret/tilgængeligt i mange
         Linux-distributioner, til hurtigt at indsamle netværksspor/pakkeoptagelser.
         Kort sagt er det Linux' Wireshark til indsamling af pakkeoptagelser. tcpdump
         er meget alsidig med mange switche til granulært at opfange det, du har brug
         for til at dubbe netværkstrafik; med muligheder for at udsende resultater
         via konsol, fil eller Wireshark pcap.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : 'Dette værktøj skal hjælpe med at generere en tcpdump-kommando ved hjælp af
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        'Dette værktøj skal hjælpe med at generere en tcpdump-kommando ved hjælp af
         nogle af de mere almindelige parameterer/filtre, der tilbydes af tcpdump.
         Dette værktøj omfatter ikke alle de muligheder, som tcpdump tilbyder; en komplet
         liste over muligheder kan findes via manualen:'
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Note:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : Vært, Kildevært og Destinationsvært kan indeholde flere poster. Adskil dine
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        Vært, Kildevært og Destinationsvært kan indeholde flere poster. Adskil dine
         poster med et komma, mellemrum eller semikolon.
       tag-note-2: 'Bemærkning 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : Når du angiver et kilde- (src) eller destinations- (dst) flag, filtrerer tcpdump
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        Når du angiver et kilde- (src) eller destinations- (dst) flag, filtrerer tcpdump
         kun i den retning. Hvis du ønsker at registrere et fuldt TCP-handshake, skal
         du sørge for at bruge "host" vs. "src host" eller "dst host" for at se både
         anmodnings- og svarflowet.
@@ -5355,52 +5362,56 @@ tools:
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           70 kræver mindst 10 diske med minimum 5 pr. stripe. Stripes skal indeholde
           et lige antal diske.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: RAID
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          RAID
           70 striperer flere RAID 7-arrays sammen (RAID 7 + RAID 0). Hvert RAID 7-sæt
           kan modstå tre drevfejl.
         2-drive-failures-per-raid-6-set: 2 drevfejl pr. RAID 6-sæt
         raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           60 kræver mindst 8 diske med minimum 4 pr. stripe. Stripes skal indeholde
           et lige antal diske.
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: RAID
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
+          RAID
           60 forbinder flere RAID 6-arrays (RAID 6 + RAID 0). Hvert RAID 6-sæt kan
           modstå to drevfejl.
         1-drive-failure-per-raid-5-set: 1 drevfejl pr. RAID 5-sæt
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           50 kræver mindst 6 diske med minimum 3 pr. stripe. Stripes skal indeholde
           et lige antal diske.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: RAID
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          RAID
           50 striperer flere RAID 5-arrays sammen (RAID 5 + RAID 0). Hvert RAID 5-sæt
           kan modstå en enkelt diskfejl.
         1-drive-failure-per-mirrored-set: 1 drevfejl pr. spejlet sæt
         raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10 kræver et lige
           antal diske på mindst 4
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : RAID 10 er en stribe af spejle (RAID 1 + RAID 0). Hvert sæt drev er spejlet
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          RAID 10 er en stribe af spejle (RAID 1 + RAID 0). Hvert sæt drev er spejlet
           og stribet sammen, så hvert drev i sættet er fejltolerant inden for gruppen.
         3-drive-failures: 3 drevfejl
         raid-7-requires-at-least-5-disks: RAID 7 kræver mindst 5 diske
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : RAID 7/RAID TP (ikke-standard) ligner RAID 5 og RAID 6, men med en tredje
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          RAID 7/RAID TP (ikke-standard) ligner RAID 5 og RAID 6, men med en tredje
           paritetsblok. Dette muliggør en tredje diskfejl på bekostning af en lagerreduktion
           svarende til tre drev.
         2-drive-failures: 2 drevfejl
         raid-6-requires-at-least-4-disks: RAID 6 kræver mindst 4 diske
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : RAID 6 minder om RAID 5, men med en ekstra paritetsblok. Dette giver mulighed
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          RAID 6 minder om RAID 5, men med en ekstra paritetsblok. Dette giver mulighed
           for en yderligere diskfejl på bekostning af en reduktion af lagerplads svarende
           til to drev.
         1-drive-failure: 1 drevfejl
         raid-5-requires-at-least-3-disks: RAID 5 kræver mindst 3 diske
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : RAID 5 bruger blokniveaustriping med paritet. Dette giver mulighed for fejltolerance
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          RAID 5 bruger blokniveaustriping med paritet. Dette giver mulighed for fejltolerance
           med en lagerreduktion svarende til ét drev for paritetsinformationen.
         raid-1-requires-at-least-1-disk: RAID 1 kræver mindst 1 disk
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : RAID 1 består af en nøjagtig kopi af dataene (spejling) på tværs af to eller
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          RAID 1 består af en nøjagtig kopi af dataene (spejling) på tværs af to eller
           flere diske. Arrayet vil fungere, så længe mindst ét drev er funktionsdygtigt.
         raid-0-requires-at-least-1-disk: RAID 0 kræver mindst 1 disk
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          RAID
           0 opdeler data jævnt på tværs af 2 eller flere diske uden redundans eller
           fejltolerance, hvilket skaber én stor lagerplads.
   websocket-tester:
@@ -5488,7 +5499,8 @@ tools:
         source-wikipedia: 'Kilde: Wikipedia'
         once-the-long-break-is-finished-return-to-step-1: Når den lange pause er overstået,
           skal du vende tilbage til trin 1.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: Gentag
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          Gentag
           trin 1-3, men tag en lang pause i stedet for en kort pause efter din 4.
           opgave (20-30 minutter er almindeligt).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: Når timeren
@@ -5497,8 +5509,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Beslut dig for en
           opgave, og indstil timeren (25 minutter er almindeligt).
         five-steps-of-the-pomodoro-technique: Fem trin i Pomodoro-teknikken
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : Pomodoro-teknikken er en tidsstyringsmetode udviklet af Francesco Cirillo
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          Pomodoro-teknikken er en tidsstyringsmetode udviklet af Francesco Cirillo
           i 1980'erne. Den bruger en timer til at opdele arbejdet i intervaller, typisk
           25 minutter lange, adskilt af korte pauser. Hvert interval er kendt som
           en pomodoro, fra det italienske ord for tomat, efter den tomatformede køkkenur,
@@ -5788,11 +5800,11 @@ tools:
         song-details: Sangdetaljer
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'Navnet på skaberens
-          Twitter-konto (f.eks.: {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "Navnet på skaberens
+          Twitter-konto (f.eks.: {'@'}sharevb)..."
         creator-acc: Skabertilslutning
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 'Navnet på
-          webstedets Twitter-konto (f.eks.: {''@''}ittoolsdottech)...'
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "Navnet på
+          webstedets Twitter-konto (f.eks.: {'@'}ittoolsdottech)..."
         site-account: Webstedskonto
         the-twitter-card-type: Twitter-korttypen...
         card-type: Korttype
@@ -6239,8 +6251,8 @@ tools:
       tag-redirect: Omdiriger
       tag-exists: Eksisterer
       label-include-domains: 'Inkluder domæner:'
-      label-allowed-ipv6s: 'Tilladte IPv6''er:'
-      label-allowed-ipv4s: 'Tilladte IPv4''er:'
+      label-allowed-ipv6s: "Tilladte IPv6'er:"
+      label-allowed-ipv4s: "Tilladte IPv4'er:"
       label-allowed-domains: 'Tilladte domæner:'
       title-spf-record-generator: SPF-optagelsesgenerator
   certificate-key-parser:
@@ -6288,7 +6300,7 @@ tools:
       label-algorithm-info: 'Algoritmeoplysninger:'
       label-fingerprint: 'Fingeraftryk:'
       label-user-id-s: 'Bruger-ID(er):'
-      label-key-id-s: 'Nøgle-ID(''er):'
+      label-key-id-s: "Nøgle-ID('er):"
       label-subject: 'Emne:'
       label-request-info: 'Anmod om information:'
       label-signature: 'Signatur:'
@@ -6815,8 +6827,8 @@ tools:
       label-failure-probability: 'Sandsynlighed for fejl:'
       tag-key-terms-explained: 🧠 Forklaring af nøglebegreber
       tag-raid-level: RAID-niveau
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : RAID (Redundant Array of Independent Disks) er en metode til at kombinere
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        RAID (Redundant Array of Independent Disks) er en metode til at kombinere
         flere fysiske drev i én logisk enhed for at forbedre ydeevne, redundans eller
         begge dele.
       tag-description: Beskrivelse
@@ -6843,34 +6855,36 @@ tools:
       tag-stripe-of-raid-5-arrays-combines-performance-of-raid-0-with-redundancy-of-raid-5: Stripe
         af RAID 5-arrays. Kombinerer RAID 0's ydeevne med RAID 5's redundans.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF (gennemsnitlig tid mellem fejl)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: Den
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        Den
         gennemsnitlige tid (i timer), et drev forventes at køre, før det fejler. Højere
         MTBF betyder mere pålidelig hardware.
       tag-rebuild-time: 🔁 Genopbygningstid
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : Den tid, det tager at rekonstruere data på et erstatningsdrev efter en fejl.
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        Den tid, det tager at rekonstruere data på et erstatningsdrev efter en fejl.
         Længere genopbygningstider øger risikoen for en anden fejl under gendannelse.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (gennemsnitlig tid til datatab)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : Et statistisk estimat af, hvor længe et RAID-system kan fungere, før der opstår
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        Et statistisk estimat af, hvor længe et RAID-system kan fungere, før der opstår
         datatab. Det tager højde for drevfejl, genopbygningstid og RAID-redundans.
         Højere MTTDL betyder et mere sikkert system.
       tag-bit-error-rate-ber: 🧮 Bitfejlrate (BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : Sandsynligheden for, at en bit, der læses fra en disk, vil være forkert på
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        Sandsynligheden for, at en bit, der læses fra en disk, vil være forkert på
         grund af hardwarebegrænsninger. Selv små BER'er (som 1 ud af en billion) kan
         forårsage problemer under genopbygninger, især med store drev.
       tag-unrecoverable-read-error-ure: 🧠 Uoprettelig læsefejl (URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : Opstår, når et drev ikke kan læse en sektor under genopbygning. BER bidrager
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        Opstår, når et drev ikke kan læse en sektor under genopbygning. BER bidrager
         til URE-risiko, hvilket kan kompromittere RAID-gendannelse.
       tag-drive-capacity-tb: 📦 Diskkapacitet (TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: Samlet
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        Samlet
         lagerplads pr. drev. Større drev tager længere tid at genopbygge og er mere
         modtagelige for BER-relaterede fejl.
       tag-failure-probability: 📈 Sandsynlighed for fejl
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : Sandsynligheden for, at RAID-systemet vil opleve datatab over en given periode
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        Sandsynligheden for, at RAID-systemet vil opleve datatab over en given periode
         (f.eks. 5 år). Beregnet ved hjælp af MTTDL og eksponentielle fejlmodeller.
   pack-files-for-ai:
     title: Pak filer til AI
@@ -7230,8 +7244,8 @@ tools:
       tag-mirrors-stripes: Spejle/Striber
       tag-reset: Nulstil
       tag-see-zpool-openzfs-cheatsheet: Se Zpool/OpenZFS snydeark
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : Klik på afsnittets titler for at udvide/skjule og se beregnede data. Hvis
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        Klik på afsnittets titler for at udvide/skjule og se beregnede data. Hvis
         du holder musen over en tabelcelle, indlæses de relevante data i afsnittet
         Beregningsværdier nedenfor. Du kan klikke på tabelceller for at fryse eller
         ophæve frysningen af disse værdier.
@@ -7555,7 +7569,8 @@ tools:
       label-signature: Signatur
       label-arguments: Argumenter
       title-structured-output-json: Struktureret output JSON
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}"til":"0x...","data":"0x..."{''}''}
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        '{''{''}"til":"0x...","data":"0x..."{''}''}
         eller rå 0x....'
   file-splitter:
     title: Fildeler
@@ -7734,7 +7749,7 @@ tools:
     title: Udvider af korte URL'er
     description: Udvid korte webadresser for at målrette mod fulde webadresser
     texts:
-      label-short-urls-to-expand: 'Korte URL''er til udvidelse:'
+      label-short-urls-to-expand: "Korte URL'er til udvidelse:"
       placeholder-enter-short-urls-one-per-line: Indtast korte webadresser (én pr.
         linje)
       title-result: Resultat
@@ -8251,7 +8266,7 @@ about:
     name: Navn
     desc: Beskrivelse
     category: Kategori
-  content-fork: '# Om IT-værktøjer
+  content-fork: "# Om IT-værktøjer
 
     Denne vidunderlige hjemmeside, lavet med ❤ oprindeligt af [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about)
     og udvidet af ShareVB, samler nyttige værktøjer til udviklere og folk, der arbejder
@@ -8268,19 +8283,19 @@ about:
     IT Tools er lavet i Vue.js (Vue 3) med Naive UI-komponentbiblioteket og hostes
     og implementeres løbende af Vercel. Tredjeparts open source-biblioteker bruges
     i nogle værktøjer. Du kan finde den komplette liste i filen [package.json](https://github.com/sharevb/it-tools/blob/main/package.json)
-    i repository''et.
+    i repository'et.
 
     ## Har du fundet en fejl? Mangler der et værktøj?
 
     Hvis du har brug for et værktøj, der ikke findes her i øjeblikket, og som du mener
     kan være nyttigt, er du velkommen til at indsende en funktionsanmodning i [issues-sektionen](https://github.com/sharevb/it-tools/issues/new/choose)
-    i GitHub-repository''et.
+    i GitHub-repository'et.
 
     Og hvis du har fundet en fejl, eller noget ikke fungerer som forventet, bedes
     du indsende en fejlrapport i [issues-sektionen](https://github.com/sharevb/it-tools/issues/new/choose)
-    i GitHub-repository''et.
+    i GitHub-repository'et.
 
-    '
+    "
   import-favorites: Importér favoritter
   export-favorites: Eksportér favoritter
   put-your-favorites-json-array-here: Sæt dit foretrukne JSON-array her...

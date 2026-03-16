@@ -125,7 +125,9 @@ export function useFlexSearch<Data extends Record<string, any>>({
         await new Promise<void>((resolve) => {
           requestAnimationFrame(() => {
             chunk.forEach(({ itemKey, value }) => {
-              index.add(itemKey, value!);
+              if (value !== undefined) {
+                index.add(itemKey, value);
+              }
             });
             resolve();
           });
@@ -135,7 +137,9 @@ export function useFlexSearch<Data extends Record<string, any>>({
   };
 
   // Initialize on creation
-  initializeIndices();
+  initializeIndices().catch((error) => {
+    console.error('Failed to initialize search indices:', error);
+  });
 
   // Function to search across all indices with weight consideration
   const searchAllIndices = (query: string, searchLimit: number) => {
@@ -156,7 +160,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
         const current = weightedResults.get(id) || { score: 0, maxWeight: 0 };
         // Use the maximum weight among matching fields as the primary score
         // Add a small bonus for additional field matches
-        const newScore = Math.max(current.score, weight * 100) + (weight * 10);
+        const newScore = Math.max(current.score, weight * 100) + weight * 10;
         const newMaxWeight = Math.max(current.maxWeight, weight);
 
         weightedResults.set(id, {
@@ -180,14 +184,14 @@ export function useFlexSearch<Data extends Record<string, any>>({
     // If shouldn't be sorted by similarity, apply limit here and return early
     if (!shouldSort) {
       const limitedIds = searchLimit > 0 ? sortedIds.slice(0, searchLimit) : sortedIds;
-      return limitedIds
-        .map(id => dataMap.value.get(id))
-        .filter(Boolean) as Data[];
+      return limitedIds.map(id => dataMap.value.get(id)).filter(Boolean) as Data[];
     }
 
     // Calculate Levenshtein distance
     const levenshteinDistance = (str1: string, str2: string): number => {
-      const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
+      const matrix = Array(str2.length + 1)
+        .fill(null)
+        .map(() => Array(str1.length + 1).fill(null));
 
       for (let i = 0; i <= str1.length; i++) {
         matrix[0][i] = i;
@@ -218,7 +222,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
       }
 
       const distance = levenshteinDistance(str1.toLowerCase(), str2.toLowerCase());
-      return 1 - (distance / maxLength);
+      return 1 - distance / maxLength;
     };
 
     // Sort ALL results by similarity score, then apply limit at the end

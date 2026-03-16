@@ -33,10 +33,10 @@ home:
     lightMode: Chế độ sáng
     mode: Chuyển đổi chế độ tối/sáng
   loading-more-tools: Đang tải thêm công cụ...
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: Đang mở rộng...
+  collapseAllTools: Thu gọn tất cả công cụ
+  collapsing: Đang thu gọn...
+  expandAllTools: Mở rộng tất cả công cụ
 about:
   alltools-title: Tất cả {toolsCount} Công cụ
   tools:
@@ -132,8 +132,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Thời gian để bẻ khóa mật
         khẩu này bằng phương pháp tấn công vũ phu
       tag-note: 'Ghi chú:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : Độ mạnh được tính toán dựa trên thời gian cần thiết để bẻ khóa mật khẩu bằng
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        Độ mạnh được tính toán dựa trên thời gian cần thiết để bẻ khóa mật khẩu bằng
         phương pháp tấn công vũ phu, không tính đến khả năng tấn công từ điển.
     service:
       text:
@@ -387,18 +387,19 @@ tools:
           chủ không nhận ra phương thức yêu cầu hoặc không có khả năng thực hiện yêu
           cầu.
         not-implemented: Chưa thực hiện
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: Một
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          Một
           thông báo lỗi chung được đưa ra khi gặp phải tình trạng không mong muốn
           và không có thông báo cụ thể hơn nào phù hợp.
         internal-server-error: Lỗi máy chủ nội bộ
         5xx-server-error: Lỗi máy chủ 5xx
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : Người vận hành máy chủ đã nhận được yêu cầu pháp lý yêu cầu từ chối quyền
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          Người vận hành máy chủ đã nhận được yêu cầu pháp lý yêu cầu từ chối quyền
           truy cập vào một tài nguyên hoặc một tập hợp tài nguyên bao gồm tài nguyên
           được yêu cầu.
         unavailable-for-legal-reasons: Không khả dụng vì lý do pháp lý
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : Máy chủ không muốn xử lý yêu cầu vì một trường tiêu đề riêng lẻ hoặc tất
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          Máy chủ không muốn xử lý yêu cầu vì một trường tiêu đề riêng lẻ hoặc tất
           cả các trường tiêu đề cộng lại đều quá lớn.
         request-header-fields-too-large: Tiêu đề yêu cầu có trường quá lớn
         the-user-has-sent-too-many-requests-in-a-given-amount-of-time: Người dùng
@@ -456,7 +457,8 @@ tools:
           ra rằng tài nguyên được yêu cầu không còn khả dụng nữa và sẽ không khả dụng
           nữa.
         gone: Đi mất
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: Chỉ
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          Chỉ
           ra rằng yêu cầu không thể được xử lý do có xung đột trong yêu cầu, chẳng
           hạn như xung đột chỉnh sửa.
         conflict: Xung đột
@@ -466,8 +468,8 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: Trước tiên, máy
           khách phải xác thực với proxy.
         proxy-authentication-required: Yêu cầu xác thực proxy
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : Tài nguyên được yêu cầu chỉ có khả năng tạo ra nội dung không được chấp
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          Tài nguyên được yêu cầu chỉ có khả năng tạo ra nội dung không được chấp
           nhận theo tiêu đề Chấp nhận được gửi trong yêu cầu.
         not-acceptable: Không thể chấp nhận
         a-request-method-is-not-supported-for-the-requested-resource: Phương thức
@@ -475,17 +477,18 @@ tools:
         method-not-allowed: Phương pháp không được phép
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: Không
           tìm thấy tài nguyên được yêu cầu nhưng có thể sẽ có trong tương lai.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: Yêu
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          Yêu
           cầu hợp lệ, nhưng máy chủ từ chối thực hiện. Người dùng có thể không có
           đủ quyền cần thiết cho một tài nguyên.
         forbidden: Cấm
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : Được dành riêng cho mục đích sử dụng trong tương lai. Ý định ban đầu là
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          Được dành riêng cho mục đích sử dụng trong tương lai. Ý định ban đầu là
           mã này có thể được sử dụng như một phần của một hình thức tiền mặt kỹ thuật
           số hoặc chương trình thanh toán vi mô.
         payment-required: Yêu cầu thanh toán
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : Tương tự như 403 Forbidden, nhưng được sử dụng cụ thể khi cần xác thực nhưng
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          Tương tự như 403 Forbidden, nhưng được sử dụng cụ thể khi cần xác thực nhưng
           không thành công hoặc chưa được xác thực.
         unauthorized: Không được phép
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: Máy
@@ -496,7 +499,8 @@ tools:
           cầu và tất cả các yêu cầu trong tương lai phải được lặp lại bằng cách sử
           dụng một URI khác.
         permanent-redirect: Chuyển hướng vĩnh viễn
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: Trong
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          Trong
           trường hợp này, yêu cầu phải được lặp lại với một URI khác; tuy nhiên, các
           yêu cầu trong tương lai vẫn phải sử dụng URI ban đầu.
         temporary-redirect: Chuyển hướng tạm thời
@@ -3307,8 +3311,8 @@ tools:
       verify-description: '{0}: {1} (xác minh bằng {2})'
       token-secret: Bí mật mã thông báo
       token-keys: Khóa mã thông báo
-      cannot-parse-secret-as-encoding: 'Không thể phân tích cú pháp ''{0}'' thành
-        ''{1}'': {2}'
+      cannot-parse-secret-as-encoding: "Không thể phân tích cú pháp '{0}' thành
+        '{1}': {2}"
       invalid-base64-string: Chuỗi Base64 không hợp lệ
       placeholder-input-token: Dán mã thông báo JWT của bạn để chỉnh sửa...
       click-to-input-a-existing-jwt-token-to-modify: Nhấp để nhập mã thông báo JWT
@@ -4466,8 +4470,8 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Mẹo: Điều hướng
         đến một trang web để kiểm tra, mở F12 Console và chạy'
       tag-window-copy-document-cookie: cửa sổ. sao chép(tài liệu.cookie)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : '. Thao tác này sẽ sao chép chuỗi cookie vào bảng nhớ tạm của bạn. Lưu ý:
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        '. Thao tác này sẽ sao chép chuỗi cookie vào bảng nhớ tạm của bạn. Lưu ý:
         Thao tác này chỉ sao chép cookie khả dụng cho javascript (chỉ HTTP và cookie
         bảo mật sẽ bị bỏ qua).'
       tag-name: Tên
@@ -5198,25 +5202,25 @@ tools:
       label-custom-expression: 'Biểu thức tùy chỉnh:'
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: ví dụ, cổng src 443 và dst 10.0.0.1
       title-generated-tcpdump-command: Đã tạo lệnh tcpdump
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : tcpdump là một tiện ích thường được cài đặt/có sẵn trên nhiều bản phân phối
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        tcpdump là một tiện ích thường được cài đặt/có sẵn trên nhiều bản phân phối
         Linux để nhanh chóng thu thập dấu vết mạng/bắt gói tin. Nói tóm lại, nó là
         Wireshark của Linux để thu thập gói tin bắt được. tcpdump rất linh hoạt với
         nhiều công tắc để nắm bắt chi tiết những gì bạn cần để dubug lưu lượng mạng;
         với các tùy chọn xuất kết quả qua bảng điều khiển, tệp hoặc Wireshark pcap.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : 'Tiện ích này giúp tạo lệnh tcpdump bằng cách sử dụng một số công tắc/bộ lọc
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        'Tiện ích này giúp tạo lệnh tcpdump bằng cách sử dụng một số công tắc/bộ lọc
         phổ biến nhất do tcpdump cung cấp. Tiện ích này không bao gồm tất cả các tùy
         chọn mà tcpdump cung cấp; bạn có thể tìm thấy danh sách đầy đủ các tùy chọn
         trong hướng dẫn sử dụng:'
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Ghi chú:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : Máy chủ, Máy chủ nguồn và Máy chủ đích có thể chứa nhiều mục nhập. Hãy phân
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        Máy chủ, Máy chủ nguồn và Máy chủ đích có thể chứa nhiều mục nhập. Hãy phân
         tách các mục nhập bằng dấu phẩy, dấu cách hoặc dấu chấm phẩy.
       tag-note-2: 'Lưu ý 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : Khi bạn chỉ định cờ nguồn (src) hoặc đích (dst), tcpdump sẽ chỉ lọc theo hướng
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        Khi bạn chỉ định cờ nguồn (src) hoặc đích (dst), tcpdump sẽ chỉ lọc theo hướng
         đó. Nếu bạn muốn nắm bắt toàn bộ quá trình bắt tay TCP, hãy đảm bảo sử dụng
         &quot;host&quot; thay vì &quot;src host&quot; hoặc &quot;dst host&quot; để
         xem cả luồng yêu cầu và phản hồi.
@@ -5478,54 +5482,58 @@ tools:
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           70 yêu cầu ít nhất 10 đĩa, mỗi dải tối thiểu 5 đĩa. Số lượng đĩa trong mỗi
           dải phải bằng nhau.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: RAID
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          RAID
           70 kết hợp nhiều mảng RAID 7 lại với nhau (RAID 7 + RAID 0). Mỗi bộ RAID
           7 có thể chịu được ba lần hỏng ổ đĩa.
         2-drive-failures-per-raid-6-set: 2 lỗi ổ đĩa cho mỗi bộ RAID 6
         raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           60 yêu cầu ít nhất 8 đĩa, mỗi dải tối thiểu 4 đĩa. Số lượng đĩa trong mỗi
           dải phải bằng nhau.
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: RAID
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
+          RAID
           60 kết hợp nhiều mảng RAID 6 lại với nhau (RAID 6 + RAID 0). Mỗi bộ RAID
           6 có thể chịu được hai lỗi ổ đĩa.
         1-drive-failure-per-raid-5-set: 1 ổ đĩa bị lỗi trên mỗi bộ RAID 5
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           50 yêu cầu ít nhất 6 đĩa, mỗi dải tối thiểu 3 đĩa. Số lượng đĩa trong mỗi
           dải phải bằng nhau.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: RAID
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          RAID
           50 kết hợp nhiều mảng RAID 5 lại với nhau (RAID 5 + RAID 0). Mỗi bộ RAID
           5 có thể chịu được lỗi của một ổ đĩa duy nhất.
         1-drive-failure-per-mirrored-set: 1 ổ đĩa bị lỗi trên mỗi bộ được phản chiếu
         raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10 yêu cầu số lượng
           chẵn ít nhất là 4 đĩa
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : RAID 10 là một dải các bản sao (RAID 1 + RAID 0). Mỗi bộ ổ đĩa được sao
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          RAID 10 là một dải các bản sao (RAID 1 + RAID 0). Mỗi bộ ổ đĩa được sao
           chép và phân vùng lại với nhau để mỗi ổ đĩa trong bộ đều có khả năng chịu
           lỗi trong nhóm.
         3-drive-failures: 3 lỗi ổ đĩa
         raid-7-requires-at-least-5-disks: RAID 7 yêu cầu ít nhất 5 đĩa
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : RAID 7/RAID TP (không chuẩn) tương tự như RAID 5 và RAID 6 nhưng có khối
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          RAID 7/RAID TP (không chuẩn) tương tự như RAID 5 và RAID 6 nhưng có khối
           chẵn lẻ thứ ba. Điều này cho phép ổ đĩa thứ ba bị lỗi với chi phí giảm dung
           lượng lưu trữ tương đương với ba ổ đĩa.
         2-drive-failures: 2 lỗi ổ đĩa
         raid-6-requires-at-least-4-disks: RAID 6 yêu cầu ít nhất 4 đĩa
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : RAID 6 tương tự RAID 5 nhưng có thêm khối chẵn lẻ. Điều này cho phép xảy
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          RAID 6 tương tự RAID 5 nhưng có thêm khối chẵn lẻ. Điều này cho phép xảy
           ra thêm một lỗi ổ đĩa với chi phí giảm dung lượng lưu trữ tương đương với
           hai ổ đĩa.
         1-drive-failure: Lỗi 1 ổ đĩa
         raid-5-requires-at-least-3-disks: RAID 5 yêu cầu ít nhất 3 đĩa
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : RAID 5 sử dụng phân chia theo khối với tính chẵn lẻ. Điều này cho phép khả
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          RAID 5 sử dụng phân chia theo khối với tính chẵn lẻ. Điều này cho phép khả
           năng chịu lỗi với dung lượng lưu trữ giảm tương đương một ổ đĩa cho thông
           tin chẵn lẻ.
         raid-1-requires-at-least-1-disk: RAID 1 yêu cầu ít nhất 1 đĩa
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : RAID 1 bao gồm một bản sao chính xác của dữ liệu (bản sao) trên hai hoặc
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          RAID 1 bao gồm một bản sao chính xác của dữ liệu (bản sao) trên hai hoặc
           nhiều đĩa. Mảng sẽ hoạt động miễn là ít nhất một ổ đĩa còn hoạt động.
         raid-0-requires-at-least-1-disk: RAID 0 yêu cầu ít nhất 1 đĩa
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          RAID
           0 chia dữ liệu đều trên 2 hoặc nhiều đĩa mà không cần dự phòng hoặc chịu
           lỗi, tạo ra một không gian lưu trữ lớn.
   websocket-tester:
@@ -5612,7 +5620,8 @@ tools:
         source-wikipedia: 'Nguồn: Wikipedia'
         once-the-long-break-is-finished-return-to-step-1: Sau khi kỳ nghỉ dài kết
           thúc, hãy quay lại Bước 1.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: Tiếp
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          Tiếp
           tục lặp lại các Bước 1-3, nhưng sau nhiệm vụ thứ 4, hãy nghỉ ngơi dài thay
           vì nghỉ ngơi ngắn (thường là 20-30 phút).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: Khi chuông
@@ -5621,8 +5630,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Quyết định một nhiệm
           vụ và đặt thời gian (thời gian thông thường là 25 phút).
         five-steps-of-the-pomodoro-technique: Năm bước của Kỹ thuật Pomodoro
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : Kỹ thuật Pomodoro là một phương pháp quản lý thời gian được Francesco Cirillo
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          Kỹ thuật Pomodoro là một phương pháp quản lý thời gian được Francesco Cirillo
           phát triển vào những năm 1980. Phương pháp này sử dụng bộ đếm thời gian
           để chia nhỏ công việc thành các khoảng thời gian, thường kéo dài 25 phút,
           được phân cách bằng các khoảng nghỉ ngắn. Mỗi khoảng nghỉ được gọi là pomodoro,
@@ -5915,11 +5924,11 @@ tools:
         song-details: Chi tiết bài hát
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'Tên tài khoản
-          Twitter của người sáng tạo (ví dụ: {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "Tên tài khoản
+          Twitter của người sáng tạo (ví dụ: {'@'}sharevb)..."
         creator-acc: Người sáng tạo acc.
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 'Tên tài khoản
-          Twitter của trang web (ví dụ: {''@''}ittoolsdottech)...'
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "Tên tài khoản
+          Twitter của trang web (ví dụ: {'@'}ittoolsdottech)..."
         site-account: Tài khoản trang web
         the-twitter-card-type: Loại thẻ Twitter...
         card-type: Loại thẻ
@@ -6482,8 +6491,8 @@ tools:
       label-typical-storage-location: 'Vị trí lưu trữ điển hình:'
   json-flatten-nestify:
     title: Trình làm phẳng/gỡ phẳng JSON
-    description: 'Làm phẳng hoặc lồng ghép/làm phẳng nội dung JSON (ví dụ: {''{''}a:{''{''}b:1{''}''}{''}''}
-      so với {''{''}&quot;ab&quot;:1{''}''}'
+    description: "Làm phẳng hoặc lồng ghép/làm phẳng nội dung JSON (ví dụ: {'{'}a:{'{'}b:1{'}'}{'}'}
+      so với {'{'}&quot;ab&quot;:1{'}'}"
     texts:
       message-provided-json-is-not-valid: JSON được cung cấp không hợp lệ
       label-mode: Cách thức
@@ -6953,8 +6962,8 @@ tools:
       label-failure-probability: 'Xác suất thất bại:'
       tag-key-terms-explained: 🧠 Giải thích các thuật ngữ chính
       tag-raid-level: Cấp độ RAID
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : RAID (Mảng đĩa độc lập dự phòng) là phương pháp kết hợp nhiều ổ đĩa vật lý
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        RAID (Mảng đĩa độc lập dự phòng) là phương pháp kết hợp nhiều ổ đĩa vật lý
         thành một đơn vị logic để cải thiện hiệu suất, tính dự phòng hoặc cả hai.
       tag-description: Sự miêu tả
       tag-raid-0: RAID 0
@@ -6984,35 +6993,37 @@ tools:
         RAID 5. Kết hợp hiệu suất của RAID 0 với tính dự phòng của RAID 5.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF (Thời gian trung bình giữa các
         lần hỏng hóc)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: Thời
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        Thời
         gian trung bình (tính bằng giờ) mà ổ đĩa dự kiến hoạt động trước khi hỏng.
         MTBF càng cao thì phần cứng càng đáng tin cậy.
       tag-rebuild-time: 🔁 Thời gian xây dựng lại
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : Thời gian cần thiết để tái tạo dữ liệu trên ổ đĩa thay thế sau khi bị lỗi.
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        Thời gian cần thiết để tái tạo dữ liệu trên ổ đĩa thay thế sau khi bị lỗi.
         Thời gian tái tạo càng lâu thì nguy cơ xảy ra lỗi lần hai trong quá trình
         phục hồi càng cao.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (Thời gian trung bình mất dữ liệu)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : Ước tính thống kê về thời gian hệ thống RAID có thể hoạt động trước khi mất
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        Ước tính thống kê về thời gian hệ thống RAID có thể hoạt động trước khi mất
         dữ liệu. Ước tính này xem xét các lỗi ổ đĩa, thời gian xây dựng lại và khả
         năng dự phòng RAID. MTTDL cao hơn đồng nghĩa với hệ thống an toàn hơn.
       tag-bit-error-rate-ber: 🧮 Tỷ lệ lỗi bit (BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : Xác suất một bit được đọc từ đĩa sẽ không chính xác do hạn chế về phần cứng.
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        Xác suất một bit được đọc từ đĩa sẽ không chính xác do hạn chế về phần cứng.
         Ngay cả BER nhỏ (khoảng 1 phần nghìn tỷ) cũng có thể gây ra sự cố trong quá
         trình xây dựng lại, đặc biệt là với các ổ đĩa lớn.
       tag-unrecoverable-read-error-ure: 🧠 Lỗi đọc không thể phục hồi (URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : Xảy ra khi ổ đĩa không đọc được sector trong quá trình xây dựng lại. BER góp
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        Xảy ra khi ổ đĩa không đọc được sector trong quá trình xây dựng lại. BER góp
         phần gây ra rủi ro URE, có thể gây ảnh hưởng đến quá trình khôi phục RAID.
       tag-drive-capacity-tb: 📦 Dung lượng ổ đĩa (TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: Tổng
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        Tổng
         dung lượng lưu trữ trên mỗi ổ đĩa. Ổ đĩa lớn hơn mất nhiều thời gian hơn để
         xây dựng lại và dễ xảy ra lỗi liên quan đến BER hơn.
       tag-failure-probability: 📈 Xác suất thất bại
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : 'Xác suất hệ thống RAID bị mất dữ liệu trong một khoảng thời gian nhất định
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        'Xác suất hệ thống RAID bị mất dữ liệu trong một khoảng thời gian nhất định
         (ví dụ: 5 năm). Được tính toán bằng mô hình MTTDL và mô hình lỗi theo cấp
         số nhân.'
   pack-files-for-ai:
@@ -7375,8 +7386,8 @@ tools:
       tag-mirrors-stripes: Gương/Sọc
       tag-reset: Cài lại
       tag-see-zpool-openzfs-cheatsheet: Xem Bảng hướng dẫn Zpool/OpenZFS
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : Nhấp vào tiêu đề phần để mở rộng/thu gọn và xem dữ liệu đã tính toán. Di chuột
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        Nhấp vào tiêu đề phần để mở rộng/thu gọn và xem dữ liệu đã tính toán. Di chuột
         qua một ô trong bảng sẽ tải dữ liệu liên quan vào phần Giá trị Tính toán bên
         dưới. Bạn có thể nhấp vào các ô trong bảng để đóng băng hoặc hủy đóng băng
         các giá trị đó.
@@ -7705,8 +7716,9 @@ tools:
       label-signature: Chữ ký
       label-arguments: Các đối số
       title-structured-output-json: JSON đầu ra có cấu trúc
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{''}''}
-        hoặc 0x thô....'
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{'}'}
+        hoặc 0x thô...."
   file-splitter:
     title: Bộ chia tệp
     description: Chia tách tệp JSON, XML hoặc văn bản theo nhóm nút hoặc theo nhóm

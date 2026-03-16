@@ -15,28 +15,37 @@ export function useMicrophoneService(messageSender: IMessageSender) {
 
   const isPlaying = ref(false);
   const loudnessLevel = ref(0); // Observable for loudness
+  let animationFrameId: number | null = null;
 
   // Measure loudness and update loudness bar
   function measureLoudness() {
-    const dataArray = new Uint8Array(analyserNode!.frequencyBinCount);
+    if (!analyserNode) {
+      return;
+    }
+
+    const dataArray = new Uint8Array(analyserNode.frequencyBinCount);
 
     const updateLoudness = () => {
-      analyserNode!.getByteFrequencyData(dataArray);
+      if (!analyserNode) {
+        return;
+      }
+
+      analyserNode.getByteFrequencyData(dataArray);
 
       // Calculate average loudness
       let sum = 0;
-      dataArray.forEach(value => sum += value);
+      dataArray.forEach(value => (sum += value));
       const average = sum / dataArray.length;
 
       // Update the observable loudness level
       loudnessLevel.value = average;
 
       if (isPlaying.value) {
-        requestAnimationFrame(updateLoudness);
+        animationFrameId = requestAnimationFrame(updateLoudness);
       }
     };
     updateLoudness();
-  };
+  }
 
   const startMicReplay = async () => {
     if (!audioContext) {
@@ -48,7 +57,10 @@ export function useMicrophoneService(messageSender: IMessageSender) {
     }
     catch (err) {
       console.error('Microphone access denied:', err);
-      messageSender.error(t('tools.mic-tester.service.text.microphone-access-denied-the-error-is-also-in-the-console'), err);
+      messageSender.error(
+        t('tools.mic-tester.service.text.microphone-access-denied-the-error-is-also-in-the-console'),
+        err,
+      );
       return;
     }
 
@@ -69,15 +81,25 @@ export function useMicrophoneService(messageSender: IMessageSender) {
   };
 
   function stopMicReplay() {
+    // Cancel any pending animation frame
+    if (animationFrameId !== null) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+
     if (audioContext && stream) {
       const tracks = stream.getTracks();
       tracks.forEach(track => track.stop());
       audioContext.close();
       audioContext = null;
+      stream = null;
+      sourceNode = null;
+      delayNode = null;
+      analyserNode = null;
       isPlaying.value = false;
       loudnessLevel.value = 0;
     }
-  };
+  }
 
   // Cleanup on service destruction
   onBeforeUnmount(() => {

@@ -27,7 +27,7 @@ export function useSerialPort() {
 
   async function connect(selectedPort?: SerialPort) {
     try {
-      port = selectedPort || await navigator.serial.requestPort();
+      port = selectedPort || (await navigator.serial.requestPort());
       await openPort();
     }
     catch (err) {
@@ -67,11 +67,30 @@ export function useSerialPort() {
 
     try {
       reader?.cancel();
-      await inputDone?.catch(() => {});
+      if (inputDone) {
+        try {
+          await inputDone;
+        }
+        catch {
+          // Ignore cancellation errors during disconnect
+        }
+      }
       reader?.releaseLock();
 
-      await writer?.close().catch(() => {});
-      await outputDone?.catch(() => {});
+      try {
+        await writer?.close();
+      }
+      catch {
+        // Ignore close errors during disconnect
+      }
+      if (outputDone) {
+        try {
+          await outputDone;
+        }
+        catch {
+          // Ignore close errors during disconnect
+        }
+      }
       writer?.releaseLock();
 
       await port.close();
@@ -110,18 +129,14 @@ export function useSerialPort() {
     if (!writer || !isConnected.value) {
       return;
     }
-    const ending = lineEnding.value === 'CR'
-      ? '\r'
-      : lineEnding.value === 'CRLF'
-        ? '\r\n'
-        : '\n';
+    const ending = lineEnding.value === 'CR' ? '\r' : lineEnding.value === 'CRLF' ? '\r\n' : '\n';
     writer.write(data + ending);
     appendOutput(`> ${data}`);
   }
 
   async function attemptReconnect() {
     if (reconnectAttempts >= maxReconnects) {
-      appendOutput('[Reconnect failed]');
+      appendOutput('[Reconnect failed: max attempts reached]');
       return;
     }
     reconnectAttempts++;
@@ -131,7 +146,12 @@ export function useSerialPort() {
       await openPort();
     }
     catch (err) {
-      attemptReconnect();
+      if (reconnectAttempts < maxReconnects) {
+        attemptReconnect();
+      }
+      else {
+        appendOutput(`[Reconnect failed] ${err}`);
+      }
     }
   }
 

@@ -33,10 +33,10 @@ home:
     twitterX: Conto X
     twitterXAccount: Account Strumenti IT X
   loading-more-tools: Caricamento di altri strumenti...
-  expanding: Expanding...
-  collapseAllTools: Collapse All Tools
-  collapsing: Collapsing...
-  expandAllTools: Expand All Tools
+  expanding: Espansione...
+  collapseAllTools: Comprimi tutti gli strumenti
+  collapsing: Compressione...
+  expandAllTools: Espandi tutti gli strumenti
 favoriteButton:
   remove: Rimuovi dai preferiti
   add: Aggiungi ai preferiti
@@ -89,8 +89,8 @@ tools:
       tag-duration-to-crack-this-password-with-brute-force: Tempo necessario per decifrare
         questa password con la forza bruta
       tag-note: 'Nota:'
-      ? tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack
-      : La forza calcolata si basa sul tempo necessario per decifrare la password
+      tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack:
+        La forza calcolata si basa sul tempo necessario per decifrare la password
         utilizzando un approccio di forza bruta e non tiene conto della possibilità
         di un attacco a dizionario.
     service:
@@ -348,17 +348,18 @@ tools:
         the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: Il
           server non riconosce il metodo di richiesta oppure non è in grado di soddisfarla.
         not-implemented: Non implementato
-        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable: Messaggio
+        a-generic-error-message-given-when-an-unexpected-condition-was-encountered-and-no-more-specific-message-is-suitable:
+          Messaggio
           di errore generico, visualizzato quando si è verificata una condizione imprevista
           e non è possibile trovare un messaggio più specifico.
         internal-server-error: Errore interno del server
         5xx-server-error: Errore del server 5xx
-        ? a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource
-        : Un operatore di server ha ricevuto una richiesta legale di negare l'accesso
+        a-server-operator-has-received-a-legal-demand-to-deny-access-to-a-resource-or-to-a-set-of-resources-that-includes-the-requested-resource:
+          Un operatore di server ha ricevuto una richiesta legale di negare l'accesso
           a una risorsa o a un insieme di risorse che include la risorsa richiesta.
         unavailable-for-legal-reasons: Non disponibile per motivi legali
-        ? the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large
-        : Il server non è disposto a elaborare la richiesta perché un singolo campo
+        the-server-is-unwilling-to-process-the-request-because-either-an-individual-header-field-or-all-the-header-fields-collectively-are-too-large:
+          Il server non è disposto a elaborare la richiesta perché un singolo campo
           di intestazione o tutti i campi di intestazione nel loro insieme sono troppo
           grandi.
         request-header-fields-too-large: Campi dell'intestazione della richiesta troppo
@@ -419,7 +420,8 @@ tools:
         indicates-that-the-resource-requested-is-no-longer-available-and-will-not-be-available-again: Indica
           che la risorsa richiesta non è più disponibile e non lo sarà più.
         gone: Andato
-        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: Indica
+        indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict:
+          Indica
           che la richiesta non può essere elaborata a causa di un conflitto nella
           richiesta, ad esempio un conflitto di modifica.
         conflict: Conflitto
@@ -429,8 +431,8 @@ tools:
         the-client-must-first-authenticate-itself-with-the-proxy: Il client deve prima
           autenticarsi con il proxy.
         proxy-authentication-required: Autenticazione proxy richiesta
-        ? the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request
-        : La risorsa richiesta è in grado di generare solo contenuti non accettabili
+        the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request:
+          La risorsa richiesta è in grado di generare solo contenuti non accettabili
           in base alle intestazioni Accept inviate nella richiesta.
         not-acceptable: Non accettabile
         a-request-method-is-not-supported-for-the-requested-resource: Un metodo di
@@ -439,17 +441,18 @@ tools:
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: La
           risorsa richiesta non è stata trovata, ma potrebbe essere disponibile in
           futuro.
-        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: La
+        the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource:
+          La
           richiesta era valida, ma il server rifiuta l'azione. L'utente potrebbe non
           disporre delle autorizzazioni necessarie per una risorsa.
         forbidden: Vietato
-        ? reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme
-        : Riservato per uso futuro. L'intenzione originale era che questo codice potesse
+        reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme:
+          Riservato per uso futuro. L'intenzione originale era che questo codice potesse
           essere utilizzato come parte di una qualche forma di denaro digitale o di
           un sistema di micropagamento.
         payment-required: Pagamento richiesto
-        ? similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided
-        : Simile a 403 Forbidden, ma da utilizzare specificatamente quando è richiesta
+        similar-to-403-forbidden-but-specifically-for-use-when-authentication-is-required-and-has-failed-or-has-not-yet-been-provided:
+          Simile a 403 Forbidden, ma da utilizzare specificatamente quando è richiesta
           l'autenticazione e questa non è riuscita o non è ancora stata fornita.
         unauthorized: Non autorizzato
         the-server-cannot-or-will-not-process-the-request-due-to-an-apparent-client-error: Il
@@ -461,7 +464,8 @@ tools:
           richiesta e tutte le richieste future devono essere ripetute utilizzando
           un altro URI.
         permanent-redirect: Reindirizzamento permanente
-        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri: In
+        in-this-case-the-request-should-be-repeated-with-another-uri-however-future-requests-should-still-use-the-original-uri:
+          In
           questo caso, la richiesta dovrebbe essere ripetuta con un altro URI; tuttavia,
           le richieste future dovrebbero comunque utilizzare l'URI originale.
         temporary-redirect: Reindirizzamento temporaneo
@@ -1094,8 +1098,8 @@ tools:
       text:
         invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: 'Autorizzazioni
           ottali non valide (devono essere 3 o 4 cifre ottali): {0}'
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: 'Autorizzazioni
-          stringa non valide (devono essere nel formato ''rwxrwxrwx''): {0}'
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: "Autorizzazioni
+          stringa non valide (devono essere nel formato 'rwxrwxrwx'): {0}"
   rsa-key-pair-generator:
     title: Generatore di coppie di chiavi RSA
     description: Genera una nuova coppia di chiavi privata e pubblica RSA casuali
@@ -1209,8 +1213,8 @@ tools:
         number-of-api-requests-for-which-the-access-token-can-be-used: Numero di richieste
           API per le quali è possibile utilizzare il token di accesso
         jcard-data: Dati jCard
-        authorized-actor-the-party-that-is-authorized-to-become-the-actor: 'Attore
-          autorizzato: la parte autorizzata a diventare l''attore'
+        authorized-actor-the-party-that-is-authorized-to-become-the-actor: "Attore
+          autorizzato: la parte autorizzata a diventare l'attore"
         client-identifier: Identificativo del cliente
         scope-values: Valori di ambito
         originating-identifier-as-defined-in-shaken-framework: Identificatore di origine
@@ -1381,8 +1385,8 @@ tools:
       label-mac-address: 'Indirizzo MAC:'
   hash-text:
     title: Hash del testo
-    description: 'Esegui l''hash di una stringa di testo utilizzando la funzione di
-      cui hai bisogno: MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 o RIPEMD160'
+    description: "Esegui l'hash di una stringa di testo utilizzando la funzione di
+      cui hai bisogno: MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 o RIPEMD160"
     texts:
       label-binary-base-2: Binario (base 2)
       label-hexadecimal-base-16: Esadecimale (base 16)
@@ -2406,8 +2410,8 @@ tools:
       label-dns-record-type: 'Tipo di record DNS:'
       title-query-results: Risultati della query
       tag-send-dns-query: Invia query DNS
-    externalAccess: 'Questo strumento invia query DNS tramite un endpoint DOH rispondente
-      nell''elenco seguente: https://martinheidegger.github.io/dns-query/resolvers.json'
+    externalAccess: "Questo strumento invia query DNS tramite un endpoint DOH rispondente
+      nell'elenco seguente: https://martinheidegger.github.io/dns-query/resolvers.json"
   docker-compose-converter:
     title: Convertitore di formato Docker Compose
     description: Converti il file Docker Compose tra V1, 2.x, 3.x o CommonSpec e può
@@ -2949,8 +2953,8 @@ tools:
         IP 4/6
       tag-switch-start-and-end-ipv4-6-address: Cambia l'indirizzo IPv4/6 iniziale
         e finale
-      tag-start-ip-and-end-ip-must-be-of-same-version-ipv4-or-ipv6: 'L''IP iniziale
-        e l''IP finale devono essere della stessa versione: IPv4 o IPv6'
+      tag-start-ip-and-end-ip-must-be-of-same-version-ipv4-or-ipv6: "L'IP iniziale
+        e l'IP finale devono essere della stessa versione: IPv4 o IPv6"
   ipv6-address-converter:
     title: Convertitore di indirizzi IPv6
     description: Converti un indirizzo IP in decimale, binario, esadecimale e ottieni
@@ -3242,8 +3246,8 @@ tools:
       verify-description: '{0}: {1} (verifica con {2})'
       token-secret: Segreto token
       token-keys: Chiavi token
-      cannot-parse-secret-as-encoding: 'Impossibile analizzare ''{0}'' come ''{1}'':
-        {2}'
+      cannot-parse-secret-as-encoding: "Impossibile analizzare '{0}' come '{1}':
+        {2}"
       invalid-base64-string: Stringa Base64 non valida
       placeholder-input-token: Incolla il tuo token JWT per modificare...
       click-to-input-a-existing-jwt-token-to-modify: Fare clic per immettere un token
@@ -3371,9 +3375,9 @@ tools:
     texts:
       title-drag-and-drop-a-image-here-or-click-to-select-a-file: Trascina e rilascia
         un'immagine qui oppure fai clic per selezionare un file
-      tag-nb-processing-is-done-in-your-browser-so-be-patient-processing-can-take-a-while: 'NB:
-        l''elaborazione avviene nel tuo browser, quindi sii paziente, l''elaborazione
-        potrebbe richiedere del tempo'
+      tag-nb-processing-is-done-in-your-browser-so-be-patient-processing-can-take-a-while: "NB:
+        l'elaborazione avviene nel tuo browser, quindi sii paziente, l'elaborazione
+        potrebbe richiedere del tempo"
       tag-this-tool-required-internet-connection-to-access-models: Questo strumento
         richiede una connessione Internet (per accedere ai modelli)
       tag-latex-result: Risultato in lattice
@@ -3748,8 +3752,8 @@ tools:
     description: Strumento di conversione della capitalizzazione RMB/Renminbi
     texts:
       title-lower-case-amount: Importo in minuscolo
-      placeholder-enter-the-amount-in-lowercase-example-1314-52: 'Inserisci l''importo
-        in minuscolo (esempio: 1314,52)'
+      placeholder-enter-the-amount-in-lowercase-example-1314-52: "Inserisci l'importo
+        in minuscolo (esempio: 1314,52)"
       title-amount-in-capital-letters: Importo in lettere maiuscole
   rsa-ecdsa-signing:
     title: Firmatario e verificatore RSA/DSA/ECDSA
@@ -4136,8 +4140,8 @@ tools:
     texts:
       title-date-to-week-numbers: Numeri da data a settimana
       label-date: 'Data:'
-      label-local-week-in-year: 'Settimana locale dell''anno:'
-      label-iso-week-in-year: 'Settimana ISO (nell''anno):'
+      label-local-week-in-year: "Settimana locale dell'anno:"
+      label-iso-week-in-year: "Settimana ISO (nell'anno):"
       label-week-in-month: 'Settimana del mese:'
       title-iso-week-number-to-date: Numero della settimana ISO fino ad oggi
       label-iso-week-number: 'Numero della settimana ISO:'
@@ -4413,8 +4417,8 @@ tools:
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 'Suggerimento:
         vai su un sito Web per testare, apri F12 Console ed esegui'
       tag-window-copy-document-cookie: window.copy(document.cookie)
-      ? tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted
-      : '. Questo copierà la stringa del cookie negli appunti. Nota: questo copierà
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        '. Questo copierà la stringa del cookie negli appunti. Nota: questo copierà
         solo i cookie disponibili per JavaScript (solo HTTP e i cookie sicuri saranno
         omessi).'
       tag-name: Nome
@@ -4565,8 +4569,8 @@ tools:
       label-policy: 'Politica:'
       placeholder-select-policy: Seleziona la politica
       label-subdomain-policy: 'Criterio del sottodominio:'
-      label-percentage-of-emails-subject-to-dmarc-policy-enforcement-0-100: 'Percentuale
-        (di email soggette all''applicazione della policy DMARC (0-100%)):'
+      label-percentage-of-emails-subject-to-dmarc-policy-enforcement-0-100: "Percentuale
+        (di email soggette all'applicazione della policy DMARC (0-100%)):"
       placeholder-enter-percentage: Inserisci la percentuale
       label-aggregate-email-where-aggregate-dmarc-reports-should-be-sent: 'Email aggregata
         (dove devono essere inviati i report DMARC aggregati):'
@@ -4576,8 +4580,8 @@ tools:
       label-alignment-spf: 'Allineamento (SPF):'
       placeholder-select-alignment: Seleziona l'allineamento
       label-alignment-dkim: 'Allineamento (DKIM):'
-      label-reporting-interval-for-sending-dmarc-aggregate-reports: 'Intervallo di
-        segnalazione (per l''invio di report aggregati DMARC):'
+      label-reporting-interval-for-sending-dmarc-aggregate-reports: "Intervallo di
+        segnalazione (per l'invio di report aggregati DMARC):"
       placeholder-enter-interval: Inserisci intervallo
       title-generated-dmarc-record: Record DMARC generato
       tag-seconds: secondi
@@ -4661,10 +4665,10 @@ tools:
       placeholder-by-default-standard-mount-options-rw-suid-dev-exec-auto-nouser-async: 'Per
         impostazione predefinita: opzioni di montaggio standard (rw, suid, dev, exec,
         auto, nouser, async)'
-      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: 'Dump
-        (determina se l''utilità ''dump'' deve eseguire il backup di questo file system):'
-      label-pass-controls-the-order-for-filesystem-checks-at-boot: 'Pass (controlla
-        l''ordine dei controlli del file system all''avvio):'
+      label-dump-determines-whether-the-dump-utility-should-back-up-this-filesystem: "Dump
+        (determina se l'utilità 'dump' deve eseguire il backup di questo file system):"
+      label-pass-controls-the-order-for-filesystem-checks-at-boot: "Pass (controlla
+        l'ordine dei controlli del file system all'avvio):"
       placeholder-username: Nome utente
       label-username: 'Nome utente:'
       placeholder-password: Password
@@ -5142,26 +5146,26 @@ tools:
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: ad esempio, porta src 443 e dst
         10.0.0.1
       title-generated-tcpdump-command: Comando tcpdump generato
-      ? tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap
-      : tcpdump è un'utilità comunemente installata/disponibile su molte distribuzioni
+      tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
+        tcpdump è un'utilità comunemente installata/disponibile su molte distribuzioni
         Linux per raccogliere rapidamente una traccia di rete/catturare pacchetti.
         In breve, è il Wireshark di Linux per la raccolta di pacchetti catturati.
         tcpdump è molto versatile, con molti switch per catturare in modo granulare
         ciò che serve per il debug del traffico di rete; con opzioni per l'output
         dei risultati tramite console, file o Wireshark PCap.
-      ? tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp
-      : 'Questa utility aiuta a generare un comando tcpdump utilizzando alcuni degli
+      tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
+        'Questa utility aiuta a generare un comando tcpdump utilizzando alcuni degli
         switch/filtri più comuni offerti da tcpdump. Questa utility non comprende
         tutte le opzioni offerte da tcpdump; un elenco completo delle opzioni è disponibile
         nel relativo manuale:'
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 'Nota:'
-      ? tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon
-      : Host, Host di origine e Host di destinazione possono accettare più voci. Separare
+      tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon:
+        Host, Host di origine e Host di destinazione possono accettare più voci. Separare
         le voci con una virgola, uno spazio o un punto e virgola.
       tag-note-2: 'Nota 2:'
-      ? tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow
-      : Quando si specifica un flag di origine (src) o di destinazione (dst), tcpdump
+      tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
+        Quando si specifica un flag di origine (src) o di destinazione (dst), tcpdump
         filtrerà solo in quella direzione. Se si desidera acquisire un handshake TCP
         completo, assicurarsi di utilizzare "host" anziché "src host" o "dst host"
         per visualizzare sia il flusso di richiesta che quello di risposta.
@@ -5460,54 +5464,58 @@ tools:
         raid-70-requires-at-least-10-disks-with-5-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           70 richiede almeno 10 dischi, con un minimo di 5 per stripe. Le stripe devono
           contenere un numero uguale di dischi.
-        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures: RAID
+        raid-70-stripes-multiple-raid-7-arrays-together-raid-7-raid-0-each-raid-7-set-can-sustain-three-drive-failures:
+          RAID
           70 suddivide più array RAID 7 insieme (RAID 7 + RAID 0). Ogni set RAID 7
           può supportare tre guasti delle unità.
         2-drive-failures-per-raid-6-set: 2 guasti dell'unità per set RAID 6
         raid-60-requires-at-least-8-disks-with-4-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           60 richiede almeno 8 dischi, con un minimo di 4 per stripe. Le stripe devono
           contenere un numero uguale di dischi.
-        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures: RAID
+        raid-60-stripes-multiple-raid-6-arrays-together-raid-6-raid-0-each-raid-6-set-can-sustain-two-drive-failures:
+          RAID
           60 suddivide più array RAID 6 insieme (RAID 6 + RAID 0). Ogni set RAID 6
           può supportare il guasto di due unità.
         1-drive-failure-per-raid-5-set: 1 guasto dell'unità per set RAID 5
         raid-50-requires-at-least-6-disks-with-3-minimum-per-stripe-stripes-must-contain-an-equal-number-of-disks: RAID
           50 richiede almeno 6 dischi, con un minimo di 3 per stripe. Le stripe devono
           contenere un numero uguale di dischi.
-        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure: RAID
+        raid-50-stripes-multiple-raid-5-arrays-together-raid-5-raid-0-each-raid-5-set-can-sustain-a-single-drive-failure:
+          RAID
           50 suddivide più array RAID 5 insieme (RAID 5 + RAID 0). Ogni set RAID 5
           può sostenere il guasto di una singola unità.
         1-drive-failure-per-mirrored-set: 1 guasto dell'unità per set speculare
         raid-10-requires-an-even-number-of-at-least-4-disks: RAID 10 richiede un numero
           pari di almeno 4 dischi
-        ? raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group
-        : RAID 10 è una serie di mirror (RAID 1 + RAID 0). Ogni set di unità viene
+        raid-10-is-a-stripe-of-mirrors-raid-1-raid-0-each-set-of-drives-is-mirrored-and-striped-together-so-that-each-drive-in-the-set-is-fault-tolerant-within-the-group:
+          RAID 10 è una serie di mirror (RAID 1 + RAID 0). Ogni set di unità viene
           sottoposto a mirroring e striping, in modo che ogni unità del set sia tollerante
           agli errori all'interno del gruppo.
         3-drive-failures: 3 guasti dell'unità
         raid-7-requires-at-least-5-disks: RAID 7 richiede almeno 5 dischi
-        ? raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives
-        : RAID 7/RAID TP (non standard) è simile a RAID 5 e RAID 6, ma con un terzo
+        raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
+          RAID 7/RAID TP (non standard) è simile a RAID 5 e RAID 6, ma con un terzo
           blocco di parità. Questo consente di gestire il guasto di un terzo disco,
           con una riduzione dello spazio di archiviazione pari a tre unità.
         2-drive-failures: 2 guasti dell'unità
         raid-6-requires-at-least-4-disks: RAID 6 richiede almeno 4 dischi
-        ? raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives
-        : RAID 6 è simile a RAID 5, ma con un blocco di parità aggiuntivo. Questo
+        raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives:
+          RAID 6 è simile a RAID 5, ma con un blocco di parità aggiuntivo. Questo
           consente di evitare un ulteriore guasto del disco, con una riduzione dello
           spazio di archiviazione pari a due unità.
         1-drive-failure: 1 guasto dell'unità
         raid-5-requires-at-least-3-disks: RAID 5 richiede almeno 3 dischi
-        ? raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information
-        : RAID 5 utilizza lo striping a livello di blocco con parità. Ciò consente
+        raid-5-uses-block-level-striping-with-parity-this-allows-for-fault-tolerance-with-a-storage-reduction-equal-to-one-drive-for-the-parity-information:
+          RAID 5 utilizza lo striping a livello di blocco con parità. Ciò consente
           la tolleranza ai guasti con una riduzione dello spazio di archiviazione
           pari a un'unità per le informazioni di parità.
         raid-1-requires-at-least-1-disk: RAID 1 richiede almeno 1 disco
-        ? raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational
-        : RAID 1 consiste in una copia esatta dei dati (mirror) su due o più dischi.
+        raid-1-consists-of-an-exact-copy-of-the-data-mirror-across-two-or-more-disks-the-array-will-operate-as-long-as-at-least-one-drive-is-operational:
+          RAID 1 consiste in una copia esatta dei dati (mirror) su due o più dischi.
           L'array funzionerà finché almeno un'unità sarà operativa.
         raid-0-requires-at-least-1-disk: RAID 0 richiede almeno 1 disco
-        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space: RAID
+        raid-0-splits-data-evenly-across-2-or-more-disks-without-redunancy-or-fault-tolerance-creating-one-large-storage-space:
+          RAID
           0 suddivide i dati in modo uniforme su 2 o più dischi senza ridondanza o
           tolleranza agli errori, creando un unico grande spazio di archiviazione.
   websocket-tester:
@@ -5594,7 +5602,8 @@ tools:
         source-wikipedia: 'Fonte: Wikipedia'
         once-the-long-break-is-finished-return-to-step-1: Una volta terminata la lunga
           pausa, tornare al passaggio 1.
-        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common: Continua
+        keep-repeating-steps-1-3-but-after-your-4th-task-take-a-long-break-instead-of-a-short-break-20-30-minutes-is-common:
+          Continua
           a ripetere i passaggi da 1 a 3, ma dopo il quarto compito fai una lunga
           pausa invece di una breve (solitamente 20-30 minuti).
         when-the-timer-rings-take-a-short-break-5-10-minutes-is-common: Quando suona
@@ -5603,8 +5612,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: Decidi un compito
           e imposta il timer (solitamente 25 minuti).
         five-steps-of-the-pomodoro-technique: Cinque passi della Tecnica del Pomodoro
-        ? the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student
-        : La Tecnica del Pomodoro è un metodo di gestione del tempo sviluppato da
+        the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
+          La Tecnica del Pomodoro è un metodo di gestione del tempo sviluppato da
           Francesco Cirillo negli anni '80. Utilizza un timer per suddividere il lavoro
           in intervalli, in genere di 25 minuti, separati da brevi pause. Ogni intervallo
           è chiamato "pomodoro", dal nome del timer da cucina a forma di pomodoro
@@ -5902,11 +5911,11 @@ tools:
         song-details: Dettagli della canzone
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 'Il nome dell''account
-          Twitter del creatore (es: {''@''}sharevb)...'
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: "Il nome dell'account
+          Twitter del creatore (es: {'@'}sharevb)..."
         creator-acc: Creatore acc.
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 'Il nome dell''account
-          Twitter del sito (es: {''@''}ittoolsdottech)...'
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: "Il nome dell'account
+          Twitter del sito (es: {'@'}ittoolsdottech)..."
         site-account: Account del sito
         the-twitter-card-type: Il tipo di scheda Twitter...
         card-type: Tipo di carta
@@ -6247,7 +6256,7 @@ tools:
         e binario
     service:
       text:
-        unexpected-key-obj-key: '''{0}''=''{1}'' imprevisto'
+        unexpected-key-obj-key: "'{0}'='{1}' imprevisto"
         unexpected-array-size-key-value-expected-coderoption-size-elements: Dimensione
           array imprevista '{0}'='{1}' previsti {2} elementi
         unexpected-non-array-key-value: Array non inaspettato '{0}'='{1}'
@@ -6396,12 +6405,12 @@ tools:
       label-valid-from: 'Valido da:'
       label-valid-until: 'Valido fino al:'
       label-issuer: 'Emittente:'
-      label-subject-key: 'Chiave dell''argomento:'
-      label-subject-key-type: 'Tipo di chiave dell''oggetto:'
+      label-subject-key: "Chiave dell'argomento:"
+      label-subject-key-type: "Tipo di chiave dell'oggetto:"
       label-subject-size: 'Dimensione del soggetto:'
-      label-subject-comment: 'Commento sull''oggetto:'
-      label-subject-curve: 'Curva dell''oggetto:'
-      label-issuer-key: 'Chiave dell''emittente:'
+      label-subject-comment: "Commento sull'oggetto:"
+      label-subject-curve: "Curva dell'oggetto:"
+      label-issuer-key: "Chiave dell'emittente:"
       label-serial: 'Seriale:'
       label-purposes: 'Scopi:'
       label-extensions-parsed: 'Estensioni (analizzate):'
@@ -6409,7 +6418,7 @@ tools:
       label-certificate-pem: 'Certificato (pem):'
       label-creation-time: 'Ora di creazione:'
       label-expiration-time: 'Tempo di scadenza:'
-      label-algorithm-info: 'Informazioni sull''algoritmo:'
+      label-algorithm-info: "Informazioni sull'algoritmo:"
       label-fingerprint: 'Impronta digitale:'
       label-user-id-s: 'ID utente:'
       label-key-id-s: 'ID chiave:'
@@ -6614,8 +6623,8 @@ tools:
     description: Converti il risultato JSON del comando Docker Inspect nel comando
       Docker Run
     texts:
-      label-paste-your-docker-inspect-json-output: 'Incolla l''output JSON di Docker
-        Inspect:'
+      label-paste-your-docker-inspect-json-output: "Incolla l'output JSON di Docker
+        Inspect:"
       title-the-following-errors-occured: 'Si sono verificati i seguenti errori:'
   docker-swarm-memo:
     title: Foglio riassuntivo di Docker SWARM
@@ -6778,7 +6787,7 @@ tools:
       title-image-compare-viewer: Visualizzatore di confronto immagini
       tab-compare-by-url: Confronta per URL
       tab-compare-by-upload: Confronta per caricamento
-      label-left-image-url: 'URL dell''immagine a sinistra:'
+      label-left-image-url: "URL dell'immagine a sinistra:"
       placeholder-enter-left-image-url: Inserisci l'URL dell'immagine a sinistra
       label-right-image-url: 'URL dell''immagine a destra:'
       placeholder-enter-right-image-url: Inserisci l'URL dell'immagine corretta
@@ -6937,22 +6946,22 @@ tools:
       label-drive-mtbf-hours: 'MTBF di guida (ore):'
       label-rebuild-time-hours: 'Tempo di ricostruzione (ore):'
       label-bit-error-rate-ber-in-1ex: 'Tasso di errore di bit (BER in 1eX):'
-      label-drive-capacity-tb: 'Capacità dell''unità (TB):'
+      label-drive-capacity-tb: "Capacità dell'unità (TB):"
       label-years-for-failure-probability: 'Anni per la probabilità di fallimento:'
       label-mttdl-hours: 'MTTDL (ore):'
       label-mttdl-years: 'MTTDL (anni):'
       label-failure-probability: 'Probabilità di fallimento:'
       tag-key-terms-explained: 🧠 Termini chiave spiegati
       tag-raid-level: Livello RAID
-      ? tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both
-      : RAID (Redundant Array of Independent Disks) è un metodo che consente di combinare
+      tag-raid-redundant-array-of-independent-disks-is-a-method-of-combining-multiple-physical-drives-into-one-logical-unit-to-improve-performance-redundancy-or-both:
+        RAID (Redundant Array of Independent Disks) è un metodo che consente di combinare
         più unità fisiche in un'unica unità logica per migliorare le prestazioni,
         la ridondanza o entrambe.
       tag-description: Descrizione
       tag-raid-0: RAID 0
-      tag-striping-only-no-redundancy-fast-but-risky-if-one-drive-fails-all-data-is-lost: 'Solo
-        striping. Nessuna ridondanza. Veloce ma rischioso: se un''unità si guasta,
-        tutti i dati vanno persi.'
+      tag-striping-only-no-redundancy-fast-but-risky-if-one-drive-fails-all-data-is-lost: "Solo
+        striping. Nessuna ridondanza. Veloce ma rischioso: se un'unità si guasta,
+        tutti i dati vanno persi."
       tag-raid-1: RAID 1
       tag-mirroring-data-is-duplicated-across-drives-high-redundancy-low-capacity-efficiency: Mirroring.
         I dati vengono duplicati su più unità. Elevata ridondanza, bassa efficienza
@@ -6975,35 +6984,37 @@ tools:
         di array RAID 5. Combina le prestazioni di RAID 0 con la ridondanza di RAID
         5.
       tag-️-mtbf-mean-time-between-failures: ⏱️ MTBF (tempo medio tra guasti)
-      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware: Tempo
+      tag-the-average-time-in-hours-a-drive-is-expected-to-operate-before-failing-higher-mtbf-means-more-reliable-hardware:
+        Tempo
         medio (in ore) di funzionamento previsto di un'unità prima di guastarsi. Un
         MTBF più elevato indica un hardware più affidabile.
       tag-rebuild-time: 🔁 Tempo di ricostruzione
-      ? tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery
-      : Tempo necessario per ricostruire i dati su un'unità sostitutiva dopo un guasto.
+      tag-the-time-required-to-reconstruct-data-on-a-replacement-drive-after-a-failure-longer-rebuild-times-increase-the-risk-of-a-second-failure-during-recovery:
+        Tempo necessario per ricostruire i dati su un'unità sostitutiva dopo un guasto.
         Tempi di ricostruzione più lunghi aumentano il rischio di un secondo guasto
         durante il ripristino.
       tag-mttdl-mean-time-to-data-loss: 📉 MTTDL (tempo medio di perdita dei dati)
-      ? tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system
-      : Stima statistica della durata di funzionamento di un sistema RAID prima che
+      tag-a-statistical-estimate-of-how-long-a-raid-system-can-operate-before-data-loss-occurs-it-considers-drive-failures-rebuild-time-and-raid-redundancy-higher-mttdl-means-a-safer-system:
+        Stima statistica della durata di funzionamento di un sistema RAID prima che
         si verifichi una perdita di dati. Considera guasti delle unità, tempi di ricostruzione
         e ridondanza RAID. Un MTTDL più elevato indica un sistema più sicuro.
       tag-bit-error-rate-ber: 🧮 Tasso di errore di bit (BER)
-      ? tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives
-      : La probabilità che un bit letto da un disco sia errato a causa di limitazioni
+      tag-the-probability-that-a-bit-read-from-a-disk-will-be-incorrect-due-to-hardware-limitations-even-tiny-bers-like-1-in-a-trillion-can-cause-issues-during-rebuilds-especially-with-large-drives:
+        La probabilità che un bit letto da un disco sia errato a causa di limitazioni
         hardware. Anche valori BER minimi (come 1 su un trilione) possono causare
         problemi durante le ricostruzioni, soprattutto con unità di grandi dimensioni.
       tag-unrecoverable-read-error-ure: 🧠 Errore di lettura irrecuperabile (URE)
-      ? tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery
-      : Si verifica quando un'unità non riesce a leggere un settore durante la ricostruzione.
+      tag-occurs-when-a-drive-fails-to-read-a-sector-during-rebuild-ber-contributes-to-ure-risk-which-can-compromise-raid-recovery:
+        Si verifica quando un'unità non riesce a leggere un settore durante la ricostruzione.
         BER contribuisce al rischio URE, che può compromettere il ripristino RAID.
       tag-drive-capacity-tb: 📦 Capacità dell'unità (TB)
-      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors: Spazio
+      tag-total-storage-per-drive-larger-drives-take-longer-to-rebuild-and-are-more-susceptible-to-ber-related-errors:
+        Spazio
         di archiviazione totale per unità. Le unità più grandi richiedono più tempo
         per la ricostruzione e sono più soggette a errori correlati a BER.
       tag-failure-probability: 📈 Probabilità di fallimento
-      ? tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models
-      : Probabilità che il sistema RAID subisca una perdita di dati in un determinato
+      tag-the-chance-that-the-raid-system-will-experience-data-loss-over-a-given-time-period-e-g-5-years-calculated-using-mttdl-and-exponential-failure-models:
+        Probabilità che il sistema RAID subisca una perdita di dati in un determinato
         periodo di tempo (ad esempio, 5 anni). Calcolata utilizzando modelli MTTDL
         e di guasto esponenziale.
   pack-files-for-ai:
@@ -7021,7 +7032,7 @@ tools:
       label-output-format: 'Formato di output:'
       label-xml: XML
       label-markdown: Riduzione dei prezzi
-      label-output-preview: 'Anteprima dell''output:'
+      label-output-preview: "Anteprima dell'output:"
       tag-this-section-contains-a-summary-of-this-file: Questa sezione contiene un
         riepilogo di questo file.
       tag-click-or-drag-code-source-files-or-folder-to-this-area-to-add-to-package: Fare
@@ -7062,8 +7073,8 @@ tools:
       tab-notation-to-number: Notazione → Numero
       error-enter-exactly-bands: Inserire esattamente {count} bande di colore valide
         ({colors}).
-      error-conversion-failed: 'Conversione non riuscita. Controllare l''ordine e
-        i valori delle bande: {error}'
+      error-conversion-failed: "Conversione non riuscita. Controllare l'ordine e
+        i valori delle bande: {error}"
       error-invalid-notation-format: 'Formato di notazione non valido: {error}'
       error-valid-positive-number: Inserire un numero positivo valido.
       label-valid-colors: 'Colori validi:'
@@ -7366,8 +7377,8 @@ tools:
       tag-mirrors-stripes: Specchi/strisce
       tag-reset: Reset
       tag-see-zpool-openzfs-cheatsheet: Vedi il foglio riassuntivo di Zpool/OpenZFS
-      ? tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values
-      : Fare clic sui titoli delle sezioni per espandere/comprimere e visualizzare
+      tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values:
+        Fare clic sui titoli delle sezioni per espandere/comprimere e visualizzare
         i dati calcolati. Passando il mouse su una cella della tabella, i dati pertinenti
         vengono caricati nella sezione Valori di calcolo sottostante. È possibile
         fare clic sulle celle della tabella per bloccare o sbloccare tali valori.
@@ -7405,7 +7416,7 @@ tools:
       label-pan-truncated: 'PAN troncato:'
       label-scheme: 'Schema:'
       label-major-industry-identifier: 'Identificatore del settore principale:'
-      label-issuer-identifier-number: 'Numero identificativo dell''emittente:'
+      label-issuer-identifier-number: "Numero identificativo dell'emittente:"
       label-cvv-length: 'Lunghezza CVV:'
       tag-invlid-credit-card-number: Numero di carta di credito non valido
   database-connection-string-builder:
@@ -7645,8 +7656,8 @@ tools:
       label-viewport-width-vw: Larghezza della finestra (vw)
       label-viewport-height-vh: Altezza della finestra (vh)
       label-value-to-convert: 'Valore da convertire:'
-      label-from-unit: 'Dall''unità:'
-      label-to-unit: 'All''unità:'
+      label-from-unit: "Dall'unità:"
+      label-to-unit: "All'unità:"
       label-base-font-size-px: Dimensione carattere base (px)
       label-viewport-width-px: Larghezza della finestra (px)
       label-viewport-height-px: Altezza della finestra (px)
@@ -7696,8 +7707,9 @@ tools:
       label-signature: Firma
       label-arguments: Argomenti
       title-structured-output-json: Output strutturato JSON
-      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x: '{''{''}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{''}''}
-        o 0x grezzo....'
+      placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{'}'}
+        o 0x grezzo...."
   file-splitter:
     title: Divisore di file
     description: Dividi file JSON, XML o di testo per gruppo di nodi o per gruppo
@@ -7783,7 +7795,7 @@ tools:
       title-styles: Stili
       label-block-types: 'Tipi di blocco:'
       label-inline-styles: Stili in linea
-      label-header-style: 'Stile dell''intestazione:'
+      label-header-style: "Stile dell'intestazione:"
       label-list-style: 'Stile elenco:'
       title-block-frequencies: Frequenze di blocco
       label-headers: 'Intestazioni:'
@@ -7894,7 +7906,7 @@ tools:
         È possibile utilizzare un
       put-your-cors-anywhere-instance-url: Inserisci l'URL della tua istanza CORS
         Anywhere...
-      cors-anywhere-instance-url: 'URL dell''istanza CORS Anywhere:'
+      cors-anywhere-instance-url: "URL dell'istanza CORS Anywhere:"
       expanded-url: URL espanso
       short-url: URL breve
       failed-to-expand-some-urls: Impossibile espandere alcuni URL.
@@ -8406,7 +8418,7 @@ about:
     name: Nome
     desc: Descrizione
     category: Categoria
-  content-fork: '# Informazioni su IT-Tools
+  content-fork: "# Informazioni su IT-Tools
 
     Questo meraviglioso sito web, inizialmente creato con ❤ da [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about)
     e ampliato da ShareVB, raccoglie strumenti utili per sviluppatori e professionisti
@@ -8421,7 +8433,7 @@ about:
 
     IT Tools è realizzato in Vue.js (Vue 3) con la libreria di componenti Naive UI
     ed è ospitato e distribuito costantemente da Vercel. In alcuni strumenti vengono
-    utilizzate librerie open source di terze parti; l''elenco completo è disponibile
+    utilizzate librerie open source di terze parti; l'elenco completo è disponibile
     nel file [package.json](https://github.com/sharevb/it-tools/blob/main/package.json)
     del repository.
 
@@ -8435,7 +8447,7 @@ about:
     di bug nella [sezione problemi](https://github.com/sharevb/it-tools/issues/new/choose)
     del repository GitHub.
 
-    '
+    "
   import-favorites: Importa Preferiti
   export-favorites: Esporta Preferiti
   put-your-favorites-json-array-here: Inserisci qui il tuo array JSON preferito...

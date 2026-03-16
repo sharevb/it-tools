@@ -388,32 +388,28 @@ onBeforeUnmount(() => {
 
               <tr>
                 <td>
-                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd
-                  >{{ t('tools.rsvp-reader.texts.tag-right-arrow') }}
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd>{{ t('tools.rsvp-reader.texts.tag-right-arrow') }}
                 </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-skip-forward-one-chunk') }}</td>
               </tr>
 
               <tr>
                 <td>
-                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd
-                  >{{ t('tools.rsvp-reader.texts.tag-left-arrow') }}
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd>{{ t('tools.rsvp-reader.texts.tag-left-arrow') }}
                 </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-skip-backward-one-chunk') }}</td>
               </tr>
 
               <tr>
                 <td>
-                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd
-                  >{{ t('tools.rsvp-reader.texts.tag-up-arrow') }}
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd>{{ t('tools.rsvp-reader.texts.tag-up-arrow') }}
                 </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-increase-wpm') }}</td>
               </tr>
 
               <tr>
                 <td>
-                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd
-                  >{{ t('tools.rsvp-reader.texts.tag-down-arrow') }}
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd>{{ t('tools.rsvp-reader.texts.tag-down-arrow') }}
                 </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-decrease-wpm') }}</td>
               </tr>
