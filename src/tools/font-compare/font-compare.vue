@@ -69,14 +69,14 @@ const fontOptions = [
 ];
 
 interface FontData {
-  value: string;
-  url: string;
-  css: string;
-  cssUrl: string;
-  dynamicName: string;
-  weight: string;
-  style: string;
-  fallback: string;
+  value: string
+  url: string
+  css: string
+  cssUrl: string
+  dynamicName: string
+  weight: string
+  style: string
+  fallback: string
 }
 
 const fontA = useITStorage('font-comparer:a', {
@@ -140,7 +140,8 @@ async function loadCSSFromURL(url: string) {
     styleTag.textContent = cssText;
     document.head.appendChild(styleTag);
     injectedStyleTags.push(styleTag);
-  } catch (error) {
+  }
+  catch (error) {
     console.error('Failed to load CSS:', error);
   }
 }
@@ -154,7 +155,8 @@ function loadFontFromURL(url: string, index: number) {
       document.fonts.add(loadedFont);
       if (index === 0) {
         fontA.value.dynamicName = fontName;
-      } else {
+      }
+      else {
         fontB.value.dynamicName = fontName;
       }
     })
@@ -176,7 +178,8 @@ function handleFontUpload(file: UploadFileInfo, index: number) {
         document.fonts.add(loadedFont);
         if (index === 0) {
           fontA.value.dynamicName = fontName;
-        } else {
+        }
+        else {
           fontB.value.dynamicName = fontName;
         }
       })
@@ -199,7 +202,7 @@ onBeforeUnmount(() => {
 });
 
 interface UploadEvents {
-  file: UploadFileInfo;
+  file: UploadFileInfo
 }
 </script>
 

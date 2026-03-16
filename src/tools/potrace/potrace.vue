@@ -34,10 +34,7 @@ function file2Buffer(file: File) {
   return new Promise<Buffer>((resolve, reject) => {
     const reader = new FileReader();
 
-    const cleanup = () => {
-      reader.removeEventListener('load', handleLoad);
-      reader.removeEventListener('error', handleError);
-    };
+    let cleanup: () => void;
 
     const handleLoad = () => {
       cleanup();
@@ -48,6 +45,11 @@ function file2Buffer(file: File) {
     const handleError = (error: ProgressEvent<FileReader>) => {
       cleanup();
       reject(new Error(`Failed to read file: ${error.type}`));
+    };
+
+    cleanup = () => {
+      reader.removeEventListener('load', handleLoad);
+      reader.removeEventListener('error', handleError);
     };
 
     reader.addEventListener('load', handleLoad);
@@ -67,7 +69,8 @@ const svg = computedAsync(async () => {
   try {
     const buffer = await file2Buffer(file);
     return trace ? await traceAsync(buffer) : await posterizeAsync(buffer);
-  } catch (e: any) {
+  }
+  catch (e: any) {
     return e.toString();
   }
 });
@@ -104,7 +107,7 @@ async function onUpload(file: File) {
       <n-divider />
 
       <div style="text-align: center">
-        <img width="150" :src="svgBase64" style="background-color: white" />
+        <img width="150" :src="svgBase64" style="background-color: white">
       </div>
     </div>
   </div>

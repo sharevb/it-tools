@@ -8,18 +8,18 @@ Intl.DurationFormat ??= class DurationFormat {
 
 export type Update<Result> =
   | {
-      kind: 'progress';
-      progress: number;
-    }
+    kind: 'progress'
+    progress: number
+  }
   | {
-      kind: 'success';
-      value: Result;
-      timeTakenMs: number;
-    }
+    kind: 'success'
+    value: Result
+    timeTakenMs: number
+  }
   | {
-      kind: 'error';
-      message: string;
-    };
+    kind: 'error'
+    message: string
+  };
 
 // generic type for the callback versions of bcryptjs's `hash` and `compare`
 export type BcryptFn<Param, Result> = (
@@ -30,8 +30,8 @@ export type BcryptFn<Param, Result> = (
 ) => void;
 
 interface BcryptWithProgressOptions {
-  signal: AbortSignal;
-  timeoutMs: number;
+  signal: AbortSignal
+  timeoutMs: number
 }
 
 export async function* bcryptWithProgressUpdates<Param, Result>(
@@ -49,7 +49,7 @@ export async function* bcryptWithProgressUpdates<Param, Result>(
   const signal: AbortSignal = userSignal ? new AbortSignal([userSignal, timeoutSignal] as any) : timeoutSignal;
 
   let res = (_: Update<Result>) => {};
-  const nextPromise = () => new Promise<Update<Result>>((resolve) => (res = resolve));
+  const nextPromise = () => new Promise<Update<Result>>(resolve => (res = resolve));
   const promises = [nextPromise()];
   const nextValue = (value: Update<Result>) => {
     res(value);
@@ -83,7 +83,8 @@ export async function* bcryptWithProgressUpdates<Param, Result>(
 
         // throw inside callback to cancel execution of hashing/comparing
         throw signal.reason;
-      } else {
+      }
+      else {
         nextValue({ kind: 'progress', progress });
       }
     },

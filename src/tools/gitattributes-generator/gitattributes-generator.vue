@@ -36,7 +36,8 @@ async function loadOptions() {
         value: name,
       }));
     lastFetched.value = now;
-  } catch {
+  }
+  catch {
     if (!options.value?.length) {
       options.value = [
         'ActionScript',
@@ -62,7 +63,7 @@ async function loadOptions() {
         'Servoy',
         'VisualStudio',
         'Web',
-      ].map((name) => ({
+      ].map(name => ({
         label: name,
         value: name,
       }));
@@ -87,7 +88,7 @@ const commands = computed(() => {
     return {};
   }
   const urls = selected.value
-    .map((lang) => `https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/${lang}.gitattributes`)
+    .map(lang => `https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/${lang}.gitattributes`)
     .join(' ');
   return {
     curl: `curl ${urls} > .gitattributes`,

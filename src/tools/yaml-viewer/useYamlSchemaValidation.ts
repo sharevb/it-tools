@@ -7,15 +7,15 @@ import AjvErrors from 'ajv-errors';
 import { yamlParse } from 'composeverter';
 
 export interface SchemaStore {
-  name: string;
-  description: string;
-  url: string;
-  fileMatch: string[];
-  versions?: string[];
+  name: string
+  description: string
+  url: string
+  fileMatch: string[]
+  versions?: string[]
 }
 
 interface NodeWithRange {
-  range?: number[];
+  range?: number[]
 }
 
 export function useYamlSchemaValidation({
@@ -23,9 +23,9 @@ export function useYamlSchemaValidation({
   schemaUrl,
   schemaData,
 }: {
-  yaml: MaybeRef<string>;
-  schemaUrl: MaybeRef<string>;
-  schemaData: MaybeRef<string>;
+  yaml: MaybeRef<string>
+  schemaUrl: MaybeRef<string>
+  schemaData: MaybeRef<string>
 }) {
   const schemas = ref<SchemaStore[]>([]);
   const schema = ref<Schema | null>(null);
@@ -39,7 +39,8 @@ export function useYamlSchemaValidation({
       }
       const catalogJson: { $schemaUrl: string; schemas: SchemaStore[]; version: number } = await response.json();
       schemas.value = catalogJson.schemas;
-    } catch (e) {
+    }
+    catch (e) {
       console.error('Failed to load schema catalog:', e);
     }
   });
@@ -50,7 +51,8 @@ export function useYamlSchemaValidation({
       if (get(schemaUrl) === 'custom') {
         try {
           schema.value = JSON.parse(get(schemaData)) as Schema;
-        } catch (e: any) {
+        }
+        catch (e: any) {
           errors.value = [`Schema parsing error:${e.toString()}`];
         }
         return;
@@ -60,7 +62,8 @@ export function useYamlSchemaValidation({
           const response = await fetch(get(schemaUrl));
           const schemaJson = await response.json();
           schema.value = schemaJson;
-        } catch (e: any) {
+        }
+        catch (e: any) {
           errors.value = [`Schema fetching error:${e.toString()}`];
         }
       }
@@ -88,7 +91,8 @@ export function useYamlSchemaValidation({
       const valid = validate(parsedYaml);
       if (valid || validate.errors === null) {
         errors.value = [];
-      } else {
+      }
+      else {
         const yamlDoc = YAML.parseDocument(yamlValue, { prettyErrors: true });
         errors.value = validate.errors!.map((err) => {
           let { instancePath } = err;
@@ -106,11 +110,14 @@ export function useYamlSchemaValidation({
           let message;
           if (err.keyword === 'additionalProperties') {
             message = `Line ${line}(${instancePath}): '${err.params.additionalProperty}' is unknown for '${instancePath}'`;
-          } else if (err.keyword === 'format') {
+          }
+          else if (err.keyword === 'format') {
             message = `Line ${line}(${instancePath}): must have a valid syntax for '${err.params.format}'`;
-          } else if (err.keyword === 'oneOf') {
+          }
+          else if (err.keyword === 'oneOf') {
             message = `Line ${line}(${instancePath}): must be either a Short Syntax (string(s)) or a Long Syntax (object(s))`;
-          } else {
+          }
+          else {
             message = `Line ${line}(${instancePath}): ${err.message} (${err.keyword}: ${JSON.stringify(err.params)})`;
           }
           return message;

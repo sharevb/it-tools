@@ -3,11 +3,11 @@ import { isRef, onBeforeMount, ref, watch } from 'vue';
 import { type MaybeRef, get } from '@vueuse/core';
 
 export interface SchemaStore {
-  name: string;
-  description: string;
-  url: string;
-  fileMatch: string[];
-  versions?: string[];
+  name: string
+  description: string
+  url: string
+  fileMatch: string[]
+  versions?: string[]
 }
 
 export function useJsonSchemaValidation({
@@ -15,9 +15,9 @@ export function useJsonSchemaValidation({
   schemaUrl,
   schemaData,
 }: {
-  json: MaybeRef<string>;
-  schemaUrl: MaybeRef<string>;
-  schemaData: MaybeRef<string>;
+  json: MaybeRef<string>
+  schemaUrl: MaybeRef<string>
+  schemaData: MaybeRef<string>
 }) {
   const schemas = ref<SchemaStore[]>([]);
   const schema = ref<Schema | null>(null);
@@ -31,7 +31,8 @@ export function useJsonSchemaValidation({
       }
       const catalogJson: { $schemaUrl: string; schemas: SchemaStore[]; version: number } = await response.json();
       schemas.value = catalogJson.schemas;
-    } catch (e) {
+    }
+    catch (e) {
       console.error('Failed to load schema catalog:', e);
     }
   });
@@ -46,7 +47,8 @@ export function useJsonSchemaValidation({
       if (get(schemaUrl) === 'custom') {
         try {
           schema.value = JSON.parse(get(schemaData)) as Schema;
-        } catch (e: any) {
+        }
+        catch (e: any) {
           errors.value = [`Schema parsing error:${e.toString()}`];
         }
         return;
@@ -56,7 +58,8 @@ export function useJsonSchemaValidation({
           const response = await fetch(get(schemaUrl));
           const schemaJson = await response.json();
           schema.value = schemaJson;
-        } catch (e: any) {
+        }
+        catch (e: any) {
           errors.value = [`Schema fetching error:${e.toString()}`];
         }
       }
@@ -80,8 +83,9 @@ export function useJsonSchemaValidation({
       try {
         const validator = new Validator();
         const validationResult = validator.validate(JSON.parseBigNum(jsonValue), schemaValue);
-        errors.value = validationResult.errors.map((error) => error.stack ?? '');
-      } catch (e: any) {
+        errors.value = validationResult.errors.map(error => error.stack ?? '');
+      }
+      catch (e: any) {
         errors.value = [`JSON validation error:${e.toString()}`];
       }
     },

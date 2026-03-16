@@ -61,15 +61,15 @@ export function convertCertificates(inputKeyOrCertificateValue: string | Buffer,
     .toString()
     .trim()
     .split(/(-----BEGIN [^-]+-----\n)/)
-    .filter((s) => s !== '');
+    .filter(s => s !== '');
   if (!parts.length) {
     return convertCertificate(inputKeyOrCertificateValue, password);
   }
   let parsedPEMs: Array<{
-    alias: string;
-    key: string;
-    der: Certificate;
-    pem: string;
+    alias: string
+    key: string
+    der: Certificate
+    pem: string
   }> = [];
   for (let i = 0; i < parts.length; i += 2) {
     const pemPart = parts[i] + parts[i + 1];
@@ -82,7 +82,8 @@ export function convertCertificate(inputKeyOrCertificateValue: string | Buffer, 
   const canParse = (value: any, parseFunction: (value: any) => any) => {
     try {
       return parseFunction(value);
-    } catch (e: any) {
+    }
+    catch (e: any) {
       // console.log(e);
       return null;
     }
@@ -92,7 +93,8 @@ export function convertCertificate(inputKeyOrCertificateValue: string | Buffer, 
     for (const format of ['openssh', 'pem', 'x509']) {
       try {
         return parseCertificate(value, format as CertificateFormat);
-      } catch {}
+      }
+      catch {}
     }
     return null;
   }) as Certificate;
@@ -101,7 +103,7 @@ export function convertCertificate(inputKeyOrCertificateValue: string | Buffer, 
       {
         alias: '#default',
         key: null,
-        der: canParse(cert, (c) => c.toBuffer('x509')),
+        der: canParse(cert, c => c.toBuffer('x509')),
         pem: cert.toString('pem'),
       },
     ];
@@ -115,7 +117,7 @@ export function convertCertificate(inputKeyOrCertificateValue: string | Buffer, 
       {
         alias: pkcs12.commonName,
         key: pkcs12.pemKey,
-        der: canParse(pkcs12.pemCertificate, (pemCert) => parseCertificate(pemCert, 'pem').toBuffer('x509')),
+        der: canParse(pkcs12.pemCertificate, pemCert => parseCertificate(pemCert, 'pem').toBuffer('x509')),
         pem: pkcs12.pemCertificate,
       },
     ];
@@ -130,7 +132,7 @@ export function convertCertificate(inputKeyOrCertificateValue: string | Buffer, 
         return {
           alias: k,
           key: null,
-          der: canParse(v, (pemCert) => parseCertificate(pemCert, 'pem').toBuffer('x509')),
+          der: canParse(v, pemCert => parseCertificate(pemCert, 'pem').toBuffer('x509')),
           pem: v,
         };
       }
@@ -138,7 +140,7 @@ export function convertCertificate(inputKeyOrCertificateValue: string | Buffer, 
       return {
         alias: k,
         key,
-        der: canParse(cert, (pemCert) => parseCertificate(pemCert, 'pem').toBuffer('x509')),
+        der: canParse(cert, pemCert => parseCertificate(pemCert, 'pem').toBuffer('x509')),
         pem: cert,
       };
     });

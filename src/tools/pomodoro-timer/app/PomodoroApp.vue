@@ -61,7 +61,8 @@ function isWorkIntervalSet() {
 
 if (isWorkIntervalSet()) {
   store.commit('goToPage', 'home');
-} else {
+}
+else {
   store.commit('goToPage', 'settings');
 }
 
@@ -76,7 +77,7 @@ const currentTab = computed({
 </script>
 
 <template>
-  <link href="//fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
+  <link href="//fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
   <div class="pomodoro-timer-app">
     <Header />
     <div class="page-container">

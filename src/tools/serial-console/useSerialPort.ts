@@ -29,7 +29,8 @@ export function useSerialPort() {
     try {
       port = selectedPort || (await navigator.serial.requestPort());
       await openPort();
-    } catch (err) {
+    }
+    catch (err) {
       appendOutput(`[Connect error] ${err}`);
     }
   }
@@ -50,7 +51,8 @@ export function useSerialPort() {
       writer = encoder.writable.getWriter();
 
       appendOutput('[Connected]');
-    } catch (err) {
+    }
+    catch (err) {
       appendOutput(`[Open error] ${err}`);
       attemptReconnect();
     }
@@ -68,7 +70,8 @@ export function useSerialPort() {
       if (inputDone) {
         try {
           await inputDone;
-        } catch {
+        }
+        catch {
           // Ignore cancellation errors during disconnect
         }
       }
@@ -76,13 +79,15 @@ export function useSerialPort() {
 
       try {
         await writer?.close();
-      } catch {
+      }
+      catch {
         // Ignore close errors during disconnect
       }
       if (outputDone) {
         try {
           await outputDone;
-        } catch {
+        }
+        catch {
           // Ignore close errors during disconnect
         }
       }
@@ -90,9 +95,11 @@ export function useSerialPort() {
 
       await port.close();
       appendOutput('[Disconnected]');
-    } catch (err) {
+    }
+    catch (err) {
       appendOutput(`[Teardown error] ${err}`);
-    } finally {
+    }
+    finally {
       isConnected.value = false;
       disconnecting = false;
     }
@@ -109,7 +116,8 @@ export function useSerialPort() {
           appendOutput(value);
         }
       }
-    } catch (err) {
+    }
+    catch (err) {
       if (!disconnecting) {
         appendOutput(`[Read error] ${err}`);
         attemptReconnect();
@@ -133,13 +141,15 @@ export function useSerialPort() {
     }
     reconnectAttempts++;
     appendOutput(`[Reconnecting... attempt ${reconnectAttempts}]`);
-    await new Promise((resolve) => setTimeout(resolve, 1000 * reconnectAttempts));
+    await new Promise(resolve => setTimeout(resolve, 1000 * reconnectAttempts));
     try {
       await openPort();
-    } catch (err) {
+    }
+    catch (err) {
       if (reconnectAttempts < maxReconnects) {
         attemptReconnect();
-      } else {
+      }
+      else {
         appendOutput(`[Reconnect failed] ${err}`);
       }
     }

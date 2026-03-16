@@ -13,20 +13,20 @@ export function useFlexSearch<Data extends Record<string, any>>({
   },
   limit = -1,
 }: {
-  search: MaybeRef<string>;
-  data: Data[];
+  search: MaybeRef<string>
+  data: Data[]
   options?: {
-    keys: SearchKey[];
+    keys: SearchKey[]
     /**
      * Whether to show or not show items with an empty search query. `true` won't show any items, `false` will show all items.
      * @default true
      */
-    filterEmpty?: boolean;
+    filterEmpty?: boolean
     /**
      * Whether the results should be sorted by similarity score using the Levenshtein distance.
      * @default true
      */
-    shouldSort?: boolean;
+    shouldSort?: boolean
     /**
      * Type of tokenization logic to use (Determines how the search logic will behave).
      * @default 'forward'
@@ -34,23 +34,23 @@ export function useFlexSearch<Data extends Record<string, any>>({
      *
      * Note: The `'tolerant'` tokenizer option mentioned in the documentation doesn't exist anymore in the current version of FlexSearch.
      */
-    tokenize?: 'strict' | 'forward' | 'reverse' | 'full';
+    tokenize?: 'strict' | 'forward' | 'reverse' | 'full'
     /**
      * Resolution value for giving meaningful results when searching for partial matches.
      * @default 9
      * @see {@link https://github.com/nextapps-de/flexsearch?tab=readme-ov-file#resolution | FlexSearch Resolution Documentation}
      */
-    resolution?: number;
-    optimize?: boolean;
+    resolution?: number
+    optimize?: boolean
     /**
      * Value to determine if the cache should be used.
      * If set to a number, the cache will use the number to assign that number of cache slots (No information in the documentation is provided about what a cache slot is exactly).
      * @default false
      * @see {@link https://github.com/nextapps-de/flexsearch?tab=readme-ov-file#auto-balanced-cache-by-popularity | FlexSearch Cache Documentation}
      */
-    cache?: boolean | number;
-  };
-  limit?: MaybeRef<number>;
+    cache?: boolean | number
+  }
+  limit?: MaybeRef<number>
 }) {
   // Extract options
   const { keys, filterEmpty = true, shouldSort = true, tokenize = 'forward', ...indexOptions } = options;
@@ -184,7 +184,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
     // If shouldn't be sorted by similarity, apply limit here and return early
     if (!shouldSort) {
       const limitedIds = searchLimit > 0 ? sortedIds.slice(0, searchLimit) : sortedIds;
-      return limitedIds.map((id) => dataMap.value.get(id)).filter(Boolean) as Data[];
+      return limitedIds.map(id => dataMap.value.get(id)).filter(Boolean) as Data[];
     }
 
     // Calculate Levenshtein distance
@@ -264,7 +264,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
         }
         return b!.similarity - a!.similarity;
       })
-      .map((result) => result!.item);
+      .map(result => result!.item);
 
     // Apply limit after final sorting
     return searchLimit > 0 ? sortedResults.slice(0, searchLimit) : sortedResults;

@@ -17,7 +17,8 @@ function computedCatch<T, D>(
     try {
       error.value = undefined;
       value.value = getter();
-    } catch (err) {
+    }
+    catch (err) {
       error.value = err instanceof Error ? err.message : err?.toString() ?? defaultErrorMessage;
       value.value = defaultValue;
     }
@@ -49,7 +50,8 @@ function computedCatchAsync<T, D>(
       if (requestId === currentRequestId) {
         value.value = result;
       }
-    } catch (err) {
+    }
+    catch (err) {
       // Only update error if this is still the latest request
       if (requestId === currentRequestId) {
         error.value = err instanceof Error ? err.message : err?.toString() ?? defaultErrorMessage;

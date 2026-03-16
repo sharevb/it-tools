@@ -41,15 +41,17 @@ const highlightedText = computed(() => {
   if (addLineBreakRegex.value) {
     const addLBRegex = new RegExp(addLineBreakRegex.value, matchCase.value ? 'g' : 'gi');
     if (addLineBreakPlace.value === 'before') {
-      strValue = strValue.replace(addLBRegex, (m) => `\n${m}`);
-    } else if (addLineBreakPlace.value === 'after') {
-      strValue = strValue.replace(addLBRegex, (m) => `${m}\n`);
-    } else if (addLineBreakPlace.value === 'place') {
+      strValue = strValue.replace(addLBRegex, m => `\n${m}`);
+    }
+    else if (addLineBreakPlace.value === 'after') {
+      strValue = strValue.replace(addLBRegex, m => `${m}\n`);
+    }
+    else if (addLineBreakPlace.value === 'place') {
       strValue = strValue.replace(addLBRegex, '\n');
     }
   }
   if (splitEveryCharacterCounts.value) {
-    strValue = strValue.replace(new RegExp(`[^\n]{${splitEveryCharacterCounts.value}}`, 'g'), (m) => `${m}\n`);
+    strValue = strValue.replace(new RegExp(`[^\n]{${splitEveryCharacterCounts.value}}`, 'g'), m => `${m}\n`);
   }
 
   if (!findWhatValue) {
@@ -87,11 +89,13 @@ watch(matchCase, () => {
       // No matches after change, reset
       currentActiveIndex.value = -1;
       totalMatches.value = 0;
-    } else if (matches.length <= currentActiveIndex.value || currentActiveIndex.value === -1) {
+    }
+    else if (matches.length <= currentActiveIndex.value || currentActiveIndex.value === -1) {
       // Current selection is out of range or reset, select the first match
       currentActiveIndex.value = 0;
       updateHighlighting(); // Ensure correct highlighting
-    } else {
+    }
+    else {
       // The current selection is still valid, ensure it's highlighted correctly
       updateHighlighting(); // This might need adjustment to not advance the index
     }

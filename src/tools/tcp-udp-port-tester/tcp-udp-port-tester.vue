@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { onUnmounted, ref } from 'vue';
+import { ref } from 'vue';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -45,22 +45,26 @@ function connect() {
       const json = JSON.parse(event.data);
       if (json.error) {
         addLog(`❌ Error: ${json.error}`);
-      } else if (json.end) {
+      }
+      else if (json.end) {
         addLog(`🛑 End: ${json.end}`);
       }
-    } catch {
+    }
+    catch {
       if (typeof event.data === 'string') {
         addLog(`📩 Text: ${event.data}`);
-      } else {
+      }
+      else {
         const buffer = new Uint8Array(event.data);
         addLog(
           `📩 Binary: ${Array.from(buffer)
-            .map((b) => b.toString(16).padStart(2, '0'))
+            .map(b => b.toString(16).padStart(2, '0'))
             .join(' ')}`,
         );
         try {
           addLog(`📩 Text: ${new TextDecoder().decode(buffer)}`);
-        } catch {}
+        }
+        catch {}
       }
     }
   };
@@ -114,7 +118,7 @@ function sendHex() {
 }
 
 function hexStringToBytes(hex: string): number[] {
-  return hex.match(/.{1,2}/g)?.map((byte) => Number.parseInt(byte, 16)) ?? [];
+  return hex.match(/.{1,2}/g)?.map(byte => Number.parseInt(byte, 16)) ?? [];
 }
 
 function clearLogs() {

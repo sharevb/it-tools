@@ -81,25 +81,27 @@ async function downloadImage() {
 
     // Download file
     const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
+    const blobUrl = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.href = url;
+    link.href = blobUrl;
     link.download = filename;
     link.click();
 
     // Cleanup the blob URL after download
     setTimeout(() => {
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(blobUrl);
     }, 1000);
 
     notification.success({
       title: 'Download started',
       description: `Downloading ${filename}`,
     });
-  } catch (err: any) {
+  }
+  catch (err: any) {
     error.value = err.message || 'Unknown error';
     message.error(error.value!);
-  } finally {
+  }
+  finally {
     loading.value = false;
   }
 }

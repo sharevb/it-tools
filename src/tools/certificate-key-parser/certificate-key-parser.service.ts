@@ -1,34 +1,43 @@
 import type { Buffer } from 'node:buffer';
-import {
-  parseCertificate, parseFingerprint,
-  parseKey,
-  parsePrivateKey,
-  parseSignature,
-} from 'sshpk';
+import { parseCertificate, parseFingerprint, parseKey, parsePrivateKey, parseSignature } from 'sshpk';
 import type {
   AlgorithmType,
   Certificate,
   CertificateFormat,
   Fingerprint,
   Key,
-  PrivateKey, Signature, SignatureFormatType,
+  PrivateKey,
+  Signature,
+  SignatureFormatType,
 } from 'sshpk';
 import { Base64 } from 'js-base64';
 import 'webcrypto-liner-shim';
 import * as openpgp from 'openpgp';
 import * as forge from 'node-forge';
-import { type LabelValue, getCSRLabelValues, getCertificateLabelValues, getFingerprintLabelValues, getPGPPrivateKeyLabelValuesAsync, getPGPPublicKeyLabelValuesAsync, getPrivateKeyLabelValues, getPublicKeyLabelValues, getSignatureLabelValues } from './certificate-key-parser.infos';
-
-import { translate as t } from '@/plugins/i18n.plugin';
+import {
+  type LabelValue,
+  getCSRLabelValues,
+  getCertificateLabelValues,
+  getFingerprintLabelValues,
+  getPGPPrivateKeyLabelValuesAsync,
+  getPGPPublicKeyLabelValuesAsync,
+  getPrivateKeyLabelValues,
+  getPublicKeyLabelValues,
+  getSignatureLabelValues,
+} from './certificate-key-parser.infos';
 
 export async function getKeysOrCertificatesInfosAsync(keyOrCertificateValue: string | Buffer, passphrase: string) {
-  const parts = keyOrCertificateValue.toString().trim().split(/(-----BEGIN [^-]+-----\n)/).filter(s => s !== '');
+  const parts = keyOrCertificateValue
+    .toString()
+    .trim()
+    .split(/(-----BEGIN [^-]+-----\n)/)
+    .filter((s) => s !== '');
   if (!parts.length) {
     return [await getKeyOrCertificateInfosAsync(keyOrCertificateValue, passphrase)];
   }
   const parsedPEMs: Array<{
-    values: LabelValue[]
-    certificateX509DER?: undefined | string
+    values: LabelValue[];
+    certificateX509DER?: undefined | string;
   }> = [];
   for (let i = 0; i < parts.length; i += 2) {
     const pemPart = parts[i] + parts[i + 1];
@@ -42,24 +51,24 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
     const canParse = (value: string | Buffer, parseFunction: (value: string | Buffer) => any) => {
       try {
         return parseFunction(value);
-      }
-      catch {
+      } catch {
         return null;
       }
     };
     const canParseAsync = async (value: string | Buffer, parseFunction: (value: string | Buffer) => Promise<any>) => {
       try {
         return await parseFunction(value);
-      }
-      catch {
+      } catch {
         return null;
       }
     };
 
-    const inputKeyOrCertificateValue = (typeof keyOrCertificateValue === 'string' ? keyOrCertificateValue?.trim() : keyOrCertificateValue);
+    const inputKeyOrCertificateValue =
+      typeof keyOrCertificateValue === 'string' ? keyOrCertificateValue?.trim() : keyOrCertificateValue;
 
-    const privateKey = canParse(inputKeyOrCertificateValue,
-      value => parsePrivateKey(value, 'auto', { passphrase })) as PrivateKey;
+    const privateKey = canParse(inputKeyOrCertificateValue, (value) =>
+      parsePrivateKey(value, 'auto', { passphrase }),
+    ) as PrivateKey;
     if (privateKey) {
       return {
         values: getPrivateKeyLabelValues(privateKey),
@@ -71,12 +80,16 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
       return { values: getPublicKeyLabelValues(publicKey) };
     }
 
-    const pgpPrivateKey = await canParseAsync(inputKeyOrCertificateValue, value => openpgp.readPrivateKey({ armoredKey: value.toString() })) as openpgp.Key;
+    const pgpPrivateKey = (await canParseAsync(inputKeyOrCertificateValue, (value) =>
+      openpgp.readPrivateKey({ armoredKey: value.toString() }),
+    )) as openpgp.Key;
     if (pgpPrivateKey) {
       return { values: await getPGPPrivateKeyLabelValuesAsync(pgpPrivateKey) };
     }
 
-    const pgpPublicKey = await canParseAsync(inputKeyOrCertificateValue, value => openpgp.readKey({ armoredKey: value.toString() })) as openpgp.Key;
+    const pgpPublicKey = (await canParseAsync(inputKeyOrCertificateValue, (value) =>
+      openpgp.readKey({ armoredKey: value.toString() }),
+    )) as openpgp.Key;
     if (pgpPublicKey) {
       return { values: await getPGPPublicKeyLabelValuesAsync(pgpPublicKey) };
     }
@@ -85,8 +98,7 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
       for (const format of ['openssh', 'pem', 'x509']) {
         try {
           return parseCertificate(value, format as CertificateFormat);
-        }
-        catch {}
+        } catch {}
       }
       return null;
     }) as Certificate;
@@ -94,18 +106,15 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
       let certificateX509DER = '';
       try {
         certificateX509DER = Base64.fromUint8Array(cert.toBuffer('x509'));
-      }
-      catch {}
+      } catch {}
       let forgeCertificate: forge.pki.Certificate | null = null;
       try {
         forgeCertificate = forge.pki.certificateFromPem(inputKeyOrCertificateValue?.toString(), false, false);
-      }
-      catch {}
+      } catch {}
       if (!forgeCertificate) {
         try {
           forgeCertificate = forge.pki.certificateFromAsn1(inputKeyOrCertificateValue as never, false);
-        }
-        catch {}
+        } catch {}
       }
 
       return { values: getCertificateLabelValues(cert, forgeCertificate), certificateX509DER };
@@ -118,7 +127,9 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
       return { values: getCSRLabelValues(csr) };
     }
 
-    const fingerprint = canParse(inputKeyOrCertificateValue, value => parseFingerprint(value.toString())) as Fingerprint;
+    const fingerprint = canParse(inputKeyOrCertificateValue, (value) =>
+      parseFingerprint(value.toString()),
+    ) as Fingerprint;
     if (fingerprint) {
       return { values: getFingerprintLabelValues(fingerprint) };
     }
@@ -129,8 +140,7 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
         for (const format of ['asn1', 'ssh', 'raw']) {
           try {
             return parseSignature(value, algo as AlgorithmType, format as SignatureFormatType);
-          }
-          catch {}
+          } catch {}
         }
       }
       return null;
@@ -142,18 +152,19 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
     return {
       values: [
         {
-          label: t('tools.certificate-key-parser.service.text.type'),
-          value: t('tools.certificate-key-parser.service.text.unknown-format-or-invalid-passphrase'),
-        }],
+          label: 'Type',
+          value: 'Unknown format or invalid passphrase',
+        },
+      ],
     };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return {
       values: [
         {
-          label: t('tools.certificate-key-parser.service.text.error'),
+          label: 'Error',
           value: e.toString(),
-        }] as LabelValue[],
+        },
+      ] as LabelValue[],
     };
   }
 }

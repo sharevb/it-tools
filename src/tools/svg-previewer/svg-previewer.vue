@@ -12,7 +12,7 @@ function readAsTextAsync(file: File) {
     const reader = new FileReader();
     reader.readAsText(file);
     reader.onload = () => resolve(reader.result?.toString() ?? '');
-    reader.onerror = (error) => reject(error);
+    reader.onerror = error => reject(error);
   });
 }
 

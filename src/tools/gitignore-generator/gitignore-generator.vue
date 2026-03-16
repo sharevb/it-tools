@@ -37,7 +37,8 @@ async function loadOptions() {
         value: name,
       }));
     lastFetched.value = now;
-  } catch {
+  }
+  catch {
     if (!options.value?.length) {
       options.value = [
         'C++',
@@ -50,7 +51,7 @@ async function loadOptions() {
         'Python',
         'VisualStudio',
         'WordPress',
-      ].map((name) => ({
+      ].map(name => ({
         label: name,
         value: name,
       }));
@@ -77,9 +78,11 @@ async function generateGitignore() {
       gitignores += `${gitignores ? '\n\n' : ''}# === .gitignore for ${lang} (${url}) ===\n\n${text}`;
     }
     output.value = gitignores;
-  } catch (err: any) {
+  }
+  catch (err: any) {
     error.value = err.toString();
-  } finally {
+  }
+  finally {
     loading.value = false;
   }
 }

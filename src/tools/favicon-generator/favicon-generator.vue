@@ -21,7 +21,7 @@ async function generateIcon(file: File) {
   }
 
   return encodeIcoImages({
-    images: [16, 32, 64, 128, 256].map((size) =>
+    images: [16, 32, 64, 128, 256].map(size =>
       Transform.copyResize({
         image: decodedImage,
         width: size,
@@ -80,7 +80,7 @@ async function generateAssets(img: HTMLImageElement, file: File) {
       {
         name: '',
         short_name: '',
-        icons: sizes.map((size) => ({
+        icons: sizes.map(size => ({
           src: `favicon-${size}x${size}.png`,
           sizes: `${size}x${size}`,
           type: 'image/png',
@@ -143,7 +143,7 @@ function downloadZip() {
     <n-card v-if="previews.length" :title="t('tools.favicon-generator.texts.title-️-previews')" mt-2>
       <div style="display: flex; gap: 16px; flex-wrap: wrap">
         <div v-for="icon in previews" :key="icon.size" style="text-align: center">
-          <img :src="icon.dataUrl" :alt="`Favicon ${icon.size}`" :width="icon.size" :height="icon.size" />
+          <img :src="icon.dataUrl" :alt="`Favicon ${icon.size}`" :width="icon.size" :height="icon.size">
           <p>{{ icon.size }}×{{ icon.size }}</p>
         </div>
       </div>

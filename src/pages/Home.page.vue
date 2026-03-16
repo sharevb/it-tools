@@ -17,13 +17,14 @@ const homeCustomMarkdown = computedAsync(async () => {
     if (remoteCustomHomeMarkdownResponse.ok) {
       return await remoteCustomHomeMarkdownResponse.text();
     }
-  } catch {}
+  }
+  catch {}
   return '';
 });
 
 const toolStore = useToolStore();
-const desc =
-  'Collection of handy online tools for developers, with great UX. IT Tools is a free and open-source collection of handy online tools for developers & people working in IT.';
+const desc
+  = 'Collection of handy online tools for developers, with great UX. IT Tools is a free and open-source collection of handy online tools for developers & people working in IT.';
 const title = 'IT Tools - Handy online tools for developers';
 
 useHead({
@@ -154,8 +155,7 @@ onUnmounted(() => {
             rel="noopener"
             target="_blank"
             :aria-label="$t('home.follow.githubRepository')"
-            >GitHub</a
-          >
+          >GitHub</a>
           {{ $t('home.follow.thankYou') }}
           <n-icon :component="IconHeart" />
         </ColoredCard>
