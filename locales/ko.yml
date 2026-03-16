@@ -4182,7 +4182,7 @@ tools:
       label-csv-comma: CSV(쉼표)
       label-csv-semicolon: CSV(세미콜론)
       label-csv-tab: CSV(탭)
-      label-markdown: 가격 인하
+      label-markdown: 마크다운
       label-xml: XML
       title-csv-converter: CSV 변환기
       label-file: 파일
@@ -4228,7 +4228,7 @@ tools:
       label-csv-comma: CSV(쉼표)
       label-csv-semicolon: CSV(세미콜론)
       label-csv-tab: CSV(탭)
-      label-markdown: 가격 인하
+      label-markdown: 마크다운
       label-xml: XML
       message-provided-json-is-not-valid: 제공된 JSON이 유효하지 않습니다.
       title-fake-data-generator: 가짜 데이터 생성기
@@ -4319,7 +4319,7 @@ tools:
       label-csv-comma: CSV(쉼표)
       label-csv-semicolon: CSV(세미콜론)
       label-csv-tab: CSV(탭)
-      label-markdown: 가격 인하
+      label-markdown: 마크다운
       label-xml: XML
       title-xlsx-converter: XLSX 변환기
       title-drag-and-drop-a-xlsx-here-or-click-to-select-a-file: XLSX를 여기에 끌어다 놓거나
@@ -6567,7 +6567,7 @@ tools:
       title-options: 옵션
       label-output-format: '출력 형식:'
       label-xml: XML
-      label-markdown: 가격 인하
+      label-markdown: 마크다운
       label-output-preview: '출력 미리보기:'
       tag-this-section-contains-a-summary-of-this-file: 이 섹션에는 이 파일의 요약이 포함되어 있습니다.
       tag-click-or-drag-code-source-files-or-folder-to-this-area-to-add-to-package: 패키지에
@@ -7713,7 +7713,7 @@ tools:
     description: EPUB 파일을 완전한 마크다운 콘텐츠로 변환합니다.
     externalAccess: 널
     texts:
-      label-markdown: 가격 인하
+      label-markdown: 마크다운
       label-plain-text: 일반 텍스트
       label-format: '체재:'
       title-drop-an-epub-file-here-or-click-to-select-a-file: EPUB 파일을 여기에 드롭하거나 클릭하여
