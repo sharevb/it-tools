@@ -2607,6 +2607,8 @@ tools:
       label-gib: GiB
       label-tib: TiB
       label-pib: PiB
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB; 1MB = 1000kB; 1GiB = 1024MiB; 1GB = 1000MB;
+      tag-see-here-for-details: xem chi tiết tại đây
   heic-converter:
     title: Bộ chuyển đổi HEIC
     description: Bộ chuyển đổi HEIC sang JPEG hoặc PNG

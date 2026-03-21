@@ -50,36 +50,46 @@ function updateBytes(val: string | number | null, unit: Units, type: 'dec' | 'bi
 </script>
 
 <template>
-  <n-table :single-line="false" class="hdd-calculator">
-    <thead>
-      <tr>
-        <th>{{ t('tools.hdd-calculator.texts.column-decimal') }}</th>
-        <th>{{ t('tools.hdd-calculator.texts.column-binary') }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="unit in units" :key="unit">
-        <td>
-          <n-form-item :label="labelsDec[unit]" :show-feedback="false">
-            <InputCopyable
-              :value="Number(fromBytes(totalBytes, unit, 'dec').toFixed(5)).toString()"
-              type="number"
-              @update:value="(val) => updateBytes(val, unit, 'dec')"
-            />
-          </n-form-item>
-        </td>
-        <td>
-          <n-form-item :label="labelsBin[unit]" :show-feedback="false">
-            <InputCopyable
-              :value="Number(fromBytes(totalBytes, unit, 'bin').toFixed(5)).toString()"
-              type="number"
-              @update:value="(val) => updateBytes(val, unit, 'bin')"
-            />
-          </n-form-item>
-        </td>
-      </tr>
-    </tbody>
-  </n-table>
+  <div>
+    <n-p>
+      {{ t('tools.hdd-calculator.texts.tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb') }}<n-a href="https://en.wikipedia.org/wiki/Byte" target="_blank" rel="noopener">
+        {{ t('tools.hdd-calculator.texts.tag-see-here-for-details') }}
+      </n-a>
+    </n-p>
+
+    <n-divider />
+
+    <n-table :single-line="false" class="hdd-calculator">
+      <thead>
+        <tr>
+          <th>{{ t('tools.hdd-calculator.texts.column-decimal') }}</th>
+          <th>{{ t('tools.hdd-calculator.texts.column-binary') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="unit in units" :key="unit">
+          <td>
+            <n-form-item :label="labelsDec[unit]" :show-feedback="false">
+              <InputCopyable
+                :value="Number(fromBytes(totalBytes, unit, 'dec').toFixed(5)).toString()"
+                type="number"
+                @update:value="(val) => updateBytes(val, unit, 'dec')"
+              />
+            </n-form-item>
+          </td>
+          <td>
+            <n-form-item :label="labelsBin[unit]" :show-feedback="false">
+              <InputCopyable
+                :value="Number(fromBytes(totalBytes, unit, 'bin').toFixed(5)).toString()"
+                type="number"
+                @update:value="(val) => updateBytes(val, unit, 'bin')"
+              />
+            </n-form-item>
+          </td>
+        </tr>
+      </tbody>
+    </n-table>
+  </div>
 </template>
 
 <style scoped>

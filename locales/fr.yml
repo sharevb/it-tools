@@ -2219,6 +2219,12 @@ tools:
       label-pib: Pibe
       label-tb: tuberculose
       label-tib: Tib
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: |-
+        1MIB = 1024KIB; 
+        1 Mo = 1000 Ko; 
+        1gib = 1024mib; 
+        1 Go = 1000 Mo;
+      tag-see-here-for-details: Voir ici pour plus de détails
     title: Calculatrice de disque dur
   heic-converter:
     description: Convertisseur Heic en jpeg ou png

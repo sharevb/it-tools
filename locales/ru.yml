@@ -2793,6 +2793,8 @@ tools:
       label-gib: ГиБ
       label-tib: ТиБ
       label-pib: ПиБ
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1МиБ = 1024КБ; 1МБ = 1000КБ; 1ГиБ = 1024МиБ; 1ГБ = 1000МБ;
+      tag-see-here-for-details: подробности смотрите здесь
   heic-converter:
     title: Конвертер HEIC
     description: Конвертируйте HEIC в JPEG или PNG

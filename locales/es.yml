@@ -2072,6 +2072,8 @@ tools:
       label-gib: Gibraltar
       label-tib: TiB
       label-pib: PiB
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1 MiB = 1024 KiB; 1 MB = 1000 kB; 1 GiB = 1024 MiB; 1 GB = 1000 MB;
+      tag-see-here-for-details: Ver aquí para más detalles
   heic-converter:
     title: Convertidor HEIC
     description: Convertidor HEIC a JPEG o PNG

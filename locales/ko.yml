@@ -2380,6 +2380,8 @@ tools:
       label-gib: 수코양이
       label-tib: 티비
       label-pib: 피비
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB ; 1MB = 1000kB ; 1GiB = 1024MiB ; 1GB = 1000MB ;
+      tag-see-here-for-details: 자세한 내용은 여기를 참조하세요
   heic-converter:
     title: HEIC 변환기
     description: HEIC를 JPEG 또는 PNG로 변환
