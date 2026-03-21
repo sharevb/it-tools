@@ -2600,12 +2600,6 @@ tools:
       label-gib: جيجا بايت
       label-tib: تي بي
       label-pib: باي بي
-      label-claimed-capacity: "القدرة المطلوبة:"
-      label-unit: "وحدة:"
-      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1 ميجا بايت = 1024
-        كيلوبايت؛ 1 ميجا بايت = 1000 كيلوبايت؛ 1 جيجابايت = 1024 ميجا بايت؛ 1
-        جيجابايت = 1000 ميجا بايت؛
-      tag-see-here-for-details: انظر هنا للمزيد من التفاصيل
   heic-converter:
     title: محول HEIC
     description: محول HEIC إلى JPEG أو PNG

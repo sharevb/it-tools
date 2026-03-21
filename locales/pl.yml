@@ -2079,10 +2079,6 @@ tools:
       label-gib: Klin
       label-tib: TiB
       label-pib: PiB
-      label-claimed-capacity: "Deklarowana pojemność:"
-      label-unit: "Jednostka:"
-      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1 MiB = 1024 KiB; 1 MB = 1000 kB; 1 GiB = 1024 MiB; 1 GB = 1000 MB;
-      tag-see-here-for-details: zobacz tutaj szczegóły
   heic-converter:
     title: Konwerter HEIC
     description: Konwerter HEIC na JPEG lub PNG

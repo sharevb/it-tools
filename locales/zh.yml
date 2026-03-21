@@ -1968,10 +1968,6 @@ tools:
       label-gib: 吉布
       label-tib: 硼化钛
       label-pib: 派布
-      label-claimed-capacity: 标称容量：
-      label-unit: 单位：
-      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB；1MB = 1000kB；1GiB = 1024MiB；1GB = 1000MB；
-      tag-see-here-for-details: 详情请查看此处
   heic-converter:
     title: HEIC转换器
     description: 将HEIC转换为JPEG或PNG的转换器
