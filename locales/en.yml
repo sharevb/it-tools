@@ -546,6 +546,14 @@ tools:
       input-label-your-json: Your JSON
       input-placeholder-paste-your-json-here: Paste your JSON here...
       output-label-yaml-from-your-json: YAML from your JSON
+  json-to-env:
+    title: JSON to .env
+    description: Convert a flat JSON object into a .env file. Keys are upper-cased and values are safely quoted when they contain whitespace, quotes, or env-special characters.
+    texts:
+      message-provided-json-is-not-a-valid-flat-object: Provided JSON is not a valid flat object.
+      input-label-your-json: Your JSON
+      input-placeholder-paste-your-json-here: Paste your JSON here...
+      output-label-env-from-your-json: .env from your JSON
   json-to-javascript:
     title: JSON to JS converter
     description: Simply convert JSON to Javascript object with this live online converter.
