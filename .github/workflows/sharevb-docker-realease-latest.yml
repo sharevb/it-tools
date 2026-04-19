@@ -41,6 +41,9 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - ci
+    strategy:
+      matrix:
+        language: ['', 'en']
     steps:
       - name: Docker meta
         id: meta
@@ -48,7 +51,7 @@ jobs:
         with:
           images: sharevb/it-tools
           labels: |
-            org.opencontainers.image.version=latest
+            org.opencontainers.image.version=${{ case(matrix.language != '', format('latest-{0}', matrix.language), 'latest') }}
 
       # Checkout the repository
       - name: Checkout repository
@@ -80,12 +83,14 @@ jobs:
           file: ./Dockerfile
           build-args: |
             "BASE_URL=/"
+            "VITE_AVAILABLE_LOCALES=${{ matrix.language }}"
+            "VITE_LANGUAGE=${{ matrix.language }}"
           platforms: linux/amd64,linux/arm64
           push: true
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            sharevb/it-tools:latest
-            ghcr.io/${{ github.repository_owner }}/it-tools:latest
+            sharevb/it-tools:${{ case(matrix.language != '', format('latest-{0}', matrix.language), 'latest') }}
+            ghcr.io/sharevb/it-tools:${{ case(matrix.language != '', format('latest-{0}', matrix.language), 'latest') }}
 
       # Optionally log out
       - name: Log out from GitHub Container Registry

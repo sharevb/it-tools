@@ -13,6 +13,8 @@ RUN npm install -g pnpm && pnpm i --ignore-scripts --frozen-lockfile
 COPY . .
 ARG BASE_URL
 ENV BASE_URL=${BASE_URL}
+ARG VITE_AVAILABLE_LOCALES
+ENV VITE_AVAILABLE_LOCALES=${VITE_AVAILABLE_LOCALES}
 ENV VITE_VERCEL_ENV=production
 RUN pnpm build
 
