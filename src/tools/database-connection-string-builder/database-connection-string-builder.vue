@@ -70,7 +70,7 @@ const connectionString = computed(() => {
 
   const effectivePort = getPort(dbType.value, port);
 
-  const sslParam = ssl ? (format === 'uri' ? 'ssl=true' : 'Encrypt=true;') : '';
+  const sslParam = ssl ? (format === 'uri' ? 'ssl=true' : 'Encrypt=true;') : (format === 'uri' ? 'ssl=false' : 'Encrypt=false;');
   const timeoutParam = timeout ? (format === 'uri' ? `connectTimeout=${timeout}` : `Connection Timeout=${timeout};`) : '';
   const extras = format === 'uri'
     ? [sslParam, timeoutParam, extra].filter(Boolean).join('&')
@@ -156,13 +156,16 @@ const connectionString = computed(() => {
         />
       </n-form-item>
 
-      <template v-if="dbType !== 'sqlite' && form.authType !== 'peer' && form.authType !== 'windows' && form.authType !== 'x509'">
+      <template v-if="dbType !== 'sqlite'">
         <n-form-item :label="t('tools.database-connection-string-builder.texts.label-host')">
           <n-input v-model:value="form.host" :placeholder="t('tools.database-connection-string-builder.texts.placeholder-e-g-localhost')" />
         </n-form-item>
         <n-form-item :label="t('tools.database-connection-string-builder.texts.label-port')">
           <n-input-number v-model:value="form.port" :min="1" :max="65535" />
         </n-form-item>
+      </template>
+
+      <template v-if="dbType !== 'sqlite' && form.authType !== 'peer' && form.authType !== 'windows' && form.authType !== 'x509'">
         <n-form-item :label="t('tools.database-connection-string-builder.texts.label-username')">
           <n-input v-model:value="form.username" />
         </n-form-item>

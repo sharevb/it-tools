@@ -162,6 +162,11 @@ tools:
       tag-x-is-what-percent-of-y: X is what percent of Y
       tag-is-what-percent-of: is what percent of
       tag-what-is-the-percentage-increase-decrease: What is the percentage increase/decrease
+
+  tip-calculator:
+    title: Tip calculator
+    description: Calculate the tip for a bill and split it among multiple people.
+
   svg-placeholder-generator:
     title: SVG placeholder generator
     description: Generate svg images to use as a placeholder in your applications.

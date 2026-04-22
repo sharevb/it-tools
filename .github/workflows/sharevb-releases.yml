@@ -12,6 +12,12 @@ jobs:
   docker-release:
     runs-on: ubuntu-latest
     steps:
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: sharevb/it-tools
+
       - name: Get release version
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
@@ -46,6 +52,7 @@ jobs:
             "BASE_URL=/it-tools/"
           platforms: linux/amd64,linux/arm64
           push: true
+          labels: ${{ steps.meta.outputs.labels }}
           tags: |
             sharevb/it-tools:baseurl-it-tools
             sharevb/it-tools:stable-baseurl-it-tools
@@ -61,6 +68,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
+          labels: ${{ steps.meta.outputs.labels }}
           tags: |
             sharevb/it-tools:latest
             sharevb/it-tools:stable

@@ -70,9 +70,16 @@ function downloadFile() {
   }
 }
 
+const includeDataUri = ref(true);
 const fileInput = ref() as Ref<File>;
 const { base64: fileBase64 } = useBase64(fileInput);
-const { copy: copyFileBase64 } = useCopy({ source: fileBase64, text: t('tools.base64-file-converter.texts.text-base64-string-copied-to-the-clipboard') });
+const cleanedFileBase64 = computed(() => {
+  if (includeDataUri.value) {
+    return fileBase64.value;
+  }
+  return fileBase64.value.replace(/^data:[^;];base64,/, '');
+});
+const { copy: copyFileBase64 } = useCopy({ source: cleanedFileBase64, text: t('tools.base64-file-converter.texts.text-base64-string-copied-to-the-clipboard') });
 
 async function onUpload(file: File) {
   if (file) {
@@ -128,9 +135,17 @@ async function onUpload(file: File) {
     <c-file-upload
       :title="t('tools.base64-file-converter.texts.title-drag-and-drop-a-file-here-or-click-to-select-a-file')"
       :paste-image="true"
+      mb-1
       @file-upload="onUpload"
     />
-    <c-input-text :value="fileBase64" multiline readonly :placeholder="t('tools.base64-file-converter.texts.placeholder-file-in-base64-will-be-here')" rows="5" my-2 />
+
+    <n-space justify="center" mb-1>
+      <n-checkbox v-model:checked="includeDataUri">
+        Include data: URI prefix
+      </n-checkbox>
+    </n-space>
+
+    <c-input-text :value="cleanedFileBase64" multiline readonly :placeholder="t('tools.base64-file-converter.texts.placeholder-file-in-base64-will-be-here')" rows="5" my-2 />
 
     <div flex justify-center>
       <c-button @click="copyFileBase64()">

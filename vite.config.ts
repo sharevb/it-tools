@@ -21,6 +21,8 @@ import VueI18n from '@intlify/unplugin-vue-i18n/vite';
 
 const baseUrl = process.env.BASE_URL || '/';
 
+console.log(`Locales: ${process.env.VITE_AVAILABLE_LOCALES}`);
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -38,6 +40,7 @@ export default defineConfig({
           ],
       strictMessage: false,
       escapeHtml: true,
+      onlyLocales: (process.env.VITE_AVAILABLE_LOCALES || '').split(/,/),
     }),
     AutoImport({
       imports: [

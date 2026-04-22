@@ -13,11 +13,17 @@ RUN npm install -g pnpm && pnpm i --ignore-scripts --frozen-lockfile
 COPY . .
 ARG BASE_URL
 ENV BASE_URL=${BASE_URL}
+ARG VITE_AVAILABLE_LOCALES
+ENV VITE_AVAILABLE_LOCALES=${VITE_AVAILABLE_LOCALES}
 ENV VITE_VERCEL_ENV=production
 RUN pnpm build
 
 # production stage
 FROM nginxinc/nginx-unprivileged:stable-alpine AS production-stage
+
+LABEL maintainer="ShareVB <sharevb@gmail.com>" \
+      org.opencontainers.image.authors="ShareVB <sharevb@gmail.com>"
+
 ENV VITE_VERCEL_ENV=production
 ARG BASE_URL
 ENV BASE_URL=${BASE_URL}

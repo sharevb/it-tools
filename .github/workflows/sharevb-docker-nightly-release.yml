@@ -61,6 +61,14 @@ jobs:
       - ci
 
     steps:
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: sharevb/it-tools
+          labels: |
+            org.opencontainers.image.version=nightly
+
       # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -91,6 +99,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
+          labels: ${{ steps.meta.outputs.labels }}
           tags: |
             sharevb/it-tools:nightly
             ghcr.io/${{ github.repository_owner }}/it-tools:nightly

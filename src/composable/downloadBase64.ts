@@ -90,8 +90,13 @@ function previewImageFromBase64(base64String: string): HTMLImageElement {
     throw new Error('Base64 string is empty');
   }
 
+  let dataUriBase64String = base64String;
+  if (!base64String.startsWith('data:')) {
+    dataUriBase64String = `data:application/octet-stream;base64,${base64String}`;
+  }
+
   const img = document.createElement('img');
-  img.src = base64String;
+  img.src = dataUriBase64String;
 
   const container = document.createElement('div');
   container.appendChild(img);

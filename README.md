@@ -58,6 +58,12 @@ Use of WSL2 is recommended to develop using VSCode on Windows. Direct developmen
 
 [Docker Hub](https://hub.docker.com/r/sharevb/it-tools): `sharevb/it-tools:latest`
 
+```bash
+docker run --pull always --restart unless-stopped -p 8080:8080 sharevb/it-tools:latest
+```
+
+Other existing docker tags: `latest-en` (english only)
+
 ## Use in Docker Compose file
 
 ```yml

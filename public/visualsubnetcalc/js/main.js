@@ -5,12 +5,18 @@ let infoColumnCount = 5  // Default without additional columns
 let additionalColumnsVisible = false;
 const FEEDBACK_DURATION_MS = 1000;  // Duration for UI feedback messages
 
-const vscHash = window.location.hash ? window.location.hash.substr(1) : '';
-const vscUrlParams = vscHash.split('&').reduce(function (res, item) {
+// handle passing params by #fragment 
+// to allows integration in Vite Vue app using a Vue router and iframe (IT Tools)
+const vscHash = window.location.hash ? window.location.hash.substring(1) : '';
+let vscUrlParams = vscHash.split('&').reduce(function (res, item) {
     var parts = item.split('=');
     res[parts[0]] = decodeURIComponent(parts[1]);
     return res;
 }, {});
+if (!vscUrlParams.parent || !vscUrlParams.parent.startsWith(window.location.origin)) {
+    // only allows to pass parent and html if same origin (else could be a injection)
+    vscUrlParams = {};
+}
 const vscParentUrl = vscUrlParams.parent;
 const vscHtmlFileName = vscUrlParams.html || 'index.html';
 if (vscParentUrl) {

@@ -14,12 +14,6 @@ const base = import.meta.env.BASE_URL ?? '/';
 
 const homeCustomMarkdown = ref('');
 
-fetch(`${base}home.custom.md`).then((r) => {
-  if (r.ok) {
-    r.text().then(t => homeCustomMarkdown.value = t);
-  }
-});
-
 const { t } = useI18n();
 
 const toolStore = useToolStore();
@@ -127,6 +121,16 @@ onMounted(() => {
       );
       loadingObserver.observe(loadingIndicator);
     }
+
+    fetch(`${base}home.custom.md`).then((r) => {
+      if (r.ok) {
+        r.text().then((t) => {
+          if (t) {
+            homeCustomMarkdown.value = t;
+          }
+        });
+      }
+    });
   });
 });
 
