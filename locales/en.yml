@@ -3217,6 +3217,7 @@ tools:
       tag-replace-all: Replace All
       tag-match-case: Match case
       tag-keep-linebreaks: Keep linebreaks
+      warning-unsafe-regex: Warning: The regular expression pattern may cause performance issues (ReDoS vulnerability). Please use a safer pattern.
   snowflake-id-extractor:
     title: Snowflake ID extractor
     description: Extract timestamp, machine ID, and sequence number from a Snowflake ID
