@@ -576,7 +576,7 @@ tools:
     description: 将JSON字符串格式化为友好、易读的格式。
     externalAccess: 当需要进行验证时，此工具可能会从 https://www.schemastore.org 下载 JSON 模式。不会向外部发送任何数据。
   docker-run-to-docker-compose-converter:
-    title: Docker运行命令转Docker Compose转换器
+    title: docker run命令转Docker Compose转换器
     description: 将"docker run"命令转换为Docker Compose文件！
     texts:
       label-v2-2-x: V2 - 2.x版本
@@ -1732,7 +1732,7 @@ tools:
       tag-expand-volumes: 展开卷
       tag-download-converted-docker-compose-yml: 下载转换后的docker-compose.yml
   docker-compose-to-docker-run-converter:
-    title: Docker Compose到Docker运行转换器
+    title: Docker Compose到docker run转换器
     description: 将Docker Compose文件转换为docker run命令！
     texts:
       label-paste-your-docker-compose-file-content: 粘贴您的Docker Compose文件内容：
@@ -1761,11 +1761,11 @@ tools:
     title: Docker备忘单
     description: Docker命令备忘单。
   docker-run-to-kubernetes:
-    title: Docker运行到Kubernetes
-    description: 将Docker运行命令转换为Kubernetes清单。
+    title: docker run到Kubernetes
+    description: 将docker run命令转换为Kubernetes清单。
     texts:
-      label-your-docker-run-command-s: 您的Docker运行命令（s）：
-      placeholder-your-docker-run-command-s-to-convert: 要转换的Docker运行命令（s）...
+      label-your-docker-run-command-s: 您的docker run命令（s）：
+      placeholder-your-docker-run-command-s-to-convert: 要转换的docker run命令（s）...
       title-the-following-errors-occured: 发生以下错误
   duplicate-line-finder:
     title: 重复行查找器
@@ -5887,7 +5887,7 @@ tools:
       label-wantedby: WantedBy：
       label-typical-storage-location: 典型存储位置：
   docker-run-to-quadlets:
-    title: Docker运行到Quadlets转换器
+    title: docker run到Quadlets转换器
     description: 将docker run命令转换为Podman Quadlets
     texts:
       label-no: 不
@@ -6031,7 +6031,7 @@ tools:
     title: Docker Compose 备忘单
     description: Docker Compose 格式备忘单
   docker-inspect-to-docker-run:
-    title: Docker 检查到 Docker 运行
+    title: Docker 检查到 docker run
     description: 将docker inspect命令json结果转换回Docker run命令
     texts:
       label-paste-your-docker-inspect-json-output: 粘贴您的 Docker Inspect JSON 输出：
