@@ -449,7 +449,7 @@
     "vite-plugin-node-polyfills": "^0.23.0",
     "vite-plugin-pwa": "^1.1.0",
     "vite-plugin-splash-screen": "^0.2.0",
-    "vite-plugin-wasm": "^3.4.1",
+    "vite-plugin-wasm": "^3.6.0",
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.34.6",
     "vue-i18n-extract": "^2.0.7",
