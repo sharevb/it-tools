@@ -53,7 +53,6 @@ export default defineConfig({
       include: includeLocales,
       strictMessage: false,
       escapeHtml: true,
-      onlyLocales: (process.env.VITE_AVAILABLE_LOCALES || '').split(/,/),
     }),
     AutoImport({
       imports: [
