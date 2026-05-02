@@ -12,7 +12,7 @@ jobs:
       matrix:
         shard: [1/3, 2/3, 3/3]
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@v6
 
       - run: |
           echo "Before: corepack version => $(corepack --version || echo 'not installed')"
@@ -21,7 +21,7 @@ jobs:
           corepack enable
           pnpm --version
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: 'pnpm'
@@ -37,7 +37,7 @@ jobs:
         run: pnpm build
 
       - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}-${{ hashFiles('**/playwright.config.ts') }}

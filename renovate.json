@@ -4,6 +4,13 @@
   "prHourlyLimit": 25,
   "recreateWhen": "never",
   "prCreation": "immediate",
+  "timezone": "Europe/Paris",
+  "schedule": [
+    "* 0-3 * * *"
+  ],
+  "automergeSchedule": [
+    "* 0-3 * * *"
+  ],
   "extends": [
     "config:recommended",
     "docker:pinDigests",
