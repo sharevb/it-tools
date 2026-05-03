@@ -107,3 +107,63 @@ jobs:
       # Optionally log out
       - name: Log out from GitHub Container Registry
         run: docker logout ghcr.io
+
+  github-release:
+    runs-on: ubuntu-latest
+    needs: ci
+    steps:
+      - name: Set release version to nightly
+        run: echo "RELEASE_VERSION=nightly" >> $GITHUB_ENV
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - run: |
+          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
+          npm install -g corepack@latest
+          echo "After : corepack version => $(corepack --version)"
+          corepack enable
+          pnpm --version
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i --ignore-scripts
+
+      - name: Build the app
+        run: pnpm build
+
+      - name: Zip the app
+        run: zip -r it-tools-${{ env.RELEASE_VERSION }}.zip dist/*
+
+      - name: Get changelog
+        id: changelog
+        run: |
+          EOF=$(openssl rand -hex 8)
+          echo "changelog<<$EOF" >> $GITHUB_OUTPUT
+          node ./scripts/getLatestChangelog.mjs >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: it-tools-${{ env.RELEASE_VERSION }}.zip
+          tag_name: ${{ env.RELEASE_VERSION }}
+          draft: false
+          prerelease: true
+          body: |
+            ## Docker images
+
+            - Docker Hub Registry
+              - `sharevb/it-tools:${{ env.RELEASE_VERSION}}`
+
+            - GitHub Container Registry
+              - `ghcr.io/sharevb/it-tools:${{ env.RELEASE_VERSION}}`
+
+            ## Changelog
+
+            ${{ steps.changelog.outputs.changelog }}

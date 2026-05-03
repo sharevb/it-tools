@@ -124,6 +124,7 @@ jobs:
           tag_name: v${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
+          make_latest: "true"
           body: |
             ## Docker images
 
