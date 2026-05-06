@@ -2,7 +2,7 @@
   "name": "it-tools",
   "type": "module",
   "version": "2026.1.4",
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@10.33.4",
   "description": "Collection of handy online tools for developers, with great UX. ",
   "author": "Corentin Th <corentin.thomasset74+it-tools@gmail.com> (https://corentin.tech)",
   "license": "GNU GPLv3",
