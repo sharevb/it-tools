@@ -8198,6 +8198,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: "&nbsp;m&nbsp;"
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: 무작위 줄 선택기
+    description: 텍스트 입력에서 무작위 줄을 선택합니다
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: 중복된 줄 허용
+      label-number-of-lines-to-pick: "선택할 줄 수:"
+      label-prefix-lines-with-line-number: 줄 번호 추가
+      placeholder-picked-lines: 선택된 줄
+      placeholder-put-your-text-here: 텍스트를 여기에 입력하세요...
+      tag-copy: 복사
+      tag-refresh: 새로 고침
+      text-picked-lines-copied-to-clipboard: 선택된 줄이 클립보드에 복사되었습니다!
 about:
   alltools-title: 모든 {toolsCount}개 도구
   tools:

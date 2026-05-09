@@ -8656,6 +8656,19 @@ tools:
       tag-nbsp-h-nbsp: год
       tag-nbsp-m-nbsp: м
       tag-nbsp-s: с
+  random-line-picker:
+    title: Випадковий вибір рядків
+    description: Виберіть випадкові рядки з текстового вводу
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Дозволити повторювані рядки
+      label-number-of-lines-to-pick: "Кількість рядків для вибору:"
+      label-prefix-lines-with-line-number: Додати номери рядків
+      placeholder-picked-lines: Вибрані рядки
+      placeholder-put-your-text-here: Помістіть свій текст тут...
+      tag-copy: Копіювати
+      tag-refresh: Оновити
+      text-picked-lines-copied-to-clipboard: Вибрані рядки скопійовано в буфер обміну!
 spanCopyable:
   copy: Копіювати в буфер обміну
   copied: Скопійовано!

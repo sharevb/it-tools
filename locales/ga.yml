@@ -8752,6 +8752,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: m
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: Roghnóir Líní Rándamach
+    description: Roghnaigh línte randamacha ó ionchur téacs
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Ceadaigh línte athráite
+      label-number-of-lines-to-pick: "Líon na línte le roghnú:"
+      label-prefix-lines-with-line-number: Cuir uimhreacha línte leis
+      placeholder-picked-lines: Línte roghnaithe
+      placeholder-put-your-text-here: Cuir do théacs anseo...
+      tag-copy: Cóipeáil
+      tag-refresh: Nuashonrú
+      text-picked-lines-copied-to-clipboard: Cóipeáladh na línte roghnaithe chuig an gclár gearrthaisce!
 locale-selector:
   select-a-language: Roghnaigh teanga
 collapsibleToolMenu:

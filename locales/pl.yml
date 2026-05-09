@@ -8675,6 +8675,19 @@ tools:
       tag-nbsp-h-nbsp: h&nbsp;
       tag-nbsp-m-nbsp: m&nbsp;
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: Losowy wybór linii
+    description: Wybierz losowe linie z pola tekstowego
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Zezwól na powtarzające się linie
+      label-number-of-lines-to-pick: "Liczba linii do wybrania:"
+      label-prefix-lines-with-line-number: Dodaj numery linii
+      placeholder-picked-lines: Wybrane linie
+      placeholder-put-your-text-here: Wklej swój tekst tutaj...
+      tag-copy: Kopiuj
+      tag-refresh: Odśwież
+      text-picked-lines-copied-to-clipboard: Wybrane linie zostały skopiowane do schowka!
 favoriteButton:
   remove: Usuń z ulubionych
   add: Dodaj do ulubionych

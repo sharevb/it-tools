@@ -8696,6 +8696,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: м
       tag-nbsp-s: с
+  random-line-picker:
+    title: Выбор случайных строк
+    description: Выбирайте случайные строки из текстового ввода
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Разрешить повторяющиеся строки
+      label-number-of-lines-to-pick: "Количество строк для выбора:"
+      label-prefix-lines-with-line-number: Добавить номера строк
+      placeholder-picked-lines: Выбранные строки
+      placeholder-put-your-text-here: Поместите ваш текст здесь...
+      tag-copy: Копировать
+      tag-refresh: Обновить
+      text-picked-lines-copied-to-clipboard: Выбранные строки скопированы в буфер обмена!
 spanCopyable:
   copy: Копировать в буфер обмена
   copied: Скопировано!

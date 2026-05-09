@@ -8874,6 +8874,19 @@ tools:
       tag-nbsp-h-nbsp: h
       tag-nbsp-m-nbsp: m
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: Zufällige Zeilenauswahl
+    description: Wähle zufällige Zeilen aus einem Texteingabefeld
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Wiederholte Zeilen erlauben
+      label-number-of-lines-to-pick: "Anzahl der auszuwählenden Zeilen:"
+      label-prefix-lines-with-line-number: Zeilennummern hinzufügen
+      placeholder-picked-lines: Ausgewählte Zeilen
+      placeholder-put-your-text-here: Fügen Sie hier Ihren Text ein...
+      tag-copy: Kopieren
+      tag-refresh: Aktualisieren
+      text-picked-lines-copied-to-clipboard: Ausgewählte Zeilen in die Zwischenablage kopiert!
 locale-selector:
   select-a-language: Wählen Sie eine Sprache
 collapsibleToolMenu:

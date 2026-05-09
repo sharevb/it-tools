@@ -8263,6 +8263,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: 和
       tag-nbsp-s: 和
+  random-line-picker:
+    title: 随机行选择器
+    description: 从文本输入中随机选择行
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: 允许重复行
+      label-number-of-lines-to-pick: "要选择的行数："
+      label-prefix-lines-with-line-number: 添加行号
+      placeholder-picked-lines: 已选择的行
+      placeholder-put-your-text-here: 在此处粘贴你的文本...
+      tag-copy: 复制
+      tag-refresh: 刷新
+      text-picked-lines-copied-to-clipboard: 已选择的行已复制到剪贴板！
 collapsibleToolMenu:
   text:
     expanding: 正在扩展……

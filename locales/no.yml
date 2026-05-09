@@ -8618,6 +8618,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: m
       tag-nbsp-s: s
+  random-line-picker:
+    title: Tilfeldig linjevelger
+    description: Velg tilfeldige linjer fra en tekstinndata
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Tillat repeterte linjer
+      label-number-of-lines-to-pick: "Antall linjer å velge:"
+      label-prefix-lines-with-line-number: Legg til linjenummer
+      placeholder-picked-lines: Valgte linjer
+      placeholder-put-your-text-here: Legg inn teksten din her...
+      tag-copy: Kopier
+      tag-refresh: Oppdater
+      text-picked-lines-copied-to-clipboard: Valgte linjer kopiert til utklippstavlen!
 spanCopyable:
   copy: Kopier til utklippstavlen
   copied: Kopiert!

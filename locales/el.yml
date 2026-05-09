@@ -8913,6 +8913,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: "&nbsp;μ&nbsp;"
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: Επιλογέας Τυχαίων Γραμμών
+    description: Επιλέξτε τυχαίες γραμμές από ένα κείμενο
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Επιτρέπεται επανάληψη γραμμών
+      label-number-of-lines-to-pick: "Αριθμός γραμμών για επιλογή:"
+      label-prefix-lines-with-line-number: Προσθήκη αριθμών γραμμής
+      placeholder-picked-lines: Επιλεγμένες γραμμές
+      placeholder-put-your-text-here: Βάλτε το κείμενό σας εδώ...
+      tag-copy: Αντιγραφή
+      tag-refresh: Φρεσκάρισμα
+      text-picked-lines-copied-to-clipboard: Οι επιλεγμένες γραμμές αντιγράφηκαν στο πρόχειρο!
 collapsibleToolMenu:
   text:
     expanding: Επέκταση...

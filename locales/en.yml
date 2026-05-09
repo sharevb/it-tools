@@ -8575,6 +8575,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: "&nbsp;m&nbsp;"
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: Random Line Picker
+    description: Pick random lines from a text input
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Allow repeated lines
+      label-number-of-lines-to-pick: "Number of lines to pick:"
+      label-prefix-lines-with-line-number: Add line numbers
+      placeholder-picked-lines: Picked lines
+      placeholder-put-your-text-here: Put your text here...
+      tag-copy: Copy
+      tag-refresh: Refresh
+      text-picked-lines-copied-to-clipboard: Picked lines copied to clipboard!
 collapsibleToolMenu:
   text:
     expanding: Expanding...

@@ -8715,6 +8715,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: m
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: Seletor de linhas aleatórias
+    description: Selecione linhas aleatórias de um texto
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Permitir linhas repetidas
+      label-number-of-lines-to-pick: "Número de linhas para escolher:"
+      label-prefix-lines-with-line-number: Adicionar números de linha
+      placeholder-picked-lines: Linhas selecionadas
+      placeholder-put-your-text-here: Coloque seu texto aqui...
+      tag-copy: Copiar
+      tag-refresh: Atualizar
+      text-picked-lines-copied-to-clipboard: Linhas selecionadas copiadas para a área de transferência!
 spanCopyable:
   copy: Copiar para a área de transferência
   copied: Copiado!

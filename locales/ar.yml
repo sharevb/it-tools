@@ -8500,6 +8500,19 @@ tools:
       tag-nbsp-h-nbsp: ح
       tag-nbsp-m-nbsp: م
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: محدد سطور عشوائية
+    description: اختر سطورًا عشوائية من نص الإدخال
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: السماح بتكرار الأسطر
+      label-number-of-lines-to-pick: "عدد الأسطر للاختيار:"
+      label-prefix-lines-with-line-number: أضف أرقام الأسطر
+      placeholder-picked-lines: الأسطر المختارة
+      placeholder-put-your-text-here: ضع نصك هنا...
+      tag-copy: نسخ
+      tag-refresh: تحديث
+      text-picked-lines-copied-to-clipboard: تم نسخ الأسطر المختارة إلى الحافظة!
 spanCopyable:
   copy: نسخ إلى الحافظة
   copied: تم النسخ!

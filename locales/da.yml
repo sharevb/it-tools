@@ -8568,6 +8568,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: m
       tag-nbsp-s: s
+  random-line-picker:
+    title: Tilfældig linjevælger
+    description: Vælg tilfældige linjer fra et tekstinput
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Tillad gentagne linjer
+      label-number-of-lines-to-pick: "Antal linjer der skal vælges:"
+      label-prefix-lines-with-line-number: Tilføj linjenumre
+      placeholder-picked-lines: Valgte linjer
+      placeholder-put-your-text-here: Indtast din tekst her...
+      tag-copy: Kopiér
+      tag-refresh: Opdater
+      text-picked-lines-copied-to-clipboard: De valgte linjer er kopieret til udklipsholderen!
 about:
   alltools-title: Alle {toolsCount} værktøjer
   tools:

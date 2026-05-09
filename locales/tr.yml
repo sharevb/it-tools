@@ -8650,6 +8650,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: "&nbsp;m&nbsp;"
       tag-nbsp-s: s
+  random-line-picker:
+    title: Rastgele Satır Seçici
+    description: Metin girişi içinden rastgele satırlar seçin
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Tekrarlanan satırlara izin ver
+      label-number-of-lines-to-pick: "Seçilecek satır sayısı:"
+      label-prefix-lines-with-line-number: Satır numaralarını ekle
+      placeholder-picked-lines: Seçilen satırlar
+      placeholder-put-your-text-here: Metninizi buraya koyun...
+      tag-copy: Kopyala
+      tag-refresh: Yenile
+      text-picked-lines-copied-to-clipboard: Seçilen satırlar panoya kopyalandı!
 about:
   alltools-title: Tüm {toolsCount} Araç
   tools:

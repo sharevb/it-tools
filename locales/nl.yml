@@ -8660,6 +8660,19 @@ tools:
       tag-nbsp-h-nbsp: h
       tag-nbsp-m-nbsp: m
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: Willekeurige regelkiezer
+    description: Kies willekeurige regels uit een tekstinvoer
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Toestaan dat regels herhaald worden
+      label-number-of-lines-to-pick: "Aantal regels om te kiezen:"
+      label-prefix-lines-with-line-number: Regelnummers toevoegen
+      placeholder-picked-lines: Geselecteerde regels
+      placeholder-put-your-text-here: Plaats je tekst hier...
+      tag-copy: Kopiëren
+      tag-refresh: Verversen
+      text-picked-lines-copied-to-clipboard: Geselecteerde regels gekopieerd naar klembord!
 about:
   alltools-title: Alle {toolsCount}-hulpmiddelen
   tools:

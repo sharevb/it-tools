@@ -8742,6 +8742,19 @@ tools:
       tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
       tag-nbsp-m-nbsp: "&nbsp;m&nbsp;"
       tag-nbsp-s: "&nbsp;s"
+  random-line-picker:
+    title: Selettore di righe casuali
+    description: Seleziona righe casuali da un input di testo
+    externalAccess: "null"
+    texts:
+      label-allow-repeated-lines: Permetti righe ripetute
+      label-number-of-lines-to-pick: "Numero di righe da selezionare:"
+      label-prefix-lines-with-line-number: Aggiungi numeri di riga
+      placeholder-picked-lines: Righe selezionate
+      placeholder-put-your-text-here: Inserisci il tuo testo qui...
+      tag-copy: Copia
+      tag-refresh: Aggiorna
+      text-picked-lines-copied-to-clipboard: Righe selezionate copiate negli appunti!
 about:
   alltools-title: Tutti gli strumenti {toolsCount}
   tools:
