@@ -11,4 +11,5 @@ export const tool = defineTool({
   icon: IconWorldPin,
   createdAt: new Date('2026-01-09'),
   category: 'Converters',
+  externAccessDescription: 'This tool access OpenStreetMap to display the World map using the Leaflet library.',
 });

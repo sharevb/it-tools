@@ -600,6 +600,9 @@ importers:
       langs:
         specifier: ^2.0.0
         version: 2.0.0
+      leaflet:
+        specifier: ^1.9.4
+        version: 1.9.4
       libmime:
         specifier: ^5.3.8
         version: 5.3.8
@@ -1066,6 +1069,9 @@ importers:
       '@types/jsonpath':
         specifier: ^0.2.4
         version: 0.2.4
+      '@types/leaflet':
+        specifier: ^1.9.21
+        version: 1.9.21
       '@types/libmime':
         specifier: ^5.0.3
         version: 5.0.3
@@ -4283,6 +4289,9 @@ packages:
 
   '@types/katex@0.16.5':
     resolution: {integrity: sha512-DD2Y3xMlTQvAnN6d8803xdgnOeYZ+HwMglb7/9YCf49J9RkJL53azf9qKa40MkEYhqVwxZ1GS2+VlShnz4Z1Bw==}
+
+  '@types/leaflet@1.9.21':
+    resolution: {integrity: sha512-TbAd9DaPGSnzp6QvtYngntMZgcRk+igFELwR2N99XZn7RXUdKgsXMR+28bUO0rPsWp8MIu/f47luLIQuSLYv/w==}
 
   '@types/libmime@5.0.3':
     resolution: {integrity: sha512-fJ4ISAOqnWpnojw5+Ya1Fu1lPWf3PTK9E8KwJoUnJvtTXYepuFwzE4EI4lMhbAshCVu8jLdQrWLjBZyEcFgADQ==}
@@ -8359,6 +8368,9 @@ packages:
   lead@4.0.0:
     resolution: {integrity: sha512-DpMa59o5uGUWWjruMp71e6knmwKU3jRBBn1kjuLWN9EeIOxNeSAwvHf03WIl8g/ZMR2oSQC9ej3yeLBwdDc/pg==}
     engines: {node: '>=10.13.0'}
+
+  leaflet@1.9.4:
+    resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
 
   less@4.2.2:
     resolution: {integrity: sha512-tkuLHQlvWUTeQ3doAqnHbNn8T6WX1KA8yvbKG9x4VtKtIjHsVKQZCH11zRgAfbDAXC2UNIg/K9BYAAcEzUIrNg==}
@@ -15482,6 +15494,10 @@ snapshots:
 
   '@types/katex@0.16.5': {}
 
+  '@types/leaflet@1.9.21':
+    dependencies:
+      '@types/geojson': 7946.0.16
+
   '@types/libmime@5.0.3':
     dependencies:
       '@types/node': 24.10.1
@@ -20101,6 +20117,8 @@ snapshots:
   leac@0.6.0: {}
 
   lead@4.0.0: {}
+
+  leaflet@1.9.4: {}
 
   less@4.2.2:
     dependencies:
