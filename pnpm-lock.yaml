@@ -1225,8 +1225,8 @@ importers:
         specifier: ^0.25.0
         version: 0.25.0(@babel/parser@7.27.2)(rollup@2.79.2)(vue@3.3.4)
       unplugin-vue-markdown:
-        specifier: ^29.1.0
-        version: 29.1.0(vite@4.4.9(@types/node@24.10.1)(less@4.2.2)(lightningcss@1.30.1)(sass@1.83.4)(terser@5.39.0))
+        specifier: ^30.0.0
+        version: 30.0.0(vite@4.4.9(@types/node@24.10.1)(less@4.2.2)(lightningcss@1.30.1)(sass@1.83.4)(terser@5.39.0))
       vite:
         specifier: ^4.4.9
         version: 4.4.9(@types/node@24.10.1)(less@4.2.2)(lightningcss@1.30.1)(sass@1.83.4)(terser@5.39.0)
@@ -3289,6 +3289,9 @@ packages:
     resolution: {integrity: sha512-imAbBGkb+ebQyxKgzv5Hu2nmROxoDOXHh80evxdoXNOrvAnVx7zimzc1Oo5h9RlfV4vPXaE2iM5pOFbvOCClWA==}
     engines: {node: '>=6.0.0'}
 
+  '@jridgewell/remapping@2.3.5':
+    resolution: {integrity: sha512-LI9u/+laYG4Ds1TDKSJW2YPrIlcVYOwi2fUC6xB43lueCjgxV4lffOCZCtYFiH6TNOX+tQKXx97T4IKHbhyHEQ==}
+
   '@jridgewell/resolve-uri@3.1.0':
     resolution: {integrity: sha512-F2msla3tad+Mfht5cJq7LSXcdudKTWCVYUgw6pLFOOHSTtZlj6SWNYAp+AhuqLmWdBO2X5hPrLcu8cVP8fy28w==}
     engines: {node: '>=6.0.0'}
@@ -3427,14 +3430,17 @@ packages:
   '@marijn/find-cluster-break@1.0.2':
     resolution: {integrity: sha512-l0h88YhZFyKdXIFNfSWpyjStDjGHwZ/U7iobcK1cQQD8sejsONdQtTVU+1wVN1PBw40PiiHB1vA5S7VTfQiP9g==}
 
-  '@mdit-vue/plugin-component@2.1.4':
-    resolution: {integrity: sha512-fiLbwcaE6gZE4c8Mkdkc4X38ltXh/EdnuPE1hepFT2dLiW6I4X8ho2Wq7nhYuT8RmV4OKlCFENwCuXlKcpV/sw==}
+  '@mdit-vue/plugin-component@3.0.2':
+    resolution: {integrity: sha512-Fu53MajrZMOAjOIPGMTdTXgHLgGU9KwTqKtYc6WNYtFZNKw04euSfJ/zFg8eBY/2MlciVngkF7Gyc2IL7e8Bsw==}
+    engines: {node: '>=20.0.0'}
 
-  '@mdit-vue/plugin-frontmatter@2.1.4':
-    resolution: {integrity: sha512-mOlavV176njnozIf0UZGFYymmQ2LK5S1rjrbJ1uGz4Df59tu0DQntdE7YZXqmJJA9MiSx7ViCTUQCNPKg7R8Ow==}
+  '@mdit-vue/plugin-frontmatter@3.0.2':
+    resolution: {integrity: sha512-QKKgIva31YtqHgSAz7S7hRcL7cHXiqdog4wxTfxeQCHo+9IP4Oi5/r1Y5E93nTPccpadDWzAwr3A0F+kAEnsVQ==}
+    engines: {node: '>=20.0.0'}
 
-  '@mdit-vue/types@2.1.4':
-    resolution: {integrity: sha512-QiGNZslz+zXUs2X8D11UQhB4KAMZ0DZghvYxa7+1B+VMLcDtz//XHpWbcuexjzE3kBXSxIUTPH3eSQCa0puZHA==}
+  '@mdit-vue/types@3.0.2':
+    resolution: {integrity: sha512-00aAZ0F0NLik6I6Yba2emGbHLxv+QYrPH00qQ5dFKXlAo1Ll2RHDXwY7nN2WAfrx2pP+WrvSRFTGFCNGdzBDHw==}
+    engines: {node: '>=20.0.0'}
 
   '@mdit/plugin-align@0.16.0':
     resolution: {integrity: sha512-BJhOjX4Zobs+ZKEpDtxGrUCnppkFCTGIBLjXkCPmxeLf4Tsh7dqv5vVhbRueSOz/EIzc2RJzR0dlMLofsaCFeA==}
@@ -4599,6 +4605,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@unhead/dom@0.5.1':
     resolution: {integrity: sha512-cdRzGbZVWTgbwl9HiG3RZzzPThXmhj5afGB2BLRwbE+3IiwqUpMjL6v8bDjE5qttvH4YrK9AD9O8fFP9XyZQpg==}
@@ -6635,6 +6642,10 @@ packages:
     resolution: {integrity: sha512-aN97NXWF6AWBTahfVOIrB/NShkzi5H7F9r1s9mD3cDj4Ko5f2qhhVoYMibXF7GlLveb/D2ioWay8lxI97Ven3g==}
     engines: {node: '>=0.12'}
 
+  entities@7.0.1:
+    resolution: {integrity: sha512-TWrgLOFUQTH994YUyl1yT4uyavY5nNB5muff+RtWaqNVCAK408b5ZnnbNAUEWLTCpum9w6arT70i1XdQ4UeOPA==}
+    engines: {node: '>=0.12'}
+
   env-paths@3.0.0:
     resolution: {integrity: sha512-dtJUTepzMW3Lm/NPxRf3wP4642UWhjL2sQxc+ym2YMj1m/H2zDNQOlezafzkHwn6sMstjHTwG6iQQsctDW/b1A==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -6786,6 +6797,7 @@ packages:
   eslint-plugin-i@2.28.0-2:
     resolution: {integrity: sha512-z48kG4qmE4TmiLcxbmvxMT5ycwvPkXaWW0XpU1L768uZaTbiDbxsHMEdV24JHlOR1xDsPpKW39BfP/pRdYIwFA==}
     engines: {node: '>=12'}
+    deprecated: Please migrate to the brand new `eslint-plugin-import-x` instead
     peerDependencies:
       eslint: ^7.2.0 || ^8
 
@@ -8664,8 +8676,8 @@ packages:
     resolution: {integrity: sha512-tn7nW5H+wLoN4cDpeZUsLVPal95aBbbRDoehS7bpVDXhsLNYMobVx++cVTzKroHtX7e557no68dhzRgkoqvffA==}
     hasBin: true
 
-  markdown-it-async@2.2.0:
-    resolution: {integrity: sha512-sITME+kf799vMeO/ww/CjH6q+c05f6TLpn6VOmmWCGNqPJzSh+uFgZoMB9s0plNtW6afy63qglNAC3MhrhP/gg==}
+  markdown-exit@1.0.0-beta.9:
+    resolution: {integrity: sha512-5tzrMKMF367amyBly131vm6eGuWRL2DjBqWaFmPzPbLyuxP0XOmyyyroOAIXuBAMF/3kZbbfqOxvW/SotqKqbQ==}
 
   markdown-it-image-figures@2.1.1:
     resolution: {integrity: sha512-mwXSQ2nPeVUzCMIE3HlLvjRioopiqyJLNph0pyx38yf9mpqFDhNGnMpAXF9/A2Xv0oiF2cVyg9xwfF0HNAz05g==}
@@ -9477,6 +9489,10 @@ packages:
 
   picomatch@4.0.2:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
+    engines: {node: '>=12'}
+
+  picomatch@4.0.4:
+    resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
     engines: {node: '>=12'}
 
   pify@4.0.1:
@@ -11128,9 +11144,9 @@ packages:
       vue-template-es2015-compiler:
         optional: true
 
-  unplugin-utils@0.2.4:
-    resolution: {integrity: sha512-8U/MtpkPkkk3Atewj1+RcKIjb5WBimZ/WSLhhR3w6SsIj8XJuKTacSP8g+2JhfSGw0Cb125Y+2zA/IzJZDVbhA==}
-    engines: {node: '>=18.12.0'}
+  unplugin-utils@0.3.1:
+    resolution: {integrity: sha512-5lWVjgi6vuHhJ526bI4nlCOmkCIF3nnfXkCMDeMJrtdvxTs6ZFCM8oNufGTsDbKv/tJ/xj8RpvXjRuPBZJuJog==}
+    engines: {node: '>=20.19.0'}
 
   unplugin-vue-components@0.25.0:
     resolution: {integrity: sha512-HxrQ4GMSS1RwVww2av3a42cABo/v5AmTRN9iARv6e/xwkrfTyHhLh84kFwXxKkXK61vxDHxaryn694mQmkiVBg==}
@@ -11145,8 +11161,8 @@ packages:
       '@nuxt/kit':
         optional: true
 
-  unplugin-vue-markdown@29.1.0:
-    resolution: {integrity: sha512-BvDFrhsiXzVvzfq1y68jtZwHg1NYJBteSXmUK4zMdX1HT2QtKw8yimjUbDwuI1K9TW/1/L6QYiRQSl1OkHcxWg==}
+  unplugin-vue-markdown@30.0.0:
+    resolution: {integrity: sha512-FVdKAb7jmZslfdkOCfm6jxHaUafltBpOXdoLvKY+0I0EeMmhxXTSzeDldwXFJeV0IH8LyIXIiU29E6gv02WJFQ==}
     engines: {node: '>=20'}
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0-0 || ^4.0.0-0 || ^5.0.0-0 || ^6.0.0 || ^7.0.0
@@ -11157,6 +11173,10 @@ packages:
 
   unplugin@1.3.1:
     resolution: {integrity: sha512-h4uUTIvFBQRxUKS2Wjys6ivoeofGhxzTe2sRWlooyjHXVttcVfV/JiavNd3d4+jty0SVV0dxGw9AkY9MwiaCEw==}
+
+  unplugin@2.3.11:
+    resolution: {integrity: sha512-5uKD0nqiYVzlmCRs01Fhs2BdkEgBS3SAVP6ndrBsuK42iC2+JHyxM05Rm9G8+5mkmRtzMZGY8Ct5+mliZxU/Ww==}
+    engines: {node: '>=18.12.0'}
 
   unplugin@2.3.5:
     resolution: {integrity: sha512-RyWSb5AHmGtjjNQ6gIlA67sHOsWpsbWpwDokLwTcejVdOjEkJZh7QKu14J00gDDVSh8kGH4KYC/TNBceXFZhtw==}
@@ -11237,6 +11257,7 @@ packages:
 
   uuid@9.0.0:
     resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   v8flags@4.0.1:
@@ -14468,6 +14489,11 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
       '@jridgewell/trace-mapping': 0.3.25
 
+  '@jridgewell/remapping@2.3.5':
+    dependencies:
+      '@jridgewell/gen-mapping': 0.3.8
+      '@jridgewell/trace-mapping': 0.3.25
+
   '@jridgewell/resolve-uri@3.1.0': {}
 
   '@jridgewell/resolve-uri@3.1.1': {}
@@ -14640,19 +14666,19 @@ snapshots:
 
   '@marijn/find-cluster-break@1.0.2': {}
 
-  '@mdit-vue/plugin-component@2.1.4':
+  '@mdit-vue/plugin-component@3.0.2':
     dependencies:
       '@types/markdown-it': 14.1.2
       markdown-it: 14.1.1
 
-  '@mdit-vue/plugin-frontmatter@2.1.4':
+  '@mdit-vue/plugin-frontmatter@3.0.2':
     dependencies:
-      '@mdit-vue/types': 2.1.4
+      '@mdit-vue/types': 3.0.2
       '@types/markdown-it': 14.1.2
       gray-matter: 4.0.3
       markdown-it: 14.1.1
 
-  '@mdit-vue/types@2.1.4': {}
+  '@mdit-vue/types@3.0.2': {}
 
   '@mdit/plugin-align@0.16.0(markdown-it@14.1.1)':
     dependencies:
@@ -18155,6 +18181,8 @@ snapshots:
 
   entities@6.0.1: {}
 
+  entities@7.0.1: {}
+
   env-paths@3.0.0: {}
 
   epubjs@0.3.93:
@@ -20421,10 +20449,15 @@ snapshots:
       katex: 0.16.27
       marked: 15.0.12
 
-  markdown-it-async@2.2.0:
+  markdown-exit@1.0.0-beta.9:
     dependencies:
-      '@types/markdown-it': 14.1.2
-      markdown-it: 14.1.1
+      '@types/linkify-it': 5.0.0
+      '@types/mdurl': 2.0.0
+      entities: 7.0.1
+      linkify-it: 5.0.0
+      mdurl: 2.0.0
+      punycode.js: 2.3.1
+      uc.micro: 2.1.0
 
   markdown-it-image-figures@2.1.1(markdown-it@14.1.1):
     dependencies:
@@ -21350,6 +21383,8 @@ snapshots:
   picomatch@2.3.1: {}
 
   picomatch@4.0.2: {}
+
+  picomatch@4.0.4: {}
 
   pify@4.0.1:
     optional: true
@@ -23239,10 +23274,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  unplugin-utils@0.2.4:
+  unplugin-utils@0.3.1:
     dependencies:
       pathe: 2.0.3
-      picomatch: 4.0.2
+      picomatch: 4.0.4
 
   unplugin-vue-components@0.25.0(@babel/parser@7.27.2)(rollup@2.79.2)(vue@3.3.4):
     dependencies:
@@ -23263,16 +23298,14 @@ snapshots:
       - rollup
       - supports-color
 
-  unplugin-vue-markdown@29.1.0(vite@4.4.9(@types/node@24.10.1)(less@4.2.2)(lightningcss@1.30.1)(sass@1.83.4)(terser@5.39.0)):
+  unplugin-vue-markdown@30.0.0(vite@4.4.9(@types/node@24.10.1)(less@4.2.2)(lightningcss@1.30.1)(sass@1.83.4)(terser@5.39.0)):
     dependencies:
-      '@mdit-vue/plugin-component': 2.1.4
-      '@mdit-vue/plugin-frontmatter': 2.1.4
-      '@mdit-vue/types': 2.1.4
-      '@types/markdown-it': 14.1.2
-      markdown-it: 14.1.1
-      markdown-it-async: 2.2.0
-      unplugin: 2.3.5
-      unplugin-utils: 0.2.4
+      '@mdit-vue/plugin-component': 3.0.2
+      '@mdit-vue/plugin-frontmatter': 3.0.2
+      '@mdit-vue/types': 3.0.2
+      markdown-exit: 1.0.0-beta.9
+      unplugin: 2.3.11
+      unplugin-utils: 0.3.1
       vite: 4.4.9(@types/node@24.10.1)(less@4.2.2)(lightningcss@1.30.1)(sass@1.83.4)(terser@5.39.0)
 
   unplugin@1.16.1:
@@ -23286,6 +23319,13 @@ snapshots:
       chokidar: 3.5.3
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.5.0
+
+  unplugin@2.3.11:
+    dependencies:
+      '@jridgewell/remapping': 2.3.5
+      acorn: 8.15.0
+      picomatch: 4.0.4
+      webpack-virtual-modules: 0.6.2
 
   unplugin@2.3.5:
     dependencies:
