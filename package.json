@@ -384,7 +384,7 @@
     "@intlify/unplugin-vue-i18n": "^11.0.0",
     "@playwright/test": "^1.59.1",
     "@rushstack/eslint-patch": "^1.2.0",
-    "@tsconfig/node18": "^18.2.0",
+    "@tsconfig/node20": "^20.1.0",
     "@types/arr-diff": "^4.0.3",
     "@types/bcryptjs": "^2.4.6",
     "@types/big.js": "^6.2.2",
