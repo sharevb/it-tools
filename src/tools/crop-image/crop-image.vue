@@ -11,6 +11,8 @@ import {
   RotateClockwise,
 } from '@vicons/tabler';
 
+import { getViewportDimensions, getBaseDimensions } from './crop-image.service';
+
 // Image references
 const imageSrc = ref<string | null>(null);
 const fileName = ref<string>('image');
@@ -90,45 +92,17 @@ const maxViewportWidth = 450;
 const maxViewportHeight = 450;
 
 const viewportDimensions = computed(() => {
-  const ratio = currentRatio.value;
-  if (ratio >= 1) {
-    return {
-      width: maxViewportWidth,
-      height: maxViewportWidth / ratio,
-    };
-  }
-  else {
-    return {
-      width: maxViewportHeight * ratio,
-      height: maxViewportHeight,
-    };
-  }
+  return getViewportDimensions(currentRatio.value, maxViewportWidth, maxViewportHeight);
 });
 
 // Image base dimensions when fitting cover
 const baseDimensions = computed(() => {
-  const vW = viewportDimensions.value.width;
-  const vH = viewportDimensions.value.height;
-  if (!imgNaturalWidth.value || !imgNaturalHeight.value) {
-    return { width: vW, height: vH };
-  }
-  const vRatio = vW / vH;
-  const iRatio = imgNaturalWidth.value / imgNaturalHeight.value;
-
-  if (iRatio > vRatio) {
-    // Landscape relative to viewport
-    return {
-      width: vH * iRatio,
-      height: vH,
-    };
-  }
-  else {
-    // Portrait relative to viewport
-    return {
-      width: vW,
-      height: vW / iRatio,
-    };
-  }
+  return getBaseDimensions(
+    viewportDimensions.value.width,
+    viewportDimensions.value.height,
+    imgNaturalWidth.value,
+    imgNaturalHeight.value
+  );
 });
 
 // Reset image to center with cover scale
