@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useElementSize } from '@vueuse/core';
 import {
   Download,
@@ -13,6 +14,8 @@ import {
 } from '@vicons/tabler';
 
 import { getBaseDimensions, getViewportDimensions } from './crop-image.service';
+
+const { t } = useI18n();
 
 // Image references
 const imageSrc = ref<string | null>(null);
@@ -50,15 +53,15 @@ let startOffsetX = 0;
 let startOffsetY = 0;
 
 // Presets for aspect ratios
-const aspectRatioOptions = [
-  { label: '1:1 (Square)', value: '1' },
-  { label: '16:9 (Widescreen)', value: '1.777777778' },
-  { label: '9:16 (Portrait)', value: '0.5625' },
-  { label: '4:3 (Standard)', value: '1.333333333' },
-  { label: '3:2 (Photo)', value: '1.5' },
-  { label: 'Original Aspect Ratio', value: 'original' },
-  { label: 'Custom Ratio', value: 'free' },
-];
+const aspectRatioOptions = computed(() => [
+  { label: t('tools.crop-image.texts.ratio-square'), value: '1' },
+  { label: t('tools.crop-image.texts.ratio-widescreen'), value: '1.777777778' },
+  { label: t('tools.crop-image.texts.ratio-portrait'), value: '0.5625' },
+  { label: t('tools.crop-image.texts.ratio-standard'), value: '1.333333333' },
+  { label: t('tools.crop-image.texts.ratio-photo'), value: '1.5' },
+  { label: t('tools.crop-image.texts.ratio-original'), value: 'original' },
+  { label: t('tools.crop-image.texts.ratio-custom'), value: 'free' },
+]);
 
 const exportFormatOptions = [
   { label: 'PNG', value: 'png' },
@@ -66,11 +69,11 @@ const exportFormatOptions = [
   { label: 'WebP', value: 'webp' },
 ];
 
-const exportWidthOptions = [
-  { label: 'Original Crop Size', value: 'original' },
-  { label: 'Viewport Size', value: 'viewport' },
-  { label: 'Custom Width', value: 'custom' },
-];
+const exportWidthOptions = computed(() => [
+  { label: t('tools.crop-image.texts.width-original'), value: 'original' },
+  { label: t('tools.crop-image.texts.width-viewport'), value: 'viewport' },
+  { label: t('tools.crop-image.texts.width-custom'), value: 'custom' },
+]);
 
 // Computed aspect ratio value
 const currentRatio = computed(() => {
@@ -346,7 +349,7 @@ function exportImage() {
       <div flex flex-col items-center justify-center gap-6 py-12>
         <c-file-upload
           accept="image/*"
-          title="Drag and drop your image here, or click to browse"
+          :title="t('tools.crop-image.texts.drag-drop')"
           w-full
           @file-upload="onUpload"
         />
@@ -423,7 +426,7 @@ function exportImage() {
 
             <!-- Viewport Hint -->
             <div mt-3 text-center text-xs text-gray-400>
-              Drag to position • Scroll to zoom ({{ Math.round(zoom * 100) }}%)
+              {{ t('tools.crop-image.texts.drag-hint', { zoom: Math.round(zoom * 100) }) }}
             </div>
 
             <!-- Quick Action Transform Buttons -->
@@ -438,19 +441,19 @@ function exportImage() {
               </c-button>
               <c-button size="small" @click="flipH = !flipH">
                 <n-icon :component="FlipHorizontal" class="mr-1" />
-                Flip H
+                {{ t('tools.crop-image.texts.flip-h') }}
               </c-button>
               <c-button size="small" @click="flipV = !flipV">
                 <n-icon :component="FlipVertical" class="mr-1" />
-                Flip V
+                {{ t('tools.crop-image.texts.flip-v') }}
               </c-button>
               <c-button size="small" @click="resetPosition">
                 <n-icon :component="Focus" class="mr-1" />
-                Reset
+                {{ t('tools.crop-image.texts.reset') }}
               </c-button>
               <c-button size="small" @click="fitToViewport">
                 <n-icon :component="Maximize" class="mr-1" />
-                Fit
+                {{ t('tools.crop-image.texts.fit') }}
               </c-button>
             </div>
           </div>
@@ -468,13 +471,13 @@ function exportImage() {
               </div>
               <c-button type="warning" size="small" @click="imageSrc = null">
                 <n-icon :component="Refresh" class="mr-1" />
-                Change Image
+                {{ t('tools.crop-image.texts.change-image') }}
               </c-button>
             </div>
 
             <n-form label-placement="left" label-width="140" label-align="right">
               <!-- Aspect Ratio Presets -->
-              <n-form-item label="Aspect Ratio:">
+              <n-form-item :label="t('tools.crop-image.texts.aspect-ratio')">
                 <c-select
                   v-model:value="aspectRatio"
                   :options="aspectRatioOptions"
@@ -483,7 +486,7 @@ function exportImage() {
               </n-form-item>
 
               <!-- Custom Aspect Ratio Inputs -->
-              <n-form-item v-if="aspectRatio === 'free'" label="Custom Ratio:">
+              <n-form-item v-if="aspectRatio === 'free'" :label="t('tools.crop-image.texts.custom-ratio')">
                 <div w-full flex items-center gap-3>
                   <n-input-number v-model:value="customRatioWidth" :min="1" placeholder="W" class="flex-1" />
                   <span font-bold text-gray-400>:</span>
@@ -492,17 +495,17 @@ function exportImage() {
               </n-form-item>
 
               <!-- Background Color Picker -->
-              <n-form-item label="Background Color:">
+              <n-form-item :label="t('tools.crop-image.texts.background-color')">
                 <div w-full flex items-center gap-4>
                   <n-color-picker v-model:value="backgroundColor" :modes="['hex', 'rgba']" class="flex-1" />
                   <c-button size="small" @click="backgroundColor = '#00000000'">
-                    Transparent
+                    {{ t('tools.crop-image.texts.transparent') }}
                   </c-button>
                 </div>
               </n-form-item>
 
               <!-- Interactive Zoom Slider -->
-              <n-form-item label="Zoom Image:">
+              <n-form-item :label="t('tools.crop-image.texts.zoom-image')">
                 <div w-full flex items-center gap-4>
                   <n-slider v-model:value="zoom" :min="0.1" :max="5" :step="0.01" class="flex-1" />
                   <span w-50px text-right font-mono>{{ Math.round(zoom * 100) }}%</span>
@@ -510,7 +513,7 @@ function exportImage() {
               </n-form-item>
 
               <!-- Interactive Rotation Slider -->
-              <n-form-item label="Rotate Image:">
+              <n-form-item :label="t('tools.crop-image.texts.rotate-image')">
                 <div w-full flex items-center gap-4>
                   <n-slider v-model:value="rotation" :min="-180" :max="180" :step="1" class="flex-1" />
                   <span w-50px text-right font-mono>{{ rotation }}°</span>
@@ -518,7 +521,7 @@ function exportImage() {
               </n-form-item>
 
               <!-- Toggle Grid lines -->
-              <n-form-item label="Rule-of-Thirds Grid:">
+              <n-form-item :label="t('tools.crop-image.texts.rule-of-thirds-grid')">
                 <n-switch v-model:value="showGrid" />
               </n-form-item>
             </n-form>
@@ -526,12 +529,12 @@ function exportImage() {
             <n-divider class="my-2" />
 
             <div text-md mb-2 font-bold>
-              Export Settings
+              {{ t('tools.crop-image.texts.export-settings') }}
             </div>
 
             <n-form label-placement="left" label-width="140" label-align="right">
               <!-- Export Format select -->
-              <n-form-item label="Export Format:">
+              <n-form-item :label="t('tools.crop-image.texts.export-format')">
                 <c-select
                   v-model:value="exportFormat"
                   :options="exportFormatOptions"
@@ -540,7 +543,7 @@ function exportImage() {
               </n-form-item>
 
               <!-- Quality slider for lossy formats -->
-              <n-form-item v-if="exportFormat === 'jpeg' || exportFormat === 'webp'" label="Image Quality:">
+              <n-form-item v-if="exportFormat === 'jpeg' || exportFormat === 'webp'" :label="t('tools.crop-image.texts.image-quality')">
                 <div w-full flex items-center gap-4>
                   <n-slider v-model:value="exportQuality" :min="0.1" :max="1" :step="0.05" class="flex-1" />
                   <span w-50px text-right font-mono>{{ Math.round(exportQuality * 100) }}%</span>
@@ -548,7 +551,7 @@ function exportImage() {
               </n-form-item>
 
               <!-- Export width options -->
-              <n-form-item label="Export Width:">
+              <n-form-item :label="t('tools.crop-image.texts.export-width')">
                 <c-select
                   v-model:value="exportWidthMode"
                   :options="exportWidthOptions"
@@ -557,7 +560,7 @@ function exportImage() {
               </n-form-item>
 
               <!-- Custom Export Width Input -->
-              <n-form-item v-if="exportWidthMode === 'custom'" label="Custom Width (px):">
+              <n-form-item v-if="exportWidthMode === 'custom'" :label="t('tools.crop-image.texts.custom-width')">
                 <n-input-number v-model:value="customExportWidth" :min="10" :max="10000" w-full />
               </n-form-item>
             </n-form>
@@ -565,7 +568,7 @@ function exportImage() {
             <!-- Big Download/Cropped Image Button -->
             <c-button type="primary" size="large" class="mt-4 w-full" @click="exportImage">
               <n-icon :component="Download" class="mr-2 text-lg" />
-              Export & Download Cropped Image
+              {{ t('tools.crop-image.texts.export-download-image') }}
             </c-button>
           </div>
         </c-card>
