@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue';
+import { useElementSize } from '@vueuse/core';
 import {
   Download,
   FlipHorizontal,
@@ -11,7 +12,7 @@ import {
   RotateClockwise,
 } from '@vicons/tabler';
 
-import { getViewportDimensions, getBaseDimensions } from './crop-image.service';
+import { getBaseDimensions, getViewportDimensions } from './crop-image.service';
 
 // Image references
 const imageSrc = ref<string | null>(null);
@@ -95,13 +96,25 @@ const viewportDimensions = computed(() => {
   return getViewportDimensions(currentRatio.value, maxViewportWidth, maxViewportHeight);
 });
 
+// Container ref and scale calculations for small viewports
+const containerRef = ref<HTMLElement | null>(null);
+const { width: containerWidth } = useElementSize(containerRef);
+
+const scale = computed(() => {
+  if (!containerWidth.value || !viewportDimensions.value.width) {
+    return 1;
+  }
+  const maxWidth = Math.max(0, containerWidth.value - 8);
+  return Math.min(1, maxWidth / viewportDimensions.value.width);
+});
+
 // Image base dimensions when fitting cover
 const baseDimensions = computed(() => {
   return getBaseDimensions(
     viewportDimensions.value.width,
     viewportDimensions.value.height,
     imgNaturalWidth.value,
-    imgNaturalHeight.value
+    imgNaturalHeight.value,
   );
 });
 
@@ -115,10 +128,9 @@ function resetPosition() {
   const vW = viewportDimensions.value.width;
   const vH = viewportDimensions.value.height;
   const bW = baseDimensions.value.width;
-  const bH = baseDimensions.value.height;
 
   offsetX.value = (vW - bW) / 2;
-  offsetY.value = (vH - bH) / 2;
+  offsetY.value = (vH - baseDimensions.value.height) / 2;
 }
 
 // Fit image entirely inside viewport
@@ -212,8 +224,8 @@ function handlePointerMove(e: MouseEvent | TouchEvent) {
   const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
   const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
 
-  const dx = clientX - startPointerX;
-  const dy = clientY - startPointerY;
+  const dx = (clientX - startPointerX) / scale.value;
+  const dy = (clientY - startPointerY) / scale.value;
 
   offsetX.value = startOffsetX + dx;
   offsetY.value = startOffsetY + dy;
@@ -346,50 +358,66 @@ function exportImage() {
       <!-- Left Column: Viewport & Canvas transformations -->
       <n-gi span="1 900:5">
         <c-card>
-          <div flex flex-col items-center>
-            <div
-              class="viewport-box relative cursor-move select-none overflow-hidden border-2 border-gray-300 rounded-lg shadow-lg transition-all duration-200 dark:border-gray-600"
-              :style="{
-                width: `${viewportDimensions.width}px`,
-                height: `${viewportDimensions.height}px`,
-                backgroundColor,
-              }"
-              @mousedown="handlePointerDown"
-              @touchstart="handlePointerDown"
-              @wheel="handleWheel"
-            >
-              <!-- Transparent checkerboard background -->
+          <div w-full flex flex-col items-center>
+            <div ref="containerRef" w-full flex items-center justify-center>
               <div
-                v-if="backgroundColor === '#00000000' || backgroundColor.includes('rgba(') && backgroundColor.endsWith(', 0)')"
-                class="checkerboard-bg pointer-events-none absolute inset-0"
-              />
-
-              <!-- The transformable image -->
-              <img
-                :src="imageSrc"
-                class="pointer-events-none absolute"
+                class="viewport-box-wrapper"
                 :style="{
-                  width: `${baseDimensions.width}px`,
-                  height: `${baseDimensions.height}px`,
-                  transform: `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg) scale(${zoom * (flipH ? -1 : 1)}, ${zoom * (flipV ? -1 : 1)})`,
-                  transformOrigin: 'center center',
+                  width: `${viewportDimensions.width * scale}px`,
+                  height: `${viewportDimensions.height * scale}px`,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }"
               >
+                <div
+                  class="viewport-box relative cursor-move select-none overflow-hidden border-2 border-gray-300 rounded-lg shadow-lg transition-all duration-200 dark:border-gray-600"
+                  :style="{
+                    width: `${viewportDimensions.width}px`,
+                    height: `${viewportDimensions.height}px`,
+                    transform: `scale(${scale})`,
+                    transformOrigin: 'center center',
+                    flexShrink: 0,
+                    backgroundColor,
+                  }"
+                  @mousedown="handlePointerDown"
+                  @touchstart="handlePointerDown"
+                  @wheel="handleWheel"
+                >
+                  <!-- Transparent checkerboard background -->
+                  <div
+                    v-if="backgroundColor === '#00000000' || backgroundColor.includes('rgba(') && backgroundColor.endsWith(', 0)')"
+                    class="checkerboard-bg pointer-events-none absolute inset-0"
+                  />
 
-              <!-- 3x3 rule of thirds grid overlay -->
-              <div
-                v-if="showGrid"
-                class="grid-overlay pointer-events-none absolute inset-0 grid grid-cols-3 grid-rows-3 border border-white/20"
-              >
-                <div class="border-b border-r border-white/20 border-dashed" />
-                <div class="border-b border-r border-white/20 border-dashed" />
-                <div class="border-b border-white/20 border-dashed" />
-                <div class="border-b border-r border-white/20 border-dashed" />
-                <div class="border-b border-r border-white/20 border-dashed" />
-                <div class="border-b border-white/20 border-dashed" />
-                <div class="border-r border-white/20 border-dashed" />
-                <div class="border-r border-white/20 border-dashed" />
-                <div />
+                  <!-- The transformable image -->
+                  <img
+                    :src="imageSrc"
+                    class="pointer-events-none absolute"
+                    :style="{
+                      width: `${baseDimensions.width}px`,
+                      height: `${baseDimensions.height}px`,
+                      transform: `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg) scale(${zoom * (flipH ? -1 : 1)}, ${zoom * (flipV ? -1 : 1)})`,
+                      transformOrigin: 'center center',
+                    }"
+                  >
+
+                  <!-- 3x3 rule of thirds grid overlay -->
+                  <div
+                    v-if="showGrid"
+                    class="grid-overlay pointer-events-none absolute inset-0 grid grid-cols-3 grid-rows-3 border border-white/20"
+                  >
+                    <div class="border-b border-r border-white/20 border-dashed" />
+                    <div class="border-b border-r border-white/20 border-dashed" />
+                    <div class="border-b border-white/20 border-dashed" />
+                    <div class="border-b border-r border-white/20 border-dashed" />
+                    <div class="border-b border-r border-white/20 border-dashed" />
+                    <div class="border-b border-white/20 border-dashed" />
+                    <div class="border-r border-white/20 border-dashed" />
+                    <div class="border-r border-white/20 border-dashed" />
+                    <div />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -549,7 +577,6 @@ function exportImage() {
 <style lang="less" scoped>
 .viewport-box {
   background-color: #f3f4f6;
-  max-width: 100%;
 }
 
 .checkerboard-bg {

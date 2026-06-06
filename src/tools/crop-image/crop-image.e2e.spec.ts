@@ -1,7 +1,16 @@
+import { Buffer } from 'node:buffer';
 import { expect, test } from '@playwright/test';
 
 test.describe('Tool - Crop image', () => {
   test.beforeEach(async ({ page }) => {
+    page.on('console', (msg) => {
+      // eslint-disable-next-line no-console
+      console.log(`[BROWSER CONSOLE] ${msg.type()}: ${msg.text()}`);
+    });
+    page.on('pageerror', (err) => {
+      // eslint-disable-next-line no-console
+      console.log(`[BROWSER ERROR] ${err.message}`);
+    });
     await page.goto('/crop-image');
   });
 
@@ -17,7 +26,7 @@ test.describe('Tool - Crop image', () => {
     // 1x1 transparent PNG buffer
     const pixelPng = Buffer.from(
       'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
-      'base64'
+      'base64',
     );
 
     // Upload the file
@@ -44,4 +53,3 @@ test.describe('Tool - Crop image', () => {
     await expect(changeImageButton).toBeVisible();
   });
 });
-

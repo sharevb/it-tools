@@ -4,14 +4,15 @@
 export function getViewportDimensions(
   ratio: number,
   maxWidth: number = 450,
-  maxHeight: number = 450
+  maxHeight: number = 450,
 ): { width: number; height: number } {
   if (ratio >= 1) {
     return {
       width: maxWidth,
       height: maxWidth / ratio,
     };
-  } else {
+  }
+  else {
     return {
       width: maxHeight * ratio,
       height: maxHeight,
@@ -26,7 +27,7 @@ export function getBaseDimensions(
   vW: number,
   vH: number,
   naturalWidth: number,
-  naturalHeight: number
+  naturalHeight: number,
 ): { width: number; height: number } {
   if (!naturalWidth || !naturalHeight) {
     return { width: vW, height: vH };
@@ -40,7 +41,8 @@ export function getBaseDimensions(
       width: vH * iRatio,
       height: vH,
     };
-  } else {
+  }
+  else {
     // Portrait relative to viewport
     return {
       width: vW,

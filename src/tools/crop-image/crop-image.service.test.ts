@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getViewportDimensions, getBaseDimensions } from './crop-image.service';
+import { getBaseDimensions, getViewportDimensions } from './crop-image.service';
 
 describe('crop-image service utilities', () => {
   describe('getViewportDimensions', () => {
