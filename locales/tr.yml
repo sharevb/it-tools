@@ -55,6 +55,9 @@ search:
   label: Ara
   placeholder: Bir aracı veya komutu aramak için yazın...
 tools:
+  crop-image:
+    title: "Resmi kırp"
+    description: "Özel arka plan renkleriyle resimleri kırpın, yeniden boyutlandırın và döndürün."
   categories:
     favorite-tools: Favori araçların
     crypto: Crypto

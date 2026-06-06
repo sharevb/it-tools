@@ -106,6 +106,9 @@ home:
       collection-of-handy-online-tools-for-developers-with-great-ux-it-tools-is-a-free-and-open-source-collection-of-handy-online-tools-for-developers-and-people-working-in-it: IT Tools 是一款免费开源的在线工具合集，为开发人员和 IT 从业人员提供便捷的在线工具，拥有出色的用户体验。
       it-tools-handy-online-tools-for-developers: IT 工具 - 方便的在线开发人员工具
 tools:
+  crop-image:
+    title: "裁剪图片"
+    description: "使用自定义背景颜色裁剪、调整大小和旋转图像."
   chronometer:
     title: 秒表
     description: 监测某事物的持续时间。基本上是一个具备简单计时功能的秒表。

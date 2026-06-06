@@ -121,6 +121,9 @@ home:
         developers & people working in IT.
       it-tools-handy-online-tools-for-developers: IT Tools - Handy online tools for developers
 tools:
+  crop-image:
+    title: "Crop image"
+    description: "Crop, resize, and rotate images with custom background colors."
   chronometer:
     title: Chronometer
     description: >-

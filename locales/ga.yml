@@ -127,6 +127,9 @@ formatTransformer:
   output: Aschur
   download: Íoslódáil
 tools:
+  crop-image:
+    title: "Ríomhairigh íomhá"
+    description: "Ríomhairigh, athraigh méid, agus rothlaigh íomhánna le dathanna cúlra saincheaptha."
   categories:
     favorite-tools: Is fearr leat na hairíonna
     crypto: Cripteagrafaíocht

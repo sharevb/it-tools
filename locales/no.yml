@@ -108,6 +108,9 @@ search:
   label: Søk
   placeholder: Skriv for å søke etter et verktøy eller en kommando...
 tools:
+  crop-image:
+    title: "Beskjær bilde"
+    description: "Beskjær, endre størrelse og roter bilder med egendefinerte bakgrunnsfarger."
   categories:
     favorite-tools: Dine favoritt verktøy
     crypto: Krypto

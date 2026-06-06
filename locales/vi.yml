@@ -106,6 +106,9 @@ search:
   label: Tìm kiếm
   placeholder: Nhập để tìm kiếm một công cụ hoặc lệnh...
 tools:
+  crop-image:
+    title: "Cắt ảnh"
+    description: "Cắt, thay đổi kích thước và xoay hình ảnh với màu nền tùy chỉnh."
   categories:
     favorite-tools: Công cụ yêu thích của bạn
     crypto: Mã hóa

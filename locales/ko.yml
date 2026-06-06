@@ -51,6 +51,9 @@ search:
   label: 검색
   placeholder: 도구나 명령을 검색하려면 입력하세요...
 tools:
+  crop-image:
+    title: "이미지 자르기"
+    description: "사용자 정의 배경색으로 이미지 자르기, 크기 조정 및 회전."
   categories:
     favorite-tools: 즐겨찾기
     crypto: 암호화

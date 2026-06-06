@@ -124,6 +124,9 @@ formatTransformer:
   output: Ausgabe
   download: Herunterladen
 tools:
+  crop-image:
+    title: "Bild zuschneiden"
+    description: "Bilder zuschneiden, die Größe ändern und drehen mit benutzerdefinierten Hintergrundfarben."
   categories:
     favorite-tools: Deine Lieblingstools
     crypto: Krypto

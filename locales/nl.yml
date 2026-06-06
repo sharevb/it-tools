@@ -52,6 +52,9 @@ search:
   label: Zoeken
   placeholder: Typ om een gereedschap of opdracht te zoeken...
 tools:
+  crop-image:
+    title: "Afbeelding bijsnijden"
+    description: "Snijd afbeeldingen bij, wijzig het formaat en roteer ze met aangepaste achtergrondkleuren."
   categories:
     favorite-tools: Jouw favoriete tools
     crypto: Crypto

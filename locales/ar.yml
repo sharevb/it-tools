@@ -104,6 +104,9 @@ search:
   label: بحث
   placeholder: اكتب للبحث عن أداة أو أمر...
 tools:
+  crop-image:
+    title: "قص الصورة"
+    description: "قم بقص الصور وتغيير حجمها وتدويرها باستخدام ألوان خلفية مخصصة."
   categories:
     favorite-tools: أدواتك المفضلة
     crypto: التشفير

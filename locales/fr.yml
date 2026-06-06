@@ -72,6 +72,9 @@ search:
   label: Rechercher
   placeholder: Tapez pour rechercher un outil ou une commande…
 tools:
+  crop-image:
+    title: "Rogner l'image"
+    description: "Rogner, redimensionner et faire pivoter des images avec des couleurs de fond personnalisées."
   categories:
     favorite-tools: Vos outils favoris
     crypto: Cryptographie

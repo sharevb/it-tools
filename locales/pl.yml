@@ -102,6 +102,9 @@ search:
   label: Szukaj
   placeholder: Wpisz, aby wyszukać narzędzie lub polecenie...
 tools:
+  crop-image:
+    title: "Przytnij obraz"
+    description: "Przycinaj, zmieniaj rozmiar i obracaj obrazy z niestandardowymi kolorami tła."
   categories:
     favorite-tools: Twoje ulubione narzędzia
     crypto: Kryptografia

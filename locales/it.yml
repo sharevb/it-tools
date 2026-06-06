@@ -52,6 +52,9 @@ search:
   label: Cerca
   placeholder: Digita per cercare uno strumento o un comando...
 tools:
+  crop-image:
+    title: "Ritaglia immagine"
+    description: "Ritaglia, ridimensiona e ruota le immagini con colori di sfondo personalizzati."
   categories:
     favorite-tools: I tuoi strumenti preferiti
     crypto: Crypto

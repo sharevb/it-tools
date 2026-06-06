@@ -110,6 +110,9 @@ search:
   label: Buscar
   placeholder: Escriba para buscar una herramienta o un comando...
 tools:
+  crop-image:
+    title: "Recortar imagen"
+    description: "Recorte, cambie el tamaño y rote imágenes con colores de fondo personalizados."
   categories:
     favorite-tools: Tus herramientas favoritas
     crypto: Cripto
