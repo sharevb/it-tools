@@ -85,7 +85,7 @@ const tdee = computed(() =>
 );
 
 const bmi = computed(() =>
-  calculateBMI(height.value, weight.value),
+  calculateBMI(weight.value, height.value),
 );
 
 const idealWeight = computed(() => {
