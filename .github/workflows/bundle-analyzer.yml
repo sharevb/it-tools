@@ -1,0 +1,40 @@
+name: Vite Bundle Visualizer
+
+on:
+  push:
+    branches: [ chore/all-my-stuffs ]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - run: |
+          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
+          npm install -g corepack@latest
+          echo "After : corepack version => $(corepack --version)"
+          corepack enable
+          pnpm --version
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i --ignore-scripts
+
+      # Ensure vite-bundle-visualizer is installed
+      # (or remove this step if already in package.json)
+      - name: Install visualizer
+        run: pnpm install --save-dev vite-bundle-visualizer
+
+      - name: Build the app
+        run: pnpm build
+
+      - name: Upload bundle visualizer report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-visualizer-report
+          path: dist/stats.html
+          if-no-files-found: error
