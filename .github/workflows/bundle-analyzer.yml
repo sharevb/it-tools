@@ -32,6 +32,12 @@ jobs:
       - name: Build the app
         run: pnpm build
 
+      - name: Generate bundle visualizer report
+        run: |
+          # Generate stats.html using npx
+          npx vite-bundle-visualizer dist --template treemap --open false
+          
+
       - name: Upload bundle visualizer report
         uses: actions/upload-artifact@v4
         with:
