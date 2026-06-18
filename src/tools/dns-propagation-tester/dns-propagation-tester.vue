@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
+import { useNetworkUtilsConfig } from '@/tools/network-utils/network-utils-config';
 import { Base64 } from 'js-base64';
 
-const serverHost = useITStorage('dns-prop:url', 'http://localhost:8000');
-const serverAuth = useITStorage('dns-prop:auth', '');
+const { serverHost, serverAuth, hasFixedConfig } = useNetworkUtilsConfig({
+  toolKey: 'dns-prop',
+  urlStorageKey: 'dns-prop:url',
+  authStorageKey: 'dns-prop:auth',
+});
 
 const loading = ref(false);
 
@@ -172,7 +176,7 @@ async function runPropagation() {
 
 <template>
   <div>
-    <details mb-2>
+    <details v-if="!hasFixedConfig" mb-2>
       <summary>Network Utilities Service Configuration (self hosted)</summary>
       <n-card>
         <NFormItem label="Network Utilities Service Url:" label-placement="top">

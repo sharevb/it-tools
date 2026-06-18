@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { useITStorage } from '@/composable/queryParams';
+import { useNetworkUtilsConfig } from '@/tools/network-utils/network-utils-config';
 import { Base64 } from 'js-base64';
 
-const serverHost = useITStorage('https-tester:url', 'http://localhost:8000');
-const serverAuth = useITStorage('https-tester:auth', '');
+const { serverHost, serverAuth, hasFixedConfig } = useNetworkUtilsConfig({
+  toolKey: 'dns-tester',
+  urlStorageKey: 'dns-tester:url',
+  authStorageKey: 'dns-tester:auth',
+});
 
 const loading = ref(false);
 const error = ref<string | null>(null);
@@ -203,7 +206,7 @@ const labelProps = {
 
 <template>
   <div style="min-height: 80vh;">
-    <details mb-2>
+    <details v-if="!hasFixedConfig" mb-2>
       <summary>Network Utilities Service Configuration (self hosted)</summary>
       <n-card>
         <NFormItem label="Network Utilities Service Url:" label-placement="top">
