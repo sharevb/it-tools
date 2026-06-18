@@ -144,6 +144,45 @@ const dnsTypes = [
   { value: 'ZONEMD', label: 'ZONEMD — Zone message digest' },
 ];
 
+const resolverOptions = [
+  { label: 'System default', value: '' },
+  { label: 'Google 8.8.8.8', value: '8.8.8.8' },
+  { label: 'Google 8.8.4.4', value: '8.8.4.4' },
+  { label: 'Cloudflare 1.1.1.1', value: '1.1.1.1' },
+  { label: 'Cloudflare 1.0.0.1', value: '1.0.0.1' },
+  { label: 'Quad9 9.9.9.9', value: '9.9.9.9' },
+  { label: 'Quad9 149.112.112.112', value: '149.112.112.112' },
+  { label: 'OpenDNS 208.67.222.222', value: '208.67.222.222' },
+  { label: 'OpenDNS 208.67.220.220', value: '208.67.220.220' },
+  { label: 'CleanBrowsing 185.228.168.9', value: '185.228.168.9' },
+  { label: 'CleanBrowsing 185.228.169.9', value: '185.228.169.9' },
+  { label: 'DNS.Watch 84.200.69.80', value: '84.200.69.80' },
+  { label: 'DNS.Watch 84.200.70.40', value: '84.200.70.40' },
+  { label: 'FreeDNS 37.235.1.174', value: '37.235.1.174' },
+  { label: 'FreeDNS 37.235.1.177', value: '37.235.1.177' },
+  { label: 'FDN France 80.67.169.12', value: '80.67.169.12' },
+  { label: 'FDN France 80.67.169.40', value: '80.67.169.40' },
+  { label: 'Neustar EU 156.154.70.1', value: '156.154.70.1' },
+  { label: 'Neustar EU 156.154.71.1', value: '156.154.71.1' },
+  { label: 'Level3 209.244.0.3', value: '209.244.0.3' },
+  { label: 'Level3 209.244.0.4', value: '209.244.0.4' },
+  { label: 'Comodo 8.26.56.26', value: '8.26.56.26' },
+  { label: 'Comodo 8.20.247.20', value: '8.20.247.20' },
+  { label: 'CenturyLink 205.171.3.65', value: '205.171.3.65' },
+  { label: 'CenturyLink 205.171.2.65', value: '205.171.2.65' },
+  { label: 'DNSPod 119.29.29.29', value: '119.29.29.29' },
+  { label: 'AliDNS 223.5.5.5', value: '223.5.5.5' },
+  { label: 'AliDNS 223.6.6.6', value: '223.6.6.6' },
+  { label: 'Yandex 77.88.8.8', value: '77.88.8.8' },
+  { label: 'Yandex 77.88.8.1', value: '77.88.8.1' },
+  { label: 'Naver Korea 125.209.222.141', value: '125.209.222.141' },
+  { label: 'Naver Korea 125.209.249.1', value: '125.209.249.1' },
+  { label: 'GigaDNS Brazil 189.38.95.95', value: '189.38.95.95' },
+  { label: 'GigaDNS Brazil 189.38.95.96', value: '189.38.95.96' },
+  { label: 'OpenDNS Africa 196.3.132.153', value: '196.3.132.153' },
+  { label: 'OpenDNS Africa 196.3.132.154', value: '196.3.132.154' },
+];
+
 const resolverIP = ref('');
 
 const dnsDomain = ref('');
@@ -221,8 +260,14 @@ const labelProps = {
       </n-card>
     </details>
 
-    <NFormItem label="Target DNS Resolver IP:" label-placement="left">
-      <NInput v-model:value="resolverIP" placeholder="8.8.8.8 or leave empty for default /etc/resolv.conf DNS configuration" />
+    <NFormItem label="Target DNS Resolver:" label-placement="left">
+      <NSelect
+        v-model:value="resolverIP"
+        :options="resolverOptions"
+        placeholder="System default"
+        filterable
+        clearable
+      />
     </NFormItem>
 
     <n-tabs type="line" animated>
