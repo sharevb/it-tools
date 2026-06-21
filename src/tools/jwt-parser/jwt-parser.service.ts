@@ -52,5 +52,5 @@ function dateFormatter(value: unknown) {
   }
 
   const date = new Date(Number(value) * 1000);
-  return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+  return date.toString();
 }
