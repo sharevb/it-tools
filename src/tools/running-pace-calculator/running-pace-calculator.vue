@@ -84,7 +84,7 @@ function calculateStuff() {
       </NFormItem>
 
       <NFormItem label="Time:">
-        <NInput v-model:value="time" placeholder="e.g. 45:00 or 45min or 1h30..." clearable />
+        <NInput v-model:value="time" placeholder="e.g. 45:00 or 45min or 1h30m..." clearable />
       </NFormItem>
 
       <NFormItem label="Pace:">
