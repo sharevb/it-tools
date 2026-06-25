@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useITStorage } from '@/composable/queryParams';
 import { Base64 } from 'js-base64';
+import { isIP } from 'is-ip';
 
 const serverHost = useITStorage('https-tester:url', 'http://localhost:8000');
 const serverAuth = useITStorage('https-tester:auth', '');
@@ -146,6 +147,7 @@ const dnsTypes = [
 
 const resolverOptions = [
   { label: 'System default', value: '' },
+  { label: 'Custom DNS Resolver', value: '__custom__' },
   { label: 'Google 8.8.8.8', value: '8.8.8.8' },
   { label: 'Google 8.8.4.4', value: '8.8.4.4' },
   { label: 'Cloudflare 1.1.1.1', value: '1.1.1.1' },
@@ -184,6 +186,16 @@ const resolverOptions = [
 ];
 
 const resolverIP = ref('');
+const customResolverIP = ref('');
+const effectiveResolverIP = computed(() => resolverIP.value === '__custom__' ? customResolverIP.value.trim() : resolverIP.value);
+const customResolverIpError = computed(() => {
+  if (resolverIP.value !== '__custom__' || !customResolverIP.value.trim()) {
+    return '';
+  }
+
+  return isIP(customResolverIP.value.trim()) ? '' : 'Please enter a valid IPv4 or IPv6 address.';
+});
+const canRunWithSelectedResolver = computed(() => resolverIP.value !== '__custom__' || customResolverIpError.value === '');
 
 const dnsDomain = ref('');
 const dnsType = ref('A');
@@ -205,7 +217,7 @@ async function runDns() {
   dnsResult.value = await api('/dns-query', {
     domain: dnsDomain.value,
     record_type: dnsType.value,
-    resolver_ip: resolverIP.value,
+    resolver_ip: effectiveResolverIP.value,
   });
 }
 
@@ -216,21 +228,21 @@ async function runWhois() {
 async function runDnssec() {
   dnssecResult.value = await api('/dnssec', {
     domain: dnssecDomain.value,
-    resolver_ip: resolverIP.value,
+    resolver_ip: effectiveResolverIP.value,
   });
 }
 
 async function runReverse() {
   reverseResult.value = await api('/reverse-dns', {
     ip: reverseIp.value,
-    resolver_ip: resolverIP.value,
+    resolver_ip: effectiveResolverIP.value,
   });
 }
 
 async function runAxfr() {
   axfrResult.value = await api('/soa-axfr', {
     domain: axfrDomain.value,
-    resolver_ip: resolverIP.value,
+    resolver_ip: effectiveResolverIP.value,
   });
 }
 
@@ -260,14 +272,25 @@ const labelProps = {
       </n-card>
     </details>
 
-    <NFormItem label="Target DNS Resolver:" label-placement="left">
-      <NSelect
-        v-model:value="resolverIP"
-        :options="resolverOptions"
-        placeholder="System default"
-        filterable
-        clearable
-      />
+    <NFormItem label="Target DNS Resolver IP:" label-placement="left">
+      <div style="width: 100%;">
+        <NSelect
+          v-model:value="resolverIP"
+          :options="resolverOptions"
+          placeholder="System default"
+          filterable
+          clearable
+          mb-1
+        />
+        <NInput
+          v-if="resolverIP === '__custom__'"
+          v-model:value="customResolverIP"
+          placeholder="e.g. 10.0.0.53"
+        />
+        <div v-if="customResolverIpError" style="margin-top: 6px; color: var(--n-error-color); font-size: 12px;">
+          {{ customResolverIpError }}
+        </div>
+      </div>
     </NFormItem>
 
     <n-tabs type="line" animated>
@@ -282,7 +305,7 @@ const labelProps = {
           mb-1
         />
         <div mb-2 flex justify-center>
-          <n-button :loading="loading" @click="runDns">
+          <n-button :loading="loading" :disabled="!canRunWithSelectedResolver" @click="runDns">
             Query DNS
           </n-button>
         </div>
@@ -372,7 +395,7 @@ const labelProps = {
       <n-tab-pane name="dnssec" tab="DNSSEC Validation">
         <c-input-text v-model:value="dnssecDomain" label="Domain:" v-bind="labelProps" placeholder="example.com" mb-1 />
         <div mb-2 flex justify-center>
-          <n-button type="primary" :loading="loading" @click="runDnssec">
+          <n-button type="primary" :loading="loading" :disabled="!canRunWithSelectedResolver" @click="runDnssec">
             Validate DNSSEC
           </n-button>
         </div>
@@ -428,7 +451,7 @@ const labelProps = {
       <n-tab-pane name="reverse" tab="Reverse DNS (PTR)">
         <c-input-text v-model:value="reverseIp" label="IP Address:" v-bind="labelProps" placeholder="8.8.8.8" mb-1 />
         <div mb-2 flex justify-center>
-          <n-button type="primary" :loading="loading" @click="runReverse">
+          <n-button type="primary" :loading="loading" :disabled="!canRunWithSelectedResolver" @click="runReverse">
             Reverse Lookup
           </n-button>
         </div>
@@ -469,7 +492,7 @@ const labelProps = {
       <n-tab-pane name="axfr" tab="SOA + AXFR Test">
         <c-input-text v-model:value="axfrDomain" label="Domain:" v-bind="labelProps" placeholder="example.com" mb-1 />
         <div mb-2 flex justify-center>
-          <n-button type="primary" :loading="loading" @click="runAxfr">
+          <n-button type="primary" :loading="loading" :disabled="!canRunWithSelectedResolver" @click="runAxfr">
             Run SOA + AXFR
           </n-button>
         </div>
