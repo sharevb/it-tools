@@ -3,7 +3,7 @@ import { translate as t } from '@/plugins/i18n.plugin';
 
 export { getAuthHeaderCheckResult };
 
-function getAuthHeaderCheckResult({ message, password }: { message: string; password: string }) {
+function getAuthHeaderCheckResult({ message, password }: { message: string, password: string }) {
   let calculatedHash;
   const method = extractComponent('^([A-Z]+) sip', message);
   const username = extractComponent('username="([^"]+)"', message);

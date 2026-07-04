@@ -1,6 +1,6 @@
 import type { IPMask } from 'ip-matching';
-import { getMatch } from 'ip-matching';
 import { excludeCidr } from 'cidr-tools';
+import { getMatch } from 'ip-matching';
 
 function convertToCIDR(mask: IPMask) {
   const subnet = mask.convertToSubnet();
@@ -19,7 +19,8 @@ export function substractCIDRs(
   {
     allowedRanges: string
     disallowedRanges: string
-  }) {
+  },
+) {
   try {
     const allowedRangesMatchMasks = allowedRanges.split(/\s*[,;|]+\s*/g) // NOSONAR
       .filter(range => range)

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { UseValidationRule } from '@/composable/validation';
 import JSON5 from 'json5';
 import { merge } from 'merge-anything';
-import type { UseValidationRule } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
@@ -15,7 +15,8 @@ const merged = computed(() => {
         JSON.parseBigNum(json1.value),
         JSON.parseBigNum(json2.value),
       ),
-      null, 2,
+      null,
+      2,
     );
   }
   catch (e: any) {

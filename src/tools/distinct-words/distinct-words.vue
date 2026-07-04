@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
+import { countBy, orderBy } from 'lodash';
 
 import { computed, ref } from 'vue';
-import { countBy, orderBy } from 'lodash';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import ExifReader from 'exifreader';
 import getJpegQuality from 'jpeg-quality-estimator';
+import { useI18n } from 'vue-i18n';
 import { formatBytes } from '@/utils/convert';
 
 const { t } = useI18n();
@@ -17,7 +17,7 @@ interface TagsSection {
   [name: string]: Tag
 }
 
-const tagsSections = ref<{ name: string; title: string }[]>([
+const tagsSections = ref<{ name: string, title: string }[]>([
   { name: 'file', title: 'File Tags' },
   { name: 'jfif', title: 'JFIF Tags' },
   { name: 'pngFile', title: 'PNG File Tags' },

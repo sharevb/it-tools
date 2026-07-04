@@ -4,7 +4,7 @@ import {
 } from './markdown-toc-generator.service';
 
 describe('markdown-toc-generator', () => {
-  it('Generate TOC correctly', async () => {
+  it('generate TOC correctly', async () => {
     expect(getTocMarkdown({
       markdown: '',
     })).to.equal('');
@@ -219,7 +219,7 @@ Some text
 ## Last Title`);
   });
 
-  it('Regenerate TOC correctly', async () => {
+  it('regenerate TOC correctly', async () => {
     expect(getTocMarkdown({
       markdown: `# Some main title
 
@@ -294,7 +294,7 @@ Some text
 ## Last Title`);
   });
 
-  it('Generate distinct TOC ids', async () => {
+  it('generate distinct TOC ids', async () => {
     expect(getTocMarkdown({
       markdown: `# Some main title
 
@@ -336,7 +336,7 @@ Some text
 Some text`);
   });
 
-  it('Generate ids for non latin', async () => {
+  it('generate ids for non latin', async () => {
     expect(getTocMarkdown({
       markdown: `# Some main title
 

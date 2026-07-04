@@ -142,19 +142,22 @@ const natoTests = [
 ];
 
 describe('text-to-nato', () => {
-  it('Convert text to NATO', async () => {
+  it('convert text to NATO', async () => {
     for (const nato of natoTests) {
       const { lang, input, output } = nato;
       expect(textToNatoAlphabet({ text: input, langOrCountry: lang })).to.equal(output);
     }
   });
 
-  it('Convert text to NATO (includes punctuations and digits names)', async () => {
+  it('convert text to NATO (includes punctuations and digits names)', async () => {
     expect(textToNatoAlphabet({ text: 'a 1 2 3 ! % ? ;', langOrCountry: '(France)', useDigitsNames: true, usePunctuationsNames: true })).to.equal(
-      'anatole (ESPACE) {digit 1 => un} (ESPACE) {digit 2 => deux} (ESPACE) {digit 3 => trois} (ESPACE) {punctuation ! => point d\'exclamation} (ESPACE) {punctuation % => pour cent} (ESPACE) {punctuation ? => point d\'interrogation} (ESPACE) {punctuation ; => point-virgule}');
+      'anatole (ESPACE) {digit 1 => un} (ESPACE) {digit 2 => deux} (ESPACE) {digit 3 => trois} (ESPACE) {punctuation ! => point d\'exclamation} (ESPACE) {punctuation % => pour cent} (ESPACE) {punctuation ? => point d\'interrogation} (ESPACE) {punctuation ; => point-virgule}',
+    );
     expect(textToNatoAlphabet({ text: 'и 1 2 3 ! % ? ;', langOrCountry: 'Russian', useDigitsNames: true, usePunctuationsNames: true })).to.equal(
-      'иван ( ) {digit 1 => один (odin)} ( ) {digit 2 => два (dva)} ( ) {digit 3 => три (tri)} ( ) {punctuation ! => восклицательный знак (vosklitsatel\'nyy znak)} ( ) {punctuation % => процент (protsent)} ( ) {punctuation ? => вопросительный знак (voprositel\'nyy znak)} ( ) {punctuation ; => точка с запятой (tochka s zapyatoy)}');
+      'иван ( ) {digit 1 => один (odin)} ( ) {digit 2 => два (dva)} ( ) {digit 3 => три (tri)} ( ) {punctuation ! => восклицательный знак (vosklitsatel\'nyy znak)} ( ) {punctuation % => процент (protsent)} ( ) {punctuation ? => вопросительный знак (voprositel\'nyy znak)} ( ) {punctuation ; => точка с запятой (tochka s zapyatoy)}',
+    );
     expect(textToNatoAlphabet({ text: 'TesYj 1 2 3 ! % ? ;', langOrCountry: 'Swedish', useDigitsNames: true, usePunctuationsNames: true })).to.equal(
-      'TORE erik sigurd YNGVE johan (UTRYMME) {digit 1 => ett} (UTRYMME) {digit 2 => två} (UTRYMME) {digit 3 => tre} (UTRYMME) {punctuation ! => utropstecken} (UTRYMME) {punctuation % => procent} (UTRYMME) {punctuation ? => frågetecken} (UTRYMME) {punctuation ; => semikolon}');
+      'TORE erik sigurd YNGVE johan (UTRYMME) {digit 1 => ett} (UTRYMME) {digit 2 => två} (UTRYMME) {digit 3 => tre} (UTRYMME) {punctuation ! => utropstecken} (UTRYMME) {punctuation % => procent} (UTRYMME) {punctuation ? => frågetecken} (UTRYMME) {punctuation ; => semikolon}',
+    );
   });
 });

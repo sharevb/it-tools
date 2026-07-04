@@ -1,8 +1,8 @@
 <!-- AspectRatioCalculator.vue -->
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { ref } from 'vue';
 import { NButton, NRadio, NRadioGroup, NSpace } from 'naive-ui';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import {
   calculateAspectRatio,
   calculateDimensions,

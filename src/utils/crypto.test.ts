@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { SANType_DNSName, SANType_DirectoryName, SANType_IPAddress, SANType_OtherName, SANType_Rfc822Name, SANType_UniformResourceIdentifier, getSANType, getSubjectAlternativeNames, toPositiveHex } from './crypto';
+import { getSANType, getSubjectAlternativeNames, SANType_DirectoryName, SANType_DNSName, SANType_IPAddress, SANType_OtherName, SANType_Rfc822Name, SANType_UniformResourceIdentifier, toPositiveHex } from './crypto';
 
 describe('toPositiveHex function', () => {
   it('should return the same hex string if the most significant hex is less than 8', () => {

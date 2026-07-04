@@ -1,4 +1,4 @@
-interface Author { first?: string; last?: string }
+interface Author { first?: string, last?: string }
 interface CitationInput {
   authors?: Author[]
   year?: string

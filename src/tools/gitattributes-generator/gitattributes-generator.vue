@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { onMounted } from 'vue';
 import { useLocalStorage } from '@vueuse/core';
+import { onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-const options = useLocalStorage<{ label: string; value: string }[]>('gitattr-gen:opts2', []);
+const options = useLocalStorage<{ label: string, value: string }[]>('gitattr-gen:opts2', []);
 const selected = ref<string[]>([]);
 const output = ref<string>('');
 

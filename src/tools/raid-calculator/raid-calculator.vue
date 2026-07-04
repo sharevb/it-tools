@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { formatBytes, UNIT_BASE } from '@/utils/convert';
 import { raidCalculations } from './raid-calculator.service';
-import { UNIT_BASE, formatBytes } from '@/utils/convert';
 
 const { t } = useI18n();
 

@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import cronstrue from 'cronstrue';
+import type { CronType } from './crontab-generator.service';
 import ctz from 'countries-and-timezones';
+import cronstrue from 'cronstrue';
 import getTimezoneOffset from 'get-timezone-offset';
-import { type CronType, getLastExecutionTimes, isCronValid } from './crontab-generator.service';
-import { useStyleStore } from '@/stores/style.store';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
+import { useStyleStore } from '@/stores/style.store';
+import { getLastExecutionTimes, isCronValid } from './crontab-generator.service';
 
 const { t } = useI18n();
 
@@ -145,20 +146,18 @@ const awsHelpers = [
 const defaultAWSCronExpression = '0 0 ? * 1 *';
 const defaultStandardCronExpression = '40 * * * *';
 const cronType = ref<CronType>('standard');
-watch(cronType,
-  (newCronType) => {
-    if (newCronType === 'aws') {
-      if (!cron.value || cron.value === defaultStandardCronExpression) {
-        cron.value = defaultAWSCronExpression;
-      }
+watch(cronType, (newCronType) => {
+  if (newCronType === 'aws') {
+    if (!cron.value || cron.value === defaultStandardCronExpression) {
+      cron.value = defaultAWSCronExpression;
     }
-    else if (newCronType === 'standard') {
-      if (!cron.value || cron.value === defaultAWSCronExpression) {
-        cron.value = defaultStandardCronExpression;
-      }
+  }
+  else if (newCronType === 'standard') {
+    if (!cron.value || cron.value === defaultAWSCronExpression) {
+      cron.value = defaultStandardCronExpression;
     }
-  },
-);
+  }
+});
 
 const getHelpers = computed(() => {
   if (cronType.value === 'aws') {

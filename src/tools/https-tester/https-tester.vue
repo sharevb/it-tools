@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useNetworkUtilsConfig } from '@/tools/network-utils/network-utils-config';
 import { Base64 } from 'js-base64';
+import { useNetworkUtilsConfig } from '@/tools/network-utils/network-utils-config';
 
 const { serverHost, serverAuth, hasFixedConfig } = useNetworkUtilsConfig({
   toolKey: 'https-tester',
@@ -21,13 +21,12 @@ async function api(path: string, params: Record<string, string | number | boolea
 
     const url = `${serverHost.value}${path}?${pathParams.toString()}`;
 
-    const response = await fetch(url,
-      serverAuth.value
-        ? {
-            method: 'GET',
-            headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
-          }
-        : undefined);
+    const response = await fetch(url, serverAuth.value
+      ? {
+          method: 'GET',
+          headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
+        }
+      : undefined);
 
     if (!response.ok) {
       const text = await response.text();
@@ -76,7 +75,7 @@ interface RedirectCheckResult {
   redirected: boolean
   final_url?: string | null
   status_code?: number | null
-  redirect_chain?: { status_code: number; url: string; headers: Record<string, string> }[] | null
+  redirect_chain?: { status_code: number, url: string, headers: Record<string, string> }[] | null
   error?: string | null
 }
 

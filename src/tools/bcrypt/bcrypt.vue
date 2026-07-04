@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { BcryptFn } from './bcrypt.models';
 import { compare, hash } from 'bcryptjs';
-import { useI18n } from 'vue-i18n';
 import { useThemeVars } from 'naive-ui';
-import { type BcryptFn, bcryptWithProgressUpdates } from './bcrypt.models';
+import { useI18n } from 'vue-i18n';
 import { useCopy } from '@/composable/copy';
+import { bcryptWithProgressUpdates } from './bcrypt.models';
 
 const { t, locale } = useI18n();
 

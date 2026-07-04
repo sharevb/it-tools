@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { useCopy } from '@/composable/copy';
+import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+import { useQueryParam } from '@/composable/queryParams';
 import {
   EAPMethods,
   EAPPhase2Methods,
   useWifiQRCode,
 } from './useQRCode';
-import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
-import { useCopy } from '@/composable/copy';
-import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

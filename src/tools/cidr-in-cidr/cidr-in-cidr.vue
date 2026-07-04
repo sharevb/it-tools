@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { Check as CheckIcon, LetterX as CrossIcon } from '@vicons/tabler';
 import { getMatch } from 'ip-matching';
-import { cidrInCidr } from './cidr-in-cidr.service';
-import { withDefaultOnError } from '@/utils/defaults';
-import { isNotThrowing } from '@/utils/boolean';
+import { useI18n } from 'vue-i18n';
 import SpanCopyable from '@/components/SpanCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { isNotThrowing } from '@/utils/boolean';
+import { withDefaultOnError } from '@/utils/defaults';
+import { cidrInCidr } from './cidr-in-cidr.service';
 
 const { t } = useI18n();
 
@@ -15,7 +15,8 @@ const ipOrRangeToTest = useQueryParamOrStorage({ name: 'ip', storageName: 'cidr-
 
 const matchResult = computed(() => withDefaultOnError(
   () => cidrInCidr({ baseRange: baseRange.value, ipOrRangeToTest: ipOrRangeToTest.value }),
-  { baseSubnets: [], isIncluded: false }));
+  { baseSubnets: [], isIncluded: false },
+));
 
 const rangeValidationRules = [
   {

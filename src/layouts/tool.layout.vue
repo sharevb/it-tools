@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { DeviceDesktop, World } from '@vicons/tabler';
-
-import { useRoute } from 'vue-router';
-import { useHead } from '@vueuse/head';
 import type { HeadObject } from '@vueuse/head';
-import VueMarkdown from 'vue-markdown-render';
 
+import type { Tool } from '@/tools/tools.types';
+import { DeviceDesktop, World } from '@vicons/tabler';
+import { useHead } from '@vueuse/head';
 import { useThemeVars } from 'naive-ui';
+
+import VueMarkdown from 'vue-markdown-render';
+import { useRoute } from 'vue-router';
+import FavoriteButton from '@/components/FavoriteButton.vue';
 import { useTheme } from '../ui/c-link/c-link.theme';
 import BaseLayout from './base.layout.vue';
-import FavoriteButton from '@/components/FavoriteButton.vue';
-import type { Tool } from '@/tools/tools.types';
 
 const route = useRoute();
 
@@ -69,7 +69,8 @@ const toolFooter = computed<string>(() => {
     .map(
       packageName => createLink(
         packageName,
-        packageName.includes('://') ? packageName : `https://www.npmjs.com/package/${packageName}`),
+        packageName.includes('://') ? packageName : `https://www.npmjs.com/package/${packageName}`,
+      ),
     );
   return ((npmPackages.length > 0 ? `${t('tools.tool.layout.text.made-with-npmpackages', [npmPackages.join(', ')])}\n` : '') + footer).trim();
 });

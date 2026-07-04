@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
+import { useI18n } from 'vue-i18n';
 import { useValidation } from '@/composable/validation';
 
 const { t } = useI18n();

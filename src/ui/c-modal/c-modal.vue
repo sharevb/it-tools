@@ -5,7 +5,7 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(defineProps<{ open?: boolean; centered?: boolean }>(), {
+const props = withDefaults(defineProps<{ open?: boolean, centered?: boolean }>(), {
   open: false,
   centered: true,
 });

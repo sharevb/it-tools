@@ -1,8 +1,10 @@
+import type { HolidaysTypes } from 'date-holidays';
+import type { Holiday } from './business-time-calculator';
+import Holidays from 'date-holidays';
+import _ from 'lodash';
 import { DateTime, Interval } from 'luxon';
 import prettyMilliseconds from 'pretty-ms';
-import Holidays, { type HolidaysTypes } from 'date-holidays';
-import _ from 'lodash';
-import { BusinessTime, type Holiday } from './business-time-calculator';
+import { BusinessTime } from './business-time-calculator';
 
 interface DateTimeRange {
   startDate: Date
@@ -42,7 +44,9 @@ export const allWeekDays: Weekdays[] = ['monday', 'tuesday', 'wednesday', 'thurs
 export function diffDateTimes({
   date1,
   date2,
-  country, state = undefined, region = undefined,
+  country,
+  state = undefined,
+  region = undefined,
   businessTimezone,
   includeEndDate = true,
   includeWeekDays = allWeekDays,

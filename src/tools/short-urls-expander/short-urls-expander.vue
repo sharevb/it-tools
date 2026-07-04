@@ -4,12 +4,12 @@ import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 const inputUrls = ref('');
-const results = ref<{ short: string; expanded: string | null; ok: boolean; status: string }[]>([]);
+const results = ref<{ short: string, expanded: string | null, ok: boolean, status: string }[]>([]);
 const error = ref('');
 const loading = ref(false);
 const corsAnywhereUrl = useITStorage('short-urls-expander:cors-anywhere-url', '//cors.outils-libre.org');
 
-function expandSingleUrl(url: string): Promise<{ short: string; expanded: string | null; ok: boolean; status: string }> {
+function expandSingleUrl(url: string): Promise<{ short: string, expanded: string | null, ok: boolean, status: string }> {
   return new Promise((resolve) => {
     try {
       const corsUrl = `${corsAnywhereUrl.value.replace(/\/+$/g, '')}/${url}`;

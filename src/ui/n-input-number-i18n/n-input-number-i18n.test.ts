@@ -1,33 +1,33 @@
-import { beforeEach, describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createPinia, setActivePinia } from 'pinia';
-import CInputNumberI18N from './n-input-number-i18n.vue';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { formatNumber, parseNumber } from './n-input-number-i18n.utils';
+import CInputNumberI18N from './n-input-number-i18n.vue';
 
-describe('CInputNumberI18N', () => {
+describe('cInputNumberI18N', () => {
   beforeEach(() => {
     setActivePinia(createPinia());
   });
 
-  it('Should render', async () => {
+  it('should render', async () => {
     const wrapper = mount(CInputNumberI18N);
 
     expect(wrapper.html()).toBeDefined();
   });
 
-  it('Format value', () => {
+  it('format value', () => {
     expect(formatNumber(1.3)).to.equal('1.3');
   });
 
-  it('Parse a dot value', () => {
+  it('parse a dot value', () => {
     expect(parseNumber('1.3')).to.equal(1.3);
   });
 
-  it('Parse a comma value', () => {
+  it('parse a comma value', () => {
     expect(parseNumber('1,3')).to.equal(1.3);
   });
 
-  it('Parse a other values', () => {
+  it('parse a other values', () => {
     expect(parseNumber('$1,225.12')).to.equal(1225.12);
     expect(parseNumber('1,225.12')).to.equal(1225.12);
     expect(parseNumber('1.225,12')).to.equal(1225.12);

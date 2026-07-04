@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { generateNumeronym } from './numeronym-generator.service';
 import { useQueryParam } from '@/composable/queryParams';
+import { generateNumeronym } from './numeronym-generator.service';
 
 const { t } = useI18n();
 

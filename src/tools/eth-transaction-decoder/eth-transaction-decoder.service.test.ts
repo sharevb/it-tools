@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
-import JSON5 from 'json5';
 import { ethers } from 'ethers';
+import JSON5 from 'json5';
+import { describe, expect, it } from 'vitest';
 import { decodeTransaction } from './eth-transaction-decoder.service';
 
 // Minimal ABI for testing
@@ -185,7 +185,8 @@ describe('decodeTransaction', () => {
           {
             hex: '0x402934',
             type: 'BigNumber',
-          }, 'BTC',
+          },
+          'BTC',
           '0xf3df64775a2dfb6bc9e09dced96d0816ff5055bf95da13ce5b6c3f53b97071c8',
         ],
         method: 'registerOffChainDonation',

@@ -19,8 +19,10 @@ function escapeRegExp(string: string) {
 }
 
 function textToNatoAlphabet({
-  text, langOrCountry = '(International)',
-  useDigitsNames = false, usePunctuationsNames = false,
+  text,
+  langOrCountry = '(International)',
+  useDigitsNames = false,
+  usePunctuationsNames = false,
 }: {
   text: string
   langOrCountry: string
@@ -37,13 +39,14 @@ function textToNatoAlphabet({
 
   const charRegex = new RegExp(
     `(${
-        allAlphabets
+      allAlphabets
         .sort((a, b) => b.Letter.length - a.Letter.length)
         .filter(a => a[langOrCountry as AllAlphabetsKeys])
         .map(a => escapeRegExp(a.Letter))
         .join('|')
-        }|.)`,
-    'gi');
+    }|.)`,
+    'gi',
+  );
   return hangul.unpack(text)
     .replace(/\s+/g, ' ')
     .replace(
@@ -75,6 +78,7 @@ function textToNatoAlphabet({
         }
 
         return ` (${character})`;
-      })
+      },
+    )
     .trim();
 }

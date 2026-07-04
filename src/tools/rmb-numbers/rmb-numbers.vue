@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { useThemeVars } from 'naive-ui';
-import { rmb } from './rmb-numbers.service';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
+import { rmb } from './rmb-numbers.service';
 
 const { t } = useI18n();
 

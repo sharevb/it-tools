@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
-import { useI18n } from 'vue-i18n';
 import chardet from 'chardet';
 import iconv from 'iconv-lite';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

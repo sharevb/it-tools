@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import verifyPDF from 'pdf-signature-reader';
 import type { SignatureInfo } from './pdf-signature-checker.types';
+import verifyPDF from 'pdf-signature-reader';
+import { useI18n } from 'vue-i18n';
 import { formatBytes } from '@/utils/convert';
 
 const { t } = useI18n();

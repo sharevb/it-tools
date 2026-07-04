@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { UseValidationRule } from '@/composable/validation';
 import JSON5 from 'json5';
 import { InputData, jsonInputForTargetLanguage, quicktype } from 'quicktype-core';
-import type { UseValidationRule } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
@@ -24,23 +24,21 @@ const pythonicNames = useQueryParamOrStorage({ name: 'pythonic', storageName: 'j
 const pydanticBaseModel = useQueryParamOrStorage({ name: 'basemodel', storageName: 'json-python:bm', defaultValue: false });
 const optionalProperties = useQueryParamOrStorage({ name: 'optional', storageName: 'json-python:op', defaultValue: false });
 
-async function convertJsonToPython(json: string,
-  {
-    pythonVersion = '3.9',
-    classesOnly = true,
-    pythonicNames = true,
-    optionalProperties = true,
-    pydanticBaseModel = false,
-    rootName = 'GeneratedClass',
-  }: {
-    pythonVersion?: string
-    classesOnly?: boolean
-    pythonicNames?: boolean
-    optionalProperties?: boolean
-    rootName?: string
-    pydanticBaseModel?: boolean
-  } = {},
-) {
+async function convertJsonToPython(json: string, {
+  pythonVersion = '3.9',
+  classesOnly = true,
+  pythonicNames = true,
+  optionalProperties = true,
+  pydanticBaseModel = false,
+  rootName = 'GeneratedClass',
+}: {
+  pythonVersion?: string
+  classesOnly?: boolean
+  pythonicNames?: boolean
+  optionalProperties?: boolean
+  rootName?: string
+  pydanticBaseModel?: boolean
+} = {}) {
   const jsonInput = jsonInputForTargetLanguage('python');
   await jsonInput.addSource({ name: rootName, samples: [JSON.stringify(JSON5.parse(json))] });
 
@@ -64,16 +62,14 @@ async function convertJsonToPython(json: string,
 }
 const pythonOutput = computedAsync(async () => {
   try {
-    return await convertJsonToPython(jsonInput.value,
-      {
-        rootName: rootName.value,
-        pythonVersion: pythonVersion.value,
-        classesOnly: classesOnly.value,
-        pythonicNames: pythonicNames.value,
-        optionalProperties: optionalProperties.value,
-        pydanticBaseModel: pydanticBaseModel.value,
-      },
-    );
+    return await convertJsonToPython(jsonInput.value, {
+      rootName: rootName.value,
+      pythonVersion: pythonVersion.value,
+      classesOnly: classesOnly.value,
+      pythonicNames: pythonicNames.value,
+      optionalProperties: optionalProperties.value,
+      pydanticBaseModel: pydanticBaseModel.value,
+    });
   }
   catch (e: any) {
     return e.toString();

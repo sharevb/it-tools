@@ -27,7 +27,7 @@ const results = computed(() => {
     t('tools.which-day.text.friday'),
     t('tools.which-day.text.saturday'),
   ];
-  const output: Array<{ year: number; weekday: string }> = [];
+  const output: Array<{ year: number, weekday: string }> = [];
 
   error.value = '';
   try {

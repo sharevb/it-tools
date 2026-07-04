@@ -6,12 +6,12 @@ import { defaultScrubItems, getHarInfo, sanitize } from './lib/har_sanitize';
 const { t } = useI18n();
 
 type ScrubState = Record<ScrubType, Record<string, boolean>>;
-type ScrubType =
- | 'cookies'
- | 'headers'
- | 'queryArgs'
- | 'postParams'
- | 'mimeTypes';
+type ScrubType
+  = | 'cookies'
+    | 'headers'
+    | 'queryArgs'
+    | 'postParams'
+    | 'mimeTypes';
 
 const typeMap: Record<ScrubType, string> = {
   cookies: 'Cookies',

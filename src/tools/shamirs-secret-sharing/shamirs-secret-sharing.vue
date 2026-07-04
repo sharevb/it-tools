@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
-import { useI18n } from 'vue-i18n';
 import sss from 'shamirs-secret-sharing';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

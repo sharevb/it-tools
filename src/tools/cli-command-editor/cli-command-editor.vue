@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import * as service from './cli-command-editor.service';
 import { useQueryParam } from '@/composable/queryParams';
+import * as service from './cli-command-editor.service';
 
 const { t } = useI18n();
 

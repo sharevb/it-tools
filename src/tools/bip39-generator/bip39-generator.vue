@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import {
   chineseSimplifiedWordList,
   chineseTraditionalWordList,
@@ -16,12 +15,13 @@ import {
   spanishWordList,
 } from '@it-tools/bip39';
 import { Copy, Refresh } from '@vicons/tabler';
+import { useI18n } from 'vue-i18n';
 
 import { useCopy } from '@/composable/copy';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { useValidation } from '@/composable/validation';
 import { isNotThrowing } from '@/utils/boolean';
 import { withDefaultOnError } from '@/utils/defaults';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
@@ -61,7 +61,7 @@ const entropyValidation = useValidation({
       message: t('tools.bip39-generator.texts.message-entropy-length-should-be-16-32-and-be-a-multiple-of-4'),
     },
     {
-      validator: value => /^[a-fA-F0-9]*$/.test(value),
+      validator: value => /^[a-f0-9]*$/i.test(value),
       message: t('tools.bip39-generator.texts.message-entropy-should-be-an-hexadecimal-string'),
     },
   ],

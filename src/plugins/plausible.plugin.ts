@@ -1,38 +1,31 @@
-import { noop } from 'lodash';
-
-import Plausible from 'plausible-tracker';
 import type { App } from 'vue';
+
+import { init, track } from '@plausible-analytics/tracker';
 import { config } from '@/config';
 
-function createFakePlausibleInstance(): Pick<ReturnType<typeof Plausible>, 'trackEvent' | 'enableAutoPageviews'> {
-  return {
-    trackEvent: noop,
-    enableAutoPageviews: () => noop,
-  };
-}
+const trackerApi = {
+  trackEvent: (eventName: string) => track(eventName, {}),
+};
 
-function createPlausibleInstance({
-  config,
-}: {
-  config: {
-    isTrackerEnabled: boolean
-    domain: string
-    apiHost: string
-    trackLocalhost: boolean
-  }
-}) {
-  if (config.isTrackerEnabled) {
-    return Plausible(config);
-  }
-
-  return createFakePlausibleInstance();
-}
+const noopTrackerApi = {
+  trackEvent: (_eventName: string) => {},
+};
 
 export const plausible = {
   install: (app: App) => {
-    const plausible = createPlausibleInstance({ config: config.plausible });
-    plausible.enableAutoPageviews();
+    const { isTrackerEnabled, domain, apiHost, trackLocalhost } = config.plausible;
 
-    app.provide('plausible', plausible);
+    if (isTrackerEnabled) {
+      init({
+        domain,
+        endpoint: apiHost ? `${apiHost}/api/event` : undefined,
+        captureOnLocalhost: trackLocalhost,
+        autoCapturePageviews: true,
+      });
+      app.provide('plausible', trackerApi);
+    }
+    else {
+      app.provide('plausible', noopTrackerApi);
+    }
   },
 };

@@ -54,21 +54,24 @@ describe('url-text-fragment-maker.service', () => {
           getUrlWithTextFragment({
             url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a',
             textStartSearch: 'Causes,linked',
-          }))
+          }),
+        )
           .toBe('https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#:~:text=Causes&text=linked');
 
         expect(
           getUrlWithTextFragment({
             url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a',
             textStartSearch: 'Causes 1,linked 1',
-          }))
+          }),
+        )
           .toBe('https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#:~:text=Causes%201&text=linked%201');
 
         expect(
           getUrlWithTextFragment({
             url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a',
             textStartSearch: 'Causes , linked',
-          }))
+          }),
+        )
           .toBe('https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#:~:text=Causes&text=linked');
       });
     });

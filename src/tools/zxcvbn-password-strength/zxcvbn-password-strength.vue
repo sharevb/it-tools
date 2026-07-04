@@ -1,26 +1,25 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { NAlert, NInput, NProgress, NTag } from 'naive-ui';
-import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
+import { ZxcvbnFactory } from '@zxcvbn-ts/core';
 import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common';
 import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en';
+import { NAlert, NInput, NProgress, NTag } from 'naive-ui';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-const options = {
+const zxcvbn = new ZxcvbnFactory({
   dictionary: {
     ...zxcvbnCommonPackage.dictionary,
     ...zxcvbnEnPackage.dictionary,
   },
   graphs: zxcvbnCommonPackage.adjacencyGraphs,
   translations: zxcvbnEnPackage.translations,
-};
-zxcvbnOptions.setOptions(options);
+});
 
 const password = ref('');
 
 // Compute password strength
-const result = computed(() => zxcvbn(password.value));
+const result = computed(() => zxcvbn.check(password.value));
 
 // Map score to label and color
 const strengthLabel = computed(() => {

@@ -1,6 +1,6 @@
 import { flatten } from 'flatten-anything';
 
-export { getHeaders, convertArrayToCsv };
+export { convertArrayToCsv, getHeaders };
 
 function getHeaders({ array }: { array: Record<string, unknown>[] }): string[] {
   const headers = new Set<string>();

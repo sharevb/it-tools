@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import isCidr from 'is-cidr';
 import { expandCidr } from 'cidr-tools';
-import { getIPNetworkType, parseAsCIDR } from '@/utils/ip';
-import { useValidation } from '@/composable/validation';
+import isCidr from 'is-cidr';
+import { useI18n } from 'vue-i18n';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useValidation } from '@/composable/validation';
+import { getIPNetworkType, parseAsCIDR } from '@/utils/ip';
 
 const { t } = useI18n();
 

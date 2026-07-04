@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Buffer } from 'node:buffer';
-import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
-import potrace from 'potrace';
-import { Base64 } from 'js-base64';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { Buffer } from 'node:buffer';
 import { potrace as colorPotrace, init as colorPotraceInit } from 'esm-potrace-wasm';
+import { Base64 } from 'js-base64';
+import potrace from 'potrace';
+import { useI18n } from 'vue-i18n';
+import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { convertToSVG } from './colorVTracer';
 
@@ -24,13 +24,12 @@ async function traceAsync(input: Buffer) {
 
 async function posterizeAsync(input: Buffer) {
   return new Promise<string>((resolve, reject) => {
-    potrace.posterize(input,
-      (err: Error | null, svg: string) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(svg);
-      });
+    potrace.posterize(input, (err: Error | null, svg: string) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(svg);
+    });
   });
 }
 
@@ -119,8 +118,7 @@ async function computeSVG() {
           clustering_mode: 'color',
           layer_difference: layer_difference.value,
           path_precision: 8,
-        },
-        );
+        });
         break;
     }
   }

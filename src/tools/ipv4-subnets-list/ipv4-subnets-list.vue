@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { Netmask } from 'netmask';
-import { withDefaultOnError } from '@/utils/defaults';
-import { isNotThrowing } from '@/utils/boolean';
-import SpanCopyable from '@/components/SpanCopyable.vue';
 import type { SubnetInfo } from '@/utils/ip';
-import { getSubnetsInfos, parseAsCIDR } from '@/utils/ip';
+import { Netmask } from 'netmask';
+import { useI18n } from 'vue-i18n';
+import SpanCopyable from '@/components/SpanCopyable.vue';
 import { useITStorage } from '@/composable/queryParams';
+import { isNotThrowing } from '@/utils/boolean';
+import { withDefaultOnError } from '@/utils/defaults';
+import { getSubnetsInfos, parseAsCIDR } from '@/utils/ip';
 
 const { t } = useI18n();
 
@@ -23,7 +23,7 @@ const allSubnetsInfos = computed(() => withDefaultOnError(() => {
   }
 
   const base = networkInfo.value?.base;
-  const subnets: { bitmask: number; hostsPerSubnet: number; subnets: SubnetInfo[] }[] = [];
+  const subnets: { bitmask: number, hostsPerSubnet: number, subnets: SubnetInfo[] }[] = [];
   for (;bitmask <= 30; bitmask++) {
     const bitmaskSubnets = getSubnetsInfos(`${base}/${bitmask}`);
     subnets.push({ bitmask, hostsPerSubnet: bitmaskSubnets[0]?.hostsCount, subnets: bitmaskSubnets });

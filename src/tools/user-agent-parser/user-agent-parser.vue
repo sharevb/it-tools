@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { UAParser } from 'ua-parser-js';
-import { Adjustments, Browser, Cpu, Devices, Engine } from '@vicons/tabler';
-import UserAgentResultCards from './user-agent-result-cards.vue';
 import type { UserAgentResultSection } from './user-agent-parser.types';
-import { withDefaultOnError } from '@/utils/defaults';
+import { Adjustments, Browser, Cpu, Devices, Engine } from '@vicons/tabler';
+import { UAParser } from 'ua-parser-js';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
+import { withDefaultOnError } from '@/utils/defaults';
+import UserAgentResultCards from './user-agent-result-cards.vue';
 
 const { t } = useI18n();
 

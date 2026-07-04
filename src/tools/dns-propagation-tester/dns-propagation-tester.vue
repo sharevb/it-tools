@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { Base64 } from 'js-base64';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 import { useNetworkUtilsConfig } from '@/tools/network-utils/network-utils-config';
-import { Base64 } from 'js-base64';
 
 const { serverHost, serverAuth, hasFixedConfig } = useNetworkUtilsConfig({
   toolKey: 'dns-prop',
@@ -17,13 +17,12 @@ async function api(path: string, params: Record<string, string | number | boolea
 
   const url = `${serverHost.value}${path}?${pathParams.toString()}`;
 
-  const response = await fetch(url,
-    serverAuth.value
-      ? {
-          method: 'GET',
-          headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
-        }
-      : undefined);
+  const response = await fetch(url, serverAuth.value
+    ? {
+        method: 'GET',
+        headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
+      }
+    : undefined);
 
   if (!response.ok) {
     const text = await response.text();
@@ -104,7 +103,7 @@ interface DNSQueryResult {
   answers?: string[] | null
   error?: string | null
 }
-type Result = Record<string, { status: 'checking' | 'success' | 'error'; result?: DNSQueryResult }>;
+type Result = Record<string, { status: 'checking' | 'success' | 'error', result?: DNSQueryResult }>;
 const propResults = reactive<Result>({});
 
 // -------------------- Custom DNS Resolvers --------------------

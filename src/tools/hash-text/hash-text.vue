@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import type { lib } from 'crypto-js';
-import { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, enc } from 'crypto-js';
-
+import { enc, MD5, RIPEMD160, SHA1, SHA3, SHA224, SHA256, SHA384, SHA512 } from 'crypto-js';
 import {
   adler32,
   argon2d,
@@ -17,15 +15,17 @@ import {
   pbkdf2,
   sm3,
   whirlpool,
-  xxhash128,
   xxhash3,
   xxhash32,
   xxhash64,
+  xxhash128,
 } from 'hash-wasm';
 
+import { useI18n } from 'vue-i18n';
+
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 import InputCopyable from '../../components/InputCopyable.vue';
 import { convertHexToBin } from './hash-text.service';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

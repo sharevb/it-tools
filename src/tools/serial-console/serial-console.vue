@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { nextTick, onMounted, ref } from 'vue';
 import { NButton, NCard, NInput, NInputGroup, NSelect, NSpace } from 'naive-ui';
+import { nextTick, onMounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useSerialPort } from './useSerialPort';
 
 const { t } = useI18n();

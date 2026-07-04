@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
 import parseTorrent, { toMagnetURI } from 'parse-torrent';
-import { withDefaultOnError } from '@/utils/defaults';
+import { useI18n } from 'vue-i18n';
 import { useValidation } from '@/composable/validation';
+import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { escapeForLanguage, languages } from '@/utils/ascii-lang-utils';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
+import { escapeForLanguage, languages } from '@/utils/ascii-lang-utils';
 
 const { t } = useI18n();
 
@@ -12,8 +12,10 @@ const single_linize = useQueryParamOrStorage({ name: 'singleline', storageName: 
 const languagesOptions = languages.map(lang => ({ value: lang.id, label: lang.name }));
 
 const stringOutput = computed(() => escapeForLanguage(
-  rawInput.value, language.value,
-  { single_linize: single_linize.value }));
+  rawInput.value,
+  language.value,
+  { single_linize: single_linize.value },
+));
 </script>
 
 <template>

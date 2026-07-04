@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { randomNumber } from './pin-code-generator.service';
+import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { computedRefreshable } from '@/composable/computedRefreshable';
+import { randomNumber } from './pin-code-generator.service';
 
 const { t } = useI18n();
 
@@ -12,11 +12,10 @@ const length = useQueryParamOrStorage({ name: 'length', storageName: 'pin-genera
 const repeat = useQueryParamOrStorage({ name: 'repeat', storageName: 'pin-generator:repeat', defaultValue: true });
 
 const [pins, refreshPins] = computedRefreshable(() =>
-  Array.from({ length: count.value },
-    () => randomNumber({
-      length: length.value,
-      repeatDigits: repeat.value,
-    })).join('\n'),
+  Array.from({ length: count.value }, () => randomNumber({
+    length: length.value,
+    repeatDigits: repeat.value,
+  })).join('\n'),
 );
 
 const { copy } = useCopy({ source: pins, text: t('tools.pin-code-generator.texts.text-pin-code-copied-to-clipboard') });

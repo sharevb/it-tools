@@ -1,6 +1,4 @@
-import { type MaybeRef, get } from '@vueuse/core';
-import QRCode, { type QRCodeDataURLType, type QRCodeErrorCorrectionLevel, type QRCodeRenderersOptions, type QRCodeStringType } from 'qrcode';
-import { isRef, ref, watch } from 'vue';
+import type { MaybeRef } from '@vueuse/core';
 import type {
   CornerDotType,
   CornerSquareType,
@@ -11,7 +9,11 @@ import type {
   Mode,
   TypeNumber,
 } from 'pp-qr-code';
+import type { QRCodeDataURLType, QRCodeErrorCorrectionLevel, QRCodeRenderersOptions, QRCodeStringType } from 'qrcode';
+import { get } from '@vueuse/core';
 import QRCodeStyling from 'pp-qr-code';
+import QRCode from 'qrcode';
+import { isRef, ref, watch } from 'vue';
 
 function blobToBase64(blob: Blob | null): Promise<string> {
   if (blob === null) {
@@ -38,25 +40,21 @@ export function useQRCodeStyling({
   margin,
 }: {
   text: MaybeRef<string>
-  color: { foreground: MaybeRef<string>; background: MaybeRef<string> }
+  color: { foreground: MaybeRef<string>, background: MaybeRef<string> }
   outputType: MaybeRef<FileExtension>
   errorCorrectionLevel?: MaybeRef<ErrorCorrectionLevel>
   imageBase64?: MaybeRef<string>
-  imageOptions: { imageSize: MaybeRef<number>; margin: MaybeRef<number> }
-  dotOptions: { type: MaybeRef<DotType>; color: MaybeRef<string> }
-  cornersSquareOptions: { type: MaybeRef<CornerSquareType>; color: MaybeRef<string> }
-  cornersDotOptions: { type: MaybeRef<CornerDotType>; color: MaybeRef<string> }
+  imageOptions: { imageSize: MaybeRef<number>, margin: MaybeRef<number> }
+  dotOptions: { type: MaybeRef<DotType>, color: MaybeRef<string> }
+  cornersSquareOptions: { type: MaybeRef<CornerSquareType>, color: MaybeRef<string> }
+  cornersDotOptions: { type: MaybeRef<CornerDotType>, color: MaybeRef<string> }
   width?: MaybeRef<number>
   margin?: MaybeRef<number>
 }) {
   const qrcode = ref('');
 
   watch(
-    [text, background, foreground, errorCorrectionLevel,
-      imageBase64, imageSize, imageMargin,
-      dotType, dotColor, cornersSquareType, cornersSquareColor,
-      cornersDotType, cornersDotColor,
-      outputType, width, margin].filter(isRef),
+    [text, background, foreground, errorCorrectionLevel, imageBase64, imageSize, imageMargin, dotType, dotColor, cornersSquareType, cornersSquareColor, cornersDotType, cornersDotColor, outputType, width, margin].filter(isRef),
     async () => {
       const qrCodeText = get(text)?.trim();
       const qrCodeOutputType = get(outputType) || 'png';
@@ -142,7 +140,7 @@ export function useQRCode<QRCodeOptions extends QRCodeRenderersOptions>({
   options,
 }: {
   text: MaybeRef<string>
-  color: { foreground: MaybeRef<string>; background: MaybeRef<string> }
+  color: { foreground: MaybeRef<string>, background: MaybeRef<string> }
   errorCorrectionLevel?: MaybeRef<QRCodeErrorCorrectionLevel>
   outputType?: MaybeRef<QRCodeDataURLType | QRCodeStringType>
   width?: MaybeRef<number>

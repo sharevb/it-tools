@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { useCopy } from '@/composable/copy';
+import { useITStorage, useQueryParam } from '@/composable/queryParams';
 import { base64ToText, isValidBase64, textToBase64 } from '@/utils/base64';
 import { withDefaultOnError } from '@/utils/defaults';
-import { useITStorage, useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

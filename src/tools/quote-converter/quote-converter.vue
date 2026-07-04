@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import toDoubleQuotes from 'to-double-quotes';
 import toSingleQuotes from 'to-single-quotes';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 </script>

@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import satisfies from 'spdx-satisfies';
-import { type ConditionTag, type LimitationTag, type PermissionTag, getLicenseFromId, licenses } from 'safe-license-list';
-import type { VNode } from 'vue';
-import { h, ref } from 'vue';
 import type { SelectOption } from 'naive-ui';
-import { NTooltip } from 'naive-ui';
-
+import type { ConditionTag, LimitationTag, PermissionTag } from 'safe-license-list';
+import type { VNode } from 'vue';
 import { Check as CheckIcon, LetterX as CrossIcon } from '@vicons/tabler';
+import { NTooltip } from 'naive-ui';
+import { getLicenseFromId, licenses } from 'safe-license-list';
+import satisfies from 'spdx-satisfies';
+import { h, ref } from 'vue';
+
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();
@@ -57,7 +58,7 @@ const limitationsInfos = limitations.map((l) => {
   return { value: l.key, label: l.key, desc: l.desc };
 });
 
-function renderTooltips({ node, option }: { node: VNode; option: SelectOption }) {
+function renderTooltips({ node, option }: { node: VNode, option: SelectOption }) {
   return h(NTooltip, null, {
     trigger: () => node,
     default: () => option.desc,
@@ -89,12 +90,13 @@ function includesNone(filters: string | string[], elements: string[]) {
 const filteredLicencesInfos = computed(() => licenses.filter(
   (licence) => {
     return includesAll(filterAllowedPermissions.value, licence.permissions)
-    && includesNone(filterDisallowedPermissions.value, licence.permissions)
-    && includesAll(filterAllowedConditions.value, licence.conditions)
-    && includesNone(filterDisallowedConditions.value, licence.conditions)
-    && includesAll(filterAllowedLimitations.value, licence.limitations)
-    && includesNone(filterDisallowedLimitations.value, licence.limitations);
-  }).map((l) => {
+      && includesNone(filterDisallowedPermissions.value, licence.permissions)
+      && includesAll(filterAllowedConditions.value, licence.conditions)
+      && includesNone(filterDisallowedConditions.value, licence.conditions)
+      && includesAll(filterAllowedLimitations.value, licence.limitations)
+      && includesNone(filterDisallowedLimitations.value, licence.limitations);
+  },
+).map((l) => {
   return { value: l.id, label: `${l.id}: ${l.title}` };
 }));
 

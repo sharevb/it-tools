@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import {
   camelCase,
   capitalCase,
@@ -16,10 +15,11 @@ import {
 import { spongeCase } from 'sponge-case';
 import { swapCase } from 'swap-case';
 import { titleCase } from 'title-case';
+import { useI18n } from 'vue-i18n';
 
-import InputCopyable from '../../components/InputCopyable.vue';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 import { useValidation } from '@/composable/validation';
+import InputCopyable from '../../components/InputCopyable.vue';
 
 const { t } = useI18n();
 

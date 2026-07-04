@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { DOMParser } from '@xmldom/xmldom';
 import { useI18n } from 'vue-i18n';
 import XPathEngine from 'xpath';
-import { DOMParser } from '@xmldom/xmldom';
+import { useQueryParam } from '@/composable/queryParams';
 import { useValidation } from '@/composable/validation';
 import { isNotThrowing } from '@/utils/boolean';
-import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
@@ -15,9 +15,10 @@ const selectedNodes = computed(() => {
   try {
     const doc = new DOMParser().parseFromString(xml.value, 'text/xml');
     const select = XPathEngine.useNamespaces(Object.fromEntries(
-      [...xml.value.matchAll(/xmlns\:([^\=]+)\=["']([^"']+)["']/g)].map(
+      [...xml.value.matchAll(/xmlns:([^=]+)=["']([^"']+)["']/g)].map(
         ([_, prefix, uri]) => [prefix, uri],
-      )));
+      ),
+    ));
     const result = select(xpath.value, doc);
     return Array.isArray(result) ? result : [result];
   }

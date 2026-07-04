@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval';
-import { extractTextFromEPUB, extractTextFromPDF } from './rsvp-reader.service';
+import { useI18n } from 'vue-i18n';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { extractTextFromEPUB, extractTextFromPDF } from './rsvp-reader.service';
 
 const { t } = useI18n();
 
@@ -229,7 +229,7 @@ function moveLeft() {
 }
 
 function progressJump(e: MouseEvent) {
-  let el: HTMLElement | null = (e.target as HTMLElement);
+  let el: HTMLElement | null = e.target as HTMLElement;
   while (el && !el.className.includes('n-progress-content')) {
     el = el.parentElement;
   }

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { colord, extend } from 'colord';
-import a11yPlugin from 'colord/plugins/a11y';
-
-import { computed, ref, watch } from 'vue';
-import { useDebounce } from '@vueuse/core';
 import type { Harmony, HarmonyType } from 'vue-color-wheel';
+import { useDebounce } from '@vueuse/core';
+import { colord, extend } from 'colord';
+
+import a11yPlugin from 'colord/plugins/a11y';
+import { computed, ref, watch } from 'vue';
 import { VueColorWheel } from 'vue-color-wheel';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -20,7 +20,7 @@ const currentType = ref<HarmonyType>('analogous');
 const isColorReadable = ref(false);
 const isDarkTheme = useDark();
 
-const harmonyTypes: { type: HarmonyType; label: string }[] = [
+const harmonyTypes: { type: HarmonyType, label: string }[] = [
   { type: 'monochromatic', label: t('tools.color-wheel.texts.label-monochromatic') },
   { type: 'complementary', label: t('tools.color-wheel.texts.label-complementary') },
   { type: 'analogous', label: t('tools.color-wheel.texts.label-analogous') },

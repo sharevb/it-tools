@@ -37,7 +37,7 @@ export abstract class AmortizationCalculator {
 
   abstract getNth(params: AmortizationParams, paymentIndex: number): GetNthResult;
 
-  public *getAmortizationSchedule(params: AmortizationParams): Generator<AmortizationScheduleItem> {
+  public* getAmortizationSchedule(params: AmortizationParams): Generator<AmortizationScheduleItem> {
     let period = 0;
     let periodTotalPrincipal = 0;
     let periodTotalInterest = 0;

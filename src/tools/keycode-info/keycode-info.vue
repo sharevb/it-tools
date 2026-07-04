@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { useEventListener } from '@vueuse/core';
+import { useI18n } from 'vue-i18n';
 
+import { useITStorage } from '@/composable/queryParams';
 import InputCopyable from '../../components/InputCopyable.vue';
 import { getScancode } from './scancode';
-import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

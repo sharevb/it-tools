@@ -38,8 +38,7 @@ function encodeRFC5987ValueChars(str: string) {
       // The following are not required for percent-encoding per RFC5987,
       // so we can allow for a little better readability over the wire: |`^
       .replace(/%(7C|60|5E)/g, (str, hex) =>
-        String.fromCharCode(Number.parseInt(hex, 16)),
-      )
+        String.fromCharCode(Number.parseInt(hex, 16)))
   );
 }
 

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { AllSupportedUnits } from '../data-storage-unit-converter/data-storage-unit-converter.service';
 import { formatDuration, intervalToDuration } from 'date-fns';
-import { type AllSupportedUnits, displayStorageAndRateUnits } from '../data-storage-unit-converter/data-storage-unit-converter.service';
+import { useI18n } from 'vue-i18n';
+import { displayStorageAndRateUnits } from '../data-storage-unit-converter/data-storage-unit-converter.service';
 import { amountTransferable, transferSpeedRate, transferTimeSeconds } from './data-transfer-rate-converter.service';
 
 const { t } = useI18n();

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { UseValidationRule } from '@/composable/validation';
 import JSON5 from 'json5';
 import { InputData, jsonInputForTargetLanguage, quicktype } from 'quicktype-core';
-import type { UseValidationRule } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
@@ -63,17 +63,15 @@ async function convertJsonToGo(
 
 const goOutput = computedAsync(async () => {
   try {
-    return await convertJsonToGo(jsonInput.value,
-      {
-        rootName: rootName.value,
-        packageName: packageName.value,
-        tags: tags.value,
-        plainTypesOnly: plainTypesOnly.value,
-        plainTypesWithPackageOnly: plainTypesWithPackageOnly.value,
-        optionalProperties: optionalProperties.value,
-        omitEmpty: omitEmpty.value,
-      },
-    );
+    return await convertJsonToGo(jsonInput.value, {
+      rootName: rootName.value,
+      packageName: packageName.value,
+      tags: tags.value,
+      plainTypesOnly: plainTypesOnly.value,
+      plainTypesWithPackageOnly: plainTypesWithPackageOnly.value,
+      optionalProperties: optionalProperties.value,
+      omitEmpty: omitEmpty.value,
+    });
   }
   catch (e: any) {
     return e.toString();

@@ -6,8 +6,8 @@
 const rawLineRegx = /^.*$|\n|$/g;
 const newLineRegx = /\n/;
 const spacesRegx = /\s/;
-const arrayRegx = /\[\s*?([0-9]{1,100})?\s*?\]/;
-const typesRegx = /^(\w+)(\s+)(\w+).*?$/;
+const arrayRegx = /\[\s*(?:(\d{1,100})\s*)?\]/;
+const typesRegx = /^(\w+)(\s+)(\w+).*$/;
 
 function isNotUndefined(variable: any) {
   return typeof (variable) !== 'undefined' && variable !== null;
@@ -16,7 +16,8 @@ function isNotUndefined(variable: any) {
 export function parseLines(
   val: string,
   options?: { numSpaces?: number },
-  callback?: (line: string, depth: number) => void) {
+  callback?: (line: string, depth: number) => void,
+) {
   if (callback === null) {
     return;
   }
@@ -175,7 +176,7 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
     let rootArray = false;
 
     if (isArray === true) {
-      if (level === 0 && line.match(/^\s*?\[.*?$/)) {
+      if (level === 0 && /^\s*\[.*$/.test(line)) {
         rootArray = true;
       }
 
@@ -237,7 +238,7 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
       }
 
       // remove type info from model line
-      const propNameRegx = /(^[^\s]+)/;
+      const propNameRegx = /(^\S+)/;
       const rx = propNameRegx.exec(prop);
       if (rx !== null) {
         prop = rx[0];
@@ -247,7 +248,7 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
     // clean up prop name
     prop = prop.replace(spacesRegx, '');
     prop = rootArray ? '[]' : prop.replace(arrayRegx, '');
-    prop = prop.replace(/\[.*|]/g, '');
+    prop = prop.replace(/\[.*|\]/g, '');
     propStack[level] = prop;
 
     // derive prop type key
@@ -302,7 +303,7 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
           curProp.genParent = [];
         }
         if ((curProp.genParent.length < modelParent.index + 1)
-            || (Array.isArray(curProp.genParent[modelParent.index]) && curProp.genParent[modelParent.index].length === 0)) {
+          || (Array.isArray(curProp.genParent[modelParent.index]) && curProp.genParent[modelParent.index].length === 0)) {
           curProp.genParent[modelParent.index] = {};
         }
         curProp.genParent = curProp.genParent[modelParent.index];

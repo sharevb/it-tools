@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import JSStack from 'jsstack.js';
-import JavaStack from 'javastack.js';
-import PythonStack from 'pythonstack.js';
-import NetStack from 'netstack.js';
 import domtoimage from 'dom-to-image-more';
+import JavaStack from 'javastack.js';
+import JSStack from 'jsstack.js';
+import NetStack from 'netstack.js';
+import PythonStack from 'pythonstack.js';
+import { useI18n } from 'vue-i18n';
+import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { useStyleStore } from '@/stores/style.store';
-import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
 
@@ -27,7 +27,7 @@ watchEffect(() => {
     cleanedStackTrace = JSON.parse(stackTrace.value);
   }
   catch (_) {
-    cleanedStackTrace = stackTrace.value.replace(/(\\r)?\\n/g, '\n').replace(/(?:^['"])|(?:['"]$)/, '');
+    cleanedStackTrace = stackTrace.value.replace(/(\\r)?\\n/g, '\n').replace(/^['"]|['"]$/, '');
   };
   try {
     if (stackType.value === 'js') {

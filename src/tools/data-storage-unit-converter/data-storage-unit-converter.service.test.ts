@@ -48,13 +48,20 @@ describe('data-storage-unit-converter', () => {
   describe('displayStorageAndRateUnits', () => {
     it('convert to correct display value', () => {
       expect(displayStorageAndRateUnits({
-        value: 1.234567, unit: 'MB', appendUnit: false,
+        value: 1.234567,
+        unit: 'MB',
+        appendUnit: false,
       })).toBe('1.235');
       expect(displayStorageAndRateUnits({
-        value: 1.234567, unit: 'MB', appendUnit: true,
+        value: 1.234567,
+        unit: 'MB',
+        appendUnit: true,
       })).toBe('1.235MB');
       expect(displayStorageAndRateUnits({
-        value: 1.234567, unit: 'MB', appendUnit: true, precision: 5,
+        value: 1.234567,
+        unit: 'MB',
+        appendUnit: true,
+        precision: 5,
       })).toBe('1.23457MB');
     });
   });

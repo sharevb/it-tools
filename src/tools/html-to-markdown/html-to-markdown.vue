@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import TurndownService from 'turndown';
 import { gfm as addGFM } from '@guyplusplus/turndown-plugin-gfm';
+import TurndownService from 'turndown';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
@@ -16,7 +16,7 @@ function escapeMarkdown(text: string) {
   return text
     .replace(/\\/g, '\\\\') // escape backslash first
     .replace(/([*_#>|`])/g, '\\$1') // escape common markdown symbols
-    .replace(/([\[\]\(\)])/g, '\\$1') // escape brackets and parentheses
+    .replace(/([[\]()])/g, '\\$1') // escape brackets and parentheses
     .replace(/\|/g, '\\|'); // escape table pipes
 }
 

@@ -1,10 +1,9 @@
 import { Buffer } from 'node:buffer';
-import { RC4, Rabbit, TripleDES, enc } from 'crypto-js';
-import { managedNonce, randomBytes } from '@noble/ciphers/webcrypto';
 import { aeskw, aeskwp, cbc, cfb, ctr, ecb, gcm, siv } from '@noble/ciphers/aes';
+import { chacha8, chacha12, chacha20, chacha20poly1305, xchacha20, xchacha20poly1305 } from '@noble/ciphers/chacha';
 import { salsa20, xsalsa20, xsalsa20poly1305 } from '@noble/ciphers/salsa';
-import { chacha12, chacha20, chacha20poly1305, chacha8, xchacha20, xchacha20poly1305 } from '@noble/ciphers/chacha';
-import { bytesToUtf8, hexToBytes, utf8ToBytes } from '@noble/ciphers/utils';
+import { bytesToUtf8, hexToBytes, managedNonce, randomBytes, utf8ToBytes } from '@noble/ciphers/utils';
+import { enc, Rabbit, RC4, TripleDES } from 'crypto-js';
 
 function getCryptoJSKey(key: string, keyEncoding: KeyEncoding) {
   return keyEncoding === 'Text' ? key : enc.Hex.parse(key);

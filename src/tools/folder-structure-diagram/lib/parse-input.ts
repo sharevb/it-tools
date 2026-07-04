@@ -1,5 +1,5 @@
-import last from 'lodash.last';
 import type { FileStructure } from './FileStructure';
+import last from 'lodash.last';
 
 /**
  * Matches the whitespace in front of a file name.

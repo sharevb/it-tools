@@ -1,6 +1,6 @@
 import { UnfoldMoreOutlined } from '@vicons/material';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.ipv4-range-expander.title'),

@@ -20,9 +20,9 @@ export const lunicode = {
 
           // combining diacritical marks: combine with previous character for ä,ö,ü,...
           if (i > 0 && (ch === '\u0324'
-                        || ch === '\u0317'
-                        || ch === '\u0316'
-                        || ch === '\u032E')) {
+            || ch === '\u0317'
+            || ch === '\u0316'
+            || ch === '\u032E')) {
             ch = this.map[text.charAt(i - 1) + ch];
             ret.pop();
           }
@@ -49,9 +49,9 @@ export const lunicode = {
 
           // combining diacritical marks: combine with previous character for ä,ö,ü,...
           if (i > 0 && (ch === '\u0324'
-                        || ch === '\u0317'
-                        || ch === '\u0316'
-                        || ch === '\u032E')) {
+            || ch === '\u0317'
+            || ch === '\u0316'
+            || ch === '\u032E')) {
             ch = this.map[text.charAt(i - 1) + ch];
             ret.pop();
           }
@@ -195,9 +195,9 @@ export const lunicode = {
 
           // combining diacritical marks: combine with previous character for ä,ö,ü,...
           if (i > 0 && (ch === '\u0308'
-                        || ch === '\u0300'
-                        || ch === '\u0301'
-                        || ch === '\u0302')) {
+            || ch === '\u0300'
+            || ch === '\u0301'
+            || ch === '\u0302')) {
             ch = this.map[text.charAt(i - 1) + ch];
             ret.pop();
           }
@@ -230,9 +230,9 @@ export const lunicode = {
 
           // combining diacritical marks: combine with previous character for ä,ö,ü,...
           if (i > 0 && (ch === '\u0308'
-                        || ch === '\u0300'
-                        || ch === '\u0301'
-                        || ch === '\u0302')) {
+            || ch === '\u0300'
+            || ch === '\u0301'
+            || ch === '\u0302')) {
             ch = this.map[text.charAt(i - 1) + ch];
             ret.pop();
           }

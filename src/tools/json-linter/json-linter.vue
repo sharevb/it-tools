@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import linter from 'jsonlint-mod';
 import { jsonrepair } from 'jsonrepair';
-import { useJsonSchemaValidation } from '../json-viewer/useJsonSchemaValidation';
+import { useI18n } from 'vue-i18n';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
+import { useJsonSchemaValidation } from '../json-viewer/useJsonSchemaValidation';
 
 const { t } = useI18n();
 
@@ -46,7 +46,9 @@ const cleanJson = computed(() => {
     }
     return JSON.stringify(
       JSON.parseBigNum(jsonContentValue),
-      null, indentSize.value);
+      null,
+      indentSize.value,
+    );
   }
   catch (e: any) {
     return e.toString();

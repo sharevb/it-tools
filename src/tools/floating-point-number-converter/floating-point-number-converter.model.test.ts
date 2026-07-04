@@ -3,7 +3,7 @@ import { convertBinaryToDecimal, convertDecimalToBinary } from './floating-point
 
 describe('floating-point-number-converter', () => {
   describe('convertDecimalToBinary', () => {
-    it('Should convert a decimal number to a floating point binary number (IEEE-754)', () => {
+    it('should convert a decimal number to a floating point binary number (IEEE-754)', () => {
       // 32-Bit
       expect(convertDecimalToBinary({ value: '0', bitCount: 32 })).toEqual('00000000000000000000000000000000');
       expect(convertDecimalToBinary({ value: '-0', bitCount: 32 })).toEqual('10000000000000000000000000000000');
@@ -30,7 +30,7 @@ describe('floating-point-number-converter', () => {
     });
   });
   describe('convertBinaryToDecimal', () => {
-    it('Should convert a floating point binary number (IEEE-754) to a decimal number', () => {
+    it('should convert a floating point binary number (IEEE-754) to a decimal number', () => {
       // 32-Bit
       expect(convertBinaryToDecimal({ value: '00000000000000000000000000000000', decimalPrecision: '32', removeZeroPadding: false })).toEqual('0.00000000000000000000000000000000');
       expect(convertBinaryToDecimal({ value: '10000000000000000000000000000000', decimalPrecision: '32', removeZeroPadding: false })).toEqual('-0.00000000000000000000000000000000');

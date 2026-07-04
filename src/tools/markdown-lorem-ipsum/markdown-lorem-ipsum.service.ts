@@ -234,7 +234,7 @@ export function generateMarkdown(cfg: GeneratorConfig): string {
       blocks.push(codeBlock(rnd));
     }
     else if (cfg.enableBlockquotes
-               && roll < cfg.headerFrequency + cfg.listFrequency + cfg.codeFrequency + cfg.quoteFrequency) {
+      && roll < cfg.headerFrequency + cfg.listFrequency + cfg.codeFrequency + cfg.quoteFrequency) {
       blocks.push(blockquote(cfg, rnd, latinWords));
     }
     else {

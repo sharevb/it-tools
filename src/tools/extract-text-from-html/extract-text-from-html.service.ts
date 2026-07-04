@@ -8,7 +8,7 @@ function validateHtml(value: string) {
     return false;
   }
 
-  const regex = /<([a-z][a-z0-9]*)\b[^>]*>(.*?)<\/\1>|<([a-z][a-z0-9]*)\b[^\/]*\/>/gi;
+  const regex = /<([a-z][a-z0-9]*)\b[^>]*>(.*?)<\/\1>|<([a-z][a-z0-9]*)\b[^/]*\/>/gi;
   const matches = value.match(regex);
 
   return Boolean(matches !== null && matches.length);
@@ -18,4 +18,4 @@ function getTextFromHtml(value: string) {
   return convert(value);
 }
 
-export { validateHtml, getTextFromHtml };
+export { getTextFromHtml, validateHtml };

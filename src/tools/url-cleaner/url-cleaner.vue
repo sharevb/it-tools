@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { TidyURL } from 'tidy-url';
 import { Check as CheckIcon, LetterX as CrossIcon } from '@vicons/tabler';
+import { TidyURL } from 'tidy-url';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { withDefaultOnError } from '@/utils/defaults';
 

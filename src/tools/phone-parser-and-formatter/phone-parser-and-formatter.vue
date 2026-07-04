@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { getCountries, getCountryCallingCode, parsePhoneNumber } from 'libphonenumber-js/max';
 import lookup from 'country-code-lookup';
+import { getCountries, getCountryCallingCode, parsePhoneNumber } from 'libphonenumber-js/max';
+import { useI18n } from 'vue-i18n';
+import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
+import { useValidation } from '@/composable/validation';
+import { booleanToHumanReadable } from '@/utils/boolean';
+import { withDefaultOnError } from '@/utils/defaults';
 import {
   formatTypeToHumanReadable,
   getDefaultCountryCode,
   getFullCountryName,
 } from './phone-parser-and-formatter.models';
-import { withDefaultOnError } from '@/utils/defaults';
-import { booleanToHumanReadable } from '@/utils/boolean';
-import { useValidation } from '@/composable/validation';
-import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

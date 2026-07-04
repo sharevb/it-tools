@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { definePDFJSModule, extractText, getDocumentProxy } from 'unpdf';
 import * as pdfJS from 'pdfjs-dist';
 import pdfJSWorkerURL from 'pdfjs-dist/build/pdf.worker?url';
+import { definePDFJSModule, extractText, getDocumentProxy } from 'unpdf';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

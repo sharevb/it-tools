@@ -1,11 +1,12 @@
+import type { AmortizationParams } from './amortization-calculator.service';
 import { beforeEach, describe, expect, it } from 'vitest';
 import {
   AmortizationCalculator,
-  type AmortizationParams,
+
   StandardAmortizationCalculator,
 } from './amortization-calculator.service';
 
-describe('AmortizationCalculator', () => {
+describe('amortizationCalculator', () => {
   describe('validation methods', () => {
     describe('validateLoanAmount', () => {
       it('validates positive numbers', () => {
@@ -83,7 +84,7 @@ describe('AmortizationCalculator', () => {
   });
 });
 
-describe('StandardAmortizationCalculator', () => {
+describe('standardAmortizationCalculator', () => {
   let calculator: StandardAmortizationCalculator;
 
   beforeEach(() => {

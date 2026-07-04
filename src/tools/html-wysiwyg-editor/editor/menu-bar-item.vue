@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
 
-const props = defineProps<{ icon: Component; title: string; action: () => void; isActive?: () => boolean; enabled?: () => boolean }>();
+const props = defineProps<{ icon: Component, title: string, action: () => void, isActive?: () => boolean, enabled?: () => boolean }>();
 const { icon, title, action, isActive, enabled } = toRefs(props);
 </script>
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { ref } from 'vue';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
-
 import ffmpegClassWorkerUrl from '@ffmpeg/ffmpeg/worker?worker&url';
-
 import { toBlobURL } from '@ffmpeg/util';
+
+import { ref } from 'vue';
+
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
@@ -49,11 +49,16 @@ async function onFileUploaded(gifFile: File) {
     ffmpeg.writeFile(inputName, buffer);
 
     await ffmpeg.exec([
-      '-stream_loop', loop.value,
-      '-i', inputName,
-      '-movflags', 'faststart',
-      '-pix_fmt', 'yuv420p',
-      '-vf', 'scale=trunc(iw/2)*2:trunc(ih/2)*2',
+      '-stream_loop',
+      loop.value,
+      '-i',
+      inputName,
+      '-movflags',
+      'faststart',
+      '-pix_fmt',
+      'yuv420p',
+      '-vf',
+      'scale=trunc(iw/2)*2:trunc(ih/2)*2',
       outputName,
     ]);
 

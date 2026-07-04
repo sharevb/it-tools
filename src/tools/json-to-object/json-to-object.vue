@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { UseValidationRule } from '@/composable/validation';
 import JSON5 from 'json5';
 import stringifyObject from 'stringify-object';
-import type { UseValidationRule } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 import { isNotThrowing } from '@/utils/boolean';
 import { withDefaultOnError } from '@/utils/defaults';
 

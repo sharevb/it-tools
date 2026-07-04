@@ -1,14 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import {
-  convertMacCISCO, convertMacCanonical,
-  convertMacCanonicalIEEE, convertMacCanonicalIETF,
-  convertMacToEUI64CISCO, convertMacToEUI64CanonicalIEEE,
-  convertMacToEUI64CanonicalIETF, convertMacToLinkLocalIPv6,
+  convertMacCanonical,
+  convertMacCanonicalIEEE,
+  convertMacCanonicalIETF,
+  convertMacCISCO,
+  convertMacToEUI64CanonicalIEEE,
+  convertMacToEUI64CanonicalIETF,
+  convertMacToEUI64CISCO,
+  convertMacToLinkLocalIPv6,
   convertMacToNumber,
 } from './mac-address-converter.service';
 
 describe('mac-address-converter', () => {
-  it('Convert MAC Address to given format', async () => {
+  it('convert MAC Address to given format', async () => {
     expect(convertMacCanonical('')).to.equal('');
 
     const macValue = '00:0a:95:9d:68:16';

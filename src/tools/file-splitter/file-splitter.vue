@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { splitContent } from './file-splitter.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { splitContent } from './file-splitter.service';
 
 const { t } = useI18n();
 
@@ -30,7 +30,8 @@ async function prepareChunks() {
           fileContentValue,
           splitModeValue,
           (strategyValue === 'maxSize' ? 1024 : 1) * countValue,
-          strategyValue));
+          strategyValue,
+        ));
       }
       catch (e: any) {
         reject(e);

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import unicodeNames from '@unicode/unicode-15.1.0/Names/index.js';
 import unicodeCategories from '@unicode/unicode-15.1.0/General_Category';
+import unicodeNames from '@unicode/unicode-15.1.0/Names/index.js';
 import utf8 from 'utf8';
+import { useI18n } from 'vue-i18n';
 
-import { useFlexSearch } from '@/composable/flexSearch';
 import useDebouncedRef from '@/composable/debouncedref';
+import { useFlexSearch } from '@/composable/flexSearch';
 
 const { t } = useI18n();
 
@@ -36,7 +36,7 @@ const parsedSearchQuery = computed(() => {
   }
 
   // Check for various Unicode notation formats
-  const parsedRegex = /^\s*(?:\&#x(?<hex1>[\da-f]+);|\&#(?<dec>\d+);|(?:U\+|\\u)?\s*(?<hex2>[\da-f]+))\s*$/gi; // NOSONAR
+  const parsedRegex = /^\s*(?:&#x(?<hex1>[\da-f]+);|&#(?<dec>\d+);|(?:U\+|\\u)?\s*(?<hex2>[\da-f]+))\s*$/gi; // NOSONAR
   const parsedQuery = parsedRegex.exec(searchQuery.value);
   if (parsedQuery) {
     if (parsedQuery.groups?.hex1 || parsedQuery.groups?.hex2) {

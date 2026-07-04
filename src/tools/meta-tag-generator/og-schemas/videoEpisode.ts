@@ -1,7 +1,7 @@
 import type { OGSchemaType } from '../OGSchemaType.type';
-import { videoMovie } from './videoMovie';
-
 import { translate as t } from '@/plugins/i18n.plugin';
+
+import { videoMovie } from './videoMovie';
 
 export const videoEpisode: OGSchemaType = {
   name: t('tools.meta-tag-generator.videoEpisode.text.video-episode-details'),

@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import { getWeekOfMonth } from 'date-fns';
+import { describe, expect, it } from 'vitest';
 import { getFirstMondayFromISOWeek, getFirstMondayFromMonthWeek } from './week-number-converter.service';
 
 describe('week-number-converter', () => {

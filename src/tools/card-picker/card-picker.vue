@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import cards from '@younestouati/playing-cards-standard-deck';
 import { exhaustiveUniqueRandom } from 'unique-random';
+import { useI18n } from 'vue-i18n';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';

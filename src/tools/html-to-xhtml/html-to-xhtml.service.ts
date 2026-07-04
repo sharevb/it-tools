@@ -1,4 +1,4 @@
-import { DomUtils, parseDocument } from 'htmlparser2';
+import { parseDocument } from 'htmlparser2';
 
 export interface XhtmlOptions {
   addNamespace?: boolean // add http://www.w3.org/1999/xhtml
@@ -8,8 +8,20 @@ export interface XhtmlOptions {
 export function toStrictXhtml(html: string, options: XhtmlOptions = {}): string {
   // FULL canonical void element list
   const voidElements = new Set([
-    'area', 'base', 'br', 'col', 'embed', 'hr', 'img',
-    'input', 'link', 'meta', 'param', 'source', 'track', 'wbr',
+    'area',
+    'base',
+    'br',
+    'col',
+    'embed',
+    'hr',
+    'img',
+    'input',
+    'link',
+    'meta',
+    'param',
+    'source',
+    'track',
+    'wbr',
   ]);
 
   const escapeXml = (value: string) =>
@@ -24,17 +36,17 @@ export function toStrictXhtml(html: string, options: XhtmlOptions = {}): string 
     indentSize > 0 ? ' '.repeat(level * indentSize) : '';
 
   const serialize = (node: any, level = 0): string => {
-    if (DomUtils.isText(node)) {
+    if (node.type === 'text') {
       const text = escapeXml(node.data);
       return indentSize > 0 ? indentStr(level) + text : text;
     }
 
-    if (DomUtils.isComment(node)) {
+    if (node.type === 'comment') {
       const comment = `<!--${escapeXml(node.data)}-->`;
       return indentSize > 0 ? indentStr(level) + comment : comment;
     }
 
-    if (DomUtils.isTag(node)) {
+    if (node.type === 'tag' || node.type === 'script' || node.type === 'style') {
       const tag = node.name.toLowerCase();
 
       // Attributes
@@ -59,7 +71,7 @@ export function toStrictXhtml(html: string, options: XhtmlOptions = {}): string 
 
       // NORMAL ELEMENT
       const children = (node.children || [])
-        .map(child => serialize(child, level + 1))
+        .map((child: any) => serialize(child, level + 1))
         .join(indentSize > 0 ? '\n' : '');
 
       if (indentSize > 0) {
@@ -78,6 +90,6 @@ export function toStrictXhtml(html: string, options: XhtmlOptions = {}): string 
   const doc = parseDocument(html);
 
   return doc.children
-    .map(node => serialize(node, 0))
+    .map((node: any) => serialize(node, 0))
     .join(indentSize > 0 ? '\n' : '');
 }

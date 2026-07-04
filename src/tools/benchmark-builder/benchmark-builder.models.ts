@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export { computeAverage, computeVariance, arrayToMarkdownTable };
+export { arrayToMarkdownTable, computeAverage, computeVariance };
 
 function computeAverage({ data }: { data: number[] }) {
   if (data.length === 0) {
@@ -18,7 +18,7 @@ function computeVariance({ data }: { data: number[] }) {
   return computeAverage({ data: squaredDiffs });
 }
 
-function arrayToMarkdownTable({ data, headerMap = {} }: { data: Record<string, unknown>[]; headerMap?: Record<string, string> }) {
+function arrayToMarkdownTable({ data, headerMap = {} }: { data: Record<string, unknown>[], headerMap?: Record<string, string> }) {
   if (!Array.isArray(data) || data.length === 0) {
     return '';
   }

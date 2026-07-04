@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import {
   get,
 } from '@vueuse/core';
+import { useI18n } from 'vue-i18n';
+import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
+import { useValidation } from '@/composable/validation';
+import { withDefaultOnError } from '@/utils/defaults';
 import { formatJson } from './json.models';
 import { useJsonSchemaValidation } from './useJsonSchemaValidation';
-import { withDefaultOnError } from '@/utils/defaults';
-import { useValidation } from '@/composable/validation';
-import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

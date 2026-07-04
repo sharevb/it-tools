@@ -1,5 +1,5 @@
-/* eslint-disable max-statements-per-line */
-import emv, { type EmvBitDescription, type EmvTag } from 'node-emv';
+import type { EmvBitDescription, EmvTag } from 'node-emv';
+import emv from 'node-emv';
 
 /**
  * Utility functions

@@ -1,6 +1,6 @@
+import type { ExportFormat } from './objectarray.export';
 import { describe, expect, it } from 'vitest';
 import yaml from 'yaml';
-import type { ExportFormat } from './objectarray.export';
 import { objectArrayToData } from './objectarray.export';
 
 describe('objectArrayToData', () => {

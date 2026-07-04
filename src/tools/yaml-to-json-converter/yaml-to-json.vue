@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { UseValidationRule } from '@/composable/validation';
+import { nestifyObject } from 'nestify-anything';
 import { useI18n } from 'vue-i18n';
 import { parse as parseYaml } from 'yaml';
-import { nestifyObject } from 'nestify-anything';
-import type { UseValidationRule } from '@/composable/validation';
 import { isNotThrowing } from '@/utils/boolean';
 import { withDefaultOnError } from '@/utils/defaults';
 

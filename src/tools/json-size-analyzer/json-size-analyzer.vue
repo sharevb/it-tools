@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
-import { getJsonUsageTreeNodes } from './json-size-analyzer.service';
+import { useI18n } from 'vue-i18n';
 import { useValidation } from '@/composable/validation';
+import { getJsonUsageTreeNodes } from './json-size-analyzer.service';
 
 const { t } = useI18n();
 

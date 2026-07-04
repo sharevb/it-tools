@@ -1,7 +1,7 @@
 import sanitizeHtml from 'sanitize-html';
 
 function stripNonLatinCharacters(text: string) {
-  return text.replace(/[^A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\u02BB\u02EE\uA78C\d\s_-]/g, '');
+  return text.replace(/[^\w\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\u02BB\u02EE\uA78C\s-]/g, '');
 };
 
 function transformInlineCode(text: string, transform: (s: string) => string) {
@@ -22,11 +22,11 @@ function stripHtmlTags(text: string) {
 }
 
 function stripMarkdownLinks(text: string, replacement: string = '$1') {
-  return text.replace(/\[([^\]]*)\]\([^\)]*\)/g, replacement); // NOSONAR
+  return text.replace(/\[([^\]]*)\]\([^)]*\)/g, replacement); // NOSONAR
 };
 
 function concatDashes(text: string) {
-  return text.replace(/--+/g, '-');
+  return text.replace(/-{2,}/g, '-');
 };
 
 function removeUnderscoreBoldAndItalics(text: string) {
@@ -74,14 +74,14 @@ interface Title {
 function getTitles(markdown: string, idGenerator: (titleMarkdownContent: string) => string) {
   const titles: Title[] = [];
 
-  markdown = markdown.replace(/^```[\s\S]*?\n```/mg, () => {
+  markdown = markdown.replace(/^```[\s\S]*?\n```/gm, () => {
     return '';
   });
-  markdown = markdown.replace(/^~~~[\s\S]*?\n~~~/mg, () => {
+  markdown = markdown.replace(/^~~~[\s\S]*?\n~~~/gm, () => {
     return '';
   });
 
-  [...markdown.matchAll(/^(#+)(.*$)/mg)].forEach( // NOSONAR
+  [...markdown.matchAll(/^(#+)(.*$)/gm)].forEach( // NOSONAR
     ([match, levelString, titleContent]) => {
       const level = levelString.length;
 
@@ -91,7 +91,8 @@ function getTitles(markdown: string, idGenerator: (titleMarkdownContent: string)
         id: idGenerator(titleContent),
         name: titleContent.trim(),
       });
-    });
+    },
+  );
 
   return titles;
 };
@@ -138,11 +139,11 @@ export function getTocMarkdown({
   const commentClose = commentStyle === 'html' ? '-->' : '-%}';
 
   resultMarkdown = resultMarkdown.replace(
-    new RegExp(`\n${escapeRegExp(commentOpen)} TOC START.*?TOC END ${escapeRegExp(commentClose)}\n`, 'smg'),
+    new RegExp(`\n${escapeRegExp(commentOpen)} TOC START.*?TOC END ${escapeRegExp(commentClose)}\n`, 'gms'),
     '\n[TOC]\n',
   );
   resultMarkdown = resultMarkdown.replace(
-    new RegExp(`^${escapeRegExp(commentOpen)} TOC ANCHOR.*?\n`, 'mg'),
+    new RegExp(`^${escapeRegExp(commentOpen)} TOC ANCHOR.*?\n`, 'gm'),
     '',
   );
 
@@ -169,13 +170,13 @@ export function getTocMarkdown({
     if (generateAnchors) {
       resultMarkdown = resultMarkdown.replace(
         new RegExp(`(?<!^${commentOpen} TOC ANCHOR.*\n)^${escapeRegExp(title.md)}`, 'm'),
-          `${commentOpen} TOC ANCHOR ${commentClose}<a name="${title.id}"></a>\n${title.md}`,
+        `${commentOpen} TOC ANCHOR ${commentClose}<a name="${title.id}"></a>\n${title.md}`,
       );
     }
   });
 
   resultMarkdown = resultMarkdown.replace(
-    /^\[TOC\]\n/mg,
+    /^\[TOC\]\n/gm,
     `${commentOpen} TOC START ${commentClose}\n${markdownTOC}${commentOpen} TOC END ${commentClose}\n`,
   );
 

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { ref } from 'vue';
 import { NFormItem, NSelect } from 'naive-ui';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 import deflate from './lib/deflate';
+import { DefaultsMap, Formats, FormatsDesc, ModelType } from './lib/formats';
 import inputHandler from './lib/inputHandler';
 import outputFormatter from './lib/outputFormatter';
-import { DefaultsMap, Formats, FormatsDesc, ModelType } from './lib/formats';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
@@ -17,7 +17,7 @@ const outputType = useQueryParamOrStorage({ name: 'out', storageName: 'env-var-c
 const alertText = ref('');
 
 const inputOptions = Object.keys(Formats).map(key => ({ label: FormatsDesc[key], value: FormatsDesc[key] }));
-const outputOptions = ref<{ label: Formats; value: Formats }[]>([]);
+const outputOptions = ref<{ label: Formats, value: Formats }[]>([]);
 
 function updateOutputOptions() {
   const regular = [Formats.SIMPLE, Formats.TERMINAL, Formats.KUBERNETES].filter(opt => opt !== inputType.value);

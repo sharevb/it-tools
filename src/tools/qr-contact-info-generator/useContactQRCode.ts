@@ -1,7 +1,8 @@
-import { computed, ref, watchEffect } from 'vue';
-import QRCode, { type QRCodeToDataURLOptions } from 'qrcode';
 import type { MaybeRef } from '@vueuse/core';
+import type { QRCodeToDataURLOptions } from 'qrcode';
 import { get } from '@vueuse/core';
+import QRCode from 'qrcode';
+import { computed, ref, watchEffect } from 'vue';
 
 interface IContactQRCodeOptions {
   fullName: MaybeRef<string>
@@ -10,7 +11,7 @@ interface IContactQRCodeOptions {
   email: MaybeRef<string>
   website: MaybeRef<string>
   address: MaybeRef<string>
-  color: { foreground: MaybeRef<string>; background: MaybeRef<string> }
+  color: { foreground: MaybeRef<string>, background: MaybeRef<string> }
   options?: QRCodeToDataURLOptions
 }
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { useMessage } from 'naive-ui';
+import { useI18n } from 'vue-i18n';
 import { useMicrophoneService } from './mic-tester.service';
 
 const message = useMessage();

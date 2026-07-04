@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { UseValidationRule } from '@/composable/validation';
 import JSON5 from 'json5';
 import { InputData, jsonInputForTargetLanguage, quicktype } from 'quicktype-core';
-import type { UseValidationRule } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
@@ -72,20 +72,18 @@ async function convertJsonToTypescript(
 
 const tsOutput = computedAsync(async () => {
   try {
-    return await convertJsonToTypescript(jsonInput.value,
-      {
-        rootName: rootName.value,
-        interfacesOnly: interfacesOnly.value,
-        transformPropertyNames: transformPropertyNames.value,
-        explicitlyNameUnions: explicitlyNameUnions.value,
-        verifyJsonParseResults: verifyJsonParseResults.value,
-        preferUnionTypeOverEnum: preferUnionTypeOverEnum.value,
-        preferTypesOverInterfaces: preferTypesOverInterfaces.value,
-        useStringInsteadOfEnumForSingleValueEnums: useStringInsteadOfEnumForSingleValueEnums.value,
-        useReadonlyTypeMembers: useReadonlyTypeMembers.value,
-        optionalProperties: optionalProperties.value,
-      },
-    );
+    return await convertJsonToTypescript(jsonInput.value, {
+      rootName: rootName.value,
+      interfacesOnly: interfacesOnly.value,
+      transformPropertyNames: transformPropertyNames.value,
+      explicitlyNameUnions: explicitlyNameUnions.value,
+      verifyJsonParseResults: verifyJsonParseResults.value,
+      preferUnionTypeOverEnum: preferUnionTypeOverEnum.value,
+      preferTypesOverInterfaces: preferTypesOverInterfaces.value,
+      useStringInsteadOfEnumForSingleValueEnums: useStringInsteadOfEnumForSingleValueEnums.value,
+      useReadonlyTypeMembers: useReadonlyTypeMembers.value,
+      optionalProperties: optionalProperties.value,
+    });
   }
   catch (e: any) {
     return e.toString();

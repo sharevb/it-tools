@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { Base64 } from 'js-base64';
 import createGSModule from 'ghostscript-wasm-esm';
+import { Base64 } from 'js-base64';
+import { useI18n } from 'vue-i18n';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
 const { t } = useI18n();
@@ -35,7 +35,8 @@ const { download } = useDownloadFileFromBase64(
     source: base64OutputPDF,
     filename: fileName,
     extension: fileExtension,
-  });
+  },
+);
 const gsCommand = ref('');
 
 async function onFileUploaded(uploadedFile: File) {
@@ -45,18 +46,16 @@ async function onFileUploaded(uploadedFile: File) {
   fileName.value = `compressed_${uploadedFile.name}`;
   status.value = 'processing';
   try {
-    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
-      [
-        '-sDEVICE=pdfwrite',
-        `-dCompatibilityLevel=${compatibility.value}`,
-        `-dPDFSETTINGS=/${quality.value}`,
-        '-dNOPAUSE',
-        '-dQUIET',
-        '-dBATCH',
-        '-sOutputFile=out.pdf',
-        'in.pdf',
-      ],
-      0);
+    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer, [
+      '-sDEVICE=pdfwrite',
+      `-dCompatibilityLevel=${compatibility.value}`,
+      `-dPDFSETTINGS=/${quality.value}`,
+      '-dNOPAUSE',
+      '-dQUIET',
+      '-dBATCH',
+      '-sOutputFile=out.pdf',
+      'in.pdf',
+    ], 0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
 

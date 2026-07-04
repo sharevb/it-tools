@@ -44,7 +44,7 @@ function basicMTTDL(raidLevel: string, numDrives: number, mtbf: number, rebuildT
 
 function getMTTDL(
   { raidLevel, numDrives, mtbf, rebuildTime, ber, driveCapacityTB }:
-  { raidLevel: string; numDrives: number; mtbf: number; rebuildTime: number; ber: number; driveCapacityTB: number },
+  { raidLevel: string, numDrives: number, mtbf: number, rebuildTime: number, ber: number, driveCapacityTB: number },
 ) {
   const λ = 1 / mtbf;
   const bitsPerDrive = driveCapacityTB * 1e12 * 8;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import type { TranslationPipeline, TranslationSingle } from '@huggingface/transformers';
 import { env, pipeline } from '@huggingface/transformers';
+import { useI18n } from 'vue-i18n';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -90,8 +90,27 @@ const langPairs = {
   da: ['de', 'en'],
   de: ['en', 'es', 'fr'],
   en: [
-    'af', 'ar', 'cs', 'da', 'de', 'es', 'fi', 'fr', 'hi', 'hu', 'id', 'it',
-    'jap', 'nl', 'ro', 'ru', 'sv', 'uk', 'vi', 'xh', 'zh',
+    'af',
+    'ar',
+    'cs',
+    'da',
+    'de',
+    'es',
+    'fi',
+    'fr',
+    'hi',
+    'hu',
+    'id',
+    'it',
+    'jap',
+    'nl',
+    'ro',
+    'ru',
+    'sv',
+    'uk',
+    'vi',
+    'xh',
+    'zh',
   ],
   es: ['de', 'en', 'fr', 'it', 'ru'],
   et: ['en'],

@@ -181,9 +181,9 @@ test.describe('Tool - Amortization Calculator', () => {
     const lastMonthBalance = await scheduleTable.locator('tbody tr').nth(11).locator('td').nth(3).textContent();
 
     // The values may contain country code in e2e tests
-    const firstBalanceValue = Number.parseFloat(firstBalance!.replace(/[A-Za-z$,]/g, ''));
-    const sixthBalanceValue = Number.parseFloat(sixthBalance!.replace(/[A-Za-z$,]/g, ''));
-    const lastBalanceValue = Number.parseFloat(lastMonthBalance!.replace(/[A-Za-z$,]/g, ''));
+    const firstBalanceValue = Number.parseFloat(firstBalance!.replace(/[A-Z$,]/gi, ''));
+    const sixthBalanceValue = Number.parseFloat(sixthBalance!.replace(/[A-Z$,]/gi, ''));
+    const lastBalanceValue = Number.parseFloat(lastMonthBalance!.replace(/[A-Z$,]/gi, ''));
 
     expect(firstBalanceValue).toBeGreaterThan(sixthBalanceValue);
     expect(sixthBalanceValue).toBeGreaterThan(lastBalanceValue);

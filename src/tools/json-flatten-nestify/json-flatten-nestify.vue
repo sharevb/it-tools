@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { UseValidationRule } from '@/composable/validation';
+import { flatten } from 'flatten-anything';
 import JSON5 from 'json5';
 import { nestifyObject } from 'nestify-anything';
-import { flatten } from 'flatten-anything';
-import type { UseValidationRule } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
@@ -22,7 +22,8 @@ function transformer(value: string) {
       }
       return JSON.stringify(o, null, 2);
     },
-    '');
+    '',
+  );
 }
 
 const rules: UseValidationRule<string>[] = [

@@ -1,11 +1,13 @@
 declare module '*.vue' {
-  import type {  ComponentOptions } from 'vue';
+  import type { ComponentOptions } from 'vue';
+
   const Component: ComponentOptions;
   export default Component;
 }
 
 declare module '*.md' {
-  import type {  ComponentOptions } from 'vue';
+  import type { ComponentOptions } from 'vue';
+
   const Component: ComponentOptions;
   export default Component;
 }
@@ -17,20 +19,20 @@ declare module 'emojilib' {
 
 declare module 'unicode-emoji-json' {
   const emoji: Record<string, {
-    name: string;
-    slug: string;
-    group: string;
-    emoji_version: string;
-    unicode_version: string;
-    skin_tone_support: boolean;
-    skin_tone_support_unicode_version: string;
+    name: string
+    slug: string
+    group: string
+    emoji_version: string
+    unicode_version: string
+    skin_tone_support: boolean
+    skin_tone_support_unicode_version: string
   }>;
-  
+
   export default emoji;
 }
 
 declare module 'pdf-signature-reader' {
-  const verifySignature: (pdf: ArrayBuffer) => ({signatures: SignatureInfo[]});
+  const verifySignature: (pdf: ArrayBuffer) => ({ signatures: SignatureInfo[] });
 
   export default verifySignature;
 }
@@ -40,10 +42,10 @@ declare module 'vite-plugin-splash-screen/runtime' {
 }
 
 declare module 'units-converter' {
-  interface ITo{
+  interface ITo {
     to(unit: string): { value: number }
   }
-  interface IFrom{
+  interface IFrom {
     from(unit: string): ITo
   }
   export function frequency(value: number): IFrom;
@@ -53,29 +55,29 @@ declare module 'units-converter' {
 }
 
 interface BigInt {
-  toJSON: () => string;
+  toJSON: () => string
 }
 
 interface JSON {
-  parseBigInt: (jsonStr: string, options?: { minDigits?: number; }) => any;
-  parseBigNum: (jsonStr: string) => any;
-  rawJSON(value: string): any;
+  parseBigInt: (jsonStr: string, options?: { minDigits?: number }) => any
+  parseBigNum: (jsonStr: string) => any
+  rawJSON: (value: string) => any
 }
 
 interface Navigator {
-  gpu?: any;
+  gpu?: any
 }
 
 interface FontFaceSet {
-  add(fontFace: FontFace)
+  add: (fontFace: FontFace) => any
 }
 
 // TODO remove once https://github.com/microsoft/TypeScript/issues/60608 is resolved
-// eslint-disable-next-line @typescript-eslint/no-namespace
+// eslint-disable-next-line ts/no-namespace
 namespace Intl {
   class DurationFormat {
     constructor(locale?: Intl.LocalesArgument, options?: { style?: 'long' });
-    format(duration: { seconds?: number; milliseconds?: number }): string;
+    format(duration: { seconds?: number, milliseconds?: number }): string;
   }
 }
 
@@ -129,5 +131,5 @@ declare module '@vueuse/integrations/useIDBKeyval' {
     key: IDBValidKey,
     initialValue: MaybeRefOrGetter<T>,
     options?: UseIDBOptions<T>,
-  ): UseIDBKeyvalReturn<T>
+  ): UseIDBKeyvalReturn<T>;
 }

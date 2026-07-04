@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import InputCopyable from '../../components/InputCopyable.vue';
+import { useQueryParam } from '@/composable/queryParams';
 import { isNotThrowing } from '@/utils/boolean';
 import { withDefaultOnError } from '@/utils/defaults';
-import { useQueryParam } from '@/composable/queryParams';
+import InputCopyable from '../../components/InputCopyable.vue';
 
 const { t } = useI18n();
 
@@ -11,7 +11,7 @@ const urlToParse = useQueryParam({ tool: 'url-parser', name: 'url', defaultValue
 
 const urlParsed = computed(() => withDefaultOnError(() => new URL(urlToParse.value), undefined));
 const urlParsedParams = computed(() => {
-  const params: { key: string; value: string }[] = [];
+  const params: { key: string, value: string }[] = [];
   const usedKeys = new Set();
   for (const key of (urlParsed.value?.searchParams.keys() ?? [])) {
     // searchParams.keys() reports as many times the key as it appears in the params, so use only first occurrence
@@ -40,7 +40,7 @@ const urlValidationRules = [
   },
 ];
 
-const properties: { title: string; key: keyof URL }[] = [
+const properties: { title: string, key: keyof URL }[] = [
   { title: 'Protocol', key: 'protocol' },
   { title: 'Username', key: 'username' },
   { title: 'Password', key: 'password' },

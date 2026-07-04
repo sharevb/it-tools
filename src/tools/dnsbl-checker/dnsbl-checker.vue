@@ -5,7 +5,7 @@ const { t } = useI18n();
 const query = ref('');
 const resolvedIp = ref('');
 const loading = ref(false);
-const results = ref<{ dnsbl: string; description: string; listed: boolean; response: string }[]>([]);
+const results = ref<{ dnsbl: string, description: string, listed: boolean, response: string }[]>([]);
 const showListedOnly = ref(false);
 
 const dnsbls = [
@@ -73,7 +73,7 @@ function reverseIp(ip: string) {
   return ip.split('.').reverse().join('.');
 }
 
-type DnsAnswer = Array<{ type: number; data: string | null }>;
+type DnsAnswer = Array<{ type: number, data: string | null }>;
 
 async function resolveDomainToIp(domain: string) {
   const url = `https://cloudflare-dns.com/dns-query?name=${domain}`;

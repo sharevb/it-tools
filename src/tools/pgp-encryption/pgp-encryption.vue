@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import 'webcrypto-liner-shim';
 import * as openpgp from 'openpgp';
+import { useI18n } from 'vue-i18n';
 import { computedCatchAsync } from '@/composable/computed/catchedComputed';
+import 'webcrypto-liner-shim';
 
 const { t } = useI18n();
 
@@ -23,9 +23,9 @@ const [cryptOutput, cryptError] = computedCatchAsync(async () => {
   const privateKey = privateKeyArmored !== ''
     ? (passphrase !== ''
         ? await openpgp.decryptKey({
-          privateKey: await openpgp.readPrivateKey({ armoredKey: privateKeyArmored }),
-          passphrase,
-        })
+            privateKey: await openpgp.readPrivateKey({ armoredKey: privateKeyArmored }),
+            passphrase,
+          })
         : await openpgp.readPrivateKey({ armoredKey: privateKeyArmored }))
     : undefined;
 
@@ -53,9 +53,9 @@ const [decryptOutput, decryptError] = computedCatchAsync(async () => {
 
   const privateKey = passphrase !== ''
     ? await openpgp.decryptKey({
-      privateKey: await openpgp.readPrivateKey({ armoredKey: privateKeyArmored }),
-      passphrase,
-    })
+        privateKey: await openpgp.readPrivateKey({ armoredKey: privateKeyArmored }),
+        passphrase,
+      })
     : await openpgp.readPrivateKey({ armoredKey: privateKeyArmored });
 
   const message = await openpgp.readMessage({

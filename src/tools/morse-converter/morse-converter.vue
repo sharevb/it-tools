@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { decode, encode } from 'morsee';
+import { useI18n } from 'vue-i18n';
 import { computedCatch } from '@/composable/computed/catchedComputed';
 import { useQueryParam } from '@/composable/queryParams';
 

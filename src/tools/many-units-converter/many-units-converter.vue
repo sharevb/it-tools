@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { Unit } from 'convert';
+import { convertMany } from 'convert';
 import _ from 'lodash';
-import { type Unit, convertMany } from 'convert';
-import allUnits from './allunits.json';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
 import { useToolStore } from '@/tools/tools.store';
+import allUnits from './allunits.json';
 
 const { t } = useI18n();
 
@@ -12,7 +13,9 @@ const toolStore = useToolStore();
 
 const unitsConversionTools = computed(() => _.orderBy(
   _.filter(toolStore.tools, t => t.keywords?.includes('units')),
-  'name', 'asc'));
+  'name',
+  'asc',
+));
 
 const allUnitsSorted = _.uniq(allUnits).sort();
 

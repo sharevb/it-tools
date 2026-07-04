@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { generateSillyPassword } from 'silly-password-generator';
+import { useI18n } from 'vue-i18n';
+import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { computedRefreshable } from '@/composable/computedRefreshable';
 import { randIntFromInterval } from '@/utils/random';
 
 const { t } = useI18n();
@@ -18,44 +18,42 @@ const minLen = useQueryParamOrStorage({ name: 'minlen', storageName: 'pass-gener
 const maxLen = useQueryParamOrStorage({ name: 'maxlen', storageName: 'pass-generator:maxlen', defaultValue: 100 });
 
 const [passphrases, refreshPassphrases] = computedRefreshable(
-  () => Array.from({ length: count.value },
-    () => {
-      const requiredNumbers = Math.min(words.value, numbers.value);
-      const nums: number[] = [];
-      if (words.value === requiredNumbers) {
-        for (let i = 0; i < requiredNumbers; i++) {
-          nums.push(i);
+  () => Array.from({ length: count.value }, () => {
+    const requiredNumbers = Math.min(words.value, numbers.value);
+    const nums: number[] = [];
+    if (words.value === requiredNumbers) {
+      for (let i = 0; i < requiredNumbers; i++) {
+        nums.push(i);
+      }
+    }
+    else {
+      while (nums.length < requiredNumbers) {
+        const rndNumber = randIntFromInterval(0, words.value - 1);
+        if (!nums.includes(rndNumber)) {
+          nums.push(rndNumber);
         }
       }
-      else {
-        while (nums.length < requiredNumbers) {
-          const rndNumber = randIntFromInterval(0, words.value - 1);
-          if (!nums.includes(rndNumber)) {
-            nums.push(rndNumber);
-          }
-        }
-      }
+    }
 
-      let maxIter = 1000;
-      while (maxIter > 0) {
-        const passphrase = generateSillyPassword({
-          capitalize: capitalize.value,
-          wordCount: words.value,
-          salt: saltChars.value,
-        }).split(/\s+/g).map((word, i) => {
-          if (nums.includes(i)) {
-            return word + randIntFromInterval(1, 100);
-          }
-          return word;
-        }).join(separator.value);
-        if (minLen.value < passphrase.length && passphrase.length < maxLen.value) {
-          return passphrase;
+    let maxIter = 1000;
+    while (maxIter > 0) {
+      const passphrase = generateSillyPassword({
+        capitalize: capitalize.value,
+        wordCount: words.value,
+        salt: saltChars.value,
+      }).split(/\s+/g).map((word, i) => {
+        if (nums.includes(i)) {
+          return word + randIntFromInterval(1, 100);
         }
-        maxIter -= 1;
+        return word;
+      }).join(separator.value);
+      if (minLen.value < passphrase.length && passphrase.length < maxLen.value) {
+        return passphrase;
       }
-      return t('tools.passphrase-generator.texts.cannot-generate-a-passphrase-of-minlen-value-maxlen-value-characters-please-retry',
-        [minLen.value, maxLen.value]);
-    }).join('\n'),
+      maxIter -= 1;
+    }
+    return t('tools.passphrase-generator.texts.cannot-generate-a-passphrase-of-minlen-value-maxlen-value-characters-please-retry', [minLen.value, maxLen.value]);
+  }).join('\n'),
 );
 
 const { copy } = useCopy({ source: passphrases, text: t('tools.passphrase-generator.texts.text-passphrase-s-copied-to-clipboard') });

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import prettyMilliseconds from 'pretty-ms';
 import parse from 'parse-duration';
-import { downTimeToSLA, slaToDowntimes } from './sla-calculator.service';
+import prettyMilliseconds from 'pretty-ms';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 import { useValidation } from '@/composable/validation';
+import { downTimeToSLA, slaToDowntimes } from './sla-calculator.service';
 
 const { t } = useI18n();
 

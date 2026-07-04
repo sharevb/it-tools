@@ -1,30 +1,35 @@
 import type { Buffer } from 'node:buffer';
-import {
-  parseCertificate, parseFingerprint,
-  parseKey,
-  parsePrivateKey,
-  parseSignature,
-} from 'sshpk';
 import type {
   AlgorithmType,
   Certificate,
   CertificateFormat,
   Fingerprint,
   Key,
-  PrivateKey, Signature, SignatureFormatType,
+  PrivateKey,
+  Signature,
+  SignatureFormatType,
 } from 'sshpk';
+import type { LabelValue } from './certificate-key-parser.infos';
 import { Base64 } from 'js-base64';
-import 'webcrypto-liner-shim';
-import * as openpgp from 'openpgp';
 import * as forge from 'node-forge';
-import { type LabelValue, getCSRLabelValues, getCertificateLabelValues, getFingerprintLabelValues, getPGPPrivateKeyLabelValuesAsync, getPGPPublicKeyLabelValuesAsync, getPrivateKeyLabelValues, getPublicKeyLabelValues, getSignatureLabelValues } from './certificate-key-parser.infos';
-
+import * as openpgp from 'openpgp';
+import {
+  parseCertificate,
+  parseFingerprint,
+  parseKey,
+  parsePrivateKey,
+  parseSignature,
+} from 'sshpk';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { getCertificateLabelValues, getCSRLabelValues, getFingerprintLabelValues, getPGPPrivateKeyLabelValuesAsync, getPGPPublicKeyLabelValuesAsync, getPrivateKeyLabelValues, getPublicKeyLabelValues, getSignatureLabelValues } from './certificate-key-parser.infos';
+
+import 'webcrypto-liner-shim';
 
 export async function getKeysOrCertificatesInfosAsync(
   keyOrCertificateValue: string | Buffer,
   passphrase: string,
-  add_missing_type: string | null = null) {
+  add_missing_type: string | null = null,
+) {
   if (add_missing_type && !keyOrCertificateValue.toString().trim().startsWith('-----BEGIN')) {
     keyOrCertificateValue = `-----BEGIN ${add_missing_type}-----\n${keyOrCertificateValue.toString().trim()}\n-----END ${add_missing_type}-----`;
   }
@@ -64,8 +69,7 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
 
     const inputKeyOrCertificateValue = (typeof keyOrCertificateValue === 'string' ? keyOrCertificateValue?.trim() : keyOrCertificateValue);
 
-    const privateKey = canParse(inputKeyOrCertificateValue,
-      value => parsePrivateKey(value, 'auto', { passphrase })) as PrivateKey;
+    const privateKey = canParse(inputKeyOrCertificateValue, value => parsePrivateKey(value, 'auto', { passphrase })) as PrivateKey;
     if (privateKey) {
       return {
         values: getPrivateKeyLabelValues(privateKey),
@@ -150,7 +154,8 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
         {
           label: t('tools.certificate-key-parser.service.text.type'),
           value: t('tools.certificate-key-parser.service.text.unknown-format-or-invalid-passphrase'),
-        }],
+        },
+      ],
     };
   }
   catch (e: any) {
@@ -159,7 +164,8 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
         {
           label: t('tools.certificate-key-parser.service.text.error'),
           value: e.toString(),
-        }] as LabelValue[],
+        },
+      ] as LabelValue[],
     };
   }
 }

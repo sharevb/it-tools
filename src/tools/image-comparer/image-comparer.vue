@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import type { UploadFileInfo } from 'naive-ui';
 import ImageCompare from 'image-compare-viewer';
+import { useI18n } from 'vue-i18n';
 import 'image-compare-viewer/dist/image-compare-viewer.min.css';
 
 const { t } = useI18n();

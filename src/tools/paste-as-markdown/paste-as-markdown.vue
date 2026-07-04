@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { subscribe } from '@github/paste-markdown';
+import { useI18n } from 'vue-i18n';
 import CInputText from '@/ui/c-input-text/c-input-text.vue';
 
 const { t } = useI18n();

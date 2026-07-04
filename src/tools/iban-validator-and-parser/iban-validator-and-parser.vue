@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { extractIBAN, friendlyFormatIBAN, isQRIBAN, validateIBAN } from 'ibantools';
-import { getFriendlyErrors } from './iban-validator-and-parser.service';
 import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
+import { extractIBAN, friendlyFormatIBAN, isQRIBAN, validateIBAN } from 'ibantools';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
+import { getFriendlyErrors } from './iban-validator-and-parser.service';
 
 const { t } = useI18n();
 
@@ -19,7 +19,8 @@ const ibansInfo = computed<IbanInfo[]>(() => {
     return [];
   }
   const ibans = rawIbans.value.toUpperCase()
-    .split(/\n/).map(iban => iban.replace(/\s/g, '').replace(/-/g, ''))
+    .split(/\n/)
+    .map(iban => iban.replace(/\s/g, '').replace(/-/g, ''))
     .filter(Boolean);
 
   if (!ibans.length) {

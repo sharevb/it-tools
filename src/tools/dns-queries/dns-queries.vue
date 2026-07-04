@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { combineTXT, query, wellknown } from 'dns-query';
-import types from './dns.records.types.json';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
+import types from './dns.records.types.json';
 
 const { t } = useI18n();
 

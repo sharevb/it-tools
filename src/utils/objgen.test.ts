@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { ObjGen2Json } from './objgen';
 
-describe('ObjGen', () => {
-  describe('ObjGen2Json()', () => {
+describe('objGen', () => {
+  describe('objGen2Json()', () => {
     it('should generate correct JSON from model', () => {
       expect(ObjGen2Json(`// Model & generate Live JSON data values
 // interactively using a simple syntax.
@@ -120,7 +120,8 @@ person
           {
             id: 2,
             name: 'two',
-          }],
+          },
+        ],
       };
 
       expect(JSON.parse(ObjGen2Json(model))).to.deep.eq(objects);
@@ -143,7 +144,8 @@ person
           {
             id: 2,
             name: 'two',
-          }],
+          },
+        ],
       };
 
       expect(JSON.parse(ObjGen2Json(model))).to.deep.eq(objects);

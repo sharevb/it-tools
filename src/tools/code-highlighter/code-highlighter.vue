@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { bundledLanguagesInfo, createHighlighter } from 'shiki/bundle/full';
 import { bundledThemesInfo } from 'shiki/themes';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useI18n } from 'vue-i18n';
 import { useCopy, useCopyHtml } from '@/composable/copy';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
@@ -20,18 +20,20 @@ function identity<T extends number | string = string>(arg: T): T {
   return arg;
 }`);
 
-const themes = ref<{ value: string; label: string }[]>(
+const themes = ref<{ value: string, label: string }[]>(
   bundledThemesInfo.map((item) => {
     return {
       value: item.id,
       label: item.displayName,
     };
-  }));
-const langs = ref<{ value: string; label: string }[]>(
+  }),
+);
+const langs = ref<{ value: string, label: string }[]>(
   bundledLanguagesInfo.map(item => ({
     value: item.id,
     label: item.name,
-  })));
+  })),
+);
 
 const currentTheme = useQueryParamOrStorage({ name: 'theme', storageName: 'code-highlighter:theme', defaultValue: 'dark-plus' });
 const currentLang = useQueryParamOrStorage({ name: 'lang', storageName: 'code-highlighter:lang', defaultValue: 'typescript' });
@@ -50,7 +52,8 @@ const formattedCodeHtml = computedAsync(async () => {
     {
       langs: [currentLangValue],
       themes: [currentThemeValue],
-    });
+    },
+  );
   return highlighter.codeToHtml(codeValue, {
     lang: currentLangValue,
     theme: currentThemeValue,
@@ -60,7 +63,7 @@ const formattedCodeHtml = computedAsync(async () => {
           // when copied to clipboard and pasted to LibreOffice,
           // formatting of first line is only kept if there is a line break before...
           const ensureFirstLineFormattedWhenCopied
-              = (html: string) => html.replace('<code>', '<code>\n');
+            = (html: string) => html.replace('<code>', '<code>\n');
           if (!needLineNumbers) {
             return ensureFirstLineFormattedWhenCopied(html);
           }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { decodeSharePointsURL } from './sharepoint-decoder.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParam } from '@/composable/queryParams';
+import { decodeSharePointsURL } from './sharepoint-decoder.service';
 
 const { t } = useI18n();
 

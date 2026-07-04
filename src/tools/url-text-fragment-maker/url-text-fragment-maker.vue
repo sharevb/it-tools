@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { getUrlWithTextFragment } from './url-text-fragment-maker.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParam } from '@/composable/queryParams';
+import { getUrlWithTextFragment } from './url-text-fragment-maker.service';
 
 const { t } = useI18n();
 

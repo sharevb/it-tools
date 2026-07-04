@@ -6,7 +6,9 @@ export function hasNumberPrefix(value: string) {
 
 export function convertBase(
   {
-    value, fromBase, toBase,
+    value,
+    fromBase,
+    toBase,
     ignorePunctuationsRegexChars = ' \u00A0_\\.,-',
     handlePrefixSuffix = true,
     ignoreCase = true,
@@ -17,7 +19,8 @@ export function convertBase(
     ignorePunctuationsRegexChars?: string
     handlePrefixSuffix?: boolean
     ignoreCase?: boolean
-  }) {
+  },
+) {
   let cleanedValue = (value ?? '0').trim();
   if (ignorePunctuationsRegexChars) {
     cleanedValue = cleanedValue.replace(new RegExp(`[${ignorePunctuationsRegexChars}]`, 'g'), '');

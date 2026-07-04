@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { minify, prettify } from 'htmlfy';
-import { toStrictXhtml } from '../html-to-xhtml/html-to-xhtml.service';
-import Editor from './editor/editor.vue';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
+import { toStrictXhtml } from '../html-to-xhtml/html-to-xhtml.service';
+import Editor from './editor/editor.vue';
 
 const { t } = useI18n();
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { UseValidationRule } from '@/composable/validation';
 import JSON5 from 'json5';
 import { InputData, jsonInputForTargetLanguage, quicktype } from 'quicktype-core';
-import type { UseValidationRule } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
@@ -24,15 +24,14 @@ const createSetter = useQueryParamOrStorage({ name: 'setter', storageName: 'json
 const phpClosingTag = useQueryParamOrStorage({ name: 'closing', storageName: 'json-php:pn', defaultValue: true });
 const optionalProperties = useQueryParamOrStorage({ name: 'optional', storageName: 'json-php:op', defaultValue: false });
 
-async function convertJsonToPHP(json: string,
-  options: {
-    rootName: string
-    createGetter?: boolean
-    getterWithoutValidation?: boolean
-    createSetter?: boolean
-    phpClosingTag?: boolean
-    optionalProperties?: boolean
-  }): Promise<string> {
+async function convertJsonToPHP(json: string, options: {
+  rootName: string
+  createGetter?: boolean
+  getterWithoutValidation?: boolean
+  createSetter?: boolean
+  phpClosingTag?: boolean
+  optionalProperties?: boolean
+}): Promise<string> {
   const jsonInput = jsonInputForTargetLanguage('php');
   await jsonInput.addSource({ name: options.rootName, samples: [JSON.stringify(JSON5.parse(json))] });
 
@@ -56,16 +55,14 @@ async function convertJsonToPHP(json: string,
 
 const phpOutput = computedAsync(async () => {
   try {
-    return await convertJsonToPHP(jsonInput.value,
-      {
-        rootName: rootName.value,
-        createGetter: createGetter.value,
-        getterWithoutValidation: getterWithoutValidation.value,
-        createSetter: createSetter.value,
-        phpClosingTag: phpClosingTag.value,
-        optionalProperties: optionalProperties.value,
-      },
-    );
+    return await convertJsonToPHP(jsonInput.value, {
+      rootName: rootName.value,
+      createGetter: createGetter.value,
+      getterWithoutValidation: getterWithoutValidation.value,
+      createSetter: createSetter.value,
+      phpClosingTag: phpClosingTag.value,
+      optionalProperties: optionalProperties.value,
+    });
   }
   catch (e: any) {
     return e.toString();

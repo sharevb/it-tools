@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import * as jq from 'jq-wasm';
 import JSON5 from 'json5';
 import jsonpath from 'jsonpath';
-import * as jq from 'jq-wasm';
-import { useValidation } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
+import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParam } from '@/composable/queryParams';
+import { useValidation } from '@/composable/validation';
 
 const { t } = useI18n();
 
@@ -95,7 +96,7 @@ const jsonValidation = useValidation({
     </c-card>
 
     <c-card :title="t('tools.jq-tester.texts.title-result')">
-      <CodeBlockCopyable :value="result" language="json" />
+      <TextareaCopyable :value="result" language="json" />
     </c-card>
   </div>
 </template>

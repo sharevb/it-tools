@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import JSON5 from 'json5';
-import GenerateSchema from 'generate-schema';
-import { withDefaultOnError } from '../../utils/defaults';
 import type { UseValidationRule } from '@/composable/validation';
+import GenerateSchema from 'generate-schema';
+import JSON5 from 'json5';
+import { useI18n } from 'vue-i18n';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { withDefaultOnError } from '../../utils/defaults';
 
 const { t } = useI18n();
 

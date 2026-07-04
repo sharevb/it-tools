@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
 
-const props = defineProps<{ icon: Component; title: string }>();
+const props = defineProps<{ icon: Component, title: string }>();
 const { icon, title } = toRefs(props);
 </script>
 

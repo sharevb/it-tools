@@ -1,6 +1,6 @@
-import { defineTool } from '../tool';
-import { translate as t } from '@/plugins/i18n.plugin';
 import PasswordIcon from '~icons/mdi/form-textbox-password';
+import { translate as t } from '@/plugins/i18n.plugin';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.password-strength-analyser.title'),

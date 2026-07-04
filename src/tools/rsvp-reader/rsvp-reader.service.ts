@@ -1,6 +1,6 @@
-import ePub from 'epubjs';
 import type Section from 'epubjs/types/section';
 import type { SpineItem } from 'epubjs/types/section';
+import ePub from 'epubjs';
 import * as pdfjsLib from 'pdfjs-dist';
 import pdfJSWorkerURL from 'pdfjs-dist/build/pdf.worker?url';
 
@@ -24,7 +24,7 @@ export async function extractTextFromPDF(file: File): Promise<string> {
 
 interface SpineItems {
   items: SpineItem[]
-  get(href: string | undefined): Section
+  get: (href: string | undefined) => Section
 }
 export async function extractTextFromEPUB(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer();

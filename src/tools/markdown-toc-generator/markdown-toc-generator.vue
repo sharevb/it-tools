@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { withDefaultOnError } from '../../utils/defaults';
 import {
   getTocMarkdown,
 } from './markdown-toc-generator.service';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

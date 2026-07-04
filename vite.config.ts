@@ -138,8 +138,13 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@noble/ciphers/salsa': '@noble/ciphers/salsa.js',
+      '@noble/ciphers/aes': '@noble/ciphers/aes.js',
+      '@noble/ciphers/chacha': '@noble/ciphers/chacha.js',
+      '@noble/ciphers/utils': '@noble/ciphers/utils.js',
       'node:fs/promises': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'node:fs': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
+      'fs/promises': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'fs': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       '@babel/core': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'isolated-vm': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
@@ -189,11 +194,9 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['isolated-vm', '@lezer/highlight', 'pdfjs-dist', 'onnxruntime-node', 'onnxruntime-web', 'unpdf', 'unpdf/pdfjs', ...(process.env.VERCEL ? ['webcrypto-liner-shim'] : [])], // optionally specify dependency name
-    esbuildOptions: {
-      supported: {
-        'top-level-await': true,
-      },
+    include: ['isolated-vm', '@lezer/highlight', 'pdfjs-dist', 'onnxruntime-node', 'onnxruntime-web', 'unpdf', 'unpdf/pdfjs', 'image-in-browser', ...(process.env.VERCEL ? ['webcrypto-liner-shim'] : [])],
+    rolldownOptions: {
+      treeshake: false,
     },
   },
   // server: {

@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { IndentStyle, KeywordCase } from 'sql-formatter';
+import { format as formatSQL } from 'sql-formatter';
 import { useI18n } from 'vue-i18n';
-import { type IndentStyle, type KeywordCase, format as formatSQL } from 'sql-formatter';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import Sandybox from 'sandybox';
+import { useI18n } from 'vue-i18n';
 import { webcrack } from 'webcrack';
 
 const { t } = useI18n();

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { Address6 } from 'ip-address';
-import { getIPNetworkType, parseAsCIDR } from '@/utils/ip';
-import { withDefaultOnError } from '@/utils/defaults';
+import { useI18n } from 'vue-i18n';
 import SpanCopyable from '@/components/SpanCopyable.vue';
-import { isNotThrowing } from '@/utils/boolean';
 import { useITStorage } from '@/composable/queryParams';
+import { isNotThrowing } from '@/utils/boolean';
+import { withDefaultOnError } from '@/utils/defaults';
+import { getIPNetworkType, parseAsCIDR } from '@/utils/ip';
 
 const { t } = useI18n();
 

@@ -137,10 +137,10 @@ function setAppAccentColor(hexColor) {
 }
 
 export {
-  startTimer,
-  stopTimer,
-  startOver,
-  setupNextTimerMode,
-  stopAlarms,
   setAppAccentColor,
+  setupNextTimerMode,
+  startOver,
+  startTimer,
+  stopAlarms,
+  stopTimer,
 };

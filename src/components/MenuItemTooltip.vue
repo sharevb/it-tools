@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
-import { nextTick, onMounted, onUnmounted, ref } from 'vue';
 import type { Tool } from '@/tools/tools.types';
+import { nextTick, onMounted, onUnmounted, ref } from 'vue';
+import { RouterLink } from 'vue-router';
 
 defineProps<{
   tool: Tool

@@ -16,10 +16,10 @@ function getLen(str: string): number {
   for (let i = 0; i < str.length; i++) {
     const chr = str.charCodeAt(i);
     if ((chr >= 0x00 && chr <= 0x80)
-            || (chr >= 0xA0 && chr <= 0xFF)
-            || (chr === 0xF8F0)
-            || (chr >= 0xFF61 && chr <= 0xFF9F)
-            || (chr >= 0xF8F1 && chr <= 0xF8F3)) {
+      || (chr >= 0xA0 && chr <= 0xFF)
+      || (chr === 0xF8F0)
+      || (chr >= 0xFF61 && chr <= 0xFF9F)
+      || (chr >= 0xF8F1 && chr <= 0xF8F3)) {
       length += 1;
     }
     else {

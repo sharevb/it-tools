@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { Countdown } from 'vue3-flip-countdown';
 import moment from 'moment';
+import { Countdown } from 'vue3-flip-countdown';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -50,7 +50,7 @@ function start() {
   now.value = moment();
   status.value = 'running';
   const histoEntry = alarmAt.value;
-  if (!history.value.find(h => h === histoEntry)) {
+  if (!history.value.some(h => h === histoEntry)) {
     history.value = [histoEntry, ...history.value];
   }
 }

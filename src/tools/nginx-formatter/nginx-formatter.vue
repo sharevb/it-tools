@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { formatContent } from 'nginx-config-formatter';
 import type { UseValidationRule } from '@/composable/validation';
+import { formatContent } from 'nginx-config-formatter';
+import { useI18n } from 'vue-i18n';
 import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();

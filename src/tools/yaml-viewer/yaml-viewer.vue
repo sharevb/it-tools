@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { formatYaml } from './yaml-models';
-import { useYamlSchemaValidation } from './useYamlSchemaValidation';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
+import { useYamlSchemaValidation } from './useYamlSchemaValidation';
+import { formatYaml } from './yaml-models';
 
 const { t } = useI18n();
 

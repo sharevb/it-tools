@@ -1,0 +1,77 @@
+import antfu from '@antfu/eslint-config';
+import autoImportGlobals from './.eslintrc-auto-import.json' with { type: 'json' };
+
+export default antfu(
+  {
+    unocss: true,
+    vue: true,
+    typescript: true,
+    markdown: false,
+    ignores: ['src/libs/*'],
+  },
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: false,
+    },
+    languageOptions: {
+      globals: Object.fromEntries(
+        Object.keys(autoImportGlobals.globals).map(k => [k, 'readonly']),
+      ),
+    },
+    rules: {
+      'curly': ['error', 'all'],
+      'style/semi': ['error', 'always'],
+      'no-use-before-define': 'off',
+      '@typescript-eslint/no-use-before-define': ['error', { allowNamedExports: true, functions: false }],
+      'vue/no-empty-component-block': ['error'],
+      'import/order': 'off',
+      'no-restricted-imports': ['error', {
+        paths: [{
+          name: '@vueuse/core',
+          importNames: ['useClipboard'],
+          message: 'Please use local useCopy from src/composable/copy.ts instead of useClipboard.',
+        }],
+      }],
+      // Rules newly introduced by @antfu/eslint-config v9 not previously enforced
+      'regexp/no-unused-capturing-group': 'off',
+      'regexp/no-super-linear-backtracking': 'off',
+      'regexp/no-misleading-capturing-group': 'off',
+      'regexp/optimal-quantifier-concatenation': 'off',
+      'regexp/no-useless-assertions': 'off',
+      'regexp/no-potentially-useless-backreference': 'off',
+      'regexp/no-obscure-range': 'off',
+      'regexp/strict': 'off',
+      'regexp/no-useless-flag': 'off',
+      'regexp/no-empty-lookarounds-assertion': 'off',
+      'regexp/no-empty-group': 'off',
+      'regexp/no-empty-alternative': 'off',
+      'unicorn/prefer-dom-node-text-content': 'off',
+      'antfu/no-top-level-await': 'off',
+      'node/prefer-global/buffer': 'off',
+      'ts/method-signature-style': 'off',
+      'ts/no-unused-expressions': 'off',
+      'ts/no-namespace': 'off',
+      'ts/ban-ts-comment': 'off',
+      'jsonc/no-dupe-keys': 'off',
+      'vue/no-required-prop-with-default': 'off',
+      'vue/no-side-effects-in-computed-properties': 'off',
+      'vue/return-in-computed-property': 'off',
+      '@typescript-eslint/naming-convention': 'off',
+      '@typescript-eslint/prefer-ts-expect-error': 'off',
+      '@typescript-eslint/no-namespace': 'off',
+      'test/no-identical-title': 'off',
+      'no-irregular-whitespace': 'off',
+      'style/max-statements-per-line': 'off',
+      'style/no-trailing-spaces': 'off',
+      'style/type-annotation-spacing': 'off',
+      'unique': 'off',
+      'unused-imports/no-unused-vars': ['warn', {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+        caughtErrors: 'none',
+      }],
+    },
+  },
+);

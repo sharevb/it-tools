@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { NForm, NFormItem, NInput, NSelect } from 'naive-ui';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
@@ -14,8 +14,25 @@ const username = ref('');
 const password = ref('');
 
 const fileSystems = [
-  'auto', 'ext2', 'ext3', 'ext4', 'xfs', 'btrfs', 'jfs', 'reiserfs', 'nfs', 'cifs', 'smbfs',
-  'tmpfs', 'devtmpfs', 'overlay', 'aufs', 'iso9660', 'udf', 'vfat', 'ntfs',
+  'auto',
+  'ext2',
+  'ext3',
+  'ext4',
+  'xfs',
+  'btrfs',
+  'jfs',
+  'reiserfs',
+  'nfs',
+  'cifs',
+  'smbfs',
+  'tmpfs',
+  'devtmpfs',
+  'overlay',
+  'aufs',
+  'iso9660',
+  'udf',
+  'vfat',
+  'ntfs',
   'swap',
 ];
 
@@ -86,7 +103,8 @@ const fstabLine = computed(
       allOptions.push('defaults');
     }
     return `${device.value} ${mountPoint.value} ${fsType.value} ${allOptions.join(',')} ${dump.value} ${pass.value}`;
-  });
+  },
+);
 </script>
 
 <template>

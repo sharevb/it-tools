@@ -1,7 +1,7 @@
-import { defineTool } from '../tool';
+import BracketIcon from '~icons/mdi/code-brackets';
 import { translate as t } from '@/plugins/i18n.plugin';
 
-import BracketIcon from '~icons/mdi/code-brackets';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.toml-to-json.title'),

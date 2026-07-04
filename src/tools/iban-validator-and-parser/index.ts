@@ -1,6 +1,6 @@
-import { defineTool } from '../tool';
-import { translate as t } from '@/plugins/i18n.plugin';
 import Bank from '~icons/mdi/bank';
+import { translate as t } from '@/plugins/i18n.plugin';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.iban-validator-and-parser.title'),

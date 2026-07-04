@@ -15,9 +15,14 @@ function convertMacToEUI64(mac: string, ipv6: boolean) {
 
   // Insert FFFE in the middle
   const eui64Array = [
-    macArray[0], macArray[1], macArray[2],
-    0xFF, 0xFE,
-    macArray[3], macArray[4], macArray[5],
+    macArray[0],
+    macArray[1],
+    macArray[2],
+    0xFF,
+    0xFE,
+    macArray[3],
+    macArray[4],
+    macArray[5],
   ];
 
   // Convert the array to a colon-separated string

@@ -5,7 +5,7 @@ interface CreatePeerPairsOptions {
   /** The config to derive public key from for the peer */
   config: WgConfig
   /** The peer settings to apply when adding this config as a peer */
-  peerSettings: Omit<WgConfigPeer, 'publicKey'> | ((args: { thisConfig: WgConfig; peerConfig: WgConfig }) => Omit<WgConfigPeer, 'publicKey'>)
+  peerSettings: Omit<WgConfigPeer, 'publicKey'> | ((args: { thisConfig: WgConfig, peerConfig: WgConfig }) => Omit<WgConfigPeer, 'publicKey'>)
 }
 
 /**

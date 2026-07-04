@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { AfterSelection, InsideSelection, JSONEditorSelection, KeySelection, MultiSelection, ValueSelection } from 'vanilla-jsoneditor';
 import JsonEditorVue from 'json-editor-vue';
-import { type AfterSelection, type InsideSelection, type JSONEditorSelection, type KeySelection, type MultiSelection, type ValueSelection, isAfterSelection, isInsideSelection, isKeySelection, isMultiSelection, isValueSelection, stringifyJSONPath } from 'vanilla-jsoneditor';
-import 'vanilla-jsoneditor/themes/jse-theme-dark.css';
 import { jsonrepair } from 'jsonrepair';
-import { useJsonSchemaValidation } from '../json-viewer/useJsonSchemaValidation';
+import { isAfterSelection, isInsideSelection, isKeySelection, isMultiSelection, isValueSelection, stringifyJSONPath } from 'vanilla-jsoneditor';
+import { useI18n } from 'vue-i18n';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 import { useStyleStore } from '@/stores/style.store';
+import { useJsonSchemaValidation } from '../json-viewer/useJsonSchemaValidation';
+import 'vanilla-jsoneditor/themes/jse-theme-dark.css';
 
 const { t } = useI18n();
 
@@ -55,7 +56,9 @@ const formattedJson = computed(() => {
   try {
     return JSON.stringify(
       JSON.parseBigNum(jsonTextValue),
-      null, indentSize.value);
+      null,
+      indentSize.value,
+    );
   }
   catch {
     return jsonTextValue;

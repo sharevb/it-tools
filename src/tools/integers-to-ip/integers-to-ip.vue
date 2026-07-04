@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { stringifyIp } from 'ip-bigint';
+import { useI18n } from 'vue-i18n';
+import { useQueryParam } from '@/composable/queryParams';
 import InputCopyable from '../../components/InputCopyable.vue';
 import { convertBase, hasNumberPrefix } from '../integer-base-converter/integer-base-converter.model';
-import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
@@ -12,7 +12,7 @@ const inputBase = useQueryParam({ tool: 'int-to-ip', name: 'base', defaultValue:
 
 const hasInputNumberPrefix = computed(() => hasNumberPrefix(input.value));
 
-function convertToIP({ value, fromBase, version }: { value: string; fromBase: number; version: 6 | 4 }): string {
+function convertToIP({ value, fromBase, version }: { value: string, fromBase: number, version: 6 | 4 }): string {
   try {
     return stringifyIp({
       number: BigInt(convertBase({

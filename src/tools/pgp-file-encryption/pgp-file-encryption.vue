@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import * as openpgp from 'openpgp';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
@@ -104,9 +104,9 @@ async function decryptStream() {
 
     const unlockedKey = passphrase.value
       ? await openpgp.decryptKey({
-        privateKey,
-        passphrase: passphrase.value,
-      })
+          privateKey,
+          passphrase: passphrase.value,
+        })
       : privateKey;
 
     const source = encryptedBlob.value ?? file.value!;

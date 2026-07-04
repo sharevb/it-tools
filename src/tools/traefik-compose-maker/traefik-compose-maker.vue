@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import type { TraefikComposeOptions } from './traefik-compose-maker.service';
+import { useI18n } from 'vue-i18n';
 import { generateCompose } from './traefik-compose-maker.service';
 
 const { t } = useI18n();

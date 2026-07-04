@@ -1,6 +1,6 @@
+import type { Plugin } from 'vue';
 import messages from '@intlify/unplugin-vue-i18n/messages';
 import { get } from '@vueuse/core';
-import type { Plugin } from 'vue';
 import { createI18n } from 'vue-i18n';
 
 const DEFAULT_LOCALE = String(import.meta.env.VITE_LANGUAGE || 'en');

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import JSON5 from 'json5';
-import json2csharp from './json2csharp';
 import type { UseValidationRule } from '@/composable/validation';
+import JSON5 from 'json5';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { withDefaultOnError } from '@/utils/defaults';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { withDefaultOnError } from '@/utils/defaults';
+import json2csharp from './json2csharp';
 
 const { t } = useI18n();
 
@@ -42,7 +42,9 @@ const csharpOutput = computed(() => withDefaultOnError(
     generateImmutableClasses: generateImmutableClasses.value,
     useRecordTypes: useRecordTypes.value,
     useReadonlyLists: useReadonlyLists.value,
-  }), ''));
+  }),
+  '',
+));
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || JSON5.parse(v),

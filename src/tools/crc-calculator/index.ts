@@ -1,24 +1,12 @@
 import { EyeOff } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.crc-calculator.title'),
   path: '/crc-calculator',
   description: t('tools.crc-calculator.description'),
-  keywords: ['crc', 'checksum', 'crc1',
-    'crc8',
-    'crc8 1-wire',
-    'crc8 dvb-s2',
-    'crc16',
-    'crc16 ccitt',
-    'crc16 modbus',
-    'crc16 kermit',
-    'crc16 xmodem',
-    'crc24',
-    'crc32',
-    'crc32 mpeg-2',
-    'crcjam'],
+  keywords: ['crc', 'checksum', 'crc1', 'crc8', 'crc8 1-wire', 'crc8 dvb-s2', 'crc16', 'crc16 ccitt', 'crc16 modbus', 'crc16 kermit', 'crc16 xmodem', 'crc24', 'crc32', 'crc32 mpeg-2', 'crcjam'],
   component: () => import('./crc-calculator.vue'),
   icon: EyeOff,
   createdAt: new Date('2024-05-11'),

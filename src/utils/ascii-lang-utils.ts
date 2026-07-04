@@ -23,7 +23,7 @@ export const languages = [
   { id: 'c', name: 'C', crlf: '\\n', start_quote: '"', prefix: 'printf(', suffix: ');', suffix_eol: '\\n', begin: '#include <stdio.h>\n', end: '', escape: defaultEscape },
   { id: 'cpp', name: 'C++', crlf: '\\n', start_quote: '"', prefix: 'std::cout << ', suffix: ';', suffix_eol: '\\n', begin: '#include <iostream>\n', end: '', escape: defaultEscape },
   { id: 'csharp', name: 'C#', crlf: '\\n', start_quote: '"', prefix: 'Console.WriteLine(', suffix: ');', begin: 'using System;\n', end: '', escape: (l: string) => l.replace(/[\\'"]/g, (m: string) => `\\${m}`).replace(/\t/g, '\\t') },
-  { id: 'csharp_verb', name: 'C# (Verbatim)', crlf: '" + "\\n" + @"', start_quote: '@"', end_quote: '"', prefix: 'Console.WriteLine(', suffix: ');', begin: 'using System;\n', end: '', escape: (l: string) => l.replace(/["]/g, '""').replace(/\t/g, '\\t') },
+  { id: 'csharp_verb', name: 'C# (Verbatim)', crlf: '" + "\\n" + @"', start_quote: '@"', end_quote: '"', prefix: 'Console.WriteLine(', suffix: ');', begin: 'using System;\n', end: '', escape: (l: string) => l.replace(/"/g, '""').replace(/\t/g, '\\t') },
   { id: 'csharp_interf', name: 'C# (Interpolated)', crlf: '\\n', start_quote: '$"', end_quote: '"', prefix: 'Console.WriteLine(', suffix: ');', begin: 'using System;\n', end: '', escape: (l: string) => l.replace(/["{}]/g, (m: string) => m + m).replace(/\t/g, '\\t') },
   { id: 'csharp_raw', name: 'C# (Raw)', crlf: '\n', start_quote: '"""', prefix: 'Console.WriteLine(', suffix: ');', begin: 'using System;\n', end: '', escape: dontEscape },
   { id: 'vbnet', name: 'VB.Net', crlf: '" & vbCrLf & "', start_quote: '"', prefix: 'Console.WriteLine(', suffix: ')', begin: '', end: '', escape: (l: string) => l.replace(/"/g, '""') },
@@ -46,17 +46,14 @@ export function printToLanguage(s: string, languageId: string) {
   }
 
   return langConfig.begin + s.split('\n').map((line) => {
-    return langConfig.prefix + escapeForLanguage(line, languageId,
-      { suffix_eol: langConfig.suffix_eol || '' },
-    ) + langConfig.suffix;
+    return langConfig.prefix + escapeForLanguage(line, languageId, { suffix_eol: langConfig.suffix_eol || '' }) + langConfig.suffix;
   }).join('\n') + langConfig.end;
 }
 
-export function escapeForLanguage(s: string, languageId: string,
-  options: {
-    suffix_eol?: string
-    single_linize?: boolean
-  }) {
+export function escapeForLanguage(s: string, languageId: string, options: {
+  suffix_eol?: string
+  single_linize?: boolean
+}) {
   const langConfig = languages.find(l => l.id === languageId);
   if (!langConfig) {
     return s;

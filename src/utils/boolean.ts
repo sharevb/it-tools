@@ -1,4 +1,4 @@
-export { isNotThrowing, booleanToHumanReadable };
+export { booleanToHumanReadable, isNotThrowing };
 
 function isNotThrowing(cb: () => unknown): boolean {
   try {

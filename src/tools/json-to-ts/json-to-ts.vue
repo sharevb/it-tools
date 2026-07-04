@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import JSON2TS from 'json-to-ts';
-import JSON5 from 'json5';
-import { withDefaultOnError } from '../../utils/defaults';
 import type { UseValidationRule } from '@/composable/validation';
+import JSON5 from 'json5';
+import JSON2TS from 'json-to-ts';
+import { useI18n } from 'vue-i18n';
+import { withDefaultOnError } from '../../utils/defaults';
 
 const { t } = useI18n();
 

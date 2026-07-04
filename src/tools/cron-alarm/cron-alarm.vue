@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { Countdown } from 'vue3-flip-countdown';
-import { parseExpression } from 'cron-parser';
+import { CronExpressionParser } from 'cron-parser';
 import moment from 'moment';
+import { Countdown } from 'vue3-flip-countdown';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -10,7 +10,7 @@ const { t } = useI18n();
 const allDays = '0,1,2,3,4,5,6';
 const alarmAt = useQueryParam({ tool: 'cronalarm', name: 'at', defaultValue: '17:30:00' });
 const alarmDays = useQueryParam({ tool: 'cronalarm', name: 'days', defaultValue: allDays });
-const history = useStorage<{ days: string; at: string }[]>('cronalarm:hst', []);
+const history = useStorage<{ days: string, at: string }[]>('cronalarm:hst', []);
 
 function getTimeHref(at: string, days: string) {
   const parsedUrl = new URL(window.location.href);
@@ -43,7 +43,7 @@ const cronExpression = computed(() => {
   return `${s} ${m} ${h} * * ${alarmDays.value}`;
 });
 const alarmAtDate = computed(() => {
-  const interval = parseExpression(cronExpression.value);
+  const interval = CronExpressionParser.parse(cronExpression.value);
   return interval.next().toDate();
 });
 
@@ -56,7 +56,7 @@ function start() {
   now.value = moment();
   status.value = 'running';
   const histoEntry = { at: alarmAt.value, days: alarmDays.value };
-  if (!history.value.find(h => h.at === histoEntry.at && h.days === histoEntry.days)) {
+  if (!history.value.some(h => h.at === histoEntry.at && h.days === histoEntry.days)) {
     history.value = [histoEntry, ...history.value];
   }
 }

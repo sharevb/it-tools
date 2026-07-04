@@ -102,7 +102,7 @@ ${config.value.path} {
   ${config.value.postRotate ? `postrotate\n${config.value.postRotate}\nendscript` : ''}
   ${config.value.lastAction ? `lastaction\n${config.value.lastAction}\nendscript` : ''}
 }
-  `.trim().replace(/^\s*\n/mg, '');
+  `.trim().replace(/^\s*\n/gm, '');
 });
 </script>
 

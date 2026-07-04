@@ -1,4 +1,5 @@
-import { type Config, type PluginConfig, optimize } from 'svgo';
+import type { Config, PluginConfig } from 'svgo';
+import { optimize } from 'svgo';
 
 function svgo(config: Config) {
   return (data: string) => {

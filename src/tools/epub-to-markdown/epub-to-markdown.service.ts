@@ -1,20 +1,20 @@
-import ePub from 'epubjs';
 import type Section from 'epubjs/types/section';
 import type { SpineItem } from 'epubjs/types/section';
-import TurndownService from 'turndown';
 import { gfm as addGFM } from '@guyplusplus/turndown-plugin-gfm';
+import ePub from 'epubjs';
+import TurndownService from 'turndown';
 
 function escapeMarkdown(text: string) {
   return text
     .replace(/\\/g, '\\\\') // escape backslash first
     .replace(/([*_#>|`])/g, '\\$1') // escape common markdown symbols
-    .replace(/([\[\]\(\)])/g, '\\$1') // escape brackets and parentheses
+    .replace(/([[\]()])/g, '\\$1') // escape brackets and parentheses
     .replace(/\|/g, '\\|'); // escape table pipes
 }
 
 interface SpineItems {
   items: SpineItem[]
-  get(href: string | undefined): Section
+  get: (href: string | undefined) => Section
 }
 export async function extractTextAndMetaFromEPUB(file: File, format: 'text' | 'markdown') {
   let turndownService: TurndownService;

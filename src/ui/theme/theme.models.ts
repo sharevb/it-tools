@@ -2,7 +2,7 @@ import { useStyleStore } from '@/stores/style.store';
 
 export { defineThemes };
 
-function defineThemes<Theme>(themes: { light: Theme; dark: Theme }) {
+function defineThemes<Theme>(themes: { light: Theme, dark: Theme }) {
   return {
     themes,
     useTheme() {

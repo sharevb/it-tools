@@ -1,7 +1,7 @@
 declare module 'chinesegen' {
-    export default function lorem(config: {
-        count: number,
-    }): {
-        text: string
-    };
+  export default function lorem(config: {
+    count: number
+  }): {
+    text: string
+  };
 }

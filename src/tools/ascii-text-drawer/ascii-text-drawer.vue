@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import figlet from 'figlet';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { languages, printToLanguage } from '@/utils/ascii-lang-utils';
 import { useITStorage } from '@/composable/queryParams';
+import { languages, printToLanguage } from '@/utils/ascii-lang-utils';
 
 const input = ref('Ascii ART');
 const language = useITStorage('ascii-text-drawer:language', 'raw');
@@ -32,15 +32,14 @@ watchEffect(async () => {
       whitespaceBreak: true,
     };
     const rawOutput = await (new Promise<string>((resolve, reject) =>
-      figlet.text(inputValue, options,
-        (err, text) => {
-          if (err) {
-            reject(err);
-            return;
-          }
+      figlet.text(inputValue, options, (err, text) => {
+        if (err) {
+          reject(err);
+          return;
+        }
 
-          resolve(text ?? '');
-        })));
+        resolve(text ?? '');
+      })));
 
     output.value = printToLanguage(rawOutput, languageValue);
     errored.value = false;

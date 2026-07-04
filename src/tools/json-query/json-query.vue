@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import JSON5 from 'json5';
 import { jsonquery } from '@jsonquerylang/jsonquery';
-import { useValidation } from '@/composable/validation';
+import JSON5 from 'json5';
+import { useI18n } from 'vue-i18n';
+import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParam } from '@/composable/queryParams';
+import { useValidation } from '@/composable/validation';
 
 const { t } = useI18n();
 
 const indent = 2;
 
 const jsonQuery = useQueryParam({
-  tool: 'json-query', name: 'q', defaultValue: `
+  tool: 'json-query',
+  name: 'q',
+  defaultValue: `
   .friends 
     | filter(.city == "New York") 
     | sort(.age) 
@@ -78,7 +81,7 @@ const jsonValidation = useValidation({
     </c-card>
 
     <c-card :title="t('tools.json-query.texts.title-result')">
-      <CodeBlockCopyable :value="result" language="json" />
+      <TextareaCopyable :value="result" language="json" />
     </c-card>
   </div>
 </template>

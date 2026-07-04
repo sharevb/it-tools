@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import type { FileStructure } from './FileStructure';
+import { describe, expect, it } from 'vitest';
 import { mockInput } from './mock-input';
 import { parseInput, splitInput } from './parse-input';
 

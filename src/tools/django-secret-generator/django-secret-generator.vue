@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { getSecretKey } from './django-secret-generator.service';
-import { useCopy } from '@/composable/copy';
 import { computedRefreshable } from '@/composable/computedRefreshable';
+import { useCopy } from '@/composable/copy';
+import { getSecretKey } from './django-secret-generator.service';
 
 const { t } = useI18n();
 

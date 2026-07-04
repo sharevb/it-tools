@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import type { Tool, ToolCategory } from '@/tools/tools.types';
 import { useStorage } from '@vueuse/core';
 import { useThemeVars } from 'naive-ui';
 import { useRoute } from 'vue-router';
 import MenuIconItem from './MenuIconItem.vue';
 import MenuItemWithTooltip from './MenuItemTooltip.vue';
-import type { Tool, ToolCategory } from '@/tools/tools.types';
 
 const props = withDefaults(defineProps<{ toolsByCategory?: ToolCategory[] }>(), { toolsByCategory: () => [] });
 const { toolsByCategory } = toRefs(props);

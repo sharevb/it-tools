@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NInputNumber } from 'naive-ui';
 import type { InputNumberProps } from 'naive-ui';
+import { NInputNumber } from 'naive-ui';
 import { formatNumber, parseNumber } from './n-input-number-i18n.utils';
 
 // workaround for compiler sfc failing to interprete InputNumberProps

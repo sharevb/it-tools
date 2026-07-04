@@ -1,6 +1,6 @@
-import markdownit from 'markdown-it';
+import type { ExternalTool, ToolCategory, ToolsFilter, ToolWithCategory } from './tools.types';
 import { IconExternalLink } from '@tabler/icons-vue';
-import type { ExternalTool, ToolCategory, ToolWithCategory, ToolsFilter } from './tools.types';
+import markdownit from 'markdown-it';
 import { translate as t } from '@/plugins/i18n.plugin';
 
 const modules = import.meta.glob<true, string, ToolWithCategory>('./*/index.ts', { eager: true, import: 'tool' });
@@ -24,16 +24,17 @@ try {
       ...((await remoteConfigResponse.json()) as ExternalTool[])
         .map((externalTool) => {
           const html = markdownit().render(externalTool.markdownContent
-              || (externalTool.href
-                ? `${t('tools.external-link-goto')} [${externalTool.href}](${externalTool.href})`
-                : ''));
+            || (externalTool.href
+              ? `${t('tools.external-link-goto')} [${externalTool.href}](${externalTool.href})`
+              : ''));
           return ({
             icon: IconExternalLink,
             ...externalTool,
             component: () => import('@/components/ExternalToolContent.vue'),
             externalHTMLContent: html,
           }) as ToolWithCategory;
-        })];
+        }),
+    ];
   }
 }
 catch {}

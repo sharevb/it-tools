@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import type { UseValidationRule } from '@/composable/validation';
+import { flatten } from 'flatten-anything';
+import { nestifyObject } from 'nestify-anything';
 import { useI18n } from 'vue-i18n';
 import YAML from 'yaml';
-import { nestifyObject } from 'nestify-anything';
-import { flatten } from 'flatten-anything';
-import type { UseValidationRule } from '@/composable/validation';
 import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
@@ -23,7 +23,8 @@ function transformer(value: string) {
       }
       return YAML.stringify(o);
     },
-    '');
+    '',
+  );
 }
 
 const rules: UseValidationRule<string>[] = [

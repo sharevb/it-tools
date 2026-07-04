@@ -1,41 +1,41 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { getTimeZoneOptionLabel, isAllowedTimeZone, resolveBrowserTimeZone, resolveIanaTimeZone } from './date-time-converter.timezones';
 
 describe('date-time-converter timezones', () => {
   describe('resolveIanaTimeZone', () => {
-    test('keeps canonical IANA timezones unchanged', () => {
+    it('keeps canonical IANA timezones unchanged', () => {
       expect(resolveIanaTimeZone('America/New_York')).toBe('America/New_York');
     });
 
-    test('keeps a primary timezone when Intl rewrites it to an alias', () => {
+    it('keeps a primary timezone when Intl rewrites it to an alias', () => {
       expect(resolveIanaTimeZone('Asia/Kolkata')).toBe('Asia/Kolkata');
       expect(resolveIanaTimeZone('Europe/Kyiv')).toBe('Europe/Kyiv');
     });
 
-    test('rejects aliases that are not selectable IANA options', () => {
+    it('rejects aliases that are not selectable IANA options', () => {
       expect(resolveIanaTimeZone('Asia/Calcutta')).toBe('Etc/UTC');
       expect(resolveIanaTimeZone('Europe/Kiev')).toBe('Etc/UTC');
     });
 
-    test('falls back when timezone is invalid', () => {
+    it('falls back when timezone is invalid', () => {
       expect(resolveIanaTimeZone('Not/A_Timezone')).toBe('Etc/UTC');
       expect(resolveIanaTimeZone('Not/A_Timezone', 'America/New_York')).toBe('America/New_York');
     });
   });
 
   describe('resolveBrowserTimeZone', () => {
-    test('canonicalizes browser aliases to selectable IANA zones', () => {
+    it('canonicalizes browser aliases to selectable IANA zones', () => {
       expect(resolveBrowserTimeZone('Asia/Calcutta')).toBe('Asia/Kolkata');
       expect(resolveBrowserTimeZone('Europe/Kiev')).toBe('Europe/Kyiv');
     });
 
-    test('keeps canonical browser timezones unchanged', () => {
+    it('keeps canonical browser timezones unchanged', () => {
       expect(resolveBrowserTimeZone('America/New_York')).toBe('America/New_York');
     });
   });
 
   describe('isAllowedTimeZone', () => {
-    test('accepts only currently selectable timezone values', () => {
+    it('accepts only currently selectable timezone values', () => {
       expect(isAllowedTimeZone('America/New_York')).toBe(true);
       expect(isAllowedTimeZone('Asia/Calcutta')).toBe(false);
       expect(isAllowedTimeZone('Not/A_Timezone')).toBe(false);
@@ -43,7 +43,7 @@ describe('date-time-converter timezones', () => {
   });
 
   describe('getTimeZoneOptionLabel', () => {
-    test('shows both standard and daylight offsets for DST-aware zones', () => {
+    it('shows both standard and daylight offsets for DST-aware zones', () => {
       expect(getTimeZoneOptionLabel({
         browserTimezone: 'Etc/UTC',
         dstOffsetStr: '-04:00',
@@ -52,7 +52,7 @@ describe('date-time-converter timezones', () => {
       })).toBe('America/New_York (-05:00/-04:00)');
     });
 
-    test('marks the browser timezone in the label', () => {
+    it('marks the browser timezone in the label', () => {
       expect(getTimeZoneOptionLabel({
         browserTimezone: 'America/New_York',
         dstOffsetStr: '-04:00',

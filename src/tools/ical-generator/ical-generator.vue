@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import slugify from '@sindresorhus/slugify';
 import ical, { ICalCalendarMethod } from 'ical-generator';
 import { Base64 } from 'js-base64';
+import { useI18n } from 'vue-i18n';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
 const { t } = useI18n();
@@ -71,7 +71,8 @@ const { download } = useDownloadFileFromBase64(
     source: outputBase64,
     filename: outputFileName,
     extension: 'ics',
-  });
+  },
+);
 </script>
 
 <template>

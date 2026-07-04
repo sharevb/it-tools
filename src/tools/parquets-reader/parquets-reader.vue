@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import type { DataTableInst } from 'naive-ui';
 
 // import { Buffer } from 'node:buffer';
 import { parquetReadObjects } from 'hyparquet';
 import { compressors } from 'hyparquet-compressors';
-import type { DataTableInst } from 'naive-ui';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

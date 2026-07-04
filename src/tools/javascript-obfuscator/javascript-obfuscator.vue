@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useObfuscateJavascript } from './javascript-obfuscator.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useObfuscateJavascript } from './javascript-obfuscator.service';
 
 const { t } = useI18n();
 

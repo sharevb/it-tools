@@ -3,7 +3,7 @@ import lookup from 'country-code-lookup';
 
 import { translate as t } from '@/plugins/i18n.plugin';
 
-export { formatTypeToHumanReadable, getFullCountryName, getDefaultCountryCode };
+export { formatTypeToHumanReadable, getDefaultCountryCode, getFullCountryName };
 
 const typeToLabel: Record<NonNullable<NumberType>, string> = {
   MOBILE: t('tools.phone-parser-and-formatter.models.text.mobile'),
@@ -38,7 +38,7 @@ function getFullCountryName(countryCode: string | undefined) {
 function getDefaultCountryCode({
   locale = window.navigator.language,
   defaultCode = 'FR',
-}: { locale?: string; defaultCode?: CountryCode } = {}): CountryCode {
+}: { locale?: string, defaultCode?: CountryCode } = {}): CountryCode {
   const countryCode = locale.split('-')[1]?.toUpperCase();
 
   if (!countryCode) {

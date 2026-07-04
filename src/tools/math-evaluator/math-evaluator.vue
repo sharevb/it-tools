@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { evaluate } from 'mathjs';
+import { useI18n } from 'vue-i18n';
 
-import { withDefaultOnError } from '@/utils/defaults';
 import { useQueryParam } from '@/composable/queryParams';
+import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 

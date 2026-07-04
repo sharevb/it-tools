@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import _ from 'lodash';
-import { generateRandomMacAddress } from './mac-adress-generator.models';
+import { useI18n } from 'vue-i18n';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
-import { usePartialMacAddressValidation } from '@/utils/macAddress';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { usePartialMacAddressValidation } from '@/utils/macAddress';
+import { generateRandomMacAddress } from './mac-adress-generator.models';
 
 const { t } = useI18n();
 

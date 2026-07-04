@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import ctz from 'countries-and-timezones';
 import getTimezoneOffset from 'get-timezone-offset';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
@@ -33,8 +33,7 @@ function convertToTimezone(tz: string, timestamp: number) {
     timestamp
     + getTimezoneOffset(currentTimezone.value, new Date()) * 60 * 1000
     - getTimezoneOffset(browserTimezone, new Date()) * 60 * 1000,
-  ).toLocaleString(undefined,
-    { timeZone: tz, timeZoneName: undefined, hour12: !use24HourTimeFormat.value });
+  ).toLocaleString(undefined, { timeZone: tz, timeZoneName: undefined, hour12: !use24HourTimeFormat.value });
 }
 
 const tzToCountriesInput = ref(browserTimezone);

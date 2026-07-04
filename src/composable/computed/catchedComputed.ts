@@ -1,9 +1,10 @@
-import { type Ref, ref, watchEffect } from 'vue';
+import type { Ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 
 export { computedCatch, computedCatchAsync };
 
-function computedCatch<T, D>(getter: () => T, { defaultValue }: { defaultValue: D; defaultErrorMessage?: string }): [Ref<T | D>, Ref<string | undefined>];
-function computedCatch<T, D>(getter: () => T, { defaultValue, defaultErrorMessage = 'Unknown error' }: { defaultValue?: D; defaultErrorMessage?: string } = {}) {
+function computedCatch<T, D>(getter: () => T, { defaultValue }: { defaultValue: D, defaultErrorMessage?: string }): [Ref<T | D>, Ref<string | undefined>];
+function computedCatch<T, D>(getter: () => T, { defaultValue, defaultErrorMessage = 'Unknown error' }: { defaultValue?: D, defaultErrorMessage?: string } = {}) {
   const error = ref<string | undefined>();
   const value = ref<T | D | undefined>();
 
@@ -21,8 +22,8 @@ function computedCatch<T, D>(getter: () => T, { defaultValue, defaultErrorMessag
   return [value, error] as const;
 }
 
-function computedCatchAsync<T, D>(getterAsync: () => Promise<T>, { defaultValue }: { defaultValue: D; defaultErrorMessage?: string }): [Ref<T | D>, Ref<string | undefined>];
-function computedCatchAsync<T, D>(getterAsync: () => Promise<T>, { defaultValue, defaultErrorMessage = 'Unknown error' }: { defaultValue?: D; defaultErrorMessage?: string } = {}) {
+function computedCatchAsync<T, D>(getterAsync: () => Promise<T>, { defaultValue }: { defaultValue: D, defaultErrorMessage?: string }): [Ref<T | D>, Ref<string | undefined>];
+function computedCatchAsync<T, D>(getterAsync: () => Promise<T>, { defaultValue, defaultErrorMessage = 'Unknown error' }: { defaultValue?: D, defaultErrorMessage?: string } = {}) {
   const error = ref<string | undefined>();
   const value = ref<T | D | undefined>();
 

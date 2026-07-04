@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { decodeSafeLinksURL } from './safelink-decoder.service';
-import { useQueryParam } from '@/composable/queryParams';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { useQueryParam } from '@/composable/queryParams';
+import { decodeSafeLinksURL } from './safelink-decoder.service';
 
 const { t } = useI18n();
 const inputSafeLinkUrl = useQueryParam({ tool: 'safelink-decoder', name: 'url', defaultValue: '' });

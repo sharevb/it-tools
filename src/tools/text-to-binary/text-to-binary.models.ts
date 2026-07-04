@@ -4,7 +4,7 @@ export { convertTextToUtf8Binary, convertUtf8BinaryToText };
 
 export type EncodingBase = 2 | 8 | 10 | 16;
 
-function convertTextToUtf8Binary(text: string, { separator = ' ', base = 2 }: { separator?: string; base?: EncodingBase } = {}): string {
+function convertTextToUtf8Binary(text: string, { separator = ' ', base = 2 }: { separator?: string, base?: EncodingBase } = {}): string {
   if (!text?.trim()) {
     return '';
   }
@@ -44,14 +44,14 @@ function convertUtf8BinaryToText(binary: string, { base = 2 }: { base?: Encoding
       .map(binary => Number.parseInt(binary, 2));
   }
   else if (base === 16) {
-    const cleanBinary = binary.replace(/0x|\\x/g, '').replace(/[^0-9A-Fa-f]/g, '');
+    const cleanBinary = binary.replace(/0x|\\x/g, '').replace(/[^0-9A-F]/gi, '');
 
     if (cleanBinary.length % 2) {
       throw new Error(t('tools.text-to-binary.text.invalid-hexadecimal-string'));
     }
 
     codepoints = cleanBinary
-      .split(/([0-9A-Fa-f]{2})/)
+      .split(/([0-9A-F]{2})/i)
       .filter(Boolean)
       .map(binary => Number.parseInt(binary, 16));
   }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import promptSplitter from 'chatgpt-prompt-splitter';
-import { useValidation } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
+import { useValidation } from '@/composable/validation';
 
 const { t } = useI18n();
 

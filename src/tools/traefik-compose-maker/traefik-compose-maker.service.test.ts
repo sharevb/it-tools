@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import type { TraefikComposeOptions } from './traefik-compose-maker.service';
+import { describe, expect, it } from 'vitest';
 import { generateCompose } from './traefik-compose-maker.service';
 
 const defaultConfig: TraefikComposeOptions = {

@@ -1,5 +1,7 @@
-import { type MaybeRef, get } from '@vueuse/core';
-import Fuse, { type IFuseOptions } from 'fuse.js';
+import type { MaybeRef } from '@vueuse/core';
+import type { IFuseOptions } from 'fuse.js';
+import { get } from '@vueuse/core';
+import Fuse from 'fuse.js';
 import { computed } from 'vue';
 
 export { useFuzzySearch };

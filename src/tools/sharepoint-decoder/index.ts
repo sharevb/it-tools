@@ -1,6 +1,6 @@
 import { Mailbox } from '@vicons/tabler';
-import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: t('tools.sharepoint-decoder.title'),

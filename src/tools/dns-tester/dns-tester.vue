@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { useNetworkUtilsConfig } from '@/tools/network-utils/network-utils-config';
 import { Base64 } from 'js-base64';
-import { isIP } from 'is-ip';
+import { useNetworkUtilsConfig } from '@/tools/network-utils/network-utils-config';
 
 const { serverHost, serverAuth, hasFixedConfig } = useNetworkUtilsConfig({
   toolKey: 'dns-tester',
@@ -22,13 +21,12 @@ async function api(path: string, params: Record<string, string | number | boolea
 
     const url = `${serverHost.value}${path}?${pathParams.toString()}`;
 
-    const response = await fetch(url,
-      serverAuth.value
-        ? {
-            method: 'GET',
-            headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
-          }
-        : undefined);
+    const response = await fetch(url, serverAuth.value
+      ? {
+          method: 'GET',
+          headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
+        }
+      : undefined);
 
     if (!response.ok) {
       const text = await response.text();
@@ -148,57 +146,7 @@ const dnsTypes = [
   { value: 'ZONEMD', label: 'ZONEMD — Zone message digest' },
 ];
 
-const resolverOptions = [
-  { label: 'System default', value: '' },
-  { label: 'Custom DNS Resolver', value: '__custom__' },
-  { label: 'Google 8.8.8.8', value: '8.8.8.8' },
-  { label: 'Google 8.8.4.4', value: '8.8.4.4' },
-  { label: 'Cloudflare 1.1.1.1', value: '1.1.1.1' },
-  { label: 'Cloudflare 1.0.0.1', value: '1.0.0.1' },
-  { label: 'Quad9 9.9.9.9', value: '9.9.9.9' },
-  { label: 'Quad9 149.112.112.112', value: '149.112.112.112' },
-  { label: 'OpenDNS 208.67.222.222', value: '208.67.222.222' },
-  { label: 'OpenDNS 208.67.220.220', value: '208.67.220.220' },
-  { label: 'CleanBrowsing 185.228.168.9', value: '185.228.168.9' },
-  { label: 'CleanBrowsing 185.228.169.9', value: '185.228.169.9' },
-  { label: 'DNS.Watch 84.200.69.80', value: '84.200.69.80' },
-  { label: 'DNS.Watch 84.200.70.40', value: '84.200.70.40' },
-  { label: 'FreeDNS 37.235.1.174', value: '37.235.1.174' },
-  { label: 'FreeDNS 37.235.1.177', value: '37.235.1.177' },
-  { label: 'FDN France 80.67.169.12', value: '80.67.169.12' },
-  { label: 'FDN France 80.67.169.40', value: '80.67.169.40' },
-  { label: 'Neustar EU 156.154.70.1', value: '156.154.70.1' },
-  { label: 'Neustar EU 156.154.71.1', value: '156.154.71.1' },
-  { label: 'Level3 209.244.0.3', value: '209.244.0.3' },
-  { label: 'Level3 209.244.0.4', value: '209.244.0.4' },
-  { label: 'Comodo 8.26.56.26', value: '8.26.56.26' },
-  { label: 'Comodo 8.20.247.20', value: '8.20.247.20' },
-  { label: 'CenturyLink 205.171.3.65', value: '205.171.3.65' },
-  { label: 'CenturyLink 205.171.2.65', value: '205.171.2.65' },
-  { label: 'DNSPod 119.29.29.29', value: '119.29.29.29' },
-  { label: 'AliDNS 223.5.5.5', value: '223.5.5.5' },
-  { label: 'AliDNS 223.6.6.6', value: '223.6.6.6' },
-  { label: 'Yandex 77.88.8.8', value: '77.88.8.8' },
-  { label: 'Yandex 77.88.8.1', value: '77.88.8.1' },
-  { label: 'Naver Korea 125.209.222.141', value: '125.209.222.141' },
-  { label: 'Naver Korea 125.209.249.1', value: '125.209.249.1' },
-  { label: 'GigaDNS Brazil 189.38.95.95', value: '189.38.95.95' },
-  { label: 'GigaDNS Brazil 189.38.95.96', value: '189.38.95.96' },
-  { label: 'OpenDNS Africa 196.3.132.153', value: '196.3.132.153' },
-  { label: 'OpenDNS Africa 196.3.132.154', value: '196.3.132.154' },
-];
-
 const resolverIP = ref('');
-const customResolverIP = ref('');
-const effectiveResolverIP = computed(() => resolverIP.value === '__custom__' ? customResolverIP.value.trim() : resolverIP.value);
-const customResolverIpError = computed(() => {
-  if (resolverIP.value !== '__custom__' || !customResolverIP.value.trim()) {
-    return '';
-  }
-
-  return isIP(customResolverIP.value.trim()) ? '' : 'Please enter a valid IPv4 or IPv6 address.';
-});
-const canRunWithSelectedResolver = computed(() => resolverIP.value !== '__custom__' || customResolverIpError.value === '');
 
 const dnsDomain = ref('');
 const dnsType = ref('A');
@@ -220,7 +168,7 @@ async function runDns() {
   dnsResult.value = await api('/dns-query', {
     domain: dnsDomain.value,
     record_type: dnsType.value,
-    resolver_ip: effectiveResolverIP.value,
+    resolver_ip: resolverIP.value,
   });
 }
 
@@ -231,21 +179,21 @@ async function runWhois() {
 async function runDnssec() {
   dnssecResult.value = await api('/dnssec', {
     domain: dnssecDomain.value,
-    resolver_ip: effectiveResolverIP.value,
+    resolver_ip: resolverIP.value,
   });
 }
 
 async function runReverse() {
   reverseResult.value = await api('/reverse-dns', {
     ip: reverseIp.value,
-    resolver_ip: effectiveResolverIP.value,
+    resolver_ip: resolverIP.value,
   });
 }
 
 async function runAxfr() {
   axfrResult.value = await api('/soa-axfr', {
     domain: axfrDomain.value,
-    resolver_ip: effectiveResolverIP.value,
+    resolver_ip: resolverIP.value,
   });
 }
 
@@ -276,24 +224,7 @@ const labelProps = {
     </details>
 
     <NFormItem label="Target DNS Resolver IP:" label-placement="left">
-      <div style="width: 100%;">
-        <NSelect
-          v-model:value="resolverIP"
-          :options="resolverOptions"
-          placeholder="System default"
-          filterable
-          clearable
-          mb-1
-        />
-        <NInput
-          v-if="resolverIP === '__custom__'"
-          v-model:value="customResolverIP"
-          placeholder="e.g. 10.0.0.53"
-        />
-        <div v-if="customResolverIpError" style="margin-top: 6px; color: var(--n-error-color); font-size: 12px;">
-          {{ customResolverIpError }}
-        </div>
-      </div>
+      <NInput v-model:value="resolverIP" placeholder="8.8.8.8 or leave empty for default /etc/resolv.conf DNS configuration" />
     </NFormItem>
 
     <n-tabs type="line" animated>
@@ -308,7 +239,7 @@ const labelProps = {
           mb-1
         />
         <div mb-2 flex justify-center>
-          <n-button :loading="loading" :disabled="!canRunWithSelectedResolver" @click="runDns">
+          <n-button :loading="loading" @click="runDns">
             Query DNS
           </n-button>
         </div>
@@ -371,7 +302,7 @@ const labelProps = {
             mb-1
           />
 
-          <CodeBlockCopyable
+          <textarea-copyable
             v-if="whoisResult.parsed"
             label="Parsed"
             :value="prettyJSON(whoisResult.parsed)"
@@ -398,7 +329,7 @@ const labelProps = {
       <n-tab-pane name="dnssec" tab="DNSSEC Validation">
         <c-input-text v-model:value="dnssecDomain" label="Domain:" v-bind="labelProps" placeholder="example.com" mb-1 />
         <div mb-2 flex justify-center>
-          <n-button type="primary" :loading="loading" :disabled="!canRunWithSelectedResolver" @click="runDnssec">
+          <n-button type="primary" :loading="loading" @click="runDnssec">
             Validate DNSSEC
           </n-button>
         </div>
@@ -454,7 +385,7 @@ const labelProps = {
       <n-tab-pane name="reverse" tab="Reverse DNS (PTR)">
         <c-input-text v-model:value="reverseIp" label="IP Address:" v-bind="labelProps" placeholder="8.8.8.8" mb-1 />
         <div mb-2 flex justify-center>
-          <n-button type="primary" :loading="loading" :disabled="!canRunWithSelectedResolver" @click="runReverse">
+          <n-button type="primary" :loading="loading" @click="runReverse">
             Reverse Lookup
           </n-button>
         </div>
@@ -495,7 +426,7 @@ const labelProps = {
       <n-tab-pane name="axfr" tab="SOA + AXFR Test">
         <c-input-text v-model:value="axfrDomain" label="Domain:" v-bind="labelProps" placeholder="example.com" mb-1 />
         <div mb-2 flex justify-center>
-          <n-button type="primary" :loading="loading" :disabled="!canRunWithSelectedResolver" @click="runAxfr">
+          <n-button type="primary" :loading="loading" @click="runAxfr">
             Run SOA + AXFR
           </n-button>
         </div>

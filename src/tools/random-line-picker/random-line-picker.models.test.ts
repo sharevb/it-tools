@@ -1,6 +1,6 @@
+import type { Config } from './random-line-picker.types';
 import { describe, expect, it } from 'vitest';
 import { getLines, pickLines } from './random-line-picker.models';
-import type { Config } from './random-line-picker.types';
 
 describe('random-line-picker', () => {
   describe('getLines', () => {

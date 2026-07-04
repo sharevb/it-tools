@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import {
   calculateCheckDigitForGTIN,
   getFormatOfGTIN,
@@ -7,6 +6,7 @@ import {
   isValidGTIN,
   removeGTINLeadingZerosToUpcOrGTIN13,
 } from 'gtin-validator';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();

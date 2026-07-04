@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { Base64 } from 'js-base64';
 import type { MemoryImage } from 'image-in-browser';
+import { initWasm, Resvg } from '@resvg/resvg-wasm';
 import { decodeImage, encodeBmp, encodeGif, encodeIco, encodeJpg, encodePng, encodePvr, encodeTga, encodeTiff } from 'image-in-browser';
-import { arrayBufferToWebP } from 'webp-converter-browser';
-import { createSvg2png, initialize } from 'svg2png-wasm';
+import { Base64 } from 'js-base64';
 import { normal as robotoBase64 } from 'roboto-base64';
+import { useI18n } from 'vue-i18n';
+import { arrayBufferToWebP } from 'webp-converter-browser';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
@@ -32,7 +32,8 @@ const { download } = useDownloadFileFromBase64(
     source: base64OutputFile,
     filename: fileName,
     extension: fileExtension,
-  });
+  },
+);
 
 const outputQuality = useQueryParamOrStorage({ name: 'qual', storageName: 'imgconv:q', defaultValue: 0.95 });
 const outputFormats = {
@@ -102,14 +103,17 @@ async function onFileUploaded(uploadedFile: File) {
     else {
       if (uploadedFile.type === 'image/svg+xml') {
         if (!svgWasmLoaded.value) {
-          await initialize(fetch('/svg2png_wasm_bg.wasm'));
+          await initWasm(fetch('/resvg_bg.wasm'));
           svgWasmLoaded.value = true;
         }
-        const svg2png = createSvg2png({
-          fonts: [Base64.toUint8Array(robotoBase64)],
+        const resvg = new Resvg(await readAsText(uploadedFile), {
+          font: { fontBuffers: [Base64.toUint8Array(robotoBase64)] },
+          fitTo: { mode: 'zoom', value: svgScale.value },
         });
-        fileBuffer = await svg2png(await readAsText(uploadedFile), { scale: svgScale.value });
-        svg2png.dispose();
+        const rendered = resvg.render();
+        fileBuffer = rendered.asPng();
+        rendered.free();
+        resvg.free();
       }
       const decodedImage = decodeImage({
         data: fileBuffer,

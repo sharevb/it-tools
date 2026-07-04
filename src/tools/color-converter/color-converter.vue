@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import type { Colord } from 'colord';
 import { colord, extend } from 'colord';
-import { colordx, extend as extendx } from '@colordx/core';
-import xlabPlugin from '@colordx/core/plugins/lab';
-import _ from 'lodash';
 import cmykPlugin from 'colord/plugins/cmyk';
 import hwbPlugin from 'colord/plugins/hwb';
-import namesPlugin from 'colord/plugins/names';
-import lchPlugin from 'colord/plugins/lch';
-import xyzPlugin from 'colord/plugins/xyz';
 import labPlugin from 'colord/plugins/lab';
+import lchPlugin from 'colord/plugins/lch';
+import namesPlugin from 'colord/plugins/names';
+import xyzPlugin from 'colord/plugins/xyz';
+import _ from 'lodash';
+import { useI18n } from 'vue-i18n';
 import { buildColorFormat } from './color-converter.models';
 
 const { t } = useI18n();
 
-extendx([xlabPlugin]);
 extend([cmykPlugin, hwbPlugin, namesPlugin, lchPlugin, xyzPlugin, labPlugin]);
 
 const formats = {
@@ -56,27 +53,15 @@ const formats = {
   }),
   lab: buildColorFormat({
     label: t('tools.color-converter.texts.label-lab'),
-    format: (v: Colord) => colordx(v.toHex()).toLabString(),
-    placeholder: 'e.g. lab(54.29 80.8 69.89)',
-    parse: value => colord(colordx(value).toHex()),
+    format: (v: Colord) => JSON.stringify(v.toLab()),
+    placeholder: 'e.g. { l: 14.89, a: 5.77, b: 14.41, alpha: 0.5 }',
+    parse: value => colord(JSON.parse(value)),
   }),
   xyz: buildColorFormat({
     label: t('tools.color-converter.texts.label-xyz'),
     format: (v: Colord) => JSON.stringify(v.toXyz()),
     placeholder: 'e.g. { x: 95.047, y: 100, z: 108.883, a: 1 }',
     parse: value => colord(JSON.parse(value)),
-  }),
-  oklab: buildColorFormat({
-    label: t('tools.color-converter.texts.label-oklab'),
-    format: (v: Colord) => colordx(v.toHex()).toOklabString(),
-    placeholder: 'e.g. oklab(40.1% 0.1143 0.045)',
-    parse: value => colord(colordx(value).toHex()),
-  }),
-  oklch: buildColorFormat({
-    label: t('tools.color-converter.texts.label-oklch'),
-    format: (v: Colord) => colordx(v.toHex()).toOklchString(),
-    placeholder: 'e.g. oklch(40.1% 0.123 21.57)',
-    parse: value => colord(colordx(value).toHex()),
   }),
   name: buildColorFormat({
     label: t('tools.color-converter.texts.label-name'),
@@ -91,9 +76,7 @@ const grayscale = ref(false);
 const invert = ref(false);
 
 let lastColor = colord('#1ea54c');
-watch([saturation, brightness, grayscale, invert],
-  () => updateColorValue(lastColor),
-);
+watch([saturation, brightness, grayscale, invert], () => updateColorValue(lastColor));
 
 updateColorValue(lastColor);
 

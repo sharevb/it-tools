@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { convertUnicodeToGSM7 } from '@skeepit/unicode-to-gsm7';
 import { SegmentedMessage } from 'sms-segments-calculator';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

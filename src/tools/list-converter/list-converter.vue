@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { useStorage } from '@vueuse/core';
-import { convert } from './list-converter.models';
 import type { ConvertOptions } from './list-converter.types';
+import { useStorage } from '@vueuse/core';
+import { useI18n } from 'vue-i18n';
+import { convert } from './list-converter.models';
 
 const { t } = useI18n();
 

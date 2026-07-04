@@ -31,7 +31,7 @@ function isNumeric(str) {
     return false;
   } // we only process strings!
   return !Number.isNaN(Number(str)) // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-        && !Number.isNaN(Number.parseFloat(str)); // ...and ensure strings of whitespace fail
+    && !Number.isNaN(Number.parseFloat(str)); // ...and ensure strings of whitespace fail
 };
 
 export default deflate;

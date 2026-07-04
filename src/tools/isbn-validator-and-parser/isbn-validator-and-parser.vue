@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import ISBN3 from 'isbn3';
 import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
+import ISBN3 from 'isbn3';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -75,14 +75,13 @@ const normalizedISBN = computed(() => {
   return ISBN3.parse(`${normalized}${checksum}`)?.isbn13h;
 });
 
-const isbnAuditInfos = computed<{ isValid: boolean; clues: CKeyValueListItems }>(() => {
+const isbnAuditInfos = computed<{ isValid: boolean, clues: CKeyValueListItems }>(() => {
   const isbn = ISBN3.audit(rawIsbn.value);
 
   const isValid = (isbn?.validIsbn ?? false);
   return {
     isValid,
-    clues: Array.from((isbn?.clues ?? []),
-      clue => ({ label: `${clue.message} (${clue.groupname})`, value: clue.candidate })),
+    clues: Array.from((isbn?.clues ?? []), clue => ({ label: `${clue.message} (${clue.groupname})`, value: clue.candidate })),
   };
 });
 </script>

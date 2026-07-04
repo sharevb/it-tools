@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import iesData from './ies-lighting-data.json';
 import useDebouncedRef from '@/composable/debouncedref';
 import { useFlexSearch } from '@/composable/flexSearch';
+import iesData from './ies-lighting-data.json';
 
 const { t } = useI18n();
 

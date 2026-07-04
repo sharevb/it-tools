@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { generateSSLCertificate } from './x509-certificate-generator.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { withDefaultOnErrorAsync } from '@/utils/defaults';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
-import { useValidation } from '@/composable/validation';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useValidation } from '@/composable/validation';
+import { withDefaultOnErrorAsync } from '@/utils/defaults';
+import { generateSSLCertificate } from './x509-certificate-generator.service';
 
 const { t } = useI18n();
 
@@ -61,9 +61,9 @@ const [certs, refreshCerts] = computedRefreshableAsync(
       subjectAlternativeNames: subjectAlternativeNames.value,
       days: days.value,
     });
-  },
+  }, emptyCSR),
   emptyCSR,
-  ), emptyCSR);
+);
 </script>
 
 <template>

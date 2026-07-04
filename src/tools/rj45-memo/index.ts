@@ -1,5 +1,5 @@
-import { translate as t } from '@/plugins/i18n.plugin';
 import { WorldLatitude } from '@vicons/tabler';
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({

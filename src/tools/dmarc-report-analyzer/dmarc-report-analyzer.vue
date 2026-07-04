@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { parseDmarcReportFromEmail, parseDmarcReportsFromXml } from 'dmarc-report-parser';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

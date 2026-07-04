@@ -1,10 +1,11 @@
+import type { ActiveLoader } from 'vue-loading-overlay';
+import { useLoading } from 'vue-loading-overlay';
 import { createRouter, createWebHistory } from 'vue-router';
-import { type ActiveLoader, useLoading } from 'vue-loading-overlay';
-import { layouts } from './layouts/index';
-import HomePage from './pages/Home.page.vue';
-import NotFound from './pages/404.page.vue';
-import { tools } from './tools';
 import { config } from './config';
+import { layouts } from './layouts/index';
+import NotFound from './pages/404.page.vue';
+import HomePage from './pages/Home.page.vue';
+import { tools } from './tools';
 import { routes as demoRoutes } from './ui/demo/demo.routes';
 import { useAppTheme } from './ui/theme/themes';
 

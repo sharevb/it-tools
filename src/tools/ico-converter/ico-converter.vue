@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import { decodeIco, decodeImage, encodeIcoImages, encodePng, Transform } from 'image-in-browser';
 import { Base64 } from 'js-base64';
-import { Transform, decodeIco, decodeImage, encodeIcoImages, encodePng } from 'image-in-browser';
+import { useI18n } from 'vue-i18n';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
 const { t } = useI18n();
@@ -17,7 +17,8 @@ const { download } = useDownloadFileFromBase64(
     source: base64OutputFile,
     filename: fileName,
     extension: fileExtension,
-  });
+  },
+);
 
 async function onFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;

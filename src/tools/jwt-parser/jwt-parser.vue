@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import * as jose from 'jose';
-import JSON5 from 'json5';
 import hexArray from 'hex-array';
+import * as jose from 'jose';
 import { Base64 } from 'js-base64';
-import { decodeJwt, getJwtAlgorithm } from './jwt-parser.service';
+import JSON5 from 'json5';
+import { useI18n } from 'vue-i18n';
 import { useValidation } from '@/composable/validation';
 import { isNotThrowing } from '@/utils/boolean';
 import { withDefaultOnError } from '@/utils/defaults';
+import { decodeJwt, getJwtAlgorithm } from './jwt-parser.service';
 
 const { t } = useI18n();
 

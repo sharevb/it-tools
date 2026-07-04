@@ -2,7 +2,7 @@ import JSON5 from 'json5';
 
 export { convertJsonToEnv };
 
-function serializeValue(value: unknown): { value: string; forceQuote: boolean } {
+function serializeValue(value: unknown): { value: string, forceQuote: boolean } {
   if (value === null || value === undefined) {
     return { value: '', forceQuote: true };
   }
@@ -14,7 +14,7 @@ function serializeValue(value: unknown): { value: string; forceQuote: boolean } 
   return { value: String(value), forceQuote: false };
 }
 
-function formatEnvValue({ value, forceQuote }: { value: string; forceQuote: boolean }): string {
+function formatEnvValue({ value, forceQuote }: { value: string, forceQuote: boolean }): string {
   const needsQuoting = forceQuote || value === '' || /[\s"'#`$\\]/.test(value);
 
   if (!needsQuoting) {
@@ -25,7 +25,7 @@ function formatEnvValue({ value, forceQuote }: { value: string; forceQuote: bool
   return `"${escaped}"`;
 }
 
-function convertJsonToEnv({ json, uppercaseKeys = true }: { json: string; uppercaseKeys?: boolean }): string {
+function convertJsonToEnv({ json, uppercaseKeys = true }: { json: string, uppercaseKeys?: boolean }): string {
   const trimmed = json.trim();
 
   if (trimmed === '') {

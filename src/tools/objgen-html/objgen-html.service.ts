@@ -218,9 +218,7 @@ export function xHtml(modelText: string) {
 }
 
 function genHtml(elements: Element[], depth: number) {
-  if (depth == null) {
-    depth = 1;
-  }
+  depth ??= 1;
 
   const t = indentString.repeat(depth);
   let result = '';
@@ -266,5 +264,5 @@ function hasContent(val: any[] | string) {
 }
 
 function isHtmlElement(val: string) {
-  return Object.prototype.hasOwnProperty.call(htmlElements, val);
+  return Object.hasOwn(htmlElements, val);
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { ref } from 'vue';
 import { bandsToNotation, notationToBands, notationToValue, valueToNotation } from 'resistor-data';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
@@ -39,8 +39,18 @@ const notationToNumberResult = ref(0);
 const notationToNumberError = ref('');
 
 const validColors = [
-  'black', 'brown', 'red', 'orange', 'yellow', 'green',
-  'blue', 'violet', 'gray', 'white', 'gold', 'silver',
+  'black',
+  'brown',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'violet',
+  'gray',
+  'white',
+  'gold',
+  'silver',
 ];
 
 function validateBands(bands: string[], count: number) {

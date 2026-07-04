@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import InputCopyable from '../../components/InputCopyable.vue';
-import { UUID2HEX, getVersion, normalizeUUID } from './uuid-converter.service';
 import { useQueryParam } from '@/composable/queryParams';
+import InputCopyable from '../../components/InputCopyable.vue';
+import { getVersion, normalizeUUID, UUID2HEX } from './uuid-converter.service';
 
 const { t } = useI18n();
 const input = useQueryParam({ tool: 'uuid-conv', name: 'd', defaultValue: '' });

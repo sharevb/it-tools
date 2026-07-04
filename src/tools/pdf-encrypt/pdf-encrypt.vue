@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import createQPDFModule from 'qpdf-wasm-esm-embedded';
+import { useI18n } from 'vue-i18n';
 import { useDownloadFileFromBase64Refs } from '@/composable/downloadBase64';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
@@ -31,7 +31,8 @@ const { download } = useDownloadFileFromBase64Refs(
     source: base64OutputPDF,
     filename: fileName,
     extension: fileExtension,
-  });
+  },
+);
 const qpdfCommand = ref('');
 
 function onFileUploaded(uploadedFile: File) {
@@ -69,8 +70,7 @@ async function onProcessClicked() {
     options.push('--');
     options.push('in.pdf');
     options.push('out.pdf');
-    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
-      options, 0);
+    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer, options, 0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
 
@@ -100,10 +100,7 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
   return mod.FS.readFile('out.pdf');
 }
 
-const printRestrictionOptions = [{ value: 'none', label: t('tools.pdf-encrypt.texts.label-disallow-printing') },
-  { value: 'low', label: t('tools.pdf-encrypt.texts.label-allow-only-low-resolution-printing') },
-  { value: 'full', label: t('tools.pdf-encrypt.texts.label-allow-full-printing') },
-];
+const printRestrictionOptions = [{ value: 'none', label: t('tools.pdf-encrypt.texts.label-disallow-printing') }, { value: 'low', label: t('tools.pdf-encrypt.texts.label-allow-only-low-resolution-printing') }, { value: 'full', label: t('tools.pdf-encrypt.texts.label-allow-full-printing') }];
 const modificationRestrictionOptions = [
   { value: 'none', label: t('tools.pdf-encrypt.texts.label-allow-no-modifications') },
   { value: 'assembly', label: t('tools.pdf-encrypt.texts.label-allow-document-assembly-only') },

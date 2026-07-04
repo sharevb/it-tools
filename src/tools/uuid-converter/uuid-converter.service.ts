@@ -1,6 +1,6 @@
 import { validate as uuidValidate, version as uuidVersion } from 'uuid';
 
-export { normalizeUUID, UUID2HEX, getVersion };
+export { getVersion, normalizeUUID, UUID2HEX };
 
 function normalizeUUID(value: string) {
   let uuid = ''; // Default return value

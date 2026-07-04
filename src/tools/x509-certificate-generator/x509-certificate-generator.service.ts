@@ -67,7 +67,8 @@ export async function generateSSLCertificate(config: {
       nonRepudiation: true,
       keyEncipherment: true,
       dataEncipherment: true,
-    }];
+    },
+  ];
   const sanExtension = getSubjectAlternativeNames(config.subjectAlternativeNames);
   if (sanExtension) {
     extensions.push(sanExtension);
@@ -85,7 +86,8 @@ export async function generateSSLCertificate(config: {
     .update(asn1.toDer(pki.certificateToAsn1(cert)).getBytes())
     .digest()
     .toHex()
-    .match(/.{2}/g)?.join(':') ?? '';
+    .match(/.{2}/g)
+    ?.join(':') ?? '';
 
   const privateUnencryptedKeyPem = pki.privateKeyToPem(privateKey);
 

@@ -2,12 +2,7 @@ import { translate as t } from '@/plugins/i18n.plugin';
 
 export function getUrlWithTextFragment(
   { url, textStartSearch, textStopSearch, prefixSearch, suffixSearch }:
-  { url: string
-    textStartSearch: string
-    textStopSearch?: string
-    prefixSearch?: string
-    suffixSearch?: string
-  },
+  { url: string, textStartSearch: string, textStopSearch?: string, prefixSearch?: string, suffixSearch?: string },
 ) {
   const isValidUrl = (urlString: string) => {
     try {
@@ -21,7 +16,7 @@ export function getUrlWithTextFragment(
     throw new Error(t('tools.url-parser.texts.message-invalid-url'));
   }
 
-  if (!url.match(/^https?:\/\//)) {
+  if (!/^https?:\/\//.test(url)) {
     throw new Error(t('tools.url-parser.texts.url-must-have-http-or-https-prefix'));
   }
 

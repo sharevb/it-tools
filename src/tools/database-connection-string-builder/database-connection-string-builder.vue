@@ -18,7 +18,7 @@ const formatOptions = [
   { label: t('tools.database-connection-string-builder.texts.label-keyword-value-pairs'), value: 'kvp' },
 ];
 
-const authOptions: Record<string, { label: string; value: string }[]> = {
+const authOptions: Record<string, { label: string, value: string }[]> = {
   mysql: [{ label: t('tools.database-connection-string-builder.texts.label-username-password'), value: 'basic' }],
   postgres: [
     { label: t('tools.database-connection-string-builder.texts.label-username-password'), value: 'basic' },

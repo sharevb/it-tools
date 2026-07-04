@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { Tool } from '@/tools/tools.types';
 import { World } from '@vicons/tabler';
 import { useThemeVars } from 'naive-ui';
 import FavoriteButton from './FavoriteButton.vue';
-import type { Tool } from '@/tools/tools.types';
 
 const props = defineProps<{ tool: Tool & { category: string } }>();
 const { tool } = toRefs(props);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { KeyEncoding } from './encryption.service';
-import { algos } from './encryption.service';
 import { computedCatch } from '@/composable/computed/catchedComputed';
+import { algos } from './encryption.service';
 
 const { t } = useI18n();
 

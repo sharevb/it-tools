@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import slugify from '@sindresorhus/slugify';
-import { withDefaultOnError } from '@/utils/defaults';
+import { useI18n } from 'vue-i18n';
 import { useCopy } from '@/composable/copy';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
+import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 

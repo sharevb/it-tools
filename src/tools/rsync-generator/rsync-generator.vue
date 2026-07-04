@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
+import { NCard, NCheckbox, NCheckboxGroup, NForm, NFormItem, NInput, NRadio, NRadioGroup } from 'naive-ui';
 
 import { computed, reactive } from 'vue';
-import { NCard, NCheckbox, NCheckboxGroup, NForm, NFormItem, NInput, NRadio, NRadioGroup } from 'naive-ui';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

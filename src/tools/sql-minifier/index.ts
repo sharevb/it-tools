@@ -1,5 +1,5 @@
-import { translate as t } from '@/plugins/i18n.plugin';
 import { IconDatabaseMinus } from '@tabler/icons-vue';
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({

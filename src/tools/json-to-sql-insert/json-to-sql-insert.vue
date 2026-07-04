@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import JSON5 from 'json5';
-import { flatten } from 'flatten-anything';
-import { objectArrayToData } from '@/utils/objectarray.export';
 import type { UseValidationRule } from '@/composable/validation';
+import { flatten } from 'flatten-anything';
+import JSON5 from 'json5';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { objectArrayToData } from '@/utils/objectarray.export';
 
 const { t } = useI18n();
 

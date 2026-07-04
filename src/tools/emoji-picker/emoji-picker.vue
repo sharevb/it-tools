@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import emojiUnicodeData from 'unicode-emoji-json';
+import type { EmojiInfo } from './emoji.types';
 import emojiKeywords from 'emojilib';
 import _ from 'lodash';
-import type { EmojiInfo } from './emoji.types';
-import { escapeUnicodeComplete, getAllCodePoints } from './emoji-utils';
+import emojiUnicodeData from 'unicode-emoji-json';
+import { useI18n } from 'vue-i18n';
 import useDebouncedRef from '@/composable/debouncedref';
 import { useFlexSearch } from '@/composable/flexSearch';
+import { escapeUnicodeComplete, getAllCodePoints } from './emoji-utils';
 
 const { t } = useI18n();
 
@@ -66,7 +66,7 @@ const emojis = _.map(emojiUnicodeData, (emojiInfo, emoji) => ({
 }));
 
 // Group emojis and sort groups for better organization
-const emojisGroups: { emojiInfos: EmojiInfo[]; group: string }[] = _.chain(emojis)
+const emojisGroups: { emojiInfos: EmojiInfo[], group: string }[] = _.chain(emojis)
   .groupBy('group')
   .map((emojiInfos, group) => ({
     group: _.startCase(group), // Better group name formatting

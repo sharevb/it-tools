@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useContactQRCode } from './useContactQRCode';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParam } from '@/composable/queryParams';
+import { useContactQRCode } from './useContactQRCode';
 
 const { t } = useI18n();
 

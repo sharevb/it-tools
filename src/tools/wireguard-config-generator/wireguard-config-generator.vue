@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { parseCidr } from 'cidr-tools';
 import { stringifyIp } from 'ip-bigint';
 import QRCodeVue3 from 'qrcode-vue3';
-import { WgConfig } from './lib/WgConfig';
+import { useI18n } from 'vue-i18n';
 import { generateConfigString } from './lib/utils/configParser';
+import { WgConfig } from './lib/WgConfig';
 
 const { t } = useI18n();
 
@@ -131,7 +131,7 @@ const postDownRule = computed<string>({
 const usePreSharedKeys = ref(true);
 const numberOfClients = ref(3);
 
-const generatedConfigs = ref<{ server: string; peers: Array<{ name: string; config: string }> } | null>(null);
+const generatedConfigs = ref<{ server: string, peers: Array<{ name: string, config: string }> } | null>(null);
 
 function generatePeers() {
   config.value.clearPeers();

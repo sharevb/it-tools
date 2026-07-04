@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import 'webcrypto-liner-shim';
 import * as openpgp from 'openpgp';
+import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { useValidation } from '@/composable/validation';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
 import { useITStorage } from '@/composable/queryParams';
+import { useValidation } from '@/composable/validation';
+import 'webcrypto-liner-shim';
 
 const { t } = useI18n();
 
@@ -28,13 +28,21 @@ const formats = isWindowSecureContext()
       'curve25519',
       'curve448',
       'ed25519',
-      'p256', 'p384', 'p521',
-      'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1',
+      'p256',
+      'p384',
+      'p521',
+      'brainpoolP256r1',
+      'brainpoolP384r1',
+      'brainpoolP512r1',
       'secp256k1',
     ]
   : [
-      'p256', 'p384', 'p521',
-      'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1',
+      'p256',
+      'p384',
+      'p521',
+      'brainpoolP256r1',
+      'brainpoolP384r1',
+      'brainpoolP512r1',
       'secp256k1',
     ];
 
@@ -81,7 +89,8 @@ const [certs, refreshCerts] = computedRefreshableAsync(
     catch (e: any) {
       return { privateKey: `#${e.toString()}`, publicKey: `#${e.toString()}`, revocationCertificate: '' };
     }
-  }, { privateKey: '', publicKey: '', revocationCertificate: '' },
+  },
+  { privateKey: '', publicKey: '', revocationCertificate: '' },
 );
 </script>
 

@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import { translate as t } from '@/plugins/i18n.plugin';
 
-export { getPasswordCrackTimeEstimation, getCharsetLength };
+export { getCharsetLength, getPasswordCrackTimeEstimation };
 
 function prettifyExponentialNotation(exponentialNotation: number) {
   const [base, exponent] = exponentialNotation.toString().split('e');
@@ -51,7 +51,7 @@ function getHumanFriendlyDuration({ seconds }: { seconds: number }) {
     .value();
 }
 
-function getPasswordCrackTimeEstimation({ password, guessesPerSecond = 1e9 }: { password: string; guessesPerSecond?: number }) {
+function getPasswordCrackTimeEstimation({ password, guessesPerSecond = 1e9 }: { password: string, guessesPerSecond?: number }) {
   const charsetLength = getCharsetLength({ password });
   const passwordLength = password.length;
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
-import { useI18n } from 'vue-i18n';
-import { Base64 } from 'js-base64';
 import ExifTransformer from 'exif-be-gone';
+import { Base64 } from 'js-base64';
 import MemoryStream from 'memorystream';
+import { useI18n } from 'vue-i18n';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
 const { t } = useI18n();
@@ -12,7 +12,7 @@ const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
 
 interface ToBufferMemoryStream extends MemoryStream {
-  toBuffer(): Buffer
+  toBuffer: () => Buffer
 }
 
 const base64OutputFile = ref('');
@@ -22,7 +22,8 @@ const { download } = useDownloadFileFromBase64(
     source: base64OutputFile,
     filename: fileName,
     extension: 'jpg',
-  });
+  },
+);
 
 async function onFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;

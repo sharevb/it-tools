@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { createToken } from '../token-generator/token-generator.service';
+import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { computedRefreshable } from '@/composable/computedRefreshable';
+import { createToken } from '../token-generator/token-generator.service';
 
 const count = useQueryParamOrStorage({ name: 'count', storageName: 'rnd-nums-gen:count', defaultValue: 1 });
 const length = useQueryParamOrStorage({ name: 'length', storageName: 'rnd-nums-gen:length', defaultValue: 64 });
@@ -17,16 +17,15 @@ function transformCase(s: string) {
 const { t } = useI18n();
 
 const [numbers, refreshnumbers] = computedRefreshable(() =>
-  transformCase(Array.from({ length: count.value < 1 ? 1 : count.value },
-    () => createToken({
-      length: length.value,
-      withUppercase: false,
-      withLowercase: false,
-      withNumbers: numberMode.value === 'dec',
-      withHexaNumbers: numberMode.value === 'hexa',
-      withSymbols: false,
-      deniedChars: deniedChars.value,
-    })).join('\n')),
+  transformCase(Array.from({ length: count.value < 1 ? 1 : count.value }, () => createToken({
+    length: length.value,
+    withUppercase: false,
+    withLowercase: false,
+    withNumbers: numberMode.value === 'dec',
+    withHexaNumbers: numberMode.value === 'hexa',
+    withSymbols: false,
+    deniedChars: deniedChars.value,
+  })).join('\n')),
 );
 
 const { copy } = useCopy({ source: numbers, text: t('tools.random-numbers-generator.copied') });

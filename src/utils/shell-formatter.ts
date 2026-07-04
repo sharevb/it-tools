@@ -14,7 +14,7 @@ export function formatShellCommand(
     }
 
     // Split by whitespace while respecting quoted strings
-    const args = command.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g) || [];
+    const args = command.match(/(?:[^\s"']|"[^"]*"|'[^']*')+/g) || [];
     if (args.length === 0) {
       return command;
     }

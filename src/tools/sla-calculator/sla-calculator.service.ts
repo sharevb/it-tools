@@ -67,7 +67,13 @@ export function downTimeToSLA({
     durSecondsYear,
     fullWeekHours,
   } = prepareDurations({
-    mondayHours, tuesdayHours, wednesdayHours, thursdayHours, fridayHours, saturdayHours, sundayHours,
+    mondayHours,
+    tuesdayHours,
+    wednesdayHours,
+    thursdayHours,
+    fridayHours,
+    saturdayHours,
+    sundayHours,
   });
 
   const one = Big('1');
@@ -111,7 +117,13 @@ export function slaToDowntimes({
     durSecondsYear,
     fullWeekHours,
   } = prepareDurations({
-    mondayHours, tuesdayHours, wednesdayHours, thursdayHours, fridayHours, saturdayHours, sundayHours,
+    mondayHours,
+    tuesdayHours,
+    wednesdayHours,
+    thursdayHours,
+    fridayHours,
+    saturdayHours,
+    sundayHours,
   });
 
   const allowedDowntime = Big('1').minus(Big(targetSLA).div('100'));

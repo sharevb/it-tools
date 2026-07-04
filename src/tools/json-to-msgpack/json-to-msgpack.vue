@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Buffer } from 'node:buffer';
-import { useI18n } from 'vue-i18n';
-import { pack } from 'msgpackr';
 import JSON5 from 'json5';
+import { pack } from 'msgpackr';
+import { useI18n } from 'vue-i18n';
 import { useValidation } from '@/composable/validation';
 
 const { t } = useI18n();

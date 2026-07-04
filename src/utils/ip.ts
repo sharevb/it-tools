@@ -1,9 +1,9 @@
-import { isIPv4 } from 'is-ip';
-import { Address4, Address6 } from 'ip-address';
-import { containsCidr } from 'cidr-tools';
 import type { IPMatch } from 'ip-matching';
-import { IPMask, IPSubnetwork, getMatch } from 'ip-matching';
+import { containsCidr } from 'cidr-tools';
+import { Address4, Address6 } from 'ip-address';
+import { getMatch, IPMask, IPSubnetwork } from 'ip-matching';
 import isCidr from 'is-cidr';
+import { isIPv4 } from 'is-ip';
 import ipv4registry from './ipv4registry.json';
 import ipv6registry from './ipv6registry.json';
 
@@ -117,10 +117,7 @@ export function toARPA(address: string) {
   if (isIPv4(address)) {
     const bigInt = BigInt((new Address4(address)).bigInt());
     const reverseIP = (
-      [(bigInt & BigInt(255)), (bigInt >> BigInt(8) & BigInt(255)),
-        (bigInt >> BigInt(16) & BigInt(255)),
-        (bigInt >> BigInt(24) & BigInt(255)),
-      ].join('.')
+      [(bigInt & BigInt(255)), (bigInt >> BigInt(8) & BigInt(255)), (bigInt >> BigInt(16) & BigInt(255)), (bigInt >> BigInt(24) & BigInt(255))].join('.')
     );
     return `${reverseIP}.in-addr.arpa.`;
   }

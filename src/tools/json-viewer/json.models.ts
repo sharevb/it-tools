@@ -1,8 +1,9 @@
-import { type MaybeRef, get } from '@vueuse/core';
+import type { MaybeRef } from '@vueuse/core';
+import { get } from '@vueuse/core';
 import { jsonrepair } from 'jsonrepair';
 import '@/utils/json5-bignum';
 
-export { sortObjectKeys, formatJson };
+export { formatJson, sortObjectKeys };
 
 function sortObjectKeys<T>(obj: T): T {
   if (typeof obj !== 'object' || obj === null) {
@@ -23,8 +24,7 @@ function sortObjectKeys<T>(obj: T): T {
 
 function unescapeUnicodeJSON(str: string) {
   return str.replace(/\\u([\dA-Fa-f]{4})/g, (match, grp) =>
-    String.fromCharCode(Number.parseInt(grp, 16)),
-  );
+    String.fromCharCode(Number.parseInt(grp, 16)));
 }
 
 function unescapeJson(jsonString: string): string {
@@ -35,7 +35,7 @@ function unescapeJson(jsonString: string): string {
     // If the string starts and ends with quotes, and contains escaped quotes inside,
     // it might be a JSON string that needs to be unescaped
     if ((result.startsWith('"') && result.endsWith('"'))
-        || (result.startsWith('\'') && result.endsWith('\''))) {
+      || (result.startsWith('\'') && result.endsWith('\''))) {
       // Remove outer quotes first
       result = result.slice(1, -1);
     }

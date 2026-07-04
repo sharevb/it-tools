@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { useElementSize } from '@vueuse/core';
 import {
   Download,
   FlipHorizontal,
@@ -12,6 +9,9 @@ import {
   Rotate,
   RotateClockwise,
 } from '@vicons/tabler';
+import { useElementSize } from '@vueuse/core';
+import { computed, nextTick, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import { getBaseDimensions, getViewportDimensions } from './crop-image.service';
 
@@ -489,7 +489,7 @@ function exportImage() {
               <n-form-item v-if="aspectRatio === 'free'" :label="t('tools.crop-image.texts.custom-ratio')">
                 <div w-full flex items-center gap-3>
                   <n-input-number v-model:value="customRatioWidth" :min="1" placeholder="W" class="flex-1" />
-                  <span font-bold text-gray-400>:</span>
+                  <span text-gray-400 font-bold>:</span>
                   <n-input-number v-model:value="customRatioHeight" :min="1" placeholder="H" class="flex-1" />
                 </div>
               </n-form-item>

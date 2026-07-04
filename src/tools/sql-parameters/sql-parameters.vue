@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { generateSQLFromTemplate } from './sql-parameters.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { generateSQLFromTemplate } from './sql-parameters.service';
 
 const { t } = useI18n();
 

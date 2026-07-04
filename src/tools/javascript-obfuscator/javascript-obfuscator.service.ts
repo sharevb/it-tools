@@ -1,6 +1,7 @@
+import type { MaybeRef } from 'vue';
 import { get } from '@vueuse/core';
 import JavaScriptObfuscator from 'javascript-obfuscator';
-import { type MaybeRef, computed } from 'vue';
+import { computed } from 'vue';
 
 export { obfuscateJavascript, useObfuscateJavascript };
 
@@ -10,7 +11,7 @@ function base64Encode(str: string) {
 }
 
 function rot13Encode(str: string) {
-  return str.replace(/[A-Za-z]/g, c => String.fromCharCode((c <= 'Z' ? 65 : 97) + ((c.charCodeAt(0) - (c <= 'Z' ? 65 : 97) + 13) % 26)));
+  return str.replace(/[A-Z]/gi, c => String.fromCharCode((c <= 'Z' ? 65 : 97) + ((c.charCodeAt(0) - (c <= 'Z' ? 65 : 97) + 13) % 26)));
 }
 
 function obfuscateJavascript(code: string, method: 'base64' | 'rot13' | 'obfuscator.io' = 'base64'): string {
@@ -20,18 +21,16 @@ function obfuscateJavascript(code: string, method: 'base64' | 'rot13' | 'obfusca
 
   try {
     if (method === 'obfuscator.io') {
-      return JavaScriptObfuscator.obfuscate(code,
-        {
-          compact: false,
-          controlFlowFlattening: true,
-          controlFlowFlatteningThreshold: 1,
-          numbersToExpressions: true,
-          simplify: true,
-          stringArrayShuffle: true,
-          splitStrings: true,
-          stringArrayThreshold: 1,
-        },
-      ).getObfuscatedCode();
+      return JavaScriptObfuscator.obfuscate(code, {
+        compact: false,
+        controlFlowFlattening: true,
+        controlFlowFlatteningThreshold: 1,
+        numbersToExpressions: true,
+        simplify: true,
+        stringArrayShuffle: true,
+        splitStrings: true,
+        stringArrayThreshold: 1,
+      }).getObfuscatedCode();
     }
 
     if (method === 'base64') {

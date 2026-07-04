@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { getErrorMessageIfThrows } from '@/utils/error';
 import InputCopyable from '../../components/InputCopyable.vue';
 import { convertBase } from '../integer-base-converter/integer-base-converter.model';
 import { calcErrorDueToConversion, convertBinaryToDecimal, convertDecimalToBinary } from './floating-point-number-converter.model';
-import { getErrorMessageIfThrows } from '@/utils/error';
 
 const { t } = useI18n();
 

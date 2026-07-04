@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { useScriptTag } from '@vueuse/core';
+import { useI18n } from 'vue-i18n';
 import ageWasmUrl from '/age-wasm/age.wasm?url';
 
 const { t } = useI18n();

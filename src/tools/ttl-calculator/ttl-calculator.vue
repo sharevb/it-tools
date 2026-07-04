@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { formatDuration, intervalToDuration } from 'date-fns';
+import { useI18n } from 'vue-i18n';
 import SpanCopyable from '@/components/SpanCopyable.vue';
 import { useQueryParam } from '@/composable/queryParams';
 

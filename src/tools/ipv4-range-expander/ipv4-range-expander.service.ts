@@ -1,6 +1,6 @@
+import type { Ipv4RangeExpanderResult } from './ipv4-range-expander.types';
 import { convertBase } from '../integer-base-converter/integer-base-converter.model';
 import { ipv4ToInt } from '../ipv4-address-converter/ipv4-address-converter.service';
-import type { Ipv4RangeExpanderResult } from './ipv4-range-expander.types';
 
 export { calculateCidr };
 
@@ -40,7 +40,7 @@ function getCidr(start: string, end: string) {
   return { start: newStart, end: newEnd, mask };
 }
 
-function calculateCidr({ startIp, endIp }: { startIp: string; endIp: string }) {
+function calculateCidr({ startIp, endIp }: { startIp: string, endIp: string }) {
   const start = convertBase({
     value: ipv4ToInt({ ip: startIp }).toString(),
     fromBase: 10,

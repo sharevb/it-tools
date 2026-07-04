@@ -1,4 +1,5 @@
-import { type AllSupportedUnits, convertStorageAndRateUnits } from '../data-storage-unit-converter/data-storage-unit-converter.service';
+import type { AllSupportedUnits } from '../data-storage-unit-converter/data-storage-unit-converter.service';
+import { convertStorageAndRateUnits } from '../data-storage-unit-converter/data-storage-unit-converter.service';
 
 export function transferTimeSeconds({
   dataSize,

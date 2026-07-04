@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { onMounted, ref } from 'vue';
-import {
-  NButton, NCheckbox, NCheckboxGroup, NInput,
-} from 'naive-ui';
-import { Terminal } from '@xterm/xterm';
-import '@xterm/xterm/css/xterm.css';
-import styles from 'ansi-styles';
 import type { CSPair } from 'ansi-styles';
+import { Terminal } from '@xterm/xterm';
+import styles from 'ansi-styles';
+import {
+  NButton,
+  NCheckbox,
+  NCheckboxGroup,
+  NInput,
+} from 'naive-ui';
+import { onMounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
+import '@xterm/xterm/css/xterm.css';
 
 const { t } = useI18n();
 

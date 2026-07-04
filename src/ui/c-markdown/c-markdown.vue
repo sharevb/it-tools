@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { marked } from 'marked';
 import DomPurify from 'dompurify';
+import { marked } from 'marked';
 
 const props = withDefaults(defineProps<{ markdown?: string }>(), { markdown: '' });
 const { markdown } = toRefs(props);

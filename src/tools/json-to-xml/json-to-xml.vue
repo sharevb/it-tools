@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import convert from 'xml-js';
-import JSON5 from 'json5';
-import { withDefaultOnError } from '@/utils/defaults';
 import type { UseValidationRule } from '@/composable/validation';
+import JSON5 from 'json5';
+import convert from 'xml-js';
+import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 const defaultValue = '{"a":{"_attributes":{"x":"1.234","y":"It\'s"}}}';

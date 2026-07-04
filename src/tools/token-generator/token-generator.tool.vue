@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { createToken } from './token-generator.service';
+import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { computedRefreshable } from '@/composable/computedRefreshable';
+import { createToken } from './token-generator.service';
 
 const count = useQueryParamOrStorage({ name: 'count', storageName: 'token-generator:count', defaultValue: 1 });
 const length = useQueryParamOrStorage({ name: 'length', storageName: 'token-generator:length', defaultValue: 64 });
@@ -14,15 +14,14 @@ const deniedChars = useQueryParamOrStorage({ name: 'deny', storageName: 'token-g
 const { t } = useI18n();
 
 const [tokens, refreshTokens] = computedRefreshable(() =>
-  Array.from({ length: count.value < 1 ? 1 : count.value },
-    () => createToken({
-      length: length.value,
-      withUppercase: withUppercase.value,
-      withLowercase: withLowercase.value,
-      withNumbers: withNumbers.value,
-      withSymbols: withSymbols.value,
-      deniedChars: deniedChars.value,
-    })).join('\n'),
+  Array.from({ length: count.value < 1 ? 1 : count.value }, () => createToken({
+    length: length.value,
+    withUppercase: withUppercase.value,
+    withLowercase: withLowercase.value,
+    withNumbers: withNumbers.value,
+    withSymbols: withSymbols.value,
+    deniedChars: deniedChars.value,
+  })).join('\n'),
 );
 
 const { copy } = useCopy({ source: tokens, text: t('tools.token-generator.copied') });

@@ -1,15 +1,16 @@
+import chinesegen from 'chinesegen';
 import _ from 'lodash';
 import loremIpsumJapanese from 'lorem-ipsum-japanese';
-import chinesegen from 'chinesegen';
-import languageLorems from './lorem-ipsum.i18n.json';
 import { randFromArray } from '@/utils/random';
+import languageLorems from './lorem-ipsum.i18n.json';
 
 const firstSentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 export function getSupportedLanguages() {
   return _.union(
     _.flatten(_.chain(languageLorems).map(l => l.languages).value()),
-    ['Japanese', 'Chinese'])
+    ['Japanese', 'Chinese'],
+  )
     .sort();
 }
 

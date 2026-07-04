@@ -1,6 +1,6 @@
-import _ from 'lodash';
-import Decimal from 'decimal.js';
 import type { Difference, DifferenceStatus } from './json-diff.types';
+import Decimal from 'decimal.js';
+import _ from 'lodash';
 
 export { diff };
 
@@ -99,8 +99,7 @@ function diffArrays(
 ): Difference[] {
   const maxLength = Math.max(0, arr?.length, newArr?.length);
   return Array.from({ length: maxLength }, (_, i) =>
-    createDifference(arr?.[i], newArr?.[i], i, { onlyShowDifferences }),
-  ).filter(diff => !onlyShowDifferences || diff.status !== 'unchanged');
+    createDifference(arr?.[i], newArr?.[i], i, { onlyShowDifferences })).filter(diff => !onlyShowDifferences || diff.status !== 'unchanged');
 }
 
 function getType(value: unknown): 'object' | 'array' | 'value' {

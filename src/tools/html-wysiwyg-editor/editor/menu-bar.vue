@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3';
+import type { Component } from 'vue';
 import {
   AlignCenter,
   AlignJustified,
@@ -27,10 +28,18 @@ import {
   LayersUnion,
   LayoutDistributeHorizontal,
   LayoutDistributeVertical,
-  List, ListNumbers, RowInsertBottom, RowInsertTop, SeparatorVertical, Strikethrough,
-  Table, TableOff, TextWrap, TextWrapDisabled, Tool,
+  List,
+  ListNumbers,
+  RowInsertBottom,
+  RowInsertTop,
+  SeparatorVertical,
+  Strikethrough,
+  Table,
+  TableOff,
+  TextWrap,
+  TextWrapDisabled,
+  Tool,
 } from '@vicons/tabler';
-import type { Component } from 'vue';
 import MenuBarItem from './menu-bar-item.vue';
 
 const props = defineProps<{ editor: Editor }>();
@@ -38,8 +47,8 @@ const { editor } = toRefs(props);
 
 const { t } = useI18n();
 
-type MenuItem =
-  | {
+type MenuItem
+  = | {
     icon: Component
     title: string
     action: () => void

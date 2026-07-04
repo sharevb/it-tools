@@ -40,7 +40,7 @@ const percentageIncreaseDecrease = computed(() => {
           {{ t('tools.percentage-calculator.texts.tag-what-is') }}
         </div>
         <div flex gap-2>
-          <div hidden pt-1 sm:block style="min-width: 48px;">
+          <div pt-1 hidden sm:block style="min-width: 48px;">
             {{ t('tools.percentage-calculator.texts.tag-what-is') }}
           </div>
           <n-input-number-i18n v-model:value="percentageX" data-test-id="percentageX" :placeholder="t('tools.percentage-calculator.texts.placeholder-x')" />
@@ -58,7 +58,7 @@ const percentageIncreaseDecrease = computed(() => {
         </div>
         <div flex gap-2>
           <n-input-number-i18n v-model:value="numberX" data-test-id="numberX" :placeholder="t('tools.percentage-calculator.texts.placeholder-x')" />
-          <div hidden min-w-fit pt-1 sm:block>
+          <div min-w-fit pt-1 hidden sm:block>
             {{ t('tools.percentage-calculator.texts.tag-is-what-percent-of') }}
           </div>
           <n-input-number-i18n v-model:value="numberY" data-test-id="numberY" :placeholder="t('tools.percentage-calculator.texts.placeholder-y')" />

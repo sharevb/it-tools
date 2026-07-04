@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import type { UseValidationRule } from '@/composable/validation';
+import { useValidation } from '@/composable/validation';
+import { generateRandomId } from '@/utils/random';
 import { useAppTheme } from '../theme/themes';
 import { useTheme } from './c-input-text.theme';
-import { generateRandomId } from '@/utils/random';
-import { type UseValidationRule, useValidation } from '@/composable/validation';
 
 const props = withDefaults(
   defineProps<{
@@ -73,11 +74,11 @@ const { id, placeholder, label, validationRules, labelPosition, labelWidth, labe
 
 const validation
   = props.validation
-  ?? useValidation({
-    rules: validationRules,
-    source: value,
-    watch: props.validationWatch,
-  });
+    ?? useValidation({
+      rules: validationRules,
+      source: value,
+      watch: props.validationWatch,
+    });
 
 const theme = useTheme();
 const appTheme = useAppTheme();
@@ -95,7 +96,7 @@ function onPasteInputHtml(evt: ClipboardEvent) {
     return false;
   }
 
-  const target = (evt.target as HTMLElementWithValue);
+  const target = evt.target as HTMLElementWithValue;
   if (!target) {
     return false;
   }
@@ -161,7 +162,7 @@ function resizeTextarea() {
     return; // cannot chnge textarea if element is not available
   }
 
-  if (!multiline) {
+  if (!multiline.value) {
     return; // textarea wont be displayed if multiline === false
   }
 

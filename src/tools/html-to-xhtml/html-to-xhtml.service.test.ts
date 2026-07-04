@@ -58,7 +58,7 @@ describe('toStrictXhtml', () => {
     const out = toStrictXhtml(html, { indent: 2 });
 
     expect(out).toBe(
-`<div>
+      `<div>
   <p>
     Hello
   </p>
@@ -97,7 +97,7 @@ describe('toStrictXhtml', () => {
     const out = toStrictXhtml(html, { indent: 2 });
 
     expect(out).toBe(
-`<ul>
+      `<ul>
   <li>
     One
   </li>

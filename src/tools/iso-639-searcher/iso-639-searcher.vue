@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { computed, nextTick, onUnmounted, ref } from 'vue';
 import { all as allCodes } from 'langs';
+import { computed, nextTick, onUnmounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import useDebouncedRef from '@/composable/debouncedref';
 import { useFlexSearch } from '@/composable/flexSearch';
 

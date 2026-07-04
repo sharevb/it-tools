@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { ref } from 'vue';
 import { APA, MLA } from 'citation-formatter';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { formatVancouverCitation } from './citation-generator.service';
 
 const { t } = useI18n();
@@ -24,8 +24,7 @@ const formattedCitation = computed(() => {
     if (!citationData.value.title
       || !citationData.value.publisher
       || !citationData.value.year
-      || !authors.length
-    ) { return '### Please fill Title, Publisher, Year and authors'; }
+      || !authors.length) { return '### Please fill Title, Publisher, Year and authors'; }
 
     const citationInData = {
       authors,

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import _ from 'lodash';
-import { Base64 } from 'js-base64';
 import type { UseValidationRule } from '@/composable/validation';
-import CInputText from '@/ui/c-input-text/c-input-text.vue';
+import { Base64 } from 'js-base64';
+import _ from 'lodash';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { translate as t } from '@/plugins/i18n.plugin';
+import CInputText from '@/ui/c-input-text/c-input-text.vue';
 import { useAppTheme } from '@/ui/theme/themes';
 
 const props = withDefaults(
@@ -41,8 +41,19 @@ const props = withDefaults(
 );
 
 const {
-  transformer, inputValidationRules, inputLabel, outputLabel, outputLanguage,
-  inputPlaceholder, inputDefault, downloadFileName, downloadButtonText, rows, inputLineNumbers, inputMaxRows, inputAutosize,
+  transformer,
+  inputValidationRules,
+  inputLabel,
+  outputLabel,
+  outputLanguage,
+  inputPlaceholder,
+  inputDefault,
+  downloadFileName,
+  downloadButtonText,
+  rows,
+  inputLineNumbers,
+  inputMaxRows,
+  inputAutosize,
 } = toRefs(props);
 
 const appTheme = useAppTheme();
@@ -158,7 +169,8 @@ const { download } = useDownloadFileFromBase64(
   {
     source: outputBase64,
     filename: downloadFileName,
-  });
+  },
+);
 </script>
 
 <template>

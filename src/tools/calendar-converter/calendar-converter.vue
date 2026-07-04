@@ -7,12 +7,18 @@ const { t } = useI18n();
 const converter = ref(new CalendarConverter());
 
 const monthOptions = [
-  { label: t('tools.calendar-converter.texts.label-january'), value: 1 }, { label: t('tools.calendar-converter.texts.label-february'), value: 2 },
-  { label: t('tools.calendar-converter.texts.label-march'), value: 3 }, { label: t('tools.calendar-converter.texts.label-april'), value: 4 },
-  { label: t('tools.calendar-converter.texts.label-may'), value: 5 }, { label: t('tools.calendar-converter.texts.label-june'), value: 6 },
-  { label: t('tools.calendar-converter.texts.label-july'), value: 7 }, { label: t('tools.calendar-converter.texts.label-august'), value: 8 },
-  { label: t('tools.calendar-converter.texts.label-september'), value: 9 }, { label: t('tools.calendar-converter.texts.label-october'), value: 10 },
-  { label: t('tools.calendar-converter.texts.label-november'), value: 11 }, { label: t('tools.calendar-converter.texts.label-december'), value: 12 },
+  { label: t('tools.calendar-converter.texts.label-january'), value: 1 },
+  { label: t('tools.calendar-converter.texts.label-february'), value: 2 },
+  { label: t('tools.calendar-converter.texts.label-march'), value: 3 },
+  { label: t('tools.calendar-converter.texts.label-april'), value: 4 },
+  { label: t('tools.calendar-converter.texts.label-may'), value: 5 },
+  { label: t('tools.calendar-converter.texts.label-june'), value: 6 },
+  { label: t('tools.calendar-converter.texts.label-july'), value: 7 },
+  { label: t('tools.calendar-converter.texts.label-august'), value: 8 },
+  { label: t('tools.calendar-converter.texts.label-september'), value: 9 },
+  { label: t('tools.calendar-converter.texts.label-october'), value: 10 },
+  { label: t('tools.calendar-converter.texts.label-november'), value: 11 },
+  { label: t('tools.calendar-converter.texts.label-december'), value: 12 },
 ];
 
 const hebrewMonths = [
@@ -77,12 +83,18 @@ const indianMonths = [
 ];
 
 const frenchMonths = [
-  { label: t('tools.calendar-converter.texts.label-vendémiaire'), value: 1 }, { label: t('tools.calendar-converter.texts.label-brumaire'), value: 2 },
-  { label: t('tools.calendar-converter.texts.label-frimaire'), value: 3 }, { label: t('tools.calendar-converter.texts.label-nivôse'), value: 4 },
-  { label: t('tools.calendar-converter.texts.label-pluviôse'), value: 5 }, { label: t('tools.calendar-converter.texts.label-ventôse'), value: 6 },
-  { label: t('tools.calendar-converter.texts.label-germinal'), value: 7 }, { label: t('tools.calendar-converter.texts.label-floréal'), value: 8 },
-  { label: t('tools.calendar-converter.texts.label-prairial'), value: 9 }, { label: t('tools.calendar-converter.texts.label-messidor'), value: 10 },
-  { label: t('tools.calendar-converter.texts.label-thermidor'), value: 11 }, { label: t('tools.calendar-converter.texts.label-fructidor'), value: 12 },
+  { label: t('tools.calendar-converter.texts.label-vendémiaire'), value: 1 },
+  { label: t('tools.calendar-converter.texts.label-brumaire'), value: 2 },
+  { label: t('tools.calendar-converter.texts.label-frimaire'), value: 3 },
+  { label: t('tools.calendar-converter.texts.label-nivôse'), value: 4 },
+  { label: t('tools.calendar-converter.texts.label-pluviôse'), value: 5 },
+  { label: t('tools.calendar-converter.texts.label-ventôse'), value: 6 },
+  { label: t('tools.calendar-converter.texts.label-germinal'), value: 7 },
+  { label: t('tools.calendar-converter.texts.label-floréal'), value: 8 },
+  { label: t('tools.calendar-converter.texts.label-prairial'), value: 9 },
+  { label: t('tools.calendar-converter.texts.label-messidor'), value: 10 },
+  { label: t('tools.calendar-converter.texts.label-thermidor'), value: 11 },
+  { label: t('tools.calendar-converter.texts.label-fructidor'), value: 12 },
   { label: t('tools.calendar-converter.texts.label-sans-culottides'), value: 13 },
 ];
 
@@ -93,14 +105,22 @@ const frenchDecades = [
 ];
 
 const frenchDays = [
-  { label: t('tools.calendar-converter.texts.label-primidi-1'), value: 1 }, { label: t('tools.calendar-converter.texts.label-duodi-2'), value: 2 },
-  { label: t('tools.calendar-converter.texts.label-tridi-3'), value: 3 }, { label: t('tools.calendar-converter.texts.label-quartidi-4'), value: 4 },
-  { label: t('tools.calendar-converter.texts.label-quintidi-5'), value: 5 }, { label: t('tools.calendar-converter.texts.label-sextidi-6'), value: 6 },
-  { label: t('tools.calendar-converter.texts.label-septidi-7'), value: 7 }, { label: t('tools.calendar-converter.texts.label-octidi-8'), value: 8 },
-  { label: t('tools.calendar-converter.texts.label-nonidi-9'), value: 9 }, { label: t('tools.calendar-converter.texts.label-décadi-10'), value: 10 },
-  { label: t('tools.calendar-converter.texts.label-vertu-1'), value: 12 }, { label: t('tools.calendar-converter.texts.label-génie-2'), value: 13 },
-  { label: t('tools.calendar-converter.texts.label-travail-3'), value: 14 }, { label: t('tools.calendar-converter.texts.label-opinion-4'), value: 15 },
-  { label: t('tools.calendar-converter.texts.label-récompenses-5'), value: 16 }, { label: t('tools.calendar-converter.texts.label-révolution-6'), value: 17 },
+  { label: t('tools.calendar-converter.texts.label-primidi-1'), value: 1 },
+  { label: t('tools.calendar-converter.texts.label-duodi-2'), value: 2 },
+  { label: t('tools.calendar-converter.texts.label-tridi-3'), value: 3 },
+  { label: t('tools.calendar-converter.texts.label-quartidi-4'), value: 4 },
+  { label: t('tools.calendar-converter.texts.label-quintidi-5'), value: 5 },
+  { label: t('tools.calendar-converter.texts.label-sextidi-6'), value: 6 },
+  { label: t('tools.calendar-converter.texts.label-septidi-7'), value: 7 },
+  { label: t('tools.calendar-converter.texts.label-octidi-8'), value: 8 },
+  { label: t('tools.calendar-converter.texts.label-nonidi-9'), value: 9 },
+  { label: t('tools.calendar-converter.texts.label-décadi-10'), value: 10 },
+  { label: t('tools.calendar-converter.texts.label-vertu-1'), value: 12 },
+  { label: t('tools.calendar-converter.texts.label-génie-2'), value: 13 },
+  { label: t('tools.calendar-converter.texts.label-travail-3'), value: 14 },
+  { label: t('tools.calendar-converter.texts.label-opinion-4'), value: 15 },
+  { label: t('tools.calendar-converter.texts.label-récompenses-5'), value: 16 },
+  { label: t('tools.calendar-converter.texts.label-révolution-6'), value: 17 },
 ];
 </script>
 
