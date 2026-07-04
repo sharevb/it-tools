@@ -1,8 +1,8 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createPinia, setActivePinia } from 'pinia';
-import { beforeEach, describe, expect, it } from 'vitest';
-import { formatNumber, parseNumber } from './n-input-number-i18n.utils';
 import CInputNumberI18N from './n-input-number-i18n.vue';
+import { formatNumber, parseNumber } from './n-input-number-i18n.utils';
 
 describe('cInputNumberI18N', () => {
   beforeEach(() => {

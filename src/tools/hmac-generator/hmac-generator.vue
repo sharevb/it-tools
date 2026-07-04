@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { lib } from 'crypto-js';
 import {
   enc,
@@ -11,7 +12,6 @@ import {
   HmacSHA384,
   HmacSHA512,
 } from 'crypto-js';
-import { useI18n } from 'vue-i18n';
 
 import { useCopy } from '@/composable/copy';
 import { convertHexToBin } from '../hash-text/hash-text.service';

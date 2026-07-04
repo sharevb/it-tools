@@ -1,11 +1,11 @@
-import type { MaybeRef } from '@vueuse/core';
 import type { Schema } from 'jsonschema';
+import { isRef, onBeforeMount, ref, watch } from 'vue';
 import { get } from '@vueuse/core';
+import type { MaybeRef } from '@vueuse/core';
+import YAML from 'yaml';
 import Ajv from 'ajv';
 import AjvErrors from 'ajv-errors';
 import { yamlParse } from 'composeverter';
-import { isRef, onBeforeMount, ref, watch } from 'vue';
-import YAML from 'yaml';
 
 export interface SchemaStore {
   name: string

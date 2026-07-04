@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ImageToAsciiArt } from 'image-to-ascii-art';
 import { useI18n } from 'vue-i18n';
+import { ImageToAsciiArt } from 'image-to-ascii-art';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { useITStorage } from '@/composable/queryParams';
 import { languages, printToLanguage } from '@/utils/ascii-lang-utils';
+import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

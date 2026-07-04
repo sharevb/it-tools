@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { align } from '@mdit/plugin-align';
 import markdownit from 'markdown-it';
-import markdownitMark from 'markdown-it-mark';
 import markdownitSanitizer from 'markdown-it-sanitizer';
-import markdownitSub from 'markdown-it-sub';
 import markdownitSup from 'markdown-it-sup';
+import markdownitSub from 'markdown-it-sub';
+import markdownitMark from 'markdown-it-mark';
+import { align } from '@mdit/plugin-align';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const handleHtml = ref(true);

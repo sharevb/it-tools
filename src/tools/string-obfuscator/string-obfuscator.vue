@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { useObfuscateString } from './string-obfuscator.model';
 import { useCopy } from '@/composable/copy';
 import { useQueryParam } from '@/composable/queryParams';
-import { useObfuscateString } from './string-obfuscator.model';
 
 const { t } = useI18n();
 

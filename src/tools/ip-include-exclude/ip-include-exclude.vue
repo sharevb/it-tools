@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { substractCIDRs } from './ip-include-exclude.service';
 import SpanCopyable from '@/components/SpanCopyable.vue';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { substractCIDRs } from './ip-include-exclude.service';
 
 const { t } = useI18n();
 

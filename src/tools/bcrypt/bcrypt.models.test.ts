@@ -1,8 +1,8 @@
-import type { Update } from './bcrypt.models';
-import { installAbortSignalPolyfill } from 'abort-signal-polyfill';
 import { compare, hash } from 'bcryptjs';
 import { assert, describe, expect, it } from 'vitest';
+import { installAbortSignalPolyfill } from 'abort-signal-polyfill';
 import { bcryptWithProgressUpdates } from './bcrypt.models';
+import type { Update } from './bcrypt.models';
 
 // Install the polyfill
 installAbortSignalPolyfill();

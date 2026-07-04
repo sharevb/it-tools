@@ -1,10 +1,10 @@
 <script setup>
 import { useStore } from 'vuex';
-import Counter from '../components/Counter.vue';
-import ModeIconBar from '../components/ModeIconBar.vue';
-import PlayPauseBtn from '../components/PlayPauseBtn.vue';
 import ProgressBar from '../components/ProgressBar.vue';
+import Counter from '../components/Counter.vue';
+import PlayPauseBtn from '../components/PlayPauseBtn.vue';
 import ResetDropup from '../components/ResetDropup.vue';
+import ModeIconBar from '../components/ModeIconBar.vue';
 
 const store = useStore('pomodoro-store');
 </script>

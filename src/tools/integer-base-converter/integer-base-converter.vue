@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useQueryParam } from '@/composable/queryParams';
-import { getErrorMessageIfThrows } from '@/utils/error';
 import InputCopyable from '../../components/InputCopyable.vue';
 import { convertBase, hasNumberPrefix } from './integer-base-converter.model';
+import { getErrorMessageIfThrows } from '@/utils/error';
+import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

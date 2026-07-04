@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { FFmpeg } from '@ffmpeg/ffmpeg';
-import ffmpegClassWorkerUrl from '@ffmpeg/ffmpeg/worker?worker&url';
-import { toBlobURL } from '@ffmpeg/util';
-
-import { ref } from 'vue';
-
 import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
+import { FFmpeg } from '@ffmpeg/ffmpeg';
+
+import ffmpegClassWorkerUrl from '@ffmpeg/ffmpeg/worker?worker&url';
+
+import { toBlobURL } from '@ffmpeg/util';
 
 const { t } = useI18n();
 

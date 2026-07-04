@@ -1,7 +1,6 @@
-import type { Ref } from 'vue';
 import { useDark, useMediaQuery, useToggle } from '@vueuse/core';
 import { defineStore } from 'pinia';
-import { watch } from 'vue';
+import { type Ref, watch } from 'vue';
 import { useITStorage } from '@/composable/queryParams';
 
 export const useStyleStore = defineStore('style', {

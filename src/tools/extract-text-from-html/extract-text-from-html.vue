@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
 import { useI18n } from 'vue-i18n';
 import { getTextFromHtml, validateHtml } from './extract-text-from-html.service';
+import type { UseValidationRule } from '@/composable/validation';
 
 const { t } = useI18n();
 

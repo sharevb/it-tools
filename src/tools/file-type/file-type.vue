@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { FileTypeResult } from 'file-type';
 import { fileTypeFromBuffer } from 'file-type';
-import { useI18n } from 'vue-i18n';
 import InputCopyable from '../../components/InputCopyable.vue';
 
 const { t } = useI18n();

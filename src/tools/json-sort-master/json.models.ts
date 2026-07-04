@@ -1,7 +1,6 @@
-import type { MaybeRef } from '@vueuse/core';
-import { get } from '@vueuse/core';
+import { type MaybeRef, get } from '@vueuse/core';
 
-export { formatJson, sortObjectKeys, sortObjectValues };
+export { sortObjectKeys, sortObjectValues, formatJson };
 
 function sortObjectKeys<T>(obj: T, sortMethod: string): T {
   if (typeof obj !== 'object' || obj === null) {

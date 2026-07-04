@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useScriptTag } from '@vueuse/core';
 import { convert_math } from 'mitex-wasm';
-import { useI18n } from 'vue-i18n';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();

@@ -2,8 +2,8 @@
 import type { Themes } from 'md-editor-v3';
 import { MdEditor } from 'md-editor-v3';
 
-import { useStyleStore } from '@/stores/style.store';
 import 'md-editor-v3/lib/style.css';
+import { useStyleStore } from '@/stores/style.store';
 
 const theme = ref<Themes>('light');
 const styleStore = useStyleStore();

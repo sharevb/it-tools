@@ -1,5 +1,5 @@
-import type { GroupPermissions, Permissions, SpecialPermissions } from './chmod-calculator.types';
 import _ from 'lodash';
+import type { GroupPermissions, Permissions, SpecialPermissions } from './chmod-calculator.types';
 
 import { translate as t } from '@/plugins/i18n.plugin';
 

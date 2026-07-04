@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 import JSON5 from 'json5';
 import { merge } from 'merge-anything';
-import { useI18n } from 'vue-i18n';
+import type { UseValidationRule } from '@/composable/validation';
 
 const { t } = useI18n();
 

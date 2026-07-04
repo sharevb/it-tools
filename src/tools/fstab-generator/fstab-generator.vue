@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NForm, NFormItem, NInput, NSelect } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
+import { NForm, NFormItem, NInput, NSelect } from 'naive-ui';
 
 const { t } = useI18n();
 

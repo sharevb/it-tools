@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
 import qrcodeParser from 'qrcode-parser';
-import { useI18n } from 'vue-i18n';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { parseQRData } from './qr-code-decoder.service';
+import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();
 

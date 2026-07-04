@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { XmlParser, Xslt } from 'xslt-processor';
-import { useValidation } from '@/composable/validation';
 import { formatXml } from '../xml-formatter/xml-formatter.service';
+import { useValidation } from '@/composable/validation';
 
 const { t } = useI18n();
 

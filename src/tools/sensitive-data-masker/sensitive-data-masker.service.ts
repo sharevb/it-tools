@@ -1,5 +1,5 @@
-import type { SensitiveContentKey } from 'data-guardian';
 import { maskString } from 'data-guardian';
+import type { SensitiveContentKey } from 'data-guardian';
 import ipRegex from 'ip-regex';
 
 const jwtRegex = /\b([\w=]{5,})\.([\w=]{5,})\.([\w\-+/=]{5,})\b/g;

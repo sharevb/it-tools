@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Ref } from 'vue';
 import { Buffer } from 'node:buffer';
 import { useI18n } from 'vue-i18n';
+import type { Ref } from 'vue';
 import { useCopy } from '@/composable/copy';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useITStorage } from '@/composable/queryParams';

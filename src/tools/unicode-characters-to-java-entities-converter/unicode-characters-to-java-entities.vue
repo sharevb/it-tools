@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useCopy } from '@/composable/copy';
 import { parseJavaEntitiesToUnicode, parseUnicodeToJavaEntities } from './unicode-characters-to-java-entities.service';
+import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
 

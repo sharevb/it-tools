@@ -1,7 +1,7 @@
-import type { MaybeRef } from '@vueuse/core';
 import { get } from '@vueuse/core';
-import FlexSearch from 'flexsearch';
+import type { MaybeRef } from '@vueuse/core';
 import { computed, ref } from 'vue';
+import FlexSearch from 'flexsearch';
 
 // Define key types to match Fuse.js format
 type SearchKey = string | { name: string, weight?: number };

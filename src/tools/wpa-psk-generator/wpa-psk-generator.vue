@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useQueryParam } from '@/composable/queryParams';
-import { useValidation } from '@/composable/validation';
 import { generateWpaPskRawKey } from './wpa-psk-generator.service';
+import { useValidation } from '@/composable/validation';
+import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

@@ -1,6 +1,6 @@
 import detectCSV from 'detect-csv';
 
-export { convertCsvToArray, getHeaders };
+export { getHeaders, convertCsvToArray };
 
 function getHeaders(csv: string, delimiter: string): string[] {
   if (csv.trim() === '') {

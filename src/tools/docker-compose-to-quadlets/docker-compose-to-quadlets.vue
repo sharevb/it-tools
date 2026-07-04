@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import PodletJS from 'podletjs';
 import { useI18n } from 'vue-i18n';
+import PodletJS from 'podletjs';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import cssToXpath from 'csstoxpath';
 import { useI18n } from 'vue-i18n';
 import xPathToCss from 'xpath-to-css';
+import cssToXpath from 'csstoxpath';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParam } from '@/composable/queryParams';
 

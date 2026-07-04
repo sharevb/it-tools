@@ -1,5 +1,5 @@
-import { IconLockCog } from '@tabler/icons-vue';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconLockCog } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({

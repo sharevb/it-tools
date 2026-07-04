@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computedRefreshable } from '@/composable/computedRefreshable';
+import { createToken } from './token-generator.service';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { createToken } from './token-generator.service';
+import { computedRefreshable } from '@/composable/computedRefreshable';
 
 const count = useQueryParamOrStorage({ name: 'count', storageName: 'token-generator:count', defaultValue: 1 });
 const length = useQueryParamOrStorage({ name: 'length', storageName: 'token-generator:length', defaultValue: 64 });

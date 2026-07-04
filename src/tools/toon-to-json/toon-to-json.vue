@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
-import { decode } from '@toon-format/toon';
 import { useI18n } from 'vue-i18n';
+import { decode } from '@toon-format/toon';
+import type { UseValidationRule } from '@/composable/validation';
 import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();

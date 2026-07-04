@@ -1,18 +1,18 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import detectCSV from 'detect-csv';
 import { flatten } from 'flatten-anything';
-import L from 'leaflet';
-import markerIconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIconUrl from 'leaflet/dist/images/marker-icon.png';
-import markerShadowUrl from 'leaflet/dist/images/marker-shadow.png';
+import { convertFrom } from './geo-coordinates-converter.service';
+import { objectArrayToData } from '@/utils/objectarray.export';
+import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 import proj4 from 'proj4';
 
-import { useI18n } from 'vue-i18n';
-import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
-
-import { objectArrayToData } from '@/utils/objectarray.export';
-import { convertFrom } from './geo-coordinates-converter.service';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+
+import markerIconUrl from 'leaflet/dist/images/marker-icon.png';
+import markerIconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
+import markerShadowUrl from 'leaflet/dist/images/marker-shadow.png';
 
 L.Icon.Default.prototype.options.iconUrl = markerIconUrl;
 L.Icon.Default.prototype.options.iconRetinaUrl = markerIconRetinaUrl;

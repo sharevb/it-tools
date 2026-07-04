@@ -1,6 +1,6 @@
-import type { DayOfWeek, Holiday } from './business-time-calculator';
 import { DateTime } from 'luxon';
 import { describe, expect, it } from 'vitest';
+import type { DayOfWeek, Holiday } from './business-time-calculator';
 import { BusinessTime } from './business-time-calculator';
 
 const weekDays: DayOfWeek[] = [

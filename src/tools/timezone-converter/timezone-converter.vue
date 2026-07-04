@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import ctz from 'countries-and-timezones';
 import getTimezoneOffset from 'get-timezone-offset';
-import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

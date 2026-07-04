@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import YAML from 'yaml';
+import _ from 'lodash';
 import { Formats } from './formats';
 
 function outputFormatter(outputType, properties) {

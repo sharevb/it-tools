@@ -1,6 +1,6 @@
 import type { IPMask } from 'ip-matching';
-import { excludeCidr } from 'cidr-tools';
 import { getMatch } from 'ip-matching';
+import { excludeCidr } from 'cidr-tools';
 
 function convertToCIDR(mask: IPMask) {
   const subnet = mask.convertToSubnet();

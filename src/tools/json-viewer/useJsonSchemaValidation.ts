@@ -1,8 +1,8 @@
-import type { MaybeRef } from '@vueuse/core';
-import type { Schema } from 'jsonschema';
-import { get } from '@vueuse/core';
 import { Validator } from 'jsonschema';
+import type { Schema } from 'jsonschema';
 import { isRef, onBeforeMount, ref, watch } from 'vue';
+import { get } from '@vueuse/core';
+import type { MaybeRef } from '@vueuse/core';
 
 export interface SchemaStore {
   name: string

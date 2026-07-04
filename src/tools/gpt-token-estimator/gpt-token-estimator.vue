@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { TiktokenModel } from 'js-tiktoken';
-import JSON5 from 'json5';
 import { useI18n } from 'vue-i18n';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { useValidation } from '@/composable/validation';
+import JSON5 from 'json5';
+import type { TiktokenModel } from 'js-tiktoken';
 import { GPTTokens } from './gpt-tokens.service';
+import { useValidation } from '@/composable/validation';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

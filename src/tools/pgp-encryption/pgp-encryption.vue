@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import * as openpgp from 'openpgp';
 import { useI18n } from 'vue-i18n';
-import { computedCatchAsync } from '@/composable/computed/catchedComputed';
 import 'webcrypto-liner-shim';
+import * as openpgp from 'openpgp';
+import { computedCatchAsync } from '@/composable/computed/catchedComputed';
 
 const { t } = useI18n();
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Base64 } from 'js-base64';
 import { useI18n } from 'vue-i18n';
 import { useITStorage } from '@/composable/queryParams';
+import { Base64 } from 'js-base64';
 
 const { t } = useI18n();
 

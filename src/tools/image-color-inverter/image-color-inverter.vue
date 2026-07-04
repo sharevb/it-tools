@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { invertImageFile } from './image-color-inverter.service';
 import { useCopy } from '@/composable/copy';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { withDefaultOnError } from '@/utils/defaults';
-import { invertImageFile } from './image-color-inverter.service';
 
 const { t } = useI18n();
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { IconLock, IconLockOpen2, IconReload } from '@tabler/icons-vue';
-import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { computed, ref, watch } from 'vue';
+import { IconLock, IconLockOpen2, IconReload } from '@tabler/icons-vue';
 
 const { t } = useI18n();
 

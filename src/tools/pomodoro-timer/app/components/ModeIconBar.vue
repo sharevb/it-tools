@@ -1,7 +1,7 @@
 <script setup>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 const store = useStore('pomodoro-store');
 

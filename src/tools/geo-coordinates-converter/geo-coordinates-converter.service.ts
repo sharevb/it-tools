@@ -1,7 +1,7 @@
-import type { CRSTypes } from 'gcoord';
-import gcoord from 'gcoord';
 import proj4 from 'proj4';
 import proj4List from 'proj4-list';
+import type { CRSTypes } from 'gcoord';
+import gcoord from 'gcoord';
 
 proj4.defs([
   proj4List['EPSG:4490'],

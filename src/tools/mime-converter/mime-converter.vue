@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import libmime from 'libmime';
 import { useI18n } from 'vue-i18n';
+import libmime from 'libmime';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { useQueryParam } from '@/composable/queryParams';
 import { withDefaultOnError } from '@/utils/defaults';
+import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

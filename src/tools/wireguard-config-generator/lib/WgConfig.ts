@@ -1,6 +1,6 @@
-import type { WgConfigObject, WgConfigPeer } from './types/WgConfigObject';
 import mergeWith from 'lodash.mergewith';
 import { generateConfigString, parseConfigString } from './utils/configParser';
+import type { WgConfigObject, WgConfigPeer } from './types/WgConfigObject';
 import { generateKeyPair } from './utils/generateKeyPair';
 
 interface GenerateKeysOptions {

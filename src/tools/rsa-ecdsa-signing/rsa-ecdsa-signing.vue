@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import sshpk from 'sshpk';
 import { useI18n } from 'vue-i18n';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import sshpk from 'sshpk';
 import { computedCatch } from '@/composable/computed/catchedComputed';
+import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();
 

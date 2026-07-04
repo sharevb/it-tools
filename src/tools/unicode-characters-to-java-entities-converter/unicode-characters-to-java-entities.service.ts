@@ -60,4 +60,4 @@ function parseJavaEntitiesToUnicode(source: string): string {
   return result;
 }
 
-export { parseJavaEntitiesToUnicode, parseUnicodeToJavaEntities };
+export { parseUnicodeToJavaEntities, parseJavaEntitiesToUnicode };

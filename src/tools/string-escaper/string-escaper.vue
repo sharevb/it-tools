@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 import { escapeForLanguage, languages } from '@/utils/ascii-lang-utils';
+import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

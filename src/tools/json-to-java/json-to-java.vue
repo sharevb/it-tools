@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
-import JSON5 from 'json5';
 import { useI18n } from 'vue-i18n';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import JSON5 from 'json5';
 import { convert } from './json-to-java.service';
+import type { UseValidationRule } from '@/composable/validation';
+import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();
 

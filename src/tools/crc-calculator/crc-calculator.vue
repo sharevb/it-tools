@@ -1,13 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { lib } from 'crypto-js';
-import crc from 'crc';
 import { enc } from 'crypto-js';
 
-import { useI18n } from 'vue-i18n';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { withDefaultOnError } from '@/utils/defaults';
+import crc from 'crc';
 import InputCopyable from '../../components/InputCopyable.vue';
 import { convertHexToBin } from '../hash-text/hash-text.service';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 

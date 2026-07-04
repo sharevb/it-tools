@@ -25,6 +25,14 @@ export default antfu(
       '@typescript-eslint/no-use-before-define': ['error', { allowNamedExports: true, functions: false }],
       'vue/no-empty-component-block': ['error'],
       'import/order': 'off',
+      // TODO: enable import/export sorting and formatting gradually in a dedicated PR
+      'perfectionist/sort-imports': 'off',
+      'perfectionist/sort-named-imports': 'off',
+      'perfectionist/sort-named-exports': 'off',
+      'import/consistent-type-specifier-style': 'off',
+      'antfu/consistent-list-newline': 'off',
+      'style/indent-binary-ops': 'off',
+      'style/member-delimiter-style': 'off',
       'no-restricted-imports': ['error', {
         paths: [{
           name: '@vueuse/core',

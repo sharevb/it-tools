@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Composeverter from 'composeverter';
 import { useI18n } from 'vue-i18n';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import Composeverter from 'composeverter';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { textToBase64 } from '@/utils/base64';
+import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

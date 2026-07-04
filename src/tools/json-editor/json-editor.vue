@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { AfterSelection, InsideSelection, JSONEditorSelection, KeySelection, MultiSelection, ValueSelection } from 'vanilla-jsoneditor';
-import JsonEditorVue from 'json-editor-vue';
-import { jsonrepair } from 'jsonrepair';
-import { isAfterSelection, isInsideSelection, isKeySelection, isMultiSelection, isValueSelection, stringifyJSONPath } from 'vanilla-jsoneditor';
 import { useI18n } from 'vue-i18n';
+import JsonEditorVue from 'json-editor-vue';
+import { isAfterSelection, isInsideSelection, isKeySelection, isMultiSelection, isValueSelection, stringifyJSONPath } from 'vanilla-jsoneditor';
+import type { AfterSelection, InsideSelection, JSONEditorSelection, KeySelection, MultiSelection, ValueSelection } from 'vanilla-jsoneditor';
+import 'vanilla-jsoneditor/themes/jse-theme-dark.css';
+import { jsonrepair } from 'jsonrepair';
+import { useJsonSchemaValidation } from '../json-viewer/useJsonSchemaValidation';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 import { useStyleStore } from '@/stores/style.store';
-import { useJsonSchemaValidation } from '../json-viewer/useJsonSchemaValidation';
-import 'vanilla-jsoneditor/themes/jse-theme-dark.css';
 
 const { t } = useI18n();
 

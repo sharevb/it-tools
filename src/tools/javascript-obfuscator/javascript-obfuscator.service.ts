@@ -1,7 +1,7 @@
-import type { MaybeRef } from 'vue';
 import { get } from '@vueuse/core';
 import JavaScriptObfuscator from 'javascript-obfuscator';
 import { computed } from 'vue';
+import type { MaybeRef } from 'vue';
 
 export { obfuscateJavascript, useObfuscateJavascript };
 

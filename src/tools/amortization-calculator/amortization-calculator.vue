@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 
+import { AmortizationCalculator, StandardAmortizationCalculator } from './amortization-calculator.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { useValidation } from '@/composable/validation';
-import { AmortizationCalculator, StandardAmortizationCalculator } from './amortization-calculator.service';
 
 const { t, locale } = useI18n();
 

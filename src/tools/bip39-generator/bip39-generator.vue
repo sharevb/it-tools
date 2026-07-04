@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import {
   chineseSimplifiedWordList,
   chineseTraditionalWordList,
@@ -15,7 +16,6 @@ import {
   spanishWordList,
 } from '@it-tools/bip39';
 import { Copy, Refresh } from '@vicons/tabler';
-import { useI18n } from 'vue-i18n';
 
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';

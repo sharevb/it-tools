@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { parse as parseToml } from 'smol-toml';
 import { useI18n } from 'vue-i18n';
+import { parse as parseToml } from 'smol-toml';
 
 const { t } = useI18n();
 

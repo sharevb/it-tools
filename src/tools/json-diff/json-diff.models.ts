@@ -1,6 +1,6 @@
-import type { Difference, DifferenceStatus } from './json-diff.types';
-import Decimal from 'decimal.js';
 import _ from 'lodash';
+import Decimal from 'decimal.js';
+import type { Difference, DifferenceStatus } from './json-diff.types';
 
 export { diff };
 

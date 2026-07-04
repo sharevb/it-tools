@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Ref } from 'vue';
-import { useBase64 } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
+import { useBase64 } from '@vueuse/core';
+import type { Ref } from 'vue';
 import { useCopy } from '@/composable/copy';
 import { getExtensionFromMimeType, getMimeTypeFromBase64, previewImageFromBase64, useDownloadFileFromBase64Refs } from '@/composable/downloadBase64';
 import { useValidation } from '@/composable/validation';

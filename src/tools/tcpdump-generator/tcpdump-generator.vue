@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { NCheckbox, NForm, NFormItem, NInput, NSelect, NTooltip } from 'naive-ui';
+import { useI18n } from 'vue-i18n';
 
 import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { NCheckbox, NForm, NFormItem, NInput, NSelect, NTooltip } from 'naive-ui';
 
 const { t } = useI18n();
 

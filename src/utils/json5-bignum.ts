@@ -1,5 +1,5 @@
-import Decimal from 'decimal.js';
 import JSON5 from 'json5';
+import Decimal from 'decimal.js';
 
 // strangely, Decimal.js serialize as strings by default
 Decimal.prototype.toJSON = function () {

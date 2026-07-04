@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type { FieldsData } from '@kenjiuno/msgreader';
 import { Buffer } from 'node:buffer';
-import { decompressRTF } from '@kenjiuno/decompressrtf';
-import MsgReader from '@kenjiuno/msgreader';
-import { getProps } from '@kenjiuno/msgreader/lib/Defs.js';
-import iconv from 'iconv-lite';
-import { deEncapsulateSync } from 'rtf-stream-parser';
 import { useI18n } from 'vue-i18n';
+import MsgReader, { type FieldsData } from '@kenjiuno/msgreader';
+import { getProps } from '@kenjiuno/msgreader/lib/Defs.js';
+import { deEncapsulateSync } from 'rtf-stream-parser';
+import { decompressRTF } from '@kenjiuno/decompressrtf';
+import iconv from 'iconv-lite';
 
 const { t } = useI18n();
 

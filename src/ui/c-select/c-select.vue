@@ -1,10 +1,10 @@
 <script setup lang="ts" generic="T extends unknown">
+import { useAppTheme } from '../theme/themes';
 import type { CLabelProps } from '../c-label/c-label.types';
 import type { CSelectOption } from './c-select.types';
-import { useFlexSearch } from '@/composable/flexSearch';
-import { clamp } from '@/modules/shared/number.models';
-import { useAppTheme } from '../theme/themes';
 import { useTheme } from './c-select.theme';
+import { clamp } from '@/modules/shared/number.models';
+import { useFlexSearch } from '@/composable/flexSearch';
 
 const props = withDefaults(
   defineProps<{

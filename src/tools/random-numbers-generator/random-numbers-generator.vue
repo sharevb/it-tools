@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computedRefreshable } from '@/composable/computedRefreshable';
+import { createToken } from '../token-generator/token-generator.service';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { createToken } from '../token-generator/token-generator.service';
+import { computedRefreshable } from '@/composable/computedRefreshable';
 
 const count = useQueryParamOrStorage({ name: 'count', storageName: 'rnd-nums-gen:count', defaultValue: 1 });
 const length = useQueryParamOrStorage({ name: 'length', storageName: 'rnd-nums-gen:length', defaultValue: 64 });

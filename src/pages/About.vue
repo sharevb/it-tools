@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useHead } from '@vueuse/head';
 import _ from 'lodash';
+import { useHead } from '@vueuse/head';
 import { useMessage } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { useToolStore } from '@/tools/tools.store';

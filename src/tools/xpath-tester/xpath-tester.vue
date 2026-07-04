@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { DOMParser } from '@xmldom/xmldom';
 import { useI18n } from 'vue-i18n';
 import XPathEngine from 'xpath';
-import { useQueryParam } from '@/composable/queryParams';
+import { DOMParser } from '@xmldom/xmldom';
 import { useValidation } from '@/composable/validation';
 import { isNotThrowing } from '@/utils/boolean';
+import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

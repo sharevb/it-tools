@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { EmvTag } from 'node-emv';
 import { useI18n } from 'vue-i18n';
+import type { EmvTag } from 'node-emv';
 
 defineProps<{
   tags: EmvTag[]

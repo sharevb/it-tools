@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Vault } from 'ansible-vault';
 import { useI18n } from 'vue-i18n';
+import { Vault } from 'ansible-vault';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();

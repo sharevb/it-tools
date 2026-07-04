@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { Encoding } from './text-to-unicode.service';
 import { useI18n } from 'vue-i18n';
-import { useCopy } from '@/composable/copy';
+import { type Encoding, convertTextToUnicode, convertUnicodeToText } from './text-to-unicode.service';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
-import { convertTextToUnicode, convertUnicodeToText } from './text-to-unicode.service';
+import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Ref } from 'vue';
 import { Buffer } from 'node:buffer';
-import { potrace as colorPotrace, init as colorPotraceInit } from 'esm-potrace-wasm';
-import { Base64 } from 'js-base64';
-import potrace from 'potrace';
 import { useI18n } from 'vue-i18n';
+import type { Ref } from 'vue';
+import potrace from 'potrace';
+import { Base64 } from 'js-base64';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { potrace as colorPotrace, init as colorPotraceInit } from 'esm-potrace-wasm';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { convertToSVG } from './colorVTracer';
 

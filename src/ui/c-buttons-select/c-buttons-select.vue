@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="T extends unknown">
+import _ from 'lodash';
 import type { CLabelProps } from '../c-label/c-label.types';
 import type { CButtonSelectOption } from './c-buttons-select.types';
-import _ from 'lodash';
 
 const props = withDefaults(
   defineProps<{

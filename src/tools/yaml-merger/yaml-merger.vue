@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
-import { merge } from 'merge-anything';
 import { useI18n } from 'vue-i18n';
 import YAML from 'yaml';
+import { merge } from 'merge-anything';
+import type { UseValidationRule } from '@/composable/validation';
 
 const { t } = useI18n();
 

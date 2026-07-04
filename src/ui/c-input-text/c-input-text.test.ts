@@ -1,9 +1,9 @@
-import { mount, shallowMount } from '@vue/test-utils';
-import _ from 'lodash';
-import { createPinia, setActivePinia } from 'pinia';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { useValidation } from '@/composable/validation';
+import { mount, shallowMount } from '@vue/test-utils';
+import { createPinia, setActivePinia } from 'pinia';
+import _ from 'lodash';
 import CInputText from './c-input-text.vue';
+import { useValidation } from '@/composable/validation';
 
 describe('cInputText', () => {
   beforeEach(() => {

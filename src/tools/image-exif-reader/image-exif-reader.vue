@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import ExifReader from 'exifreader';
 import getJpegQuality from 'jpeg-quality-estimator';
-import { useI18n } from 'vue-i18n';
 import { formatBytes } from '@/utils/convert';
 
 const { t } = useI18n();

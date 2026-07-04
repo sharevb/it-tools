@@ -1,7 +1,7 @@
-import { formatISODuration, intervalToDuration } from 'date-fns';
-import * as iso8601Duration from 'duration-fns';
 import parse from 'parse-duration';
 import prettyMilliseconds from 'pretty-ms';
+import { formatISODuration, intervalToDuration } from 'date-fns';
+import * as iso8601Duration from 'duration-fns';
 
 interface ConvertedDuration {
   prettified: string

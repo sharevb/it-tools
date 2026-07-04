@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import * as openpgp from 'openpgp';
 import { useI18n } from 'vue-i18n';
+import * as openpgp from 'openpgp';
 
 const { t } = useI18n();
 

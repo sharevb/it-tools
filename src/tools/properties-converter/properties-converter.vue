@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { flatten } from 'flatten-anything';
-import properties from 'properties';
 import { useI18n } from 'vue-i18n';
 import yaml from 'yaml';
+import properties from 'properties';
+import { flatten } from 'flatten-anything';
 
 const { t } = useI18n();
 

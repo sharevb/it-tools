@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import decomposerize from 'decomposerize';
 import { useI18n } from 'vue-i18n';
+import decomposerize from 'decomposerize';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type { GeneratorConfig } from './markdown-lorem-ipsum.service';
-import markdownit from 'markdown-it';
 import { useI18n } from 'vue-i18n';
-import { generateMarkdown, getSupportedLanguages } from './markdown-lorem-ipsum.service';
+import markdownit from 'markdown-it';
+import { type GeneratorConfig, generateMarkdown, getSupportedLanguages } from './markdown-lorem-ipsum.service';
 
 const { t } = useI18n();
 

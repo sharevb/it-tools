@@ -1,8 +1,8 @@
 <script setup>
 import { useStore } from 'vuex';
-import AlarmSoundToggle from '../components/AlarmSoundToggle.vue';
-import AppColorPicker from '../components/AppColorPicker.vue';
 import NumberInput from '../components/NumberInput.vue';
+import AppColorPicker from '../components/AppColorPicker.vue';
+import AlarmSoundToggle from '../components/AlarmSoundToggle.vue';
 
 const store = useStore('pomodoro-store');
 

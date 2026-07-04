@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import type { KeyLike } from 'jose';
-import type { JwtPayload } from 'jwt-decode';
-import hexArray from 'hex-array';
-import * as jose from 'jose';
-import { Base64 } from 'js-base64';
-import JSON5 from 'json5';
-import { jwtDecode } from 'jwt-decode';
 import { useI18n } from 'vue-i18n';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { useValidation } from '@/composable/validation';
-
+import * as jose from 'jose';
+import type { KeyLike } from 'jose';
+import JSON5 from 'json5';
+import hexArray from 'hex-array';
+import { Base64 } from 'js-base64';
+import { type JwtPayload, jwtDecode } from 'jwt-decode';
 import { getJwtAlgorithm } from '../jwt-parser/jwt-parser.service';
 import { jwsAlgorithms } from './jwt-generator.constants';
+
+import { useValidation } from '@/composable/validation';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

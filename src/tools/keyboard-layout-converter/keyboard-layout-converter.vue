@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import layouts from '@langfreak/convert-layout';
-import { ArrowRight } from '@vicons/tabler';
 import { useI18n } from 'vue-i18n';
+import { ArrowRight } from '@vicons/tabler';
+import layouts from '@langfreak/convert-layout';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();

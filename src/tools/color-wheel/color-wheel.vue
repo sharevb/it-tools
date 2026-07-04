@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { Harmony, HarmonyType } from 'vue-color-wheel';
-import { useDebounce } from '@vueuse/core';
-import { colord, extend } from 'colord';
-
-import a11yPlugin from 'colord/plugins/a11y';
-import { computed, ref, watch } from 'vue';
-import { VueColorWheel } from 'vue-color-wheel';
 import { useI18n } from 'vue-i18n';
+import { colord, extend } from 'colord';
+import a11yPlugin from 'colord/plugins/a11y';
+
+import { computed, ref, watch } from 'vue';
+import { useDebounce } from '@vueuse/core';
+import type { Harmony, HarmonyType } from 'vue-color-wheel';
+import { VueColorWheel } from 'vue-color-wheel';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { convert as docker2kube } from 'docker2kube';
 import { useI18n } from 'vue-i18n';
+import { convert as docker2kube } from 'docker2kube';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import markdownit from 'markdown-it';
 import { useI18n } from 'vue-i18n';
+import markdownit from 'markdown-it';
+import { generateLoremIpsum, getSupportedLanguages } from './lorem-ipsum-generator.service';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { randIntFromInterval } from '@/utils/random';
-import { generateLoremIpsum, getSupportedLanguages } from './lorem-ipsum-generator.service';
 
 const { t } = useI18n();
 

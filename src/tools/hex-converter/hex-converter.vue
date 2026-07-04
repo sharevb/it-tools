@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Conversion } from './hex-converter.service';
-import { packArray, packString, unpackArray, unpackString } from 'byte-data';
-import hexArray from 'hex-array';
-import JSON5 from 'json5';
 import { useI18n } from 'vue-i18n';
-import { useValidation } from '@/composable/validation';
+import hexArray from 'hex-array';
+import { packArray, packString, unpackArray, unpackString } from 'byte-data';
+import JSON5 from 'json5';
 import { cleanHex, decodeNumber, decodeStruct, encodeStruct } from './hex-converter.service';
+import type { Conversion } from './hex-converter.service';
+import { useValidation } from '@/composable/validation';
 
 const { t } = useI18n();
 

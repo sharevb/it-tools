@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useFlexSearch } from '@/composable/flexSearch';
 import mappingData from './ad-mapping.json';
+import { useFlexSearch } from '@/composable/flexSearch';
 
 const { t } = useI18n();
 

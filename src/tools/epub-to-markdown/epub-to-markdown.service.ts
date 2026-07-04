@@ -1,8 +1,8 @@
+import ePub from 'epubjs';
 import type Section from 'epubjs/types/section';
 import type { SpineItem } from 'epubjs/types/section';
-import { gfm as addGFM } from '@guyplusplus/turndown-plugin-gfm';
-import ePub from 'epubjs';
 import TurndownService from 'turndown';
+import { gfm as addGFM } from '@guyplusplus/turndown-plugin-gfm';
 
 function escapeMarkdown(text: string) {
   return text

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useWindowSize } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
+import { useWindowSize } from '@vueuse/core';
 
 const { t } = useI18n();
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Plus, Trash } from '@vicons/tabler';
 import { useTemplateRefsList, useVModel } from '@vueuse/core';
 import { NInputNumber } from 'naive-ui';
 import { nextTick } from 'vue';
-import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{ values: (number | null)[] }>();
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { gfm as addGFM } from '@guyplusplus/turndown-plugin-gfm';
-import TurndownService from 'turndown';
 import { useI18n } from 'vue-i18n';
+import TurndownService from 'turndown';
+import { gfm as addGFM } from '@guyplusplus/turndown-plugin-gfm';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed, nextTick, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useElementSize } from '@vueuse/core';
 import {
   Download,
   FlipHorizontal,
@@ -9,9 +12,6 @@ import {
   Rotate,
   RotateClockwise,
 } from '@vicons/tabler';
-import { useElementSize } from '@vueuse/core';
-import { computed, nextTick, ref, watch } from 'vue';
-import { useI18n } from 'vue-i18n';
 
 import { getBaseDimensions, getViewportDimensions } from './crop-image.service';
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import moment from 'moment';
-import { Countdown } from 'vue3-flip-countdown';
 import { useI18n } from 'vue-i18n';
+import { Countdown } from 'vue3-flip-countdown';
+import moment from 'moment';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();

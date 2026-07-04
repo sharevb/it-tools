@@ -1,7 +1,7 @@
 import { getITToolsSetting, useITStorage } from '@/composable/queryParams';
 import { ref } from 'vue';
 
-export function useNetworkUtilsConfig({ toolKey, urlStorageKey, authStorageKey }: { toolKey: string; urlStorageKey: string; authStorageKey: string }) {
+export function useNetworkUtilsConfig({ toolKey, urlStorageKey, authStorageKey }: { toolKey: string, urlStorageKey: string, authStorageKey: string }) {
   const fixedUrl = String(getITToolsSetting(`${toolKey}:url`, '') || '').trim();
   const fixedAuth = String(getITToolsSetting(`${toolKey}:auth`, '') || '').trim();
   const hasFixedConfig = Boolean(fixedUrl);

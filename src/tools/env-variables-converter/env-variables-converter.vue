@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { NFormItem, NSelect } from 'naive-ui';
-import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { ref } from 'vue';
+import { NFormItem, NSelect } from 'naive-ui';
 import deflate from './lib/deflate';
-import { DefaultsMap, Formats, FormatsDesc, ModelType } from './lib/formats';
 import inputHandler from './lib/inputHandler';
 import outputFormatter from './lib/outputFormatter';
+import { DefaultsMap, Formats, FormatsDesc, ModelType } from './lib/formats';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

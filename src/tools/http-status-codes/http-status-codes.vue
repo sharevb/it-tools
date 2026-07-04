@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import {
   IconCircleArrowUpRight,
   IconCircleCheck,
@@ -8,10 +9,9 @@ import {
   IconInfoCircle,
   IconSearch,
 } from '@tabler/icons-vue';
-import { useI18n } from 'vue-i18n';
+import { codesByCategories } from './http-status-codes.constants';
 import { useFlexSearch } from '@/composable/flexSearch';
 import { useQueryParam } from '@/composable/queryParams';
-import { codesByCategories } from './http-status-codes.constants';
 
 const { t } = useI18n();
 

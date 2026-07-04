@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import type { EncodingBase } from './text-to-binary.models';
 import { useI18n } from 'vue-i18n';
-import { useCopy } from '@/composable/copy';
-import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
-import { isNotThrowing } from '@/utils/boolean';
+import { type EncodingBase, convertTextToUtf8Binary, convertUtf8BinaryToText } from './text-to-binary.models';
 import { withDefaultOnError } from '@/utils/defaults';
-import { convertTextToUtf8Binary, convertUtf8BinaryToText } from './text-to-binary.models';
+import { useCopy } from '@/composable/copy';
+import { isNotThrowing } from '@/utils/boolean';
+import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type {
   CornerDotType,
   CornerSquareType,
@@ -7,7 +8,6 @@ import type {
   FileExtension,
 } from 'pp-qr-code';
 import qrcodeConsole from 'qrcode-terminal-nooctal';
-import { useI18n } from 'vue-i18n';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 import { useQRCodeStyling } from './useQRCode';

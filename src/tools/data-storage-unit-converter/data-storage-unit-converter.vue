@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { AllSupportedUnits } from './data-storage-unit-converter.service';
 import { useI18n } from 'vue-i18n';
 import InputCopyable from '../../components/InputCopyable.vue';
 import { convertStorageAndRateUnitsDisplay } from './data-storage-unit-converter.service';
+import type { AllSupportedUnits } from './data-storage-unit-converter.service';
 
 const { t } = useI18n();
 

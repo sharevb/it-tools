@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import PostalMime from 'postal-mime';
 import { useI18n } from 'vue-i18n';
+import PostalMime from 'postal-mime';
 
 const { t } = useI18n();
 

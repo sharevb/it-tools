@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import markdownDocx, { Packer } from 'markdown-docx';
 import { useI18n } from 'vue-i18n';
+import markdownDocx, { Packer } from 'markdown-docx';
 
 const { t } = useI18n();
 

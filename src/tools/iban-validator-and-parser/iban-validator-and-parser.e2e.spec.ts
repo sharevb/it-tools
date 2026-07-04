@@ -1,5 +1,5 @@
-import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 async function extractIbanInfo({ page }: { page: Page }) {
   const itemsLines = await page

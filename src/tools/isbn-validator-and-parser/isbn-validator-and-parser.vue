@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
-import ISBN3 from 'isbn3';
 import { useI18n } from 'vue-i18n';
+import ISBN3 from 'isbn3';
+import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();

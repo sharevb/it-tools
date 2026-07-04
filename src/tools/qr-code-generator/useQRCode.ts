@@ -1,4 +1,8 @@
+import { get } from '@vueuse/core';
 import type { MaybeRef } from '@vueuse/core';
+import QRCode from 'qrcode';
+import type { QRCodeDataURLType, QRCodeErrorCorrectionLevel, QRCodeRenderersOptions, QRCodeStringType } from 'qrcode';
+import { isRef, ref, watch } from 'vue';
 import type {
   CornerDotType,
   CornerSquareType,
@@ -9,11 +13,7 @@ import type {
   Mode,
   TypeNumber,
 } from 'pp-qr-code';
-import type { QRCodeDataURLType, QRCodeErrorCorrectionLevel, QRCodeRenderersOptions, QRCodeStringType } from 'qrcode';
-import { get } from '@vueuse/core';
 import QRCodeStyling from 'pp-qr-code';
-import QRCode from 'qrcode';
-import { isRef, ref, watch } from 'vue';
 
 function blobToBase64(blob: Blob | null): Promise<string> {
   if (blob === null) {

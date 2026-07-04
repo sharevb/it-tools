@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { XMLParser } from 'fast-xml-parser';
 import { useI18n } from 'vue-i18n';
+import { XMLParser } from 'fast-xml-parser';
 
 const { t } = useI18n();
 

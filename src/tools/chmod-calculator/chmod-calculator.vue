@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { Group, Scope } from './chmod-calculator.types';
-import { useThemeVars } from 'naive-ui';
-
 import { useI18n } from 'vue-i18n';
-import { useValidation } from '@/composable/validation';
+import { useThemeVars } from 'naive-ui';
 
 import InputCopyable from '../../components/InputCopyable.vue';
 import { computeChmodOctalRepresentation, computeChmodSymbolicRepresentation, computePermissionsFromChmodOctalRepresentation, computePermissionsFromChmodSymbolicRepresentation, computeUmaskRepresentation } from './chmod-calculator.service';
+
+import type { Group, Scope } from './chmod-calculator.types';
+import { useValidation } from '@/composable/validation';
 
 const { t } = useI18n();
 

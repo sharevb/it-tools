@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import type { HeadObject } from '@vueuse/head';
-
-import type { Tool } from '@/tools/tools.types';
 import { DeviceDesktop, World } from '@vicons/tabler';
-import { useHead } from '@vueuse/head';
-import { useThemeVars } from 'naive-ui';
 
-import VueMarkdown from 'vue-markdown-render';
 import { useRoute } from 'vue-router';
-import FavoriteButton from '@/components/FavoriteButton.vue';
+import { useHead } from '@vueuse/head';
+import type { HeadObject } from '@vueuse/head';
+import VueMarkdown from 'vue-markdown-render';
+
+import { useThemeVars } from 'naive-ui';
 import { useTheme } from '../ui/c-link/c-link.theme';
 import BaseLayout from './base.layout.vue';
+import FavoriteButton from '@/components/FavoriteButton.vue';
+import type { Tool } from '@/tools/tools.types';
 
 const route = useRoute();
 

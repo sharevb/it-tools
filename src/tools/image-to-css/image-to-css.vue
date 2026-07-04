@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { Ref } from 'vue';
-import type { CSSType } from './image-to-css.service';
 import { useI18n } from 'vue-i18n';
+import type { Ref } from 'vue';
+import { type CSSType, imageToCSS } from './image-to-css.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { imageToCSS } from './image-to-css.service';
 
 const { t } = useI18n();
 

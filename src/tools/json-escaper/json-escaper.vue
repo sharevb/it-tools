@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { addSlashes, removeSlashes } from 'slashes';
 import { useI18n } from 'vue-i18n';
+import { addSlashes, removeSlashes } from 'slashes';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 

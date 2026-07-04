@@ -1,15 +1,15 @@
-import type { PaletteOption } from './command-palette.types';
-import _ from 'lodash';
 import { defineStore } from 'pinia';
+import _ from 'lodash';
+import type { PaletteOption } from './command-palette.types';
+import { useToolStore } from '@/tools/tools.store';
+import { useStyleStore } from '@/stores/style.store';
+
+import SunIcon from '~icons/mdi/white-balance-sunny';
+import GithubIcon from '~icons/mdi/github';
 import BugIcon from '~icons/mdi/bug-outline';
 import DiceIcon from '~icons/mdi/dice-5';
-
-import GithubIcon from '~icons/mdi/github';
 import InfoIcon from '~icons/mdi/information-outline';
-import SunIcon from '~icons/mdi/white-balance-sunny';
 import { useFlexSearch } from '@/composable/flexSearch';
-import { useStyleStore } from '@/stores/style.store';
-import { useToolStore } from '@/tools/tools.store';
 
 const maxSearchResultsPerCategory = import.meta.env.VITE_MAX_SEARCH_RESULT || 25;
 

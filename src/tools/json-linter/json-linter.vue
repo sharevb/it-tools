@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import linter from 'jsonlint-mod';
 import { jsonrepair } from 'jsonrepair';
-import { useI18n } from 'vue-i18n';
-import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 import { useJsonSchemaValidation } from '../json-viewer/useJsonSchemaValidation';
+import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

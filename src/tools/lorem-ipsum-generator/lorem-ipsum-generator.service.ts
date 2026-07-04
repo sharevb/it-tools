@@ -1,8 +1,8 @@
-import chinesegen from 'chinesegen';
 import _ from 'lodash';
 import loremIpsumJapanese from 'lorem-ipsum-japanese';
-import { randFromArray } from '@/utils/random';
+import chinesegen from 'chinesegen';
 import languageLorems from './lorem-ipsum.i18n.json';
+import { randFromArray } from '@/utils/random';
 
 const firstSentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 

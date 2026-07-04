@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { jsonquery } from '@jsonquerylang/jsonquery';
-import JSON5 from 'json5';
 import { useI18n } from 'vue-i18n';
+import JSON5 from 'json5';
+import { jsonquery } from '@jsonquerylang/jsonquery';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { useQueryParam } from '@/composable/queryParams';
 import { useValidation } from '@/composable/validation';
+import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

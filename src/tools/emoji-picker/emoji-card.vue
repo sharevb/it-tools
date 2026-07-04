@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { EmojiInfo } from './emoji.types';
 import { useI18n } from 'vue-i18n';
-import { useCopy } from '@/composable/copy';
+import type { EmojiInfo } from './emoji.types';
 import { getAllCodePoints, isEmojiSupported } from './emoji-utils';
+import { useCopy } from '@/composable/copy';
 
 const props = defineProps<{ emojiInfo: EmojiInfo }>();
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useITStorage } from '@/composable/queryParams';
 import { getOption43Infos } from './option43-generator.service';
+import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

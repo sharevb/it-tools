@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { UploadFileInfo } from 'naive-ui';
-import { NButton, NGi, NGrid, NInput, NSelect, NTabPane, NTabs, NUpload } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
+import { NButton, NGi, NGrid, NInput, NSelect, NTabPane, NTabs, NUpload, type UploadFileInfo } from 'naive-ui';
 
-import { useITStorage } from '@/composable/queryParams';
 import FontControls from './font-controls.vue'; // Separate component for weight/style/fallback
+import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

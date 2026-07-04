@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import type { ToolCategory } from '@/tools/tools.types';
 import { Coffee, Home2, Menu2 } from '@vicons/tabler';
 import { NIcon, useThemeVars } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
+import HeroGradient from '../assets/hero-gradient.svg?component';
+import MenuLayout from '../components/MenuLayout.vue';
+import NavbarButtons from '../components/NavbarButtons.vue';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
 import { config } from '@/config';
 import { useStyleStore } from '@/stores/style.store';
 import { useToolStore } from '@/tools/tools.store';
-import HeroGradient from '../assets/hero-gradient.svg?component';
-import MenuLayout from '../components/MenuLayout.vue';
-import NavbarButtons from '../components/NavbarButtons.vue';
+import type { ToolCategory } from '@/tools/tools.types';
 
 const themeVars = useThemeVars();
 const styleStore = useStyleStore();

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { textToNatoAlphabet } from './text-to-nato-alphabet.service';
+import { allLanguagesAndCountries } from './text-to-nato-alphabet.constants';
 import { useCopy } from '@/composable/copy';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
-import { allLanguagesAndCountries } from './text-to-nato-alphabet.constants';
-import { textToNatoAlphabet } from './text-to-nato-alphabet.service';
 
 const { t } = useI18n();
 

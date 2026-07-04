@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
 import convert from 'xml-js';
-import { withDefaultOnError } from '@/utils/defaults';
 import { isValidXML } from '../xml-formatter/xml-formatter.service';
+import { withDefaultOnError } from '@/utils/defaults';
+import type { UseValidationRule } from '@/composable/validation';
 
 const { t } = useI18n();
 const defaultValue = '<a x="1.234" y="It\'s"/>';

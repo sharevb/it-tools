@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { APA, MLA } from 'citation-formatter';
-import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
+import { APA, MLA } from 'citation-formatter';
 import { formatVancouverCitation } from './citation-generator.service';
 
 const { t } = useI18n();

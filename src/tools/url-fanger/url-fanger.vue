@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { defang, refang } from 'fanger';
 import { useI18n } from 'vue-i18n';
+import { defang, refang } from 'fanger';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParam } from '@/composable/queryParams';
 

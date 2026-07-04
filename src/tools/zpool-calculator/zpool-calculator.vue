@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useThemeVars } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
+import { useThemeVars } from 'naive-ui';
 
 const { t } = useI18n();
 

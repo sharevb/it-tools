@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { SHA1 } from 'crypto-js';
 import { useI18n } from 'vue-i18n';
+import { SHA1 } from 'crypto-js';
 import InputCopyable from '@/components/InputCopyable.vue';
-import { useQueryParam } from '@/composable/queryParams';
 import { macAddressValidation } from '@/utils/macAddress';
+import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

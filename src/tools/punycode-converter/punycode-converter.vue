@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { toASCII, toUnicode } from 'punycode/';
 import { useI18n } from 'vue-i18n';
+import { toASCII, toUnicode } from 'punycode/';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParam } from '@/composable/queryParams';
 

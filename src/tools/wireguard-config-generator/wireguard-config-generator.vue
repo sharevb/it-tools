@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { parseCidr } from 'cidr-tools';
 import { stringifyIp } from 'ip-bigint';
 import QRCodeVue3 from 'qrcode-vue3';
-import { useI18n } from 'vue-i18n';
-import { generateConfigString } from './lib/utils/configParser';
 import { WgConfig } from './lib/WgConfig';
+import { generateConfigString } from './lib/utils/configParser';
 
 const { t } = useI18n();
 

@@ -1,10 +1,10 @@
-import type { HolidaysTypes } from 'date-holidays';
-import type { Holiday } from './business-time-calculator';
-import Holidays from 'date-holidays';
-import _ from 'lodash';
 import { DateTime, Interval } from 'luxon';
 import prettyMilliseconds from 'pretty-ms';
+import Holidays from 'date-holidays';
+import type { HolidaysTypes } from 'date-holidays';
+import _ from 'lodash';
 import { BusinessTime } from './business-time-calculator';
+import type { Holiday } from './business-time-calculator';
 
 interface DateTimeRange {
   startDate: Date

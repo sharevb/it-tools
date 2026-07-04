@@ -1,14 +1,14 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Colord } from 'colord';
 import { colord, extend } from 'colord';
+import _ from 'lodash';
 import cmykPlugin from 'colord/plugins/cmyk';
 import hwbPlugin from 'colord/plugins/hwb';
-import labPlugin from 'colord/plugins/lab';
-import lchPlugin from 'colord/plugins/lch';
 import namesPlugin from 'colord/plugins/names';
+import lchPlugin from 'colord/plugins/lch';
 import xyzPlugin from 'colord/plugins/xyz';
-import _ from 'lodash';
-import { useI18n } from 'vue-i18n';
+import labPlugin from 'colord/plugins/lab';
 import { buildColorFormat } from './color-converter.models';
 
 const { t } = useI18n();

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type sshpk from 'sshpk';
 import { useI18n } from 'vue-i18n';
+import type sshpk from 'sshpk';
+import { generateKeyPair } from './rsa-key-pair-generator.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { withDefaultOnErrorAsync } from '@/utils/defaults';
+import { useValidation } from '@/composable/validation';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
 import { useITStorage } from '@/composable/queryParams';
-import { useValidation } from '@/composable/validation';
-import { withDefaultOnErrorAsync } from '@/utils/defaults';
-import { generateKeyPair } from './rsa-key-pair-generator.service';
 
 const { t } = useI18n();
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { RenderOptions } from 'bwip-js/browser';
-import bwipjs from 'bwip-js/browser';
-import { Base64 } from 'js-base64';
 import { useI18n } from 'vue-i18n';
+import bwipjs from 'bwip-js/browser';
+import type { RenderOptions } from 'bwip-js/browser';
+import { Base64 } from 'js-base64';
+import formats from './barcode.formats.json';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
-import formats from './barcode.formats.json';
 
 const { t } = useI18n();
 

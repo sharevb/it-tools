@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
 import { pipeline } from '@huggingface/transformers';
-import { useScriptTag } from '@vueuse/core';
-import { useI18n } from 'vue-i18n';
 import VueMathjax from 'vue-mathjax-next';
+import { useScriptTag } from '@vueuse/core';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();

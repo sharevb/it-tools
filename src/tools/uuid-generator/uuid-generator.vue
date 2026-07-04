@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { v1 as generateUuidV1, v3 as generateUuidV3, v4 as generateUuidV4, v5 as generateUuidV5, v6 as generateUuidV6, v7 as generateUuidV7, NIL as nilUuid } from 'uuid';
 import { useI18n } from 'vue-i18n';
+import { v1 as generateUuidV1, v3 as generateUuidV3, v4 as generateUuidV4, v5 as generateUuidV5, v6 as generateUuidV6, v7 as generateUuidV7, NIL as nilUuid } from 'uuid';
 
-import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { computedRefreshable } from '@/composable/computedRefreshable';
 import { withDefaultOnError } from '@/utils/defaults';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

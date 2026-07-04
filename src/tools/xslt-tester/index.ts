@@ -1,6 +1,6 @@
 import { HandMove } from '@vicons/tabler';
-import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
+import { translate as t } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
   name: t('tools.xslt-tester.title'),

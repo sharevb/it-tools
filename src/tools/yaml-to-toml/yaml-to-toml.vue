@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
-import { stringify as stringifyToml } from 'smol-toml';
 import { useI18n } from 'vue-i18n';
+import { stringify as stringifyToml } from 'smol-toml';
 import { parse as parseYaml } from 'yaml';
 import { withDefaultOnError } from '../../utils/defaults';
+import type { UseValidationRule } from '@/composable/validation';
 
 const { t } = useI18n();
 

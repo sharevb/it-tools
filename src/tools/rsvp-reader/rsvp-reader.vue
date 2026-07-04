@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval';
 import { useI18n } from 'vue-i18n';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval';
 import { extractTextFromEPUB, extractTextFromPDF } from './rsvp-reader.service';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

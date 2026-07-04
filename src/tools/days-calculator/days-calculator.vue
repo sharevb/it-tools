@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { Weekdays } from './days-calculator.service';
-import ctz from 'countries-and-timezones';
 import { useI18n } from 'vue-i18n';
+import ctz from 'countries-and-timezones';
+import { type Weekdays, allWeekDays, diffDateTimes, getSupportedCountries, getSupportedRegions, getSupportedStates } from './days-calculator.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { allWeekDays, diffDateTimes, getSupportedCountries, getSupportedRegions, getSupportedStates } from './days-calculator.service';
 
 const { t } = useI18n();
 

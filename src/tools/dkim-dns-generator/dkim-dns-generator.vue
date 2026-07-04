@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { NForm, NFormItem, NInput, NSelect } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
-import { computedRefreshableAsync } from '@/composable/computedRefreshable';
-import { withDefaultOnErrorAsync } from '@/utils/defaults';
+import { NForm, NFormItem, NInput, NSelect } from 'naive-ui';
 import { generateKeyPair } from '../rsa-key-pair-generator/rsa-key-pair-generator.service';
+import { withDefaultOnErrorAsync } from '@/utils/defaults';
+import { computedRefreshableAsync } from '@/composable/computedRefreshable';
 
 const { t } = useI18n();
 

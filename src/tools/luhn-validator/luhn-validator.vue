@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
-import Luhn from 'luhn-js';
 import { useI18n } from 'vue-i18n';
+import Luhn from 'luhn-js';
+import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();

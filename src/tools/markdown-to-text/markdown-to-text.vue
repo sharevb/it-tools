@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import removeMarkdown from 'remove-markdown';
 import { useI18n } from 'vue-i18n';
+import removeMarkdown from 'remove-markdown';
 
 const { t } = useI18n();
 

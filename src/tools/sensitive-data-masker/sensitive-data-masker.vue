@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { MatcherNames } from './sensitive-data-masker.service';
 import { useI18n } from 'vue-i18n';
-import { useITStorage } from '@/composable/queryParams';
-import { withDefaultOnError } from '@/utils/defaults';
 import { maskSensitiveData } from './sensitive-data-masker.service';
+import type { MatcherNames } from './sensitive-data-masker.service';
+import { withDefaultOnError } from '@/utils/defaults';
+import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

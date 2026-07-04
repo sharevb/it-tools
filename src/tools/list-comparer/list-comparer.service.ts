@@ -1,6 +1,6 @@
-import diff from 'arr-diff';
-import intersect from 'fast_array_intersect';
 import _ from 'lodash';
+import intersect from 'fast_array_intersect';
+import diff from 'arr-diff';
 
 export function compareLists({
   list1,

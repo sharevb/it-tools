@@ -1,6 +1,6 @@
-import { ethers } from 'ethers';
-import JSON5 from 'json5';
 import { describe, expect, it } from 'vitest';
+import JSON5 from 'json5';
+import { ethers } from 'ethers';
 import { decodeTransaction } from './eth-transaction-decoder.service';
 
 // Minimal ABI for testing

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useScriptTag } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
+import { useScriptTag } from '@vueuse/core';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
 
 const { t } = useI18n();

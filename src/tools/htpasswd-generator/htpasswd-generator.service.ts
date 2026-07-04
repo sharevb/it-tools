@@ -1,9 +1,9 @@
-import md5 from 'apache-md5';
 import { hashSync } from 'bcryptjs';
 import { encrypt } from 'unixcrypt-browser';
-import { translate as t } from '@/plugins/i18n.plugin';
-
+import md5 from 'apache-md5';
 import { multiRandFromArray } from '@/utils/random';
+
+import { translate as t } from '@/plugins/i18n.plugin';
 
 const itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 

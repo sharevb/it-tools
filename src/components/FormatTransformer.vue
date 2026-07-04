@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
-import { Base64 } from 'js-base64';
 import _ from 'lodash';
+import { Base64 } from 'js-base64';
+import type { UseValidationRule } from '@/composable/validation';
+import CInputText from '@/ui/c-input-text/c-input-text.vue';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { translate as t } from '@/plugins/i18n.plugin';
-import CInputText from '@/ui/c-input-text/c-input-text.vue';
 import { useAppTheme } from '@/ui/theme/themes';
 
 const props = withDefaults(

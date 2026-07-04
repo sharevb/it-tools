@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { parse } from 'creditcard';
 import { useI18n } from 'vue-i18n';
+import { parse } from 'creditcard';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();

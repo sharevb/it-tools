@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { formatBytes } from '@/utils/convert';
 import { formatMsDuration } from '../eta-calculator/eta-calculator.service';
 import { getStringSizeInBytes, textStatistics } from './text-statistics.service';
+import { formatBytes } from '@/utils/convert';
 
 const { t } = useI18n();
 

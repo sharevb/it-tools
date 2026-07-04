@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ports from 'port-numbers';
 import { useI18n } from 'vue-i18n';
+import ports from 'port-numbers';
 import SpanCopyable from '@/components/SpanCopyable.vue';
 import { useQueryParam } from '@/composable/queryParams';
 

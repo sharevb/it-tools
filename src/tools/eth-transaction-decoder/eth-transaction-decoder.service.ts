@@ -1,5 +1,5 @@
-import { ethers } from 'ethers';
 import JSON5 from 'json5';
+import { ethers } from 'ethers';
 
 import { translate as t } from '@/plugins/i18n.plugin';
 

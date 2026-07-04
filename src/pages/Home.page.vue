@@ -3,11 +3,11 @@ import { IconDragDrop, IconHeart } from '@tabler/icons-vue';
 import { useHead } from '@vueuse/head';
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 import Draggable from 'vuedraggable';
-import { config } from '@/config';
-import { useToolStore } from '@/tools/tools.store';
 import ColoredCard from '../components/ColoredCard.vue';
 import ToolCard from '../components/ToolCard.vue';
 import HomeCustom from './Home.custom.vue';
+import { useToolStore } from '@/tools/tools.store';
+import { config } from '@/config';
 
 const { t } = useI18n();
 

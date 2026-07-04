@@ -1,5 +1,5 @@
-import { Book2 } from '@vicons/tabler';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { Book2 } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({

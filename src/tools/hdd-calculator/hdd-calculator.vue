@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Units } from './hdd-calculator.service';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useQueryParam } from '@/composable/queryParams';
 import InputCopyable from '../../components/InputCopyable.vue';
+import { useQueryParam } from '@/composable/queryParams';
+import type { Units } from './hdd-calculator.service';
 import { fromBytes, toBytes } from './hdd-calculator.service';
 
 const { t } = useI18n();

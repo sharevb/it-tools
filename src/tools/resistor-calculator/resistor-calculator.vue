@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { bandsToNotation, notationToBands, notationToValue, valueToNotation } from 'resistor-data';
-import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
+import { bandsToNotation, notationToBands, notationToValue, valueToNotation } from 'resistor-data';
 
 const { t } = useI18n();
 

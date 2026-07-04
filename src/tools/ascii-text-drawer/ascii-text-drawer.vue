@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import figlet from 'figlet';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { useITStorage } from '@/composable/queryParams';
 import { languages, printToLanguage } from '@/utils/ascii-lang-utils';
+import { useITStorage } from '@/composable/queryParams';
 
 const input = ref('Ascii ART');
 const language = useITStorage('ascii-text-drawer:language', 'raw');

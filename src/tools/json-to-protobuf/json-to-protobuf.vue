@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
+import { useI18n } from 'vue-i18n';
 import GenerateSchema from 'generate-schema';
 import JSON5 from 'json5';
 import convert from 'jsonschema-protobuf';
-import { useI18n } from 'vue-i18n';
 import FormatTransformer from '@/components/FormatTransformer.vue';
+import type { UseValidationRule } from '@/composable/validation';
 
 const { t } = useI18n();
 

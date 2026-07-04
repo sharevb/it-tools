@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { useCopy } from '@/composable/copy';
-import { useITStorage } from '@/composable/queryParams';
 import { useValidation } from '@/composable/validation';
+import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

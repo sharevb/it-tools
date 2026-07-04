@@ -1,5 +1,4 @@
-import type { MaybeRef } from '@vueuse/core';
-import { get } from '@vueuse/core';
+import { type MaybeRef, get } from '@vueuse/core';
 import { yamlCheck } from 'composeverter';
 import yaml from 'yaml';
 

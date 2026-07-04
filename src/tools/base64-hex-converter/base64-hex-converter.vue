@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import hexArray from 'hex-array';
-import { Base64 } from 'js-base64';
 import { useI18n } from 'vue-i18n';
+import { Base64 } from 'js-base64';
+import hexArray from 'hex-array';
 import { useCopy } from '@/composable/copy';
 import { isValidBase64 } from '@/utils/base64';
 

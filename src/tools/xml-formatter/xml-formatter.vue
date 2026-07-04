@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
 import { useI18n } from 'vue-i18n';
-import { useITStorage } from '@/composable/queryParams';
 import { formatXml, isValidXML } from './xml-formatter.service';
+import type { UseValidationRule } from '@/composable/validation';
+import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

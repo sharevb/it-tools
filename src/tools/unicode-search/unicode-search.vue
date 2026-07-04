@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import unicodeCategories from '@unicode/unicode-15.1.0/General_Category';
-import unicodeNames from '@unicode/unicode-15.1.0/Names/index.js';
-import utf8 from 'utf8';
 import { useI18n } from 'vue-i18n';
+import unicodeNames from '@unicode/unicode-15.1.0/Names/index.js';
+import unicodeCategories from '@unicode/unicode-15.1.0/General_Category';
+import utf8 from 'utf8';
 
-import useDebouncedRef from '@/composable/debouncedref';
 import { useFlexSearch } from '@/composable/flexSearch';
+import useDebouncedRef from '@/composable/debouncedref';
 
 const { t } = useI18n();
 

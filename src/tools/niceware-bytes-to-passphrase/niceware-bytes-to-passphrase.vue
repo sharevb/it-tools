@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import hexArray from 'hex-array';
 import { bytesToPassphrase, passphraseToBytes } from 'niceware';
-import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

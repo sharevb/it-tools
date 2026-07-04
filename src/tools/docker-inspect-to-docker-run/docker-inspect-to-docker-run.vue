@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { parse } from 'rekcod';
 import { useI18n } from 'vue-i18n';
+import { parse } from 'rekcod';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();

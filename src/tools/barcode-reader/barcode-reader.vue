@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { BarcodeFormat, BrowserMultiFormatReader } from '@zxing/library';
 import { useI18n } from 'vue-i18n';
+import { BarcodeFormat, BrowserMultiFormatReader } from '@zxing/library';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { EmojiInfo } from './emoji.types';
+import { useI18n } from 'vue-i18n';
+import emojiUnicodeData from 'unicode-emoji-json';
 import emojiKeywords from 'emojilib';
 import _ from 'lodash';
-import emojiUnicodeData from 'unicode-emoji-json';
-import { useI18n } from 'vue-i18n';
+import type { EmojiInfo } from './emoji.types';
+import { escapeUnicodeComplete, getAllCodePoints } from './emoji-utils';
 import useDebouncedRef from '@/composable/debouncedref';
 import { useFlexSearch } from '@/composable/flexSearch';
-import { escapeUnicodeComplete, getAllCodePoints } from './emoji-utils';
 
 const { t } = useI18n();
 

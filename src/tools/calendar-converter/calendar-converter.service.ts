@@ -83,8 +83,7 @@ function jhms(j: number) {
   return [
     Math.floor(ij / 3600),
     Math.floor((ij / 60) % 60),
-    Math.floor(ij % 60),
-  ];
+    Math.floor(ij % 60)];
 }
 
 //  JWDAY  --  Calculate day of week from Julian day
@@ -148,576 +147,135 @@ function obliqeq(jd: number) {
    Meeus, "Astronomical Algorithms", first edition. */
 
 const nutArgMult = [
-  0,
-  0,
-  0,
-  0,
-  1,
-  -2,
-  0,
-  0,
-  2,
-  2,
-  0,
-  0,
-  0,
-  2,
-  2,
-  0,
-  0,
-  0,
-  0,
-  2,
-  0,
-  1,
-  0,
-  0,
-  0,
-  0,
-  0,
-  1,
-  0,
-  0,
-  -2,
-  1,
-  0,
-  2,
-  2,
-  0,
-  0,
-  0,
-  2,
-  1,
-  0,
-  0,
-  1,
-  2,
-  2,
-  -2,
-  -1,
-  0,
-  2,
-  2,
-  -2,
-  0,
-  1,
-  0,
-  0,
-  -2,
-  0,
-  0,
-  2,
-  1,
-  0,
-  0,
-  -1,
-  2,
-  2,
-  2,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  1,
-  0,
-  1,
-  2,
-  0,
-  -1,
-  2,
-  2,
-  0,
-  0,
-  -1,
-  0,
-  1,
-  0,
-  0,
-  1,
-  2,
-  1,
-  -2,
-  0,
-  2,
-  0,
-  0,
-  0,
-  0,
-  -2,
-  2,
-  1,
-  2,
-  0,
-  0,
-  2,
-  2,
-  0,
-  0,
-  2,
-  2,
-  2,
-  0,
-  0,
-  2,
-  0,
-  0,
-  -2,
-  0,
-  1,
-  2,
-  2,
-  0,
-  0,
-  0,
-  2,
-  0,
-  -2,
-  0,
-  0,
-  2,
-  0,
-  0,
-  0,
-  -1,
-  2,
-  1,
-  0,
-  2,
-  0,
-  0,
-  0,
-  2,
-  0,
-  -1,
-  0,
-  1,
-  -2,
-  2,
-  0,
-  2,
-  2,
-  0,
-  1,
-  0,
-  0,
-  1,
-  -2,
-  0,
-  1,
-  0,
-  1,
-  0,
-  -1,
-  0,
-  0,
-  1,
-  0,
-  0,
-  2,
-  -2,
-  0,
-  2,
-  0,
-  -1,
-  2,
-  1,
-  2,
-  0,
-  1,
-  2,
-  2,
-  0,
-  1,
-  0,
-  2,
-  2,
-  -2,
-  1,
-  1,
-  0,
-  0,
-  0,
-  -1,
-  0,
-  2,
-  2,
-  2,
-  0,
-  0,
-  2,
-  1,
-  2,
-  0,
-  1,
-  0,
-  0,
-  -2,
-  0,
-  2,
-  2,
-  2,
-  -2,
-  0,
-  1,
-  2,
-  1,
-  2,
-  0,
-  -2,
-  0,
-  1,
-  2,
-  0,
-  0,
-  0,
-  1,
-  0,
-  -1,
-  1,
-  0,
-  0,
-  -2,
-  -1,
-  0,
-  2,
-  1,
-  -2,
-  0,
-  0,
-  0,
-  1,
-  0,
-  0,
-  2,
-  2,
-  1,
-  -2,
-  0,
-  2,
-  0,
-  1,
-  -2,
-  1,
-  0,
-  2,
-  1,
-  0,
-  0,
-  1,
-  -2,
-  0,
-  -1,
-  0,
-  1,
-  0,
-  0,
-  -2,
-  1,
-  0,
-  0,
-  0,
-  1,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  1,
-  2,
-  0,
-  -1,
-  -1,
-  1,
-  0,
-  0,
-  0,
-  1,
-  1,
-  0,
-  0,
-  0,
-  -1,
-  1,
-  2,
-  2,
-  2,
-  -1,
-  -1,
-  2,
-  2,
-  0,
-  0,
-  -2,
-  2,
-  2,
-  0,
-  0,
-  3,
-  2,
-  2,
-  2,
-  -1,
-  0,
-  2,
-  2,
+  0, 0, 0, 0, 1,
+  -2, 0, 0, 2, 2,
+  0, 0, 0, 2, 2,
+  0, 0, 0, 0, 2,
+  0, 1, 0, 0, 0,
+  0, 0, 1, 0, 0,
+  -2, 1, 0, 2, 2,
+  0, 0, 0, 2, 1,
+  0, 0, 1, 2, 2,
+  -2, -1, 0, 2, 2,
+  -2, 0, 1, 0, 0,
+  -2, 0, 0, 2, 1,
+  0, 0, -1, 2, 2,
+  2, 0, 0, 0, 0,
+  0, 0, 1, 0, 1,
+  2, 0, -1, 2, 2,
+  0, 0, -1, 0, 1,
+  0, 0, 1, 2, 1,
+  -2, 0, 2, 0, 0,
+  0, 0, -2, 2, 1,
+  2, 0, 0, 2, 2,
+  0, 0, 2, 2, 2,
+  0, 0, 2, 0, 0,
+  -2, 0, 1, 2, 2,
+  0, 0, 0, 2, 0,
+  -2, 0, 0, 2, 0,
+  0, 0, -1, 2, 1,
+  0, 2, 0, 0, 0,
+  2, 0, -1, 0, 1,
+  -2, 2, 0, 2, 2,
+  0, 1, 0, 0, 1,
+  -2, 0, 1, 0, 1,
+  0, -1, 0, 0, 1,
+  0, 0, 2, -2, 0,
+  2, 0, -1, 2, 1,
+  2, 0, 1, 2, 2,
+  0, 1, 0, 2, 2,
+  -2, 1, 1, 0, 0,
+  0, -1, 0, 2, 2,
+  2, 0, 0, 2, 1,
+  2, 0, 1, 0, 0,
+  -2, 0, 2, 2, 2,
+  -2, 0, 1, 2, 1,
+  2, 0, -2, 0, 1,
+  2, 0, 0, 0, 1,
+  0, -1, 1, 0, 0,
+  -2, -1, 0, 2, 1,
+  -2, 0, 0, 0, 1,
+  0, 0, 2, 2, 1,
+  -2, 0, 2, 0, 1,
+  -2, 1, 0, 2, 1,
+  0, 0, 1, -2, 0,
+  -1, 0, 1, 0, 0,
+  -2, 1, 0, 0, 0,
+  1, 0, 0, 0, 0,
+  0, 0, 1, 2, 0,
+  -1, -1, 1, 0, 0,
+  0, 1, 1, 0, 0,
+  0, -1, 1, 2, 2,
+  2, -1, -1, 2, 2,
+  0, 0, -2, 2, 2,
+  0, 0, 3, 2, 2,
+  2, -1, 0, 2, 2,
 ];
 
 const nutArgCoeff = [
-  -171996,
-  -1742,
-  92095,
-  89, /*  0,  0,  0,  0,  1 */
-  -13187,
-  -16,
-  5736,
-  -31, /* -2,  0,  0,  2,  2 */
-  -2274,
-  -2,
-  977,
-  -5, /*  0,  0,  0,  2,  2 */
-  2062,
-  2,
-  -895,
-  5, /*  0,  0,  0,  0,  2 */
-  1426,
-  -34,
-  54,
-  -1, /*  0,  1,  0,  0,  0 */
-  712,
-  1,
-  -7,
-  0, /*  0,  0,  1,  0,  0 */
-  -517,
-  12,
-  224,
-  -6, /* -2,  1,  0,  2,  2 */
-  -386,
-  -4,
-  200,
-  0, /*  0,  0,  0,  2,  1 */
-  -301,
-  0,
-  129,
-  -1, /*  0,  0,  1,  2,  2 */
-  217,
-  -5,
-  -95,
-  3, /* -2, -1,  0,  2,  2 */
-  -158,
-  0,
-  0,
-  0, /* -2,  0,  1,  0,  0 */
-  129,
-  1,
-  -70,
-  0, /* -2,  0,  0,  2,  1 */
-  123,
-  0,
-  -53,
-  0, /*  0,  0, -1,  2,  2 */
-  63,
-  0,
-  0,
-  0, /*  2,  0,  0,  0,  0 */
-  63,
-  1,
-  -33,
-  0, /*  0,  0,  1,  0,  1 */
-  -59,
-  0,
-  26,
-  0, /*  2,  0, -1,  2,  2 */
-  -58,
-  -1,
-  32,
-  0, /*  0,  0, -1,  0,  1 */
-  -51,
-  0,
-  27,
-  0, /*  0,  0,  1,  2,  1 */
-  48,
-  0,
-  0,
-  0, /* -2,  0,  2,  0,  0 */
-  46,
-  0,
-  -24,
-  0, /*  0,  0, -2,  2,  1 */
-  -38,
-  0,
-  16,
-  0, /*  2,  0,  0,  2,  2 */
-  -31,
-  0,
-  13,
-  0, /*  0,  0,  2,  2,  2 */
-  29,
-  0,
-  0,
-  0, /*  0,  0,  2,  0,  0 */
-  29,
-  0,
-  -12,
-  0, /* -2,  0,  1,  2,  2 */
-  26,
-  0,
-  0,
-  0, /*  0,  0,  0,  2,  0 */
-  -22,
-  0,
-  0,
-  0, /* -2,  0,  0,  2,  0 */
-  21,
-  0,
-  -10,
-  0, /*  0,  0, -1,  2,  1 */
-  17,
-  -1,
-  0,
-  0, /*  0,  2,  0,  0,  0 */
-  16,
-  0,
-  -8,
-  0, /*  2,  0, -1,  0,  1 */
-  -16,
-  1,
-  7,
-  0, /* -2,  2,  0,  2,  2 */
-  -15,
-  0,
-  9,
-  0, /*  0,  1,  0,  0,  1 */
-  -13,
-  0,
-  7,
-  0, /* -2,  0,  1,  0,  1 */
-  -12,
-  0,
-  6,
-  0, /*  0, -1,  0,  0,  1 */
-  11,
-  0,
-  0,
-  0, /*  0,  0,  2, -2,  0 */
-  -10,
-  0,
-  5,
-  0, /*  2,  0, -1,  2,  1 */
-  -8,
-  0,
-  3,
-  0, /*  2,  0,  1,  2,  2 */
-  7,
-  0,
-  -3,
-  0, /*  0,  1,  0,  2,  2 */
-  -7,
-  0,
-  0,
-  0, /* -2,  1,  1,  0,  0 */
-  -7,
-  0,
-  3,
-  0, /*  0, -1,  0,  2,  2 */
-  -7,
-  0,
-  3,
-  0, /*  2,  0,  0,  2,  1 */
-  6,
-  0,
-  0,
-  0, /*  2,  0,  1,  0,  0 */
-  6,
-  0,
-  -3,
-  0, /* -2,  0,  2,  2,  2 */
-  6,
-  0,
-  -3,
-  0, /* -2,  0,  1,  2,  1 */
-  -6,
-  0,
-  3,
-  0, /*  2,  0, -2,  0,  1 */
-  -6,
-  0,
-  3,
-  0, /*  2,  0,  0,  0,  1 */
-  5,
-  0,
-  0,
-  0, /*  0, -1,  1,  0,  0 */
-  -5,
-  0,
-  3,
-  0, /* -2, -1,  0,  2,  1 */
-  -5,
-  0,
-  3,
-  0, /* -2,  0,  0,  0,  1 */
-  -5,
-  0,
-  3,
-  0, /*  0,  0,  2,  2,  1 */
-  4,
-  0,
-  0,
-  0, /* -2,  0,  2,  0,  1 */
-  4,
-  0,
-  0,
-  0, /* -2,  1,  0,  2,  1 */
-  4,
-  0,
-  0,
-  0, /*  0,  0,  1, -2,  0 */
-  -4,
-  0,
-  0,
-  0, /* -1,  0,  1,  0,  0 */
-  -4,
-  0,
-  0,
-  0, /* -2,  1,  0,  0,  0 */
-  -4,
-  0,
-  0,
-  0, /*  1,  0,  0,  0,  0 */
-  3,
-  0,
-  0,
-  0, /*  0,  0,  1,  2,  0 */
-  -3,
-  0,
-  0,
-  0, /* -1, -1,  1,  0,  0 */
-  -3,
-  0,
-  0,
-  0, /*  0,  1,  1,  0,  0 */
-  -3,
-  0,
-  0,
-  0, /*  0, -1,  1,  2,  2 */
-  -3,
-  0,
-  0,
-  0, /*  2, -1, -1,  2,  2 */
-  -3,
-  0,
-  0,
-  0, /*  0,  0, -2,  2,  2 */
-  -3,
-  0,
-  0,
-  0, /*  0,  0,  3,  2,  2 */
-  -3,
-  0,
-  0,
-  0, /*  2, -1,  0,  2,  2 */
+  -171996, -1742, 92095, 89, /*  0,  0,  0,  0,  1 */
+  -13187, -16, 5736, -31, /* -2,  0,  0,  2,  2 */
+  -2274, -2, 977, -5, /*  0,  0,  0,  2,  2 */
+  2062, 2, -895, 5, /*  0,  0,  0,  0,  2 */
+  1426, -34, 54, -1, /*  0,  1,  0,  0,  0 */
+  712, 1, -7, 0, /*  0,  0,  1,  0,  0 */
+  -517, 12, 224, -6, /* -2,  1,  0,  2,  2 */
+  -386, -4, 200, 0, /*  0,  0,  0,  2,  1 */
+  -301, 0, 129, -1, /*  0,  0,  1,  2,  2 */
+  217, -5, -95, 3, /* -2, -1,  0,  2,  2 */
+  -158, 0, 0, 0, /* -2,  0,  1,  0,  0 */
+  129, 1, -70, 0, /* -2,  0,  0,  2,  1 */
+  123, 0, -53, 0, /*  0,  0, -1,  2,  2 */
+  63, 0, 0, 0, /*  2,  0,  0,  0,  0 */
+  63, 1, -33, 0, /*  0,  0,  1,  0,  1 */
+  -59, 0, 26, 0, /*  2,  0, -1,  2,  2 */
+  -58, -1, 32, 0, /*  0,  0, -1,  0,  1 */
+  -51, 0, 27, 0, /*  0,  0,  1,  2,  1 */
+  48, 0, 0, 0, /* -2,  0,  2,  0,  0 */
+  46, 0, -24, 0, /*  0,  0, -2,  2,  1 */
+  -38, 0, 16, 0, /*  2,  0,  0,  2,  2 */
+  -31, 0, 13, 0, /*  0,  0,  2,  2,  2 */
+  29, 0, 0, 0, /*  0,  0,  2,  0,  0 */
+  29, 0, -12, 0, /* -2,  0,  1,  2,  2 */
+  26, 0, 0, 0, /*  0,  0,  0,  2,  0 */
+  -22, 0, 0, 0, /* -2,  0,  0,  2,  0 */
+  21, 0, -10, 0, /*  0,  0, -1,  2,  1 */
+  17, -1, 0, 0, /*  0,  2,  0,  0,  0 */
+  16, 0, -8, 0, /*  2,  0, -1,  0,  1 */
+  -16, 1, 7, 0, /* -2,  2,  0,  2,  2 */
+  -15, 0, 9, 0, /*  0,  1,  0,  0,  1 */
+  -13, 0, 7, 0, /* -2,  0,  1,  0,  1 */
+  -12, 0, 6, 0, /*  0, -1,  0,  0,  1 */
+  11, 0, 0, 0, /*  0,  0,  2, -2,  0 */
+  -10, 0, 5, 0, /*  2,  0, -1,  2,  1 */
+  -8, 0, 3, 0, /*  2,  0,  1,  2,  2 */
+  7, 0, -3, 0, /*  0,  1,  0,  2,  2 */
+  -7, 0, 0, 0, /* -2,  1,  1,  0,  0 */
+  -7, 0, 3, 0, /*  0, -1,  0,  2,  2 */
+  -7, 0, 3, 0, /*  2,  0,  0,  2,  1 */
+  6, 0, 0, 0, /*  2,  0,  1,  0,  0 */
+  6, 0, -3, 0, /* -2,  0,  2,  2,  2 */
+  6, 0, -3, 0, /* -2,  0,  1,  2,  1 */
+  -6, 0, 3, 0, /*  2,  0, -2,  0,  1 */
+  -6, 0, 3, 0, /*  2,  0,  0,  0,  1 */
+  5, 0, 0, 0, /*  0, -1,  1,  0,  0 */
+  -5, 0, 3, 0, /* -2, -1,  0,  2,  1 */
+  -5, 0, 3, 0, /* -2,  0,  0,  0,  1 */
+  -5, 0, 3, 0, /*  0,  0,  2,  2,  1 */
+  4, 0, 0, 0, /* -2,  0,  2,  0,  1 */
+  4, 0, 0, 0, /* -2,  1,  0,  2,  1 */
+  4, 0, 0, 0, /*  0,  0,  1, -2,  0 */
+  -4, 0, 0, 0, /* -1,  0,  1,  0,  0 */
+  -4, 0, 0, 0, /* -2,  1,  0,  0,  0 */
+  -4, 0, 0, 0, /*  1,  0,  0,  0,  0 */
+  3, 0, 0, 0, /*  0,  0,  1,  2,  0 */
+  -3, 0, 0, 0, /* -1, -1,  1,  0,  0 */
+  -3, 0, 0, 0, /*  0,  1,  1,  0,  0 */
+  -3, 0, 0, 0, /*  0, -1,  1,  2,  2 */
+  -3, 0, 0, 0, /*  2, -1, -1,  2,  2 */
+  -3, 0, 0, 0, /*  0,  0, -2,  2,  2 */
+  -3, 0, 0, 0, /*  0,  0,  3,  2,  2 */
+  -3, 0, 0, 0, /*  2, -1,  0,  2,  2 */
 ];
 
 /*  NUTATION  --  Calculate the nutation in longitude, deltaPsi, and
@@ -749,15 +307,15 @@ function nutation(jd: number) {
     */
 
   ta[0] = dtr(297.850363 + 445267.11148 * t - 0.0019142 * t2
-    + t3 / 189474.0);
+                + t3 / 189474.0);
   ta[1] = dtr(357.52772 + 35999.05034 * t - 0.0001603 * t2
-    - t3 / 300000.0);
+                - t3 / 300000.0);
   ta[2] = dtr(134.96298 + 477198.867398 * t + 0.0086972 * t2
-    + t3 / 56250.0);
+                + t3 / 56250.0);
   ta[3] = dtr(93.27191 + 483202.017538 * t - 0.0036825 * t2
-    + t3 / 327270);
+                + t3 / 327270);
   ta[4] = dtr(125.04452 - 1934.136261 * t + 0.0020708 * t2
-    + t3 / 450000.0);
+                + t3 / 450000.0);
 
   /* Range reduce the angles in case the sine and cosine functions
        don't do it as accurately or quickly. */
@@ -804,12 +362,14 @@ function ecliptoeq(jd: number, Lambda: number, Beta: number) {
   //   log += 'Obliquity: ' + rtd(eps) + '\n';
 
   Ra = rtd(Math.atan2((Math.cos(eps) * Math.sin(dtr(Lambda))
-    - (Math.tan(dtr(Beta)) * Math.sin(eps))), Math.cos(dtr(Lambda))));
+                        - (Math.tan(dtr(Beta)) * Math.sin(eps))),
+  Math.cos(dtr(Lambda))));
   //   log += 'RA = ' + Ra + '\n';
   Ra = fixangle(rtd(Math.atan2((Math.cos(eps) * Math.sin(dtr(Lambda))
-    - (Math.tan(dtr(Beta)) * Math.sin(eps))), Math.cos(dtr(Lambda)))));
+                        - (Math.tan(dtr(Beta)) * Math.sin(eps))),
+  Math.cos(dtr(Lambda)))));
   Dec = rtd(Math.asin((Math.sin(eps) * Math.sin(dtr(Lambda)) * Math.cos(dtr(Beta)))
-    + (Math.sin(dtr(Beta)) * Math.cos(eps))));
+                 + (Math.sin(dtr(Beta)) * Math.cos(eps))));
 
   return [Ra, Dec];
 }
@@ -821,198 +381,20 @@ function ecliptoeq(jd: number, Lambda: number, Beta: number) {
     even numbered years from 1620 through 2002.  */
 
 const deltaTtab = [
-  121,
-  112,
-  103,
-  95,
-  88,
-  82,
-  77,
-  72,
-  68,
-  63,
-  60,
-  56,
-  53,
-  51,
-  48,
-  46,
-  44,
-  42,
-  40,
-  38,
-  35,
-  33,
-  31,
-  29,
-  26,
-  24,
-  22,
-  20,
-  18,
-  16,
-  14,
-  12,
-  11,
-  10,
-  9,
-  8,
-  7,
-  7,
-  7,
-  7,
-  7,
-  7,
-  8,
-  8,
-  9,
-  9,
-  9,
-  9,
-  9,
-  10,
-  10,
-  10,
-  10,
-  10,
-  10,
-  10,
-  10,
-  11,
-  11,
-  11,
-  11,
-  11,
-  12,
-  12,
-  12,
-  12,
-  13,
-  13,
-  13,
-  14,
-  14,
-  14,
-  14,
-  15,
-  15,
-  15,
-  15,
-  15,
-  16,
-  16,
-  16,
-  16,
-  16,
-  16,
-  16,
-  16,
-  15,
-  15,
-  14,
-  13,
-  13.1,
-  12.5,
-  12.2,
-  12,
-  12,
-  12,
-  12,
-  12,
-  12,
-  11.9,
-  11.6,
-  11,
-  10.2,
-  9.2,
-  8.2,
-  7.1,
-  6.2,
-  5.6,
-  5.4,
-  5.3,
-  5.4,
-  5.6,
-  5.9,
-  6.2,
-  6.5,
-  6.8,
-  7.1,
-  7.3,
-  7.5,
-  7.6,
-  7.7,
-  7.3,
-  6.2,
-  5.2,
-  2.7,
-  1.4,
-  -1.2,
-  -2.8,
-  -3.8,
-  -4.8,
-  -5.5,
-  -5.3,
-  -5.6,
-  -5.7,
-  -5.9,
-  -6,
-  -6.3,
-  -6.5,
-  -6.2,
-  -4.7,
-  -2.8,
-  -0.1,
-  2.6,
-  5.3,
-  7.7,
-  10.4,
-  13.3,
-  16,
-  18.2,
-  20.2,
-  21.1,
-  22.4,
-  23.5,
-  23.8,
-  24.3,
-  24,
-  23.9,
-  23.9,
-  23.7,
-  24,
-  24.3,
-  25.3,
-  26.2,
-  27.3,
-  28.2,
-  29.1,
-  30,
-  30.7,
-  31.4,
-  32.2,
-  33.1,
-  34,
-  35,
-  36.5,
-  38.3,
-  40.2,
-  42.2,
-  44.5,
-  46.5,
-  48.5,
-  50.5,
-  52.2,
-  53.8,
-  54.9,
-  55.8,
-  56.9,
-  58.3,
-  60,
-  61.6,
-  63,
-  65,
-  66.6,
+  121, 112, 103, 95, 88, 82, 77, 72, 68, 63, 60, 56, 53, 51, 48, 46,
+  44, 42, 40, 38, 35, 33, 31, 29, 26, 24, 22, 20, 18, 16, 14, 12,
+  11, 10, 9, 8, 7, 7, 7, 7, 7, 7, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10,
+  10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13,
+  13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16,
+  16, 16, 15, 15, 14, 13, 13.1, 12.5, 12.2, 12, 12, 12, 12, 12, 12,
+  11.9, 11.6, 11, 10.2, 9.2, 8.2, 7.1, 6.2, 5.6, 5.4, 5.3, 5.4, 5.6,
+  5.9, 6.2, 6.5, 6.8, 7.1, 7.3, 7.5, 7.6, 7.7, 7.3, 6.2, 5.2, 2.7,
+  1.4, -1.2, -2.8, -3.8, -4.8, -5.5, -5.3, -5.6, -5.7, -5.9, -6,
+  -6.3, -6.5, -6.2, -4.7, -2.8, -0.1, 2.6, 5.3, 7.7, 10.4, 13.3, 16,
+  18.2, 20.2, 21.1, 22.4, 23.5, 23.8, 24.3, 24, 23.9, 23.9, 23.7,
+  24, 24.3, 25.3, 26.2, 27.3, 28.2, 29.1, 30, 30.7, 31.4, 32.2,
+  33.1, 34, 35, 36.5, 38.3, 40.2, 42.2, 44.5, 46.5, 48.5, 50.5,
+  52.2, 53.8, 54.9, 55.8, 56.9, 58.3, 60, 61.6, 63, 65, 66.6,
 ];
 
 function deltat(year: number) {
@@ -1052,78 +434,30 @@ function deltat(year: number) {
 //  Periodic terms to obtain true time
 
 const EquinoxpTerms = [
-  485,
-  324.96,
-  1934.136,
-  203,
-  337.23,
-  32964.467,
-  199,
-  342.08,
-  20.186,
-  182,
-  27.85,
-  445267.112,
-  156,
-  73.14,
-  45036.886,
-  136,
-  171.52,
-  22518.443,
-  77,
-  222.54,
-  65928.934,
-  74,
-  296.72,
-  3034.906,
-  70,
-  243.58,
-  9037.513,
-  58,
-  119.81,
-  33718.147,
-  52,
-  297.17,
-  150.678,
-  50,
-  21.02,
-  2281.226,
-  45,
-  247.54,
-  29929.562,
-  44,
-  325.15,
-  31555.956,
-  29,
-  60.93,
-  4443.417,
-  18,
-  155.12,
-  67555.328,
-  17,
-  288.79,
-  4562.452,
-  16,
-  198.04,
-  62894.029,
-  14,
-  199.76,
-  31436.921,
-  12,
-  95.39,
-  14577.848,
-  12,
-  287.11,
-  31931.756,
-  12,
-  320.81,
-  34777.259,
-  9,
-  227.73,
-  1222.114,
-  8,
-  15.45,
-  16859.074,
+  485, 324.96, 1934.136,
+  203, 337.23, 32964.467,
+  199, 342.08, 20.186,
+  182, 27.85, 445267.112,
+  156, 73.14, 45036.886,
+  136, 171.52, 22518.443,
+  77, 222.54, 65928.934,
+  74, 296.72, 3034.906,
+  70, 243.58, 9037.513,
+  58, 119.81, 33718.147,
+  52, 297.17, 150.678,
+  50, 21.02, 2281.226,
+  45, 247.54, 29929.562,
+  44, 325.15, 31555.956,
+  29, 60.93, 4443.417,
+  18, 155.12, 67555.328,
+  17, 288.79, 4562.452,
+  16, 198.04, 62894.029,
+  14, 199.76, 31436.921,
+  12, 95.39, 14577.848,
+  12, 287.11, 31931.756,
+  12, 320.81, 34777.259,
+  9, 227.73, 1222.114,
+  8, 15.45, 16859.074,
 ];
 
 const JDE0tab1000 = [
@@ -1157,10 +491,10 @@ function equinox(year: number, which: number) {
   }
 
   JDE0 = JDE0tab[which][0]
-    + (JDE0tab[which][1] * Y)
-    + (JDE0tab[which][2] * Y * Y)
-    + (JDE0tab[which][3] * Y * Y * Y)
-    + (JDE0tab[which][4] * Y * Y * Y * Y);
+           + (JDE0tab[which][1] * Y)
+           + (JDE0tab[which][2] * Y * Y)
+           + (JDE0tab[which][3] * Y * Y * Y)
+           + (JDE0tab[which][4] * Y * Y * Y * Y);
 
   // this.document.debug.log += "JDE0 = " + JDE0 + "\n";
 
@@ -1212,8 +546,8 @@ function sunpos(jd: number) {
   e = 0.016708634 + (-0.000042037 * T) + (-0.0000001267 * T2);
   // this.document.debug.log += "e = " + e + "\n";
   C = ((1.914602 + (-0.004817 * T) + (-0.000014 * T2)) * dsin(M))
-    + ((0.019993 - (0.000101 * T)) * dsin(2 * M))
-    + (0.000289 * dsin(3 * M));
+        + ((0.019993 - (0.000101 * T)) * dsin(2 * M))
+        + (0.000289 * dsin(3 * M));
   // this.document.debug.log += "C = " + C + "\n";
   sunLong = L0 + C;
   // this.document.debug.log += "sunLong = " + sunLong + "\n";
@@ -1268,10 +602,10 @@ function equationOfTime(jd: number) {
   tau = (jd - J2000) / JulianMillennium;
   // this.document.debug.log += "equationOfTime.  tau = " + tau + "\n";
   L0 = 280.4664567 + (360007.6982779 * tau)
-    + (0.03032028 * tau * tau)
-    + ((tau * tau * tau) / 49931)
-    + (-((tau * tau * tau * tau) / 15300))
-    + (-((tau * tau * tau * tau * tau) / 2000000));
+         + (0.03032028 * tau * tau)
+         + ((tau * tau * tau) / 49931)
+         + (-((tau * tau * tau * tau) / 15300))
+         + (-((tau * tau * tau * tau * tau) / 2000000));
   // this.document.debug.log += "L0 = " + L0 + "\n";
   L0 = fixangle(L0);
   // this.document.debug.log += "L0 = " + L0 + "\n";
@@ -1363,7 +697,7 @@ function previous_or_current_weekday(weekday: number, jd: number) {
 
 function leap_gregorian(year: number) {
   return ((year % 4) === 0)
-    && (!(((year % 100) === 0) && ((year % 400) !== 0)));
+            && (!(((year % 100) === 0) && ((year % 400) !== 0)));
 }
 
 //  GREGORIAN_TO_JD  --  Determine Julian day number from Gregorian calendar date
@@ -1372,16 +706,16 @@ const GREGORIAN_EPOCH = 1721425.5;
 
 function gregorian_to_jd(year: number, month: number, day: number) {
   return (GREGORIAN_EPOCH - 1)
-    + (365 * (year - 1))
-    + Math.floor((year - 1) / 4)
-    + (-Math.floor((year - 1) / 100))
-    + Math.floor((year - 1) / 400)
-    + Math.floor((((367 * month) - 362) / 12)
-      + ((month <= 2)
-        ? 0
-        : (leap_gregorian(year) ? -1 : -2)
-      )
-      + day);
+           + (365 * (year - 1))
+           + Math.floor((year - 1) / 4)
+           + (-Math.floor((year - 1) / 100))
+           + Math.floor((year - 1) / 400)
+           + Math.floor((((367 * month) - 362) / 12)
+           + ((month <= 2)
+             ? 0
+             : (leap_gregorian(year) ? -1 : -2)
+           )
+           + day);
 }
 
 //  JD_TO_GREGORIAN  --  Calculate Gregorian calendar date from Julian day
@@ -1499,8 +833,8 @@ function julian_to_jd(year: number, month: number, day: number) {
   }
 
   return ((Math.floor((365.25 * (year + 4716)))
-    + Math.floor((30.6001 * (month + 1)))
-    + day) - 1524.5);
+            + Math.floor((30.6001 * (month + 1)))
+            + day) - 1524.5);
 }
 
 //  JD_TO_JULIAN  --  Calculate Julian calendar date from Julian day
@@ -1590,7 +924,7 @@ function hebrew_month_days(year: number, month: number) {
   //  First of all, dispose of fixed-length 29 day months
 
   if (month === 2 || month === 4 || month === 6
-    || month === 10 || month === 13) {
+        || month === 10 || month === 13) {
     return 29;
   }
 
@@ -1624,7 +958,7 @@ function hebrew_to_jd(year: number, month: number, day: number) {
 
   months = hebrew_year_months(year);
   jd = HEBREW_EPOCH + hebrew_delay_1(year)
-    + hebrew_delay_2(year) + day + 1;
+         + hebrew_delay_2(year) + day + 1;
 
   if (month < 7) {
     for (mon = 7; mon <= months; mon++) {
@@ -1789,14 +1123,16 @@ function leap_islamic(year: number) {
 //  ISLAMIC_TO_JD  --  Determine Julian day from Islamic date
 
 const ISLAMIC_EPOCH = 1948439.5;
-const ISLAMIC_WEEKDAYS = ['al-\'ahad (الأحد)', 'al-\'ithnayn (الإثنين)', 'ath-thalatha\' (الثلاثاء)', 'al-\'arb`a\' (الأربعاء)', 'al-khamis (الخميس)', 'al-jum`a (الجمعة)', 'as-sabt (السبت)'];
+const ISLAMIC_WEEKDAYS = ['al-\'ahad (الأحد)', 'al-\'ithnayn (الإثنين)',
+  'ath-thalatha\' (الثلاثاء)', 'al-\'arb`a\' (الأربعاء)',
+  'al-khamis (الخميس)', 'al-jum`a (الجمعة)', 'as-sabt (السبت)'];
 
 function islamic_to_jd(year: number, month: number, day: number) {
   return (day
-    + Math.ceil(29.5 * (month - 1))
-    + (year - 1) * 354
-    + Math.floor((3 + (11 * year)) / 30)
-    + ISLAMIC_EPOCH) - 1;
+            + Math.ceil(29.5 * (month - 1))
+            + (year - 1) * 354
+            + Math.floor((3 + (11 * year)) / 30)
+            + ISLAMIC_EPOCH) - 1;
 }
 
 //  JD_TO_ISLAMIC  --  Calculate Islamic date from Julian day
@@ -1806,7 +1142,8 @@ function jd_to_islamic(jd: number) {
 
   jd = Math.floor(jd) + 0.5;
   year = Math.floor(((30 * (jd - ISLAMIC_EPOCH)) + 10646) / 10631);
-  month = Math.min(12, Math.ceil((jd - (29 + islamic_to_jd(year, 1, 1))) / 29.5) + 1);
+  month = Math.min(12,
+    Math.ceil((jd - (29 + islamic_to_jd(year, 1, 1))) / 29.5) + 1);
   day = (jd - islamic_to_jd(year, month, 1)) + 1;
   return [year, month, day];
 }
@@ -1861,14 +1198,9 @@ function tehran_equinox_jd(year: number) {
 
 const PERSIAN_EPOCH = 1948320.5;
 const PERSIAN_WEEKDAYS = [
-  'Yekshanbeh (یکشنبه)',
-  'Doshanbeh (دوشنبه)',
-  'Seshhanbeh (سه‌شنبه)',
-  'Chaharshanbeh (چهارشنبه)',
-  'Panjshanbeh (پنجشنبه)',
-  'Jomeh (جمعه)',
-  'Shanbeh (شنبه)',
-];
+  'Yekshanbeh (یکشنبه)', 'Doshanbeh (دوشنبه)', 'Seshhanbeh (سه‌شنبه)',
+  'Chaharshanbeh (چهارشنبه)', 'Panjshanbeh (پنجشنبه)', 'Jomeh (جمعه)',
+  'Shanbeh (شنبه)'];
 
 function persiana_year(jd: number) {
   let guess = jd_to_gregorian(jd)[0] - 2;
@@ -1928,11 +1260,11 @@ function persiana_to_jd(year: number, month: number, day: number) {
   equinox = adr[1];
 
   jd = equinox
-    + ((month <= 7)
-      ? ((month - 1) * 31)
-      : (((month - 1) * 30) + 6)
-    )
-    + (day - 1);
+            + ((month <= 7)
+              ? ((month - 1) * 31)
+              : (((month - 1) * 30) + 6)
+            )
+            + (day - 1);
   return jd;
 }
 
@@ -1941,7 +1273,7 @@ function persiana_to_jd(year: number, month: number, day: number) {
 
 function leap_persiana(year: number) {
   return (persiana_to_jd(year + 1, 1, 1)
-    - persiana_to_jd(year, 1, 1)) > 365;
+            - persiana_to_jd(year, 1, 1)) > 365;
 }
 
 //  LEAP_PERSIAN  --  Is a given year a leap year in the Persian calendar ?
@@ -1959,14 +1291,14 @@ function persian_to_jd(year: number, month: number, day: number) {
   epyear = 474 + mod(epbase, 2820);
 
   return day
-    + ((month <= 7)
-      ? ((month - 1) * 31)
-      : (((month - 1) * 30) + 6)
-    )
-    + Math.floor(((epyear * 682) - 110) / 2816)
-    + (epyear - 1) * 365
-    + Math.floor(epbase / 2820) * 1029983
-    + (PERSIAN_EPOCH - 1);
+            + ((month <= 7)
+              ? ((month - 1) * 31)
+              : (((month - 1) * 30) + 6)
+            )
+            + Math.floor(((epyear * 682) - 110) / 2816)
+            + (epyear - 1) * 365
+            + Math.floor(epbase / 2820) * 1029983
+            + (PERSIAN_EPOCH - 1);
 }
 
 //  JD_TO_PERSIAN  --  Calculate Persian date from Julian day
@@ -1987,7 +1319,7 @@ function jd_to_persian(jd: number) {
     aux1 = Math.floor(cyear / 366);
     aux2 = mod(cyear, 366);
     ycycle = Math.floor(((2134 * aux1) + (2816 * aux2) + 2815) / 1028522)
-      + aux1 + 1;
+                    + aux1 + 1;
   }
   year = ycycle + (2820 * cycle) + 474;
   if (year <= 0) {
@@ -2005,11 +1337,11 @@ const MAYAN_COUNT_EPOCH = 584282.5;
 
 function mayan_count_to_jd(baktun: number, katun: number, tun: number, uinal: number, kin: number) {
   return MAYAN_COUNT_EPOCH
-    + (baktun * 144000)
-    + (katun * 7200)
-    + (tun * 360)
-    + (uinal * 20)
-    + kin;
+           + (baktun * 144000)
+           + (katun * 7200)
+           + (tun * 360)
+           + (uinal * 20)
+           + kin;
 }
 
 //  JD_TO_MAYAN_COUNT  --  Calculate Mayan long count from Julian day
@@ -2033,7 +1365,9 @@ function jd_to_mayan_count(jd: number) {
 
 //  JD_TO_MAYAN_HAAB  --  Determine Mayan Haab "month" and day from Julian day
 
-const MAYAN_HAAB_MONTHS = ['Pop', 'Uo', 'Zip', 'Zotz', 'Tzec', 'Xul', 'Yaxkin', 'Mol', 'Chen', 'Yax', 'Zac', 'Ceh', 'Mac', 'Kankin', 'Muan', 'Pax', 'Kayab', 'Cumku', 'Uayeb'];
+const MAYAN_HAAB_MONTHS = ['Pop', 'Uo', 'Zip', 'Zotz', 'Tzec', 'Xul',
+  'Yaxkin', 'Mol', 'Chen', 'Yax', 'Zac', 'Ceh',
+  'Mac', 'Kankin', 'Muan', 'Pax', 'Kayab', 'Cumku', 'Uayeb'];
 
 function jd_to_mayan_haab(jd: number) {
   jd = Math.floor(jd) + 0.5;
@@ -2045,7 +1379,10 @@ function jd_to_mayan_haab(jd: number) {
 
 //  JD_TO_MAYAN_TZOLKIN  --  Determine Mayan Tzolkin "month" and day from Julian day
 
-const MAYAN_TZOLKIN_MONTHS = ['Imix', 'Ik', 'Akbal', 'Kan', 'Chicchan', 'Cimi', 'Manik', 'Lamat', 'Muluc', 'Oc', 'Chuen', 'Eb', 'Ben', 'Ix', 'Men', 'Cib', 'Caban', 'Etznab', 'Cauac', 'Ahau'];
+const MAYAN_TZOLKIN_MONTHS = ['Imix', 'Ik', 'Akbal', 'Kan', 'Chicchan',
+  'Cimi', 'Manik', 'Lamat', 'Muluc', 'Oc',
+  'Chuen', 'Eb', 'Ben', 'Ix', 'Men',
+  'Cib', 'Caban', 'Etznab', 'Cauac', 'Ahau'];
 
 function jd_to_mayan_tzolkin(jd: number) {
   let lcount;
@@ -2057,7 +1394,10 @@ function jd_to_mayan_tzolkin(jd: number) {
 
 //  INDIAN_CIVIL_TO_JD  --  Obtain Julian day for Indian Civil date
 
-const INDIAN_CIVIL_WEEKDAYS = ['ravivara (रविवार)', 'somavara (सोमवार)', 'mangalavara (मंगलवार)', 'budhavara (बुधवार)', 'brahaspativara (बृहस्पतिवार)', 'sukravara (शुक्रवार)', 'sanivara (शनिवार)'];
+const INDIAN_CIVIL_WEEKDAYS = ['ravivara (रविवार)',
+  'somavara (सोमवार)', 'mangalavara (मंगलवार)',
+  'budhavara (बुधवार)', 'brahaspativara (बृहस्पतिवार)',
+  'sukravara (शुक्रवार)', 'sanivara (शनिवार)'];
 
 function indian_civil_to_jd(year: number, month: number, day: number) {
   let Caitra, gyear, leap, start, jd, m;
@@ -2249,7 +1589,7 @@ export class CalendarConverter {
     //  Update Julian day
 
     j = gregorian_to_jd(year, mon, mday)
-      + (Math.floor(sec + 60 * (min + 60 * hour) + 0.5) / 86400.0);
+           + (Math.floor(sec + 60 * (min + 60 * hour) + 0.5) / 86400.0);
 
     this.document.julianday.day = j;
     this.document.modifiedjulianday.day = j - JMJD;
@@ -2310,7 +1650,8 @@ export class CalendarConverter {
         break;
 
       default:
-        this.document.hebrew.leap = t('tools.calendar-converter.service.text.invalid-year-length-hebrew_year_days-hebcal-0-days', [hebrew_year_days(hebcal[0])]);
+        this.document.hebrew.leap = t('tools.calendar-converter.service.text.invalid-year-length-hebrew_year_days-hebcal-0-days',
+          [hebrew_year_days(hebcal[0])]);
         break;
     }
 
@@ -2380,10 +1721,10 @@ export class CalendarConverter {
     //  Update Excel 1900 and 1904 day serial numbers
 
     this.document.excelserial1900.day = (j - J1900) + 1
-    /*  Microsoft marching morons thought 1900 was a leap year.
+            /*  Microsoft marching morons thought 1900 was a leap year.
                 Adjust dates after 1900-02-28 to compensate for their
                 idiocy.  */
-      + ((j > 2415078.5) ? 1 : 0)
+            + ((j > 2415078.5) ? 1 : 0)
     ;
     this.document.excelserial1904.day = j - J1904;
 
@@ -2445,37 +1786,51 @@ export class CalendarConverter {
   //  calcJulianCalendar  --  Update from Julian calendar
 
   calcJulianCalendar() {
-    this.setJulian(julian_to_jd(((this.document.juliancalendar.year)), this.document.juliancalendar.month, ((this.document.juliancalendar.day))));
+    this.setJulian(julian_to_jd(((this.document.juliancalendar.year)),
+      this.document.juliancalendar.month,
+      ((this.document.juliancalendar.day))));
   }
 
   //  calcHebrew  --  Update from Hebrew calendar
 
   calcHebrew() {
-    this.setJulian(hebrew_to_jd(((this.document.hebrew.year)), this.document.hebrew.month, ((this.document.hebrew.day))));
+    this.setJulian(hebrew_to_jd(((this.document.hebrew.year)),
+      this.document.hebrew.month,
+      ((this.document.hebrew.day))));
   }
 
   //  calcIslamic  --  Update from Islamic calendar
 
   calcIslamic() {
-    this.setJulian(islamic_to_jd(((this.document.islamic.year)), this.document.islamic.month, ((this.document.islamic.day))));
+    this.setJulian(islamic_to_jd(((this.document.islamic.year)),
+      this.document.islamic.month,
+      ((this.document.islamic.day))));
   }
 
   //  calcPersian  --  Update from Persian calendar
 
   calcPersian() {
-    this.setJulian(persian_to_jd(((this.document.persian.year)), this.document.persian.month, ((this.document.persian.day))));
+    this.setJulian(persian_to_jd(((this.document.persian.year)),
+      this.document.persian.month,
+      ((this.document.persian.day))));
   }
 
   //  calcPersiana  --  Update from Persian astronomical calendar
 
   calcPersiana() {
-    this.setJulian(persiana_to_jd(((this.document.persiana.year)), this.document.persiana.month, ((this.document.persiana.day))) + 0.5);
+    this.setJulian(persiana_to_jd(((this.document.persiana.year)),
+      this.document.persiana.month,
+      ((this.document.persiana.day))) + 0.5);
   }
 
   //  calcMayanCount  --  Update from the Mayan Long Count
 
   calcMayanCount() {
-    this.setJulian(mayan_count_to_jd(((this.document.mayancount.baktun)), ((this.document.mayancount.katun)), ((this.document.mayancount.tun)), ((this.document.mayancount.uinal)), ((this.document.mayancount.kin))));
+    this.setJulian(mayan_count_to_jd(((this.document.mayancount.baktun)),
+      ((this.document.mayancount.katun)),
+      ((this.document.mayancount.tun)),
+      ((this.document.mayancount.uinal)),
+      ((this.document.mayancount.kin))));
   }
 
   //  calcIndianCivilCalendar  --  Update from Indian Civil Calendar
@@ -2484,8 +1839,7 @@ export class CalendarConverter {
     this.setJulian(indian_civil_to_jd(
       ((this.document.indiancivilcalendar.year)),
       this.document.indiancivilcalendar.month,
-      ((this.document.indiancivilcalendar.day
-      ))));
+      ((this.document.indiancivilcalendar.day))));
   }
 
   //  calcFrench  -- Update from French Republican calendar
@@ -2522,7 +1876,10 @@ export class CalendarConverter {
       }
     }
 
-    this.setJulian(french_revolutionary_to_jd(((this.document.french.an)), mois + 1, decade + 1, j + 1));
+    this.setJulian(french_revolutionary_to_jd(((this.document.french.an)),
+      mois + 1,
+      decade + 1,
+      j + 1));
   }
 
   //  calcGregSerial  --  Update from Gregorian serial day number

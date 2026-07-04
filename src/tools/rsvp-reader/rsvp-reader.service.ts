@@ -1,6 +1,6 @@
+import ePub from 'epubjs';
 import type Section from 'epubjs/types/section';
 import type { SpineItem } from 'epubjs/types/section';
-import ePub from 'epubjs';
 import * as pdfjsLib from 'pdfjs-dist';
 import pdfJSWorkerURL from 'pdfjs-dist/build/pdf.worker?url';
 

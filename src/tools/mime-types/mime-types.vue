@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { types as extensionToMimeType, extensions as mimeTypeToExtension } from 'mime-types';
 import { useI18n } from 'vue-i18n';
+import { types as extensionToMimeType, extensions as mimeTypeToExtension } from 'mime-types';
 
 const { t } = useI18n();
 

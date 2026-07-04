@@ -1870,6 +1870,12 @@ tools:
       tag-dkim-policy: DKIM Policy
       tag-spf-policy: SPF Policy
       tag-identifiers: Identifiers
+  dns-propagation-tester:
+    title: DNS Propagation Tester
+    description: A simple tool for testing DNS propagation across different servers.
+  dns-tester:
+    title: DNS Tester
+    description: A simple tool for testing DNS resolution, whois queries, and other DNS-related tasks.
   dns-queries:
     title: DNS Queries
     description: Perform DNS Queries (over HTTPS)
@@ -3154,6 +3160,9 @@ tools:
       spline: Spline
       stacked: Stacked
       cutout: Cutout
+  powershell-memo:
+    title: Powershell Cheatsheet
+    description: Powershell is a powerful scripting language and command-line shell designed for system administration and automation.
   power-converter:
     title: Power Converter
     description: Convert values between power units
@@ -3241,6 +3250,9 @@ tools:
       title-error-while-decrypting: Error while decrypting
       label-your-text-decrypted: 'Your text decrypted:'
       placeholder-your-string-decrypted: Your string decrypted
+  running-pace-calculator:
+    title: Running Pace Calculator
+    description: Calculate your running pace, estimate your finish times for popular races, break down splits, and find your training zones.
   rune-converter:
     title: Rune converter
     description: Convert Text to Runes and vice-versa
@@ -5676,6 +5688,9 @@ tools:
         hmac-using-sha-512: HMAC using SHA-512
         hmac-using-sha-384: HMAC using SHA-384
         hmac-using-sha-256: HMAC using SHA-256
+  https-tester:
+    title: HTTPS Tester
+    description: Validate HTTPS certificate, HSTS and 302 redirection
   htpasswd-generator:
     title: Htpasswd/htaccess generator
     description: htpassword/htaccess user/password generator

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Base64 } from 'js-base64';
 import { useNetworkUtilsConfig } from '@/tools/network-utils/network-utils-config';
+import { Base64 } from 'js-base64';
 
 const { serverHost, serverAuth, hasFixedConfig } = useNetworkUtilsConfig({
   toolKey: 'dns-tester',

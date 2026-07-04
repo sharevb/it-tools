@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
-import ExifTransformer from 'exif-be-gone';
-import { Base64 } from 'js-base64';
-import MemoryStream from 'memorystream';
 import { useI18n } from 'vue-i18n';
+import { Base64 } from 'js-base64';
+import ExifTransformer from 'exif-be-gone';
+import MemoryStream from 'memorystream';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
 const { t } = useI18n();

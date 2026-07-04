@@ -1,10 +1,10 @@
 <script setup>
 import { useStore } from 'vuex';
-import FinishedPopup from './components/FinishedPopup.vue';
 import Header from './components/Header.vue';
+import FinishedPopup from './components/FinishedPopup.vue';
 import { startTimer } from './storeUtils';
-import PomodoroHome from './views/Home.vue';
 import PomodoroAbout from './views/PomodoroAbout.vue';
+import PomodoroHome from './views/Home.vue';
 import PomodoroSettings from './views/Settings.vue';
 
 const store = useStore('pomodoro-store');

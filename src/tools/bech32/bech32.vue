@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { bech32, bech32m } from 'bech32';
 import { useI18n } from 'vue-i18n';
+import { bech32, bech32m } from 'bech32';
 
 const { t } = useI18n();
 

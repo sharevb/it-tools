@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { SubnetInfo } from '@/utils/ip';
-import { Netmask } from 'netmask';
 import { useI18n } from 'vue-i18n';
-import SpanCopyable from '@/components/SpanCopyable.vue';
-import { useITStorage } from '@/composable/queryParams';
-import { isNotThrowing } from '@/utils/boolean';
+import { Netmask } from 'netmask';
 import { withDefaultOnError } from '@/utils/defaults';
+import { isNotThrowing } from '@/utils/boolean';
+import SpanCopyable from '@/components/SpanCopyable.vue';
+import type { SubnetInfo } from '@/utils/ip';
 import { getSubnetsInfos, parseAsCIDR } from '@/utils/ip';
+import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

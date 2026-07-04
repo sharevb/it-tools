@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { code, countries, country } from 'currency-codes-ts';
 import converter from 'currency-exchanger-js';
-import { useI18n } from 'vue-i18n';
-import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 import moneysData from './moneys.json';
+import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

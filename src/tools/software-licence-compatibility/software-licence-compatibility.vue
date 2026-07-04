@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { SelectOption } from 'naive-ui';
+import { useI18n } from 'vue-i18n';
+import satisfies from 'spdx-satisfies';
+import { getLicenseFromId, licenses } from 'safe-license-list';
 import type { ConditionTag, LimitationTag, PermissionTag } from 'safe-license-list';
 import type { VNode } from 'vue';
-import { Check as CheckIcon, LetterX as CrossIcon } from '@vicons/tabler';
-import { NTooltip } from 'naive-ui';
-import { getLicenseFromId, licenses } from 'safe-license-list';
-import satisfies from 'spdx-satisfies';
 import { h, ref } from 'vue';
+import type { SelectOption } from 'naive-ui';
+import { NTooltip } from 'naive-ui';
 
-import { useI18n } from 'vue-i18n';
+import { Check as CheckIcon, LetterX as CrossIcon } from '@vicons/tabler';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();

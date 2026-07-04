@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { IconChevronDown, IconChevronUp, IconCircleMinus } from '@tabler/icons-vue';
+import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import createQPDFModule from 'qpdf-wasm-esm-embedded';
-import { useI18n } from 'vue-i18n';
+import { IconChevronDown, IconChevronUp, IconCircleMinus } from '@tabler/icons-vue';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
 const { t } = useI18n();

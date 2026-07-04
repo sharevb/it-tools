@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { bundledLanguagesInfo, createHighlighter } from 'shiki/bundle/full';
 import { bundledThemesInfo } from 'shiki/themes';
-import { useI18n } from 'vue-i18n';
-import { useCopy, useCopyHtml } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useCopy, useCopyHtml } from '@/composable/copy';
 
 const { t } = useI18n();
 

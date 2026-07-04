@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { UseValidationRule } from '@/composable/validation';
-import JSON5 from 'json5';
 import { useI18n } from 'vue-i18n';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { withDefaultOnError } from '@/utils/defaults';
+import JSON5 from 'json5';
 import json2csharp from './json2csharp';
+import type { UseValidationRule } from '@/composable/validation';
+import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { withDefaultOnError } from '@/utils/defaults';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

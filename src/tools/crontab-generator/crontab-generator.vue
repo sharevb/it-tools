@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { CronType } from './crontab-generator.service';
-import ctz from 'countries-and-timezones';
-import cronstrue from 'cronstrue';
-import getTimezoneOffset from 'get-timezone-offset';
 import { useI18n } from 'vue-i18n';
-import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
-import { useStyleStore } from '@/stores/style.store';
+import cronstrue from 'cronstrue';
+import ctz from 'countries-and-timezones';
+import getTimezoneOffset from 'get-timezone-offset';
 import { getLastExecutionTimes, isCronValid } from './crontab-generator.service';
+import type { CronType } from './crontab-generator.service';
+import { useStyleStore } from '@/stores/style.store';
+import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

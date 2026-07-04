@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { generateSillyPassword } from 'silly-password-generator';
 import { useI18n } from 'vue-i18n';
-import { computedRefreshable } from '@/composable/computedRefreshable';
+import { generateSillyPassword } from 'silly-password-generator';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { computedRefreshable } from '@/composable/computedRefreshable';
 import { randIntFromInterval } from '@/utils/random';
 
 const { t } = useI18n();

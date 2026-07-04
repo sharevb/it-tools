@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import db from 'oui-data';
 import { useI18n } from 'vue-i18n';
+import db from 'oui-data';
+import { macAddressValidationRules } from '@/utils/macAddress';
 import { useCopy } from '@/composable/copy';
 import { useQueryParam } from '@/composable/queryParams';
-import { macAddressValidationRules } from '@/utils/macAddress';
 
 const { t } = useI18n();
 

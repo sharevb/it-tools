@@ -1,8 +1,8 @@
 import type { RecursiveArray } from 'lodash';
-import type { FileStructure } from './FileStructure';
 import defaultsDeep from 'lodash.defaultsdeep';
 import flattenDeep from 'lodash.flattendeep';
 import last from 'lodash.last';
+import type { FileStructure } from './FileStructure';
 import { LINE_STRINGS } from './line-strings';
 
 /**

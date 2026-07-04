@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { apcaContrastValue, hex, wcag, wcagContrastValue } from 'a11y-color-contrast';
 import { useI18n } from 'vue-i18n';
+import { apcaContrastValue, hex, wcag, wcagContrastValue } from 'a11y-color-contrast';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();

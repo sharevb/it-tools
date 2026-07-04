@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
 import ICAL from 'ical.js';
-import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

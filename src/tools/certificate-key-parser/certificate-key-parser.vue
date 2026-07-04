@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { LabelValue } from './certificate-key-parser.infos';
 import { Buffer } from 'node:buffer';
-
 import { useI18n } from 'vue-i18n';
+
+import { getKeysOrCertificatesInfosAsync } from './certificate-key-parser.service';
+import type { LabelValue } from './certificate-key-parser.infos';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { getKeysOrCertificatesInfosAsync } from './certificate-key-parser.service';
 
 const { t } = useI18n();
 

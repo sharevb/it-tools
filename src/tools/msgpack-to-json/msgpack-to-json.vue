@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
-import hexArray from 'hex-array';
-import { unpack } from 'msgpackr';
 import { useI18n } from 'vue-i18n';
+import { unpack } from 'msgpackr';
+import hexArray from 'hex-array';
 
 const { t } = useI18n();
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
 import { useI18n } from 'vue-i18n';
+import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
 import { useITStorage, useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();

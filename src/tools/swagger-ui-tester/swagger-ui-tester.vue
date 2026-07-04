@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import json5 from 'json5';
-import { SwaggerUIBundle } from 'swagger-ui-dist';
 import { useI18n } from 'vue-i18n';
-import yaml from 'yaml';
+import { SwaggerUIBundle } from 'swagger-ui-dist';
 import 'swagger-ui-dist/swagger-ui.css';
+import yaml from 'yaml';
+import json5 from 'json5';
 
 const { t } = useI18n();
 

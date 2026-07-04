@@ -1,6 +1,5 @@
-import type { SortOrder } from './array';
 import { describe, expect, it } from 'vitest';
-import { byOrder } from './array';
+import { type SortOrder, byOrder } from './array';
 
 describe('array utils', () => {
   describe('byOrder', () => {

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { InfoCircle } from '@vicons/tabler';
+import { createNanoid } from './nanoid-generator.service';
 import { computedRefreshable } from '@/composable/computedRefreshable';
+import { withDefaultOnError } from '@/utils/defaults';
 import { useCopy } from '@/composable/copy';
 import { useQueryParam } from '@/composable/queryParams';
-import { withDefaultOnError } from '@/utils/defaults';
-import { createNanoid } from './nanoid-generator.service';
 
 const count = useQueryParam({ tool: 'nanoid-gen', name: 'count', defaultValue: 1 });
 const length = useQueryParam({ tool: 'nanoid-gen', name: 'length', defaultValue: 21 });

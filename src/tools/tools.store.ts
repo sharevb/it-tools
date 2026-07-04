@@ -1,11 +1,10 @@
-import type { MaybeRef } from '@vueuse/core';
-import type { Ref } from 'vue';
-import type { Tool, ToolCategory, ToolWithCategory } from './tools.types';
-import { get } from '@vueuse/core';
-import _ from 'lodash';
+import { type MaybeRef, get } from '@vueuse/core';
 import { defineStore } from 'pinia';
-import { useITStorage } from '@/composable/queryParams';
+import type { Ref } from 'vue';
+import _ from 'lodash';
+import type { Tool, ToolCategory, ToolWithCategory } from './tools.types';
 import { tools as allTools } from './index';
+import { useITStorage } from '@/composable/queryParams';
 
 export const useToolStore = defineStore('tools', () => {
   const favoriteToolsName = useITStorage('favoriteToolsName', []) as Ref<string[]>;

@@ -1,14 +1,14 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useTimestamp } from '@vueuse/core';
 import { useThemeVars } from 'naive-ui';
-import { useI18n } from 'vue-i18n';
-import InputCopyable from '@/components/InputCopyable.vue';
-import { computedRefreshable } from '@/composable/computedRefreshable';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { useStyleStore } from '@/stores/style.store';
 import { useQRCode } from '../qr-code-generator/useQRCode';
 import { base32toHex, buildKeyUri, generateHOTP, generateSecret, generateTOTP, getCounterFromTime } from './otp.service';
 import TokenDisplay from './token-display.vue';
+import { useStyleStore } from '@/stores/style.store';
+import InputCopyable from '@/components/InputCopyable.vue';
+import { computedRefreshable } from '@/composable/computedRefreshable';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

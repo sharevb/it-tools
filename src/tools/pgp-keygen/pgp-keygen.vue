@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import * as openpgp from 'openpgp';
 import { useI18n } from 'vue-i18n';
+import 'webcrypto-liner-shim';
+import * as openpgp from 'openpgp';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { useValidation } from '@/composable/validation';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
 import { useITStorage } from '@/composable/queryParams';
-import { useValidation } from '@/composable/validation';
-import 'webcrypto-liner-shim';
 
 const { t } = useI18n();
 

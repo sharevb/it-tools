@@ -1,13 +1,13 @@
 <script setup lang="ts">
+import { tryOnBeforeUnmount, useVModel } from '@vueuse/core';
+import { Editor, EditorContent } from '@tiptap/vue-3';
+import StarterKit from '@tiptap/starter-kit';
+import { useThemeVars } from 'naive-ui';
 import { Color } from '@tiptap/extension-color';
+import { TextStyleKit } from '@tiptap/extension-text-style';
 import Highlight from '@tiptap/extension-highlight';
 import { TableKit } from '@tiptap/extension-table';
 import TextAlign from '@tiptap/extension-text-align';
-import { TextStyleKit } from '@tiptap/extension-text-style';
-import StarterKit from '@tiptap/starter-kit';
-import { Editor, EditorContent } from '@tiptap/vue-3';
-import { tryOnBeforeUnmount, useVModel } from '@vueuse/core';
-import { useThemeVars } from 'naive-ui';
 import MenuBar from './menu-bar.vue';
 
 const props = defineProps<{ html: string }>();

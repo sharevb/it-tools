@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { Plus, Trash } from '@vicons/tabler';
 import _ from 'lodash';
-import { useI18n } from 'vue-i18n';
 
-import { useCopy } from '@/composable/copy';
-import { useITStorage } from '@/composable/queryParams';
 import { arrayToMarkdownTable, computeAverage, computeVariance } from './benchmark-builder.models';
 import DynamicValues from './dynamic-values.vue';
+import { useCopy } from '@/composable/copy';
+import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

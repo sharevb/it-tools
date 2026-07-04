@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import EmailBounceParse from 'email-bounce-parser-browser';
 import { useI18n } from 'vue-i18n';
+import EmailBounceParse from 'email-bounce-parser-browser';
 
 const { t } = useI18n();
 

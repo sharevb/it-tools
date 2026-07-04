@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import dwGen from 'diceware-generator';
 import enWL from 'diceware-wordlist-en';
 import enEffWL from 'diceware-wordlist-en-eff';
 import jpWL from 'diceware-wordlist-jp';
-import ruWL from 'diceware-wordlist-ru';
 import spWL from 'diceware-wordlist-sp';
+import ruWL from 'diceware-wordlist-ru';
 import sweWL from 'diceware-wordlist-swe';
-import { useI18n } from 'vue-i18n';
 import { computedRefreshable } from '@/composable/computedRefreshable';
-import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
 

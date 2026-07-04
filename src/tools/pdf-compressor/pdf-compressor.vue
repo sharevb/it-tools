@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import createGSModule from 'ghostscript-wasm-esm';
-import { Base64 } from 'js-base64';
 import { useI18n } from 'vue-i18n';
+import { Base64 } from 'js-base64';
+import createGSModule from 'ghostscript-wasm-esm';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
 const { t } = useI18n();

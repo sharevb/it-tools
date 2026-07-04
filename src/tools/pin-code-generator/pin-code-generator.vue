@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { computedRefreshable } from '@/composable/computedRefreshable';
+import { randomNumber } from './pin-code-generator.service';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { randomNumber } from './pin-code-generator.service';
+import { computedRefreshable } from '@/composable/computedRefreshable';
 
 const { t } = useI18n();
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import {
   validateDockerComposeToCommonSpec,
 } from 'composeverter';
-import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

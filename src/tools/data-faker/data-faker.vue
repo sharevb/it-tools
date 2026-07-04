@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { Faker } from '@faker-js/faker';
-import type { UseValidationRule } from '@/composable/validation';
-import type { ExportFormat } from '@/utils/objectarray.export';
-import { allFakers } from '@faker-js/faker';
-import JSON5 from 'json5';
 import { useI18n } from 'vue-i18n';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { allFakers } from '@faker-js/faker';
+import type { Faker } from '@faker-js/faker';
+import JSON5 from 'json5';
 import { objectArrayToData } from '@/utils/objectarray.export';
+import type { ExportFormat } from '@/utils/objectarray.export';
+import type { UseValidationRule } from '@/composable/validation';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

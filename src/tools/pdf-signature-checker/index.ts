@@ -1,6 +1,6 @@
-import FileCertIcon from '~icons/mdi/file-certificate-outline';
-import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
+import { translate as t } from '@/plugins/i18n.plugin';
+import FileCertIcon from '~icons/mdi/file-certificate-outline';
 
 export const tool = defineTool({
   name: t('tools.pdf-signature-checker.title'),

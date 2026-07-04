@@ -1,13 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
+import { createWorker } from 'tesseract.js';
 import { getDocument } from 'pdfjs-dist';
 import * as pdfJS from 'pdfjs-dist';
 import pdfJSWorkerURL from 'pdfjs-dist/build/pdf.worker?url';
-import { createWorker } from 'tesseract.js';
-import { useI18n } from 'vue-i18n';
+import { textStatistics } from '../text-statistics/text-statistics.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { textStatistics } from '../text-statistics/text-statistics.service';
 
 const { t } = useI18n();
 

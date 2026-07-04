@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import haversine from 'haversine';
 import { useI18n } from 'vue-i18n';
+import haversine from 'haversine';
 import SpanCopyable from '@/components/SpanCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 

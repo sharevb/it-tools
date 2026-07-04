@@ -1,5 +1,4 @@
-import type { Ref } from 'vue';
-import { computed, ref } from 'vue';
+import { type Ref, computed, ref } from 'vue';
 
 export { useMediaRecorder };
 

@@ -1,5 +1,5 @@
-import { IconBrandMongodb } from '@tabler/icons-vue';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { IconBrandMongodb } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({

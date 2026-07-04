@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { withDefaultOnError } from '@/utils/defaults';
 import convertTreeToStructure from './lib/convert-tree-to-structure';
 import { generateTree } from './lib/generate-tree';
 import { parseInput } from './lib/parse-input';
+import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 
