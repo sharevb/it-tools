@@ -1,11 +1,10 @@
-import { maskString } from 'data-guardian';
-import type { SensitiveContentKey } from 'data-guardian';
+import { type SensitiveContentKey, maskString } from 'data-guardian';
 import ipRegex from 'ip-regex';
 
-const jwtRegex = /\b([\w=]{5,})\.([\w=]{5,})\.([\w\-+/=]{5,})\b/g;
-const phoneRegex = /(\+\d{1,4})[-.\s]?(?:\((\d{1,3})\)[-.\s]?)?(\d{1,4})[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})\b/g;
-const macRegex = /\b([0-9A-F]{2}[:-]){5}([0-9A-F]{2})\b/gi;
-const urlWithOrWithoutPrefixRegex = /\b(https?:\/\/)?(www\.)?[\w@:%.+~#=-]{2,256}\.[a-z]{2,6}\b([-\w@:%+.~#?&/=]*)\b/g;
+const jwtRegex = /\b([a-zA-Z0-9_=]{5,})\.([a-zA-Z0-9_=]{5,})\.([a-zA-Z0-9_\-\+\/=]{5,})\b/g;
+const phoneRegex = /(?:(\+\d{1,4})[-.\s]?)(?:[(](\d{1,3})[)][-.\s]?)?(\d{1,4})[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})\b/g;
+const macRegex = /\b([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\b/g;
+const urlWithOrWithoutPrefixRegex = /\b(https?:\/\/)?(www\.)?[a-zA-Z0-9@:%._+~#=-]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&\/=]*)\b/g;
 
 export type MatcherNames = 'uuid' | 'creditCard' | 'ssn' | 'url' | 'ipv4' | 'email' | 'passwordInUri' | 'mac' | 'ipv6' | 'urlWithOrWithoutPrefix' | 'jwt' | 'phone';
 
@@ -29,9 +28,7 @@ export function maskSensitiveData({
     phoneRegex: excludedMatchers.includes('phone') ? emptyRegex : phoneRegex,
   }, {
     excludeMatchers: [...excludedMatchers, ...[
-      'passwordMention',
-      'password',
-      'passwordSubstring',
+      'passwordMention', 'password', 'passwordSubstring',
     ]] as SensitiveContentKey[],
   });
 }

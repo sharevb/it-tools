@@ -86,7 +86,7 @@ export function parseQRData(qrContent: string | null) {
   }
   if (qrContent.startsWith('mailto:')) {
     // mailto:email@example.com?subject=email subject&body=Email text
-    const parsing = /^mailto:([^?]+)\?subject=([^&]*)&body=(.*)$/.exec(qrContent) || [];
+    const parsing = /^mailto:([^\?]+)\?subject=([^\&]*)(?:&body=(.*))$/.exec(qrContent) || [];
     return {
       type: t('tools.qr-code-decoder.service.text.email-0'),
       value: {
@@ -98,7 +98,7 @@ export function parseQRData(qrContent: string | null) {
   }
   if (qrContent.startsWith('SMTP:')) {
     // SMTP:email@example.com:email subject:Email text
-    const parsing = /^SMTP:([^:]+):([^:]*)(?::([^:]*))?$/.exec(qrContent) || [];
+    const parsing = /^SMTP:([^:]+)(?::([^:]*))(?::([^:]*))?$/.exec(qrContent) || [];
     return {
       type: t('tools.qr-code-decoder.service.text.email-1'),
       value: {
@@ -110,7 +110,7 @@ export function parseQRData(qrContent: string | null) {
   }
   if (qrContent.startsWith('smsto:')) {
     // smsto:${phoneNumber}:${message}
-    const parsing = /^smsto:([^:]+):(.+)$/.exec(qrContent) || [];
+    const parsing = /^smsto:([^:]+)(?::(.+))$/.exec(qrContent) || [];
     return {
       type: t('tools.qr-code-decoder.service.text.sms'),
       value: {

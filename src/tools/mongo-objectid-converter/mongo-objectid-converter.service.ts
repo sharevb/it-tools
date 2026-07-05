@@ -8,16 +8,13 @@ export function objectIdSyntaxFromDate(date: Date) {
 
 export function generateMongoFilter(
   {
-    tableName,
-    date,
-    operator = 'gt',
+    tableName, date, operator = 'gt',
   }:
   {
     tableName: string
     date: Date
     operator?: 'gt' | 'lt'
-  },
-) {
+  }) {
   return `db.${tableName}.find({_id: {$${operator}: ObjectId("${objectIdFromDate(date)}")}})`;
 }
 

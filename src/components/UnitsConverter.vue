@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import _ from 'lodash';
-import convert from 'convert';
-import type { Unit } from 'convert';
+import convert, { type Unit } from 'convert';
 import * as unitsconverter from 'units-converter';
 
 const props = withDefaults(defineProps<{
@@ -49,16 +48,16 @@ const SI_PREFIX_NAMES_REGEX = new RegExp(`^(${SI_PREFIX_NAMES.join('|')})`);
 const units = reactive<
   Record<
     string,
-    { title: string, unit: string, ref: number }
+    { title: string; unit: string; ref: number }
   >
->(Object.entries(supportedUnits.value).map(([key, label]) => ({
-  title: label,
-  unit: key,
-  ref: 1,
-})).reduce((prev, current) => ({
-  ...prev,
-  [current.unit]: current,
-}), {}));
+      >(Object.entries(supportedUnits.value).map(([key, label]) => ({
+        title: label,
+        unit: key,
+        ref: 1,
+      })).reduce((prev, current) => ({
+        ...prev,
+        [current.unit]: current,
+      }), {}));
 
 const excludeSIPrefixes = ref(true);
 const filteredUnits = computed(() => {

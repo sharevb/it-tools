@@ -1,10 +1,9 @@
-import { get } from '@vueuse/core';
-import type { MaybeRef } from '@vueuse/core';
+import { type MaybeRef, get } from '@vueuse/core';
 import { computed, ref } from 'vue';
 import FlexSearch from 'flexsearch';
 
 // Define key types to match Fuse.js format
-type SearchKey = string | { name: string, weight?: number };
+type SearchKey = string | { name: string; weight?: number };
 
 export function useFlexSearch<Data extends Record<string, any>>({
   search,
@@ -148,7 +147,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
     const individualLimit = searchLimit > 0 ? searchLimit * 2 : undefined;
 
     // Search each index and collect results with weights
-    const weightedResults = new Map<any, { score: number, maxWeight: number }>();
+    const weightedResults = new Map<any, { score: number; maxWeight: number }>();
 
     indices.forEach(({ index, weight }) => {
       const results = index.search(query, individualLimit ? { limit: individualLimit } : undefined);
@@ -188,7 +187,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
 
     // Calculate Levenshtein distance
     const levenshteinDistance = (str1: string, str2: string): number => {
-      const matrix = Array.from({ length: str2.length + 1 }).fill(null).map(() => Array.from({ length: str1.length + 1 }).fill(null));
+      const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
 
       for (let i = 0; i <= str1.length; i++) {
         matrix[0][i] = i;

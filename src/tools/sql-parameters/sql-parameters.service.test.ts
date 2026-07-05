@@ -53,7 +53,7 @@ describe('generateSQLFromTemplate', () => {
 
   it('should return error for missing named parameter', () => {
     const template = 'SELECT * FROM users WHERE name = :name';
-    const params: Array<{ key: string, value: string }> = [];
+    const params: Array<{ key: string; value: string }> = [];
     const { sql, error } = generateSQLFromTemplate(template, params);
     expect(sql).toBe('');
     expect(error).toContain('Missing value for named parameter');

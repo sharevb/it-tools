@@ -19,8 +19,7 @@ const ibansInfo = computed<IbanInfo[]>(() => {
     return [];
   }
   const ibans = rawIbans.value.toUpperCase()
-    .split(/\n/)
-    .map(iban => iban.replace(/\s/g, '').replace(/-/g, ''))
+    .split(/\n/).map(iban => iban.replace(/\s/g, '').replace(/-/g, ''))
     .filter(Boolean);
 
   if (!ibans.length) {

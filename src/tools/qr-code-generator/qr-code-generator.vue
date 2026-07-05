@@ -8,9 +8,9 @@ import type {
   FileExtension,
 } from 'pp-qr-code';
 import qrcodeConsole from 'qrcode-terminal-nooctal';
+import { useQRCodeStyling } from './useQRCode';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
-import { useQRCodeStyling } from './useQRCode';
 
 const { t } = useI18n();
 
@@ -40,7 +40,15 @@ async function onUpload(file: File) {
 
 const errorCorrectionLevels = ['low', 'medium', 'quartile', 'high'];
 const outputTypes = ['svg', 'png', 'jpeg', 'webp'];
-const dotTypes = ['dots', 'random-dots', 'rounded', 'vertical-lines', 'horizontal-lines', 'classy', 'classy-rounded', 'square', 'extra-rounded'];
+const dotTypes = ['dots',
+  'random-dots',
+  'rounded',
+  'vertical-lines',
+  'horizontal-lines',
+  'classy',
+  'classy-rounded',
+  'square',
+  'extra-rounded'];
 const cornersDotTypes = ['dot', 'square', 'heart'];
 const cornersSquareTypes = ['dot', 'square', 'extra-rounded'];
 

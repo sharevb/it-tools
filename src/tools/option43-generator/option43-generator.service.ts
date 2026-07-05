@@ -33,7 +33,7 @@ function splitIPs(ip_addr: string) {
   const validIPs = [];
   const rows = ip_addr.split('\n');
   for (let n = 0, l = rows.length; n < l; n++) {
-    if (/^(25[0-5]|2[0-4]\d|[01]?\d{1,2})\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})$/.test(rows[n])) {
+    if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(rows[n])) {
       validIPs.push(rows[n]);
     }
   }
@@ -52,8 +52,7 @@ function renderSettings(
   option60_type: string | undefined,
   option60_value: string | undefined,
   vendor_link: string | undefined,
-  diff_number: number | undefined,
-) {
+  diff_number: number | undefined) {
   let output;
   switch (dhcp_vendor) {
     case 'cisco_01':

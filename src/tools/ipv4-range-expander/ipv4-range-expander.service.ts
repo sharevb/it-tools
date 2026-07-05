@@ -40,7 +40,7 @@ function getCidr(start: string, end: string) {
   return { start: newStart, end: newEnd, mask };
 }
 
-function calculateCidr({ startIp, endIp }: { startIp: string, endIp: string }) {
+function calculateCidr({ startIp, endIp }: { startIp: string; endIp: string }) {
   const start = convertBase({
     value: ipv4ToInt({ ip: startIp }).toString(),
     fromBase: 10,

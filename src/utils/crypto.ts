@@ -49,7 +49,7 @@ export function getSANType(value: string): number {
   if (isIP(value)) {
     return SANType_IPAddress;
   }
-  if (value?.includes('.') && /^[*.a-z\d-]+$/i.test(value)) {
+  if (value?.includes('.') && /^[\*\.a-zA-Z\d-]+$/.test(value)) {
     return SANType_DNSName;
   }
   if (value?.includes('DC=')) {

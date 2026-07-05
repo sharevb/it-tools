@@ -24,7 +24,7 @@ export async function extractTextFromPDF(file: File): Promise<string> {
 
 interface SpineItems {
   items: SpineItem[]
-  get: (href: string | undefined) => Section
+  get(href: string | undefined): Section
 }
 export async function extractTextFromEPUB(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer();

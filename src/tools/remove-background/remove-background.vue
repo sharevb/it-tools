@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { BackgroundRemovalPipeline, ProgressInfo } from '@huggingface/transformers';
-import { pipeline, RawImage } from '@huggingface/transformers';
-import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { onMounted, ref } from 'vue';
+import type { BackgroundRemovalPipeline, ProgressInfo } from '@huggingface/transformers';
+import { RawImage, pipeline } from '@huggingface/transformers';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -150,7 +150,7 @@ const backgroundRenderers = {
     ctx.filter = 'none';
   },
 
-  adjust(ctx: CanvasRenderingContext2D, w: number, h: number, opts: { contrast: number, brightness: number }, originalImage: CanvasImageSource) {
+  adjust(ctx: CanvasRenderingContext2D, w: number, h: number, opts: { contrast: number; brightness: number }, originalImage: CanvasImageSource) {
     ctx.filter = `contrast(${opts.contrast}) brightness(${opts.brightness})`;
     ctx.drawImage(originalImage, 0, 0, w, h);
     ctx.filter = 'none';

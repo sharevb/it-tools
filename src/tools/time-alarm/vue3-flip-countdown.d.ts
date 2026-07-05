@@ -1,3 +1,3 @@
-declare module 'vue3-flip-countdown' {
-  export function Countdown(): any;
+declare module "vue3-flip-countdown" {
+    export function Countdown(): any;
 }

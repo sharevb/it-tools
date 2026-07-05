@@ -5,7 +5,7 @@ import { useLocalStorage } from '@vueuse/core';
 
 const { t } = useI18n();
 
-const options = useLocalStorage<{ label: string, value: string }[]>('gitattr-gen:opts2', []);
+const options = useLocalStorage<{ label: string; value: string }[]>('gitattr-gen:opts2', []);
 const selected = ref<string[]>([]);
 const output = ref<string>('');
 

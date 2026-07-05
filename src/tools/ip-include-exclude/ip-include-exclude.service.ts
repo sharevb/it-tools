@@ -19,8 +19,7 @@ export function substractCIDRs(
   {
     allowedRanges: string
     disallowedRanges: string
-  },
-) {
+  }) {
   try {
     const allowedRangesMatchMasks = allowedRanges.split(/\s*[,;|]+\s*/g) // NOSONAR
       .filter(range => range)

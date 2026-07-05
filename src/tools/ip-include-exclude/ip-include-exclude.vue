@@ -11,8 +11,7 @@ const allowedRanges = useQueryParamOrStorage({ name: 'allow', storageName: 'ip-i
 const disallowedRanges = useQueryParamOrStorage({ name: 'disallow', storageName: 'ip-inc-exc:disallow', defaultValue: '192.168.0.6' }); // NOSONAR
 
 const result = computed(() => substractCIDRs({
-  allowedRanges: allowedRanges.value,
-  disallowedRanges: disallowedRanges.value,
+  allowedRanges: allowedRanges.value, disallowedRanges: disallowedRanges.value,
 }));
 </script>
 

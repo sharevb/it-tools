@@ -4,7 +4,7 @@ import { diff } from '../json-diff.models';
 import { DiffRootViewer } from './diff-viewer.models';
 import { useAppTheme } from '@/ui/theme/themes';
 
-const props = defineProps<{ leftJson: unknown, rightJson: unknown }>();
+const props = defineProps<{ leftJson: unknown; rightJson: unknown }>();
 const onlyShowDifferences = ref(false);
 const { leftJson, rightJson } = toRefs(props);
 const appTheme = useAppTheme();

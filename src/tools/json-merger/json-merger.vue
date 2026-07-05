@@ -15,8 +15,7 @@ const merged = computed(() => {
         JSON.parseBigNum(json1.value),
         JSON.parseBigNum(json2.value),
       ),
-      null,
-      2,
+      null, 2,
     );
   }
   catch (e: any) {

@@ -142,6 +142,7 @@ export default defineConfig({
       '@noble/ciphers/aes': '@noble/ciphers/aes.js',
       '@noble/ciphers/chacha': '@noble/ciphers/chacha.js',
       '@noble/ciphers/utils': '@noble/ciphers/utils.js',
+      'svgo': 'svgo/browser',
       'node:fs/promises': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'node:fs': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'fs/promises': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),

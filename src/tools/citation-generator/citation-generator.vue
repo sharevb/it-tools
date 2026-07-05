@@ -24,7 +24,8 @@ const formattedCitation = computed(() => {
     if (!citationData.value.title
       || !citationData.value.publisher
       || !citationData.value.year
-      || !authors.length) { return '### Please fill Title, Publisher, Year and authors'; }
+      || !authors.length
+    ) { return '### Please fill Title, Publisher, Year and authors'; }
 
     const citationInData = {
       authors,

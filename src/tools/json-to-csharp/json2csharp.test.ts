@@ -435,12 +435,7 @@ public class Root
 
   it('should handle all types', () => {
     const json = JSON.stringify({
-      id: 1,
-      date: '2025-06-09',
-      amount: 1.4,
-      group: null,
-      active: true,
-      email: 'test@example.com',
+      id: 1, date: '2025-06-09', amount: 1.4, group: null, active: true, email: 'test@example.com',
     });
     const result = cleanTabs(json2csharp({ src: json }));
 

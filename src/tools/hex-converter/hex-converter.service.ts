@@ -43,7 +43,7 @@ function mergeModelAndObject(model: Record<string, any>, object: Record<string, 
   const merged: Record<string, any> = {};
 
   for (const key in model) {
-    if (Object.hasOwn(model, key)) {
+    if (Object.prototype.hasOwnProperty.call(model, key)) {
       if (Array.isArray(object[key])) {
         merged[key] = [model[key], object[key].map(parseNumber)];
       }
@@ -120,13 +120,13 @@ export function getCoderFromTypeName(typeName: string): CoderOption {
   };
 }
 
-export function decodeStruct({ struct, hexArray }: { struct: object, hexArray: Uint8Array }) {
+export function decodeStruct({ struct, hexArray }: { struct: object; hexArray: Uint8Array }) {
   let offset = 0;
   const readMember = (obj: any) => {
     const result: Record<string, any> = {};
 
     for (const key in obj) {
-      if (Object.hasOwn(obj, key)) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
         if (Array.isArray(obj[key])) {
           throw new TypeError(t('tools.hex-converter.service.text.cannot-decode-a-struct-with-array-key-key-must-be-expressed-as-string-with-fixed-length', [key]));
         }
@@ -159,13 +159,13 @@ export function decodeStruct({ struct, hexArray }: { struct: object, hexArray: U
   return readMember(struct);
 }
 
-export function encodeStruct({ struct, jsonObject }: { struct: object, jsonObject: object }): Uint8Array {
+export function encodeStruct({ struct, jsonObject }: { struct: object; jsonObject: object }): Uint8Array {
   const mergedObject = mergeModelAndObject(struct, jsonObject);
 
   let buffer: Array<number> = [];
   const writeMember = (obj: any) => {
     for (const key in obj) {
-      if (Object.hasOwn(obj, key)) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
         if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
           writeMember(obj[key]);
         }

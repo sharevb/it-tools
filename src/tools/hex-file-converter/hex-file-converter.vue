@@ -25,8 +25,7 @@ const { download } = useDownloadFileFromBase64(
     source: base64Input,
     filename: fileName,
     extension: fileExtension,
-  },
-);
+  });
 
 function downloadFile() {
   try {

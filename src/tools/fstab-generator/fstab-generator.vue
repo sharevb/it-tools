@@ -14,25 +14,8 @@ const username = ref('');
 const password = ref('');
 
 const fileSystems = [
-  'auto',
-  'ext2',
-  'ext3',
-  'ext4',
-  'xfs',
-  'btrfs',
-  'jfs',
-  'reiserfs',
-  'nfs',
-  'cifs',
-  'smbfs',
-  'tmpfs',
-  'devtmpfs',
-  'overlay',
-  'aufs',
-  'iso9660',
-  'udf',
-  'vfat',
-  'ntfs',
+  'auto', 'ext2', 'ext3', 'ext4', 'xfs', 'btrfs', 'jfs', 'reiserfs', 'nfs', 'cifs', 'smbfs',
+  'tmpfs', 'devtmpfs', 'overlay', 'aufs', 'iso9660', 'udf', 'vfat', 'ntfs',
   'swap',
 ];
 
@@ -103,8 +86,7 @@ const fstabLine = computed(
       allOptions.push('defaults');
     }
     return `${device.value} ${mountPoint.value} ${fsType.value} ${allOptions.join(',')} ${dump.value} ${pass.value}`;
-  },
-);
+  });
 </script>
 
 <template>

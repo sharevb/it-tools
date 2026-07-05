@@ -12,7 +12,7 @@ const inputBase = useQueryParam({ tool: 'int-to-ip', name: 'base', defaultValue:
 
 const hasInputNumberPrefix = computed(() => hasNumberPrefix(input.value));
 
-function convertToIP({ value, fromBase, version }: { value: string, fromBase: number, version: 6 | 4 }): string {
+function convertToIP({ value, fromBase, version }: { value: string; fromBase: number; version: 6 | 4 }): string {
   try {
     return stringifyIp({
       number: BigInt(convertBase({

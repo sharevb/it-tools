@@ -101,7 +101,8 @@ export async function convertToSVG(
   let svgString = '';
   if (svgElem) {
     svgString = new XMLSerializer().serializeToString(svgElem);
-    svgString = svgString.replace(/<svg[^>]*>/, `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${canvasElem.width}" height="${canvasElem.height}" viewBox="0 0 ${canvasElem.width} ${canvasElem.height}" version="1.1">`);
+    svgString = svgString.replace(/<svg[^>]*>/,
+      `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${canvasElem.width}" height="${canvasElem.height}" viewBox="0 0 ${canvasElem.width} ${canvasElem.height}" version="1.1">`);
     converter.free();
     svgElem.remove();
     canvasElem.remove();

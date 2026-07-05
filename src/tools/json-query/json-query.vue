@@ -11,9 +11,7 @@ const { t } = useI18n();
 const indent = 2;
 
 const jsonQuery = useQueryParam({
-  tool: 'json-query',
-  name: 'q',
-  defaultValue: `
+  tool: 'json-query', name: 'q', defaultValue: `
   .friends 
     | filter(.city == "New York") 
     | sort(.age) 

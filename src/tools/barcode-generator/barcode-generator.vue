@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import bwipjs from 'bwip-js/browser';
-import type { RenderOptions } from 'bwip-js/browser';
+import bwipjs, { type RenderOptions } from 'bwip-js/browser';
 import { Base64 } from 'js-base64';
 import formats from './barcode.formats.json';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
@@ -61,7 +60,7 @@ const barcodeSVG = computed(() => {
 const { download: downloadPNG } = useDownloadFileFromBase64({ source: barcodePNG, filename: 'barcode.png' });
 const { download: downloadSVG } = useDownloadFileFromBase64({ source: barcodeSVG, filename: 'barcode.svg' });
 
-const barcodeFormats = formats as { value: string, label: string }[];
+const barcodeFormats = formats as { value: string; label: string }[];
 </script>
 
 <template>

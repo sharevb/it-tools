@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const formData = ref({
   domainName: '',
-  redirects: [] as { key: string, value: string }[],
+  redirects: [] as { key: string; value: string }[],
   cacheExtensions: '',
   cacheDuration: 60,
   cacheDurationMultiple: '60',
@@ -15,8 +15,8 @@ const formData = ref({
   referrer: '',
   hotlinkExtensions: '',
   nohotlinkImageHref: '',
-  errorPages: [] as { key: string, value: string }[],
-  ipRules: [] as { key: string, value: string }[],
+  errorPages: [] as { key: string; value: string }[],
+  ipRules: [] as { key: string; value: string }[],
   blockBots: false,
   defaultPage: '',
   preventDirectoryListing: false,

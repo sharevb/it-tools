@@ -39,18 +39,8 @@ const notationToNumberResult = ref(0);
 const notationToNumberError = ref('');
 
 const validColors = [
-  'black',
-  'brown',
-  'red',
-  'orange',
-  'yellow',
-  'green',
-  'blue',
-  'violet',
-  'gray',
-  'white',
-  'gold',
-  'silver',
+  'black', 'brown', 'red', 'orange', 'yellow', 'green',
+  'blue', 'violet', 'gray', 'white', 'gold', 'silver',
 ];
 
 function validateBands(bands: string[], count: number) {

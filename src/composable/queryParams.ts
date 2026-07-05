@@ -1,10 +1,9 @@
 import { useRouteQuery } from '@vueuse/router';
-import { computed, getCurrentInstance } from 'vue';
-import type { MaybeRef } from 'vue';
-import { get, useStorage } from '@vueuse/core';
-import type { RemovableRef, StorageLike, UseStorageOptions } from '@vueuse/core';
+import { type MaybeRef, computed } from 'vue';
+import { type RemovableRef, type StorageLike, type UseStorageOptions, get, useStorage } from '@vueuse/core';
+import { getCurrentInstance } from 'vue';
 
-export { getITToolsSetting, useITStorage, useQueryParam, useQueryParamOrStorage };
+export { useQueryParam, useQueryParamOrStorage, useITStorage, getITToolsSetting };
 
 const transformers = {
   number: {
@@ -27,7 +26,7 @@ const transformers = {
   },
 };
 
-function useQueryParam<T>({ tool, name, defaultValue }: { tool: string, name: string, defaultValue: T }): RemovableRef<T> {
+function useQueryParam<T>({ tool, name, defaultValue }: { tool: string; name: string; defaultValue: T }): RemovableRef<T> {
   const type = typeof defaultValue;
   const transformer = transformers[type as keyof typeof transformers] ?? transformers.string;
   const defaultValueOrSetting = getITToolsSetting(`${tool}:${name}`, defaultValue);
@@ -44,7 +43,7 @@ function useQueryParam<T>({ tool, name, defaultValue }: { tool: string, name: st
   });
 }
 
-function useQueryParamOrStorage<T>({ name, storageName, defaultValue }: { name: string, storageName: string, defaultValue: T }) {
+function useQueryParamOrStorage<T>({ name, storageName, defaultValue }: { name: string; storageName: string; defaultValue: T }) {
   const type = typeof defaultValue;
   const transformer = transformers[type as keyof typeof transformers] ?? transformers.string;
 
@@ -56,10 +55,12 @@ function useQueryParamOrStorage<T>({ name, storageName, defaultValue }: { name: 
 
   const r = isRef(defaultValueOrSetting) ? defaultValueOrSetting as Ref<T> : ref(get(defaultValueOrSetting));
 
-  watch(r, (value) => {
-    proxy.value = transformer.toQuery(value as never);
-    storageRef.value = value as never;
-  }, { deep: true });
+  watch(r,
+    (value) => {
+      proxy.value = transformer.toQuery(value as never);
+      storageRef.value = value as never;
+    },
+    { deep: true });
 
   r.value = (proxy.value && proxy.value !== proxyDefaultValue
     ? transformer.fromQuery(proxy.value) as unknown as T

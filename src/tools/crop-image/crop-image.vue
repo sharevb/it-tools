@@ -489,7 +489,7 @@ function exportImage() {
               <n-form-item v-if="aspectRatio === 'free'" :label="t('tools.crop-image.texts.custom-ratio')">
                 <div w-full flex items-center gap-3>
                   <n-input-number v-model:value="customRatioWidth" :min="1" placeholder="W" class="flex-1" />
-                  <span text-gray-400 font-bold>:</span>
+                  <span font-bold text-gray-400>:</span>
                   <n-input-number v-model:value="customRatioHeight" :min="1" placeholder="H" class="flex-1" />
                 </div>
               </n-form-item>

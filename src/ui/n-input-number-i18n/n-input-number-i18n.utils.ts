@@ -10,19 +10,19 @@ export function countChar(str: string, char: string) {
 export function parseNumber(value: string) {
   if (
     value === undefined
-    || value === null
-    || (typeof value === 'string' && value.trim() === '')
+        || value === null
+        || (typeof value === 'string' && value.trim() === '')
   ) {
     return null;
   }
-  let cleanedValue = value.replace(/[^,.\d-]/g, '');
+  let cleanedValue = value.replace(/[^,\.\d-]/g, '');
   if (countChar(cleanedValue, ',') > 1) {
     cleanedValue = cleanedValue.replace(/,/g, '');
   }
   if (countChar(cleanedValue, '.') > 1) {
     cleanedValue = cleanedValue.replace(/\./g, '');
   }
-  const parts = cleanedValue.split(/[,.]/);
+  const parts = cleanedValue.split(/[,\.]/);
   if (parts.length === 1) {
     return Number(cleanedValue);
   }

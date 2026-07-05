@@ -41,19 +41,8 @@ const props = withDefaults(
 );
 
 const {
-  transformer,
-  inputValidationRules,
-  inputLabel,
-  outputLabel,
-  outputLanguage,
-  inputPlaceholder,
-  inputDefault,
-  downloadFileName,
-  downloadButtonText,
-  rows,
-  inputLineNumbers,
-  inputMaxRows,
-  inputAutosize,
+  transformer, inputValidationRules, inputLabel, outputLabel, outputLanguage,
+  inputPlaceholder, inputDefault, downloadFileName, downloadButtonText, rows, inputLineNumbers, inputMaxRows, inputAutosize,
 } = toRefs(props);
 
 const appTheme = useAppTheme();
@@ -169,8 +158,7 @@ const { download } = useDownloadFileFromBase64(
   {
     source: outputBase64,
     filename: downloadFileName,
-  },
-);
+  });
 </script>
 
 <template>

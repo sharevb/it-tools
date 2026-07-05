@@ -1,16 +1,16 @@
-import type { ArrayDifference, Difference, ObjectDifference } from '../json-diff.types';
 import _ from 'lodash';
+import type { ArrayDifference, Difference, ObjectDifference } from '../json-diff.types';
 import { useCopy } from '@/composable/copy';
 
 export function DiffRootViewer({ diff }: { diff: Difference }) {
   return (
-    <div class="diffs-viewer">
+    <div class={'diffs-viewer'}>
       <ul>{DiffViewer({ diff, showKeys: false })}</ul>
     </div>
   );
 }
 
-function DiffViewer({ diff, showKeys = true }: { diff: Difference, showKeys?: boolean }) {
+function DiffViewer({ diff, showKeys = true }: { diff: Difference; showKeys?: boolean }) {
   const { type, status } = diff;
 
   if (status === 'updated') {
@@ -28,7 +28,7 @@ function DiffViewer({ diff, showKeys = true }: { diff: Difference, showKeys?: bo
   return LineDiffViewer({ diff, showKeys });
 }
 
-function LineDiffViewer({ diff, showKeys }: { diff: Difference, showKeys?: boolean }) {
+function LineDiffViewer({ diff, showKeys }: { diff: Difference; showKeys?: boolean }) {
   const { value, key, status, oldValue } = diff;
   const valueToDisplay = status === 'removed' ? oldValue : value;
 
@@ -37,7 +37,7 @@ function LineDiffViewer({ diff, showKeys }: { diff: Difference, showKeys?: boole
       <span class={[status, 'result']}>
         {showKeys && (
           <>
-            <span class="key">{key}</span>
+            <span class={'key'}>{key}</span>
             {': '}
           </>
         )}
@@ -48,20 +48,19 @@ function LineDiffViewer({ diff, showKeys }: { diff: Difference, showKeys?: boole
   );
 }
 
-function ComparisonViewer({ diff, showKeys }: { diff: Difference, showKeys?: boolean }) {
+function ComparisonViewer({ diff, showKeys }: { diff: Difference; showKeys?: boolean }) {
   const { value, key, oldValue } = diff;
 
   return (
-    <li class="updated-line">
+    <li class={'updated-line'}>
       {showKeys && (
         <>
-          <span class="key">{key}</span>
+          <span class={'key'}>{key}</span>
           {': '}
         </>
       )}
       {Value({ value: oldValue, status: 'removed' })}
-      {Value({ value, status: 'added' })}
-      ,
+      {Value({ value, status: 'added' })},
     </li>
   );
 }
@@ -86,7 +85,7 @@ function ChildrenViewer({
       <div class={[type, status]} style={{ display: 'inline-block' }}>
         {showKeys && (
           <>
-            <span class="key">{key}</span>
+            <span class={'key'}>{key}</span>
             {': '}
           </>
         )}
@@ -108,7 +107,7 @@ function formatValue(value: unknown) {
   return JSON.stringify(value, null, 8);
 }
 
-function Value({ value, status }: { value: unknown, status: string }) {
+function Value({ value, status }: { value: unknown; status: string }) {
   const formatedValue = formatValue(value);
 
   const { copy } = useCopy({ source: formatedValue });

@@ -48,7 +48,8 @@ const defaultOptions: GenerateTreeOptions = {
  * @param structure The FileStructure object to convert into ASCII
  * @param options The rendering options
  */
-export function generateTree(structure: FileStructure, options?: GenerateTreeOptions): string {
+export function generateTree(structure: FileStructure,
+  options?: GenerateTreeOptions): string {
   return flattenDeep([
     getAsciiLine(structure, defaultsDeep({}, options, defaultOptions)),
     structure.children.map(c => generateTree(c, options)) as RecursiveArray<
@@ -67,7 +68,8 @@ export function generateTree(structure: FileStructure, options?: GenerateTreeOpt
  * @param structure The file to render
  * @param options The rendering options
  */
-function getAsciiLine(structure: FileStructure, options: GenerateTreeOptions): string | null {
+function getAsciiLine(structure: FileStructure,
+  options: GenerateTreeOptions): string | null {
   const lines = LINE_STRINGS[options.charset as string];
 
   // Special case for the root element
@@ -97,7 +99,8 @@ function getAsciiLine(structure: FileStructure, options: GenerateTreeOptions): s
  * @param structure The file or folder to get the name of
  * @param options The rendering options
  */
-function getName(structure: FileStructure, options: GenerateTreeOptions): string {
+function getName(structure: FileStructure,
+  options: GenerateTreeOptions): string {
   const nameChunks = [structure.name];
 
   // Optionally append a trailing slash

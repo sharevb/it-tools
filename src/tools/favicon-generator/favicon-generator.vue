@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { UploadFileInfo } from 'naive-ui';
-import { decodeImage, encodeIcoImages, Transform } from 'image-in-browser';
-import JSZip from 'jszip';
 import { useI18n } from 'vue-i18n';
+import type { UploadFileInfo } from 'naive-ui';
+import JSZip from 'jszip';
+import { Transform, decodeImage, encodeIcoImages } from 'image-in-browser';
 
 const { t } = useI18n();
 
@@ -29,7 +29,7 @@ async function generateIcon(file: File) {
   });
 }
 
-const previews = ref<Array<{ size: number, dataUrl: string }>>([]);
+const previews = ref<Array<{ size: number; dataUrl: string }>>([]);
 const headTags = ref('');
 const zipBlob = ref<Blob | null>(null);
 const canDownload = ref(false);

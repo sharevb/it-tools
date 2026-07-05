@@ -50,7 +50,7 @@ function start() {
   now.value = moment();
   status.value = 'running';
   const histoEntry = alarmAt.value;
-  if (!history.value.some(h => h === histoEntry)) {
+  if (!history.value.find(h => h === histoEntry)) {
     history.value = [histoEntry, ...history.value];
   }
 }

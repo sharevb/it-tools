@@ -1,8 +1,6 @@
-import { Validator } from 'jsonschema';
-import type { Schema } from 'jsonschema';
+import { type Schema, Validator } from 'jsonschema';
 import { isRef, onBeforeMount, ref, watch } from 'vue';
-import { get } from '@vueuse/core';
-import type { MaybeRef } from '@vueuse/core';
+import { type MaybeRef, get } from '@vueuse/core';
 
 export interface SchemaStore {
   name: string
@@ -12,14 +10,14 @@ export interface SchemaStore {
   versions?: string[]
 }
 
-export function useJsonSchemaValidation({ json, schemaUrl, schemaData }: { json: MaybeRef<string>, schemaUrl: MaybeRef<string>, schemaData: MaybeRef<string> }) {
+export function useJsonSchemaValidation({ json, schemaUrl, schemaData }: { json: MaybeRef<string>; schemaUrl: MaybeRef<string>; schemaData: MaybeRef<string> }) {
   const schemas = ref<SchemaStore[]>([]);
   const schema = ref<Schema | null>(null);
   const errors = ref<string[]>([]);
 
   onBeforeMount(async () => {
     const catalog = await fetch('https://www.schemastore.org/api/json/catalog.json');
-    const catalogJson: { $schemaUrl: string, schemas: SchemaStore[], version: number } = await catalog.json();
+    const catalogJson: { $schemaUrl: string; schemas: SchemaStore[]; version: number } = await catalog.json();
     schemas.value = catalogJson.schemas;
   });
 

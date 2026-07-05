@@ -50,7 +50,7 @@ const defaultRegex = [
     // Redact signature on JWTs
     {
       regex: new RegExp(
-        '\\b(ey[\\w-=]+)\\.(ey[\\w-=]+)\\.[\\w-.+/=]+\\b',
+        '\\b(ey[A-Za-z0-9-_=]+)\\.(ey[A-Za-z0-9-_=]+)\\.[A-Za-z0-9-_.+/=]+\\b',
         'g',
       ),
       replacement: '$1.$2.redacted',
@@ -76,8 +76,8 @@ function buildRegex(word: string) {
     // }
     {
       regex: new RegExp(
-        `("name": "${word}",[\\s\\w+:"-\\%!*()\`~'.,#]*?"value": ")((?:\\\\"|[^"])*?)(")`,
-        'g',
+    `("name": "${word}",[\\s\\w+:"-\\%!*()\`~'.,#]*?"value": ")((?:\\\\"|[^"])*?)(")`,
+    'g',
       ),
       replacement: `$1[${word} redacted]$3`,
     },
@@ -89,8 +89,8 @@ function buildRegex(word: string) {
     // }
     {
       regex: new RegExp(
-        `("value": ")([\\w+-_:&+=#$~/()\\\\.\\,*!|%"\\s;]+)("[,\\s}}]+)([\\s\\w+:"-\\\\%!*\`()~'#.]*"name": "${word}")`,
-        'g',
+    `("value": ")([\\w+-_:&+=#$~/()\\\\.\\,*!|%"\\s;]+)("[,\\s}}]+)([\\s\\w+:"-\\\\%!*\`()~'#.]*"name": "${word}")`,
+    'g',
       ),
       replacement: `$1[${word} redacted]$3$4`,
     },
@@ -203,10 +203,10 @@ export function sanitize(input: string, options?: SanitizeOptions) {
   let possibleScrubItems: PossibleScrubItems | undefined;
   if (
     options?.allCookies
-    || options?.allHeaders
-    || options?.allMimeTypes
-    || options?.allQueryArgs
-    || options?.allPostParams
+  || options?.allHeaders
+  || options?.allMimeTypes
+  || options?.allQueryArgs
+  || options?.allPostParams
   ) {
     // we have to parse the HAR to get the full list of things we could scrub
     possibleScrubItems = getHarInfo(input);

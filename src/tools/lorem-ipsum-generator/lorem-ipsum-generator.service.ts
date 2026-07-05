@@ -9,8 +9,7 @@ const firstSentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 export function getSupportedLanguages() {
   return _.union(
     _.flatten(_.chain(languageLorems).map(l => l.languages).value()),
-    ['Japanese', 'Chinese'],
-  )
+    ['Japanese', 'Chinese'])
     .sort();
 }
 

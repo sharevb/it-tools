@@ -61,7 +61,7 @@ const results = computed(() => {
 
 const sample = computed(() => {
   try {
-    const randexp = new RandExp(new RegExp(regex.value.replace(/\(\?<[^>]*>/g, '(?:')));
+    const randexp = new RandExp(new RegExp(regex.value.replace(/\(\?\<[^\>]*\>/g, '(?:')));
     return randexp.gen();
   }
   catch (_) {

@@ -27,7 +27,7 @@ watchEffect(() => {
     cleanedStackTrace = JSON.parse(stackTrace.value);
   }
   catch (_) {
-    cleanedStackTrace = stackTrace.value.replace(/(\\r)?\\n/g, '\n').replace(/^['"]|['"]$/, '');
+    cleanedStackTrace = stackTrace.value.replace(/(\\r)?\\n/g, '\n').replace(/(?:^['"])|(?:['"]$)/, '');
   };
   try {
     if (stackType.value === 'js') {

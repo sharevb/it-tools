@@ -1,13 +1,13 @@
 declare module 'composeverter' {
   interface Configuration {
-    expandVolumes?: boolean
-    expandPorts?: boolean
-    indent?: number
+    expandVolumes?: boolean;
+    expandPorts?: boolean;
+    indent?: number;
   }
   interface DockerComposeValidatioError {
-    line?: number
-    message: string
-    helpLink?: string
+    line?: number;
+    message: string;
+    helpLink?: string;
   }
   export function validateDockerComposeToCommonSpec(content: string): DockerComposeValidatioError[];
   export function migrateFromV2xToV3x(content: string, configuration?: Configuration = null): string;

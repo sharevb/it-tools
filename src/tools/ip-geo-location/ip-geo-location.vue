@@ -8,7 +8,7 @@ const { t } = useI18n();
 const ip = useQueryParam({ tool: 'ip-geo-loc', name: 'ip', defaultValue: '8.8.8.8' });
 const errorMessage = ref('');
 
-const fields: Array<{ field: string, name: string }> = [
+const fields: Array<{ field: string; name: string }> = [
   { field: 'ip', name: 'IP' },
   { field: 'hostname', name: 'Host Name' },
   { field: 'country', name: 'Country Code' },
@@ -41,8 +41,7 @@ async function onGetInfos() {
     const geoInfoQueryResponse = await fetch(
       token.value !== ''
         ? `//ipinfo.io/${ip.value}/json?token=${token.value}`
-        : `//ipinfo.io/${ip.value}/json`,
-    );
+        : `//ipinfo.io/${ip.value}/json`);
     if (!geoInfoQueryResponse.ok) {
       throw geoInfoQueryResponse.statusText;
     }

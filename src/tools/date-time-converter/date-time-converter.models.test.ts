@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import {
   dateToExcelFormat,
   dateToLDAPTimestamp,
@@ -16,8 +16,8 @@ import {
   isRFC7231DateString,
   isTimestamp,
   isTimestampMicroSeconds,
-  isUnixTimestamp,
   isUTCDateString,
+  isUnixTimestamp,
   isWin32FileTime,
   lDAPTimestampToDate,
   toJSDate,
@@ -26,7 +26,7 @@ import {
 
 describe('date-time-converter models', () => {
   describe('isISO8601DateTimeString', () => {
-    it('should return true for valid ISO 8601 date strings', () => {
+    test('should return true for valid ISO 8601 date strings', () => {
       expect(isISO8601DateTimeString('2021-01-01T00:00:00.000Z')).toBe(true);
       expect(isISO8601DateTimeString('2023-04-12T14:56:00+01:00')).toBe(true);
       expect(isISO8601DateTimeString('20230412T145600+0100')).toBe(true);
@@ -35,7 +35,7 @@ describe('date-time-converter models', () => {
       expect(isISO8601DateTimeString('2016')).toBe(true);
     });
 
-    it('should return false for invalid ISO 8601 date strings', () => {
+    test('should return false for invalid ISO 8601 date strings', () => {
       expect(isISO8601DateTimeString()).toBe(false);
       expect(isISO8601DateTimeString('')).toBe(false);
       expect(isISO8601DateTimeString('qsdqsd')).toBe(false);
@@ -45,14 +45,14 @@ describe('date-time-converter models', () => {
   });
 
   describe('isISO9075DateString', () => {
-    it('should return true for valid ISO 9075 date strings', () => {
+    test('should return true for valid ISO 9075 date strings', () => {
       expect(isISO9075DateString('2022-01-01 12:00:00Z')).toBe(true);
       expect(isISO9075DateString('2022-01-01 12:00:00.123456Z')).toBe(true);
       expect(isISO9075DateString('2022-01-01 12:00:00+01:00')).toBe(true);
       expect(isISO9075DateString('2022-01-01 12:00:00-05:00')).toBe(true);
     });
 
-    it('should return false for invalid ISO 9075 date strings', () => {
+    test('should return false for invalid ISO 9075 date strings', () => {
       expect(isISO9075DateString('2022/01/01T12:00:00Z')).toBe(false);
       expect(isISO9075DateString('2022-01-01 12:00:00.123456789Z')).toBe(false);
       expect(isISO9075DateString('2022-01-01 12:00:00+1:00')).toBe(false);
@@ -65,14 +65,14 @@ describe('date-time-converter models', () => {
   });
 
   describe('isRFC3339DateString', () => {
-    it('should return true for valid RFC 3339 date strings', () => {
+    test('should return true for valid RFC 3339 date strings', () => {
       expect(isRFC3339DateString('2022-01-01T12:00:00Z')).toBe(true);
       expect(isRFC3339DateString('2022-01-01T12:00:00.123456789Z')).toBe(true);
       expect(isRFC3339DateString('2022-01-01T12:00:00.123456789+01:00')).toBe(true);
       expect(isRFC3339DateString('2022-01-01T12:00:00-05:00')).toBe(true);
     });
 
-    it('should return false for invalid RFC 3339 date strings', () => {
+    test('should return false for invalid RFC 3339 date strings', () => {
       expect(isRFC3339DateString('2022/01/01T12:00:00Z')).toBe(false);
       expect(isRFC3339DateString('2022-01-01T12:00:00.123456789+1:00')).toBe(false);
       expect(isRFC3339DateString('2022-01-01T12:00:00-05:')).toBe(false);
@@ -84,12 +84,12 @@ describe('date-time-converter models', () => {
   });
 
   describe('isRFC7231DateString', () => {
-    it('should return true for valid RFC 7231 date strings', () => {
+    test('should return true for valid RFC 7231 date strings', () => {
       expect(isRFC7231DateString('Sun, 06 Nov 1994 08:49:37 GMT')).toBe(true);
       expect(isRFC7231DateString('Tue, 22 Apr 2014 07:00:00 GMT')).toBe(true);
     });
 
-    it('should return false for invalid RFC 7231 date strings', () => {
+    test('should return false for invalid RFC 7231 date strings', () => {
       expect(isRFC7231DateString('06 Nov 1994 08:49:37 GMT')).toBe(false);
       expect(isRFC7231DateString('Sun, 06 Nov 94 08:49:37 GMT')).toBe(false);
       expect(isRFC7231DateString('Sun, 06 Nov 1994 8:49:37 GMT')).toBe(false);
@@ -101,24 +101,24 @@ describe('date-time-converter models', () => {
   });
 
   describe('isUnixTimestamp', () => {
-    it('should return true for valid Unix timestamps', () => {
+    test('should return true for valid Unix timestamps', () => {
       expect(isUnixTimestamp('1649789394')).toBe(true);
       expect(isUnixTimestamp('1234567890')).toBe(true);
       expect(isUnixTimestamp('0')).toBe(true);
     });
 
-    it('should return false for invalid Unix timestamps', () => {
+    test('should return false for invalid Unix timestamps', () => {
       expect(isUnixTimestamp('foo')).toBe(false);
       expect(isUnixTimestamp('')).toBe(false);
     });
   });
 
   describe('isWin32FileTime', () => {
-    it('should return true for valid Win32 file time', () => {
+    test('should return true for valid Win32 file time', () => {
       expect(isWin32FileTime('131461446367662144')).toBe(true);
     });
 
-    it('should return false for invalid Win32 file time', () => {
+    test('should return false for invalid Win32 file time', () => {
       expect(isWin32FileTime('92233720368547758071')).toBe(false); // too big
       expect(isWin32FileTime('foo')).toBe(false);
       expect(isWin32FileTime('')).toBe(false);
@@ -126,75 +126,75 @@ describe('date-time-converter models', () => {
   });
 
   describe('isLDAPTimestamp', () => {
-    it('should return true for valid LDAP timestamps', () => {
+    test('should return true for valid LDAP timestamps', () => {
       expect(isLDAPTimestamp('20250309122345Z')).toBe(true);
     });
 
-    it('should return false for invalid LDAP timestamps', () => {
+    test('should return false for invalid LDAP timestamps', () => {
       expect(isLDAPTimestamp('foo')).toBe(false);
       expect(isLDAPTimestamp('')).toBe(false);
     });
   });
 
   describe('isTimestamp', () => {
-    it('should return true for valid Unix timestamps in milliseconds', () => {
+    test('should return true for valid Unix timestamps in milliseconds', () => {
       expect(isTimestamp('1649792026123')).toBe(true);
       expect(isTimestamp('1234567890000')).toBe(true);
       expect(isTimestamp('0')).toBe(true);
     });
 
-    it('should return false for invalid Unix timestamps in milliseconds', () => {
+    test('should return false for invalid Unix timestamps in milliseconds', () => {
       expect(isTimestamp('foo')).toBe(false);
       expect(isTimestamp('')).toBe(false);
     });
 
-    it('should return true for valid Unix timestamps in microseconds', () => {
+    test('should return true for valid Unix timestamps in microseconds', () => {
       expect(isTimestamp('1701227351995845')).toBe(true);
     });
 
-    it('should return false for invalid Unix timestamps in microseconds', () => {
+    test('should return false for invalid Unix timestamps in microseconds', () => {
       expect(isTimestamp('170122735199584')).toBe(false);
       expect(isTimestamp('17012273519958')).toBe(false);
     });
   });
 
   describe('isTimestampMicroSeconds', () => {
-    it('should return true for valid Unix timestamps in microseconds', () => {
+    test('should return true for valid Unix timestamps in microseconds', () => {
       expect(isTimestampMicroSeconds('1649792026123123')).toBe(true);
       expect(isTimestampMicroSeconds('1701227351995845')).toBe(true);
     });
 
-    it('should return false for invalid Unix timestamps in microseconds', () => {
+    test('should return false for invalid Unix timestamps in microseconds', () => {
       expect(isTimestampMicroSeconds('foo')).toBe(false);
       expect(isTimestampMicroSeconds('')).toBe(false);
     });
 
-    it('should return false for invalid Unix timestamps not in microseconds', () => {
+    test('should return false for invalid Unix timestamps not in microseconds', () => {
       expect(isTimestampMicroSeconds('170122735199584')).toBe(false);
       expect(isTimestampMicroSeconds('17012273519958')).toBe(false);
     });
   });
 
   describe('fromTimestamp', () => {
-    it('should return valid Date for valid Unix timestamps in microseconds', () => {
+    test('should return valid Date for valid Unix timestamps in microseconds', () => {
       expect(fromTimestamp('1649792026123123').toString()).toBe(new Date(1649792026123).toString());
       expect(fromTimestamp('1701227351995845').toString()).toBe(new Date(1701227351995).toString());
       expect(fromTimestamp('0').toString()).toBe(new Date(0).toString());
     });
 
-    it('should return Date(0) for invalid Unix timestamps not in microseconds', () => {
+    test('should return Date(0) for invalid Unix timestamps not in microseconds', () => {
       expect(fromTimestamp('170122735199584').toString()).toBe(new Date(0).toString());
       expect(fromTimestamp('17012273519958').toString()).toBe(new Date(0).toString());
     });
   });
 
   describe('isUTCDateString', () => {
-    it('should return true for valid UTC date strings', () => {
+    test('should return true for valid UTC date strings', () => {
       expect(isUTCDateString('Sun, 06 Nov 1994 08:49:37 GMT')).toBe(true);
       expect(isUTCDateString('Tue, 22 Apr 2014 07:00:00 GMT')).toBe(true);
     });
 
-    it('should return false for invalid UTC date strings', () => {
+    test('should return false for invalid UTC date strings', () => {
       expect(isUTCDateString('06 Nov 1994 08:49:37 GMT')).toBe(false);
       expect(isUTCDateString('16497920261')).toBe(false);
       expect(isUTCDateString('foo')).toBe(false);
@@ -203,12 +203,12 @@ describe('date-time-converter models', () => {
   });
 
   describe('isMongoObjectId', () => {
-    it('should return true for valid Mongo ObjectIds', () => {
+    test('should return true for valid Mongo ObjectIds', () => {
       expect(isMongoObjectId('507f1f77bcf86cd799439011')).toBe(true);
       expect(isMongoObjectId('507f1f77bcf86cd799439012')).toBe(true);
     });
 
-    it('should return false for invalid Mongo ObjectIds', () => {
+    test('should return false for invalid Mongo ObjectIds', () => {
       expect(isMongoObjectId('507f1f77bcf86cd79943901')).toBe(false);
       expect(isMongoObjectId('507f1f77bcf86cd79943901z')).toBe(false);
       expect(isMongoObjectId('foo')).toBe(false);
@@ -217,7 +217,7 @@ describe('date-time-converter models', () => {
   });
 
   describe('isExcelFormat', () => {
-    it('an Excel format string is a floating number that can be negative', () => {
+    test('an Excel format string is a floating number that can be negative', () => {
       expect(isExcelFormat('0')).toBe(true);
       expect(isExcelFormat('1')).toBe(true);
       expect(isExcelFormat('1.1')).toBe(true);
@@ -231,7 +231,7 @@ describe('date-time-converter models', () => {
   });
 
   describe('dateToExcelFormat', () => {
-    it('a date in Excel format is the number of days since 01/01/1900', () => {
+    test('a date in Excel format is the number of days since 01/01/1900', () => {
       expect(dateToExcelFormat(new Date('2016-05-20T00:00:00.000Z'))).toBe('42510');
       expect(dateToExcelFormat(new Date('2016-05-20T12:00:00.000Z'))).toBe('42510.5');
       expect(dateToExcelFormat(new Date('2023-10-31T09:26:06.421Z'))).toBe('45230.39312987268');
@@ -241,7 +241,7 @@ describe('date-time-converter models', () => {
   });
 
   describe('excelFormatToDate', () => {
-    it('a date in Excel format is the number of days since 01/01/1900', () => {
+    test('a date in Excel format is the number of days since 01/01/1900', () => {
       expect(excelFormatToDate('0')).toEqual(new Date('1899-12-30T00:00:00.000Z'));
       expect(excelFormatToDate('1')).toEqual(new Date('1899-12-31T00:00:00.000Z'));
       expect(excelFormatToDate('2')).toEqual(new Date('1900-01-01T00:00:00.000Z'));
@@ -252,7 +252,7 @@ describe('date-time-converter models', () => {
   });
 
   describe('isJSDate', () => {
-    it('a JS date is a new Date()', () => {
+    test('a JS date is a new Date()', () => {
       expect(isJSDate('new Date(2000, 0)')).toBe(true);
       expect(isJSDate('new Date(2000, 0, 1, 12, 12)')).toBe(true);
       expect(isJSDate('new Date(2000, 0, 1, 12, 12, 12)')).toBe(true);
@@ -266,7 +266,7 @@ describe('date-time-converter models', () => {
   });
 
   describe('fromJSDate', () => {
-    it('convert a JS new Date() to date', () => {
+    test('convert a JS new Date() to date', () => {
       expect(fromJSDate('new Date(2000, 0)')).toEqual(new Date(2000, 0));
       expect(fromJSDate('new Date(2000, 0, 1, 12, 12)')).toEqual(new Date(2000, 0, 1, 12, 12));
       expect(fromJSDate('new Date(2000, 0, 1, 12, 12, 12)')).toEqual(new Date(2000, 0, 1, 12, 12, 12));
@@ -275,7 +275,7 @@ describe('date-time-converter models', () => {
   });
 
   describe('toJSDate', () => {
-    it('convert a date to JS new Date()', () => {
+    test('convert a date to JS new Date()', () => {
       expect(toJSDate(new Date(2000, 0))).toEqual('new Date(2000, 0, 1, 0, 0, 0, 0);');
       expect(toJSDate(new Date(2000, 0, 1, 12, 12))).toEqual('new Date(2000, 0, 1, 12, 12, 0, 0);');
       expect(toJSDate(new Date(2000, 0, 1, 12, 12, 12))).toEqual('new Date(2000, 0, 1, 12, 12, 12, 0);');
@@ -285,25 +285,25 @@ describe('date-time-converter models', () => {
 });
 
 describe('win32FileTimeToUnix', () => {
-  it('should correctly convert Win32 FILETIME to UNIX timestamp', () => {
+  test('should correctly convert Win32 FILETIME to UNIX timestamp', () => {
     const fileTime = '132271200000000000';
     const expectedDate = new Date(Date.UTC(2020, 1, 25, 16, 0, 0));
     expect(win32FileTimeToUnix(fileTime)).toEqual(expectedDate);
   });
 
-  it('should handle zero FILETIME', () => {
+  test('should handle zero FILETIME', () => {
     expect(win32FileTimeToUnix('0')).toEqual(new Date(1601, 0, 1, 0, 0, 0));
   });
 });
 
 describe('dateToWin32FileTime', () => {
-  it('should correctly convert Date to Win32 FILETIME', () => {
+  test('should correctly convert Date to Win32 FILETIME', () => {
     const date = new Date(Date.UTC(2020, 1, 25, 16, 0, 0));
     const expectedFileTime = '132271200000000000';
     expect(dateToWin32FileTime(date)).toBe(expectedFileTime);
   });
 
-  it('should handle epoch (1970-01-01)', () => {
+  test('should handle epoch (1970-01-01)', () => {
     const date = new Date(0);
     const expectedFileTime = '116444736000000000';
     expect(dateToWin32FileTime(date)).toBe(expectedFileTime);
@@ -311,23 +311,23 @@ describe('dateToWin32FileTime', () => {
 });
 
 describe('lDAPTimestampToDate', () => {
-  it('should correctly parse LDAP timestamp', () => {
+  test('should correctly parse LDAP timestamp', () => {
     const ldapTimestamp = '20240101120013Z'; // January 1, 2024, 12:00:13 UTC
     expect(lDAPTimestampToDate(ldapTimestamp)).toEqual(new Date(Date.UTC(2024, 0, 1, 12, 0, 13)));
   });
 
-  it('should return current date on invalid input', () => {
+  test('should return current date on invalid input', () => {
     expect(lDAPTimestampToDate('invalid')).toBeInstanceOf(Date);
   });
 });
 
 describe('dateToLDAPTimestamp', () => {
-  it('should correctly convert Date to LDAP timestamp', () => {
+  test('should correctly convert Date to LDAP timestamp', () => {
     const date = new Date(Date.UTC(2024, 0, 1, 12, 0, 13));
     expect(dateToLDAPTimestamp(date)).toBe('20240101120013Z');
   });
 
-  it('should correctly pad single-digit values', () => {
+  test('should correctly pad single-digit values', () => {
     const date = new Date(Date.UTC(2024, 4, 9, 4, 5, 6)); // May 9, 2024, 04:05:06 UTC
     expect(dateToLDAPTimestamp(date)).toBe('20240509040506Z');
   });

@@ -7,7 +7,7 @@ import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
 const { t } = useI18n();
 
-const fileInputs = ref<Array<{ file: File, range: string }>>([]);
+const fileInputs = ref<Array<{ file: File; range: string }>>([]);
 function onUploads(files: Array<File>) {
   fileInputs.value = [...fileInputs.value, ...(files.map(f => ({ file: f, range: '' })))];
 }
@@ -21,8 +21,7 @@ const { download } = useDownloadFileFromBase64(
   {
     source: base64OutputPDF,
     filename: fileName,
-  },
-);
+  });
 const qpdfCommand = ref('');
 
 async function onProcessClicked() {
@@ -53,7 +52,8 @@ async function onProcessClicked() {
     }
     options.push('--');
     options.push('out.pdf');
-    const outPdfBuffer = await callMainWithManyInOutPdf(fileBuffers, options, 0);
+    const outPdfBuffer = await callMainWithManyInOutPdf(fileBuffers,
+      options, 0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
 

@@ -14,7 +14,7 @@ function quoteBigNumbers(jsonStr: string): string {
     strings.push(str);
     return replacement;
   });
-  const regex = /([+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?)(?=\s*[,}\]])/gi;
+  const regex = /([+-]?\d*\.?\d+(?:[eE][+-]?\d+)?)(?=\s*[,}\]])/g;
   // ensure to flag real numbers with ¤xxx¤ to not parse stringified numbers
   const jsonQuotedBigint = jsonWithoutStrings.replace(regex, '"¤$1¤"');
   return jsonQuotedBigint.replace(/"@(\d+)@"/g, (_, ix) => {
@@ -22,7 +22,7 @@ function quoteBigNumbers(jsonStr: string): string {
   });
 }
 
-const bignumRegex = /^¤[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?¤$/i;
+const bignumRegex = /^¤[+-]?\d*\.?\d+(?:[eE][+-]?\d+)?¤$/;
 JSON.parseBigNum = function (jsonStr: string): unknown {
   const safeStr = quoteBigNumbers(jsonStr);
 

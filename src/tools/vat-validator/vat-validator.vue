@@ -7,7 +7,7 @@ import { useQueryParam } from '@/composable/queryParams';
 const { t } = useI18n();
 
 const rawVATNumber = useQueryParam({ tool: 'vat-validator', name: 'vat', defaultValue: 'BE0411905847' });
-const vatInfos = computed<{ isValid: boolean, infos: CKeyValueListItems }>(() => {
+const vatInfos = computed<{ isValid: boolean; infos: CKeyValueListItems }>(() => {
   const vat = checkVAT(rawVATNumber.value, countries);
   if (vat == null) {
     return { isValid: false, infos: [] };

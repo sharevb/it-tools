@@ -1,5 +1,4 @@
-import { jwtDecode } from 'jwt-decode';
-import type { JwtHeader, JwtPayload } from 'jwt-decode';
+import { type JwtHeader, type JwtPayload, jwtDecode } from 'jwt-decode';
 import _ from 'lodash';
 import { ALGORITHM_DESCRIPTIONS, CLAIM_DESCRIPTIONS } from './jwt-parser.constants';
 
@@ -22,7 +21,7 @@ function decodeJwt({ jwt }: { jwt: string }) {
   };
 }
 
-function parseClaims({ claim, value }: { claim: string, value: unknown }) {
+function parseClaims({ claim, value }: { claim: string; value: unknown }) {
   const claimDescription = CLAIM_DESCRIPTIONS[claim];
   const formattedValue = _.isPlainObject(value) ? JSON.stringify(value, null, 3) : _.toString(value);
   const friendlyValue = getFriendlyValue({ claim, value });
@@ -35,7 +34,7 @@ function parseClaims({ claim, value }: { claim: string, value: unknown }) {
   };
 }
 
-function getFriendlyValue({ claim, value }: { claim: string, value: unknown }) {
+function getFriendlyValue({ claim, value }: { claim: string; value: unknown }) {
   if (['exp', 'nbf', 'iat'].includes(claim)) {
     return dateFormatter(value);
   }

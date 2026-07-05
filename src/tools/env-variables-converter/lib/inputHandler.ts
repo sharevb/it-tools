@@ -55,8 +55,8 @@ function inputHandler(type: Formats, text: string) {
   }
   else if (type === Formats.KUBERNETES) {
     data = text
-      .replace(/>-/g, '')
-      .replace(/(\r\n|\n|\r)/g, '')
+      .replace(/>-/gm, '')
+      .replace(/(\r\n|\n|\r)/gm, '')
       .trim()
       .split('- name: ') // divides lines
       .filter(Boolean) // removes empty lines
@@ -65,7 +65,7 @@ function inputHandler(type: Formats, text: string) {
         if (pair[1]) {
           pair[1] = pair[1]
           // trim single quotes at beginning and end
-            .replace(/^'(.+(?='$))'$/, '$1') // https://stackoverflow.com/a/19156197/1098564
+            .replace(/^['](.+(?=[']$))[']$/, '$1') // https://stackoverflow.com/a/19156197/1098564
           // trim out double quotes (TODO: this needs improvement and is definitely bug prone...but works for most simple values I come across)
             .replace(/"([^"]+(?="))"/g, '$1');
         }

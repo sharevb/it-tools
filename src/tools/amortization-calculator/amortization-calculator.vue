@@ -11,7 +11,18 @@ const amortizationCalculator = ref(new StandardAmortizationCalculator());
 
 const currencyDisplayNames = computed(() => new Intl.DisplayNames(locale.value, { type: 'currency' }));
 
-const historicalCodes = ['AFA', 'FIM', 'ALK', 'ADP', 'ESP', 'FRF', 'AOK', 'AON', 'AOR', 'ARA', 'ARP', 'ARY', 'RUR', 'ATS', 'AYM', 'AZM', 'RUR', 'BYB', 'BYR', 'RUR', 'BEC', 'BEF', 'BEL', 'BOP', 'BAD', 'BRB', 'BRC', 'BRE', 'BRN', 'BRR', 'BGJ', 'BGK', 'BGL', 'BGN', 'BUK', 'HRD', 'HRK', 'HRK', 'CUC', 'ANG', 'CYP', 'CSJ', 'CSK', 'ECS', 'ECV', 'GQE', 'EEK', 'XEU', 'FIM', 'FRF', 'FRF', 'FRF', 'GEK', 'RUR', 'DDM', 'DEM', 'GHC', 'GHP', 'GRD', 'FRF', 'GNE', 'GNS', 'GWE', 'GWP', 'ITL', 'ISJ', 'IEP', 'ILP', 'ILR', 'ITL', 'RUR', 'RUR', 'LAJ', 'LVL', 'LVR', 'LSM', 'ZAL', 'LTL', 'LTT', 'LUC', 'LUF', 'LUL', 'MGF', 'MWK', 'MVQ', 'MLF', 'MTL', 'MTP', 'FRF', 'MRO', 'FRF', 'MXP', 'RUR', 'FRF', 'MZE', 'MZM', 'NLG', 'ANG', 'NIC', 'PEH', 'PEI', 'PEN', 'PES', 'PLZ', 'PTE', 'FRF', 'ROK', 'ROL', 'RON', 'RUR', 'FRF', 'FRF', 'FRF', 'ITL', 'STD', 'CSD', 'EUR', 'SLL', 'ANG', 'SKK', 'SIT', 'ZAL', 'SDG', 'RHD', 'ESA', 'ESB', 'ESP', 'SDD', 'SDP', 'SRG', 'SZL', 'CHC', 'RUR', 'TJR', 'IDR', 'TPE', 'TRL', 'TRY', 'RUR', 'TMM', 'UGS', 'UGW', 'UAK', 'SUR', 'USS', 'UYN', 'UYP', 'RUR', 'VEB', 'VEF', 'VEF', 'VEF', 'VNC', 'YDD', 'YUD', 'YUM', 'YUN', 'ZRN', 'ZRZ', 'ZMK', 'ZWC', 'ZWD', 'ZWD', 'ZWN', 'ZWR', 'ZWL', 'XFO', 'XRE', 'XFU'];
+const historicalCodes = ['AFA', 'FIM', 'ALK', 'ADP', 'ESP', 'FRF', 'AOK', 'AON', 'AOR', 'ARA', 'ARP', 'ARY',
+  'RUR', 'ATS', 'AYM', 'AZM', 'RUR', 'BYB', 'BYR', 'RUR', 'BEC', 'BEF', 'BEL', 'BOP', 'BAD', 'BRB', 'BRC',
+  'BRE', 'BRN', 'BRR', 'BGJ', 'BGK', 'BGL', 'BGN', 'BUK', 'HRD', 'HRK', 'HRK', 'CUC', 'ANG', 'CYP', 'CSJ',
+  'CSK', 'ECS', 'ECV', 'GQE', 'EEK', 'XEU', 'FIM', 'FRF', 'FRF', 'FRF', 'GEK', 'RUR', 'DDM', 'DEM', 'GHC',
+  'GHP', 'GRD', 'FRF', 'GNE', 'GNS', 'GWE', 'GWP', 'ITL', 'ISJ', 'IEP', 'ILP', 'ILR', 'ITL', 'RUR', 'RUR',
+  'LAJ', 'LVL', 'LVR', 'LSM', 'ZAL', 'LTL', 'LTT', 'LUC', 'LUF', 'LUL', 'MGF', 'MWK', 'MVQ', 'MLF', 'MTL',
+  'MTP', 'FRF', 'MRO', 'FRF', 'MXP', 'RUR', 'FRF', 'MZE', 'MZM', 'NLG', 'ANG', 'NIC', 'PEH', 'PEI', 'PEN',
+  'PES', 'PLZ', 'PTE', 'FRF', 'ROK', 'ROL', 'RON', 'RUR', 'FRF', 'FRF', 'FRF', 'ITL', 'STD', 'CSD', 'EUR',
+  'SLL', 'ANG', 'SKK', 'SIT', 'ZAL', 'SDG', 'RHD', 'ESA', 'ESB', 'ESP', 'SDD', 'SDP', 'SRG', 'SZL', 'CHC',
+  'RUR', 'TJR', 'IDR', 'TPE', 'TRL', 'TRY', 'RUR', 'TMM', 'UGS', 'UGW', 'UAK', 'SUR', 'USS', 'UYN', 'UYP',
+  'RUR', 'VEB', 'VEF', 'VEF', 'VEF', 'VNC', 'YDD', 'YUD', 'YUM', 'YUN', 'ZRN', 'ZRZ', 'ZMK', 'ZWC', 'ZWD',
+  'ZWD', 'ZWN', 'ZWR', 'ZWL', 'XFO', 'XRE', 'XFU'];
 
 const supportedCurrencies = ref(
   Intl.supportedValuesOf('currency')
@@ -91,7 +102,7 @@ const payment = computed(() =>
 const amortizationSchedule = computed(() => {
   // Force re-render on currency changes
   // i.e. redeclare generator
-
+  // eslint-disable-next-line no-unused-expressions
   selectedCurrency.value;
   return amortizationCalculator.value.getAmortizationSchedule({
     principal: parsedLoanAmount.value,

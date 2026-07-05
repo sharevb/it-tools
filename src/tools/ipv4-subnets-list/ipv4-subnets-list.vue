@@ -23,7 +23,7 @@ const allSubnetsInfos = computed(() => withDefaultOnError(() => {
   }
 
   const base = networkInfo.value?.base;
-  const subnets: { bitmask: number, hostsPerSubnet: number, subnets: SubnetInfo[] }[] = [];
+  const subnets: { bitmask: number; hostsPerSubnet: number; subnets: SubnetInfo[] }[] = [];
   for (;bitmask <= 30; bitmask++) {
     const bitmaskSubnets = getSubnetsInfos(`${base}/${bitmask}`);
     subnets.push({ bitmask, hostsPerSubnet: bitmaskSubnets[0]?.hostsCount, subnets: bitmaskSubnets });

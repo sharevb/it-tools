@@ -2,14 +2,14 @@ import type { DateTime } from 'luxon';
 
 import { translate as t } from '@/plugins/i18n.plugin';
 
-export type DayOfWeek
-  = | 'monday'
-    | 'tuesday'
-    | 'wednesday'
-    | 'thursday'
-    | 'friday'
-    | 'saturday'
-    | 'sunday';
+export type DayOfWeek =
+  | 'monday'
+  | 'tuesday'
+  | 'wednesday'
+  | 'thursday'
+  | 'friday'
+  | 'saturday'
+  | 'sunday';
 
 const weekDayToName = {
   1: 'monday',
@@ -28,8 +28,8 @@ export class BusinessTime {
 
   private readonly businessDays: DayOfWeek[];
   private readonly holidays: Holiday[];
-  private readonly startOfDayTime: { hour: number, minute: number, second: number };
-  private readonly endOfDayTime: { hour: number, minute: number, second: number };
+  private readonly startOfDayTime: { hour: number; minute: number; second: number };
+  private readonly endOfDayTime: { hour: number; minute: number; second: number };
 
   static readonly computeWorkingHours = (startHour: number, endHour: number) => {
     if (endHour < startHour) {

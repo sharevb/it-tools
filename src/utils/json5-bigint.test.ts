@@ -69,7 +69,7 @@ const bigJson = `{
 `;
 
 describe('json5-bigint utils', () => {
-  describe('jSON.parseBigInt', () => {
+  describe('JSON.parseBigInt', () => {
     it('should parse bigint in JSON (but not in strings)', () => {
       expect(JSON.stringify(JSON.parseBigInt(bigJson))).toBe(bigJson.replace(/[\r\n]/g, ''));
     });

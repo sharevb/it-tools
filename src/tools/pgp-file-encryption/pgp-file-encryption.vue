@@ -104,9 +104,9 @@ async function decryptStream() {
 
     const unlockedKey = passphrase.value
       ? await openpgp.decryptKey({
-          privateKey,
-          passphrase: passphrase.value,
-        })
+        privateKey,
+        passphrase: passphrase.value,
+      })
       : privateKey;
 
     const source = encryptedBlob.value ?? file.value!;

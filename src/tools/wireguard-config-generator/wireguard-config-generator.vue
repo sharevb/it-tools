@@ -131,7 +131,7 @@ const postDownRule = computed<string>({
 const usePreSharedKeys = ref(true);
 const numberOfClients = ref(3);
 
-const generatedConfigs = ref<{ server: string, peers: Array<{ name: string, config: string }> } | null>(null);
+const generatedConfigs = ref<{ server: string; peers: Array<{ name: string; config: string }> } | null>(null);
 
 function generatePeers() {
   config.value.clearPeers();

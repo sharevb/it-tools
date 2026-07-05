@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import { useCopy } from '@/composable/copy';
 
-const props = defineProps<{ tokens: { previous: string, current: string, next: string } }>();
+const props = defineProps<{ tokens: { previous: string; current: string; next: string } }>();
 
 const { t } = useI18n();
 

@@ -32,14 +32,15 @@ watchEffect(async () => {
       whitespaceBreak: true,
     };
     const rawOutput = await (new Promise<string>((resolve, reject) =>
-      figlet.text(inputValue, options, (err, text) => {
-        if (err) {
-          reject(err);
-          return;
-        }
+      figlet.text(inputValue, options,
+        (err, text) => {
+          if (err) {
+            reject(err);
+            return;
+          }
 
-        resolve(text ?? '');
-      })));
+          resolve(text ?? '');
+        })));
 
     output.value = printToLanguage(rawOutput, languageValue);
     errored.value = false;

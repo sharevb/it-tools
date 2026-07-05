@@ -25,7 +25,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 'host_port:container_port'
+      - "host_port:container_port"
     volumes:
       - ./host_path:/container_path
     environment:
@@ -54,12 +54,12 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
-    command: [nginx, -g, daemon off;]
+    command: ["nginx", "-g", "daemon off;"]
     container_name: custom_name
     ports:
-      - '8080:80'
+      - "8080:80"
     expose:
-      - '80'
+      - "80"
     environment:
       - DEBUG=true
     env_file:
@@ -72,7 +72,7 @@ services:
     networks:
       - frontend
     healthcheck:
-      test: [CMD, curl, -f, 'http://localhost']
+      test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -141,8 +141,8 @@ services:
 ## 🌐 Ports
 
 ```yaml
-ports:
-  - '3000:3000'
+    ports:
+      - "3000:3000"
 ```
 - **`ports:`** Maps container ports to host ports. Format is `"host:container"`. Useful for exposing services to your local machine.
 
@@ -177,7 +177,7 @@ services:
 
 ```yaml
 healthcheck:
-  test: [CMD, curl, -f, 'http://localhost']
+  test: ["CMD", "curl", "-f", "http://localhost"]
   interval: 30s
   timeout: 10s
   retries: 3
@@ -215,15 +215,15 @@ env_file:
 ## Command
 
 ```yaml
-command: npm start
+    command: npm start
 ```
 - **`command:`** Overrides the default command defined in the Dockerfile. Useful for customizing container behavior.
 
 ## Dependencies
 
 ```yaml
-depends_on:
-  - db
+    depends_on:
+      - db
 ```
 - **`depends_on:`** Specifies service startup order. In Compose, this does not wait for the service to be "ready"—just started.
 
@@ -423,7 +423,7 @@ placement:
 
 ```yaml
 healthcheck:
-  test: [CMD, curl, -f, 'http://localhost']
+  test: ["CMD", "curl", "-f", "http://localhost"]
   interval: 30s
   timeout: 10s
   retries: 3

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { MonacoEditor } from '@guolao/vue-monaco-editor';
-import { loader, VueMonacoEditor } from '@guolao/vue-monaco-editor';
 import * as monacoEditor from 'monaco-editor';
+import { VueMonacoEditor, loader } from '@guolao/vue-monaco-editor';
+import type { MonacoEditor } from '@guolao/vue-monaco-editor';
 import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
+import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
 import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
 import HtmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker';
-import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
 import TsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
 import { useStyleStore } from '@/stores/style.store';
 
@@ -27,10 +27,10 @@ const emits = defineEmits<{
 }>();
 
 interface MonacoEnvironment {
-  getWorker: (_: any, label: string) => Worker
+  getWorker(_: any, label: string): Worker
 }
-// eslint-disable-next-line ts/no-namespace
-declare namespace globalThis {
+// eslint-disable-next-line @typescript-eslint/no-namespace
+declare module globalThis {
   let MonacoEnvironment: MonacoEnvironment;
 }
 

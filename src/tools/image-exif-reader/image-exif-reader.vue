@@ -17,7 +17,7 @@ interface TagsSection {
   [name: string]: Tag
 }
 
-const tagsSections = ref<{ name: string, title: string }[]>([
+const tagsSections = ref<{ name: string; title: string }[]>([
   { name: 'file', title: 'File Tags' },
   { name: 'jfif', title: 'JFIF Tags' },
   { name: 'pngFile', title: 'PNG File Tags' },

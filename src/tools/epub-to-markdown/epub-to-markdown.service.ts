@@ -8,13 +8,13 @@ function escapeMarkdown(text: string) {
   return text
     .replace(/\\/g, '\\\\') // escape backslash first
     .replace(/([*_#>|`])/g, '\\$1') // escape common markdown symbols
-    .replace(/([[\]()])/g, '\\$1') // escape brackets and parentheses
+    .replace(/([\[\]\(\)])/g, '\\$1') // escape brackets and parentheses
     .replace(/\|/g, '\\|'); // escape table pipes
 }
 
 interface SpineItems {
   items: SpineItem[]
-  get: (href: string | undefined) => Section
+  get(href: string | undefined): Section
 }
 export async function extractTextAndMetaFromEPUB(file: File, format: 'text' | 'markdown') {
   let turndownService: TurndownService;

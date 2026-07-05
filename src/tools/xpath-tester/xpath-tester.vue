@@ -15,10 +15,9 @@ const selectedNodes = computed(() => {
   try {
     const doc = new DOMParser().parseFromString(xml.value, 'text/xml');
     const select = XPathEngine.useNamespaces(Object.fromEntries(
-      [...xml.value.matchAll(/xmlns:([^=]+)=["']([^"']+)["']/g)].map(
+      [...xml.value.matchAll(/xmlns\:([^\=]+)\=["']([^"']+)["']/g)].map(
         ([_, prefix, uri]) => [prefix, uri],
-      ),
-    ));
+      )));
     const result = select(xpath.value, doc);
     return Array.isArray(result) ? result : [result];
   }

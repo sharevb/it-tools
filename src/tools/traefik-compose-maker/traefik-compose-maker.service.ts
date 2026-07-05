@@ -45,13 +45,13 @@ services:
       - "--certificatesresolvers.${config.certResolverName}.acme.storage=/letsencrypt/acme.json"
     labels:
       ${config.dashboard
-        ? `
+? `
       - "traefik.http.routers.dashboard.rule=Host(\`${config.traefikDashboardHostName}\`) && (PathPrefix('/api') || PathPrefix('/dashboard'))"
       - "traefik.http.routers.dashboard.service=api@internal"
       - "traefik.http.routers.dashboard.middlewares=auth"
       - "traefik.http.middlewares.auth.basicauth.users=${config.dashboardUserAndPass}"
       `
-        : ''}
+: ''}
     ports:
       - "80:80"
       - "443:443"

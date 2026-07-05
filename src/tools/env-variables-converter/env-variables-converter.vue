@@ -17,7 +17,7 @@ const outputType = useQueryParamOrStorage({ name: 'out', storageName: 'env-var-c
 const alertText = ref('');
 
 const inputOptions = Object.keys(Formats).map(key => ({ label: FormatsDesc[key], value: FormatsDesc[key] }));
-const outputOptions = ref<{ label: Formats, value: Formats }[]>([]);
+const outputOptions = ref<{ label: Formats; value: Formats }[]>([]);
 
 function updateOutputOptions() {
   const regular = [Formats.SIMPLE, Formats.TERMINAL, Formats.KUBERNETES].filter(opt => opt !== inputType.value);

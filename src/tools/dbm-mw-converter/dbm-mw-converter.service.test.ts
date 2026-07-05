@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { dbmToMw, mwToDbm } from './dbm-mw-converter.service'; // Adjust path as needed
 
-describe('power Conversion Utilities', () => {
+describe('Power Conversion Utilities', () => {
   describe('dbmToMw', () => {
     it('should convert 30 dBm to 1 W', () => {
       expect(dbmToMw(30)).toBeCloseTo(1000, 5);

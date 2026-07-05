@@ -69,8 +69,7 @@ const toolFooter = computed<string>(() => {
     .map(
       packageName => createLink(
         packageName,
-        packageName.includes('://') ? packageName : `https://www.npmjs.com/package/${packageName}`,
-      ),
+        packageName.includes('://') ? packageName : `https://www.npmjs.com/package/${packageName}`),
     );
   return ((npmPackages.length > 0 ? `${t('tools.tool.layout.text.made-with-npmpackages', [npmPackages.join(', ')])}\n` : '') + footer).trim();
 });

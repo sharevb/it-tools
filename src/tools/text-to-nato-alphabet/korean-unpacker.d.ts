@@ -1,3 +1,3 @@
 declare module 'korean-unpacker' {
-  function unpack(text: string): string;
+    function unpack(text: string): string;
 }

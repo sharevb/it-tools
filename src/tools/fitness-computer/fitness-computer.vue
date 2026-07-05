@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import type { ActivityLevel, Gender } from '@finegym/fitness-calc';
+import { useI18n } from 'vue-i18n';
 import {
-
+  type ActivityLevel,
+  type Gender,
   calculateBMI,
   calculateBMR,
   calculateBodyFat,
   calculateHeartRateZones,
   calculateIdealWeight,
   calculateTDEE,
-  cmToInches,
-  inchesToCm,
-  kgToLbs,
-  lbsToKg,
+  cmToInches, inchesToCm, kgToLbs, lbsToKg,
 } from '@finegym/fitness-calc';
-import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
@@ -108,12 +105,14 @@ const idealWeight = computed(() => {
 );
 
 const bodyFatUSNavy = computed(() => {
-  const metric = calculateBodyFat(gender.value, weight.value, {
-    waistCm: waist.value,
-    neckCm: neck.value,
-    heightCm: height.value,
-    hipCm: hip.value,
-  }, 'us_navy');
+  const metric = calculateBodyFat(gender.value,
+    weight.value,
+    {
+      waistCm: waist.value,
+      neckCm: neck.value,
+      heightCm: height.value,
+      hipCm: hip.value,
+    }, 'us_navy');
 
   if (unitSystem.value === 'metric') {
     return metric;
@@ -129,12 +128,14 @@ const bodyFatUSNavy = computed(() => {
 );
 
 const bodyFatBMI = computed(() => {
-  const metric = calculateBodyFat(gender.value, weight.value, {
-    waistCm: waist.value,
-    neckCm: neck.value,
-    heightCm: height.value,
-    hipCm: hip.value,
-  }, 'bmi_derived');
+  const metric = calculateBodyFat(gender.value,
+    weight.value,
+    {
+      waistCm: waist.value,
+      neckCm: neck.value,
+      heightCm: height.value,
+      hipCm: hip.value,
+    }, 'bmi_derived');
 
   if (unitSystem.value === 'metric') {
     return metric;

@@ -1,18 +1,14 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useQueryParam } from '@/composable/queryParams';
 import InputCopyable from '../../components/InputCopyable.vue';
 import {
-  convertMacCanonical,
-  convertMacCanonicalIEEE,
-  convertMacCanonicalIETF,
-  convertMacCISCO,
-  convertMacToEUI64CanonicalIEEE,
-  convertMacToEUI64CanonicalIETF,
-  convertMacToEUI64CISCO,
-  convertMacToLinkLocalIPv6,
+  convertMacCISCO, convertMacCanonical,
+  convertMacCanonicalIEEE, convertMacCanonicalIETF,
+  convertMacToEUI64CISCO, convertMacToEUI64CanonicalIEEE,
+  convertMacToEUI64CanonicalIETF, convertMacToLinkLocalIPv6,
   convertMacToNumber,
 } from './mac-address-converter.service';
+import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
 

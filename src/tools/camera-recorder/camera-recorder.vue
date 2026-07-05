@@ -6,7 +6,7 @@ import { useMediaRecorder } from './useMediaRecorder';
 
 const { t } = useI18n();
 
-interface Media { type: 'image' | 'video', value: string, createdAt: Date }
+interface Media { type: 'image' | 'video'; value: string; createdAt: Date }
 
 const {
   videoInputs: cameras,
@@ -58,11 +58,11 @@ onRecordAvailable((value) => {
 });
 
 function refreshCurrentDevices() {
-  if (_.isNil(currentCamera) || !cameras.value.some(i => i.deviceId === currentCamera.value)) {
+  if (_.isNil(currentCamera) || !cameras.value.find(i => i.deviceId === currentCamera.value)) {
     currentCamera.value = cameras.value[0]?.deviceId;
   }
 
-  if (_.isNil(microphones) || !microphones.value.some(i => i.deviceId === currentMicrophone.value)) {
+  if (_.isNil(microphones) || !microphones.value.find(i => i.deviceId === currentMicrophone.value)) {
     currentMicrophone.value = microphones.value[0]?.deviceId;
   }
 }

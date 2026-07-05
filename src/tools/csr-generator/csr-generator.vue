@@ -59,9 +59,9 @@ const [certs, refreshCerts] = computedRefreshableAsync(
       subjectAlternativeNames: subjectAlternativeNames.value,
       contactEmail: contactEmail.value,
     });
-  }, emptyCSR),
+  },
   emptyCSR,
-);
+  ), emptyCSR);
 </script>
 
 <template>

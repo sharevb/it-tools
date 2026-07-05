@@ -1,6 +1,6 @@
 import { Base64 } from 'js-base64';
 
-export { base64ToText, isValidBase64, removePotentialDataAndMimePrefix, textToBase64 };
+export { textToBase64, base64ToText, isValidBase64, removePotentialDataAndMimePrefix };
 
 function textToBase64(str: string, { makeUrlSafe = false }: { makeUrlSafe?: boolean } = {}) {
   const encoded = Base64.encode(str);
@@ -55,7 +55,7 @@ function unURI(encoded: string): string {
   return encoded
     .replace(/-/g, '+')
     .replace(/_/g, '/')
-    .replace(/[^A-Z0-9+/]/gi, '');
+    .replace(/[^A-Za-z0-9+/]/g, '');
 }
 
 function removePotentialPadding(str: string) {

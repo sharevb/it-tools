@@ -1,4 +1,4 @@
-declare module 'jsonlint-mod' {
+declare module 'jsonlint-mod'{
 /**
  * Parse a JSON string to Typescript Object. If there is an error will print it
  * as human readible.
@@ -7,5 +7,5 @@ declare module 'jsonlint-mod' {
  * `import {parse} from 'jsonlint';`. Otherwise, it cannot reference to the
  * correct instance.
  */
-  export function parse(str: string): Record<string, unknown>;
+export function parse(str: string): Record<string, unknown>;
 }

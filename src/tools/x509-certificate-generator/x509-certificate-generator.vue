@@ -61,9 +61,9 @@ const [certs, refreshCerts] = computedRefreshableAsync(
       subjectAlternativeNames: subjectAlternativeNames.value,
       days: days.value,
     });
-  }, emptyCSR),
+  },
   emptyCSR,
-);
+  ), emptyCSR);
 </script>
 
 <template>

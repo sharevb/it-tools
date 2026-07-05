@@ -5,12 +5,12 @@ import _ from 'lodash';
 import CInputText from './c-input-text.vue';
 import { useValidation } from '@/composable/validation';
 
-describe('cInputText', () => {
+describe('CInputText', () => {
   beforeEach(() => {
     setActivePinia(createPinia());
   });
 
-  it('renders a label', () => {
+  it('Renders a label', () => {
     const wrapper = shallowMount(CInputText, {
       props: {
         label: 'Label',
@@ -20,7 +20,7 @@ describe('cInputText', () => {
     expect(wrapper.get('.label').text()).to.equal('Label');
   });
 
-  it('renders a placeholder', () => {
+  it('Renders a placeholder', () => {
     const wrapper = shallowMount(CInputText, {
       props: {
         placeholder: 'Placeholder',
@@ -30,7 +30,7 @@ describe('cInputText', () => {
     expect(wrapper.get('.input').attributes('placeholder')).to.equal('Placeholder');
   });
 
-  it('renders a value', () => {
+  it('Renders a value', () => {
     const wrapper = shallowMount(CInputText, {
       props: {
         value: 'Value',
@@ -40,7 +40,7 @@ describe('cInputText', () => {
     expect(wrapper.vm.value).to.equal('Value');
   });
 
-  it('renders a provided id', () => {
+  it('Renders a provided id', () => {
     const wrapper = shallowMount(CInputText, {
       props: {
         id: 'id',

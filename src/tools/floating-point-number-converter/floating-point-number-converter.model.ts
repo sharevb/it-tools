@@ -1,8 +1,8 @@
 import { translate as t } from '@/plugins/i18n.plugin';
 
-export function convertDecimalToBinary({ value, bitCount }: { value: string, bitCount: number }) {
+export function convertDecimalToBinary({ value, bitCount }: { value: string; bitCount: number }) {
   let number = Number.parseFloat(value.replace(/\s/g, ''));
-  if (/^-?inf(inity)?$/i.test(value)) {
+  if (value.match(/^-?inf(inity)?$/i)) {
     // const sign = value.startsWith('-') ? 1 : 0;
     // return `${sign}${'1'.repeat(exponentBits)}${'0'.repeat(mantissaBits)}`;
     number = (value.startsWith('-') ? -2 : 2) / 0;
@@ -22,11 +22,11 @@ export function convertDecimalToBinary({ value, bitCount }: { value: string, bit
   }
 }
 
-export function convertBinaryToDecimal({ value, decimalPrecision, removeZeroPadding }: { value: string, decimalPrecision: string, removeZeroPadding: boolean }) {
-  if (/[^01]/.test(value)) {
+export function convertBinaryToDecimal({ value, decimalPrecision, removeZeroPadding }: { value: string; decimalPrecision: string; removeZeroPadding: boolean }) {
+  if (value.match(/[^01]/)) {
     throw new Error(t('tools.floating-point-number-converter.model.text.not-a-binary-number'));
   }
-  if (/\D/.test(decimalPrecision)) {
+  if (decimalPrecision.match(/[^\d]/)) {
     throw new Error(t('tools.floating-point-number-converter.model.text.decimal-precision-must-be-a-positive-whole-number'));
   }
 
@@ -54,6 +54,6 @@ export function convertBinaryToDecimal({ value, decimalPrecision, removeZeroPadd
   return (zeroNegative ? '-' : '') + resultString;
 }
 
-export function calcErrorDueToConversion({ decimalInput, actualValue }: { decimalInput: string, actualValue: string }) {
+export function calcErrorDueToConversion({ decimalInput, actualValue }: { decimalInput: string; actualValue: string }) {
   return (Number.parseFloat(decimalInput) - Number.parseFloat(actualValue)).toFixed(32).replace(/\.(\d+?)(0+)$/, '.$1');
 }

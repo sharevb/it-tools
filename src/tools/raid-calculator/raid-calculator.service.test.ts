@@ -3,7 +3,7 @@ import { raidCalculations } from './raid-calculator.service';
 
 describe('raid-calculator', () => {
   describe('raidCalculations', () => {
-    describe('rAID 0', () => {
+    describe('RAID 0', () => {
       it('should validate correctly (num > 1)', () => {
         expect(raidCalculations.raid_0.validate(2, 0, 0)).toBe(true);
         expect(raidCalculations.raid_0.validate(1, 0, 0)).toBe(false);
@@ -23,7 +23,7 @@ describe('raid-calculator', () => {
       });
     });
 
-    describe('rAID 1', () => {
+    describe('RAID 1', () => {
       it('should validate correctly (num > 1)', () => {
         expect(raidCalculations.raid_1.validate(2, 0, 0)).toBe(true);
         expect(raidCalculations.raid_1.validate(1, 0, 0)).toBe(false);
@@ -43,7 +43,7 @@ describe('raid-calculator', () => {
       });
     });
 
-    describe('rAID 5', () => {
+    describe('RAID 5', () => {
       it('should validate correctly (num >= 3)', () => {
         expect(raidCalculations.raid_5.validate(3, 0, 0)).toBe(true);
         expect(raidCalculations.raid_5.validate(2, 0, 0)).toBe(false);
@@ -63,7 +63,7 @@ describe('raid-calculator', () => {
       });
     });
 
-    describe('rAID 6', () => {
+    describe('RAID 6', () => {
       it('should validate correctly (num >= 4)', () => {
         expect(raidCalculations.raid_6.validate(4, 0, 0)).toBe(true);
         expect(raidCalculations.raid_6.validate(3, 0, 0)).toBe(false);
@@ -83,7 +83,7 @@ describe('raid-calculator', () => {
       });
     });
 
-    describe('rAID 7', () => {
+    describe('RAID 7', () => {
       it('should validate correctly (num >= 5)', () => {
         expect(raidCalculations.raid_7.validate(5, 0, 0)).toBe(true);
         expect(raidCalculations.raid_7.validate(4, 0, 0)).toBe(false);
@@ -108,7 +108,7 @@ describe('raid-calculator', () => {
       });
     });
 
-    describe('rAID 10', () => {
+    describe('RAID 10', () => {
       it('should validate correctly (num >= 4 and even)', () => {
         expect(raidCalculations.raid_10.validate(4, 0, 0)).toBe(true);
         expect(raidCalculations.raid_10.validate(3, 0, 0)).toBe(false);
@@ -129,7 +129,7 @@ describe('raid-calculator', () => {
       });
     });
 
-    describe('rAID 50', () => {
+    describe('RAID 50', () => {
       it('should validate correctly (num >= 6 and stripeSize >= 3)', () => {
         expect(raidCalculations.raid_50.validate(6, 0, 3)).toBe(true);
         expect(raidCalculations.raid_50.validate(5, 0, 3)).toBe(false);
@@ -150,7 +150,7 @@ describe('raid-calculator', () => {
       });
     });
 
-    describe('rAID 60', () => {
+    describe('RAID 60', () => {
       it('should validate correctly (num >= 8 and stripeSize >= 4)', () => {
         expect(raidCalculations.raid_60.validate(8, 0, 4)).toBe(true);
         expect(raidCalculations.raid_60.validate(7, 0, 4)).toBe(false);
@@ -171,7 +171,7 @@ describe('raid-calculator', () => {
       });
     });
 
-    describe('rAID 70', () => {
+    describe('RAID 70', () => {
       it('should validate correctly (num >= 10 and stripeSize >= 5)', () => {
         expect(raidCalculations.raid_70.validate(10, 0, 5)).toBe(true);
         expect(raidCalculations.raid_70.validate(9, 0, 5)).toBe(false);

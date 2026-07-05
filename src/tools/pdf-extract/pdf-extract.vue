@@ -19,8 +19,7 @@ const { download } = useDownloadFileFromBase64(
     source: base64OutputPDF,
     filename: fileName,
     extension: 'pdf',
-  },
-);
+  });
 const qpdfCommand = ref('');
 
 function onFileUploaded(uploadedFile: File) {
@@ -45,7 +44,8 @@ async function onProcessClicked() {
       '--',
       'out.pdf',
     ];
-    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer, options, 0);
+    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
+      options, 0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
 

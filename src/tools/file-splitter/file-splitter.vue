@@ -30,8 +30,7 @@ async function prepareChunks() {
           fileContentValue,
           splitModeValue,
           (strategyValue === 'maxSize' ? 1024 : 1) * countValue,
-          strategyValue,
-        ));
+          strategyValue));
       }
       catch (e: any) {
         reject(e);

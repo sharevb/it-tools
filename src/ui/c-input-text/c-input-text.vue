@@ -2,8 +2,7 @@
 import { useAppTheme } from '../theme/themes';
 import { useTheme } from './c-input-text.theme';
 import { generateRandomId } from '@/utils/random';
-import { useValidation } from '@/composable/validation';
-import type { UseValidationRule } from '@/composable/validation';
+import { type UseValidationRule, useValidation } from '@/composable/validation';
 
 const props = withDefaults(
   defineProps<{
@@ -74,11 +73,11 @@ const { id, placeholder, label, validationRules, labelPosition, labelWidth, labe
 
 const validation
   = props.validation
-    ?? useValidation({
-      rules: validationRules,
-      source: value,
-      watch: props.validationWatch,
-    });
+  ?? useValidation({
+    rules: validationRules,
+    source: value,
+    watch: props.validationWatch,
+  });
 
 const theme = useTheme();
 const appTheme = useAppTheme();
@@ -96,7 +95,7 @@ function onPasteInputHtml(evt: ClipboardEvent) {
     return false;
   }
 
-  const target = evt.target as HTMLElementWithValue;
+  const target = (evt.target as HTMLElementWithValue);
   if (!target) {
     return false;
   }
@@ -162,7 +161,7 @@ function resizeTextarea() {
     return; // cannot chnge textarea if element is not available
   }
 
-  if (!multiline.value) {
+  if (!multiline) {
     return; // textarea wont be displayed if multiline === false
   }
 

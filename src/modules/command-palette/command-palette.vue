@@ -118,17 +118,17 @@ function activateOption(option: PaletteOption) {
         <icon-mdi-search />
         {{ $t('search.label') }}
 
-        <span flex-1 border border-current border-op-40 rounded border-solid px-5px py-3px hidden sm:inline>
+        <span hidden flex-1 border border-current border-op-40 rounded border-solid px-5px py-3px sm:inline>
           {{ isMac ? 'Cmd' : 'Ctrl' }}&nbsp;+&nbsp;K
         </span>
       </span>
     </c-button>
 
-    <c-modal v-model:open="isModalOpen" class="palette-modal" overflow-y-auto shadow-xl pretty-scrollbar important:max-w-650px important:pa-12px @keydown="handleKeydown">
+    <c-modal v-model:open="isModalOpen" class="palette-modal" overflow-y-auto shadow-xl important:max-w-650px pretty-scrollbar important:pa-12px @keydown="handleKeydown">
       <c-input-text ref="inputRef" v-model:value="searchPrompt" raw-text :placeholder="$t('search.placeholder')" autofocus clearable />
 
       <div v-for="(options, category) in filteredSearchResult" :key="category">
-        <div ml-3 mt-3 text-sm text-primary font-bold op-60>
+        <div ml-3 mt-3 text-sm font-bold text-primary op-60>
           {{ category }}
         </div>
         <command-palette-option v-for="option in options" :key="option.name" :option="option" :selected="selectedOptionIndex === getOptionIndex(option)" @activated="activateOption" />

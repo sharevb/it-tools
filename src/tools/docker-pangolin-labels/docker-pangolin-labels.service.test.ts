@@ -44,7 +44,7 @@ networks:
   default:
     name: pangolin_default`;
 
-describe('pangolin Compose Extraction', () => {
+describe('Pangolin Compose Extraction', () => {
   it('extracts Pangolin labels from full compose', () => {
     const compose = yaml.parse(composeYml);
     const labels = extractPangolinLabelsFromCompose(compose);
@@ -152,7 +152,7 @@ public-resources:
       hostname: localhost
       port: 3000`;
 
-describe('forward Mapping (blueprint → labels)', () => {
+describe('Forward Mapping (blueprint → labels)', () => {
   it('blueprintToLabels should produce array', () => {
     expect(blueprintToLabels(yaml.parse(blueprintYml), 'array')).to.deep.eq([
       'pangolin.public-resources.resource-nice-id-uno.name=this is a http resource',

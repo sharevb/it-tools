@@ -22,8 +22,7 @@ function transformer(value: string) {
       }
       return JSON.stringify(o, null, 2);
     },
-    '',
-  );
+    '');
 }
 
 const rules: UseValidationRule<string>[] = [

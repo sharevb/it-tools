@@ -8,7 +8,7 @@ const props = withDefaults(
     options?: CButtonSelectOption<T>[] | string[] | Record<string, T>
     value?: T
     size?: 'small' | 'medium' | 'large'
-  } & CLabelProps>(),
+  } & CLabelProps >(),
   {
     options: () => [],
     value: undefined,

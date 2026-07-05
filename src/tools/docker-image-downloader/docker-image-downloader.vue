@@ -60,12 +60,13 @@ async function downloadImage() {
 
     const url = `${serverHost.value}/download?${params.toString()}`;
 
-    const response = await fetch(url, serverAuth.value
-      ? {
-          method: 'GET',
-          headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
-        }
-      : undefined);
+    const response = await fetch(url,
+      serverAuth.value
+        ? {
+            method: 'GET',
+            headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
+          }
+        : undefined);
 
     if (!response.ok) {
       const text = await response.text();
@@ -76,7 +77,7 @@ async function downloadImage() {
     const disposition = response.headers.get('Content-Disposition');
     const filename
       = disposition?.match(/filename="(.+)"/)?.[1]
-        || `${image.value.replace(/[/:]/g, '_')}.tar`;
+      || `${image.value.replace(/[/:]/g, '_')}.tar`;
 
     // Download file
     const blob = await response.blob();

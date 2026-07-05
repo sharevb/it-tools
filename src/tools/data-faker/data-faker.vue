@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { allFakers } from '@faker-js/faker';
-import type { Faker } from '@faker-js/faker';
+import { type Faker, allFakers } from '@faker-js/faker';
 import JSON5 from 'json5';
 import { objectArrayToData } from '@/utils/objectarray.export';
 import type { ExportFormat } from '@/utils/objectarray.export';
@@ -50,7 +49,7 @@ const formats = [
 // Extract all faker methods dynamically
 const fakerMethods = computed(() => {
   const methods: string[] = [];
-  const fakerObj = faker.value as Record<string, any>;
+  const fakerObj = (faker.value as Record<string, any>);
   Object.keys(fakerObj).forEach((category) => {
     if (typeof fakerObj[category] === 'object') {
       Object.keys(fakerObj[category]).forEach((method) => {
@@ -67,7 +66,7 @@ const selectedMethod = ref<string>('');
 function resolveFakerValue(value: string) {
   try {
     if (value.startsWith('faker.')) {
-      const [, funcName, args] = /^([^(]+)(?:\((.+)\))?$/.exec(value) || [];
+      const [, funcName, args] = /^([^\(]+)(?:\((.+)\))?$/.exec(value) || [];
 
       let argsArray: any[] = [];
       if (args?.trim()) {
@@ -112,13 +111,12 @@ function handleGenerate() {
     error.value = '';
     const parsedTemplate = JSON.parse(jsonInput.value);
     generatedData.value = objectArrayToData(
-      Array.from({ length: itemCount.value }, () => generateFakeData(parsedTemplate)),
-      selectedFormat.value as ExportFormat,
-      {
+      Array.from({ length: itemCount.value },
+        () => generateFakeData(parsedTemplate)),
+      selectedFormat.value as ExportFormat, {
         tableName: tableName.value,
         nestify: nestify.value,
-      },
-    );
+      });
   }
   catch (e: any) {
     error.value = e.toString();

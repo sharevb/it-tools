@@ -18,8 +18,7 @@ const { download } = useDownloadFileFromBase64(
     source: base64OutputPDF,
     filename: fileName,
     extension: fileExtension,
-  },
-);
+  });
 const qpdfCommand = ref('');
 
 async function onFileUploaded(uploadedFile: File) {
@@ -29,13 +28,15 @@ async function onFileUploaded(uploadedFile: File) {
   fileName.value = `linearized_${uploadedFile.name}`;
   status.value = 'processing';
   try {
-    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer, [
-      '--linearize',
-      '--warning-exit-0',
-      '--verbose',
-      'in.pdf',
-      'out.pdf',
-    ], 0);
+    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
+      [
+        '--linearize',
+        '--warning-exit-0',
+        '--verbose',
+        'in.pdf',
+        'out.pdf',
+      ],
+      0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
 

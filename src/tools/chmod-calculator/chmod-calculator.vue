@@ -12,7 +12,7 @@ const { t } = useI18n();
 
 const themeVars = useThemeVars();
 
-const scopes: { scope: Scope, title: string }[] = [
+const scopes: { scope: Scope; title: string }[] = [
   { scope: 'read', title: 'Read (4)' },
   { scope: 'write', title: 'Write (2)' },
   { scope: 'execute', title: 'Execute (1)' },

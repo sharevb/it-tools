@@ -22,8 +22,7 @@ const { download } = useDownloadFileFromBase64(
     source: base64OutputPDF,
     filename: fileName,
     extension: fileExtension,
-  },
-);
+  });
 const qpdfCommand = ref('');
 
 async function onPDFFileUploaded(uploadedFile: File) {

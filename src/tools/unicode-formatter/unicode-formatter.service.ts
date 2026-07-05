@@ -65,18 +65,16 @@ function formatText(text: string, font: AllFontNames | undefined, options?: AllO
   newText = options?.append ? newText.map(char => char + options.append) : newText;
   // remove appended symbols (underline, strikethrough, etc.) if using eraser
   // \u035f = Underline, \u0333 = Double Underline, \u0335 = Short Strikethrough \u0336 = Strikethrough
-  newText = options?.clear ? newText.map(char => char.replace(/[\u035F\u0333\u0335\u0336]/gu, '')) : newText;
+  newText = options?.clear ? newText.map(char => char.replace(/\u035F|\u0333|\u0335|\u0336/gu, '')) : newText;
   // set textarea content and select text around the replacement
   return newText.join('');
 }
 
 export function formatTextPart(
   text: string,
-  selectionStart: number,
-  selectionEnd: number,
+  selectionStart: number, selectionEnd: number,
   font: AllFontNames | undefined,
-  options?: AllOptions,
-) {
+  options?: AllOptions) {
   const regexSpaces = /^(\s*)(.+?)(\s*)$/g; // NOSONAR
   const [_, spaceBefore, selection, spaceAfter] = regexSpaces.exec(text.substring(selectionStart, selectionEnd) || '') || [];
 

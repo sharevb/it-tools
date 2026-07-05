@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import InputCopyable from '../../components/InputCopyable.vue';
-import { convertStorageAndRateUnitsDisplay } from './data-storage-unit-converter.service';
-import type { AllSupportedUnits } from './data-storage-unit-converter.service';
+import { type AllSupportedUnits, convertStorageAndRateUnitsDisplay } from './data-storage-unit-converter.service';
 
 const { t } = useI18n();
 
-const input = ref<{ size: string, unit: string }>({ size: '0', unit: 'KB' });
-const output = ref<{ unit: string, precision: number, appendUnit: boolean }>({ unit: 'MB', precision: 3, appendUnit: false });
+const input = ref<{ size: string; unit: string }>({ size: '0', unit: 'KB' });
+const output = ref<{ unit: string; precision: number; appendUnit: boolean }>({ unit: 'MB', precision: 3, appendUnit: false });
 
 const allUnits = [
   { value: 'B', label: t('tools.data-storage-unit-converter.texts.label-bytes-b') },

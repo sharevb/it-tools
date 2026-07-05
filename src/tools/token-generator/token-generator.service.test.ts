@@ -66,7 +66,7 @@ describe('token-generator', () => {
       });
 
       expect(token).toHaveLength(256);
-      expect(token).toMatch(/^\d+$/);
+      expect(token).toMatch(/^[0-9]+$/);
     });
 
     it('should generate a random string with just hexa numbers if only withHexaNumbers is set', () => {
@@ -93,7 +93,7 @@ describe('token-generator', () => {
       });
 
       expect(token).toHaveLength(256);
-      expect(token).toMatch(/^[.,;:!?/\-"'#{([|\\@)\]=}*+]+$/);
+      expect(token).toMatch(/^[.,;:!?./\-"'#{([|\\@)\]=}*+]+$/);
     });
 
     it('should generate a random string with just letters (case incensitive) with withLowercase and withUppercase', () => {
@@ -106,7 +106,7 @@ describe('token-generator', () => {
       });
 
       expect(token).toHaveLength(256);
-      expect(token).toMatch(/^[a-z]+$/i);
+      expect(token).toMatch(/^[a-zA-Z]+$/);
     });
 
     it('should generate a random string with just numbers except 1 and 2 if only withNumbers is set and deniedChars contains 1 and 2', () => {
@@ -120,7 +120,7 @@ describe('token-generator', () => {
       });
 
       expect(token).toHaveLength(256);
-      expect(token).toMatch(/^[03-9]+$/);
+      expect(token).toMatch(/^[03456789]+$/);
     });
   });
 });

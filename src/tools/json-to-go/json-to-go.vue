@@ -63,15 +63,17 @@ async function convertJsonToGo(
 
 const goOutput = computedAsync(async () => {
   try {
-    return await convertJsonToGo(jsonInput.value, {
-      rootName: rootName.value,
-      packageName: packageName.value,
-      tags: tags.value,
-      plainTypesOnly: plainTypesOnly.value,
-      plainTypesWithPackageOnly: plainTypesWithPackageOnly.value,
-      optionalProperties: optionalProperties.value,
-      omitEmpty: omitEmpty.value,
-    });
+    return await convertJsonToGo(jsonInput.value,
+      {
+        rootName: rootName.value,
+        packageName: packageName.value,
+        tags: tags.value,
+        plainTypesOnly: plainTypesOnly.value,
+        plainTypesWithPackageOnly: plainTypesWithPackageOnly.value,
+        optionalProperties: optionalProperties.value,
+        omitEmpty: omitEmpty.value,
+      },
+    );
   }
   catch (e: any) {
     return e.toString();

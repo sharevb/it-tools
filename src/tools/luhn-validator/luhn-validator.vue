@@ -7,7 +7,7 @@ import { useQueryParam } from '@/composable/queryParams';
 const { t } = useI18n();
 
 const rawValue = useQueryParam({ tool: 'luhn-validator', name: 'luhn', defaultValue: '44540661970241257' });
-const cleanedValue = computed(() => rawValue.value.replace(/\D/g, ''));
+const cleanedValue = computed(() => rawValue.value.replace(/[^\d]/g, ''));
 const isValid = computed(() => {
   try {
     return Luhn.isValid(cleanedValue.value);

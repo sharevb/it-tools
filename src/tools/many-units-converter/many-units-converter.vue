@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import _ from 'lodash';
-import { convertMany } from 'convert';
-import type { Unit } from 'convert';
+import { type Unit, convertMany } from 'convert';
 import allUnits from './allunits.json';
 import { useQueryParam } from '@/composable/queryParams';
 import { useToolStore } from '@/tools/tools.store';
@@ -13,9 +12,7 @@ const toolStore = useToolStore();
 
 const unitsConversionTools = computed(() => _.orderBy(
   _.filter(toolStore.tools, t => t.keywords?.includes('units')),
-  'name',
-  'asc',
-));
+  'name', 'asc'));
 
 const allUnitsSorted = _.uniq(allUnits).sort();
 

@@ -5,8 +5,7 @@ export function cidrInCidr(
   {
     baseRange: string
     ipOrRangeToTest: string
-  },
-) {
+  }) {
   const baseMatchMasks = getMatch(baseRange)?.convertToMasks() || [];
   const ipOrRangeToTestMatchMasks = getMatch(ipOrRangeToTest)?.convertToMasks() || [];
 

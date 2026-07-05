@@ -14,14 +14,15 @@ const deniedChars = useQueryParamOrStorage({ name: 'deny', storageName: 'token-g
 const { t } = useI18n();
 
 const [tokens, refreshTokens] = computedRefreshable(() =>
-  Array.from({ length: count.value < 1 ? 1 : count.value }, () => createToken({
-    length: length.value,
-    withUppercase: withUppercase.value,
-    withLowercase: withLowercase.value,
-    withNumbers: withNumbers.value,
-    withSymbols: withSymbols.value,
-    deniedChars: deniedChars.value,
-  })).join('\n'),
+  Array.from({ length: count.value < 1 ? 1 : count.value },
+    () => createToken({
+      length: length.value,
+      withUppercase: withUppercase.value,
+      withLowercase: withLowercase.value,
+      withNumbers: withNumbers.value,
+      withSymbols: withSymbols.value,
+      deniedChars: deniedChars.value,
+    })).join('\n'),
 );
 
 const { copy } = useCopy({ source: tokens, text: t('tools.token-generator.copied') });

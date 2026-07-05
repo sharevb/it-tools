@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { addMilliseconds, formatRelative } from 'date-fns';
+import { useI18n } from 'vue-i18n';
 
 // Duplicate issue with sub directory
 
-import { enGB } from 'date-fns/locale';
+import { addMilliseconds, formatRelative } from 'date-fns';
 
-import { useI18n } from 'vue-i18n';
+import { enGB } from 'date-fns/locale';
 
 import { formatMsDuration } from './eta-calculator.service';
 

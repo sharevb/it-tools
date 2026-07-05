@@ -70,7 +70,7 @@ function urlToFilename(input: string): string {
   pathname = pathname.replace(/\//g, '-');
 
   // Remove unsafe filename characters
-  let safe = pathname.replace(/[^\w.-]/g, '_');
+  let safe = pathname.replace(/[^a-zA-Z0-9\._-]/g, '_');
 
   // Include hostname for uniqueness
   safe = `${url.hostname}${safe}`;
@@ -134,7 +134,7 @@ async function generateFromHtml() {
 
 const batchUrls = ref('');
 
-const batchResults = ref<{ url: string, status: 'success' | 'error', pdfBlob?: Blob, error?: string }[]>([]);
+const batchResults = ref<{ url: string; status: 'success' | 'error' ; pdfBlob?: Blob; error?: string }[]>([]);
 const batchProgress = ref(0);
 const batchTotal = ref(0);
 const isBatchRunning = ref(false);

@@ -35,13 +35,13 @@ const inputLongitude = useQueryParam({ tool: 'geo-coord-conv', name: 'lng', defa
 watch(inputLongitude, v => decimal.lng = v);
 const inputCSV = ref('');
 const batchRows = ref<string[][]>([]);
-const resultsData = ref<Record<string, { lat: number, lng: number }>[]>([]);
+const resultsData = ref<Record<string, { lat: number; lng: number }>[]>([]);
 const resultsDisplay = computed(() => {
   if (resultsData.value.length !== 1) {
     return [];
   }
 
-  const output: { system: string, decimal: string, dms: string }[] = [];
+  const output: { system: string; decimal: string; dms: string }[] = [];
   for (const [system, { lat: x, lng: y }] of Object.entries(resultsData.value[0])) {
     output.push({
       system,

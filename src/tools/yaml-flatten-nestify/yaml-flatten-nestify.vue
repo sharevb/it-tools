@@ -23,8 +23,7 @@ function transformer(value: string) {
       }
       return YAML.stringify(o);
     },
-    '',
-  );
+    '');
 }
 
 const rules: UseValidationRule<string>[] = [

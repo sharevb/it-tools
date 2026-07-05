@@ -5,7 +5,7 @@ export function getViewportDimensions(
   ratio: number,
   maxWidth: number = 450,
   maxHeight: number = 450,
-): { width: number, height: number } {
+): { width: number; height: number } {
   if (ratio >= 1) {
     return {
       width: maxWidth,
@@ -28,7 +28,7 @@ export function getBaseDimensions(
   vH: number,
   naturalWidth: number,
   naturalHeight: number,
-): { width: number, height: number } {
+): { width: number; height: number } {
   if (!naturalWidth || !naturalHeight) {
     return { width: vW, height: vH };
   }

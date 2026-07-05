@@ -42,9 +42,7 @@ const csharpOutput = computed(() => withDefaultOnError(
     generateImmutableClasses: generateImmutableClasses.value,
     useRecordTypes: useRecordTypes.value,
     useReadonlyLists: useReadonlyLists.value,
-  }),
-  '',
-));
+  }), ''));
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || JSON5.parse(v),

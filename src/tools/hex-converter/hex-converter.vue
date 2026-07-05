@@ -3,8 +3,7 @@ import { useI18n } from 'vue-i18n';
 import hexArray from 'hex-array';
 import { packArray, packString, unpackArray, unpackString } from 'byte-data';
 import JSON5 from 'json5';
-import { cleanHex, decodeNumber, decodeStruct, encodeStruct } from './hex-converter.service';
-import type { Conversion } from './hex-converter.service';
+import { type Conversion, cleanHex, decodeNumber, decodeStruct, encodeStruct } from './hex-converter.service';
 import { useValidation } from '@/composable/validation';
 
 const { t } = useI18n();
@@ -52,8 +51,7 @@ const encodedOutput = computed(() => {
           fp: floatingPoint.value,
           signed: signed.value,
           be: bigEndian.value,
-        }),
-      ),
+        })),
       {
         uppercase: uppercase.value,
         grouping: grouping.value,
@@ -104,9 +102,7 @@ const decodedStructOutput = computed(() => {
         struct: JSON5.parse(structDefinition.value),
         hexArray: hexArray.fromString(cleanHex(hexStructInput.value)),
       }),
-      null,
-      2,
-    );
+      null, 2);
   }
   catch (e: any) {
     return e.toString();
@@ -120,13 +116,11 @@ const encodedStructOutput = computed(() => {
       encodeStruct({
         struct: JSON5.parse(structDefinition.value),
         jsonObject: JSON5.parse(jsonStructInput.value),
-      }),
-      {
+      }), {
         uppercase: uppercase.value,
         grouping: grouping.value,
         rowlength: rowlength.value,
-      },
-    );
+      });
   }
   catch (e: any) {
     return e.toString();

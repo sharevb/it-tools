@@ -229,7 +229,7 @@ function moveLeft() {
 }
 
 function progressJump(e: MouseEvent) {
-  let el: HTMLElement | null = e.target as HTMLElement;
+  let el: HTMLElement | null = (e.target as HTMLElement);
   while (el && !el.className.includes('n-progress-content')) {
     el = el.parentElement;
   }

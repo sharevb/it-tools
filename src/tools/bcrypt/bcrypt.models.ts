@@ -1,15 +1,15 @@
 import { getCurrentLocale, translate as t } from '@/plugins/i18n.plugin';
 
 Intl.DurationFormat ??= class DurationFormat {
-  format(duration: { seconds?: number, milliseconds?: number }): string {
+  format(duration: { seconds?: number; milliseconds?: number }): string {
     return 'seconds' in duration
       ? `${duration.seconds} seconds`
       : `${duration.milliseconds} milliseconds`;
   }
 };
 
-export type Update<Result>
-  = | {
+export type Update<Result> =
+  | {
     kind: 'progress'
     progress: number
   }
@@ -42,7 +42,7 @@ export async function* bcryptWithProgressUpdates<Param, Result>(
   options?: Partial<BcryptWithProgressOptions>,
 ): AsyncGenerator<Update<Result>, undefined, undefined> {
   const { timeoutMs = 10_000 } = options ?? {};
-  // eslint-disable-next-line ts/prefer-ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
   // @ts-ignore: AbortSignal.any breaks typecheck
   const signal: AbortSignal = AbortSignal.any([
     AbortSignal.timeout(timeoutMs),

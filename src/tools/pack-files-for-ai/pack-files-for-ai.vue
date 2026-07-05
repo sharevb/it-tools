@@ -28,7 +28,7 @@ function handleFileUpload({ fileList }: { fileList: Array<UploadFileInfo> }) {
   treeData.value = buildTree(fileList);
 }
 
-interface FileDesc { label: string, key: string, chidren?: Array<FileDesc> | any };
+interface FileDesc { label: string; key: string; chidren?: Array<FileDesc> | any };
 
 function toTreeData(obj: { [s: string]: any }, path: string = ''): Array<FileDesc> {
   return Object.entries(obj).map(([key, value]) => ({
@@ -83,8 +83,7 @@ async function prepareFileContent(file: UploadFileInfo) {
       numberLines: lineNumbers.value,
       removeEmptyLines: removeEmptyLines.value,
       removeComments: removeComments.value,
-    },
-  );
+    });
 }
 
 async function generateXML(fileList: Array<UploadFileInfo>) {
@@ -219,19 +218,19 @@ function processSourceCode(
     const ext = extension.replace(/^\./, '').toLowerCase();
 
     const commentPatterns: Record<string, RegExp[]> = {
-      js: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g],
-      ts: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g],
-      java: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g],
-      cpp: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g],
-      c: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g],
-      cs: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g], // C#
+      js: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm],
+      ts: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm],
+      java: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm],
+      cpp: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm],
+      c: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm],
+      cs: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm], // C#
       vb: [/('.*$)/gm, /(REM\s.*$)/gi], // VB.NET
       py: [/(#.*$)/gm],
       rb: [/(#.*$)/gm],
-      php: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g, /(#.*$)/gm],
-      swift: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g],
-      go: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g],
-      rs: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/g],
+      php: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm, /(#.*$)/gm],
+      swift: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm],
+      go: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm],
+      rs: [/(\/\/.*$)/gm, /(\/\*[\s\S]*?\*\/)/gm],
       sh: [/(#.*$)/gm],
     };
 

@@ -4,30 +4,30 @@ import { createPinia, setActivePinia } from 'pinia';
 import CInputNumberI18N from './n-input-number-i18n.vue';
 import { formatNumber, parseNumber } from './n-input-number-i18n.utils';
 
-describe('cInputNumberI18N', () => {
+describe('CInputNumberI18N', () => {
   beforeEach(() => {
     setActivePinia(createPinia());
   });
 
-  it('should render', async () => {
+  it('Should render', async () => {
     const wrapper = mount(CInputNumberI18N);
 
     expect(wrapper.html()).toBeDefined();
   });
 
-  it('format value', () => {
+  it('Format value', () => {
     expect(formatNumber(1.3)).to.equal('1.3');
   });
 
-  it('parse a dot value', () => {
+  it('Parse a dot value', () => {
     expect(parseNumber('1.3')).to.equal(1.3);
   });
 
-  it('parse a comma value', () => {
+  it('Parse a comma value', () => {
     expect(parseNumber('1,3')).to.equal(1.3);
   });
 
-  it('parse a other values', () => {
+  it('Parse a other values', () => {
     expect(parseNumber('$1,225.12')).to.equal(1225.12);
     expect(parseNumber('1,225.12')).to.equal(1225.12);
     expect(parseNumber('1.225,12')).to.equal(1225.12);

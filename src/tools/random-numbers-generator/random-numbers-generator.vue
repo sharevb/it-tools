@@ -17,15 +17,16 @@ function transformCase(s: string) {
 const { t } = useI18n();
 
 const [numbers, refreshnumbers] = computedRefreshable(() =>
-  transformCase(Array.from({ length: count.value < 1 ? 1 : count.value }, () => createToken({
-    length: length.value,
-    withUppercase: false,
-    withLowercase: false,
-    withNumbers: numberMode.value === 'dec',
-    withHexaNumbers: numberMode.value === 'hexa',
-    withSymbols: false,
-    deniedChars: deniedChars.value,
-  })).join('\n')),
+  transformCase(Array.from({ length: count.value < 1 ? 1 : count.value },
+    () => createToken({
+      length: length.value,
+      withUppercase: false,
+      withLowercase: false,
+      withNumbers: numberMode.value === 'dec',
+      withHexaNumbers: numberMode.value === 'hexa',
+      withSymbols: false,
+      deniedChars: deniedChars.value,
+    })).join('\n')),
 );
 
 const { copy } = useCopy({ source: numbers, text: t('tools.random-numbers-generator.copied') });

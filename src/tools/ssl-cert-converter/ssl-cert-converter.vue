@@ -20,8 +20,7 @@ async function onUpload(file: File) {
 function downloadFile(data: ArrayBuffer | string, fileName: string, fileType?: string) {
   const blob = new Blob(
     [typeof data === 'string' ? new TextEncoder().encode(data) : data],
-    { type: fileType || 'application/octet-stream' },
-  );
+    { type: fileType || 'application/octet-stream' });
   const downloadUrl = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = downloadUrl;

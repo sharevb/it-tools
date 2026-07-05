@@ -61,7 +61,7 @@ function start() {
   now.value = moment();
   status.value = 'running';
   const histoEntry = { d: days.value, h: hours.value, m: minutes.value, s: seconds.value };
-  if (!history.value.some(h => h.d === histoEntry.d && h.h === histoEntry.h && h.m === histoEntry.m && h.s === histoEntry.s)) {
+  if (!history.value.find(h => h.d === histoEntry.d && h.h === histoEntry.h && h.m === histoEntry.m && h.s === histoEntry.s)) {
     history.value = [histoEntry, ...history.value];
   }
 }

@@ -46,9 +46,7 @@ const cleanJson = computed(() => {
     }
     return JSON.stringify(
       JSON.parseBigNum(jsonContentValue),
-      null,
-      indentSize.value,
-    );
+      null, indentSize.value);
   }
   catch (e: any) {
     return e.toString();

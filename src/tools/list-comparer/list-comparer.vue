@@ -4,7 +4,7 @@ import { compareLists } from './list-comparer.service';
 
 const { t } = useI18n();
 
-const compareConfig = useStorage<{ ignoreCase: boolean, trimItems: boolean, noDuplicate: boolean, separator: string }>('list-cmp:conf', {
+const compareConfig = useStorage<{ ignoreCase: boolean; trimItems: boolean; noDuplicate: boolean; separator: string }>('list-cmp:conf', {
   ignoreCase: false,
   trimItems: true,
   noDuplicate: false,

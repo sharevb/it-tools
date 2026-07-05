@@ -36,7 +36,7 @@ const parsedSearchQuery = computed(() => {
   }
 
   // Check for various Unicode notation formats
-  const parsedRegex = /^\s*(?:&#x(?<hex1>[\da-f]+);|&#(?<dec>\d+);|(?:U\+|\\u)?\s*(?<hex2>[\da-f]+))\s*$/gi; // NOSONAR
+  const parsedRegex = /^\s*(?:\&#x(?<hex1>[\da-f]+);|\&#(?<dec>\d+);|(?:U\+|\\u)?\s*(?<hex2>[\da-f]+))\s*$/gi; // NOSONAR
   const parsedQuery = parsedRegex.exec(searchQuery.value);
   if (parsedQuery) {
     if (parsedQuery.groups?.hex1 || parsedQuery.groups?.hex2) {

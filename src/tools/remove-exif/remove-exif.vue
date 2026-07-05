@@ -12,7 +12,7 @@ const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
 
 interface ToBufferMemoryStream extends MemoryStream {
-  toBuffer: () => Buffer
+  toBuffer(): Buffer
 }
 
 const base64OutputFile = ref('');
@@ -22,8 +22,7 @@ const { download } = useDownloadFileFromBase64(
     source: base64OutputFile,
     filename: fileName,
     extension: 'jpg',
-  },
-);
+  });
 
 async function onFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;

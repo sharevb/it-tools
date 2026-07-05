@@ -123,12 +123,12 @@ export class GPTTokens {
   }
 
   /**
-   * Return the number of tokens in a list of messages.
-   * @param messages A list of messages.
-   * @param model The model to use for encoding.
-   * @returns The number of tokens in the messages.
-   * @throws If the model is not supported.
-   */
+     * Return the number of tokens in a list of messages.
+     * @param messages A list of messages.
+     * @param model The model to use for encoding.
+     * @returns The number of tokens in the messages.
+     * @throws If the model is not supported.
+     */
   private static num_tokens_from_messages(messages: MessageItem [], model: TiktokenModel) {
     let tokens_per_message!: number;
     let tokens_per_name !: number;

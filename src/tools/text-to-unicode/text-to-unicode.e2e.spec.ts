@@ -17,6 +17,7 @@ test.describe('Tool - Text to Unicode', () => {
   });
 
   test('Unicode to text conversion', async ({ page }) => {
+    // eslint-disable-next-line unicorn/escape-case
     await page.getByTestId('unicode-to-text-input').fill(String.raw`\u0022it-tools\u0022 \u6587\u5b57`);
     const text = await page.getByTestId('unicode-to-text-output').inputValue();
 

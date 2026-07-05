@@ -52,8 +52,7 @@ export function computeDuration(s: string): {
     {
       sign: 1,
       durationMS: 0,
-    },
-  );
+    });
 
   return {
     total: prepareDurationResult(sumMS.durationMS),
@@ -62,23 +61,24 @@ export function computeDuration(s: string): {
 }
 
 function convertDurationMS(s: string): number | null {
-  const hoursHandled = s.trim().replace(/^(?:(\d+)\.)?(\d+):(\d+)(?::(\d+)(?:\.(\d+))?)?$/g, (_, d, h, m, s, ms) => {
-    const timeArr: string[] = [];
-    const addPart = (part: string, unit: string) => {
-      const num = Number.parseInt(part, 10);
-      if (Number.isNaN(num)) {
-        return;
-      }
+  const hoursHandled = s.trim().replace(/^(?:(\d+)\.)?(\d+):(\d+)(?::(\d+)(?:\.(\d+))?)?$/g,
+    (_, d, h, m, s, ms) => {
+      const timeArr: string[] = [];
+      const addPart = (part: string, unit: string) => {
+        const num = Number.parseInt(part, 10);
+        if (Number.isNaN(num)) {
+          return;
+        }
 
-      timeArr.push(`${num}${unit}`);
-    };
-    addPart(d, 'd');
-    addPart(h, 'h');
-    addPart(m, 'm');
-    addPart(s, 's');
-    addPart(ms?.padEnd(3, '0'), 'ms');
-    return timeArr.join(' ');
-  });
+        timeArr.push(`${num}${unit}`);
+      };
+      addPart(d, 'd');
+      addPart(h, 'h');
+      addPart(m, 'm');
+      addPart(s, 's');
+      addPart(ms?.padEnd(3, '0'), 'ms');
+      return timeArr.join(' ');
+    });
   if (!hoursHandled) {
     return 0;
   }

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { maskSensitiveData } from './sensitive-data-masker.service';
-import type { MatcherNames } from './sensitive-data-masker.service';
+import { type MatcherNames, maskSensitiveData } from './sensitive-data-masker.service';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useITStorage } from '@/composable/queryParams';
 
@@ -24,19 +23,9 @@ const defaultValue = `{
 const customRegex = useITStorage('sensitive-data:regex', '');
 const excludedMatchers = useITStorage('sensitive-data:exclude', [] as string[]);
 const allMatchers = [
-  'uuid',
-  'creditCard',
-  'ssn',
-  'url',
-  'ipv4',
-  'email',
-  'passwordInUri',
-  'mac',
-  'ipv6',
-  'urlWithOrWithoutPrefix',
-  'jwt',
-  'phone',
-];
+  'uuid', 'creditCard', 'ssn', 'url', 'ipv4', 'email',
+  'passwordInUri', 'mac', 'ipv6', 'urlWithOrWithoutPrefix',
+  'jwt', 'phone'];
 
 function transformer(value: string) {
   return withDefaultOnError(() => maskSensitiveData({

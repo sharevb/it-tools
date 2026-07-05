@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import type { UploadFileInfo } from 'naive-ui';
+import { useI18n } from 'vue-i18n';
+import {
+  computed,
+  ref,
+} from 'vue';
 import {
   NButton,
   NColorPicker,
@@ -12,11 +16,7 @@ import {
   NSwitch,
   NUpload,
 } from 'naive-ui';
-import {
-  computed,
-  ref,
-} from 'vue';
-import { useI18n } from 'vue-i18n';
+import type { UploadFileInfo } from 'naive-ui';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -217,7 +217,7 @@ function downloadImage(index: number) {
   if (!canvas.value) {
     return;
   }
-  const imgNameWithoutExt = images.value[index].getAttribute('data-name')?.replace(/\.[^.]+$/, '');
+  const imgNameWithoutExt = images.value[index].getAttribute('data-name')?.replace(/\.[^\.]+$/, '');
   drawImage(index);
   const link = document.createElement('a');
   link.download = `watermarked-${imgNameWithoutExt}.${downloadFormat.value}`;

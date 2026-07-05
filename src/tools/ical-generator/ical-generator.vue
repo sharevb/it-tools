@@ -71,8 +71,7 @@ const { download } = useDownloadFileFromBase64(
     source: outputBase64,
     filename: outputFileName,
     extension: 'ics',
-  },
-);
+  });
 </script>
 
 <template>

@@ -11,12 +11,12 @@ function normalize(src: string, firstUpper = true) {
 }
 
 export function isDate(src: string) {
-  return /^(\d{4})(-(0[1-9]|1[0-2])(-([12]\d|0[1-9]|3[01]))([T\s]((([01]\d|2[0-3])((:)[0-5]\d))(:\d+)?)?(:[0-5]\d(\.\d+)?)?([zZ]|([+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)$/.test(
+  return /^(\d{4})(-(0[1-9]|1[0-2])(-([12]\d|0[1-9]|3[01]))([T\s]((([01]\d|2[0-3])((:)[0-5]\d))([\:]\d+)?)?(:[0-5]\d([\.]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)$/.test(
     src,
   );
 }
 
-interface Prop { type: string, name: string, isArray?: boolean, canBeNullable?: boolean }
+interface Prop { type: string; name: string; isArray?: boolean; canBeNullable?: boolean }
 
 export function getPrimitiveProp(obj: any, key: string): Prop {
   const type = typeof obj;
@@ -34,14 +34,13 @@ export function getPrimitiveProp(obj: any, key: string): Prop {
   }
 }
 
-interface ClassType { key: string, props: Array<Prop> }
+interface ClassType { key: string; props: Array<Prop> }
 
 function handleObject(
   classes: Array<ClassType>,
   obj: any,
   key: string,
-  skip: boolean = false,
-) {
+  skip: boolean = false) {
   const normalizedKey = normalize(key);
   let target: ClassType = classes.find(x => x.key === normalizedKey) as never;
   if (!target) {
@@ -119,8 +118,7 @@ export function json2csharp(
     generateImmutableClasses?: boolean
     useRecordTypes?: boolean
     useReadonlyLists?: boolean
-  },
-) {
+  }) {
   const normalizeCase = (s: string) => {
     const normalized = normalize(s, pascalCase);
     return pascalCase ? convertToPascalCase(normalized) : normalized;
@@ -143,8 +141,7 @@ export function json2csharp(
   const srcObj = typeof src === 'string' ? JSON5.parse(src) : src;
   const classes = json2classes(
     Array.isArray(srcObj) ? srcObj[0] : srcObj,
-    Array.isArray(srcObj) ? `${rootTypeName}Item` : rootTypeName,
-  );
+    Array.isArray(srcObj) ? `${rootTypeName}Item` : rootTypeName);
   let result = '';
   result += 'using System;\n';
   result += addJsonProperty ? 'using Newtonsoft.Json;\n' : '';

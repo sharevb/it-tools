@@ -28,21 +28,13 @@ const formats = isWindowSecureContext()
       'curve25519',
       'curve448',
       'ed25519',
-      'p256',
-      'p384',
-      'p521',
-      'brainpoolP256r1',
-      'brainpoolP384r1',
-      'brainpoolP512r1',
+      'p256', 'p384', 'p521',
+      'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1',
       'secp256k1',
     ]
   : [
-      'p256',
-      'p384',
-      'p521',
-      'brainpoolP256r1',
-      'brainpoolP384r1',
-      'brainpoolP512r1',
+      'p256', 'p384', 'p521',
+      'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1',
       'secp256k1',
     ];
 
@@ -89,8 +81,7 @@ const [certs, refreshCerts] = computedRefreshableAsync(
     catch (e: any) {
       return { privateKey: `#${e.toString()}`, publicKey: `#${e.toString()}`, revocationCertificate: '' };
     }
-  },
-  { privateKey: '', publicKey: '', revocationCertificate: '' },
+  }, { privateKey: '', publicKey: '', revocationCertificate: '' },
 );
 </script>
 

@@ -66,7 +66,7 @@ const emojis = _.map(emojiUnicodeData, (emojiInfo, emoji) => ({
 }));
 
 // Group emojis and sort groups for better organization
-const emojisGroups: { emojiInfos: EmojiInfo[], group: string }[] = _.chain(emojis)
+const emojisGroups: { emojiInfos: EmojiInfo[]; group: string }[] = _.chain(emojis)
   .groupBy('group')
   .map((emojiInfos, group) => ({
     group: _.startCase(group), // Better group name formatting

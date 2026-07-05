@@ -30,7 +30,10 @@ describe('deflate', () => {
       },
     }, ''))
       .toStrictEqual(
-        ['cloud.gateway.routes[0].id=after_route', 'cloud.gateway.routes[0].uri=https://example.org', 'cloud.gateway.routes[0].predicates[0].name=Cookie', 'cloud.gateway.routes[0].predicates[0].args.name=mycookie', 'cloud.gateway.routes[0].predicates[0].args.regexp=mycookievalue'],
-      );
+        ['cloud.gateway.routes[0].id=after_route',
+          'cloud.gateway.routes[0].uri=https://example.org',
+          'cloud.gateway.routes[0].predicates[0].name=Cookie',
+          'cloud.gateway.routes[0].predicates[0].args.name=mycookie',
+          'cloud.gateway.routes[0].predicates[0].args.regexp=mycookievalue']);
   });
 });

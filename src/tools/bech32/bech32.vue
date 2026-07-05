@@ -175,8 +175,8 @@ function exportCsv() {
 
   const csv
     = `${header.join(',')
-    }\n${
-      rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n')}`;
+     }\n${
+     rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n')}`;
 
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);

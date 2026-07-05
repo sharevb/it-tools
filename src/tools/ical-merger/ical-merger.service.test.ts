@@ -5,7 +5,7 @@ describe('ical-merger', () => {
   describe('mergeIcals', () => {
     it('merge correctly', () => {
       expect(mergeIcals([
-        `BEGIN:VCALENDAR
+`BEGIN:VCALENDAR
 PRODID:-//xyz Corp//NONSGML PDA Calendar Version 1.0//EN
 VERSION:2.0
 BEGIN:VEVENT
@@ -22,7 +22,7 @@ DESCRIPTION:Networld+Interop Conference
  Atlanta\\, Georgia
 END:VEVENT
 END:VCALENDAR`,
-        `BEGIN:VCALENDAR
+ `BEGIN:VCALENDAR
 METHOD:xyz
 VERSION:2.0
 PRODID:-//ABC Corporation//NONSGML My Product//EN
@@ -45,7 +45,7 @@ ATTACH;FMTTYPE=application/postscript:ftp://example.com/pub/
 END:VEVENT
 END:VCALENDAR`,
       ])).to.eq(
-        `BEGIN:VCALENDAR
+`BEGIN:VCALENDAR
 PRODID:it-tools-ical-merger
 VERSION:1.0
 BEGIN:VEVENT
@@ -76,8 +76,7 @@ DESCRIPTION:Discuss how we can test c&s interoperability\\nusing iCalendar a
 LOCATION:LDB Lobby
 ATTACH;FMTTYPE=application/postscript:ftp://example.com/pub/conf/bkgrnd.ps
 END:VEVENT
-END:VCALENDAR`.replace(/\n/g, '\r\n'),
-      );
+END:VCALENDAR`.replace(/\n/g, '\r\n'));
     });
   });
 });

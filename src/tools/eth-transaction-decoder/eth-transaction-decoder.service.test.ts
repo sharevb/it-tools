@@ -185,8 +185,7 @@ describe('decodeTransaction', () => {
           {
             hex: '0x402934',
             type: 'BigNumber',
-          },
-          'BTC',
+          }, 'BTC',
           '0xf3df64775a2dfb6bc9e09dced96d0816ff5055bf95da13ce5b6c3f53b97071c8',
         ],
         method: 'registerOffChainDonation',

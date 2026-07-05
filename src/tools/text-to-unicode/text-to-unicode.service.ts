@@ -2,7 +2,7 @@ export type Encoding = 'htmldec' | 'htmlhex' | 'uniplus' | 'antiuni' | 'css' | '
 
 const ALL_PRINTABLE_ASCII = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
-function convertTextToUnicode(text: string, { encoding = 'htmldec', skipAscii = false }: { encoding?: Encoding, skipAscii?: boolean } = {}): string {
+function convertTextToUnicode(text: string, { encoding = 'htmldec', skipAscii = false }: { encoding?: Encoding; skipAscii?: boolean } = {}): string {
   let prefix: (value: number) => string;
   let suffix: (value: number) => string = () => '';
   let base = 16;
@@ -58,7 +58,7 @@ function convertTextToUnicode(text: string, { encoding = 'htmldec', skipAscii = 
 function convertUnicodeToText(unicodeStr: string): string {
   return unicodeStr
     .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(dec))
-    .replace(/&#x([0-9A-F]+);/gi, (_, hex) => String.fromCodePoint(Number.parseInt(hex, 16)))
+    .replace(/&#[xX]([0-9A-Fa-f]+);/g, (_, hex) => String.fromCodePoint(Number.parseInt(hex, 16)))
     .replace(/\\u\{([0-9A-Fa-f]+)\}/g, (_, hex) => String.fromCodePoint(Number.parseInt(hex, 16)))
     .replace(/(?:\\[uUx]|\\|\s*U\+)([0-9A-Fa-f]+)/g, (match, hex) => String.fromCodePoint(Number.parseInt(hex, 16))); // NOSONAR
 }

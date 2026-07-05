@@ -33,7 +33,8 @@ interface TestCase {
 
 type BusinessTimeMethod = keyof InstanceType<typeof BusinessTime>;
 
-function testEachComputeTime(testCases: TestCase[], businessTimeFunctionName: BusinessTimeMethod) {
+function testEachComputeTime(testCases: TestCase[],
+  businessTimeFunctionName: BusinessTimeMethod) {
   for (const {
     start,
     end,
@@ -66,12 +67,11 @@ function testEachComputeTime(testCases: TestCase[], businessTimeFunctionName: Bu
       businessTime[businessTimeFunctionName]({
         start: startDatetime,
         end: endDatetime,
-      } as never),
-    ).to.deep.eq(expected);
+      } as never)).to.deep.eq(expected);
   }
 }
 
-function testEachMoveDateInBusinessTime(testCases: (TestCase & { datetime: string, moveBehind: boolean })[]) {
+function testEachMoveDateInBusinessTime(testCases: (TestCase & { datetime: string; moveBehind: boolean })[]) {
   for (const {
     businessTimezone,
     businessHours,
@@ -94,8 +94,7 @@ function testEachMoveDateInBusinessTime(testCases: (TestCase & { datetime: strin
           datetime: DateTime.fromISO(datetime),
           moveBehind,
         })
-        .toISO(),
-    ).to.deep.eq(
+        .toISO()).to.deep.eq(
       expected,
     );
   }
@@ -125,7 +124,7 @@ function testEachIsBusinessDay(testCases: (TestCase & { datetime: string })[]) {
   }
 }
 
-function testEachAddBusinessSecondsToDate(testCases: (TestCase & { datetime: string, seconds: number })[]) {
+function testEachAddBusinessSecondsToDate(testCases: (TestCase & { datetime: string; seconds: number })[]) {
   for (const {
     seconds,
     businessTimezone,
@@ -149,14 +148,13 @@ function testEachAddBusinessSecondsToDate(testCases: (TestCase & { datetime: str
     expect(
       businessTime
         .addBusinessSecondsToDate({ datetime: datetimeObj, seconds })
-        .toISO(),
-    ).to.deep.eq(
+        .toISO()).to.deep.eq(
       expected,
     );
   }
 }
 
-function testEachRemoveBusinessSecondsToDate(testCases: (TestCase & { datetime: string, seconds: number })[]) {
+function testEachRemoveBusinessSecondsToDate(testCases: (TestCase & { datetime: string; seconds: number })[]) {
   for (const {
     seconds,
     businessTimezone,
@@ -180,14 +178,13 @@ function testEachRemoveBusinessSecondsToDate(testCases: (TestCase & { datetime: 
     expect(
       businessTime
         .removeBusinessSecondsFromDate({ datetime: datetimeObj, seconds })
-        .toISO(),
-    ).to.deep.eq(
+        .toISO()).to.deep.eq(
       expected,
     );
   }
 }
 
-describe('businessTime', () => {
+describe('BusinessTime', () => {
   it('compute business days', () => {
     testEachComputeTime(
       [

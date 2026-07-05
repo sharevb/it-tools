@@ -60,7 +60,7 @@ const { qrcode } = useQRCode({
 const secretValidationRules = [
   {
     message: t('tools.otp-code-generator-and-validator.texts.message-secret-should-be-a-base32-string'),
-    validator: (value: string) => value.toUpperCase().match(/^[A-Z2-7]+$/),
+    validator: (value: string) => value.toUpperCase().match(/^[A-Z234567]+$/),
   },
   {
     message: t('tools.otp-code-generator-and-validator.texts.message-please-set-a-secret'),

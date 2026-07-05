@@ -7,11 +7,7 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 const { t } = useI18n();
 
 const hashTypes = [
-  'sha1',
-  'sha256',
-  'sha384',
-  'sha512',
-  'md5',
+  'sha1', 'sha256', 'sha384', 'sha512', 'md5',
 ];
 
 const verifyText = ref('');

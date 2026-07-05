@@ -75,13 +75,14 @@ const normalizedISBN = computed(() => {
   return ISBN3.parse(`${normalized}${checksum}`)?.isbn13h;
 });
 
-const isbnAuditInfos = computed<{ isValid: boolean, clues: CKeyValueListItems }>(() => {
+const isbnAuditInfos = computed<{ isValid: boolean; clues: CKeyValueListItems }>(() => {
   const isbn = ISBN3.audit(rawIsbn.value);
 
   const isValid = (isbn?.validIsbn ?? false);
   return {
     isValid,
-    clues: Array.from((isbn?.clues ?? []), clue => ({ label: `${clue.message} (${clue.groupname})`, value: clue.candidate })),
+    clues: Array.from((isbn?.clues ?? []),
+      clue => ({ label: `${clue.message} (${clue.groupname})`, value: clue.candidate })),
   };
 });
 </script>

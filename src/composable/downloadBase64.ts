@@ -4,12 +4,10 @@ import _ from 'lodash';
 import { get } from '@vueuse/core';
 
 export {
-  getExtensionFromMimeType,
   getMimeTypeFromBase64,
-  getMimeTypeFromExtension,
+  getMimeTypeFromExtension, getExtensionFromMimeType,
+  useDownloadFileFromBase64, useDownloadFileFromBase64Refs,
   previewImageFromBase64,
-  useDownloadFileFromBase64,
-  useDownloadFileFromBase64Refs,
 };
 
 const commonMimeTypesSignatures = {
@@ -51,7 +49,7 @@ function getFileExtensionFromMimeType({
 }
 
 function downloadFromBase64({ sourceValue, filename, extension, fileMimeType }:
-{ sourceValue: string, filename?: string, extension?: string, fileMimeType?: string }) {
+{ sourceValue: string; filename?: string; extension?: string; fileMimeType?: string }) {
   if (sourceValue === '') {
     throw new Error('Base64 string is empty');
   }
@@ -65,8 +63,7 @@ function downloadFromBase64({ sourceValue, filename, extension, fileMimeType }:
   }
 
   const cleanExtension = extension ?? getFileExtensionFromMimeType(
-    { mimeType, defaultExtension },
-  );
+    { mimeType, defaultExtension });
   let cleanFileName = filename ?? `file.${cleanExtension}`;
   if (extension && !cleanFileName.endsWith(`.${extension}`)) {
     cleanFileName = `${cleanFileName}.${cleanExtension}`;
@@ -80,8 +77,7 @@ function downloadFromBase64({ sourceValue, filename, extension, fileMimeType }:
 
 function useDownloadFileFromBase64(
   { source, filename, extension }:
-  { source: MaybeRef<string>, filename?: MaybeRef<string>, extension?: MaybeRef<string> },
-) {
+  { source: MaybeRef<string>; filename?: MaybeRef<string>; extension?: MaybeRef<string> }) {
   return {
     download() {
       downloadFromBase64({ sourceValue: get(source), filename: get(filename), extension: get(extension) });
@@ -119,8 +115,7 @@ function previewImageFromBase64(base64String: string): HTMLImageElement {
 
 function useDownloadFileFromBase64Refs(
   { source, filename, extension }:
-  { source: Ref<string>, filename?: Ref<string>, extension?: Ref<string> },
-) {
+  { source: Ref<string>; filename?: Ref<string>; extension?: Ref<string> }) {
   return {
     download() {
       downloadFromBase64({ sourceValue: source.value, filename: filename?.value, extension: extension?.value });

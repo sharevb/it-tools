@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { parseQRData } from './qr-code-decoder.service';
 
 describe('qr-code-decoder', () => {
-  it('parseQRData should parse content correctly', () => {
+  test('parseQRData should parse content correctly', () => {
     expect(parseQRData(null)).toEqual({
       type: 'Unknown',
       value: '',

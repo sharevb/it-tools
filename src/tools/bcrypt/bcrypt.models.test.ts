@@ -1,8 +1,7 @@
 import { compare, hash } from 'bcryptjs';
-import { assert, describe, expect, it } from 'vitest';
+import { assert, describe, expect, test } from 'vitest';
 import { installAbortSignalPolyfill } from 'abort-signal-polyfill';
-import { bcryptWithProgressUpdates } from './bcrypt.models';
-import type { Update } from './bcrypt.models';
+import { type Update, bcryptWithProgressUpdates } from './bcrypt.models';
 
 // Install the polyfill
 installAbortSignalPolyfill();
@@ -33,7 +32,7 @@ function checkProgressAndGetResult<T>(updates: Update<T>[]) {
 
 describe('bcrypt models', () => {
   describe(bcryptWithProgressUpdates.name, () => {
-    it('with bcrypt hash function', async () => {
+    test('with bcrypt hash function', async () => {
       const updates = await fromAsync(bcryptWithProgressUpdates(hash, ['abc', 5]));
       const result = checkProgressAndGetResult(updates);
 
@@ -41,7 +40,7 @@ describe('bcrypt models', () => {
       expect(result.timeTakenMs).toBeGreaterThan(0);
     });
 
-    it('with bcrypt compare function', async () => {
+    test('with bcrypt compare function', async () => {
       const updates = await fromAsync(
         bcryptWithProgressUpdates(compare, ['abc', '$2a$05$FHzYelm8Qn.IhGP.N8V1TOWFlRTK.8cphbxZSvSFo9B6HGscnQdhy']),
       );

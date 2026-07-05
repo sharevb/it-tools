@@ -24,12 +24,13 @@ async function traceAsync(input: Buffer) {
 
 async function posterizeAsync(input: Buffer) {
   return new Promise<string>((resolve, reject) => {
-    potrace.posterize(input, (err: Error | null, svg: string) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(svg);
-    });
+    potrace.posterize(input,
+      (err: Error | null, svg: string) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(svg);
+      });
   });
 }
 
@@ -118,7 +119,8 @@ async function computeSVG() {
           clustering_mode: 'color',
           layer_difference: layer_difference.value,
           path_precision: 8,
-        });
+        },
+        );
         break;
     }
   }

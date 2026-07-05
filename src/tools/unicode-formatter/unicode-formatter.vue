@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { AllFontNames, AllOptions } from './unicode-formatter.service';
+import { useI18n } from 'vue-i18n';
 
 // import {AllFontNames,AllOptions, bold,italic,monospace,strikethrough,underline,superscript,subscript,formatSelections} from './unicod'
 import { Copy } from '@vicons/tabler';
-import { useI18n } from 'vue-i18n';
-import { useCopy } from '@/composable/copy';
-
+import type { AllFontNames, AllOptions } from './unicode-formatter.service';
 import { formatSelection } from './unicode-formatter.service';
+
+import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
 

@@ -15,8 +15,7 @@ const ipOrRangeToTest = useQueryParamOrStorage({ name: 'ip', storageName: 'cidr-
 
 const matchResult = computed(() => withDefaultOnError(
   () => cidrInCidr({ baseRange: baseRange.value, ipOrRangeToTest: ipOrRangeToTest.value }),
-  { baseSubnets: [], isIncluded: false },
-));
+  { baseSubnets: [], isIncluded: false }));
 
 const rangeValidationRules = [
   {

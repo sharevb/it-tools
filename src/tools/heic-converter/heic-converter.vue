@@ -20,8 +20,7 @@ const { download } = useDownloadFileFromBase64(
   {
     source: base64OutputImage,
     filename: fileName,
-  },
-);
+  });
 
 async function onFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;

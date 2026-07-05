@@ -8,9 +8,9 @@ export function detectTypeAndEscape(val: string | null | undefined) {
   return `'${val.replace(/'/g, '\'\'')}'`;
 }
 
-export function generateSQLFromTemplate(template: string, parameters: Array<{ key: string, value: string }>) {
+export function generateSQLFromTemplate(template: string, parameters: Array<{ key: string; value: string }>) {
   const paramMap = new Map();
-  const indexedParams: Array<{ key: string, value: string }> = [];
+  const indexedParams: Array<{ key: string; value: string }> = [];
   let keyIndex = 0;
   parameters.forEach(({ key, value }) => {
     if (key !== '' && !/^\d+$/.test(key)) {

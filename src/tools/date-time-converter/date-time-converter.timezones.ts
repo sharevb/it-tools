@@ -65,7 +65,7 @@ export function resolveBrowserTimeZone(timezone?: string, fallback = 'Etc/UTC') 
 }
 
 export function getBrowserTimeZone() {
-  return resolveBrowserTimeZone(new Intl.DateTimeFormat().resolvedOptions().timeZone);
+  return resolveBrowserTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
 }
 
 export function getTimeZoneOptionLabel({

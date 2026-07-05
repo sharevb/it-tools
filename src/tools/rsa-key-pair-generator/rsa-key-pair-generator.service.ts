@@ -47,7 +47,9 @@ async function generateKeyPair(config: {
   return {
     publicKey: pubKey.toString(pubFormat),
     privateKey: config?.password
-      ? privKey.toString(privFormat, { passphrase: config?.password, comment: config?.comment })
+      ? privKey.toString(privFormat,
+        { passphrase: config?.password, comment: config?.comment },
+      )
       : privKey.toString(privFormat, { comment: config?.comment }),
   };
 }

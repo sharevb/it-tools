@@ -76,7 +76,9 @@ const grayscale = ref(false);
 const invert = ref(false);
 
 let lastColor = colord('#1ea54c');
-watch([saturation, brightness, grayscale, invert], () => updateColorValue(lastColor));
+watch([saturation, brightness, grayscale, invert],
+  () => updateColorValue(lastColor),
+);
 
 updateColorValue(lastColor);
 

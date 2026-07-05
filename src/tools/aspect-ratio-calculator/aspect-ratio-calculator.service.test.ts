@@ -1,15 +1,14 @@
 // aspect-ratio-calculator.service.test.ts
 
-import type { AspectRatio } from './aspect-ratio-calculator.service';
 import { describe, expect, it } from 'vitest';
 import {
-
+  type AspectRatio,
   calculateAspectRatio,
   calculateDimensions,
   simplifyRatio,
 } from './aspect-ratio-calculator.service';
 
-describe('aspect Ratio Calculator Service', () => {
+describe('Aspect Ratio Calculator Service', () => {
   describe('calculateAspectRatio', () => {
     it('calculates correct aspect ratio for 1920x1080', () => {
       const result = calculateAspectRatio(1920, 1080);

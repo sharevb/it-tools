@@ -9,7 +9,7 @@ const { t } = useI18n();
 
 const macAddress = useQueryParam({ tool: 'ipv6-ula-gen', name: 'mac', defaultValue: '20:37:06:12:34:56' });
 const calculatedSections = computed(() => {
-  const timestamp = Date.now();
+  const timestamp = new Date().getTime();
   const hex40bit = SHA1(timestamp + macAddress.value)
     .toString()
     .substring(30);

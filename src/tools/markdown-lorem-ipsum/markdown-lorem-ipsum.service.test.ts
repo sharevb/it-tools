@@ -1,7 +1,6 @@
-import type { GeneratorConfig, HeaderStyle } from './markdown-lorem-ipsum.service';
 // tests/generator.spec.ts
 import { describe, expect, it } from 'vitest';
-import { generateMarkdown } from './markdown-lorem-ipsum.service';
+import { type GeneratorConfig, type HeaderStyle, generateMarkdown } from './markdown-lorem-ipsum.service';
 
 const baseCfg: GeneratorConfig = {
   seedStr: 'seed-paris-2025',
@@ -67,7 +66,7 @@ describe('generateMarkdown', () => {
 
   it('contains inline decorations when enabled', () => {
     const out = generateMarkdown({ ...baseCfg, seedStr: 'inline-on' });
-    expect(out).toMatch(/`[^`\n]+`|\*\*[^*\n]+\*\*|\*[^*\n]+\*|\[[^\]]+\]\([^)]+\)/);
+    expect(out).toMatch(/`[^`\n]+`|\*\*[^\*\n]+\*\*|\*[^\*\n]+\*|\[[^\]]+\]\([^)]+\)/);
   });
 
   it('disables inline decorations when toggled off', () => {
@@ -79,7 +78,7 @@ describe('generateMarkdown', () => {
       inlineLinks: false,
       inlineCode: false,
     });
-    expect(out).not.toMatch(/`[^`\n]+`|\*\*[^*\n]+\*\*|\*[^*\n]+\*|\[[^\]]+\]\([^)]+\)/);
+    expect(out).not.toMatch(/`[^`\n]+`|\*\*[^\*\n]+\*\*|\*[^\*\n]+\*|\[[^\]]+\]\([^)]+\)/);
   });
 
   it('can be skewed towards headers via frequency', () => {

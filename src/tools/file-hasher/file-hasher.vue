@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import type { lib } from 'crypto-js';
+import { useI18n } from 'vue-i18n';
 
-import type { IHasher } from 'hash-wasm/dist/lib/WASMInterface';
-import { enc } from 'crypto-js';
 import {
   createAdler32, // (): Promise<IHasher>
   createBLAKE2b, // (bits?: number, key?: IDataType): Promise<IHasher> // default is 512 bits
@@ -14,9 +12,9 @@ import {
   createMD5, // (): Promise<IHasher>
   createRIPEMD160, // (): Promise<IHasher>
   createSHA1, // (): Promise<IHasher>
-  createSHA3, // (bits?: 224 | 256 | 384 | 512): Promise<IHasher> // default is 512 bits
   createSHA224, // (): Promise<IHasher>
   createSHA256, // (): Promise<IHasher>
+  createSHA3, // (bits?: 224 | 256 | 384 | 512): Promise<IHasher> // default is 512 bits
   createSHA384, // (): Promise<IHasher>
   createSHA512, // (): Promise<IHasher>
   createSM3, // (): Promise<IHasher>
@@ -26,12 +24,14 @@ import {
 // createXXHash3, //(seedLow: number, seedHigh: number): Promise<IHasher>
 // createXXHash128, //(seedLow: number, seedHigh: number): Promise<IHasher>
 } from 'hash-wasm';
+import type { lib } from 'crypto-js';
+import { enc } from 'crypto-js';
 
-import { useI18n } from 'vue-i18n';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { withDefaultOnError } from '@/utils/defaults';
+import type { IHasher } from 'hash-wasm/dist/lib/WASMInterface';
 import InputCopyable from '../../components/InputCopyable.vue';
 import { convertHexToBin } from '../hash-text/hash-text.service';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 

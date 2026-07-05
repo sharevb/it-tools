@@ -12,10 +12,8 @@ const single_linize = useQueryParamOrStorage({ name: 'singleline', storageName: 
 const languagesOptions = languages.map(lang => ({ value: lang.id, label: lang.name }));
 
 const stringOutput = computed(() => escapeForLanguage(
-  rawInput.value,
-  language.value,
-  { single_linize: single_linize.value },
-));
+  rawInput.value, language.value,
+  { single_linize: single_linize.value }));
 </script>
 
 <template>

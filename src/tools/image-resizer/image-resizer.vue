@@ -40,8 +40,8 @@ const MAX_CANVAS_AREA = 268435456; // Maximum total pixels (conservative estimat
 
 const isCanvasTooLarge = computed(() => {
   return imageWidth.value > MAX_CANVAS_DIMENSION
-    || imageHeight.value > MAX_CANVAS_DIMENSION
-    || (imageWidth.value * imageHeight.value) > MAX_CANVAS_AREA;
+         || imageHeight.value > MAX_CANVAS_DIMENSION
+         || (imageWidth.value * imageHeight.value) > MAX_CANVAS_AREA;
 });
 
 const isPreviewTooLarge = computed(() => {
@@ -51,10 +51,10 @@ const isPreviewTooLarge = computed(() => {
 // Computed property to check if dimensions are valid for download
 const canDownload = computed(() => {
   return (resizedImageUrl.value || (originalImageUrl.value && isPreviewTooLarge.value))
-    && imageFile.value
-    && imageWidth.value > 0
-    && imageHeight.value > 0
-    && !isCanvasTooLarge.value;
+         && imageFile.value
+         && imageWidth.value > 0
+         && imageHeight.value > 0
+         && !isCanvasTooLarge.value;
 });
 
 // Computed property to check if reset is available

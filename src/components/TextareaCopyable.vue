@@ -87,8 +87,7 @@ const { download } = useDownloadFileFromBase64(
   {
     source: valueBase64,
     filename: downloadFileName,
-  },
-);
+  });
 </script>
 
 <template>
