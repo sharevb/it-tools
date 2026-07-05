@@ -49,3 +49,4 @@ components.d.ts
 # Ignore build or packaged VS Code extensions
 *.vsix
 *.tsbuildinfo
+stats.html
