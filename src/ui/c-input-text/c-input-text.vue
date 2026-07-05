@@ -25,7 +25,7 @@ const props = withDefaults(
     autocorrect?: 'on' | 'off' | string;
     spellcheck?: 'true' | 'false' | boolean;
     rawText?: boolean;
-    type?: 'text' | 'password' | 'number';
+    type?: 'text' | 'password' | 'number' | 'url';
     multiline?: boolean;
     rows?: number | string;
     maxRows?: number | string;

@@ -43,7 +43,7 @@ const searchableUrl = computed(() => {
         v-model:value="url"
         :label="t('tools.url-text-fragment-maker.texts.label-base-url')"
         :placeholder="t('tools.url-text-fragment-maker.texts.placeholder-base-url')"
-        :type="'url' as any"
+        type="url"
         clearable
         raw-text
         mb-5

@@ -191,7 +191,7 @@ const tcpDumpCommand = computed(() => {
           <template #trigger>
             <NInput
               v-model:value="limit"
-              :type="'number' as any"
+              :input-props="{ type: 'number' }"
               :placeholder="t('tools.tcpdump-generator.texts.placeholder-e-g-100')"
             /> </template
           >{{ t('tools.tcpdump-generator.texts.tag-stop-capturing-after-this-number-of-packets') }}
