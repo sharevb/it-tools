@@ -8,19 +8,25 @@ const { t } = useI18n();
 declare global {
   interface Window {
     generateX25519Identity: () => {
-      privateKey: string
-      publicKey: string
-    }
-    encrypt: (publicKeys: string, message: string) => {
-      error?: string
-      output: string
-    }
-    decrypt: (privateKeys: string, message: string) => {
-      error?: string
-      output: string
-    }
-    encryptBinary: (publicKeys: string, buffer: Uint8Array) => string | Uint8Array
-    decryptBinary: (privateKeys: string, buffer: Uint8Array) => string | Uint8Array
+      privateKey: string;
+      publicKey: string;
+    };
+    encrypt: (
+      publicKeys: string,
+      message: string,
+    ) => {
+      error?: string;
+      output: string;
+    };
+    decrypt: (
+      privateKeys: string,
+      message: string,
+    ) => {
+      error?: string;
+      output: string;
+    };
+    encryptBinary: (publicKeys: string, buffer: Uint8Array) => string | Uint8Array;
+    decryptBinary: (privateKeys: string, buffer: Uint8Array) => string | Uint8Array;
   }
 }
 /**
@@ -72,7 +78,7 @@ function downloadURL(data: string, fileName: string) {
 }
 
 function downloadBlob(data: Uint8Array, fileName: string) {
-  const blob = new Blob([data], {
+  const blob = new Blob([new Uint8Array(data)], {
     type: 'application/octet-stream',
   });
   const url = window.URL.createObjectURL(blob);
@@ -91,8 +97,7 @@ function encrypt() {
   const result = window.encrypt(recipients.value, message.value);
   if (result.error) {
     error.value = result.error;
-  }
-  else {
+  } else {
     encryptedOutput.value = result.output;
   }
 }
@@ -111,8 +116,7 @@ function encryptBinary() {
       const result = window.encryptBinary(recipientsBinary.value, buffer);
       if (typeof result === 'string') {
         error.value = result;
-      }
-      else {
+      } else {
         downloadBlob(result, `${f.name}.age`);
       }
     };
@@ -127,8 +131,7 @@ function decrypt() {
   const result = window.decrypt(identities.value, encryptedText.value);
   if (result.error) {
     error.value = result.error;
-  }
-  else {
+  } else {
     decryptedOutput.value = result.output;
   }
 }
@@ -147,8 +150,7 @@ function decryptBinary() {
       const result = window.decryptBinary(identitiesBinary.value, buffer);
       if (typeof result === 'string') {
         error.value = result;
-      }
-      else {
+      } else {
         downloadBlob(result, f.name.replace('.age', ''));
       }
     };
@@ -171,10 +173,20 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
     <!-- Generate Keys -->
     <n-tab-pane name="keys" :tab="t('tools.age-crypto.text.generate-keys')">
       <n-card :title="t('tools.age-crypto.texts.title-private-key')" mb-1>
-        <textarea-copyable v-model:value="privKey" rows="3" multiline :placeholder="t('tools.age-crypto.texts.placeholder-your-private-key-will-be-generated-here')" />
+        <textarea-copyable
+          v-model:value="privKey"
+          rows="3"
+          multiline
+          :placeholder="t('tools.age-crypto.texts.placeholder-your-private-key-will-be-generated-here')"
+        />
       </n-card>
       <n-card :title="t('tools.age-crypto.texts.title-public-key')" mb-1>
-        <textarea-copyable v-model:value="pubKey" rows="3" multiline :placeholder="t('tools.age-crypto.texts.placeholder-your-public-key-will-be-generated-here')" />
+        <textarea-copyable
+          v-model:value="pubKey"
+          rows="3"
+          multiline
+          :placeholder="t('tools.age-crypto.texts.placeholder-your-public-key-will-be-generated-here')"
+        />
       </n-card>
       <n-button type="primary" @click="generateKeys">
         {{ t('tools.age-crypto.texts.tag-generate-keys') }}
@@ -184,13 +196,28 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
     <!-- Encrypt Text -->
     <n-tab-pane name="encrypt" :tab="t('tools.age-crypto.text.encrypt')">
       <n-card :title="t('tools.age-crypto.texts.title-public-keys')" mb-1>
-        <n-input v-model:value="recipients" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-recipient-key-or-keys-one-per-line')" required />
+        <n-input
+          v-model:value="recipients"
+          type="textarea"
+          :placeholder="t('tools.age-crypto.texts.placeholder-recipient-key-or-keys-one-per-line')"
+          required
+        />
       </n-card>
       <n-card :title="t('tools.age-crypto.texts.title-message')" mb-1>
-        <n-input v-model:value="message" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-message-to-encrypt')" required />
+        <n-input
+          v-model:value="message"
+          type="textarea"
+          :placeholder="t('tools.age-crypto.texts.placeholder-message-to-encrypt')"
+          required
+        />
       </n-card>
       <n-card :title="t('tools.age-crypto.texts.title-output')" mb-1>
-        <textarea-copyable v-model:value="encryptedOutput" rows="3" multiline :placeholder="t('tools.age-crypto.texts.placeholder-encrypted-output-will-be-generated-here')" />
+        <textarea-copyable
+          v-model:value="encryptedOutput"
+          rows="3"
+          multiline
+          :placeholder="t('tools.age-crypto.texts.placeholder-encrypted-output-will-be-generated-here')"
+        />
       </n-card>
       <n-button type="primary" @click="encrypt">
         {{ t('tools.age-crypto.texts.tag-encrypt') }}
@@ -200,7 +227,12 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
     <!-- Encrypt Binary -->
     <n-tab-pane name="encryptBinary" :tab="t('tools.age-crypto.text.encrypt-binary')">
       <n-card :title="t('tools.age-crypto.texts.title-public-keys')" mb-1>
-        <n-input v-model:value="recipientsBinary" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-recipient-key-or-keys-one-per-line')" required />
+        <n-input
+          v-model:value="recipientsBinary"
+          type="textarea"
+          :placeholder="t('tools.age-crypto.texts.placeholder-recipient-key-or-keys-one-per-line')"
+          required
+        />
       </n-card>
       <n-card :title="t('tools.age-crypto.texts.title-files')" mb-1>
         <c-file-upload
@@ -225,13 +257,28 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
     <!-- Decrypt Text -->
     <n-tab-pane name="decrypt" :tab="t('tools.age-crypto.text.decrypt')">
       <n-card :title="t('tools.age-crypto.texts.title-private-keys')" mb-1>
-        <n-input v-model:value="identities" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-identity-key-or-keys-one-per-line')" required />
+        <n-input
+          v-model:value="identities"
+          type="textarea"
+          :placeholder="t('tools.age-crypto.texts.placeholder-identity-key-or-keys-one-per-line')"
+          required
+        />
       </n-card>
       <n-card :title="t('tools.age-crypto.texts.title-encrypted-text')" mb-1>
-        <n-input v-model:value="encryptedText" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-paste-here-encrypted-text')" required />
+        <n-input
+          v-model:value="encryptedText"
+          type="textarea"
+          :placeholder="t('tools.age-crypto.texts.placeholder-paste-here-encrypted-text')"
+          required
+        />
       </n-card>
       <n-card :title="t('tools.age-crypto.texts.title-output')" mb-1>
-        <textarea-copyable v-model:value="decryptedOutput" rows="3" multiline :placeholder="t('tools.age-crypto.texts.placeholder-decrypted-output-will-be-generated-here')" />
+        <textarea-copyable
+          v-model:value="decryptedOutput"
+          rows="3"
+          multiline
+          :placeholder="t('tools.age-crypto.texts.placeholder-decrypted-output-will-be-generated-here')"
+        />
       </n-card>
       <n-button type="primary" @click="decrypt">
         {{ t('tools.age-crypto.texts.tag-decrypt') }}
@@ -241,7 +288,12 @@ function onDecryptFilesUploaded(uploadedFiles: File[]) {
     <!-- Decrypt Binary -->
     <n-tab-pane name="decryptBinary" :tab="t('tools.age-crypto.text.decrypt-binary')">
       <n-card :title="t('tools.age-crypto.texts.title-private-keys')" mb-1>
-        <n-input v-model:value="identitiesBinary" type="textarea" :placeholder="t('tools.age-crypto.texts.placeholder-identity-key-or-keys-one-per-line')" required />
+        <n-input
+          v-model:value="identitiesBinary"
+          type="textarea"
+          :placeholder="t('tools.age-crypto.texts.placeholder-identity-key-or-keys-one-per-line')"
+          required
+        />
       </n-card>
       <n-card :title="t('tools.age-crypto.texts.title-encrypted-files')" mb-1>
         <c-file-upload

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import cronstrue from 'cronstrue';
-import ctz from 'countries-and-timezones';
+import * as ctz from 'countries-and-timezones';
 import getTimezoneOffset from 'get-timezone-offset';
 import { type CronType, getLastExecutionTimes, isCronValid } from './crontab-generator.service';
 import { useStyleStore } from '@/stores/style.store';
@@ -18,19 +18,24 @@ const cronstrueConfig = reactive({
   use24HourTimeFormat: true,
   throwExceptionOnParseError: true,
   monthStartIndexZero: false,
-  tzOffset: (new Date()).getTimezoneOffset() / 60,
+  tzOffset: new Date().getTimezoneOffset() / 60,
 });
 
 // getTimezoneOffset(tz.name, now) / 60
 const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const allTimezones = Object.values(ctz.getAllTimezones()).map((tz) => {
-  const timezoneUTCDSTOffset = tz.utcOffset === tz.dstOffset ? tz.utcOffsetStr : `${tz.utcOffsetStr}/${tz.dstOffsetStr}`;
+  const timezoneUTCDSTOffset =
+    tz.utcOffset === tz.dstOffset ? tz.utcOffsetStr : `${tz.utcOffsetStr}/${tz.dstOffsetStr}`;
   return {
     value: tz.name,
     label: `${tz.name === browserTimezone ? 'Browser TZ - ' : ''}${tz.name} (${timezoneUTCDSTOffset})`,
   };
 });
-const currentTimezone = useQueryParamOrStorage({ name: 'tz', storageName: 'crongen:tz', defaultValue: browserTimezone });
+const currentTimezone = useQueryParamOrStorage({
+  name: 'tz',
+  storageName: 'crongen:tz',
+  defaultValue: browserTimezone,
+});
 watchEffect(() => {
   cronstrueConfig.tzOffset = -getTimezoneOffset(currentTimezone.value, new Date()) / 60;
 });
@@ -118,7 +123,8 @@ const awsHelpers = [
   ...commonHelpers,
   {
     symbol: '?',
-    meaning: 'One or another. In the Day-of-month field you could enter 7, and if you didn\'t care what day of the week the seventh was, you could enter ? in the Day-of-week field',
+    meaning:
+      "One or another. In the Day-of-month field you could enter 7, and if you didn't care what day of the week the seventh was, you could enter ? in the Day-of-week field",
     example: '9 * 7,9,11 5 ? 2021',
     equivalent: 'At 9 minutes past the hour, every hour, on day 7, 9, and 11 of the month, only in May, only in 2021',
   },
@@ -126,39 +132,40 @@ const awsHelpers = [
     symbol: 'L',
     meaning: 'The L wildcard in the Day-of-month or Day-of-week fields specifies the last day of the month or week.',
     example: '9 * L 5 ? 2019,2020',
-    equivalent: 'At 9 minutes past the hour, every hour, on the last day of the month, only in May, only in 2019 and 2020',
+    equivalent:
+      'At 9 minutes past the hour, every hour, on the last day of the month, only in May, only in 2019 and 2020',
   },
   {
     symbol: 'W',
-    meaning: 'The W wildcard in the Day-of-month field specifies a weekday. In the Day-of-month field, 3W specifies the day closest to the third weekday of the month.',
+    meaning:
+      'The W wildcard in the Day-of-month field specifies a weekday. In the Day-of-month field, 3W specifies the day closest to the third weekday of the month.',
     example: '19 4 3W 9 ? 2019,2020',
     equivalent: 'At 04:19 AM, on the weekday nearest day 3 of the month, only in September, only in 2019 and 2020',
   },
   {
     symbol: '#',
-    meaning: 'The # wildcard in the Day-of-week field specifies the nieth weekday of the month. 3#5 specifies the fifth Wednesday of the month',
+    meaning:
+      'The # wildcard in the Day-of-week field specifies the nieth weekday of the month. 3#5 specifies the fifth Wednesday of the month',
     example: '9 8-20 ? 12 3#5 2019,2020',
-    equivalent: 'At 9 minutes past the hour, between 08:00 AM and 08:59 PM, on the fifth Wednesday of the month, only in December, only in 2019 and 2020',
+    equivalent:
+      'At 9 minutes past the hour, between 08:00 AM and 08:59 PM, on the fifth Wednesday of the month, only in December, only in 2019 and 2020',
   },
 ];
 
 const defaultAWSCronExpression = '0 0 ? * 1 *';
 const defaultStandardCronExpression = '40 * * * *';
 const cronType = ref<CronType>('standard');
-watch(cronType,
-  (newCronType) => {
-    if (newCronType === 'aws') {
-      if (!cron.value || cron.value === defaultStandardCronExpression) {
-        cron.value = defaultAWSCronExpression;
-      }
+watch(cronType, (newCronType) => {
+  if (newCronType === 'aws') {
+    if (!cron.value || cron.value === defaultStandardCronExpression) {
+      cron.value = defaultAWSCronExpression;
     }
-    else if (newCronType === 'standard') {
-      if (!cron.value || cron.value === defaultAWSCronExpression) {
-        cron.value = defaultStandardCronExpression;
-      }
+  } else if (newCronType === 'standard') {
+    if (!cron.value || cron.value === defaultAWSCronExpression) {
+      cron.value = defaultStandardCronExpression;
     }
-  },
-);
+  }
+});
 
 const getHelpers = computed(() => {
   if (cronType.value === 'aws') {
@@ -171,8 +178,7 @@ const cronString = computed(() => {
   if (isCronValid(cron.value)) {
     try {
       return cronstrue.toString(cron.value, cronstrueConfig);
-    }
-    catch (e: any) {
+    } catch (e: any) {
       return e.toString();
     }
   }
@@ -192,8 +198,7 @@ const executionTimesString = computed(() => {
       const lastExecutionTimes = getLastExecutionTimes(cron.value, currentTimezone.value);
       const executionTimesString = lastExecutionTimes.join('\n');
       return `Next 5 execution times:\n${executionTimesString}`;
-    }
-    catch (e: any) {
+    } catch (e: any) {
       return e.toString();
     }
   }
@@ -215,14 +220,8 @@ const executionTimesString = computed(() => {
 
     <n-radio-group v-model:value="cronType" name="radiogroup" mb-2 flex justify-center>
       <n-space>
-        <n-radio
-          value="standard"
-          :label="t('tools.crontab-generator.texts.label-unix-standard')"
-        />
-        <n-radio
-          value="aws"
-          :label="t('tools.crontab-generator.texts.label-aws')"
-        />
+        <n-radio value="standard" :label="t('tools.crontab-generator.texts.label-unix-standard')" />
+        <n-radio value="aws" :label="t('tools.crontab-generator.texts.label-aws')" />
       </n-space>
     </n-radio-group>
 
@@ -269,7 +268,8 @@ const executionTimesString = computed(() => {
 | | | | ┌──── month (1 - 12) OR jan,feb,mar,apr ...
 | | | | | ┌── day of week (0 - 6, sunday=0) OR sun,mon ...
 | | | | | |
-* * * * * * command</pre>
+* * * * * * command</pre
+    >
 
     <pre v-if="cronType === 'aws'">
       -- AWS CRON Syntax --
@@ -280,7 +280,8 @@ const executionTimesString = computed(() => {
 | | | | ┌──── day of week (0 - 6, sunday=0) OR sun,mon OR L ...
 | | | | | ┌── year
 | | | | | |
-* * * * * *</pre>
+* * * * * *</pre
+    >
 
     <div v-if="styleStore.isSmallScreen">
       <c-card v-for="{ symbol, meaning, example, equivalent } in getHelpers" :key="symbol" mb-3 important:border-none>
@@ -291,7 +292,10 @@ const executionTimesString = computed(() => {
           {{ t('tools.crontab-generator.texts.tag-meaning') }}<strong>{{ meaning }}</strong>
         </div>
         <div>
-          {{ t('tools.crontab-generator.texts.tag-example') }}<strong><code>{{ example }}</code></strong>
+          {{ t('tools.crontab-generator.texts.tag-example')
+          }}<strong
+            ><code>{{ example }}</code></strong
+          >
         </div>
         <div>
           {{ t('tools.crontab-generator.texts.tag-equivalent') }}<strong>{{ equivalent }}</strong>
@@ -323,7 +327,7 @@ pre {
   padding: 10px 0;
 }
 
-.cron-execution-string{
+.cron-execution-string {
   text-align: center;
   font-size: 14px;
   opacity: 0.8;

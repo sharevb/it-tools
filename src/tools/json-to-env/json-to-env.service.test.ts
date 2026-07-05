@@ -53,8 +53,8 @@ describe('json-to-env service', () => {
     it('serializes nested objects and arrays as JSON strings', () => {
       const result = convertJsonToEnv({ json: '{"list": [1, 2, 3], "obj": {"a": 1}}' });
       expect(result).toMatchInlineSnapshot(`
-        "LIST=\\"[1,2,3]\\"
-        OBJ=\\"{\\\\\\"a\\\\\\":1}\\""
+        "LIST="[1,2,3]"
+        OBJ="{\\"a\\":1}""
       `);
     });
 

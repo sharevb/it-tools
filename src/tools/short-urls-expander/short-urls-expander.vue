@@ -9,7 +9,9 @@ const error = ref('');
 const loading = ref(false);
 const corsAnywhereUrl = useITStorage('short-urls-expander:cors-anywhere-url', '//cors.outils-libre.org');
 
-function expandSingleUrl(url: string): Promise<{ short: string; expanded: string | null; ok: boolean; status: string }> {
+function expandSingleUrl(
+  url: string,
+): Promise<{ short: string; expanded: string | null; ok: boolean; status: string }> {
   return new Promise((resolve) => {
     try {
       const corsUrl = `${corsAnywhereUrl.value.replace(/\/+$/g, '')}/${url}`;
@@ -20,9 +22,13 @@ function expandSingleUrl(url: string): Promise<{ short: string; expanded: string
           // In browsers, xhr.responseURL gives the final resolved URL after redirects
           const finalUrl = xhr.getResponseHeader('X-Final-Url') || xhr.responseURL;
           if (finalUrl && finalUrl !== corsUrl) {
-            resolve({ short: url, expanded: finalUrl, status: t('tools.short-urls-expander.texts.expanded'), ok: true });
-          }
-          else {
+            resolve({
+              short: url,
+              expanded: finalUrl,
+              status: t('tools.short-urls-expander.texts.expanded'),
+              ok: true,
+            });
+          } else {
             resolve({ short: url, expanded: null, status: t('tools.short-urls-expander.texts.no-redirect'), ok: true });
           }
         }
@@ -31,8 +37,7 @@ function expandSingleUrl(url: string): Promise<{ short: string; expanded: string
         resolve({ short: url, expanded: null, status: t('tools.short-urls-expander.texts.failed'), ok: false });
       };
       xhr.send();
-    }
-    catch {
+    } catch {
       resolve({ short: url, expanded: null, status: t('tools.short-urls-expander.texts.failed'), ok: false });
     }
   });
@@ -45,8 +50,8 @@ async function expandUrls() {
 
   const urls = inputUrls.value
     .split('\n')
-    .map(u => u.trim())
-    .filter(u => u.length > 0);
+    .map((u) => u.trim())
+    .filter((u) => u.length > 0);
 
   try {
     const promises = urls.map(async (url) => {
@@ -54,11 +59,9 @@ async function expandUrls() {
     });
 
     results.value = await Promise.all(promises);
-  }
-  catch (err) {
+  } catch (err) {
     error.value = t('tools.short-urls-expander.texts.failed-to-expand-some-urls');
-  }
-  finally {
+  } finally {
     loading.value = false;
   }
 }
@@ -68,15 +71,15 @@ function downloadCsv() {
     return;
   }
 
-  const header = [t('tools.short-urls-expander.texts.short-url'), t('tools.short-urls-expander.texts.expanded-url'), t('tools.short-urls-expander.texts.tag-status')];
-  const rows = results.value.map(r => [
-    r.short,
-    r.expanded ?? '',
-    r.status,
-  ]);
+  const header = [
+    t('tools.short-urls-expander.texts.short-url'),
+    t('tools.short-urls-expander.texts.expanded-url'),
+    t('tools.short-urls-expander.texts.tag-status'),
+  ];
+  const rows = results.value.map((r) => [r.short, r.expanded ?? '', r.status]);
 
   const csvContent = [header, ...rows]
-    .map(row => row.map(field => `"${String(field).replace(/"/g, '""')}"`).join(','))
+    .map((row) => row.map((field) => `"${String(field).replace(/"/g, '""')}"`).join(','))
     .join('\n');
 
   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -103,7 +106,11 @@ function downloadCsv() {
             mb-1
           />
           <n-p>
-            {{ t('tools.short-urls-expander.texts.this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a') }}
+            {{
+              t(
+                'tools.short-urls-expander.texts.this-tools-requires-a-cors-anywhere-instance-to-bypass-cors-policy-you-can-use-a',
+              )
+            }}
             <a href="https://github.com/sharevb/cors-anywhere?tab=readme-ov-file#run-with-docker" target="_blank">
               {{ t('tools.short-urls-expander.texts.self-hosted-cors-anywhere') }}
             </a>
@@ -148,7 +155,7 @@ function downloadCsv() {
             <tr v-for="(url, index) of results" :key="index">
               <td>{{ url.short }}</td>
               <td>
-                <input-copyable :value="url.expanded" />
+                <input-copyable :value="url.expanded ?? ''" />
               </td>
               <td>
                 <n-a v-if="url.expanded" :href="url.expanded" target="_blank">

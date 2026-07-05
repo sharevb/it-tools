@@ -12,5 +12,5 @@ const supportedUnits = {
 </script>
 
 <template>
-  <UnitsConverter default-unit="deg" :supported-units="supportedUnits" label-width="150px" />
+  <UnitsConverter default-unit="deg" converter-type="convert" :supported-units="supportedUnits" label-width="150px" />
 </template>

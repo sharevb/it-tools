@@ -24,11 +24,11 @@ const encodeError = ref('');
 const bechOutput = ref('');
 
 interface DecodedRow {
-  input: string
-  hrp: string
-  variant: string
-  hex: string
-  status: string
+  input: string;
+  hrp: string;
+  variant: string;
+  hex: string;
+  status: string;
 }
 
 // Batch state
@@ -37,7 +37,10 @@ const batchRows = ref<DecodedRow[]>([]);
 
 // Helpers
 function wordsToHex(words: number[]): string {
-  return bech32.fromWords(words).map(b => b.toString(16).padStart(2, '0')).join('');
+  return bech32
+    .fromWords(words)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 function hexToWords(hex: string): number[] {
@@ -46,15 +49,14 @@ function hexToWords(hex: string): number[] {
     throw new Error(t('tools.bech32.texts.invalid-hex-payload'));
   }
 
-  return bech32.toWords(clean.match(/.{2}/g)!.map(b => Number.parseInt(b, 16)));
+  return bech32.toWords(clean.match(/.{2}/g)!.map((b) => Number.parseInt(b, 16)));
 }
 
 function detectVariant(input: string) {
   try {
     const r = bech32.decode(input);
     return { variant: 'bech32', ...r };
-  }
-  catch {}
+  } catch {}
   const r = bech32m.decode(input);
   return { variant: 'bech32m', ...r };
 }
@@ -79,8 +81,7 @@ function decode() {
     decodedHex.value = wordsToHex(res.words);
     detectedVariant.value = res.variant;
     checksumValid.value = true;
-  }
-  catch (err: any) {
+  } catch (err: any) {
     checksumValid.value = false;
     decodeError.value = err.toString();
   }
@@ -91,15 +92,16 @@ function validateChecksum() {
   const input = bechInput.value.trim();
 
   try {
-    autoDetect.value
-      ? detectVariant(input)
-      : encodingVariant.value === 'bech32'
-        ? bech32.decode(input)
-        : bech32m.decode(input);
+    if (autoDetect.value) {
+      detectVariant(input);
+    } else if (encodingVariant.value === 'bech32') {
+      bech32.decode(input);
+    } else {
+      bech32m.decode(input);
+    }
 
     checksumValid.value = true;
-  }
-  catch (err: any) {
+  } catch (err: any) {
     checksumValid.value = false;
     decodeError.value = err.toString();
   }
@@ -108,14 +110,10 @@ function validateChecksum() {
 function encode() {
   try {
     const words = hexToWords(hexPayload.value);
-    const enc
-      = encodingVariant.value === 'bech32'
-        ? bech32.encode(hrp.value, words)
-        : bech32m.encode(hrp.value, words);
+    const enc = encodingVariant.value === 'bech32' ? bech32.encode(hrp.value, words) : bech32m.encode(hrp.value, words);
 
     bechOutput.value = enc;
-  }
-  catch (err: any) {
+  } catch (err: any) {
     encodeError.value = err.toString();
   }
 }
@@ -123,7 +121,7 @@ function encode() {
 function batchConvert() {
   const lines = batchInput.value
     .split('\n')
-    .map(l => l.trim())
+    .map((l) => l.trim())
     .filter(Boolean);
 
   const rows: DecodedRow[] = [];
@@ -138,8 +136,7 @@ function batchConvert() {
         hex: wordsToHex(r.words),
         status: 'OK',
       });
-    }
-    catch (err: any) {
+    } catch (err: any) {
       rows.push({
         input: line,
         hrp: '',
@@ -165,18 +162,9 @@ function exportCsv() {
     t('tools.bech32.texts.hex'),
     t('tools.bech32.texts.status'),
   ];
-  const rows = batchRows.value.map(r => [
-    r.input,
-    r.hrp,
-    r.variant,
-    r.hex,
-    r.status,
-  ]);
+  const rows = batchRows.value.map((r) => [r.input, r.hrp, r.variant, r.hex, r.status]);
 
-  const csv
-    = `${header.join(',')
-     }\n${
-     rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n')}`;
+  const csv = `${header.join(',')}\n${rows.map((r) => r.map((v) => `"${v}"`).join(',')).join('\n')}`;
 
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
@@ -234,10 +222,7 @@ function exportCsv() {
         </n-space>
 
         <n-space justify="center" mb-2>
-          <n-button
-            type="primary"
-            @click="checksumOnly ? validateChecksum() : decode()"
-          >
+          <n-button type="primary" @click="checksumOnly ? validateChecksum() : decode()">
             {{ checksumOnly ? 'Validate' : 'Decode' }}
           </n-button>
         </n-space>
@@ -254,18 +239,47 @@ function exportCsv() {
         </c-alert>
 
         <div v-if="decodedHex">
-          <input-copyable v-model:value="decodedHrp" label-width="110px" label-position="left" :label="t('tools.bech32.texts.label-hrp')" readonly :placeholder="t('tools.bech32.texts.placeholder-hrp')" />
-          <input-copyable v-model:value="decodedHex" label-width="110px" label-position="left" :label="t('tools.bech32.texts.label-payload')" readonly :placeholder="t('tools.bech32.texts.placeholder-hex-payload')" />
-          <input-copyable v-model:value="detectedVariant" label-width="110px" label-position="left" :label="t('tools.bech32.texts.label-variant')" readonly :placeholder="t('tools.bech32.texts.placeholder-variant')" />
+          <input-copyable
+            v-model:value="decodedHrp"
+            label-width="110px"
+            label-position="left"
+            :label="t('tools.bech32.texts.label-hrp')"
+            readonly
+            :placeholder="t('tools.bech32.texts.placeholder-hrp')"
+          />
+          <input-copyable
+            v-model:value="decodedHex"
+            label-width="110px"
+            label-position="left"
+            :label="t('tools.bech32.texts.label-payload')"
+            readonly
+            :placeholder="t('tools.bech32.texts.placeholder-hex-payload')"
+          />
+          <input-copyable
+            v-model:value="detectedVariant"
+            label-width="110px"
+            label-position="left"
+            :label="t('tools.bech32.texts.label-variant')"
+            readonly
+            :placeholder="t('tools.bech32.texts.placeholder-variant')"
+          />
         </div>
       </n-tab-pane>
 
       <!-- ENCODE TAB -->
       <n-tab-pane name="encode" :tab="t('tools.bech32.texts.tab-encode')">
-        <c-input-text v-model:value="hrp" label-position="left" :label="t('tools.bech32.texts.label-hrp')" label-width="110px" :placeholder="t('tools.bech32.texts.placeholder-hrp')" mb-1 />
+        <c-input-text
+          v-model:value="hrp"
+          label-position="left"
+          :label="t('tools.bech32.texts.label-hrp')"
+          label-width="110px"
+          :placeholder="t('tools.bech32.texts.placeholder-hrp')"
+          mb-1
+        />
         <c-input-text
           v-model:value="hexPayload"
-          label-position="left" label-width="110px"
+          label-position="left"
+          label-width="110px"
           :label="t('tools.bech32.texts.label-payload')"
           :placeholder="t('tools.bech32.texts.placeholder-hex-payload')"
           mb-1
@@ -273,7 +287,8 @@ function exportCsv() {
 
         <c-select
           v-model:value="encodingVariant"
-          label-position="left" label-width="110px"
+          label-position="left"
+          label-width="110px"
           :label="t('tools.bech32.texts.label-variant')"
           :options="[
             { label: t('tools.bech32.texts.label-bech32'), value: 'bech32' },
@@ -293,7 +308,12 @@ function exportCsv() {
         </c-alert>
 
         <div v-else>
-          <input-copyable v-model:value="bechOutput" :label="t('tools.bech32.texts.label-encoded-bech32-string')" readonly :placeholder="t('tools.bech32.texts.placeholder-bech32-string')" />
+          <input-copyable
+            v-model:value="bechOutput"
+            :label="t('tools.bech32.texts.label-encoded-bech32-string')"
+            readonly
+            :placeholder="t('tools.bech32.texts.placeholder-bech32-string')"
+          />
         </div>
       </n-tab-pane>
 

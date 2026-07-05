@@ -18,7 +18,7 @@ ffmpeg.on('log', ({ message }) => {
 
 const loading = ref(false);
 const error = ref('');
-const loop = ref('5');
+const loop = ref(5);
 
 async function loadFFmpeg() {
   if (!ffmpeg.loaded) {
@@ -49,16 +49,21 @@ async function onFileUploaded(gifFile: File) {
     ffmpeg.writeFile(inputName, buffer);
 
     await ffmpeg.exec([
-      '-stream_loop', loop.value,
-      '-i', inputName,
-      '-movflags', 'faststart',
-      '-pix_fmt', 'yuv420p',
-      '-vf', 'scale=trunc(iw/2)*2:trunc(ih/2)*2',
+      '-stream_loop',
+      loop.value.toString(),
+      '-i',
+      inputName,
+      '-movflags',
+      'faststart',
+      '-pix_fmt',
+      'yuv420p',
+      '-vf',
+      'scale=trunc(iw/2)*2:trunc(ih/2)*2',
       outputName,
     ]);
 
     const data = await ffmpeg.readFile(outputName);
-    const blob = new Blob([data], { type: 'video/mp4' });
+    const blob = new Blob([data as BlobPart], { type: 'video/mp4' });
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
@@ -67,11 +72,9 @@ async function onFileUploaded(gifFile: File) {
     a.click();
 
     URL.revokeObjectURL(url);
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err.toString();
-  }
-  finally {
+  } finally {
     loading.value = false;
   }
 }
@@ -99,10 +102,7 @@ async function onFileUploaded(gifFile: File) {
       <c-alert v-if="error" type="error">
         {{ error }}
       </c-alert>
-      <n-spin
-        v-if="loading"
-        size="small"
-      />
+      <n-spin v-if="loading" size="small" />
     </div>
 
     <c-card :title="t('tools.gif-to-mp4.texts.title-logs')">

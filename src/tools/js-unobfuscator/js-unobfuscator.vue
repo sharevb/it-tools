@@ -15,19 +15,17 @@ const result = computedAsync(async () => {
       'afterbegin',
       '<meta http-equiv="Content-Security-Policy" content="default-src \'none\';">',
     );
-    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
     async function evalCode(code: string) {
       const fn = await sandbox.addFunction(`() => ${code}`);
-      return Promise.race([
-        fn(),
-        sleep(10_000).then(() => Promise.reject(new Error('Sandbox timeout'))),
-      ]).finally(() => sandbox.removeFunction(fn));
+      return Promise.race([fn(), sleep(10_000).then(() => Promise.reject(new Error('Sandbox timeout')))]).finally(() =>
+        sandbox.removeFunction(fn),
+      );
     }
 
     return await webcrack(inputValue, { sandbox: evalCode });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return {
       code: `/*\n${e.toString()}\n*/`,
       bundle: '',
@@ -37,7 +35,7 @@ const result = computedAsync(async () => {
 </script>
 
 <template>
-  <iframe class="sandybox" style="display:none" :title="t('tools.js-unobfuscator.texts.title-sandbox')" />
+  <iframe class="sandybox" style="display: none" :title="t('tools.js-unobfuscator.texts.title-sandbox')" />
   <CInputText
     v-model:value="input"
     :placeholder="t('tools.js-unobfuscator.texts.placeholder-your-obfuscate-javascript-code')"
@@ -53,6 +51,6 @@ const result = computedAsync(async () => {
     <textarea-copyable :value="result?.code" language="javascript" download-file-name="output.js" />
   </n-form-item>
   <n-form-item :label="t('tools.js-unobfuscator.texts.label-bundle')">
-    <textarea-copyable :value="result?.bundle" language="javascript" download-file-name="output.bundle.js" />
+    <textarea-copyable :value="result?.bundle as string" language="javascript" download-file-name="output.bundle.js" />
   </n-form-item>
 </template>

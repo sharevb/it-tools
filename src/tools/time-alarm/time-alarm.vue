@@ -28,29 +28,21 @@ watchEffect(() => {
 const now = ref(moment());
 const alarmAtDate = computed(() => {
   const [h, m, s] = alarmAt.value.split(':');
-  return now.value
-    .set('h', Number(h))
-    .set('m', Number(m))
-    .set('s', Number(s))
-    .toDate();
+  return now.value.set('h', Number(h)).set('m', Number(m)).set('s', Number(s)).toDate();
 });
 
 const fmt = 'YYYY-MM-DD HH:mm:ss';
 
 const alarmAtFormatted = computed(() => {
   const [h, m, s] = alarmAt.value.split(':');
-  return now.value
-    .set('h', Number(h))
-    .set('m', Number(m))
-    .set('s', Number(s))
-    .format(fmt);
+  return now.value.set('h', Number(h)).set('m', Number(m)).set('s', Number(s)).format(fmt);
 });
 
 function start() {
   now.value = moment();
   status.value = 'running';
   const histoEntry = alarmAt.value;
-  if (!history.value.find(h => h === histoEntry)) {
+  if (!history.value.find((h) => h === histoEntry)) {
     history.value = [histoEntry, ...history.value];
   }
 }
@@ -77,8 +69,7 @@ function toggleFullScreen() {
   }
   if (!document.fullscreenElement) {
     element?.requestFullscreen();
-  }
-  else {
+  } else {
     document.exitFullscreen?.();
   }
 }
@@ -96,9 +87,7 @@ const isEnded = computed(() => status.value === 'ended');
       </div>
 
       <div flex justify-center>
-        <c-button
-          @click="start"
-        >
+        <c-button @click="start">
           {{ t('tools.time-alarm.texts.tag-start') }}
         </c-button>
       </div>
@@ -106,19 +95,22 @@ const isEnded = computed(() => status.value === 'ended');
 
     <div id="fullScreenElement" ref="fullScreenElement" mb-2>
       <div>
-        <Countdown :deadline="alarmAtFormatted" :stop="status !== 'running'" mb-2 countdown-size="5rem" @time-elapsed="ended()" />
+        <Countdown
+          :deadline="alarmAtFormatted"
+          :stop="status !== 'running'"
+          mb-2
+          countdown-size="5rem"
+          @time-elapsed="ended()"
+        />
         <div mb-2 flex justify-center>
-          <c-button
-            :disabled="status === 'stopped'"
-            @click="toggleFullScreen"
-          >
+          <c-button :disabled="status === 'stopped'" @click="toggleFullScreen">
             {{ t('tools.time-alarm.texts.tag-toggle-fullscreen') }}
           </c-button>
         </div>
       </div>
     </div>
 
-    <n-modal v-model:show="isEnded" mask-closable="false">
+    <n-modal v-model:show="isEnded" :mask-closable="false">
       <n-card
         style="width: 600px"
         :title="t('tools.time-alarm.texts.title-timer-finished')"
@@ -137,17 +129,12 @@ const isEnded = computed(() => status.value === 'ended');
     </n-modal>
 
     <div mb-2 flex justify-center>
-      <c-button
-        :disabled="status === 'stopped'"
-        @click="stop"
-      >
+      <c-button :disabled="status === 'stopped'" @click="stop">
         {{ t('tools.time-alarm.texts.tag-stop') }}
       </c-button>
     </div>
 
-    <n-p align="center">
-      Alarm at: {{ alarmAtDate }}
-    </n-p>
+    <n-p align="center"> Alarm at: {{ alarmAtDate }} </n-p>
 
     <c-card v-if="history" :title="t('tools.time-alarm.texts.title-history')">
       <div flex justify-center gap-1>

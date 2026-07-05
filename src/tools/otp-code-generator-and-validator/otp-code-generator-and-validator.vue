@@ -3,7 +3,14 @@ import { useI18n } from 'vue-i18n';
 import { useTimestamp } from '@vueuse/core';
 import { useThemeVars } from 'naive-ui';
 import { useQRCode } from '../qr-code-generator/useQRCode';
-import { base32toHex, buildKeyUri, generateHOTP, generateSecret, generateTOTP, getCounterFromTime } from './otp.service';
+import {
+  base32toHex,
+  buildKeyUri,
+  generateHOTP,
+  generateSecret,
+  generateTOTP,
+  getCounterFromTime,
+} from './otp.service';
 import TokenDisplay from './token-display.vue';
 import { useStyleStore } from '@/stores/style.store';
 import InputCopyable from '@/components/InputCopyable.vue';
@@ -27,12 +34,15 @@ function refreshSecret() {
   secret.value = generateSecret();
 }
 
-const counter = ref(0);
+const counter = ref('0');
 
 const [hotpValues] = computedRefreshable(
   () =>
     Object.fromEntries(
-      Array.from({ length: 10 }, (_, i) => [+counter.value + i, generateHOTP({ key: secret.value, counter: +counter.value + i })]),
+      Array.from({ length: 10 }, (_, i) => [
+        +counter.value + i,
+        generateHOTP({ key: secret.value, counter: +counter.value + i }),
+      ]),
     ),
   { throttle: 500 },
 );
@@ -112,7 +122,8 @@ const secretValidationRules = [
         mt-5
       />
       <InputCopyable
-        v-for="(value, currentCounter) in hotpValues" :key="currentCounter"
+        v-for="(value, currentCounter) in hotpValues"
+        :key="currentCounter"
         :value="value"
         readonly
         :label="`HOTP ${currentCounter}:`"
@@ -141,13 +152,17 @@ const secretValidationRules = [
       label-position="left"
       label-width="90px"
       label-align="right"
-      :placeholder="t('tools.otp-code-generator-and-validator.texts.placeholder-iteration-count-will-be-displayed-here')"
+      :placeholder="
+        t('tools.otp-code-generator-and-validator.texts.placeholder-iteration-count-will-be-displayed-here')
+      "
     />
 
     <InputCopyable
       :value="getCounterFromTime({ now, timeStep: 30 }).toString(16).padStart(16, '0')"
       readonly
-      :placeholder="t('tools.otp-code-generator-and-validator.texts.placeholder-iteration-count-in-hex-will-be-displayed-here')"
+      :placeholder="
+        t('tools.otp-code-generator-and-validator.texts.placeholder-iteration-count-in-hex-will-be-displayed-here')
+      "
       label-position="left"
       label-width="90px"
       label-align="right"
@@ -158,9 +173,7 @@ const secretValidationRules = [
       <TokenDisplay :tokens="tokens" mt-5 />
 
       <n-progress :percentage="(100 * interval) / 30" :color="theme.primaryColor" :show-indicator="false" />
-      <div style="text-align: center">
-        Next in {{ String(Math.floor(30 - interval)).padStart(2, '0') }}s
-      </div>
+      <div style="text-align: center">Next in {{ String(Math.floor(30 - interval)).padStart(2, '0') }}s</div>
     </div>
   </div>
 </template>

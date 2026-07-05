@@ -9,12 +9,12 @@ function transformer(value: string) {
     const Result = getAuthHeaderCheckResult({ message: value, password: password.value });
     if (Result) {
       return t('tools.sip-auth.sucess');
-    }
-    else {
+    } else {
       return t('tools.sip-auth.failure');
       // return `11 calculatedHash: ${calculatedHash}, response: ${response}`;
     }
   }
+  return '';
 }
 </script>
 

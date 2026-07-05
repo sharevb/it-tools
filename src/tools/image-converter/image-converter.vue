@@ -2,7 +2,17 @@
 import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import type { MemoryImage } from 'image-in-browser';
-import { decodeImage, encodeBmp, encodeGif, encodeIco, encodeJpg, encodePng, encodePvr, encodeTga, encodeTiff } from 'image-in-browser';
+import {
+  decodeImage,
+  encodeBmp,
+  encodeGif,
+  encodeIco,
+  encodeJpg,
+  encodePng,
+  encodePvr,
+  encodeTga,
+  encodeTiff,
+} from 'image-in-browser';
 import { arrayBufferToWebP } from 'webp-converter-browser';
 import { createSvg2png, initialize } from 'svg2png-wasm';
 import { normal as robotoBase64 } from 'roboto-base64';
@@ -16,7 +26,7 @@ function readAsText(file: File) {
     const reader = new FileReader();
     reader.readAsText(file);
     reader.onload = () => resolve(reader.result?.toString() ?? '');
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
@@ -27,12 +37,11 @@ const svgScale = ref(2);
 const base64OutputFile = ref('');
 const fileName = ref('');
 const fileExtension = ref('');
-const { download } = useDownloadFileFromBase64(
-  {
-    source: base64OutputFile,
-    filename: fileName,
-    extension: fileExtension,
-  });
+const { download } = useDownloadFileFromBase64({
+  source: base64OutputFile,
+  filename: fileName,
+  extension: fileExtension,
+});
 
 const outputQuality = useQueryParamOrStorage({ name: 'qual', storageName: 'imgconv:q', defaultValue: 0.95 });
 const outputFormats = {
@@ -95,11 +104,10 @@ async function onFileUploaded(uploadedFile: File) {
   status.value = 'processing';
   try {
     if (outputFormatValue === 'webp') {
-      const encodedImage = await arrayBufferToWebP(fileBuffer);
+      const encodedImage = await arrayBufferToWebP(fileBuffer.buffer);
       fileExtension.value = 'webp';
       base64OutputFile.value = `data:image/webp;base64,${Base64.fromUint8Array(new Uint8Array(await encodedImage.arrayBuffer()))}`;
-    }
-    else {
+    } else {
       if (uploadedFile.type === 'image/svg+xml') {
         if (!svgWasmLoaded.value) {
           await initialize(fetch('/svg2png_wasm_bg.wasm'));
@@ -108,7 +116,9 @@ async function onFileUploaded(uploadedFile: File) {
         const svg2png = createSvg2png({
           fonts: [Base64.toUint8Array(robotoBase64)],
         });
-        fileBuffer = await svg2png(await readAsText(uploadedFile), { scale: svgScale.value });
+        fileBuffer = (await svg2png(await readAsText(uploadedFile), {
+          scale: svgScale.value,
+        })) as Uint8Array<ArrayBuffer>;
         svg2png.dispose();
       }
       const decodedImage = decodeImage({
@@ -117,9 +127,9 @@ async function onFileUploaded(uploadedFile: File) {
 
       if (decodedImage == null) {
         throw new Error(t('tools.image-converter.texts.invalid-image-file'));
-      };
+      }
 
-      const outConfig = outputFormats[outputFormatValue as (keyof typeof outputFormats)];
+      const outConfig = outputFormats[outputFormatValue as keyof typeof outputFormats];
       const encodedImage = outConfig.save(decodedImage);
       fileExtension.value = outputFormatValue;
       base64OutputFile.value = `data:${outConfig.mime};base64,${Base64.fromUint8Array(encodedImage!)}`;
@@ -127,8 +137,7 @@ async function onFileUploaded(uploadedFile: File) {
     status.value = 'done';
 
     download();
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
@@ -148,7 +157,11 @@ async function onFileUploaded(uploadedFile: File) {
     />
 
     <div mb-2 flex justify-center>
-      <n-form-item v-if="outputFormatHasQuality" :label="t('tools.image-converter.texts.label-output-quality')" label-placement="left">
+      <n-form-item
+        v-if="outputFormatHasQuality"
+        :label="t('tools.image-converter.texts.label-output-quality')"
+        label-placement="left"
+      >
         <n-input-number-i18n v-model:value="outputQuality" :max="100" :min="0" w-full />
       </n-form-item>
       <n-form-item :label="t('tools.image-converter.texts.label-svg-scaling')" label-placement="left">
@@ -156,7 +169,13 @@ async function onFileUploaded(uploadedFile: File) {
       </n-form-item>
     </div>
 
-    <h4>{{ t('tools.image-converter.texts.tag-then-drag-and-drop-your-images-below-and-they-will-be-converted-and-downloaded-immediately') }}</h4>
+    <h4>
+      {{
+        t(
+          'tools.image-converter.texts.tag-then-drag-and-drop-your-images-below-and-they-will-be-converted-and-downloaded-immediately',
+        )
+      }}
+    </h4>
 
     <div style="flex: 0 0 100%" mb-2>
       <div mx-auto max-w-600px>
@@ -175,10 +194,7 @@ async function onFileUploaded(uploadedFile: File) {
       <c-alert v-if="status === 'error'" type="error">
         {{ $t('tools.image-converter.texts.an-error-occured-processing') }} <span>{{ fileName }}</span>
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
   </div>
 </template>

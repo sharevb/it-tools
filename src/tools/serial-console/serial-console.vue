@@ -10,17 +10,8 @@ const input = ref('');
 const outputRef = ref<HTMLElement | null>(null);
 const selectedPort = ref<SerialPort | undefined>();
 
-const {
-  isConnected,
-  outputLines,
-  baudRate,
-  lineEnding,
-  availablePorts,
-  connect,
-  disconnect,
-  send,
-  listPorts,
-} = useSerialPort();
+const { isConnected, outputLines, baudRate, lineEnding, availablePorts, connect, disconnect, send, listPorts } =
+  useSerialPort();
 
 const baudOptions = [
   { label: t('tools.serial-console.texts.label-9600'), value: 9600 },
@@ -65,9 +56,10 @@ function isWindowSecureContext() {
 
 <template>
   <c-alert v-if="!isWindowSecureContext()" mb-2>
-    {{ $t('tools.pgp-encryption.texts.tag-your-browser-is-not-in') }}<n-a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts" target="_blank">
-      {{ $t('tools.pgp-encryption.texts.tag-secure-context-https') }}
-    </n-a>{{ $t('tools.pgp-encryption.texts.tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully') }}
+    {{ $t('tools.pgp-encryption.texts.tag-your-browser-is-not-in')
+    }}<n-a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts" target="_blank">
+      {{ $t('tools.pgp-encryption.texts.tag-secure-context-https') }} </n-a
+    >{{ $t('tools.pgp-encryption.texts.tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully') }}
   </c-alert>
 
   <NCard :title="t('tools.serial-console.texts.title-serial-terminal')">
@@ -85,8 +77,9 @@ function isWindowSecureContext() {
         style="width: 120px"
       />
       <NSelect
-        v-model:value="selectedPort"
-        :options="portOptions"
+        :value="selectedPort as any"
+        :options="portOptions as any"
+        @update:value="(v: any) => (selectedPort = v)"
         label-field="label"
         value-field="value"
         :placeholder="t('tools.serial-console.texts.placeholder-select-port')"

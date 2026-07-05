@@ -10,9 +10,13 @@ const { t } = useI18n();
 
 const toolStore = useToolStore();
 
-const unitsConversionTools = computed(() => _.orderBy(
-  _.filter(toolStore.tools, t => t.keywords?.includes('units')),
-  'name', 'asc'));
+const unitsConversionTools = computed(() =>
+  _.orderBy(
+    _.filter(toolStore.tools, (t) => t.keywords?.includes('units')),
+    'name',
+    'asc',
+  ),
+);
 
 const allUnitsSorted = _.uniq(allUnits).sort();
 
@@ -24,19 +28,15 @@ const result = computed(() => {
     try {
       return {
         best,
-        selected: outputUnit.value
-          ? convertMany(inputExpression.value).to(outputUnit.value as Unit)
-          : '',
+        selected: outputUnit.value ? convertMany(inputExpression.value).to(outputUnit.value as Unit) : '',
       };
-    }
-    catch (e: any) {
+    } catch (e: any) {
       return {
         best,
         error: e.toString(),
       };
     }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return {
       error: e.toString(),
     };
@@ -65,8 +65,16 @@ const result = computed(() => {
     <n-divider />
 
     <c-card v-if="result.best" :title="t('tools.many-units-converter.texts.title-result')" mb-2>
-      <input-copyable :label="t('tools.many-units-converter.texts.label-best-target-unit')" :value="result.best" mb-1 />
-      <input-copyable v-if="result.selected" :label="$t('tools.many-units-converter.texts.label-selected-target-unit-outputunit', [outputUnit])" :value="result.selected" />
+      <input-copyable
+        :label="t('tools.many-units-converter.texts.label-best-target-unit')"
+        :value="String(result.best)"
+        mb-1
+      />
+      <input-copyable
+        v-if="result.selected"
+        :label="$t('tools.many-units-converter.texts.label-selected-target-unit-outputunit', [outputUnit])"
+        :value="result.selected"
+      />
     </c-card>
     <c-alert v-if="result.error && inputExpression" mb-2>
       {{ result.error }}
@@ -93,7 +101,7 @@ const result = computed(() => {
             </td>
             <td>
               {{ tool.description }}
-              <br>
+              <br />
               -&gt; {{ tool.keywords?.join(', ') }}
             </td>
           </tr>

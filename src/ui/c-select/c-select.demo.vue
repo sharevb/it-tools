@@ -8,7 +8,7 @@ const optionsA = [
 const optionsBig = Array.from({ length: 1000 }, (_, i) => ({ label: `Option ${i}`, value: i }));
 
 const sizes = ['small', 'medium', 'large'] as const;
-const value = ref('');
+const value = ref<any>('');
 </script>
 
 <template>

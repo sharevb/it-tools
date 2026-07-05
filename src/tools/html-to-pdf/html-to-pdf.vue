@@ -58,8 +58,7 @@ function urlToFilename(input: string): string {
 
   try {
     url = new URL(input);
-  }
-  catch {
+  } catch {
     throw new Error(`Invalid URL: ${input}`);
   }
 
@@ -91,18 +90,15 @@ async function generateFromUrl() {
   isRunning.value = true;
   try {
     const res = await fetch(`${serverHost.value}/pdf/url`, {
-      ...{
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
       ...(serverAuth.value ? { headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` } } : {}),
     });
 
     const blob = await res.blob();
     downloadBlob(blob, `${urlToFilename(url.value)}.pdf`);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
   isRunning.value = false;
@@ -115,18 +111,15 @@ async function generateFromHtml() {
   isRunning.value = true;
   try {
     const res = await fetch(`${serverHost.value}/pdf/html`, {
-      ...{
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
       ...(serverAuth.value ? { headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` } } : {}),
     });
 
     const blob = await res.blob();
     downloadBlob(blob, 'printed.pdf');
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
   isRunning.value = false;
@@ -134,7 +127,7 @@ async function generateFromHtml() {
 
 const batchUrls = ref('');
 
-const batchResults = ref<{ url: string; status: 'success' | 'error' ; pdfBlob?: Blob; error?: string }[]>([]);
+const batchResults = ref<{ url: string; status: 'success' | 'error'; pdfBlob?: Blob; error?: string }[]>([]);
 const batchProgress = ref(0);
 const batchTotal = ref(0);
 const isBatchRunning = ref(false);
@@ -142,7 +135,7 @@ const isBatchRunning = ref(false);
 async function generateBatch() {
   const urls = batchUrls.value
     .split('\n')
-    .map(u => u.trim())
+    .map((u) => u.trim())
     .filter(Boolean);
 
   batchResults.value = [];
@@ -155,11 +148,9 @@ async function generateBatch() {
 
     try {
       const res = await fetch(`${serverHost.value}/pdf/url`, {
-        ...{
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
         ...(serverAuth.value ? { headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` } } : {}),
       });
 
@@ -170,8 +161,7 @@ async function generateBatch() {
         status: 'success',
         pdfBlob: blob,
       });
-    }
-    catch (err: any) {
+    } catch (err: any) {
       batchResults.value.push({
         url: u,
         status: 'error',
@@ -192,13 +182,27 @@ async function generateBatch() {
       <summary>{{ t('tools.html-to-pdf.texts.tag-html-to-pdf-service-configuration-self-hosted') }}</summary>
       <n-card>
         <NFormItem :label="t('tools.html-to-pdf.texts.label-html-to-pdf-service-url')" label-placement="top">
-          <NInput v-model:value="serverHost" :placeholder="t('tools.html-to-pdf.texts.placeholder-http-localhost-3000')" />
+          <NInput
+            v-model:value="serverHost"
+            :placeholder="t('tools.html-to-pdf.texts.placeholder-http-localhost-3000')"
+          />
         </NFormItem>
-        <NFormItem :label="t('tools.html-to-pdf.texts.label-basic-authentication')" label-placement="left" label-width="auto">
-          <NInput v-model:value="serverAuth" :placeholder="t('tools.html-to-pdf.texts.placeholder-username-password')" />
+        <NFormItem
+          :label="t('tools.html-to-pdf.texts.label-basic-authentication')"
+          label-placement="left"
+          label-width="auto"
+        >
+          <NInput
+            v-model:value="serverAuth"
+            :placeholder="t('tools.html-to-pdf.texts.placeholder-username-password')"
+          />
         </NFormItem>
         <n-p>
-          {{ t('tools.html-to-pdf.texts.tag-you-must-self-host-html-to-pdf-service-see') }}<c-link href="https://github.com/sharevb/puppeteer-htmltopdf?tab=readme-ov-file#running-in-docker" target="_blank">
+          {{ t('tools.html-to-pdf.texts.tag-you-must-self-host-html-to-pdf-service-see')
+          }}<c-link
+            href="https://github.com/sharevb/puppeteer-htmltopdf?tab=readme-ov-file#running-in-docker"
+            target="_blank"
+          >
             {{ t('tools.html-to-pdf.texts.tag-html-to-pdf-service-install') }}
           </c-link>
         </n-p>
@@ -213,12 +217,7 @@ async function generateBatch() {
           </NFormItem>
 
           <n-space mb-2 justify="center">
-            <NButton
-              type="primary"
-              :loading="isRunning"
-              :disabled="isRunning"
-              @click="generateFromUrl"
-            >
+            <NButton type="primary" :loading="isRunning" :disabled="isRunning" @click="generateFromUrl">
               {{ t('tools.html-to-pdf.texts.tag-generate-pdf') }}
             </NButton>
           </n-space>
@@ -232,20 +231,11 @@ async function generateBatch() {
       <NTabPane name="html" :tab="t('tools.html-to-pdf.texts.tab-html-pdf')">
         <NForm label-placement="top">
           <NFormItem :label="t('tools.html-to-pdf.texts.label-html-content')">
-            <NInput
-              v-model:value="html"
-              type="textarea"
-              :autosize="{ minRows: 10 }"
-            />
+            <NInput v-model:value="html" type="textarea" :autosize="{ minRows: 10 }" />
           </NFormItem>
 
           <n-space mb-2 justify="center">
-            <NButton
-              type="primary"
-              :loading="isRunning"
-              :disabled="isRunning"
-              @click="generateFromHtml"
-            >
+            <NButton type="primary" :loading="isRunning" :disabled="isRunning" @click="generateFromHtml">
               {{ t('tools.html-to-pdf.texts.tag-generate-pdf') }}
             </NButton>
           </n-space>
@@ -259,20 +249,11 @@ async function generateBatch() {
       <NTabPane name="batch" :tab="t('tools.html-to-pdf.texts.tab-batch-url-pdf')">
         <NForm label-placement="top">
           <NFormItem :label="t('tools.html-to-pdf.texts.label-urls-one-per-line')">
-            <NInput
-              v-model:value="batchUrls"
-              type="textarea"
-              :autosize="{ minRows: 8 }"
-            />
+            <NInput v-model:value="batchUrls" type="textarea" :autosize="{ minRows: 8 }" />
           </NFormItem>
 
           <n-space mb-2 justify="center">
-            <NButton
-              type="primary"
-              :loading="isBatchRunning"
-              :disabled="isBatchRunning"
-              @click="generateBatch"
-            >
+            <NButton type="primary" :loading="isBatchRunning" :disabled="isBatchRunning" @click="generateBatch">
               {{ t('tools.html-to-pdf.texts.tag-generate-pdfs') }}
             </NButton>
           </n-space>
@@ -285,9 +266,7 @@ async function generateBatch() {
             indicator-placement="inside"
             processing
           />
-          <n-space justify="center">
-            {{ batchProgress }} / {{ batchTotal }} processed
-          </n-space>
+          <n-space justify="center"> {{ batchProgress }} / {{ batchTotal }} processed </n-space>
         </div>
 
         <!-- Results -->
@@ -298,10 +277,7 @@ async function generateBatch() {
               <th>{{ t('tools.html-to-pdf.texts.tag-download') }}</th>
             </thead>
             <tbody>
-              <tr
-                v-for="item in batchResults"
-                :key="item.url"
-              >
+              <tr v-for="item in batchResults" :key="item.url">
                 <td>
                   <strong>{{ item.url }}</strong>
                 </td>
@@ -336,10 +312,7 @@ async function generateBatch() {
       <NTabPane name="custom-options" :tab="t('tools.html-to-pdf.texts.tab-custom-pdf-options')">
         <NForm label-placement="left">
           <NFormItem :label="t('tools.html-to-pdf.texts.label-format')">
-            <NSelect
-              v-model:value="options.format"
-              :options="pdfFormats"
-            />
+            <NSelect v-model:value="options.format" :options="pdfFormats" />
           </NFormItem>
 
           <NFormItem :label="t('tools.html-to-pdf.texts.label-language')">

@@ -9,16 +9,17 @@ const { t } = useI18n();
 const message = useMessage();
 
 const { data: rawText } = useIDBKeyval('rsvp:txt', '');
-const words = computed(() =>
-  rawText.value
-    .replace(/\r/g, '') // clean \r
-    .replace(/\s+([!?:;])/g, '$1') // clean \r
-    .replace(/\n\s*\n/g, '¤endpara¤ ') // keep double empty lines for para breaks
-    .replace(/\s+/g, ' ')
-    .trim()
-    .split(' ')
-    .filter(Boolean)
-    .map((word: string) => word.replace(/¤endpara¤$/g, '\n\n')), // add double \n for para breaks
+const words = computed(
+  () =>
+    rawText.value
+      .replace(/\r/g, '') // clean \r
+      .replace(/\s+([!?:;])/g, '$1') // clean \r
+      .replace(/\n\s*\n/g, '¤endpara¤ ') // keep double empty lines for para breaks
+      .replace(/\s+/g, ' ')
+      .trim()
+      .split(' ')
+      .filter(Boolean)
+      .map((word: string) => word.replace(/¤endpara¤$/g, '\n\n')), // add double \n for para breaks
 );
 
 const wpm = useQueryParamOrStorage({ name: 'wpm', storageName: 'rsvp:w', defaultValue: 300 });
@@ -107,8 +108,7 @@ function scheduleNext() {
     if (next < words.value.length) {
       currentIndex.value = next;
       scheduleNext();
-    }
-    else {
+    } else {
       isPlaying.value = false;
       clearTimer();
     }
@@ -163,8 +163,7 @@ async function onUpload(file: File) {
     }
 
     message.error(t('tools.rsvp-reader.text.unsupported-file-type'));
-  }
-  catch (err) {
+  } catch (err) {
     message.error(`Failed to parse file: ${err}`);
   }
   isProcessingFile.value = false;
@@ -174,7 +173,11 @@ function handleKeydown(e: KeyboardEvent) {
   // Space → Play/Pause
   if (e.code === 'Space') {
     e.preventDefault();
-    isPlaying.value ? pause() : start();
+    if (isPlaying.value) {
+      pause();
+    } else {
+      start();
+    }
   }
 
   // Right arrow → skip forward
@@ -215,21 +218,15 @@ function handleKeydown(e: KeyboardEvent) {
 }
 
 function moveRight() {
-  currentIndex.value = Math.min(
-    currentIndex.value + chunkSize.value,
-    words.value.length - 1,
-  );
+  currentIndex.value = Math.min(currentIndex.value + chunkSize.value, words.value.length - 1);
 }
 
 function moveLeft() {
-  currentIndex.value = Math.max(
-    currentIndex.value - chunkSize.value,
-    0,
-  );
+  currentIndex.value = Math.max(currentIndex.value - chunkSize.value, 0);
 }
 
 function progressJump(e: MouseEvent) {
-  let el: HTMLElement | null = (e.target as HTMLElement);
+  let el: HTMLElement | null = e.target as HTMLElement;
   while (el && !el.className.includes('n-progress-content')) {
     el = el.parentElement;
   }
@@ -279,18 +276,14 @@ onBeforeUnmount(() => {
 
           <NProgress
             type="line"
-            :percentage="((currentIndex / words.length) * 100).toFixed(1)"
+            :percentage="Number(((currentIndex / words.length) * 100).toFixed(1))"
             indicator-placement="inside"
-            style="cursor: pointer;"
+            style="cursor: pointer"
             mb-2
             @click="progressJump"
           />
 
-          <NCard
-            embedded
-            style="text-align: center; min-height: 150px;"
-            :style="{ backgroundColor: bgColor }"
-          >
+          <NCard embedded style="text-align: center; min-height: 150px" :style="{ backgroundColor: bgColor }">
             <div
               :style="{
                 fontSize: `${fontSize}px`,
@@ -303,7 +296,8 @@ onBeforeUnmount(() => {
             </div>
           </NCard>
           <n-space justify="center" mt-1>
-            <NText>{{ currentIndex + 1 }} / {{ words.length }} {{ t('tools.rsvp-reader.text.words') }}</NText> - <NText>{{ wpm }} {{ t('tools.rsvp-reader.text.wpm') }}</NText>
+            <NText>{{ currentIndex + 1 }} / {{ words.length }} {{ t('tools.rsvp-reader.text.words') }}</NText> -
+            <NText>{{ wpm }} {{ t('tools.rsvp-reader.text.wpm') }}</NText>
           </n-space>
         </div>
       </n-tab-pane>
@@ -382,7 +376,7 @@ onBeforeUnmount(() => {
           <n-table :bordered="false" :single-line="false" size="small">
             <thead>
               <tr>
-                <th style="width: 160px;">
+                <th style="width: 160px">
                   {{ t('tools.rsvp-reader.texts.tag-shortcut') }}
                 </th>
                 <th>{{ t('tools.rsvp-reader.texts.tag-action') }}</th>
@@ -390,37 +384,55 @@ onBeforeUnmount(() => {
             </thead>
             <tbody>
               <tr>
-                <td><kbd>{{ t('tools.rsvp-reader.texts.tag-space') }}</kbd></td>
+                <td>
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-space') }}</kbd>
+                </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-play-pause') }}</td>
               </tr>
 
               <tr>
-                <td><kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd>{{ t('tools.rsvp-reader.texts.tag-right-arrow') }}</td>
+                <td>
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd
+                  >{{ t('tools.rsvp-reader.texts.tag-right-arrow') }}
+                </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-skip-forward-one-chunk') }}</td>
               </tr>
 
               <tr>
-                <td><kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd>{{ t('tools.rsvp-reader.texts.tag-left-arrow') }}</td>
+                <td>
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd
+                  >{{ t('tools.rsvp-reader.texts.tag-left-arrow') }}
+                </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-skip-backward-one-chunk') }}</td>
               </tr>
 
               <tr>
-                <td><kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd>{{ t('tools.rsvp-reader.texts.tag-up-arrow') }}</td>
+                <td>
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd
+                  >{{ t('tools.rsvp-reader.texts.tag-up-arrow') }}
+                </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-increase-wpm') }}</td>
               </tr>
 
               <tr>
-                <td><kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd>{{ t('tools.rsvp-reader.texts.tag-down-arrow') }}</td>
+                <td>
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-') }}</kbd
+                  >{{ t('tools.rsvp-reader.texts.tag-down-arrow') }}
+                </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-decrease-wpm') }}</td>
               </tr>
 
               <tr>
-                <td><kbd>{{ t('tools.rsvp-reader.texts.tag-home') }}</kbd></td>
+                <td>
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-home') }}</kbd>
+                </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-jump-to-start') }}</td>
               </tr>
 
               <tr>
-                <td><kbd>{{ t('tools.rsvp-reader.texts.tag-end') }}</kbd></td>
+                <td>
+                  <kbd>{{ t('tools.rsvp-reader.texts.tag-end') }}</kbd>
+                </td>
                 <td>{{ t('tools.rsvp-reader.texts.tag-jump-to-end') }}</td>
               </tr>
             </tbody>

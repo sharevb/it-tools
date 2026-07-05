@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import {
-  computed,
-  ref,
-} from 'vue';
+import { computed, ref } from 'vue';
 import {
   NButton,
   NColorPicker,
@@ -24,7 +21,11 @@ const { t } = useI18n();
 const images = ref<HTMLImageElement[]>([]);
 const selectedIndex = ref(0);
 
-const watermarkText = useQueryParamOrStorage({ name: 'w', storageName: 'watermarker:w', defaultValue: 'Sample Watermark' });
+const watermarkText = useQueryParamOrStorage({
+  name: 'w',
+  storageName: 'watermarker:w',
+  defaultValue: 'Sample Watermark',
+});
 const fontSize = useQueryParamOrStorage({ name: 'fs', storageName: 'watermarker:fs', defaultValue: 24 });
 const fontColor = useQueryParamOrStorage({ name: 'col', storageName: 'watermarker:c', defaultValue: '#000000' });
 const opacity = useQueryParamOrStorage({ name: 'opa', storageName: 'watermarker:o', defaultValue: 40 });
@@ -32,7 +33,11 @@ const rotation = useQueryParamOrStorage({ name: 'rot', storageName: 'watermarker
 const repeatWatermark = useQueryParamOrStorage({ name: 'repeat', storageName: 'watermarker:rep', defaultValue: false });
 const logoWidth = useQueryParamOrStorage({ name: 'logow', storageName: 'watermarker:lw', defaultValue: 60 });
 const tileSpacing = useQueryParamOrStorage({ name: 'tilespc', storageName: 'watermarker:ts', defaultValue: 30 });
-const watermarkPosition = useQueryParamOrStorage({ name: 'pos', storageName: 'watermarker:pos', defaultValue: 'center' });
+const watermarkPosition = useQueryParamOrStorage({
+  name: 'pos',
+  storageName: 'watermarker:pos',
+  defaultValue: 'center',
+});
 
 const logo = ref<HTMLImageElement | null>(null);
 const downloadFormat = ref('png');
@@ -40,7 +45,7 @@ const downloadFormat = ref('png');
 const canvas = ref<HTMLCanvasElement | null>(null);
 
 const imageOptions = computed(() =>
-  images.value.map((img, i) => ({ label: img.getAttribute('data-name'), value: i })),
+  images.value.map((img, i) => ({ label: img.getAttribute('data-name') ?? '', value: i })),
 );
 
 function onFileChanges(uploadedFiles: File[]) {
@@ -83,13 +88,7 @@ function drawLogo(ctxRef: CanvasRenderingContext2D, textHeightOffset = 0) {
   }
   const aspectRatio = logo.value.naturalHeight / logo.value.naturalWidth;
   const logoHeight = logoWidth.value * aspectRatio;
-  ctxRef.drawImage(
-    logo.value,
-    -logoWidth.value / 2,
-    textHeightOffset + 10,
-    logoWidth.value,
-    logoHeight,
-  );
+  ctxRef.drawImage(logo.value, -logoWidth.value / 2, textHeightOffset + 10, logoWidth.value, logoHeight);
 }
 
 function drawImage(index: number) {
@@ -165,8 +164,7 @@ function drawImage(index: number) {
     ctx.drawImage(watermarkCanvas, -watermarkCanvas.width / 2, -watermarkCanvas.height / 2);
 
     ctx.restore();
-  }
-  else {
+  } else {
     ctx.save();
 
     let posX = img.width / 2;
@@ -190,7 +188,7 @@ function drawImage(index: number) {
         posX = img.width - margin - rotatedWidth / 2;
         posY = img.height - margin - rotatedHeight / 2;
         break;
-  // default is center
+      // default is center
     }
 
     ctx.translate(posX, posY);
@@ -253,11 +251,8 @@ watchEffect(() => drawImage(selectedIndex.value));
       mt-2
     />
 
-    <div style="max-width: 100%; max-height: 50vh;overflow:scroll;text-align: center">
-      <canvas
-        ref="canvas"
-        :style="`border:1px solid #ccc;display: ${images.length > 0 ? 'inline-block' : 'none'};`"
-      />
+    <div style="max-width: 100%; max-height: 50vh; overflow: scroll; text-align: center">
+      <canvas ref="canvas" :style="`border:1px solid #ccc;display: ${images.length > 0 ? 'inline-block' : 'none'};`" />
     </div>
 
     <NSpace mt-2 justify="center">
@@ -289,7 +284,7 @@ watchEffect(() => drawImage(selectedIndex.value));
         </n-form-item>
 
         <n-form-item :label="t('tools.watermarker.texts.label-color')" label-placement="left" mt-2>
-          <NColorPicker v-model:value="fontColor" style="width:100px" />
+          <NColorPicker v-model:value="fontColor" style="width: 100px" />
         </n-form-item>
         <n-form-item :label="t('tools.watermarker.texts.label-rotation')" label-placement="left" mt-2>
           <NSlider v-model:value="rotation" :step="0.5" :min="0" :max="360" mr-2 />
@@ -307,7 +302,12 @@ watchEffect(() => drawImage(selectedIndex.value));
           <n-input-number-i18n v-model:value="tileSpacing" size="small" :min="1" :max="1000" />
         </n-form-item>
 
-        <n-form-item v-if="!repeatWatermark" :label="t('tools.watermarker.texts.label-position')" label-placement="left" mt-2>
+        <n-form-item
+          v-if="!repeatWatermark"
+          :label="t('tools.watermarker.texts.label-position')"
+          label-placement="left"
+          mt-2
+        >
           <NSelect
             v-model:value="watermarkPosition"
             style="min-width: 130px"

@@ -1,0 +1,39 @@
+# The xlsx override below intentionally points the whole graph (including
+# wsemi's transitive xlsx) at the SheetJS CDN tarball, because the npm
+# registry version is stale (0.18.5) and carries known vulnerabilities.
+# pnpm 11 blocks URL tarballs in subdependencies by default and has no
+# per-package exception, so this protection must be disabled repo-wide.
+blockExoticSubdeps: false
+
+overrides:
+  '@vueuse/shared': 13.9.0
+  # Native-only transitives of webcrack / @huggingface/transformers.
+  # The browser app aliases both to an empty module in vite.config.ts,
+  # so stub them out entirely (saves ~225 MB of node_modules).
+  isolated-vm: file:./stubs/empty-stub
+  onnxruntime-node: file:./stubs/empty-stub
+  elliptic: ^6.6.1
+  xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
+
+patchedDependencies:
+  node-forge@1.4.0: patches/node-forge@1.4.0.patch
+  esm-potrace-wasm: patches/esm-potrace-wasm.patch
+  run-pace: patches/run-pace.patch
+
+# pnpm 11 requires an explicit decision for every dependency build script.
+# true  = script is needed (native binaries / functional postinstall)
+# false = script is cosmetic (funding banners) or the build is unneeded
+allowBuilds:
+  '@scarf/scarf': false
+  core-js: false
+  es5-ext: false
+  esbuild: true
+  exifreader: false
+  json-editor-vue: false
+  msgpackr-extract: true
+  protobufjs: false
+  sharp: false
+  tesseract.js: false
+  tree-sitter: true
+  tree-sitter-bash: true
+  vue-demi: true

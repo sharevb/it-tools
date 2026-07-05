@@ -26,7 +26,7 @@ const result = computed(() => zxcvbn(password.value));
 const strengthLabel = computed(() => {
   const score = result.value.score;
   const labels = ['Very Weak', 'Weak', 'Fair', 'Strong', 'Very Strong'];
-  const colors = ['error', 'warning', 'info', 'success', 'success'];
+  const colors = ['error', 'warning', 'info', 'success', 'success'] as const;
   return {
     label: labels[score],
     color: colors[score],
@@ -60,12 +60,7 @@ const suggestions = computed(() => result.value.feedback.suggestions);
     />
 
     <div v-if="password" mt-1>
-      <NProgress
-        type="line"
-        :percentage="strength.percent"
-        :color="strength.color"
-        show-indicator
-      />
+      <NProgress type="line" :percentage="strength.percent" :color="strength.color" show-indicator />
 
       <n-space justify="center" mt-2>
         <NTag :type="strengthLabel.color" size="small">
@@ -73,16 +68,20 @@ const suggestions = computed(() => result.value.feedback.suggestions);
         </NTag>
       </n-space>
       <div mt-1>
-        <span>{{ t('tools.zxcvbn-password-strength.texts.tag-estimated-fast-offline-crack-time-1e10-s') }}</span> {{ result.crackTimesDisplay.offlineFastHashing1e10PerSecond }}
+        <span>{{ t('tools.zxcvbn-password-strength.texts.tag-estimated-fast-offline-crack-time-1e10-s') }}</span>
+        {{ result.crackTimesDisplay.offlineFastHashing1e10PerSecond }}
       </div>
       <div mt-1>
-        <span>{{ t('tools.zxcvbn-password-strength.texts.tag-estimated-slow-offline-crack-time-1e4-s') }}</span> {{ result.crackTimesDisplay.offlineSlowHashing1e4PerSecond }}
+        <span>{{ t('tools.zxcvbn-password-strength.texts.tag-estimated-slow-offline-crack-time-1e4-s') }}</span>
+        {{ result.crackTimesDisplay.offlineSlowHashing1e4PerSecond }}
       </div>
       <div mt-1>
-        <span>{{ t('tools.zxcvbn-password-strength.texts.tag-estimated-online-throttling-crack-time-10-s') }}</span> {{ result.crackTimesDisplay.onlineNoThrottling10PerSecond }}
+        <span>{{ t('tools.zxcvbn-password-strength.texts.tag-estimated-online-throttling-crack-time-10-s') }}</span>
+        {{ result.crackTimesDisplay.onlineNoThrottling10PerSecond }}
       </div>
       <div mt-1>
-        <span>{{ t('tools.zxcvbn-password-strength.texts.tag-estimated-online-no-throttling-crack-time-10-s') }}</span> {{ result.crackTimesDisplay.onlineNoThrottling10PerSecond }}
+        <span>{{ t('tools.zxcvbn-password-strength.texts.tag-estimated-online-no-throttling-crack-time-10-s') }}</span>
+        {{ result.crackTimesDisplay.onlineNoThrottling10PerSecond }}
       </div>
 
       <div mt-2>

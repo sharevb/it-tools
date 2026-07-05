@@ -7,10 +7,10 @@ import { useQueryParam } from '@/composable/queryParams';
 const { t } = useI18n();
 
 interface CountDown {
-  d: number
-  h: number
-  m: number
-  s: number
+  d: number;
+  h: number;
+  m: number;
+  s: number;
 }
 
 function getCountDownHref(c: CountDown) {
@@ -40,12 +40,7 @@ watchEffect(() => {
 
 const now = ref(moment());
 const deadlineDate = computed(() => {
-  return now.value
-    .add(days.value, 'd')
-    .add(hours.value, 'h')
-    .add(minutes.value, 'm')
-    .add(seconds.value, 's')
-    .toDate();
+  return now.value.add(days.value, 'd').add(hours.value, 'h').add(minutes.value, 'm').add(seconds.value, 's').toDate();
 });
 const fmt = 'YYYY-MM-DD HH:mm:ss';
 const deadlineFormatted = computed(() => {
@@ -61,7 +56,11 @@ function start() {
   now.value = moment();
   status.value = 'running';
   const histoEntry = { d: days.value, h: hours.value, m: minutes.value, s: seconds.value };
-  if (!history.value.find(h => h.d === histoEntry.d && h.h === histoEntry.h && h.m === histoEntry.m && h.s === histoEntry.s)) {
+  if (
+    !history.value.find(
+      (h) => h.d === histoEntry.d && h.h === histoEntry.h && h.m === histoEntry.m && h.s === histoEntry.s,
+    )
+  ) {
     history.value = [histoEntry, ...history.value];
   }
 }
@@ -88,8 +87,7 @@ function toggleFullScreen() {
   }
   if (!document.fullscreenElement) {
     element?.requestFullscreen();
-  }
-  else {
+  } else {
     document.exitFullscreen?.();
   }
 }
@@ -124,9 +122,7 @@ const isEnded = computed(() => status.value === 'ended');
       </div>
 
       <div flex justify-center>
-        <c-button
-          @click="start"
-        >
+        <c-button @click="start">
           {{ t('tools.countdown.texts.tag-start') }}
         </c-button>
       </div>
@@ -134,20 +130,23 @@ const isEnded = computed(() => status.value === 'ended');
 
     <div id="fullScreenElement" ref="fullScreenElement" mb-2>
       <div>
-        <Countdown :deadline="deadlineFormatted" :stop="status !== 'running'" mb-2 countdown-size="4rem" @time-elapsed="ended()" />
+        <Countdown
+          :deadline="deadlineFormatted"
+          :stop="status !== 'running'"
+          mb-2
+          countdown-size="4rem"
+          @time-elapsed="ended()"
+        />
 
         <div mb-2 flex justify-center>
-          <c-button
-            :disabled="status === 'stopped'"
-            @click="toggleFullScreen"
-          >
+          <c-button :disabled="status === 'stopped'" @click="toggleFullScreen">
             {{ t('tools.countdown.texts.tag-toggle-fullscreen') }}
           </c-button>
         </div>
       </div>
     </div>
 
-    <n-modal v-model:show="isEnded" mask-closable="false">
+    <n-modal v-model:show="isEnded" :mask-closable="false">
       <n-card
         style="width: 600px"
         :title="t('tools.countdown.texts.title-timer-finished')"
@@ -166,17 +165,12 @@ const isEnded = computed(() => status.value === 'ended');
     </n-modal>
 
     <div mb-2 flex justify-center>
-      <c-button
-        :disabled="status === 'stopped'"
-        @click="stop"
-      >
+      <c-button :disabled="status === 'stopped'" @click="stop">
         {{ t('tools.countdown.texts.tag-stop') }}
       </c-button>
     </div>
 
-    <n-p align="center">
-      Alarm at: {{ deadlineDate }}
-    </n-p>
+    <n-p align="center"> Alarm at: {{ deadlineDate }} </n-p>
 
     <c-card v-if="history" :title="t('tools.countdown.texts.title-history')">
       <div flex justify-center gap-1>

@@ -9,15 +9,21 @@ function msToString(ms) {
 let titleInterval = null;
 function startTitleAlarm(str, delay) {
   titleInterval = setInterval(() => {
-    document.title.startsWith('⏰')
-      ? document.title = `${str} - IT Tools`
-      : document.title = '⏰⏰⏰⏰⏰⏰⏰⏰⏰⏰' + ' - IT Tools';
+    if (document.title.startsWith('⏰')) {
+      document.title = `${str} - IT Tools`;
+    } else {
+      document.title = '⏰⏰⏰⏰⏰⏰⏰⏰⏰⏰' + ' - IT Tools';
+    }
   }, delay);
 }
 
 function stopTitleAlarm() {
-  // eslint-disable-next-line no-alert
-  titleInterval ? clearInterval(titleInterval) : alert('Error:  something went wrong when trying to stop the title alarm.');
+  if (titleInterval) {
+    clearInterval(titleInterval);
+  } else {
+    // eslint-disable-next-line no-alert
+    alert('Error:  something went wrong when trying to stop the title alarm.');
+  }
   document.title = 'Pomodoro Timer - IT Tools';
 }
 
@@ -25,8 +31,7 @@ function getNextTimerMode(state) {
   const currentMode = state.progress[state.progress.length - 1];
   if (currentMode === 'workInterval') {
     return state.progress.length === state.shortBreakCount * 2 + 1 ? 'longBreak' : 'shortBreak';
-  }
-  else {
+  } else {
     return 'workInterval';
   }
 }
@@ -89,8 +94,7 @@ function onTimerFinished(state, alarmPlayer) {
 function setupNextTimerMode(state) {
   if (state.progress.length === state.shortBreakCount * 2 + 2) {
     startOver(state);
-  }
-  else {
+  } else {
     const timerMode = state.progress[state.progress.length - 1];
     state.time = state[timerMode] * 60000;
     state.counter = msToString(state.time);
@@ -120,7 +124,7 @@ function startTimer(state) {
     }
     state.time = newRemainingTime;
     state.counter = msToString(newRemainingTime);
-    state.progressPercent = (totalModeTime - newRemainingTime) / totalModeTime * 100;
+    state.progressPercent = ((totalModeTime - newRemainingTime) / totalModeTime) * 100;
   }, 200);
 }
 
@@ -136,11 +140,4 @@ function setAppAccentColor(hexColor) {
   root.style.setProperty('--pomodoro-app-accent-color', hexColor);
 }
 
-export {
-  startTimer,
-  stopTimer,
-  startOver,
-  setupNextTimerMode,
-  stopAlarms,
-  setAppAccentColor,
-};
+export { startTimer, stopTimer, startOver, setupNextTimerMode, stopAlarms, setAppAccentColor };

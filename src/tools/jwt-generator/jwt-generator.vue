@@ -21,7 +21,9 @@ const payload = ref(`{
 }`);
 
 const alg = useQueryParamOrStorage({ name: 'alg', storageName: 'jwt-gen:alg', defaultValue: 'HS512' });
-const algInfo = computed(() => jwsAlgorithms.find(a => a.alg === alg.value) || { alg: 'UNK', keyDesc: '', key: 'secret', verify: '' });
+const algInfo = computed(
+  () => jwsAlgorithms.find((a) => a.alg === alg.value) || { alg: 'UNK', keyDesc: '', key: 'secret', verify: '' },
+);
 const isSecret = computed(() => algInfo.value.key === 'secret');
 
 const inputToken = ref('');
@@ -31,8 +33,7 @@ watch(inputToken, (value) => {
   try {
     payload.value = JSON.stringify(jwtDecode<JwtPayload>(value), null, 2);
     alg.value = getJwtAlgorithm({ jwt: value }) || 'HS512';
-  }
-  catch (e: any) {
+  } catch (e: any) {
     inputTokenError.value = e.toString();
   }
 });
@@ -50,34 +51,54 @@ const publicKeyJWK = ref('');
 const privateKeyJWK = ref('');
 const privateKeyPEM = ref('');
 
-watch(publicKeyPEM, async (newValue) => {
-  try {
-    publicKeyJWK.value = JSON.stringify(await jose.exportJWK(await jose.importSPKI(newValue, alg.value, { extractable: true })), null, 2);
-  }
-  catch {
-  }
-}, { immediate: true });
-watch(privateKeyPEM, async (newValue) => {
-  try {
-    privateKeyJWK.value = JSON.stringify(await jose.exportJWK(await jose.importPKCS8(newValue, alg.value, { extractable: true })), null, 2);
-  }
-  catch {
-  }
-}, { immediate: true });
-watch(publicKeyJWK, async (newValue) => {
-  try {
-    publicKeyPEM.value = await jose.exportSPKI(await jose.importJWK({ ...JSON.parse(newValue), ...{ ext: true } }, alg.value) as KeyLike);
-  }
-  catch {
-  }
-}, { immediate: true });
-watch(privateKeyJWK, async (newValue) => {
-  try {
-    privateKeyPEM.value = await jose.exportPKCS8(await jose.importJWK({ ...JSON.parse(newValue), ...{ ext: true } }, alg.value) as KeyLike);
-  }
-  catch {
-  }
-}, { immediate: true });
+watch(
+  publicKeyPEM,
+  async (newValue) => {
+    try {
+      publicKeyJWK.value = JSON.stringify(
+        await jose.exportJWK(await jose.importSPKI(newValue, alg.value, { extractable: true })),
+        null,
+        2,
+      );
+    } catch {}
+  },
+  { immediate: true },
+);
+watch(
+  privateKeyPEM,
+  async (newValue) => {
+    try {
+      privateKeyJWK.value = JSON.stringify(
+        await jose.exportJWK(await jose.importPKCS8(newValue, alg.value, { extractable: true })),
+        null,
+        2,
+      );
+    } catch {}
+  },
+  { immediate: true },
+);
+watch(
+  publicKeyJWK,
+  async (newValue) => {
+    try {
+      publicKeyPEM.value = await jose.exportSPKI(
+        (await jose.importJWK({ ...JSON.parse(newValue), ext: true }, alg.value)) as KeyLike,
+      );
+    } catch {}
+  },
+  { immediate: true },
+);
+watch(
+  privateKeyJWK,
+  async (newValue) => {
+    try {
+      privateKeyPEM.value = await jose.exportPKCS8(
+        (await jose.importJWK({ ...JSON.parse(newValue), ext: true }, alg.value)) as KeyLike,
+      );
+    } catch {}
+  },
+  { immediate: true },
+);
 
 watchEffect(async () => {
   if (isSecret.value) {
@@ -86,8 +107,7 @@ watchEffect(async () => {
     publicKeyJWK.value = '';
     privateKeyPEM.value = '';
     publicKeyPEM.value = '';
-  }
-  else {
+  } else {
     const { publicKey, privateKey } = await jose.generateKeyPair(alg.value, { extractable: true });
     privateKeyJWK.value = JSON.stringify(await jose.exportJWK(privateKey), null, 2);
     publicKeyJWK.value = JSON.stringify(await jose.exportJWK(publicKey), null, 2);
@@ -122,22 +142,25 @@ const encodedJWT = computedAsync(async () => {
             privateKeyOrSecret = Base64.toUint8Array(secretValue);
             break;
         }
+      } catch (parseError: any) {
+        throw new Error(
+          t('tools.jwt-generator.texts.cannot-parse-secret-as-encoding', [
+            secretValue,
+            secretEncodingValue,
+            parseError,
+          ]),
+        );
       }
-      catch (parseError: any) {
-        throw new Error(t('tools.jwt-generator.texts.cannot-parse-secret-as-encoding', [secretValue, secretEncodingValue, parseError]));
-      }
-    }
-    else {
+    } else {
       privateKeyOrSecret = await jose.importJWK(JSON.parse(privateKeyValue), algValue);
     }
     return {
-      token: await (new jose.SignJWT(JSON5.parse(payloadValue))
+      token: await new jose.SignJWT(JSON5.parse(payloadValue))
         .setProtectedHeader({ alg: algValue })
-        .sign(privateKeyOrSecret)),
+        .sign(privateKeyOrSecret),
       error: '',
     };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { error: e.toString(), token: '' };
   }
 });
@@ -147,7 +170,7 @@ const jsonInputValidation = useValidation({
   rules: [
     {
       message: t('tools.jwt-generator.texts.message-invalid-json-string'),
-      validator: value => JSON5.parse(value),
+      validator: (value) => JSON5.parse(value),
     },
   ],
 });
@@ -172,7 +195,7 @@ const jsonInputValidation = useValidation({
 
     <c-select
       v-model:value="alg"
-      :options="jwsAlgorithms.map(a => ({ value: a.alg, label: `${a.alg}: ${a.verify}` }))"
+      :options="jwsAlgorithms.map((a) => ({ value: a.alg, label: `${a.alg}: ${a.verify}` }))"
       :placeholder="t('tools.jwt-generator.texts.placeholder-algorithms')"
       mb-2
     />
@@ -196,7 +219,10 @@ const jsonInputValidation = useValidation({
       />
     </c-card>
 
-    <c-card :title="isSecret ? t('tools.jwt-generator.texts.token-secret') : t('tools.jwt-generator.texts.token-keys')" mb-2>
+    <c-card
+      :title="isSecret ? t('tools.jwt-generator.texts.token-secret') : t('tools.jwt-generator.texts.token-keys')"
+      mb-2
+    >
       <div v-if="isSecret">
         <c-select
           v-model:value="secretEncoding"
@@ -209,39 +235,19 @@ const jsonInputValidation = useValidation({
       </div>
       <div v-else>
         <n-form-item :label="t('tools.jwt-generator.texts.label-public-key-pem')">
-          <c-input-text
-            v-model:value="publicKeyPEM"
-            multiline
-            rows="5"
-            autosize
-          />
+          <c-input-text v-model:value="publicKeyPEM" multiline rows="5" autosize />
         </n-form-item>
         <n-form-item :label="t('tools.jwt-generator.texts.label-private-key-pem')">
-          <c-input-text
-            v-model:value="privateKeyPEM"
-            multiline
-            rows="5"
-            autosize
-          />
+          <c-input-text v-model:value="privateKeyPEM" multiline rows="5" autosize />
         </n-form-item>
 
         <n-divider />
 
         <n-form-item :label="t('tools.jwt-generator.texts.label-public-key-jwk')">
-          <c-input-text
-            v-model:value="publicKeyJWK"
-            multiline
-            rows="5"
-            autosize
-          />
+          <c-input-text v-model:value="publicKeyJWK" multiline rows="5" autosize />
         </n-form-item>
         <n-form-item :label="t('tools.jwt-generator.texts.label-private-key-jwk')">
-          <c-input-text
-            v-model:value="privateKeyJWK"
-            multiline
-            rows="5"
-            autosize
-          />
+          <c-input-text v-model:value="privateKeyJWK" multiline rows="5" autosize />
         </n-form-item>
       </div>
     </c-card>

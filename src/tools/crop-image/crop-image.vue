@@ -156,8 +156,7 @@ function fitToViewport() {
   if (iRatio > vRatio) {
     // Fit width
     bW = vW;
-  }
-  else {
+  } else {
     // Fit height
     bW = vH * iRatio;
   }
@@ -252,8 +251,7 @@ function handleWheel(e: WheelEvent) {
   let newZoom = zoom.value;
   if (e.deltaY < 0) {
     newZoom = Math.min(zoom.value + zoomStep, 10.0);
-  }
-  else {
+  } else {
     newZoom = Math.max(zoom.value - zoomStep, 0.05);
   }
   zoom.value = newZoom;
@@ -278,8 +276,7 @@ function exportImage() {
       const scaleFactor = imgNaturalWidth.value / bW;
       canvasWidth = vW * scaleFactor;
       canvasHeight = vH * scaleFactor;
-    }
-    else if (exportWidthMode.value === 'custom') {
+    } else if (exportWidthMode.value === 'custom') {
       canvasWidth = customExportWidth.value;
       canvasHeight = customExportWidth.value / currentRatio.value;
     }
@@ -296,8 +293,7 @@ function exportImage() {
     if (backgroundColor.value !== '#00000000') {
       ctx.fillStyle = backgroundColor.value;
       ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-    }
-    else {
+    } else {
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     }
 
@@ -309,7 +305,7 @@ function exportImage() {
     const bH = baseDimensions.value.height;
     const ox = offsetX.value;
     const oy = offsetY.value;
-    const r = rotation.value * Math.PI / 180;
+    const r = (rotation.value * Math.PI) / 180;
     const sx = zoom.value * (flipH.value ? -1 : 1);
     const sy = zoom.value * (flipV.value ? -1 : 1);
 
@@ -324,7 +320,8 @@ function exportImage() {
     ctx.restore();
 
     // Trigger Download
-    const mime = exportFormat.value === 'jpeg' ? 'image/jpeg' : exportFormat.value === 'webp' ? 'image/webp' : 'image/png';
+    const mime =
+      exportFormat.value === 'jpeg' ? 'image/jpeg' : exportFormat.value === 'webp' ? 'image/webp' : 'image/png';
     const extension = exportFormat.value;
     const dataUrl = canvas.toDataURL(mime, exportQuality.value);
 
@@ -347,12 +344,7 @@ function exportImage() {
     <!-- Drop Zone Mode -->
     <c-card v-if="!imageSrc">
       <div flex flex-col items-center justify-center gap-6 py-12>
-        <c-file-upload
-          accept="image/*"
-          :title="t('tools.crop-image.texts.drag-drop')"
-          w-full
-          @file-upload="onUpload"
-        />
+        <c-file-upload accept="image/*" :title="t('tools.crop-image.texts.drag-drop')" w-full @file-upload="onUpload" />
       </div>
     </c-card>
 
@@ -389,7 +381,10 @@ function exportImage() {
                 >
                   <!-- Transparent checkerboard background -->
                   <div
-                    v-if="backgroundColor === '#00000000' || backgroundColor.includes('rgba(') && backgroundColor.endsWith(', 0)')"
+                    v-if="
+                      backgroundColor === '#00000000' ||
+                      (backgroundColor.includes('rgba(') && backgroundColor.endsWith(', 0)'))
+                    "
                     class="checkerboard-bg pointer-events-none absolute inset-0"
                   />
 
@@ -403,7 +398,7 @@ function exportImage() {
                       transform: `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg) scale(${zoom * (flipH ? -1 : 1)}, ${zoom * (flipV ? -1 : 1)})`,
                       transformOrigin: 'center center',
                     }"
-                  >
+                  />
 
                   <!-- 3x3 rule of thirds grid overlay -->
                   <div
@@ -478,11 +473,7 @@ function exportImage() {
             <n-form label-placement="left" label-width="140" label-align="right">
               <!-- Aspect Ratio Presets -->
               <n-form-item :label="t('tools.crop-image.texts.aspect-ratio')">
-                <c-select
-                  v-model:value="aspectRatio"
-                  :options="aspectRatioOptions"
-                  w-full
-                />
+                <c-select v-model:value="aspectRatio" :options="aspectRatioOptions" w-full />
               </n-form-item>
 
               <!-- Custom Aspect Ratio Inputs -->
@@ -497,7 +488,7 @@ function exportImage() {
               <!-- Background Color Picker -->
               <n-form-item :label="t('tools.crop-image.texts.background-color')">
                 <div w-full flex items-center gap-4>
-                  <n-color-picker v-model:value="backgroundColor" :modes="['hex', 'rgba']" class="flex-1" />
+                  <n-color-picker v-model:value="backgroundColor" :modes="['hex', 'rgba'] as any" class="flex-1" />
                   <c-button size="small" @click="backgroundColor = '#00000000'">
                     {{ t('tools.crop-image.texts.transparent') }}
                   </c-button>
@@ -535,15 +526,14 @@ function exportImage() {
             <n-form label-placement="left" label-width="140" label-align="right">
               <!-- Export Format select -->
               <n-form-item :label="t('tools.crop-image.texts.export-format')">
-                <c-select
-                  v-model:value="exportFormat"
-                  :options="exportFormatOptions"
-                  w-full
-                />
+                <c-select v-model:value="exportFormat" :options="exportFormatOptions" w-full />
               </n-form-item>
 
               <!-- Quality slider for lossy formats -->
-              <n-form-item v-if="exportFormat === 'jpeg' || exportFormat === 'webp'" :label="t('tools.crop-image.texts.image-quality')">
+              <n-form-item
+                v-if="exportFormat === 'jpeg' || exportFormat === 'webp'"
+                :label="t('tools.crop-image.texts.image-quality')"
+              >
                 <div w-full flex items-center gap-4>
                   <n-slider v-model:value="exportQuality" :min="0.1" :max="1" :step="0.05" class="flex-1" />
                   <span w-50px text-right font-mono>{{ Math.round(exportQuality * 100) }}%</span>
@@ -552,11 +542,7 @@ function exportImage() {
 
               <!-- Export width options -->
               <n-form-item :label="t('tools.crop-image.texts.export-width')">
-                <c-select
-                  v-model:value="exportWidthMode"
-                  :options="exportWidthOptions"
-                  w-full
-                />
+                <c-select v-model:value="exportWidthMode" :options="exportWidthOptions" w-full />
               </n-form-item>
 
               <!-- Custom Export Width Input -->
@@ -584,19 +570,20 @@ function exportImage() {
 
 .checkerboard-bg {
   background-image:
-    linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
-    linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
-    linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+    linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
   background-size: 16px 16px;
-  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0px;
 
-  :deep(.dark) &, .dark & {
+  :deep(.dark) &,
+  .dark & {
     background-image:
-      linear-gradient(45deg, #374151 25%, transparent 25%),
-      linear-gradient(-45deg, #374151 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #374151 75%),
-      linear-gradient(-45deg, transparent 75%, #374151 75%);
+      linear-gradient(45deg, #374151 25%, transparent 25%), linear-gradient(-45deg, #374151 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #374151 75%), linear-gradient(-45deg, transparent 75%, #374151 75%);
   }
 }
 

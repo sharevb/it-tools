@@ -1,0 +1,6 @@
+{
+  "name": "empty-stub",
+  "version": "0.0.0",
+  "description": "Empty replacement for native-only optional dependencies (isolated-vm, onnxruntime-node) that the browser bundle aliases away in vite.config.ts",
+  "main": "index.js"
+}

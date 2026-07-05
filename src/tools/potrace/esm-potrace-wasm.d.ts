@@ -1,7 +1,4 @@
 declare module 'esm-potrace-wasm' {
-export function potrace(
-  imageBitmapSource: ImageBitmapSource,
-  options: Object
-): Promise<string>;
-export function init(): Promise<void>;
+  export function potrace(imageBitmapSource: ImageBitmapSource, options: object): Promise<string>;
+  export function init(): Promise<void>;
 }

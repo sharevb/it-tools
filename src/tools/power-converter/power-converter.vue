@@ -19,9 +19,9 @@ const supportedUnits = {
   fW: 'femtowatt',
   horsepower: 'horsepower',
   hp: 'mechanical horsepower',
-}; ;
+};
 </script>
 
 <template>
-  <UnitsConverter default-unit="W" :supported-units="supportedUnits" label-width="150px" />
+  <UnitsConverter default-unit="W" converter-type="convert" :supported-units="supportedUnits" label-width="150px" />
 </template>

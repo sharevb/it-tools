@@ -9,7 +9,9 @@ const { t } = useI18n();
 
 const toolStore = useToolStore();
 
-const desc = t('about.text.collection-of-handy-online-tools-for-developers-with-great-ux-it-tools-is-a-free-and-open-source-collection-of-handy-online-tools-for-developers-and-people-working-in-it');
+const desc = t(
+  'about.text.collection-of-handy-online-tools-for-developers-with-great-ux-it-tools-is-a-free-and-open-source-collection-of-handy-online-tools-for-developers-and-people-working-in-it',
+);
 const title = t('about.text.about-it-tools');
 useHead({
   title,
@@ -17,7 +19,7 @@ useHead({
     {
       itemprop: 'name',
       content: title,
-    },
+    } as never,
     {
       property: 'og:title',
       content: title,
@@ -33,7 +35,7 @@ useHead({
     {
       itemprop: 'description',
       content: desc,
-    },
+    } as never,
     {
       property: 'og:description',
       content: desc,
@@ -54,8 +56,7 @@ function importFavorites() {
   try {
     favoriteToolsName.value = JSON.parse(importFavoritesJson.value);
     message.success(t('about.favorites-imported-successfully'));
-  }
-  catch (e: any) {
+  } catch (e: any) {
     message.error(t('about.error-importing-favorites-e', [e]));
   }
 }
@@ -79,9 +80,7 @@ const favoritesJson = computed(() => JSON.stringify(favoriteToolsName.value));
   </n-card>
 
   <n-card :title="$t('about.export-favorites')" mx-auto mt-50px>
-    <textarea-copyable
-      v-model:value="favoritesJson"
-    />
+    <textarea-copyable v-model:value="favoritesJson" />
   </n-card>
 
   <n-card :title="$t('about.alltools-title', { toolsCount: toolStore.tools.length })" mx-auto mt-50px>

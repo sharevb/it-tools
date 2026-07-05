@@ -24,14 +24,10 @@ const isClean = computed(() => withDefaultOnError(() => TidyURL.clean(inputUrl.v
 
     <div v-if="inputUrl">
       <n-p v-if="isClean" text-center>
-        <n-icon color="green">
-          <CheckIcon />
-        </n-icon>{{ t('tools.url-cleaner.texts.tag-is-clean') }}
+        <n-icon color="green"> <CheckIcon /> </n-icon>{{ t('tools.url-cleaner.texts.tag-is-clean') }}
       </n-p>
       <n-p v-if="!isClean" text-center>
-        <n-icon color="red">
-          <CrossIcon />
-        </n-icon>{{ t('tools.url-cleaner.texts.tag-was-not-clean') }}
+        <n-icon color="red"> <CrossIcon /> </n-icon>{{ t('tools.url-cleaner.texts.tag-was-not-clean') }}
       </n-p>
       <TextareaCopyable
         :label="t('tools.url-cleaner.texts.label-cleaned-url')"

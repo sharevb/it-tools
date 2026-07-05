@@ -50,7 +50,6 @@
       "groupName": "UnoCSS ecosystem",
       "matchPackageNames": [
         "unocss",
-        "@unocss/eslint-config",
         "unocss-preset-scrollbar"
       ],
       "matchUpdateTypes": ["major", "minor", "patch"]

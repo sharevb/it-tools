@@ -3,17 +3,20 @@ import _ from 'lodash';
 import convert, { type Unit } from 'convert';
 import * as unitsconverter from 'units-converter';
 
-const props = withDefaults(defineProps<{
-  supportedUnits: { [key: string]: string }
-  defaultUnit: string
-  labelWidth?: string
-  unitMinWidth?: string
-  converterType: 'convert' | 'frequency' | 'volumeFlowRate' | 'speed' | 'acceleration'
-}>(), {
-  labelWidth: '150px',
-  unitMinWidth: '50px',
-  converterType: 'convert',
-});
+const props = withDefaults(
+  defineProps<{
+    supportedUnits: { [key: string]: string };
+    defaultUnit: string;
+    labelWidth?: string;
+    unitMinWidth?: string;
+    converterType?: 'convert' | 'frequency' | 'volumeFlowRate' | 'speed' | 'acceleration';
+  }>(),
+  {
+    labelWidth: '150px',
+    unitMinWidth: '50px',
+    converterType: 'convert',
+  },
+);
 const { supportedUnits, defaultUnit, labelWidth, unitMinWidth, converterType } = toRefs(props);
 
 const SI_PREFIX_NAMES = [
@@ -45,19 +48,21 @@ const SI_PREFIX_NAMES = [
 
 const SI_PREFIX_NAMES_REGEX = new RegExp(`^(${SI_PREFIX_NAMES.join('|')})`);
 
-const units = reactive<
-  Record<
-    string,
-    { title: string; unit: string; ref: number }
-  >
-      >(Object.entries(supportedUnits.value).map(([key, label]) => ({
-        title: label,
-        unit: key,
-        ref: 1,
-      })).reduce((prev, current) => ({
+const units = reactive<Record<string, { title: string; unit: string; ref: number }>>(
+  Object.entries(supportedUnits.value)
+    .map(([key, label]) => ({
+      title: label,
+      unit: key,
+      ref: 1,
+    }))
+    .reduce(
+      (prev, current) => ({
         ...prev,
         [current.unit]: current,
-      }), {}));
+      }),
+      {},
+    ),
+);
 
 const excludeSIPrefixes = ref(true);
 const filteredUnits = computed(() => {
@@ -65,9 +70,7 @@ const filteredUnits = computed(() => {
     return Object.entries(units);
   }
 
-  return Object.entries(units).filter(
-    ([_, { title }]) => !SI_PREFIX_NAMES_REGEX.test(title),
-  );
+  return Object.entries(units).filter(([_, { title }]) => !SI_PREFIX_NAMES_REGEX.test(title));
 });
 
 function update(key: string) {
@@ -84,14 +87,12 @@ function update(key: string) {
       .forEach(({ unit }) => {
         try {
           units[unit].ref = converter.to(unit as Unit);
-        }
-        catch (e: any) {
+        } catch (e: any) {
           units[unit].ref = 0;
         }
       })
       .value();
-  }
-  else {
+  } else {
     const mapUnit = (unit: string) => {
       // npm units-converter uses wrong symbol for miles per hour, so we need to fix it
       if (converterType.value === 'speed' && unit === 'mi/h') {
@@ -106,8 +107,7 @@ function update(key: string) {
       .forEach(({ unit }) => {
         try {
           units[unit].ref = converter.to(mapUnit(unit)).value;
-        }
-        catch (e: any) {
+        } catch (e: any) {
           units[unit].ref = 0;
         }
       })
@@ -133,11 +133,7 @@ update(defaultUnit.value);
         {{ title }}
       </n-input-group-label>
 
-      <n-input-number
-        v-model:value="units[key].ref"
-        style="flex: 1"
-        @update:value="() => update(key)"
-      />
+      <n-input-number v-model:value="units[key].ref" style="flex: 1" @update:value="() => update(key)" />
 
       <n-input-group-label :style="{ minWidth: unitMinWidth }">
         {{ unit }}

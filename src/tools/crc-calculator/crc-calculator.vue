@@ -32,7 +32,8 @@ const defaultCRCValues = {
 };
 type AlgoNames = keyof typeof defaultCRCValues;
 
-function getCRCs(content: Uint8Array | string) {
+function getCRCs(rawContent: Uint8Array | string) {
+  const content = rawContent as Buffer | string;
   return {
     crc1: crc.crc1(content).toString(16),
     crc8: crc.crc8(content).toString(16),
@@ -60,8 +61,7 @@ async function onUpload(uploadedFile: File) {
   try {
     hashes.value = getCRCs(new Uint8Array(buffer));
     status.value = 'done';
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
@@ -69,7 +69,11 @@ async function onUpload(uploadedFile: File) {
 const algoWasmNames = Object.keys(defaultCRCValues) as AlgoNames[];
 type Encoding = keyof typeof enc | 'Bin';
 
-const encoding = useQueryParamOrStorage<Encoding>({ defaultValue: 'Hex', storageName: 'hash-text:encoding', name: 'encoding' });
+const encoding = useQueryParamOrStorage<Encoding>({
+  defaultValue: 'Hex',
+  storageName: 'hash-text:encoding',
+  name: 'encoding',
+});
 
 function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
   if (encoding === 'Bin') {
@@ -79,24 +83,24 @@ function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
   return words.toString(enc[encoding]);
 }
 
-const CRCValues = computed(() => withDefaultOnError(() => {
-  const encodingValue = encoding.value;
-  const hashesValue = hashes.value;
+const CRCValues = computed(() =>
+  withDefaultOnError(() => {
+    const encodingValue = encoding.value;
+    const hashesValue = hashes.value;
 
-  const ret = defaultCRCValues;
-  for (const algo of algoWasmNames) {
-    ret[algo] = formatWithEncoding(enc.Hex.parse(hashesValue[algo]), encodingValue);
-  }
-  return ret;
-}, defaultCRCValues));
-
-watch(text,
-  (newValue) => {
-    file.value = null;
-    hashes.value = getCRCs(newValue);
-    status.value = 'done';
-  },
+    const ret = defaultCRCValues;
+    for (const algo of algoWasmNames) {
+      ret[algo] = formatWithEncoding(enc.Hex.parse(hashesValue[algo]), encodingValue);
+    }
+    return ret;
+  }, defaultCRCValues),
 );
+
+watch(text, (newValue) => {
+  file.value = null;
+  hashes.value = getCRCs(newValue);
+  status.value = 'done';
+});
 </script>
 
 <template>
@@ -111,9 +115,13 @@ watch(text,
 
       <c-input-text
         v-model:value="text"
-        multiline raw-text
-        :placeholder="t('tools.crc-calculator.texts.placeholder-paste-string-to-crc')" rows="3"
-        autosize autofocus :label="t('tools.crc-calculator.texts.label-your-text-to-crc')"
+        multiline
+        raw-text
+        :placeholder="t('tools.crc-calculator.texts.placeholder-paste-string-to-crc')"
+        rows="3"
+        autosize
+        autofocus
+        :label="t('tools.crc-calculator.texts.label-your-text-to-crc')"
       />
 
       <n-divider />
@@ -147,10 +155,7 @@ watch(text,
       <c-alert v-if="status === 'error'" type="error">
         {{ t('tools.crc-calculator.texts.tag-an-error-occured-hashing-file') }}
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
 
     <c-card v-if="status === 'done'" :title="file === null ? 'CRC of text' : `CRC of ${file?.name}`">

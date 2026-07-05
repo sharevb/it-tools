@@ -21,13 +21,15 @@ async function api(path: string, params: Record<string, string | number | boolea
 
     const url = `${serverHost.value}${path}?${pathParams.toString()}`;
 
-    const response = await fetch(url,
+    const response = await fetch(
+      url,
       serverAuth.value
         ? {
             method: 'GET',
             headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
           }
-        : undefined);
+        : undefined,
+    );
 
     if (!response.ok) {
       const text = await response.text();
@@ -35,11 +37,9 @@ async function api(path: string, params: Record<string, string | number | boolea
     }
 
     return await response.json();
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err.toString();
-  }
-  finally {
+  } finally {
     loading.value = false;
   }
 }
@@ -47,44 +47,43 @@ async function api(path: string, params: Record<string, string | number | boolea
 type AnyDict = Record<string, any>;
 
 interface CertificateCheckResult {
-  ok: boolean
-  hostname: string
-  port: number
-  not_before?: string | null
-  not_after?: string | null
-  days_until_expiry?: number | null
-  subject?: AnyDict | null
-  issuer?: AnyDict | null
-  san?: any[] | null
-  error?: string | null
+  ok: boolean;
+  hostname: string;
+  port: number;
+  not_before?: string | null;
+  not_after?: string | null;
+  days_until_expiry?: number | null;
+  subject?: AnyDict | null;
+  issuer?: AnyDict | null;
+  san?: any[] | null;
+  error?: string | null;
 }
 
 interface HSTSCheckResult {
-  ok: boolean
-  url: string
-  hsts_present: boolean
-  max_age?: number | null
-  include_subdomains: boolean
-  preload: boolean
-  raw_header?: string | null
-  error?: string | null
+  ok: boolean;
+  url: string;
+  hsts_present: boolean;
+  max_age?: number | null;
+  include_subdomains: boolean;
+  preload: boolean;
+  raw_header?: string | null;
+  error?: string | null;
 }
 
 interface RedirectCheckResult {
-  ok: boolean
-  http_url: string
-  redirected: boolean
-  final_url?: string | null
-  status_code?: number | null
-  redirect_chain?: { status_code: number; url: string; headers: Record<string, string> }[] | null
-  error?: string | null
+  ok: boolean;
+  http_url: string;
+  redirected: boolean;
+  final_url?: string | null;
+  status_code?: number | null;
+  redirect_chain?: { status_code: number; url: string; headers: Record<string, string> }[] | null;
+  error?: string | null;
 }
 
 function prettyJSON(value: unknown): string {
   try {
     return JSON.stringify(value, null, 2);
-  }
-  catch {
+  } catch {
     return String(value);
   }
 }
@@ -98,7 +97,7 @@ function formatDate(value: string | null | undefined): string {
 }
 
 const certHost = ref('');
-const certPort = ref(443);
+const certPort = ref('443');
 const certResult = ref<CertificateCheckResult | null>(null);
 
 const hstsUrl = ref('');
@@ -154,9 +153,7 @@ const labelProps = {
         <c-input-text v-model:value="certHost" label="Host:" v-bind="labelProps" placeholder="example.com" mb-1 />
         <c-input-text v-model:value="certPort" label="Port:" v-bind="labelProps" placeholder="443" mb-1 />
         <div mb-2 flex justify-center>
-          <n-button type="primary" :loading="loading" @click="runCertificate">
-            Check Certificate
-          </n-button>
+          <n-button type="primary" :loading="loading" @click="runCertificate"> Check Certificate </n-button>
         </div>
 
         <n-card v-if="certResult" title="Result">
@@ -169,50 +166,31 @@ const labelProps = {
           <input-copyable label="Hostname:" v-bind="labelProps" :value="certResult.hostname" mb-1 />
           <input-copyable label="Port:" v-bind="labelProps" :value="certResult.port" mb-1 />
 
-          <input-copyable
-            label="Not before:"
-            v-bind="labelProps"
-            :value="formatDate(certResult.not_before)" mb-1
-          />
+          <input-copyable label="Not before:" v-bind="labelProps" :value="formatDate(certResult.not_before)" mb-1 />
 
-          <input-copyable
-            label="Not after:"
-            v-bind="labelProps"
-            :value="formatDate(certResult.not_after)" mb-1
-          />
+          <input-copyable label="Not after:" v-bind="labelProps" :value="formatDate(certResult.not_after)" mb-1 />
 
           <input-copyable
             label="Days until expiry:"
             v-bind="labelProps"
-            :value="String(certResult.days_until_expiry)" mb-1
+            :value="String(certResult.days_until_expiry)"
+            mb-1
           />
 
-          <input-copyable
-            label="Subject:"
-            v-bind="labelProps"
-            :value="prettyJSON(certResult.subject)" mb-1
-          />
+          <input-copyable label="Subject:" v-bind="labelProps" :value="prettyJSON(certResult.subject)" mb-1 />
 
-          <input-copyable
-            label="Issuer:"
-            v-bind="labelProps"
-            :value="prettyJSON(certResult.issuer)" mb-1
-          />
+          <input-copyable label="Issuer:" v-bind="labelProps" :value="prettyJSON(certResult.issuer)" mb-1 />
 
           <input-copyable
             v-for="(san, index) in certResult.san"
             :key="index"
             label="Sub. Alt. Name:"
             v-bind="labelProps"
-            :value="prettyJSON(san)" mb-1
+            :value="prettyJSON(san)"
+            mb-1
           />
 
-          <n-alert
-            v-if="certResult.error"
-            type="error"
-            :bordered="false"
-            show-icon
-          >
+          <n-alert v-if="certResult.error" type="error" :bordered="false" show-icon>
             {{ certResult.error }}
           </n-alert>
         </n-card>
@@ -226,9 +204,7 @@ const labelProps = {
       <n-tab-pane name="hsts" tab="HSTS">
         <c-input-text v-model:value="hstsUrl" label="URL:" v-bind="labelProps" placeholder="https://example.com" mb-1 />
         <div mb-2 flex justify-center>
-          <n-button type="primary" :loading="loading" @click="runHsts">
-            Check HSTS
-          </n-button>
+          <n-button type="primary" :loading="loading" @click="runHsts"> Check HSTS </n-button>
         </div>
 
         <n-card v-if="hstsResult" title="Result">
@@ -262,12 +238,7 @@ const labelProps = {
             mb-1
           />
 
-          <input-copyable
-            label="Preload"
-            v-bind="labelProps"
-            :value="hstsResult.preload ? 'Yes' : 'No'"
-            mb-1
-          />
+          <input-copyable label="Preload" v-bind="labelProps" :value="hstsResult.preload ? 'Yes' : 'No'" mb-1 />
 
           <input-copyable
             v-if="hstsResult.raw_header"
@@ -277,12 +248,7 @@ const labelProps = {
             mb-1
           />
 
-          <n-alert
-            v-if="hstsResult.error"
-            type="error"
-            :bordered="false"
-            show-icon
-          >
+          <n-alert v-if="hstsResult.error" type="error" :bordered="false" show-icon>
             {{ hstsResult.error }}
           </n-alert>
         </n-card>
@@ -295,11 +261,15 @@ const labelProps = {
       <!-- REDIRECT -->
       <n-tab-pane name="redirect" tab="HTTP → HTTPS Redirect">
         <n-form>
-          <c-input-text v-model:value="redirectDomain" label="Domain:" v-bind="labelProps" placeholder="example.com" mb-1 />
+          <c-input-text
+            v-model:value="redirectDomain"
+            label="Domain:"
+            v-bind="labelProps"
+            placeholder="example.com"
+            mb-1
+          />
           <div mb-2 flex justify-center>
-            <n-button type="primary" :loading="loading" @click="runRedirect">
-              Check Redirect
-            </n-button>
+            <n-button type="primary" :loading="loading" @click="runRedirect"> Check Redirect </n-button>
           </div>
         </n-form>
 
@@ -319,25 +289,15 @@ const labelProps = {
             mb-1
           />
 
-          <input-copyable
-            label="Final URL"
-            v-bind="labelProps"
-            :value="redirectResult.final_url"
-            mb-1
-          />
+          <input-copyable label="Final URL" v-bind="labelProps" :value="redirectResult.final_url" mb-1 />
 
-          <input-copyable
-            label="Status code"
-            v-bind="labelProps"
-            :value="String(redirectResult.status_code)"
-            mb-1
-          />
+          <input-copyable label="Status code" v-bind="labelProps" :value="String(redirectResult.status_code)" mb-1 />
 
           <input-copyable
             v-if="redirectResult.redirect_chain"
             label="Redirect chain:"
             v-bind="labelProps"
-            :value="redirectResult.redirect_chain.map(r => r.url).join(' → ')"
+            :value="redirectResult.redirect_chain.map((r) => r.url).join(' → ')"
             mb-1
           />
 
@@ -350,12 +310,7 @@ const labelProps = {
             />
           </n-card>
 
-          <n-alert
-            v-if="redirectResult.error"
-            type="error"
-            :bordered="false"
-            show-icon
-          >
+          <n-alert v-if="redirectResult.error" type="error" :bordered="false" show-icon>
             {{ redirectResult.error }}
           </n-alert>
         </n-card>

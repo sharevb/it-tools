@@ -9,7 +9,7 @@ const { t } = useI18n();
 
 const fileInputs = ref<Array<{ file: File; range: string }>>([]);
 function onUploads(files: Array<File>) {
-  fileInputs.value = [...fileInputs.value, ...(files.map(f => ({ file: f, range: '' })))];
+  fileInputs.value = [...fileInputs.value, ...files.map((f) => ({ file: f, range: '' }))];
 }
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
@@ -17,11 +17,10 @@ const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const base64OutputPDF = ref('');
 const logs = ref<string[]>([]);
 const fileName = ref('concat.pdf');
-const { download } = useDownloadFileFromBase64(
-  {
-    source: base64OutputPDF,
-    filename: fileName,
-  });
+const { download } = useDownloadFileFromBase64({
+  source: base64OutputPDF,
+  filename: fileName,
+});
 const qpdfCommand = ref('');
 
 async function onProcessClicked() {
@@ -37,29 +36,23 @@ async function onProcessClicked() {
 
   status.value = 'processing';
   try {
-    const options = [
-      '--empty',
-      '--pages',
-    ];
+    const options = ['--empty', '--pages'];
     for (let i = 0; i < fileInputsValue.length; i++) {
       options.push(`in${i}.pdf`);
       if (fileInputsValue[i].range) {
         options.push(`${fileInputsValue[i].range}`);
-      }
-      else {
+      } else {
         options.push('1-z');
       }
     }
     options.push('--');
     options.push('out.pdf');
-    const outPdfBuffer = await callMainWithManyInOutPdf(fileBuffers,
-      options, 0);
+    const outPdfBuffer = await callMainWithManyInOutPdf(fileBuffers, options, 0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
 
     download();
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
@@ -97,7 +90,11 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
           @files-upload="onUploads"
         />
         <div mt-2 text-center>
-          <c-input-text :value="fileName" :label="t('tools.pdf-concat.texts.label-output-file')" label-position="left" />
+          <c-input-text
+            :value="fileName"
+            :label="t('tools.pdf-concat.texts.label-output-file')"
+            label-position="left"
+          />
         </div>
       </div>
 
@@ -107,7 +104,7 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
           show-sort-button
           w-full
           :insertion-disabled="true"
-          :create-button-props="{ id: 'pdf-concat-create' }"
+          :create-button-props="{ id: 'pdf-concat-create' } as any"
         >
           <template #action="{ index, remove, move }">
             <div ml-1 flex gap-1>
@@ -139,7 +136,8 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
     </div>
 
     <n-p>
-      {{ t('tools.pdf-concat.texts.tag-for-details-about-range-options-see') }}<n-a target="_blank" href="https://qpdf.readthedocs.io/en/stable/cli.html#page-selection">
+      {{ t('tools.pdf-concat.texts.tag-for-details-about-range-options-see')
+      }}<n-a target="_blank" href="https://qpdf.readthedocs.io/en/stable/cli.html#page-selection">
         {{ t('tools.pdf-concat.texts.tag-qpdf-documentation') }}
       </n-a>
     </n-p>
@@ -156,10 +154,7 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
       <c-alert v-if="status === 'error'" type="error">
         {{ $t('tools.file-type.texts.an-error-occured-processing') }} <span>{{ fileName }}</span>
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
 
     <c-card :title="t('tools.pdf-concat.texts.title-logs')">
@@ -170,5 +165,7 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
 </template>
 
 <style scoped>
-::v-deep(#pdf-concat-create) { display: none; }
+::v-deep(#pdf-concat-create) {
+  display: none;
+}
 </style>

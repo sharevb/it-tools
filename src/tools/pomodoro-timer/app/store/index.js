@@ -44,7 +44,11 @@ export default createStore({
       state.prefersAlarmSound = !state.prefersAlarmSound;
     },
     toggleTimer(state) {
-      state.isTimerRunning ? stopTimer(state) : startTimer(state);
+      if (state.isTimerRunning) {
+        stopTimer(state);
+      } else {
+        startTimer(state);
+      }
     },
     toggleResetDropup(state) {
       state.isResetDropupVisible = !state.isResetDropupVisible;
@@ -76,10 +80,6 @@ export default createStore({
       this.commit('updateAppColor', { propName: 'appAccentColor', propValue: '#3b83b0' });
     },
   },
-  actions: {
-
-  },
-  modules: {
-
-  },
+  actions: {},
+  modules: {},
 });

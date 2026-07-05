@@ -10,12 +10,23 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
-const baseRange = useQueryParamOrStorage({ name: 'range', storageName: 'cidr-in-cidr:range', defaultValue: '192.168.0.1/24' }); // NOSONAR
-const ipOrRangeToTest = useQueryParamOrStorage({ name: 'ip', storageName: 'cidr-in-cidr:ip', defaultValue: '192.168.0.1' }); // NOSONAR
+const baseRange = useQueryParamOrStorage({
+  name: 'range',
+  storageName: 'cidr-in-cidr:range',
+  defaultValue: '192.168.0.1/24',
+}); // NOSONAR
+const ipOrRangeToTest = useQueryParamOrStorage({
+  name: 'ip',
+  storageName: 'cidr-in-cidr:ip',
+  defaultValue: '192.168.0.1',
+}); // NOSONAR
 
-const matchResult = computed(() => withDefaultOnError(
-  () => cidrInCidr({ baseRange: baseRange.value, ipOrRangeToTest: ipOrRangeToTest.value }),
-  { baseSubnets: [], isIncluded: false }));
+const matchResult = computed(() =>
+  withDefaultOnError(() => cidrInCidr({ baseRange: baseRange.value, ipOrRangeToTest: ipOrRangeToTest.value }), {
+    baseSubnets: [],
+    isIncluded: false,
+  }),
+);
 
 const rangeValidationRules = [
   {
@@ -47,13 +58,11 @@ const rangeValidationRules = [
 
     <div flex justify-center>
       <span v-if="matchResult.isIncluded">
-        <n-icon color="green">
-          <CheckIcon />
-        </n-icon>{{ t('tools.cidr-in-cidr.texts.tag-included') }}</span>
+        <n-icon color="green"> <CheckIcon /> </n-icon>{{ t('tools.cidr-in-cidr.texts.tag-included') }}</span
+      >
       <span v-else>
-        <n-icon color="red">
-          <CrossIcon />
-        </n-icon>{{ t('tools.cidr-in-cidr.texts.tag-not-included') }}</span>
+        <n-icon color="red"> <CrossIcon /> </n-icon>{{ t('tools.cidr-in-cidr.texts.tag-not-included') }}</span
+      >
     </div>
 
     <n-divider />
