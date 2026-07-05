@@ -41,7 +41,9 @@ const dockerfileLabels = computed(() => {
     ['org.opencontainers.image.authors', f.authors],
   ];
 
-  const lines = entries.filter(([_, v]) => v.trim() !== '').map(([k, v]) => `    ${k}="${v.replace(/"/g, '\\"')}"`);
+  const lines = entries
+    .filter(([_, v]) => v.trim() !== '')
+    .map(([k, v]) => `    ${k}="${v.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`);
 
   if (lines.length === 0) {
     return '';

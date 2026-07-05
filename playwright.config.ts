@@ -10,6 +10,9 @@ const useWebServer = process.env.NO_WEB_SERVER !== 'true';
 export default defineConfig({
   testDir: './src',
   testMatch: /\.e2e\.(spec\.)?ts$/,
+  /* First paint of heavy lazy-loaded tools can exceed the 5s default on
+     slow CI browsers (webkit especially) */
+  expect: { timeout: 15_000 },
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -53,13 +56,11 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
 
-  ...(useWebServer
-    && {
-      webServer: {
-        command: 'npm run preview',
-        url: 'http://localhost:5050',
-        reuseExistingServer: !isCI,
-      },
-    }
-  ),
+  ...(useWebServer && {
+    webServer: {
+      command: 'npm run preview',
+      url: 'http://localhost:5050',
+      reuseExistingServer: !isCI,
+    },
+  }),
 });
