@@ -1,17 +1,16 @@
-import type * as openpgp from 'openpgp';
 import type {
   AlgorithmHashType,
   Certificate,
   Fingerprint,
   Key,
-  PrivateKey,
-  Signature,
+  PrivateKey, Signature,
 } from 'sshpk';
+import 'webcrypto-liner-shim';
+import type * as openpgp from 'openpgp';
 import * as forge from 'node-forge';
-import { translate as t } from '@/plugins/i18n.plugin';
 import oids from './oids.json';
 
-import 'webcrypto-liner-shim';
+import { translate as t } from '@/plugins/i18n.plugin';
 
 export interface LabelValue {
   label: string
