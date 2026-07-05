@@ -338,7 +338,7 @@ pnpm fmt
 Before submitting a PR, run:
 
 ```sh
-pnpm install --ignore-scripts && pnpm lint:fix && pnpm fmt && pnpm typecheck
+pnpm install --ignore-scripts && pnpm lint:fix && pnpm typecheck
 ```
 
 ### Create a new tool
