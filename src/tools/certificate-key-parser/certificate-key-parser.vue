@@ -3,7 +3,7 @@ import { Buffer } from 'node:buffer';
 import { useI18n } from 'vue-i18n';
 
 import { getKeysOrCertificatesInfosAsync } from './certificate-key-parser.service';
-import type { LabelValue } from './certificate-key-parser.infos';
+import { type LabelValue } from './certificate-key-parser.infos';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
@@ -31,8 +31,7 @@ const { download: downloadX509DER } = useDownloadFileFromBase64(
   {
     source: certificateX509DER,
     extension: 'der',
-  },
-);
+  });
 
 function downloadX509DERFile() {
   if (certificateX509DER.value === '') {

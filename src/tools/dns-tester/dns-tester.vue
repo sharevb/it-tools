@@ -21,12 +21,13 @@ async function api(path: string, params: Record<string, string | number | boolea
 
     const url = `${serverHost.value}${path}?${pathParams.toString()}`;
 
-    const response = await fetch(url, serverAuth.value
-      ? {
-          method: 'GET',
-          headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
-        }
-      : undefined);
+    const response = await fetch(url,
+      serverAuth.value
+        ? {
+            method: 'GET',
+            headers: { Authorization: `Basic ${Base64.encode(serverAuth.value)}` },
+          }
+        : undefined);
 
     if (!response.ok) {
       const text = await response.text();

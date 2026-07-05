@@ -1,15 +1,15 @@
 import type { Buffer } from 'node:buffer';
+import {
+  parseCertificate,
+} from 'sshpk';
+
 import type {
   Certificate,
   CertificateFormat,
 } from 'sshpk';
 
-import jks from 'jks-js';
-
 import * as forge from 'node-forge';
-import {
-  parseCertificate,
-} from 'sshpk';
+import jks from 'jks-js';
 
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -49,8 +49,7 @@ function getCertificateFromP12(p12: any) {
 
 export function convertCertificates(
   inputKeyOrCertificateValue: string | Buffer,
-  password: string,
-) {
+  password: string) {
   if (typeof inputKeyOrCertificateValue !== 'string') {
     return convertCertificate(inputKeyOrCertificateValue, password);
   }
@@ -73,8 +72,7 @@ export function convertCertificates(
 
 export function convertCertificate(
   inputKeyOrCertificateValue: string | Buffer,
-  password: string,
-) {
+  password: string) {
   const canParse = (value: any, parseFunction: (value: any) => any) => {
     try {
       return parseFunction(value);
@@ -132,7 +130,7 @@ export function convertCertificate(
           pem: v,
         };
       }
-      const { cert, key } = v as { cert: string, key: string };
+      const { cert, key } = v as { cert: string; key: string };
       return {
         alias: k,
         key,
