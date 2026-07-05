@@ -443,7 +443,7 @@
     "dotenv": "^17.2.3",
     "eslint": "^8.47.0",
     "hygen": "^6.2.11",
-    "jsdom": "^22.0.0",
+    "jsdom": "^29.0.0",
     "less": "^4.2.2",
     "prettier": "^3.0.0",
     "rollup-plugin-visualizer": "^7.0.1",
