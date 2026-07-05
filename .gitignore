@@ -47,4 +47,4 @@ components.d.ts
 !*.code-workspace
 
 # Ignore build or packaged VS Code extensions
-*.vsix
+*.vsix*.tsbuildinfo

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 export interface OciGithubLabels {
-  title: string
-  description: string
-  url: string
-  source: string
-  documentation: string
-  licenses: string
-  version: string
-  revision: string
-  created: Date | null
-  authors: string
+  title: string;
+  description: string;
+  url: string;
+  source: string;
+  documentation: string;
+  licenses: string;
+  version: string;
+  revision: string;
+  created: number | null;
+  authors: string;
 }
 
 const form = ref<OciGithubLabels>({
@@ -37,13 +37,11 @@ const dockerfileLabels = computed(() => {
     ['org.opencontainers.image.licenses', f.licenses],
     ['org.opencontainers.image.version', f.version],
     ['org.opencontainers.image.revision', f.revision],
-    ['org.opencontainers.image.created', f.created?.toISOString() || ''],
+    ['org.opencontainers.image.created', f.created != null ? new Date(f.created).toISOString() : ''],
     ['org.opencontainers.image.authors', f.authors],
   ];
 
-  const lines = entries
-    .filter(([_, v]) => v.trim() !== '')
-    .map(([k, v]) => `    ${k}="${v.replace(/"/g, '\\"')}"`);
+  const lines = entries.filter(([_, v]) => v.trim() !== '').map(([k, v]) => `    ${k}="${v.replace(/"/g, '\\"')}"`);
 
   if (lines.length === 0) {
     return '';
@@ -61,11 +59,7 @@ const dockerfileLabels = computed(() => {
       </n-form-item>
 
       <n-form-item label="Description:">
-        <n-input
-          v-model:value="form.description"
-          type="textarea"
-          placeholder="Short project description"
-        />
+        <n-input v-model:value="form.description" type="textarea" placeholder="Short project description" />
       </n-form-item>
 
       <n-form-item label="Repository URL:">
@@ -77,10 +71,7 @@ const dockerfileLabels = computed(() => {
       </n-form-item>
 
       <n-form-item label="Documentation URL:">
-        <n-input
-          v-model:value="form.documentation"
-          placeholder="https://github.com/username/repo#readme"
-        />
+        <n-input v-model:value="form.documentation" placeholder="https://github.com/username/repo#readme" />
       </n-form-item>
 
       <n-form-item label="License (SPDX):">

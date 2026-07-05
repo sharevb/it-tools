@@ -26,6 +26,54 @@ importers:
       '@chenfengyuan/vue-barcode':
         specifier: ^2.0.2
         version: 2.0.2(jsbarcode@3.12.3)(vue@3.5.39(typescript@6.0.3))
+      '@codemirror/lang-cpp':
+        specifier: ^6.0.3
+        version: 6.0.3
+      '@codemirror/lang-css':
+        specifier: ^6.3.1
+        version: 6.3.1
+      '@codemirror/lang-go':
+        specifier: ^6.0.1
+        version: 6.0.1
+      '@codemirror/lang-html':
+        specifier: ^6.4.11
+        version: 6.4.11
+      '@codemirror/lang-javascript':
+        specifier: ^6.2.5
+        version: 6.2.5
+      '@codemirror/lang-json':
+        specifier: ^6.0.2
+        version: 6.0.2
+      '@codemirror/lang-markdown':
+        specifier: ^6.5.0
+        version: 6.5.0
+      '@codemirror/lang-php':
+        specifier: ^6.0.2
+        version: 6.0.2
+      '@codemirror/lang-python':
+        specifier: ^6.2.1
+        version: 6.2.1
+      '@codemirror/lang-sql':
+        specifier: ^6.10.0
+        version: 6.10.0
+      '@codemirror/lang-xml':
+        specifier: ^6.1.0
+        version: 6.1.0
+      '@codemirror/lang-yaml':
+        specifier: ^6.1.3
+        version: 6.1.3
+      '@codemirror/language':
+        specifier: ^6.12.4
+        version: 6.12.4
+      '@codemirror/state':
+        specifier: ^6.7.0
+        version: 6.7.0
+      '@codemirror/theme-one-dark':
+        specifier: ^6.1.3
+        version: 6.1.3
+      '@codemirror/view':
+        specifier: ^6.43.5
+        version: 6.43.5
       '@colordx/core':
         specifier: ^5.5.0
         version: 5.5.0
@@ -89,6 +137,9 @@ importers:
       '@langfreak/convert-layout':
         specifier: ^0.11.2
         version: 0.11.2
+      '@lezer/highlight':
+        specifier: ^1.2.3
+        version: 1.2.3
       '@mdit/plugin-align':
         specifier: ^0.16.0
         version: 0.16.0(markdown-it@14.3.0)
@@ -263,6 +314,9 @@ importers:
       citation-formatter:
         specifier: ^1.0.1
         version: 1.0.1
+      codemirror:
+        specifier: ^6.0.2
+        version: 6.0.2
       colord:
         specifier: ^2.9.3
         version: 2.9.3
@@ -776,6 +830,9 @@ importers:
       pdfjs-dist:
         specifier: ^4.10.38
         version: 4.10.38
+      picomatch:
+        specifier: ^4.0.5
+        version: 4.0.5
       pinia:
         specifier: ^2.0.34
         version: 2.3.1(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3))
@@ -1065,6 +1122,9 @@ importers:
       '@types/big.js':
         specifier: ^6.2.2
         version: 6.2.2
+      '@types/codemirror':
+        specifier: ^5.60.17
+        version: 5.60.17
       '@types/crypto-js':
         specifier: ^4.2.2
         version: 4.2.2
@@ -1137,6 +1197,9 @@ importers:
       '@types/node-forge':
         specifier: ^1.3.14
         version: 1.3.14
+      '@types/picomatch':
+        specifier: ^4.0.3
+        version: 4.0.3
       '@types/potrace':
         specifier: ^2.1.5
         version: 2.1.5
@@ -1942,6 +2005,9 @@ packages:
 
   '@codemirror/state@6.7.0':
     resolution: {integrity: sha512-Zbl9NyscLMZkfXPQnNAIIAFftidrA1UbcJEIMp24C0Bukc2I5T8wJS0wsXYsnDOqCFJUeJ1BITGNs5CqPDSmSg==}
+
+  '@codemirror/theme-one-dark@6.1.3':
+    resolution: {integrity: sha512-NzBdIvEJmx6fjeremiGp3t/okrLPYT0d9orIc7AFun8oZcRk58aejkqhv6spnz4MLAevrKNPMQYXEWMg4s+sKA==}
 
   '@codemirror/view@6.43.5':
     resolution: {integrity: sha512-7uT/vUgH6dfXWn3WqOe23KneILMvGy5wQjNMEcRXLKzziJ9NOktpW6tGoyQpwVkBgE5Gj6hKkCcsddbnkaWrOQ==}
@@ -4337,6 +4403,9 @@ packages:
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
 
+  '@types/codemirror@5.60.17':
+    resolution: {integrity: sha512-AZq2FIsUHVMlp7VSe2hTfl5w4pcUkoFkM3zVsRKsn1ca8CXRDYvnin04+HP2REkwsxemuHqvDofdlhUWNpbwfw==}
+
   '@types/crypto-js@4.2.2':
     resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
 
@@ -4569,6 +4638,9 @@ packages:
   '@types/node@25.9.4':
     resolution: {integrity: sha512-dszCsrKb5U7ZsVZBWiHFklTloVl0mSEnWH/iZXfZUlI4rzCUnsvGmgqfuVRHL54ugE7/wRuxEIXRa2iMZ+BG6g==}
 
+  '@types/picomatch@4.0.3':
+    resolution: {integrity: sha512-iG0T6+nYJ9FAPmx9SsUlnwcq1ZVRuCXcVEvWnntoPlrOpwtSTKNDC9uVAxTsC3PUvJ+99n4RpAcNgBbHX3JSnQ==}
+
   '@types/potrace@2.1.5':
     resolution: {integrity: sha512-Sgk3f5pv0LFlBHg5xlEJQZcqZLyzvdOHOuHb1lux1a1r4cEFgtqBDQx4igQEEb+Xddu0T9KXanPNjlJhpRKsXQ==}
 
@@ -4595,6 +4667,9 @@ packages:
 
   '@types/swagger-ui-dist@3.30.6':
     resolution: {integrity: sha512-FVxN7wjLYRtJsZBscOcOcf8oR++m38vbUFjT33Mr9HBuasX9bRDrJsp7iwixcOtKSHEEa2B7o2+4wEiXqC+Ebw==}
+
+  '@types/tern@0.23.9':
+    resolution: {integrity: sha512-ypzHFE/wBzh+BlH6rrBgS5I/Z7RD21pGhZ2rltb/+ZrVM1awdZwjx7hE5XfuYgHWk9uvV5HLZN3SloevCAp3Bw==}
 
   '@types/text-encoding-utf-8@1.0.5':
     resolution: {integrity: sha512-TvFzTUXYoNECsORUpuuvKoU4/bsOBto2m8U38Cy8LOG9+BAgvMfwV9jV/vouocSYvgNzWrUfJeZ1rkGIrJgnvA==}
@@ -12451,6 +12526,13 @@ snapshots:
     dependencies:
       '@marijn/find-cluster-break': 1.0.3
 
+  '@codemirror/theme-one-dark@6.1.3':
+    dependencies:
+      '@codemirror/language': 6.12.4
+      '@codemirror/state': 6.7.0
+      '@codemirror/view': 6.43.5
+      '@lezer/highlight': 1.2.3
+
   '@codemirror/view@6.43.5':
     dependencies:
       '@codemirror/state': 6.7.0
@@ -14616,6 +14698,10 @@ snapshots:
       '@types/deep-eql': 4.0.2
       assertion-error: 2.0.1
 
+  '@types/codemirror@5.60.17':
+    dependencies:
+      '@types/tern': 0.23.9
+
   '@types/crypto-js@4.2.2': {}
 
   '@types/d3-array@3.2.2': {}
@@ -14865,6 +14951,8 @@ snapshots:
     dependencies:
       undici-types: 7.24.6
 
+  '@types/picomatch@4.0.3': {}
+
   '@types/potrace@2.1.5':
     dependencies:
       '@types/node': 24.13.2
@@ -14894,6 +14982,10 @@ snapshots:
   '@types/stringify-object@4.0.5': {}
 
   '@types/swagger-ui-dist@3.30.6': {}
+
+  '@types/tern@0.23.9':
+    dependencies:
+      '@types/estree': 1.0.9
 
   '@types/text-encoding-utf-8@1.0.5': {}
 
