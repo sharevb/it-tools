@@ -4,15 +4,15 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VITE_VERCEL_ENV: production
   VITE_VERCEL_DEPLOY: true
-# Automatic triggers disabled: this fork deploys through Vercel's Git
-# integration instead, and the workflow fails without Vercel secrets.
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - chore/all-my-stuffs
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v6
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
