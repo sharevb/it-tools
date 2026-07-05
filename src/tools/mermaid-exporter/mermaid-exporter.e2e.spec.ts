@@ -7,7 +7,9 @@ test.describe('Mermaid Diagram Renderer', () => {
 
   test('should render the initial diagram', async ({ page }) => {
     const diagramContainer = page.locator('.diagram-container svg');
-    await expect(diagramContainer).toBeVisible();
+    // mermaid is a large lazy-loaded chunk; cold CI browsers (webkit
+    // especially) can exceed the default 5s expect timeout
+    await expect(diagramContainer).toBeVisible({ timeout: 30_000 });
     await expect(diagramContainer).toHaveAttribute('xmlns', 'http://www.w3.org/2000/svg');
   });
 
