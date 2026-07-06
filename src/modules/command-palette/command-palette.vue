@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { useCommandPaletteStore } from './command-palette.store';
 import type { PaletteOption } from './command-palette.types';
 
@@ -50,7 +50,7 @@ function handleKeydown(event: KeyboardEvent) {
 
   if (isArrowUpOrDown) {
     const increment = isArrowDown ? 1 : -1;
-    const maxIndex = Math.max(_.chain(filteredSearchResult.value).values().flatten().size().value() - 1, 0);
+    const maxIndex = Math.max(Object.values(filteredSearchResult.value).flat().length - 1, 0);
 
     selectedOptionIndex.value = Math.min(Math.max(selectedOptionIndex.value + increment, 0), maxIndex);
 
@@ -58,22 +58,16 @@ function handleKeydown(event: KeyboardEvent) {
   }
 
   if (isEnterPressed) {
-    const option = _.chain(filteredSearchResult.value)
-      .values()
-      .flatten()
-      .nth(selectedOptionIndex.value)
-      .value();
+    const option = Object.values(filteredSearchResult.value).flat()[selectedOptionIndex.value];
 
-    activateOption(option);
+    if (option) {
+      activateOption(option);
+    }
   }
 }
 
 function getOptionIndex(option: PaletteOption) {
-  return _.chain(filteredSearchResult.value)
-    .values()
-    .flatten()
-    .findIndex(o => o === option)
-    .value();
+  return Object.values(filteredSearchResult.value).flat().findIndex(o => o === option);
 }
 
 function activateOption(option: PaletteOption) {

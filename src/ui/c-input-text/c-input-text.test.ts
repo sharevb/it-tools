@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { mount, shallowMount } from '@vue/test-utils';
 import { createPinia, setActivePinia } from 'pinia';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import CInputText from './c-input-text.vue';
 import { useValidation } from '@/composable/validation';
 

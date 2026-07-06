@@ -1,9 +1,9 @@
-import type { RecursiveArray } from 'lodash';
-import defaultsDeep from 'lodash.defaultsdeep';
-import flattenDeep from 'lodash.flattendeep';
-import last from 'lodash.last';
+import { flattenDeep, last } from 'es-toolkit';
+import { defaultsDeep } from 'es-toolkit/compat';
 import type { FileStructure } from './FileStructure';
 import { LINE_STRINGS } from './line-strings';
+
+type RecursiveArray<T> = Array<T | RecursiveArray<T>>;
 
 /**
  * Represents all rendering options available

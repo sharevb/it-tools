@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import type Plausible from 'plausible-tracker';
 import { inject } from 'vue';
 

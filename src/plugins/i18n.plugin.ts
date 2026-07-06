@@ -1,5 +1,5 @@
 import { get } from '@vueuse/core';
-import { merge } from 'lodash';
+import { merge } from 'es-toolkit/compat';
 import type { Plugin } from 'vue';
 import { watch } from 'vue';
 import { createI18n } from 'vue-i18n';

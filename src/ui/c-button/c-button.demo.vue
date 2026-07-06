@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 
 const buttonVariants = ['basic', 'text'] as const;
 const buttonTypes = ['default', 'primary', 'warning', 'error'] as const;

@@ -1,4 +1,4 @@
-import mergeWith from 'lodash.mergewith';
+import { mergeWith } from 'es-toolkit';
 import { generateConfigString, parseConfigString } from './utils/configParser';
 import type { WgConfigObject, WgConfigPeer } from './types/WgConfigObject';
 import { generateKeyPair } from './utils/generateKeyPair';

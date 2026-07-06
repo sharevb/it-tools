@@ -1,6 +1,6 @@
 import { extension as getExtensionFromMimeType, extension as getMimeTypeFromExtension } from 'mime-types';
 import type { MaybeRef, Ref } from 'vue';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { get } from '@vueuse/core';
 
 export {

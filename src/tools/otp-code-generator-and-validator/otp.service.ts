@@ -1,5 +1,4 @@
 import { HmacSHA1, enc } from 'crypto-js';
-import _ from 'lodash';
 import { createToken } from '../token-generator/token-generator.service';
 
 export {

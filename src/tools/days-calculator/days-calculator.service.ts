@@ -1,7 +1,7 @@
 import { DateTime, Interval } from 'luxon';
 import prettyMilliseconds from 'pretty-ms';
 import Holidays, { type HolidaysTypes } from 'date-holidays';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { BusinessTime, type Holiday } from './business-time-calculator';
 
 interface DateTimeRange {
@@ -157,11 +157,10 @@ export function countCertainDays(days: Array<0 | 1 | 2 | 3 | 4 | 5 | 6>, d0: Dat
 
 export function datesByDays(startDateTime: DateTime, endDateTime: DateTime) {
   const dates = Interval.fromDateTimes(startDateTime.startOf('day'), endDateTime.endOf('day')).splitBy({ day: 1 }).map(d => d.start);
-  return _.chain(dates)
-    .groupBy(d => d?.weekday)
-    .map((dates, weekday) => ({ weekday, dates }))
-    .reduce((prev, curr) => ({ ...prev, [curr.weekday]: mapToJSDate(curr.dates) }), {} as { [weekday: string]: string[] })
-    .value();
+  return Object.fromEntries(
+    Object.entries(_.groupBy(dates, d => d?.weekday))
+      .map(([weekday, weekdayDates]) => [weekday, mapToJSDate(weekdayDates)]),
+  ) as { [weekday: string]: string[] };
 }
 function mapToJSDate(dates: (DateTime | null)[]): string[] {
   return dates.map(d => d?.toISODate() || '').filter(d => d);

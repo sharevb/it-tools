@@ -449,6 +449,9 @@ importers:
       epubjs:
         specifier: ^0.3.93
         version: 0.3.93
+      es-toolkit:
+        specifier: ^1.49.0
+        version: 1.49.0
       esm-potrace-wasm:
         specifier: ^0.4.4
         version: 0.4.4(patch_hash=a60b9e91d34bbc890f0296bd36e7e761e00b4142552591150b6e65975bbab79e)
@@ -680,21 +683,6 @@ importers:
       libphonenumber-js:
         specifier: ^1.12.33
         version: 1.13.8
-      lodash:
-        specifier: ^4.18.1
-        version: 4.18.1
-      lodash.defaultsdeep:
-        specifier: ^4.6.1
-        version: 4.6.1
-      lodash.flattendeep:
-        specifier: ^4.4.0
-        version: 4.4.0
-      lodash.last:
-        specifier: ^3.0.0
-        version: 3.0.0
-      lodash.mergewith:
-        specifier: ^4.6.2
-        version: 4.6.2
       long:
         specifier: ^5.3.2
         version: 5.3.2
@@ -755,9 +743,6 @@ importers:
       mitex-wasm:
         specifier: ^0.2.5
         version: 0.2.5
-      moment:
-        specifier: ^2.30.1
-        version: 2.30.1
       monaco-editor:
         specifier: ^0.55.1
         version: 0.55.1
@@ -1158,21 +1143,6 @@ importers:
       '@types/libmime':
         specifier: ^5.0.3
         version: 5.3.0
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.24
-      '@types/lodash.defaultsdeep':
-        specifier: ^4.6.9
-        version: 4.6.9
-      '@types/lodash.flattendeep':
-        specifier: ^4.4.9
-        version: 4.4.9
-      '@types/lodash.last':
-        specifier: ^3.0.9
-        version: 3.0.9
-      '@types/lodash.mergewith':
-        specifier: ^4.6.9
-        version: 4.6.9
       '@types/luxon':
         specifier: ^3.4.2
         version: 3.7.2
@@ -4574,18 +4544,6 @@ packages:
 
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
-
-  '@types/lodash.defaultsdeep@4.6.9':
-    resolution: {integrity: sha512-pLtCFK0YkHfGtGLYLNMTbFB5/G5+RsmQCIbbHH8GOAXjv+gDkVilY98kILfe8JH2Kev0OCReYxp1AjxEjP8ixA==}
-
-  '@types/lodash.flattendeep@4.4.9':
-    resolution: {integrity: sha512-Oacs/ZMuMvVWkhMqvj+Spad457Beln5pnkauif+6s65fE2cSL7J7NoMfwkxjuQsOsr4DUCDH/iDbmuZo81Nypw==}
-
-  '@types/lodash.last@3.0.9':
-    resolution: {integrity: sha512-HMIEyk2LJWDumrHsuSh7ZokUs+xyXa0nZO/s3paaKjOvwrjBNoQHsM0UqcpmzEt7CJ29a16XNe3vr8buvHeMCg==}
-
-  '@types/lodash.mergewith@4.6.9':
-    resolution: {integrity: sha512-fgkoCAOF47K7sxrQ7Mlud2TH023itugZs2bUg8h/KzT+BnZNrR2jAOmaokbLunHNnobXVWOezAeNn/lZqwxkcw==}
 
   '@types/lodash@4.17.24':
     resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
@@ -8347,12 +8305,6 @@ packages:
   lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
 
-  lodash.defaultsdeep@4.6.1:
-    resolution: {integrity: sha512-3j8wdDzYuWO3lM3Reg03MuQR957t287Rpcxp1njpEa8oDrikb+FwGdW3n+FELh/A6qib6yPit0j/pv9G/yeAqA==}
-
-  lodash.flattendeep@4.4.0:
-    resolution: {integrity: sha512-uHaJFihxmJcEX3kT4I23ABqKKalJ/zDrDg0lsFtc1h+3uw49SIJ5beyhx5ExVRti3AvKoOJngIj7xz3oylPdWQ==}
-
   lodash.flowright@3.5.0:
     resolution: {integrity: sha512-YxTYuodkvyINbDInmFcGGvkQwoAuoGUYosqstRTr5eq63GQt7WQ2xFU0wG1UfdbKYPwevd3zWDd6ybEE2g6qvA==}
 
@@ -8368,12 +8320,6 @@ packages:
 
   lodash.isplainobject@4.0.6:
     resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
-
-  lodash.last@3.0.0:
-    resolution: {integrity: sha512-14mq7rSkCxG4XMy9lF2FbIOqqgF0aH0NfPuQ3LPR3vIh0kHnUvIYP70dqa1Hf47zyXfQ8FzAg0MYOQeSuE1R7A==}
-
-  lodash.mergewith@4.6.2:
-    resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
 
   lodash.sortby@4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
@@ -14889,22 +14835,6 @@ snapshots:
     dependencies:
       '@types/lodash': 4.17.24
 
-  '@types/lodash.defaultsdeep@4.6.9':
-    dependencies:
-      '@types/lodash': 4.17.24
-
-  '@types/lodash.flattendeep@4.4.9':
-    dependencies:
-      '@types/lodash': 4.17.24
-
-  '@types/lodash.last@3.0.9':
-    dependencies:
-      '@types/lodash': 4.17.24
-
-  '@types/lodash.mergewith@4.6.9':
-    dependencies:
-      '@types/lodash': 4.17.24
-
   '@types/lodash@4.17.24': {}
 
   '@types/luxon@3.7.2': {}
@@ -19051,10 +18981,6 @@ snapshots:
 
   lodash.debounce@4.0.8: {}
 
-  lodash.defaultsdeep@4.6.1: {}
-
-  lodash.flattendeep@4.4.0: {}
-
   lodash.flowright@3.5.0: {}
 
   lodash.get@4.4.2: {}
@@ -19064,10 +18990,6 @@ snapshots:
   lodash.isobject@3.0.2: {}
 
   lodash.isplainobject@4.0.6: {}
-
-  lodash.last@3.0.0: {}
-
-  lodash.mergewith@4.6.2: {}
 
   lodash.sortby@4.7.0: {}
 

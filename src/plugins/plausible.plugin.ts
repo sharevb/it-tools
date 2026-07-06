@@ -1,4 +1,4 @@
-import { noop } from 'lodash';
+import { noop } from 'es-toolkit/compat';
 
 import Plausible from 'plausible-tracker';
 import type { App } from 'vue';

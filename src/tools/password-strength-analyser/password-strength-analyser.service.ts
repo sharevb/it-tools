@@ -1,4 +1,3 @@
-import _ from 'lodash';
 
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -33,8 +32,8 @@ function getHumanFriendlyDuration({ seconds }: { seconds: number }) {
     { unit: t('tools.password-strength-analyser.service.text.second'), secondsInUnit: 1, plural: t('tools.password-strength-analyser.service.text.seconds') },
   ];
 
-  return _.chain(timeUnits)
-    .map(({ unit, secondsInUnit, plural, format = _.identity }) => {
+  return timeUnits
+    .map(({ unit, secondsInUnit, plural, format = (value: number) => value }) => {
       const quantity = Math.floor(seconds / secondsInUnit);
       seconds %= secondsInUnit;
 
@@ -45,10 +44,9 @@ function getHumanFriendlyDuration({ seconds }: { seconds: number }) {
       const formattedQuantity = format(quantity);
       return `${formattedQuantity} ${quantity > 1 ? plural : unit}`;
     })
-    .compact()
-    .take(2)
-    .join(', ')
-    .value();
+    .filter((part): part is string => Boolean(part))
+    .slice(0, 2)
+    .join(', ');
 }
 
 function getPasswordCrackTimeEstimation({ password, guessesPerSecond = 1e9 }: { password: string; guessesPerSecond?: number }) {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import _ from 'lodash';
 import convert, { type Unit } from 'convert';
 import * as unitsconverter from 'units-converter';
 
@@ -82,16 +81,15 @@ function update(key: string) {
   if (converterType.value === 'convert') {
     const converter = convert(value, key as Unit);
 
-    _.chain(units)
-      .omit(key)
-      .forEach(({ unit }) => {
+    Object.entries(units)
+      .filter(([unitKey]) => unitKey !== key)
+      .forEach(([, { unit }]) => {
         try {
           units[unit].ref = converter.to(unit as Unit);
         } catch (e: any) {
           units[unit].ref = 0;
         }
-      })
-      .value();
+      });
   } else {
     const mapUnit = (unit: string) => {
       // npm units-converter uses wrong symbol for miles per hour, so we need to fix it
@@ -102,16 +100,15 @@ function update(key: string) {
     };
     const converter = unitsconverter[converterType.value](value).from(mapUnit(key));
 
-    _.chain(units)
-      .omit(mapUnit(key))
-      .forEach(({ unit }) => {
+    Object.entries(units)
+      .filter(([unitKey]) => unitKey !== mapUnit(key))
+      .forEach(([, { unit }]) => {
         try {
           units[unit].ref = converter.to(mapUnit(unit)).value;
         } catch (e: any) {
           units[unit].ref = 0;
         }
-      })
-      .value();
+      });
   }
 }
 

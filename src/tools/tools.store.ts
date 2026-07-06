@@ -1,7 +1,7 @@
 import { type MaybeRef, get } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import type { Ref } from 'vue';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import type { Tool, ToolCategory, ToolWithCategory } from './tools.types';
 import { tools as allTools } from './index';
 import { useITStorage } from '@/composable/queryParams';
@@ -25,15 +25,12 @@ export const useToolStore = defineStore('tools', () => {
     }));
 
   const toolsByCategory = computed<ToolCategory[]>(() => {
-    return _.chain(tools.value)
-      .orderBy(['category', 'name'], 'asc')
-      .groupBy('category')
-      .map((components, name, path) => ({
+    const orderedTools = _.orderBy(tools.value, ['category', 'name'], ['asc', 'asc']);
+    return Object.entries(_.groupBy(orderedTools, tool => tool.category))
+      .map(([name, components]) => ({
         name,
-        path,
         components,
-      }))
-      .value();
+      }));
   });
 
   const favoriteTools = computed(() => {

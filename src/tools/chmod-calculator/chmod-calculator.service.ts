@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import type { GroupPermissions, Permissions, SpecialPermissions } from './chmod-calculator.types';
 
 import { translate as t } from '@/plugins/i18n.plugin';
