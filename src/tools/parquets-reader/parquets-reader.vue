@@ -72,7 +72,6 @@ function downloadCsv() {
           :columns="columns"
 
           :data="results ?? undefined" bordered striped
-          :pagination="false"
         />
       </n-tab-pane>
     </n-tabs>
