@@ -127,8 +127,8 @@ function buildKeyUri({
     period,
   };
 
-  const paramsString = _(params)
-    .map((value, key) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+  const paramsString = Object.entries(params)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
     .join('&');
 
   return `otpauth://totp/${encodeURIComponent(app)}:${encodeURIComponent(account)}?${paramsString}`;
