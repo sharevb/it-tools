@@ -1,14 +1,19 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.vite-config.json"
+  "extends": "@vue/tsconfig/tsconfig.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "**/*.d.ts", "*.ts", "*.js"],
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
     },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
-    }
-  ]
+    "types": ["naive-ui/volar", "@intlify/unplugin-vue-i18n/messages", "unplugin-icons/types/vue", "node", "jsdom"],
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "skipLibCheck": true,
+    "allowJs": true
+  }
 }
