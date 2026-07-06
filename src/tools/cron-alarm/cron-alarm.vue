@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import { Countdown } from 'vue3-flip-countdown';
 import { parseExpression } from 'cron-parser';
-import moment from 'moment';
+import { format } from 'date-fns';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -29,7 +29,7 @@ watchEffect(() => {
   }
 });
 
-const now = ref(moment());
+const now = ref(new Date());
 const daysArray = computed<string[]>({
   get() {
     return (alarmDays.value || allDays).split(',').map((s) => s.trim());
@@ -47,13 +47,13 @@ const alarmAtDate = computed(() => {
   return interval.next().toDate();
 });
 
-const fmt = 'YYYY-MM-DD HH:mm:ss';
+const fmt = 'yyyy-MM-dd HH:mm:ss';
 const alarmAtFormatted = computed(() => {
-  return moment(alarmAtDate.value).format(fmt);
+  return format(alarmAtDate.value, fmt);
 });
 
 function start() {
-  now.value = moment();
+  now.value = new Date();
   status.value = 'running';
   const histoEntry = { at: alarmAt.value, days: alarmDays.value };
   if (!history.value.find((h) => h.at === histoEntry.at && h.days === histoEntry.days)) {
