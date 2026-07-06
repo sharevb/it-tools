@@ -8,7 +8,7 @@ const antfuConfig = antfu(
     vue: true,
     typescript: true,
     markdown: false,
-    ignores: ['src/libs/*'],
+    ignores: ['src/libs/*', 'components.d.ts'],
   },
   {
     linterOptions: {
