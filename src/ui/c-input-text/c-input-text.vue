@@ -6,33 +6,33 @@ import { type UseValidationRule, useValidation } from '@/composable/validation';
 
 const props = withDefaults(
   defineProps<{
-    value?: string
-    id?: string
-    placeholder?: string
-    label?: string
-    readonly?: boolean
-    disabled?: boolean
-    validationRules?: UseValidationRule<string>[]
-    validationWatch?: Ref<unknown>[]
-    validation?: ReturnType<typeof useValidation>
-    labelPosition?: 'top' | 'left'
-    labelWidth?: string
-    labelAlign?: 'left' | 'right'
-    clearable?: boolean
-    testId?: string
-    autocapitalize?: 'none' | 'sentences' | 'words' | 'characters' | 'on' | 'off' | string
-    autocomplete?: 'on' | 'off' | string
-    autocorrect?: 'on' | 'off' | string
-    spellcheck?: 'true' | 'false' | boolean
-    rawText?: boolean
-    type?: 'text' | 'password'
-    multiline?: boolean
-    rows?: number | string
-    maxRows?: number | string
-    autosize?: boolean
-    autofocus?: boolean
-    monospace?: boolean
-    pasteHtml?: boolean
+    value?: string;
+    id?: string;
+    placeholder?: string;
+    label?: string;
+    readonly?: boolean;
+    disabled?: boolean;
+    validationRules?: UseValidationRule<string>[];
+    validationWatch?: Ref<unknown>[];
+    validation?: ReturnType<typeof useValidation>;
+    labelPosition?: 'top' | 'left';
+    labelWidth?: string;
+    labelAlign?: 'left' | 'right';
+    clearable?: boolean;
+    testId?: string;
+    autocapitalize?: 'none' | 'sentences' | 'words' | 'characters' | 'on' | 'off' | string;
+    autocomplete?: 'on' | 'off' | string;
+    autocorrect?: 'on' | 'off' | string;
+    spellcheck?: 'true' | 'false' | boolean;
+    rawText?: boolean;
+    type?: 'text' | 'password' | 'number' | 'url';
+    multiline?: boolean;
+    rows?: number | string;
+    maxRows?: number | string;
+    autosize?: boolean;
+    autofocus?: boolean;
+    monospace?: boolean;
+    pasteHtml?: boolean;
   }>(),
   {
     value: '',
@@ -69,11 +69,31 @@ const emit = defineEmits(['update:value']);
 const value = useVModel(props, 'value', emit);
 const showPassword = ref(false);
 
-const { id, placeholder, label, validationRules, labelPosition, labelWidth, labelAlign, autosize, readonly, disabled, clearable, type, multiline, rows, maxRows, rawText, autofocus, monospace, pasteHtml } = toRefs(props);
+const {
+  id,
+  placeholder,
+  label,
+  validationRules,
+  labelPosition,
+  labelWidth,
+  labelAlign,
+  autosize,
+  readonly,
+  disabled,
+  clearable,
+  type,
+  multiline,
+  rows,
+  maxRows,
+  rawText,
+  autofocus,
+  monospace,
+  pasteHtml,
+} = toRefs(props);
 
-const validation
-  = props.validation
-  ?? useValidation({
+const validation =
+  props.validation ??
+  useValidation({
     rules: validationRules,
     source: value,
     watch: props.validationWatch,
@@ -87,7 +107,7 @@ const inputRef = ref<HTMLInputElement>();
 const inputWrapperRef = ref<HTMLElement>();
 
 interface HTMLElementWithValue {
-  value?: string
+  value?: string;
 }
 
 function onPasteInputHtml(evt: ClipboardEvent) {
@@ -95,7 +115,7 @@ function onPasteInputHtml(evt: ClipboardEvent) {
     return false;
   }
 
-  const target = (evt.target as HTMLElementWithValue);
+  const target = evt.target as HTMLElementWithValue;
   if (!target) {
     return false;
   }
@@ -110,11 +130,12 @@ function onPasteInputHtml(evt: ClipboardEvent) {
 
 watch(
   [value, autosize, multiline, maxRows, inputWrapperRef, textareaRef],
-  () => nextTick(() => {
-    if (props.multiline && autosize.value) {
-      resizeTextarea();
-    }
-  }),
+  () =>
+    nextTick(() => {
+      if (props.multiline && autosize.value) {
+        resizeTextarea();
+      }
+    }),
   { immediate: true },
 );
 
@@ -153,7 +174,7 @@ function getMaxHeight(textarea: HTMLTextAreaElement) {
     return null;
   }
 
-  return (lineHeight * maxRowsValue) + paddingTop + paddingBottom + borderTop + borderBottom;
+  return lineHeight * maxRowsValue + paddingTop + paddingBottom + borderTop + borderBottom;
 }
 
 function resizeTextarea() {
@@ -170,8 +191,7 @@ function resizeTextarea() {
 
   if (maxHeight !== null) {
     textAreaElement.style.maxHeight = `${maxHeight}px`;
-  }
-  else {
+  } else {
     textAreaElement.style.maxHeight = '';
     textAreaElement.style.overflowY = '';
   }
@@ -240,7 +260,7 @@ defineExpose({
 <template>
   <div
     class="c-input-text"
-    :class="{ disabled, 'error': !validation.isValid, 'label-left': labelPosition === 'left', multiline }"
+    :class="{ disabled, error: !validation.isValid, 'label-left': labelPosition === 'left', multiline }"
   >
     <label v-if="label" :for="id" class="label"> {{ label }} </label>
 
@@ -289,7 +309,7 @@ defineExpose({
           :autocorrect="autocorrect ?? (rawText ? 'off' : undefined)"
           :spellcheck="spellcheck ?? (rawText ? false : undefined)"
           @paste="onPasteInputHtml"
-        >
+        />
 
         <c-button v-if="clearable && value" variant="text" circle size="small" @click="value = ''">
           <icon-mdi-close />
@@ -375,18 +395,18 @@ defineExpose({
         Thus this structure will make sure that text and emojis are rendered correctly without interfering with each other.
         */
         font-family:
-          system-ui, /* System default */
-          -apple-system, /* Apple system font */
-          'Segoe UI', /* Windows */
-          'Roboto', /* Android */
-          'Helvetica Neue', /* macOS fallback */
-          Arial, /* Universal fallback */
-          'Noto Color Emoji', /* Best flag and complex emoji support */
-          'Apple Color Emoji', /* Apple devices emoji */
-          'Segoe UI Emoji', /* Windows emoji */
-          'Twemoji Mozilla', /* Firefox emoji fallback */
-          'EmojiOne Color', /* Additional emoji fallback */
-          sans-serif;
+          system-ui,
+          /* System default */ -apple-system,
+          /* Apple system font */ 'Segoe UI',
+          /* Windows */ 'Roboto',
+          /* Android */ 'Helvetica Neue',
+          /* macOS fallback */ Arial,
+          /* Universal fallback */ 'Noto Color Emoji',
+          /* Best flag and complex emoji support */ 'Apple Color Emoji',
+          /* Apple devices emoji */ 'Segoe UI Emoji',
+          /* Windows emoji */ 'Twemoji Mozilla',
+          /* Firefox emoji fallback */ 'EmojiOne Color',
+          /* Additional emoji fallback */ sans-serif;
         font-size: inherit;
         font-feature-settings: 'liga' off;
         text-rendering: optimizeQuality;
@@ -416,18 +436,18 @@ defineExpose({
       Thus this structure will make sure that text and emojis are rendered correctly without interfering with each other.
       */
       font-family:
-        system-ui, /* System default */
-        -apple-system, /* Apple system font */
-        'Segoe UI', /* Windows */
-        'Roboto', /* Android */
-        'Helvetica Neue', /* macOS fallback */
-        Arial, /* Universal fallback */
-        'Noto Color Emoji', /* Best flag and complex emoji support */
-        'Apple Color Emoji', /* Apple devices emoji */
-        'Segoe UI Emoji', /* Windows emoji */
-        'Twemoji Mozilla', /* Firefox emoji fallback */
-        'EmojiOne Color', /* Additional emoji fallback */
-        sans-serif;
+        system-ui,
+        /* System default */ -apple-system,
+        /* Apple system font */ 'Segoe UI',
+        /* Windows */ 'Roboto',
+        /* Android */ 'Helvetica Neue',
+        /* macOS fallback */ Arial,
+        /* Universal fallback */ 'Noto Color Emoji',
+        /* Best flag and complex emoji support */ 'Apple Color Emoji',
+        /* Apple devices emoji */ 'Segoe UI Emoji',
+        /* Windows emoji */ 'Twemoji Mozilla',
+        /* Firefox emoji fallback */ 'EmojiOne Color',
+        /* Additional emoji fallback */ sans-serif;
       font-feature-settings: 'liga' off;
       text-rendering: optimizeQuality;
       line-height: 1.2;

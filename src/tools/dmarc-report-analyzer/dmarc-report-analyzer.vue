@@ -14,7 +14,7 @@ function readAsText(file: File) {
     const reader = new FileReader();
     reader.readAsText(file);
     reader.onload = () => resolve(reader.result?.toString() ?? '');
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
@@ -25,15 +25,12 @@ const parsedReport = computedAsync(async () => {
   try {
     if (inputType.value === 'file' && file) {
       return await parseDmarcReportsFromXml([await readAsText(file)]);
-    }
-    else if (inputType.value === 'content' && emailContentValue) {
+    } else if (inputType.value === 'content' && emailContentValue) {
       return await parseDmarcReportFromEmail(emailContentValue);
-    }
-    else {
+    } else {
       return null;
     }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
     return null;
   }
@@ -55,7 +52,7 @@ function toDate(dt: number | undefined) {
   if (!dt) {
     return 'NA';
   }
-  return (new Date(dt)).toString();
+  return new Date(dt).toString();
 }
 
 function policyResultClass(policyResult: string) {
@@ -74,20 +71,18 @@ function policyResultClass(policyResult: string) {
     <c-card :title="t('tools.dmarc-report-analyzer.texts.title-input')" mb-2>
       <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
         <n-space>
-          <n-radio
-            value="file"
-            :label="t('tools.dmarc-report-analyzer.texts.label-dmarc-xml-file')"
-          />
-          <n-radio
-            value="content"
-            :label="t('tools.dmarc-report-analyzer.texts.label-eml-content')"
-          />
+          <n-radio value="file" :label="t('tools.dmarc-report-analyzer.texts.label-dmarc-xml-file')" />
+          <n-radio value="content" :label="t('tools.dmarc-report-analyzer.texts.label-eml-content')" />
         </n-space>
       </n-radio-group>
 
       <c-file-upload
         v-if="inputType === 'file'"
-        :title="t('tools.dmarc-report-analyzer.texts.title-drag-and-drop-dmarc-xml-report-file-here-or-click-to-select-a-file')"
+        :title="
+          t(
+            'tools.dmarc-report-analyzer.texts.title-drag-and-drop-dmarc-xml-report-file-here-or-click-to-select-a-file',
+          )
+        "
         @file-upload="onUpload"
       />
 
@@ -107,19 +102,59 @@ function policyResultClass(policyResult: string) {
     </c-alert>
 
     <c-card v-if="!error && parsedReport" :title="t('tools.dmarc-report-analyzer.texts.title-output')">
-      <input-copyable v-if="fileInput?.name" :label="t('tools.dmarc-report-analyzer.texts.label-file-name')" :value="fileInput?.name" />
+      <input-copyable
+        v-if="fileInput?.name"
+        :label="t('tools.dmarc-report-analyzer.texts.label-file-name')"
+        :value="fileInput?.name"
+      />
 
       <c-card
         v-for="(report, reportIndex) in parsedReport.reports || []"
-        :key="reportIndex" :title="`${report.reportMetadata?.orgName} (${report.reportMetadata?.reportId})`"
+        :key="reportIndex"
+        :title="`${report.reportMetadata?.orgName} (${report.reportMetadata?.reportId})`"
       >
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-orgname')" :value="report.reportMetadata?.orgName" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-email')" :value="report.reportMetadata?.email" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-extracontactinfo')" :value="report.reportMetadata?.extraContactInfo" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-reportid')" :value="report.reportMetadata?.reportId" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-date-begin')" :value="toDate(report.reportMetadata?.dateRange?.begin)" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-date-end')" :value="toDate(report.reportMetadata?.dateRange?.end)" />
-        <input-copyable v-bind="inputLabelAlignmentConfig" mb-1 :label="t('tools.dmarc-report-analyzer.texts.label-domain')" :value="report.policyPublished?.domain" />
+        <input-copyable
+          v-bind="inputLabelAlignmentConfig"
+          mb-1
+          :label="t('tools.dmarc-report-analyzer.texts.label-orgname')"
+          :value="report.reportMetadata?.orgName ?? ''"
+        />
+        <input-copyable
+          v-bind="inputLabelAlignmentConfig"
+          mb-1
+          :label="t('tools.dmarc-report-analyzer.texts.label-email')"
+          :value="report.reportMetadata?.email ?? ''"
+        />
+        <input-copyable
+          v-bind="inputLabelAlignmentConfig"
+          mb-1
+          :label="t('tools.dmarc-report-analyzer.texts.label-extracontactinfo')"
+          :value="report.reportMetadata?.extraContactInfo ?? ''"
+        />
+        <input-copyable
+          v-bind="inputLabelAlignmentConfig"
+          mb-1
+          :label="t('tools.dmarc-report-analyzer.texts.label-reportid')"
+          :value="report.reportMetadata?.reportId ?? ''"
+        />
+        <input-copyable
+          v-bind="inputLabelAlignmentConfig"
+          mb-1
+          :label="t('tools.dmarc-report-analyzer.texts.label-date-begin')"
+          :value="toDate(report.reportMetadata?.dateRange?.begin)"
+        />
+        <input-copyable
+          v-bind="inputLabelAlignmentConfig"
+          mb-1
+          :label="t('tools.dmarc-report-analyzer.texts.label-date-end')"
+          :value="toDate(report.reportMetadata?.dateRange?.end)"
+        />
+        <input-copyable
+          v-bind="inputLabelAlignmentConfig"
+          mb-1
+          :label="t('tools.dmarc-report-analyzer.texts.label-domain')"
+          :value="report.policyPublished?.domain"
+        />
         <c-card :title="t('tools.dmarc-report-analyzer.texts.title-policy-published')" mb-2>
           <textarea-copyable :value="JSON.stringify(report.policyPublished, null, 2)" />
         </c-card>
@@ -148,14 +183,22 @@ function policyResultClass(policyResult: string) {
                   {{ record.row.policyEvaluated.disposition }}
                 </td>
                 <td>
-                  <span :class="policyResultClass(record.row.policyEvaluated.dkim)">{{ record.row.policyEvaluated.dkim }}</span>
-                  <br>
-                  {{ (record.authResults.dkim || []).map(dkim => `${dkim.domain}: ${dkim.result} ${dkim.humanResult}`.trim()).join(', ') }}
+                  <span :class="policyResultClass(record.row.policyEvaluated.dkim)">{{
+                    record.row.policyEvaluated.dkim
+                  }}</span>
+                  <br />
+                  {{
+                    (record.authResults.dkim || [])
+                      .map((dkim) => `${dkim.domain}: ${dkim.result} ${dkim.humanResult}`.trim())
+                      .join(', ')
+                  }}
                 </td>
                 <td>
-                  <span :class="policyResultClass(record.row.policyEvaluated.spf)">{{ record.row.policyEvaluated.spf }}</span>
-                  <br>
-                  {{ (record.authResults.spf || []).map(spf => `${spf.domain}: ${spf.result}`.trim()).join(', ') }}
+                  <span :class="policyResultClass(record.row.policyEvaluated.spf)">{{
+                    record.row.policyEvaluated.spf
+                  }}</span>
+                  <br />
+                  {{ (record.authResults.spf || []).map((spf) => `${spf.domain}: ${spf.result}`.trim()).join(', ') }}
                 </td>
                 <td>
                   <textarea-copyable :value="JSON.stringify(record.identifiers, null, 2)" />

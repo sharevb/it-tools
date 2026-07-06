@@ -40,8 +40,7 @@ const results = computed(() => {
         });
       }
     }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
 

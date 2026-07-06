@@ -1,9 +1,10 @@
 {
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always",
-    "source.formatDocument": "always"
+    "source.fixAll.oxc": "always"
   },
+  "oxc.fmt.experimental": true,
   "i18n-ally.localesPaths": [
     "locales",
     "src/modules/i18n"

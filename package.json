@@ -2,7 +2,7 @@
   "name": "it-tools",
   "type": "module",
   "version": "2026.1.4",
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@11.10.0+sha512.0b7f8b98060031904c017e3a41eb187a16d40eeb829b95c4f8cb03681761fc4ab53dd219115b9b447f4dce1a05a214764461e7d3703392a9f32f9511ce8c86c8",
   "description": "Collection of handy online tools for developers, with great UX. ",
   "author": "Corentin Th <corentin.thomasset74+it-tools@gmail.com> (https://corentin.tech)",
   "license": "GNU GPLv3",
@@ -31,7 +31,10 @@
     "test:e2e:dev": "TZ=UTC BASE_URL=http://localhost:5173 NO_WEB_SERVER=true playwright test",
     "coverage": "vitest run --coverage",
     "typecheck": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint src",
+    "lint": "oxlint src",
+    "lint:fix": "oxlint src --fix",
+    "fmt": "oxfmt src",
+    "fmt:check": "oxfmt --check src",
     "script:create:tool": "node scripts/create-tool.mjs",
     "script:create:ui": "hygen generator ui-component",
     "release": "node ./scripts/release.mjs",
@@ -39,7 +42,7 @@
     "script:extract:strings": "node ./scripts/extract-tools-strings.mjs",
     "script:translate-missing": "node ./scripts/translate-missings.mjs -e ./locales/en.yml -t ./locales/*.yml",
     "vue-i18n-extract": "vue-i18n-extract report --vueFiles 'src/**/*.?(ts|vue)' --languageFiles 'locales/*.yml'",
-    "precommit": "pnpm install --ignore-scripts && pnpm lint --fix && pnpm typecheck"
+    "precommit": "pnpm install --ignore-scripts && pnpm lint:fix && pnpm typecheck"
   },
   "dependencies": {
     "@boxyhq/saml20": "^1.16.0",
@@ -109,7 +112,7 @@
     "@vicons/material": "^0.13.0",
     "@vicons/tabler": "^0.13.0",
     "@vueuse/core": "^14.3.0",
-    "@vueuse/head": "^2.0.0",
+    "@vueuse/head": "^1.3.1",
     "@vueuse/integrations": "^14.3.0",
     "@vueuse/router": "^14.3.0",
     "@xmldom/xmldom": "^0.9.10",
@@ -404,12 +407,10 @@
     "yaml": "^2.9.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^9.1.0",
     "@iconify-json/mdi": "^1.2.3",
     "@intlify/unplugin-vue-i18n": "^11.2.4",
     "@playwright/test": "^1.61.1",
-    "@rushstack/eslint-patch": "^1.16.1",
-    "@tsconfig/node22": "^22.0.5",
+    "@tsconfig/node24": "^24.0.4",
     "@types/arr-diff": "^4.0.3",
     "@types/bcryptjs": "^2.4.6",
     "@types/big.js": "^7.0.0",
@@ -451,7 +452,7 @@
     "@types/ua-parser-js": "^0.7.39",
     "@types/unist": "^3.0.3",
     "@types/utf8": "^3.0.3",
-    "@unocss/eslint-config": "^66.7.4",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-vue": "^6.0.7",
     "@vitejs/plugin-vue-jsx": "^5.1.6",
     "@vue/compiler-sfc": "^3.5.39",
@@ -462,11 +463,11 @@
     "commander": "^15.0.0",
     "consola": "^3.4.2",
     "dotenv": "^17.4.2",
-    "eslint": "^10.6.0",
     "hygen": "^6.2.11",
     "jsdom": "^29.1.1",
     "less": "^4.6.7",
-    "prettier": "^3.9.4",
+    "oxfmt": "^0.57.0",
+    "oxlint": "^1.72.0",
     "rollup-plugin-visualizer": "^7.0.1",
     "semver": "^7.8.5",
     "typescript": "~6.0.3",
@@ -483,25 +484,9 @@
     "vite-svg-loader": "^5.1.1",
     "vitest": "^4.1.9",
     "vue-i18n-extract": "^2.0.7",
+    "workbox-build": "^7.4.1",
     "workbox-window": "^7.4.1",
     "zx": "^8.8.5"
-  },
-  "pnpm": {
-    "overrides": {
-      "@vueuse/shared": "13.9.0",
-      "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
-    },
-    "patchedDependencies": {
-      "node-forge@1.4.0": "patches/node-forge@1.4.0.patch",
-      "esm-potrace-wasm": "patches/esm-potrace-wasm.patch",
-      "run-pace": "patches/run-pace.patch",
-      "event-cron-parser": "patches/event-cron-parser.patch",
-      "chardet": "patches/chardet.patch",
-      "@boxyhq/saml20": "patches/@boxyhq__saml20.patch",
-      "countries-and-timezones": "patches/countries-and-timezones.patch",
-      "epubjs": "patches/epubjs.patch",
-      "fast_array_intersect": "patches/fast_array_intersect.patch"
-    }
   },
   "scarfSettings": {
     "enabled": false

@@ -269,16 +269,17 @@ To install VSCode in WSL2 (Windows), see: https://learn.microsoft.com/en-us/wind
 
 - [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur)
 - [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Oxc](https://marketplace.visualstudio.com/items?itemName=oxc.oxc-vscode) (oxlint + oxfmt)
 - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally)
 
 with the following settings:
 
 ```json
 {
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.oxc": "always"
   },
   "i18n-ally.localesPaths": ["locales", "src/tools/*/locales"],
   "i18n-ally.keystyle": "nested"
@@ -320,18 +321,24 @@ pnpm build
 pnpm test
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Lint with [Oxlint](https://oxc.rs/docs/guide/usage/linter)
 
 ```sh
 pnpm lint
 ```
 
-### Ensure CI (lock, eslint, typecheck) will succeed
+### Format with [Oxfmt](https://oxc.rs/docs/guide/usage/formatter)
+
+```sh
+pnpm fmt
+```
+
+### Ensure CI (lock, oxlint, typecheck) will succeed
 
 Before submitting a PR, run:
 
 ```sh
-pnpm install --ignore-scripts && pnpm lint --fix && pnpm typecheck
+pnpm install --ignore-scripts && pnpm lint:fix && pnpm typecheck
 ```
 
 ### Create a new tool

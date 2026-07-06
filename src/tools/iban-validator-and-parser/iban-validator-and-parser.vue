@@ -10,16 +10,18 @@ const { t } = useI18n();
 const rawIbans = useQueryParam({ tool: 'iban-validator', name: 'iban', defaultValue: '' });
 
 interface IbanInfo {
-  iban: string
-  infos: CKeyValueListItems
+  iban: string;
+  infos: CKeyValueListItems;
 }
 
 const ibansInfo = computed<IbanInfo[]>(() => {
   if (!rawIbans.value?.trim()) {
     return [];
   }
-  const ibans = rawIbans.value.toUpperCase()
-    .split(/\n/).map(iban => iban.replace(/\s/g, '').replace(/-/g, ''))
+  const ibans = rawIbans.value
+    .toUpperCase()
+    .split(/\n/)
+    .map((iban) => iban.replace(/\s/g, '').replace(/-/g, ''))
     .filter(Boolean);
 
   if (!ibans.length) {
@@ -70,11 +72,7 @@ const ibansInfo = computed<IbanInfo[]>(() => {
   return results;
 });
 
-const ibanExamples = [
-  'FR7630006000011234567890189',
-  'DE89370400440532013000',
-  'GB29NWBK60161331926819',
-];
+const ibanExamples = ['FR7630006000011234567890189', 'DE89370400440532013000', 'GB29NWBK60161331926819'];
 </script>
 
 <template>
@@ -95,7 +93,7 @@ const ibanExamples = [
 
     <c-card :title="t('tools.iban-validator-and-parser.texts.title-valid-iban-examples')" mt-5>
       <div v-for="iban in ibanExamples" :key="iban">
-        <c-text-copyable :value="iban" font-mono :displayed-value="friendlyFormatIBAN(iban)" />
+        <c-text-copyable :value="iban" font-mono :displayed-value="friendlyFormatIBAN(iban) ?? undefined" />
       </div>
     </c-card>
   </div>

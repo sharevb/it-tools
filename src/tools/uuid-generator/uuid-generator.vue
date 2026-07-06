@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { v1 as generateUuidV1, v3 as generateUuidV3, v4 as generateUuidV4, v5 as generateUuidV5, v6 as generateUuidV6, v7 as generateUuidV7, NIL as nilUuid } from 'uuid';
+import {
+  v1 as generateUuidV1,
+  v3 as generateUuidV3,
+  v4 as generateUuidV4,
+  v5 as generateUuidV5,
+  v6 as generateUuidV6,
+  v7 as generateUuidV7,
+  NIL as nilUuid,
+} from 'uuid';
 
 import { useCopy } from '@/composable/copy';
 import { computedRefreshable } from '@/composable/computedRefreshable';
@@ -11,7 +19,11 @@ const { t } = useI18n();
 
 const versions = ['NIL', 'v1', 'v3', 'v4', 'v5', 'v6', 'v7'] as const;
 
-const version = useQueryParamOrStorage<typeof versions[number]>({ name: 'version', storageName: 'uuid-generator:version', defaultValue: 'v4' });
+const version = useQueryParamOrStorage<(typeof versions)[number]>({
+  name: 'version',
+  storageName: 'uuid-generator:version',
+  defaultValue: 'v4',
+});
 const count = useQueryParamOrStorage({ name: 'amount', storageName: 'uuid-generator:quantity', defaultValue: 1 });
 const bare = useQueryParamOrStorage({ name: 'bare', storageName: 'uuid-generator:bare', defaultValue: false });
 const upperCase = useQueryParamOrStorage({ name: 'upper', storageName: 'uuid-generator:upper', defaultValue: false });
@@ -32,12 +44,13 @@ const validUuidRules = [
 
 const generators = {
   NIL: () => nilUuid,
-  v1: (index: number) => generateUuidV1({
-    clockseq: index,
-    msecs: Date.now(),
-    nsecs: Math.floor(Math.random() * 10000),
-    node: Uint8Array.from(Array.from({ length: 6 }, () => Math.floor(Math.random() * 256))),
-  }),
+  v1: (index: number) =>
+    generateUuidV1({
+      clockseq: index,
+      msecs: Date.now(),
+      nsecs: Math.floor(Math.random() * 10000),
+      node: Uint8Array.from(Array.from({ length: 6 }, () => Math.floor(Math.random() * 256))),
+    }),
   v3: () => generateUuidV3(v35Args.value.name, v35Args.value.namespace),
   v4: () => generateUuidV4(),
   v5: () => generateUuidV5(v35Args.value.name, v35Args.value.namespace),
@@ -45,28 +58,45 @@ const generators = {
   v7: () => generateUuidV7(),
 };
 
-const [uuids, refreshUUIDs] = computedRefreshable(() => withDefaultOnError(() =>
-  Array.from({ length: count.value }, (_ignored, index) => {
-    const generator = generators[version.value] ?? generators.NIL;
-    let uuid = generator(index);
+const [uuids, refreshUUIDs] = computedRefreshable(() =>
+  withDefaultOnError(
+    () =>
+      Array.from({ length: count.value }, (_ignored, index) => {
+        const generator = generators[version.value] ?? generators.NIL;
+        let uuid = generator(index);
 
-    if (bare.value) {
-      uuid = uuid.replace(/-/g, '');
-    }
+        if (bare.value) {
+          uuid = uuid.replace(/-/g, '');
+        }
 
-    return upperCase.value ? uuid.toUpperCase() : uuid.toLowerCase();
-  }).join('\n'), ''));
+        return upperCase.value ? uuid.toUpperCase() : uuid.toLowerCase();
+      }).join('\n'),
+    '',
+  ),
+);
 
 const { copy } = useCopy({ source: uuids, text: t('tools.uuid-generator.texts.text-uuids-copied-to-the-clipboard') });
 </script>
 
 <template>
   <div>
-    <c-buttons-select v-model:value="version" :options="versions" :label="t('tools.uuid-generator.texts.label-uuid-version')" label-width="100px" mb-2 />
+    <c-buttons-select
+      v-model:value="version"
+      :options="[...versions]"
+      :label="t('tools.uuid-generator.texts.label-uuid-version')"
+      label-width="100px"
+      mb-2
+    />
 
     <div mb-2 flex items-center>
       <span w-100px>{{ t('tools.uuid-generator.texts.tag-quantity') }}</span>
-      <n-input-number-i18n v-model:value="count" flex-1 :min="1" :max="50" :placeholder="t('tools.uuid-generator.texts.placeholder-uuid-quantity')" />
+      <n-input-number-i18n
+        v-model:value="count"
+        flex-1
+        :min="1"
+        :max="50"
+        :placeholder="t('tools.uuid-generator.texts.placeholder-uuid-quantity')"
+      />
     </div>
 
     <div v-if="version === 'v3' || version === 'v5'" mb-2>

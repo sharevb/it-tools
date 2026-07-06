@@ -4,11 +4,13 @@ import type { CLabelProps } from '../c-label/c-label.types';
 import type { CButtonSelectOption } from './c-buttons-select.types';
 
 const props = withDefaults(
-  defineProps<{
-    options?: CButtonSelectOption<T>[] | string[] | Record<string, T>
-    value?: T
-    size?: 'small' | 'medium' | 'large'
-  } & CLabelProps >(),
+  defineProps<
+    {
+      options?: CButtonSelectOption<T>[] | string[] | Record<string, T>;
+      value?: T;
+      size?: 'small' | 'medium' | 'large';
+    } & CLabelProps
+  >(),
   {
     options: () => [],
     value: undefined,
@@ -46,10 +48,7 @@ function selectOption(option: CButtonSelectOption<T>) {
 <template>
   <c-label v-bind="props">
     <div class="flex gap-2">
-      <c-tooltip
-        v-for="option in options" :key="option.value"
-        :tooltip="option.tooltip"
-      >
+      <c-tooltip v-for="option in options" :key="option.value as PropertyKey" :tooltip="option.tooltip">
         <c-button
           :test-id="option.value"
           :size="size"

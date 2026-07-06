@@ -71,14 +71,12 @@ async function encryptStream() {
       encryptProgress.value = Math.round((processed / total) * 100);
     }
 
-    encryptedBlob.value = new Blob(chunks, { type: 'application/octet-stream' });
+    encryptedBlob.value = new Blob(chunks as BlobPart[], { type: 'application/octet-stream' });
     message.success('File encrypted.');
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err.toString();
     message.error('Encryption failed.');
-  }
-  finally {
+  } finally {
     loadingEncrypt.value = false;
   }
 }
@@ -104,9 +102,9 @@ async function decryptStream() {
 
     const unlockedKey = passphrase.value
       ? await openpgp.decryptKey({
-        privateKey,
-        passphrase: passphrase.value,
-      })
+          privateKey,
+          passphrase: passphrase.value,
+        })
       : privateKey;
 
     const source = encryptedBlob.value ?? file.value!;
@@ -138,14 +136,12 @@ async function decryptStream() {
       decryptProgress.value = Math.round((processed / total) * 100);
     }
 
-    decryptedBlob.value = new Blob(chunks, { type: 'application/octet-stream' });
+    decryptedBlob.value = new Blob(chunks as BlobPart[], { type: 'application/octet-stream' });
     message.success('File decrypted.');
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err.toString();
     message.error('Decryption failed.');
-  }
-  finally {
+  } finally {
     loadingDecrypt.value = false;
   }
 }
@@ -186,13 +182,24 @@ function downloadBlob(blob: Blob | null, filename: string) {
     <NCard :title="t('tools.pgp-file-encryption.texts.title-3-private-key-passphrase-for-decryption')">
       <c-input-text v-model:value="privateKeyArmored" multiline rows="6" mb-1 />
       <NFormItem :label="t('tools.pgp-file-encryption.texts.label-passphrase')" label-placement="left">
-        <NInput v-model:value="passphrase" type="password" show-password-on="click" :placeholder="t('tools.pgp-file-encryption.texts.placeholder-passphrase')" />
+        <NInput
+          v-model:value="passphrase"
+          type="password"
+          show-password-on="click"
+          :placeholder="t('tools.pgp-file-encryption.texts.placeholder-passphrase')"
+        />
       </NFormItem>
     </NCard>
 
     <!-- Actions -->
     <NSpace justify="center" mb-1>
-      <NButton :disabled="!file || !publicKeyArmored" type="primary" :loading="loadingEncrypt" mr-2 @click="encryptStream">
+      <NButton
+        :disabled="!file || !publicKeyArmored"
+        type="primary"
+        :loading="loadingEncrypt"
+        mr-2
+        @click="encryptStream"
+      >
         {{ t('tools.pgp-file-encryption.texts.tag-encrypt-stream') }}
       </NButton>
 
@@ -232,7 +239,10 @@ function downloadBlob(blob: Blob | null, filename: string) {
         {{ t('tools.pgp-file-encryption.texts.tag-decrypted-file-ready') }}
       </NAlert>
       <NSpace justify="center">
-        <NButton size="small" @click="downloadBlob(decryptedBlob, `decrypted-${((file?.name || 'file').replace(/\.pgp$/, ''))}`)">
+        <NButton
+          size="small"
+          @click="downloadBlob(decryptedBlob, `decrypted-${(file?.name || 'file').replace(/\.pgp$/, '')}`)"
+        >
           {{ t('tools.pgp-file-encryption.texts.tag-download-decrypted') }}
         </NButton>
       </NSpace>

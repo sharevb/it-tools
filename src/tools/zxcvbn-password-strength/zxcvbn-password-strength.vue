@@ -25,7 +25,7 @@ const result = computed(() => zxcvbn.check(password.value));
 const strengthLabel = computed(() => {
   const score = result.value.score;
   const labels = ['Very Weak', 'Weak', 'Fair', 'Strong', 'Very Strong'];
-  const colors = ['error', 'warning', 'info', 'success', 'success'];
+  const colors = ['error', 'warning', 'info', 'success', 'success'] as const;
   return {
     label: labels[score],
     color: colors[score],
@@ -59,12 +59,7 @@ const suggestions = computed(() => result.value.feedback.suggestions);
     />
 
     <div v-if="password" mt-1>
-      <NProgress
-        type="line"
-        :percentage="strength.percent"
-        :color="strength.color"
-        show-indicator
-      />
+      <NProgress type="line" :percentage="strength.percent" :color="strength.color" show-indicator />
 
       <n-space justify="center" mt-2>
         <NTag :type="(strengthLabel.color as 'default' | 'error' | 'primary' | 'info' | 'success' | 'warning')" size="small">

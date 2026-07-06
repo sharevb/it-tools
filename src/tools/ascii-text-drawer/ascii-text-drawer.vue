@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import figlet from 'figlet';
+import figlet, { type FigletOptions, type FontName } from 'figlet';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { languages, printToLanguage } from '@/utils/ascii-lang-utils';
 import { useITStorage } from '@/composable/queryParams';
@@ -17,7 +17,7 @@ const base = import.meta.env.BASE_URL ?? '/';
 
 figlet.defaults({ fontPath: `${base}figlet-fonts` });
 
-const languagesOptions = languages.map(lang => ({ value: lang.id, label: lang.name }));
+const languagesOptions = languages.map((lang) => ({ value: lang.id, label: lang.name }));
 
 watchEffect(async () => {
   const inputValue = input.value;
@@ -26,32 +26,319 @@ watchEffect(async () => {
   const widthValue = width.value;
   processing.value = true;
   try {
-    const options: figlet.FigletOptions = {
-      font: fontValue as figlet.FontName,
+    const options: FigletOptions = {
+      font: fontValue as FontName,
       width: widthValue,
       whitespaceBreak: true,
     };
-    const rawOutput = await (new Promise<string>((resolve, reject) =>
-      figlet.text(inputValue, options,
-        (err, text) => {
-          if (err) {
-            reject(err);
-            return;
-          }
+    const rawOutput = await new Promise<string>((resolve, reject) =>
+      figlet.text(inputValue, options, (err, text) => {
+        if (err) {
+          reject(err);
+          return;
+        }
 
-          resolve(text ?? '');
-        })));
+        resolve(text ?? '');
+      }),
+    );
 
     output.value = printToLanguage(rawOutput, languageValue);
     errored.value = false;
-  }
-  catch (e: any) {
+  } catch (e: any) {
     errored.value = true;
   }
   processing.value = false;
 });
 
-const fonts = ['1Row', '3-D', '3D Diagonal', '3D-ASCII', '3x5', '4Max', '5 Line Oblique', 'AMC 3 Line', 'AMC 3 Liv1', 'AMC AAA01', 'AMC Neko', 'AMC Razor', 'AMC Razor2', 'AMC Slash', 'AMC Slider', 'AMC Thin', 'AMC Tubes', 'AMC Untitled', 'ANSI Shadow', 'ASCII New Roman', 'Acrobatic', 'Alligator', 'Alligator2', 'Alpha', 'Alphabet', 'Arrows', 'Avatar', 'B1FF', 'Banner', 'Banner3-D', 'Banner3', 'Banner4', 'Barbwire', 'Basic', 'Bear', 'Bell', 'Benjamin', 'Big Chief', 'Big Money-ne', 'Big Money-nw', 'Big Money-se', 'Big Money-sw', 'Big', 'Bigfig', 'Binary', 'Block', 'Blocks', 'Bloody', 'Bolger', 'Braced', 'Bright', 'Broadway KB', 'Broadway', 'Bubble', 'Bulbhead', 'Caligraphy', 'Caligraphy2', 'Calvin S', 'Cards', 'Catwalk', 'Chiseled', 'Chunky', 'Coinstak', 'Cola', 'Colossal', 'Computer', 'Contessa', 'Contrast', 'Cosmike', 'Crawford', 'Crawford2', 'Crazy', 'Cricket', 'Cursive', 'Cyberlarge', 'Cybermedium', 'Cybersmall', 'Cygnet', 'DANC4', 'DOS Rebel', 'DWhistled', 'Dancing Font', 'Decimal', 'Def Leppard', 'Delta Corps Priest 1', 'Diamond', 'Diet Cola', 'Digital', 'Doh', 'Doom', 'Dot Matrix', 'Double Shorts', 'Double', 'Dr Pepper', 'Efti Chess', 'Efti Font', 'Efti Italic', 'Efti Piti', 'Efti Robot', 'Efti Wall', 'Efti Water', 'Electronic', 'Elite', 'Epic', 'Fender', 'Filter', 'Fire Font-k', 'Fire Font-s', 'Flipped', 'Flower Power', 'Four Tops', 'Fraktur', 'Fun Face', 'Fun Faces', 'Fuzzy', 'Georgi16', 'Georgia11', 'Ghost', 'Ghoulish', 'Glenyn', 'Goofy', 'Gothic', 'Graceful', 'Gradient', 'Graffiti', 'Greek', 'Heart Left', 'Heart Right', 'Henry 3D', 'Hex', 'Hieroglyphs', 'Hollywood', 'Horizontal Left', 'Horizontal Right', 'ICL-1900', 'Impossible', 'Invita', 'Isometric1', 'Isometric2', 'Isometric3', 'Isometric4', 'Italic', 'Ivrit', 'JS Block Letters', 'JS Bracket Letters', 'JS Capital Curves', 'JS Cursive', 'JS Stick Letters', 'Jacky', 'Jazmine', 'Jerusalem', 'Katakana', 'Kban', 'Keyboard', 'Knob', 'Konto Slant', 'Konto', 'LCD', 'Larry 3D 2', 'Larry 3D', 'Lean', 'Letters', 'Lil Devil', 'Line Blocks', 'Linux', 'Lockergnome', 'Madrid', 'Marquee', 'Maxfour', 'Merlin1', 'Merlin2', 'Mike', 'Mini', 'Mirror', 'Mnemonic', 'Modular', 'Morse', 'Morse2', 'Moscow', 'Mshebrew210', 'Muzzle', 'NScript', 'NT Greek', 'NV Script', 'Nancyj-Fancy', 'Nancyj-Improved', 'Nancyj-Underlined', 'Nancyj', 'Nipples', 'O8', 'OS2', 'Octal', 'Ogre', 'Old Banner', 'Patorjk\'s Cheese', 'Patorjk-HeX', 'Pawp', 'Peaks Slant', 'Peaks', 'Pebbles', 'Pepper', 'Poison', 'Puffy', 'Puzzle', 'Pyramid', 'Rammstein', 'Rectangles', 'Red Phoenix', 'Relief', 'Relief2', 'Reverse', 'Roman', 'Rot13', 'Rotated', 'Rounded', 'Rowan Cap', 'Rozzo', 'Runic', 'Runyc', 'S Blood', 'SL Script', 'Santa Clara', 'Script', 'Serifcap', 'Shadow', 'Shimrod', 'Short', 'Slant Relief', 'Slant', 'Slide', 'Small Caps', 'Small Isometric1', 'Small Keyboard', 'Small Poison', 'Small Script', 'Small Shadow', 'Small Slant', 'Small Tengwar', 'Small', 'Soft', 'Speed', 'Spliff', 'Stacey', 'Stampate', 'Stampatello', 'Standard', 'Star Strips', 'Star Wars', 'Stellar', 'Stforek', 'Stick Letters', 'Stop', 'Straight', 'Stronger Than All', 'Sub-Zero', 'Swamp Land', 'Swan', 'Sweet', 'THIS', 'Tanja', 'Tengwar', 'Term', 'Test1', 'The Edge', 'Thick', 'Thin', 'Thorned', 'Three Point', 'Ticks Slant', 'Ticks', 'Tiles', 'Tinker-Toy', 'Tombstone', 'Train', 'Trek', 'Tsalagi', 'Tubular', 'Twisted', 'Two Point', 'USA Flag', 'Univers', 'Varsity', 'Wavy', 'Weird', 'Wet Letter', 'Whimsy', 'Wow'];
+const fonts = [
+  '1Row',
+  '3-D',
+  '3D Diagonal',
+  '3D-ASCII',
+  '3x5',
+  '4Max',
+  '5 Line Oblique',
+  'AMC 3 Line',
+  'AMC 3 Liv1',
+  'AMC AAA01',
+  'AMC Neko',
+  'AMC Razor',
+  'AMC Razor2',
+  'AMC Slash',
+  'AMC Slider',
+  'AMC Thin',
+  'AMC Tubes',
+  'AMC Untitled',
+  'ANSI Shadow',
+  'ASCII New Roman',
+  'Acrobatic',
+  'Alligator',
+  'Alligator2',
+  'Alpha',
+  'Alphabet',
+  'Arrows',
+  'Avatar',
+  'B1FF',
+  'Banner',
+  'Banner3-D',
+  'Banner3',
+  'Banner4',
+  'Barbwire',
+  'Basic',
+  'Bear',
+  'Bell',
+  'Benjamin',
+  'Big Chief',
+  'Big Money-ne',
+  'Big Money-nw',
+  'Big Money-se',
+  'Big Money-sw',
+  'Big',
+  'Bigfig',
+  'Binary',
+  'Block',
+  'Blocks',
+  'Bloody',
+  'Bolger',
+  'Braced',
+  'Bright',
+  'Broadway KB',
+  'Broadway',
+  'Bubble',
+  'Bulbhead',
+  'Caligraphy',
+  'Caligraphy2',
+  'Calvin S',
+  'Cards',
+  'Catwalk',
+  'Chiseled',
+  'Chunky',
+  'Coinstak',
+  'Cola',
+  'Colossal',
+  'Computer',
+  'Contessa',
+  'Contrast',
+  'Cosmike',
+  'Crawford',
+  'Crawford2',
+  'Crazy',
+  'Cricket',
+  'Cursive',
+  'Cyberlarge',
+  'Cybermedium',
+  'Cybersmall',
+  'Cygnet',
+  'DANC4',
+  'DOS Rebel',
+  'DWhistled',
+  'Dancing Font',
+  'Decimal',
+  'Def Leppard',
+  'Delta Corps Priest 1',
+  'Diamond',
+  'Diet Cola',
+  'Digital',
+  'Doh',
+  'Doom',
+  'Dot Matrix',
+  'Double Shorts',
+  'Double',
+  'Dr Pepper',
+  'Efti Chess',
+  'Efti Font',
+  'Efti Italic',
+  'Efti Piti',
+  'Efti Robot',
+  'Efti Wall',
+  'Efti Water',
+  'Electronic',
+  'Elite',
+  'Epic',
+  'Fender',
+  'Filter',
+  'Fire Font-k',
+  'Fire Font-s',
+  'Flipped',
+  'Flower Power',
+  'Four Tops',
+  'Fraktur',
+  'Fun Face',
+  'Fun Faces',
+  'Fuzzy',
+  'Georgi16',
+  'Georgia11',
+  'Ghost',
+  'Ghoulish',
+  'Glenyn',
+  'Goofy',
+  'Gothic',
+  'Graceful',
+  'Gradient',
+  'Graffiti',
+  'Greek',
+  'Heart Left',
+  'Heart Right',
+  'Henry 3D',
+  'Hex',
+  'Hieroglyphs',
+  'Hollywood',
+  'Horizontal Left',
+  'Horizontal Right',
+  'ICL-1900',
+  'Impossible',
+  'Invita',
+  'Isometric1',
+  'Isometric2',
+  'Isometric3',
+  'Isometric4',
+  'Italic',
+  'Ivrit',
+  'JS Block Letters',
+  'JS Bracket Letters',
+  'JS Capital Curves',
+  'JS Cursive',
+  'JS Stick Letters',
+  'Jacky',
+  'Jazmine',
+  'Jerusalem',
+  'Katakana',
+  'Kban',
+  'Keyboard',
+  'Knob',
+  'Konto Slant',
+  'Konto',
+  'LCD',
+  'Larry 3D 2',
+  'Larry 3D',
+  'Lean',
+  'Letters',
+  'Lil Devil',
+  'Line Blocks',
+  'Linux',
+  'Lockergnome',
+  'Madrid',
+  'Marquee',
+  'Maxfour',
+  'Merlin1',
+  'Merlin2',
+  'Mike',
+  'Mini',
+  'Mirror',
+  'Mnemonic',
+  'Modular',
+  'Morse',
+  'Morse2',
+  'Moscow',
+  'Mshebrew210',
+  'Muzzle',
+  'NScript',
+  'NT Greek',
+  'NV Script',
+  'Nancyj-Fancy',
+  'Nancyj-Improved',
+  'Nancyj-Underlined',
+  'Nancyj',
+  'Nipples',
+  'O8',
+  'OS2',
+  'Octal',
+  'Ogre',
+  'Old Banner',
+  "Patorjk's Cheese",
+  'Patorjk-HeX',
+  'Pawp',
+  'Peaks Slant',
+  'Peaks',
+  'Pebbles',
+  'Pepper',
+  'Poison',
+  'Puffy',
+  'Puzzle',
+  'Pyramid',
+  'Rammstein',
+  'Rectangles',
+  'Red Phoenix',
+  'Relief',
+  'Relief2',
+  'Reverse',
+  'Roman',
+  'Rot13',
+  'Rotated',
+  'Rounded',
+  'Rowan Cap',
+  'Rozzo',
+  'Runic',
+  'Runyc',
+  'S Blood',
+  'SL Script',
+  'Santa Clara',
+  'Script',
+  'Serifcap',
+  'Shadow',
+  'Shimrod',
+  'Short',
+  'Slant Relief',
+  'Slant',
+  'Slide',
+  'Small Caps',
+  'Small Isometric1',
+  'Small Keyboard',
+  'Small Poison',
+  'Small Script',
+  'Small Shadow',
+  'Small Slant',
+  'Small Tengwar',
+  'Small',
+  'Soft',
+  'Speed',
+  'Spliff',
+  'Stacey',
+  'Stampate',
+  'Stampatello',
+  'Standard',
+  'Star Strips',
+  'Star Wars',
+  'Stellar',
+  'Stforek',
+  'Stick Letters',
+  'Stop',
+  'Straight',
+  'Stronger Than All',
+  'Sub-Zero',
+  'Swamp Land',
+  'Swan',
+  'Sweet',
+  'THIS',
+  'Tanja',
+  'Tengwar',
+  'Term',
+  'Test1',
+  'The Edge',
+  'Thick',
+  'Thin',
+  'Thorned',
+  'Three Point',
+  'Ticks Slant',
+  'Ticks',
+  'Tiles',
+  'Tinker-Toy',
+  'Tombstone',
+  'Train',
+  'Trek',
+  'Tsalagi',
+  'Tubular',
+  'Twisted',
+  'Two Point',
+  'USA Flag',
+  'Univers',
+  'Varsity',
+  'Wavy',
+  'Weird',
+  'Wet Letter',
+  'Whimsy',
+  'Wow',
+];
 </script>
 
 <template>
@@ -75,13 +362,24 @@ const fonts = ['1Row', '3-D', '3D Diagonal', '3D-ASCII', '3x5', '4Max', '5 Line 
           label-position="top"
           :label="t('tools.ascii-text-drawer.font')"
           :options="fonts"
-          searchable="true"
+          searchable
           :placeholder="t('tools.ascii-text-drawer.texts.placeholder-select-font-to-use')"
         />
       </n-gi>
       <n-gi span="2">
-        <n-form-item :label="t('tools.ascii-text-drawer.width')" label-placement="top" label-width="100" :show-feedback="false">
-          <n-input-number-i18n v-model:value="width" min="0" max="10000" w-full :placeholder="t('tools.ascii-text-drawer.texts.placeholder-width-of-the-text')" />
+        <n-form-item
+          :label="t('tools.ascii-text-drawer.width')"
+          label-placement="top"
+          label-width="100"
+          :show-feedback="false"
+        >
+          <n-input-number-i18n
+            v-model:value="width"
+            min="0"
+            max="10000"
+            w-full
+            :placeholder="t('tools.ascii-text-drawer.texts.placeholder-width-of-the-text')"
+          />
         </n-form-item>
       </n-gi>
     </n-grid>
@@ -98,11 +396,7 @@ const fonts = ['1Row', '3-D', '3D Diagonal', '3D-ASCII', '3x5', '4Max', '5 Line 
     </c-alert>
 
     <n-form-item v-if="!processing && !errored" :label="t('tools.ascii-text-drawer.output')">
-      <TextareaCopyable
-        :value="output"
-        mb-1 mt-1
-        copy-placement="outside"
-      />
+      <TextareaCopyable :value="output" mb-1 mt-1 copy-placement="outside" />
     </n-form-item>
   </c-card>
 </template>

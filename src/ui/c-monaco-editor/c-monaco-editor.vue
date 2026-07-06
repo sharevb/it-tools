@@ -19,16 +19,21 @@ const props = withDefaults(defineProps<EditorProps>(), {
 });
 
 const emits = defineEmits<{
-  (e: 'update:value', value: string | undefined): void
-  (e: 'beforeMount', monaco: MonacoEditor): void
-  (e: 'mount', editor: monacoEditor.editor.IStandaloneCodeEditor, monaco: MonacoEditor): void
-  (e: 'change', value: string | undefined, event: monacoEditor.editor.IModelContentChangedEvent): void
-  (e: 'validate', markers: monacoEditor.editor.IMarker[]): void
+  (e: 'update:value', value: string | undefined): void;
+  (e: 'beforeMount', monaco: MonacoEditor): void;
+  (e: 'mount', editor: monacoEditor.editor.IStandaloneCodeEditor, monaco: MonacoEditor): void;
+  (e: 'change', value: string | undefined, event: monacoEditor.editor.IModelContentChangedEvent): void;
+  (e: 'validate', markers: monacoEditor.editor.IMarker[]): void;
 }>();
+
+interface MonacoEnvironment {
+  getWorker(_: any, label: string): Worker;
+}
+
 
 const value = useVModel(props, 'value', emits);
 
-globalThis.MonacoEnvironment = {
+(globalThis as typeof globalThis & { MonacoEnvironment: MonacoEnvironment }).MonacoEnvironment = {
   getWorker(_: any, label: string) {
     if (label === 'json') {
       return new JsonWorker();
@@ -50,26 +55,26 @@ globalThis.MonacoEnvironment = {
 loader.config({ monaco: monacoEditor });
 
 interface EditorProps {
-  defaultValue?: string
-  defaultPath?: string
-  defaultLanguage?: string
-  value?: string
-  language?: string
-  path?: string
+  defaultValue?: string;
+  defaultPath?: string;
+  defaultLanguage?: string;
+  value?: string;
+  language?: string;
+  path?: string;
 
   /* === */
 
-  theme: 'vs' | string
-  line?: number
-  options?: monacoEditor.editor.IStandaloneEditorConstructionOptions
-  overrideServices?: monacoEditor.editor.IEditorOverrideServices
-  saveViewState?: boolean
+  theme: 'vs' | string;
+  line?: number;
+  options?: monacoEditor.editor.IStandaloneEditorConstructionOptions;
+  overrideServices?: monacoEditor.editor.IEditorOverrideServices;
+  saveViewState?: boolean;
 
   /* === */
 
-  width?: number | string
-  height?: number | string
-  className?: string
+  width?: number | string;
+  height?: number | string;
+  className?: string;
 }
 
 monacoEditor.editor.defineTheme('it-tools-dark', {
@@ -94,7 +99,7 @@ const styleStore = useStyleStore();
 
 watch(
   () => styleStore.isDarkTheme,
-  isDarkTheme => monacoEditor.editor.setTheme(isDarkTheme ? 'it-tools-dark' : 'it-tools-light'),
+  (isDarkTheme) => monacoEditor.editor.setTheme(isDarkTheme ? 'it-tools-dark' : 'it-tools-light'),
   { immediate: true },
 );
 
@@ -114,7 +119,9 @@ export default {
     v-model:value="value"
     @before-mount="(monaco: MonacoEditor) => emits('beforeMount', monaco)"
     @mount="(editor: monacoEditor.editor.IStandaloneCodeEditor, monaco: MonacoEditor) => emits('mount', editor, monaco)"
-    @change="(value: string | undefined, event: monacoEditor.editor.IModelContentChangedEvent) => emits('change', value, event)"
+    @change="
+      (value: string | undefined, event: monacoEditor.editor.IModelContentChangedEvent) => emits('change', value, event)
+    "
     @validate="(markers: monacoEditor.editor.IMarker[]) => emits('validate', markers)"
   />
 </template>

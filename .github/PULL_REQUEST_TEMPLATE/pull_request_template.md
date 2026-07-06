@@ -22,5 +22,5 @@
 - [ ] Submit the PR against the `chore/all-my-stuffs` branch.
 - [ ] Check that there isn't already a PR that solves the problem the same way to avoid creating a duplicate.
 - [ ] Provide a description, in PLAIN ENGLISH ONLY, in this PR that addresses **what** the PR is solving, or reference the issue that it solves (e.g. `fixes #123`).
-- [ ] Run `pnpm install --ignore-scripts && pnpm lint --fix && pnpm typecheck` to ensure pnpm lock, eslint and typecheck are ok
+- [ ] Run `pnpm install --ignore-scripts && pnpm lint:fix && pnpm typecheck` to ensure pnpm lock, oxlint and typecheck are ok
 - [ ] Ideally, include relevant tests that fail without this PR but pass with it.

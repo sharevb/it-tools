@@ -21,7 +21,7 @@ function checkProgressAndGetResult<T>(updates: Update<T>[]) {
   const last = updates.at(-1);
   const allExceptLast = updates.slice(0, -1);
 
-  expect(allExceptLast.every(x => x.kind === 'progress')).toBeTruthy();
+  expect(allExceptLast.every((x) => x.kind === 'progress')).toBeTruthy();
   expect(first).toEqual({ kind: 'progress', progress: 0 });
   expect(penultimate).toEqual({ kind: 'progress', progress: 1 });
 
@@ -31,7 +31,7 @@ function checkProgressAndGetResult<T>(updates: Update<T>[]) {
 }
 
 describe('bcrypt models', () => {
-  describe(bcryptWithProgressUpdates.name, () => {
+  describe('bcryptWithProgressUpdates', () => {
     test('with bcrypt hash function', async () => {
       const updates = await fromAsync(bcryptWithProgressUpdates(hash, ['abc', 5]));
       const result = checkProgressAndGetResult(updates);

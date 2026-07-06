@@ -20,16 +20,18 @@ const results = computedAsync(async () => {
   }
   try {
     return await parquetReadObjects({ file: await file.arrayBuffer(), compressors });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
     return [];
   }
 });
-const resultsJson = computed(() => JSON.stringify(results.value || [], (_, v) => typeof v === 'bigint' ? v.toString() : v, 2));
+const resultsJson = computed(() =>
+  JSON.stringify(results.value || [], (_, v) => (typeof v === 'bigint' ? v.toString() : v), 2),
+);
 
-const columns = computed(() => Object.keys((results.value || [])[0] || {})
-  .map(h => ({ key: h.replace(/\./g, '\\.'), title: h })));
+const columns = computed(() =>
+  Object.keys((results.value || [])[0] || {}).map((h) => ({ key: h.replace(/\\/g, '\\\\').replace(/\./g, '\\.'), title: h })),
+);
 
 function onUpload(file: File) {
   if (file) {
@@ -70,8 +72,10 @@ function downloadCsv() {
           ref="tableRef"
           size="small"
           :columns="columns"
-
-          :data="results ?? undefined" bordered striped
+          :data="results ?? []"
+          bordered
+          striped
+          :pagination="{}"
         />
       </n-tab-pane>
     </n-tabs>
