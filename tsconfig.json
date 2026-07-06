@@ -1,6 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "**/*.d.ts", "*.ts", "*.js"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "**/*.d.ts"],
+  "exclude": ["vite.config.*", "node_modules"],
   "compilerOptions": {
     "lib": ["ES2022"],
     "target": "es2022",
@@ -14,6 +15,7 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "skipLibCheck": true,
-    "allowJs": true
+    "allowJs": true,
+    "ignoreDeprecations": "6.0"
   }
 }
