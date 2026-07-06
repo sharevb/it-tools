@@ -16,7 +16,7 @@ const [filterConfig, externalTools] = await Promise.all([
     .catch(() => [] as ExternalTool[]),
 ]);
 
-const allModules: ToolWithCategory[] = [...Object.values(modules)];
+const allModules: ToolWithCategory[] = Object.values(modules);
 
 // markdown-it (and its dependency tree) is only needed when a deployment actually
 // configures external tools, so it stays out of the startup bundle.
