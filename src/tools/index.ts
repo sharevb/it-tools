@@ -10,10 +10,10 @@ const base = import.meta.env.BASE_URL ?? '/';
 // most one network round-trip instead of two sequential ones.
 const [filterConfig, externalTools] = await Promise.all([
   fetch(`${base}tools-filter.json`)
-    .then(response => (response.ok ? response.json() as Promise<ToolsFilter> : {}))
+    .then(response => (response.ok ? response.json() as Promise<ToolsFilter> : ({} as ToolsFilter)))
     .catch(() => ({} as ToolsFilter)),
   fetch(`${base}external-tools.json`)
-    .then(response => (response.ok ? response.json() as Promise<ExternalTool[]> : []))
+    .then(response => (response.ok ? response.json() as Promise<ExternalTool[]> : ([] as ExternalTool[])))
     .catch(() => [] as ExternalTool[]),
 ]);
 

@@ -19,7 +19,9 @@ function localeOfPath(path: string): string {
   return path.replace(/^.*\/([^/]+)\.yml$/, '$1');
 }
 
-const enMessages = merge({}, enBaseMessages, ...Object.values(eagerToolMessages));
+// Cast: es-toolkit's merge infers a deeply recursive mapped type from the full message
+// tree, which makes vue-i18n's generics exceed TS's instantiation depth.
+const enMessages = merge({}, enBaseMessages, ...Object.values(eagerToolMessages)) as Record<string, unknown>;
 
 // VITE_AVAILABLE_LOCALES filters which locales the app offers; unlisted locale chunks are
 // still emitted at build time but never fetched.
@@ -39,7 +41,9 @@ const i18n = createI18n({
   fallbackLocale: FALLBACK_LOCALE,
   fallbackWarn: false,
   missingWarn: false,
-  messages: { [FALLBACK_LOCALE]: enMessages },
+  // Cast: without the unplugin-vue-i18n type shim (absent in tsconfig.vitest.json)
+  // vue-i18n's generics reject runtime-shaped message records.
+  messages: { [FALLBACK_LOCALE]: enMessages } as Record<string, any>,
 });
 
 const loadedLocales = new Set([FALLBACK_LOCALE]);
@@ -69,8 +73,9 @@ export const i18nPlugin: Plugin = {
   install: (app) => {
     app.use(i18n);
     // Messages arrive after the switch; vue-i18n falls back to English until
-    // setLocaleMessage triggers a reactive re-render.
-    watch(i18n.global.locale, locale => loadLocaleMessages(locale), { immediate: true });
+    // setLocaleMessage triggers a reactive re-render. Watching through the getter
+    // avoids depending on vue-i18n's locale ref generics.
+    watch(() => getCurrentLocale(), locale => loadLocaleMessages(locale), { immediate: true });
   },
 };
 
