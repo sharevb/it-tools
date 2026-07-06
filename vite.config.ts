@@ -64,8 +64,36 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: (process.env.VITE_VERCEL_DEPLOY ? ['**\/*.{css,html}'] : ['**\/*.{js,wasm,css,html}']),
+        // Precache only the app shell so the service worker doesn't download every
+        // tool chunk and WASM binary (~160 MB) on first visit; hashed assets are
+        // cached on demand as tools are opened. Set VITE_PWA_FULL_PRECACHE=true to
+        // restore full offline precaching of everything.
+        globPatterns: (process.env.VITE_PWA_FULL_PRECACHE === 'true' && !process.env.VITE_VERCEL_DEPLOY)
+          ? ['**\/*.{js,wasm,css,html}']
+          : ['**\/*.{css,html}'],
         maximumFileSizeToCacheInBytes: 25 * 1024 ** 2,
+        navigateFallback: `${baseUrl}index.html`,
+        runtimeCaching: [
+          {
+            urlPattern: ({ sameOrigin, request }) => sameOrigin
+              && (request.destination === 'script' || request.destination === 'worker'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'app-chunks',
+              expiration: { maxEntries: 2000, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: ({ sameOrigin, url }) => sameOrigin && url.pathname.endsWith('.wasm'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'app-wasm',
+              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
       },
       strategies: 'generateSW',
       manifest: {
