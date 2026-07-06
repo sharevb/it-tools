@@ -1,4 +1,3 @@
-import { TransferIn } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.rsync-generator.description'),
   keywords: ['rsync'],
   component: () => import('./rsync-generator.vue'),
-  icon: TransferIn,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/TransferIn')),
   createdAt: new Date('2024-04-20'),
   category: 'Network',
 });

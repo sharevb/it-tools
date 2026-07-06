@@ -1,4 +1,3 @@
-import { FileImport } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.pdf-concat.description'),
   keywords: ['pdf', 'concat'],
   component: () => import('./pdf-concat.vue'),
-  icon: FileImport,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/FileImport')),
   createdAt: new Date('2025-03-09'),
   category: 'PDF',
 });

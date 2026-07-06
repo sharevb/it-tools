@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Copy } from '@vicons/tabler';
+import Copy from '~icons/tabler/copy';
 import { Base64 } from 'js-base64';
 import { useCopy } from '@/composable/copy';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';

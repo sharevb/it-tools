@@ -1,4 +1,3 @@
-import { Math } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -40,7 +39,7 @@ export const tool = defineTool({
     'tanh',
   ],
   component: () => import('./math-evaluator.vue'),
-  icon: Math,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Math')),
   npmPackages: ['mathjs'],
   category: 'Maths',
 });

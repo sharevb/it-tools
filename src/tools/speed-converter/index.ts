@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Speedboat } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -10,7 +9,7 @@ export const tool = defineTool({
     'units', 'm/s', 'km/h', 'm/h', 'knot', 'ft/s',
   ],
   component: () => import('./speed-converter.vue'),
-  icon: Speedboat,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Speedboat')),
   createdAt: new Date('2026-01-30'),
   category: 'Physics',
 });

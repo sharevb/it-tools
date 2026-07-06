@@ -1,4 +1,3 @@
-import { ArrowsLeftRight } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.floating-point-converter.description'),
   keywords: ['converter', 'floating', 'point', 'number', 'converter', 'binary', 'decimal'],
   component: () => import('./floating-point-number-converter.vue'),
-  icon: ArrowsLeftRight,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/ArrowsLeftRight')),
   createdAt: new Date('2024-10-12'),
   category: 'Forensic',
 });

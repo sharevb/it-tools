@@ -1,4 +1,3 @@
-import { BrandHtml5 } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.html-minifier.description'),
   keywords: ['html', 'minifier'],
   component: () => import('./html-minifier.vue'),
-  icon: BrandHtml5,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/BrandHtml5')),
   createdAt: new Date('2025-07-06'),
   category: 'Web',
 });

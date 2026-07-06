@@ -1,4 +1,3 @@
-import { Binary } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.ipv4-address-converter.description'),
   keywords: ['ipv4', 'address', 'converter', 'decimal', 'hexadecimal', 'binary', 'ipv6'],
   component: () => import('./ipv4-address-converter.vue'),
-  icon: Binary,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Binary')),
   createdAt: new Date('2023-04-08'),
   category: 'Network',
 });

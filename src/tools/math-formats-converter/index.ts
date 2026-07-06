@@ -1,4 +1,3 @@
-import { EqualNot } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.math-formats-converter.description'),
   keywords: ['math', 'formats', 'converter', 'latex', 'mathml', 'asciimath', 'omml', 'html'],
   component: () => import('./math-formats-converter.vue'),
-  icon: EqualNot,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/EqualNot')),
   createdAt: new Date('2024-05-11'),
   category: 'Maths',
 });

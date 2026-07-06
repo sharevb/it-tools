@@ -1,4 +1,3 @@
-import { ColorSwatch } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.color-contrast-checker.description'),
   keywords: ['color', 'contrast', 'checker', 'wcag'],
   component: () => import('./color-contrast-checker.vue'),
-  icon: ColorSwatch,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/ColorSwatch')),
   createdAt: new Date('2025-03-09'),
   category: 'Web',
 });

@@ -1,4 +1,3 @@
-import { ExternalLink } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.curl-converter.description'),
   keywords: ['curl', 'code', 'language', 'generator'],
   component: () => import('./curl-converter.vue'),
-  icon: ExternalLink,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/ExternalLink')),
   createdAt: new Date('2024-04-20'),
   category: 'Development',
 });

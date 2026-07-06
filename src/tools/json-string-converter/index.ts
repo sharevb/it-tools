@@ -1,4 +1,3 @@
-import { IconBraces } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: '',
   keywords: ['json', 'string', 'converter'],
   component: () => import('./json-string-converter.vue'),
-  icon: IconBraces,
+  icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconBraces.mjs')),
   createdAt: new Date('2024-10-17'),
   category: 'JSON',
 });

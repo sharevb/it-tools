@@ -1,4 +1,3 @@
-import { Currency } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.currency-converter.description'),
   keywords: ['currency', 'converter', 'units'],
   component: () => import('./currency-converter.vue'),
-  icon: Currency,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Currency')),
   createdAt: new Date('2024-08-15'),
   category: 'Data',
   externAccessDescription: t('tools.currency-converter.externalAccess'),

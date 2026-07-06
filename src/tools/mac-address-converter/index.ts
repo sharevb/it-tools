@@ -1,4 +1,3 @@
-import { Devices } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -17,6 +16,6 @@ export const tool = defineTool({
     'eui-64',
   ],
   component: () => import('./mac-address-converter.vue'),
-  icon: Devices,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Devices')),
   category: 'Network',
 });

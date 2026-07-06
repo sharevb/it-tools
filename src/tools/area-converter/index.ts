@@ -1,4 +1,3 @@
-import { SquaresDiagonal } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -10,7 +9,7 @@ export const tool = defineTool({
     'units', 'square meter', 'are', 'square',
   ],
   component: () => import('./area-converter.vue'),
-  icon: SquaresDiagonal,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/SquaresDiagonal')),
   createdAt: new Date('2024-08-15'),
   category: 'Physics',
 });

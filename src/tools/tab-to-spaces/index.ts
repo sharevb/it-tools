@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { IndentIncrease } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.tab-to-spaces.description'),
   keywords: ['tab', 'space'],
   component: () => import('./tab-to-spaces.vue'),
-  icon: IndentIncrease,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/IndentIncrease')),
   createdAt: new Date('2026-02-02'),
   category: 'Text',
 });

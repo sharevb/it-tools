@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { LanguageHiragana } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.text-to-unicode-names.description'),
   keywords: ['text', 'unicode', 'name', 'hexa', 'char', 'code'],
   component: () => import('./text-to-unicode-names.vue'),
-  icon: LanguageHiragana,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/LanguageHiragana')),
   createdAt: new Date('2024-06-10'),
   category: 'Text',
 });

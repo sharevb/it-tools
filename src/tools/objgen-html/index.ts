@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Brackets } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.objgen-html.description'),
   keywords: ['objgen', 'html', 'toml'],
   component: () => import('./objgen-html.vue'),
-  icon: Brackets,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Brackets')),
   createdAt: new Date('2026-02-14'),
   category: 'XML',
 });

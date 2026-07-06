@@ -408,6 +408,7 @@
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/tabler": "^1.2.35",
     "@intlify/unplugin-vue-i18n": "^11.2.4",
     "@playwright/test": "^1.59.1",
     "@tsconfig/node24": "^24.0.4",

@@ -1,4 +1,3 @@
-import { DeviceDesktop } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -20,6 +19,6 @@ export const tool = defineTool({
     'agent',
   ],
   component: () => import('./device-information.vue'),
-  icon: DeviceDesktop,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/DeviceDesktop')),
   category: 'Web',
 });

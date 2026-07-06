@@ -1,4 +1,3 @@
-import { PictureInPicture } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.image-converter.description'),
   keywords: ['image', 'svg', 'bmp', 'gif', 'ico', 'jpg', 'png', 'tga', 'pvr', 'tiff', 'pnm', 'pbm', 'pgm', 'ppm', 'psd', 'webp', 'converter'],
   component: () => import('./image-converter.vue'),
-  icon: PictureInPicture,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/PictureInPicture')),
   createdAt: new Date('2024-08-15'),
   category: 'Images',
 });

@@ -1,4 +1,3 @@
-import { EyeOff } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -20,7 +19,7 @@ export const tool = defineTool({
     'crc32 mpeg-2',
     'crcjam'],
   component: () => import('./crc-calculator.vue'),
-  icon: EyeOff,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/EyeOff')),
   createdAt: new Date('2024-05-11'),
   category: 'Crypto',
 });

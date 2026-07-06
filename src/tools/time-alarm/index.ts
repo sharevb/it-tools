@@ -1,4 +1,3 @@
-import { Alarm } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.time-alarm.description'),
   keywords: ['time', 'alarm'],
   component: () => import('./time-alarm.vue'),
-  icon: Alarm,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Alarm')),
   createdAt: new Date('2025-03-09'),
   category: 'Datetime',
 });

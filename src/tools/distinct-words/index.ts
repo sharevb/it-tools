@@ -1,4 +1,3 @@
-import { FileText } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.distinct-words.description'),
   keywords: ['distinct', 'words'],
   component: () => import('./distinct-words.vue'),
-  icon: FileText,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/FileText')),
   createdAt: new Date('2025-05-01'),
   category: 'Text',
 });

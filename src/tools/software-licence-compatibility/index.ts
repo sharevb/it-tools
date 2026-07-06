@@ -1,4 +1,3 @@
-import { License } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.software-licence-compatibility.description'),
   keywords: ['software', 'licence', 'compatibility'],
   component: () => import('./software-licence-compatibility.vue'),
-  icon: License,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/License')),
   createdAt: new Date('2024-03-17'),
   category: 'Data',
 });

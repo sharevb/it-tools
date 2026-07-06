@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Gauge } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -10,7 +9,7 @@ export const tool = defineTool({
     'units', 'pascal', 'bar', 'torr', 'atmosphere',
   ],
   component: () => import('./pressure-converter.vue'),
-  icon: Gauge,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Gauge')),
   createdAt: new Date('2024-08-15'),
   category: 'Physics',
 });

@@ -1,4 +1,3 @@
-import { Binary } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.integers-to-ip.description'),
   keywords: ['integers', 'ip', 'ipv4', 'ipv6'],
   component: () => import('./integers-to-ip.vue'),
-  icon: Binary,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Binary')),
   createdAt: new Date('2024-07-14'),
   category: 'Network',
 });

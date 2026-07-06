@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Printer } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.html-to-pdf.description'),
   keywords: ['html', 'url', 'pdf'],
   component: () => import('./html-to-pdf.vue'),
-  icon: Printer,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Printer')),
   createdAt: new Date('2026-04-07'),
   category: 'PDF',
   externAccessDescription: t('tools.html-to-pdf.externalAccess'),

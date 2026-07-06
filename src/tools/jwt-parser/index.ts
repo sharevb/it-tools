@@ -1,4 +1,3 @@
-import { Key } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -24,7 +23,7 @@ export const tool = defineTool({
     'token',
   ],
   component: () => import('./jwt-parser.vue'),
-  icon: Key,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Key')),
   npmPackages: ['jwt-decode'],
   category: 'Crypto',
 });

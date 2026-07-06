@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { NetworkCheckSharp } from '@vicons/material';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.docker-pangolin-labels.description'),
   keywords: ['docker', 'compose', 'pangolin', 'blueprint', 'labels'],
   component: () => import('./docker-pangolin-labels.vue'),
-  icon: NetworkCheckSharp,
+  icon: defineAsyncComponent(() => import('@vicons/material/es/NetworkCheckSharp')),
   createdAt: new Date('2026-02-08'),
   category: 'Docker',
 });

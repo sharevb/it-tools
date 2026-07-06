@@ -1,4 +1,3 @@
-import { Percentage } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.percentage-calculator.description'),
   keywords: ['percentage', 'calculator', 'calculate', 'value', 'number', '%'],
   component: () => import('./percentage-calculator.vue'),
-  icon: Percentage,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Percentage')),
   createdAt: new Date('2023-06-18'),
   category: 'Measurement',
 });

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { DeviceDesktop, World } from '@vicons/tabler';
+import DeviceDesktop from '~icons/tabler/device-desktop';
+import World from '~icons/tabler/world';
 
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';

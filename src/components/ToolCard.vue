@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { World } from '@vicons/tabler';
+import World from '~icons/tabler/world';
 import { useThemeVars } from 'naive-ui';
 import FavoriteButton from './FavoriteButton.vue';
 import type { Tool } from '@/tools/tools.types';

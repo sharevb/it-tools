@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { SunOff } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.shutdown-command-generator.description'),
   keywords: ['shutdown', 'command'],
   component: () => import('./shutdown-command-generator.vue'),
-  icon: SunOff,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/SunOff')),
   createdAt: new Date('2026-04-07'),
   category: 'Network',
 });

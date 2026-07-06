@@ -1,4 +1,3 @@
-import { Braces } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.json-to-object.description'),
   keywords: ['json', 'parse', 'object', 'convert', 'transform'],
   component: () => import('./json-to-object.vue'),
-  icon: Braces,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Braces')),
   createdAt: new Date('2024-08-16'),
   category: 'JSON',
 });

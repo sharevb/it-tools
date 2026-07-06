@@ -1,4 +1,3 @@
-import { BrandGit } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.gitignore-generator.description'),
   keywords: ['gitignore', 'generator'],
   component: () => import('./gitignore-generator.vue'),
-  icon: BrandGit,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/BrandGit')),
   createdAt: new Date('2025-12-06'),
   category: 'Development',
   externAccessDescription: t('tools.gitignore-generator.externalAccess'),

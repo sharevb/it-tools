@@ -156,6 +156,16 @@ export default defineConfig({
       external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node', 'unpdf/pdfjs'],
       output: {
         format: 'es',
+        advancedChunks: {
+          // Tool icons are loaded through per-icon dynamic imports (see src/tools/*/index.ts);
+          // merge them into a single lazy chunk instead of ~450 tiny ones.
+          groups: [
+            {
+              name: 'tool-icons',
+              test: /node_modules[\\/](?:@vicons[\\/]|@tabler[\\/]icons-vue[\\/]dist[\\/]esm[\\/]icons[\\/])/,
+            },
+          ],
+        },
       },
     },
   },

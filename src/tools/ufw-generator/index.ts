@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Firetruck } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.ufw-generator.description'),
   keywords: ['ufw', 'firewall', 'generator'],
   component: () => import('./ufw-generator.vue'),
-  icon: Firetruck,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Firetruck')),
   createdAt: new Date('2026-03-07'),
   category: 'Network',
 });
