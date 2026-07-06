@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<{
   defaultUnit: string
   labelWidth?: string
   unitMinWidth?: string
-  converterType: 'convert' | 'frequency' | 'volumeFlowRate' | 'speed' | 'acceleration'
+  converterType?: 'convert' | 'frequency' | 'volumeFlowRate' | 'speed' | 'acceleration'
 }>(), {
   labelWidth: '150px',
   unitMinWidth: '50px',

@@ -210,25 +210,25 @@ const hashWasmPBKDF2 = computedAsync(async () => {
           <n-input-group-label style="flex: 0 0 120px">
             {{ t('tools.hash-text.texts.tag-argon2d') }}
           </n-input-group-label>
-          <InputCopyable :value="hashWasmArgon2d" readonly />
+          <InputCopyable :value="hashWasmArgon2d ?? ''" readonly />
         </n-input-group>
         <n-input-group>
           <n-input-group-label style="flex: 0 0 120px">
             {{ t('tools.hash-text.texts.tag-argon2i') }}
           </n-input-group-label>
-          <InputCopyable :value="hashWasmArgon2i" readonly />
+          <InputCopyable :value="hashWasmArgon2i ?? ''" readonly />
         </n-input-group>
         <n-input-group>
           <n-input-group-label style="flex: 0 0 120px">
             {{ t('tools.hash-text.texts.tag-argon2id') }}
           </n-input-group-label>
-          <InputCopyable :value="hashWasmArgon2id" readonly />
+          <InputCopyable :value="hashWasmArgon2id ?? ''" readonly />
         </n-input-group>
         <n-input-group>
           <n-input-group-label style="flex: 0 0 120px">
             {{ t('tools.hash-text.texts.tag-pbkdf2') }}
           </n-input-group-label>
-          <InputCopyable :value="hashWasmPBKDF2" readonly />
+          <InputCopyable :value="hashWasmPBKDF2 ?? ''" readonly />
         </n-input-group>
       </div>
     </c-card>

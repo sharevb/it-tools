@@ -18,7 +18,7 @@ const selectedNodes = computed(() => {
       [...xml.value.matchAll(/xmlns\:([^\=]+)\=["']([^"']+)["']/g)].map(
         ([_, prefix, uri]) => [prefix, uri],
       )));
-    const result = select(xpath.value, doc);
+    const result = select(xpath.value, doc as unknown as Node);
     return Array.isArray(result) ? result : [result];
   }
   catch (e: any) {

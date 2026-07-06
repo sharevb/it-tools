@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import JsonEditorVue from 'json-editor-vue';
-import { type AfterSelection, type InsideSelection, type JSONEditorSelection, type KeySelection, type MultiSelection, type ValueSelection, isAfterSelection, isInsideSelection, isKeySelection, isMultiSelection, isValueSelection, stringifyJSONPath } from 'vanilla-jsoneditor';
+import { type AfterSelection, type InsideSelection, type JSONEditorSelection, type KeySelection, type MultiSelection, type ValueSelection, Mode, isAfterSelection, isInsideSelection, isKeySelection, isMultiSelection, isValueSelection, stringifyJSONPath } from 'vanilla-jsoneditor';
 import 'vanilla-jsoneditor/themes/jse-theme-dark.css';
 import { jsonrepair } from 'jsonrepair';
 import { useJsonSchemaValidation } from '../json-viewer/useJsonSchemaValidation';
@@ -67,7 +67,7 @@ const formattedJson = computed(() => {
   <div>
     <JsonEditorVue
       v-model="jsonText"
-      mode="text"
+      :mode="Mode.text"
       :class="styleStore.isDarkTheme ? 'jse-theme-dark' : ''"
       :on-select="updateJsonPath"
       mb-2

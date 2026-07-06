@@ -37,7 +37,7 @@ const lineEndingOptions = [
 ];
 
 const portOptions = computed(() =>
-  availablePorts.value.map((p, i) => ({
+  (availablePorts.value as any[]).map((p, i) => ({
     label: `Port ${i + 1} (${p.getInfo().usbVendorId ?? 'Unknown'})`,
     value: p,
   })),
@@ -85,7 +85,7 @@ function isWindowSecureContext() {
         style="width: 120px"
       />
       <NSelect
-        v-model:value="selectedPort"
+        v-model:value="(selectedPort as any)"
         :options="portOptions"
         label-field="label"
         value-field="value"

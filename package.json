@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "NODE_OPTIONS=$(node node_mem.js) vite build",
+    "build": "vue-tsc --noEmit && NODE_OPTIONS=$(node node_mem.js) vite build",
     "preview": "vite preview --port 5050",
     "test": "TZ=UTC npm run test:unit",
     "test:unit": "TZ=UTC NODE_OPTIONS=$(node node_mem.js) vitest --environment jsdom",

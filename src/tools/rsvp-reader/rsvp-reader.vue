@@ -279,7 +279,7 @@ onBeforeUnmount(() => {
 
           <NProgress
             type="line"
-            :percentage="((currentIndex / words.length) * 100).toFixed(1)"
+            :percentage="Number(((currentIndex / words.length) * 100).toFixed(1))"
             indicator-placement="inside"
             style="cursor: pointer;"
             mb-2

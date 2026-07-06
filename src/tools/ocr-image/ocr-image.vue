@@ -157,6 +157,7 @@ async function convertPdfToImage(file: File) {
     canvas.width = viewport.width;
     container?.appendChild(canvas);
     await page.render({
+      canvas,
       canvasContext: canvas.getContext('2d') as CanvasRenderingContext2D,
       viewport,
     }).promise;

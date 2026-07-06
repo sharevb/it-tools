@@ -30,8 +30,8 @@ const parsedEmail = computedAsync(async () => {
   }
 });
 
-function downloadFile(data: ArrayBuffer | string, fileName: string, fileType: string) {
-  const blob = new Blob([data], { type: fileType || 'application/octet-stream' });
+function downloadFile(data: ArrayBuffer | Uint8Array | string, fileName: string, fileType: string) {
+  const blob = new Blob([data as BlobPart], { type: fileType || 'application/octet-stream' });
   const downloadUrl = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = downloadUrl;

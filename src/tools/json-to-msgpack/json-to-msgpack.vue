@@ -48,7 +48,7 @@ function downloadURL(data: string, fileName: string) {
 }
 
 function downloadBlob(data: Uint8Array, fileName: string) {
-  const blob = new Blob([data], {
+  const blob = new Blob([data as Uint8Array<ArrayBuffer>], {
     type: 'application/octet-stream',
   });
   const url = window.URL.createObjectURL(blob);

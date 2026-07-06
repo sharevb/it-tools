@@ -106,7 +106,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
 
     // Batch add to dataMap
     itemData.forEach(({ itemKey, item }) => {
-      dataMap.value.set(itemKey, item);
+      dataMap.value.set(itemKey, item as any);
     });
 
     // Process indices sequentially to avoid event loop flooding
@@ -273,14 +273,14 @@ export function useFlexSearch<Data extends Record<string, any>>({
 
     // Handle empty query case
     if (!query && !filterEmpty) {
-      return searchLimit > 0 ? data.slice(0, searchLimit) : data;
+      return searchLimit > 0 ? (data.slice(0, searchLimit) as Data[]) : (data as Data[]);
     }
 
     if (!query) {
       return [];
     }
 
-    return searchAllIndices(query, searchLimit);
+    return searchAllIndices(query, searchLimit) as unknown as Data[];
   });
 
   return { searchResult };

@@ -17,7 +17,7 @@ useHead({
     {
       itemprop: 'name',
       content: title,
-    },
+    } as any,
     {
       property: 'og:title',
       content: title,
@@ -33,7 +33,7 @@ useHead({
     {
       itemprop: 'description',
       content: desc,
-    },
+    } as any,
     {
       property: 'og:description',
       content: desc,

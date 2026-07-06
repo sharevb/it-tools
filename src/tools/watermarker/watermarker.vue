@@ -40,7 +40,7 @@ const downloadFormat = ref('png');
 const canvas = ref<HTMLCanvasElement | null>(null);
 
 const imageOptions = computed(() =>
-  images.value.map((img, i) => ({ label: img.getAttribute('data-name'), value: i })),
+  images.value.map((img, i) => ({ label: img.getAttribute('data-name') ?? '', value: i })),
 );
 
 function onFileChanges(uploadedFiles: File[]) {

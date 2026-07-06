@@ -135,7 +135,7 @@ const tcpDumpCommand = computed(() => {
       <NFormItem :label="t('tools.tcpdump-generator.texts.label-packet-limit')">
         <NTooltip trigger="hover">
           <template #trigger>
-            <NInput v-model:value="limit" type="number" :placeholder="t('tools.tcpdump-generator.texts.placeholder-e-g-100')" />
+            <NInput v-model:value="limit" type="text" :placeholder="t('tools.tcpdump-generator.texts.placeholder-e-g-100')" />
           </template>{{ t('tools.tcpdump-generator.texts.tag-stop-capturing-after-this-number-of-packets') }}
         </NTooltip>
       </NFormItem>

@@ -96,7 +96,7 @@ async function onFileUploaded(uploadedFile: File) {
   status.value = 'processing';
   try {
     if (outputFormatValue === 'webp') {
-      const encodedImage = await arrayBufferToWebP(fileBuffer);
+      const encodedImage = await arrayBufferToWebP(fileBuffer.buffer as ArrayBuffer);
       fileExtension.value = 'webp';
       base64OutputFile.value = `data:image/webp;base64,${Base64.fromUint8Array(new Uint8Array(await encodedImage.arrayBuffer()))}`;
     }
@@ -111,7 +111,7 @@ async function onFileUploaded(uploadedFile: File) {
           fitTo: { mode: 'zoom', value: svgScale.value },
         });
         const rendered = resvg.render();
-        fileBuffer = rendered.asPng();
+        fileBuffer = rendered.asPng() as Uint8Array<ArrayBuffer>;
         rendered.free();
         resvg.free();
       }
@@ -126,7 +126,7 @@ async function onFileUploaded(uploadedFile: File) {
       const outConfig = outputFormats[outputFormatValue as (keyof typeof outputFormats)];
       const encodedImage = outConfig.save(decodedImage);
       fileExtension.value = outputFormatValue;
-      base64OutputFile.value = `data:${outConfig.mime};base64,${Base64.fromUint8Array(encodedImage!)}`;
+      base64OutputFile.value = `data:${outConfig.mime};base64,${Base64.fromUint8Array(encodedImage! as Uint8Array<ArrayBuffer>)}`;
     }
     status.value = 'done';
 

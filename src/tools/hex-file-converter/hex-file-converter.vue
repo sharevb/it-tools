@@ -63,7 +63,7 @@ const fileHex = computedAsync(async () => {
 
   return pref + await ReadFileAsHex(file, sep);
 });
-const { copy: copyFileHex } = useCopy({ source: fileHex, text: t('tools.hex-file-converter.texts.text-hex-string-copied-to-the-clipboard') });
+const { copy: copyFileHex } = useCopy({ source: computed(() => fileHex.value ?? ''), text: t('tools.hex-file-converter.texts.text-hex-string-copied-to-the-clipboard') });
 
 function onUpload(file: File) {
   if (file) {

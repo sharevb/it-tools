@@ -4,6 +4,7 @@ import markdownitSanitizer from 'markdown-it-sanitizer';
 import markdownitSup from 'markdown-it-sup';
 import markdownitSub from 'markdown-it-sub';
 import markdownitMark from 'markdown-it-mark';
+// @ts-ignore
 import { align } from '@mdit/plugin-align';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 

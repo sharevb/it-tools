@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import type { TranslationPipeline, TranslationSingle } from '@huggingface/transformers';
+import type { TranslationPipeline } from '@huggingface/transformers';
 import { env, pipeline } from '@huggingface/transformers';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+type TranslationSingle = { translation_text: string };
 
 const { t } = useI18n();
 

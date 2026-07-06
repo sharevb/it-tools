@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { bundledLanguagesInfo, createHighlighter } from 'shiki/bundle/full';
-import { bundledThemesInfo } from 'shiki/themes';
+import { bundledLanguagesInfo, bundledThemesInfo, createHighlighter } from 'shiki';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { useCopy, useCopyHtml } from '@/composable/copy';
+
+// TODO: import BundledThemeInfo/BundledLanguageInfo from 'shiki' once moduleResolution is updated to bundler
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type BundledThemeInfo = any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type BundledLanguageInfo = any;
 
 const { t } = useI18n();
 
@@ -21,14 +26,14 @@ function identity<T extends number | string = string>(arg: T): T {
 }`);
 
 const themes = ref<{ value: string; label: string }[]>(
-  bundledThemesInfo.map((item) => {
+  bundledThemesInfo.map((item: BundledThemeInfo) => {
     return {
       value: item.id,
       label: item.displayName,
     };
   }));
 const langs = ref<{ value: string; label: string }[]>(
-  bundledLanguagesInfo.map(item => ({
+  bundledLanguagesInfo.map((item: BundledLanguageInfo) => ({
     value: item.id,
     label: item.name,
   })));
@@ -74,7 +79,7 @@ const formattedCodeHtml = computedAsync(async () => {
     ],
   });
 });
-const { copy: copyHtml } = useCopyHtml({ sourceHtml: formattedCodeHtml });
+const { copy: copyHtml } = useCopyHtml({ sourceHtml: computed(() => formattedCodeHtml.value ?? '') });
 const { copy: copyText } = useCopy({ source: code });
 </script>
 

@@ -70,7 +70,7 @@ function downloadFile(attachment: FieldsData) {
   if (!attachmentData) {
     return;
   }
-  const blob = new Blob([attachmentData.content], { type: 'application/octet-stream' });
+  const blob = new Blob([attachmentData.content as Uint8Array<ArrayBuffer>], { type: 'application/octet-stream' });
   const downloadUrl = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = downloadUrl;

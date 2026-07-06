@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import * as jose from 'jose';
-import { type KeyLike } from 'jose';
 import JSON5 from 'json5';
 import hexArray from 'hex-array';
 import { Base64 } from 'js-base64';
@@ -66,14 +65,14 @@ watch(privateKeyPEM, async (newValue) => {
 }, { immediate: true });
 watch(publicKeyJWK, async (newValue) => {
   try {
-    publicKeyPEM.value = await jose.exportSPKI(await jose.importJWK({ ...JSON.parse(newValue), ...{ ext: true } }, alg.value) as KeyLike);
+    publicKeyPEM.value = await jose.exportSPKI(await jose.importJWK({ ...JSON.parse(newValue), ...{ ext: true } }, alg.value) as CryptoKey);
   }
   catch {
   }
 }, { immediate: true });
 watch(privateKeyJWK, async (newValue) => {
   try {
-    privateKeyPEM.value = await jose.exportPKCS8(await jose.importJWK({ ...JSON.parse(newValue), ...{ ext: true } }, alg.value) as KeyLike);
+    privateKeyPEM.value = await jose.exportPKCS8(await jose.importJWK({ ...JSON.parse(newValue), ...{ ext: true } }, alg.value) as CryptoKey);
   }
   catch {
   }

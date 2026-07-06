@@ -51,8 +51,8 @@ const output = computedAsync(async () => {
   }
   processing.value = false;
 
-  return outputValue;
-});
+  return outputValue ?? '';
+}, '');
 
 async function onFileUploaded(uploadedFile: File) {
   inputBase64.value = await toBase64(uploadedFile);

@@ -118,7 +118,7 @@ const isEnded = computed(() => status.value === 'ended');
       </div>
     </div>
 
-    <n-modal v-model:show="isEnded" mask-closable="false">
+    <n-modal v-model:show="isEnded" :mask-closable="false">
       <n-card
         style="width: 600px"
         :title="t('tools.time-alarm.texts.title-timer-finished')"

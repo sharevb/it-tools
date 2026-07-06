@@ -67,15 +67,13 @@ async function loadPipelines() {
   modelLoadingProgress.value = 0;
 
   const update = (p: ProgressInfo) => {
-    // @ts-expect-error: progress check
-    if (p && typeof p.progress === 'number') {
-      // @ts-expect-error: progress check
-      modelLoadingProgress.value = Math.round(p.progress * 100);
+    const progress = (p as any).progress;
+    if (p && typeof progress === 'number') {
+      modelLoadingProgress.value = Math.round(progress * 100);
     }
   };
 
   if (!rmbgPipeline) {
-    // @ts-expect-error Probably a Typescript bug 'too complex type'
     rmbgPipeline = await pipeline(
       'background-removal',
       'briaai/RMBG-1.4',
@@ -200,12 +198,12 @@ async function removeBackground() {
     const originalImage = await createImageBitmap(file);
     const imageBitmap = await RawImage.fromBlob(file)!;
 
-    let results: RawImage[];
+    let result: RawImage;
     if (selectedModel.value === 'modnet' && webgpuAvailable.value) {
-      results = await modnetPipeline!(imageBitmap);
+      result = await modnetPipeline!(imageBitmap);
     }
     else {
-      results = await rmbgPipeline!(imageBitmap);
+      result = await rmbgPipeline!(imageBitmap);
     }
 
     const canvas = document.createElement('canvas');
@@ -228,7 +226,7 @@ async function removeBackground() {
       originalImage,
     );
 
-    ctx.drawImage(rawImageToCanvas(results[0]), 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(rawImageToCanvas(result), 0, 0, canvas.width, canvas.height);
 
     outputUrl.value = canvas.toDataURL('image/png')!;
   }

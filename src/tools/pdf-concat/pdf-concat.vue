@@ -107,7 +107,7 @@ async function callMainWithManyInOutPdf(input_files: Array<ArrayBuffer>, args: s
           show-sort-button
           w-full
           :insertion-disabled="true"
-          :create-button-props="{ id: 'pdf-concat-create' }"
+          :create-button-props="({ id: 'pdf-concat-create' } as any)"
         >
           <template #action="{ index, remove, move }">
             <div ml-1 flex gap-1>

@@ -8,6 +8,10 @@ const action = ref<string>('add');
 const ruleType = ref<string>('service');
 const value = ref<string>('http');
 const permanent = ref<boolean>(true);
+const permanentStr = computed({
+  get: () => permanent.value ? 'true' : 'false',
+  set: (v: string) => { permanent.value = v === 'true'; },
+});
 
 const ruleTypes = [
   { label: t('tools.firewalld-generator.texts.label-service'), value: 'service' },
@@ -51,7 +55,7 @@ const command = computed(() => {
       </NFormItem>
 
       <NFormItem :label="t('tools.firewalld-generator.texts.label-permanent')">
-        <NSelect v-model:value="permanent" :options="[{ label: t('tools.firewalld-generator.texts.label-yes'), value: true }, { label: t('tools.firewalld-generator.texts.label-no'), value: false }]" />
+        <NSelect v-model:value="permanentStr" :options="[{ label: t('tools.firewalld-generator.texts.label-yes'), value: 'true' }, { label: t('tools.firewalld-generator.texts.label-no'), value: 'false' }]" />
       </NFormItem>
     </NForm>
 

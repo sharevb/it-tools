@@ -41,11 +41,11 @@ async function onFileUploaded(uploadedFile: File) {
     }
 
     const outputBuffer = await heicConvert({
-      buffer: new Uint8Array(fileBuffer),
+      buffer: fileBuffer as any,
       format: convertFormat as ('JPEG' | 'PNG'),
       quality: 0.98,
     });
-    base64OutputImage.value = `data:image/${convertFormat.toLowerCase()};base64,${Base64.fromUint8Array(new Uint8Array(outputBuffer))}`;
+    base64OutputImage.value = `data:image/${convertFormat.toLowerCase()};base64,${Base64.fromUint8Array(new Uint8Array(outputBuffer as ArrayBuffer))}`;
 
     status.value = 'done';
 

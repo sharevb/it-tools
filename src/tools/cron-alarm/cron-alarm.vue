@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { Countdown } from 'vue3-flip-countdown';
-import { parseExpression } from 'cron-parser';
+import { CronExpressionParser } from 'cron-parser';
 import moment from 'moment';
 import { useQueryParam } from '@/composable/queryParams';
 
@@ -43,7 +43,7 @@ const cronExpression = computed(() => {
   return `${s} ${m} ${h} * * ${alarmDays.value}`;
 });
 const alarmAtDate = computed(() => {
-  const interval = parseExpression(cronExpression.value);
+  const interval = CronExpressionParser.parse(cronExpression.value);
   return interval.next().toDate();
 });
 
@@ -150,7 +150,7 @@ const isEnded = computed(() => status.value === 'ended');
       Next alarm at: {{ alarmAtDate }}
     </n-p>
 
-    <n-modal v-model:show="isEnded" mask-closable="false">
+    <n-modal v-model:show="isEnded" :mask-closable="false">
       <n-card
         style="width: 600px"
         :title="t('tools.cron-alarm.texts.title-timer-finished')"

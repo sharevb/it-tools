@@ -8,7 +8,7 @@ export interface OciGithubLabels {
   licenses: string
   version: string
   revision: string
-  created: Date | null
+  created: number | null
   authors: string
 }
 
@@ -37,7 +37,7 @@ const dockerfileLabels = computed(() => {
     ['org.opencontainers.image.licenses', f.licenses],
     ['org.opencontainers.image.version', f.version],
     ['org.opencontainers.image.revision', f.revision],
-    ['org.opencontainers.image.created', f.created?.toISOString() || ''],
+    ['org.opencontainers.image.created', f.created ? new Date(f.created).toISOString() : ''],
     ['org.opencontainers.image.authors', f.authors],
   ];
 

@@ -200,7 +200,7 @@ function generatePeers() {
         </n-form-item>
       </n-space>
       <n-form-item :label="t('tools.wireguard-config-generator.texts.label-use-pre-shared-keys')" label-placement="left">
-        <n-checkbox v-model:value="usePreSharedKeys" />
+        <n-checkbox v-model:checked="usePreSharedKeys" />
       </n-form-item>
       <c-input-text
         v-model:value="clientAllowedIPs"

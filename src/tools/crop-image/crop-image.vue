@@ -497,7 +497,7 @@ function exportImage() {
               <!-- Background Color Picker -->
               <n-form-item :label="t('tools.crop-image.texts.background-color')">
                 <div w-full flex items-center gap-4>
-                  <n-color-picker v-model:value="backgroundColor" :modes="['hex', 'rgba']" class="flex-1" />
+                  <n-color-picker v-model:value="backgroundColor" :modes="['hex', 'rgb']" class="flex-1" />
                   <c-button size="small" @click="backgroundColor = '#00000000'">
                     {{ t('tools.crop-image.texts.transparent') }}
                   </c-button>

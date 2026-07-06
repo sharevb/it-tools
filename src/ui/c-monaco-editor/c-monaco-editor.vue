@@ -26,14 +26,6 @@ const emits = defineEmits<{
   (e: 'validate', markers: monacoEditor.editor.IMarker[]): void
 }>();
 
-interface MonacoEnvironment {
-  getWorker(_: any, label: string): Worker
-}
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare module globalThis {
-  let MonacoEnvironment: MonacoEnvironment;
-}
-
 const value = useVModel(props, 'value', emits);
 
 globalThis.MonacoEnvironment = {
@@ -57,7 +49,7 @@ globalThis.MonacoEnvironment = {
 // loaded monaco-editor from `node_modules`
 loader.config({ monaco: monacoEditor });
 
-export interface EditorProps {
+interface EditorProps {
   defaultValue?: string
   defaultPath?: string
   defaultLanguage?: string
