@@ -9,7 +9,6 @@ import { installAbortSignalPolyfill } from 'abort-signal-polyfill';
 
 import { registerSW } from 'virtual:pwa-register';
 import shadow from 'vue-shadow-dom';
-import { hideSplashScreen } from 'vite-plugin-splash-screen/runtime';
 import { plausible } from './plugins/plausible.plugin';
 import '@/utils/json5-bigint';
 import '@/utils/json5-bignum';
@@ -21,6 +20,7 @@ import { naive } from './plugins/naive.plugin';
 import App from './App.vue';
 import router from './router';
 import { i18nPlugin } from './plugins/i18n.plugin';
+import { toolsSettings } from './tools-settings';
 
 import store from './tools/pomodoro-timer/app/store';
 
@@ -38,15 +38,6 @@ registerSW();
 
 const app = createApp(App);
 
-const base = import.meta.env.BASE_URL ?? '/';
-let toolsSettings: Record<string, Record<string, any> | any> = {};
-try {
-  const remoteSettingsResponse = await fetch(`${base}tools-settings.json`);
-  if (remoteSettingsResponse.ok) {
-    toolsSettings = (await remoteSettingsResponse.json()) as Record<string, Record<string, any> | any>;
-  }
-}
-catch {}
 app.config.globalProperties.$itToolsSettings = toolsSettings;
 
 app.use(LoadingPlugin);
@@ -60,5 +51,3 @@ app.use(shadow);
 app.use(store, 'pomodoro-store');
 
 app.mount('#app');
-
-hideSplashScreen();

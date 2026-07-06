@@ -46,10 +46,6 @@ declare module 'pdf-signature-reader' {
   export default verifySignature;
 }
 
-declare module 'vite-plugin-splash-screen/runtime' {
-  export function hideSplashScreen();
-}
-
 declare module 'units-converter' {
   interface ITo{
     to(unit: string): { value: number }

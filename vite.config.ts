@@ -2,7 +2,6 @@ import { URL, fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import wasm from 'vite-plugin-wasm';
-import { splashScreen } from 'vite-plugin-splash-screen';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -142,10 +141,6 @@ export default defineConfig({
     Unocss(),
     nodePolyfills(),
     wasm(),
-    splashScreen({
-      logoSrc: 'logo.svg',
-      splashBg: '#383838',
-    }),
     visualizer(),
   ],
   base: baseUrl,

@@ -1290,9 +1290,6 @@ importers:
       vite-plugin-pwa:
         specifier: ^1.3.0
         version: 1.3.0(vite@8.1.3(@types/node@24.13.2)(jiti@2.7.0)(less@4.6.7)(terser@5.48.0)(yaml@2.9.0))(workbox-build@7.4.1)(workbox-window@7.4.1)
-      vite-plugin-splash-screen:
-        specifier: ^0.2.0
-        version: 0.2.2
       vite-plugin-wasm:
         specifier: ^3.6.0
         version: 3.6.0(vite@8.1.3(@types/node@24.13.2)(jiti@2.7.0)(less@4.6.7)(terser@5.48.0)(yaml@2.9.0))
@@ -10884,9 +10881,6 @@ packages:
     peerDependenciesMeta:
       '@vite-pwa/assets-generator':
         optional: true
-
-  vite-plugin-splash-screen@0.2.2:
-    resolution: {integrity: sha512-RNHMTldDbVCubB1Al2uqS5zpdHI+rDvm9/c3qRUdvHy59GlTNCLH6CRLdS9cHNBT//a09NO/XCoeFShasFn2UQ==}
 
   vite-plugin-wasm@3.6.0:
     resolution: {integrity: sha512-mL/QPziiIA4RAA6DkaZZzOstdwbW5jO4Vz7Zenj0wieKWBlNvIvX5L5ljum9lcUX0ShNfBgCNLKTjNkRVVqcsw==}
@@ -22000,8 +21994,6 @@ snapshots:
       workbox-window: 7.4.1
     transitivePeerDependencies:
       - supports-color
-
-  vite-plugin-splash-screen@0.2.2: {}
 
   vite-plugin-wasm@3.6.0(vite@8.1.3(@types/node@24.13.2)(jiti@2.7.0)(less@4.6.7)(terser@5.48.0)(yaml@2.9.0)):
     dependencies:
