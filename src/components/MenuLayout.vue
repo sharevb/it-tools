@@ -23,16 +23,14 @@ onUnmounted(() => {
   window.removeEventListener('resize', updateWindowWidth);
 });
 
-// Calculate the actual width to ensure minimum width is respected
-const siderWidth = computed(() => {
-  if (isMenuCollapsed.value) {
-    return 0;
-  }
+// Use 12.5% of window width, but ensure it's at least 240px
+const siderContentWidth = computed(() => Math.max(240, windowWidth.value * 0.125));
 
-  // Use 12.5% of window width, but ensure it's at least 240px
-  const tenPercent = windowWidth.value * 0.125;
-  return Math.max(240, tenPercent);
-});
+const siderWidth = computed(() => (isMenuCollapsed.value ? 0 : siderContentWidth.value));
+
+// The scroll container is pinned to the expanded width so the sider width
+// transition clips the menu instead of re-wrapping every item on each frame.
+const siderContentWidthPx = computed(() => `${siderContentWidth.value}px`);
 </script>
 
 <template>
@@ -57,6 +55,13 @@ const siderWidth = computed(() => {
 </template>
 
 <style lang="less" scoped>
+.n-layout-sider {
+  // With :native-scrollbar="false" the sider content lives in an n-scrollbar.
+  ::v-deep(.n-scrollbar-content) {
+    width: v-bind(siderContentWidthPx);
+  }
+}
+
 .overlay {
   position: absolute;
   top: 0;

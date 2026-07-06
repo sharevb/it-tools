@@ -214,6 +214,12 @@ const themeVars = useThemeVars();
   }
 }
 .category-container {
+  // Offscreen categories skip layout and paint entirely, which keeps the sider
+  // width transition and expand/collapse animations from re-laying-out all ~460
+  // menu items on every frame.
+  content-visibility: auto;
+  contain-intrinsic-size: auto 36px;
+
 .menu-container {
   display: grid;
   grid-template-rows: 1fr;
