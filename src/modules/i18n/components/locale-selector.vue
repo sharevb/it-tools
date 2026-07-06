@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { availableLocales, locale, t } = useI18n();
+import { appLocales } from '@/plugins/i18n.plugin';
+
+const { locale, t } = useI18n();
 
 const localesLong: Record<string, string> = {
   en: 'English',
@@ -24,7 +26,7 @@ const localesLong: Record<string, string> = {
 };
 
 const localeOptions = computed(() =>
-  availableLocales.map(locale => ({
+  appLocales.map(locale => ({
     label: localesLong[locale] ?? locale,
     value: locale,
   })),

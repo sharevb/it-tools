@@ -23,27 +23,13 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 const baseUrl = process.env.BASE_URL || '/';
 
-const VITE_AVAILABLE_LOCALES = process.env.VITE_AVAILABLE_LOCALES;
-console.log(`Building for locales: ${VITE_AVAILABLE_LOCALES}`);
-
-let includeLocales = [
-  resolve(__dirname, 'locales/en.yml'),
+// Locales are code-split: only en is bundled eagerly, the rest become lazy chunks fetched on
+// first use (see src/plugins/i18n.plugin.ts). VITE_AVAILABLE_LOCALES filters the locales
+// offered at runtime instead of trimming the build.
+const includeLocales = [
+  resolve(__dirname, 'src/tools/*/locales/**'),
+  resolve(__dirname, 'locales/**'),
 ];
-if (!process.env.VITEST) {
-  if (!VITE_AVAILABLE_LOCALES || VITE_AVAILABLE_LOCALES === '*' || VITE_AVAILABLE_LOCALES === 'all') {
-    includeLocales = [
-      resolve(__dirname, 'src/tools/*/locales/**'),
-      resolve(__dirname, 'locales/**'),
-    ];
-  }
-  else {
-    const fileNameMatching = VITE_AVAILABLE_LOCALES.includes(',') ? `{${VITE_AVAILABLE_LOCALES}}` : VITE_AVAILABLE_LOCALES;
-    includeLocales = [
-      resolve(__dirname, `src/tools/*/locales/${fileNameMatching}.*`),
-      resolve(__dirname, `locales/${fileNameMatching}.*`),
-    ];
-  }
-}
 
 // https://vitejs.dev/config/
 export default defineConfig({
