@@ -1,8 +1,6 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { createHead } from '@vueuse/head';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 import { LoadingPlugin } from 'vue-loading-overlay';
 
 import { installAbortSignalPolyfill } from 'abort-signal-polyfill';
@@ -35,8 +33,6 @@ window.addEventListener('vite:preloadError', (event: Event) => {
 });
 
 installAbortSignalPolyfill();
-
-library.add(fas);
 
 registerSW();
 

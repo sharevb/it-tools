@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import VueMarkdown from 'vue-markdown-render';
 import { useTheme } from '../ui/c-link/c-link.theme';
+
+// Async: keeps markdown-it out of the startup bundle; the renderer only loads on
+// deployments that actually ship a home.custom.md.
+const VueMarkdown = defineAsyncComponent(() => import('vue-markdown-render'));
 
 const linkTheme = useTheme();
 

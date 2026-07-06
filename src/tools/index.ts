@@ -1,4 +1,3 @@
-import markdownit from 'markdown-it';
 import type { ExternalTool, ToolCategory, ToolWithCategory, ToolsFilter } from './tools.types';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -17,9 +16,13 @@ const [filterConfig, externalTools] = await Promise.all([
     .catch(() => [] as ExternalTool[]),
 ]);
 
-const allModules: ToolWithCategory[] = [
-  ...Object.values(modules),
-  ...externalTools.map((externalTool) => {
+const allModules: ToolWithCategory[] = [...Object.values(modules)];
+
+// markdown-it (and its dependency tree) is only needed when a deployment actually
+// configures external tools, so it stays out of the startup bundle.
+if (externalTools.length > 0) {
+  const { default: markdownit } = await import('markdown-it');
+  allModules.push(...externalTools.map((externalTool) => {
     const html = markdownit().render(externalTool.markdownContent
         || (externalTool.href
           ? `${t('tools.external-link-goto')} [${externalTool.href}](${externalTool.href})`
@@ -30,8 +33,8 @@ const allModules: ToolWithCategory[] = [
       component: () => import('@/components/ExternalToolContent.vue'),
       externalHTMLContent: html,
     }) as ToolWithCategory;
-  }),
-];
+  }));
+}
 
 const makeRegExp = (regex: string | undefined) => regex ? new RegExp(regex, 'i') : null;
 const filters = {

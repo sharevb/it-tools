@@ -182,10 +182,14 @@ export default defineConfig({
         advancedChunks: {
           // Tool icons are loaded through per-icon dynamic imports (see src/tools/*/index.ts);
           // merge them into a single lazy chunk instead of ~450 tiny ones.
+          // includeDependenciesRecursively must stay off: with it, shared helper modules
+          // get captured into this chunk and entry chunks end up statically importing it,
+          // which drags the whole icon set back into the startup payload.
           groups: [
             {
               name: 'tool-icons',
               test: /node_modules[\\/](?:@vicons[\\/]|@tabler[\\/]icons-vue[\\/]dist[\\/]esm[\\/]icons[\\/])/,
+              includeDependenciesRecursively: false,
             },
           ],
         },
