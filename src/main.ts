@@ -27,7 +27,11 @@ import store from './tools/pomodoro-timer/app/store';
 window.addEventListener('vite:preloadError', (event: Event) => {
   console.error('Vite preload error, forcing page reload:', event);
   event.preventDefault(); // Prevent the original error from being thrown again
-  window.location.reload();
+  // Deferred: Firefox also fires this event for preloads cancelled by a user
+  // navigation, and an immediate reload would race (and abort) that navigation.
+  // If the page is really navigating away, its timers die with it and no reload
+  // happens; on a genuine chunk-load failure the reload still runs.
+  setTimeout(() => window.location.reload(), 100);
 });
 
 installAbortSignalPolyfill();
