@@ -197,6 +197,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ['isolated-vm', '@lezer/highlight', 'pdfjs-dist', 'onnxruntime-node', 'onnxruntime-web', 'unpdf', 'unpdf/pdfjs', 'image-in-browser', ...(process.env.VERCEL ? ['webcrypto-liner-shim'] : [])],
     rolldownOptions: {
+      // TODO: re-evaluate once Rolldown matures; added as a conservative replacement
+      // for Vite 7's esbuildOptions.supported['top-level-await'] to prevent Rolldown's
+      // treeshaker from eliminating side-effectful deps (pdfjs-dist, onnxruntime-web, etc.)
       treeshake: false,
     },
   },
