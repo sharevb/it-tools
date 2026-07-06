@@ -67,7 +67,7 @@ async function loadPipelines() {
   modelLoadingProgress.value = 0;
 
   const update = (p: ProgressInfo) => {
-    const progress = (p as any).progress;
+    const progress = (p as any)?.progress;
     if (p && typeof progress === 'number') {
       modelLoadingProgress.value = Math.round(progress * 100);
     }
