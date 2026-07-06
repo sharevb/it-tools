@@ -1,0 +1,12 @@
+diff --git a/lib/index.js b/lib/index.js
+index 8ded29885e2c57770d6882032d8a5b4b9f625720..a78ae7a18b2fa80a39cdcea84282a7df0adcc932 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -174,4 +174,5 @@ exports.default = {
+     detectFileSync: exports.detectFileSync,
+     detectFile: exports.detectFile,
+ };
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
++//# sourceMappingURL=index.js.map
++module.exports = exports.default;

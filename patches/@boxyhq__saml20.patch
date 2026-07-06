@@ -1,0 +1,12 @@
+diff --git a/dist/index.js b/dist/index.js
+index 875f9a1e1277f2b6ae9b26561965b033f32b9c25..7fd7b9822aa8b5fc91e202501f1fbe7784fcff34 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -33,4 +33,5 @@ exports.default = {
+     parseLogoutRequest: logout_1.parseLogoutRequest,
+     createLogoutResponse: logout_1.createLogoutResponse,
+ };
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
++//# sourceMappingURL=index.js.map
++module.exports = exports.default;

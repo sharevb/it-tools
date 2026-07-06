@@ -1,0 +1,9 @@
+diff --git a/lib/index.js b/lib/index.js
+index cfed316b3999c8b864974a27c46f7d2573a76a87..7641aea43a8bd90ce69c3ccd18a02c14d68d543b 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -52,3 +52,4 @@ function intersect(arrays, hash = default_hash) {
+     });
+ }
+ exports.default = intersect;
++module.exports = exports.default;

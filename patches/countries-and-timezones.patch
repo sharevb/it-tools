@@ -1,0 +1,12 @@
+diff --git a/dist/index.js b/dist/index.js
+index 9470e460d0ad8e57f868f9b903c1e7f1d98bf08e..bd895e27ac45b8618286191d9ea0f74409e10c3d 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -592,4 +592,5 @@
+ 	exports.getTimezonesForCountry = getTimezonesForCountry;
+ });
+ 
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
++//# sourceMappingURL=index.js.map
++module.exports = exports.default;

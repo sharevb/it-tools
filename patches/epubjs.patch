@@ -1,0 +1,12 @@
+diff --git a/lib/index.js b/lib/index.js
+index 0f52cea358834dd4545946d1a09760b4e5219437..7cf5c38d403dd1e47e8b167ce5eb6f7aab65fd65 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -50,4 +50,5 @@ var _epub = _interopRequireDefault(require("./epub"));
+ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+ 
+ var _default = _epub.default;
+-exports.default = _default;
+\ No newline at end of file
++exports.default = _default;
++module.exports = exports.default;

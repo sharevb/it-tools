@@ -494,7 +494,13 @@
     "patchedDependencies": {
       "node-forge@1.4.0": "patches/node-forge@1.4.0.patch",
       "esm-potrace-wasm": "patches/esm-potrace-wasm.patch",
-      "run-pace": "patches/run-pace.patch"
+      "run-pace": "patches/run-pace.patch",
+      "event-cron-parser": "patches/event-cron-parser.patch",
+      "chardet": "patches/chardet.patch",
+      "@boxyhq/saml20": "patches/@boxyhq__saml20.patch",
+      "countries-and-timezones": "patches/countries-and-timezones.patch",
+      "epubjs": "patches/epubjs.patch",
+      "fast_array_intersect": "patches/fast_array_intersect.patch"
     }
   },
   "scarfSettings": {

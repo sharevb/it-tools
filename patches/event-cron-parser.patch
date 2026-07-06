@@ -1,0 +1,12 @@
+diff --git a/built/index.js b/built/index.js
+index eb5b1c1b93523207d7cce40b17aa2e2d36e5b599..c7f515d2a9aca9d9baa584dbdaba9366c7feb5b9 100644
+--- a/built/index.js
++++ b/built/index.js
+@@ -259,4 +259,5 @@ class EventCronParser {
+ }
+ _EventCronParser_cron = new WeakMap(), _EventCronParser_prevDate = new WeakMap(), _EventCronParser_isRateExpression = new WeakMap();
+ exports.default = EventCronParser;
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
++//# sourceMappingURL=index.js.map
++module.exports = exports.default;
