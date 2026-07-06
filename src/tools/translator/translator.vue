@@ -4,8 +4,6 @@ import type { TranslationPipeline } from '@huggingface/transformers';
 import { env, pipeline } from '@huggingface/transformers';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
-type TranslationSingle = { translation_text: string };
-
 const { t } = useI18n();
 
 env.useBrowserCache = true;
@@ -150,7 +148,7 @@ async function translateText() {
     loadingModel.value = true;
 
     try {
-      translators.set(modelId, await pipeline('translation', modelId) as TranslationPipeline);
+      translators.set(modelId, await pipeline('translation', modelId));
     }
     catch (e: any) {
       error.value = `Model loading failed: ${e.toString()}`;
@@ -165,7 +163,7 @@ async function translateText() {
   translating.value = true;
   try {
     const result = await translators.get(modelId)!(inputText.value);
-    translatedText.value = (result[0] as TranslationSingle)?.translation_text;
+    translatedText.value = result[0].translation_text;
   }
   catch (e: any) {
     error.value = `Translation failed: ${e.toString()}`;
