@@ -10,6 +10,10 @@
     "composite": true,
     "paths": {
       "@/*": ["./src/*"],
+      "@noble/ciphers/aes": ["./node_modules/@noble/ciphers/aes.d.ts"],
+      "@noble/ciphers/chacha": ["./node_modules/@noble/ciphers/chacha.d.ts"],
+      "@noble/ciphers/salsa": ["./node_modules/@noble/ciphers/salsa.d.ts"],
+      "@noble/ciphers/utils": ["./node_modules/@noble/ciphers/utils.d.ts"],
       "figue": ["./node_modules/figue/dist/index.d.ts"],
       "@it-tools/oggen": ["./node_modules/@it-tools/oggen/dist/index.d.ts"],
       "libphonenumber-js/types": ["./node_modules/libphonenumber-js/types.d.ts"]

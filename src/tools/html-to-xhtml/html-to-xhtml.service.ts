@@ -66,7 +66,7 @@ export function toStrictXhtml(html: string, options: XhtmlOptions = {}): string 
 
       // NORMAL ELEMENT
       const children = (node.children || [])
-        .map((child) => serialize(child, level + 1))
+        .map((child: any) => serialize(child, level + 1))
         .join(indentSize > 0 ? '\n' : '');
 
       if (indentSize > 0) {

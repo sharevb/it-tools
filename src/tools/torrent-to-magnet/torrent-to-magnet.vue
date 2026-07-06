@@ -27,7 +27,7 @@ const torrentInfosRaw = computedAsync(async () => {
 });
 const torrentInfos = computed(() =>
   withDefaultOnError(() => {
-    return Object.entries(torrentInfosRaw.value).map(([k, v]) => {
+    return Object.entries(torrentInfosRaw.value ?? {}).map(([k, v]) => {
       return {
         label: k?.toString() || '',
         value: JSON.stringify(v),
@@ -35,7 +35,7 @@ const torrentInfos = computed(() =>
     });
   }, []),
 );
-const magnetURI = computed(() => withDefaultOnError(() => toMagnetURI(torrentInfosRaw.value), ''));
+const magnetURI = computed(() => withDefaultOnError(() => toMagnetURI(torrentInfosRaw.value!), ''));
 
 async function onUpload(file: File) {
   if (file) {
