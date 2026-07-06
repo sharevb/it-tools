@@ -76,7 +76,7 @@ async function loadPipelines() {
   if (!rmbgPipeline) {
     rmbgPipeline = await pipeline(
       'background-removal',
-      'briaai/RMBG-1.4',
+      'Xenova/modnet',
       { progress_callback: update },
     );
   }

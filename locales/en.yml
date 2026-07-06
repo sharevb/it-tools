@@ -8683,7 +8683,7 @@ tools:
       Downloads Remove Background models from HuggingFace. Processing is done in
       your browser
     texts:
-      label-rmbg-1-4-cpu-wasm: RMBG‑1.4 (CPU/WASM)
+      label-rmbg-1-4-cpu-wasm: MODNet (CPU/WASM)
       label-modnet-webgpu: MODNet (WebGPU)
       label-transparent: Transparent
       label-solid-color: Solid Color
