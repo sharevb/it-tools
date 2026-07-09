@@ -1,5 +1,5 @@
 import { type JwtHeader, type JwtPayload, jwtDecode } from 'jwt-decode';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { ALGORITHM_DESCRIPTIONS, CLAIM_DESCRIPTIONS } from './jwt-parser.constants';
 
 export { decodeJwt, getJwtAlgorithm };

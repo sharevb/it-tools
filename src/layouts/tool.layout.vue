@@ -1,10 +1,14 @@
 <script lang="ts" setup>
-import { DeviceDesktop, World } from '@vicons/tabler';
+import DeviceDesktop from '~icons/tabler/device-desktop';
+import World from '~icons/tabler/world';
 
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import type { HeadObject } from '@vueuse/head';
-import VueMarkdown from 'vue-markdown-render';
+
+// Async: keeps markdown-it (~50 KB gzip with its dependency tree) out of the
+// startup bundle; it loads with the first tool page instead.
+const VueMarkdown = defineAsyncComponent(() => import('vue-markdown-render'));
 
 import { useThemeVars } from 'naive-ui';
 import { useTheme } from '../ui/c-link/c-link.theme';

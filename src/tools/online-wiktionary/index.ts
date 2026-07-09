@@ -1,4 +1,3 @@
-import { Books } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.online-wiktionary.description'),
   keywords: ['online', 'dictionary', 'wiktionary'],
   component: () => import('./online-wiktionary.vue'),
-  icon: Books,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Books')),
   createdAt: new Date('2026-01-03'),
   category: 'Data',
   externAccessDescription: t('tools.online-wiktionary.externalAccess'),

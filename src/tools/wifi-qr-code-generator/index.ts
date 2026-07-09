@@ -1,4 +1,3 @@
-import { Qrcode } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.wifi-qrcode-generator.description'),
   keywords: ['qr', 'code', 'generator', 'square', 'color', 'link', 'low', 'medium', 'quartile', 'high', 'transparent', 'wifi'],
   component: () => import('./wifi-qr-code-generator.vue'),
-  icon: Qrcode,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Qrcode')),
   createdAt: new Date('2023-09-06'),
   npmPackages: ['qrcode'],
   category: 'Barcodes',

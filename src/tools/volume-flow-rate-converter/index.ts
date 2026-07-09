@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Wind } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -10,7 +9,7 @@ export const tool = defineTool({
     'units', 'm3/s', 'l/s', 'tsp/s', 'in3/s', 'fl-oz/s', 'gal/s', 'ft3/s', 'yd3/s',
   ],
   component: () => import('./volume-flow-rate-converter.vue'),
-  icon: Wind,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Wind')),
   createdAt: new Date('2026-01-30'),
   category: 'Physics',
 });

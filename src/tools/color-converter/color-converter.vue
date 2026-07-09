@@ -4,7 +4,7 @@ import type { Colord } from 'colord';
 import { colord, extend } from 'colord';
 import { colordx, extend as extendx } from '@colordx/core';
 import xlabPlugin from '@colordx/core/plugins/lab';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import cmykPlugin from 'colord/plugins/cmyk';
 import hwbPlugin from 'colord/plugins/hwb';
 import namesPlugin from 'colord/plugins/names';

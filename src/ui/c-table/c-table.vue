@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import type { HeaderConfiguration } from './c-table.types';
 
 const props = withDefaults(
@@ -36,12 +36,7 @@ const headers = computed(() => {
     }));
   }
 
-  return _.chain(data.value)
-    .map((row) => Object.keys(row))
-    .flatten()
-    .uniq()
-    .map((key) => ({ key, label: key }))
-    .value();
+  return [...new Set(data.value.flatMap((row) => Object.keys(row)))].map((key) => ({ key, label: key }));
 });
 </script>
 

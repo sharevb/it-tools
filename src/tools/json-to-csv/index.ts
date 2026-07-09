@@ -1,4 +1,3 @@
-import { List } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.json-to-csv.description'),
   keywords: ['json', 'to', 'csv', 'convert'],
   component: () => import('./json-to-csv.vue'),
-  icon: List,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/List')),
   createdAt: new Date('2023-06-18'),
   npmPackages: ['json5'],
   category: 'JSON',

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { inject } from 'vue';
 
 export { createTrackerService, useTracker };

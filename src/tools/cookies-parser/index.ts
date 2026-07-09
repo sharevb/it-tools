@@ -1,4 +1,3 @@
-import { Cookie } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.cookies-parser.description'),
   keywords: ['cookies', 'parser'],
   component: () => import('./cookies-parser.vue'),
-  icon: Cookie,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Cookie')),
   createdAt: new Date('2025-05-01'),
   category: 'Forensic',
 });

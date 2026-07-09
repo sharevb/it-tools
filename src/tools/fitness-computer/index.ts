@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Pacman } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.fitness-computer.description'),
   keywords: ['fitness', 'calories', 'bmi', 'bmr', 'weight', 'fat', 'body', 'fat', 'mass', 'heart'],
   component: () => import('./fitness-computer.vue'),
-  icon: Pacman,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Pacman')),
   createdAt: new Date('2026-03-07'),
   category: 'Physics',
 });

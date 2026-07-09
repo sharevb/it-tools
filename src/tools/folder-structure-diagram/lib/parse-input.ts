@@ -1,4 +1,4 @@
-import last from 'lodash.last';
+import { last } from 'es-toolkit';
 import type { FileStructure } from './FileStructure';
 
 /**

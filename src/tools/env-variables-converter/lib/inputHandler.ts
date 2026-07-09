@@ -1,5 +1,5 @@
 import yaml from 'yaml';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { Formats } from './formats';
 
 function setAcc(acc: any, ...args: any[]) {

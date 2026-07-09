@@ -1,4 +1,3 @@
-import { MathSymbols } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.si-prefixes-converter.description'),
   keywords: ['si', 'international', 'metric', 'units', 'converter'],
   component: () => import('./si-prefixes-converter.vue'),
-  icon: MathSymbols,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/MathSymbols')),
   createdAt: new Date('2026-01-11'),
   category: 'Physics',
 });

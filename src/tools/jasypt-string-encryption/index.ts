@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { ShieldOff } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.jasypt-string-encryption.description'),
   keywords: ['jasypt', 'java', 'spring', 'boot', 'string', 'encryption'],
   component: () => import('./jasypt-string-encryption.vue'),
-  icon: ShieldOff,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/ShieldOff')),
   createdAt: new Date('2026-03-15'),
   category: 'Crypto',
 });

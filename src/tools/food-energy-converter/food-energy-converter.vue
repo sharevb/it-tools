@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import _ from 'lodash';
 
 type FoodEnergyScale = 'kcal' | 'cal' | 'kJ' | 'J';
 
@@ -46,12 +45,11 @@ function update(key: FoodEnergyScale) {
 
   bases = bases < 0 ? 0 : bases;
 
-  _.chain(units)
-    .omit(key)
-    .forEach(({ fromBase }, index) => {
-      units[index].ref = fromBase(bases) ?? 0;
-    })
-    .value();
+  Object.entries(units)
+    .filter(([unitKey]) => unitKey !== key)
+    .forEach(([unitKey, { fromBase }]) => {
+      units[unitKey].ref = fromBase(bases) ?? 0;
+    });
 }
 
 update('kcal');

@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Books } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.rsvp-reader.description'),
   keywords: ['rsvp', 'reader'],
   component: () => import('./rsvp-reader.vue'),
-  icon: Books,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Books')),
   createdAt: new Date('2026-01-30'),
   category: 'Text',
 });

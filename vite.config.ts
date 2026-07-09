@@ -2,7 +2,6 @@ import { URL, fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import wasm from 'vite-plugin-wasm';
-import { splashScreen } from 'vite-plugin-splash-screen';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -23,27 +22,13 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 const baseUrl = process.env.BASE_URL || '/';
 
-const VITE_AVAILABLE_LOCALES = process.env.VITE_AVAILABLE_LOCALES;
-console.log(`Building for locales: ${VITE_AVAILABLE_LOCALES}`);
-
-let includeLocales = [
-  resolve(__dirname, 'locales/en.yml'),
+// Locales are code-split: only en is bundled eagerly, the rest become lazy chunks fetched on
+// first use (see src/plugins/i18n.plugin.ts). VITE_AVAILABLE_LOCALES filters the locales
+// offered at runtime instead of trimming the build.
+const includeLocales = [
+  resolve(__dirname, 'src/tools/*/locales/**'),
+  resolve(__dirname, 'locales/**'),
 ];
-if (!process.env.VITEST) {
-  if (!VITE_AVAILABLE_LOCALES || VITE_AVAILABLE_LOCALES === '*' || VITE_AVAILABLE_LOCALES === 'all') {
-    includeLocales = [
-      resolve(__dirname, 'src/tools/*/locales/**'),
-      resolve(__dirname, 'locales/**'),
-    ];
-  }
-  else {
-    const fileNameMatching = VITE_AVAILABLE_LOCALES.includes(',') ? `{${VITE_AVAILABLE_LOCALES}}` : VITE_AVAILABLE_LOCALES;
-    includeLocales = [
-      resolve(__dirname, `src/tools/*/locales/${fileNameMatching}.*`),
-      resolve(__dirname, `locales/${fileNameMatching}.*`),
-    ];
-  }
-}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -78,8 +63,36 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: (process.env.VITE_VERCEL_DEPLOY ? ['**\/*.{css,html}'] : ['**\/*.{js,wasm,css,html}']),
+        // Precache only the app shell so the service worker doesn't download every
+        // tool chunk and WASM binary (~160 MB) on first visit; hashed assets are
+        // cached on demand as tools are opened. Set VITE_PWA_FULL_PRECACHE=true to
+        // restore full offline precaching of everything.
+        globPatterns: (process.env.VITE_PWA_FULL_PRECACHE === 'true' && !process.env.VITE_VERCEL_DEPLOY)
+          ? ['**\/*.{js,wasm,css,html}']
+          : ['**\/*.{css,html}'],
         maximumFileSizeToCacheInBytes: 25 * 1024 ** 2,
+        navigateFallback: `${baseUrl}index.html`,
+        runtimeCaching: [
+          {
+            urlPattern: ({ sameOrigin, request }) => sameOrigin
+              && (request.destination === 'script' || request.destination === 'worker'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'app-chunks',
+              expiration: { maxEntries: 2000, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: ({ sameOrigin, url }) => sameOrigin && url.pathname.endsWith('.wasm'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'app-wasm',
+              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
       },
       strategies: 'generateSW',
       manifest: {
@@ -128,10 +141,6 @@ export default defineConfig({
     Unocss(),
     nodePolyfills(),
     wasm(),
-    splashScreen({
-      logoSrc: 'logo.svg',
-      splashBg: '#383838',
-    }),
     visualizer(),
   ],
   base: baseUrl,
@@ -176,6 +185,20 @@ export default defineConfig({
       external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node', 'unpdf/pdfjs'],
       output: {
         format: 'es',
+        advancedChunks: {
+          // Tool icons are loaded through per-icon dynamic imports (see src/tools/*/index.ts);
+          // merge them into a single lazy chunk instead of ~450 tiny ones.
+          // includeDependenciesRecursively must stay off: with it, shared helper modules
+          // get captured into this chunk and entry chunks end up statically importing it,
+          // which drags the whole icon set back into the startup payload.
+          groups: [
+            {
+              name: 'tool-icons',
+              test: /node_modules[\\/](?:@vicons[\\/]|@tabler[\\/]icons-vue[\\/]dist[\\/]esm[\\/]icons[\\/])/,
+              includeDependenciesRecursively: false,
+            },
+          ],
+        },
       },
     },
   },

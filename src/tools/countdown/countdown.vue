@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { Countdown } from 'vue3-flip-countdown';
-import moment from 'moment';
+import { add, format } from 'date-fns';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -38,22 +38,17 @@ watchEffect(() => {
   }
 });
 
-const now = ref(moment());
+const now = ref(new Date());
 const deadlineDate = computed(() => {
-  return now.value.add(days.value, 'd').add(hours.value, 'h').add(minutes.value, 'm').add(seconds.value, 's').toDate();
+  return add(now.value, { days: days.value, hours: hours.value, minutes: minutes.value, seconds: seconds.value });
 });
-const fmt = 'YYYY-MM-DD HH:mm:ss';
+const fmt = 'yyyy-MM-dd HH:mm:ss';
 const deadlineFormatted = computed(() => {
-  return now.value
-    .add(days.value, 'd')
-    .add(hours.value, 'h')
-    .add(minutes.value, 'm')
-    .add(seconds.value, 's')
-    .format(fmt);
+  return format(deadlineDate.value, fmt);
 });
 
 function start() {
-  now.value = moment();
+  now.value = new Date();
   status.value = 'running';
   const histoEntry = { d: days.value, h: hours.value, m: minutes.value, s: seconds.value };
   if (

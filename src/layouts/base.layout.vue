@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { Coffee, Home2, Menu2 } from '@vicons/tabler';
+import Coffee from '~icons/tabler/coffee';
+import Home2 from '~icons/tabler/home-2';
+import Menu2 from '~icons/tabler/menu-2';
 import { NIcon, useThemeVars } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';

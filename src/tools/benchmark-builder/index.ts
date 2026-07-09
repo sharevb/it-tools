@@ -1,4 +1,3 @@
-import { SpeedFilled } from '@vicons/material';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.benchmark-builder.description'),
   keywords: ['benchmark', 'builder', 'execution', 'duration', 'mean', 'variance'],
   component: () => import('./benchmark-builder.vue'),
-  icon: SpeedFilled,
+  icon: defineAsyncComponent(() => import('@vicons/material/es/SpeedFilled')),
   createdAt: new Date('2023-04-05'),
   category: 'Measurement',
 });

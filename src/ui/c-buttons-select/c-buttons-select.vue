@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends unknown">
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import type { CLabelProps } from '../c-label/c-label.types';
 import type { CButtonSelectOption } from './c-buttons-select.types';
 

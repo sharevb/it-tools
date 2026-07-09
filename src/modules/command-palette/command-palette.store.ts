@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import type { PaletteOption } from './command-palette.types';
 import { useToolStore } from '@/tools/tools.store';
 import { useStyleStore } from '@/stores/style.store';
@@ -83,7 +83,10 @@ export const useCommandPaletteStore = defineStore('command-palette', () => {
   });
 
   const filteredSearchResult = computed(() =>
-    _.chain(searchResult.value).groupBy('category').mapValues(categoryOptions => _.take(categoryOptions, maxSearchResultsPerCategory)).value());
+    _.mapValues(
+      _.groupBy(searchResult.value, option => option.category),
+      categoryOptions => categoryOptions.slice(0, maxSearchResultsPerCategory),
+    ));
 
   return {
     filteredSearchResult,

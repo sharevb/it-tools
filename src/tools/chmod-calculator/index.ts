@@ -1,4 +1,3 @@
-import { FileInvoice } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -20,6 +19,6 @@ export const tool = defineTool({
     'umask',
   ],
   component: () => import('./chmod-calculator.vue'),
-  icon: FileInvoice,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/FileInvoice')),
   category: 'Network',
 });

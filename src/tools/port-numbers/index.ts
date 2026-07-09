@@ -1,4 +1,3 @@
-import { PlugConnected } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.port-numbers.description'),
   keywords: ['port', 'tcp', 'udp', 'protocol'],
   component: () => import('./port-numbers.vue'),
-  icon: PlugConnected,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/PlugConnected')),
   createdAt: new Date('2024-04-20'),
   category: 'Network',
 });

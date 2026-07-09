@@ -1,4 +1,3 @@
-import { World } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.my-ip.description'),
   keywords: ['my', 'client', 'ip'],
   component: () => import('./my-ip.vue'),
-  icon: World,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/World')),
   createdAt: new Date('2025-01-01'),
   category: 'Network',
   externAccessDescription: t('tools.my-ip.externalAccess'),

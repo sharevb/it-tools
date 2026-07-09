@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import loremIpsumJapanese from 'lorem-ipsum-japanese';
 import chinesegen from 'chinesegen';
 import languageLorems from './lorem-ipsum.i18n.json';
@@ -7,10 +7,11 @@ import { randFromArray } from '@/utils/random';
 const firstSentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 export function getSupportedLanguages() {
-  return _.union(
-    _.flatten(_.chain(languageLorems).map(l => l.languages).value()),
-    ['Japanese', 'Chinese'])
-    .sort();
+  return [...new Set([
+    ...languageLorems.flatMap(l => l.languages),
+    'Japanese',
+    'Chinese',
+  ])].sort();
 }
 
 function generateSentence(language: string, length: number) {

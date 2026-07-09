@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { Plus, Trash } from '@vicons/tabler';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 
 import { arrayToMarkdownTable, computeAverage, computeVariance } from './benchmark-builder.models';
 import DynamicValues from './dynamic-values.vue';

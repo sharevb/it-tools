@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { Countdown } from 'vue3-flip-countdown';
-import moment from 'moment';
+import { format, set } from 'date-fns';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -25,21 +25,20 @@ watchEffect(() => {
   }
 });
 
-const now = ref(moment());
+const now = ref(new Date());
 const alarmAtDate = computed(() => {
   const [h, m, s] = alarmAt.value.split(':');
-  return now.value.set('h', Number(h)).set('m', Number(m)).set('s', Number(s)).toDate();
+  return set(now.value, { hours: Number(h), minutes: Number(m), seconds: Number(s) });
 });
 
-const fmt = 'YYYY-MM-DD HH:mm:ss';
+const fmt = 'yyyy-MM-dd HH:mm:ss';
 
 const alarmAtFormatted = computed(() => {
-  const [h, m, s] = alarmAt.value.split(':');
-  return now.value.set('h', Number(h)).set('m', Number(m)).set('s', Number(s)).format(fmt);
+  return format(alarmAtDate.value, fmt);
 });
 
 function start() {
-  now.value = moment();
+  now.value = new Date();
   status.value = 'running';
   const histoEntry = alarmAt.value;
   if (!history.value.find((h) => h === histoEntry)) {

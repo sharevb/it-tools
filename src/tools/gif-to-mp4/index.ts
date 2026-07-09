@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { VideoPlus } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.gif-to-mp4.description'),
   keywords: ['gif', 'ffmpeg', 'mp4'],
   component: () => import('./gif-to-mp4.vue'),
-  icon: VideoPlus,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/VideoPlus')),
   createdAt: new Date('2026-03-15'),
   category: 'Images',
   externalHTMLContent: 'Download FFMPEG from https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10. All processing done in your browser.',

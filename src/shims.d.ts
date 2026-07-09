@@ -10,6 +10,17 @@ declare module '*.md' {
   export default Component;
 }
 
+declare module '*.yml' {
+  const messages: Record<string, unknown>;
+  export default messages;
+}
+
+declare module '@tabler/icons-vue/dist/esm/icons/*.mjs' {
+  import type { FunctionalComponent, SVGAttributes } from 'vue';
+  const component: FunctionalComponent<SVGAttributes>;
+  export default component;
+}
+
 declare module 'emojilib' {
   const lib: Record<string, string[]>;
   export default lib;
@@ -33,10 +44,6 @@ declare module 'pdf-signature-reader' {
   const verifySignature: (pdf: ArrayBuffer) => ({signatures: SignatureInfo[]});
 
   export default verifySignature;
-}
-
-declare module 'vite-plugin-splash-screen/runtime' {
-  export function hideSplashScreen();
 }
 
 declare module 'units-converter' {

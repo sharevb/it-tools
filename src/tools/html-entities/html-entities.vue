@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { escape, unescape } from 'lodash';
+import { escape, unescape } from 'es-toolkit/compat';
 
 import { useCopy } from '@/composable/copy';
 

@@ -1,4 +1,3 @@
-import { WorldUpload } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -7,7 +6,7 @@ export const tool = defineTool({
   description: 'Allows to edit and build URLs with query parameters',
   keywords: ['url', 'builder'],
   component: () => import('./url-builder.vue'),
-  icon: WorldUpload,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/WorldUpload')),
   createdAt: new Date('2026-07-04'),
   category: 'Forensic',
 });

@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Terminal2 } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.explainshell.description'),
   keywords: ['explain', 'shell'],
   component: () => import('./explainshell.vue'),
-  icon: Terminal2,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Terminal2')),
   createdAt: new Date('2026-01-30'),
   category: 'Data',
   externAccessDescription: t('tools.explainshell.externalAccess'),

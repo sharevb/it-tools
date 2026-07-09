@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { ZoomMoney } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.bech32.description'),
   keywords: ['bech32', 'crypto', 'encode', 'decode', 'bitcoin', 'address', 'segwit'],
   component: () => import('./bech32.vue'),
-  icon: ZoomMoney,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/ZoomMoney')),
   createdAt: new Date('2026-02-21'),
   category: 'Crypto',
 });

@@ -1,4 +1,3 @@
-import { Markdown } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.markdown-editor.description'),
   keywords: ['markdown', 'editor'],
   component: () => import('./markdown-editor.vue'),
-  icon: Markdown,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Markdown')),
   createdAt: new Date('2024-04-07'),
   category: 'Markdown',
 });

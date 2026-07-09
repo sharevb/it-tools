@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { useHead } from '@vueuse/head';
 import { useMessage } from 'naive-ui';
 import { storeToRefs } from 'pinia';

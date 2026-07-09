@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Artboard } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.zalgo.description'),
   keywords: ['zalgo', 'text', 'generation'],
   component: () => import('./zalgo.vue'),
-  icon: Artboard,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Artboard')),
   createdAt: new Date('2026-02-21'),
   category: 'Text',
 });

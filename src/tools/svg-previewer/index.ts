@@ -1,4 +1,3 @@
-import { PictureInPicture } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.svg-previewer.description'),
   keywords: ['svg', 'previewer'],
   component: () => import('./svg-previewer.vue'),
-  icon: PictureInPicture,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/PictureInPicture')),
   createdAt: new Date('2025-12-14'),
   category: 'Images',
 });

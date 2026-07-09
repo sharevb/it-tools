@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { diff } from '../json-diff.models';
 import { DiffRootViewer } from './diff-viewer.models';
 import { useAppTheme } from '@/ui/theme/themes';

@@ -1,42 +1,40 @@
-import markdownit from 'markdown-it';
-import { IconExternalLink } from '@tabler/icons-vue';
 import type { ExternalTool, ToolCategory, ToolWithCategory, ToolsFilter } from './tools.types';
 import { translate as t } from '@/plugins/i18n.plugin';
 
 const modules = import.meta.glob<true, string, ToolWithCategory>('./*/index.ts', { eager: true, import: 'tool' });
 
 const base = import.meta.env.BASE_URL ?? '/';
-let filterConfig: ToolsFilter = {};
-try {
-  const remoteConfigResponse = await fetch(`${base}tools-filter.json`);
-  if (remoteConfigResponse.ok) {
-    filterConfig = (await remoteConfigResponse.json()) as ToolsFilter;
-  }
-}
-catch {}
 
-let allModules: ToolWithCategory[] = Object.values(modules);
-try {
-  const remoteConfigResponse = await fetch(`${base}external-tools.json`);
-  if (remoteConfigResponse.ok) {
-    allModules = [
-      ...allModules,
-      ...((await remoteConfigResponse.json()) as ExternalTool[])
-        .map((externalTool) => {
-          const html = markdownit().render(externalTool.markdownContent
-              || (externalTool.href
-                ? `${t('tools.external-link-goto')} [${externalTool.href}](${externalTool.href})`
-                : ''));
-          return ({
-            icon: IconExternalLink,
-            ...externalTool,
-            component: () => import('@/components/ExternalToolContent.vue'),
-            externalHTMLContent: html,
-          }) as ToolWithCategory;
-        })];
-  }
+// Both config files are optional; fetch them in parallel so app boot waits on at
+// most one network round-trip instead of two sequential ones.
+const [filterConfig, externalTools] = await Promise.all([
+  fetch(`${base}tools-filter.json`)
+    .then(response => (response.ok ? response.json() as Promise<ToolsFilter> : ({} as ToolsFilter)))
+    .catch(() => ({} as ToolsFilter)),
+  fetch(`${base}external-tools.json`)
+    .then(response => (response.ok ? response.json() as Promise<ExternalTool[]> : ([] as ExternalTool[])))
+    .catch(() => [] as ExternalTool[]),
+]);
+
+const allModules: ToolWithCategory[] = Object.values(modules);
+
+// markdown-it (and its dependency tree) is only needed when a deployment actually
+// configures external tools, so it stays out of the startup bundle.
+if (externalTools.length > 0) {
+  const { default: markdownit } = await import('markdown-it');
+  allModules.push(...externalTools.map((externalTool) => {
+    const html = markdownit().render(externalTool.markdownContent
+        || (externalTool.href
+          ? `${t('tools.external-link-goto')} [${externalTool.href}](${externalTool.href})`
+          : ''));
+    return ({
+      icon: defineAsyncComponent(() => import('@vicons/tabler/es/ExternalLink')),
+      ...externalTool,
+      component: () => import('@/components/ExternalToolContent.vue'),
+      externalHTMLContent: html,
+    }) as ToolWithCategory;
+  }));
 }
-catch {}
 
 const makeRegExp = (regex: string | undefined) => regex ? new RegExp(regex, 'i') : null;
 const filters = {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { IconDragDrop, IconHeart } from '@tabler/icons-vue';
+import IconDragDrop from '~icons/tabler/drag-drop';
+import IconHeart from '~icons/tabler/heart';
 import { useHead } from '@vueuse/head';
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 import Draggable from 'vuedraggable';

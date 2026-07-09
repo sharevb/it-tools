@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Language } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.iso-639-searcher.description'),
   keywords: ['iso639', 'language', 'langcode', 'searcher'],
   component: () => import('./iso-639-searcher.vue'),
-  icon: Language,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Language')),
   createdAt: new Date('2026-02-21'),
   category: 'Data',
 });

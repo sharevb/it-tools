@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import emojiUnicodeData from 'unicode-emoji-json';
 import emojiKeywords from 'emojilib';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import type { EmojiInfo } from './emoji.types';
 import { escapeUnicodeComplete, getAllCodePoints } from './emoji-utils';
 import useDebouncedRef from '@/composable/debouncedref';
@@ -66,13 +66,11 @@ const emojis = _.map(emojiUnicodeData, (emojiInfo, emoji) => ({
 }));
 
 // Group emojis and sort groups for better organization
-const emojisGroups: { emojiInfos: EmojiInfo[]; group: string }[] = _.chain(emojis)
-  .groupBy('group')
-  .map((emojiInfos, group) => ({
+const emojisGroups: { emojiInfos: EmojiInfo[]; group: string }[] = Object.entries(_.groupBy(emojis, e => e.group))
+  .map(([group, emojiInfos]) => ({
     group: _.startCase(group), // Better group name formatting
     emojiInfos,
-  }))
-  .value();
+  }));
 
 const limit = ref(150);
 const rawSearchQuery = ref('');

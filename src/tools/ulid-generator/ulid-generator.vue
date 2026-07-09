@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { ulid } from 'ulid';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { useCopy } from '@/composable/copy';
 import { useQueryParamOrStorage } from '@/composable/queryParams';

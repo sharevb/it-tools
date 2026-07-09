@@ -1,4 +1,3 @@
-import { Browser } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.user-agent-parser.description'),
   keywords: ['user', 'agent', 'parser', 'browser', 'engine', 'os', 'cpu', 'device', 'user-agent', 'client'],
   component: () => import('./user-agent-parser.vue'),
-  icon: Browser,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Browser')),
   createdAt: new Date('2023-04-06'),
   npmPackages: ['ua-parser-js'],
   category: 'Web',

@@ -1,4 +1,3 @@
-import { World } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -7,7 +6,7 @@ export const tool = defineTool({
   description: 'A simple tool for testing DNS propagation across different servers.',
   keywords: ['dns', 'propagation', 'tester'],
   component: () => import('./dns-propagation-tester.vue'),
-  icon: World,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/World')),
   createdAt: new Date('2026-05-11'),
   category: 'Forensic',
   externAccessDescription: 'This tool calls your Self Host Network Utilities Service to perform DNS queries.',

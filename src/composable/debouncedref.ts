@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 
 function useDebouncedRef<T>(initialValue: T, delay: number, immediate: boolean = false) {
   const state = ref(initialValue);

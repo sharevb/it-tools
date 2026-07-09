@@ -1,13 +1,7 @@
-import _ from 'lodash';
 import type { ConvertOptions } from './list-converter.types';
 import { byOrder } from '@/utils/array';
 
 export { convert };
-
-function whenever<T, R>(condition: boolean | undefined, fn: (value: T) => R) {
-  return (value: T) =>
-    condition ? fn(value) : value;
-}
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -53,20 +47,30 @@ function convert(list: string, options: ConvertOptions): string {
     sourceList = sourceList.replace(new RegExp(`${escapeRegExp(options.listSuffix)}$`), '');
   }
 
-  return _.chain(sourceList)
-    .thru(whenever(options.lowerCase, text => text.toLowerCase()))
-    .split(splitRegExp)
-    .thru(whenever(options.removeDuplicates, _.uniq))
-    .thru(whenever(options.reverseList, _.reverse))
-    .map(whenever(options.trimItems, _.trim))
-    .filter(text => filterRegExp === null || filterRegExp?.test(text))
-    .filter(text => notFilterRegExp === null || !notFilterRegExp?.test(text))
-    .thru(whenever(!!options.sortList, parts => parts.sort(byOrder({ order: options.sortList }))))
-    .without('')
+  const text = options.lowerCase ? sourceList.toLowerCase() : sourceList;
+
+  let parts = text.split(splitRegExp);
+  if (options.removeDuplicates) {
+    parts = [...new Set(parts)];
+  }
+  if (options.reverseList) {
+    parts = parts.reverse();
+  }
+  if (options.trimItems) {
+    parts = parts.map(part => part.trim());
+  }
+  parts = parts
+    .filter(part => filterRegExp === null || filterRegExp?.test(part))
+    .filter(part => notFilterRegExp === null || !notFilterRegExp?.test(part));
+  if (options.sortList) {
+    parts = parts.sort(byOrder({ order: options.sortList }));
+  }
+  const joined = parts
+    .filter(part => part !== '')
     .map(p => removeItemPrefixRegExp ? p.replace(removeItemPrefixRegExp, '') : p)
     .map(p => removeItemSuffixRegExp ? p.replace(removeItemSuffixRegExp, '') : p)
     .map(p => itemPrefix + p + itemSuffix)
-    .join(itemsSeparator + lineBreak)
-    .thru(text => [listPrefix, text, listSuffix].filter(l => l).join(lineBreak))
-    .value();
+    .join(itemsSeparator + lineBreak);
+
+  return [listPrefix, joined, listSuffix].filter(l => l).join(lineBreak);
 }
