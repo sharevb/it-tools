@@ -12,7 +12,7 @@ const memoComponent = ref<Component | null>(null);
 
 async function loadMemo(currentLocale = locale.value) {
   const memoKey = `./bash-memo.content.${currentLocale}.md`;
-  const loader = memoImports[memoKey] ?? memoImports['./bash-memo.content.en.md'];
+  const loader = memoImports[memoKey] ?? memoImports['./bash-memo.content.md'];
 
   if (!loader) {
     memoComponent.value = null;
