@@ -2,12 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Prevent white flash before Vue mounts: paint the app's Layout background
-         (see themes.ts) and apply the dark class (same logic as VueUse useDark)
-         before first paint. theme-color tints browser UI on Android Chrome and
-         iOS Safari <= 18; Safari 26+ ignores it and instead samples the <body>
-         background-color at first render, so body must be painted here too
-         (themes.ts pins naive-ui's bodyColor to the same values after mount). -->
     <meta name="theme-color" content="#f1f5f9" />
     <style>
       html { color-scheme: light; }
