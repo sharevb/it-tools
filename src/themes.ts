@@ -1,6 +1,12 @@
 import type { GlobalThemeOverrides } from 'naive-ui';
 
 export const lightThemeOverrides: GlobalThemeOverrides = {
+  common: {
+    // Keep <body> the same color as the Layout background: Safari 26+ ignores
+    // theme-color and derives its browser chrome tint from the body background.
+    bodyColor: '#f1f5f9',
+  },
+
   Menu: {
     itemHeight: '32px',
   },
@@ -20,6 +26,8 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
     primaryColorHover: '#36AD6AFF',
     primaryColorPressed: '#0C7A43FF',
     primaryColorSuppl: '#36AD6AFF',
+    // Match the Layout background (see lightThemeOverrides.common.bodyColor)
+    bodyColor: '#1c1c1c',
   },
 
   Notification: {

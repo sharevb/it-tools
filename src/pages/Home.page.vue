@@ -126,7 +126,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="pt-50px">
+  <div class="home-content pt-50px">
     <div class="grid-wrapper">
       <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
         <ColoredCard v-if="config.showBanner" :title="$t('home.follow.title')" :icon="IconHeart">
@@ -198,6 +198,14 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="less">
+// The 50px top spacing is a desktop nicety; on mobile it pushes the content
+// too far below the top bar.
+.home-content {
+  @media (max-width: 700px) {
+    padding-top: 0;
+  }
+}
+
 .height-enter-active,
 .height-leave-active {
   transition: all 0.5s ease-in-out;

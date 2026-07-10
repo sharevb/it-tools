@@ -99,8 +99,12 @@ const size = computed(() => theme.value.size[sizeName.value]);
   }
 
   &:not(.disabled) {
-    &:hover {
-      background-color: v-bind('variantTheme.hover.backgroundColor');
+    // Hover feedback only on devices that can actually hover: on touch
+    // screens the :hover state would stick after tapping.
+    @media (hover: hover) {
+      &:hover {
+        background-color: v-bind('variantTheme.hover.backgroundColor');
+      }
     }
 
     &:active {

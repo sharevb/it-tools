@@ -9,6 +9,7 @@ overrides:
   isolated-vm: file:./stubs/empty-stub
   onnxruntime-node: file:./stubs/empty-stub
   elliptic: ^6.6.1
+  js-sha256: ^0.11.1
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
 
 patchedDependencies:
@@ -597,8 +598,8 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7
       javascript-obfuscator:
-        specifier: ^5.1.0
-        version: 5.4.3
+        specifier: ^5.4.6
+        version: 5.4.6
       javastack.js:
         specifier: ^1.0.3
         version: 1.0.3
@@ -2661,8 +2662,8 @@ packages:
   '@it-tools/oggen@1.3.0':
     resolution: {integrity: sha512-hvPn0mDkbJvA6jDxV3Xw+MIermq+QyrQpUq86KkZXaWLfCIDnLVp3hBmdxpxU4NIckXj5/7eeVg5CvW0kpQBTw==}
 
-  '@javascript-obfuscator/escodegen@2.4.1':
-    resolution: {integrity: sha512-YrEJJDr4cb+pIQKWzHFoDlDkQzatcrNB6OhAD6iTSwiKwzZUMVdobwbOuLpF4EiLxUj0qP28Xl1saTHYzIPCLg==}
+  '@javascript-obfuscator/escodegen@2.4.2':
+    resolution: {integrity: sha512-3N7EUdYxuldwvtOtZIlAxNwPW1qTUFwWt3PxNkik6hB1uSSXLXj9JMlSyUbTCXK3Osjn0Nu0s/aa4mbvkGouXQ==}
     engines: {node: '>=6.0'}
 
   '@javascript-obfuscator/estraverse@5.4.0':
@@ -7894,8 +7895,8 @@ packages:
   javascript-natural-sort@0.7.1:
     resolution: {integrity: sha512-nO6jcEfZWQXDhOiBtG2KvKyEptz7RVbpGP4vTD2hLBdmNQSsCiicO2Ioinv6UI4y9ukqnBpy+XZ9H6uLNgJTlw==}
 
-  javascript-obfuscator@5.4.3:
-    resolution: {integrity: sha512-G5WUgh84tJa5jtk49w+nQCxQpXIvp65xhLyaFeTAdQeYqWji+SXo89k96UvYIDqojyWZEWSDKRmaWKK6bBn/2A==}
+  javascript-obfuscator@5.4.6:
+    resolution: {integrity: sha512-AkcObe46EfyF3nMUB9tSNgf612IN00gA+RhD7T5JL4vIdCfMtK+gZznl2niI5dwiwYUUfdBVjfctjHbePnz3rQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -7950,8 +7951,8 @@ packages:
   js-cookie@3.0.8:
     resolution: {integrity: sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw==}
 
-  js-sha256@0.9.0:
-    resolution: {integrity: sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==}
+  js-sha256@0.11.1:
+    resolution: {integrity: sha512-o6WSo/LUvY2uC4j7mO50a2ms7E/EAdbP0swigLV+nzHKTTaYnaLIWJ02VdXrsJX0vGedDESQnLsOekr94ryfjg==}
 
   js-string-escape@1.0.1:
     resolution: {integrity: sha512-Smw4xcfIQ5LVjAOuJCvN/zIodzA/BBSsluuoSykP+lUvScIi4U6RJLfwHet5cxFnCswUjISV8oAXaqaJDY3chg==}
@@ -13030,12 +13031,12 @@ snapshots:
 
   '@it-tools/bip39@0.0.4':
     dependencies:
-      js-sha256: 0.9.0
+      js-sha256: 0.11.1
       nanoid: 3.3.15
 
   '@it-tools/oggen@1.3.0': {}
 
-  '@javascript-obfuscator/escodegen@2.4.1':
+  '@javascript-obfuscator/escodegen@2.4.2':
     dependencies:
       '@javascript-obfuscator/estraverse': 5.4.0
       esprima: 4.0.1
@@ -18538,9 +18539,9 @@ snapshots:
 
   javascript-natural-sort@0.7.1: {}
 
-  javascript-obfuscator@5.4.3:
+  javascript-obfuscator@5.4.6:
     dependencies:
-      '@javascript-obfuscator/escodegen': 2.4.1
+      '@javascript-obfuscator/escodegen': 2.4.2
       '@javascript-obfuscator/estraverse': 5.4.0
       '@vercel/blob': 2.5.0
       acorn: 8.15.0
@@ -18624,7 +18625,7 @@ snapshots:
 
   js-cookie@3.0.8: {}
 
-  js-sha256@0.9.0: {}
+  js-sha256@0.11.1: {}
 
   js-string-escape@1.0.1: {}
 

@@ -43,8 +43,10 @@ const tag = computed(() => {
 
   outline-offset: 1px;
 
-  &:hover {
-    color: v-bind('theme.default.hover.textColor');
+  @media (hover: hover) {
+    &:hover {
+      color: v-bind('theme.default.hover.textColor');
+    }
   }
 
   &:active {

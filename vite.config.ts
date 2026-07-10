@@ -179,7 +179,7 @@ export default defineConfig({
       external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node', 'unpdf/pdfjs'],
       output: {
         format: 'es',
-        advancedChunks: {
+        codeSplitting: {
           // Tool icons are loaded through per-icon dynamic imports (see src/tools/*/index.ts);
           // merge them into a single lazy chunk instead of ~450 tiny ones.
           // includeDependenciesRecursively must stay off: with it, shared helper modules

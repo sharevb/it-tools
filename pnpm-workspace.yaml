@@ -13,6 +13,9 @@ overrides:
   isolated-vm: file:./stubs/empty-stub
   onnxruntime-node: file:./stubs/empty-stub
   elliptic: ^6.6.1
+  # @it-tools/bip39 pins ^0.9.0, whose Node fallback uses eval("require('crypto')")
+  # and triggers rolldown EVAL build warnings; 0.11.x dropped the eval.
+  js-sha256: ^0.11.1
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
 
 patchedDependencies:
@@ -37,3 +40,6 @@ allowBuilds:
   tree-sitter: true
   tree-sitter-bash: true
   vue-demi: true
+
+minimumReleaseAgeExclude:
+  - javascript-obfuscator@5.4.6

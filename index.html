@@ -2,6 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Prevent white flash before Vue mounts: paint the app's Layout background
+         (see themes.ts) and apply the dark class (same logic as VueUse useDark)
+         before first paint. theme-color tints browser UI on Android Chrome and
+         iOS Safari <= 18; Safari 26+ ignores it and instead samples the <body>
+         background-color at first render, so body must be painted here too
+         (themes.ts pins naive-ui's bodyColor to the same values after mount). -->
+    <meta name="theme-color" content="#f1f5f9" />
+    <style>
+      html { color-scheme: light; }
+      html.dark { color-scheme: dark; }
+      html, body { background-color: #f1f5f9; }
+      html.dark, html.dark body { background-color: #1c1c1c; }
+    </style>
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem('vueuse-color-scheme') || 'auto';
+          if (mode === 'dark' || (mode === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1c1c1c');
+          }
+        }
+        catch (e) {}
+      })();
+    </script>
     <link rel="icon" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IT Tools - Handy online tools for developers</title>
@@ -14,7 +39,6 @@
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#18a058" />
 
     <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
 
     <meta property="og:url" content="https://sharevb-it-tools.vercel.app/" />
     <meta property="og:type" content="website" />

@@ -48,8 +48,10 @@ const { icon, title } = toRefs(props);
       font-weight: bold;
       transition: color ease 0.2s;
 
-      &:hover {
-        color: rgb(20, 20, 20);
+      @media (hover: hover) {
+        &:hover {
+          color: rgb(20, 20, 20);
+        }
       }
     }
   }

@@ -29,6 +29,15 @@ const toolsRedirectRoutes = tools
 
 const router = createRouter({
   history: createWebHistory(config.app.baseUrl),
+  // The document is the app's scroller (see MenuLayout.vue)
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    if (to.path !== from.path) {
+      return { top: 0 };
+    }
+  },
   routes: [
     {
       path: '/',
@@ -59,8 +68,13 @@ router.beforeEach((to, from) => {
   if (to.path !== from.path) {
     const theme = useAppTheme();
     loaderTimeoutId = setTimeout(() => {
+      // Scope the overlay to the routed page so the nav bar and menu stay
+      // visible; on the very first navigation the layout isn't mounted yet
+      // and the overlay falls back to fullscreen.
+      const pageContainer = document.querySelector<HTMLElement>('.page-content');
       loader = $loading?.show({
         color: theme.value.primary.color,
+        ...(pageContainer ? { container: pageContainer } : {}),
       });
     }, 350);
   }

@@ -19,6 +19,14 @@ const styleStore = useStyleStore();
 const version = config.app.version;
 const commitSha = config.app.lastCommitSha.slice(0, 7);
 
+// Expose the navbar height so the mobile menu (MenuLayout.vue) can position
+// itself right under the always-visible top bar.
+const navbarRef = ref<HTMLElement | null>(null);
+const { height: navbarHeight } = useElementSize(navbarRef, undefined, { box: 'border-box' });
+watchEffect(() => {
+  document.documentElement.style.setProperty('--app-topbar-height', `${Math.round(navbarHeight.value)}px`);
+});
+
 const { t } = useI18n();
 
 const toolStore = useToolStore();
@@ -47,12 +55,8 @@ const tools = computed<ToolCategory[]>(() => [
       </RouterLink>
 
       <div class="sider-content">
-        <div v-if="styleStore.isSmallScreen" flex flex-col items-center>
-          <locale-selector w="90%" />
-
-          <div flex justify-center>
-            <NavbarButtons />
-          </div>
+        <div v-if="styleStore.isSmallScreen" mb-24px flex justify-center>
+          <NavbarButtons />
         </div>
 
         <CollapsibleToolMenu :tools-by-category="tools" />
@@ -88,7 +92,7 @@ const tools = computed<ToolCategory[]>(() => [
     </template>
 
     <template #content>
-      <div flex items-center justify-center gap-2>
+      <div ref="navbarRef" class="navbar" flex items-center justify-center gap-2>
         <c-button
           circle
           variant="text"
@@ -112,8 +116,6 @@ const tools = computed<ToolCategory[]>(() => [
 
         <command-palette />
 
-        <locale-selector v-if="!styleStore.isSmallScreen" />
-
         <div>
           <NavbarButtons v-if="!styleStore.isSmallScreen" />
         </div>
@@ -132,7 +134,11 @@ const tools = computed<ToolCategory[]>(() => [
           </c-button>
         </c-tooltip>
       </div>
-      <slot />
+      <!-- Positioned wrapper so the route-change loading overlay (see router.ts)
+           can cover just the page, leaving the nav bar and menu visible. -->
+      <div class="page-content">
+        <slot />
+      </div>
     </template>
   </MenuLayout>
 </template>
@@ -172,6 +178,30 @@ const tools = computed<ToolCategory[]>(() => [
 .sider-content {
   padding-top: 20px;
   padding-bottom: 50px;
+
+  @media (max-width: 700px) {
+    // The hero block above provides the symmetric 24px gap
+    padding-top: 0;
+  }
+}
+
+.page-content {
+  position: relative;
+}
+
+// Mobile: the top bar stays visible while scrolling, and the full-width menu
+// (see MenuLayout.vue) opens right under it.
+.navbar {
+  @media (max-width: 700px) {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    // Bleed over the scroll container's 13px padding so content scrolls
+    // under an opaque, full-width bar.
+    margin: -13px -13px 13px;
+    padding: 13px;
+    background-color: v-bind('themeVars.bodyColor');
+  }
 }
 
 .hero-wrapper {
@@ -216,6 +246,29 @@ const tools = computed<ToolCategory[]>(() => [
 
     .subtitle {
       font-size: 16px;
+    }
+  }
+
+  // Mobile: seamless full-width menu — no green hero gradient, text follows
+  // the theme, and the header scrolls with the menu. Placed after the base
+  // rules above so these override them (same specificity, later source order).
+  @media (max-width: 700px) {
+    position: static;
+    height: auto;
+    // Symmetric spacing above and below the title block (sider-content's
+    // top padding is removed on mobile to keep the bottom gap equal)
+    padding: 24px 0;
+    // The hero is a router link; keep the plain-text look without the gradient
+    text-decoration: none;
+
+    .gradient {
+      display: none;
+    }
+
+    .text-wrapper {
+      position: static;
+      padding-top: 0;
+      color: v-bind('themeVars.textColor1');
     }
   }
 }

@@ -114,6 +114,10 @@ home:
     lightMode: Light mode
     mode: Toggle dark/light mode
     aboutLabel: About
+    language: Language
+    themeSystem: System
+    themeLight: Light
+    themeDark: Dark
   page:
     text:
       collection-of-handy-online-tools-for-developers-with-great-ux-it-tools-is-a-free-and-open-source-collection-of-handy-online-tools-for-developers-and-people-working-in-it: >-
