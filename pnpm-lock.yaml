@@ -620,7 +620,7 @@ importers:
         version: 1.0.1
       js-base64:
         specifier: ^3.7.8
-        version: 3.8.0
+        version: 3.8.1
       js-beautify:
         specifier: ^1.15.4
         version: 1.15.4
@@ -7949,8 +7949,8 @@ packages:
   jq-wasm@1.0.1:
     resolution: {integrity: sha512-E4WvOi44oDO5Ug6DF1B0WJhBFfXso+XD31MTo90SzcpNqPn1lweNeC2ndYJSBa2NRZQn2BOvzXhMaLcQnnkIFw==}
 
-  js-base64@3.8.0:
-    resolution: {integrity: sha512-65kvbemyZhj+ExQt1PEFyBEjL5vAHysu1lJdW1AwhhChkO8ZBPizYk/m9GVrpbS2Je1hF+UYZ+6KywqtZV8mHw==}
+  js-base64@3.8.1:
+    resolution: {integrity: sha512-5xVjhUZlHHeuO2W7w2rDFj/Kl1xLX+HjZxdOQwCsUOifl6UaoH1o1wsbsTMz+r0aeC7gCijvru02j6TfKZWzKg==}
 
   js-beautify@1.15.4:
     resolution: {integrity: sha512-9/KXeZUKKJwqCXUdBxFJ3vPh467OCckSBmYDwSK/EtV090K+iMJ7zx2S3HLVDIWFQdqMIsZWbnaGiba18aWhaA==}
@@ -18624,7 +18624,7 @@ snapshots:
 
   jq-wasm@1.0.1: {}
 
-  js-base64@3.8.0: {}
+  js-base64@3.8.1: {}
 
   js-beautify@1.15.4:
     dependencies:
@@ -20381,7 +20381,7 @@ snapshots:
       collection-utils: 1.0.1
       cross-fetch: 4.1.0
       is-url: 1.2.4
-      js-base64: 3.8.0
+      js-base64: 3.8.1
       lodash: 4.18.1
       pako: 1.0.11
       pluralize: 8.0.0
