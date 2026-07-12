@@ -25,6 +25,7 @@ FROM nginxinc/nginx-unprivileged:stable-alpine AS production-stage
 
 LABEL maintainer="ShareVB <sharevb@gmail.com>" \
       org.opencontainers.image.authors="ShareVB <sharevb@gmail.com>"
+LABEL org.opencontainers.image.source=github.com/sharevb/it-tools
 
 ENV VITE_VERCEL_ENV=production
 ARG BASE_URL
