@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { extractIBAN, friendlyFormatIBAN, isQRIBAN, validateIBAN } from 'ibantools';
-import { getFriendlyErrors } from './iban-validator-and-parser.service';
+import { extractBICInfo, getFriendlyErrors } from './iban-validator-and-parser.service';
 import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
 import { useQueryParam } from '@/composable/queryParams';
+import CountriesDB from 'countries-db';
 
 const { t } = useI18n();
 
@@ -32,8 +33,10 @@ const ibansInfo = computed<IbanInfo[]>(() => {
 
   for (const iban of ibans) {
     const { valid: isIbanValid, errorCodes } = validateIBAN(iban);
-    const { countryCode, bban } = extractIBAN(iban);
+    const { countryCode, bban, bankIdentifier, branchIdentifier, accountNumber } = extractIBAN(iban);
+    const { bic, bankName } = extractBICInfo(iban);
     const errors = getFriendlyErrors(errorCodes);
+    const country = CountriesDB.getCountry(countryCode || '');
 
     results.push({
       iban,
@@ -65,6 +68,30 @@ const ibansInfo = computed<IbanInfo[]>(() => {
         {
           label: t('tools.iban-validator-and-parser.texts.label-iban-friendly-format'),
           value: friendlyFormatIBAN(iban),
+        },
+        {
+          label: t('tools.phone-parser-and-formatter.texts.label-country'),
+          value: `${country?.name} / ${country?.officialName}`,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.bank-identifier'),
+          value: bankIdentifier,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.branch-identifier'),
+          value: branchIdentifier,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.account-number'),
+          value: accountNumber,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.bic'),
+          value: bic,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.bank-name'),
+          value: bankName,
         },
       ],
     });

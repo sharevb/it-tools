@@ -31,13 +31,11 @@ function createField(start: number, end: number) {
   } as Field);
 }
 
-const seconds = createField(0, 59);
 const minutes = createField(0, 59);
 const hours = createField(0, 23);
 const dayOfMonth = createField(1, 31);
 const month = createField(1, 12);
 const dayOfWeek = createField(0, 6);
-const year = createField(1970, 2099);
 
 const fields: {
   field: Ref<Field>;
@@ -45,7 +43,6 @@ const fields: {
   description: string;
   options?: { label: string; value: number }[];
 }[] = [
-  { field: seconds, label: t('tools.cron-expression-builder.texts.label-seconds'), description: '0-59' },
   { field: minutes, label: t('tools.cron-expression-builder.texts.label-minutes'), description: '0-59' },
   { field: hours, label: t('tools.cron-expression-builder.texts.label-hours'), description: '0-23' },
   { field: dayOfMonth, label: t('tools.cron-expression-builder.texts.label-day-of-month'), description: '1-31' },
@@ -80,9 +77,8 @@ const fields: {
       { label: t('tools.cron-expression-builder.texts.label-friday'), value: 5 },
       { label: t('tools.cron-expression-builder.texts.label-saturday'), value: 6 },
     ],
-    description: '0-6 (Sunday=0, Monday=1, ..., Saturday=6)',
+    description: t('tools.cron-expression-builder.texts.0-6-sunday-0-monday-1-saturday-6'),
   },
-  { field: year, label: t('tools.cron-expression-builder.texts.label-year'), description: '1970-...' },
 ] as const;
 
 const modes = [
@@ -97,28 +93,28 @@ function validateField(label: string, field: Field) {
 
   if (field.mode === 'specific') {
     if (!field.values.length) {
-      errs.push(`${label}: select at least one value`);
+      errs.push(t('tools.cron-expression-builder.texts.label-select-at-least-one-value', [label]));
     }
   }
 
   if (field.mode === 'range') {
     if (field.start > field.end) {
-      errs.push(`${label}: start cannot be greater than end`);
+      errs.push(t('tools.cron-expression-builder.texts.label-start-cannot-be-greater-than-end', [label]));
     }
     if (field.start < field.min || field.end > field.max) {
-      errs.push(`${label}: start must be within allowed range`);
+      errs.push(t('tools.cron-expression-builder.texts.label-start-must-be-within-allowed-range', [label]));
     }
   }
 
   if (field.mode === 'increment') {
     if (field.step < 1) {
-      errs.push(`${label}: step must be >= 1`);
+      errs.push(t('tools.cron-expression-builder.texts.label-step-must-be-greater-than-1', [label]));
     }
     if (field.start > field.end) {
-      errs.push(`${label}: start cannot be greater than end`);
+      errs.push(t('tools.cron-expression-builder.texts.label-start-cannot-be-greater-than-end-0', [label]));
     }
     if (field.start < field.min || field.end > field.max) {
-      errs.push(`${label}: start must be within allowed range`);
+      errs.push(t('tools.cron-expression-builder.texts.label-start-must-be-within-allowed-range', [label]));
     }
   }
 
@@ -128,17 +124,15 @@ function validateField(label: string, field: Field) {
 const errors = computed(() => {
   const list: string[] = [];
 
-  list.push(...validateField('Seconds', seconds.value));
-  list.push(...validateField('Minutes', minutes.value));
-  list.push(...validateField('Hours', hours.value));
-  list.push(...validateField('Day of Month', dayOfMonth.value));
-  list.push(...validateField('Month', month.value));
-  list.push(...validateField('Day of Week', dayOfWeek.value));
-  list.push(...validateField('Year', year.value));
+  list.push(...validateField(t('tools.cron-expression-builder.texts.minutes'), minutes.value));
+  list.push(...validateField(t('tools.cron-expression-builder.texts.hours'), hours.value));
+  list.push(...validateField(t('tools.cron-expression-builder.texts.day-of-month'), dayOfMonth.value));
+  list.push(...validateField(t('tools.cron-expression-builder.texts.month'), month.value));
+  list.push(...validateField(t('tools.cron-expression-builder.texts.day-of-week'), dayOfWeek.value));
 
   // Global rule: DOM and DOW both specific → ambiguous
   if (dayOfMonth.value.mode === 'specific' && dayOfWeek.value.mode === 'specific') {
-    list.push('Day of Month and Day of Week cannot both be specific');
+    list.push(t('tools.cron-expression-builder.texts.day-of-month-and-day-of-week-cannot-both-be-specific'));
   }
 
   return list;
@@ -163,21 +157,87 @@ function buildField(field: any) {
 
 const cron = computed(() => {
   return [
-    buildField(seconds.value),
     buildField(minutes.value),
     buildField(hours.value),
     buildField(dayOfMonth.value),
     buildField(month.value),
     buildField(dayOfWeek.value),
-    buildField(year.value),
   ].join(' ');
 });
 
-defineExpose({ cron, isValid, errors });
+// -----------------------------
+// CRON INPUT
+// -----------------------------
+const cronInput = ref('');
+
+// -----------------------------
+// PARSER
+// -----------------------------
+function parseField(field: any, token: string) {
+  // Reset
+  field.mode = 'every';
+  field.values = [];
+  field.step = 1;
+
+  if (token === '*') {
+    field.mode = 'every';
+    return;
+  }
+
+  // Increment: A/B
+  if (token.includes('/')) {
+    const [start, step] = token.split('/');
+    field.mode = 'increment';
+    field.start = start === '*' ? 0 : Number(start);
+    field.step = Number(step);
+    return;
+  }
+
+  // Range: A-B
+  if (token.includes('-')) {
+    const [start, end] = token.split('-');
+    field.mode = 'range';
+    field.start = Number(start);
+    field.end = Number(end);
+    return;
+  }
+
+  // Specific values: A,B,C
+  if (token.includes(',')) {
+    field.mode = 'specific';
+    field.values = token.split(',').map(Number);
+    return;
+  }
+
+  // Single value → treat as specific
+  field.mode = 'specific';
+  field.values = [Number(token)];
+}
+
+// Watch cron input and update UI
+watch(cronInput, (val) => {
+  if (!val) {
+    return;
+  }
+  const parts = val.trim().split(/\s+/);
+  if (parts.length < 5) {
+    return;
+  } // ignore incomplete
+
+  parseField(minutes.value, parts[0]);
+  parseField(hours.value, parts[1]);
+  parseField(dayOfMonth.value, parts[2]);
+  parseField(month.value, parts[3]);
+  parseField(dayOfWeek.value, parts[4]);
+});
 </script>
 
 <template>
   <div>
+    <NCard :title="t('tools.cron-expression-builder.texts.paste-cron-expression')">
+      <NInput v-model:value="cronInput" :placeholder="t('tools.cron-expression-builder.texts.e-g-5-0-12-1-2025')" />
+    </NCard>
+
     <NCard :title="t('tools.cron-expression-builder.texts.title-generated-cron-expression')" size="small" mb-2>
       <input-copyable :value="cron" />
       <div v-if="!isValid" mt-2>
@@ -185,7 +245,13 @@ defineExpose({ cron, isValid, errors });
       </div>
     </NCard>
 
-    <NAlert v-if="errors.length" type="error" :title="t('tools.cron-expression-builder.texts.title-validation-errors')" closable mb-2>
+    <NAlert
+      v-if="errors.length"
+      type="error"
+      :title="t('tools.cron-expression-builder.texts.title-validation-errors')"
+      closable
+      mb-2
+    >
       <ul>
         <li v-for="err in errors" :key="err">
           {{ err }}
@@ -248,7 +314,11 @@ defineExpose({ cron, isValid, errors });
         <!-- Increment -->
         <div v-if="field.value.mode === 'increment'">
           <NSpace>
-            <NFormItem :label="t('tools.cron-expression-builder.texts.label-start-at')" label-placement="left" v-if="options">
+            <NFormItem
+              :label="t('tools.cron-expression-builder.texts.label-start-at')"
+              label-placement="left"
+              v-if="options"
+            >
               <NSelect v-model:value="field.value.start" :options="options" />
             </NFormItem>
             <NFormItem :label="t('tools.cron-expression-builder.texts.label-start-at')" label-placement="left" v-else>
