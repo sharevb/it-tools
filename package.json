@@ -119,7 +119,7 @@
     "@zxcvbn-ts/core": "^3.0.4",
     "@zxcvbn-ts/language-common": "^3.0.4",
     "@zxcvbn-ts/language-en": "^3.0.2",
-    "@zxing/library": "^0.21.3",
+    "@zxing/library": "^0.23.0",
     "a11y-color-contrast": "^0.2.0",
     "abort-signal-polyfill": "^1.0.0",
     "aircodes": "^1.3.16",
