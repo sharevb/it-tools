@@ -454,7 +454,7 @@
     "@vue/test-utils": "^2.4.11",
     "@vue/tsconfig": "^0.9.1",
     "axios": "^1.18.1",
-    "commander": "^14.0.3",
+    "commander": "^15.0.0",
     "consola": "^3.4.2",
     "dotenv": "^17.4.2",
     "hygen": "^6.2.11",
