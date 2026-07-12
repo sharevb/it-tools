@@ -895,8 +895,8 @@ importers:
         specifier: ^0.6.3
         version: 0.6.4
       resistor-data:
-        specifier: ^1.1.1
-        version: 1.1.1
+        specifier: ^2.0.0
+        version: 2.0.0
       riimut:
         specifier: ^0.9.1
         version: 0.9.1
@@ -9701,8 +9701,8 @@ packages:
     resolution: {integrity: sha512-yE7KUfFvaBFzGPs5H3Ops1RevfUEsDc5Iz65rOwWg4lE8HJSYtle77uul3+573457oHvBKuHYDl/xqUkKpEEdw==}
     engines: {node: '>=18'}
 
-  resistor-data@1.1.1:
-    resolution: {integrity: sha512-J8cwe8A4JWYhCM1qjPEp3Ccd2SY+h/yVGeULfpWceGYniJPluv0FbhqgTuJMgl2W0QcUngskckX6mIsTQLnoiA==}
+  resistor-data@2.0.0:
+    resolution: {integrity: sha512-Qx3yqfqcvqVjaOkLXP2yezLGBWnFmA+XfdseQFc6Ajvmq0qzzNTVXDcdKMATgIs/qNG5R8h29SYbzbfwzEc1pA==}
 
   resolve-dir@1.0.1:
     resolution: {integrity: sha512-R7uiTjECzvOsWSfdM0QKFNBVFcK27aHOUwdvK53BcW8zqnGdYp0Fbj82cy54+2A4P2tFM22J5kRfe1R+lM/1yg==}
@@ -20569,7 +20569,7 @@ snapshots:
 
   reserved-identifiers@1.2.0: {}
 
-  resistor-data@1.1.1: {}
+  resistor-data@2.0.0: {}
 
   resolve-dir@1.0.1:
     dependencies:

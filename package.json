@@ -336,7 +336,7 @@
     "regex": "^6.1.0",
     "rekcod": "^3.0.0",
     "remove-markdown": "^0.6.3",
-    "resistor-data": "^1.1.1",
+    "resistor-data": "^2.0.0",
     "riimut": "^0.9.1",
     "roboto-base64": "^0.1.2",
     "rtf-stream-parser": "^3.8.1",
