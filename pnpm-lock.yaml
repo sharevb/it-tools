@@ -328,8 +328,8 @@ importers:
         specifier: ^1.7.5
         version: 1.7.5
       convert:
-        specifier: ^6.0.0
-        version: 6.0.0
+        specifier: ^7.0.0
+        version: 7.0.0
       countries-and-timezones:
         specifier: ^3.8.0
         version: 3.9.0
@@ -5867,8 +5867,8 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  convert@6.0.0:
-    resolution: {integrity: sha512-6rYpm31xqHZeQBW17SacilLV8Bcqh5r+45OTMBFwM9NmBKvU9VhzAreX9qQHG9f1XSN3sznifXaczz2vcbWsjQ==}
+  convert@7.0.0:
+    resolution: {integrity: sha512-Sc8P9MeZBPtaAG/hiSYO28LvVjEDfP+iecvP1nvhJxvXcS3d9WQJIQma9XMPRwIWPifA2X8epIR9zbLxJPrT8w==}
 
   copy-anything@3.0.5:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
@@ -16293,7 +16293,7 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  convert@6.0.0: {}
+  convert@7.0.0: {}
 
   copy-anything@3.0.5:
     dependencies:

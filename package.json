@@ -147,7 +147,7 @@
     "colord": "^2.9.3",
     "composerize": "^1.7.5",
     "composeverter": "^1.7.5",
-    "convert": "^6.0.0",
+    "convert": "^7.0.0",
     "countries-and-timezones": "^3.8.0",
     "countries-db": "^1.2.0",
     "country-code-lookup": "^0.1.3",
