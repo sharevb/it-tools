@@ -1112,115 +1112,115 @@ importers:
         specifier: ^24.0.4
         version: 24.0.4
       '@types/arr-diff':
-        specifier: ^4.0.3
+        specifier: 4.0.3
         version: 4.0.3
       '@types/bcryptjs':
-        specifier: ^2.4.6
+        specifier: 2.4.6
         version: 2.4.6
       '@types/big.js':
-        specifier: ^6.2.2
+        specifier: 6.2.2
         version: 6.2.2
       '@types/codemirror':
-        specifier: ^5.60.17
+        specifier: 5.60.17
         version: 5.60.17
       '@types/crypto-js':
-        specifier: ^4.2.2
+        specifier: 4.2.2
         version: 4.2.2
       '@types/damerau-levenshtein':
-        specifier: ^1.0.2
+        specifier: 1.0.2
         version: 1.0.2
       '@types/emscripten':
-        specifier: ^1.40.1
+        specifier: 1.41.5
         version: 1.41.5
       '@types/har-format':
-        specifier: ^1.2.16
+        specifier: 1.2.16
         version: 1.2.16
       '@types/hex-array':
-        specifier: ^1.0.2
+        specifier: 1.0.2
         version: 1.0.2
       '@types/js-beautify':
-        specifier: ^1.14.3
+        specifier: 1.14.3
         version: 1.14.3
       '@types/jsdom':
-        specifier: ^21.1.7
+        specifier: 21.1.7
         version: 21.1.7
       '@types/jsonpath':
-        specifier: ^0.2.4
+        specifier: 0.2.4
         version: 0.2.4
       '@types/leaflet':
-        specifier: ^1.9.21
+        specifier: 1.9.21
         version: 1.9.21
       '@types/libmime':
-        specifier: ^5.0.3
+        specifier: 5.3.0
         version: 5.3.0
       '@types/luxon':
-        specifier: ^3.4.2
+        specifier: 3.7.2
         version: 3.7.2
       '@types/markdown-it':
-        specifier: ^13.0.9
+        specifier: 13.0.9
         version: 13.0.9
       '@types/memorystream':
-        specifier: ^0.3.4
+        specifier: 0.3.4
         version: 0.3.4
       '@types/mime-types':
-        specifier: ^3.0.1
+        specifier: 3.0.1
         version: 3.0.1
       '@types/morsee':
-        specifier: ^1.0.2
+        specifier: 1.0.2
         version: 1.0.2
       '@types/nanoid-dictionary':
-        specifier: ^4.2.3
+        specifier: 4.2.3
         version: 4.2.3
       '@types/netmask':
-        specifier: ^2.0.5
+        specifier: 2.0.6
         version: 2.0.6
       '@types/node':
-        specifier: ^24.10.1
+        specifier: 24.13.2
         version: 24.13.2
       '@types/node-forge':
-        specifier: ^1.3.14
+        specifier: 1.3.14
         version: 1.3.14
       '@types/picomatch':
-        specifier: ^4.0.3
+        specifier: 4.0.3
         version: 4.0.3
       '@types/potrace':
-        specifier: ^2.1.5
+        specifier: 2.1.5
         version: 2.1.5
       '@types/punycode':
-        specifier: ^2.1.4
+        specifier: 2.1.4
         version: 2.1.4
       '@types/qrcode':
-        specifier: ^1.5.5
+        specifier: 1.5.6
         version: 1.5.6
       '@types/sanitize-html':
-        specifier: ^2.13.0
+        specifier: 2.16.1
         version: 2.16.1
       '@types/spdx-satisfies':
-        specifier: ^6.0.0
+        specifier: 6.0.0
         version: 6.0.0
       '@types/sshpk':
-        specifier: ^1.17.4
+        specifier: 1.17.5
         version: 1.17.5
       '@types/stopword':
-        specifier: ^2.0.3
+        specifier: 2.0.3
         version: 2.0.3
       '@types/stringify-object':
-        specifier: ^4.0.5
+        specifier: 4.0.5
         version: 4.0.5
       '@types/text-encoding-utf-8':
-        specifier: ^1.0.5
+        specifier: 1.0.5
         version: 1.0.5
       '@types/turndown':
-        specifier: ^5.0.6
+        specifier: 5.0.6
         version: 5.0.6
       '@types/ua-parser-js':
-        specifier: ^0.7.39
+        specifier: 0.7.39
         version: 0.7.39
       '@types/unist':
-        specifier: ^3.0.3
+        specifier: 3.0.3
         version: 3.0.3
       '@types/utf8':
-        specifier: ^3.0.3
+        specifier: 3.0.3
         version: 3.0.3
       '@types/uuid':
         specifier: ^10.0.0
