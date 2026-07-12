@@ -215,7 +215,7 @@
     "heic-convert": "^2.1.0",
     "hex-array": "^1.0.0",
     "highlight.js": "^11.11.1",
-    "html-to-text": "^9.0.5",
+    "html-to-text": "^10.0.0",
     "htmlfy": "^1.0.1",
     "htmlparser2": "^10.0.0",
     "hyparquet": "^1.23.3",
