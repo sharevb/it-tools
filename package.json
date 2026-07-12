@@ -141,7 +141,7 @@
     "chartjs-plugin-zoom": "^2.2.0",
     "chatgpt-prompt-splitter": "^1.0.5",
     "chinesegen": "^0.3.3",
-    "cidr-tools": "^11.0.3",
+    "cidr-tools": "^12.0.0",
     "citation-formatter": "^1.0.1",
     "codemirror": "^6.0.2",
     "colord": "^2.9.3",
