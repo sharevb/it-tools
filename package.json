@@ -221,7 +221,7 @@
     "hyparquet": "^1.23.3",
     "hyparquet-compressors": "^1.1.1",
     "ibantools": "^4.5.1",
-    "ical-generator": "^10.0.0",
+    "ical-generator": "^11.0.0",
     "ical.js": "^2.2.1",
     "iconv-lite": "^0.7.2",
     "idb-keyval": "^6.2.2",
