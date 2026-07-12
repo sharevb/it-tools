@@ -574,8 +574,8 @@ importers:
         specifier: ^10.1.0
         version: 10.2.0
       ip-bigint:
-        specifier: ^8.2.2
-        version: 8.3.6
+        specifier: ^9.0.0
+        version: 9.0.6
       ip-cidr:
         specifier: ^4.0.2
         version: 4.0.2
@@ -7572,6 +7572,10 @@ packages:
   ip-bigint@8.3.6:
     resolution: {integrity: sha512-IRan4ty1RP2aI0MDQtfEs6gGtjDLb/4808xm21BK+ytLquz8FLiWQlepONVcQycjku3HPPEPPUcg9Om8hdOzJQ==}
     engines: {node: '>=18'}
+
+  ip-bigint@9.0.6:
+    resolution: {integrity: sha512-dpEy7cSzYM9JsL6Ai9KGO0eCKALRtbYCb57Nfc8/kflSyBakf1Orb6/8u+NDlhS+7THbjrOfY52z9PnJXh/mWA==}
+    engines: {node: '>=22'}
 
   ip-cidr@4.0.2:
     resolution: {integrity: sha512-KifhLKBjdS/hB3TD4UUOalVp1BpzPFvRpgJvXcP0Ya98tuSQTUQ71iI7EW7CKddkBJTYB3GfTWl5eJwpLOXj2A==}
@@ -18264,6 +18268,8 @@ snapshots:
       sprintf-js: 1.1.3
 
   ip-bigint@8.3.6: {}
+
+  ip-bigint@9.0.6: {}
 
   ip-cidr@4.0.2:
     dependencies:

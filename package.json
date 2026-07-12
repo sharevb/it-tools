@@ -229,7 +229,7 @@
     "image-in-browser": "^3.3.0",
     "image-to-ascii-art": "^0.0.4",
     "ip-address": "^10.1.0",
-    "ip-bigint": "^8.2.2",
+    "ip-bigint": "^9.0.0",
     "ip-cidr": "^4.0.2",
     "ip-matching": "^2.1.2",
     "ip-regex": "^5.0.0",
