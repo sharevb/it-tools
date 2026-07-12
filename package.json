@@ -386,7 +386,7 @@
     "vue-loading-overlay": "^6.0.6",
     "vue-markdown-render": "^2.3.0",
     "vue-mathjax-next": "^0.0.6",
-    "vue-router": "^4.1.6",
+    "vue-router": "^5.0.0",
     "vue-shadow-dom": "^4.2.0",
     "vue-tsc": "^3.3.6",
     "vue3-flip-countdown": "^0.1.6",
