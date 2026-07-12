@@ -290,7 +290,7 @@
     "mitex-wasm": "^0.2.5",
     "monaco-editor": "^0.55.1",
     "morsee": "^1.0.10",
-    "msgpackr": "^1.11.8",
+    "msgpackr": "^2.0.0",
     "naive-ui": "^2.43.2",
     "nanoid": "^5.1.6",
     "nanoid-dictionary": "^5.0.0",
