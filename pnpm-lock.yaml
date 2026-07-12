@@ -221,7 +221,7 @@ importers:
         version: 1.3.1(vue@3.5.39(typescript@6.0.3))
       '@vueuse/integrations':
         specifier: ^14.3.0
-        version: 14.3.0(async-validator@4.2.5)(axios@1.18.1)(change-case@5.4.4)(fuse.js@7.4.2)(idb-keyval@6.2.6)(jwt-decode@4.0.0)(qrcode@1.5.4)(sortablejs@1.14.0)(vue@3.5.39(typescript@6.0.3))
+        version: 14.3.0(async-validator@4.2.5)(axios@1.18.1)(change-case@5.4.4)(fuse.js@7.4.2)(idb-keyval@6.3.0)(jwt-decode@4.0.0)(qrcode@1.5.4)(sortablejs@1.14.0)(vue@3.5.39(typescript@6.0.3))
       '@vueuse/router':
         specifier: ^10.11.1
         version: 10.11.1(vue-router@5.1.0(@vue/compiler-sfc@3.5.39)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3)))(rolldown@1.1.4)(rollup@4.62.2)(vite@8.1.3(@types/node@24.13.2)(jiti@2.7.0)(less@4.6.7)(terser@5.48.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))(webpack@5.108.3(postcss@8.5.16)))(vue@3.5.39(typescript@6.0.3))
@@ -560,7 +560,7 @@ importers:
         version: 0.7.3
       idb-keyval:
         specifier: ^6.2.6
-        version: 6.2.6
+        version: 6.3.0
       image-compare-viewer:
         specifier: ^1.6.2
         version: 1.6.2(postcss@8.5.16)(typescript@6.0.3)(webpack@5.108.3(postcss@8.5.16))
@@ -7536,8 +7536,8 @@ packages:
     resolution: {integrity: sha512-IKXpvIzjnC9XTAUbVBcMfGS0EPaIXtW6v+zr+RRp+hqULEpo0owZax6wyRwPOJbWbzjYspQwusTsfVr0ifh4uQ==}
     engines: {node: '>=0.10.0'}
 
-  idb-keyval@6.2.6:
-    resolution: {integrity: sha512-FY64UEhw+5liMzMQ1R9Mw6AF0+wyBrg1CIA1z4CjI/EvT5ty/SvQcWZgd8s9sgaNhX10Y8UzScTh89tEAls5nA==}
+  idb-keyval@6.3.0:
+    resolution: {integrity: sha512-um+2dgAWmYsu615EXpWVwSmapJhON0G43t3Ka/EVaohzPQXSMqKEqeDK/oIW3Ow+BXaF2PvSc+oBTFp793A5Ow==}
 
   idb@7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
@@ -15597,7 +15597,7 @@ snapshots:
       '@unhead/vue': 1.11.20(vue@3.5.39(typescript@6.0.3))
       vue: 3.5.39(typescript@6.0.3)
 
-  '@vueuse/integrations@14.3.0(async-validator@4.2.5)(axios@1.18.1)(change-case@5.4.4)(fuse.js@7.4.2)(idb-keyval@6.2.6)(jwt-decode@4.0.0)(qrcode@1.5.4)(sortablejs@1.14.0)(vue@3.5.39(typescript@6.0.3))':
+  '@vueuse/integrations@14.3.0(async-validator@4.2.5)(axios@1.18.1)(change-case@5.4.4)(fuse.js@7.4.2)(idb-keyval@6.3.0)(jwt-decode@4.0.0)(qrcode@1.5.4)(sortablejs@1.14.0)(vue@3.5.39(typescript@6.0.3))':
     dependencies:
       '@vueuse/core': 14.3.0(vue@3.5.39(typescript@6.0.3))
       '@vueuse/shared': 13.9.0(vue@3.5.39(typescript@6.0.3))
@@ -15607,7 +15607,7 @@ snapshots:
       axios: 1.18.1
       change-case: 5.4.4
       fuse.js: 7.4.2
-      idb-keyval: 6.2.6
+      idb-keyval: 6.3.0
       jwt-decode: 4.0.0
       qrcode: 1.5.4
       sortablejs: 1.14.0
@@ -18359,7 +18359,7 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  idb-keyval@6.2.6: {}
+  idb-keyval@6.3.0: {}
 
   idb@7.1.1: {}
 
@@ -21563,7 +21563,7 @@ snapshots:
   tesseract.js@5.1.1:
     dependencies:
       bmp-js: 0.1.0
-      idb-keyval: 6.2.6
+      idb-keyval: 6.3.0
       is-electron: 2.2.2
       is-url: 1.2.4
       node-fetch: 2.7.0
