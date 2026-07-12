@@ -244,7 +244,7 @@
     "jpeg-quality-estimator": "^1.0.1",
     "jq-wasm": "^1.0.1",
     "js-base64": "^3.8.1",
-    "js-beautify": "^1.15.4",
+    "js-beautify": "^2.0.0",
     "js-tiktoken": "^1.0.21",
     "jsbarcode": "^3.12.3",
     "json-analyzer": "^1.2.2",
