@@ -881,7 +881,7 @@ importers:
         version: 1.7.1
       quicktype-core:
         specifier: ^23.2.6
-        version: 23.3.1
+        version: 23.3.25
       randexp:
         specifier: ^0.5.3
         version: 0.5.3
@@ -7952,6 +7952,9 @@ packages:
   js-base64@3.8.0:
     resolution: {integrity: sha512-65kvbemyZhj+ExQt1PEFyBEjL5vAHysu1lJdW1AwhhChkO8ZBPizYk/m9GVrpbS2Je1hF+UYZ+6KywqtZV8mHw==}
 
+  js-base64@3.8.1:
+    resolution: {integrity: sha512-5xVjhUZlHHeuO2W7w2rDFj/Kl1xLX+HjZxdOQwCsUOifl6UaoH1o1wsbsTMz+r0aeC7gCijvru02j6TfKZWzKg==}
+
   js-beautify@1.15.4:
     resolution: {integrity: sha512-9/KXeZUKKJwqCXUdBxFJ3vPh467OCckSBmYDwSK/EtV090K+iMJ7zx2S3HLVDIWFQdqMIsZWbnaGiba18aWhaA==}
     engines: {node: '>=14'}
@@ -9552,8 +9555,8 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
 
-  quicktype-core@23.3.1:
-    resolution: {integrity: sha512-KEvu/nKif1CUgMgfdBcgiZiJRbKSve0c3hAyq2BRiL5vQHMEJQOketacSJ8OI3ggCHRvlOTZ1NvarLOJZSAaRQ==}
+  quicktype-core@23.3.25:
+    resolution: {integrity: sha512-WOKJw/DemC1pO8CD0tgZ/Fn8FzWvWIeLPrbfpwfNbnPoXnehNgDRFesPYpgrNlF0Pce98aUBqqT55fsidaJGVQ==}
 
   railroad-diagrams@1.0.0:
     resolution: {integrity: sha512-cz93DjNeLY0idrCNOH6PviZGRN9GJhsdm9hpn1YCS879fj4W+x5IFJhhkRZcwVgMmFF7R82UA/7Oh+R8lLZg6A==}
@@ -18626,6 +18629,8 @@ snapshots:
 
   js-base64@3.8.0: {}
 
+  js-base64@3.8.1: {}
+
   js-beautify@1.15.4:
     dependencies:
       config-chain: 1.1.13
@@ -20374,14 +20379,14 @@ snapshots:
 
   quick-lru@5.1.1: {}
 
-  quicktype-core@23.3.1:
+  quicktype-core@23.3.25:
     dependencies:
       '@glideapps/ts-necessities': 2.2.3
       browser-or-node: 3.0.0
       collection-utils: 1.0.1
       cross-fetch: 4.1.0
       is-url: 1.2.4
-      js-base64: 3.8.0
+      js-base64: 3.8.1
       lodash: 4.18.1
       pako: 1.0.11
       pluralize: 8.0.0
