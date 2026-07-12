@@ -803,7 +803,7 @@ importers:
         version: 1.1.571
       pako:
         specifier: ^3.0.0
-        version: 3.0.0
+        version: 3.0.1
       parse-duration:
         specifier: ^2.1.6
         version: 2.1.6
@@ -9083,8 +9083,8 @@ packages:
   pako@1.0.11:
     resolution: {integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==}
 
-  pako@3.0.0:
-    resolution: {integrity: sha512-TGPtlCI1pSUSbkOIxOUUHNrBa0muz4mAp32cYUF3RoSa5c73jiQTKOKo22gaa4DxLggQrda/DAdax5QkcHPvYA==}
+  pako@3.0.1:
+    resolution: {integrity: sha512-GupotUUI0mlhugKjUs4bjOwLt3nrehy9Ys2dxC0GtgVef5cnKggkDMmf2bq2poCCuVXopWPmqsc9VDT2iJUy+w==}
 
   param-case@2.1.1:
     resolution: {integrity: sha512-eQE845L6ot89sk2N8liD8HAuH4ca6Vvr7VWAWwt7+kvvG5aBcPmmphQ68JsEG2qa9n1TykS2DLeMt363AAH8/w==}
@@ -19887,7 +19887,7 @@ snapshots:
 
   pako@1.0.11: {}
 
-  pako@3.0.0: {}
+  pako@3.0.1: {}
 
   param-case@2.1.1:
     dependencies:
