@@ -5768,6 +5768,13 @@ tools:
       label-base64-64: Base64 (64)
       placeholder-base64-version-will-be-here: Base64 version will be here...
       tag-custom: "Custom:"
+      label-space-separation: Space separation
+      label-binary-size: Binary size
+      label-octal-size: Octal size
+      label-decimal-size: Decimal size
+      label-hexadecimal-size: Hex size
+      label-base64-size: Base64 size
+      label-custom-size: Custom size
     model:
       text:
         invalid-digit-digit-for-base-finalfrombase: Invalid digit "{0}" for base {1}.

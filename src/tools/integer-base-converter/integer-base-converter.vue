@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import InputCopyable from '../../components/InputCopyable.vue';
-import { convertBase, hasNumberPrefix } from './integer-base-converter.model';
+import { convertBase, hasNumberPrefix, formatWithSpaces } from './integer-base-converter.model';
 import { getErrorMessageIfThrows } from '@/utils/error';
 import { useQueryParam } from '@/composable/queryParams';
 
@@ -21,9 +21,39 @@ const outputBase = useQueryParam({ tool: 'int-base-conv', name: 'outbase', defau
 
 const hasInputNumberPrefix = computed(() => hasNumberPrefix(input.value));
 
-function errorlessConvert(...args: Parameters<typeof convertBase>) {
+const useSpaceSeparation = ref(false);
+const groupSizes = ref({
+  binary: 8,
+  octal: 3,
+  decimal: 3,
+  hex: 4,
+  base64: 4,
+  custom: 4,
+});
+
+function getGroupSizeForBase(base: number): number {
+  if (!useSpaceSeparation.value) {
+    return 0;
+  }
+  switch (base) {
+    case 2: return groupSizes.value.binary;
+    case 8: return groupSizes.value.octal;
+    case 10: return groupSizes.value.decimal;
+    case 16: return groupSizes.value.hex;
+    case 64: return groupSizes.value.base64;
+    default:
+      return base === outputBase.value ? groupSizes.value.custom : 4;
+  }
+}
+
+function formattedConvert(args: Parameters<typeof convertBase>[0]) {
   try {
-    return convertBase(...args);
+    const converted = convertBase(args);
+    const size = getGroupSizeForBase(args.toBase);
+    if (useSpaceSeparation.value && size > 0) {
+      return formatWithSpaces(converted, size);
+    }
+    return converted;
   }
   catch (err) {
     return '';
@@ -46,6 +76,33 @@ const error = computed(() =>
         <n-input-number-i18n v-model:value="inputBase" max="64" min="2" :placeholder="t('tools.integer-base-converter.texts.placeholder-put-your-input-base-here-ex-10')" w-full />
       </n-form-item>
 
+      <n-form-item :label="t('tools.integer-base-converter.texts.label-space-separation')" label-placement="left" label-width="110" :show-feedback="false" style="margin-top: 10px;">
+        <n-switch v-model:value="useSpaceSeparation" />
+      </n-form-item>
+
+      <div v-if="useSpaceSeparation" style="margin-top: 10px; margin-bottom: 20px; padding-left: 20px; border-left: 2px solid var(--n-border-color)">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px;">
+          <n-form-item :label="t('tools.integer-base-converter.texts.label-binary-size')" label-placement="top" :show-feedback="false">
+            <n-input-number v-model:value="groupSizes.binary" :min="1" :max="64" size="small" />
+          </n-form-item>
+          <n-form-item :label="t('tools.integer-base-converter.texts.label-octal-size')" label-placement="top" :show-feedback="false">
+            <n-input-number v-model:value="groupSizes.octal" :min="1" :max="64" size="small" />
+          </n-form-item>
+          <n-form-item :label="t('tools.integer-base-converter.texts.label-decimal-size')" label-placement="top" :show-feedback="false">
+            <n-input-number v-model:value="groupSizes.decimal" :min="1" :max="64" size="small" />
+          </n-form-item>
+          <n-form-item :label="t('tools.integer-base-converter.texts.label-hexadecimal-size')" label-placement="top" :show-feedback="false">
+            <n-input-number v-model:value="groupSizes.hex" :min="1" :max="64" size="small" />
+          </n-form-item>
+          <n-form-item :label="t('tools.integer-base-converter.texts.label-base64-size')" label-placement="top" :show-feedback="false">
+            <n-input-number v-model:value="groupSizes.base64" :min="1" :max="64" size="small" />
+          </n-form-item>
+          <n-form-item :label="t('tools.integer-base-converter.texts.label-custom-size')" label-placement="top" :show-feedback="false">
+            <n-input-number v-model:value="groupSizes.custom" :min="1" :max="64" size="small" />
+          </n-form-item>
+        </div>
+      </div>
+
       <n-alert v-if="error" style="margin-top: 25px" type="error">
         {{ error }}
       </n-alert>
@@ -54,35 +111,35 @@ const error = computed(() =>
       <InputCopyable
         :label="t('tools.integer-base-converter.texts.label-binary-2')"
         v-bind="inputProps"
-        :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 2 })"
+        :value="formattedConvert({ value: input, fromBase: inputBase, toBase: 2 })"
         :placeholder="t('tools.integer-base-converter.texts.placeholder-binary-version-will-be-here')"
       />
 
       <InputCopyable
         :label="t('tools.integer-base-converter.texts.label-octal-8')"
         v-bind="inputProps"
-        :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 8 })"
+        :value="formattedConvert({ value: input, fromBase: inputBase, toBase: 8 })"
         :placeholder="t('tools.integer-base-converter.texts.placeholder-octal-version-will-be-here')"
       />
 
       <InputCopyable
         :label="t('tools.integer-base-converter.texts.label-decimal-10')"
         v-bind="inputProps"
-        :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 10 })"
+        :value="formattedConvert({ value: input, fromBase: inputBase, toBase: 10 })"
         :placeholder="t('tools.integer-base-converter.texts.placeholder-decimal-version-will-be-here')"
       />
 
       <InputCopyable
         :label="t('tools.integer-base-converter.texts.label-hexadecimal-16')"
         v-bind="inputProps"
-        :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 16 })"
+        :value="formattedConvert({ value: input, fromBase: inputBase, toBase: 16 })"
         :placeholder="t('tools.integer-base-converter.texts.placeholder-hexadecimal-version-will-be-here')"
       />
 
       <InputCopyable
         :label="t('tools.integer-base-converter.texts.label-base64-64')"
         v-bind="inputProps"
-        :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 64 })"
+        :value="formattedConvert({ value: input, fromBase: inputBase, toBase: 64 })"
         :placeholder="t('tools.integer-base-converter.texts.placeholder-base64-version-will-be-here')"
       />
 
@@ -95,7 +152,7 @@ const error = computed(() =>
         <InputCopyable
           flex-1
           v-bind="inputProps"
-          :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: outputBase })"
+          :value="formattedConvert({ value: input, fromBase: inputBase, toBase: outputBase })"
           :placeholder="`Base ${outputBase} will be here...`"
         />
       </div>
