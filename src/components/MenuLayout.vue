@@ -93,6 +93,14 @@ const siderContentWidthPx = computed(() => `${siderContentWidth.value}px`);
 
 .content {
   // background-color: #f1f5f9;
+
+  // Flex items default to min-width: auto, so a child wider than the viewport
+  // (e.g. a long, non-wrapping line in a code viewer) stretches this whole
+  // column past the screen instead of letting the child's own scroll container
+  // (n-scrollbar / CodeMirror) scroll horizontally. min-width: 0 lets the
+  // column shrink to the available width so that inner scrolling kicks in.
+  min-width: 0;
+
   ::v-deep(.n-layout-scroll-container) {
     padding: 26px;
 
