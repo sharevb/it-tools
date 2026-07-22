@@ -8488,6 +8488,7 @@ tools:
       text-picked-lines-copied-to-clipboard: 已选择的行已复制到剪贴板！
   keyboard-tester:
     title: 键盘测试器
+    description: 测试你的键盘按键，检查是否所有按键都能正常工作。每次按键都有视觉反馈，并支持不同的键盘布局。
     instructions:
       highlight: 按下的按键将会高亮显示。
       press: 按下键盘上的任意键进行测试
