@@ -8487,6 +8487,7 @@ tools:
       tag-refresh: 刷新
       text-picked-lines-copied-to-clipboard: 已选择的行已复制到剪贴板！
   keyboard-tester:
+    title:键盘测试器
     instructions:
       highlight: 按下的按键将会高亮显示。
       press: 按下键盘上的任意键进行测试
@@ -9085,7 +9086,7 @@ tools:
       tag-generate-patch: 生成补丁
       tag-apply-patch: 贴片
   ping:
-    title: 平
+    title: ping
     description: ping 一组主机名、IP 地址、CIDR 或 IP 地址范围
     externalAccess: 该工具会调用您的自托管网络实用程序服务来执行 ICMP ping 操作。
     texts:
