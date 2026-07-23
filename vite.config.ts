@@ -237,6 +237,9 @@ export default defineConfig({
     ], // optionally specify dependency name
   },
   server: {
+    watch: {
+      ignored: ['**/.pnpm-store/**'],
+    },
     headers: {
       //   'Cross-Origin-Resource-Policy': 'same-site',
       'Cross-Origin-Opener-Policy': 'same-origin',
