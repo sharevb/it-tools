@@ -166,7 +166,7 @@ export class PlainRenderer extends Renderer {
   }
 
   override checkbox(checked: boolean): string {
-    return checked ? '[x] ' : '[ ] ';
+    return '';
   }
 
   override paragraph(text: string): string {

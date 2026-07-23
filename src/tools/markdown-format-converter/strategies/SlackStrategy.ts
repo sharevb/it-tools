@@ -55,6 +55,42 @@ class SlackRenderer extends PlainRenderer {
     // Slack does not support language formatting on block backticks
     return `\n\`\`\`\n${code}\n\`\`\`\n`;
   }
+
+  override list(body: string, ordered: boolean, start: number): string {
+    if (ordered) {
+      let index = start;
+      const lines = body.split('\n');
+      const formattedLines = lines.map(line => {
+        if (line.startsWith('• ')) {
+          return line.replace(/^• /, `${index++}. `);
+        }
+        const match = line.match(/^(\s+)•\s+(.*)$/);
+        if (match) {
+          return `${match[1]}${index++}. ${match[2]}`;
+        }
+        return line;
+      });
+      return `\n${formattedLines.join('\n')}`;
+    }
+    return `\n${body}`;
+  }
+
+  override listitem(text: string, task: boolean, checked: boolean): string {
+    let prefix = '• ';
+    if (task) {
+      prefix = checked ? '✓ ' : '☐ ';
+    }
+
+    const lines = text.trim().split('\n').filter(line => line.trim() !== '');
+    const firstLine = lines[0].trim();
+    const otherLines = lines
+      .slice(1)
+      .map(line => `    ${line}`)
+      .join('\n');
+
+    const formatted = otherLines ? `${firstLine}\n${otherLines}` : firstLine;
+    return `${prefix}${formatted}\n`;
+  }
 }
 
 export class SlackStrategy implements ConverterStrategy {

@@ -182,5 +182,15 @@ describe('markdown-format-converter', () => {
       expect(output).toContain('1. item 1');
       expect(output).toContain('2. item 2');
     });
+
+    it('should convert standard markdown lists and task lists correctly to Slack format with proper bullets, checkboxes, and 4-space nested indentation', () => {
+      const input = '- [x] implement feature\n- [ ] merge PR\n- ordered list\n  1. item 1\n  2. item 2';
+      const output = convertMarkdown(input, 'github', 'slack');
+      expect(output).toContain('✓ implement feature');
+      expect(output).not.toContain('✓ [x]');
+      expect(output).toContain('☐ merge PR');
+      expect(output).not.toContain('☐ [ ]');
+      expect(output).toContain('• ordered list\n    1. item 1\n    2. item 2');
+    });
   });
 });
