@@ -1,9 +1,10 @@
-import { Renderer } from 'marked';
+import { Renderer, type Token } from 'marked';
 
 export interface ConverterStrategy {
   id: string;
   name: string;
   getRenderer(): Renderer;
+  lex(input: string): Token[];
   renderWikilink?(target: string, text: string): string;
   renderCallout?(type: string, title: string, content: string): string;
 }

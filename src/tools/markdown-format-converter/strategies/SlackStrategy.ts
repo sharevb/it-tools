@@ -1,4 +1,29 @@
-import { type ConverterStrategy, PlainRenderer } from './ConverterStrategy';
+import { Marked, type Token } from 'marked';
+import { type ConverterStrategy, PlainRenderer, getMarkdownExtensions } from './ConverterStrategy';
+
+function slackToMarkdown(input: string): string {
+  let output = input;
+
+  // Convert links: <http://example.com|Example> -> [Example](http://example.com)
+  output = output.replace(/<([^>|]+)\|([^>]+)>/g, '[$2]($1)');
+
+  // Convert links without text: <http://example.com> -> [http://example.com](http://example.com)
+  output = output.replace(/<([^>]+)>/g, '[$1]($1)');
+
+  // Headings: Slack uses bold lines as headings
+  output = output.replace(/^(?:[ \t]*)\*([^*]+)\*(?:[ \t]*)$/gm, '# $1');
+
+  // Bold: Slack *bold* -> GFM **bold**
+  output = output.replace(/(?<=^|\s|[.,;:!?])\*([^*]+)\*(?=$|\s|[.,;:!?])/g, '**$1**');
+
+  // Strikethrough: Slack ~strike~ -> GFM ~~strike~~
+  output = output.replace(/(?<=^|\s|[.,;:!?])~([^~]+)~(?=$|\s|[.,;:!?])/g, '~~$1~~');
+
+  // Italics: Slack _italic_ -> GFM *italic*
+  output = output.replace(/(?<=^|\s|[.,;:!?])_([^_]+)_(?=$|\s|[.,;:!?])/g, '*$1*');
+
+  return output;
+}
 
 class SlackRenderer extends PlainRenderer {
   override strong(text: string): string {
@@ -38,6 +63,17 @@ export class SlackStrategy implements ConverterStrategy {
 
   getRenderer() {
     return new SlackRenderer();
+  }
+
+  lex(input: string): Token[] {
+    const markdown = slackToMarkdown(input);
+    const markedInstance = new Marked();
+    markedInstance.use({
+      extensions: getMarkdownExtensions(this),
+      gfm: true,
+      breaks: true,
+    });
+    return markedInstance.lexer(markdown);
   }
 
   renderWikilink(target: string, text: string): string {

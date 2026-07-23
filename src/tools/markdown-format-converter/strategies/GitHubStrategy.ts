@@ -1,4 +1,5 @@
-import { type ConverterStrategy, PlainRenderer } from './ConverterStrategy';
+import { Marked, type Token } from 'marked';
+import { type ConverterStrategy, PlainRenderer, getMarkdownExtensions } from './ConverterStrategy';
 
 class GitHubRenderer extends PlainRenderer {
   // Matches standard GitHub Flavored Markdown (GFM)
@@ -10,6 +11,16 @@ export class GitHubStrategy implements ConverterStrategy {
 
   getRenderer() {
     return new GitHubRenderer();
+  }
+
+  lex(input: string): Token[] {
+    const markedInstance = new Marked();
+    markedInstance.use({
+      extensions: getMarkdownExtensions(this),
+      gfm: true,
+      breaks: true,
+    });
+    return markedInstance.lexer(input);
   }
 
   renderWikilink(target: string, text: string): string {

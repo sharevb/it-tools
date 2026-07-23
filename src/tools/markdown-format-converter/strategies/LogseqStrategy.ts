@@ -1,4 +1,90 @@
-import { type ConverterStrategy, PlainRenderer } from './ConverterStrategy';
+import { Marked, type Token } from 'marked';
+import { type ConverterStrategy, PlainRenderer, getMarkdownExtensions } from './ConverterStrategy';
+
+function logseqToMarkdown(input: string): string {
+  const lines = input.split('\n');
+  const processedLines: string[] = [];
+
+  const blockMetadata = lines.map((line, index) => {
+    const match = line.match(/^(\s*)-\s+(.*)$/);
+    const isProperty = line.trim().includes('::');
+    return {
+      line,
+      index,
+      isBlock: !!match && !isProperty,
+      indent: match ? match[1].length : 0,
+      content: match ? match[2] : line,
+      isProperty,
+      isOrdered: false,
+    };
+  });
+
+  // Mark blocks as ordered if they are followed by logseq.order-list-type:: number
+  for (let i = 0; i < blockMetadata.length; i++) {
+    if (blockMetadata[i].isProperty && blockMetadata[i].line.includes('logseq.order-list-type:: number')) {
+      for (let j = i - 1; j >= 0; j--) {
+        if (blockMetadata[j].isBlock) {
+          blockMetadata[j].isOrdered = true;
+          break;
+        }
+      }
+    }
+  }
+
+  const listCounters: Record<number, number> = {};
+
+  for (let i = 0; i < blockMetadata.length; i++) {
+    const meta = blockMetadata[i];
+
+    if (meta.isProperty) {
+      continue;
+    }
+
+    if (!meta.isBlock) {
+      processedLines.push(meta.line);
+      continue;
+    }
+
+    let hasChildren = false;
+    for (let j = i + 1; j < blockMetadata.length; j++) {
+      const nextMeta = blockMetadata[j];
+      if (nextMeta.isBlock) {
+        if (nextMeta.indent > meta.indent) {
+          hasChildren = true;
+        }
+        break;
+      }
+    }
+
+    const indentStr = ' '.repeat(meta.indent);
+
+    if (meta.isOrdered) {
+      if (!listCounters[meta.indent]) {
+        listCounters[meta.indent] = 1;
+      }
+      const num = listCounters[meta.indent]++;
+      processedLines.push(`${indentStr}${num}. ${meta.content}`);
+    } else {
+      listCounters[meta.indent] = 0;
+
+      if (meta.indent > 0) {
+        processedLines.push(`${indentStr}- ${meta.content}`);
+      } else {
+        if (meta.content.trim().startsWith('#')) {
+          processedLines.push(meta.content);
+        } else if (meta.content.trim().startsWith('>')) {
+          processedLines.push(meta.content);
+        } else if (hasChildren) {
+          processedLines.push(`- ${meta.content}`);
+        } else {
+          processedLines.push(meta.content);
+        }
+      }
+    }
+  }
+
+  return processedLines.join('\n');
+}
 
 class LogseqRenderer extends PlainRenderer {
   override heading(text: string, level: number): string {
@@ -52,6 +138,17 @@ export class LogseqStrategy implements ConverterStrategy {
 
   getRenderer() {
     return new LogseqRenderer();
+  }
+
+  lex(input: string): Token[] {
+    const markdown = logseqToMarkdown(input);
+    const markedInstance = new Marked();
+    markedInstance.use({
+      extensions: getMarkdownExtensions(this),
+      gfm: true,
+      breaks: true,
+    });
+    return markedInstance.lexer(markdown);
   }
 
   renderWikilink(target: string, text: string): string {

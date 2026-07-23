@@ -6,6 +6,12 @@ import { convertMarkdown, strategies } from './markdown-format-converter.service
 
 const { t } = useI18n();
 
+const sourceFormat = useQueryParamOrStorage<string>({
+  name: 'sourceFormat',
+  storageName: 'md-conv:source',
+  defaultValue: 'github',
+});
+
 const targetFormat = useQueryParamOrStorage<string>({
   name: 'targetFormat',
   storageName: 'md-conv:target',
@@ -20,7 +26,7 @@ const formatOptions = strategies.map((s) => ({
 }));
 
 const outputConverted = computed(() => {
-  return convertMarkdown(inputMarkdown.value, targetFormat.value);
+  return convertMarkdown(inputMarkdown.value, sourceFormat.value, targetFormat.value);
 });
 </script>
 
@@ -50,6 +56,13 @@ const outputConverted = computed(() => {
     <n-divider />
 
     <n-space justify="start" mb-4>
+      <c-select
+        v-model:value="sourceFormat"
+        :label="t('tools.markdown-format-converter.texts.label-source-format')"
+        label-position="left"
+        style="width: 320px"
+        :options="formatOptions"
+      />
       <c-select
         v-model:value="targetFormat"
         :label="t('tools.markdown-format-converter.texts.label-target-format')"

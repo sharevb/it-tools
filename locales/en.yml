@@ -2292,8 +2292,9 @@ tools:
       label-tilde: Tilde (~)
   markdown-format-converter:
     title: Format Converter
-    description: Convert between standard Markdown, Obsidian, and Logseq dialects into Slack, Discord, Jira, GitHub, and StackOverflow formatting.
+    description: Convert between standard Markdown, Obsidian, Logseq, Slack, Jira, and other formats.
     texts:
+      label-source-format: Source Format
       label-target-format: Target Format
       placeholder-input-markdown: Paste or type your standard, Obsidian, or Logseq Markdown here...
       label-input-markdown: Input Markdown

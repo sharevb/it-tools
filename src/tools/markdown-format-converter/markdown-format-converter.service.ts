@@ -27,25 +27,28 @@ function unescapeHtml(text: string): string {
     .replace(/&#39;/g, "'");
 }
 
-export function convertMarkdown(input: string, strategyId: string): string {
+export function convertMarkdown(input: string, sourceStrategyId: string, targetStrategyId: string): string {
   if (!input) {
     return '';
   }
 
-  const strategy = strategies.find((s) => s.id === strategyId) || strategies[0];
+  const sourceStrategy = strategies.find((s) => s.id === sourceStrategyId) || strategies.find((s) => s.id === 'github') || strategies[0];
+  const targetStrategy = strategies.find((s) => s.id === targetStrategyId) || strategies[0];
+  const tokens = sourceStrategy.lex(input);
+
   const markedInstance = new Marked();
 
-  // Configure marked instance with strategy and its extensions
+  // Configure marked instance with target strategy and its extensions
   markedInstance.use({
-    extensions: getMarkdownExtensions(strategy),
-    renderer: strategy.getRenderer(),
+    extensions: getMarkdownExtensions(targetStrategy),
+    renderer: targetStrategy.getRenderer(),
     // Standard option overrides
     gfm: true,
     breaks: true,
   });
 
   try {
-    const parsed = markedInstance.parse(input) as string;
+    const parsed = markedInstance.parser(tokens) as string;
     // Post-process the result to trim any redundant multiple newlines from marked's parsing
     return unescapeHtml(parsed.trim());
   } catch (err) {

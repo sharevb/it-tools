@@ -1,4 +1,5 @@
-import { type ConverterStrategy, PlainRenderer } from './ConverterStrategy';
+import { Marked, type Token } from 'marked';
+import { type ConverterStrategy, PlainRenderer, getMarkdownExtensions } from './ConverterStrategy';
 
 class StackOverflowRenderer extends PlainRenderer {
   // SO uses standard markdown close to GFM
@@ -10,6 +11,16 @@ export class StackOverflowStrategy implements ConverterStrategy {
 
   getRenderer() {
     return new StackOverflowRenderer();
+  }
+
+  lex(input: string): Token[] {
+    const markedInstance = new Marked();
+    markedInstance.use({
+      extensions: getMarkdownExtensions(this),
+      gfm: true,
+      breaks: true,
+    });
+    return markedInstance.lexer(input);
   }
 
   renderWikilink(target: string, text: string): string {

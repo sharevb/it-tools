@@ -1,4 +1,69 @@
-import { type ConverterStrategy, PlainRenderer } from './ConverterStrategy';
+import { Marked, type Token } from 'marked';
+import { type ConverterStrategy, PlainRenderer, getMarkdownExtensions } from './ConverterStrategy';
+
+function jiraToMarkdown(input: string): string {
+  let output = input;
+
+  // Code blocks: {code:lang}content{code} or {code}content{code}
+  output = output.replace(/\{code(?::([a-zA-Z0-9+-]+))?\}([\s\S]*?)\{code\}/g, (_, lang, content) => {
+    const l = lang ? lang.trim() : '';
+    return `\n\`\`\`${l}\n${content.trim()}\n\`\`\`\n`;
+  });
+
+  // Blockquotes: {quote}content{quote}
+  output = output.replace(/\{quote\}([\s\S]*?)\{quote\}/g, (_, content) => {
+    const lines = content.trim().split('\n').map((line: string) => `> ${line}`).join('\n');
+    return `\n${lines}\n`;
+  });
+
+  // Jira Lists (Do this before Heading/Bold replacement so `#` list bullets aren't mistaken for markdown headings)
+  const lines = output.split('\n');
+  const convertedLines = lines.map(line => {
+    // Unordered nested
+    const unorderedMatch = line.match(/^(\*+)\s+(.+)$/);
+    if (unorderedMatch) {
+      const depth = unorderedMatch[1].length;
+      return `${'  '.repeat(depth - 1)}* ${unorderedMatch[2]}`;
+    }
+
+    // Ordered nested
+    const orderedMatch = line.match(/^(#+)\s+(.+)$/);
+    if (orderedMatch) {
+      const depth = orderedMatch[1].length;
+      return `${'  '.repeat(depth - 1)}1. ${orderedMatch[2]}`;
+    }
+
+    return line;
+  });
+  output = convertedLines.join('\n');
+
+  // Headings: h1. Text -> # Text
+  output = output.replace(/^(?:[ \t]*)h([1-6])\.\s*(.+)$/gm, (_, level, text) => {
+    return `${'#'.repeat(parseInt(level, 10))} ${text}`;
+  });
+
+  // Links: [Text|URL] -> [Text](URL)
+  output = output.replace(/\[([^\]|]+)\|([^\]|]+)\]/g, '[$1]($2)');
+  // Links without text: [URL] (negative lookahead to ensure we don't match standard markdown links like [Text](URL))
+  output = output.replace(/\[([^\]|]+)\](?!\()/g, '[$1]($1)');
+
+  // Images: !URL! -> ![](URL)
+  output = output.replace(/!([^!\s]+)!/g, '![]($1)');
+
+  // Bold: *bold* -> **bold** (excluding lines starting with asterisk list bullets)
+  output = output.replace(/(?<!^\s*)\*([^*]+)\*(?!\s*\*)/gm, '**$1**');
+
+  // Italics: _italic_ -> *italic*
+  output = output.replace(/(?<=^|\s|[.,;:!?])_([^_]+)_(?=$|\s|[.,;:!?])/g, '*$1*');
+
+  // Strikethrough: -del- -> ~~del~~
+  output = output.replace(/(?<=^|\s|[.,;:!?])-([^-]+)-(?=$|\s|[.,;:!?])/g, '~~$1~~');
+
+  // Inline code: {{code}} -> `code`
+  output = output.replace(/\{\{([^}]+)\}\}/g, '`$1`');
+
+  return output;
+}
 
 class JiraRenderer extends PlainRenderer {
   override strong(text: string): string {
@@ -76,6 +141,17 @@ export class JiraStrategy implements ConverterStrategy {
 
   getRenderer() {
     return new JiraRenderer();
+  }
+
+  lex(input: string): Token[] {
+    const markdown = jiraToMarkdown(input);
+    const markedInstance = new Marked();
+    markedInstance.use({
+      extensions: getMarkdownExtensions(this),
+      gfm: true,
+      breaks: true,
+    });
+    return markedInstance.lexer(markdown);
   }
 
   renderWikilink(target: string, text: string): string {
