@@ -131,6 +131,12 @@ describe('markdown-format-converter', () => {
       expect(output).toContain('- 2. Item 2');
     });
 
+    it('should convert nested lists with correct separate line formatting in Logseq outliner format', () => {
+      const input = '- ordered list\n  1. item 1\n  2. item 2';
+      const output = convertMarkdown(input, 'github', 'logseq');
+      expect(output).toContain('- ordered list\n  - 1. item 1\n  - 2. item 2');
+    });
+
     it('should convert loose ordered lists correctly without shifting the content to the next line', () => {
       const input = `1. **Item 1**\n   - Detail 1\n\n2. **Item 2**\n   - Detail 2`;
       const output = convertMarkdown(input, 'github', 'github');

@@ -126,9 +126,9 @@ class LogseqRenderer extends PlainRenderer {
         }
         return line;
       });
-      return formattedLines.join('\n');
+      return `\n${formattedLines.join('\n')}`;
     }
-    return body;
+    return `\n${body}`;
   }
 }
 
