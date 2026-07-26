@@ -199,4 +199,79 @@ describe('markdown-format-converter', () => {
       expect(output).toContain('• ordered list\n    1. item 1\n    2. item 2');
     });
   });
+
+  describe('49-Combination Test Matrix for Standard Elements', () => {
+    const strategies = ['github', 'slack', 'discord', 'jira', 'stackoverflow', 'obsidian', 'logseq'];
+
+    const fixtures: Record<string, Record<string, { input: string; output: string }>> = {
+      bold: {
+        github: { input: 'This is **bold text**.', output: 'This is **bold text**.' },
+        slack: { input: 'This is *bold text*.', output: 'This is *bold text*.' },
+        discord: { input: 'This is **bold text**.', output: 'This is **bold text**.' },
+        jira: { input: 'This is *bold text*.', output: 'This is *bold text*.' },
+        stackoverflow: { input: 'This is **bold text**.', output: 'This is **bold text**.' },
+        obsidian: { input: 'This is **bold text**.', output: 'This is **bold text**.' },
+        logseq: { input: '- This is **bold text**.', output: '- This is **bold text**.' },
+      },
+      italic: {
+        github: { input: 'This is *italic text*.', output: 'This is *italic text*.' },
+        slack: { input: 'This is _italic text_.', output: 'This is _italic text_.' },
+        discord: { input: 'This is *italic text*.', output: 'This is *italic text*.' },
+        jira: { input: 'This is _italic text_.', output: 'This is _italic text_.' },
+        stackoverflow: { input: 'This is *italic text*.', output: 'This is *italic text*.' },
+        obsidian: { input: 'This is *italic text*.', output: 'This is *italic text*.' },
+        logseq: { input: '- This is *italic text*.', output: '- This is *italic text*.' },
+      },
+      strikethrough: {
+        github: { input: 'This is ~~strikethrough text~~.', output: 'This is ~~strikethrough text~~.' },
+        slack: { input: 'This is ~strikethrough text~.', output: 'This is ~strikethrough text~.' },
+        discord: { input: 'This is ~~strikethrough text~~.', output: 'This is ~~strikethrough text~~.' },
+        jira: { input: 'This is -strikethrough text-.', output: 'This is -strikethrough text-.' },
+        stackoverflow: { input: 'This is ~~strikethrough text~~.', output: 'This is ~~strikethrough text~~.' },
+        obsidian: { input: 'This is ~~strikethrough text~~.', output: 'This is ~~strikethrough text~~.' },
+        logseq: { input: '- This is ~~strikethrough text~~.', output: '- This is ~~strikethrough text~~.' },
+      },
+      code: {
+        github: { input: 'This is `inline code`.', output: 'This is `inline code`.' },
+        slack: { input: 'This is `inline code`.', output: 'This is `inline code`.' },
+        discord: { input: 'This is `inline code`.', output: 'This is `inline code`.' },
+        jira: { input: 'This is {{inline code}}.', output: 'This is {{inline code}}.' },
+        stackoverflow: { input: 'This is `inline code`.', output: 'This is `inline code`.' },
+        obsidian: { input: 'This is `inline code`.', output: 'This is `inline code`.' },
+        logseq: { input: '- This is `inline code`.', output: '- This is `inline code`.' },
+      },
+      link: {
+        github: { input: 'Check [Google](https://google.com).', output: 'Check [Google](https://google.com).' },
+        slack: { input: 'Check <https://google.com|Google>.', output: 'Check <https://google.com|Google>.' },
+        discord: { input: 'Check [Google](https://google.com).', output: 'Check [Google](https://google.com).' },
+        jira: { input: 'Check [Google|https://google.com].', output: 'Check [Google|https://google.com].' },
+        stackoverflow: { input: 'Check [Google](https://google.com).', output: 'Check [Google](https://google.com).' },
+        obsidian: { input: 'Check [Google](https://google.com).', output: 'Check [Google](https://google.com).' },
+        logseq: { input: '- Check [Google](https://google.com).', output: '- Check [Google](https://google.com).' },
+      },
+      heading1: {
+        github: { input: '# Heading 1', output: '# Heading 1' },
+        slack: { input: '*Heading 1*', output: '*Heading 1*' },
+        discord: { input: '# Heading 1', output: '# Heading 1' },
+        jira: { input: 'h1. Heading 1', output: 'h1. Heading 1' },
+        stackoverflow: { input: '# Heading 1', output: '# Heading 1' },
+        obsidian: { input: '# Heading 1', output: '# Heading 1' },
+        logseq: { input: '- # Heading 1', output: '- # Heading 1' },
+      },
+    };
+
+    for (const source of strategies) {
+      for (const target of strategies) {
+        it(`should convert standard elements from ${source} to ${target}`, () => {
+          for (const [elementName, elementMap] of Object.entries(fixtures)) {
+            const sourceFixture = elementMap[source];
+            const targetFixture = elementMap[target];
+
+            const output = convertMarkdown(sourceFixture.input, source, target);
+            expect(output).toContain(targetFixture.output);
+          }
+        });
+      }
+    }
+  });
 });
