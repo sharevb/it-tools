@@ -263,7 +263,7 @@ describe('markdown-format-converter', () => {
     for (const source of strategies) {
       for (const target of strategies) {
         it(`should convert standard elements from ${source} to ${target}`, () => {
-          for (const [elementName, elementMap] of Object.entries(fixtures)) {
+          for (const [_elementName, elementMap] of Object.entries(fixtures)) {
             const sourceFixture = elementMap[source];
             const targetFixture = elementMap[target];
 
@@ -273,5 +273,127 @@ describe('markdown-format-converter', () => {
         });
       }
     }
+  });
+
+  describe('Targeted Strategy-Specific Edge Cases', () => {
+    describe('Discord Specifics', () => {
+      it('should map callout alerts to correct Discord emojis and bold titles', () => {
+        const input = '> [!tip] Check this out\n> Some useful tip content.';
+        const output = convertMarkdown(input, 'github', 'discord');
+        expect(output).toContain('> **💡 [TIP] Check this out**');
+        expect(output).toContain('> Some useful tip content.');
+
+        const inputWarning = '> [!warning] Alert\n> Be careful.';
+        const outputWarning = convertMarkdown(inputWarning, 'github', 'discord');
+        expect(outputWarning).toContain('> **⚠️ [WARNING] Alert**');
+      });
+
+      it('should format wikilinks as standard markdown links', () => {
+        const input = 'Check [[My Page]]';
+        const output = convertMarkdown(input, 'github', 'discord');
+        expect(output).toContain('[My Page](My Page)');
+      });
+    });
+
+    describe('StackOverflow Specifics', () => {
+      it('should fallback callouts to standard blockquotes with bold headers', () => {
+        const input = '> [!info] Some title\n> Info content here.';
+        const output = convertMarkdown(input, 'github', 'stackoverflow');
+        expect(output).toContain('> **[INFO] Some title**');
+        expect(output).toContain('> Info content here.');
+      });
+
+      it('should convert wikilinks to standard markdown links', () => {
+        const input = 'Check [[Page Name|Custom Label]]';
+        const output = convertMarkdown(input, 'github', 'stackoverflow');
+        expect(output).toContain('[Custom Label](Page Name)');
+      });
+    });
+
+    describe('Jira Specifics', () => {
+      it('should convert code blocks with languages between GFM and Jira formats', () => {
+        const gfmInput = '```javascript\nconst x = 42;\n```';
+        const jiraOutput = convertMarkdown(gfmInput, 'github', 'jira');
+        expect(jiraOutput).toContain('{code:javascript}\nconst x = 42;\n{code}');
+
+        const jiraInput = '{code:typescript}\nconst y = "test";\n{code}';
+        const gfmOutput = convertMarkdown(jiraInput, 'jira', 'github');
+        expect(gfmOutput).toContain('```typescript\nconst y = "test";\n```');
+      });
+
+      it('should convert nested list structures correctly', () => {
+        const gfmInput = '- Item 1\n  - Nested Item 1a\n    - Nested Item 1a.1';
+        const jiraOutput = convertMarkdown(gfmInput, 'github', 'jira');
+        expect(jiraOutput).toContain('* Item 1\n* Nested Item 1a\n* Nested Item 1a.1');
+
+        const jiraInput = '# Ordered 1\n## Ordered 1.1\n### Ordered 1.1.1';
+        const gfmOutput = convertMarkdown(jiraInput, 'jira', 'github');
+        expect(gfmOutput).toContain('1. Ordered 1\n2. Ordered 1.1\n  1. Ordered 1.1.1');
+      });
+
+      it('should convert images back and forth correctly', () => {
+        const gfmInput = '![Alt Text](https://example.com/image.png)';
+        const jiraOutput = convertMarkdown(gfmInput, 'github', 'jira');
+        expect(jiraOutput).toContain('!https://example.com/image.png!');
+
+        const jiraInput = '!https://example.com/test.png!';
+        const gfmOutput = convertMarkdown(jiraInput, 'jira', 'github');
+        expect(gfmOutput).toContain('![](https://example.com/test.png)');
+      });
+    });
+
+    describe('Slack Specifics', () => {
+      it('should auto-link bare links and Slack style link targets', () => {
+        const slackInput = '<https://google.com>';
+        const gfmOutput = convertMarkdown(slackInput, 'slack', 'github');
+        expect(gfmOutput).toContain('[https://google.com](https://google.com)');
+      });
+
+      it('should format standard markdown images into Slack link syntax with fallbacks', () => {
+        const gfmInput = '![An image](https://example.com/img.jpg)';
+        const slackOutput = convertMarkdown(gfmInput, 'github', 'slack');
+        expect(slackOutput).toContain('<https://example.com/img.jpg|An image>');
+      });
+
+      it('should retain nested bullet formatting and proper Slack indentation', () => {
+        const gfmInput = '- Bullet A\n  - Bullet B';
+        const slackOutput = convertMarkdown(gfmInput, 'github', 'slack');
+        expect(slackOutput).toContain('• Bullet A\n    • Bullet B');
+      });
+    });
+
+    describe('Logseq Specifics', () => {
+      it('should strip Logseq block properties from parsed outputs', () => {
+        const logseqInput = '- Some block item\n  id:: 65161c16-86d1-41fb-992a-fa1fef9013e8\n  collapsed:: true';
+        const gfmOutput = convertMarkdown(logseqInput, 'logseq', 'github');
+        expect(gfmOutput).toEqual('Some block item');
+      });
+
+      it('should wrap blockquotes inside a bullet point block natively', () => {
+        const gfmInput = '> This is a quote';
+        const logseqOutput = convertMarkdown(gfmInput, 'github', 'logseq');
+        expect(logseqOutput).toContain('- > - This is a quote');
+      });
+    });
+
+    describe('Obsidian Specifics', () => {
+      it('should parse and format multi-line custom Obsidian callouts', () => {
+        const obsidianInput = '> [!info] Tip of the day\n> This is line 1.\n> This is line 2.';
+        const gfmOutput = convertMarkdown(obsidianInput, 'obsidian', 'github');
+        expect(gfmOutput).toContain('> [!NOTE] > **Tip of the day**');
+        expect(gfmOutput).toContain('> This is line 1.');
+        expect(gfmOutput).toContain('> This is line 2.');
+      });
+
+      it('should preserve and render internal Obsidian wikilinks with alias targets', () => {
+        const inputWithAlias = '[[Target Page|Alias Text]]';
+        const obsidianOutput = convertMarkdown(inputWithAlias, 'github', 'obsidian');
+        expect(obsidianOutput).toContain('[[Target Page|Alias Text]]');
+
+        const inputWithoutAlias = '[[Target Page]]';
+        const obsidianOutputNoAlias = convertMarkdown(inputWithoutAlias, 'github', 'obsidian');
+        expect(obsidianOutputNoAlias).toContain('[[Target Page]]');
+      });
+    });
   });
 });
