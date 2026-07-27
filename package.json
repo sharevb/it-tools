@@ -409,7 +409,7 @@
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/tabler": "^1.2.35",
     "@intlify/unplugin-vue-i18n": "^11.2.4",
-    "@playwright/test": "^1.61.1",
+    "@playwright/test": "^1.62.0",
     "@tsconfig/node24": "^24.0.4",
     "@types/arr-diff": "^4.0.3",
     "@types/bcryptjs": "^3.0.0",
