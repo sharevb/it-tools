@@ -1,13 +1,36 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useThemeVars } from 'naive-ui';
-import Memo from './common-regex.md';
+import type { Component } from 'vue';
 
 const themeVars = useThemeVars();
+const { locale } = useI18n();
+
+const memoImports = import.meta.glob('./common-regex*.md');
+const memoComponent = ref<Component | null>(null);
+
+async function loadMemo(currentLocale = locale.value) {
+  const memoKey = `./common-regex.${currentLocale}.md`;
+  const loader = memoImports[memoKey] ?? memoImports['./common-regex.md'];
+
+  if (!loader) {
+    memoComponent.value = null;
+    return;
+  }
+
+  const module = (await loader()) as { default?: Component };
+  memoComponent.value = module.default ?? module;
+}
+
+watch(locale, () => {
+  loadMemo();
+}, { immediate: true });
 </script>
 
 <template>
   <div>
-    <Memo style="overflow-x: auto;" />
+    <component :is="memoComponent" style="overflow-x: auto;" />
   </div>
 </template>
 
@@ -17,9 +40,16 @@ const themeVars = useThemeVars();
   padding: 15px 22px;
   background-color: v-bind('themeVars.cardColor');
   border-radius: 4px;
-  white-space: pre-wrap;
+  overflow: auto;
+}
+::v-deep(table) {
+  border-collapse: collapse;
+}
+::v-deep(table), ::v-deep(td), ::v-deep(th) {
+  border: 1px solid v-bind('themeVars.textColor1');
+  padding: 5px;
 }
 ::v-deep(a) {
-  color: v-bind('themeVars.textColor3');
+  color: v-bind('themeVars.textColor1');
 }
 </style>
