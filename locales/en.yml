@@ -2964,6 +2964,16 @@ tools:
       label-your-mermaid-to-convert: "Your Mermaid to convert:"
       title-preview: Preview
       tag-invalid-mermaid-syntax: Invalid Mermaid syntax
+      tag-showing-last-valid-diagram: Showing the last valid diagram
+      tag-hint-ctrl-scroll-to-zoom: Hold Ctrl (or ⌘) and scroll to zoom
+      label-diagram-preview: Diagram preview — drag or use the arrow keys to pan, + and - to zoom
+      label-zoom-level-reset: "Zoom {zoom}%, click to reset to 100%"
+      title-zoom-in: Zoom in
+      title-zoom-out: Zoom out
+      title-reset-zoom: Reset zoom to 100%
+      title-fit-view: Fit diagram to view
+      title-fullscreen: Fullscreen
+      title-exit-fullscreen: Exit fullscreen
       tag-export-as-png: Export as PNG
       tag-export-as-jpg: Export as JPG
       tag-export-as-svg: Export as SVG

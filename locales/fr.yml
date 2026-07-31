@@ -4563,6 +4563,16 @@ tools:
       tag-export-as-png: Exporter comme PNG
       tag-export-as-svg: Exporter comme SVG
       tag-invalid-mermaid-syntax: Syntaxe de Mermaid non valide
+      tag-showing-last-valid-diagram: Affichage du dernier diagramme valide
+      tag-hint-ctrl-scroll-to-zoom: Maintenez Ctrl (ou ⌘) et faites défiler pour zoomer
+      label-diagram-preview: Prévisualisation du diagramme — faites glisser ou utilisez les flèches pour vous déplacer, + et - pour zoomer
+      label-zoom-level-reset: "Zoom {zoom} %, cliquez pour réinitialiser à 100 %"
+      title-zoom-in: Zoomer
+      title-zoom-out: Dézoomer
+      title-reset-zoom: Réinitialiser le zoom à 100 %
+      title-fit-view: Ajuster le diagramme à la vue
+      title-fullscreen: Plein écran
+      title-exit-fullscreen: Quitter le plein écran
       title-input-mermaid: Mermaid d'entrée
       title-preview: Prévisualisation
     title: Exportateur de Mermaid
