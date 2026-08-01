@@ -2075,14 +2075,14 @@ tools:
       label-femtonewton: 飞牛顿
       label-dyne: 达因
       label-pound-of-force: 磅力
-      label-kip: 基普
-      label-klb: 俱乐部
-      label-kipf: 基普夫
-      label-klbf: klbf
-      label-poundal: 磅
+      label-kip: 千磅力
+      label-klb: 千磅力
+      label-kipf: 千磅力
+      label-klbf: 千磅力
+      label-poundal: 磅达
       label-kilogram-force: 千克力
-      label-kilopond: 千池
-      label-megapond: 巨型池塘
+      label-kilopond: 千克力
+      label-megapond: 吨力
       label-tonne-force: 吨力
       label-metric-ton-force: 公吨力
       label-megagram-force: 兆克力
@@ -2665,13 +2665,13 @@ tools:
     title: 长度单位转换器
     description: 转换长度单位的值
     texts:
-      label-meter: 仪表
+      label-meter: 米
       label-petameter: 拍米
       label-terameter: 太米
       label-gigameter: 吉米
       label-megameter: 兆米
       label-kilometer: 公里
-      label-hectometer: 公引
+      label-hectometer: 百米
       label-decameter: 十米
       label-decimeter: 分米
       label-centimeter: 厘米
@@ -2681,12 +2681,12 @@ tools:
       label-picometer: 皮米
       label-femtometer: 飞米
       label-inch: 英寸 （”）
-      label-yard: 院子
+      label-yard: 码
       label-mile: 英里
       label-nautical-mile-m-nm: 海里（M/NM）
       label-light-year: 光年
       label-parsec: 秒差距
-      label-pica: 异食癖
+      label-pica: 派卡
   list-comparer:
     title: 列表比较器
     description: 比较两个列表项
@@ -2796,7 +2796,7 @@ tools:
       label-megatonne: 百万吨
       label-gigatonne: 十亿吨
       label-pound: 磅
-      label-stone: 石头
+      label-stone: 英石
       label-ounce: 盎司
       label-short-ton: 短吨
       label-us-ton: 美国吨
@@ -3200,31 +3200,31 @@ tools:
       label-kilopascal: 千帕斯卡
       label-hectopascal: 百帕斯卡
       label-decapascal: 十帕斯卡
-      label-decipascal: 迪帕斯卡
+      label-decipascal: 分帕斯卡
       label-centipascal: 厘帕斯卡
       label-millipascal: 毫帕斯卡
       label-micropascal: 微帕斯卡
       label-nanopascal: 纳帕斯卡
       label-picopascal: 皮帕斯卡
       label-femtopascal: 飞帕斯卡
-      label-bar: 酒吧
+      label-bar: 巴
       label-petabar: 拍巴
-      label-terabar: 展开
-      label-gigabar: 千兆字节
-      label-megabar: 兆字节
+      label-terabar: 太巴
+      label-gigabar: 吉巴
+      label-megabar: 兆巴
       label-kilobar: 千巴
       label-hectobar: 百巴
-      label-decabar: 我被斩首了。
-      label-decibar: 解码
+      label-decabar: 十巴
+      label-decibar: 分巴
       label-centibar: 厘巴
       label-millibar: 毫巴
       label-microbar: 微巴
-      label-nanobar: 纳米棒
-      label-picobar: 皮科巴
+      label-nanobar: 纳巴
+      label-picobar: 皮巴
       label-femtobar: 飞巴
       label-torr: 托尔
       label-millitorr: 百万托
-      label-atmosphere: 气氛
+      label-atmosphere: 标准大气压
       label-pound-per-square-inch: 每平方英寸磅
       label-lbf-in2: 磅力/平方英寸
   properties-to-yaml:
@@ -3613,13 +3613,13 @@ tools:
       label-cubic-picometer: 立方皮米
       label-cubic-femtometer: 立方飞米
       label-liter: 升
-      label-petaliter: 花瓣
-      label-teraliter: 泰拉升
-      label-gigaliter: 千兆升
+      label-petaliter: 拍升
+      label-teraliter: 太升
+      label-gigaliter: 吉升
       label-megaliter: 兆升
       label-kiloliter: 千升
-      label-hectoliter: 公石
-      label-decaliter: 公斗
+      label-hectoliter: 百升
+      label-decaliter: 十升
       label-deciliter: 分升
       label-centiliter: 厘升
       label-milliliter: 毫升
@@ -8125,7 +8125,7 @@ tools:
       label-meter-per-second: 米每秒
       label-kilometer-per-hour: 公里/小时
       label-miles-per-hour: 英里/小时
-      label-knot: 结
+      label-knot: 节
       label-feet-per-second: 英尺每秒
   tab-to-spaces:
     title: Tab 键转空格
