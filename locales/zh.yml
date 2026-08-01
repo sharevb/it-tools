@@ -1321,10 +1321,10 @@ tools:
       label-square-picometer: 平方皮米
       label-square-femtometer: 平方飞米
       label-acre: 英亩
-      label-centiare: 成为一百
-      label-deciare: 决定
-      label-are: 是
-      label-decare: 德凯尔
+      label-centiare: 平方米
+      label-deciare: 十分之一公亩
+      label-are: 公亩
+      label-decare: 十公亩
       label-hectare: 公顷
       label-square-foot-ft2-sq-ft: 平方英尺（/ft2/平方英尺）
       label-square-inch-in2-sq-in: 平方英寸（/in2/平方英寸）
