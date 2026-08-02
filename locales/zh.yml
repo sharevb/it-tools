@@ -7666,8 +7666,8 @@ tools:
       tag-disconnect: 断开
       tag-send: 发送
   shamirs-secret-sharing:
-    title: 沙米尔的秘密分享
-    description: 允许使用 Shamir 分享和重新组合秘密\
+    title: Shamir秘密共享
+    description: 允许使用 Shamir 分享和重新组合秘密
     texts:
       label-text: 文本
       label-hexadecimal: 十六进制
@@ -7676,14 +7676,14 @@ tools:
       title-share-a-secret-split: 分享一个秘密（拆分）
       label-secret: 秘密：
       placeholder-enter-secret-text: 输入秘密文本
-      label-threshold-minimum-shares-to-recover: 阈值（恢复所需的最低股份数）：
-      label-number-of-shares: 股份数量：
-      title-generated-shares: 生成的股份
+      label-threshold-minimum-shares-to-recover: 阈值（恢复所需的最低份额数）：
+      label-number-of-shares: 份额数量：
+      title-generated-shares: 生成的份额
       title-recombine-a-secret: 重组一个秘密
-      label-your-shares: 您的股份：
+      label-your-shares: 您的份额：
       placeholder-paste-your-shares-here: 把你的分享内容粘贴到这里……
       title-recombined-secret: 重组秘密
-      tag-split-secret: 秘密
+      tag-split-secret: 拆分秘密
       tag-recombine: 重组
   short-urls-expander:
     title: 短链接扩展器
