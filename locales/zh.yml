@@ -3193,9 +3193,9 @@ tools:
     description: 转换压力单位的值
     texts:
       label-pascal: 帕斯卡
-      label-pettapascal: 佩塔帕斯卡
-      label-terapascal: 特拉帕斯卡
-      label-gigapascal: 千兆帕斯卡
+      label-pettapascal: 拍帕斯卡
+      label-terapascal: 太帕斯卡
+      label-gigapascal: 吉帕斯卡
       label-megapascal: 兆帕
       label-kilopascal: 千帕斯卡
       label-hectopascal: 百帕斯卡
@@ -3222,10 +3222,10 @@ tools:
       label-nanobar: 纳巴
       label-picobar: 皮巴
       label-femtobar: 飞巴
-      label-torr: 托尔
-      label-millitorr: 百万托
+      label-torr: 托
+      label-millitorr: 毫托
       label-atmosphere: 标准大气压
-      label-pound-per-square-inch: 每平方英寸磅
+      label-pound-per-square-inch: 磅力/平方英寸
       label-lbf-in2: 磅力/平方英寸
   properties-to-yaml:
     title: 属性转YAML
