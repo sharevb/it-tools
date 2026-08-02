@@ -3597,7 +3597,7 @@ tools:
     title: 体积单位转换器
     description: 转换体积单位值
     texts:
-      label-cubic-meter-stere: 立方米/立体声
+      label-cubic-meter-stere: 立方米
       label-cubic-petameter: 立方拍米
       label-cubic-terameter: 立方太米
       label-cubic-gigameter: 立方吉米
@@ -3633,10 +3633,10 @@ tools:
       label-cubic-foot: 立方英尺
       label-board-feet: 板英尺
       label-cubic-inch: 立方英寸
-      label-measurement-ton: 吨
-      label-imperial-barrel: 帝国桶
-      label-imperial-bushel: 帝国蒲式耳
-      label-imperial-peck: 帝王啄
+      label-measurement-ton: 容积吨
+      label-imperial-barrel: 英制桶
+      label-imperial-bushel: 英制蒲式耳
+      label-imperial-peck: 英制配克
       label-imperial-gallon: 英制加仑
       label-imperial-quart: 英制夸脱
       label-imperial-pint: 英制品脱
@@ -3644,17 +3644,17 @@ tools:
       label-teaspoon: 茶匙
       label-tablespoon: 汤匙
       label-us-fluid-ounce: 美制液盎司
-      label-cup: 杯子
-      label-us-legal-cup: 美国合法杯
-      label-us-liquid-pint: 美国液体品脱
-      label-us-liquid-quart: 美国液夸脱
-      label-us-liquid-gallon: 美国液体加仑
+      label-cup: 杯
+      label-us-legal-cup: 美制法定杯
+      label-us-liquid-pint: 美制液量品脱
+      label-us-liquid-quart: 美制液量夸脱
+      label-us-liquid-gallon: 美制液量加仑
       label-us-bushel: 美制蒲式耳
-      label-us-peck: 美国啄
-      label-us-dry-gallon: 美国干加仑
-      label-us-dry-barrel: 美国干桶
-      label-us-dry-quart: 美制干夸脱
-      label-us-dry-pint: 美国干品脱
+      label-us-peck: 美制配克
+      label-us-dry-gallon: 美制干量加仑
+      label-us-dry-barrel: 美制干量桶
+      label-us-dry-quart: 美制干量夸脱
+      label-us-dry-pint: 美国干量品脱
   week-number-converter:
     title: 周数转换器
     description: 在ISO周数、月内周数和日期之间转换
