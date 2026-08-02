@@ -1979,7 +1979,7 @@ tools:
       label-terajoule: 太焦耳
       label-gigajoule: 吉焦耳
       label-megajoule: 兆焦耳
-      label-kilojoule: 千焦
+      label-kilojoule: 千焦耳
       label-hectojoule: 百焦耳
       label-decajoule: 十焦耳
       label-decijoule: 分焦耳
@@ -2676,7 +2676,7 @@ tools:
       label-decimeter: 分米
       label-centimeter: 厘米
       label-millimeter: 毫米
-      label-micrometer: 千分尺
+      label-micrometer: 微米
       label-nanometer: 纳米
       label-picometer: 皮米
       label-femtometer: 飞米
@@ -2777,13 +2777,13 @@ tools:
     texts:
       label-gram: 克
       label-petagram: 拍克
-      label-teragram: 太克拉姆
-      label-gigagram: 千兆克
+      label-teragram: 太克
+      label-gigagram: 吉克
       label-megagram: 兆克
       label-kilogram: 公斤
       label-hectogram: 百克
       label-decagram: 十克
-      label-decigram: 十克
+      label-decigram: 分克
       label-centigram: 厘克
       label-milligram: 毫克
       label-microgram: 微克
@@ -2799,10 +2799,10 @@ tools:
       label-stone: 英石
       label-ounce: 盎司
       label-short-ton: 短吨
-      label-us-ton: 美国吨
+      label-us-ton: 美制短吨
       label-long-ton: 长吨
       label-imperial-ton: 英吨
-      label-displacement-ton: 位移吨
+      label-displacement-ton: 排水量吨
   math-formats-converter:
     title: 数学格式转换器
     description: 在格式之间转换数学表达式
