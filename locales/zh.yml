@@ -7933,30 +7933,30 @@ tools:
     texts:
       label-quetta-q: 奎达（Q）
       label-ronna-r: 罗娜（R）
-      label-yotta-y: 约塔 (Y)
-      label-zetta-z: zetta (Z)
-      label-exa-e: exa (E)
-      label-peta-p: 地图（P）
+      label-yotta-y: 尧它 (Y)
+      label-zetta-z: 泽它 (Z)
+      label-exa-e: 艾可萨 (E)
+      label-peta-p: 拍它（P）
       label-tera-t: 太拉（T）
       label-giga-g: 吉（G）
       label-mega-m: 兆（M）
       label-kilo-k: 千克
       label-hecto-h: 百（h）
-      label-deca-da: 十（来自）
-      label-unit: 单元
-      label-deci-d: 所以（d）
+      label-deca-da: 十（da）
+      label-unit: 单位
+      label-deci-d: 分（d）
       label-centi-c: 厘（c）
-      label-milli-m: 国民（m）
-      label-micro-µ: 微米 (µ)
-      label-nano-n: 纳米（n）
-      label-pico-p: 皮克（p）
-      label-femto-f: 飞秒 (f)
-      label-atto-a: （a）
-      label-zepto-z: zepto (z)
-      label-yocto-y: yocto (y)
-      label-ronto-r: ronto (r)
-      label-quecto-q: 我饿了。
-      label-auto: 汽车
+      label-milli-m: 毫（m）
+      label-micro-µ: 微 (µ)
+      label-nano-n: 纳（n）
+      label-pico-p: 皮（p）
+      label-femto-f: 飞 (f)
+      label-atto-a: 阿（a）
+      label-zepto-z: 仄 (z)
+      label-yocto-y: 幺 (y)
+      label-ronto-r: 柔 (r)
+      label-quecto-q: 亏
+      label-auto: 自动
       label-fixed: 固定的
       label-exponential: 指数
       label-convert: 转变：
