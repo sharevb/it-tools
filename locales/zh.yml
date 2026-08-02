@@ -6033,7 +6033,7 @@ tools:
       placeholder-paste-your-json-schema-here: 将您的 JSON 模式粘贴到这里...
       title-schema-validation-errors: 架构验证错误
       label-unescape-json-string: 转义 JSON 字符串：
-      label-viewer: 观众
+      label-viewer: 预览
     text:
       provided-json-is-not-valid: 提供的JSON无效
       try-again-with-repairjsonlabel: 尝试使用"{0}"重新输入
@@ -6906,10 +6906,10 @@ tools:
       tag-axial: 轴向
       tag-radial: 径向
     text:
-      bands-notation: 乐队 → 符号
-      notation-bands: 符号 → 乐队
-      number-notation: 数字 → 符号
-      notation-number: 符号 → 数字
+      bands-notation: 色环 → 数值标识
+      notation-bands: 数值标识 → 色环
+      number-notation: 数字 → 数值标识
+      notation-number: 数值标识 → 数字
   sed-command-generator:
     title: Sed 命令生成器
     description: 生成 unix sed 命令
