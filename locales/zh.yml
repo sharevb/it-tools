@@ -2059,16 +2059,16 @@ tools:
     description: 在力单位之间转换值。
     texts:
       label-newton: 牛顿
-      label-petanewton: 佩塔牛顿
-      label-teranewton: 特拉牛顿
+      label-petanewton: 拍牛顿
+      label-teranewton: 太牛顿
       label-giganewton: 吉牛顿
       label-meganewton: 兆牛顿
       label-kilonewton: 千牛顿
       label-hectonewton: 百牛顿
-      label-decanewton: 迪卡牛顿
-      label-decinewton: 迪西牛顿
-      label-centinewton: 森特纽顿
-      label-millinewton: 米利纽顿
+      label-decanewton: 十牛顿
+      label-decinewton: 分牛顿
+      label-centinewton: 厘纽顿
+      label-millinewton: 毫纽顿
       label-micronewton: 微牛顿
       label-nanonewton: 纳牛顿
       label-piconewton: 皮牛顿
