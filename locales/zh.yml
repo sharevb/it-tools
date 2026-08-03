@@ -1624,28 +1624,28 @@ tools:
       label-bibytes-ib: Bibytes（iB）
       label-kilobytes-kb: 千字节（KB）
       label-kilobits-kbit: 千比特（Kbit）
-      label-kibibytes-kib: KiB（Kibibytes）
+      label-kibibytes-kib: 千比字节（Kibibytes）
       label-megabytes-mb: 兆字节（MB）
       label-megabits-mbit: 兆比特（Mbit）
-      label-mebibytes-mib: MiB（Mebibytes）
+      label-mebibytes-mib: 兆比字节（Mebibytes）
       label-gigabytes-gb: 吉字节（GB）
       label-gigabits-gbit: 吉比特（Gbit）
-      label-gibibytes-gib: GiB（Gibibytes）
+      label-gibibytes-gib: 吉比字节（Gibibytes）
       label-terabytes-tb: 太字节（TB）
       label-terabits-tbit: 太比特（Tbit）
-      label-tebibytes-tib: TiB（Tebibytes）
+      label-tebibytes-tib: 太比字节（Tebibytes）
       label-petabytes-pb: 拍字节（PB）
       label-petabits-pbit: 拍比特（Pbit）
-      label-pebibytes-pib: PiB（Pebibytes）
+      label-pebibytes-pib: 拍比字节（Pebibytes）
       label-exabytes-eb: 艾字节（EB）
       label-exabits-ebit: 艾比特（Ebit）
-      label-exbibytes-eib: EiB（Exbibytes）
+      label-exbibytes-eib: 艾比字节（Exbibytes）
       label-zettabytes-zb: 泽字节（ZB）
       label-zettabits-zbit: 泽比特（Zbit）
-      label-zebibytes-zib: ZiB（Zebibytes）
+      label-zebibytes-zib: 泽比字节（Zebibytes）
       label-yottabytes-yb: 尧字节（YB）
       label-yottabits-ybit: 尧比特（Ybit）
-      label-yobibytes-yib: YiB（Yobibytes）
+      label-yobibytes-yib: 尧比字节（Yobibytes）
       label-input-size: 输入大小：
       placeholder-put-your-number-here-ex-1024: 在此输入数字（示例：1024）
       placeholder-select-input-unit: 选择输入单位
@@ -1665,23 +1665,23 @@ tools:
       label-bytes-b: 字节（B）
       label-bibytes-ib: Bibytes（iB）
       label-kilobytes-kb: 千字节（KB）
-      label-kibibytes-kib: KiB（Kibibytes）
+      label-kibibytes-kib: 千比字节（Kibibytes）
       label-megabytes-mb: 兆字节（MB）
-      label-mebibytes-mib: MiB（Mebibytes）
+      label-mebibytes-mib: 兆比字节（Mebibytes）
       label-gigabytes-gb: 吉字节（GB）
       label-gigabits-gbit: 吉比特（Gbit）
-      label-gibibytes-gib: GiB（Gibibytes）
+      label-gibibytes-gib: 吉比字节（Gibibytes）
       label-terabytes-tb: 太字节（TB）
       label-terabits-tbit: 太比特（Tbit）
       label-petabytes-pb: 拍字节（PB）
       label-petabits-pbit: 拍比特（Pbit）
       label-exabytes-eb: 艾字节（EB）
       label-exabits-ebit: 艾比特（Ebit）
-      label-exbibytes-eib: EiB（Exbibytes）
+      label-exbibytes-eib: 艾比字节（Exbibytes）
       label-zettabytes-zb: 泽字节（ZB）
       label-zettabits-zbit: 泽比特（Zbit）
       label-yottabytes-yb: 尧字节（YB）
-      label-yobibytes-yib: YiB（Yobibytes）
+      label-yobibytes-yib: 尧比字节（Yobibytes）
       label-bits-bit: 比特（bit）
       label-kilobits-kbit: 千比特（Kbit）
       label-megabits-mbit: 兆比特（Mbit）
