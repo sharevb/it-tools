@@ -65,7 +65,7 @@ formatTransformer:
   input-placeholder: 输入...
   output: 输出
   download: 下载
-  viewer: 观众
+  viewer: 预览
 textareaCopyable:
   copy: 复制到剪贴板
   copied: 已复制！
@@ -5984,7 +5984,7 @@ tools:
       title-the-following-errors-occured: 发生以下错误
       label-prettified-version-of-your-yaml: YAML美化版本
       label-no-validation: 无需验证
-      label-custom: 风俗
+      label-custom: 自定义
       label-json-schema: JSON 模式：
       placeholder-paste-your-json-schema-here: 将您的 JSON 模式粘贴到这里...
       title-schema-validation-errors: 架构验证错误
@@ -9352,16 +9352,16 @@ tools:
       placeholder-thumbprint-optional: 指纹（可选）
       label-public-key: 公钥：
       placeholder-public-key-optional: 公钥（可选）
-      label-audience: 观众：
-      placeholder-audience-optional: 观众（可选）
+      label-audience: 受众：
+      placeholder-audience-optional: 受众（可选）
       title-parsed-saml-assertion: 已解析的 SAML 断言
-      label-issuer: 发行人：
+      label-issuer: 颁发者：
       label-assertion-id: 断言 ID：
       label-session-index: 会话索引：
       label-notbefore: NotBefore：
       label-notonorafter: NotOnOrAfter：
       label-signature-validation-status: 签名验证状态：
-      title-claims: 索赔
+      title-claims: 声明
       title-raw-assertion: 原始断言
       tag-bypass-expiration: 绕过过期
       tag-don-t-bypass-expiration: 不要绕过过期期限
