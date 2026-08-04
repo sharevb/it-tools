@@ -37,7 +37,7 @@ home:
     mode: Basculer le mode sombre/clair
     language: Langue
     themeSystem: Système
-    themeLight: Lumière
+    themeLight: Clair
     themeDark: Sombre
   loading-more-tools: Chargement de plus d'outils…
   support: Soutenez le développement des outils iT-Tools
@@ -57,7 +57,7 @@ about:
     name: Nom
   import-favorites: Importer les favoris
   export-favorites: Exporter les favoris
-  put-your-favorites-json-array-here: Mettez votre tableau JSON préféré ici...
+  put-your-favorites-json-array-here: Mettez votre liste JSON de favoris ici...
   import-button: Importer
   favorites-imported-successfully: Favoris importés avec succès !
   error-importing-favorites-e: "Erreur lors de l&#39;importation des favoris : {0}"
@@ -158,17 +158,17 @@ tools:
     measurement: Mesure
     text: Texte
     data: Données
-    barcodes: Codes à barres
-    cheatsheets: Insignes
+    barcodes: Codes barres
+    cheatsheets: Aides-mémoires
     converters: Convertisseurs
-    datetime: DateHeure
+    datetime: Date Heure
     docker: Docker
     forensic: Légal
     gaming: Jeu
     generators: Générateurs
     images: Images
     json: Json
-    markdown: Réduction
+    markdown: Markdown
     maths: Mathématiques
     pdf: Pdf
     physics: Physique
@@ -947,7 +947,7 @@ tools:
       label-vancouver: Vancouver
     title: Générateur de citations
   code-highlighter:
-    description: Mettre en surbrillance les fragments de code de programmation
+    description: Mettre en surbrillance les fragments de code source
     texts:
       label-code-snippet-to-format: "Extrait de code au format :"
       label-language: Langue
@@ -1247,8 +1247,8 @@ tools:
       label-from: Depuis
       placeholder-please-select-a-currency: Veuillez sélectionner une devise
       title-converted-currencies: Devises converties
-      title-country-to-currencies: Pays à des devises
-      title-currencies-to-countries: Devises aux pays
+      title-country-to-currencies: Pays vers devises
+      title-currencies-to-countries: Devises vers pays
       title-currency-converter: Convertisseur de devises
     title: Convertisseur de devises
     externalAccess: Cet outil télécharge des données de change actualisées depuis
@@ -1282,7 +1282,7 @@ tools:
       title-fake-data-generator: Faux générateur de données
       title-faker-method-insertion: Insertion de la méthode Faker
       title-generated-data: Données générées
-    title: Faker de données
+    title: Générateur de fausses données
   data-storage-unit-converter:
     description: Convertir les unités de stockage ou de transfert de données
       (octets, bibytes, bits, kilo-great…)
@@ -1320,7 +1320,7 @@ tools:
       label-zettabytes-zb: Zettaoctets (Zo)
       placeholder-output-value-will-be-here: La valeur de sortie sera là…
       placeholder-precision: Précision...
-      placeholder-put-your-number-here-ex-1024: "Mettez votre numéro ici (ex : 1024)"
+      placeholder-put-your-number-here-ex-1024: "Mettez votre nombre ici (ex : 1024)"
       placeholder-select-input-unit: Sélectionnez l'unité d'entrée
       placeholder-select-output-unit: Sélectionner l'unité de sortie
       tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: |-
@@ -1904,7 +1904,7 @@ tools:
       tag-try-searching-for-something-else-like-smile-flag-or: Essayez de chercher
         autre chose comme "sourire", "drapeau" ou "😄 😄 😄 😄 😄 😄 😄 😄 😄 😄
         😄 😄
-    title: Cueilleur à emoji
+    title: Sélecteur d'emojis
   encryption:
     texts:
       label-plain-text: Texte brut
@@ -10234,7 +10234,7 @@ locale-selector:
   select-a-language: Sélectionnez une langue
 collapsibleToolMenu:
   text:
-    expanding: En expansion...
-    collapsing: Effondrement...
+    expanding: Réduire...
+    collapsing: Développé...
     collapse-all-tools: Réduire tous les outils
     expand-all-tools: Développer tous les outils
