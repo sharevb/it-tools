@@ -906,14 +906,14 @@ tools:
       simples.
     title: Chronomètre
   cidr-in-cidr:
-    description: Compte tenu d'un masque IP / IP de gamme CIDR / IP / Wildcard,
+    description: Compte tenu d'un masque IP / IP de plage CIDR / IP / Wildcard,
       indiquez si un masque IP / IP IP / IP Wild / IP donné est dans la plage de
       sous-réseau
     texts:
       label-an-ipv4-6-cidr-range-mask-wildcard-base-network: Un IPv4 / 6 CIDR / Range / Mask / Wildcard (réseau de base)
       label-an-ipv4-6-cidr-range-mask-wildcard-to-test-for-inclusion: Un IPv4 / 6 CIDR / Range / Mask / Wildcard (pour tester l'inclusion)
       message-we-cannot-parse-this-cidr-ip-range-mask-wildcard-check-the-format:
-        Nous ne pouvons pas analyser cette gamme CIDR / IP / MASK / WILDCARD,
+        Nous ne pouvons pas analyser cette plage CIDR / IP / MASK / WILDCARD,
         Vérifiez le format
       placeholder-the-an-ipv4-6-cidr-range-mask-wildcard: L'AN IPv4 / 6 CIDR / Range / Mask / Wildcard…
       placeholder-the-ipv4-6-cidr: Le CIDR IPv4 / 6…
@@ -2942,7 +2942,7 @@ tools:
         partial-content: Contenu partiel
         payload-too-large: Charge utile trop grande
         precondition-required: Condition préalable requise
-        range-not-satisfiable: Gamme non satisfaisable
+        range-not-satisfiable: Plage non satisfaisable
         redirect-to-another-url-this-is-an-example-of-industry-practice-contradicting-the-standard: |-
           Rediriger vers une autre URL.
           Ceci est un exemple de pratique de l'industrie contredisant la norme.
@@ -3264,7 +3264,7 @@ tools:
       placeholder-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0:
         IPv4 / 6 CIDR (IE, 1.0.0.0/23 ou 1.1.1.1/255.255.252.0 ou
         1.1.1.1-2.2.2.2 ou 10.0.0. *)
-      title-ipv4-6-range: Gamme IPv4 / 6
+      title-ipv4-6-range: Plage IPv4 / 6
       title-resulting-cidr: CIDR résultant
     title: Calculatrice IPv4 / 6 CIDR à la plage IP
   ip-geo-location:
@@ -3283,8 +3283,8 @@ tools:
     externalAccess: Cet outil envoie l'adresse IP (ou les adresses IP) fournie(s) à
       https://ipinfo.io/ pour obtenir des informations de géolocalisation IP.
   ip-include-exclude:
-    description: Souffondre une liste de gammes IP / Masque / CIDR à partir d'une
-      liste de gammes IP / Masque / CIDR autorisées
+    description: Souffondre une liste de plages IP / Masque / CIDR à partir d'une
+      liste de plages IP / Masque / CIDR autorisées
     texts:
       label-allowedips-ipv4-6-cidr-range-mask-wildcard: ALLIPS (IPv4 / 6 CIDR / Range / Mask / Wildcard)
       label-disallowedips-ipv4-6-cidr-range-mask-wildcard: Désactivé (IPv4 / 6 CIDR / Range / Mask / Wildcard)
@@ -3294,7 +3294,7 @@ tools:
       title-disallowed-subnets: Sous-réseaux interdits
     title: Les sous-réseaux IP excluent le calculatrice
   ip-range-to-cidr:
-    description: Calculez CIDR (s) à partir d'une gamme IP (IPv4 / 6)
+    description: Calculez CIDR (s) à partir d'une plage IP (IPv4 / 6)
     texts:
       label-end-address: Adresse finale
       label-start-address: Début de l'adresse
@@ -3391,7 +3391,7 @@ tools:
       tag-switch-start-and-end-ipv4-address: Switch Start and End Address IPv4
       title-invalid-combination-of-start-and-end-ipv4-address: Combinaison non valide de l'adresse de début et de fin IPv4
       tag-nbsp: "&nbsp;"
-    title: Expanseur de gamme IPv4
+    title: Expanseur de plage IPv4
   ipv4-subnet-calculator:
     description: Analyser vos blocs IPv4 CIDR et obtenir toutes les informations
       dont vous avez besoin dans votre sous-réseau.
@@ -5305,14 +5305,14 @@ tools:
     texts:
       label-output-file: "Fichier de sortie :"
       label-qpdf: qpdf
-      label-range: "Gamme :"
-      placeholder-qpdf-range: Gamme QPDF
+      label-range: "Pages :"
+      placeholder-qpdf-range: Pages QPDF
       tag-qpdf-documentation: Documentation QPDF
       title-drag-and-drop-a-pdf-files-here-or-click-to-select-some-files:
         Faites glisser et déposez un fichier PDF ici, ou cliquez pour
         sélectionner certains fichiers
       title-files-order: Commande des fichiers
-      title-logs: Bûches
+      title-logs: Journaux
       tag-concat-pdfs: Concat PDFS
       tag-for-details-about-range-options-see: Pour plus de détails sur les options de plage, voir
     title: Concaner PDF
@@ -5350,7 +5350,7 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file:
         Faites glisser et déposez un fichier PDF ici, ou cliquez pour
         sélectionner un fichier
-      title-logs: Bûches
+      title-logs: Journaux
       title-permissions: Autorisation
     title: Crypte PDF
   pdf-extract:
@@ -5358,8 +5358,8 @@ tools:
     texts:
       label-output-file: "Fichier de sortie :"
       label-qpdf: qpdf
-      label-range: "Gamme :"
-      placeholder-qpdf-range: Gamme QPDF
+      label-range: "Pages :"
+      placeholder-qpdf-range: Pages QPDF
       tag-extract-pdf-pages: Extraire les pages PDF
       tag-for-details-about-range-options-see: Pour plus de détails sur les options de plage, voir
       tag-qpdf-documentation: Documentation QPDF
@@ -5367,7 +5367,7 @@ tools:
         Faites glisser et déposez un fichier PDF ici, ou cliquez pour
         sélectionner un fichier
       title-extraction-range: Plage d'extraction
-      title-logs: Bûches
+      title-logs: Journaux
     title: Extracteur de page PDF
   pdf-linearize:
     description: Créez une version linéarisée d'un PDF (transformez-vous à FastWeb)
@@ -5376,7 +5376,7 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file:
         Faites glisser et déposez un fichier PDF ici, ou cliquez pour
         sélectionner un fichier
-      title-logs: Bûches
+      title-logs: Journaux
     title: Pdf linéarize / fastweb
   pdf-signature-checker:
     description: >-
@@ -5427,7 +5427,7 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file:
         Faites glisser et déposez un fichier PDF ici, ou cliquez pour
         sélectionner un fichier
-      title-logs: Bûches
+      title-logs: Journaux
       label-password: "Mot de passe :"
       placeholder-password: Mot de passe
       tag-decrypt-pdf: Déchiffrer le PDF
@@ -7460,7 +7460,7 @@ tools:
       tag-connect: Connecter
       tag-send: Envoyer
       title-connection: Connexion
-      title-logs: Bûches
+      title-logs: Journaux
       title-send: Envoyer
     title: Testeur WebSocket
   week-number-converter:
@@ -7480,7 +7480,7 @@ tools:
       title-week-number-in-month-to-date: Numéro de semaine en mois à ce jour
     title: Convertisseur de numéros de semaine
   which-day:
-    description: Donné un jour et un mois et une gamme d'années, la liste toute la
+    description: Donné un jour et un mois et une plage d'années, la liste toute la
       journée de la semaine, une date donnée est
     text:
       friday: Vendredi
@@ -8316,7 +8316,7 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file:
         Glissez-déposez un fichier PDF ici, ou cliquez pour sélectionner un
         fichier.
-      title-logs: bûches
+      title-logs: Journaux
       label-ghostscript: Ghostscript
       process-run-failed: L'exécution du processus a échoué
       an-error-occured-processing: Une erreur s'est produite lors du traitement.
@@ -8878,7 +8878,7 @@ tools:
       placeholder-target-ip: Adresse IP cible
       placeholder-port: Port
       placeholder-protocol: Protocole
-      title-logs: bûches
+      title-logs: Journaux
       title-payload-builder: Générateur de charge utile
       label-send-text-payload-can-add-r-n: "Envoyer une charge utile de texte (possibilité d'ajouter \\r \\n) :"
       placeholder-text-payload: charge utile de texte
@@ -9470,7 +9470,7 @@ tools:
     texts:
       label-stream-loop: "Boucle de flux :"
       title-drag-and-drop-gif-here-or-click-to-select-a-file: Glissez-déposez le GIF ici ou cliquez pour sélectionner un fichier.
-      title-logs: bûches
+      title-logs: Journaux
   html-to-pdf:
     title: HTML vers PDF
     description: Générer un PDF à partir de contenu HTML ou d'une URL avec sélection
@@ -9629,7 +9629,7 @@ tools:
       label-year: Année
       label-every: chaque
       label-specific-values: valeurs spécifiques
-      label-range: Gamme
+      label-range: Plage
       label-increment: Incrément
       title-generated-cron-expression: Expression Cron générée
       title-validation-errors: Erreurs de validation
