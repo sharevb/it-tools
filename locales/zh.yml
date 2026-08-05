@@ -1256,10 +1256,10 @@ tools:
     texts:
       label-degree: 度数（°）
       label-radian: 弧度
-      label-turn: 转动
-      label-gradian: 梯度
-      label-grad: 程度
-      label-gon: 贡
+      label-turn: 转
+      label-gradian: 百分度
+      label-grad: 百分度
+      label-gon: 百分度
   ansible-vault-crypt-decrypt:
     title: Ansible Vault加密解密
     description: 加密和解密Ansible Vault密钥。
