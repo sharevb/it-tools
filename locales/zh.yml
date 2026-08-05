@@ -5430,7 +5430,7 @@ tools:
         player: 播放器
         summary-with-large-image: 带大图的摘要
         summary: 摘要
-        twitter: 叽叽喳喳
+        twitter: 推特
         the-name-of-the-twitter-account-of-the-creator-ex-cthmsst: 创建者的 Twitter 账号名称（例如：{'@'}cthmsst）……
     videoEpisode:
       text:
