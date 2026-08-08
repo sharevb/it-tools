@@ -311,7 +311,7 @@
     "paseto-ts": "^2.0.6",
     "path2d-polyfill": "^3.2.2",
     "pdf-signature-reader": "^1.4.3",
-    "pdfjs-dist": "^4.10.38",
+    "pdfjs-dist": "^6.0.0",
     "picomatch": "^4.0.5",
     "pinia": "^3.0.4",
     "plausible-tracker": "^0.3.9",
