@@ -10400,6 +10400,19 @@ tools:
       label-banner-text: "Texto do banner:"
       placeholder-enter-motd-banner-text-here: Insira aqui o texto do banner MOTD...
       title-generated-banner: Banner gerado
+  xml-diff:
+    title: Diferença XML
+    description: Compare dois documentos XML e obtenha as diferenças entre eles.
+    texts:
+      message-invalid-xml-format: Formato XML inválido
+      label-your-first-xml: Seu primeiro XML
+      placeholder-paste-your-first-xml-here: Cole seu primeiro XML aqui...
+      label-your-xml-to-compare: Seu XML para comparação
+      placeholder-paste-your-xml-to-compare-here: Cole aqui o seu XML para comparação...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: Os arquivos XML fornecidos são os mesmos.
+      only-show-differences: Mostrar apenas as diferenças
 spanCopyable:
   copy: Copiar para a área de transferência
   copied: Copiado!

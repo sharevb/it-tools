@@ -10247,6 +10247,19 @@ tools:
       label-banner-text: "Banner Text:"
       placeholder-enter-motd-banner-text-here: Enter MOTD banner text here...
       title-generated-banner: Generated Banner
+  xml-diff:
+    title: XML diff
+    description: Compare two XML documents and get the differences between them.
+    texts:
+      message-invalid-xml-format: Invalid XML format
+      label-your-first-xml: Your first XML
+      placeholder-paste-your-first-xml-here: Paste your first XML here...
+      label-your-xml-to-compare: Your XML to compare
+      placeholder-paste-your-xml-to-compare-here: Paste your XML to compare here...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: The provided XMLs are the same
+      only-show-differences: Only show differences
 analogSignalConverter:
   texts:
     title-input: Input

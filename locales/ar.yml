@@ -10163,6 +10163,19 @@ tools:
       label-banner-text: "نص الشعار:"
       placeholder-enter-motd-banner-text-here: أدخل نص شعار رسالة اليوم هنا...
       title-generated-banner: تم إنشاء لافتة
+  xml-diff:
+    title: مقارنة XML
+    description: قارن بين مستندين من نوع XML واحصل على الاختلافات بينهما.
+    texts:
+      message-invalid-xml-format: تنسيق XML غير صالح
+      label-your-first-xml: أول ملف XML خاص بك
+      placeholder-paste-your-first-xml-here: ألصق ملف XML الأول هنا...
+      label-your-xml-to-compare: ملف XML الخاص بك للمقارنة
+      placeholder-paste-your-xml-to-compare-here: ألصق ملف XML الخاص بك للمقارنة هنا...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: ملفات XML المقدمة هي نفسها
+      only-show-differences: أظهر الاختلافات فقط
 spanCopyable:
   copy: نسخ إلى الحافظة
   copied: تم النسخ!

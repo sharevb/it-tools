@@ -10240,6 +10240,19 @@ tools:
       label-banner-text: "Bannertekst:"
       placeholder-enter-motd-banner-text-here: Indtast MOTD-bannertekst her...
       title-generated-banner: Genereret banner
+  xml-diff:
+    title: XML-diff
+    description: Sammenlign to XML-dokumenter og find forskellene mellem dem.
+    texts:
+      message-invalid-xml-format: Ugyldigt XML-format
+      label-your-first-xml: Din første XML
+      placeholder-paste-your-first-xml-here: Indsæt din første XML her...
+      label-your-xml-to-compare: Din XML til sammenligning
+      placeholder-paste-your-xml-to-compare-here: Indsæt din XML for at sammenligne her...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: De angivne XML-filer er de samme
+      only-show-differences: Vis kun forskelle
 about:
   alltools-title: Alle {toolsCount} værktøjer
   tools:

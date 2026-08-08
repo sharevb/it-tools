@@ -10338,6 +10338,19 @@ tools:
       label-banner-text: "Banner Metni:"
       placeholder-enter-motd-banner-text-here: MOTD (Günün Mesajı) başlık metnini buraya girin...
       title-generated-banner: Oluşturulan Afiş
+  xml-diff:
+    title: XML farkı
+    description: İki XML belgesini karşılaştırın ve aralarındaki farkları bulun.
+    texts:
+      message-invalid-xml-format: Geçersiz XML formatı
+      label-your-first-xml: İlk XML dosyanız
+      placeholder-paste-your-first-xml-here: İlk XML dosyanızı buraya yapıştırın...
+      label-your-xml-to-compare: Karşılaştırılacak XML dosyanız
+      placeholder-paste-your-xml-to-compare-here: Karşılaştırmak istediğiniz XML dosyasını buraya yapıştırın...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: Verilen XML dosyaları aynıdır.
+      only-show-differences: Yalnızca farklılıkları göster
 about:
   alltools-title: Tüm {toolsCount} Araç
   tools:

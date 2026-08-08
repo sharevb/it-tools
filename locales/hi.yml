@@ -10415,6 +10415,19 @@ tools:
       label-banner-text: "बैनर टेक्स्ट:"
       placeholder-enter-motd-banner-text-here: यहां MOTD बैनर का टेक्स्ट डालें...
       title-generated-banner: जनरेट किया गया बैनर
+  xml-diff:
+    title: XML अंतर
+    description: दो XML दस्तावेज़ों की तुलना करें और उनके बीच के अंतर ज्ञात करें।
+    texts:
+      message-invalid-xml-format: अमान्य XML प्रारूप
+      label-your-first-xml: आपका पहला XML
+      placeholder-paste-your-first-xml-here: अपना पहला XML यहां पेस्ट करें...
+      label-your-xml-to-compare: तुलना करने के लिए आपका XML
+      placeholder-paste-your-xml-to-compare-here: तुलना करने के लिए अपना XML यहां पेस्ट करें...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: दिए गए XML समान हैं।
+      only-show-differences: केवल अंतर दिखाएँ
 collapsibleToolMenu:
   text:
     expanding: विस्तार हो रहा है...

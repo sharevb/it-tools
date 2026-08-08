@@ -9893,6 +9893,19 @@ tools:
       label-banner-text: 横幅文字：
       placeholder-enter-motd-banner-text-here: 在此输入每日比赛横幅文字……
       title-generated-banner: 生成的横幅
+  xml-diff:
+    title: XML差异
+    description: 比较两个 XML 文档，找出它们之间的差异。
+    texts:
+      message-invalid-xml-format: 无效的 XML 格式
+      label-your-first-xml: 你的第一个 XML
+      placeholder-paste-your-first-xml-here: 把你的第一个 XML 文件粘贴到这里……
+      label-your-xml-to-compare: 要比较的 XML
+      placeholder-paste-your-xml-to-compare-here: 请将要比较的 XML 文件粘贴到这里……
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: 提供的 XML 文件相同
+      only-show-differences: 仅显示差异
 collapsibleToolMenu:
   text:
     expanding: 正在展开……

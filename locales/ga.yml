@@ -10444,6 +10444,20 @@ tools:
       label-banner-text: "Téacs Meirge:"
       placeholder-enter-motd-banner-text-here: Cuir isteach téacs meirge MOTD anseo...
       title-generated-banner: Meirge Ginte
+  xml-diff:
+    title: Difríocht XML
+    description: Déan comparáid idir dhá dhoiciméad XML agus faigh amach na
+      difríochtaí eatarthu.
+    texts:
+      message-invalid-xml-format: Formáid XML neamhbhailí
+      label-your-first-xml: Do chéad XML
+      placeholder-paste-your-first-xml-here: Greamaigh do chéad XML anseo...
+      label-your-xml-to-compare: Do XML le comparáid a dhéanamh
+      placeholder-paste-your-xml-to-compare-here: Greamaigh do XML anseo le comparáid a dhéanamh...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: Is ionann na XMLanna a cuireadh ar fáil
+      only-show-differences: Taispeáin difríochtaí amháin
 locale-selector:
   select-a-language: Roghnaigh teanga
 collapsibleToolMenu:

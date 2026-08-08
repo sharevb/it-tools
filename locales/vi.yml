@@ -10303,6 +10303,19 @@ tools:
       label-banner-text: "Văn bản trên biểu ngữ:"
       placeholder-enter-motd-banner-text-here: Nhập nội dung banner MOTD vào đây...
       title-generated-banner: Biểu ngữ được tạo
+  xml-diff:
+    title: So sánh XML
+    description: So sánh hai tài liệu XML và tìm ra điểm khác biệt giữa chúng.
+    texts:
+      message-invalid-xml-format: Định dạng XML không hợp lệ
+      label-your-first-xml: XML đầu tiên của bạn
+      placeholder-paste-your-first-xml-here: Dán đoạn mã XML đầu tiên của bạn vào đây...
+      label-your-xml-to-compare: Tệp XML của bạn để so sánh
+      placeholder-paste-your-xml-to-compare-here: Hãy dán mã XML của bạn vào đây để so sánh...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: Các tệp XML được cung cấp đều giống nhau.
+      only-show-differences: Chỉ hiển thị sự khác biệt
 spanCopyable:
   copy: Sao chép vào bảng tạm
   copied: Đã sao chép!

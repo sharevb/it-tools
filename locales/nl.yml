@@ -10342,6 +10342,19 @@ tools:
       label-banner-text: "Bannertekst:"
       placeholder-enter-motd-banner-text-here: Voer hier de tekst voor de MOTD-banner in...
       title-generated-banner: Gegenereerde banner
+  xml-diff:
+    title: XML-verschil
+    description: Vergelijk twee XML-documenten en vind de verschillen ertussen.
+    texts:
+      message-invalid-xml-format: Ongeldig XML-formaat
+      label-your-first-xml: Je eerste XML-bestand
+      placeholder-paste-your-first-xml-here: Plak hier je eerste XML-bestand...
+      label-your-xml-to-compare: Uw XML-bestand ter vergelijking
+      placeholder-paste-your-xml-to-compare-here: Plak hier uw XML-bestand om te vergelijken...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: De aangeleverde XML-bestanden zijn hetzelfde.
+      only-show-differences: Toon alleen verschillen
 about:
   alltools-title: Alle {toolsCount}-hulpmiddelen
   tools:

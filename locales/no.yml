@@ -10294,6 +10294,19 @@ tools:
       label-banner-text: "Bannertekst:"
       placeholder-enter-motd-banner-text-here: Skriv inn MOTD-bannertekst her ...
       title-generated-banner: Generert banner
+  xml-diff:
+    title: XML-forskjell
+    description: Sammenlign to XML-dokumenter og finn forskjellene mellom dem.
+    texts:
+      message-invalid-xml-format: Ugyldig XML-format
+      label-your-first-xml: Din første XML
+      placeholder-paste-your-first-xml-here: Lim inn din første XML-fil her...
+      label-your-xml-to-compare: XML-en din for å sammenligne
+      placeholder-paste-your-xml-to-compare-here: Lim inn XML-filen din for å sammenligne her...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: De oppgitte XML-filene er de samme
+      only-show-differences: Vis bare forskjeller
 spanCopyable:
   copy: Kopier til utklippstavlen
   copied: Kopiert!
