@@ -313,7 +313,7 @@
     "pdf-signature-reader": "^1.4.3",
     "pdfjs-dist": "^4.10.38",
     "picomatch": "^4.0.5",
-    "pinia": "^3.0.4",
+    "pinia": "^4.0.0",
     "plausible-tracker": "^0.3.9",
     "podletjs": "^1.0.2",
     "port-numbers": "^8.0.32",
