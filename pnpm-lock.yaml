@@ -1118,115 +1118,115 @@ importers:
         specifier: ^24.0.4
         version: 24.0.4
       '@types/arr-diff':
-        specifier: ^4.0.3
+        specifier: 4.0.3
         version: 4.0.3
       '@types/bcryptjs':
-        specifier: ^3.0.0
+        specifier: 3.0.0
         version: 3.0.0
       '@types/big.js':
-        specifier: ^7.0.0
+        specifier: 7.0.0
         version: 7.0.0
       '@types/codemirror':
-        specifier: ^5.60.17
+        specifier: 5.60.17
         version: 5.60.17
       '@types/crypto-js':
-        specifier: ^4.2.2
+        specifier: 4.2.2
         version: 4.2.2
       '@types/damerau-levenshtein':
-        specifier: ^1.0.2
+        specifier: 1.0.2
         version: 1.0.2
       '@types/emscripten':
-        specifier: ^1.41.5
+        specifier: 1.41.5
         version: 1.41.5
       '@types/har-format':
-        specifier: ^1.2.16
+        specifier: 1.2.16
         version: 1.2.16
       '@types/hex-array':
-        specifier: ^1.0.2
+        specifier: 1.0.2
         version: 1.0.2
       '@types/js-beautify':
-        specifier: ^1.14.3
+        specifier: 1.14.3
         version: 1.14.3
       '@types/jsdom':
-        specifier: ^28.0.0
+        specifier: 28.0.3
         version: 28.0.3
       '@types/jsonpath':
-        specifier: ^0.2.4
+        specifier: 0.2.4
         version: 0.2.4
       '@types/leaflet':
-        specifier: ^1.9.21
+        specifier: 1.9.21
         version: 1.9.21
       '@types/libmime':
-        specifier: ^5.3.0
+        specifier: 5.3.0
         version: 5.3.0
       '@types/luxon':
-        specifier: ^3.7.2
+        specifier: 3.7.2
         version: 3.7.2
       '@types/markdown-it':
-        specifier: ^14.0.0
+        specifier: 14.1.2
         version: 14.1.2
       '@types/memorystream':
-        specifier: ^0.3.4
+        specifier: 0.3.4
         version: 0.3.4
       '@types/mime-types':
-        specifier: ^3.0.1
+        specifier: 3.0.1
         version: 3.0.1
       '@types/morsee':
-        specifier: ^1.0.2
+        specifier: 1.0.2
         version: 1.0.2
       '@types/nanoid-dictionary':
-        specifier: ^4.2.3
+        specifier: 4.2.3
         version: 4.2.3
       '@types/netmask':
-        specifier: ^2.0.6
+        specifier: 2.0.6
         version: 2.0.6
       '@types/node':
-        specifier: ^24.13.3
+        specifier: 24.13.3
         version: 24.13.3
       '@types/node-forge':
-        specifier: ^1.3.14
+        specifier: 1.3.14
         version: 1.3.14
       '@types/picomatch':
-        specifier: ^4.0.3
+        specifier: 4.0.3
         version: 4.0.3
       '@types/potrace':
-        specifier: ^2.1.5
+        specifier: 2.1.5
         version: 2.1.5
       '@types/punycode':
-        specifier: ^2.1.4
+        specifier: 2.1.4
         version: 2.1.4
       '@types/qrcode':
-        specifier: ^1.5.6
+        specifier: 1.5.6
         version: 1.5.6
       '@types/sanitize-html':
-        specifier: ^2.16.1
+        specifier: 2.16.1
         version: 2.16.1
       '@types/spdx-satisfies':
-        specifier: ^6.0.0
+        specifier: 6.0.0
         version: 6.0.0
       '@types/sshpk':
-        specifier: ^1.17.5
+        specifier: 1.17.5
         version: 1.17.5
       '@types/stopword':
-        specifier: ^2.0.3
+        specifier: 2.0.3
         version: 2.0.3
       '@types/stringify-object':
-        specifier: ^4.0.5
+        specifier: 4.0.5
         version: 4.0.5
       '@types/text-encoding-utf-8':
-        specifier: ^1.0.5
+        specifier: 1.0.5
         version: 1.0.5
       '@types/turndown':
-        specifier: ^5.0.6
+        specifier: 5.0.6
         version: 5.0.6
       '@types/ua-parser-js':
-        specifier: ^0.7.39
+        specifier: 0.7.39
         version: 0.7.39
       '@types/unist':
-        specifier: ^3.0.3
+        specifier: 3.0.3
         version: 3.0.3
       '@types/utf8':
-        specifier: ^3.0.3
+        specifier: 3.0.3
         version: 3.0.3
       '@types/uuid':
         specifier: ^11.0.0
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
