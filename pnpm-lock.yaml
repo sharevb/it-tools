@@ -620,7 +620,7 @@ importers:
         version: 1.0.1
       js-base64:
         specifier: ^3.8.1
-        version: 3.8.1
+        version: 3.9.2
       js-beautify:
         specifier: ^2.0.3
         version: 2.0.3
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -8022,8 +8024,8 @@ packages:
   jq-wasm@1.0.1:
     resolution: {integrity: sha512-E4WvOi44oDO5Ug6DF1B0WJhBFfXso+XD31MTo90SzcpNqPn1lweNeC2ndYJSBa2NRZQn2BOvzXhMaLcQnnkIFw==}
 
-  js-base64@3.8.1:
-    resolution: {integrity: sha512-5xVjhUZlHHeuO2W7w2rDFj/Kl1xLX+HjZxdOQwCsUOifl6UaoH1o1wsbsTMz+r0aeC7gCijvru02j6TfKZWzKg==}
+  js-base64@3.9.2:
+    resolution: {integrity: sha512-6zayE8QlUdiweYI6cETD/XBSqFcoCUlufn/29PJR99r82x1yDnIprRca0YvAYpAW+ez0GuQkVBC6xG5QkD7OjA==}
 
   js-beautify@1.15.4:
     resolution: {integrity: sha512-9/KXeZUKKJwqCXUdBxFJ3vPh467OCckSBmYDwSK/EtV090K+iMJ7zx2S3HLVDIWFQdqMIsZWbnaGiba18aWhaA==}
@@ -18828,7 +18830,7 @@ snapshots:
 
   jq-wasm@1.0.1: {}
 
-  js-base64@3.8.1: {}
+  js-base64@3.9.2: {}
 
   js-beautify@1.15.4:
     dependencies:
@@ -20603,7 +20605,7 @@ snapshots:
       browser-or-node: 3.0.0
       collection-utils: 1.0.1
       is-url: 1.2.4
-      js-base64: 3.8.1
+      js-base64: 3.9.2
       lodash: 4.18.1
       pako: 1.0.11
       pluralize: 8.0.0
