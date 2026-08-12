@@ -487,8 +487,8 @@ importers:
         specifier: ^1.11.0
         version: 1.11.0
       figue:
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^3.0.0
+        version: 3.3.0
       file-type:
         specifier: ^22.0.1
         version: 22.0.1
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -7008,8 +7010,8 @@ packages:
     engines: {node: '>= 17.0.0'}
     hasBin: true
 
-  figue@1.2.0:
-    resolution: {integrity: sha512-CXKr12kiNWjKtUK3X+YHeXKepn80s9Rg6pgZXoLQYEybgwaGJ9uGW4DrBrVK30ZWZf1mcvTbXF56AcovG7gLVw==}
+  figue@3.3.0:
+    resolution: {integrity: sha512-1iLhSecjG23Q0gOeqFEbWSnmeNQRNG+bHKaRuqOmN+HZgPId1A0TAZatxUbznswujkEzhOeOwF2KEKSpMk8MOw==}
 
   file-entry-cache@8.0.0:
     resolution: {integrity: sha512-XXTUwCvisa5oacNGRP9SfNtYBNAMi+RPwBFmblZEF7N7swHYQS6/Zfk7SRwx4D5j3CH211YNRco1DEMNVfZCnQ==}
@@ -17770,9 +17772,9 @@ snapshots:
     dependencies:
       commander: 14.0.3
 
-  figue@1.2.0:
+  figue@3.3.0:
     dependencies:
-      lodash: 4.18.1
+      '@standard-schema/spec': 1.1.0
 
   file-entry-cache@8.0.0:
     dependencies:
