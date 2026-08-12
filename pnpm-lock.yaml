@@ -454,8 +454,8 @@ importers:
         specifier: ^1.49.0
         version: 1.49.0
       esm-potrace-wasm:
-        specifier: ^0.4.4
-        version: 0.4.4(patch_hash=a60b9e91d34bbc890f0296bd36e7e761e00b4142552591150b6e65975bbab79e)
+        specifier: ^0.5.0
+        version: 0.5.0(patch_hash=a60b9e91d34bbc890f0296bd36e7e761e00b4142552591150b6e65975bbab79e)
       ethers:
         specifier: ^6.17.0
         version: 6.17.0
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -6812,8 +6814,8 @@ packages:
   esm-env@1.2.2:
     resolution: {integrity: sha512-Epxrv+Nr/CaL4ZcFGPJIYLWFom+YeV1DqMLHJoEd9SYRxNbaFruBwfEX/kkHUJf55j2+TUbmDcmuilbP1TmXHA==}
 
-  esm-potrace-wasm@0.4.4:
-    resolution: {integrity: sha512-2t9Rds/ZWf4n2bvyLv/fAkZdLCgv02q316xoBSSm5qp7jstlheTAZbdu4Q/ojbS6kwJwVoSv1Pjpx+e7niAp+A==}
+  esm-potrace-wasm@0.5.0:
+    resolution: {integrity: sha512-69/KI2wrq6G7KzWJGasICQFFShia1TOF0vtVbvER9yzYjD79lVsMO7EHoj2fXKm0tUARUEdEPdyc+/HIq2Ct/w==}
 
   esniff@2.0.1:
     resolution: {integrity: sha512-kTUIGKQ/mDPFoJ0oVfcmyJn4iBDRptjNVIzwIFR7tqWXdVI9xfA2RMwY/gbSpJG3lkdWNEjLap/NqVHZiJsdfg==}
@@ -17571,7 +17573,7 @@ snapshots:
 
   esm-env@1.2.2: {}
 
-  esm-potrace-wasm@0.4.4(patch_hash=a60b9e91d34bbc890f0296bd36e7e761e00b4142552591150b6e65975bbab79e): {}
+  esm-potrace-wasm@0.5.0(patch_hash=a60b9e91d34bbc890f0296bd36e7e761e00b4142552591150b6e65975bbab79e): {}
 
   esniff@2.0.1:
     dependencies:
