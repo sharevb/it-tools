@@ -240,7 +240,7 @@
     "javascript-obfuscator": "^5.4.7",
     "javastack.js": "^1.0.3",
     "jks-js": "^1.1.7",
-    "jose": "5.10.0",
+    "jose": "6.2.8",
     "jpeg-quality-estimator": "^1.0.1",
     "jq-wasm": "^1.0.1",
     "js-base64": "^3.8.1",
