@@ -288,7 +288,7 @@
     "mermaid": "^11.16.0",
     "mime-types": "^3.0.2",
     "mitex-wasm": "^0.2.5",
-    "monaco-editor": "^0.55.1",
+    "monaco-editor": "^0.56.0",
     "morsee": "^1.0.10",
     "msgpackr": "^2.0.4",
     "naive-ui": "^2.44.1",
