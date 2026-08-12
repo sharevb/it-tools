@@ -15,7 +15,7 @@ jobs:
     outputs:
       should_run: ${{ steps.should_run.outputs.should_run }}
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: print latest_commit
         run: echo ${{ github.sha }}
 
@@ -31,7 +31,7 @@ jobs:
     if: ${{ needs.check_date.outputs.should_run != 'false' }}
 
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - run: |
           echo "Before: corepack version => $(corepack --version || echo 'not installed')"
           npm install -g corepack@latest
@@ -71,7 +71,7 @@ jobs:
 
       # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Login to Docker Hub
         uses: docker/login-action@v4.4.0
@@ -116,7 +116,7 @@ jobs:
         run: echo "RELEASE_VERSION=nightly" >> $GITHUB_ENV
 
       - name: Checkout
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - run: |
           echo "Before: corepack version => $(corepack --version || echo 'not installed')"
