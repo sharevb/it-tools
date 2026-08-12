@@ -1,6 +1,6 @@
 services:
   it-tools:
-    image: sharevb/it-tools:latest
+    image: sharevb/it-tools:latest@sha256:d08fa3dece36b1eb54de1a6b8433a8380b75a00a7ed47d5082e9974df53bb06d
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -10,7 +10,7 @@ services:
     ports:
       - 8080:8080
   docker-image-download-server:
-    image: sharevb/docker-image-download-server:latest
+    image: sharevb/docker-image-download-server:latest@sha256:d1a5ffa5041c2b248c02e25b799818bbeca4a55fced1b9db1ccdc9fa4045793a
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -20,13 +20,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   ws-tcp-udp-bridge:
-    image: sharevb/ws-tcp-udp-bridge:latest
+    image: sharevb/ws-tcp-udp-bridge:latest@sha256:2992e0c5682c4059f8863cf5dd95507db95ccd28745a7a5516f03bca39567816
     pull_policy: always
     restart: unless-stopped
     ports:
       - 8002:8080
   network-utils-ws:
-    image: sharevb/network-utils-ws:latest
+    image: sharevb/network-utils-ws:latest@sha256:0d03a2e4735942cf8134277848d30c286756befe60a67c56bf7a47092ccfe80f
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -34,7 +34,7 @@ services:
     ports:
       - 8003:8000
   puppeteer-htmltopdf:
-    image: sharevb/puppeteer-htmltopdf:latest
+    image: sharevb/puppeteer-htmltopdf:latest@sha256:e5b3884c59a4e0f8d0f19d2b45f6f9eed10e5718a6009b304897d549ab44072a
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -42,7 +42,7 @@ services:
     ports:
       - 8004:3000
   cors-anywhere:
-    image: sharevb/cors-anywhere:latest
+    image: sharevb/cors-anywhere:latest@sha256:8660dd3ce5c9dce8d365d37bc5e723e0ddb749643138b36b72a2798d853c3474
     pull_policy: always
     restart: unless-stopped
     environment:
