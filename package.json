@@ -279,7 +279,7 @@
     "markdown-it-sub": "^2.0.0",
     "markdown-it-sup": "^2.0.0",
     "markdown-table-prettify": "^4.1.0",
-    "marked": "^10.0.0",
+    "marked": "^18.0.0",
     "mathjs": "^15.2.0",
     "md-editor-v3": "^4.21.3",
     "mdt2json": "^1.1.0",
