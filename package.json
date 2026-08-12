@@ -113,7 +113,7 @@
     "@vueuse/integrations": "^14.3.0",
     "@vueuse/router": "^10.11.1",
     "@xmldom/xmldom": "^0.8.13",
-    "@xterm/xterm": "^5.5.0",
+    "@xterm/xterm": "^6.0.0",
     "@younestouati/playing-cards-standard-deck": "^6.0.1",
     "@zxcvbn-ts/core": "^3.0.4",
     "@zxcvbn-ts/language-common": "^3.0.4",
