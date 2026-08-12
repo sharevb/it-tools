@@ -84,7 +84,7 @@
     "@kenjiuno/msgreader": "^1.28.0",
     "@langfreak/convert-layout": "^0.11.2",
     "@lezer/highlight": "^1.2.3",
-    "@mdit/plugin-align": "^0.16.0",
+    "@mdit/plugin-align": "^0.24.0",
     "@noble/ciphers": "^1.3.0",
     "@regexper/render": "^1.0.0",
     "@sindresorhus/slugify": "^3.0.0",
