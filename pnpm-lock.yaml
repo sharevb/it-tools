@@ -812,7 +812,7 @@ importers:
         version: 2.1.8
       parse-torrent:
         specifier: ^11.0.21
-        version: 11.0.21
+        version: 11.0.24
       paseto-ts:
         specifier: ^2.0.6
         version: 2.0.6
@@ -4203,8 +4203,8 @@ packages:
   '@tabler/icons@3.44.0':
     resolution: {integrity: sha512-Wn0AOZG9sg0L+bjfMqq4eNhC6pQjIrk94LvvWYNYkY8KH8wC3YILRzQlrnVJc4FUeMxH/AK97QsYCX35H3LndA==}
 
-  '@thaunknown/thirty-two@1.0.5':
-    resolution: {integrity: sha512-Q53KyCXweV1CS62EfqtPDqfpksn5keQ59PGqzzkK+g8Vif1jB4inoBCcs/BUSdsqddhE3G+2Fn+4RX3S6RqT0A==}
+  '@thaunknown/thirty-two@1.0.6':
+    resolution: {integrity: sha512-Uz2kFb0cNeHg7hds8BtI/umcwzaSMUdbkeQgZrIZQbp3gWRFjrvrvBHNEB6SQYChVxC3rWHovKx1Ya/vSRRMYA==}
     engines: {node: '>=0.2.6'}
 
   '@tiptap/core@3.27.1':
@@ -5492,10 +5492,6 @@ packages:
       bare-abort-controller:
         optional: true
 
-  base64-arraybuffer@1.0.2:
-    resolution: {integrity: sha512-I3yl4r9QB5ZRY3XuJVEPfc2XhZO6YweFPI+UovAzn+8/hb3oJ6lnysaFcjVpkCPfVWFUDvoZ8kmVDP7WyRtYtQ==}
-    engines: {node: '>= 0.6.0'}
-
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
@@ -6041,6 +6037,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6065,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -8483,8 +8481,8 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
-  magnet-uri@7.0.8:
-    resolution: {integrity: sha512-cRzrGzw6nvjj+CMQczrVGZbcZfxhth4uSIQf7PGzACW11UsptwrQbAXTuUek7k3xG1HiFZJnkGpgjY2a5Y5Pgw==}
+  magnet-uri@7.0.10:
+    resolution: {integrity: sha512-PjS/xWnvq9RK6P/8+dWG7ka3mFGGt/R9xiq5A+P8a8MpE40Dw6yNyTdjCFuJHS3apn6p5bJUCzMSceW3VxezRA==}
     engines: {node: '>=12.20.0'}
 
   mailparser@3.9.12:
@@ -9234,8 +9232,8 @@ packages:
   parse-srcset@1.0.2:
     resolution: {integrity: sha512-/2qh0lav6CmI15FzA3i/2Bzk2zCgQhGMkvhOhKNcBVQ1ldgpbfiNTVslmooUmWJcADi1f1kIeynbDRVzNlfR6Q==}
 
-  parse-torrent@11.0.21:
-    resolution: {integrity: sha512-yQeIv9PaT/AQGhyyYpj0h2W5iP7Eka5CyaG6ECw/4SeoFK9lcIxCG3EqBHisrM3LA+LrtGzo68DLcE4rSd5YLA==}
+  parse-torrent@11.0.24:
+    resolution: {integrity: sha512-6nNWYiJq6egD8pMqZYL1mfnAly9ZH32DHkAYgZuAfwWij52ce7e3BtrWGVw2q1Bpb5Us8YQVGN7ML/47z/bVIA==}
     engines: {node: '>=12.20.0'}
     hasBin: true
 
@@ -10654,8 +10652,8 @@ packages:
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
-  uint8-util@2.2.6:
-    resolution: {integrity: sha512-r+ZjS8CzPhtPF771ROOadUoqC40OVdiMKBI8lTfJQWb4W7+73sMBwMYmai/uvNcmZ7tBJJyZSad03yMWIt3RQg==}
+  uint8-util@2.3.2:
+    resolution: {integrity: sha512-u1c0/eiT1IW+c5+ogbmE2Fu2hmtJQPkuzDmXD/4crMU4FPMjkTkFnjJ2NN/9AsZ9YWcc7yE869uc3WB8wIZEEA==}
 
   uint8array-extras@1.5.0:
     resolution: {integrity: sha512-rvKSBiC5zqCCiDZ9kAOszZcDvdAHwwIKJG33Ykj43OKcWsnmcBRL09YTU4nOeHZ8Y2a7l1MgTd08SBe9A8Qj6A==}
@@ -14587,9 +14585,9 @@ snapshots:
 
   '@tabler/icons@3.44.0': {}
 
-  '@thaunknown/thirty-two@1.0.5':
+  '@thaunknown/thirty-two@1.0.6':
     dependencies:
-      uint8-util: 2.2.6
+      uint8-util: 2.3.2
 
   '@tiptap/core@3.27.1(@tiptap/pm@3.27.1)':
     dependencies:
@@ -16043,8 +16041,6 @@ snapshots:
 
   bare-events@2.9.1: {}
 
-  base64-arraybuffer@1.0.2: {}
-
   base64-js@1.5.1: {}
 
   baseline-browser-mapping@2.10.41: {}
@@ -16059,7 +16055,7 @@ snapshots:
 
   bencode@4.0.1:
     dependencies:
-      uint8-util: 2.2.6
+      uint8-util: 2.3.2
 
   bep53-range@2.0.1: {}
 
@@ -19297,11 +19293,11 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  magnet-uri@7.0.8:
+  magnet-uri@7.0.10:
     dependencies:
-      '@thaunknown/thirty-two': 1.0.5
+      '@thaunknown/thirty-two': 1.0.6
       bep53-range: 2.0.1
-      uint8-util: 2.2.6
+      uint8-util: 2.3.2
 
   mailparser@3.9.12:
     dependencies:
@@ -20172,14 +20168,14 @@ snapshots:
 
   parse-srcset@1.0.2: {}
 
-  parse-torrent@11.0.21:
+  parse-torrent@11.0.24:
     dependencies:
       bencode: 4.0.1
       cross-fetch-ponyfill: 1.0.3
       get-stdin: 10.0.0
-      magnet-uri: 7.0.8
+      magnet-uri: 7.0.10
       queue-microtask: 1.2.3
-      uint8-util: 2.2.6
+      uint8-util: 2.3.2
 
   parse5@8.0.1:
     dependencies:
@@ -21814,9 +21810,7 @@ snapshots:
 
   ufo@1.6.4: {}
 
-  uint8-util@2.2.6:
-    dependencies:
-      base64-arraybuffer: 1.0.2
+  uint8-util@2.3.2: {}
 
   uint8array-extras@1.5.0: {}
 
