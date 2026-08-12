@@ -13,8 +13,8 @@ INSTRUCTION arguments
 指定基础镜像。
 
 ```Dockerfile
-FROM ubuntu:20.04
-FROM node:22-alpine
+FROM ubuntu:20.04@sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214
+FROM node:22-alpine@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32
 ```
 
 ### `LABEL`
@@ -138,7 +138,7 @@ ONBUILD COPY . /app
 ## 🧪 示例 Dockerfile
 
 ```Dockerfile
-FROM node:22-alpine
+FROM node:22-alpine@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32
 
 LABEL maintainer="guillaume@example.com"
 
@@ -189,7 +189,7 @@ Dockerfile
 
 ```Dockerfile
 # 阶段 1：构建
-FROM node:22-alpine AS builder
+FROM node:22-alpine@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32 AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -197,7 +197,7 @@ COPY . .
 RUN npm run build
 
 # 阶段 2：生产
-FROM nginx:alpine
+FROM nginx:alpine@sha256:4a73073bd557c65b759505da037898b61f1be6cbcc3c2c3aeac22d2a470c1752
 COPY --from=builder /app/dist /usr/share/nginx/html
 ```
 
@@ -206,12 +206,12 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 你可以使用 `AS <name>` 为每个阶段命名，并在之后通过 `--from=<name>` 引用它。
 
 ```Dockerfile
-FROM golang:1.21 AS build
+FROM golang:1.21@sha256:4746d26432a9117a5f58e95cb9f954ddf0de128e9d5816886514199316e4a2fb AS build
 WORKDIR /src
 COPY . .
 RUN go build -o myapp
 
-FROM alpine:latest
+FROM alpine:latest@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
 COPY --from=build /src/myapp /usr/local/bin/myapp
 ENTRYPOINT ["myapp"]
 ```
@@ -243,7 +243,7 @@ COPY --from=builder /app/output /app/output
 
 ```Dockerfile
 # 构建阶段
-FROM node:22 AS build
+FROM node:22@sha256:0557ac14e0d45d02ed563067b82856ca5e7aa3437fa28d98d4350ea9c3d9494a AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -251,7 +251,7 @@ COPY . .
 RUN npm run build
 
 # 服务阶段
-FROM nginx:alpine
+FROM nginx:alpine@sha256:4a73073bd557c65b759505da037898b61f1be6cbcc3c2c3aeac22d2a470c1752
 COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
