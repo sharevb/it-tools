@@ -431,7 +431,7 @@ importers:
         version: 0.0.14
       dom-to-image-more:
         specifier: ^3.10.0
-        version: 3.10.0
+        version: 3.10.2
       dompurify:
         specifier: ^3.4.12
         version: 3.4.12
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -6534,8 +6536,8 @@ packages:
   dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
 
-  dom-to-image-more@3.10.0:
-    resolution: {integrity: sha512-APrFEimSmH4phJKs8DlURuSr3BFwDqNi62l14bx73Wrhx0OhE4dd0qzZR+4E3sH8PnHxvax1LOrosC9oXRFA5A==}
+  dom-to-image-more@3.10.2:
+    resolution: {integrity: sha512-+ZNbiRB7Fpsfzn8WSCmAIKUFSXp8uahlI+LsY8t8oWtAATqokeKS3eD3oQikheouap6aVMht8y0b4oAobWRr9w==}
 
   dom-walk@0.1.2:
     resolution: {integrity: sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w==}
@@ -17165,7 +17167,7 @@ snapshots:
       domhandler: 5.0.3
       entities: 4.5.0
 
-  dom-to-image-more@3.10.0: {}
+  dom-to-image-more@3.10.2: {}
 
   dom-walk@0.1.2: {}
 
