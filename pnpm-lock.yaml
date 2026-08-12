@@ -467,7 +467,7 @@ importers:
         version: 1.5.1
       exifreader:
         specifier: ^4.41.0
-        version: 4.41.0
+        version: 4.42.0
       fanger:
         specifier: 0.3.1
         version: 0.3.1
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -6916,8 +6918,8 @@ packages:
   exif-parser@0.1.12:
     resolution: {integrity: sha512-c2bQfLNbMzLPmzQuOr8fy0csy84WmwnER81W88DzTp9CYNPJ6yzOj2EZAh9pywYpqHnshVLHQJ8WzldAyfY+Iw==}
 
-  exifreader@4.41.0:
-    resolution: {integrity: sha512-P3nPeh6GWs5D5RZdRZ6q/LorHPmmeDgKsowduqRabtTFiqMD2bc5eTN+Dhq00O9BCuV2eksu3oOJh4ZaZvkK0A==}
+  exifreader@4.42.0:
+    resolution: {integrity: sha512-dvjmG8KvSoMvFCG7XaH+kRgBXUTZxWibdm6ThyjcZbA18pAALPRaLcletWg8wAeYo1E1j46q5cuTsLQJipOqsA==}
     hasBin: true
 
   expand-tilde@2.0.2:
@@ -17681,7 +17683,7 @@ snapshots:
 
   exif-parser@0.1.12: {}
 
-  exifreader@4.41.0:
+  exifreader@4.42.0:
     optionalDependencies:
       '@xmldom/xmldom': 0.9.10
 
