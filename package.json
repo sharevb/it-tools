@@ -75,7 +75,7 @@
     "@github/paste-markdown": "^1.5.3",
     "@guolao/vue-monaco-editor": "^1.6.0",
     "@guyplusplus/turndown-plugin-gfm": "^1.0.7",
-    "@huggingface/transformers": "3.7.2",
+    "@huggingface/transformers": "3.8.1",
     "@iplookup/country-extra": "^1.0.20260711",
     "@it-tools/bip39": "^0.0.4",
     "@it-tools/oggen": "^1.3.0",
