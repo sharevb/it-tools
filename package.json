@@ -193,7 +193,7 @@
     "event-cron-parser": "^1.0.37",
     "exif-be-gone": "^1.5.1",
     "exifreader": "^4.41.0",
-    "fanger": "0.3.1",
+    "fanger": "0.3.2",
     "fast-json-patch": "^3.1.1",
     "fast-xml-parser": "^5.9.3",
     "fast_array_intersect": "^1.1.0",
