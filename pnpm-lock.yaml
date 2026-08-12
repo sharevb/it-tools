@@ -634,8 +634,8 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       json-editor-vue:
-        specifier: ^0.18.1
-        version: 0.18.1(@typescript-eslint/types@8.62.1)(vue@3.5.39(typescript@6.0.3))
+        specifier: ^0.19.0
+        version: 0.19.1(@typescript-eslint/types@8.62.1)(vue@3.5.39(typescript@6.0.3))
       json-to-ts:
         specifier: ^2.1.0
         version: 2.1.0
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -8101,8 +8103,8 @@ packages:
   json-buffer@3.0.1:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
 
-  json-editor-vue@0.18.1:
-    resolution: {integrity: sha512-SQCtNngo/ScFjXC7KUOqLOeeLgvl+xwWbxfNelqIOHC6uLilQl7AlWzNJyrDqo+RWnc53nT0OngXki5uTx9SJg==}
+  json-editor-vue@0.19.1:
+    resolution: {integrity: sha512-sLlJXZIWyuESSP6YE3Q3BBZ2HST5Zpl3D5WTe2w1mt9cezi37T1mHQoum3qkj7pKy+P6ERqasIa5Y1Dh+nomPw==}
     peerDependencies:
       '@vue/composition-api': '>=1'
       vue: 2||3
@@ -18922,7 +18924,7 @@ snapshots:
 
   json-buffer@3.0.1: {}
 
-  json-editor-vue@0.18.1(@typescript-eslint/types@8.62.1)(vue@3.5.39(typescript@6.0.3)):
+  json-editor-vue@0.19.1(@typescript-eslint/types@8.62.1)(vue@3.5.39(typescript@6.0.3)):
     dependencies:
       vanilla-jsoneditor: 3.12.0(@typescript-eslint/types@8.62.1)
       vue: 3.5.39(typescript@6.0.3)
