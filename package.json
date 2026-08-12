@@ -463,7 +463,7 @@
     "hygen": "^6.2.11",
     "jsdom": "^29.1.1",
     "less": "^4.6.7",
-    "oxfmt": "^0.57.0",
+    "oxfmt": "^0.63.0",
     "oxlint": "^1.72.0",
     "rollup-plugin-visualizer": "^7.0.1",
     "semver": "^7.8.5",
