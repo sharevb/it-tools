@@ -1016,7 +1016,7 @@ importers:
         version: 2.0.4
       unpdf:
         specifier: ^1.6.2
-        version: 1.6.2(@napi-rs/canvas@0.1.100)
+        version: 1.8.0(@napi-rs/canvas@0.1.100)
       unplugin-auto-import:
         specifier: ^21.0.0
         version: 21.0.0(@vueuse/core@10.11.1(vue@3.5.39(typescript@6.0.3)))
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -10795,10 +10797,11 @@ packages:
       '@unocss/webpack':
         optional: true
 
-  unpdf@1.6.2:
-    resolution: {integrity: sha512-zQ80ySoPuPHOsvIoRp/nJyQt8TOUoTh1+WBCGcBvlddQNgKDLRwm0AY3x8Q35I7+kIiRSgqMx+Ma2pl9McIp7A==}
+  unpdf@1.8.0:
+    resolution: {integrity: sha512-jQlkckbe5nKxRHQdbvo9IKHlU6Cjq00UlxxB8lrCIxvS2o5IbAL1wM+4a1Yc3+BIohg9p5AsoaftwO+G4Aq/qQ==}
+    engines: {node: '>=22'}
     peerDependencies:
-      '@napi-rs/canvas': ^0.1.69
+      '@napi-rs/canvas': ^0.1.69 || ^1.0.0
     peerDependenciesMeta:
       '@napi-rs/canvas':
         optional: true
@@ -21980,7 +21983,7 @@ snapshots:
     transitivePeerDependencies:
       - vite
 
-  unpdf@1.6.2(@napi-rs/canvas@0.1.100):
+  unpdf@1.8.0(@napi-rs/canvas@0.1.100):
     optionalDependencies:
       '@napi-rs/canvas': 0.1.100
 
