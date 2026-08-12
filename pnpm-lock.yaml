@@ -673,8 +673,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       katex:
-        specifier: ^0.17.0
-        version: 0.17.0
+        specifier: ^0.18.0
+        version: 0.18.4
       korean-unpacker:
         specifier: ^1.0.3
         version: 1.0.3
@@ -1061,7 +1061,7 @@ importers:
         version: 0.1.6(typescript@6.0.3)
       vue3-katex:
         specifier: ^0.8.1
-        version: 0.8.1(katex@0.17.0)(vue@3.5.39(typescript@6.0.3))
+        version: 0.8.1(katex@0.18.4)(vue@3.5.39(typescript@6.0.3))
       vuedraggable:
         specifier: ^4.1.0
         version: 4.1.0(vue@3.5.39(typescript@6.0.3))
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -8191,8 +8193,8 @@ packages:
     resolution: {integrity: sha512-Eeo8Ys1doU1z+x8AZsPpQu+p/QcZBI5PeOo7QGQdy2x2m0MU/hYagBbGOmXwr5KVbEfVuWv9LpnQWeehogurjg==}
     hasBin: true
 
-  katex@0.17.0:
-    resolution: {integrity: sha512-Vdw0ATsQ9V+LuegM/BTwQqV/6cTl5lbGcIrU+BCgLxyf6bo38ybOr372tuSIxir3CN720flu1meYR6XzNMwQnw==}
+  katex@0.18.4:
+    resolution: {integrity: sha512-IMPntbRLOU+eu88XDiFKqQ8Akhr9Tv7jDMXqPhjG9SI1JMA4DIgXk4x9k4skJz2NZJXBRbC+2pYBLj9olqcZow==}
     hasBin: true
 
   keycode@2.2.1:
@@ -19016,7 +19018,7 @@ snapshots:
     dependencies:
       commander: 8.3.0
 
-  katex@0.17.0:
+  katex@0.18.4:
     dependencies:
       commander: 8.3.0
 
@@ -22408,10 +22410,10 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  vue3-katex@0.8.1(katex@0.17.0)(vue@3.5.39(typescript@6.0.3)):
+  vue3-katex@0.8.1(katex@0.18.4)(vue@3.5.39(typescript@6.0.3)):
     dependencies:
       deepmerge: 4.3.1
-      katex: 0.17.0
+      katex: 0.18.4
       vue: 3.5.39(typescript@6.0.3)
       vue-dompurify-html: 5.3.0(vue@3.5.39(typescript@6.0.3))
 
