@@ -9,7 +9,7 @@ overrides:
   isolated-vm: file:./stubs/empty-stub
   onnxruntime-node: file:./stubs/empty-stub
   elliptic: ^6.6.1
-  js-sha256: ^0.11.1
+  js-sha256: ^0.12.0
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
 
 patchedDependencies:
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -8038,8 +8040,8 @@ packages:
   js-cookie@3.0.8:
     resolution: {integrity: sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw==}
 
-  js-sha256@0.11.1:
-    resolution: {integrity: sha512-o6WSo/LUvY2uC4j7mO50a2ms7E/EAdbP0swigLV+nzHKTTaYnaLIWJ02VdXrsJX0vGedDESQnLsOekr94ryfjg==}
+  js-sha256@0.12.0:
+    resolution: {integrity: sha512-P2IyTRMIHCkLD9clcQST8wGP/wqOXjvDD7E3onloE/5LSQGscyrmk2Loa069YsdtLfQWN1EnMDiaomAs9AfP4w==}
 
   js-string-escape@1.0.1:
     resolution: {integrity: sha512-Smw4xcfIQ5LVjAOuJCvN/zIodzA/BBSsluuoSykP+lUvScIi4U6RJLfwHet5cxFnCswUjISV8oAXaqaJDY3chg==}
@@ -13190,7 +13192,7 @@ snapshots:
 
   '@it-tools/bip39@0.0.4':
     dependencies:
-      js-sha256: 0.11.1
+      js-sha256: 0.12.0
       nanoid: 3.3.15
 
   '@it-tools/oggen@1.3.0': {}
@@ -18848,7 +18850,7 @@ snapshots:
 
   js-cookie@3.0.8: {}
 
-  js-sha256@0.11.1: {}
+  js-sha256@0.12.0: {}
 
   js-string-escape@1.0.1: {}
 

@@ -1,8 +1,3 @@
-# The xlsx override below intentionally points the whole graph (including
-# wsemi's transitive xlsx) at the SheetJS CDN tarball, because the npm
-# registry version is stale (0.18.5) and carries known vulnerabilities.
-# pnpm 11 blocks URL tarballs in subdependencies by default and has no
-# per-package exception, so this protection must be disabled repo-wide.
 blockExoticSubdeps: false
 
 overrides:
@@ -15,7 +10,7 @@ overrides:
   elliptic: ^6.6.1
   # @it-tools/bip39 pins ^0.9.0, whose Node fallback uses eval("require('crypto')")
   # and triggers rolldown EVAL build warnings; 0.11.x dropped the eval.
-  js-sha256: ^0.11.1
+  js-sha256: ^0.12.0
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
 
 patchedDependencies:
