@@ -261,7 +261,7 @@
     "jsvat-next": "^3.0.4",
     "jszip": "^3.10.1",
     "jwt-decode": "^4.0.0",
-    "katex": "^0.17.0",
+    "katex": "^0.18.0",
     "korean-unpacker": "^1.0.3",
     "langs": "^2.0.0",
     "leaflet": "^1.9.4",
