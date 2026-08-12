@@ -12,7 +12,7 @@ jobs:
       matrix:
         shard: [1/3, 2/3, 3/3]
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - run: |
           echo "Before: corepack version => $(corepack --version || echo 'not installed')"
