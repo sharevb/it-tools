@@ -349,8 +349,8 @@ importers:
         specifier: ^0.0.7
         version: 0.0.7
       cron-parser:
-        specifier: 4.9.0
-        version: 4.9.0
+        specifier: 5.8.1
+        version: 5.8.1
       cron-validator:
         specifier: ^1.4.0
         version: 1.4.0
@@ -6038,9 +6038,9 @@ packages:
   croact@1.0.4:
     resolution: {integrity: sha512-9GhvyzTY/IVUrMQ2iz/mzgZ8+NcjczmIo/t4FkC1CU0CEcau6v6VsEih4jkTa4ZmRgYTF0qXEZLObCzdDFplpw==}
 
-  cron-parser@4.9.0:
-    resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
-    engines: {node: '>=12.0.0'}
+  cron-parser@5.8.1:
+    resolution: {integrity: sha512-fVw5nGEkTVmiPKo3fY0j28Thq6jR00VKWyL22llWrsbII4sDHI+8Kx1kcL+QzGQJfCfk64bbMotrgTZRpzYpLQ==}
+    engines: {node: '>=18'}
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6068,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -16618,7 +16619,7 @@ snapshots:
       '@daybrush/utils': 1.13.0
       '@egjs/list-differ': 1.0.1
 
-  cron-parser@4.9.0:
+  cron-parser@5.8.1:
     dependencies:
       luxon: 3.7.2
 
