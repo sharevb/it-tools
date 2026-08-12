@@ -1,12 +1,7 @@
-# The xlsx override below intentionally points the whole graph (including
-# wsemi's transitive xlsx) at the SheetJS CDN tarball, because the npm
-# registry version is stale (0.18.5) and carries known vulnerabilities.
-# pnpm 11 blocks URL tarballs in subdependencies by default and has no
-# per-package exception, so this protection must be disabled repo-wide.
 blockExoticSubdeps: false
 
 overrides:
-  '@vueuse/shared': 13.9.0
+  '@vueuse/shared': 14.4.0
   # Native-only transitives of webcrack / @huggingface/transformers.
   # The browser app aliases both to an empty module in vite.config.ts,
   # so stub them out entirely (saves ~225 MB of node_modules).
