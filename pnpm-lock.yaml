@@ -1070,7 +1070,7 @@ importers:
         version: 4.1.0(vue@3.5.39(typescript@6.0.3))
       w-websocket-client:
         specifier: ^1.0.29
-        version: 1.0.29
+        version: 1.0.33
       webcrack:
         specifier: ^2.16.0
         version: 2.16.0
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -7166,6 +7168,10 @@ packages:
 
   fuse.js@7.4.2:
     resolution: {integrity: sha512-LVbzjD4WA6UP5B1UnP8wuaXJiLnqMdM/E4fiJXTJ5haJ5b/MBNsK29h2fm6swEoQaVQjvYFWKLE2RanyZIoRVQ==}
+    engines: {node: '>=10'}
+
+  fuse.js@7.5.0:
+    resolution: {integrity: sha512-sQtrEfA+ez/3G0cCZecF70oqpCRttCexYUG4mUrtWL49ULUzUyxokt5kyqwtKzj1270RaKih+hcP3qLcumccow==}
     engines: {node: '>=10'}
 
   fzstd@0.1.1:
@@ -11223,8 +11229,8 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
-  w-websocket-client@1.0.29:
-    resolution: {integrity: sha512-zZg+dOo4EP3BmvpjlkpThKIgTAzCHoOFSSp6xSNY6EuywM2xDqfkiQU7Ga3QlzEMC9i8TwdXfkntRauA/D2KWA==}
+  w-websocket-client@1.0.33:
+    resolution: {integrity: sha512-h2K58fYp/8lpj3o/Yu55BuzTMbaoIO9DCJHPa7QzBN2VRhrN/gNHmqdf7ZXtqa4bkXBeSgeMwPU8FmAZub6zjQ==}
 
   w3c-keyname@2.2.8:
     resolution: {integrity: sha512-dpojBhNsCNN7T82Tm7k26A6G9ML3NkhDsnw9n/eoxSRlVBB4CEtIQ/KTCLI2Fwf3ataSXRhYFkQi3SlnFwPvPQ==}
@@ -11435,8 +11441,20 @@ packages:
       utf-8-validate:
         optional: true
 
-  wsemi@1.8.63:
-    resolution: {integrity: sha512-Udfa1Eh1tGDIWzR8ysHeCIyhXO7hdV4dmdaECG4wN5MeZG0gdiIO5EONHxRL609uMFSoHfR4VowVaAYET6K0sg==}
+  ws@8.21.3:
+    resolution: {integrity: sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
+  wsemi@1.8.70:
+    resolution: {integrity: sha512-o3ry3fbCwjm5OZyzdTMKk9T838VWpKjjB4KpPZ8N0ud+3bg8zHZQ1mrA6XCrv9MDDYlLyoCqTqTzZeu3L9i0sA==}
 
   wsl-utils@0.3.1:
     resolution: {integrity: sha512-g/eziiSUNBSsdDJtCLB8bdYEUMj4jR7AGeUo96p/3dTafgjHhpF4RiCFPiRILwjQoDXx5MqkBr4fwWtR3Ky4Wg==}
@@ -17945,6 +17963,8 @@ snapshots:
 
   fuse.js@7.4.2: {}
 
+  fuse.js@7.5.0: {}
+
   fzstd@0.1.1: {}
 
   gcoord@1.0.7: {}
@@ -22446,11 +22466,10 @@ snapshots:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.39(typescript@6.0.3)
 
-  w-websocket-client@1.0.29:
+  w-websocket-client@1.0.33:
     dependencies:
-      lodash-es: 4.18.1
-      ws: 8.21.0
-      wsemi: 1.8.63
+      ws: 8.21.3
+      wsemi: 1.8.70
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -22792,7 +22811,9 @@ snapshots:
 
   ws@8.21.0: {}
 
-  wsemi@1.8.63:
+  ws@8.21.3: {}
+
+  wsemi@1.8.70:
     dependencies:
       chokidar: 5.0.0
       crypto-js: 4.2.0
@@ -22801,7 +22822,7 @@ snapshots:
       diff: 9.0.0
       diff2html: 3.4.56
       eventemitter3: 5.0.4
-      fuse.js: 7.4.2
+      fuse.js: 7.5.0
       hash-wasm: 4.12.0
       he: 1.2.0
       html-to-text: 10.0.0
