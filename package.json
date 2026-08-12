@@ -101,7 +101,7 @@
     "@tiptap/pm": "^3.27.1",
     "@tiptap/starter-kit": "^3.27.1",
     "@tiptap/vue-3": "^3.27.1",
-    "@toon-format/toon": "^2.3.0",
+    "@toon-format/toon": "^4.0.0",
     "@types/haversine": "^1.1.8",
     "@types/html-to-text": "^9.0.4",
     "@types/swagger-ui-dist": "^3.30.6",
