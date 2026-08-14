@@ -1,0 +1,29 @@
+# vim:sw=4:ts=4:et
+#
+# 20-envsubst-on-templates.sh guards its output directory with `[ ! -w $dir ]`,
+# which only inspects permission bits. It therefore does not notice a read-only
+# *mount*: with `docker run --read-only` or a Kubernetes readOnlyRootFilesystem,
+# /etc/nginx/conf.d still looks writable, envsubst runs anyway, the redirect
+# fails with EROFS and `set -e` takes the container down. The image
+# crash-loops on every start.
+#
+# Probe the directory with a real write. If it fails, point the template
+# directory at a path that does not exist so 20-envsubst-on-templates.sh
+# returns early, and let nginx use the config rendered into the image at build
+# time instead. Sourced, not executed, so the export reaches later scripts.
+#
+# On a writable filesystem -- every deployment that works today -- the probe
+# succeeds and nothing is changed.
+
+_envsubst_output_dir="${NGINX_ENVSUBST_OUTPUT_DIR:-/etc/nginx/conf.d}"
+_envsubst_probe="$_envsubst_output_dir/.readonly-probe.$$"
+
+if [ -d "${NGINX_ENVSUBST_TEMPLATE_DIR:-/etc/nginx/templates}" ] \
+    && ! (touch "$_envsubst_probe" 2>/dev/null && rm -f "$_envsubst_probe" 2>/dev/null); then
+    if [ -z "${NGINX_ENTRYPOINT_QUIET_LOGS:-}" ]; then
+        echo "19-skip-envsubst-if-readonly.envsh: info: $_envsubst_output_dir is not writable, keeping the config baked into the image"
+    fi
+    export NGINX_ENVSUBST_TEMPLATE_DIR=/nonexistent-read-only-filesystem
+fi
+
+unset _envsubst_output_dir _envsubst_probe
