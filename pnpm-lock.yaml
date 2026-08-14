@@ -733,8 +733,8 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       md-editor-v3:
-        specifier: ^4.21.3
-        version: 4.21.3(vue@3.5.39(typescript@6.0.3))
+        specifier: ^6.0.0
+        version: 6.5.6(vue@3.5.39(typescript@6.0.3))
       mdt2json:
         specifier: ^1.1.0
         version: 1.1.0
@@ -3156,6 +3156,11 @@ packages:
     resolution: {integrity: sha512-ajBvlKpWucBB17FuQYUShqpqy8GRgYEpJW0vWJbUu1CV9lWyrDCapy0lScU8T8Z6qn49sSwJB3+M+evYIdGg+A==}
     engines: {node: '>= 0.4'}
 
+  '@lucide/vue@1.31.0':
+    resolution: {integrity: sha512-NtjEHhcAa7umPh40wrRmlESJqNGdnpc7LziBKFnW3fmlrW0g2xMCDpdWU7WeEHRSl3xOpxbqiFTLKxoK3CoVCg==}
+    peerDependencies:
+      vue: '>=3.0.1'
+
   '@marijn/find-cluster-break@1.0.3':
     resolution: {integrity: sha512-FY+MKLBoTsLNJF/eLWaOsXGdz6uh3Iu1axjPf6TUq92IYumcTcXWHoS747JARLkcdlJ/Waiaxc5wQfFO8jC6NA==}
 
@@ -4831,6 +4836,12 @@ packages:
   '@upsetjs/venn.js@2.0.0':
     resolution: {integrity: sha512-WbBhLrooyePuQ1VZxrJjtLvTc4NVfpOyKx0sKqioq9bX1C1m7Jgykkn8gLrtwumBioXIqam8DLxp88Adbue6Hw==}
 
+  '@vavt/copy2clipboard@1.0.3':
+    resolution: {integrity: sha512-HtG48r2FBYp9eRvGB3QGmtRBH1zzRRAVvFbGgFstOwz4/DDaNiX0uZc3YVKPydqgOav26pibr9MtoCaWxn7aeA==}
+
+  '@vavt/markdown-theme@5.0.2':
+    resolution: {integrity: sha512-cGYEV2VIUmhT9p8Wua9yXh7sKN1f3cbztTFHlkYyH9SzbpiKUnQrcbDts/0fP6cmvZPOe9SWWsDujmyuHepJdQ==}
+
   '@vavt/util@2.1.2':
     resolution: {integrity: sha512-L3UbSJthJwr3wq0x93O5TrCepimrmVZaIl2ciZbeL18G5++gBhJXNhcH7RcVk/6rr3SavWOvwhig0mqRLoR7dw==}
 
@@ -5956,9 +5967,6 @@ packages:
     resolution: {integrity: sha512-bVWtw1wQLzzKiYROtvNlbJgxgBYt2bMJpkCbKmXM3xyijvcjjWXEk5nyrrT3bgJ7ODb19ZohE2T0Y3FgNPyoTw==}
     engines: {node: '>= 10.13.0'}
 
-  copy-to-clipboard@3.3.3:
-    resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==}
-
   core-js-compat@3.49.0:
     resolution: {integrity: sha512-VQXt1jr9cBz03b331DFDCCP90b3fanciLkgiOoy8SBHy06gNf+vQ1A3WFLqG7I8TipYIKeYK9wxd0tUrvHcOZA==}
 
@@ -6041,6 +6049,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6077,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -8577,10 +8587,10 @@ packages:
     engines: {node: '>= 18'}
     hasBin: true
 
-  md-editor-v3@4.21.3:
-    resolution: {integrity: sha512-9+RCioqFIWSExTsG0jf9T/RTrFhtH8SpRcKVjHeEQSlExAr/zsgYt/M9XUy/nuGx87hgNKDzK0PXp/uOlDumAw==}
+  md-editor-v3@6.5.6:
+    resolution: {integrity: sha512-bD+xKTpaC9mGDE7W+9x25Y5mEsv21Y735J2Q0dxV+lWQTXH21/sKNdwaUYQ5dhXU2fl+oqrOJsEjSd58FLyNSA==}
     peerDependencies:
-      vue: ^3.2.47
+      vue: ^3.5.3
 
   md5.js@1.3.5:
     resolution: {integrity: sha512-xitP+WxNPcTTOgnTJcrhM0xvdPepipPSf3I8EIpGKeFLjt3PlJLIDG3u8EX53ZIubkb+5U2+3rELYpEhHhzdkg==}
@@ -10493,9 +10503,6 @@ packages:
   to-through@3.0.0:
     resolution: {integrity: sha512-y8MN937s/HVhEoBU1SxfHC+wxCHkV1a9gW8eAdTadYh/bGyesZIVcbjI+mSpFbSVwQici/XjBjuUyri1dnXwBw==}
     engines: {node: '>=10.13.0'}
-
-  toggle-selection@1.0.6:
-    resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==}
 
   token-types@4.2.1:
     resolution: {integrity: sha512-6udB24Q737UD/SDsKAHI9FCRP7Bqc9D/MQUV02ORQg5iskjtLJlZJNdN4kKtcdtwCeWIwIHDGaUsTsCCAa8sFQ==}
@@ -13871,6 +13878,10 @@ snapshots:
     dependencies:
       call-bind: 1.0.9
 
+  '@lucide/vue@1.31.0(vue@3.5.39(typescript@6.0.3))':
+    dependencies:
+      vue: 3.5.39(typescript@6.0.3)
+
   '@marijn/find-cluster-break@1.0.3': {}
 
   '@mdit-vue/plugin-component@3.0.2':
@@ -15325,6 +15336,10 @@ snapshots:
       d3-selection: 3.0.0
       d3-transition: 3.0.1(d3-selection@3.0.0)
 
+  '@vavt/copy2clipboard@1.0.3': {}
+
+  '@vavt/markdown-theme@5.0.2': {}
+
   '@vavt/util@2.1.2': {}
 
   '@vercel/blob@2.5.0':
@@ -16517,10 +16532,6 @@ snapshots:
     dependencies:
       each-props: 3.0.0
       is-plain-object: 5.0.0
-
-  copy-to-clipboard@3.3.3:
-    dependencies:
-      toggle-selection: 1.0.6
 
   core-js-compat@3.49.0:
     dependencies:
@@ -19407,15 +19418,23 @@ snapshots:
       tiny-emitter: 2.1.0
       typed-function: 4.2.2
 
-  md-editor-v3@4.21.3(vue@3.5.39(typescript@6.0.3)):
+  md-editor-v3@6.5.6(vue@3.5.39(typescript@6.0.3)):
     dependencies:
+      '@codemirror/autocomplete': 6.20.3
+      '@codemirror/commands': 6.10.4
       '@codemirror/lang-markdown': 6.5.0
+      '@codemirror/language': 6.12.4
       '@codemirror/language-data': 6.5.2
+      '@codemirror/search': 6.7.1
+      '@codemirror/state': 6.7.0
+      '@codemirror/view': 6.43.5
+      '@lezer/highlight': 1.2.3
+      '@lucide/vue': 1.31.0(vue@3.5.39(typescript@6.0.3))
       '@types/markdown-it': 14.1.2
+      '@vavt/copy2clipboard': 1.0.3
+      '@vavt/markdown-theme': 5.0.2
       '@vavt/util': 2.1.2
       codemirror: 6.0.2
-      copy-to-clipboard: 3.3.3
-      lru-cache: 10.4.3
       markdown-it: 14.3.0
       markdown-it-image-figures: 2.1.1(markdown-it@14.3.0)
       markdown-it-sub: 2.0.0
@@ -21671,8 +21690,6 @@ snapshots:
     transitivePeerDependencies:
       - bare-abort-controller
       - react-native-b4a
-
-  toggle-selection@1.0.6: {}
 
   token-types@4.2.1:
     dependencies:

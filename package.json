@@ -281,7 +281,7 @@
     "markdown-table-prettify": "^4.1.0",
     "marked": "^10.0.0",
     "mathjs": "^15.2.0",
-    "md-editor-v3": "^4.21.3",
+    "md-editor-v3": "^6.0.0",
     "mdt2json": "^1.1.0",
     "memorystream": "^0.3.1",
     "merge-anything": "^6.0.6",
