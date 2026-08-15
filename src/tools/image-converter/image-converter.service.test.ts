@@ -35,14 +35,20 @@ describe('image-converter', () => {
       expect(readPngSize(await convertSvgToPng({ svg, scale: 0.5 }))).toEqual({ width: 50, height: 25 });
     });
 
-    it('renders text with the embedded roboto font', async () => {
-      const png = await convertSvgToPng({
-        svg: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50"><text x="10" y="30">it-tools</text></svg>',
-        scale: 1,
-      });
+    it.each<[string, string]>([
+      ['the default family', '<text x="10" y="30" font-size="20">it-tools</text>'],
+      ['an explicit roboto family', '<text x="10" y="30" font-size="20" font-family="Roboto">it-tools</text>'],
+    ])('draws text using %s', async (_, text) => {
+      const canvas = (content: string) =>
+        `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50">${content}</svg>`;
+
+      const blank = await convertSvgToPng({ svg: canvas(''), scale: 1 });
+      const png = await convertSvgToPng({ svg: canvas(text), scale: 1 });
 
       expect(isPng(png)).toBe(true);
       expect(readPngSize(png)).toEqual({ width: 200, height: 50 });
+      // something was actually drawn: svg2png-wasm used to return an empty canvas for the second case
+      expect(png).not.toEqual(blank);
     });
 
     it('rejects content that is not an svg', async () => {
