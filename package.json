@@ -393,7 +393,6 @@
     "vue3-katex": "^0.8.1",
     "vuedraggable": "^4.1.0",
     "vuex": "^4.1.0",
-    "w-websocket-client": "^1.0.29",
     "webcrack": "^2.16.0",
     "webcrypto-liner-shim": "^1.4.8",
     "webp-converter-browser": "^1.0.4",
