@@ -12,7 +12,9 @@ function looksLikeAwsExpression(cronExpression: string) {
 }
 
 export function getLastExecutionTimes(cronExpression: string, tz: string | undefined = undefined, count: number = 5) {
-  if (getCronType(cronExpression) === 'standard') {
+  const cronType = getCronType(cronExpression);
+
+  if (cronType === 'standard') {
     const interval = CronExpressionParser.parse(cronExpression, { tz });
     const times: string[] = [];
     for (let i = 0; i < count; i++) {
@@ -22,7 +24,7 @@ export function getLastExecutionTimes(cronExpression: string, tz: string | undef
     }
     return times;
   }
-  if (getCronType(cronExpression) === 'aws') {
+  if (cronType === 'aws') {
     const parsed = new EventCronParser(cronExpression);
     const times = [];
     for (let i = 0; i < count; i++) {
@@ -62,13 +64,18 @@ function isAwsExpression(cronExpression: string) {
 }
 
 export function getCronType(cronExpression: string) {
-  if (!looksLikeAwsExpression(cronExpression) && isStandardExpression(cronExpression)) {
+  // Whichever dialect the marker points at gets asked first, and each parser runs at most once.
+  if (looksLikeAwsExpression(cronExpression)) {
+    if (isAwsExpression(cronExpression)) {
+      return 'aws';
+    }
+
+    return isStandardExpression(cronExpression) ? 'standard' : false;
+  }
+
+  if (isStandardExpression(cronExpression)) {
     return 'standard';
   }
 
-  if (isAwsExpression(cronExpression)) {
-    return 'aws';
-  }
-
-  return isStandardExpression(cronExpression) ? 'standard' : false;
+  return isAwsExpression(cronExpression) ? 'aws' : false;
 }
