@@ -29,7 +29,14 @@ describe('tools metadata', () => {
     });
 
     it('does not reference the packages that were replaced', () => {
-      const replaced = ['crypto-js', '@types/crypto-js', 'plausible-tracker', 'svg2png-wasm'];
+      const replaced = [
+        'crypto-js',
+        '@types/crypto-js',
+        'plausible-tracker',
+        'svg2png-wasm',
+        '@types/bcryptjs',
+        '@types/uuid',
+      ];
 
       expect(declarations.filter(({ npmPackage }) => replaced.includes(npmPackage))).toEqual([]);
     });

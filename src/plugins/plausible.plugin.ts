@@ -12,6 +12,8 @@ function createFakePlausibleInstance(): PlausibleInstance {
   };
 }
 
+let isTrackerInitialized = false;
+
 export function createPlausibleInstance({
   config,
 }: {
@@ -22,19 +24,26 @@ export function createPlausibleInstance({
     trackLocalhost: boolean
   }
 }): PlausibleInstance {
-  // `init` throws when no domain is configured, and can only be called once. Without a domain the
-  // events would be attributed to nothing anyway, so stay with the no-op instance instead.
+  // `init` throws when no domain is configured. Without a domain the events would be attributed to
+  // nothing anyway, so stay with the no-op instance instead.
   if (!config.isTrackerEnabled || !config.domain) {
     return createFakePlausibleInstance();
   }
 
-  init({
-    domain: config.domain,
-    // the previous tracker took an api host and appended the path itself; keep the very same
-    // endpoint, including the relative one used when no api host is configured
-    endpoint: `${config.apiHost}/api/event`,
-    captureOnLocalhost: config.trackLocalhost,
-  });
+  // `init` also throws when called twice, which would take the whole app down as soon as the plugin
+  // is installed on a second app instance (tests, hot reload). The tracker is already running at
+  // that point, so reuse it rather than initializing it again.
+  if (!isTrackerInitialized) {
+    init({
+      domain: config.domain,
+      // the previous tracker took an api host and appended the path itself; keep the very same
+      // endpoint, including the relative one used when no api host is configured
+      endpoint: `${config.apiHost.replace(/\/$/, '')}/api/event`,
+      captureOnLocalhost: config.trackLocalhost,
+    });
+
+    isTrackerInitialized = true;
+  }
 
   return {
     trackEvent: eventName => track(eventName, {}),

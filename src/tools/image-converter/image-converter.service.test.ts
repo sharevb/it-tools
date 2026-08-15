@@ -17,8 +17,17 @@ function isPng(bytes: Uint8Array) {
 }
 
 describe('image-converter', () => {
+  const loadWasm = async () => new Uint8Array(await (await fetch(wasmDataUrl)).arrayBuffer());
+  let firstAttemptError: unknown;
+
   beforeAll(async () => {
-    await initializeSvgRenderer(async () => new Uint8Array(await (await fetch(wasmDataUrl)).arrayBuffer()));
+    // a failed download must not be memoized: this first attempt fails, and the next one still has
+    // to initialize the renderer for the rest of the suite
+    await initializeSvgRenderer(() => Promise.reject(new Error('network is down'))).catch((error) => {
+      firstAttemptError = error;
+    });
+
+    await initializeSvgRenderer(loadWasm);
   });
 
   describe('convertSvgToPng', () => {
@@ -57,6 +66,11 @@ describe('image-converter', () => {
   });
 
   describe('initializeSvgRenderer', () => {
+    it('surfaces a failed download without memoizing it', () => {
+      // the whole suite renders fine afterwards, which is what proves the retry actually happened
+      expect(firstAttemptError).toEqual(new Error('network is down'));
+    });
+
     it('only initializes the wasm module once, as a second call would throw', async () => {
       await expect(initializeSvgRenderer(() => {
         throw new Error('should not be called again');

@@ -15,7 +15,14 @@ let initialization: Promise<void> | undefined;
  * awaits it. The loader is injectable so tests can feed the binary without going through the network.
  */
 export function initializeSvgRenderer(loadWasm: WasmLoader = defaultWasmLoader) {
-  initialization ??= Promise.resolve(loadWasm()).then(input => initWasm(input));
+  initialization ??= Promise.resolve(loadWasm())
+    .then(input => initWasm(input))
+    .catch((error) => {
+      // a failed download must not be memoized, otherwise a single network hiccup would leave the
+      // tool broken until the page is reloaded
+      initialization = undefined;
+      throw error;
+    });
 
   return initialization;
 }
