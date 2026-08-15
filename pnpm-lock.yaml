@@ -1096,8 +1096,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       xslt-processor:
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^5.0.0
+        version: 5.1.0
       yaml:
         specifier: ^2.9.0
         version: 2.9.0
@@ -6041,6 +6041,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cron-validator@1.4.0:
     resolution: {integrity: sha512-wGcJ9FCy65iaU6egSH8b5dZYJF7GU/3Jh06wzaT9lsa5dbqExjljmu+0cJ8cpKn+vUyZa/EM4WAxeLR6SypJXw==}
@@ -6068,6 +6069,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -11527,8 +11529,8 @@ packages:
     resolution: {integrity: sha512-FxF6+rkr1rNSQrhUNYrAFJpRXNzlDoMxeXN5qI84939ylEv3qqPFKa85Oxr6tDaJKqwW6KKyo2v26TSv3k6LeA==}
     engines: {node: '>=0.6.0'}
 
-  xslt-processor@3.4.0:
-    resolution: {integrity: sha512-hvsduzQNZSQD+ttrUSEg2wGOmmDekdo46IUis2s01l/4pNabNWAREEPoVEmzR3ZXbdcB5sR2q1AOTOyTtounAg==}
+  xslt-processor@5.1.0:
+    resolution: {integrity: sha512-iFww8jXeaEduksJrT9CpNPUa1p8NwZZFneopIJX5267HlxNZyAk63xxcedlamLPLRFJMjlWJnnCKHg7WaNKOSw==}
 
   xss@1.0.15:
     resolution: {integrity: sha512-FVdlVVC67WOIPvfOwhoMETV72f6GbW7aOabBC3WxN/oUdoEMDyLz4OgRv5/gck2ZeNqEQu+Tb0kloovXOfpYVg==}
@@ -22892,9 +22894,7 @@ snapshots:
 
   xpath@0.0.34: {}
 
-  xslt-processor@3.4.0:
-    dependencies:
-      he: 1.2.0
+  xslt-processor@5.1.0: {}
 
   xss@1.0.15:
     dependencies:

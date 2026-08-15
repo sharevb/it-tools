@@ -402,7 +402,7 @@
     "xml-js": "^1.6.11",
     "xpath": "^0.0.34",
     "xpath-to-css": "^1.2.0",
-    "xslt-processor": "^3.4.0",
+    "xslt-processor": "^5.0.0",
     "yaml": "^2.9.0"
   },
   "devDependencies": {
