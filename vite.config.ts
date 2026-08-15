@@ -175,6 +175,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       'node:fs/promises': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'node:fs': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
+      // Must come before the bare `fs` entry: aliases match by prefix, so `fs` alone would rewrite
+      // `fs/promises` to `_empty.ts/promises`. cron-parser's CronFileParser reaches for it.
+      'fs/promises': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       fs: fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       '@babel/core': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'isolated-vm': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
