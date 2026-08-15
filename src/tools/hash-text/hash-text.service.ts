@@ -1,7 +1,33 @@
-import type { lib } from 'crypto-js';
-import { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, enc } from 'crypto-js';
+import type { WordArray } from 'crypto-es';
+import {
+  Base64,
+  Base64url,
+  Hex,
+  Latin1,
+  MD5,
+  RIPEMD160,
+  SHA1,
+  SHA3,
+  SHA224,
+  SHA256,
+  SHA384,
+  SHA512,
+  Utf8,
+  Utf16,
+  Utf16BE,
+  Utf16LE,
+} from 'crypto-es';
 
-export const encodings = enc;
+export const encodings = {
+  Hex,
+  Latin1,
+  Utf8,
+  Utf16BE,
+  Utf16,
+  Utf16LE,
+  Base64,
+  Base64url,
+};
 
 export type Encoding = keyof typeof encodings | 'Bin';
 
@@ -28,7 +54,7 @@ export function convertHexToBin(hex: string) {
     .join('');
 }
 
-export function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
+export function formatWithEncoding(words: WordArray, encoding: Encoding) {
   if (encoding === 'Bin') {
     return convertHexToBin(words.toString(encodings.Hex));
   }

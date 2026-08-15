@@ -9,6 +9,6 @@ export const tool = defineTool({
   component: () => import('./ipv6-ula-generator.vue'),
   icon: defineAsyncComponent(() => import('@vicons/tabler/es/BuildingFactory')),
   createdAt: new Date('2023-04-09'),
-  npmPackages: ['crypto-js'],
+  npmPackages: ['crypto-es'],
   category: 'Network',
 });

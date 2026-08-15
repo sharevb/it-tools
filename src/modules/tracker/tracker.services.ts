@@ -1,10 +1,10 @@
 import * as _ from 'es-toolkit/compat';
-import type Plausible from 'plausible-tracker';
 import { inject } from 'vue';
+import type { PlausibleInstance } from './tracker.types';
 
 export { createTrackerService, useTracker };
 
-function createTrackerService({ plausible }: { plausible: ReturnType<typeof Plausible> }) {
+function createTrackerService({ plausible }: { plausible: PlausibleInstance }) {
   return {
     trackEvent({ eventName }: { eventName: string }) {
       plausible.trackEvent(eventName);
@@ -13,7 +13,7 @@ function createTrackerService({ plausible }: { plausible: ReturnType<typeof Plau
 }
 
 function useTracker() {
-  const plausible: ReturnType<typeof Plausible> | undefined = inject('plausible');
+  const plausible: PlausibleInstance | undefined = inject('plausible');
 
   if (_.isNil(plausible)) {
     throw new TypeError('Plausible must be instantiated');

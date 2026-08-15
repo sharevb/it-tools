@@ -9,6 +9,6 @@ export const tool = defineTool({
   component: () => import('./encryption.vue'),
   icon: defineAsyncComponent(() => import('@vicons/tabler/es/Lock')),
   redirectFrom: ['/cypher'],
-  npmPackages: ['crypto-s'],
+  npmPackages: ['crypto-es', '@noble/ciphers'],
   category: 'Crypto',
 });

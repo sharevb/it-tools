@@ -1,14 +1,14 @@
 import {
+  Hex,
   HmacMD5,
   HmacRIPEMD160,
   HmacSHA1,
+  HmacSHA3,
   HmacSHA224,
   HmacSHA256,
-  HmacSHA3,
   HmacSHA384,
   HmacSHA512,
-  enc,
-} from 'crypto-js';
+} from 'crypto-es';
 import type { Encoding } from '../hash-text/hash-text.service';
 import { formatWithEncoding } from '../hash-text/hash-text.service';
 
@@ -40,7 +40,7 @@ export function computeHmac({
   encoding: Encoding
 }) {
   // normalize secret according to the key encoding
-  const key = keyEncoding === 'Text' ? secret : enc.Hex.parse(secret);
+  const key = keyEncoding === 'Text' ? secret : Hex.parse(secret);
 
   return formatWithEncoding(algos[hashFunction](plainText, key), encoding);
 }

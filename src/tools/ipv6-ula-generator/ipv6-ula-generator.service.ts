@@ -1,4 +1,4 @@
-import { SHA1 } from 'crypto-js';
+import { SHA1 } from 'crypto-es';
 
 // RFC 4193 §3.2.2: sha1 of the current timestamp concatenated with the mac address, keeping the lowest 40 bits.
 export function generateUlaPrefix({ macAddress, timestamp }: { macAddress: string; timestamp: number }) {

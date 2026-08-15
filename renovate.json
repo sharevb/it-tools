@@ -74,16 +74,11 @@
       "matchUpdateTypes": ["major", "minor", "patch"]
     },
     {
-      "groupName": "uuid with types",
-      "matchPackageNames": ["uuid", "@types/uuid"],
-      "matchUpdateTypes": ["major", "minor", "patch"]
-    },
-    {
       "groupName": "Type packages with their dependencies",
       "matchDepTypes": ["devDependencies"],
       "groupSlug": "types",
       "automerge": true,
-      "matchPackageNames": ["/^@types//", "!@types/uuid"]
+      "matchPackageNames": ["/^@types//"]
     }
   ]
 }

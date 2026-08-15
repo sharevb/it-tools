@@ -24,6 +24,6 @@ export const tool = defineTool({
   ],
   component: () => import('./otp-code-generator-and-validator.vue'),
   icon: defineAsyncComponent(() => import('@vicons/tabler/es/DeviceMobile')),
-  npmPackages: ['crypto-js'],
+  npmPackages: ['crypto-es'],
   category: 'Generators',
 });

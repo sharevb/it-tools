@@ -14,8 +14,7 @@ import {
   encodeTiff,
 } from 'image-in-browser';
 import { arrayBufferToWebP } from 'webp-converter-browser';
-import { createSvg2png, initialize } from 'svg2png-wasm';
-import { normal as robotoBase64 } from 'roboto-base64';
+import { convertSvgToPng } from './image-converter.service';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
@@ -88,8 +87,6 @@ const outputFormatHasQuality = computed(() => {
   return outputFormat.value === 'jpg';
 });
 
-const svgWasmLoaded = ref(false);
-
 async function onFilesUploaded(uploadedFiles: File[]) {
   for (const file of uploadedFiles) {
     await onFileUploaded(file);
@@ -109,17 +106,10 @@ async function onFileUploaded(uploadedFile: File) {
       base64OutputFile.value = `data:image/webp;base64,${Base64.fromUint8Array(new Uint8Array(await encodedImage.arrayBuffer()))}`;
     } else {
       if (uploadedFile.type === 'image/svg+xml') {
-        if (!svgWasmLoaded.value) {
-          await initialize(fetch('/svg2png_wasm_bg.wasm'));
-          svgWasmLoaded.value = true;
-        }
-        const svg2png = createSvg2png({
-          fonts: [Base64.toUint8Array(robotoBase64)],
-        });
-        fileBuffer = (await svg2png(await readAsText(uploadedFile), {
+        fileBuffer = (await convertSvgToPng({
+          svg: await readAsText(uploadedFile),
           scale: svgScale.value,
         })) as Uint8Array<ArrayBuffer>;
-        svg2png.dispose();
       }
       const decodedImage = decodeImage({
         data: fileBuffer,
