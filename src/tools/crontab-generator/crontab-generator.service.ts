@@ -1,15 +1,24 @@
-import { parseExpression } from 'cron-parser';
+import { CronExpressionParser } from 'cron-parser';
 import cronstrue from 'cronstrue';
 import EventCronParser from 'event-cron-parser';
 
 export type CronType = 'standard' | 'aws';
 
+// AWS EventBridge requires a '?' in exactly one of the two day fields, and standard cron gives it no
+// meaning. cron-parser v4 rejected those expressions outright, which is how they used to be routed
+// to the aws branch; v5 accepts the six field dialect, so the marker has to do the routing instead.
+function looksLikeAwsExpression(cronExpression: string) {
+  return /(?:^|\s)\?(?:\s|$)/.test(cronExpression);
+}
+
 export function getLastExecutionTimes(cronExpression: string, tz: string | undefined = undefined, count: number = 5) {
   if (getCronType(cronExpression) === 'standard') {
-    const interval = parseExpression(cronExpression, { tz });
-    const times = [];
+    const interval = CronExpressionParser.parse(cronExpression, { tz });
+    const times: string[] = [];
     for (let i = 0; i < count; i++) {
-      times.push(interval.next().toJSON());
+      // v5 types toJSON() as nullable, which the caller joins into a single string; keep the list
+      // the requested length rather than letting a hole shorten it
+      times.push(interval.next().toJSON() ?? '');
     }
     return times;
   }
@@ -30,20 +39,36 @@ export function isCronValid(cronExpression: string, cronType: CronType | 'any' =
   return cronType === 'any' ? !!expressionCronType : expressionCronType === cronType;
 }
 
-export function getCronType(cronExpression: string) {
+function isStandardExpression(cronExpression: string) {
   try {
-    parseExpression(cronExpression);
+    CronExpressionParser.parse(cronExpression);
     cronstrue.toString(cronExpression, { throwExceptionOnParseError: true });
-    return 'standard';
+    return true;
   }
   catch (_) {
-    try {
-      const parsed = new EventCronParser(cronExpression);
-      parsed.validate();
-      return 'aws';
-    }
-    catch (_) {
-    }
+    return false;
   }
-  return false;
+}
+
+function isAwsExpression(cronExpression: string) {
+  try {
+    const parsed = new EventCronParser(cronExpression);
+    parsed.validate();
+    return true;
+  }
+  catch (_) {
+    return false;
+  }
+}
+
+export function getCronType(cronExpression: string) {
+  if (!looksLikeAwsExpression(cronExpression) && isStandardExpression(cronExpression)) {
+    return 'standard';
+  }
+
+  if (isAwsExpression(cronExpression)) {
+    return 'aws';
+  }
+
+  return isStandardExpression(cronExpression) ? 'standard' : false;
 }

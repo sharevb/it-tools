@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { Countdown } from 'vue3-flip-countdown';
-import { parseExpression } from 'cron-parser';
+import { CronExpressionParser } from 'cron-parser';
 import { format } from 'date-fns';
 import { useQueryParam } from '@/composable/queryParams';
 
@@ -43,7 +43,7 @@ const cronExpression = computed(() => {
   return `${s} ${m} ${h} * * ${alarmDays.value}`;
 });
 const alarmAtDate = computed(() => {
-  const interval = parseExpression(cronExpression.value);
+  const interval = CronExpressionParser.parse(cronExpression.value);
   return interval.next().toDate();
 });
 
