@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import type { lib } from 'crypto-js';
-import { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, enc } from 'crypto-js';
 
 import {
   adler32,
@@ -24,25 +22,11 @@ import {
 } from 'hash-wasm';
 
 import InputCopyable from '../../components/InputCopyable.vue';
-import { convertHexToBin } from './hash-text.service';
+import type { Encoding } from './hash-text.service';
+import { algoNames, formatHexWithEncoding, hashText } from './hash-text.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
-
-const algos = {
-  MD5,
-  SHA1,
-  SHA256,
-  SHA224,
-  SHA512,
-  SHA384,
-  SHA3,
-  RIPEMD160,
-} as const;
-
-type AlgoNames = keyof typeof algos;
-type Encoding = keyof typeof enc | 'Bin';
-const algoNames = Object.keys(algos) as AlgoNames[];
 
 const algosWasm = {
   adler32,
@@ -65,16 +49,6 @@ const algoWasmNames = Object.keys(algosWasm) as AlgoWasmNames[];
 const encoding = useQueryParamOrStorage<Encoding>({ defaultValue: 'Hex', storageName: 'hash-text:encoding', name: 'encoding' });
 const clearText = ref('');
 
-function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
-  if (encoding === 'Bin') {
-    return convertHexToBin(words.toString(enc.Hex));
-  }
-
-  return words.toString(enc[encoding]);
-}
-
-const hashText = (algo: AlgoNames, value: string) => formatWithEncoding(algos[algo](value), encoding.value);
-
 const defaultHashWasmValues = {
   adler32: '',
   crc32: '',
@@ -94,7 +68,7 @@ const hashWasmValues = computedAsync(async () => {
   const clearTextValue = clearText.value;
   const ret = defaultHashWasmValues;
   for (const algo of algoWasmNames) {
-    ret[algo] = formatWithEncoding(enc.Hex.parse(await algosWasm[algo](clearTextValue)), encodingValue);
+    ret[algo] = formatHexWithEncoding(await algosWasm[algo](clearTextValue), encodingValue);
   }
   return ret;
 }, defaultHashWasmValues);
@@ -190,7 +164,7 @@ const hashWasmPBKDF2 = computedAsync(async () => {
           <n-input-group-label style="flex: 0 0 120px">
             {{ algo }}
           </n-input-group-label>
-          <InputCopyable :value="hashText(algo, clearText)" readonly />
+          <InputCopyable :value="hashText(algo, clearText, encoding)" readonly />
         </n-input-group>
       </div>
 

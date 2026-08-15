@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { SHA1 } from 'crypto-js';
+import { generateUlaBlocks } from './ipv6-ula-generator.service';
 import InputCopyable from '@/components/InputCopyable.vue';
 import { macAddressValidation } from '@/utils/macAddress';
 import { useQueryParam } from '@/composable/queryParams';
@@ -9,25 +9,23 @@ const { t } = useI18n();
 
 const macAddress = useQueryParam({ tool: 'ipv6-ula-gen', name: 'mac', defaultValue: '20:37:06:12:34:56' });
 const calculatedSections = computed(() => {
-  const timestamp = new Date().getTime();
-  const hex40bit = SHA1(timestamp + macAddress.value)
-    .toString()
-    .substring(30);
-
-  const ula = `fd${hex40bit.substring(0, 2)}:${hex40bit.substring(2, 6)}:${hex40bit.substring(6)}`;
+  const { ula, firstRoutableBlock, lastRoutableBlock } = generateUlaBlocks({
+    macAddress: macAddress.value,
+    timestamp: new Date().getTime(),
+  });
 
   return [
     {
       label: t('tools.ipv6-ula-generator.texts.label-ipv6-ula'),
-      value: `${ula}::/48`,
+      value: ula,
     },
     {
       label: t('tools.ipv6-ula-generator.texts.label-first-routable-block'),
-      value: `${ula}:0::/64`,
+      value: firstRoutableBlock,
     },
     {
       label: t('tools.ipv6-ula-generator.texts.label-last-routable-block'),
-      value: `${ula}:ffff::/64`,
+      value: lastRoutableBlock,
     },
   ];
 });

@@ -24,12 +24,11 @@ import {
   // createXXHash3, //(seedLow: number, seedHigh: number): Promise<IHasher>
   // createXXHash128, //(seedLow: number, seedHigh: number): Promise<IHasher>
 } from 'hash-wasm';
-import type { lib } from 'crypto-js';
-import { enc } from 'crypto-js';
 
 import type { IHasher } from 'hash-wasm/dist/lib/WASMInterface';
 import InputCopyable from '../../components/InputCopyable.vue';
-import { convertHexToBin } from '../hash-text/hash-text.service';
+import type { Encoding } from '../hash-text/hash-text.service';
+import { formatHexWithEncoding } from '../hash-text/hash-text.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { withDefaultOnError } from '@/utils/defaults';
 
@@ -140,21 +139,11 @@ async function onUpload(uploadedFile: File) {
   }
 }
 
-type Encoding = keyof typeof enc | 'Bin';
-
 const encoding = useQueryParamOrStorage<Encoding>({
   defaultValue: 'Hex',
   storageName: 'hash-text:encoding',
   name: 'encoding',
 });
-
-function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
-  if (encoding === 'Bin') {
-    return convertHexToBin(words.toString(enc.Hex));
-  }
-
-  return words.toString(enc[encoding]);
-}
 
 const hashWasmValues = computed(() =>
   withDefaultOnError(() => {
@@ -163,7 +152,7 @@ const hashWasmValues = computed(() =>
 
     const ret = defaultHashWasmValues;
     for (const algo of algoWasmNames) {
-      ret[algo] = formatWithEncoding(enc.Hex.parse(hashesValue[algo]), encodingValue);
+      ret[algo] = formatHexWithEncoding(hashesValue[algo], encodingValue);
     }
     return ret;
   }, defaultHashWasmValues),
