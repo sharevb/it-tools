@@ -13,6 +13,9 @@ overrides:
   isolated-vm: file:./stubs/empty-stub
   onnxruntime-node: file:./stubs/empty-stub
   elliptic: ^6.6.1
+  # @boxyhq/saml20 pins 0.9.10 exactly, which upstream deprecated for "critical
+  # issues"; 0.9.11 is the patched release of that same line.
+  '@xmldom/xmldom@0.9.10': 0.9.11
   # @it-tools/bip39 pins ^0.9.0, whose Node fallback uses eval("require('crypto')")
   # and triggers rolldown EVAL build warnings; 0.11.x dropped the eval.
   js-sha256: ^0.11.1
@@ -48,7 +51,7 @@ minimumReleaseAgeExclude:
   - unhead@2.1.11 || 2.1.13
   - dompurify@3.3.2 || 3.3.4 || 3.4.0 || 3.4.6 || 3.4.7 || 3.4.8 || 3.4.9 || 3.4.11
   - protocol-buffers-schema@3.6.1
-  - '@xmldom/xmldom@0.8.12 || 0.8.13'
+  - '@xmldom/xmldom@0.8.14 || 0.9.11'
   - mathjs@15.2.0
   - protobufjs@7.5.5 || 7.5.6 || 7.5.8 || 7.6.1 || 7.6.3
   - underscore@1.13.8

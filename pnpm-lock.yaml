@@ -9,6 +9,7 @@ overrides:
   isolated-vm: file:./stubs/empty-stub
   onnxruntime-node: file:./stubs/empty-stub
   elliptic: ^6.6.1
+  '@xmldom/xmldom@0.9.10': 0.9.11
   js-sha256: ^0.11.1
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
 
@@ -232,8 +233,8 @@ importers:
         specifier: ^10.11.1
         version: 10.11.1(vue-router@5.1.0(@vue/compiler-sfc@3.5.39)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3)))(rolldown@1.1.4)(rollup@4.62.2)(vite@8.1.3(@types/node@24.13.3)(jiti@2.7.0)(less@4.6.7)(terser@5.48.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))(webpack@5.108.3(postcss@8.5.16)))(vue@3.5.39(typescript@6.0.3))
       '@xmldom/xmldom':
-        specifier: ^0.8.13
-        version: 0.8.13
+        specifier: ^0.8.14
+        version: 0.8.14
       '@xterm/xterm':
         specifier: ^5.5.0
         version: 5.5.0
@@ -5118,13 +5119,13 @@ packages:
     engines: {node: '>=10.0.0'}
     deprecated: this version has critical issues, please update to the latest version
 
-  '@xmldom/xmldom@0.8.13':
-    resolution: {integrity: sha512-KRYzxepc14G/CEpEGc3Yn+JKaAeT63smlDr+vjB8jRfgTBBI9wRj/nkQEO+ucV8p8I9bfKLWp37uHgFrbntPvw==}
+  '@xmldom/xmldom@0.8.14':
+    resolution: {integrity: sha512-T4EDRUBVZYRldYApjEJiU0e1stYWaRAX7CuSnKzrpwdZKo53zGV8/pqfzV6FfwNl9YThD2OumQYvqtvjvgG7aQ==}
     engines: {node: '>=10.0.0'}
     deprecated: this version has critical issues, please update to the latest version
 
-  '@xmldom/xmldom@0.9.10':
-    resolution: {integrity: sha512-A9gOqLdi6cV4ibazAjcQufGj0B1y/vDqYrcuP6d/6x8P27gRS8643Dj9o1dEKtB6O7fwxb2FgBmJS2mX7gpvdw==}
+  '@xmldom/xmldom@0.9.11':
+    resolution: {integrity: sha512-tW8bcK3hsG0/uqSnNz6TK4BkcuZSezoU7DlnYssILmZDktPnSHHuDJJFM0AJv+13gz2r0iGdrj6qqKeUnxXEDg==}
     engines: {node: '>=14.6'}
     deprecated: this version has critical issues, please update to the latest version
 
@@ -12365,7 +12366,7 @@ snapshots:
 
   '@boxyhq/saml20@1.16.0':
     dependencies:
-      '@xmldom/xmldom': 0.9.10
+      '@xmldom/xmldom': 0.9.11
       xml-crypto: 6.1.2
       xml-encryption: 4.0.1
       xml2js: 0.6.2
@@ -15693,9 +15694,9 @@ snapshots:
 
   '@xmldom/xmldom@0.7.13': {}
 
-  '@xmldom/xmldom@0.8.13': {}
+  '@xmldom/xmldom@0.8.14': {}
 
-  '@xmldom/xmldom@0.9.10': {}
+  '@xmldom/xmldom@0.9.11': {}
 
   '@xterm/xterm@5.5.0': {}
 
@@ -17665,7 +17666,7 @@ snapshots:
 
   exifreader@4.41.0:
     optionalDependencies:
-      '@xmldom/xmldom': 0.9.10
+      '@xmldom/xmldom': 0.9.11
 
   expand-tilde@2.0.2:
     dependencies:
@@ -22819,12 +22820,12 @@ snapshots:
   xml-crypto@6.1.2:
     dependencies:
       '@xmldom/is-dom-node': 1.0.1
-      '@xmldom/xmldom': 0.8.13
+      '@xmldom/xmldom': 0.8.14
       xpath: 0.0.33
 
   xml-encryption@4.0.1:
     dependencies:
-      '@xmldom/xmldom': 0.8.13
+      '@xmldom/xmldom': 0.8.14
       escape-html: 1.0.3
       xpath: 0.0.32
 
