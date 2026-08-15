@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { buildWebSocketUrl, createWebSocketClient } from './websocket-tester.service';
+import { buildWebSocketUrl, createWebSocketClient, formatWebSocketError } from './websocket-tester.service';
 
 class FakeWebSocket {
   static instances: FakeWebSocket[] = [];
@@ -35,6 +35,28 @@ describe('websocket-tester', () => {
       expect(buildWebSocketUrl({})).toBe('ws://localhost:8080/?token=*');
       expect(buildWebSocketUrl({ url: 'wss://example.com' })).toBe('wss://example.com/?token=*');
       expect(buildWebSocketUrl({ token: 'abc' })).toBe('ws://localhost:8080/?token=abc');
+    });
+
+    it('does not double the slash when the url already ends with one', () => {
+      expect(buildWebSocketUrl({ url: 'ws://example.com/', token: 'abc' })).toBe('ws://example.com/?token=abc');
+      expect(buildWebSocketUrl({ url: 'ws://example.com///', token: 'abc' })).toBe('ws://example.com/?token=abc');
+      expect(buildWebSocketUrl({ url: 'ws://example.com/path/', token: 'abc' })).toBe('ws://example.com/path/?token=abc');
+    });
+  });
+
+  describe('formatWebSocketError', () => {
+    it('uses the message of a real error', () => {
+      expect(formatWebSocketError(new SyntaxError("The URL 'nope' is invalid"))).toBe("The URL 'nope' is invalid");
+    });
+
+    it('does not stringify the bare event the native handler receives', () => {
+      // `${new Event('error')}` would render as the useless '[object Event]'
+      expect(formatWebSocketError(new Event('error'))).toBe('connection failed');
+    });
+
+    it('falls back to the string form of anything else', () => {
+      expect(formatWebSocketError('boom')).toBe('boom');
+      expect(formatWebSocketError(undefined)).toBe('undefined');
     });
   });
 

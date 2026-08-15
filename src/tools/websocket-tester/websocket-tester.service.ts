@@ -10,9 +10,28 @@ export interface WebSocketClientOptions {
 const defaultUrl = 'ws://localhost:8080';
 const defaultToken = '*';
 
-// The token is passed as a query parameter, the way the previous client built its url.
+// The token is passed as a query parameter, the way the previous client built its url. Unlike it,
+// a trailing slash is trimmed first, so that `ws://host/` does not turn into `ws://host//?token=`.
 export function buildWebSocketUrl({ url, token }: { url?: string; token?: string }) {
-  return `${url || defaultUrl}/?token=${token || defaultToken}`;
+  const base = (url || defaultUrl).replace(/\/+$/, '');
+
+  return `${base}/?token=${token || defaultToken}`;
+}
+
+/**
+ * The native `onerror` handler receives a bare `Event`: the websocket spec deliberately withholds
+ * the reason, so interpolating it would only ever log `[object Event]`.
+ */
+export function formatWebSocketError(error: unknown) {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  if (typeof Event !== 'undefined' && error instanceof Event) {
+    return 'connection failed';
+  }
+
+  return String(error);
 }
 
 /**

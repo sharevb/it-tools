@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { createWebSocketClient } from './websocket-tester.service';
+import { createWebSocketClient, formatWebSocketError } from './websocket-tester.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -32,14 +32,14 @@ function connect() {
       message(data: any) {
         logs.value.push(`Received: ${JSON.stringify(data)}`);
       },
-      error(err: any) {
-        logs.value.push(`Error: ${err}`);
+      error(err: unknown) {
+        logs.value.push(`Error: ${formatWebSocketError(err)}`);
       },
     });
   } catch (err) {
     // an invalid url throws before the socket exists, so it never reaches the error handler above
     wsc = null;
-    logs.value.push(`Error: ${err}`);
+    logs.value.push(`Error: ${formatWebSocketError(err)}`);
   }
 }
 </script>
