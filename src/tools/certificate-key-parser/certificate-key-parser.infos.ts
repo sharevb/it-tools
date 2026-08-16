@@ -1,5 +1,4 @@
 import type { AlgorithmHashType, Certificate, Fingerprint, Key, PrivateKey, Signature } from 'sshpk';
-import 'webcrypto-liner-shim';
 import type * as openpgp from 'openpgp';
 import * as forge from 'node-forge';
 import oids from './oids.json';

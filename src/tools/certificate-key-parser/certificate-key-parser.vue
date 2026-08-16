@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
 import { useI18n } from 'vue-i18n';
+import 'webcrypto-liner-shim';
 
 import { getKeysOrCertificatesInfosAsync } from './certificate-key-parser.service';
 import { type LabelValue } from './certificate-key-parser.infos';

@@ -12,7 +12,7 @@ export function generateRandomValue(min: number, max: number): number {
 
   let randomValue: number;
   do {
-    randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0];
+    randomValue = globalThis.crypto.getRandomValues(new Uint8Array(1))[0];
   } while (randomValue > generatorMax);
 
   return min + randomValue;
