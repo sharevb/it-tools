@@ -193,6 +193,10 @@ export default defineConfig({
   },
   test: {
     exclude: [...configDefaults.exclude, '**/*.e2e.spec.ts'],
+    // Several suites assert on formatted dates and offsets (date-time-converter,
+    // days-calculator, crontab-generator). Without a fixed zone they fail on any
+    // machine that is not on UTC.
+    env: { TZ: 'UTC' },
     // Only a handful of suites touch the DOM; they opt in with a
     // `// @vitest-environment jsdom` docblock. Building a jsdom for all 128
     // files cost ~2 minutes of environment setup for the 7 that need it.

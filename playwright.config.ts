@@ -4,6 +4,11 @@ const isCI = !!process.env.CI;
 const baseUrl = process.env.BASE_URL || 'http://localhost:5050';
 const useWebServer = process.env.NO_WEB_SERVER !== 'true';
 
+// What the browser sees is pinned by `timezoneId` below, and the specs do no
+// date maths of their own, so today this changes nothing. It keeps the runner
+// deterministic if a spec ever does compute a date on the node side.
+process.env.TZ = 'UTC';
+
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
