@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 /* eslint-disable no-restricted-globals */
 import { describe, expect, it } from 'vitest';
 

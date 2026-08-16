@@ -193,6 +193,10 @@ export default defineConfig({
   },
   test: {
     exclude: [...configDefaults.exclude, '**/*.e2e.spec.ts'],
+    // Only a handful of suites touch the DOM; they opt in with a
+    // `// @vitest-environment jsdom` docblock. Building a jsdom for all 128
+    // files cost ~2 minutes of environment setup for the 7 that need it.
+    environment: 'node',
     server: {
       deps: {
         inline: ['otpauth-migration', 'proto'],

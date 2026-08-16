@@ -25,7 +25,7 @@
     "build": "vue-tsc --noEmit && . ./set_node_mem.sh && vite build",
     "preview": "vite preview --port 5050",
     "test": "TZ=UTC npm run test:unit",
-    "test:unit": "TZ=UTC . ./set_node_mem.sh && vitest --environment jsdom",
+    "test:unit": "TZ=UTC . ./set_node_mem.sh && vitest",
     "test:e2e": "TZ=UTC . ./set_node_mem.sh && playwright test",
     "test:e2e:dev": "TZ=UTC BASE_URL=http://localhost:5173 NO_WEB_SERVER=true playwright test",
     "coverage": "vitest run --coverage",
