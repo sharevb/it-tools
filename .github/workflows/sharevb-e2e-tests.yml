@@ -25,7 +25,10 @@ jobs:
 
       - name: Get Playwright version
         id: playwright-version
-        run: echo "PLAYWRIGHT_VERSION=$(jq -r '.devDependencies["@playwright/test"]' package.json)" >> "$GITHUB_OUTPUT"
+        # The installed version, not the range in package.json: a lockfile bump
+        # inside the same range would otherwise leave the key unchanged and the
+        # cached browsers out of sync with Playwright.
+        run: echo "PLAYWRIGHT_VERSION=$(jq -r .version node_modules/@playwright/test/package.json)" >> "$GITHUB_OUTPUT"
 
       - name: Build app
         run: pnpm build
