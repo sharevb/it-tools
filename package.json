@@ -41,7 +41,7 @@
     "script:extract:strings": "node ./scripts/extract-tools-strings.mjs",
     "script:translate-missing": "node ./scripts/translate-missings.mjs -e ./locales/en.yml -t ./locales/*.yml",
     "vue-i18n-extract": "vue-i18n-extract report --vueFiles 'src/**/*.?(ts|vue)' --languageFiles 'locales/*.yml'",
-    "precommit": "pnpm install --ignore-scripts && pnpm lint:fix"
+    "precommit": "pnpm install --ignore-scripts && pnpm lint:fix && pnpm typecheck"
   },
   "dependencies": {
     "@boxyhq/saml20": "^1.16.0",
