@@ -10,9 +10,11 @@
 if [ -n "$NODE_MAX_OLD_SPACE_MB" ]; then
     heap_mb="$NODE_MAX_OLD_SPACE_MB"
 elif [ "$(uname)" = "Darwin" ]; then
-    heap_mb=$(( $(sysctl -n hw.memsize) / 1024 / 1024 - 1024 ))
+    total_bytes=$(sysctl -n hw.memsize)
+    heap_mb=$((total_bytes / 1024 / 1024 - 1024))
 else
-    heap_mb=$(( $(awk '/MemTotal/{print $2}' /proc/meminfo) / 1024 - 1024 ))
+    total_kb=$(awk '/MemTotal/{print $2}' /proc/meminfo)
+    heap_mb=$((total_kb / 1024 - 1024))
 fi
 
 node_options="--max-old-space-size=$heap_mb"
