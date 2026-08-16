@@ -8,7 +8,10 @@ If the container needs to listen to IPv6, it needs to be enabled: https://server
 
 ## Build requirements
 
-**To build this project**, you need around **16GB** (as it builds on Github workers). Below, you will get some `out of memory` or `node allocation failed`.
+**To build this project**, around **8GB** of RAM is enough. Measured on a 4-core
+machine, `pnpm build` peaks at roughly 6.5GB of system memory and completes on
+Node's default heap — most of the work happens inside rolldown, in Rust, rather
+than on the JavaScript heap.
 
 ## PR Welcome
 

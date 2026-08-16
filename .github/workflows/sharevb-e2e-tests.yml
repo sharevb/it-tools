@@ -43,9 +43,4 @@ jobs:
         run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
 
       - name: Run Playwright tests
-        env:
-          # Playwright workers inherit NODE_OPTIONS, so this is a per-worker
-          # ceiling: 3 workers x 4GB leaves room for the browsers on a 16GB
-          # runner. Without it each worker would claim a machine-sized heap.
-          NODE_MAX_OLD_SPACE_MB: 4096
         run: pnpm run test:e2e --project=${{ matrix.browser }}
