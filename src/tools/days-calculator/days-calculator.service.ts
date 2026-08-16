@@ -42,7 +42,7 @@ export const allWeekDays: Weekdays[] = ['monday', 'tuesday', 'wednesday', 'thurs
 export function diffDateTimes({
   date1,
   date2,
-  country, state = undefined, region = undefined,
+  country, state, region,
   businessTimezone,
   includeEndDate = true,
   includeWeekDays = allWeekDays,

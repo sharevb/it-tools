@@ -11,7 +11,7 @@ function looksLikeAwsExpression(cronExpression: string) {
   return /(?:^|\s)\?(?:\s|$)/.test(cronExpression);
 }
 
-export function getLastExecutionTimes(cronExpression: string, tz: string | undefined = undefined, count: number = 5) {
+export function getLastExecutionTimes(cronExpression: string, tz?: string | undefined, count: number = 5) {
   const cronType = getCronType(cronExpression);
 
   if (cronType === 'standard') {

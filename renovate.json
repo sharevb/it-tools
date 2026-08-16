@@ -20,7 +20,7 @@
   "packageRules": [
     {
       "groupName": "TypeScript toolchain",
-      "matchPackageNames": ["typescript", "vue-tsc"],
+      "matchPackageNames": ["typescript", "vue-tsc", "oxlint-tsgolint"],
       "matchUpdateTypes": ["major", "minor", "patch"]
     },
     {

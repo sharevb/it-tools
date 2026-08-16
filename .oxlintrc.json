@@ -4,6 +4,9 @@
   "categories": {
     "correctness": "error"
   },
+  "options": {
+    "typeAware": true
+  },
   "env": {
     "browser": true,
     "es2026": true
@@ -42,6 +45,16 @@
       { "caughtErrors": "none", "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
     ],
     "eslint/no-useless-escape": "off",
+    "typescript/await-thenable": "warn",
+    "typescript/no-base-to-string": "warn",
+    "typescript/no-duplicate-type-constituents": "warn",
+    "typescript/no-floating-promises": "warn",
+    "typescript/no-for-in-array": "warn",
+    "typescript/no-misused-spread": "warn",
+    "typescript/no-redundant-type-constituents": "warn",
+    "typescript/no-useless-default-assignment": "warn",
+    "typescript/restrict-template-expressions": "warn",
+    "typescript/unbound-method": "warn",
     "import/default": "off",
     "vue/no-dupe-keys": "off",
     "vitest/valid-expect": "off",

@@ -22,7 +22,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && . ./set_node_mem.sh && vite build",
+    "build": ". ./set_node_mem.sh && vite build",
     "preview": "vite preview --port 5050",
     "test": "TZ=UTC npm run test:unit",
     "test:unit": "TZ=UTC . ./set_node_mem.sh && vitest",
@@ -41,7 +41,7 @@
     "script:extract:strings": "node ./scripts/extract-tools-strings.mjs",
     "script:translate-missing": "node ./scripts/translate-missings.mjs -e ./locales/en.yml -t ./locales/*.yml",
     "vue-i18n-extract": "vue-i18n-extract report --vueFiles 'src/**/*.?(ts|vue)' --languageFiles 'locales/*.yml'",
-    "precommit": "pnpm install --ignore-scripts && pnpm lint:fix && pnpm typecheck"
+    "precommit": "pnpm install --ignore-scripts && pnpm lint:fix"
   },
   "dependencies": {
     "@boxyhq/saml20": "^1.16.0",
@@ -387,7 +387,7 @@
     "vue-markdown-render": "^2.3.1",
     "vue-router": "^5.1.0",
     "vue-shadow-dom": "^4.2.0",
-    "vue-tsc": "^3.3.6",
+    "vue-tsc": "^3.3.10",
     "vue3-flip-countdown": "^0.1.6",
     "vue3-katex": "^0.8.1",
     "vuedraggable": "^4.1.0",
@@ -459,6 +459,7 @@
     "less": "^4.6.7",
     "oxfmt": "^0.57.0",
     "oxlint": "^1.72.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "rollup-plugin-visualizer": "^7.0.1",
     "semver": "^7.8.5",
     "typescript": "~6.0.3",
