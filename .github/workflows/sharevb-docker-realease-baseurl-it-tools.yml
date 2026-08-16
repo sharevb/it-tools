@@ -23,7 +23,7 @@ jobs:
         run: pnpm lint
 
       - name: Run unit tests
-        run: pnpm test
+        run: pnpm test:unit
 
       - name: Type check
         run: pnpm typecheck

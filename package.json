@@ -24,7 +24,6 @@
     "dev": "vite",
     "build": ". ./set_node_mem.sh && vite build",
     "preview": "vite preview --port 5050",
-    "test": "pnpm run test:unit",
     "test:unit": ". ./set_node_mem.sh && vitest",
     "test:e2e": ". ./set_node_mem.sh && playwright test",
     "test:e2e:dev": "BASE_URL=http://localhost:5173 NO_WEB_SERVER=true playwright test",

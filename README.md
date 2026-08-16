@@ -338,7 +338,7 @@ pnpm build
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
-pnpm test
+pnpm test:unit
 ```
 
 ### Lint with [Oxlint](https://oxc.rs/docs/guide/usage/linter)
