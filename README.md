@@ -341,6 +341,25 @@ pnpm build
 pnpm test:unit
 ```
 
+### Run End-to-End Tests with [Playwright](https://playwright.dev/)
+
+Playwright starts `pnpm preview` itself, so build first:
+
+```sh
+pnpm build
+pnpm test:e2e
+```
+
+To iterate against the dev server instead, leave `pnpm dev` running and point
+the tests at it. Playwright then leaves the server alone:
+
+```sh
+E2E_BASE_URL=http://localhost:5173 pnpm test:e2e
+```
+
+The dev server compiles routes on demand, so a first run against a cold one can
+blow past the assertion timeouts. Open the pages once, or just run it again.
+
 ### Lint with [Oxlint](https://oxc.rs/docs/guide/usage/linter)
 
 ```sh

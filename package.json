@@ -26,7 +26,6 @@
     "preview": "vite preview --port 5050",
     "test:unit": ". ./set_node_mem.sh && vitest",
     "test:e2e": ". ./set_node_mem.sh && playwright test",
-    "test:e2e:dev": "BASE_URL=http://localhost:5173 NO_WEB_SERVER=true playwright test",
     "coverage": "vitest run --coverage",
     "typecheck": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "oxlint src",

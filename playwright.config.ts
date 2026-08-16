@@ -1,8 +1,18 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const isCI = !!process.env.CI;
-const baseUrl = process.env.BASE_URL || 'http://localhost:5050';
-const useWebServer = process.env.NO_WEB_SERVER !== 'true';
+
+// `pnpm preview` serves the production build here, and Playwright starts it
+// itself. Point E2E_BASE_URL somewhere else -- a running `pnpm dev`, a deployed
+// preview -- and that is taken as "I am supplying the server", so Playwright
+// leaves the lifecycle alone.
+//
+// Deliberately not BASE_URL: vite.config.ts already reads that as the app's
+// base path (`/it-tools/`), so sharing the name would make one value mean two
+// incompatible things.
+const previewUrl = 'http://localhost:5050';
+const baseUrl = process.env.E2E_BASE_URL || previewUrl;
+const useWebServer = baseUrl === previewUrl;
 
 // What the browser sees is pinned by `timezoneId` below, and the specs do no
 // date maths of their own, so today this changes nothing. It keeps the runner
@@ -69,8 +79,8 @@ export default defineConfig({
 
   ...(useWebServer && {
     webServer: {
-      command: 'npm run preview',
-      url: 'http://localhost:5050',
+      command: 'pnpm preview',
+      url: previewUrl,
       reuseExistingServer: !isCI,
     },
   }),
