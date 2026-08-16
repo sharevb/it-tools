@@ -34,16 +34,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.0
 
-      - name: Install Node.js
-        uses: actions/setup-node@v6.4.0
+      - name: Setup pnpm and install dependencies
+        uses: pnpm/setup@v2.0.2
         with:
-          node-version: 24
-
-      - uses: pnpm/action-setup@v6.0.9
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: true
+          runtime: node@24
+          cache: true
 
       - name: Build
         run: |
