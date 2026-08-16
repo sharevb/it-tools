@@ -17,7 +17,6 @@ jobs:
       - name: Setup pnpm and install dependencies
         uses: pnpm/setup@v2.0.2
         with:
-          runtime: node@24
           cache: true
 
       - name: Get Playwright version
