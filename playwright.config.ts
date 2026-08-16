@@ -11,8 +11,12 @@ export default defineConfig({
   testDir: './src',
   testMatch: /\.e2e\.(spec\.)?ts$/,
   /* First paint of heavy lazy-loaded tools can exceed the 5s default on
-     slow CI browsers (webkit especially) */
-  expect: { timeout: 15_000 },
+     slow CI browsers (webkit especially). Three workers share a runner, so
+     first paint is slower still and CI needs more headroom than a local run.
+     The test timeout has to stay above the expect timeout, otherwise it fires
+     first and reports a timeout instead of the assertion that actually failed. */
+  timeout: isCI ? 60_000 : 30_000,
+  expect: { timeout: isCI ? 30_000 : 15_000 },
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
