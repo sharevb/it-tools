@@ -77,7 +77,7 @@ const cleanedFileBase64 = computed(() => {
   if (includeDataUri.value) {
     return fileBase64.value;
   }
-  return fileBase64.value.replace(/^data:[^;];base64,/, '');
+  return fileBase64.value.replace(/^data:[^;]*;base64,/, '');
 });
 const { copy: copyFileBase64 } = useCopy({ source: cleanedFileBase64, text: t('tools.base64-file-converter.texts.text-base64-string-copied-to-the-clipboard') });
 
