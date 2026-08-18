@@ -39,9 +39,16 @@ if [ "$_base_url" != "/" ] && [ -z "${NGINX_ENTRYPOINT_QUIET_LOGS:-}" ]; then
 fi
 
 BASE_URL="$_base_url"
+
+# Regex-safe forms of the same value, for the rewrites in nginx.conf. `.` is a legal
+# character in a path and the validation above lets it through, but it is also the one
+# regex metacharacter that survives that filter: unescaped, a BASE_URL of `/it.tools/`
+# would strip the prefix from `/itXtools/...` too.
+BASE_URL_REGEX=$(printf '%s' "$_base_url" | sed 's/\./\\./g')
 # `/it-tools/` -> `/it-tools`, so nginx.conf can redirect the slash-less spelling to the
 # real one. Empty for a deployment at the root, where there is nothing to redirect.
-BASE_URL_NO_SLASH="${_base_url%/}"
-export BASE_URL BASE_URL_NO_SLASH
+BASE_URL_NO_SLASH_REGEX="${BASE_URL_REGEX%/}"
+
+export BASE_URL BASE_URL_REGEX BASE_URL_NO_SLASH_REGEX
 
 unset _base_url _base_url_invalid

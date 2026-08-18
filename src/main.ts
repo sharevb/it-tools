@@ -37,13 +37,33 @@ window.addEventListener('vite:preloadError', (event: Event) => {
 
 installAbortSignalPolyfill();
 
-// Not `registerSW()` from virtual:pwa-register: that one bakes the build-time base into
-// the script URL, which is a relative `./sw.js` here and would resolve against the current
-// route rather than the app root. The runtime base is known, so register against it
-// directly -- the generated service worker is base-agnostic (its precache entries are
-// relative to its own URL) and takes care of updating itself, see `registerType:
-// 'autoUpdate'` in vite.config.ts.
+// Not `registerSW()` from virtual:pwa-register. With a relative build base it hands
+// workbox-window a relative `./sw.js`, and while the browser resolves that against our
+// `<base href>` correctly, workbox-window's own bookkeeping resolves it against
+// `location.href` instead (urlsMatch() in workbox-window). On a route one level deeper
+// than the app root the two disagree, workbox mistakes its own worker for an external one
+// and reloads the page under the user. Every route is a single segment today, so nothing
+// is broken right now; registering by absolute URL just takes the trap away.
+//
+// What that costs us is the update handling `registerType: 'autoUpdate'` would have wired
+// up, so it is reimplemented below.
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  // The worker calls skipWaiting()/clientsClaim() (see vite.config.ts), so a newly deployed
+  // one takes over this page while it is still showing the previous build. Reload when that
+  // happens -- otherwise the tab keeps running the old bundle until it navigates, and any
+  // lazily imported chunk it reaches for has already been swept from the cache. A first
+  // install claims the page too, and must not reload: only a *replacement* means the page
+  // and its worker have diverged.
+  const hadController = Boolean(navigator.serviceWorker.controller);
+  let reloading = false;
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (hadController && !reloading) {
+      reloading = true;
+      window.location.reload();
+    }
+  });
+
   const registerServiceWorker = () => {
     navigator.serviceWorker
       .register(`${appBaseUrl}sw.js`, { scope: appBaseUrl })

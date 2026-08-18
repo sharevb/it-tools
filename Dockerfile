@@ -61,7 +61,7 @@ ENV NGINX_ENTRYPOINT_WORKER_PROCESSES_AUTOTUNE=1
 # Sourcing the entrypoint's own resolver keeps the baked-in BASE_URL normalised and
 # validated exactly the way a runtime one would be.
 RUN . /docker-entrypoint.d/18-resolve-base-url.envsh \
-    && envsubst '${PORT} ${BASE_URL} ${BASE_URL_NO_SLASH}' \
+    && envsubst '${PORT} ${BASE_URL} ${BASE_URL_REGEX} ${BASE_URL_NO_SLASH_REGEX}' \
       < /etc/nginx/templates/default.conf.template \
       > /etc/nginx/conf.d/default.conf
 

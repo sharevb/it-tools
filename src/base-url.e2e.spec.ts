@@ -137,6 +137,8 @@ test.describe('Deployment under a subfolder', () => {
 
   test('keeps the subfolder when navigating and reloading', async ({ page }) => {
     await page.goto(`${origin}${BASE_URL}`);
+
+    const homeTitle = await page.title();
     await page.locator('a.it-tool-link').first().click();
 
     // The router was handed the runtime base, so an in-app navigation writes a URL that
@@ -145,11 +147,22 @@ test.describe('Deployment under a subfolder', () => {
     await expect(page).not.toHaveURL(`${origin}${BASE_URL}`);
     expect(page.url().startsWith(`${origin}${BASE_URL}`)).toBe(true);
 
+    await expect(page).not.toHaveTitle(homeTitle);
+
     const url = page.url();
     const title = await page.title();
-    await page.reload();
 
-    await expect(page).toHaveURL(url);
-    await expect(page).toHaveTitle(title);
+    // Then load that URL from scratch, the way someone pasting the link would: it has to
+    // come back as the same tool rather than as the app root or a 404. In a second tab
+    // rather than by reloading this one -- navigating a page that has just pulled in a
+    // tool's chunks races with those requests, and the app answers an aborted chunk load
+    // by reloading itself (the vite:preloadError handler in src/main.ts), which cancels
+    // the navigation the test is waiting on.
+    const fresh = await page.context().newPage();
+    await fresh.goto(url);
+
+    await expect(fresh).toHaveURL(url);
+    await expect(fresh).toHaveTitle(title);
+    await fresh.close();
   });
 });

@@ -253,6 +253,11 @@ You still want a reverse proxy in front -- [Nginx Proxy Manager](https://nginxpr
 prefix before forwarding (`proxy_pass http://it-tools:8080/;`) or passes it on as-is
 (`proxy_pass http://it-tools:8080;`): the container handles both.
 
+One thing only the proxy can do, in the stripping setup: `/it-tools` without the trailing
+slash never reaches the container, so redirect it there -- the sample's
+`location /it-tools { return 301 /it-tools/; }`. When the prefix is forwarded instead, the
+container does that redirect itself.
+
 See the [sample docker-compose.yml and nginx.conf](https://github.com/sharevb/it-tools/tree/chore/all-my-stuffs/docker-subfolder-sample).
 To run the sample:
 
