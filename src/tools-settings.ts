@@ -1,4 +1,4 @@
-const base = import.meta.env.BASE_URL ?? '/';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 // Optional per-deployment settings. Lives in its own top-level-await module so the
 // fetch runs concurrently with the config fetches in src/tools/index.ts (sibling async

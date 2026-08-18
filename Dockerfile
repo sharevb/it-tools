@@ -13,8 +13,10 @@ COPY patches patches
 COPY stubs stubs
 RUN npm install -g pnpm@11 && pnpm i --ignore-scripts --frozen-lockfile
 COPY . .
-ARG BASE_URL
-ENV BASE_URL=${BASE_URL}
+# Deliberately no BASE_URL here: the bundle is built path-agnostic (relative asset URLs
+# plus a `<base href="/">` in index.html) so that one image can be served from any
+# subpath. The path is a runtime setting instead -- see the BASE_URL environment variable
+# on the production stage below.
 ARG VITE_AVAILABLE_LOCALES
 ENV VITE_AVAILABLE_LOCALES=${VITE_AVAILABLE_LOCALES}
 ENV VITE_VERCEL_ENV=production
@@ -28,8 +30,15 @@ LABEL maintainer="ShareVB <sharevb@gmail.com>" \
 LABEL org.opencontainers.image.source=github.com/sharevb/it-tools
 
 ENV VITE_VERCEL_ENV=production
-ARG BASE_URL
+
+# The path the app is served under. Override it at run time -- `docker run -e
+# BASE_URL=/it-tools/`, `environment: BASE_URL: /it-tools/` in a compose file -- and nginx
+# rewrites the `<base href>` in index.html on the way out; nothing is baked in. The build
+# arg only moves the default, for anyone who prefers to ship an image that is preconfigured
+# for a subpath. See docker-entrypoint.d/18-resolve-base-url.envsh and nginx.conf.
+ARG BASE_URL=/
 ENV BASE_URL=${BASE_URL}
+
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/templates/default.conf.template
@@ -49,7 +58,10 @@ ENV NGINX_ENTRYPOINT_WORKER_PROCESSES_AUTOTUNE=1
 # Without this the image would fall back to the stock welcome config from the
 # base image: no SPA fallback, so deep links 404 on refresh, and no COOP/COEP,
 # so the WebAssembly-backed tools stop working.
-RUN envsubst '${PORT}' \
+# Sourcing the entrypoint's own resolver keeps the baked-in BASE_URL normalised and
+# validated exactly the way a runtime one would be.
+RUN . /docker-entrypoint.d/18-resolve-base-url.envsh \
+    && envsubst '${PORT} ${BASE_URL} ${BASE_URL_NO_SLASH}' \
       < /etc/nginx/templates/default.conf.template \
       > /etc/nginx/conf.d/default.conf
 

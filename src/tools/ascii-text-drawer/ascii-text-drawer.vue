@@ -3,6 +3,7 @@ import figlet, { type FigletOptions, type FontName } from 'figlet';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { languages, printToLanguage } from '@/utils/ascii-lang-utils';
 import { useITStorage } from '@/composable/queryParams';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const input = ref('Ascii ART');
 const language = useITStorage('ascii-text-drawer:language', 'raw');
@@ -12,8 +13,6 @@ const output = ref('');
 const errored = ref(false);
 const processing = ref(false);
 const { t } = useI18n();
-
-const base = import.meta.env.BASE_URL ?? '/';
 
 figlet.defaults({ fontPath: `${base}figlet-fonts` });
 

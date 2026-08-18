@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import { useScriptTag } from '@vueuse/core';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const { t } = useI18n();
 
@@ -17,8 +18,6 @@ declare global {
     }>
   }
 }
-
-const base = import.meta.env.BASE_URL ?? '/';
 
 const { load: loadIpLookup } = useScriptTag(`${base}iplookup.js`, undefined, { type: 'module', manual: true });
 

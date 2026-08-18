@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import { useScriptTag } from '@vueuse/core';
 import ageWasmUrl from '/age-wasm/age.wasm?url';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const { t } = useI18n();
 
@@ -42,8 +43,6 @@ declare class Go {
   mem: DataView;
   run(instance: WebAssembly.Instance): Promise<void>;
 }
-
-const base = import.meta.env.BASE_URL ?? '/';
 
 const { load: loadGo } = useScriptTag(`${base}age-wasm/wasm_exec.js`, undefined, { type: 'module', manual: true });
 

@@ -1,9 +1,8 @@
 import type { ExternalTool, ToolCategory, ToolWithCategory, ToolsFilter } from './tools.types';
 import { translate as t } from '@/plugins/i18n.plugin';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const modules = import.meta.glob<true, string, ToolWithCategory>('./*/index.ts', { eager: true, import: 'tool' });
-
-const base = import.meta.env.BASE_URL ?? '/';
 
 // Both config files are optional; fetch them in parallel so app boot waits on at
 // most one network round-trip instead of two sequential ones.

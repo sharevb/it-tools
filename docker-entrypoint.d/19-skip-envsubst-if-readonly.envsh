@@ -23,6 +23,13 @@ if [ -d "${NGINX_ENVSUBST_TEMPLATE_DIR:-/etc/nginx/templates}" ] \
     if [ -z "${NGINX_ENTRYPOINT_QUIET_LOGS:-}" ]; then
         echo "19-skip-envsubst-if-readonly.envsh: info: $_envsubst_output_dir is not writable, keeping the config baked into the image"
     fi
+    # The baked config carries the image defaults, so anything that is only applied by
+    # rendering the template is quietly lost. $PORT has always had this caveat; say so for
+    # BASE_URL too, where the symptom (an app that loads from the wrong path) is a lot less
+    # obvious than a port that did not move.
+    if [ "${BASE_URL:-/}" != "/" ]; then
+        echo "19-skip-envsubst-if-readonly.envsh: warning: BASE_URL=$BASE_URL can not be applied on a read-only filesystem; mount a writable $_envsubst_output_dir (a tmpfs or an emptyDir will do)" >&2
+    fi
     export NGINX_ENVSUBST_TEMPLATE_DIR=/nonexistent-read-only-filesystem
 fi
 

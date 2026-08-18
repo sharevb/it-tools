@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useTheme } from '../ui/c-link/c-link.theme';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 // Async: keeps markdown-it out of the startup bundle; the renderer only loads on
 // deployments that actually ship a home.custom.md.
@@ -8,7 +9,6 @@ const VueMarkdown = defineAsyncComponent(() => import('vue-markdown-render'));
 const linkTheme = useTheme();
 
 const homeCustomMarkdown = ref('');
-const base = import.meta.env.BASE_URL ?? '/';
 
 const res = await fetch(`${base}home.custom.md`);
 if (res.ok) {

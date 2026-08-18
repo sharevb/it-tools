@@ -8,6 +8,7 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { potrace as colorPotrace, init as colorPotraceInit } from 'esm-potrace-wasm';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { convertToSVG } from './colorVTracer';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const { t } = useI18n();
 
@@ -46,7 +47,6 @@ function file2Buffer(file: File) {
 }
 
 // import vtracer as JS module populating window.vtracerInit and ColorImageConverter
-const base = import.meta.env.BASE_URL ?? '/';
 const { load: loadVTracer } = useScriptTag(`${base}vtracer/vtracer_webapp.js`, undefined, { type: 'module', manual: true });
 await loadVTracer();
 

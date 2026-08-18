@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import createGSModule from 'ghostscript-wasm-esm';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const { t } = useI18n();
 
@@ -66,8 +67,6 @@ async function onFileUploaded(uploadedFile: File) {
     status.value = 'error';
   }
 }
-
-const base = import.meta.env.BASE_URL ?? '/';
 
 async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_exitcode: number) {
   gsCommand.value = args.join(' ');

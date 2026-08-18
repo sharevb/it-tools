@@ -5,9 +5,9 @@ import { LoadingPlugin } from 'vue-loading-overlay';
 
 import { installAbortSignalPolyfill } from 'abort-signal-polyfill';
 
-import { registerSW } from 'virtual:pwa-register';
 import shadow from 'vue-shadow-dom';
 import { plausible } from './plugins/plausible.plugin';
+import { appBaseUrl } from '@/utils/base-url';
 import '@/utils/json5-bigint';
 import '@/utils/json5-bignum';
 
@@ -37,7 +37,29 @@ window.addEventListener('vite:preloadError', (event: Event) => {
 
 installAbortSignalPolyfill();
 
-registerSW();
+// Not `registerSW()` from virtual:pwa-register: that one bakes the build-time base into
+// the script URL, which is a relative `./sw.js` here and would resolve against the current
+// route rather than the app root. The runtime base is known, so register against it
+// directly -- the generated service worker is base-agnostic (its precache entries are
+// relative to its own URL) and takes care of updating itself, see `registerType:
+// 'autoUpdate'` in vite.config.ts.
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  const registerServiceWorker = () => {
+    navigator.serviceWorker
+      .register(`${appBaseUrl}sw.js`, { scope: appBaseUrl })
+      .catch((error) => console.error('Service worker registration failed:', error));
+  };
+
+  // Registering competes with the page's own loading, so it waits for `load` -- but this
+  // module sits behind top-level awaits (the config fetches in tools-settings.ts and
+  // tools/index.ts), so `load` has usually fired long before we get here and waiting for
+  // it again would mean never registering at all.
+  if (document.readyState === 'complete') {
+    registerServiceWorker();
+  } else {
+    window.addEventListener('load', registerServiceWorker, { once: true });
+  }
+}
 
 const app = createApp(App);
 

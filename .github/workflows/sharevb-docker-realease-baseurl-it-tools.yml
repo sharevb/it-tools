@@ -1,5 +1,10 @@
 name: Build and Push Docker Image (baseurl-it-tools)
 
+# Kept for the deployments already pulling the `baseurl-it-tools` tag. It is no longer a
+# different build: BASE_URL is a runtime setting now, so this image is the same one as
+# `latest` with the default moved to /it-tools/, and `latest` with `-e BASE_URL=/it-tools/`
+# gets you exactly the same thing.
+
 env:
   VITE_VERCEL_ENV: production
 

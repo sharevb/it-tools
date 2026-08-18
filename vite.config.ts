@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import wasm from 'vite-plugin-wasm';
 
+import type { Plugin } from 'vite';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
@@ -24,8 +25,49 @@ import Sitemap from 'vite-plugin-sitemap';
 
 import { visualizer } from 'rollup-plugin-visualizer';
 
-const baseUrl = process.env.BASE_URL || '/';
+// Where the app will be served from. The build itself is path-agnostic -- `base` below is
+// relative, so every asset URL is resolved against the file that references it -- and this
+// only seeds the `<base href>` in index.html, which is what the app and the browser read
+// the deployment path from at runtime (see src/utils/base-url.ts).
+//
+// Setting it is only needed for a plain static deployment into a subfolder (GitHub Pages,
+// `dist` dropped into a directory), because there is no server to fill it in. The Docker
+// image leaves it at `/` and rewrites the tag per request from the BASE_URL environment
+// variable instead (see nginx.conf), which is why one image can serve any subpath.
+const baseUrl = normalizeBaseUrl(process.env.BASE_URL);
 const hostname = process.env.HOSTNAME;
+
+function normalizeBaseUrl(value: string | undefined): string {
+  const trimmed = (value ?? '').replace(/^\/+|\/+$/g, '');
+
+  return trimmed === '' ? '/' : `/${trimmed}/`;
+}
+
+// index.html gets exactly one `<base href>`, and it has to come before the first relative
+// URL in <head> -- Vite injects the entry script and the stylesheet links there, so this
+// splices it in right after the opening tag rather than relying on tag-injection order.
+// The emitted string is kept byte-stable on purpose: nginx.conf matches it literally to
+// swap in the runtime BASE_URL.
+function baseHref(base: string): Plugin {
+  return {
+    name: 'it-tools:base-href',
+    // Build only: the dev server always serves from the root (Vite normalizes a relative
+    // base to `/` for `serve`), and with no `<base>` the app falls back to `/` as well.
+    apply: 'build',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html) {
+        const withBase = html.replace(/<head(\s[^>]*)?>/i, match => `${match}\n    <base href="${base}">`);
+
+        if (withBase === html) {
+          throw new Error('it-tools:base-href: no <head> to inject the <base href> into');
+        }
+
+        return withBase;
+      },
+    },
+  };
+}
 
 // Locales are code-split: only en is bundled eagerly, the rest become lazy chunks fetched on
 // first use (see src/plugins/i18n.plugin.ts). VITE_AVAILABLE_LOCALES filters the locales
@@ -35,6 +77,7 @@ const includeLocales = [resolve(__dirname, 'src/tools/*/locales/**'), resolve(__
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    baseHref(baseUrl),
     VueI18n({
       runtimeOnly: true,
       compositionOnly: true,
@@ -64,7 +107,13 @@ export default defineConfig({
     svgLoader(),
     VitePWA({
       registerType: 'autoUpdate',
+      // src/main.ts registers the worker itself, against the base the app resolved at
+      // runtime. Turning the injection off means the plugin no longer infers the
+      // `autoUpdate` workbox flags either, hence skipWaiting/clientsClaim below.
+      injectRegister: false,
       workbox: {
+        skipWaiting: true,
+        clientsClaim: true,
         // Precache only the app shell so the service worker doesn't download every
         // tool chunk and WASM binary (~160 MB) on first visit; hashed assets are
         // cached on demand as tools are opened. Set VITE_PWA_FULL_PRECACHE=true to
@@ -74,7 +123,9 @@ export default defineConfig({
             ? ['**\/*.{js,wasm,css,html}']
             : ['**\/*.{css,html}'],
         maximumFileSizeToCacheInBytes: 25 * 1024 ** 2,
-        navigateFallback: `${baseUrl}index.html`,
+        // Relative, like every other precache entry: workbox resolves them against the
+        // service worker's own URL, so the same sw.js works under any deployment path.
+        navigateFallback: 'index.html',
         runtimeCaching: [
           {
             urlPattern: ({ sameOrigin, request }) =>
@@ -98,33 +149,36 @@ export default defineConfig({
         ],
       },
       strategies: 'generateSW',
+      // Every URL in here is relative to the manifest itself, which the browser fetches
+      // from the app root -- so the manifest, like the rest of the build, does not need to
+      // know where that root is.
       manifest: {
         name: 'IT Tools',
         description: 'Aggregated set of useful tools for developers.',
         display: 'standalone',
-        start_url: `${baseUrl}?utm_source=pwa&utm_medium=pwa`,
-        scope: baseUrl,
+        start_url: './?utm_source=pwa&utm_medium=pwa',
+        scope: './',
         orientation: 'any',
         theme_color: '#18a058',
         background_color: '#f1f5f9',
         icons: [
           {
-            src: `${baseUrl}favicon-16x16.png`,
+            src: './favicon-16x16.png',
             type: 'image/png',
             sizes: '16x16',
           },
           {
-            src: `${baseUrl}favicon-32x32.png`,
+            src: './favicon-32x32.png',
             type: 'image/png',
             sizes: '32x32',
           },
           {
-            src: `${baseUrl}android-chrome-192x192.png`,
+            src: './android-chrome-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: `${baseUrl}android-chrome-512x512.png`,
+            src: './android-chrome-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable',
@@ -169,7 +223,11 @@ export default defineConfig({
         })
       : undefined,
   ],
-  base: baseUrl,
+  // Relative, so a built asset is addressed from the chunk that imports it rather than
+  // from a path fixed at build time. This is what makes the output portable across
+  // deployment paths; `<base href>` (see baseHref above) covers the entry points in
+  // index.html, which the browser resolves against the document instead.
+  base: './',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

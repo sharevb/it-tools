@@ -1,8 +1,7 @@
 <script setup lang="ts">
+import { appBaseUrl as base } from '@/utils/base-url';
 const isDarkTheme = useDark();
 const iframeRef = ref<HTMLIFrameElement | null>(null);
-
-const base = import.meta.env.BASE_URL ?? '/';
 
 const c = new URLSearchParams(window.location.search).get('c');
 
