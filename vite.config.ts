@@ -40,7 +40,22 @@ const hostname = process.env.HOSTNAME;
 function normalizeBaseUrl(value: string | undefined): string {
   const trimmed = (value ?? '').replace(/^\/+|\/+$/g, '');
 
-  return trimmed === '' ? '/' : `/${trimmed}/`;
+  if (trimmed === '') {
+    return '/';
+  }
+
+  // The same rule the container applies to the runtime value
+  // (docker-entrypoint.d/18-resolve-base-url.envsh): a plain path built from unreserved
+  // characters. This one ends up spliced into an HTML attribute below, so a value carrying
+  // a quote would rewrite the tag around it, and one carrying a space or `..` would just
+  // quietly produce a page that loads from the wrong place. Fail the build instead.
+  const segments = trimmed.split('/');
+
+  if (segments.some(segment => segment === '..' || !/^[\w.~-]+$/.test(segment))) {
+    throw new Error(`BASE_URL must be a plain path such as "/it-tools/", got ${JSON.stringify(value)}`);
+  }
+
+  return `/${segments.join('/')}/`;
 }
 
 // index.html gets exactly one `<base href>`, and it has to come before the first relative

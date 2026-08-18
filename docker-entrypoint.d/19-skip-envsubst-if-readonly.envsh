@@ -28,7 +28,7 @@ if [ -d "${NGINX_ENVSUBST_TEMPLATE_DIR:-/etc/nginx/templates}" ] \
     # BASE_URL too, where the symptom (an app that loads from the wrong path) is a lot less
     # obvious than a port that did not move.
     if [ "${BASE_URL:-/}" != "/" ]; then
-        echo "19-skip-envsubst-if-readonly.envsh: warning: BASE_URL=$BASE_URL can not be applied on a read-only filesystem; mount a writable $_envsubst_output_dir (a tmpfs or an emptyDir will do)" >&2
+        echo "19-skip-envsubst-if-readonly.envsh: warning: BASE_URL=$BASE_URL cannot be applied on a read-only filesystem; mount a writable $_envsubst_output_dir (a tmpfs or an emptyDir will do)" >&2
     fi
     export NGINX_ENVSUBST_TEMPLATE_DIR=/nonexistent-read-only-filesystem
 fi
