@@ -4,10 +4,9 @@ export { appBaseUrl, resolveAppBaseUrl };
  * The path the app is served under, resolved at runtime instead of baked into the bundle.
  *
  * The build is path-agnostic: vite.config.ts uses a relative `base`, so hashed assets and
- * lazy chunks resolve against the URL of the chunk that imports them and `import.meta.env
- * .BASE_URL` is a useless `./`. The one thing that does know where the app lives is the
- * `<base href>` element injected into index.html at build time -- the container rewrites it
- * from the BASE_URL environment variable on the way out (see nginx.conf), which is what lets
+ * lazy chunks resolve against the URL of the chunk that imports them and `import.meta.env.BASE_URL` is a useless `./`.
+ * The one thing that does know where the app lives is the `<base href>` element injected into index.html at build time --
+ * the container rewrites it from the BASE_URL environment variable on the way out (see nginx.conf), which is what lets
  * a single image serve any subpath.
  *
  * Anything that builds a URL to a file shipped in `public/`, plus the router base, goes
