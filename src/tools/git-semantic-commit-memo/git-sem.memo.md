@@ -1,163 +1,186 @@
-# Conventional Commits Cheatsheet
+**Conventional Commits** is a convention for commit messages that both humans and tools can read: the type tells you what kind of change it is, and release tooling turns that into version numbers and changelogs automatically.
 
-## Structure
-
-A conventional commit message follows this structure:
-
-```
-<type>[optional scope]: <description>
+```text
+<type>[optional scope][!]: <description>
 
 [optional body]
 
 [optional footer(s)]
 ```
 
-## Elements
-
-### Type (Required)
-The type describes the kind of change being made. Common types include:
-
-- **feat**: A new feature for the user
-- **fix**: A bug fix for the user
-- **docs**: Documentation changes
-- **style**: Code style changes (formatting, missing semicolons, etc.)
-- **refactor**: Code changes that neither fix a bug nor add a feature
-- **test**: Adding or updating tests
-- **chore**: Maintenance tasks, dependency updates, build changes
-- **perf**: Performance improvements
-- **ci**: Changes to CI/CD configuration
-- **build**: Changes to build system or external dependencies
-- **revert**: Reverting a previous commit
-
-### Scope (Optional)
-The scope provides additional context about what part of the codebase is affected:
-
+```text
+feat(auth): add OAuth2 login
 ```
+
+## 🏷 Types
+
+| Type       | Use it for                                              | Release effect |
+|------------|---------------------------------------------------------|----------------|
+| `feat`     | A new feature for the user                              | Minor          |
+| `fix`      | A bug fix for the user                                  | Patch          |
+| `docs`     | Documentation only                                      | None           |
+| `style`    | Formatting, whitespace, semicolons — no logic change    | None           |
+| `refactor` | Code change that neither fixes a bug nor adds a feature | None           |
+| `perf`     | A change that improves performance                      | Patch          |
+| `test`     | Adding or correcting tests                              | None           |
+| `build`    | Build system or dependencies                            | None           |
+| `ci`       | CI configuration and scripts                            | None           |
+| `chore`    | Maintenance that does not touch src or tests            | None           |
+| `revert`   | Reverting an earlier commit                             | Depends        |
+
+> 💡 Any type with a `!` or a `BREAKING CHANGE:` footer triggers a **major** release, `feat` included.
+
+## 🎯 Scope
+
+The scope is an optional noun in parentheses naming the part of the codebase affected. Keep the list short and consistent — package names, modules, or layers.
+
+```text
 feat(auth): add OAuth2 integration
-fix(api): resolve timeout issues
-docs(readme): update installation instructions
+fix(api): resolve timeout on slow upstreams
+docs(readme): update the installation steps
+refactor(parser)!: drop support for the legacy format
 ```
 
-### Description (Required)
-A brief description of the change:
+## ✍️ Description
 
-- Use imperative mood ("add" not "added" or "adds")
-- Keep it concise (50 characters or less recommended)
-- Don't capitalize the first letter
-- Don't end with a period
+| Rule                           | ✅ Good                     | ❌ Avoid                         |
+|--------------------------------|-----------------------------|----------------------------------|
+| Imperative mood                | `add user export`           | `added user export`              |
+| Lower case, no trailing period | `fix flaky login test`      | `Fix flaky login test.`          |
+| Say what changed, not where    | `fix off-by-one in paging`  | `fix bug in file`                |
+| Around 50 characters           | `feat(api): add rate limit` | a full sentence with sub-clauses |
 
-### Body (Optional)
-Provides more detailed explanation of the change:
+## 📝 Body & Footers
 
-- Separate from description with a blank line
-- Explain the motivation and contrast with previous behavior
-- Use imperative mood
+The body explains **why**, not how — the diff already shows how. Separate it from the description with a blank line and wrap at ~72 characters.
 
-### Footer (Optional)
-Contains metadata about the commit:
+Footers come last, one per line:
 
-- **Breaking changes**: Start with `BREAKING CHANGE:`
-- **Issue references**: `Closes #123`, `Fixes #456`
-- **Co-authors**: `Co-authored-by: Name <email>`
+| Footer                         | Meaning                                       |
+|--------------------------------|-----------------------------------------------|
+| `BREAKING CHANGE: <what>`      | Incompatible change, forces a major release   |
+| `Closes #123` / `Fixes #456`   | Closes the issue when merged (GitHub, GitLab) |
+| `Refs #789`                    | Related, but does not close it                |
+| `Co-authored-by: Name <email>` | Credits a second author                       |
+| `Reviewed-by: Name <email>`    | Records the reviewer                          |
 
-## Examples
+## 💥 Breaking Changes
 
-### Simple commit
+Two ways to mark one — the `!` is visible in `git log --oneline`, the footer explains the migration. Use both.
+
+```text
+feat(api)!: require an email address when shipping
+
+BREAKING CHANGE: POST /orders now rejects requests without a customer
+email. Add the field before upgrading; see docs/migrations/2026-08.md.
 ```
+
+## 📄 Examples
+
+```text
 feat: add user authentication
 ```
 
-### With scope
-```
-fix(parser): handle edge case in JSON parsing
+```text
+fix(parser): handle a trailing comma in JSON input
 ```
 
-### With body
-```
+```text
 feat: add email notifications
 
-Users can now receive email notifications for important events.
-This includes account changes, security alerts, and system updates.
+Users can now receive email notifications for account changes,
+security alerts and system updates. Delivery is queued so a slow
+SMTP server never blocks the request.
 ```
 
-### With footer
-```
+```text
 fix: prevent racing of requests
 
-Introduce a request id and a reference to latest request. Dismiss
-incoming responses other than from latest request.
+Introduce a request id and a reference to the latest request.
+Dismiss incoming responses other than from the latest request.
 
 Closes #123
 ```
 
-### Breaking change
-```
-feat!: send an email to the customer when a product is shipped
+```text
+feat(cart): add the ability to remove items
 
-BREAKING CHANGE: The shipping service now requires an email address
-```
-
-### Full example
-```
-feat(shopping cart): add ability to remove items
-
-Users can now remove items from their shopping cart by clicking
-the remove button next to each item. This improves the user
-experience by allowing corrections without starting over.
+Users can remove items from the cart instead of starting over,
+which was the most common complaint in support tickets.
 
 Closes #456
 Co-authored-by: Jane Doe <jane@example.com>
 ```
 
-## Common Tools
+## 🔢 Versioning
 
-### Commitizen
-Interactive tool for creating conventional commits:
+Release tooling maps the history since the last tag onto a semantic version:
 
-```shell
-npm install -g commitizen
-npm install -g cz-conventional-changelog
+| Commits since the last release | New version from `1.4.2` |
+|--------------------------------|--------------------------|
+| Only `docs`, `chore`, `style`… | no release               |
+| At least one `fix` or `perf`   | `1.4.3`                  |
+| At least one `feat`            | `1.5.0`                  |
+| Any `!` or `BREAKING CHANGE:`  | `2.0.0`                  |
+
+## 🛠 Tooling
+
+### Commitizen — a prompt instead of a blank editor
+
+```bash
+npm install -g commitizen cz-conventional-changelog
 echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
-```
 
-Usage:
-```shell
+# then commit with
 git cz
 ```
 
-### Commitlint
-Lints commit messages to ensure they follow conventional format:
+### commitlint — reject messages that do not follow the convention
 
-```shell
-npm install --save-dev @commitlint/config-conventional @commitlint/cli
+```bash
+npm install --save-dev @commitlint/cli @commitlint/config-conventional
 ```
 
-Configuration in `.commitlintrc.json`:
 ```json
 {
   "extends": ["@commitlint/config-conventional"]
 }
 ```
 
-### Husky
-Git hooks to enforce commit message format:
+### husky — run commitlint from a git hook
 
-```shell
+```bash
 npm install --save-dev husky
-npx husky add .husky/commit-msg 'npx --no -- commitlint --edit ${1}'
+npx husky init
+
+# husky v9+: write the hook file yourself
+echo 'npx --no -- commitlint --edit "$1"' > .husky/commit-msg
 ```
 
-### Semantic Release
-Automatically generates releases based on conventional commits:
+### Releases & changelogs
 
-```shell
+```bash
+# decide the version, tag, and publish from the commit history
 npm install --save-dev semantic-release
+
+# or just generate the changelog
+npx conventional-changelog-cli -p angular -i CHANGELOG.md -s
+
+# a fast, language-agnostic alternative
+git cliff --tag v1.5.0 --output CHANGELOG.md
 ```
 
-### Conventional Changelog
-Generates changelogs from conventional commits:
+## ✅ Habits That Keep It Useful
 
-```shell
-npm install -g conventional-changelog-cli
-conventional-changelog -p angular -i CHANGELOG.md -s
-```
+- One logical change per commit — if the description needs an "and", split it.
+- Write the message for the person bisecting in six months, not for the linter.
+- Keep the scope vocabulary small and documented in `CONTRIBUTING.md`.
+- Never invent types the tooling does not know; `config` or `wip` silently drop out of the changelog.
+- Squash-merging? The **PR title** becomes the commit message, so lint that too.
+
+## 📚 Resources
+
+- [Conventional Commits specification](https://www.conventionalcommits.org/)
+- [commitlint](https://commitlint.js.org/)
+- [semantic-release](https://semantic-release.gitbook.io/)
+- [Semantic Versioning](https://semver.org/)
