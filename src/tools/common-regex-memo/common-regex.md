@@ -1,174 +1,253 @@
+Patterns you reach for again and again, written for the **JavaScript/PCRE** flavour. Drop the surrounding anchors (`^`…`$`) when you want to *find* matches inside a longer text instead of validating a whole string.
 
-### Commonly used Regex
- 
-#### 1\. Digits
+> ⚠️ Validation by regex is always an approximation. For emails, phone numbers, URLs and credit cards, a regex is a cheap first filter — the real check is a library, or sending the confirmation.
 
-* [Whole Numbers](https://www.regexpal.com/?fam=104020) – `/^\d+$/`
-* [Decimal Numbers](https://www.regexpal.com/?fam=104021) – `/^\d*\.\d+$/`
-* [Whole + Decimal Numbers](https://www.regexpal.com/?fam=104022) – `/^\d*(\.\d+)?$/`
-* [Negative, Positive Whole + Decimal Numbers](https://www.regexpal.com/?fam=104023) – `/^-?\d*(\.\d+)?$/`
-* [Whole + Decimal + Fractions](https://www.regexpal.com/94462) – `/[-]?[0-9]+[,.]?[0-9]*([\/][0-9]+[,.]?[0-9]*)*/`
+## 🔢 Numbers
 
-#### 2\. Alphanumeric Characters
+```regex
+# whole number
+^\d+$
 
-* [Alphanumeric without space](https://www.regexpal.com/?fam=104024) – `/^[a-zA-Z0-9]*$/`
-* [Alphanumeric with space](https://www.regexpal.com/?fam=104025) – `/^[a-zA-Z0-9 ]*$/`
+# decimal number
+^\d*\.\d+$
 
-#### 3\. Email
+# whole or decimal
+^\d*(\.\d+)?$
 
-* [Common email Ids](https://www.regexpal.com/?fam=104026) – `/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/`
-* [Uncommon email ids](https://www.regexpal.com/?fam=104027) – `/^([a-z0-9_\.\+-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
+# optional sign, whole or decimal
+^[+-]?\d*(\.\d+)?$
 
-#### 4\. Password Strength
+# thousands separators: 1,234,567.89
+^\d{1,3}(,\d{3})*(\.\d+)?$
 
-* [Complex](https://www.regexpal.com/?fam=104028): Should have 1 lowercase letter, 1 uppercase letter, 1 number, 1 special character and be at least 8 characters long 
+# percentage, 0–100 with optional decimals
+^(100(\.0+)?|\d{1,2}(\.\d+)?)%?$
 
-    /(?=(.\*\[0-9\]))(?=.\*\[\\!@#$%^&\*()\\\\\[\\\]{}\\-\_+=~\`|:;"'<>,./?\])(?=.\*\[a-z\])(?=(.\*\[A-Z\]))(?=(.\*)).{8,}/
+# hexadecimal number
+^(0[xX])?[0-9a-fA-F]+$
 
-* [Moderate](https://www.regexpal.com/?fam=104029): Should have 1 lowercase letter, 1 uppercase letter, 1 number, and be at least 8 characters long
-
-    /(?=(.\*\[0-9\]))((?=.\*\[A-Za-z0-9\])(?=.\*\[A-Z\])(?=.\*\[a-z\]))^.{8,}$/
-
-#### 5\. Username
-
-* [Alphanumeric string](https://www.regexpal.com/?fam=104030) that may include \_ and – having a length of 3 to 16 characters – `/^[a-z0-9_-]{3,16}$/`
-
-#### 6\. URL
-
-* Include [http(s) Protocol](https://www.regexpal.com/?fam=104034)
-
-```
-/https?:\\/\\/(www\\.)?\[-a-zA-Z0-9@:%.\_\\+~#=\]{2,256}\\.\[a-z\]{2,6}\\b(\[-a-zA-Z0-9@:%\_\\+.~#()?&//=\]\*)/
+# currency amount: $1,234.56
+^\$?\d{1,3}(,?\d{3})*(\.\d{2})?$
 ```
 
-* [Protocol Optional](https://www.regexpal.com/?fam=104035)
+## 🔤 Text & Identifiers
 
-```
-/(https?:\\/\\/)?(www\\.)?\[-a-zA-Z0-9@:%.\_\\+~#=\]{2,256}\\.\[a-z\]{2,6}\\b(\[-a-zA-Z0-9@:%\_\\+.~#?&//=\]\*)/
-```
+```regex
+# alphanumeric, no spaces
+^[a-zA-Z0-9]+$
 
-#### 7\. IP Address
+# alphanumeric with spaces
+^[a-zA-Z0-9 ]+$
 
-* [IPv4 address](https://www.regexpal.com/?fam=104036) 
-```
-/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
-```
-* [IPv6 address](https://www.regexpal.com/?fam=104037)
-```
-/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/
-```
+# username: 3–16 chars, letters, digits, underscore, dash
+^[a-z0-9_-]{3,16}$
 
-* Both [IPv4, IPv6 addresses](https://www.regexpal.com/?fam=104038)
-```
-/((^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$)|(^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$))/`
-```
+# slug: lowercase words joined by single dashes
+^[a-z0-9]+(?:-[a-z0-9]+)*$
 
-#### 8\. Dates
+# hex colour, 3 or 6 digits
+^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
 
-* Date Format [YYYY-MM-dd](https://www.regexpal.com/?fam=104039) using separator `-` 
-`/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/`
-* Date Format [dd-MM-YYYY](https://regexr.com/?346hf) using separators `-` or `.` or `/` 
-`/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/`
-* Date Format [dd-mmm-YYYY](https://regexr.com/39tr1) using separators `-` or `.` or `/` 
-`/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/`
- 
-#### 9\. Time
+# UUID v4
+^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
 
-* Time Format [HH:MM 12-hour](https://www.regexpal.com/?fam=104040), optional leading 0
+# semantic version (major.minor.patch with optional pre-release and build)
+^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$
 
-`/^(0?[1-9]|1[0-2]):[0-5][0-9]$/`
+# leading and trailing whitespace
+^\s+|\s+$
 
-* Time Format HH:MM 12-hour, optional leading 0, **[Meridiems (AM/PM)](https://www.regexpal.com/?fam=104041)**
-
-`/((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/`
-
-* Time Format [HH:MM 24-hour](https://www.regexpal.com/?fam=104042) with leading 0
-
-`/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/`
-
-* Time Format [HH:MM 24-hour, optional leading 0](https://www.regexpal.com/?fam=104043)
-
-`/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/`
-
-* Time Format [HH:MM:SS 24-hour](https://www.regexpal.com/?fam=104044)
-
-`/(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)/`
-
-#### 10\. HTML Tags
-
-* [Elements with Attributes](https://www.regexpal.com/95941) `/<\/?[\w\s]*>|<.+[\W]>/`
-
-#### 11\. Javascript Handlers
-
-* [Inline JS handler](https://www.regexpal.com/?fam=104055) `/\bon\w+=\S+(?=.*>)/`
-* [Inline JS handler with element](https://www.regexpal.com/94641) `/(?:<[^>]+\s)(on\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/`
-
-#### 12\. Slug
-
-* [Slug](https://www.regexpal.com/?fam=104056) `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`
-
-#### 13\. Match Duplicates in a String
-
-* [Search Duplicates](https://www.regexpal.com/?fam=104060) `/(\b\w+\b)(?=.*\b\1\b)/`
-
-#### 14\. Phone Numbers
-
-* [International Phone Numbers](https://www.regexpal.com/?fam=99127) – with optional country code/extension
-```
-`/* International Phone Numbers */`
-/^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:``#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/
+# blank or whitespace-only line
+^\s*$
 ```
 
-_Note:_ Use regex for validating phone numbers **only** if you don’t have the choice to use a library. There are [several libraries](https://stackoverflow.com/a/15644461/4717533) that handle phone numbers more accurately and should be used instead.
+## 📧 Email
 
-#### 15\. File Path
+```regex
+# pragmatic: good enough for a form field
+^[^\s@]+@[^\s@]+\.[^\s@]+$
 
-* [File Path with Filename and extension](https://www.regexpal.com/?fam=104047)
+# stricter on the allowed characters
+^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
 
-```
-/((\\/|\\\\|\\/\\/|https?:\\\\\\\\|https?:\\/\\/)\[a-z0-9 \_@\\-^!#$%&+={}.\\/\\\\\\\[\\\]\]+)+\\.\[a-z\]+$/
-```
-
-* File Path with optional Filename, extension
-
-```
-/^(.+)/(\[^/\]+)$/
+# find addresses inside a body of text
+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}
 ```
 
-* [File Name with extension](https://www.regexpal.com/?fam=104048) having 3 chars
+## 🔗 URLs
 
-```
-/^\[\\w,\\s-\]+\\.\[A-Za-z\]{3}$/
-```
+```regex
+# http(s) URL
+^https?:\/\/[^\s/$.?#].[^\s]*$
 
-### Additional Regexes
+# protocol optional
+^(https?:\/\/)?([\w-]+\.)+[a-z]{2,}(\/[^\s]*)?$
 
-#### 1\. Zip codes
+# domain name only
+^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$
 
-There is **NO** single Regex that can handle all zip codes given that zip codes around the world do not follow a common pattern. Here is a [list](https://stackoverflow.com/a/7185241/4717533) that contains Regex specific to each country.
+# extract every link from text
+https?:\/\/[^\s<>"']+
 
-#### 2\. Payment Validation
-
-Here is a [link](https://www.regular-expressions.info/creditcard.html) that contains regex for validating leading Credit cards like Visa, Mastercard and so on.
-
-#### 3\. Identity Documents
-
-* Social Security Number – [Ref](https://www.codeproject.com/Articles/651609/Validating-Social-Security-Numbers-through-Regular)
-
-```
-/\* can use either hypen(-) or space( ) character as separator \*/
-
-/^((?!219-09-9999|078-05-1120)(?!666|000|9\\d{2})\\d{3}-(?!00)\\d{2}-(?!0{4})\\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\\d{2})\\d{3} (?!00)\\d{2} (?!0{4})\\d{4})|((?!219099999|078051120)(?!666|000|9\\d{2})\\d{3}(?!00)\\d{2}(?!0{4})\\d{4})$/
+# capture the parts: protocol, host, path
+^(https?):\/\/([^\/\s:]+)(?::(\d+))?(\/[^\s?#]*)?
 ```
 
-* Passport – `/^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$/`
+## 🌐 Network
 
-#### References
-* [https://www.codeproject.com/validate-passport-number](https://www.codeproject.com/Questions/1046445/How-to-validate-passport-number-using-javascript)
-* [https://gist.github.com/](https://gist.github.com/nerdsrescueme/1237767)
-* [https://code.tutsplus.com/regular-expressions](https://code.tutsplus.com/tutorials/8-regular-expressions-you-should-know--net-6149)
-* [https://www.regular-expressions.info](https://www.regular-expressions.info/)
-* [http://www.regexlib.com/](http://www.regexlib.com/)
-* [https://projects.lukehaas.me/regexhub/](https://projects.lukehaas.me/regexhub/)
-* [http://wiki.zoolz.com/commonly-used-regular-expressions/](http://wiki.zoolz.com/commonly-used-regular-expressions/)
-* [https://www.smashingmagazine.com/advanced-regular-expressions/](https://www.smashingmagazine.com/2009/05/introduction-to-advanced-regular-expressions/)
+```regex
+# IPv4 address
+^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$
+
+# IPv4 with CIDR prefix
+^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\/(3[0-2]|[12]?\d)$
+
+# IPv6, full or compressed
+^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:(:[0-9a-fA-F]{1,4}){1,6}|:((:[0-9a-fA-F]{1,4}){1,7}|:))$
+
+# MAC address, colon- or dash-separated
+^([0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$
+
+# port number, 0–65535
+^([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$
+```
+
+## 📅 Dates & Times
+
+```regex
+# ISO 8601 date: 2026-08-22
+^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$
+
+# ISO 8601 date and time with optional zone
+^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:?\d{2})?$
+
+# day-first with - . or / as separator
+^(0?[1-9]|[12]\d|3[01])([-./])(0?[1-9]|1[0-2])\2\d{4}$
+
+# 24-hour time, optional seconds
+^([01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$
+
+# 12-hour time with meridiem
+^(0?[1-9]|1[0-2]):[0-5]\d\s?([AaPp][Mm])$
+
+# duration in ISO 8601: P1DT2H30M
+^P(?!$)(\d+Y)?(\d+M)?(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+S)?)?$
+```
+
+> ℹ️ These check the *shape*, not the calendar — `2026-02-31` passes. Parse the value if the date has to be real.
+
+## 🔐 Password Rules
+
+Each requirement is a lookahead; combine only the ones you actually need.
+
+```regex
+# at least 8 characters, one lower, one upper, one digit
+^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$
+
+# the same, plus one special character
+^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$
+
+# at least 12 characters, no other rules (the modern recommendation)
+^.{12,}$
+
+# individual checks, to report which rule failed
+[a-z]        # has a lower-case letter
+[A-Z]        # has an upper-case letter
+\d           # has a digit
+[^\w\s]      # has a symbol
+```
+
+## ☎️ Phone Numbers
+
+```regex
+# E.164, the format to store numbers in
+^\+[1-9]\d{1,14}$
+
+# lenient international, allowing spaces, dashes, dots and parentheses
+^\+?[\d\s().-]{7,20}$
+
+# North American number, with or without country code
+^(\+?1[-. ]?)?\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}$
+```
+
+> 💡 Use a library (libphonenumber and its ports) for anything beyond a smoke test — numbering plans change, and regex cannot know which prefixes exist.
+
+## 📄 Files & Paths
+
+```regex
+# file name with an extension
+^[\w,\s-]+\.[A-Za-z0-9]+$
+
+# capture the name and the extension separately
+^(.+?)\.([A-Za-z0-9]+)$
+
+# extension only
+\.[0-9a-z]+$
+
+# absolute Unix path
+^(\/[^\/\0]+)+\/?$
+
+# Windows path
+^[a-zA-Z]:\\(?:[^\\/:*?"<>|\r\n]+\\)*[^\\/:*?"<>|\r\n]*$
+
+# image file
+\.(jpe?g|png|gif|webp|avif|svg)$
+```
+
+## 🏷 Markup & Logs
+
+```regex
+# any HTML tag
+<\/?[a-zA-Z][\w-]*(\s[^>]*)?>
+
+# HTML comment
+<!--[\s\S]*?-->
+
+# inline JavaScript handler: onclick=, onload=, ...
+\bon\w+\s*=\s*["'][^"']*["']
+
+# content between double quotes (non-greedy)
+"([^"\\]*(\\.[^"\\]*)*)"
+
+# an @mention or #hashtag
+[@#][\w-]+
+
+# common log line: IP, timestamp, method, path, status
+^(\S+) \S+ \S+ \[([^\]]+)\] "(\w+) ([^"]*)" (\d{3})
+```
+
+## 🧰 Handy Tricks
+
+```regex
+# a word repeated later in the same text
+(\b\w+\b)(?=.*\b\1\b)
+
+# two consecutive identical words
+\b(\w+)\s+\1\b
+
+# a line that does NOT contain a word
+^(?!.*forbidden).*$
+
+# everything between two markers, non-greedy
+BEGIN([\s\S]*?)END
+
+# strip ANSI colour codes
+\x1B\[[0-9;]*[A-Za-z]
+
+# split CSV, respecting quoted fields
+("([^"]|"")*"|[^,]*)(,|$)
+```
+
+## ⚠️ Notes
+
+- **Postal codes have no universal pattern** — every country differs. Look up the one you need.
+- **Credit cards**: check the shape, then verify with the Luhn algorithm; brand prefixes are documented at [regular-expressions.info](https://www.regular-expressions.info/creditcard.html).
+- **National identifiers** (SSN, passport, tax numbers) carry checksums and legal edge cases a regex cannot express.
+- **Watch out for catastrophic backtracking** in patterns with nested quantifiers — test any user-facing regex against long, nearly-matching input.
+
+## 📚 Resources
+
+- [regex101 — test and explain](https://regex101.com)
+- [Regular-Expressions.info](https://www.regular-expressions.info/)
+- [RegExHub — common patterns](https://projects.lukehaas.me/regexhub/)
+- [MDN — regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions)
