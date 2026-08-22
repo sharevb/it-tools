@@ -1,482 +1,539 @@
-Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allows you to run many containers simultaneously on a given host. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
+**Docker** packages an application and everything it needs into a *container* — a lightweight, isolated process that runs the same way on any host. Images are the immutable blueprints; containers are running instances of them.
 
-## Installation & Resources
+- **Image** — a read-only template built from a `Dockerfile`
+- **Container** — a running (or stopped) instance of an image
+- **Volume** — storage that outlives the container that wrote it
+- **Network** — a virtual network where containers reach each other by name
+- **Registry** — where images are pushed and pulled (Docker Hub, GHCR, ECR, …)
 
-- Docker Desktop (Mac, Linux, Windows): https://docs.docker.com/desktop
-- Example projects using Docker: https://github.com/docker/awesome-compose
-- Official documentation: https://docs.docker.com
+> 💡 Every subcommand has its own help: `docker run --help`, `docker compose up --help`.
 
-## General Commands
+## ⚡ Most-Used Commands
 
-Start the Docker daemon:
+| Command                          | What it does                               |
+|----------------------------------|--------------------------------------------|
+| `docker ps -a`                   | List all containers, running or not        |
+| `docker images`                  | List local images                          |
+| `docker run -it --rm <image> sh` | Throwaway shell in a fresh container       |
+| `docker exec -it <container> sh` | Shell inside a *running* container         |
+| `docker logs -f <container>`     | Follow a container's output                |
+| `docker build -t <name>:<tag> .` | Build an image from the local `Dockerfile` |
+| `docker compose up -d --build`   | Rebuild and start a whole stack            |
+| `docker system df`               | See what is eating your disk               |
+
+## 🧭 General
+
 ```bash
+# start the Docker daemon (usually done by the service manager)
 dockerd
-```
 
-Get help with Docker (works on all subcommands, e.g. `docker run --help`):
-```bash
+# top-level help; works on every subcommand
 docker --help
-```
 
-Display system-wide information:
-```bash
+# system-wide information: storage driver, resources, warnings
 docker info
-```
 
-Show Docker version (client and server):
-```bash
+# client and server versions
 docker version
+
+# list contexts (local socket, remote hosts, ...)
+docker context ls
+
+# target another daemon with the same commands
+docker context use <ctx>
+
+# live stream of daemon events
+docker events
 ```
 
-## Images
+## 📦 Images
 
-Docker images are a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries, and settings.
+An image is a stack of read-only layers: code, runtime, libraries and settings baked together.
 
-Build an image from a Dockerfile in the current directory:
 ```bash
-docker build -t <image_name> .
-```
+# build from the Dockerfile in this directory
+docker build -t <image> .
 
-Build an image without using the cache:
-```bash
-docker build -t <image_name> . --no-cache
-```
+# build and tag, e.g. myapp:1.2
+docker build -t <image>:<tag> .
 
-Build with a specific tag (e.g. `myapp:v1.2`):
-```bash
-docker build -t <image_name>:<tag> .
-```
+# rebuild every layer from scratch
+docker build -t <image> . --no-cache
 
-List local images:
-```bash
+# use a Dockerfile somewhere else
+docker build -f <path>/Dockerfile -t <image> .
+
+# pass a build argument
+docker build --build-arg KEY=value -t <image> .
+
+# stop at a stage of a multi-stage build
+docker build --target <stage> -t <image> .
+
+# build for another architecture
+docker build --platform linux/amd64 -t <image> .
+
+# list local images
 docker images
-```
 
-Tag an image for pushing to a registry:
-```bash
-docker tag <image> <username>/<image>:<tag>
-```
+# include intermediate layers
+docker images -a
 
-Delete an image:
-```bash
-docker rmi <image_name>
-```
+# add a name for a registry
+docker tag <image> <user>/<image>:<tag>
 
-Remove dangling (unused) images:
-```bash
+# full metadata as JSON
+docker inspect <image>
+
+# layers, sizes and the commands behind them
+docker history <image>
+
+# delete an image
+docker rmi <image>
+
+# force-delete an image containers still reference
+docker rmi -f <image>
+
+# remove dangling images
 docker image prune
-```
 
-Remove all unused images, not just dangling:
-```bash
+# remove every image no container uses
 docker image prune -a
+
+# export an image to a tarball
+docker save -o <file>.tar <image>
+
+# import an image from a tarball
+docker load -i <file>.tar
 ```
 
-Show the layers of an image:
+## 🐳 Registries & Docker Hub
+
+[Docker Hub](https://hub.docker.com) is the default public registry; the same commands work against any other one.
+
 ```bash
-docker history <image_name>
-```
-
-## Docker Hub
-
-Docker Hub is a service for finding and sharing container images. Learn more at https://hub.docker.com
-
-Log in to Docker Hub:
-```bash
+# log in to Docker Hub
 docker login -u <username>
-```
 
-Log out:
-```bash
+# log in to a private registry (GHCR, ECR, ...)
+docker login <registry-url>
+
+# drop the stored credentials
 docker logout
+
+# search Docker Hub from the terminal
+docker search <term>
+
+# pull the :latest tag
+docker pull <image>
+
+# pull a specific tag
+docker pull <image>:<tag>
+
+# pull for another architecture
+docker pull --platform linux/arm64 <image>
+
+# publish an image
+docker push <user>/<image>:<tag>
+
+# architectures available for a tag
+docker manifest inspect <image>:<tag>
 ```
 
-Search Docker Hub for an image:
+## 🚢 Running Containers
+
 ```bash
-docker search <image_name>
+# create and start a container
+docker run <image>
+
+# give it a stable name
+docker run --name <container> <image>
+
+# detached: run in the background
+docker run -d <image>
+
+# interactive shell (sh on minimal images)
+docker run -it <image> bash
+
+# delete the container as soon as it exits
+docker run --rm <image>
+
+# publish a port, e.g. -p 8080:80
+docker run -p <host>:<container> <image>
+
+# publish every EXPOSEd port on random ports
+docker run -P <image>
+
+# set an environment variable
+docker run -e KEY=value <image>
+
+# load environment variables from a file
+docker run --env-file ./.env <image>
+
+# mount a named volume
+docker run -v <volume>:/data <image>
+
+# bind-mount the current directory
+docker run -v $(pwd):/app <image>
+
+# bind-mount the current directory read-only
+docker run -v $(pwd):/app:ro <image>
+
+# set the working directory
+docker run -w /app <image> <command>
+
+# run as your own UID/GID, not root
+docker run -u $(id -u):$(id -g) <image>
+
+# attach to a user-defined network
+docker run --network <network> <image>
+
+# restart policy, see the flags table below
+docker run --restart unless-stopped <image>
+
+# cap the resources it may use
+docker run --memory 512m --cpus 1.5 <image>
+
+# override the image entrypoint
+docker run --entrypoint <cmd> <image>
+
+# create without starting
+docker create --name <container> <image>
 ```
 
-Pull an image from Docker Hub:
+## 🎛 Managing Containers
+
 ```bash
-docker pull <image_name>
-```
-
-Pull a specific tagged version:
-```bash
-docker pull <image_name>:<tag>
-```
-
-Publish an image to Docker Hub:
-```bash
-docker push <username>/<image_name>
-```
-
-## Containers
-
-A container is a runtime instance of a Docker image. A container will always run the same, regardless of the infrastructure. Containers isolate software from its environment and ensure it works uniformly across development, staging, and production.
-
-### Running containers
-
-Create and run a container from an image:
-```bash
-docker run <image_name>
-```
-
-Run with a custom name:
-```bash
-docker run --name <container_name> <image_name>
-```
-
-Run in the background (detached):
-```bash
-docker run -d <image_name>
-```
-
-Run interactively with a shell:
-```bash
-docker run -it <image_name> bash
-```
-
-Auto-remove the container when it exits:
-```bash
-docker run --rm <image_name>
-```
-
-Publish a container's port to the host:
-```bash
-docker run -p <host_port>:<container_port> <image_name>
-```
-
-Set an environment variable:
-```bash
-docker run -e KEY=value <image_name>
-```
-
-Load environment variables from a file:
-```bash
-docker run --env-file ./env.list <image_name>
-```
-
-Mount a named volume:
-```bash
-docker run -v <volume_name>:/path/in/container <image_name>
-```
-
-Bind-mount the current directory:
-```bash
-docker run -v $(pwd):/app <image_name>
-```
-
-Set a restart policy (options: `no`, `on-failure`, `always`, `unless-stopped`):
-```bash
-docker run --restart unless-stopped <image_name>
-```
-
-Attach to a specific network:
-```bash
-docker run --network <network_name> <image_name>
-```
-
-### Managing containers
-
-List currently running containers:
-```bash
+# running containers
 docker ps
-```
 
-List all containers (running and stopped):
-```bash
+# every container, running or exited
 docker ps -a
-```
 
-Start a stopped container:
-```bash
-docker start <container_name>
-```
+# IDs only — handy for scripting
+docker ps -q
 
-Stop a running container:
-```bash
-docker stop <container_name>
-```
+# filter by status, name, label, ancestor, ...
+docker ps --filter "status=exited"
 
-Restart a container:
-```bash
-docker restart <container_name>
-```
+# start a stopped container
+docker start <container>
 
-Remove a stopped container:
-```bash
-docker rm <container_name>
-```
+# graceful stop (SIGTERM, then SIGKILL)
+docker stop <container>
 
-Force-remove a running container:
-```bash
-docker rm -f <container_name>
-```
+# stop and start again
+docker restart <container>
 
-Remove all stopped containers:
-```bash
+# immediate SIGKILL
+docker kill <container>
+
+# freeze all processes in the container
+docker pause <container>
+
+# resume them
+docker unpause <container>
+
+# remove a stopped container
+docker rm <container>
+
+# stop and remove in one go
+docker rm -f <container>
+
+# rename a container
+docker rename <old> <new>
+
+# change resource limits or restart policy live
+docker update --restart=always <container>
+
+# remove every stopped container
 docker container prune
+
+# block until it exits, then print its exit code
+docker wait <container>
 ```
 
-Rename a container:
-```bash
-docker rename <old_name> <new_name>
-```
+## 🔍 Inspecting & Debugging
 
-### Inspecting and interacting
-
-Open a shell inside a running container:
 ```bash
-docker exec -it <container_name> bash
-```
+# shell inside a running container
+docker exec -it <container> bash
 
-Use `sh` for minimal images (e.g. alpine) that don't ship bash:
-```bash
-docker exec -it <container_name> sh
-```
+# for alpine/distroless-style images
+docker exec -it <container> sh
 
-Fetch logs:
-```bash
-docker logs <container_name>
-```
+# get in as root to install debug tools
+docker exec -it -u root <container> sh
 
-Follow logs (like `tail -f`):
-```bash
-docker logs -f <container_name>
-```
+# run a one-off command
+docker exec <container> <command>
 
-Show only the last 100 lines:
-```bash
-docker logs --tail 100 <container_name>
-```
+# print the container's output
+docker logs <container>
 
-Show low-level container details (JSON):
-```bash
-docker inspect <container_name>
-```
+# follow it, like tail -f
+docker logs -f <container>
 
-Live resource usage stats for all containers:
-```bash
+# last 100 lines, with timestamps
+docker logs --tail 100 -t <container>
+
+# only the last 10 minutes
+docker logs --since 10m <container>
+
+# low-level details as JSON
+docker inspect <container>
+
+# one field via a Go template
+docker inspect -f '{{.State.Status}}' <container>
+
+# the container's IP address on the default bridge
+docker inspect -f '{{.NetworkSettings.IPAddress}}' <container>
+
+# live CPU/memory/IO for all containers
 docker stats
+
+# processes running inside
+docker top <container>
+
+# published port mappings
+docker port <container>
+
+# filesystem changes since it started
+docker diff <container>
+
+# copy a file out of a container
+docker cp <container>:/path/file ./
+
+# copy a file into a container
+docker cp ./file <container>:/path/
+
+# snapshot a container as a new image
+docker commit <container> <image>:<tag>
+
+# attach to the main process (Ctrl-P Ctrl-Q detaches)
+docker attach <container>
 ```
 
-Show running processes inside a container:
+## 💾 Volumes
+
+Volumes keep data outside the container's writable layer, so it survives `docker rm` and image upgrades.
+
 ```bash
-docker top <container_name>
-```
+# create a named volume
+docker volume create <volume>
 
-Copy a file out of a container:
-```bash
-docker cp <container_name>:/path/in/container ./
-```
-
-Copy a file into a container:
-```bash
-docker cp ./local_file <container_name>:/path/
-```
-
-Show filesystem changes since container start:
-```bash
-docker diff <container_name>
-```
-
-## Volumes
-
-Volumes persist data outside the container's writable layer, so data survives container removal.
-
-Create a named volume:
-```bash
-docker volume create <volume_name>
-```
-
-List volumes:
-```bash
+# list volumes
 docker volume ls
-```
 
-Show details about a volume:
-```bash
-docker volume inspect <volume_name>
-```
+# driver, mount point, labels
+docker volume inspect <volume>
 
-Remove a volume:
-```bash
-docker volume rm <volume_name>
-```
+# delete a volume (and its data)
+docker volume rm <volume>
 
-Remove all unused volumes:
-```bash
+# delete every unused volume
 docker volume prune
+
+# named volume, managed by Docker
+docker run -v <volume>:/data <image>
+
+# bind mount from the host
+docker run -v $(pwd):/app <image>
+
+# explicit bind-mount syntax
+docker run --mount type=bind,src=$(pwd),dst=/app <image>
+
+# the same named volume, spelled out with --mount
+docker run --mount type=volume,src=<volume>,dst=/data <image>
+
+# in-memory scratch space
+docker run --tmpfs /tmp <image>
 ```
 
-Attach a named volume to a container (managed by Docker):
+> 💡 Back up a volume: `docker run --rm -v <volume>:/data -v $(pwd):/backup alpine tar czf /backup/backup.tar.gz -C /data .`
+
+## 🌐 Networks
+
+Containers on the same user-defined network resolve each other by container name.
+
 ```bash
-docker run -v <volume_name>:/data <image_name>
-```
-
-Bind-mount a host path into a container:
-```bash
-docker run -v $(pwd):/app <image_name>
-```
-
-Equivalent bind mount using the `--mount` syntax:
-```bash
-docker run --mount type=bind,src=$(pwd),dst=/app <image_name>
-```
-
-## Networks
-
-Containers on the same network can reach each other by container name.
-
-List networks:
-```bash
+# list networks
 docker network ls
-```
 
-Create a network:
-```bash
-docker network create <network_name>
-```
+# create a bridge network
+docker network create <network>
 
-Show network details:
-```bash
-docker network inspect <network_name>
-```
+# create a network with a fixed subnet
+docker network create --driver bridge --subnet 172.30.0.0/16 <network>
 
-Attach a running container to a network:
-```bash
-docker network connect <network_name> <container_name>
-```
+# subnet and connected containers
+docker network inspect <network>
 
-Detach a container from a network:
-```bash
-docker network disconnect <network_name> <container_name>
-```
+# attach a running container
+docker network connect <network> <container>
 
-Remove a network:
-```bash
-docker network rm <network_name>
-```
+# detach it again
+docker network disconnect <network> <container>
 
-Remove all unused networks:
-```bash
+# delete a network
+docker network rm <network>
+
+# delete every unused network
 docker network prune
+
+# share the host network stack (Linux)
+docker run --network host <image>
+
+# no networking at all
+docker run --network none <image>
 ```
 
-## Docker Compose
+## 🧩 Docker Compose
 
-Compose runs multi-container apps from a single `compose.yaml` (or `docker-compose.yml`) file.
+Compose describes a multi-container application in a single `compose.yaml` (or `docker-compose.yml`).
 
-Start all services (foreground):
 ```bash
+# start every service in the foreground
 docker compose up
-```
 
-Start all services (detached):
-```bash
+# start detached
 docker compose up -d
-```
 
-Rebuild images before starting:
-```bash
-docker compose up --build
-```
+# rebuild images first
+docker compose up -d --build
 
-Stop and remove containers and networks:
-```bash
+# start one service and its dependencies
+docker compose up -d <service>
+
+# stop and remove containers and networks
 docker compose down
-```
 
-Also remove named volumes:
-```bash
+# stop, remove, and delete the named volumes too
 docker compose down -v
-```
 
-List services in the project:
-```bash
+# status of the project's services
 docker compose ps
-```
 
-Follow logs for all services:
-```bash
+# follow the logs of all services
 docker compose logs -f
-```
 
-Follow logs for one service:
-```bash
+# follow the logs of a single service
 docker compose logs -f <service>
-```
 
-Build (or rebuild) services:
-```bash
+# (re)build the service images
 docker compose build
-```
 
-Pull service images:
-```bash
+# pull the service images
 docker compose pull
-```
 
-Open a shell in a running service:
-```bash
-docker compose exec <service> bash
-```
+# shell inside a running service
+docker compose exec <service> sh
 
-Run a one-off command in a new container:
-```bash
-docker compose run --rm <service> <command>
-```
+# one-off command in a new container
+docker compose run --rm <service> <cmd>
 
-Restart a single service:
-```bash
+# restart one service
 docker compose restart <service>
-```
 
-Validate and view the resolved compose file:
-```bash
+# stop the containers, keep them around
+docker compose stop
+
+# start them again
+docker compose start
+
+# validate and print the resolved configuration
 docker compose config
+
+# processes running in each service
+docker compose top
+
+# use a specific compose file
+docker compose -f <file> up -d
+
+# include services behind a profile
+docker compose --profile <name> up -d
+
+# rebuild/sync automatically on file changes
+docker compose watch
 ```
 
-## System & Cleanup
+## 🧹 System & Cleanup
 
-Disk usage adds up fast. These commands reclaim space.
+Disk usage adds up fast — these are the commands that give the space back.
 
-Show disk usage (images, containers, volumes, build cache):
 ```bash
+# what images, containers, volumes and cache cost
 docker system df
-```
 
-Remove stopped containers, dangling images, and unused networks:
-```bash
+# the same, itemised
+docker system df -v
+
+# stopped containers, dangling images, unused networks
 docker system prune
-```
 
-Also remove all unused images (not just dangling):
-```bash
+# the same, plus every image no container uses
 docker system prune -a
-```
 
-Also remove unused volumes (destructive — double-check before running):
-```bash
+# the same, plus unused volumes ⚠️ destructive
 docker system prune -a --volumes
-```
 
-Clean the build cache:
-```bash
+# clear the build cache
 docker builder prune
+
+# images unused for more than a week
+docker image prune -a --filter "until=168h"
 ```
 
-## Quick Reference: Common Flags
+> ⚠️ `--volumes` deletes data no running container is using. Check `docker volume ls` first.
 
-| Flag | Meaning |
-|------|---------|
-| `-d` | Detached (run in background) |
-| `-it` | Interactive + TTY (for shells) |
-| `--rm` | Remove container when it exits |
-| `-p host:container` | Publish a port |
-| `-v src:dst` | Mount volume or bind mount |
-| `-e KEY=value` | Environment variable |
-| `--name` | Assign a container name |
-| `--network` | Attach to a network |
-| `--restart` | Restart policy (`no`, `on-failure`, `always`, `unless-stopped`) |
+## 💡 Handy One-Liners
+
+```bash
+# stop every running container
+docker stop $(docker ps -q)
+
+# remove every container
+docker rm -f $(docker ps -aq)
+
+# remove dangling images
+docker rmi $(docker images -qf dangling=true)
+
+# shell into the most recent container
+docker exec -it $(docker ps -ql) sh
+
+# disposable dev environment
+docker run --rm -it -v $(pwd):/app -w /app node:22 sh
+
+# follow logs by partial name
+docker logs -f $(docker ps -qf name=<partial>)
+
+# list every mount of a container
+docker inspect \
+  -f '{{range .Mounts}}{{.Source}} -> {{.Destination}}{{println}}{{end}}' <container>
+```
+
+## 🛠 Common Flags Reference
+
+| Flag                          | Meaning                                          |
+|-------------------------------|--------------------------------------------------|
+| `-d`, `--detach`              | Run in the background                            |
+| `-it`                         | Interactive session with a TTY (shells)          |
+| `--rm`                        | Remove the container when it exits               |
+| `-p <host>:<container>`       | Publish a port to the host                       |
+| `-v <src>:<dst>[:ro]`         | Named volume or bind mount, optionally read-only |
+| `-e KEY=value` / `--env-file` | Environment variables                            |
+| `--name`                      | Assign a stable container name                   |
+| `--network`                   | Attach to a network                              |
+| `--restart`                   | `no`, `on-failure`, `always`, `unless-stopped`   |
+| `-u <uid>:<gid>`              | Run as a specific user                           |
+| `-w <dir>`                    | Working directory inside the container           |
+| `--memory` / `--cpus`         | Resource limits                                  |
+| `--platform`                  | Target architecture, e.g. `linux/arm64`          |
+
+## 📚 Resources
+
+- [Official documentation](https://docs.docker.com)
+- [Docker Desktop (Mac, Linux, Windows)](https://docs.docker.com/desktop)
+- [CLI reference](https://docs.docker.com/reference/cli/docker/)
+- [Dockerfile reference](https://docs.docker.com/reference/dockerfile/)
+- [Compose file reference](https://docs.docker.com/reference/compose-file/)
+- [Awesome Compose — example projects](https://github.com/docker/awesome-compose)

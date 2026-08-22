@@ -1,247 +1,576 @@
-## Configuration
+**Git** is a distributed version control system: every clone is a full repository with its own history, branches and tags. This is a quick reference for the commands that come up daily — placeholders are written as `<file>`, `<branch>`, `<commit>` and `<url>`.
 
-Set the global config
-```shell
-git config --global user.name "[name]"
-git config --global user.email "[email]"
+> 💡 Every command below has its own help (`git rebase --help`), and the destructive ones (`clean`, `push`, `rm`, `mv`) take `-n` / `--dry-run` to preview what would happen.
+
+## ⚙️ Configuration
+
+```bash
+# identity used on every commit
+git config --global user.name "<name>"
+git config --global user.email "<email>"
+
+# name of the branch created by git init
+git config --global init.defaultBranch main
+
+# editor for messages, rebases, ...
+git config --global core.editor "code --wait"
+
+# rebase instead of merging on pull
+git config --global pull.rebase true
+
+# plain 'git push' works on new branches
+git config --global push.autoSetupRemote true
+
+# every setting and the file it came from
+git config --list --show-origin
+
+# override for this repository only
+git config --local user.email "<work-email>"
 ```
 
-## Get started
+Handy aliases:
 
-Create a git repository
-```shell
+```bash
+git config --global alias.st status
+
+git config --global alias.co checkout
+
+git config --global alias.lg "log --oneline --graph --decorate --all"
+
+git config --global alias.last "log -1 --stat"
+```
+
+## 🚀 Get Started
+
+```bash
+# create a repository in the current directory
 git init
+
+# clone a remote repository
+git clone <url>
+
+# clone into a specific directory
+git clone <url> <directory>
+
+# clone and check out one branch
+git clone --branch <branch> <url>
+
+# shallow clone, latest commit only
+git clone --depth 1 <url>
+
+# clone including submodules
+git clone --recurse-submodules <url>
+
+# what is staged, changed, untracked
+git status
+
+# the same, in short format
+git status -sb
 ```
 
-Pull a git repository
-```shell
-git pull [url]
-```
+## ➕ Staging
 
-Clone an existing git repository
-```shell
-git clone [url]
-```
+```bash
+# stage a specific file
+git add <file>
 
-## Staging
-
-Stage specific files
-```shell
-git add [file]
-```
-
-Stage all changes
-```shell
+# stage everything under the current directory
 git add .
+
+# stage everything in the repository, deletions included
+git add -A
+
+# interactively stage individual hunks
+git add -p <file>
+
+# stage modifications and deletions, not new files
+git add -u
+
+# unstage, keep the changes in the working tree
+git restore --staged <file>
+
+# stop tracking a file, keep it on disk
+git rm --cached <file>
+
+# rename and stage in one step
+git mv <old> <new>
+
+# which .gitignore rule is hiding this file?
+git check-ignore -v <file>
 ```
 
-Interactively stage parts of a file (hunks)
-```shell
-git add -p [file]
-```
+## ✅ Commit
 
-Unstage a file but keep changes
-```shell
-git restore --staged [file]
-```
+```bash
+# commit what is staged
+git commit -m "<message>"
 
-## Commit
+# stage tracked changes and commit
+git commit -am "<message>"
 
-Commit all tracked changes
-```shell
-git commit -am "[commit message]"
-```
+# rewrite the last commit (message + content)
+git commit --amend
 
-Add new modifications to the last commit
-```shell
+# amend without changing the message
 git commit --amend --no-edit
+
+# fixup commit, squashed later by --autosquash
+git commit --fixup <commit>
+
+# add a Signed-off-by trailer
+git commit -s -m "<message>"
+
+# empty commit, e.g. to trigger CI
+git commit --allow-empty -m "<message>"
 ```
 
-## Branches
+> ⚠️ `--amend` rewrites history. Only amend commits that have not been pushed to a shared branch.
 
-Lists all local branches in your repository (use -a for local and remote branches)
-```shell
+## 🌿 Branches
+
+```bash
+# list local branches
 git branch
+
+# local and remote-tracking branches
+git branch -a
+
+# last commit and upstream of each branch
+git branch -vv
+
+# switch to an existing branch
+git switch <branch>
+
+# create a branch and switch to it
+git switch -c <branch>
+
+# jump back to the previous branch
+git switch -
+
+# older equivalent of switch -c
+git checkout -b <branch>
+
+# branch off a specific commit or tag
+git switch -c <branch> <commit>
+
+# rename a branch
+git branch -m <old> <new>
+
+# delete a merged branch
+git branch -d <branch>
+
+# force-delete an unmerged branch
+git branch -D <branch>
+
+# branches already merged into HEAD (safe to delete)
+git branch --merged
 ```
 
-Switch to an existing branch
-```shell
-git switch [branch name]
+## 🔀 Merging & Rebasing
+
+```bash
+# merge a branch into the current one
+git merge <branch>
+
+# always create a merge commit
+git merge --no-ff <branch>
+
+# bring in the changes as one staged change set
+git merge --squash <branch>
+
+# bail out of a conflicted merge
+git merge --abort
+
+# replay the current branch on top of another
+git rebase <branch>
+
+# interactively squash, reword, drop, reorder commits
+git rebase -i HEAD~5
+
+# apply the --fixup commits automatically
+git rebase -i --autosquash <base>
+
+# resume after resolving conflicts
+git rebase --continue
+
+# drop the conflicting commit and continue
+git rebase --skip
+
+# return to the state before the rebase
+git rebase --abort
+
+# resolve conflicts with the configured merge tool
+git mergetool
 ```
 
-Create a new branch
-```shell
-git checkout -b [branch name]
+Resolving a conflict:
+
+```bash
+# 1. see which files conflict
+git status
+
+# 2. edit them and remove the <<<<<<< ======= >>>>>>> markers
+
+# 3. mark each resolved file
+git add <file>
+
+# 4. resume (during a merge: git merge --continue)
+git rebase --continue
 ```
 
-## Stashing
+> ⚠️ Rebasing rewrites commits. Never rebase a branch other people are already working on.
 
-Save uncommitted changes for later
-```shell
-git stash
-```
+## 🌍 Remotes & Syncing
 
-List all stashes
-```shell
-git stash list
-```
-
-Apply most recent stash and remove it from the list
-```shell
-git stash pop
-```
-
-Apply a specific stash without removing it
-```shell
-git stash apply stash@{2}
-```
-
-## Inspecting
-
-Show changes between working directory and staging
-```shell
-git diff
-```
-
-Show changes between staging and last commit
-```shell
-git diff --staged
-```
-
-Show commit history for a specific file
-```shell
-git log --follow [file]
-```
-
-Show who changed each line in a file
-```shell
-git blame [file]
-```
-
-## Remote
-
-Add a remote repository
-```shell
-git remote add origin [url]
-```
-
-List remote repositories
-```shell
+```bash
+# list remotes and their URLs
 git remote -v
-```
 
-Push a branch and set upstream tracking
-```shell
-git push -u origin [branch-name]
-```
+# add a remote
+git remote add origin <url>
 
-Delete a remote branch
-```shell
-git push origin --delete [branch-name]
-```
+# point a remote somewhere else
+git remote set-url origin <url>
 
-## Tags
+# rename a remote
+git remote rename <old> <new>
 
-Create a tagged release
-```shell
-git tag -a v1.0.0 -m "Release v1.0.0"
-```
+# forget a remote
+git remote remove <name>
 
-Push tags to remote
-```shell
+# download objects and refs, change nothing
+git fetch origin
+
+# fetch everything, drop deleted remote branches
+git fetch --all --prune
+
+# fetch + merge (or rebase) the upstream branch
+git pull
+
+# replay local commits on top of the upstream
+git pull --rebase
+
+# push the current branch
+git push
+
+# push and set the upstream tracking branch
+git push -u origin <branch>
+
+# force-push, but refuse to clobber new commits
+git push --force-with-lease
+
+# delete a remote branch
+git push origin --delete <branch>
+
+# push all tags
 git push origin --tags
 ```
 
-## I've made a mistake
+> ⚠️ Prefer `--force-with-lease` over `--force`: it aborts if someone else pushed in the meantime.
 
-Change last commit message
-```shell
-git commit --amend
+## 📦 Stashing
+
+```bash
+# shelve tracked changes and clean the working tree
+git stash
+
+# include untracked files
+git stash -u
+
+# stash specific paths with a label
+git stash push -m "<message>" <file>
+
+# list every stash
+git stash list
+
+# show a stash as a patch
+git stash show -p stash@{0}
+
+# re-apply the newest stash and drop it
+git stash pop
+
+# re-apply a specific stash, keep it in the list
+git stash apply stash@{2}
+
+# create a branch from a stash and apply it
+git stash branch <branch>
+
+# delete one stash
+git stash drop stash@{0}
+
+# delete all stashes
+git stash clear
 ```
 
-Undo most recent commit and keep changes
-```shell
-git reset HEAD~1
-```
+## 🔍 Inspecting
 
-Undo the `N` most recent commit and keep changes
-```shell
-git reset HEAD~N
-```
+```bash
+# the whole history as a compact graph
+git log --oneline --graph --decorate --all
 
-Undo most recent commit and get rid of changes
-```shell
-git reset HEAD~1 --hard
-```
+# history of a file, with diffs
+git log -p <file>
 
-Reset branch to remote state
-```shell
-git fetch origin
-git reset --hard origin/[branch-name]
-```
+# history of a file, following renames
+git log --follow <file>
 
-Revert a commit by creating a new undo commit (safe for shared branches)
-```shell
-git revert [commit-hash]
-```
+# filter by date and author
+git log --since="2 weeks ago" --author=<name>
 
-Discard all uncommitted changes in working directory
-```shell
-git restore .
-```
+# search commit messages
+git log --grep="<pattern>"
 
-Recover a deleted branch or lost commit
-```shell
+# commits that added or removed a string
+git log -S"<string>"
+
+# commits in b that are not in a
+git log <branch-a>..<branch-b>
+
+# commit count per author
+git shortlog -sn
+
+# a single commit with its diff
+git show <commit>
+
+# working tree vs. index
+git diff
+
+# index vs. last commit
+git diff --staged
+
+# between two commits
+git diff HEAD~1 HEAD
+
+# changes since the branches diverged
+git diff <branch-a>...<branch-b>
+
+# summary of changed files
+git diff --stat
+
+# who last touched every line
+git blame <file>
+
+# blame a range of lines only
+git blame -L 10,40 <file>
+
+# search the tracked files
+git grep "<pattern>"
+
+# every position HEAD has had — your safety net
 git reflog
-git checkout -b [branch-name] [commit-hash]
 ```
 
-## Cherry-pick
+## 🍒 Cherry-pick
 
-Apply a specific commit from another branch
-```shell
-git cherry-pick [commit-hash]
+```bash
+# apply one commit onto the current branch
+git cherry-pick <commit>
+
+# apply a range of commits
+git cherry-pick <commit-a>^..<commit-b>
+
+# apply without committing
+git cherry-pick -n <commit>
+
+# after resolving conflicts
+git cherry-pick --continue
+
+# undo the whole cherry-pick
+git cherry-pick --abort
 ```
 
-## Cleaning
+## 🏷 Tags
 
-Remove untracked files (dry run first)
-```shell
+```bash
+# list tags
+git tag
+
+# list matching tags
+git tag -l "v1.*"
+
+# annotated tag on HEAD
+git tag -a v1.0.0 -m "Release v1.0.0"
+
+# tag an older commit
+git tag -a v1.0.0 <commit>
+
+# show a tag and its commit
+git show v1.0.0
+
+# push one tag
+git push origin v1.0.0
+
+# push all tags
+git push origin --tags
+
+# delete a local tag
+git tag -d v1.0.0
+
+# delete a remote tag
+git push origin --delete v1.0.0
+
+# closest tag to the current commit
+git describe --tags
+```
+
+## 🧯 I've Made a Mistake
+
+```bash
+# fix the last commit message
+git commit --amend
+
+# undo the last commit, keep the changes unstaged
+git reset HEAD~1
+
+# undo the last n commits, keep the changes
+git reset HEAD~<n>
+
+# undo the last commit and throw the changes away
+git reset --hard HEAD~1
+
+# discard changes to one file
+git restore <file>
+
+# discard every uncommitted change
+git restore .
+
+# restore a file as it was at a commit
+git restore --source=<commit> <file>
+
+# undo a commit with a new commit (safe when shared)
+git revert <commit>
+
+# stage the revert without committing
+git revert -n <commit>
+
+# make the local branch match the remote (fetch first)
+git reset --hard origin/<branch>
+
+# find the lost commit...
+git reflog
+
+# bring a lost commit back on a new branch
+git switch -c <branch> <commit>
+```
+
+`git reset` modes at a glance:
+
+| Mode      | Moves `HEAD` | Index (staging) | Working tree | Use it to                                    |
+|-----------|--------------|-----------------|--------------|----------------------------------------------|
+| `--soft`  | ✅           | untouched       | untouched    | Recommit differently, keep everything staged |
+| `--mixed` | ✅           | reset           | untouched    | Unstage but keep the edits (default)         |
+| `--hard`  | ✅           | reset           | **reset**    | Throw the changes away entirely ⚠️           |
+
+> 💡 Nothing committed is really lost for ~90 days: `git reflog` lists every commit `HEAD` pointed at, even on deleted branches.
+
+## 🧹 Cleaning
+
+```bash
+# dry run: what would be removed
 git clean -n
-```
 
-Remove untracked files and directories
-```shell
+# remove untracked files and directories
 git clean -fd
+
+# also remove ignored files (build output, node_modules)
+git clean -fdx
+
+# compress and tidy the object database
+git gc
+
+# drop unreachable objects
+git prune
+
+# check the repository for corruption
+git fsck
 ```
 
-## Miscellaneous
+## 🐛 Debugging
 
-Renaming the local master branch to main
-```shell
-git branch -m master main
-```
-
-Checking log graph
-```shell
-git log --graph
-```
-
-Checking log graph (merges only)
-```shell
-git log --graph --merges
-```
-
-Tracking down a bad commit using binary search
-```shell
+```bash
+# begin a binary search for a bad commit
 git bisect start
-git bisect good 13c988d4f15e06bcdd0b0af290086a3079cdadb0
-git bisect bad ca82a6dff817ec66f44342007202690a93763949
+
+# a commit that is broken (often HEAD)
+git bisect bad <commit>
+
+# a commit that was fine
+git bisect good <commit>
+
+# let a test script decide automatically
+git bisect run <command>
+
+# end the search and return to the original HEAD
+git bisect reset
+
+# follow lines moved from other files
+git blame -C <file>
 ```
 
-Pulling new changes into current branch from mainline
-```shell
-git checkout [branch-name]
-git fetch origin [master-branch-name]
-git rebase origin/[master-branch-name]
+## 🧩 Submodules & Worktrees
+
+```bash
+# add a submodule
+git submodule add <url> <path>
+
+# check out every submodule
+git submodule update --init --recursive
+
+# update submodules to their latest commit
+git submodule update --remote
+
+# commit each submodule sits on
+git submodule status
+
+# check out a second branch side by side
+git worktree add ../<dir> <branch>
+
+# list linked working trees
+git worktree list
+
+# remove one again
+git worktree remove ../<dir>
 ```
+
+## 🧠 Miscellaneous
+
+```bash
+# rename the local default branch
+git branch -m master main
+
+# graph of merge commits only
+git log --graph --merges
+
+# export a snapshot without .git
+git archive -o release.zip HEAD
+
+# contributions per author
+git shortlog -sn --no-merges
+
+# full SHA of the current commit
+git rev-parse HEAD
+
+# name of the current branch
+git rev-parse --abbrev-ref HEAD
+
+# repository size on disk
+git count-objects -vH
+
+# enable background repacking (Git 2.30+)
+git maintenance start
+```
+
+Update a feature branch with the latest mainline:
+
+```bash
+git switch <branch>
+git fetch origin <main-branch>
+git rebase origin/<main-branch>   # or: git merge origin/<main-branch>
+```
+
+## 📚 Resources
+
+- [Official documentation](https://git-scm.com/docs)
+- [Pro Git (free book)](https://git-scm.com/book)
+- [Interactive branching tutorial](https://learngitbranching.js.org)
+- [Dangit, Git!?!](https://dangitgit.com) — recovering from the classic mistakes

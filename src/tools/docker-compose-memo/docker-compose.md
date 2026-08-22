@@ -1,463 +1,495 @@
-Docker Compose is a powerful tool for defining and running multi-container Docker applications. It uses a YAML file (`compose.yaml`) to configure application services, networks, volumes, and more. This file allows developers to declaratively describe infrastructure and dependencies, making it easier to manage complex environments.
+**Docker Compose** describes a multi-container application in one YAML file and runs it with a single command. The file declares *services* (containers), plus the *networks*, *volumes*, *secrets* and *configs* they use.
 
-Whether you're building a local dev stack or deploying to production, Compose simplifies orchestration and keeps your configuration readable and version-controlled.
+> ℹ️ The `version:` key at the top is obsolete — the Compose Spec ignores it. Start the file with `services:`.
 
-## 📁 File Name
-```yaml
-compose.yaml
+## 📁 File Names & Precedence
+
+| File                    | Role                                                         |
+|-------------------------|--------------------------------------------------------------|
+| `compose.yaml`          | The preferred name (`compose.yml` also works)                |
+| `docker-compose.yaml`   | Legacy name, still supported                                 |
+| `compose.override.yaml` | Merged on top of the base file automatically                 |
+| `-f a.yaml -f b.yaml`   | Explicit list; later files override earlier ones             |
+| `.env`                  | Variables for interpolation, read from the project directory |
+
+```bash
+# check what Compose actually resolved, after merges and interpolation
+docker compose config
+
+# use a specific set of files
+docker compose -f compose.yaml -f compose.prod.yaml up -d
 ```
 
-### ✅ YAML Formatting Rules
+### YAML rules that bite
 
-- Use **2 spaces** for indentation (not tabs)
-- Keys and values are **case-sensitive**
-- Lists use `-` for each item
-- Strings with special characters should be quoted
-- Environment variables can be defined inline or via `.env` files
+- Two spaces per indent level, never tabs
+- Keys and values are case-sensitive
+- Lists use `-`; quote any string containing `:`, `#`, `{`, `}` or a leading `*`
+- `yes`/`no`/`on`/`off` are booleans — quote them if you mean the words
 
-## 🧱 Basic Structure
-
-```yaml
-services:
-  service_name:
-    image: image_name:tag
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "host_port:container_port"
-    volumes:
-      - ./host_path:/container_path
-    environment:
-      - VAR_NAME=value
-    depends_on:
-      - other_service
-    networks:
-      - custom_network
-networks:
-  custom_network:
-    driver: bridge
-volumes:
-  custom_volume:
-```
-
-## ⚙️ Services
-
-Each service defines a container.
-
-### Common Service Options
+## 🧱 Minimal Structure
 
 ```yaml
 services:
   web:
-    image: nginx:latest
-    build:
-      context: ./app
-      dockerfile: Dockerfile
-    command: ["nginx", "-g", "daemon off;"]
-    container_name: custom_name
+    image: nginx:1.27
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgres://db:5432/app
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  db-data:
+```
+
+## ⚙️ Service Options
+
+```yaml
+services:
+  app:
+    # where the image comes from
+    image: myapp:1.2
+    build: .
+    pull_policy: always
+
+    # identity and lifecycle
+    container_name: myapp
+    hostname: app
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+
+    # what it runs
+    entrypoint: ["/entrypoint.sh"]
+    command: ["node", "server.js"]
+    working_dir: /app
+    user: "1000:1000"
+
+    # configuration
+    environment:
+      NODE_ENV: production
+      API_KEY: ${API_KEY}
+    env_file:
+      - .env
+      - .env.production
+
+    # connectivity
     ports:
       - "8080:80"
     expose:
-      - "80"
-    environment:
-      - DEBUG=true
-    env_file:
-      - .env
-    volumes:
-      - ./data:/data
-    restart: always
-    depends_on:
-      - db
+      - "9000"
     networks:
       - frontend
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    dns:
+      - 1.1.1.1
+
+    # storage
+    volumes:
+      - db-data:/var/lib/data
+      - ./src:/app/src:ro
+    tmpfs:
+      - /tmp
+
+    # ordering and health
+    depends_on:
+      db:
+        condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
       interval: 30s
-      timeout: 10s
-      retries: 5
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+    # host access and limits
+    cap_add:
+      - SYS_PTRACE
+    devices:
+      - /dev/dri:/dev/dri
+    ulimits:
+      nofile: 65535
+    deploy:
+      resources:
+        limits:
+          cpus: "1.5"
+          memory: 512M
+
+    # bookkeeping
+    labels:
+      com.example.team: platform
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 ```
 
-## 🏗️ Build Options
+## 🏗 Build Options
 
 ```yaml
-build:
-  context: ./dir
-  dockerfile: Dockerfile
-  args:
-    build_arg: value
-  target: build-stage
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: production
+      args:
+        NODE_VERSION: "22"
+      cache_from:
+        - myapp:cache
+      secrets:
+        - npmrc
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    image: myapp:1.2   # the name given to the built image
 ```
-
-- **`build:`** Tells Compose how to build the image.
-  - `context:` is the directory containing the Dockerfile and source code.
-  - `dockerfile:` lets you specify a custom Dockerfile name or path.
 
 ## 📦 Volumes
 
 ```yaml
+services:
+  db:
+    volumes:
+      # named volume — managed by Docker, survives 'down'
+      - db-data:/var/lib/postgresql/data
+      # bind mount — a host path, read-only
+      - ./config:/etc/app:ro
+      # anonymous volume — keeps node_modules out of the bind mount above
+      - /app/node_modules
+      # long syntax
+      - type: bind
+        source: ./src
+        target: /app/src
+        read_only: true
+
 volumes:
-  data_volume:
-    driver: local
+  db-data:
+  shared:
+    external: true          # created outside Compose
+  nfs-data:
     driver_opts:
-      type: none
-      device: /path/on/host
-      o: bind
+      type: nfs
+      o: addr=10.0.0.10,rw
+      device: ":/exports/data"
 ```
-
-### Mounting Volumes
-
-```yaml
-volumes:
-  - data_volume:/app/data
-  - ./local:/container/path
-```
-
-- **`volumes:`** Mounts host directories or named volumes into the container.
-  - `./src:/app/src` mounts the local `src` folder into the container at `/app/src`.
 
 ## 🌐 Networks
 
 ```yaml
+services:
+  web:
+    networks:
+      - frontend
+  api:
+    networks:
+      frontend:
+        aliases:
+          - api.internal
+      backend:
+
 networks:
   frontend:
     driver: bridge
   backend:
-    driver: overlay
+    internal: true          # no outbound access
+  existing:
+    external: true
+    name: some-other-network
 ```
 
-- **`networks:`** Connects the service to one or more custom networks. Enables service discovery and isolation.
+> 💡 Compose creates a default network per project and every service joins it, so containers already reach each other by service name. Declare networks when you want to *separate* things.
 
-### Assigning Networks to Services
+## 🔀 Ports
 
 ```yaml
 services:
-  app:
-    networks:
-      - frontend
-      - backend
-```
-
-## 🌐 Ports
-
-```yaml
+  web:
     ports:
-      - "3000:3000"
-```
-- **`ports:`** Maps container ports to host ports. Format is `"host:container"`. Useful for exposing services to your local machine.
-
-## 🔐 Secrets (Docker Swarm only)
-
-```yaml
-secrets:
-  db_password:
-    file: ./db_password.txt
-
-services:
-  db:
-    secrets:
-      - db_password
-```
-
-## 🔑 Configs (Docker Swarm only)
-
-```yaml
-configs:
-  my_config:
-    file: ./config.txt
-
-services:
-  app:
-    configs:
-      - source: my_config
-        target: /etc/config.txt
-```
-
-## 🧪 Healthcheck
-
-```yaml
-healthcheck:
-  test: ["CMD", "curl", "-f", "http://localhost"]
-  interval: 30s
-  timeout: 10s
-  retries: 3
-  start_period: 5s
-```
-
-- **`healthcheck:`** Defines how Docker checks if the container is healthy.
-  - `test:` is the command to run
-  - `interval:` how often to run the check
-  - `timeout:` how long to wait for a response
-  - `retries:` how many failures before marking unhealthy
-
-## 🔄 Restart Policies
-
-```yaml
-restart: no         # Never restart
-restart: always     # Always restart
-restart: on-failure # Restart on failure
-restart: unless-stopped
+      - "8080:80"             # host:container
+      - "127.0.0.1:8080:80"   # bind to one interface only
+      - "8080-8090:80-90"     # a range
+      - "80"                  # random host port
+      - target: 80            # long syntax
+        published: "8080"
+        protocol: tcp
+        mode: host
 ```
 
 ## 🧬 Environment Variables
 
 ```yaml
-environment:
-  - VAR1=value1
-  - VAR2=value2
-env_file:
-  - .env
+services:
+  app:
+    environment:
+      # map form (preferred)
+      LOG_LEVEL: debug
+      # take the value from the shell or .env
+      API_KEY: ${API_KEY}
+      # with a default, and a hard requirement
+      PORT: ${PORT:-3000}
+      DB_URL: ${DB_URL:?DB_URL must be set}
+    env_file:
+      - path: .env.production
+        required: false
 ```
-
-- **`environment:`** Sets environment variables inside the container. Useful for configuration.
-- **`env_file:`** Loads environment variables from a file. Keeps secrets and config separate from the Compose file.
-
-## Command
-
-```yaml
-    command: npm start
-```
-- **`command:`** Overrides the default command defined in the Dockerfile. Useful for customizing container behavior.
-
-## Dependencies
-
-```yaml
-    depends_on:
-      - db
-```
-- **`depends_on:`** Specifies service startup order. In Compose, this does not wait for the service to be "ready"—just started.
-
-## 🧹 Clean Up
 
 ```bash
-docker compose down         # Stop and remove containers, networks, volumes
-docker compose down -v      # Also remove named volumes
+# variables come from the shell, .env, and --env-file, in that order of precedence
+API_KEY=abc docker compose up -d
+docker compose --env-file .env.staging up -d
 ```
 
-## 🚀 Commands
+## 🩺 Healthchecks & Startup Order
 
-| Command | Description |
-|--------|-------------|
-| `docker compose up` | Start services |
-| `docker compose up -d` | Start in detached mode |
-| `docker compose down` | Stop and remove services |
-| `docker compose build` | Build images |
-| `docker compose ps` | List containers |
-| `docker compose logs` | View logs |
-| `docker compose exec <service> <cmd>` | Run command in container |
-| `docker compose config` | Validate and view config |
-
-
-## 🧠 Mounting GPU / iGPU
-
-Docker Compose supports GPU access via the `device_requests` field (Compose v3.8+ and Docker 19.03+).
-
-### ✅ NVIDIA GPU Example
+`depends_on` on its own only waits for the container to *start*. Wait for it to be **healthy** instead:
 
 ```yaml
 services:
-  gpu-app:
-    image: nvidia/cuda:11.0-base
+  db:
+    image: postgres:16
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  api:
+    image: myapi
+    depends_on:
+      db:
+        condition: service_healthy      # or service_started, service_completed_successfully
+```
+
+## 🔄 Restart Policies
+
+| Policy           | Behaviour                                                     |
+|------------------|---------------------------------------------------------------|
+| `no`             | Never restart (the default)                                   |
+| `on-failure`     | Restart only on a non-zero exit — `on-failure:5` to cap tries |
+| `always`         | Always restart, including after a daemon restart              |
+| `unless-stopped` | Like `always`, but stays stopped if you stopped it yourself   |
+
+## 🧩 Profiles
+
+Profiles keep optional services out of the way until you ask for them.
+
+```yaml
+services:
+  web:
+    image: nginx                # no profile: always started
+
+  debug:
+    image: busybox
+    command: top
+    profiles: [debug]
+
+  seed:
+    image: myapp
+    command: npm run seed
+    profiles: [tools]
+```
+
+```bash
+# start the default services plus one profile
+docker compose --profile debug up -d
+
+# several at once
+docker compose --profile debug --profile tools up -d
+
+# COMPOSE_PROFILES works too
+COMPOSE_PROFILES=debug,tools docker compose up -d
+```
+
+## 👀 Watch Mode
+
+`docker compose watch` syncs or rebuilds automatically as you edit — a dev loop without bind-mount surprises.
+
+```yaml
+services:
+  web:
+    build: .
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/src
+        - action: rebuild
+          path: package.json
+        - action: sync+restart
+          path: ./config
+          target: /etc/app
+```
+
+```bash
+docker compose watch
+```
+
+## ♻️ Reuse: include, extends & anchors
+
+```yaml
+# pull in another compose file as if it were written here
+include:
+  - path: ./monitoring/compose.yaml
+
+services:
+  # inherit another service's definition
+  worker:
+    extends:
+      file: common.yaml
+      service: base-app
+    command: ["node", "worker.js"]
+
+# YAML anchors for repeated blocks
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+
+services:
+  api:
+    logging: *default-logging
+  web:
+    logging: *default-logging
+```
+
+## 🔐 Secrets & Configs
+
+File-based secrets work in plain Compose: each one is mounted read-only at `/run/secrets/<name>`. External secrets and configs require Swarm.
+
+```yaml
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+    configs:
+      - source: pg_conf
+        target: /etc/postgresql/postgresql.conf
+
+secrets:
+  db_password:
+    file: ./db_password.txt
+  api_token:
+    external: true      # Swarm only
+
+configs:
+  pg_conf:
+    file: ./postgresql.conf
+```
+
+## 🖥 GPU & Device Access
+
+```yaml
+services:
+  # NVIDIA — needs the NVIDIA Container Toolkit on the host
+  cuda-app:
+    image: nvidia/cuda:12.4.1-base-ubuntu22.04
     deploy:
       resources:
         reservations:
           devices:
             - driver: nvidia
-              count: all
+              count: all          # or: device_ids: ["0"]
               capabilities: [gpu]
-```
 
-### ✅ Intel iGPU (via VAAPI or OpenCL)
-
-```yaml
-services:
+  # Intel iGPU — VAAPI/OpenCL through the render device
   igpu-app:
     image: intel/openvino
     devices:
       - /dev/dri:/dev/dri
+    group_add:
+      - video
 ```
 
-> 🔧 Make sure your host has the necessary drivers and runtime (e.g., NVIDIA Container Toolkit or Intel Media SDK).
-
-## 🔄 Compose vs Swarm YAML Differences
-
-| Feature            | Docker Compose (`compose.yaml`) | Docker Swarm (`stack.yml`) |
-|--------------------|----------------------------------------|-----------------------------|
-| `restart`          | ✅ Supported                          | ❌ Not supported             |
-| `depends_on`       | ✅ Supported                          | ❌ Not supported             |
-| `deploy`           | ❌ Ignored                            | ✅ Required for replicas     |
-| `build`            | ✅ Supported                          | ❌ Not supported             |
-| `volumes` (bind)   | ✅ Supported                          | ✅ Supported                 |
-| `configs`/`secrets`| ❌ Ignored                            | ✅ Supported                 |
-| `healthcheck`      | ✅ Supported                          | ✅ Supported                 |
-
-> 🧠 **Tip:** Use `compose.yaml` for local development and `stack.yml` for Swarm deployments.
-
-## 🧬 Profiles (Compose v3.9+)
-
-Profiles allow conditional inclusion of services based on the active profile. This is useful for separating dev/test/staging environments.
-
-### ✅ Defining Profiles
-
-```yaml
-services:
-  web:
-    image: nginx
-    profiles:
-      - default
-
-  debug:
-    image: busybox
-    command: top
-    profiles:
-      - debug
-```
-
-### ✅ Activating Profiles
+## 🚀 Everyday Commands
 
 ```bash
-docker compose --profile debug up
+# start everything in the background
+docker compose up -d
+
+# rebuild the images first
+docker compose up -d --build
+
+# start one service and what it depends on
+docker compose up -d <service>
+
+# recreate containers even if nothing changed
+docker compose up -d --force-recreate
+
+# stop and remove containers and networks
+docker compose down
+
+# also remove the named volumes and local images
+docker compose down -v --rmi local
+
+# what is running, including health
+docker compose ps
+
+# follow the logs
+docker compose logs -f
+docker compose logs -f --tail 100 <service>
+
+# a shell inside a running service
+docker compose exec <service> sh
+
+# a one-off container for a task
+docker compose run --rm <service> npm test
+
+# rebuild, pull, restart
+docker compose build --no-cache
+docker compose pull
+docker compose restart <service>
+
+# scale a stateless service
+docker compose up -d --scale worker=3
+
+# validate and print the effective configuration
+docker compose config
+docker compose config --services
+
+# processes and resource usage
+docker compose top
+docker compose stats
 ```
 
-### ✅ Notes
+## ⚔️ Compose vs Swarm Stacks
 
-- Services without a `profiles` key are always included.
-- Multiple profiles can be activated simultaneously.
-- Useful for feature toggles, optional services, or environment-specific setups.
+Both read a Compose file, but `docker stack deploy` honours a different subset of it.
 
-## ⚔️ YAML Differences: Docker Compose vs Docker Swarm Mode
+| Key                              | `docker compose`            | `docker stack deploy`                           |
+|----------------------------------|-----------------------------|-------------------------------------------------|
+| `build:`                         | ✅ builds locally           | ❌ ignored — push the image to a registry first |
+| `restart:`                       | ✅                          | ❌ use `deploy.restart_policy`                  |
+| `depends_on:`                    | ✅                          | ❌ ignored — rely on health checks and retries  |
+| `profiles:`                      | ✅                          | ❌                                              |
+| `develop.watch:`                 | ✅                          | ❌                                              |
+| `deploy.replicas/placement`      | ❌ ignored                  | ✅ this is how you scale                        |
+| `configs:` / external `secrets:` | ❌ external ones need Swarm | ✅                                              |
+| `healthcheck:`                   | ✅                          | ✅ also drives rescheduling                     |
+| `volumes:` / `networks:`         | ✅                          | ✅ (overlay networks in Swarm)                  |
 
-Docker Compose and Docker Swarm both use YAML files to define services, but they serve different purposes and support different features. Compose is optimized for local development and testing, while Swarm is designed for production-grade orchestration across clusters.
-
-### 🧭 Purpose
-
-| Mode        | Use Case                          |
-|-------------|-----------------------------------|
-| Compose     | Local development, testing        |
-| Swarm       | Cluster deployment, scaling       |
-
-### 🧩 Key Differences in YAML Structure
-
-| Feature              | Compose (`compose.yaml`) | Swarm (`stack.yml`) |
-|----------------------|-------------------------------|----------------------|
-| `build:`             | ✅ Supported                   | ❌ Ignored            |
-| `restart:`           | ✅ Supported                   | ❌ Ignored            |
-| `depends_on:`        | ✅ Supported                   | ❌ Ignored            |
-| `deploy:`            | ❌ Ignored                     | ✅ Required for scaling, placement |
-| `configs:`           | ❌ Ignored                     | ✅ Supported           |
-| `secrets:`           | ❌ Ignored                     | ✅ Supported           |
-| `healthcheck:`       | ✅ Supported                   | ✅ Supported           |
-| `volumes:` (bind)    | ✅ Supported                   | ✅ Supported           |
-| `networks:`          | ✅ Supported                   | ✅ Supported           |
-| `profiles:`          | ✅ Supported (v3.9+)           | ❌ Not supported       |
-
-### 🔧 Compose-Only Features
-
-These features are useful for local development but are ignored in Swarm:
-
-#### `build:`
-```yaml
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-```
-- Compose builds images locally.
-- Swarm requires pre-built images pushed to a registry.
-
-#### `restart:`
-```yaml
-restart: unless-stopped
-```
-- Compose uses this to auto-restart containers.
-- Swarm uses `deploy.restart_policy` instead.
-
-#### `depends_on:`
-```yaml
-depends_on:
-  - db
-```
-- Compose starts services in order.
-- Swarm ignores this; use healthchecks and wait-for-it scripts.
-
-### 🛡️ Swarm-Only Features
-
-These features are exclusive to Swarm and ignored by Compose:
-
-#### `deploy:`
-```yaml
-services:
-  app:
-    deploy:
-      replicas: 3
-      placement:
-        constraints:
-          - node.role == manager
-      restart_policy:
-        condition: on-failure
-```
-- Controls scaling, placement, and restart behavior in a cluster.
-
-#### `configs:` and `secrets:`
-```yaml
-configs:
-  app_config:
-    file: ./config.yml
-
-secrets:
-  db_password:
-    file: ./password.txt
-```
-- Used to securely distribute configuration and secrets across nodes.
-
-#### `placement:` (inside `deploy`)
-```yaml
-placement:
-  constraints:
-    - node.labels.env == production
-```
-- Assigns services to specific nodes based on labels.
-
-### 🧪 Healthchecks (Supported in Both)
-
-```yaml
-healthcheck:
-  test: ["CMD", "curl", "-f", "http://localhost"]
-  interval: 30s
-  timeout: 10s
-  retries: 3
-```
-- Works in both Compose and Swarm.
-- In Swarm, health status can influence service rescheduling.
-
-### 📦 Volume Differences
-
-| Type        | Compose | Swarm |
-|-------------|---------|-------|
-| Bind mount  | ✅       | ✅     |
-| Named volume| ✅       | ✅     |
-| External volume | ✅   | ✅     |
-| Volume driver options | ✅ | ✅ |
-
-Swarm requires external volumes to be pre-created on all nodes.
-
-### 🧠 Summary
-
-| Feature Category     | Compose | Swarm |
-|----------------------|---------|-------|
-| Local builds         | ✅       | ❌     |
-| Cluster scaling      | ❌       | ✅     |
-| Secrets/configs      | ❌       | ✅     |
-| Profiles             | ✅       | ❌     |
-| Restart policies     | ✅       | ✅ (via `deploy`) |
-| Service dependencies | ✅       | ❌     |
-
-> 🧭 **Tip:** Use `compose.yaml` for development and `stack.yml` for Swarm. You can split your configuration into multiple files or use tools like `kompose` to convert Kubernetes manifests.
+> 🧭 Keep `compose.yaml` for local development and a separate `stack.yaml` for Swarm, or put the Swarm-only bits in an override file.
 
 ## 📚 Resources
 
-- [Compose File Reference](https://docs.docker.com/compose/compose-file/)
-- [Docker CLI Reference](https://docs.docker.com/engine/reference/commandline/compose/)
-- [NVIDIA GPU Support](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
-- [Intel GPU Support](https://github.com/intel/media-driver)
+- [Compose file reference](https://docs.docker.com/reference/compose-file/)
+- [`docker compose` CLI reference](https://docs.docker.com/reference/cli/docker/compose/)
+- [Compose watch](https://docs.docker.com/compose/how-tos/file-watch/)
+- [Environment variables and interpolation](https://docs.docker.com/compose/how-tos/environment-variables/)
+- [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
