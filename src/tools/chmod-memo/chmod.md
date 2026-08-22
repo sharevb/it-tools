@@ -44,14 +44,29 @@ chmod [options] <mode> <file>...
 | `=`      | Set exactly these permissions, clearing the others for that class |
 
 ```bash
-chmod u+x <file>                # add execute for the owner
-chmod g-w <file>                # remove write from the group
-chmod go-rwx <file>             # cut off group and others entirely
-chmod a=r <file>                # everyone gets read only, nothing else
-chmod u=rwx,go=rx <file>        # several clauses, comma separated
-chmod +x <file>                 # 'a' is implied, then filtered by the umask
-chmod u+x,g+s <file>            # regular and special bits in one call
-chmod --reference=<ref> <file>  # copy the mode of another file
+# add execute for the owner
+chmod u+x <file>
+
+# remove write from the group
+chmod g-w <file>
+
+# cut off group and others entirely
+chmod go-rwx <file>
+
+# everyone gets read only, nothing else
+chmod a=r <file>
+
+# several clauses, comma separated
+chmod u=rwx,go=rx <file>
+
+# 'a' is implied, then filtered by the umask
+chmod +x <file>
+
+# regular and special bits in one call
+chmod u+x,g+s <file>
+
+# copy the mode of another file
+chmod --reference=<ref> <file>
 ```
 
 > 💡 Use `X` (capital) instead of `x` to add execute **only** to directories and to files that already have an execute bit — the safe way to fix a tree: `chmod -R u=rwX,go=rX <dir>`.
@@ -89,7 +104,9 @@ Three digits map to **user, group, others**. An optional fourth *leading* digit 
 
 ```bash
 chmod 755 script.sh
+
 chmod 644 notes.txt
+
 chmod 600 ~/.ssh/id_ed25519
 ```
 
@@ -104,10 +121,17 @@ These go beyond read/write/execute and control the execution context and deletio
 | `sticky` | `1`   | `+t`     | Directories              | Only the entry's owner (or root) may delete or rename it             | `t` in the others field |
 
 ```bash
-chmod 4755 /usr/bin/somebinary  # -rwsr-xr-x  setuid
-chmod 2775 /srv/shared          # drwxrwsr-x  setgid: one group for the whole tree
-chmod 1777 /srv/tmp             # drwxrwxrwt  sticky: a shared drop box, like /tmp
-chmod u-s,g-s,o-t <file>        # strip every special bit again
+# setuid → -rwsr-xr-x
+chmod 4755 /usr/bin/somebinary
+
+# setgid → drwxrwsr-x: one group for the whole tree
+chmod 2775 /srv/shared
+
+# sticky → drwxrwxrwt: a shared drop box, like /tmp
+chmod 1777 /srv/tmp
+
+# strip every special bit again
+chmod u-s,g-s,o-t <file>
 ```
 
 > ⚠️ `setuid` is a privilege-escalation vector — never set it on scripts or on binaries a user can replace. Linux ignores it on interpreted scripts anyway.
@@ -129,10 +153,19 @@ chmod u-s,g-s,o-t <file>        # strip every special bit again
 ## 🔁 Recursive & Selective Changes
 
 ```bash
-chmod -R 755 <dir>                       # blunt: also marks every file executable
-chmod -R u=rwX,go=rX <dir>               # preferred: X only touches dirs + real executables
-find <dir> -type d -exec chmod 755 {} +  # directories only
-find <dir> -type f -exec chmod 644 {} +  # files only
+# blunt: also marks every file executable
+chmod -R 755 <dir>
+
+# preferred: X only touches dirs + real executables
+chmod -R u=rwX,go=rX <dir>
+
+# directories only
+find <dir> -type d -exec chmod 755 {} +
+
+# files only
+find <dir> -type f -exec chmod 644 {} +
+
+# make every shell script executable
 find <dir> -type f -name '*.sh' -exec chmod +x {} +
 ```
 
@@ -153,9 +186,14 @@ find <dir> -type f -name '*.sh' -exec chmod +x {} +
 New files start from `666` and new directories from `777`; the umask bits are removed from that base.
 
 ```bash
-umask      # show the current mask, e.g. 0022
-umask -S   # show it symbolically, e.g. u=rwx,g=rx,o=rx
-umask 027  # stricter default for this shell session
+# show the current mask, e.g. 0022
+umask
+
+# show it symbolically, e.g. u=rwx,g=rx,o=rx
+umask -S
+
+# stricter default for this shell session
+umask 027
 ```
 
 | umask | New files | New directories |
