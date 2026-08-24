@@ -15,7 +15,7 @@ about:
   import-favorites: 导入收藏夹
   export-favorites: 导出收藏夹
   put-your-favorites-json-array-here: 将您最喜欢的 JSON 数组放在这里...
-  import-button: 进口
+  import-button: 导入
   favorites-imported-successfully: 收藏夹导入成功！
   error-importing-favorites-e: 导入收藏夹时出错：{0}
   content-fork: >
@@ -872,8 +872,8 @@ tools:
       placeholder-your-string-to-hash: 输入需要哈希的字符串...
       label-your-text-to-hash: 待哈希文本：
       label-digest-encoding: 摘要编码
-      tag-argon2d: 氩2d
-      tag-argon2i: 氩2i
+      tag-argon2d: Argon2d
+      tag-argon2i: Argon2i
       tag-argon2id: Argon2id
       tag-pbkdf2: PBKDF2
   json-to-toml:
@@ -1884,7 +1884,7 @@ tools:
     title: docker run到Kubernetes
     description: 将docker run命令转换为Kubernetes清单。
     texts:
-    label-your-docker-run-command-s: 您的docker run命令（s）：
+      label-your-docker-run-command-s: 您的docker run命令：
       placeholder-your-docker-run-command-s-to-convert: 要转换的docker run命令（s）...
       title-the-following-errors-occured: 发生以下错误
   duplicate-line-finder:
@@ -2830,6 +2830,17 @@ tools:
       tag-latex-result: LaTeX结果
     externalAccess: 该工具从 https://cdnjs.cloudflare.com 下载 MathJaX，并从
       https://huggingface.co/ 下载 Latex OCR 识别模型 (Xenova/texify)。
+  markdown-format-converter:
+    title: Markdown 格式转换器
+    description: 在标准 Markdown、Obsidian、Logseq、Slack、Jira 等格式之间转换。
+    texts:
+      label-source-format: 源格式
+      label-target-format: 目标格式
+      placeholder-input-markdown: 在此粘贴或输入标准 Markdown、Obsidian 或 Logseq Markdown...
+      label-input-markdown: 输入 Markdown
+      label-converted-output: 转换后的输出
+      label-text: 文本
+      label-preview: 预览
   mermaid-exporter:
     title: Mermaid导出器
     description: 将Markdown（Mermaid）转换为图像并允许导出为PNG、JPG和SVG
@@ -2839,6 +2850,16 @@ tools:
       label-your-mermaid-to-convert: 您的Mermaid待转换内容：
       title-preview: 预览
       tag-invalid-mermaid-syntax: 无效的Mermaid语法
+      tag-showing-last-valid-diagram: 正在显示上一个有效的图表
+      tag-hint-ctrl-scroll-to-zoom: 按住 Ctrl（或 Command）并滚动以缩放
+      label-diagram-preview: 图表预览，可拖动或使用方向键平移，使用 + 和 - 缩放
+      label-zoom-level-reset: 缩放 {zoom}%，点击重置为 100%
+      title-zoom-in: 放大
+      title-zoom-out: 缩小
+      title-reset-zoom: 重置缩放为 100%
+      title-fit-view: 适应视图
+      title-fullscreen: 全屏
+      title-exit-fullscreen: 退出全屏
       tag-export-as-png: 导出为PNG
       tag-export-as-jpg: 导出为JPG
       tag-export-as-svg: 导出为SVG
@@ -5319,6 +5340,9 @@ tools:
       tag-corners-square-options: 方角选项
       tag-small-terminal: 小终端
       title-image: 图片
+      label-qr-code-embeddable-dataurl: QRCode 图片数据 URL：
+      link-qr-code-open-embeddable-link: 打开可嵌入链接
+      label-qr-code-image-viewer: 可嵌入二维码
   basic-auth-generator:
     title: 基本身份验证生成器
     description: 根据用户名和密码生成base64基本身份验证头。
@@ -6353,7 +6377,7 @@ tools:
       label-no: 不
       label-always: 总是
       label-on-failure: 故障时
-    label-your-docker-run-command-s: 您的docker run命令：
+      label-your-docker-run-command-s: 您的 Docker run 命令：
       placeholder-your-docker-run-command-s-to-convert: 要转换的docker run命令...
       title-options: 选项
       label-description: 描述：
@@ -9445,6 +9469,22 @@ tools:
         get-a-random-tool-from-the-list: 从列表中随机选择一件工具。
         random-tool: 随机工具
         tools: 工具
+  password-generator:
+    title: 密码生成器
+    description: 根据字符类别和排除规则生成随机密码。
+    texts:
+      label-password-length: 密码长度
+      label-lowercase: 小写字母
+      label-uppercase: 大写字母
+      label-numbers: 数字
+      label-symbols: 特殊字符
+      label-excluded-characters: 排除字符
+      placeholder-excluded-characters: 要排除的字符，例如 O0l1
+      placeholder-generated-password: 生成的密码
+      text-password-copied-to-clipboard: 密码已复制到剪贴板
+      error-generate-password: 无法生成密码
+      button-copy: 复制
+      button-refresh: 刷新
   external-self-hosted-required: 需要外部自托管
 collapsibleToolMenu:
   text:

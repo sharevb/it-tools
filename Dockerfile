@@ -19,6 +19,8 @@ COPY . .
 # on the production stage below.
 ARG VITE_AVAILABLE_LOCALES
 ENV VITE_AVAILABLE_LOCALES=${VITE_AVAILABLE_LOCALES}
+ARG VITE_LANGUAGE=en
+ENV VITE_LANGUAGE=${VITE_LANGUAGE}
 ENV VITE_VERCEL_ENV=production
 RUN pnpm build
 
@@ -30,6 +32,7 @@ LABEL maintainer="ShareVB <sharevb@gmail.com>" \
 LABEL org.opencontainers.image.source=github.com/sharevb/it-tools
 
 ENV VITE_VERCEL_ENV=production
+ENV VITE_LANGUAGE=en
 
 # The path the app is served under. Override it at run time -- `docker run -e
 # BASE_URL=/it-tools/`, `environment: BASE_URL: /it-tools/` in a compose file -- and nginx

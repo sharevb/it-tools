@@ -321,6 +321,7 @@ export default defineConfig({
     ], // optionally specify dependency name
   },
   server: {
+    allowedHosts: ['.monkeycode-ai.online'],
     watch: {
       ignored: ['**/.pnpm-store/**'],
     },

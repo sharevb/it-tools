@@ -5,7 +5,7 @@ import { watch } from 'vue';
 import { createI18n } from 'vue-i18n';
 import enBaseMessages from '../../locales/en.yml';
 
-const DEFAULT_LOCALE = String(import.meta.env.VITE_LANGUAGE || 'zh');
+const DEFAULT_LOCALE = String(window.__IT_TOOLS_CONFIG__?.language || import.meta.env.VITE_LANGUAGE || 'en');
 const FALLBACK_LOCALE = 'en';
 
 // The fallback locale (and its tool-level files) is bundled eagerly so the app always has
