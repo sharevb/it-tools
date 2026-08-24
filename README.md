@@ -2,6 +2,10 @@
 
 Since the _base image_ is now `nginx-unpriviledged` the container will now listen to port **8080** and not 80. So you need to update your port mapping, i.e. from `8080:80` to `8080:8080`.
 
+<p align="center">
+Useful tools for developer and people working in IT. <a href="https://it-tools.tech">Try it!</a>
+</p>
+
 You can override listening port using environment variable `PORT` (docker option `-e PORT=8888`).
 
 You can serve the app from a subfolder using environment variable `BASE_URL` (docker option
@@ -20,8 +24,6 @@ than on the JavaScript heap.
 ## PR Welcome
 
 Especially for UI improvements and translation. And for anything else.
-
-Want to support this fork of IT Tools: [Buy me a coffee](https://www.buymeacoffee.com/sharevb)
 
 ## HTTPS is recommended
 
