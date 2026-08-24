@@ -3,8 +3,8 @@ import DeviceDesktop from '~icons/tabler/device-desktop';
 import World from '~icons/tabler/world';
 
 import { useRoute } from 'vue-router';
-import { useHead } from '@vueuse/head';
-import type { HeadObject } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
+import type { ResolvableMeta } from '@unhead/vue/types';
 
 // Async: keeps markdown-it (~50 KB gzip with its dependency tree) out of the
 // startup bundle; it loads with the first tool page instead.
@@ -18,7 +18,7 @@ import type { Tool } from '@/tools/tools.types';
 
 const route = useRoute();
 
-const head = computed<HeadObject>(() => ({
+useHead(() => ({
   title: `${route.meta.name} - IT Tools`,
   meta: [
     {
@@ -53,9 +53,8 @@ const head = computed<HeadObject>(() => ({
       name: 'keywords',
       content: ((route.meta.keywords ?? []) as string[]).join(','),
     },
-  ],
+  ] as ResolvableMeta[],
 }));
-useHead(head);
 const { t } = useI18n();
 
 const i18nKey = computed<string>(() => route.path.trim().replace('/', ''));
