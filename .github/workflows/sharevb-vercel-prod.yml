@@ -4,6 +4,7 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VITE_VERCEL_ENV: production
   VITE_VERCEL_DEPLOY: true
+  HOSTNAME: https://sharevb-it-tools.vercel.app/
 on:
   push:
     branches:
@@ -12,7 +13,7 @@ jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information

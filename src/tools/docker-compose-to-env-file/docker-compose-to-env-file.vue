@@ -17,8 +17,7 @@ const yamlInput = ref(`services:
 const envOutput = computed(() => {
   try {
     return extractEnvFromCompose(yamlInput.value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -36,12 +35,10 @@ const envOutput = computed(() => {
     />
 
     <n-card :title="t('tools.docker-compose-to-env-file.texts.title-extract-env')">
-      <textarea-copyable
-        v-model:value="envOutput"
-        rows="3"
-        download-file-name=".env"
-        multiline
-      />
+      <textarea-copyable v-model:value="envOutput.dotenv" rows="3" download-file-name=".env" multiline />
+    </n-card>
+    <n-card :title="t('tools.docker-compose-to-env-file.texts.title-updated-docker-compose')">
+      <textarea-copyable v-model:value="envOutput.updatedCompose" rows="3" download-file-name="compose.yml" multiline />
     </n-card>
   </div>
 </template>

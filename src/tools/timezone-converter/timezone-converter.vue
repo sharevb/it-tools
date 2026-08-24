@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import ctz from 'countries-and-timezones';
+import * as ctz from 'countries-and-timezones';
 import getTimezoneOffset from 'get-timezone-offset';
 
 const { t } = useI18n();
 
 const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-const allTimezones = Object.values(ctz.getAllTimezones()).map(tz => ({
+const allTimezones = Object.values(ctz.getAllTimezones()).map((tz) => ({
   value: tz.name,
   label: `${tz.name === browserTimezone ? 'Browser TZ - ' : ''}${tz.name} (${tz.utcOffset === tz.dstOffset ? tz.utcOffsetStr : `${tz.utcOffsetStr}/${tz.dstOffsetStr}`})`,
 }));
@@ -20,8 +20,8 @@ function convertMinsToHrsMins(minutes: number) {
 const otherTimezones = useStorage<{ name: string }[]>('timezone-conv:zones', [{ name: 'Etc/GMT' }]);
 const currentTimezone = useStorage<string>('timezone-conv:current', browserTimezone);
 const use24HourTimeFormat = useStorage<boolean>('timezone-conv:24h', true);
-const format = computed(() => use24HourTimeFormat.value ? 'yyyy-MM-dd HH:mm:ss' : 'yyyy-MM-dd hh:mm:ss a');
-const timePickerProps = computed(() => use24HourTimeFormat.value ? ({ use12Hours: false }) : ({ use12Hours: true }));
+const format = computed(() => (use24HourTimeFormat.value ? 'yyyy-MM-dd HH:mm:ss' : 'yyyy-MM-dd hh:mm:ss a'));
+const timePickerProps = computed(() => (use24HourTimeFormat.value ? { use12Hours: false } : { use12Hours: true }));
 
 const now = Date.now();
 const currentDatetimeRange = ref<[number, number]>([now, now]);
@@ -30,17 +30,16 @@ const currentTimezoneOffset = computed(() => {
 });
 function convertToTimezone(tz: string, timestamp: number) {
   return new Date(
-    timestamp
-    + getTimezoneOffset(currentTimezone.value, new Date()) * 60 * 1000
-    - getTimezoneOffset(browserTimezone, new Date()) * 60 * 1000,
-  ).toLocaleString(undefined,
-    { timeZone: tz, timeZoneName: undefined, hour12: !use24HourTimeFormat.value });
+    timestamp +
+      getTimezoneOffset(currentTimezone.value, new Date()) * 60 * 1000 -
+      getTimezoneOffset(browserTimezone, new Date()) * 60 * 1000,
+  ).toLocaleString(undefined, { timeZone: tz, timeZoneName: undefined, hour12: !use24HourTimeFormat.value });
 }
 
 const tzToCountriesInput = ref(browserTimezone);
 const tzToCountriesOutput = computed(() => ctz.getCountriesForTimezone(tzToCountriesInput.value));
 
-const allCountries = Object.values(ctz.getAllCountries()).map(c => ({
+const allCountries = Object.values(ctz.getAllCountries()).map((c) => ({
   value: c.id,
   label: `${c.name} (${c.id})`,
 }));
@@ -59,7 +58,10 @@ const countryToTimezonesOutput = computed(() => ctz.getTimezonesForCountry(count
         :options="allTimezones"
         mb-2
       />
-      <n-form-item :label="t('tools.timezone-converter.texts.label-date-time-interval-to-convert')" label-placement="top">
+      <n-form-item
+        :label="t('tools.timezone-converter.texts.label-date-time-interval-to-convert')"
+        label-placement="top"
+      >
         <n-date-picker
           :key="format"
           v-model:value="currentDatetimeRange"
@@ -73,7 +75,7 @@ const countryToTimezonesOutput = computed(() => ctz.getTimezonesForCountry(count
 
       <n-space justify="space-evenly">
         <n-form-item :label="t('tools.timezone-converter.texts.label-current-timezone-offset')" label-placement="left">
-          <n-input :value="currentTimezoneOffset" readonly style="width:5em" />
+          <n-input :value="currentTimezoneOffset" readonly style="width: 5em" />
         </n-form-item>
         <n-form-item :label="t('tools.timezone-converter.texts.label-use-24-hour-time-format')" label-placement="left">
           <n-switch v-model:value="use24HourTimeFormat" />
@@ -81,11 +83,7 @@ const countryToTimezonesOutput = computed(() => ctz.getTimezonesForCountry(count
       </n-space>
 
       <c-card :title="t('tools.timezone-converter.texts.title-date-time-in-other-timezones')">
-        <n-dynamic-input
-          v-model:value="otherTimezones"
-          show-sort-button
-          :on-create="() => ({ name: browserTimezone })"
-        >
+        <n-dynamic-input v-model:value="otherTimezones" show-sort-button :on-create="() => ({ name: browserTimezone })">
           <template #default="{ value }">
             <div flex flex-wrap items-center gap-1>
               <n-select
@@ -96,8 +94,16 @@ const countryToTimezonesOutput = computed(() => ctz.getTimezonesForCountry(count
                 w-full
               />
               <div w-full flex items-baseline gap-1>
-                <n-input style="min-width: 49%" readonly :value="convertToTimezone(value.name, currentDatetimeRange[0])" />
-                <n-input style="min-width: 49%" readonly :value="convertToTimezone(value.name, currentDatetimeRange[1])" />
+                <n-input
+                  style="min-width: 49%"
+                  readonly
+                  :value="convertToTimezone(value.name, currentDatetimeRange[0])"
+                />
+                <n-input
+                  style="min-width: 49%"
+                  readonly
+                  :value="convertToTimezone(value.name, currentDatetimeRange[1])"
+                />
               </div>
             </div>
           </template>

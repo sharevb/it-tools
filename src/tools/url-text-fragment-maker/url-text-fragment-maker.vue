@@ -21,8 +21,7 @@ const searchableUrl = computed(() => {
       prefixSearch: prefixSearch.value,
       suffixSearch: suffixSearch.value,
     });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -31,7 +30,11 @@ const searchableUrl = computed(() => {
 <template>
   <div>
     <n-p>
-      {{ t('tools.url-text-fragment-maker.texts.tag-url-with-text-fragments-allows-to-make-link-to-content-that-has-no-anchor-or-id') }}<n-a href="https://developer.mozilla.org/en-US/docs/Web/Text_fragments" target="blank" rel="noopener">
+      {{
+        t(
+          'tools.url-text-fragment-maker.texts.tag-url-with-text-fragments-allows-to-make-link-to-content-that-has-no-anchor-or-id',
+        )
+      }}<n-a href="https://developer.mozilla.org/en-US/docs/Web/Text_fragments" target="blank" rel="noopener">
         {{ t('tools.url-text-fragment-maker.texts.tag-see-mdn-for-more-info') }}
       </n-a>
     </n-p>
@@ -41,7 +44,9 @@ const searchableUrl = computed(() => {
         :label="t('tools.url-text-fragment-maker.texts.label-base-url')"
         :placeholder="t('tools.url-text-fragment-maker.texts.placeholder-base-url')"
         type="url"
-        clearable raw-text mb-5
+        clearable
+        raw-text
+        mb-5
       />
     </div>
 

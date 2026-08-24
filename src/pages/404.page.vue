@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
 
-useHead({ title: 'Page not found - IT Tools' });
+const { t } = useI18n();
+
+useHead({ title: t('404.page.text.page-not-found-it-tools') });
 </script>
 
 <template>

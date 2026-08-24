@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { IconFileTypeSvg } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,6 +7,6 @@ export const tool = defineTool({
   description: t('tools.svg-placeholder-generator.description'),
   keywords: ['svg', 'placeholder', 'generator', 'image', 'size', 'mockup'],
   component: () => import('./svg-placeholder-generator.vue'),
-  icon: IconFileTypeSvg,
+  icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconFileTypeSvg.mjs')),
   category: 'Web',
 });

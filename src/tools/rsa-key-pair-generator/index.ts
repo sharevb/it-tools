@@ -1,4 +1,3 @@
-import { Certificate } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: 'Generate new random RSA private and public keys (with or without passphrase).',
   keywords: ['rsa', 'key', 'pair', 'generator', 'public', 'private', 'secret', 'ssh', 'pem', 'passphrase', 'password'],
   component: () => import('./rsa-key-pair-generator.vue'),
-  icon: Certificate,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Certificate')),
   npmPackages: ['node-forge'],
   category: 'Crypto',
 });

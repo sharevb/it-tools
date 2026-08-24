@@ -1,4 +1,3 @@
-import { Binary } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.msgpack-to-json.description'),
   keywords: ['msgpack', 'message', 'pack', 'json'],
   component: () => import('./msgpack-to-json.vue'),
-  icon: Binary,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Binary')),
   createdAt: new Date('2025-11-01'),
   category: 'JSON',
 });

@@ -1,4 +1,3 @@
-import { BrandDocker } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,6 +7,6 @@ export const tool = defineTool({
   description: t('tools.docker-run-to-docker-compose-converter.description'),
   keywords: ['docker', 'run', 'compose', 'yaml', 'yml', 'convert', 'deamon'],
   component: () => import('./docker-run-to-docker-compose-converter.vue'),
-  icon: BrandDocker,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/BrandDocker')),
   category: 'Docker',
 });

@@ -7,7 +7,6 @@ import MenuIconItem from './MenuIconItem.vue';
 import MenuItemWithTooltip from './MenuItemTooltip.vue';
 import type { Tool, ToolCategory } from '@/tools/tools.types';
 
-const { t } = useI18n();
 const props = withDefaults(defineProps<{ toolsByCategory?: ToolCategory[] }>(), { toolsByCategory: () => [] });
 const { t } = useI18n();
 const { toolsByCategory } = toRefs(props);
@@ -24,8 +23,8 @@ const collapsedCategories = useStorage<Record<string, boolean>>(
   {
     deep: true,
     serializer: {
-      read: (v) => (v ? JSON.parse(v) : null),
-      write: (v) => JSON.stringify(v),
+      read: v => (v ? JSON.parse(v) : null),
+      write: v => JSON.stringify(v),
     },
   },
 );
@@ -88,7 +87,7 @@ function getAnimationDuration(itemCount: number): number {
 
 // Function to check if any tool in the category is active
 function isCategoryActive(components: Tool[]): boolean {
-  return components.some((tool) => tool.path === route.path);
+  return components.some(tool => tool.path === route.path);
 }
 
 const menuOptions = computed(() =>
@@ -97,7 +96,7 @@ const menuOptions = computed(() =>
     isCollapsed: collapsedCategories.value[name],
     isActive: isCategoryActive(components),
     animationDuration: getAnimationDuration(components.length),
-    tools: components.map((tool) => ({
+    tools: components.map(tool => ({
       label: makeLabel(tool),
       icon: makeIcon(tool),
       key: tool.path,
@@ -113,7 +112,7 @@ async function scrollToActiveItem() {
     collapsedCategories.value[activeCategory.name] = false;
 
     // Wait for the entire animation to complete
-    await new Promise((resolve) => setTimeout(resolve, getAnimationDuration(activeCategory.components.length) + 50));
+    await new Promise(resolve => setTimeout(resolve, getAnimationDuration(activeCategory.components.length) + 50));
 
     // Scroll to the active menu item
     const menuContainer = menuContainerRefs.value[activeCategory.name];

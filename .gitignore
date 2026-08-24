@@ -48,6 +48,5 @@ components.d.ts
 
 # Ignore build or packaged VS Code extensions
 *.vsix
-
-# Temp folder
-temp
+*.tsbuildinfo
+stats.html

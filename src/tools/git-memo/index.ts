@@ -1,4 +1,3 @@
-import { BrandGit } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,6 +7,6 @@ export const tool = defineTool({
   description: t('tools.git-memo.description'),
   keywords: ['git', 'push', 'force', 'pull', 'commit', 'branch', 'switch', 'checkout', 'amend', 'rebase', 'merge', 'reset', 'soft', 'hard', 'lease'],
   component: () => import('./git-memo.vue'),
-  icon: BrandGit,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/BrandGit')),
   category: 'Cheatsheets',
 });

@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Sun } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -13,7 +12,7 @@ export const tool = defineTool({
     'foot', 'candles', 'fc', 'flame',
     'nox', 'phot', 'units'],
   component: () => import('./illuminance-converter.vue'),
-  icon: Sun,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Sun')),
   createdAt: new Date('2025-02-09'),
   category: 'Physics',
 });

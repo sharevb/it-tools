@@ -40,7 +40,7 @@ function processVueComponent(filePath, toolName) {
     if (!text?.trim()) {
       return match;
     }
-    const key = (attr + '-' + text.replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')).toLowerCase();
+    const key = (`${attr}-${text.replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')}`).toLowerCase();
     if (!localesData.tools[toolName].texts) {
       localesData.tools[toolName].texts = {};
     }
@@ -48,7 +48,7 @@ function processVueComponent(filePath, toolName) {
     return `${attr}: t('tools.${toolName}.texts.${key}')`;
   });
 
-  if (content.includes("/* NO EXTRACT SCRIPT */")) {
+  if (content.includes('/* NO EXTRACT SCRIPT */')) {
     console.log(`Marked to not extract: ${filePath}`);
     return;
   }
@@ -63,12 +63,12 @@ function processVueComponent(filePath, toolName) {
 
   if (filePath.endsWith('.vue')) {
     // Regex to find label or placeholder attributes
-    regex = /(?<!:)((?:[a-z]+-)?(?:label|placeholder|title|download-button-text))="([^"]+)"/g;
+    regex = /(?<!:)((?:[a-z]+-)?(?:label|placeholder|title|download-button-text|tab))="([^"]+)"/g;
     content = content.replace(regex, (match, attr, text) => {
       if (!text?.trim()) {
         return match;
       }
-      const key = (attr + '-' + text.replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')).toLowerCase();
+      const key = (`${attr}-${text.replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')}`).toLowerCase();
       if (!localesData.tools[toolName].texts) {
         localesData.tools[toolName].texts = {};
       }
@@ -85,7 +85,7 @@ function processVueComponent(filePath, toolName) {
       if (text.match(/[\}\{\|\[\<\>\]]/)) {
         return match;
       }
-      const key = ('tag-' + text.trim().replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')).toLowerCase();
+      const key = (`tag-${text.trim().replace(/[\p{P}\p{S}\s]+/gu, '-').replace(/^-+|-+$/g, '').replace(/-+/g, '-')}`).toLowerCase();
       if (!localesData.tools[toolName].texts) {
         localesData.tools[toolName].texts = {};
       }
@@ -102,13 +102,13 @@ function processVueComponent(filePath, toolName) {
   if (filePath.endsWith('.vue')) {
     // Ensure the useI18n import exists
     if (!hasAlreayI18n) {
-      content = content.replace(/\<script setup( lang="ts")?\>/, "<script setup lang=\"ts\">\nimport { useI18n } from 'vue-i18n';\nconst { t } = useI18n();");
+      content = content.replace(/\<script setup( lang="ts")?\>/, '<script setup lang="ts">\nimport { useI18n } from \'vue-i18n\';\nconst { t } = useI18n();');
     }
   }
   else {
     // Ensure the useI18n import exists
     if (!hasAlreayI18n) {
-      content = 'import { translate as t } from "@/plugins/i18n.plugin";\n' + content;
+      content = `import { translate as t } from "@/plugins/i18n.plugin";\n${content}`;
     }
   }
   fs.writeFileSync(filePath, content, 'utf8');
@@ -127,10 +127,12 @@ if (localFileOrDir) {
         const filePath = path.join(localFileOrDir, fileName);
         processVueComponent(filePath, process.argv[3] || basename(localFileOrDir));
       });
-  } else {
+  }
+  else {
     processVueComponent(localFileOrDir, process.argv[3] || basename(localFileOrDir));
   }
-} else {
+}
+else {
   fs.readdirSync(toolsDir)
     .filter((toolName) => {
       const toolPath = path.join(toolsDir, toolName);

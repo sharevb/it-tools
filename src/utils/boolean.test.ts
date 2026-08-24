@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { describe, expect, it } from 'vitest';
 import { booleanToHumanReadable, isNotThrowing } from './boolean';
 

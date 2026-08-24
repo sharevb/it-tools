@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import type { lib } from 'crypto-js';
-import { enc } from 'crypto-js';
 
-import crc from 'crc';
 import InputCopyable from '../../components/InputCopyable.vue';
-import { convertHexToBin } from '../hash-text/hash-text.service';
+import type { Encoding } from '../hash-text/hash-text.service';
+import { formatHexWithEncoding } from '../hash-text/hash-text.service';
+import { algoNames as algoWasmNames, defaultCRCValues, getCRCs } from './crc-calculator.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { withDefaultOnError } from '@/utils/defaults';
 
@@ -15,40 +14,6 @@ const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const text = ref('');
 const file = ref<File | null>(null);
 
-const defaultCRCValues = {
-  crc1: '',
-  crc8: '',
-  crc81wire: '',
-  crc8dvbs2: '',
-  crc16: '',
-  crc16ccitt: '',
-  crc16modbus: '',
-  crc16kermit: '',
-  crc16xmodem: '',
-  crc24: '',
-  crc32: '',
-  crc32mpeg: '',
-  crcjam: '',
-};
-type AlgoNames = keyof typeof defaultCRCValues;
-
-function getCRCs(content: Uint8Array | string) {
-  return {
-    crc1: crc.crc1(content).toString(16),
-    crc8: crc.crc8(content).toString(16),
-    crc81wire: crc.crc81wire(content).toString(16),
-    crc8dvbs2: crc.crc8dvbs2(content).toString(16),
-    crc16: crc.crc16(content).toString(16),
-    crc16ccitt: crc.crc16ccitt(content).toString(16),
-    crc16modbus: crc.crc16modbus(content).toString(16),
-    crc16kermit: crc.crc16kermit(content).toString(16),
-    crc16xmodem: crc.crc16xmodem(content).toString(16),
-    crc24: crc.crc24(content).toString(16),
-    crc32: crc.crc32(content).toString(16),
-    crc32mpeg: crc.crc32mpeg2(content).toString(16),
-    crcjam: crc.crcjam(content).toString(16),
-  };
-}
 const hashes = ref(defaultCRCValues);
 async function onUpload(uploadedFile: File) {
   status.value = 'processing';
@@ -60,43 +25,35 @@ async function onUpload(uploadedFile: File) {
   try {
     hashes.value = getCRCs(new Uint8Array(buffer));
     status.value = 'done';
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
 
-const algoWasmNames = Object.keys(defaultCRCValues) as AlgoNames[];
-type Encoding = keyof typeof enc | 'Bin';
+const encoding = useQueryParamOrStorage<Encoding>({
+  defaultValue: 'Hex',
+  storageName: 'hash-text:encoding',
+  name: 'encoding',
+});
 
-const encoding = useQueryParamOrStorage<Encoding>({ defaultValue: 'Hex', storageName: 'hash-text:encoding', name: 'encoding' });
+const CRCValues = computed(() =>
+  withDefaultOnError(() => {
+    const encodingValue = encoding.value;
+    const hashesValue = hashes.value;
 
-function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
-  if (encoding === 'Bin') {
-    return convertHexToBin(words.toString(enc.Hex));
-  }
-
-  return words.toString(enc[encoding]);
-}
-
-const CRCValues = computed(() => withDefaultOnError(() => {
-  const encodingValue = encoding.value;
-  const hashesValue = hashes.value;
-
-  const ret = defaultCRCValues;
-  for (const algo of algoWasmNames) {
-    ret[algo] = formatWithEncoding(enc.Hex.parse(hashesValue[algo]), encodingValue);
-  }
-  return ret;
-}, defaultCRCValues));
-
-watch(text,
-  (newValue) => {
-    file.value = null;
-    hashes.value = getCRCs(newValue);
-    status.value = 'done';
-  },
+    const ret = defaultCRCValues;
+    for (const algo of algoWasmNames) {
+      ret[algo] = formatHexWithEncoding(hashesValue[algo], encodingValue);
+    }
+    return ret;
+  }, defaultCRCValues),
 );
+
+watch(text, (newValue) => {
+  file.value = null;
+  hashes.value = getCRCs(newValue);
+  status.value = 'done';
+});
 </script>
 
 <template>
@@ -111,9 +68,13 @@ watch(text,
 
       <c-input-text
         v-model:value="text"
-        multiline raw-text
-        :placeholder="t('tools.crc-calculator.texts.placeholder-paste-string-to-crc')" rows="3"
-        autosize autofocus :label="t('tools.crc-calculator.texts.label-your-text-to-crc')"
+        multiline
+        raw-text
+        :placeholder="t('tools.crc-calculator.texts.placeholder-paste-string-to-crc')"
+        rows="3"
+        autosize
+        autofocus
+        :label="t('tools.crc-calculator.texts.label-your-text-to-crc')"
       />
 
       <n-divider />
@@ -147,10 +108,7 @@ watch(text,
       <c-alert v-if="status === 'error'" type="error">
         {{ t('tools.crc-calculator.texts.tag-an-error-occured-hashing-file') }}
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
 
     <c-card v-if="status === 'done'" :title="file === null ? 'CRC of text' : `CRC of ${file?.name}`">

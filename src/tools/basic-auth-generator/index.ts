@@ -1,4 +1,3 @@
-import { PasswordRound } from '@vicons/material';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -18,6 +17,6 @@ export const tool = defineTool({
     'authorization',
   ],
   component: () => import('./basic-auth-generator.vue'),
-  icon: PasswordRound,
+  icon: defineAsyncComponent(() => import('@vicons/material/es/PasswordRound')),
   category: 'Network',
 });

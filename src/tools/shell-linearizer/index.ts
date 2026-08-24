@@ -1,13 +1,13 @@
-import { Terminal2 } from '@vicons/tabler';
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'Shell Commands Linearizer',
+  name: t('tools.shell-linearizer.title'),
   path: '/shell-linearizer',
-  description: 'Linearize multiline shell commands',
+  description: t('tools.shell-linearizer.description'),
   keywords: ['shell', 'multiline', 'linearizer'],
   component: () => import('./shell-linearizer.vue'),
-  icon: Terminal2,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Terminal2')),
   createdAt: new Date('2026-02-14'),
-  category: 'Default',
+  category: 'Network',
 });

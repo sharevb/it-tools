@@ -12,7 +12,7 @@ const rightUrl = ref('');
 const leftImage = ref<string | null>(null);
 const rightImage = ref<string | null>(null);
 const viewerContainer = ref<HTMLDivElement | null>(null);
-let viewerInstance = null;
+  let viewerInstance: { mount: () => void } | null = null;
 
 function cleanupObjectUrls() {
   if (leftImage.value && leftImage.value.startsWith('blob:')) {
@@ -56,19 +56,18 @@ function renderViewer() {
   `;
   viewerContainer.value.appendChild(container);
 
-  viewerInstance = new ImageCompare(container, {
+  const instance = new ImageCompare(container, {
     controlColor: '#409EFF',
     smoothing: true,
     addCircle: true,
   });
-  viewerInstance.mount();
+  instance.mount();
+  viewerInstance = instance;
 }
 
 onBeforeUnmount(() => {
   cleanupObjectUrls();
-  if (viewerInstance) {
-    viewerInstance.destroy();
-  }
+  viewerInstance = null;
 });
 </script>
 

@@ -1,4 +1,3 @@
-import { Prompt } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.ai-prompt-splitter.description'),
   keywords: ['ai', 'chatgpt', 'gpt', 'prompt', 'splitter'],
   component: () => import('./ai-prompt-splitter.vue'),
-  icon: Prompt,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Prompt')),
   createdAt: new Date('2024-07-14'),
   category: 'Text',
 });

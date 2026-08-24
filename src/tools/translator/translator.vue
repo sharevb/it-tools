@@ -148,7 +148,6 @@ async function translateText() {
     loadingModel.value = true;
 
     try {
-      // @ts-expect-error Probably a Typescript bug 'too complex type'
       translators.set(modelId, await pipeline('translation', modelId) as TranslationPipeline);
     }
     catch (e: any) {

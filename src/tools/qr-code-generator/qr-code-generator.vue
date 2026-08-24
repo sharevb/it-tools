@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import type {
-  CornerDotType,
-  CornerSquareType,
-  DotType,
-  ErrorCorrectionLevel,
-  FileExtension,
-} from 'pp-qr-code';
+import type { CornerDotType, CornerSquareType, DotType, ErrorCorrectionLevel, FileExtension } from 'pp-qr-code';
 import qrcodeConsole from 'qrcode-terminal-nooctal';
 import { useQRCodeStyling } from './useQRCode';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
@@ -16,20 +10,58 @@ const { t } = useI18n();
 
 const foreground = useQueryParamOrStorage({ name: 'fg', storageName: 'qr-code-gen:fg', defaultValue: '#000000ff' });
 const background = useQueryParamOrStorage({ name: 'bg', storageName: 'qr-code-gen:bg', defaultValue: '#ffffffff' });
-const errorCorrectionLevelSelectValue = useQueryParamOrStorage<string>({ name: 'level', storageName: 'qr-code-gen:level', defaultValue: 'medium' });
-const errorCorrectionLevel = computed(() => errorCorrectionLevelSelectValue.value.toString()[0].toUpperCase() as ErrorCorrectionLevel);
+const errorCorrectionLevelSelectValue = useQueryParamOrStorage<string>({
+  name: 'level',
+  storageName: 'qr-code-gen:level',
+  defaultValue: 'medium',
+});
+const errorCorrectionLevel = computed(
+  () => errorCorrectionLevelSelectValue.value.toString()[0].toUpperCase() as ErrorCorrectionLevel,
+);
 const width = useQueryParamOrStorage({ name: 'width', storageName: 'qr-code-gen:width', defaultValue: 1024 });
 const margin = useQueryParamOrStorage({ name: 'margin', storageName: 'qr-code-gen:margin', defaultValue: 10 });
 const imageSize = useQueryParamOrStorage({ name: 'imgsize', storageName: 'qr-code-gen:imsz', defaultValue: 0.4 });
 const imageMargin = useQueryParamOrStorage({ name: 'imgmargin', storageName: 'qr-code-gen:immg', defaultValue: 20 });
-const outputType = useQueryParamOrStorage<FileExtension>({ name: 'out', storageName: 'qr-code-gen:out', defaultValue: 'png' });
-const dotType = useQueryParamOrStorage<DotType>({ name: 'dot', storageName: 'qr-code-gen:dot', defaultValue: 'square' });
-const dotColor = useQueryParamOrStorage<string>({ name: 'dotc', storageName: 'qr-code-gen:dotc', defaultValue: '#ffffffff' });
-const cornersDotType = useQueryParamOrStorage<CornerDotType>({ name: 'cdt', storageName: 'qr-code-gen:cdt', defaultValue: 'square' });
-const cornersDotColor = useQueryParamOrStorage<string>({ name: 'cdtc', storageName: 'qr-code-gen:cdtc', defaultValue: '#ffffffff' });
-const cornersSquareType = useQueryParamOrStorage<CornerSquareType>({ name: 'cst', storageName: 'qr-code-gen:cst', defaultValue: 'square' });
-const cornersSquareColor = useQueryParamOrStorage<string>({ name: 'cstc', storageName: 'qr-code-gen:cstc', defaultValue: '#ffffffff' });
-const smallTerminal = useQueryParamOrStorage<boolean>({ name: 'sml', storageName: 'qr-code-gen:sml', defaultValue: false });
+const outputType = useQueryParamOrStorage<FileExtension>({
+  name: 'out',
+  storageName: 'qr-code-gen:out',
+  defaultValue: 'png',
+});
+const dotType = useQueryParamOrStorage<DotType>({
+  name: 'dot',
+  storageName: 'qr-code-gen:dot',
+  defaultValue: 'square',
+});
+const dotColor = useQueryParamOrStorage<string>({
+  name: 'dotc',
+  storageName: 'qr-code-gen:dotc',
+  defaultValue: '#ffffffff',
+});
+const cornersDotType = useQueryParamOrStorage<CornerDotType>({
+  name: 'cdt',
+  storageName: 'qr-code-gen:cdt',
+  defaultValue: 'square',
+});
+const cornersDotColor = useQueryParamOrStorage<string>({
+  name: 'cdtc',
+  storageName: 'qr-code-gen:cdtc',
+  defaultValue: '#ffffffff',
+});
+const cornersSquareType = useQueryParamOrStorage<CornerSquareType>({
+  name: 'cst',
+  storageName: 'qr-code-gen:cst',
+  defaultValue: 'square',
+});
+const cornersSquareColor = useQueryParamOrStorage<string>({
+  name: 'cstc',
+  storageName: 'qr-code-gen:cstc',
+  defaultValue: '#ffffffff',
+});
+const smallTerminal = useQueryParamOrStorage<boolean>({
+  name: 'sml',
+  storageName: 'qr-code-gen:sml',
+  defaultValue: false,
+});
 const fileInput = ref() as Ref<File>;
 const { base64: imageBase64 } = useBase64(fileInput);
 async function onUpload(file: File) {
@@ -40,7 +72,8 @@ async function onUpload(file: File) {
 
 const errorCorrectionLevels = ['low', 'medium', 'quartile', 'high'];
 const outputTypes = ['svg', 'png', 'jpeg', 'webp'];
-const dotTypes = ['dots',
+const dotTypes = [
+  'dots',
   'random-dots',
   'rounded',
   'vertical-lines',
@@ -48,7 +81,8 @@ const dotTypes = ['dots',
   'classy',
   'classy-rounded',
   'square',
-  'extra-rounded'];
+  'extra-rounded',
+];
 const cornersDotTypes = ['dot', 'square', 'heart'];
 const cornersSquareTypes = ['dot', 'square', 'extra-rounded'];
 
@@ -77,11 +111,17 @@ const qrcodeTerminal = computedAsync(() => {
       qrcodeConsole.generate(textValue.trim(), { small }, (qrcode: string) => {
         resolve(qrcode);
       });
-    }
-    catch (_) {
+    } catch (_) {
       resolve('');
     }
   });
+});
+
+const qrCodeImgViewerLink = computed(() => {
+  const url = new URL(document.location.href);
+  url.searchParams.set('raw', 'true');
+  url.searchParams.set('rawwidth', '250');
+  return url.toString();
 });
 
 const filename = useQueryParam({ tool: 'qr-code-gen', name: 'file', defaultValue: 'qr-code' });
@@ -136,13 +176,25 @@ async function copyQRCode() {
     setTimeout(() => {
       isCopied.value = false;
     }, 2000); // Reset after 2 seconds
-  }
-  catch (error) {
+  } catch (error) {
     console.error('Failed to copy QR code:', error);
     // Show error feedback and reset
     isCopied.value = false;
   }
 }
+
+const raw = useQueryParam({ tool: 'qr-code-gen', name: 'raw', defaultValue: false });
+if (raw.value) {
+  document.body.style.display = 'none';
+}
+const rawwidth = useQueryParam({ tool: 'qr-code-gen', name: 'rawwidth', defaultValue: 250 });
+
+watch(qrcode, (newValue) => {
+  if (raw.value) {
+    document.body.innerHTML = `<img src="${newValue}" width="${rawwidth.value}" alt="QR Code" />`;
+    document.body.style.display = 'block';
+  }
+});
 </script>
 
 <template>
@@ -158,7 +210,8 @@ async function copyQRCode() {
           :label="t('tools.qr-code-generator.texts.label-text')"
           rows="1"
           :placeholder="t('tools.qr-code-generator.texts.placeholder-your-link-or-text')"
-          autosize mb-6
+          autosize
+          mb-6
         />
         <n-form label-width="130" label-placement="left">
           <n-form-item :label="t('tools.qr-code-generator.texts.label-foreground-color')">
@@ -192,7 +245,10 @@ async function copyQRCode() {
           />
         </n-form>
         <c-card :title="t('tools.qr-code-generator.texts.title-image')" mt-3>
-          <c-file-upload :title="t('tools.qr-code-generator.texts.title-drag-and-drop-an-image-here-or-click-to-select-an-image')" @file-upload="onUpload" />
+          <c-file-upload
+            :title="t('tools.qr-code-generator.texts.title-drag-and-drop-an-image-here-or-click-to-select-an-image')"
+            @file-upload="onUpload"
+          />
 
           <n-form label-width="130" label-placement="left" mt-3>
             <n-form-item :label="t('tools.qr-code-generator.texts.label-size')">
@@ -260,11 +316,11 @@ async function copyQRCode() {
       </n-gi>
       <n-gi>
         <div flex flex-col items-center gap-3>
-          <n-image :src="qrcode" width="250" />
+          <n-image :src="qrcode" width="250" class="qrcode" />
           <div flex gap-3>
             <c-button @click="copyQRCode">
               {{ isCopied ? 'Copied!' : 'Copy' }}
-              <icon-mdi-check v-if="isCopied" ml-2 style="color: #10b981;" />
+              <icon-mdi-check v-if="isCopied" ml-2 style="color: #10b981" />
               <icon-mdi-content-copy v-else ml-2 />
             </c-button>
             <c-button @click="download">
@@ -276,17 +332,28 @@ async function copyQRCode() {
 
         <n-divider />
 
+        <n-card :title="t('tools.qr-code-generator.texts.label-qr-code-image-viewer')">
+          <InputCopyable :value="qrCodeImgViewerLink" mb-1 mt-1 />
+          <n-space justify="center">
+            <n-a :href="qrCodeImgViewerLink" target="_blank">
+              {{ t('tools.qr-code-generator.texts.link-qr-code-open-embeddable-link') }}
+            </n-a>
+          </n-space>
+          <InputCopyable
+            :label="t('tools.qr-code-generator.texts.label-qr-code-embeddable-dataurl')"
+            :value="qrcode"
+            mb-1
+            mt-1
+          />
+        </n-card>
+
+        <n-divider />
+
         <n-checkbox v-model:checked="smallTerminal">
           {{ t('tools.qr-code-generator.texts.tag-small-terminal') }}
         </n-checkbox>
         <n-form-item :label="t('tools.qr-code-generator.texts.label-terminal-output')" mt-1>
-          <TextareaCopyable
-            :value="qrcodeTerminal"
-            multiline
-            rows="5"
-            mb-1 mt-1
-            copy-placement="outside"
-          />
+          <TextareaCopyable :value="qrcodeTerminal" multiline rows="5" mb-1 mt-1 copy-placement="outside" />
         </n-form-item>
       </n-gi>
     </n-grid>

@@ -10,24 +10,25 @@ const { t } = useI18n();
 
 const inputConfig = ref('');
 const inputConfigError = ref('');
-const config = ref(new WgConfig({
-  wgInterface: {
-    listenPort: 51820,
-    dns: [],
-    postUp: ['iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE'],
-    postDown: ['iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE'],
-    address: ['10.0.0.1/24'],
-  },
-  clientsAllowedIps: ['0.0.0.0/0', '::/0'],
-}));
+const config = ref(
+  new WgConfig({
+    wgInterface: {
+      listenPort: 51820,
+      dns: [],
+      postUp: ['iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE'],
+      postDown: ['iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE'],
+      address: ['10.0.0.1/24'],
+    },
+    clientsAllowedIps: ['0.0.0.0/0', '::/0'],
+  }),
+);
 
 watchEffect(() => {
   if (inputConfig.value) {
     inputConfigError.value = '';
     try {
       config.value.parse(inputConfig.value);
-    }
-    catch (e: any) {
+    } catch (e: any) {
       inputConfigError.value = e.toString();
     }
   }
@@ -42,7 +43,7 @@ const cidr = computed<string>({
   },
   set(newValue) {
     if (config.value.wgInterface) {
-      config.value.wgInterface.address = newValue.split(',').map(s => s.trim());
+      config.value.wgInterface.address = newValue.split(',').map((s) => s.trim());
     }
   },
 });
@@ -76,7 +77,7 @@ const clientAllowedIPs = computed<string>({
   },
   set(newValue) {
     if (config.value) {
-      config.value.clientsAllowedIps = newValue.split(',').map(s => s.trim());
+      config.value.clientsAllowedIps = newValue.split(',').map((s) => s.trim());
     }
   },
 });
@@ -97,7 +98,7 @@ const dns = computed<string>({
   },
   set(newValue) {
     if (config.value.wgInterface) {
-      config.value.wgInterface.dns = newValue.split(',').map(s => s.trim());
+      config.value.wgInterface.dns = newValue.split(',').map((s) => s.trim());
     }
   },
 });
@@ -110,7 +111,7 @@ const postUpRule = computed<string>({
   },
   set(newValue) {
     if (config.value.wgInterface) {
-      config.value.wgInterface.postUp = newValue.split('\n').map(s => s.trim());
+      config.value.wgInterface.postUp = newValue.split('\n').map((s) => s.trim());
     }
   },
 });
@@ -123,7 +124,7 @@ const postDownRule = computed<string>({
   },
   set(newValue) {
     if (config.value.wgInterface) {
-      config.value.wgInterface.postDown = newValue.split('\n').map(s => s.trim());
+      config.value.wgInterface.postDown = newValue.split('\n').map((s) => s.trim());
     }
   },
 });
@@ -195,12 +196,18 @@ function generatePeers() {
         <n-form-item :label="t('tools.wireguard-config-generator.texts.label-start-ip-number')" label-placement="left">
           <n-input-number v-model:value="startIP" min="2" />
         </n-form-item>
-        <n-form-item :label="t('tools.wireguard-config-generator.texts.label-number-of-clients')" label-placement="left">
+        <n-form-item
+          :label="t('tools.wireguard-config-generator.texts.label-number-of-clients')"
+          label-placement="left"
+        >
           <n-input-number v-model:value="numberOfClients" min="1" />
         </n-form-item>
       </n-space>
-      <n-form-item :label="t('tools.wireguard-config-generator.texts.label-use-pre-shared-keys')" label-placement="left">
-        <n-checkbox v-model:value="usePreSharedKeys" />
+      <n-form-item
+        :label="t('tools.wireguard-config-generator.texts.label-use-pre-shared-keys')"
+        label-placement="left"
+      >
+        <n-checkbox v-model:checked="usePreSharedKeys" />
       </n-form-item>
       <c-input-text
         v-model:value="clientAllowedIPs"
@@ -252,7 +259,9 @@ function generatePeers() {
         <n-space>
           <textarea-copyable :value="peer.config" />
           <QRCodeVue3
-            :value="peer.config" file-ext="png" :download="true"
+            :value="peer.config"
+            file-ext="png"
+            :download="true"
             :download-options="{ name: peer.name, extension: 'png' }"
           />
         </n-space>

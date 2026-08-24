@@ -1,9 +1,14 @@
 services:
   it-tools:
     container_name: it-tools-subfolder
-    image: ghcr.io/sharevb/it-tools:baseurl-it-tools
+    image: ghcr.io/sharevb/it-tools:latest
     pull_policy: always
     restart: unless-stopped
+    environment:
+      # The path the app is served under. This is all a subfolder deployment needs -- the
+      # regular image works at any path, there is no subfolder-specific tag to pull and
+      # nothing to rebuild.
+      BASE_URL: /it-tools/
   nginx-reverse-proxy:
     image: nginx:alpine
     depends_on:

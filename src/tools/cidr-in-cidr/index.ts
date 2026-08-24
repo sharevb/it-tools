@@ -1,4 +1,3 @@
-import { UnfoldMoreOutlined } from '@vicons/material';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -9,7 +8,7 @@ export const tool = defineTool({
   keywords: ['ip', 'cidr', 'range', 'mask', 'wildcard', 'ipv4', 'ipv6', 'subnet', 'include', 'inclusion'],
   component: () => import('./cidr-in-cidr.vue'),
   redirectFrom: ['/ip-in-range'],
-  icon: UnfoldMoreOutlined,
+  icon: defineAsyncComponent(() => import('@vicons/material/es/UnfoldMoreOutlined')),
   createdAt: new Date('2025-01-12'),
   category: 'Network',
 });

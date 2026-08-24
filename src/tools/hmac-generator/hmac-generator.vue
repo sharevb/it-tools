@@ -1,54 +1,27 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import type { lib } from 'crypto-js';
-import {
-  HmacMD5,
-  HmacRIPEMD160,
-  HmacSHA1,
-  HmacSHA224,
-  HmacSHA256,
-  HmacSHA3,
-  HmacSHA384,
-  HmacSHA512,
-  enc,
-} from 'crypto-js';
 
-import { convertHexToBin } from '../hash-text/hash-text.service';
+import type { Encoding } from '../hash-text/hash-text.service';
+import type { AlgoNames, KeyEncoding } from './hmac-generator.service';
+import { algos, computeHmac } from './hmac-generator.service';
 import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
 
-const algos = {
-  MD5: HmacMD5,
-  RIPEMD160: HmacRIPEMD160,
-  SHA1: HmacSHA1,
-  SHA3: HmacSHA3,
-  SHA224: HmacSHA224,
-  SHA256: HmacSHA256,
-  SHA384: HmacSHA384,
-  SHA512: HmacSHA512,
-} as const;
-
-type Encoding = keyof typeof enc | 'Bin';
-type KeyEncoding = 'Text' | 'Hex';
-
-function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
-  if (encoding === 'Bin') {
-    return convertHexToBin(words.toString(enc.Hex));
-  }
-  return words.toString(enc[encoding]);
-}
-
 const plainText = ref('');
 const secret = ref('');
-const hashFunction = ref<keyof typeof algos>('SHA256');
+const hashFunction = ref<AlgoNames>('SHA256');
 const encoding = ref<Encoding>('Hex');
 const keyEncoding = ref<KeyEncoding>('Text');
-const hmac = computed(() => {
-  // normalize secret according to the key encoding
-  const key = keyEncoding.value === 'Text' ? secret.value : enc.Hex.parse(secret.value);
-  return formatWithEncoding(algos[hashFunction.value](plainText.value, key), encoding.value);
-});
+const hmac = computed(() =>
+  computeHmac({
+    plainText: plainText.value,
+    secret: secret.value,
+    hashFunction: hashFunction.value,
+    keyEncoding: keyEncoding.value,
+    encoding: encoding.value,
+  }),
+);
 const { copy } = useCopy({ source: hmac });
 </script>
 

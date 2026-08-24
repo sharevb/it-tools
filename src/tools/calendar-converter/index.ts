@@ -1,13 +1,13 @@
-import { Calendar } from '@vicons/tabler';
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'Calendar Converter',
+  name: t('tools.calendar-converter.title'),
   path: '/calendar-converter',
-  description: 'Convert dates and times between Gregorian, Julian, Hebrew, Islamic, Persian, Mayan, Indian, French Republican, ISO‑8601, Unix time, and Excel serial formats',
+  description: t('tools.calendar-converter.description'),
   keywords: ['calendar', 'gregorian', 'julian', 'hebrew', 'islamic', 'persian', 'mayan', 'indian', 'french', 'republican', 'iso-8601', 'unix', 'excel', 'converter'],
   component: () => import('./calendar-converter.vue'),
-  icon: Calendar,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Calendar')),
   createdAt: new Date('2026-02-21'),
   category: 'Data',
 });

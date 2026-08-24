@@ -3,10 +3,9 @@ import { useI18n } from 'vue-i18n';
 import { useScriptTag } from '@vueuse/core';
 import { convert_math } from 'mitex-wasm';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const { t } = useI18n();
-
-const base = import.meta.env.BASE_URL ?? '/';
 
 const { load: loadPlurimath } = useScriptTag(`${base}plurimath/index.js`, undefined, { type: 'module', manual: true });
 

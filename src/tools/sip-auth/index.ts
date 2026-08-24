@@ -1,4 +1,3 @@
-import { ShieldCheck } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.sip-auth.description'),
   keywords: ['sip', 'authorization'],
   component: () => import('./sip-auth.vue'),
-  icon: ShieldCheck,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/ShieldCheck')),
   createdAt: new Date('2024-04-11'),
   category: 'Network',
 });

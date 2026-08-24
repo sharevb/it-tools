@@ -115,9 +115,14 @@ const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: ra
     </n-alert>
   </div>
 
-  <n-form-item :label="t('tools.json-viewer.texts.label-prettified-version-of-your-json')">
-    <textarea-copyable :value="cleanJson" language="json" :follow-height-of="inputElement" download-file-name="output.json" />
-  </n-form-item>
+  <n-tabs type="card">
+    <n-tab-pane name="pretty" :tab="t('tools.json-viewer.texts.label-prettified-version-of-your-json')">
+      <textarea-copyable :value="cleanJson" language="json" :follow-height-of="inputElement" download-file-name="output.json" />
+    </n-tab-pane>
+    <n-tab-pane name="editable" :tab="t('tools.json-viewer.texts.label-viewer')">
+      <CodeBlockCopyable :value="cleanJson" language="json" download-file-name="output.json" />
+    </n-tab-pane>
+  </n-tabs>
 </template>
 
 <style lang="less" scoped>

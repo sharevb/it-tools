@@ -1,5 +1,5 @@
 import { type MaybeRef, get } from '@vueuse/core';
-import { computed, ref } from 'vue';
+import { computed, shallowRef } from 'vue';
 import FlexSearch from 'flexsearch';
 
 // Define key types to match Fuse.js format
@@ -67,7 +67,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
   const getItemKey = (item: Data, idx: number) => (item.id !== undefined ? item.id : idx);
 
   // Map to store original data items by unique key
-  const dataMap = ref(new Map<any, Data>());
+  const dataMap = shallowRef(new Map<any, Data>());
 
   // Create separate indices for each key with weight info
   const indices = normalizedKeys.map(({ name, weight }) => ({

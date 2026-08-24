@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import DOMPurify from 'dompurify';
 
-const svgContent = ref<string | null>(null);
+const svgContent = ref<string | undefined>(undefined);
 const backgroundColor = ref<string>('#ffffff');
 
 const { t } = useI18n();
@@ -12,7 +12,7 @@ function readAsTextAsync(file: File) {
     const reader = new FileReader();
     reader.readAsText(file);
     reader.onload = () => resolve(reader.result?.toString() ?? '');
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 

@@ -1,4 +1,3 @@
-import { AlignJustified } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -9,7 +8,7 @@ export const tool = defineTool({
   description: t('tools.properties-converter.description'),
   keywords: ['properties', 'yaml', 'convert', 'spring', 'spring-boot', 'parse', 'ini'],
   component: () => import('./properties-converter.vue'),
-  icon: AlignJustified,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/AlignJustified')),
   createdAt: new Date('2025-04-21'),
   category: 'Converters',
 });

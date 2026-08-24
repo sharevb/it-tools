@@ -6,47 +6,44 @@ on:
       - chore/all-my-stuffs
 jobs:
   test:
-    timeout-minutes: 30
+    name: test (${{ matrix.browser }})
+    timeout-minutes: 120
     runs-on: ubuntu-latest
     strategy:
+      # Always report every browser, rather than cancelling the rest on the
+      # first failure.
+      fail-fast: false
       matrix:
-        shard: [1/3, 2/3, 3/3]
+        browser: [chromium, firefox, webkit]
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@v7.0.0
 
-      - run: |
-          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
-          npm install -g corepack@latest
-          echo "After : corepack version => $(corepack --version)"
-          corepack enable
-          pnpm --version
-
-      - uses: actions/setup-node@v3
+      - name: Setup pnpm and install dependencies
+        uses: pnpm/setup@v2.0.2
         with:
-          node-version: 22
-          cache: 'pnpm'
+          cache: true
 
       - name: Get Playwright version
         id: playwright-version
-        run: echo "PLAYWRIGHT_VERSION=$(jq -r .dependencies.playwright package.json)" >> "$GITHUB_OUTPUT"
-
-      - name: Install dependencies
-        run: pnpm install --ignore-scripts
+        # The installed version, not the range in package.json: a lockfile bump
+        # inside the same range would otherwise leave the key unchanged and the
+        # cached browsers out of sync with Playwright.
+        run: echo "PLAYWRIGHT_VERSION=$(jq -r .version node_modules/@playwright/test/package.json)" >> "$GITHUB_OUTPUT"
 
       - name: Build app
         run: pnpm build
 
       - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6.1.0
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}-${{ hashFiles('**/playwright.config.ts') }}
+          key: ${{ runner.os }}-playwright-${{ matrix.browser }}-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}-${{ hashFiles('**/playwright.config.ts') }}
           restore-keys: |
-            ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}-
-            ${{ runner.os }}-playwright-
+            ${{ runner.os }}-playwright-${{ matrix.browser }}-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}-
+            ${{ runner.os }}-playwright-${{ matrix.browser }}-
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
+        run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
 
       - name: Run Playwright tests
-        run: pnpm run test:e2e --shard=${{ matrix.shard }}
+        run: pnpm run test:e2e --project=${{ matrix.browser }}

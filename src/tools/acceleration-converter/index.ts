@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Run } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -10,7 +9,7 @@ export const tool = defineTool({
     'units', 'g (g-force)', 'm/s2',
   ],
   component: () => import('./acceleration-converter.vue'),
-  icon: Run,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Run')),
   createdAt: new Date('2026-01-30'),
   category: 'Physics',
 });

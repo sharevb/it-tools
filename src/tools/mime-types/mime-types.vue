@@ -6,7 +6,7 @@ const { t } = useI18n();
 
 const mimeInfos = Object.entries(mimeTypeToExtension).map(([mimeType, extensions]) => ({ mimeType, extensions }));
 
-const mimeToExtensionsOptions = Object.keys(mimeTypeToExtension).map(label => ({ label, value: label }));
+const mimeToExtensionsOptions = Object.keys(mimeTypeToExtension).map((label) => ({ label, value: label }));
 const selectedMimeType = ref(undefined);
 
 const extensionsFound = computed(() => (selectedMimeType.value ? mimeTypeToExtension[selectedMimeType.value] : []));
@@ -38,9 +38,9 @@ const mimeTypeFound = computed(() => (selectedExtension.value ? extensionToMimeT
     />
 
     <div v-if="extensionsFound.length > 0">
-      {{ t('tools.mime-types.texts.tag-extensions-of-files-with-the') }}<n-tag round :bordered="false">
-        {{ selectedMimeType }}
-      </n-tag>{{ t('tools.mime-types.texts.tag-mime-type') }}<div style="margin-top: 10px">
+      {{ t('tools.mime-types.texts.tag-extensions-of-files-with-the')
+      }}<n-tag round :bordered="false"> {{ selectedMimeType }} </n-tag>{{ t('tools.mime-types.texts.tag-mime-type') }}
+      <div style="margin-top: 10px">
         <n-tag
           v-for="extension of extensionsFound"
           :key="extension"
@@ -71,10 +71,11 @@ const mimeTypeFound = computed(() => (selectedExtension.value ? extensionToMimeT
     />
 
     <div v-if="selectedExtension">
-      {{ t('tools.mime-types.texts.tag-mime-type-associated-to-the-extension') }}<n-tag round :bordered="false">
+      {{ t('tools.mime-types.texts.tag-mime-type-associated-to-the-extension')
+      }}<n-tag round :bordered="false">
         {{ selectedExtension }}
-      </n-tag> file
-      extension:
+      </n-tag>
+      file extension:
       <div style="margin-top: 10px">
         <n-tag round :bordered="false" type="primary" style="margin-right: 10px">
           {{ mimeTypeFound }}

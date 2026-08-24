@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { IconDatabaseCog } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.sql-parameters.description'),
   keywords: ['sql', 'select', 'insert', 'parameters'],
   component: () => import('./sql-parameters.vue'),
-  icon: IconDatabaseCog,
+  icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconDatabaseCog.mjs')),
   createdAt: new Date('2025-08-15'),
   category: 'Development',
 });

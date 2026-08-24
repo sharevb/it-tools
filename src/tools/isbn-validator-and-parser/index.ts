@@ -1,4 +1,3 @@
-import { Books } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.isbn-validator-and-parser.description'),
   keywords: ['isbn', 'validator', 'parser', 'formatter'],
   component: () => import('./isbn-validator-and-parser.vue'),
-  icon: Books,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Books')),
   createdAt: new Date('2024-01-10'),
   category: 'Data',
 });

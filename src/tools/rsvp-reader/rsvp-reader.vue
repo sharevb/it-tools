@@ -108,7 +108,8 @@ function scheduleNext() {
     if (next < words.value.length) {
       currentIndex.value = next;
       scheduleNext();
-    } else {
+    }
+    else {
       isPlaying.value = false;
       clearTimer();
     }
@@ -163,7 +164,8 @@ async function onUpload(file: File) {
     }
 
     message.error('Unsupported file type.');
-  } catch (err) {
+  }
+  catch (err) {
     message.error(`Failed to parse file: ${err}`);
   }
   isProcessingFile.value = false;
@@ -173,7 +175,12 @@ function handleKeydown(e: KeyboardEvent) {
   // Space → Play/Pause
   if (e.code === 'Space') {
     e.preventDefault();
-    isPlaying.value ? pause() : start();
+    if (isPlaying.value) {
+      pause();
+    }
+    else {
+      start();
+    }
   }
 
   // Right arrow → skip forward

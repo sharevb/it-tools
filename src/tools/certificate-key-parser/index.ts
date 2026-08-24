@@ -1,4 +1,3 @@
-import { FileCertificate } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.certificate-key-parser.description'),
   keywords: ['certificate', 'key', 'parser'],
   component: () => import('./certificate-key-parser.vue'),
-  icon: FileCertificate,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/FileCertificate')),
   createdAt: new Date('2024-02-22'),
   category: 'Crypto',
 });

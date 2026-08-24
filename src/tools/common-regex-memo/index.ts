@@ -1,4 +1,3 @@
-import { FileText } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.common-regex-memo.description'),
   keywords: ['common', 'regex', 'memo', 'cheatsheet'],
   component: () => import('./common-regex-memo.vue'),
-  icon: FileText,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/FileText')),
   createdAt: new Date('2024-05-11'),
   category: 'Cheatsheets',
 });

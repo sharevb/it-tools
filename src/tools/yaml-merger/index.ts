@@ -1,4 +1,3 @@
-import { AlignJustified } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.yaml-merger.description'),
   keywords: ['yaml', 'merger'],
   component: () => import('./yaml-merger.vue'),
-  icon: AlignJustified,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/AlignJustified')),
   createdAt: new Date('2025-07-19'),
   npmPackages: ['yaml'],
   category: 'YAML',

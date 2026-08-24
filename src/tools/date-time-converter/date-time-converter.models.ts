@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { addMilliseconds } from 'date-fns';
 import Long from 'long';
 

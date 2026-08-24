@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { IconMailCog } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.mailto-generator.description'),
   keywords: ['mailto', 'generator', 'link'],
   component: () => import('./mailto-generator.vue'),
-  icon: IconMailCog,
+  icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconMailCog.mjs')),
   createdAt: new Date('2025-08-17'),
   category: 'Development',
 });

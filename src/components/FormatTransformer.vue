@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { Base64 } from 'js-base64';
 import type { UseValidationRule } from '@/composable/validation';
 import CInputText from '@/ui/c-input-text/c-input-text.vue';
@@ -197,10 +197,14 @@ const { download } = useDownloadFileFromBase64(
   </CInputText>
 
   <div overflow-auto>
-    <div mb-5px>
-      {{ outputLabel }}
-    </div>
-    <textarea-copyable :value="output" :language="outputLanguage" :follow-height-of="inputElement?.inputWrapperRef" />
+    <n-tabs type="line">
+      <n-tab-pane name="output" :tab="outputLabel">
+        <textarea-copyable :value="output" :language="outputLanguage" :follow-height-of="inputElement?.inputWrapperRef" />
+      </n-tab-pane>
+      <n-tab-pane name="editable" :tab="t('formatTransformer.viewer')">
+        <CodeBlockCopyable :value="output" :language="outputLanguage" />
+      </n-tab-pane>
+    </n-tabs>
 
     <div v-if="downloadFileName !== '' && output !== ''" mt-5 flex justify-center>
       <c-button secondary @click="download">

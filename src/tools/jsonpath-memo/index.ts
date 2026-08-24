@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Braces } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.jsonpath-memo.description'),
   keywords: ['jsonpath', 'cheatsheet', 'memo'],
   component: () => import('./jsonpath-memo.vue'),
-  icon: Braces,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Braces')),
   createdAt: new Date('2024-08-15'),
   category: 'Cheatsheets',
 });

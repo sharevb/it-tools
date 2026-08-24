@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { xHtml } from './objgen-html.service';
+
+const { t } = useI18n();
 
 const defaultValue = `// This is a comment!
 // HTML generator quick tips:
@@ -143,15 +146,15 @@ function transformer(value: string) {
 
 <template>
   <details mb-1>
-    <summary>Documentation</summary>
+    <summary>{{ t('tools.objgen-html.texts.tag-documentation') }}</summary>
     <textarea-copyable :value="defaultValue" language="toml" />
   </details>
 
   <format-transformer
-    input-label="ObjGen HTML definition"
+    :input-label="t('tools.objgen-html.texts.input-label-objgen-html-definition')"
     :input-default="defaultValue"
-    input-placeholder="Put your ObjGen HTML definition here..."
-    output-label="Generated HTML"
+    :input-placeholder="t('tools.objgen-html.texts.input-placeholder-put-your-objgen-html-definition-here')"
+    :output-label="t('tools.objgen-html.texts.output-label-generated-html')"
     output-language="html"
     :transformer="transformer"
     download-file-name="output.html"

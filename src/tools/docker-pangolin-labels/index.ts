@@ -1,13 +1,13 @@
-import { NetworkCheckSharp } from '@vicons/material';
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'Docker Pangolin Labels',
+  name: t('tools.docker-pangolin-labels.title'),
   path: '/docker-pangolin-labels',
-  description: 'Convert Docker Compose Pangolin labels to blueprints and vice versa',
+  description: t('tools.docker-pangolin-labels.description'),
   keywords: ['docker', 'compose', 'pangolin', 'blueprint', 'labels'],
   component: () => import('./docker-pangolin-labels.vue'),
-  icon: NetworkCheckSharp,
+  icon: defineAsyncComponent(() => import('@vicons/material/es/NetworkCheckSharp')),
   createdAt: new Date('2026-02-08'),
   category: 'Docker',
 });

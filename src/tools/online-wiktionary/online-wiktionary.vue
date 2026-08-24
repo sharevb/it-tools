@@ -47,24 +47,16 @@ function openSearch() {
     </n-form-item>
 
     <n-space justify="center">
-      <n-button
-        type="primary"
-        :disabled="!query || !language"
-        @click="openSearch"
-      >
+      <n-button type="primary" :disabled="!query || !language" @click="openSearch">
         {{ t('tools.online-wiktionary.texts.tag-search-on-wiktionary') }}
       </n-button>
     </n-space>
 
     <n-divider />
 
-    <div style="height: 70vh; border: 1px solid #ddd; border-radius: 6px; overflow: hidden;">
-      <iframe
-        v-if="iframeUrl"
-        :src="iframeUrl"
-        style="width: 100%; height: 100%; border: none;"
-      />
-      <div v-else style="padding: 1rem; text-align: center; color: #888;">
+    <div style="height: 70vh; border: 1px solid #ddd; border-radius: 6px; overflow: hidden">
+      <iframe v-if="iframeUrl" :src="iframeUrl" style="width: 100%; height: 100%; border: none" credentialless />
+      <div v-else style="padding: 1rem; text-align: center; color: #888">
         {{ t('tools.online-wiktionary.texts.tag-enter-a-word-and-select-a-language-to-load-wiktionary') }}
       </div>
     </div>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import type { CKeyValueListItems } from './c-key-value-list.types';
 
 const props = withDefaults(defineProps<{ items?: CKeyValueListItems }>(), { items: () => [] });

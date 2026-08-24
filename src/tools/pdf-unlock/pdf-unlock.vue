@@ -8,6 +8,10 @@ const { t } = useI18n();
 
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
+const usePassword = ref(false);
+const password = ref('');
+const fileBuffer = ref<ArrayBuffer | null>(null);
+const isPasswordError = ref(false);
 
 const base64OutputPDF = ref('');
 const fileName = ref('');
@@ -23,27 +27,40 @@ const qpdfCommand = ref('');
 
 async function onPDFFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;
-  const fileBuffer = await uploadedFile.arrayBuffer();
-
   fileName.value = `decrypted_${uploadedFile.name}`;
+  fileBuffer.value = await uploadedFile.arrayBuffer();
+  isPasswordError.value = false;
+  processFile();
+}
+
+async function processFile() {
+  if (!fileBuffer.value) {
+    return;
+  }
+
   status.value = 'processing';
   try {
-    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
-      [
-        '--decrypt',
-        '--warning-exit-0',
-        '--verbose',
-        'in.pdf',
-        'out.pdf',
-      ],
-      0);
+    const args = ['--decrypt'];
+    if (usePassword.value) {
+      args.push(`--password=${password.value}`);
+    }
+    args.push('--warning-exit-0');
+    args.push('--verbose');
+    args.push('in.pdf');
+    args.push('out.pdf');
+    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer.value, args, 0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
-
     download();
+    fileBuffer.value = null;
+    usePassword.value = false;
+    password.value = '';
+    isPasswordError.value = false;
   }
   catch (e) {
     status.value = 'error';
+    const errorLog = logs.value.join('\n').toLowerCase();
+    isPasswordError.value = errorLog.includes('password') || errorLog.includes('encrypted');
   }
 }
 
@@ -61,7 +78,7 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
   mod.FS.writeFile('in.pdf', new Uint8Array(data));
   const ret = mod.callMain(args);
   if (expected_exitcode !== ret) {
-    throw new Error('Process run failed');
+    throw new Error(t('tools.pdf-compressor.texts.process-run-failed'));
   }
   return mod.FS.readFile('out.pdf');
 }
@@ -75,9 +92,35 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
       </div>
     </div>
 
+    <div v-if="isPasswordError">
+      <n-checkbox v-model:checked="usePassword" mb-2 mt-3>
+        {{ t('tools.pdf-unlock.texts.label-password') }}
+      </n-checkbox>
+
+      <n-form-item
+        v-if="usePassword"
+        :label="t('tools.pdf-unlock.texts.label-password')"
+        label-placement="left"
+        mb-1
+        mt-2
+      >
+        <n-input
+          v-model:value="password"
+          type="password"
+          :placeholder="t('tools.pdf-unlock.texts.placeholder-password')"
+        />
+      </n-form-item>
+
+      <div mt-3 flex justify-center>
+        <c-button @click="processFile()">
+          {{ t('tools.pdf-unlock.texts.tag-decrypt-pdf') }}
+        </c-button>
+      </div>
+    </div>
+
     <div mt-3 flex justify-center>
       <c-alert v-if="status === 'error'" type="error">
-        An error occured processing {{ fileName }}
+        {{ $t('tools.file-type.texts.an-error-occured-processing') }} <span>{{ fileName }}</span>
       </c-alert>
       <n-spin
         v-if="status === 'processing'"

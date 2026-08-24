@@ -20,16 +20,18 @@ const results = computedAsync(async () => {
   }
   try {
     return await parquetReadObjects({ file: await file.arrayBuffer(), compressors });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
     return [];
   }
 });
-const resultsJson = computed(() => JSON.stringify(results.value || [], (_, v) => typeof v === 'bigint' ? v.toString() : v, 2));
+const resultsJson = computed(() =>
+  JSON.stringify(results.value || [], (_, v) => (typeof v === 'bigint' ? v.toString() : v), 2),
+);
 
-const columns = computed(() => Object.keys((results.value || [])[0] || {})
-  .map(h => ({ key: h.replace(/\./g, '\\.'), title: h })));
+const columns = computed(() =>
+  Object.keys((results.value || [])[0] || {}).map((h) => ({ key: h.replace(/\\/g, '\\\\').replace(/\./g, '\\.'), title: h })),
+);
 
 function onUpload(file: File) {
   if (file) {
@@ -58,7 +60,7 @@ function downloadCsv() {
 
     <n-tabs v-if="!error" type="line" animated>
       <n-tab-pane name="jsonData" :tab="t('tools.parquets-reader.text.json-content')">
-        <textarea-copyable :value="resultsJson" language="json" :download-file-name="`${fileInput?.name}.json`" />
+        <CodeBlockCopyable :value="resultsJson" language="json" :download-file-name="`${fileInput?.name}.json`" />
       </n-tab-pane>
       <n-tab-pane v-if="columns.length" name="tabData" :tab="t('tools.parquets-reader.text.table-view')">
         <div mb-1 flex justify-center>
@@ -70,9 +72,10 @@ function downloadCsv() {
           ref="tableRef"
           size="small"
           :columns="columns"
-
-          :data="results" bordered striped
-          pagination
+          :data="results ?? []"
+          bordered
+          striped
+          :pagination="{}"
         />
       </n-tab-pane>
     </n-tabs>

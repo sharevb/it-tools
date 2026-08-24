@@ -25,6 +25,44 @@ const splitEveryCharacterCounts = ref(0);
 const currentActiveIndex = ref(0);
 // Tracks the total number of matches found to cycle through them.
 const totalMatches = ref(0);
+// Track if regex is unsafe
+const regexWarning = ref('');
+
+const DANGEROUS_REGEX_PATTERNS = [
+  /\(\.\*\)\+/, /\(\.\+\)\+/, /\(\.\?\)\+/,
+  /\(\w\+\)\+/, /\(\w\*\)\+/, /\(\w\?\)\+/,
+  /\(\w+\*\)\+/, /\(\w+\+\)\+/, /\(\w+\?\)\+/,
+  /\([^)]+\)\+/, /\([^)]+\)\*/, /\([^)]+\)\?/,
+];
+
+function isRegexSafe(pattern: string): boolean {
+  try {
+    for (const dangerousPattern of DANGEROUS_REGEX_PATTERNS) {
+      if (dangerousPattern.test(pattern)) {
+        return false;
+      }
+    }
+    // eslint-disable-next-line no-new
+    new RegExp(pattern);
+    return true;
+  }
+  catch {
+    return false;
+  }
+}
+
+function validateRegex(pattern: string): boolean {
+  if (!pattern) {
+    regexWarning.value = '';
+    return true;
+  }
+  if (!isRegexSafe(pattern)) {
+    regexWarning.value = 'unsafe-regex';
+    return false;
+  }
+  regexWarning.value = '';
+  return true;
+}
 
 const highlightedText = computed(() => {
   const findWhatValue = findWhat.value;
@@ -39,6 +77,9 @@ const highlightedText = computed(() => {
   }
 
   if (addLineBreakRegex.value) {
+    if (!validateRegex(addLineBreakRegex.value)) {
+      return strValue;
+    }
     const addLBRegex = new RegExp(addLineBreakRegex.value, matchCase.value ? 'g' : 'gi');
     if (addLineBreakPlace.value === 'before') {
       strValue = strValue.replace(addLBRegex, m => `\n${m}`);
@@ -58,12 +99,15 @@ const highlightedText = computed(() => {
     return DOMPurify.sanitize(strValue);
   }
 
+  if (!validateRegex(findWhatValue)) {
+    return DOMPurify.sanitize(strValue);
+  }
+
   const regex = new RegExp(findWhatValue, matchCase.value ? 'g' : 'gi');
   let index = 0;
   const newStr = strValue.replace(regex, (match) => {
     index++;
     const escapedMatch = escapeHtml(match);
-    const escapedFindWhat = escapeHtml(findWhatValue);
     return `<span class="${match === findWhatValue ? 'highlight' : 'outline'}">${escapedMatch}</span>`;
   });
 
@@ -192,6 +236,10 @@ const { copy } = useCopy({ source: highlightedText });
         <label>{{ t('tools.smart-text-replacer.texts.tag-keep-linebreaks') }}</label>
       </n-checkbox>
     </n-space>
+
+    <n-alert v-if="regexWarning === 'unsafe-regex'" type="warning" mt-4>
+      {{ t('tools.smart-text-replacer.texts.warning-unsafe-regex') }}
+    </n-alert>
 
     <n-divider />
 

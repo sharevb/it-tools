@@ -57,12 +57,12 @@ const decoded = computed(() => {
         <input-copyable :value="decoded.signature || 'N/A'" />
       </NFormItem>
       <NFormItem :label="t('tools.eth-transaction-decoder.texts.label-arguments')">
-        <textarea-copyable language="json" :value="JSON.stringify(decoded.args, null, 2)" />
+        <CodeBlockCopyable language="json" :value="JSON.stringify(decoded.args, null, 2)" />
       </NFormItem>
     </c-card>
 
     <c-card v-if="decoded" :title="t('tools.eth-transaction-decoder.texts.title-structured-output-json')">
-      <textarea-copyable language="json" :value="JSON.stringify(decoded.outputJson, null, 2)" />
+      <CodeBlockCopyable language="json" :value="JSON.stringify(decoded.outputJson, null, 2)" />
     </c-card>
   </div>
 </template>

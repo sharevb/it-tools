@@ -1,3 +1,5 @@
+import { translate as t } from '@/plugins/i18n.plugin';
+
 /**
  * Converts dBm to milliwatts (mW)
  * @param dbm - Power level in dBm
@@ -14,7 +16,7 @@ export function dbmToMw(dbm: number): number {
  */
 export function mwToDbm(mw: number): number {
   if (mw <= 0) {
-    throw new Error('Power in milliwatts must be greater than 0');
+    throw new Error(t('tools.dbm-mw-converter.service.texts.power-in-milliwatts-must-be-greater-than-0'));
   }
   return 10 * Math.log10(mw);
 }

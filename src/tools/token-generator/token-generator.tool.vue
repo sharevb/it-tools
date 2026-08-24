@@ -6,23 +6,46 @@ import { computedRefreshable } from '@/composable/computedRefreshable';
 
 const count = useQueryParamOrStorage({ name: 'count', storageName: 'token-generator:count', defaultValue: 1 });
 const length = useQueryParamOrStorage({ name: 'length', storageName: 'token-generator:length', defaultValue: 64 });
-const withUppercase = useQueryParamOrStorage({ name: 'uppercase', storageName: 'token-generator:uppercase', defaultValue: true });
-const withLowercase = useQueryParamOrStorage({ name: 'lowercase', storageName: 'token-generator:lowercase', defaultValue: true });
-const withNumbers = useQueryParamOrStorage({ name: 'numbers', storageName: 'token-generator:numbers', defaultValue: true });
-const withSymbols = useQueryParamOrStorage({ name: 'symbols', storageName: 'token-generator:symbols', defaultValue: false });
+const withUppercase = useQueryParamOrStorage({
+  name: 'uppercase',
+  storageName: 'token-generator:uppercase',
+  defaultValue: true,
+});
+const withLowercase = useQueryParamOrStorage({
+  name: 'lowercase',
+  storageName: 'token-generator:lowercase',
+  defaultValue: true,
+});
+const withNumbers = useQueryParamOrStorage({
+  name: 'numbers',
+  storageName: 'token-generator:numbers',
+  defaultValue: true,
+});
+const withSymbols = useQueryParamOrStorage({
+  name: 'symbols',
+  storageName: 'token-generator:symbols',
+  defaultValue: false,
+});
 const deniedChars = useQueryParamOrStorage({ name: 'deny', storageName: 'token-generator:deny', defaultValue: '' });
+const allowAmbiguousChars = useQueryParamOrStorage({
+  name: 'allow',
+  storageName: 'token-generator:allow-ambiguous',
+  defaultValue: false,
+});
 const { t } = useI18n();
 
 const [tokens, refreshTokens] = computedRefreshable(() =>
-  Array.from({ length: count.value < 1 ? 1 : count.value },
-    () => createToken({
+  Array.from({ length: count.value < 1 ? 1 : count.value }, () =>
+    createToken({
       length: length.value,
       withUppercase: withUppercase.value,
       withLowercase: withLowercase.value,
       withNumbers: withNumbers.value,
       withSymbols: withSymbols.value,
+      allowAmbiguousChars: allowAmbiguousChars.value,
       deniedChars: deniedChars.value,
-    })).join('\n'),
+    }),
+  ).join('\n'),
 );
 
 const { copy } = useCopy({ source: tokens, text: t('tools.token-generator.copied') });
@@ -50,11 +73,18 @@ const { copy } = useCopy({ source: tokens, text: t('tools.token-generator.copied
         </n-space>
       </n-form>
 
-      <n-form-item :label="t('tools.token-generator.texts.label-denied-characters-ie-visually-similar-oo01li-or-punctuations')" label-placement="top">
+      <n-form-item
+        :label="t('tools.token-generator.texts.label-denied-characters-ie-visually-similar-oo01li-or-punctuations')"
+        label-placement="top"
+      >
         <c-input-text
           v-model:value="deniedChars"
           :placeholder="t('tools.token-generator.texts.placeholder-put-characters-to-deny-from-token')"
         />
+      </n-form-item>
+
+      <n-form-item :label="t('tools.token-generator.texts.label-allow-ambiguous-characters')" label-placement="left">
+        <n-switch v-model:value="allowAmbiguousChars" />
       </n-form-item>
 
       <n-form-item :label="`${t('tools.token-generator.length')} (${length})`" label-placement="left">

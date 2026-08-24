@@ -69,14 +69,14 @@ const fontOptions = [
 ];
 
 interface FontData {
-  value: string;
-  url: string;
-  css: string;
-  cssUrl: string;
-  dynamicName: string;
-  weight: string;
-  style: string;
-  fallback: string;
+  value: string
+  url: string
+  css: string
+  cssUrl: string
+  dynamicName: string
+  weight: string
+  style: string
+  fallback: string
 }
 
 const fontA = useITStorage('font-comparer:a', {
@@ -202,7 +202,7 @@ onBeforeUnmount(() => {
 });
 
 interface UploadEvents {
-  file: UploadFileInfo;
+  file: UploadFileInfo
 }
 </script>
 

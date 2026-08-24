@@ -1,13 +1,26 @@
+import iconv from 'iconv-lite';
 import { Base64 } from 'js-base64';
 
 export { textToBase64, base64ToText, isValidBase64, removePotentialDataAndMimePrefix };
 
-function textToBase64(str: string, { makeUrlSafe = false }: { makeUrlSafe?: boolean } = {}) {
+function textToBase64(
+  str: string,
+  { makeUrlSafe = false, encoding = 'utf8' }: { makeUrlSafe?: boolean; encoding?: string } = {},
+) {
+  if (encoding !== 'utf8') {
+    // Handle non-UTF-8 encoding if needed
+    const buffer = iconv.encode(str, encoding);
+    const encoded = Base64.fromUint8Array(buffer);
+    return makeUrlSafe ? makeUriSafe(encoded) : encoded;
+  }
   const encoded = Base64.encode(str);
   return makeUrlSafe ? makeUriSafe(encoded) : encoded;
 }
 
-function base64ToText(str: string, { makeUrlSafe = false }: { makeUrlSafe?: boolean } = {}) {
+function base64ToText(
+  str: string,
+  { makeUrlSafe = false, encoding = 'utf8' }: { makeUrlSafe?: boolean; encoding?: string } = {},
+) {
   if (!isValidBase64(str, { makeUrlSafe })) {
     throw new Error('Incorrect base64 string');
   }
@@ -18,9 +31,12 @@ function base64ToText(str: string, { makeUrlSafe = false }: { makeUrlSafe?: bool
   }
 
   try {
+    if (encoding !== 'utf8') {
+      // Handle non-UTF-8 encoding if needed
+      return iconv.decode(Base64.toUint8Array(cleanStr), encoding);
+    }
     return Base64.decode(cleanStr);
-  }
-  catch (_) {
+  } catch (_) {
     throw new Error('Incorrect base64 string');
   }
 }
@@ -41,8 +57,7 @@ function isValidBase64(str: string, { makeUrlSafe = false }: { makeUrlSafe?: boo
       return removePotentialPadding(reEncodedBase64) === cleanStr;
     }
     return reEncodedBase64 === cleanStr.replace(/\s/g, '');
-  }
-  catch (err) {
+  } catch (err) {
     return false;
   }
 }

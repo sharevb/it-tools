@@ -1,4 +1,3 @@
-import { Fingerprint } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.nanoid-generator.description'),
   keywords: ['nanoid', 'generator'],
   component: () => import('./nanoid-generator.vue'),
-  icon: Fingerprint,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Fingerprint')),
   createdAt: new Date('2024-05-31'),
   category: 'Generators',
 });

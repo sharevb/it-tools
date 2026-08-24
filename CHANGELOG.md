@@ -2,6 +2,96 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.07.11
+
+### Features
+-  mobile UX overhaul, theme flash prevention and build cleanup (#474) (239c69e)
+- **Base64 String Converter**: handle text encoding other than utf8 (7460423)
+- **new tool**: Keyboard Tester (dfa836b)
+- **new tool**: Cron Expression Generator (b016d34)
+- **new tool**: DNS/RDAP queries (37cc92f)
+- **new tool**: CSS/JS Prettify & Minify (45ed4a7)
+- **new tool**: Markdown Diff (02df0f3)
+- **Token Generator**: add ambigous chars exclusion by default (8b19bf0)
+- **new tool**: Markdown Preview (b662c6b)
+- **new tool**: Markdown Table Generator (8114994)
+- **new tool**: nmap Command Builder (d041556)
+- **new tool**: k6 Generator (8ecdf99)
+- **new tool**: JSON Patch Tools (6f93cd1)
+- **Docker Compose to .env**: add updated Docker compose (00584bd)
+- **docker-compose-memo**: add Chinese translation and refactor locale-based memo loading (#421) (14bfc21)
+- **Case Converter**: add Language specific Title Case (9302b8e)
+-  add a viewer for JSON/XML and other languages with folding to many tools (3c76776)
+- **new tool**: Picomatch tester (d544bf2)
+- **new tool**: Docker Label Generator (218ae7a)
+- **Color Converter**: add oklab/oklch and lab as CSS (fe2a1be)
+- **new tools**: HTML/Markdown to data (2a4fcc6)
+- **Case Converter**: allow multiline (be6a951)
+- **new tool**: SAML Parser (652ac82)
+- **new tool**: URL Builder (040d659)
+-  hide network utils config when tools settings url is set (#411) (b6f8cb0)
+- **new tool**: Crop Image (#404) (5efbb87)
+- **new tool**: Running Pace Calculator (93d4318)
+- **Image to SVG**: intégration de esm-potrace-wasm et VTracer pour le mode couleur (bce809a)
+- **new tool**: HTTPS Tester (1a664fe)
+- **new tool**: Powershell Memo (5fd2bb6)
+- **new tool**: DNS Propagation Tester (4100059)
+- **new tool**: DNS Tester (d878731)
+- **x509 Certificate Generator**: add options for RSA bits (23ede48)
+- **new tool**: Random Line Picker (#393) (89975dc)
+- **Geo Coordinates Converter**: add DMS/Decimal/UTM and a interactive map (f0e35b0)
+- **UUID Generator**: Case and hyphen options (04c2575)
+- **new tool**: JSON to .env converter                                                                                                                                                      (#349) (b05e70d)
+
+### Bug fixes
+- **Release**: needs lodash for now (9ab81ab)
+- **Bash Cheatsheet**: fix default to en (329bf35)
+- **script**: Update set_node_mem.sh to work in MacOS (#405) (0889c13)
+- **Certificate Key Parser**: option to add missing BEGIN/END (464e005)
+- **Open graph meta generator**: display subtypes (for Music...) (521a957)
+- **Open Graph Metadata Generator**: fix missing translation keys (9bbff46)
+- **Fitness Computer**: Change arguments order to fix wrong BMI calculation (#407) (eaea6e9)
+- **Data Storage Units Converter**: fix b/iB/B conversion (102bb99)
+- **Speed Converter**: wrong m/h is in fact mi/h (miles) (dfb92f2)
+- **Amortization Calculator**: exclude historical currencies (fb8a1eb)
+-  optimize Home loading (3b7ddb4)
+-  node-forge patch for EcDSA (6cc1ad7)
+- **Geo Coordinates Converter**: fix marker display (7e9cf35)
+-  remove HTTP Headers security as this broke many tools (905de13)
+- **Pdf Signature Checker**: not supported certificate (92bf2b5)
+
+### Performance
+-  overhaul startup performance, dependencies and UI responsiveness (#419) (bad27cf)
+
+### Chores
+-  add rollup-plugin-visualizer (7e979b3)
+-  update dependencies (f7f82a5)
+
+### Other
+-  Add resolver dropdown to dns tester (#410) (93d5056)
+-  Add Chinese translation for bash memo and enhance dynamic loading in … (#408) (be4cf74)
+-  fix unit in placeholder (#414) (a510e50)
+-  jwt-parser -  show full date with timezone for date claims (#412) (9ff69dc)
+
+### I18n
+-  add Hindi (d1c51da)
+-  translate remaining (aa2674a)
+-  extract strings (b788aaf)
+-  translate remaining (efd0b25)
+-  extract more strings (4103bd7)
+
+### Upgrade toolchain
+-  Vite 8, Vue 3.5, Vitest 4, TypeScript 6, pnpm 11, Node 24; replace ESLint/Prettier with oxlint/oxfmt (#418) (63f011b)
+
+### Doc
+- **readme**: add build memory requirements (816dc55)
+
+### Documentation
+-  enhance Docker cheat sheet (#397) (c5a93af)
+
+### Fixup! fix
+-  node-forge patch for EcDSA (d5f4dcb)
+
 ## Version 2026.01.04
 
 ### Features

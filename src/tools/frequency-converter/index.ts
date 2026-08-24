@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { AntennaBars4 } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -10,7 +9,7 @@ export const tool = defineTool({
     'units', 'hz', 'hertz', 'rpm', 'deg/s', 'rad/s',
   ],
   component: () => import('./frequency-converter.vue'),
-  icon: AntennaBars4,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/AntennaBars4')),
   createdAt: new Date('2026-01-30'),
   category: 'Physics',
 });

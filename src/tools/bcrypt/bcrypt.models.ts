@@ -1,6 +1,8 @@
 import { getCurrentLocale, translate as t } from '@/plugins/i18n.plugin';
 
 Intl.DurationFormat ??= class DurationFormat {
+  constructor(..._args: unknown[]) {}
+
   format(duration: { seconds?: number; milliseconds?: number }): string {
     return 'seconds' in duration ? `${duration.seconds} seconds` : `${duration.milliseconds} milliseconds`;
   }
@@ -46,7 +48,9 @@ export async function* bcryptWithProgressUpdates<Param, Result>(
   const timeoutSignal = AbortSignal.timeout(timeoutMs);
   const userSignal = options?.signal;
 
-  const signal: AbortSignal = userSignal ? new AbortSignal([userSignal, timeoutSignal] as any) : timeoutSignal;
+  const signal: AbortSignal = userSignal
+    ? (AbortSignal as any).any([userSignal, timeoutSignal])
+    : timeoutSignal;
 
   let res = (_: Update<Result>) => {};
   const nextPromise = () => new Promise<Update<Result>>(resolve => (res = resolve));
@@ -73,7 +77,7 @@ export async function* bcryptWithProgressUpdates<Param, Result>(
         nextValue({ kind: 'progress', progress: 0 });
         if (signal.reason instanceof DOMException && signal.reason.name === 'TimeoutError') {
           const message = t('tools.bcrypt.texts.timed-out-after-timeout-period', {
-            timeoutPeriod: new Intl.DurationFormat(getCurrentLocale(), { style: 'long' }).format({
+              timeoutPeriod: new (Intl.DurationFormat as any)(getCurrentLocale(), { style: 'long' }).format({
               seconds: Math.round(timeoutMs / 1000),
             }),
           });

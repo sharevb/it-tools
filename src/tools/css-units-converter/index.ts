@@ -1,4 +1,3 @@
-import { Dimensions } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.css-units-converter.description'),
   keywords: ['css', 'units', 'converter'],
   component: () => import('./css-units-converter.vue'),
-  icon: Dimensions,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Dimensions')),
   createdAt: new Date('2025-11-29'),
   category: 'Web',
 });

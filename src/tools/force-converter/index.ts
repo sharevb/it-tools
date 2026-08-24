@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { Barbell } from '@vicons/tabler';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -10,7 +9,7 @@ export const tool = defineTool({
     'units', 'newton', 'dyne', 'pond', 'ton-force',
   ],
   component: () => import('./force-converter.vue'),
-  icon: Barbell,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Barbell')),
   createdAt: new Date('2024-08-15'),
   category: 'Physics',
 });

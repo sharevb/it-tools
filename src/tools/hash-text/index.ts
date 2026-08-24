@@ -1,4 +1,3 @@
-import { EyeOff } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -41,7 +40,7 @@ export const tool = defineTool({
     'Argon2id',
   ],
   component: () => import('./hash-text.vue'),
-  icon: EyeOff,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/EyeOff')),
   redirectFrom: ['/hash'],
   category: 'Crypto',
 });

@@ -29,22 +29,30 @@ const inputLabelAlignmentConfig = {
   labelPosition: 'left',
   labelWidth: '120px',
   labelAlign: 'right',
-};
+} as const;
 </script>
 
 <template>
   <c-card>
     <c-input-text
       v-model:value="input"
-      autofocus :label="t('tools.uuid-converter.input.label')" :placeholder="t('tools.uuid-converter.input.placeholder')" raw-text
+      autofocus
+      :label="t('tools.uuid-converter.input.label')"
+      :placeholder="t('tools.uuid-converter.input.placeholder')"
+      raw-text
       v-bind="inputLabelAlignmentConfig"
     />
 
     <div my-16px divider />
 
     <InputCopyable
-      v-for="format in formats" :key="format.label" :value="format.value" :label="format.label"
-      :readonly="true" v-bind="inputLabelAlignmentConfig" mb-1
+      v-for="format in formats"
+      :key="format.label"
+      :value="format.value"
+      :label="format.label"
+      :readonly="true"
+      v-bind="inputLabelAlignmentConfig"
+      mb-1
     />
   </c-card>
 </template>

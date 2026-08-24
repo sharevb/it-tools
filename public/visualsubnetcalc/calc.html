@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Visual Subnet Calculator - Fork</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="css/font/bootstrap-icons.css"
+    />
+    <meta
+      name="description"
+      content="Quickly and easily design network layouts. Split and join subnets, add notes and color, then collaborate with others by sharing a custom link to your design."
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="__DEPLOY_URL__" />
+    <meta property="og:title" content="Visual Subnet Calculator - Split/Join" />
+    <meta
+      property="og:description"
+      content="Quickly and easily design network layouts. Split and join subnets, add notes and color, then collaborate with others by sharing a custom link to your design."
+    />
+    <meta
+      property="og:image"
+      content="__DEPLOY_URL__/icon/social_1200x630.png"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="__DEPLOY_URL__" />
+    <meta
+      name="twitter:title"
+      content="Visual Subnet Calculator - Split/Join"
+    />
+    <meta
+      name="twitter:description"
+      content="Quickly and easily design network layouts. Split and join subnets, add notes and color, then collaborate with others by sharing a custom link to your design."
+    />
+    <meta
+      name="twitter:image"
+      content="__DEPLOY_URL__/icon/social_1200x600.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="icon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="icon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="icon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="icon/site.webmanifest" />
+    <link rel="mask-icon" href="icon/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <div class="container-xxl mt-3">
+      <div class="float-end" id="navigation">
+        <a
+          href="#"
+          id="faq_icon"
+          data-bs-toggle="modal"
+          data-bs-target="#faqModal"
+          aria-label="FAQ"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-question-circle"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+            />
+            <path
+              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"
+            />
+          </svg>
+        </a>
+        <a
+          href="#"
+          id="info_icon"
+          data-bs-toggle="modal"
+          data-bs-target="#aboutModal"
+          aria-label="About"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-info-circle"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+            />
+            <path
+              d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://github.com/sharevb/visualsubnetcalc"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-github"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+            />
+          </svg>
+        </a>
+      </div>
+      <h1 id="tooltitle">
+        <a href="/" class="text-decoration-none text-reset"
+          >Visual Subnet Calculator - Fork</a
+        >
+      </h1>
+      <div id="toolinfo" class="alert alert-primary alert-dismissible show mt-3" role="alert">
+        <p class="mb-1">
+          Quickly and easily design network layouts. Split and join subnets, add
+          notes and color, then collaborate with others by sharing a custom link
+          to your design.
+        </p>
+        <p class="mb-0">
+          Enter the network you wish to subnet and use the Split/Join buttons on
+          the right to start designing!
+        </p>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form id="input_form" class="row g-2 mb-3">
+        <div class="font-monospace col-lg-2 col-md-3 col-4">
+          <div>
+            <label for="network" class="form-label mb-0 ms-1"
+              >Network Address</label
+            >
+          </div>
+          <div>
+            <input
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Error"
+              data-bs-trigger="manual"
+              name="network"
+              id="network"
+              type="text"
+              class="form-control"
+              value="10.0.0.0"
+              aria-label="Network Address"
+              pattern="^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
+              required
+            />
+          </div>
+        </div>
+        <div class="font-monospace col-auto">
+          <div style="height: 2rem"></div>
+          <div>/</div>
+        </div>
+        <div class="font-monospace col-lg-2 col-md-3 col-4">
+          <div>
+            <label for="netsize" class="form-label mb-0 ms-1"
+              >Network Size</label
+            >
+          </div>
+          <div>
+            <input
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Error"
+              data-bs-trigger="manual"
+              name="netsize"
+              id="netsize"
+              type="text"
+              class="form-control w-10"
+              value="16"
+              aria-label="Network Size"
+              pattern="^([0-9]|[12][0-9]|3[0-2])$"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-3 font-">
+          <div style="height: 1.5rem"></div>
+          <div>
+            <button
+              id="btn_go"
+              class="btn btn-success mb-0 mt-auto"
+              type="button"
+            >
+              Go
+            </button>
+            <div class="dropdown d-inline">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Tools
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item active"
+                    href="#"
+                    data-bs-toggle="operatingMode"
+                    data-bs-target="#operatingMode"
+                    id="dropdown_standard"
+                    aria-current="true"
+                    >Mode - Standard</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-bs-toggle="operatingMode"
+                    data-bs-target="#operatingMode"
+                    id="dropdown_aws"
+                    >Mode - AWS</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-bs-toggle="operatingMode"
+                    data-bs-target="#operatingMode"
+                    id="dropdown_azure"
+                    >Mode - Azure</a
+                  >
+                </li>
+                <li>
+                  <a 
+                    class="dropdown-item" 
+                    href="#" 
+                    data-bs-toggle="operatingMode" 
+                    data-bs-target="#operatingMode" 
+                    id="dropdown_gcp">
+                    Mode - GCP
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-bs-toggle="operatingMode"
+                    data-bs-target="#operatingMode"
+                    id="dropdown_oci"
+                    >Mode - OCI</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#importExportModal"
+                    id="btn_import_export"
+                    >Import / Export</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Auto-Allocation Section -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link text-decoration-none p-0 text-start w-100"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#autoAllocationBody"
+              aria-expanded="false"
+              aria-controls="autoAllocationBody"
+            >
+              <i class="bi bi-chevron-right me-1"></i>
+              Auto-Allocation Helper
+            </button>
+          </h5>
+        </div>
+        <div class="collapse" id="autoAllocationBody">
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label for="subnetRequests" class="form-label"
+                  >Subnet requirements</label
+                >
+                <div class="position-relative">
+                  <textarea
+                    class="form-control font-monospace"
+                    id="subnetRequests"
+                    rows="3"
+                    placeholder="AzureFirewallSubnet /26&#10;GatewaySubnet /27&#10;AzureBastionSubnet /26"
+                  ></textarea>
+                  <div class="position-absolute top-0 end-0 mt-1 me-1">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-secondary"
+                      id="moveLineUp"
+                      title="Move line up"
+                    >
+                      <i class="bi bi-arrow-up"></i>
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-secondary"
+                      id="moveLineDown"
+                      title="Move line down"
+                    >
+                      <i class="bi bi-arrow-down"></i>
+                    </button>
+                  </div>
+                </div>
+                <small class="text-muted"
+                  >One per line: name /size. Use arrows to reorder lines.</small
+                >
+                <div class="mt-2">
+                  <label for="sortOrder" class="form-label">Sort order</label>
+                  <select class="form-select form-select-sm" id="sortOrder">
+                    <option value="preserve">Preserve input order</option>
+                    <option value="alphabetical">Alphabetical by name</option>
+                    <option value="optimal">Optimise space usage</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="reserveSpace" class="form-label"
+                  >Pad after each subnet</label
+                >
+                <input
+                  type="text"
+                  class="form-control font-monospace"
+                  id="reserveSpace"
+                  value=""
+                  placeholder="/28"
+                />
+                <small class="text-muted">Space to leave between subnets</small>
+              </div>
+              <div class="col-md-4">
+                <label for="futureSubnetSize" class="form-label"
+                  >Alignment size</label
+                >
+                <input
+                  type="text"
+                  class="form-control font-monospace"
+                  id="futureSubnetSize"
+                  value=""
+                  placeholder="/24"
+                />
+                <small class="text-muted"
+                  >Force alignment to this boundary</small
+                >
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="alignLargeOnly"
+                  />
+                  <label class="form-check-label" for="alignLargeOnly">
+                    Only align subnets ≥ alignment size
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <button
+                id="btn_auto_allocate"
+                class="btn btn-primary"
+                type="button"
+              >
+                Auto-Allocate Subnets
+              </button>
+              <button
+                id="btn_validate_alignment"
+                class="btn btn-secondary ms-2"
+                type="button"
+              >
+                Analyse Network
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Allocation Results - Outside collapsible area for visibility -->
+      <div id="allocation_results" class="mb-3"></div>
+
+      <div class="text-end mb-2">
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary me-2"
+          id="toggleColumns"
+        >
+          <i class="bi bi-table"></i> Show Additional Columns
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary me-2"
+          id="toggleSplitJoin"
+        >
+          <i class="bi bi-arrows-expand"></i> Hide Split/Join
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary me-2"
+          id="copyTable"
+        >
+          <i class="bi bi-clipboard"></i> Copy Table
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary me-2"
+          id="generateMirror"
+        >
+          <i class="bi bi-arrow-repeat"></i> Mirror
+        </button>
+      </div>
+
+      <table
+        id="calc"
+        class="table table-bordered font-monospace"
+        aria-label="Subnet Table"
+      >
+        <thead>
+          <tr>
+            <th
+              aria-label="Network Address"
+              id="subnetHeader"
+              style="display: table-cell"
+            >
+              Network Address
+            </th>
+            <th
+              aria-label="IP"
+              id="ipHeader"
+              class="additional-column"
+              style="display: none"
+            >
+              IP
+            </th>
+            <th
+              aria-label="CIDR"
+              id="cidrHeader"
+              class="additional-column"
+              style="display: none"
+            >
+              CIDR
+            </th>
+            <th
+              aria-label="Mask"
+              id="maskHeader"
+              class="additional-column"
+              style="display: none"
+            >
+              Mask
+            </th>
+            <th
+              aria-label="Type"
+              id="typeHeader"
+              class="additional-column"
+              style="display: none"
+            >
+              Type
+            </th>
+            <th
+              aria-label="Range of Addresses"
+              id="rangeHeader"
+              style="display: table-cell"
+            >
+              Range of Addresses
+            </th>
+            <th
+              aria-label="Usable IPs"
+              id="useableHeader"
+              style="display: table-cell"
+            >
+              Usable IPs
+            </th>
+            <th aria-label="Hosts" id="hostsHeader" style="display: table-cell">
+              Hosts
+            </th>
+            <th
+              aria-label="Note"
+              id="noteHeader"
+              colspan="100%"
+              style="display: table-cell"
+            >
+              Note
+              <div style="float: right" class="split-join-header">
+                <span id="splitHeader" aria-label="Split" class="split"
+                  >Split</span
+                >/<span id="joinHeader" aria-label="Join" class="join"
+                  >Join</span
+                >
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="calcbody">
+          <tr id="row_10-0-0-0_16" aria-label="10.0.0.0/16">
+            <td aria-labelledby="subnetHeader" class="row_address">
+              Loading...
+            </td>
+            <td
+              aria-labelledby="ipHeader"
+              class="row_ip additional-column"
+              style="display: none"
+            ></td>
+            <td
+              aria-labelledby="cidrHeader"
+              class="row_cidr additional-column"
+              style="display: none"
+            ></td>
+            <td
+              aria-labelledby="maskHeader"
+              class="row_mask additional-column"
+              style="display: none"
+            ></td>
+            <td aria-labelledby="rangeHeader" class="row_range"></td>
+            <td aria-labelledby="useableHeader" class="row_usable"></td>
+            <td aria-labelledby="hostsHeader" class="row_hosts"></td>
+            <td class="note">
+              <label
+                ><input
+                  aria-labelledby="noteHeader"
+                  type="text"
+                  class="form-control shadow-none p-0"
+              /></label>
+            </td>
+            <td
+              aria-labelledby="splitHeader"
+              rowspan="1"
+              colspan="13"
+              class="split rotate"
+            >
+              <span></span>
+            </td>
+            <td
+              aria-labelledby="joinHeader"
+              rowspan="14"
+              colspan="1"
+              class="join rotate"
+            >
+              <span></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="bottom_nav">
+        <div class="d-inline-block align-top pt-1 me-3" id="theme_switcher">
+          <button type="button" class="btn btn-sm btn-outline-secondary me-1" id="theme_light" aria-label="Light Theme">
+            <i class="bi bi-sun-fill"></i> Light
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary" id="theme_dark" aria-label="Dark Theme">
+            <i class="bi bi-moon-stars-fill"></i> Dark
+          </button>
+        </div>
+        <div
+          class="d-inline-block align-top pt-1"
+          id="colors_word_open"
+          aria-label="Change Colors"
+        >
+          <span>Change Colors &#187;</span>
+        </div>
+        <div
+          class="d-inline-block d-none"
+          id="color_palette"
+          aria-label="Color Palette"
+        >
+          <div role="button" aria-label="Color 1" id="palette_picker_1"></div>
+          <div role="button" aria-label="Color 2" id="palette_picker_2"></div>
+          <div role="button" aria-label="Color 3" id="palette_picker_3"></div>
+          <div role="button" aria-label="Color 4" id="palette_picker_4"></div>
+          <div role="button" aria-label="Color 5" id="palette_picker_5"></div>
+          <div role="button" aria-label="Color 6" id="palette_picker_6"></div>
+          <div role="button" aria-label="Color 7" id="palette_picker_7"></div>
+          <div role="button" aria-label="Color 8" id="palette_picker_8"></div>
+          <div role="button" aria-label="Color 9" id="palette_picker_9"></div>
+          <div role="button" aria-label="Color 10" id="palette_picker_10"></div>
+          <div role="button" id="reset_colors" class="ms-2" aria-label="Reset all colors" title="Reset all colors">
+            <span>Reset</span>
+          </div>
+        </div>
+        <div
+          class="d-inline-block align-top align-top pt-1 ps-2 d-none"
+          id="colors_word_close"
+          aria-label="Stop Changing Colors"
+        >
+          <span>&#171; Stop Changing Colors</span>
+        </div>
+        <div class="d-inline-block align-top pt-1 ps-3" id="copy_url">
+          <span>Copy Shareable URL</span>
+        </div>
+        <div class="d-inline-block align-top pt-1 ps-3" id="whats_new">
+          <a
+            title="Released 2025-05-19"
+            class="link-success"
+            href="https://github.com/sharevb/visualsubnetcalc/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="What's New"
+            >What's New?</a
+          >
+        </div>
+      </div>
+
+      <!-- Mirror Network Modal -->
+      <div class="modal fade" id="mirrorModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Generate Mirror Network</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info mb-3">
+                <strong>Source Network:</strong>
+                <span id="sourceNetworkDisplay" class="font-monospace">-</span>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="sourceLabel" class="form-label"
+                    >Source Label</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="sourceLabel"
+                    value="Blue"
+                  />
+                  <small class="text-muted">Label for source network</small>
+                </div>
+                <div class="col-md-6">
+                  <label for="mirrorLabel" class="form-label"
+                    >Mirror Label</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="mirrorLabel"
+                    value="Green"
+                  />
+                  <small class="text-muted">Label for mirror network</small>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="mirrorNetwork" class="form-label"
+                  >Mirror Network Base</label
+                >
+                <input
+                  type="text"
+                  class="form-control font-monospace"
+                  id="mirrorNetwork"
+                  placeholder="e.g., 10.200.0.0"
+                  pattern="^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
+                  required
+                />
+                <small class="text-muted" id="mirrorSizeHint"
+                  >Enter the base network for the mirror</small
+                >
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-success"
+                id="copySourceAndMirror"
+              >
+                <i class="bi bi-clipboard2-plus"></i> Copy Source and Mirror
+              </button>
+              <button type="button" class="btn btn-primary" id="confirmMirror">
+                <i class="bi bi-arrow-repeat"></i> Replace Source with Mirror
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="notifyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div
+            class="modal-content alert-warning"
+            role="alertdialog"
+            aria-labelledby="notifyModalLabel"
+            aria-describedby="notifyModalDescription"
+          >
+            <div class="modal-header border-bottom-0 pb-1">
+              <h3 class="modal-title" id="notifyModalLabel">Warning!</h3>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body pt-1" id="notifyModalDescription">
+              Notification Text Here
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="importExportModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+          <div
+            class="modal-content"
+            role="alertdialog"
+            aria-labelledby="importExportModalLabel"
+            aria-describedby="importExportModalDescription"
+          >
+            <div class="modal-header border-bottom-0 pb-1">
+              <h3 class="modal-title" id="importExportModalLabel">
+                Import/Export
+              </h3>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body pt-1">
+              <div
+                class="alert alert-primary show mt-3"
+                id="importExportModalDescription"
+              >
+                Copy the content from the box below to EXPORT the current subnet
+                configuration. Or, overwrite/paste a previously exported
+                configuration into the box below and click IMPORT.
+              </div>
+              <div class="form-floating font-monospace">
+                <textarea
+                  class="form-control pt-3"
+                  id="importExportArea"
+                  style="height: 510px"
+                  aria-label="Import/Export Content"
+                ></textarea>
+                <label for="importExportArea"></label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                id="importBtn"
+              >
+                Import
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="faqModal"
+        tabindex="-1"
+        aria-labelledby="faqModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="faqModalLabel">
+                FAQ - Visual Subnet Calculator
+              </h3>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <h4>What is subnetting?</h4>
+              <p>
+                Subnetting is the practice of dividing a large network into
+                smaller subnetworks or "subnets," allowing for more efficient
+                management and routing of network traffic. Think of subnetting
+                as organizing a crowded sports field by creating dedicated areas
+                for each sport, reducing chaos, and improving coordination. Each
+                subnet functions as a separate network with its own unique IP
+                address range, optimizing performance by localizing network
+                traffic.
+              </p>
+              <p>
+                Subnetting involves using subnet masks, special identifiers that
+                help devices determine which portion of an IP address belongs to
+                the network and which to individual hosts. This logical division
+                enhances security and resource management by clearly delineating
+                network boundaries and roles.
+              </p>
+              <h4>Why is subnetting important?</h4>
+              <p>
+                Subnetting improves network performance and speed by reducing
+                unnecessary broadcast traffic, ensuring data packets remain
+                within their designated subnet. It significantly reduces network
+                congestion, as routers only forward traffic intended for devices
+                within specific subnets. Subnetting also enhances network
+                security by controlling device access to sensitive resources,
+                making it easier to identify and isolate threats.
+              </p>
+              <p>
+                It simplifies network management and supports future growth,
+                allowing administrators to efficiently allocate IP addresses and
+                configure subnets based on organizational needs. Overall,
+                subnetting provides greater visibility, control, and
+                scalability, essential for robust network operation in any
+                sizeable organization.
+              </p>
+              <h4>How does subnetting work?</h4>
+              <p>
+                Subnetting works by dividing an IP address into two segments:
+                the network portion, which identifies the overall network, and
+                the host portion, which identifies individual devices within
+                that network. Using a subnet mask, administrators indicate
+                exactly which bits belong to each part, and with CIDR (Classless
+                Inter-Domain Routing) this division is expressed as a “slash
+                number” appended to the IP address (for example, /24). This
+                slash number indicates the number of bits reserved for the
+                network ID; the remaining bits define the host addresses
+                available within the subnet.
+              </p>
+              <p>
+                As you increase the slash number, more bits shift to form the
+                network ID, resulting in smaller, more tightly scoped subnets
+                with fewer host addresses, while decreasing the slash number
+                provides a larger pool of addresses for hosts. This flexible
+                method allows for optimal allocation of IP addresses tailored to
+                the size and security requirements of each network segment.
+              </p>
+              <h4>How does the Visual Subnet Calculator help me?</h4>
+              <p>
+                Visual Subnet Calculator helps network professionals simplify
+                and expedite the design process by transforming complex subnet
+                calculations into intuitive, visual layouts. It supports various
+                networking modes (including standard, AWS, and Azure) by
+                automatically accounting for reserved addresses, so you can
+                design with confidence whether planning small subnets or complex
+                architectures. Its clear, user-focused interface, rooted in
+                simplicity and ease-of-use, means even first-time users can
+                quickly lay out and adjust network designs without getting
+                bogged down in intricate math.
+              </p>
+              <p>
+                By enabling you to save and share your designs effortlessly, the
+                tool fosters collaboration and streamlines team discussions. It
+                puts you in full control of your data while reducing common
+                errors and speeding up deployment. Ultimately, the Visual Subnet
+                Calculator is designed to let you focus on designing effective
+                networks rather than struggling with manual calculations.
+              </p>
+              <h4>
+                How is Visual Subnet Calculator different than the binary/math
+                calculators online?
+              </h4>
+              <p>
+                The Visual Subnet Calculator prioritizes simplicity, intuitive
+                visual design, and rapid usability, making it more accessible
+                than traditional binary or mathematical subnet calculators.
+                Instead of forcing users into complex binary arithmetic, it
+                allows administrators to visually layout and manipulate network
+                designs, enhancing understanding and reducing errors.
+              </p>
+              <p>
+                The focus is on practical network administration rather than
+                academic subnetting exercises, reflecting real-world network
+                design scenarios. It also uniquely supports specialized cloud
+                subnetting rules, such as AWS and Azure, clearly indicating
+                reserved IP addresses for these platforms. Lastly, it encourages
+                collaboration and community input, continuously refining its
+                capabilities based on real-world user feedback.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="aboutModal"
+        tabindex="-1"
+        aria-labelledby="aboutModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="aboutModalLabel">
+                About Visual Subnet Calculator
+              </h3>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              Visual Subnet Calculator strives to be a tool for quickly
+              designing networks and collaborating on that design with others.
+              It focuses on expediting the work of network administrators, not
+              academic subnetting math.<br />
+              <br />
+              <h4>Key Features</h4>
+              <div class="accordion" id="featuresAccordion">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#autoAllocateFeature"
+                    >
+                      <strong
+                        >Auto-Allocation - Automatically allocate subnets based
+                        on requirements</strong
+                      >
+                    </button>
+                  </h2>
+                  <div
+                    id="autoAllocateFeature"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#featuresAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p><strong>How to use Auto-Allocation:</strong></p>
+                      <ol>
+                        <li>
+                          Click the "Auto-Allocate Helper" button to expand the
+                          panel
+                        </li>
+                        <li>
+                          Enter your subnet requirements, one per line:
+                          <ul>
+                            <li>Format: <code>subnet-name /size</code></li>
+                            <li>Example: <code>web-servers /24</code></li>
+                            <li>Example: <code>database /26</code></li>
+                          </ul>
+                        </li>
+                        <li>
+                          <strong>Padding:</strong> Add space between subnets
+                          <ul>
+                            <li>
+                              Enter a CIDR size like <code>/28</code> to add
+                              that much space after each subnet
+                            </li>
+                            <li>
+                              Useful for future growth or separation between
+                              environments
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <strong>Alignment:</strong> Force subnets to align to
+                          boundaries
+                          <ul>
+                            <li>
+                              Enter <code>/24</code> to align all subnets to /24
+                              boundaries
+                            </li>
+                            <li>
+                              Check "Align large subnets only" to only align
+                              subnets /24 or larger
+                            </li>
+                            <li>
+                              Helpful for cloud providers or routing
+                              requirements
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <strong>Sort Order:</strong>
+                          <ul>
+                            <li>"Preserve Order" - Keeps your input order</li>
+                            <li>"Alphabetical" - Sorts by subnet name</li>
+                            <li>
+                              "Optimal" - Arranges for most efficient space
+                              usage
+                            </li>
+                          </ul>
+                        </li>
+                        <li>Click "Auto-Allocate" to generate your layout</li>
+                      </ol>
+                      <p>
+                        <em
+                          >Tip: The tool automatically creates "Spare" blocks
+                          for unused space between allocations</em
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#mirrorFeature"
+                    >
+                      <strong
+                        >Mirror Networks - Create duplicate network layouts for
+                        DR/Blue-Green</strong
+                      >
+                    </button>
+                  </h2>
+                  <div
+                    id="mirrorFeature"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#featuresAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p><strong>How to use Mirror Networks:</strong></p>
+                      <ol>
+                        <li>Design your primary network layout first</li>
+                        <li>
+                          Click the "Mirror Network" button in the toolbar
+                        </li>
+                        <li>
+                          Enter the base address for your mirror network:
+                          <ul>
+                            <li>Must be the same CIDR size as your source</li>
+                            <li>Must be aligned to the same boundary</li>
+                            <li>
+                              Example: Source <code>10.0.0.0/16</code> → Mirror
+                              <code>10.100.0.0/16</code>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>Customise the labels (default: Blue/Green)</li>
+                        <li>
+                          Choose your action:
+                          <ul>
+                            <li>
+                              <strong>"Copy Source and Mirror"</strong> -
+                              Exports both networks to clipboard for
+                              Excel/documentation
+                            </li>
+                            <li>
+                              <strong>"Replace Source with Mirror"</strong> -
+                              Replaces current view with the mirror network
+                            </li>
+                          </ul>
+                        </li>
+                      </ol>
+                      <p>
+                        <em
+                          >Perfect for: Disaster Recovery sites, Blue-Green
+                          deployments, Multi-region setups</em
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#analysisFeature"
+                    >
+                      <strong
+                        >Network Analysis - Validate and optimise your
+                        design</strong
+                      >
+                    </button>
+                  </h2>
+                  <div
+                    id="analysisFeature"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#featuresAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p>Click "Analyse Network" to get insights including:</p>
+                      <ul>
+                        <li>Network utilization percentage</li>
+                        <li>Detection of gaps between subnets</li>
+                        <li>Subnet alignment validation</li>
+                        <li>Overlap detection (safety check)</li>
+                        <li>RFC1918/RFC6598 address type identification</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#additionalFeatures"
+                    >
+                      <strong>Additional Features</strong>
+                    </button>
+                  </h2>
+                  <div
+                    id="additionalFeatures"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#featuresAccordion"
+                  >
+                    <div class="accordion-body">
+                      <ul>
+                        <li>
+                          <strong>Additional Columns:</strong> Toggle IP, CIDR,
+                          Mask, and Type columns for detailed views
+                        </li>
+                        <li>
+                          <strong>Keyboard Navigation:</strong> Use arrow keys
+                          to navigate between subnet notes
+                        </li>
+                        <li>
+                          <strong>Export Options:</strong> Copy table to
+                          clipboard, share via URL, or print
+                        </li>
+                        <li>
+                          <strong>Cloud Modes:</strong> AWS, Azure, GCP, and OCI
+                          modes with proper address reservations
+                        </li>
+                        <li>
+                          <strong>Colour Coding:</strong> Organise subnets
+                          visually with colours and notes
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h4 class="mt-4">Design Tenets</h4>
+              <ul>
+                <li>
+                  <span style="font-weight: bold">Simplicity is king.</span>
+                  Network admins are busy and Visual Subnet Calculator should
+                  always be easy for FIRST TIME USERS to quickly and intuitively
+                  use.
+                </li>
+                <li>
+                  <span style="font-weight: bold"
+                    >Subnetting is design work.</span
+                  >
+                  Promote features that enhance visual clarity and easy mental
+                  processing of even the most complex architectures.
+                </li>
+                <li>
+                  <span style="font-weight: bold">Users control the data.</span>
+                  We store nothing, but provide convenient ways for users to
+                  save and share their designs.
+                </li>
+                <li>
+                  <span style="font-weight: bold"
+                    >Embrace community contributions.</span
+                  >
+                  Consider and respond to all feedback and pull requests in the
+                  context of these tenets.
+                </li>
+              </ul>
+              <h4 class="mt-4">Credits</h4>
+              Developed by
+              <a
+                href="https://www.caesarkabalan.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Caesar Kabalan</a
+              >
+              with help from
+              <a
+                href="https://github.com/sharevb/visualsubnetcalc/graphs/contributors"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub Contributors</a
+              >!<br />
+              <br />
+              Special thanks to
+              <a
+                href="https://www.davidc.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >davidc</a
+              >
+              for the
+              <a
+                href="https://www.davidc.net/sites/default/subnets/subnets.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >original tool</a
+              >
+              this website is inspired by.<br />
+              <br />
+              Split icon made by
+              <a
+                href="https://www.flaticon.com/authors/freepik"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Freepik</a
+              >
+              from
+              <a
+                href="https://www.flaticon.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Flaticon</a
+              >.<br />
+              <br />
+              All contributions, even suggestions or bug reports, are welcome
+              at:<br />
+              <ul>
+                <li>
+                  GitHub:
+                  <a
+                    href="https://github.com/sharevb/visualsubnetcalc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >https://github.com/sharevb/visualsubnetcalc</a
+                  >
+                </li>
+                <li>
+                  LinkedIn:
+                  <a
+                    href="https://www.linkedin.com/in/caesarkabalan/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Caesar Kabalan</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/jquery.validate.min.js"></script>
+      <script src="js/additional-methods.min.js"></script>
+      <script src="js/lz-string.min.js"></script>
+      <script src="js/main.js"></script>
+      <script>
+        // Handle chevron rotation for Auto-Allocation Helper
+        document
+          .getElementById("autoAllocationBody")
+          .addEventListener("shown.bs.collapse", function () {
+            document
+              .querySelector('[data-bs-target="#autoAllocationBody"] i')
+              .classList.replace("bi-chevron-right", "bi-chevron-down");
+          });
+        document
+          .getElementById("autoAllocationBody")
+          .addEventListener("hidden.bs.collapse", function () {
+            document
+              .querySelector('[data-bs-target="#autoAllocationBody"] i')
+              .classList.replace("bi-chevron-down", "bi-chevron-right");
+          });
+
+        // Theme switcher functionality
+        const htmlElement = document.documentElement;
+        const lightButton = document.getElementById('theme_light');
+        const darkButton = document.getElementById('theme_dark');
+
+        // Load theme from localStorage or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-bs-theme', savedTheme);
+        updateThemeButtons(savedTheme);
+
+        // Theme switcher event handlers
+        lightButton.addEventListener('click', function() {
+            setTheme('light');
+        });
+
+        darkButton.addEventListener('click', function() {
+            setTheme('dark');
+        });
+
+        function setTheme(theme) {
+            htmlElement.setAttribute('data-bs-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeButtons(theme);
+        }
+
+        function updateThemeButtons(theme) {
+            if (theme === 'dark') {
+                darkButton.classList.remove('btn-outline-secondary');
+                darkButton.classList.add('btn-secondary');
+                lightButton.classList.remove('btn-secondary');
+                lightButton.classList.add('btn-outline-secondary');
+            } else {
+                lightButton.classList.remove('btn-outline-secondary');
+                lightButton.classList.add('btn-secondary');
+                darkButton.classList.remove('btn-secondary');
+                darkButton.classList.add('btn-outline-secondary');
+            }
+        }
+      </script>
+    </div>
+  </body>
+</html>

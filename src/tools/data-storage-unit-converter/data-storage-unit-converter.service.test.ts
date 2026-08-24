@@ -29,6 +29,13 @@ describe('data-storage-unit-converter', () => {
       expect(convertStorageAndRateUnitsDisplay({ value: 1, fromUnit: 'Mb', toUnit: 'KB', precision: 0 })).toBe('125');
       expect(convertStorageAndRateUnitsDisplay({ value: 125, fromUnit: 'KB', toUnit: 'Mb', precision: 0 })).toBe('1');
 
+      expect(convertStorageAndRateUnitsDisplay({ value: 8, fromUnit: 'b', toUnit: 'B' })).toBe('1.000');
+      expect(convertStorageAndRateUnitsDisplay({ value: 1, fromUnit: 'B', toUnit: 'b' })).toBe('8.000');
+      expect(convertStorageAndRateUnitsDisplay({ value: 8000, fromUnit: 'b', toUnit: 'KB' })).toBe('1.000');
+      expect(convertStorageAndRateUnitsDisplay({ value: 1000, fromUnit: 'iB', toUnit: 'b' })).toBe('8000.000');
+      expect(convertStorageAndRateUnitsDisplay({ value: 1, fromUnit: 'KiB', toUnit: 'b' })).toBe('8192.000');
+      expect(convertStorageAndRateUnitsDisplay({ value: 1, fromUnit: 'KB', toUnit: 'iB' })).toBe('1000.000');
+
       expect(convertStorageAndRateUnitsDisplay({ value: 1, fromUnit: 'MiB', toUnit: 'Kb' })).toBe('8388.608');
       expect(convertStorageAndRateUnitsDisplay({ value: 8388.608, fromUnit: 'Kb', toUnit: 'MiB', precision: 0 })).toBe('1');
     });

@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { IconDatabaseStar } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -23,7 +22,7 @@ export const tool = defineTool({
     'SQL Server Transact-SQL',
   ],
   component: () => import('./sql-prettify.vue'),
-  icon: IconDatabaseStar,
+  icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconDatabaseStar.mjs')),
   npmPackages: ['sql-formatter'],
   category: 'Development',
 });

@@ -15,12 +15,26 @@ services:
       - POSTGRES_PASSWORD=secret
 `;
     const result = extractEnvFromCompose(yaml);
-    expect(result).toContain('# web');
-    expect(result).toContain('PORT=3000');
-    expect(result).toContain('DEBUG=true');
-    expect(result).toContain('# db');
-    expect(result).toContain('POSTGRES_USER=admin');
-    expect(result).toContain('POSTGRES_PASSWORD=secret');
+    expect(result).to.deep.eq({
+      dotenv: `# web
+PORT=3000
+DEBUG=true
+
+# db
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=secret
+`,
+      updatedCompose: `services:
+  web:
+    environment:
+      - PORT=\${PORT}
+      - DEBUG=\${DEBUG}
+  db:
+    environment:
+      - POSTGRES_USER=\${POSTGRES_USER}
+      - POSTGRES_PASSWORD=\${POSTGRES_PASSWORD}
+`,
+    });
   });
 
   it('handles object format', () => {
@@ -32,9 +46,40 @@ services:
       API_KEY: abc123
 `;
     const result = extractEnvFromCompose(yaml);
-    expect(result).toContain('# api');
-    expect(result).toContain('NODE_ENV=production');
-    expect(result).toContain('API_KEY=abc123');
+    expect(result).to.deep.eq({
+      dotenv: `# api
+NODE_ENV=production
+API_KEY=abc123
+`,
+      updatedCompose: `services:
+  api:
+    environment:
+      - NODE_ENV=\${NODE_ENV}
+      - API_KEY=\${API_KEY}
+`,
+    });
+  });
+
+  it('handles with already existing environment variables', () => {
+    const yaml = `
+services:
+  api:
+    environment:
+      NODE_ENV: \${NODE_ENV}
+      API_KEY: abc123
+`;
+    const result = extractEnvFromCompose(yaml);
+    expect(result).to.deep.eq({
+      dotenv: `# api
+API_KEY=abc123
+`,
+      updatedCompose: `services:
+  api:
+    environment:
+      - NODE_ENV=\${NODE_ENV}
+      - API_KEY=\${API_KEY}
+`,
+    });
   });
 
   it('handles mixed formats and null values', () => {
@@ -51,13 +96,28 @@ services:
       FOO2: null
 `;
     const result = extractEnvFromCompose(yaml);
-    expect(result).toContain('# mixed');
-    expect(result).toContain('FOO=bar');
-    expect(result).toContain('EMPTY=');
-    expect(result).toContain('# obj');
-    expect(result).toContain('BAR=baz');
-    expect(result).toContain('FOO2=');
-    expect(result).toContain('FOO3=');
+    expect(result).to.deep.eq({
+      dotenv: `# mixed
+FOO=bar
+EMPTY=
+FOO3=null
+
+# obj
+BAR=baz
+FOO2=
+`,
+      updatedCompose: `services:
+  mixed:
+    environment:
+      - FOO=\${FOO}
+      - EMPTY=\${EMPTY}
+      - FOO3=\${FOO3}
+  obj:
+    environment:
+      - BAR=\${BAR}
+      - FOO2=\${FOO2}
+`,
+    });
   });
 
   it('returns empty string if no env vars', () => {
@@ -67,11 +127,20 @@ services:
     image: nginx
 `;
     const result = extractEnvFromCompose(yaml);
-    expect(result).toBe('');
+    expect(result).to.deep.eq({
+      dotenv: '',
+      updatedCompose: `services:
+  noenv:
+    image: nginx
+`,
+    });
   });
 
   it('handles empty input gracefully', () => {
     const result = extractEnvFromCompose('');
-    expect(result).toBe('');
+    expect(result).to.deep.eq({
+      dotenv: '',
+      updatedCompose: '',
+    });
   });
 });

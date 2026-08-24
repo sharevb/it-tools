@@ -84,7 +84,7 @@ async function generateOutput() {
 // Multi-command generation
 const commands = computed(() => {
   if (!selected.value.length) {
-    return {};
+    return { curl: '', wget: '', powershell: '', cmd: '' };
   }
   const urls = selected.value
     .map((lang) => `https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/${lang}.gitattributes`)

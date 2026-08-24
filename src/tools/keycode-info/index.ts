@@ -1,4 +1,3 @@
-import { Keyboard } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -24,6 +23,6 @@ export const tool = defineTool({
     'shift',
   ],
   component: () => import('./keycode-info.vue'),
-  icon: Keyboard,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Keyboard')),
   category: 'Forensic',
 });

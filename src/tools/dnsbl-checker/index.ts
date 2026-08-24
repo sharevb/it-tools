@@ -1,4 +1,3 @@
-import { MailForward } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.dnsbl-checker.description'),
   keywords: ['dnsbl', 'block', 'dns', 'checker'],
   component: () => import('./dnsbl-checker.vue'),
-  icon: MailForward,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/MailForward')),
   createdAt: new Date('2025-08-15'),
   category: 'Network',
   externAccessDescription: t('tools.dnsbl-checker.externalAccess'),

@@ -1,7 +1,5 @@
-import type { RecursiveArray } from 'lodash';
-import defaultsDeep from 'lodash.defaultsdeep';
-import flattenDeep from 'lodash.flattendeep';
-import last from 'lodash.last';
+import { last } from 'es-toolkit';
+import { defaultsDeep } from 'es-toolkit/compat';
 import type { FileStructure } from './FileStructure';
 import { LINE_STRINGS } from './line-strings';
 
@@ -50,12 +48,12 @@ const defaultOptions: GenerateTreeOptions = {
  */
 export function generateTree(structure: FileStructure,
   options?: GenerateTreeOptions): string {
-  return flattenDeep([
+  // generateTree already returns joined strings, so one level of children is all
+  // there is to flatten.
+  return [
     getAsciiLine(structure, defaultsDeep({}, options, defaultOptions)),
-    structure.children.map(c => generateTree(c, options)) as RecursiveArray<
-      string
-    >,
-  ])
+    ...structure.children.map(c => generateTree(c, options)),
+  ]
     // Remove null entries. Should only occur for the very first node
     // when `options.rootDot === false`
     .filter(line => line != null)

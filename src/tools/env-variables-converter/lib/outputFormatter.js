@@ -1,5 +1,5 @@
 import YAML from 'yaml';
-import _ from 'lodash';
+import { set } from 'es-toolkit/compat';
 import { Formats } from './formats';
 
 function outputFormatter(outputType, properties) {
@@ -104,7 +104,7 @@ function yamlFormatter(properties) {
           pair[1] = false;
         }
       }
-      _.set(acc, ...pair);
+      set(acc, ...pair);
       return acc;
     }, {});
   return YAML.stringify(result);

@@ -16,26 +16,26 @@ const torrentInfosRaw = computedAsync(async () => {
   try {
     if (inputType.value === 'file' && file) {
       return await parseTorrent(new Uint8Array(await file.arrayBuffer()));
-    }
-    else {
+    } else {
       return await parseTorrent(content);
     }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return {
       error: e.toString(),
     };
   }
 });
-const torrentInfos = computed(() => withDefaultOnError(() => {
-  return Object.entries(torrentInfosRaw.value).map(([k, v]) => {
-    return {
-      label: k?.toString() || '',
-      value: JSON.stringify(v),
-    };
-  });
-}, []));
-const magnetURI = computed(() => withDefaultOnError(() => toMagnetURI(torrentInfosRaw.value), []));
+const torrentInfos = computed(() =>
+  withDefaultOnError(() => {
+    return Object.entries(torrentInfosRaw.value).map(([k, v]) => {
+      return {
+        label: k?.toString() || '',
+        value: JSON.stringify(v),
+      };
+    });
+  }, []),
+);
+const magnetURI = computed(() => withDefaultOnError(() => toMagnetURI(torrentInfosRaw.value), ''));
 
 async function onUpload(file: File) {
   if (file) {
@@ -51,7 +51,12 @@ watch(torrentContent, (newValue) => {
 
 const { attrs: validationAttrs } = useValidation({
   source: torrentInfos,
-  rules: [{ message: t('tools.torrent-to-magnet.texts.message-invalid-torrent-content'), validator: torrent => torrent?.length > 0 }],
+  rules: [
+    {
+      message: t('tools.torrent-to-magnet.texts.message-invalid-torrent-content'),
+      validator: (torrent) => torrent?.length > 0,
+    },
+  ],
 });
 </script>
 
@@ -59,14 +64,8 @@ const { attrs: validationAttrs } = useValidation({
   <div>
     <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
       <n-space>
-        <n-radio
-          value="file"
-          :label="t('tools.torrent-to-magnet.texts.label-file')"
-        />
-        <n-radio
-          value="content"
-          :label="t('tools.torrent-to-magnet.texts.label-content')"
-        />
+        <n-radio value="file" :label="t('tools.torrent-to-magnet.texts.label-file')" />
+        <n-radio value="content" :label="t('tools.torrent-to-magnet.texts.label-content')" />
       </n-space>
     </n-radio-group>
 

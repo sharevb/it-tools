@@ -1,4 +1,3 @@
-import { LetterCaseToggle } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -25,7 +24,7 @@ export const tool = defineTool({
     'swapCase',
   ],
   component: () => import('./case-converter.vue'),
-  icon: LetterCaseToggle,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/LetterCaseToggle')),
   npmPackages: ['change-case'],
   category: 'Text',
 });

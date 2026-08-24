@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { convertFlameToLux, convertFootCandlesToLux, convertLuxToFlame, convertLuxToFootCandles, convertLuxToNox, convertLuxToPhot, convertNoxToLux, convertPhotToLux } from './illuminance-converter.service';
 
 type IlluminanceScale = 'lux' | 'footcandles' | 'nox' | 'phot' | 'flame';
@@ -52,12 +52,11 @@ function update(key: IlluminanceScale) {
 
   const luxs = toLux(value) ?? 0;
 
-  _.chain(units)
-    .omit(key)
-    .forEach(({ fromLux }, index) => {
-      units[index].ref = Math.floor((fromLux(luxs) ?? 0) * 1000000) / 1000000;
-    })
-    .value();
+  Object.entries(units)
+    .filter(([unitKey]) => unitKey !== key)
+    .forEach(([unitKey, { fromLux }]) => {
+      units[unitKey].ref = Math.floor((fromLux(luxs) ?? 0) * 1000000) / 1000000;
+    });
 }
 
 update('lux');

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 
 const props = withDefaults(defineProps<{
   multiple?: boolean

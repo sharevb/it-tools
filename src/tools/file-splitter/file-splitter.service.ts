@@ -1,3 +1,5 @@
+import { translate as t } from '@/plugins/i18n.plugin';
+
 function chunkByFixedCount<T>(arr: T[], count: number): T[][] {
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += count) {
@@ -163,5 +165,5 @@ export function splitContent(
     });
   }
 
-  throw new Error('Unsupported format or invalid content');
+  throw new Error(t('tools.file-splitter.service.texts.unsupported-format-or-invalid-content'));
 }

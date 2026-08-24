@@ -1,13 +1,13 @@
-import { Braces } from '@vicons/tabler';
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'ObjGen to JSON',
+  name: t('tools.objgen-json.title'),
   path: '/objgen-json',
-  description: 'Generate xomplex JSON from TOML like syntax',
+  description: t('tools.objgen-json.description'),
   keywords: ['objgen', 'json', 'toml'],
   component: () => import('./objgen-json.vue'),
-  icon: Braces,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Braces')),
   createdAt: new Date('2026-02-14'),
   category: 'JSON',
 });

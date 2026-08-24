@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { demoRoutes } from './demo.routes';
 
 const route = useRoute();
