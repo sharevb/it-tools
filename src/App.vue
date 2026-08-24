@@ -7,6 +7,7 @@ import { layouts } from './layouts';
 import { useStyleStore } from './stores/style.store';
 import { useAppTheme } from './ui/theme/themes';
 import { getITToolsSetting } from './composable/queryParams';
+import { resolveLocale } from './plugins/i18n.plugin';
 
 const route = useRoute();
 const layout = computed(() => route?.meta?.layout ?? layouts.base);
@@ -41,12 +42,9 @@ watchEffect(() => {
   });
 });
 
-locale.value = get(getITToolsSetting('default_locale', locale.value));
+locale.value = resolveLocale(String(get(getITToolsSetting('default_locale', locale.value))));
 
-syncRef(
-  locale,
-  useStorage('locale', locale),
-);
+syncRef(locale, useStorage('locale', locale));
 </script>
 
 <template>
