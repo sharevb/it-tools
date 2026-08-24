@@ -68,7 +68,7 @@ async function onFileUploaded(uploadedFile: File) {
         />
       </c-card>
       <c-alert v-if="status === 'error'" type="error">
-        An error occured processing {{ file?.name }}.
+        {{ $t('tools.file-type.texts.an-error-occured-processing') }} <span>{{ file?.name }}</span>
       </c-alert>
       <n-spin
         v-if="status === 'processing'"

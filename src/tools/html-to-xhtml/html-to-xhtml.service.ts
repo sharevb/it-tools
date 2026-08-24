@@ -1,27 +1,34 @@
 import { DomUtils, parseDocument } from 'htmlparser2';
 
 export interface XhtmlOptions {
-  addNamespace?: boolean // add http://www.w3.org/1999/xhtml
-  indent?: number // number of spaces per indent level
+  addNamespace?: boolean; // add http://www.w3.org/1999/xhtml
+  indent?: number; // number of spaces per indent level
 }
 
 export function toStrictXhtml(html: string, options: XhtmlOptions = {}): string {
   // FULL canonical void element list
   const voidElements = new Set([
-    'area', 'base', 'br', 'col', 'embed', 'hr', 'img',
-    'input', 'link', 'meta', 'param', 'source', 'track', 'wbr',
+    'area',
+    'base',
+    'br',
+    'col',
+    'embed',
+    'hr',
+    'img',
+    'input',
+    'link',
+    'meta',
+    'param',
+    'source',
+    'track',
+    'wbr',
   ]);
 
   const escapeXml = (value: string) =>
-    value
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
+    value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   const indentSize = options.indent ?? 0;
-  const indentStr = (level: number) =>
-    indentSize > 0 ? ' '.repeat(level * indentSize) : '';
+  const indentStr = (level: number) => (indentSize > 0 ? ' '.repeat(level * indentSize) : '');
 
   const serialize = (node: any, level = 0): string => {
     if (DomUtils.isText(node)) {
@@ -38,7 +45,7 @@ export function toStrictXhtml(html: string, options: XhtmlOptions = {}): string 
       const tag = node.name.toLowerCase();
 
       // Attributes
-      const attrsObj = { ...(node.attribs || {}) };
+      const attrsObj = { ...node.attribs };
 
       // Inject namespace on root element if requested
       if (options.addNamespace && node.parent?.type === 'root') {
@@ -59,7 +66,7 @@ export function toStrictXhtml(html: string, options: XhtmlOptions = {}): string 
 
       // NORMAL ELEMENT
       const children = (node.children || [])
-        .map(child => serialize(child, level + 1))
+        .map((child) => serialize(child, level + 1))
         .join(indentSize > 0 ? '\n' : '');
 
       if (indentSize > 0) {
@@ -77,7 +84,5 @@ export function toStrictXhtml(html: string, options: XhtmlOptions = {}): string 
 
   const doc = parseDocument(html);
 
-  return doc.children
-    .map(node => serialize(node, 0))
-    .join(indentSize > 0 ? '\n' : '');
+  return doc.children.map((node) => serialize(node, 0)).join(indentSize > 0 ? '\n' : '');
 }

@@ -5,7 +5,7 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { withDefaultOnErrorAsync } from '@/utils/defaults';
 import { computedRefreshableAsync } from '@/composable/computedRefreshable';
 import { useValidation } from '@/composable/validation';
-import { useQueryParam } from '@/composable/queryParams';
+import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
@@ -23,12 +23,23 @@ const commonNameValidation = useValidation({
 const organizationName = useQueryParam({ tool: 'csr-gen', name: 'org', defaultValue: 'Test' });
 const organizationalUnit = useQueryParam({ tool: 'csr-gen', name: 'ou', defaultValue: '' });
 const password = ref('');
+const bits = useQueryParamOrStorage({ name: 'bits', storageName: 'csr-gen:b', defaultValue: 2048 });
 const city = useQueryParam({ tool: 'csr-gen', name: 'city', defaultValue: 'Paris' });
 const state = useQueryParam({ tool: 'csr-gen', name: 'state', defaultValue: 'FR' });
 const country = useQueryParam({ tool: 'csr-gen', name: 'country', defaultValue: 'France' });
 const contactEmail = useQueryParam({ tool: 'csr-gen', name: 'email', defaultValue: '' });
 const subjectAlternativeNames = ref('');
 const emptyCSR = { csrPem: '', privateKeyPem: '', publicKeyPem: '' };
+
+const { attrs: bitsValidationAttrs } = useValidation({
+  source: bits,
+  rules: [
+    {
+      message: t('tools.csr-generator.texts.bits-should-be-256-less-than-bits-less-than-16384-and-be-a-multiple-of-8'),
+      validator: value => value >= 256 && value <= 16384 && value % 8 === 0,
+    },
+  ],
+});
 
 const [certs, refreshCerts] = computedRefreshableAsync(
   () => withDefaultOnErrorAsync(() => {
@@ -38,6 +49,7 @@ const [certs, refreshCerts] = computedRefreshableAsync(
 
     return generateCSR({
       password: password.value,
+      bits: bits.value,
       commonName: commonName.value,
       countryName: country.value,
       city: city.value,
@@ -164,6 +176,12 @@ const [certs, refreshCerts] = computedRefreshableAsync(
           show-password-on="mousedown"
           :placeholder="t('tools.csr-generator.texts.placeholder-passphrase')"
         />
+      </n-form-item>
+    </div>
+
+    <div>
+      <n-form-item :label="t('tools.csr-generator.texts.label-rsa-bits')" v-bind="bitsValidationAttrs as any" label-placement="left">
+        <n-input-number-i18n v-model:value="bits" min="256" max="16384" step="8" />
       </n-form-item>
     </div>
 

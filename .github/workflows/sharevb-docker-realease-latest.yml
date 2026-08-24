@@ -13,26 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - run: |
-          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
-          npm install -g corepack@latest
-          echo "After : corepack version => $(corepack --version)"
-          corepack enable
-          pnpm --version
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.0
+      - name: Setup pnpm and install dependencies
+        uses: pnpm/setup@v2.0.2
         with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm i --ignore-scripts
+          cache: true
 
       - name: Run linters
         run: pnpm lint
 
       - name: Run unit tests
-        run: pnpm test
+        run: pnpm test:unit
+
+      - name: Type check
+        run: pnpm typecheck
 
       - name: Build the app
         run: pnpm build
@@ -41,42 +35,56 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - ci
+    strategy:
+      matrix:
+        language: ['', 'en']
     steps:
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v6.2.0
+        with:
+          images: sharevb/it-tools
+          labels: |
+            org.opencontainers.image.version=${{ case(matrix.language != '', format('latest-{0}', matrix.language), 'latest') }}
+
       # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.0
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4.4.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4.4.0
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4.2.0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4.2.0
 
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7.3.0
         with:
           context: .
           file: ./Dockerfile
           build-args: |
             "BASE_URL=/"
+            "VITE_AVAILABLE_LOCALES=${{ matrix.language }}"
+            "VITE_LANGUAGE=${{ matrix.language }}"
           platforms: linux/amd64,linux/arm64
           push: true
+          labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            sharevb/it-tools:latest
-            ghcr.io/${{ github.repository_owner }}/it-tools:latest
+            sharevb/it-tools:${{ case(matrix.language != '', format('latest-{0}', matrix.language), 'latest') }}
+            ghcr.io/sharevb/it-tools:${{ case(matrix.language != '', format('latest-{0}', matrix.language), 'latest') }}
 
       # Optionally log out
       - name: Log out from GitHub Container Registry

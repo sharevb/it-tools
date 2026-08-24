@@ -35,7 +35,14 @@ const command = computed(() => {
   <div>
     <NForm label-width="120px" label-placement="left">
       <NFormItem :label="t('tools.firewalld-generator.texts.label-zone')">
-        <NSelect v-model:value="zone" :options="[{ label: t('tools.firewalld-generator.texts.label-public'), value: 'public' }, { label: t('tools.firewalld-generator.texts.label-home'), value: 'home' }, { label: t('tools.firewalld-generator.texts.label-work'), value: 'work' }]" />
+        <NSelect
+          v-model:value="zone"
+          :options="[
+            { label: t('tools.firewalld-generator.texts.label-public'), value: 'public' },
+            { label: t('tools.firewalld-generator.texts.label-home'), value: 'home' },
+            { label: t('tools.firewalld-generator.texts.label-work'), value: 'work' },
+          ]"
+        />
       </NFormItem>
 
       <NFormItem :label="t('tools.firewalld-generator.texts.label-action')">
@@ -47,11 +54,23 @@ const command = computed(() => {
       </NFormItem>
 
       <NFormItem :label="t('tools.firewalld-generator.texts.label-value')">
-        <NInput v-model:value="value" :placeholder="t('tools.firewalld-generator.texts.placeholder-enter-the-service-port-protocol')" />
+        <NInput
+          v-model:value="value"
+          :placeholder="t('tools.firewalld-generator.texts.placeholder-enter-the-service-port-protocol')"
+        />
       </NFormItem>
 
       <NFormItem :label="t('tools.firewalld-generator.texts.label-permanent')">
-        <NSelect v-model:value="permanent" :options="[{ label: t('tools.firewalld-generator.texts.label-yes'), value: true }, { label: t('tools.firewalld-generator.texts.label-no'), value: false }]" />
+        <NSelect
+          :value="permanent as any"
+          :options="
+            [
+              { label: t('tools.firewalld-generator.texts.label-yes'), value: true },
+              { label: t('tools.firewalld-generator.texts.label-no'), value: false },
+            ] as any[]
+          "
+          @update:value="(v: boolean) => (permanent = v)"
+        />
       </NFormItem>
     </NForm>
 

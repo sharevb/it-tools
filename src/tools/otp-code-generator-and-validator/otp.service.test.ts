@@ -62,6 +62,20 @@ describe('otp functions', () => {
       expect(verifyHOTP({ token, key, counter: 5, window: 2 })).to.eql(false);
       expect(verifyHOTP({ token, key, counter: 5, window: 5 })).to.eql(true);
     });
+
+    // A window wider than the counter walks into negative counters, whose hexadecimal representation
+    // keeps the minus sign ('00000000000000-1'). The hex parser reads that as ffffffff rather than
+    // rejecting it, so these codes are stable rather than random, and validating around counter 0
+    // must not throw.
+    it('handles the negative counters a window around zero walks through', () => {
+      const key = 'JBSWY3DPEHPK3PXP';
+
+      expect(generateHOTP({ key, counter: -1 })).to.eql('681584');
+      expect(generateHOTP({ key, counter: -2 })).to.eql('072586');
+      expect(verifyHOTP({ token: '681584', key, counter: 0, window: 1 })).to.eql(true);
+      expect(verifyHOTP({ token: '282760', key, counter: 0, window: 3 })).to.eql(true);
+      expect(verifyHOTP({ token: 'INVALID', key, counter: 0, window: 3 })).to.eql(false);
+    });
   });
 
   describe('generateTOTP', () => {

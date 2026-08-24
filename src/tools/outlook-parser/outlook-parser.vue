@@ -17,7 +17,7 @@ function getPropertyName(tag: string | undefined) {
     return '';
   }
   const tagLower = tag.toLocaleLowerCase();
-  const prop = getProps().find(p => p.key?.toLocaleLowerCase() === tagLower);
+  const prop = getProps().find((p) => p.key?.toLocaleLowerCase() === tagLower);
   if (!prop) {
     return tag;
   }
@@ -36,8 +36,7 @@ const parsedEmailRaw = computedAsync(async () => {
       includeRawProps: true,
     };
     return msg;
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
     return null;
   }
@@ -49,18 +48,13 @@ const parsedRtf = computed(() => {
   }
   try {
     const rtfBlob = decompressRTF(Array.from(parsedEmail.value?.compressedRtf));
-    const rtfText = iconv.decode(
-      Buffer.from(rtfBlob),
-      'latin1',
-    );
+    const rtfText = iconv.decode(Buffer.from(rtfBlob), 'latin1');
     try {
       return { rtf: rtfText, html: deEncapsulateSync(rtfText, { decode: iconv.decode })?.text };
-    }
-    catch (dex: any) {
+    } catch (dex: any) {
       return { rtf: rtfText, html: dex.toString() };
     }
-  }
-  catch (ex: any) {
+  } catch (ex: any) {
     return { rtf: ex.toString(), html: '' };
   }
 });
@@ -70,7 +64,7 @@ function downloadFile(attachment: FieldsData) {
   if (!attachmentData) {
     return;
   }
-  const blob = new Blob([attachmentData.content], { type: 'application/octet-stream' });
+  const blob = new Blob([attachmentData.content as BlobPart], { type: 'application/octet-stream' });
   const downloadUrl = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = downloadUrl;
@@ -101,11 +95,31 @@ function onUpload(file: File) {
     </c-alert>
 
     <c-card v-if="!error && parsedEmail" :title="t('tools.outlook-parser.texts.title-output')">
-      <input-copyable v-if="fileInput?.name" :label="t('tools.outlook-parser.texts.label-file-name')" :value="fileInput?.name" />
-      <input-copyable v-if="parsedEmail.creationTime" :label="t('tools.outlook-parser.texts.label-creation-date')" :value="parsedEmail.creationTime" />
-      <input-copyable v-if="parsedEmail.clientSubmitTime" :label="t('tools.outlook-parser.texts.label-submit-date')" :value="parsedEmail.clientSubmitTime" />
-      <input-copyable v-if="parsedEmail.messageDeliveryTime" :label="t('tools.outlook-parser.texts.label-delivery-date')" :value="parsedEmail.messageDeliveryTime" />
-      <input-copyable v-if="parsedEmail.lastModificationTime" :label="t('tools.outlook-parser.texts.label-last-mod-date')" :value="parsedEmail.lastModificationTime" />
+      <input-copyable
+        v-if="fileInput?.name"
+        :label="t('tools.outlook-parser.texts.label-file-name')"
+        :value="fileInput?.name"
+      />
+      <input-copyable
+        v-if="parsedEmail.creationTime"
+        :label="t('tools.outlook-parser.texts.label-creation-date')"
+        :value="parsedEmail.creationTime"
+      />
+      <input-copyable
+        v-if="parsedEmail.clientSubmitTime"
+        :label="t('tools.outlook-parser.texts.label-submit-date')"
+        :value="parsedEmail.clientSubmitTime"
+      />
+      <input-copyable
+        v-if="parsedEmail.messageDeliveryTime"
+        :label="t('tools.outlook-parser.texts.label-delivery-date')"
+        :value="parsedEmail.messageDeliveryTime"
+      />
+      <input-copyable
+        v-if="parsedEmail.lastModificationTime"
+        :label="t('tools.outlook-parser.texts.label-last-mod-date')"
+        :value="parsedEmail.lastModificationTime"
+      />
       <c-card :title="t('tools.outlook-parser.texts.title-recipients')" mt-2>
         <input-copyable
           v-for="(h, index) in parsedEmail.recipients || []"
@@ -114,7 +128,11 @@ function onUpload(file: File) {
           :value="`${h.name}/${h.email}`"
         />
       </c-card>
-      <input-copyable v-if="parsedEmail.subject" :label="t('tools.outlook-parser.texts.label-subject')" :value="parsedEmail.subject" />
+      <input-copyable
+        v-if="parsedEmail.subject"
+        :label="t('tools.outlook-parser.texts.label-subject')"
+        :value="parsedEmail.subject"
+      />
       <c-card v-if="parsedEmail.body" :title="t('tools.outlook-parser.texts.title-plain-content')" mb-2>
         <details>
           <summary>{{ t('tools.outlook-parser.texts.tag-see-content') }}</summary>
@@ -143,14 +161,12 @@ function onUpload(file: File) {
             <tr>
               <th scope="col">
                 {{ t('tools.outlook-parser.texts.tag-attachment') }}
-              </th><th scope="col" />
+              </th>
+              <th scope="col" />
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="(h, index) in parsedEmail.attachments || []"
-              :key="index"
-            >
+            <tr v-for="(h, index) in parsedEmail.attachments || []" :key="index">
               <td>
                 {{ `${h.fileName || h.fileNameShort || 'noname'}` }}
               </td>
@@ -164,9 +180,21 @@ function onUpload(file: File) {
         </n-table>
       </c-card>
 
-      <input-copyable v-if="parsedEmail.messageId" :label="t('tools.outlook-parser.texts.label-message-id')" :value="parsedEmail.messageId" />
-      <input-copyable v-if="parsedEmail.senderName" :label="t('tools.outlook-parser.texts.label-sender-name')" :value="parsedEmail.senderName" />
-      <input-copyable v-if="parsedEmail.senderEmail" :label="t('tools.outlook-parser.texts.label-sender-email')" :value="parsedEmail.senderEmail" />
+      <input-copyable
+        v-if="parsedEmail.messageId"
+        :label="t('tools.outlook-parser.texts.label-message-id')"
+        :value="parsedEmail.messageId"
+      />
+      <input-copyable
+        v-if="parsedEmail.senderName"
+        :label="t('tools.outlook-parser.texts.label-sender-name')"
+        :value="parsedEmail.senderName"
+      />
+      <input-copyable
+        v-if="parsedEmail.senderEmail"
+        :label="t('tools.outlook-parser.texts.label-sender-email')"
+        :value="parsedEmail.senderEmail"
+      />
 
       <c-card v-if="parsedEmail.headers" :title="t('tools.outlook-parser.texts.title-all-headers')" mt-2>
         <textarea-copyable :value="parsedEmail.headers" />
@@ -177,7 +205,7 @@ function onUpload(file: File) {
           v-for="(h, index) in parsedEmail.rawProps || []"
           :key="index"
           :label="h.propertyName || getPropertyName(h.propertyTag)"
-          :value="h.value"
+          :value="String(h.value ?? '')"
         />
       </c-card>
     </c-card>

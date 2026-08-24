@@ -1,0 +1,37 @@
+{
+  "dns-prop": {
+    "url": "http://localhost:8003",
+    "auth": "alice:b@b"
+  },
+  "dns-tester": {
+    "url": "http://localhost:8003",
+    "auth": "alice:b@b"
+  },
+  "docker-dl": {
+    "url": "http://localhost:8001",
+    "auth": "alice:b@b"
+  },
+  "html-to-pdf": {
+    "url": "http://localhost:8004",
+    "auth": "alice:b@b"
+  },
+  "https-tester": {
+    "url": "http://localhost:8003",
+    "auth": "alice:b@b"
+  },
+  "multi-links-dl": {
+    "url": "http://localhost:8005",
+    "auth": "alice:b@b"
+  },
+  "ping": {
+    "url": "http://localhost:8003",
+    "auth": "alice:b@b"
+  },
+  "short-urls-expander": {
+    "cors-anywhere-url": "http://localhost:8005",
+    "auth": "alice:b@b"
+  },
+  "tcp-udp-port-tester": {
+    "ws": "ws://localhost:8002"
+  }
+}

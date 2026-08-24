@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 
 export { ipv4ToInt, ipv4ToIpv6, isValidIpv4 };
 
@@ -18,16 +18,12 @@ function ipv4ToIpv6({ ip, prefix = '0000:0000:0000:0000:0000:ffff:' }: { ip: str
     return '';
   }
 
+  const hexParts = ip.trim().split('.').map(part => Number.parseInt(part).toString(16).padStart(2, '0'));
   return (
     prefix
-    + _.chain(ip)
-      .trim()
-      .split('.')
-      .map(part => Number.parseInt(part).toString(16).padStart(2, '0'))
-      .chunk(2)
+    + _.chunk(hexParts, 2)
       .map(blocks => blocks.join(''))
       .join(':')
-      .value()
   );
 }
 

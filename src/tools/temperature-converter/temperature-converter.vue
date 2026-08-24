@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import {
   convertCelsiusToKelvin,
   convertDelisleToKelvin,
@@ -91,16 +91,15 @@ function update(key: TemperatureScale) {
 
   kelvins = kelvins < 0 ? 0 : kelvins;
 
-  _.chain(units)
-    .omit(key)
-    .forEach(({ fromKelvin }, index) => {
-      units[index].ref = fromKelvin(kelvins) ?? 0;
-    })
-    .value();
+  Object.entries(units)
+    .filter(([unitKey]) => unitKey !== key)
+    .forEach(([unitKey, { fromKelvin }]) => {
+      units[unitKey].ref = fromKelvin(kelvins) ?? 0;
+    });
 }
 
 function setupLimit() {
-  _.forEach(units, (unit) => {
+  Object.values(units).forEach((unit) => {
     if (unit.maxLimit) {
       unit.max = Math.ceil(unit.fromKelvin(0) * 100) / 100;
     }

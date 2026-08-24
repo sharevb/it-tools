@@ -1,15 +1,17 @@
+import { translate as t } from '@/plugins/i18n.plugin';
+
 export function invertImageFile(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     // Validate file type
     if (!file.type.startsWith('image/')) {
-      reject(new Error('File must be an image'));
+      reject(new Error(t('tools.image-color-inverter.service.texts.file-must-be-an-image')));
       return;
     }
 
     // Check file size (limit to 10MB)
     const maxSize = 10 * 1024 * 1024; // 10MB
     if (file.size > maxSize) {
-      reject(new Error('Image file size must be less than 10MB'));
+      reject(new Error(t('tools.image-color-inverter.texts.error-image-file-size-must-be-less-than-10mb')));
       return;
     }
 
@@ -25,7 +27,7 @@ export function invertImageFile(file: File): Promise<string> {
           const ctx = canvas.getContext('2d');
 
           if (!ctx) {
-            reject(new Error('Failed to get canvas context'));
+            reject(new Error(t('tools.image-color-inverter.texts.error-failed-to-get-canvas-context')));
             return;
           }
 
@@ -54,18 +56,18 @@ export function invertImageFile(file: File): Promise<string> {
           const invertedDataUrl = canvas.toDataURL('image/png');
           resolve(invertedDataUrl);
         }
-        catch (err) {
-          reject(new Error(`Failed to process image: ${err}`));
+        catch (err: any) {
+          reject(new Error(`${t('tools.image-color-inverter.service.texts.failed-to-process-image-err')} ${err.toString()}`));
         }
       };
 
       img.onerror = () => {
-        reject(new Error('Failed to load image'));
+        reject(new Error(t('tools.image-color-inverter.texts.error-failed-to-load-image')));
       };
     };
 
     reader.onerror = () => {
-      reject(new Error('Failed to read file'));
+      reject(new Error(t('tools.image-color-inverter.texts.error-failed-to-read-file')));
     };
 
     reader.readAsDataURL(file);

@@ -1,4 +1,3 @@
-import { File } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.file-type.description'),
   keywords: ['file', 'type', 'identify', 'detector'],
   component: () => import('./file-type.vue'),
-  icon: File,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/File')),
   createdAt: new Date('2024-04-20'),
   category: 'Forensic',
 });

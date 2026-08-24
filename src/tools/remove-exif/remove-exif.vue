@@ -60,7 +60,7 @@ async function onFileUploaded(uploadedFile: File) {
 
     <div mt-3 flex justify-center>
       <c-alert v-if="status === 'error'" type="error">
-        An error occured processing {{ fileName }}
+        An error occured processing <span>{{ fileName }}</span>
       </c-alert>
       <n-spin
         v-if="status === 'processing'"

@@ -1,6 +1,7 @@
 import type { Tiktoken, TiktokenModel } from 'js-tiktoken';
 import { encodingForModel } from 'js-tiktoken';
 import { promptTokensEstimate } from 'openai-chat-tokens';
+import { translate as t } from '@/plugins/i18n.plugin';
 
 interface MessageItem {
   name?: string
@@ -48,11 +49,11 @@ export class GPTTokens {
 
   private checkOptions() {
     if (!this.messages && !this.tools) {
-      throw new Error('Must set one of messages | function');
+      throw new Error(t('tools.gpt-tokens.service.texts.must-set-one-of-messages-or-function'));
     }
 
     if (this.tools && !this.messages) {
-      throw new Error('Function must set messages');
+      throw new Error(t('tools.gpt-tokens.service.texts.function-must-set-messages'));
     }
   }
 

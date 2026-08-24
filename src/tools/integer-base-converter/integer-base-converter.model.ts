@@ -61,3 +61,15 @@ export function convertBase(
   }
   return newValue || '0';
 }
+
+export function formatWithSpaces(value: string, groupSize: number): string {
+  if (groupSize <= 0 || !value) {
+    return value;
+  }
+  const chunks: string[] = [];
+  for (let i = value.length; i > 0; i -= groupSize) {
+    const start = Math.max(0, i - groupSize);
+    chunks.unshift(value.slice(start, i));
+  }
+  return chunks.join(' ');
+}

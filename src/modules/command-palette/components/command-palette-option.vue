@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { DeviceDesktop, World } from '@vicons/tabler';
+import DeviceDesktop from '~icons/tabler/device-desktop';
+import World from '~icons/tabler/world';
 import type { PaletteOption } from '../command-palette.types';
 
 const props = withDefaults(defineProps<{ option: PaletteOption; selected?: boolean }>(), {

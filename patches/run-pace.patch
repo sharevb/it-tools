@@ -1,0 +1,12 @@
+diff --git a/lib/run-pace.js b/lib/run-pace.js
+index 2b20a32ff4b5712016dd869a734ff25f730cdb12..9b9b72187e6675db6b295a827f2293950d12a111 100644
+--- a/lib/run-pace.js
++++ b/lib/run-pace.js
+@@ -119,7 +119,3 @@ function removeTrailingZeroes(number) {
+ function removeLeadingZero(number) {
+   return number.replace(/^0/, "");
+ }
+-
+-function zeroPad(number) {
+-  return `0${number}`.slice(-2);
+-}

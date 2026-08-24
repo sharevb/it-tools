@@ -1,0 +1,54 @@
+# vim:sw=4:ts=4:et
+#
+# BASE_URL is the path the app is served under: `/` (the default) for a deployment at the
+# root of a domain, `/it-tools/` for one behind a reverse proxy that mounts it on a
+# subpath. It is a runtime setting, not a build one -- the image ships assets that work at
+# any path, and nginx.conf rewrites the `<base href>` in index.html per request.
+#
+# Normalise it here, once, before 20-envsubst-on-templates.sh renders the config:
+#
+#   - accept `it-tools`, `/it-tools` and `/it-tools/` alike, always emit `/it-tools/`.
+#     A missing trailing slash would otherwise silently move the app one directory up,
+#     because that is how the browser resolves relative URLs against `<base href>`.
+#   - reject anything that is not a plain path. The value is interpolated into an HTML
+#     attribute and into an nginx regex, so a stray quote or `..` is worth catching here
+#     rather than letting it land in the served page.
+#
+# Sourced, not executed, so the export reaches the envsubst step.
+
+_base_url=$(printf '%s' "${BASE_URL:-/}" | sed -e 's#^/*#/#' -e 's#/*$#/#')
+
+case "$_base_url" in
+    # `/` itself, or `/segment/segment/` made of unreserved URL characters.
+    /) ;;
+    */../* | *//*)
+        _base_url_invalid=1
+        ;;
+    *[!A-Za-z0-9._~/-]*)
+        _base_url_invalid=1
+        ;;
+esac
+
+if [ -n "${_base_url_invalid:-}" ]; then
+    echo "18-resolve-base-url.envsh: error: BASE_URL='$BASE_URL' is not a plain path, falling back to /" >&2
+    _base_url=/
+fi
+
+if [ "$_base_url" != "/" ] && [ -z "${NGINX_ENTRYPOINT_QUIET_LOGS:-}" ]; then
+    echo "18-resolve-base-url.envsh: info: serving the app under $_base_url"
+fi
+
+BASE_URL="$_base_url"
+
+# Regex-safe forms of the same value, for the rewrites in nginx.conf. `.` is a legal
+# character in a path and the validation above lets it through, but it is also the one
+# regex metacharacter that survives that filter: unescaped, a BASE_URL of `/it.tools/`
+# would strip the prefix from `/itXtools/...` too.
+BASE_URL_REGEX=$(printf '%s' "$_base_url" | sed 's/\./\\./g')
+# `/it-tools/` -> `/it-tools`, so nginx.conf can redirect the slash-less spelling to the
+# real one. Empty for a deployment at the root, where there is nothing to redirect.
+BASE_URL_NO_SLASH_REGEX="${BASE_URL_REGEX%/}"
+
+export BASE_URL BASE_URL_REGEX BASE_URL_NO_SLASH_REGEX
+
+unset _base_url _base_url_invalid

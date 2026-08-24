@@ -1,4 +1,3 @@
-import { Alarm } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -23,7 +22,7 @@ export const tool = defineTool({
     'aws',
   ],
   component: () => import('./crontab-generator.vue'),
-  icon: Alarm,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Alarm')),
   npmPackages: ['cronstrue'],
   category: 'Network',
 });

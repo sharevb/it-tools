@@ -1,4 +1,3 @@
-import { Binary } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.ip-range-to-cidr.description'),
   keywords: ['ip', 'range', 'to', 'cidr'],
   component: () => import('./ip-range-to-cidr.vue'),
-  icon: Binary,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Binary')),
   createdAt: new Date('2024-01-10'),
   category: 'Network',
 });

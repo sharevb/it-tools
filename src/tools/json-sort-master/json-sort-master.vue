@@ -4,7 +4,6 @@ import JSON5 from 'json5';
 import { formatJson } from './json.models';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useValidation } from '@/composable/validation';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -66,7 +65,7 @@ const rawJsonValidation = useValidation({
     />
   </n-form-item>
   <n-form-item :label="t('tools.json-sort-master.texts.label-sorted-version-of-your-json')">
-    <TextareaCopyable :value="cleanJson" language="json" :follow-height-of="inputElement" />
+    <CodeBlockCopyable :value="cleanJson" language="json" :follow-height-of="inputElement" />
   </n-form-item>
 </template>
 

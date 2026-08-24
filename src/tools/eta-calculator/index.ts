@@ -1,4 +1,3 @@
-import { Hourglass } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,6 +7,6 @@ export const tool = defineTool({
   description: t('tools.eta-calculator.description'),
   keywords: ['eta', 'calculator', 'estimated', 'time', 'arrival', 'average'],
   component: () => import('./eta-calculator.vue'),
-  icon: Hourglass,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Hourglass')),
   category: 'Datetime',
 });

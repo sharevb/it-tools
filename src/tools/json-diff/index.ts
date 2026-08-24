@@ -1,4 +1,3 @@
-import { CompareArrowsRound } from '@vicons/material';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.json-diff.description'),
   keywords: ['json', 'diff', 'compare', 'difference', 'object', 'data'],
   component: () => import('./json-diff.vue'),
-  icon: CompareArrowsRound,
+  icon: defineAsyncComponent(() => import('@vicons/material/es/CompareArrowsRound')),
   createdAt: new Date('2023-04-20'),
   npmPackages: ['json5'],
   category: 'JSON',

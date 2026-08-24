@@ -1,5 +1,5 @@
 import { type MaybeRef, get } from '@vueuse/core';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { type Ref, reactive, watch } from 'vue';
 
 type ValidatorReturnType = unknown;

@@ -32,7 +32,7 @@ async function onFileUploaded(uploadedFile: File) {
         largest: true,
       });
       if (decodedIco == null) {
-        throw new Error('Invalid ICO file!');
+        throw new Error(t('tools.ico-converter.texts.invalid-ico-file'));
       }
       const encodedPng = encodePng({
         image: decodedIco,
@@ -46,7 +46,7 @@ async function onFileUploaded(uploadedFile: File) {
       });
 
       if (decodedImage == null) {
-        throw new Error('Invalid PNG file!');
+        throw new Error(t('tools.ico-converter.texts.invalid-png-file'));
       };
 
       const encodedICO = encodeIcoImages({
@@ -84,7 +84,7 @@ async function onFileUploaded(uploadedFile: File) {
 
     <div mt-3 flex justify-center>
       <c-alert v-if="status === 'error'" type="error">
-        An error occured processing {{ fileName }}
+        {{ $t('tools.ico-converter.texts.an-error-occured-processing') }} <span>{{ fileName }}</span>
       </c-alert>
       <n-spin
         v-if="status === 'processing'"

@@ -1,0 +1,52 @@
+services:
+  it-tools:
+    image: sharevb/it-tools:latest
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      - BASIC_AUTH=${BASIC_AUTH}
+    volumes:
+      - ./tools-settings.json:/usr/share/nginx/html/tools-settings.json
+    ports:
+      - 8080:8080
+  docker-image-download-server:
+    image: sharevb/docker-image-download-server:latest
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      - BASIC_AUTH=${BASIC_AUTH}
+    ports:
+      - 8001:3000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  ws-tcp-udp-bridge:
+    image: sharevb/ws-tcp-udp-bridge:latest
+    pull_policy: always
+    restart: unless-stopped
+    ports:
+      - 8002:8080
+  network-utils-ws:
+    image: sharevb/network-utils-ws:latest
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      - BASIC_AUTH=${BASIC_AUTH}
+    ports:
+      - 8003:8000
+  puppeteer-htmltopdf:
+    image: sharevb/puppeteer-htmltopdf:latest
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      - BASIC_AUTH=${BASIC_AUTH}
+    ports:
+      - 8004:3000
+  cors-anywhere:
+    image: sharevb/cors-anywhere:latest
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      - CORSANYWHERE_BASIC_AUTH=${BASIC_AUTH}
+      - CORSANYWHERE_ALLOWED_HTTP_METHODS=HEAD,GET,POST
+    ports:
+      - 8005:8080

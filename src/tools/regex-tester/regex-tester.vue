@@ -22,7 +22,7 @@ const regexValidation = useValidation({
   rules: [
     {
       message: t('tools.regex-tester.texts.message-invalid-regex-0'),
-      validator: value => new RegExp(value),
+      validator: (value) => new RegExp(value),
       getErrorMessage: (value) => {
         const _ = new RegExp(value);
         return '';
@@ -46,15 +46,13 @@ const results = computed(() => {
   }
   if (unicode.value) {
     flags += 'u';
-  }
-  else if (unicodeSets.value) {
+  } else if (unicodeSets.value) {
     flags += 'v';
   }
 
   try {
     return matchRegex(regex.value, text.value, flags);
-  }
-  catch (_) {
+  } catch (_) {
     return [];
   }
 });
@@ -63,32 +61,27 @@ const sample = computed(() => {
   try {
     const randexp = new RandExp(new RegExp(regex.value.replace(/\(\?\<[^\>]*\>/g, '(?:')));
     return randexp.gen();
-  }
-  catch (_) {
+  } catch (_) {
     return '';
   }
 });
 
-watchEffect(
-  async () => {
-    const regexValue = regex.value;
-    // shadow root is required:
-    // @regexper/render append a <defs><style> that broke svg transparency of icons in the whole site
-    const visualizer = visualizerSVG.value?.shadow_root;
-    if (visualizer) {
-      while (visualizer.lastChild) {
-        visualizer.removeChild(visualizer.lastChild);
-      }
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      try {
-        await render(regexValue, svg);
-      }
-      catch (_) {
-      }
-      visualizer.appendChild(svg);
+watchEffect(async () => {
+  const regexValue = regex.value;
+  // shadow root is required:
+  // @regexper/render append a <defs><style> that broke svg transparency of icons in the whole site
+  const visualizer = visualizerSVG.value?.shadow_root;
+  if (visualizer) {
+    while (visualizer.lastChild) {
+      visualizer.removeChild(visualizer.lastChild);
     }
-  },
-);
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    try {
+      await render(regexValue, svg);
+    } catch (_) {}
+    visualizer.appendChild(svg);
+  }
+});
 
 tryOnBeforeUnmount(() => {
   const visualizer = visualizerSVG.value?.shadow_root;
@@ -114,22 +107,41 @@ tryOnBeforeUnmount(() => {
       </c-link>
       <n-space>
         <n-checkbox v-model:checked="global">
-          <span :title="t('tools.regex-tester.global')">{{ t('tools.regex-tester.texts.tag-global-search') }}<code>{{ t('tools.regex-tester.texts.tag-g') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
+          <span :title="t('tools.regex-tester.global')"
+            >{{ t('tools.regex-tester.texts.tag-global-search') }}<code>{{ t('tools.regex-tester.texts.tag-g') }}</code
+            >{{ t('tools.regex-tester.texts.tag-') }}</span
+          >
         </n-checkbox>
         <n-checkbox v-model:checked="ignoreCase">
-          <span :title="t('tools.regex-tester.ignoreCase')">{{ t('tools.regex-tester.texts.tag-case-insensitive-search') }}<code>{{ t('tools.regex-tester.texts.tag-i') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
+          <span :title="t('tools.regex-tester.ignoreCase')"
+            >{{ t('tools.regex-tester.texts.tag-case-insensitive-search')
+            }}<code>{{ t('tools.regex-tester.texts.tag-i') }}</code
+            >{{ t('tools.regex-tester.texts.tag-') }}</span
+          >
         </n-checkbox>
         <n-checkbox v-model:checked="multiline">
-          <span :title="t('tools.regex-tester.multiline')">{{ t('tools.regex-tester.texts.tag-multiline') }}<code>{{ t('tools.regex-tester.texts.tag-m') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
+          <span :title="t('tools.regex-tester.multiline')"
+            >{{ t('tools.regex-tester.texts.tag-multiline') }}<code>{{ t('tools.regex-tester.texts.tag-m') }}</code
+            >{{ t('tools.regex-tester.texts.tag-') }}</span
+          >
         </n-checkbox>
         <n-checkbox v-model:checked="dotAll">
-          <span :title="t('tools.regex-tester.dotAll')">{{ t('tools.regex-tester.texts.tag-singleline') }}<code>{{ t('tools.regex-tester.texts.tag-s') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
+          <span :title="t('tools.regex-tester.dotAll')"
+            >{{ t('tools.regex-tester.texts.tag-singleline') }}<code>{{ t('tools.regex-tester.texts.tag-s') }}</code
+            >{{ t('tools.regex-tester.texts.tag-') }}</span
+          >
         </n-checkbox>
         <n-checkbox v-model:checked="unicode">
-          <span :title="t('tools.regex-tester.unicode')">{{ t('tools.regex-tester.texts.tag-unicode') }}<code>{{ t('tools.regex-tester.texts.tag-u') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
+          <span :title="t('tools.regex-tester.unicode')"
+            >{{ t('tools.regex-tester.texts.tag-unicode') }}<code>{{ t('tools.regex-tester.texts.tag-u') }}</code
+            >{{ t('tools.regex-tester.texts.tag-') }}</span
+          >
         </n-checkbox>
         <n-checkbox v-model:checked="unicodeSets">
-          <span :title="t('tools.regex-tester.unicodeSets')">{{ t('tools.regex-tester.texts.tag-unicode-sets') }}<code>{{ t('tools.regex-tester.texts.tag-v') }}</code>{{ t('tools.regex-tester.texts.tag-') }}</span>
+          <span :title="t('tools.regex-tester.unicodeSets')"
+            >{{ t('tools.regex-tester.texts.tag-unicode-sets') }}<code>{{ t('tools.regex-tester.texts.tag-v') }}</code
+            >{{ t('tools.regex-tester.texts.tag-') }}</span
+          >
         </n-checkbox>
       </n-space>
 
@@ -189,13 +201,11 @@ tryOnBeforeUnmount(() => {
     </c-card>
 
     <c-card :title="t('tools.regex-tester.sample')" mt-3>
-      <pre style="white-space: pre-wrap; word-break: break-all;">{{ sample }}</pre>
+      <pre style="white-space: pre-wrap; word-break: break-all">{{ sample }}</pre>
     </c-card>
 
-    <c-card :title="t('tools.regex-tester.diagram')" style="overflow-x: scroll;" mt-3>
-      <shadow-root ref="visualizerSVG">
-        {{ t('tools.regex-tester.texts.tag-xa0') }}
-      </shadow-root>
+    <c-card :title="t('tools.regex-tester.diagram')" style="overflow-x: scroll" mt-3>
+      <shadow-root ref="visualizerSVG">&#xA0;</shadow-root>
     </c-card>
   </div>
 </template>

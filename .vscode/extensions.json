@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "Vue.volar",
-    "dbaeumer.vscode-eslint",
+    "oxc.oxc-vscode",
     "lokalise.i18n-ally",
     "ms-vscode-remote.remote-wsl"
   ]

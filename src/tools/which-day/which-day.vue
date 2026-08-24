@@ -13,8 +13,8 @@ const endYear = useQueryParamOrStorage({ name: 'end', storageName: 'which-day:ey
 const error = ref('');
 
 const columns = [
-  { title: t('tools.which-day.text.year'), key: 'year', align: 'center' },
-  { title: t('tools.which-day.text.weekday'), key: 'weekday', align: 'center' },
+  { title: t('tools.which-day.text.year'), key: 'year', align: 'center' as const },
+  { title: t('tools.which-day.text.weekday'), key: 'weekday', align: 'center' as const },
 ];
 
 const results = computed(() => {
@@ -40,8 +40,7 @@ const results = computed(() => {
         });
       }
     }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
 

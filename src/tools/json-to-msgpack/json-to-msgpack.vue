@@ -31,8 +31,7 @@ function convertToMsgPack() {
   try {
     msgPacked.value = pack(JSON5.parse(jsonInput.value));
     msgPackHex.value = msgPacked.value.toString('hex');
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
 }
@@ -48,7 +47,7 @@ function downloadURL(data: string, fileName: string) {
 }
 
 function downloadBlob(data: Uint8Array, fileName: string) {
-  const blob = new Blob([data], {
+  const blob = new Blob([new Uint8Array(data)], {
     type: 'application/octet-stream',
   });
   const url = window.URL.createObjectURL(blob);

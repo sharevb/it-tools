@@ -6,11 +6,13 @@
     "lib": ["ES2022"],
     "target": "es2022",
     "module": "es2022",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "composite": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "figue": ["./node_modules/figue/dist/index.d.ts"],
+      "@it-tools/oggen": ["./node_modules/@it-tools/oggen/dist/index.d.ts"],
+      "libphonenumber-js/types": ["./node_modules/libphonenumber-js/types.d.ts"]
     },
     "types": ["naive-ui/volar", "@intlify/unplugin-vue-i18n/messages", "unplugin-icons/types/vue"],
     "esModuleInterop": true,

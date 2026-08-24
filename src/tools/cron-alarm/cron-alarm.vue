@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { Countdown } from 'vue3-flip-countdown';
-import { parseExpression } from 'cron-parser';
-import moment from 'moment';
+import { CronExpressionParser } from 'cron-parser';
+import { format } from 'date-fns';
 import { useQueryParam } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -29,10 +29,10 @@ watchEffect(() => {
   }
 });
 
-const now = ref(moment());
+const now = ref(new Date());
 const daysArray = computed<string[]>({
   get() {
-    return (alarmDays.value || allDays).split(',').map(s => s.trim());
+    return (alarmDays.value || allDays).split(',').map((s) => s.trim());
   },
   set(newValue) {
     alarmDays.value = newValue.join(',');
@@ -43,20 +43,20 @@ const cronExpression = computed(() => {
   return `${s} ${m} ${h} * * ${alarmDays.value}`;
 });
 const alarmAtDate = computed(() => {
-  const interval = parseExpression(cronExpression.value);
+  const interval = CronExpressionParser.parse(cronExpression.value);
   return interval.next().toDate();
 });
 
-const fmt = 'YYYY-MM-DD HH:mm:ss';
+const fmt = 'yyyy-MM-dd HH:mm:ss';
 const alarmAtFormatted = computed(() => {
-  return moment(alarmAtDate.value).format(fmt);
+  return format(alarmAtDate.value, fmt);
 });
 
 function start() {
-  now.value = moment();
+  now.value = new Date();
   status.value = 'running';
   const histoEntry = { at: alarmAt.value, days: alarmDays.value };
-  if (!history.value.find(h => h.at === histoEntry.at && h.days === histoEntry.days)) {
+  if (!history.value.find((h) => h.at === histoEntry.at && h.days === histoEntry.days)) {
     history.value = [histoEntry, ...history.value];
   }
 }
@@ -83,8 +83,7 @@ function toggleFullScreen() {
   }
   if (!document.fullscreenElement) {
     element?.requestFullscreen();
-  }
-  else {
+  } else {
     document.exitFullscreen?.();
   }
 }
@@ -115,9 +114,7 @@ const isEnded = computed(() => status.value === 'ended');
       </div>
 
       <div flex justify-center>
-        <c-button
-          @click="start"
-        >
+        <c-button @click="start">
           {{ t('tools.cron-alarm.texts.tag-start') }}
         </c-button>
       </div>
@@ -127,10 +124,7 @@ const isEnded = computed(() => status.value === 'ended');
       <div>
         <Countdown :deadline="alarmAtFormatted" :stop="status !== 'running'" mb-2 @time-elapsed="ended()" />
         <div mb-2 flex justify-center>
-          <c-button
-            :disabled="status === 'stopped'"
-            @click="toggleFullScreen"
-          >
+          <c-button :disabled="status === 'stopped'" @click="toggleFullScreen">
             {{ t('tools.cron-alarm.texts.tag-toggle-fullscreen') }}
           </c-button>
         </div>
@@ -138,19 +132,14 @@ const isEnded = computed(() => status.value === 'ended');
     </div>
 
     <div mb-2 flex justify-center>
-      <c-button
-        :disabled="status === 'stopped'"
-        @click="stop"
-      >
+      <c-button :disabled="status === 'stopped'" @click="stop">
         {{ t('tools.cron-alarm.texts.tag-stop') }}
       </c-button>
     </div>
 
-    <n-p align="center">
-      Next alarm at: {{ alarmAtDate }}
-    </n-p>
+    <n-p align="center"> Next alarm at: {{ alarmAtDate }} </n-p>
 
-    <n-modal v-model:show="isEnded" mask-closable="false">
+    <n-modal v-model:show="isEnded" :mask-closable="false">
       <n-card
         style="width: 600px"
         :title="t('tools.cron-alarm.texts.title-timer-finished')"
@@ -172,9 +161,7 @@ const isEnded = computed(() => status.value === 'ended');
       <div flex justify-center gap-1>
         <template v-for="(entry, index) in history" :key="index">
           {{ index > 0 ? ' / ' : '' }}
-          <n-a :href="getTimeHref(entry.at, entry.days)">
-            At: {{ entry.at }} ; Days: {{ entry.days || '*' }}
-          </n-a>
+          <n-a :href="getTimeHref(entry.at, entry.days)"> At: {{ entry.at }} ; Days: {{ entry.days || '*' }} </n-a>
         </template>
       </div>
     </c-card>

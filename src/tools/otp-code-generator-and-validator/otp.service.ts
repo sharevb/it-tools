@@ -1,5 +1,4 @@
-import { HmacSHA1, enc } from 'crypto-js';
-import _ from 'lodash';
+import { Hex, HmacSHA1 } from 'crypto-es';
 import { createToken } from '../token-generator/token-generator.service';
 
 export {
@@ -19,7 +18,7 @@ function hexToBytes(hex: string) {
 }
 
 function computeHMACSha1(message: string, key: string) {
-  return HmacSHA1(enc.Hex.parse(message), enc.Hex.parse(base32toHex(key))).toString(enc.Hex);
+  return HmacSHA1(Hex.parse(message), Hex.parse(base32toHex(key))).toString(Hex);
 }
 
 function base32toHex(base32: string) {
@@ -128,8 +127,8 @@ function buildKeyUri({
     period,
   };
 
-  const paramsString = _(params)
-    .map((value, key) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+  const paramsString = Object.entries(params)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
     .join('&');
 
   return `otpauth://totp/${encodeURIComponent(app)}:${encodeURIComponent(account)}?${paramsString}`;

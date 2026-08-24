@@ -257,7 +257,7 @@ onUnmounted(() => {
         <!-- Loading indicator when more results are coming -->
         <div v-if="visibleResultsCount < searchResult.length" mt-6 text-center>
           <div text-14px op-70>
-            Loading more results... ({{ visibleSearchResults.length }}/{{ searchResult.length }})
+            {{ t('tools.iso-3166-searcher.texts.loading-more-results') }} ({{ visibleSearchResults.length }}/{{ searchResult.length }})
           </div>
         </div>
       </div>

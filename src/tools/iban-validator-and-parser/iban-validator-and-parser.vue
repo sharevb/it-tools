@@ -1,25 +1,28 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { extractIBAN, friendlyFormatIBAN, isQRIBAN, validateIBAN } from 'ibantools';
-import { getFriendlyErrors } from './iban-validator-and-parser.service';
+import { extractBICInfo, getFriendlyErrors } from './iban-validator-and-parser.service';
 import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
 import { useQueryParam } from '@/composable/queryParams';
+import CountriesDB from 'countries-db';
 
 const { t } = useI18n();
 
 const rawIbans = useQueryParam({ tool: 'iban-validator', name: 'iban', defaultValue: '' });
 
 interface IbanInfo {
-  iban: string
-  infos: CKeyValueListItems
+  iban: string;
+  infos: CKeyValueListItems;
 }
 
 const ibansInfo = computed<IbanInfo[]>(() => {
   if (!rawIbans.value?.trim()) {
     return [];
   }
-  const ibans = rawIbans.value.toUpperCase()
-    .split(/\n/).map(iban => iban.replace(/\s/g, '').replace(/-/g, ''))
+  const ibans = rawIbans.value
+    .toUpperCase()
+    .split(/\n/)
+    .map((iban) => iban.replace(/\s/g, '').replace(/-/g, ''))
     .filter(Boolean);
 
   if (!ibans.length) {
@@ -30,8 +33,10 @@ const ibansInfo = computed<IbanInfo[]>(() => {
 
   for (const iban of ibans) {
     const { valid: isIbanValid, errorCodes } = validateIBAN(iban);
-    const { countryCode, bban } = extractIBAN(iban);
+    const { countryCode, bban, bankIdentifier, branchIdentifier, accountNumber } = extractIBAN(iban);
+    const { bic, bankName } = extractBICInfo(iban);
     const errors = getFriendlyErrors(errorCodes);
+    const country = CountriesDB.getCountry(countryCode || '');
 
     results.push({
       iban,
@@ -64,17 +69,37 @@ const ibansInfo = computed<IbanInfo[]>(() => {
           label: t('tools.iban-validator-and-parser.texts.label-iban-friendly-format'),
           value: friendlyFormatIBAN(iban),
         },
+        {
+          label: t('tools.phone-parser-and-formatter.texts.label-country'),
+          value: `${country?.name} / ${country?.officialName}`,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.bank-identifier'),
+          value: bankIdentifier,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.branch-identifier'),
+          value: branchIdentifier,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.account-number'),
+          value: accountNumber,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.bic'),
+          value: bic,
+        },
+        {
+          label: t('tools.iban-validator-and-parser.texts.bank-name'),
+          value: bankName,
+        },
       ],
     });
   }
   return results;
 });
 
-const ibanExamples = [
-  'FR7630006000011234567890189',
-  'DE89370400440532013000',
-  'GB29NWBK60161331926819',
-];
+const ibanExamples = ['FR7630006000011234567890189', 'DE89370400440532013000', 'GB29NWBK60161331926819'];
 </script>
 
 <template>
@@ -95,7 +120,7 @@ const ibanExamples = [
 
     <c-card :title="t('tools.iban-validator-and-parser.texts.title-valid-iban-examples')" mt-5>
       <div v-for="iban in ibanExamples" :key="iban">
-        <c-text-copyable :value="iban" font-mono :displayed-value="friendlyFormatIBAN(iban)" />
+        <c-text-copyable :value="iban" font-mono :displayed-value="friendlyFormatIBAN(iban) ?? undefined" />
       </div>
     </c-card>
   </div>

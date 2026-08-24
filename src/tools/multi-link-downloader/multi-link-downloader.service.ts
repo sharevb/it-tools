@@ -1,10 +1,33 @@
 import JSZip from 'jszip';
 
 import { translate as t } from '@/plugins/i18n.plugin';
+import { Base64 } from 'js-base64';
 
-export async function downloadLinks(links: string): Promise<void> {
+export async function downloadLinks(
+  links: string,
+  corsAnywhere?: {
+    serverHost: string;
+    serverAuth: string;
+  },
+): Promise<void> {
+  const doFetch = (url: string) => {
+    if (corsAnywhere?.serverHost) {
+      const corsUrl = `${corsAnywhere.serverHost.replace(/\/+$/g, '')}/${url}`;
+      return fetch(
+        corsUrl,
+        corsAnywhere.serverAuth
+          ? {
+              method: 'GET',
+              headers: { Authorization: `Basic ${Base64.encode(corsAnywhere.serverAuth)}` },
+            }
+          : undefined,
+      );
+    }
+    return fetch(url);
+  };
+
   // Split links by newline and filter out empty ones
-  const linksArray: string[] = links.split('\n').filter(link => link.trim() !== '');
+  const linksArray: string[] = links.split('\n').filter((link) => link.trim() !== '');
 
   // Helper function to handle duplicate filenames
   function getUniqueFileName(existingNames: Set<string>, originalName: string): string {
@@ -35,7 +58,7 @@ export async function downloadLinks(links: string): Promise<void> {
     // Single link: download directly
     const linkUrl: string = linksArray[0];
     try {
-      const response: Response = await fetch(linkUrl);
+      const response: Response = await doFetch(linkUrl);
       if (!response.ok) {
         throw new Error(t('tools.multi-link-downloader.service.text.failed-to-fetch-linkurl', [linkUrl]));
       }
@@ -57,12 +80,10 @@ export async function downloadLinks(links: string): Promise<void> {
       // Clean up
       document.body.removeChild(a);
       window.URL.revokeObjectURL(downloadUrl);
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error downloading the file:', error);
     }
-  }
-  else if (linksArray.length > 1) {
+  } else if (linksArray.length > 1) {
     // Multiple links: create a zip file
     const zip = new JSZip();
     const fileNamesSet = new Set<string>(); // To track file names for duplicates
@@ -84,8 +105,7 @@ export async function downloadLinks(links: string): Promise<void> {
 
           // Add file to the zip
           zip.file(fileName, blob);
-        }
-        catch (error) {
+        } catch (error) {
           console.error(`Error downloading file from ${linkUrl}:${error}`);
         }
       }),

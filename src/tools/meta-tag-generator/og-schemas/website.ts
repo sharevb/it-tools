@@ -41,7 +41,12 @@ export const website: OGSchemaType = {
       key: 'type',
       options: typeOptions,
     },
-    { type: 'input', label: t('tools.meta-tag-generator.xslt-tester.texts.tag-title'), placeholder: t('tools.meta-tag-generator.website.text.enter-the-title-of-your-website'), key: 'title' },
+    {
+      type: 'input',
+      label: t('tools.meta-tag-generator.xslt-tester.texts.tag-title'),
+      placeholder: t('tools.meta-tag-generator.website.text.enter-the-title-of-your-website'),
+      key: 'title',
+    },
     {
       type: 'input',
       label: t('tools.meta-tag-generator.ical-generator.texts.label-description'),

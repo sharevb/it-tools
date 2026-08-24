@@ -32,11 +32,11 @@ export function convertStorageAndRateUnits(
   ];
 
   const fromIndex = units.indexOf(fromUnit);
-  const fromFactor = fromIndex / 9 > 1 ? 1000 : 1024;
-  const fromDivisor = fromIndex / 9 > 2 ? 8 : 1;
+  const fromFactor = fromIndex / 9 >= 1 ? 1000 : 1024;
+  const fromDivisor = fromIndex / 9 >= 2 ? 8 : 1;
   const toIndex = units.indexOf(toUnit);
-  const toFactor = toIndex / 9 > 1 ? 1000 : 1024;
-  const toDivisor = toIndex / 9 > 2 ? 8 : 1;
+  const toFactor = toIndex / 9 >= 1 ? 1000 : 1024;
+  const toDivisor = toIndex / 9 >= 2 ? 8 : 1;
 
   const fromBase = (fromFactor ** (fromIndex % 9)) / fromDivisor;
   const toBase = (toFactor ** (toIndex % 9)) / toDivisor;

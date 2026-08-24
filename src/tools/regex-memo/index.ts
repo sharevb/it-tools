@@ -1,4 +1,3 @@
-import { BrandJavascript } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.regex-memo.description'),
   keywords: ['regex', 'regular', 'expression', 'javascript', 'memo', 'cheatsheet'],
   component: () => import('./regex-memo.vue'),
-  icon: BrandJavascript,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/BrandJavascript')),
   createdAt: new Date('2024-09-20'),
   category: 'Cheatsheets',
 });

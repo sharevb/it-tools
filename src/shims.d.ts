@@ -1,13 +1,24 @@
 declare module '*.vue' {
-  import type {  ComponentOptions } from 'vue';
+  import type { ComponentOptions } from 'vue';
   const Component: ComponentOptions;
   export default Component;
 }
 
 declare module '*.md' {
-  import type {  ComponentOptions } from 'vue';
+  import type { ComponentOptions } from 'vue';
   const Component: ComponentOptions;
   export default Component;
+}
+
+declare module '*.yml' {
+  const messages: Record<string, unknown>;
+  export default messages;
+}
+
+declare module '@tabler/icons-vue/dist/esm/icons/*.mjs' {
+  import type { FunctionalComponent, SVGAttributes } from 'vue';
+  const component: FunctionalComponent<SVGAttributes>;
+  export default component;
 }
 
 declare module 'emojilib' {
@@ -16,35 +27,34 @@ declare module 'emojilib' {
 }
 
 declare module 'unicode-emoji-json' {
-  const emoji: Record<string, {
-    name: string;
-    slug: string;
-    group: string;
-    emoji_version: string;
-    unicode_version: string;
-    skin_tone_support: boolean;
-    skin_tone_support_unicode_version: string;
-  }>;
-  
+  const emoji: Record<
+    string,
+    {
+      name: string;
+      slug: string;
+      group: string;
+      emoji_version: string;
+      unicode_version: string;
+      skin_tone_support: boolean;
+      skin_tone_support_unicode_version: string;
+    }
+  >;
+
   export default emoji;
 }
 
 declare module 'pdf-signature-reader' {
-  const verifySignature: (pdf: ArrayBuffer) => ({signatures: SignatureInfo[]});
+  const verifySignature: (pdf: ArrayBuffer) => { signatures: SignatureInfo[] };
 
   export default verifySignature;
 }
 
-declare module 'vite-plugin-splash-screen/runtime' {
-  export function hideSplashScreen();
-}
-
 declare module 'units-converter' {
-  interface ITo{
-    to(unit: string): { value: number }
+  interface ITo {
+    to(unit: string): { value: number };
   }
-  interface IFrom{
-    from(unit: string): ITo
+  interface IFrom {
+    from(unit: string): ITo;
   }
   export function frequency(value: number): IFrom;
   export function volumeFlowRate(value: number): IFrom;
@@ -57,7 +67,7 @@ interface BigInt {
 }
 
 interface JSON {
-  parseBigInt: (jsonStr: string, options?: { minDigits?: number; }) => any;
+  parseBigInt: (jsonStr: string, options?: { minDigits?: number }) => any;
   parseBigNum: (jsonStr: string) => any;
   rawJSON(value: string): any;
 }
@@ -67,7 +77,7 @@ interface Navigator {
 }
 
 interface FontFaceSet {
-  add(fontFace: FontFace)
+  add(fontFace: FontFace);
 }
 
 // TODO remove once https://github.com/microsoft/TypeScript/issues/60608 is resolved
@@ -81,8 +91,8 @@ namespace Intl {
 
 declare module '@vueuse/integrations/useIDBKeyval' {
   interface Serializer<T> {
-    read: (raw: unknown) => T
-    write: (value: T) => unknown
+    read: (raw: unknown) => T;
+    write: (value: T) => unknown;
   }
   export interface UseIDBOptions<T> extends ConfigurableFlush {
     /**
@@ -90,34 +100,34 @@ declare module '@vueuse/integrations/useIDBKeyval' {
      *
      * @default true
      */
-    deep?: boolean
+    deep?: boolean;
     /**
      * On error callback
      *
      * Default log error to `console.error`
      */
-    onError?: (error: unknown) => void
+    onError?: (error: unknown) => void;
     /**
      * Use shallow ref as reference
      *
      * @default false
      */
-    shallow?: boolean
+    shallow?: boolean;
     /**
      * Write the default value to the storage when it does not exist
      *
      * @default true
      */
-    writeDefaults?: boolean
+    writeDefaults?: boolean;
     /**
      * Custom data serialization
      */
-    serializer?: Serializer<T>
+    serializer?: Serializer<T>;
   }
   export interface UseIDBKeyvalReturn<T> {
-    data: RemovableRef<T>
-    isFinished: ShallowRef<boolean>
-    set: (value: T) => Promise<void>
+    data: RemovableRef<T>;
+    isFinished: ShallowRef<boolean>;
+    set: (value: T) => Promise<void>;
   }
   /**
    *
@@ -129,5 +139,10 @@ declare module '@vueuse/integrations/useIDBKeyval' {
     key: IDBValidKey,
     initialValue: MaybeRefOrGetter<T>,
     options?: UseIDBOptions<T>,
-  ): UseIDBKeyvalReturn<T>
+  ): UseIDBKeyvalReturn<T>;
+}
+
+declare module 'vue3-katex' {
+  const Vue3Katex: (app: App, props?: Props, slots?: Slots) => void;
+  export default Vue3Katex;
 }

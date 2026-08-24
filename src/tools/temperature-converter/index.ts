@@ -1,4 +1,3 @@
-import { Temperature } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -21,6 +20,6 @@ export const tool = defineTool({
     'units',
   ],
   component: () => import('./temperature-converter.vue'),
-  icon: Temperature,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Temperature')),
   category: 'Physics',
 });

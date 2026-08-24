@@ -75,7 +75,7 @@ function onUpload(file: File) {
     </c-alert>
 
     <c-card :title="t('tools.msgpack-to-json.texts.title-json-content')">
-      <textarea-copyable :value="resultsJson" language="json" :download-file-name="`${fileInput?.name}.json`" />
+      <CodeBlockCopyable :value="resultsJson" language="json" :download-file-name="`${fileInput?.name}.json`" />
     </c-card>
   </div>
 </template>

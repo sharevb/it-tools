@@ -1,10 +1,14 @@
 <script lang="ts" setup>
-import { DeviceDesktop, World } from '@vicons/tabler';
+import DeviceDesktop from '~icons/tabler/device-desktop';
+import World from '~icons/tabler/world';
 
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import type { HeadObject } from '@vueuse/head';
-import VueMarkdown from 'vue-markdown-render';
+
+// Async: keeps markdown-it (~50 KB gzip with its dependency tree) out of the
+// startup bundle; it loads with the first tool page instead.
+const VueMarkdown = defineAsyncComponent(() => import('vue-markdown-render'));
 
 import { useThemeVars } from 'naive-ui';
 import { useTheme } from '../ui/c-link/c-link.theme';
@@ -65,13 +69,13 @@ const toolFooter = computed<string>(() => {
   if (footer === 'undefined') {
     footer = '';
   }
-  const npmPackages = (route.meta.npmPackages as string[] || [])
-    .map(
-      packageName => createLink(
-        packageName,
-        packageName.includes('://') ? packageName : `https://www.npmjs.com/package/${packageName}`),
-    );
-  return ((npmPackages.length > 0 ? `${t('tools.tool.layout.text.made-with-npmpackages', [npmPackages.join(', ')])}\n` : '') + footer).trim();
+  const npmPackages = ((route.meta.npmPackages as string[]) || []).map((packageName) =>
+    createLink(packageName, packageName.includes('://') ? packageName : `https://www.npmjs.com/package/${packageName}`),
+  );
+  return (
+    (npmPackages.length > 0 ? `${t('tools.tool.layout.text.made-with-npmpackages', [npmPackages.join(', ')])}\n` : '') +
+    footer
+  ).trim();
 });
 const themeVars = useThemeVars();
 
@@ -85,28 +89,18 @@ const linkTheme = useTheme();
         <div flex flex-nowrap items-center justify-between>
           <n-h1>
             {{ toolTitle }}
-            <n-tooltip
-              placement="right"
-              trigger="click"
-              content-class="tool-privacy-info"
-            >
+            <n-tooltip placement="right" trigger="click" content-class="tool-privacy-info">
               <template #trigger>
-                <World
-                  v-if="route.meta.externAccessDescription"
-                  class="tool-privacy-icon"
-                />
-                <DeviceDesktop
-                  v-else
-                  class="tool-privacy-icon"
-                />
+                <World v-if="route.meta.externAccessDescription" class="tool-privacy-icon" />
+                <DeviceDesktop v-else class="tool-privacy-icon" />
               </template>
               <VueMarkdown
                 v-if="route.meta.externAccessDescription"
-                :source="route.meta.externAccessDescription"
+                :source="route.meta.externAccessDescription as string"
                 :options="{ linkify: true }"
               />
               <template v-else>
-                Runs entirely in your browser. No external requests.
+                {{ $t('tools.tool.layout.text.runs-entirely-in-your-browser-no-external-requests') }}
               </template>
             </n-tooltip>
           </n-h1>
@@ -139,7 +133,7 @@ const linkTheme = useTheme();
 <style lang="less">
 .tool-privacy-info {
   p {
-    margin:0;
+    margin: 0;
   }
   a {
     color: inherit !important;
@@ -151,7 +145,7 @@ const linkTheme = useTheme();
 <style lang="less" scoped>
 .tool-privacy-icon {
   display: inline-block;
-  height: .6em;
+  height: 0.6em;
 }
 .tool-content {
   display: flex;
@@ -164,7 +158,7 @@ const linkTheme = useTheme();
 
   ::v-deep(& > *) {
     flex: 0 1 1200px;
-    min-width:0;
+    min-width: 0;
   }
 }
 
@@ -186,7 +180,7 @@ const linkTheme = useTheme();
     }
 
     .separator {
-      width:'100%';
+      width: '100%';
       height: 2px;
       background: rgb(161, 161, 161);
       opacity: 0.2;
@@ -202,15 +196,15 @@ const linkTheme = useTheme();
   }
 }
 .tool-footer {
-    opacity: 0.7;
-    font-size: 12px;
-    text-align: center;
+  opacity: 0.7;
+  font-size: 12px;
+  text-align: center;
 
-    ::v-deep(a) {
-      color: v-bind('themeVars.textColor1');
-      font-style: italic;
-    }
+  ::v-deep(a) {
+    color: v-bind('themeVars.textColor1');
+    font-style: italic;
   }
+}
 ::v-deep(.external-tool) a {
   line-height: inherit;
   font-family: inherit;

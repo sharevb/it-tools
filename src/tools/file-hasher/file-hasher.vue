@@ -19,17 +19,16 @@ import {
   createSHA512, // (): Promise<IHasher>
   createSM3, // (): Promise<IHasher>
   createWhirlpool, // (): Promise<IHasher>
-// createXXHash32, //(seed: number): Promise<IHasher>
-// createXXHash64, //(seedLow: number, seedHigh: number): Promise<IHasher>
-// createXXHash3, //(seedLow: number, seedHigh: number): Promise<IHasher>
-// createXXHash128, //(seedLow: number, seedHigh: number): Promise<IHasher>
+  // createXXHash32, //(seed: number): Promise<IHasher>
+  // createXXHash64, //(seedLow: number, seedHigh: number): Promise<IHasher>
+  // createXXHash3, //(seedLow: number, seedHigh: number): Promise<IHasher>
+  // createXXHash128, //(seedLow: number, seedHigh: number): Promise<IHasher>
 } from 'hash-wasm';
-import type { lib } from 'crypto-js';
-import { enc } from 'crypto-js';
 
 import type { IHasher } from 'hash-wasm/dist/lib/WASMInterface';
 import InputCopyable from '../../components/InputCopyable.vue';
-import { convertHexToBin } from '../hash-text/hash-text.service';
+import type { Encoding } from '../hash-text/hash-text.service';
+import { formatHexWithEncoding } from '../hash-text/hash-text.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { withDefaultOnError } from '@/utils/defaults';
 
@@ -97,7 +96,7 @@ const fileReader = new FileReader();
 async function hashChunkAsync(chunk: Blob, hashers: IHasher[]) {
   return new Promise<void>((resolve, _reject) => {
     fileReader.onload = async (e) => {
-      const view = new Uint8Array((e.target?.result as ArrayBuffer)!);
+      const view = new Uint8Array(e.target?.result as ArrayBuffer);
       for (const hasher of hashers) {
         hasher.update(view);
       }
@@ -116,10 +115,7 @@ async function hashFileAsync(file: File) {
 
   const hashers = await getHashersAsync();
   for (let i = 0; i <= chunkNumber; i++) {
-    const chunk = file.slice(
-      chunkSize * i,
-      Math.min(chunkSize * (i + 1), file.size),
-    );
+    const chunk = file.slice(chunkSize * i, Math.min(chunkSize * (i + 1), file.size));
     await hashChunkAsync(chunk, Object.values(hashers));
   }
 
@@ -138,34 +134,29 @@ async function onUpload(uploadedFile: File) {
   try {
     hashes.value = await hashFileAsync(uploadedFile);
     status.value = 'done';
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
 
-type Encoding = keyof typeof enc | 'Bin';
+const encoding = useQueryParamOrStorage<Encoding>({
+  defaultValue: 'Hex',
+  storageName: 'hash-text:encoding',
+  name: 'encoding',
+});
 
-const encoding = useQueryParamOrStorage<Encoding>({ defaultValue: 'Hex', storageName: 'hash-text:encoding', name: 'encoding' });
+const hashWasmValues = computed(() =>
+  withDefaultOnError(() => {
+    const encodingValue = encoding.value;
+    const hashesValue = hashes.value;
 
-function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
-  if (encoding === 'Bin') {
-    return convertHexToBin(words.toString(enc.Hex));
-  }
-
-  return words.toString(enc[encoding]);
-}
-
-const hashWasmValues = computed(() => withDefaultOnError(() => {
-  const encodingValue = encoding.value;
-  const hashesValue = hashes.value;
-
-  const ret = defaultHashWasmValues;
-  for (const algo of algoWasmNames) {
-    ret[algo] = formatWithEncoding(enc.Hex.parse(hashesValue[algo]), encodingValue);
-  }
-  return ret;
-}, defaultHashWasmValues));
+    const ret = defaultHashWasmValues;
+    for (const algo of algoWasmNames) {
+      ret[algo] = formatHexWithEncoding(hashesValue[algo], encodingValue);
+    }
+    return ret;
+  }, defaultHashWasmValues),
+);
 </script>
 
 <template>
@@ -204,13 +195,8 @@ const hashWasmValues = computed(() => withDefaultOnError(() => {
     </c-card>
 
     <div mt-3 flex justify-center>
-      <c-alert v-if="status === 'error'" type="error">
-        An error occured hashing file '{{ file?.name }}'.
-      </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <c-alert v-if="status === 'error'" type="error"> An error occured hashing file '{{ file?.name }}'. </c-alert>
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
 
     <c-card v-if="status === 'done'" :title="`Hashes of ${file?.name}`">

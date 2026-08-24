@@ -1,13 +1,12 @@
 import { type Page, expect, test } from '@playwright/test';
 
 async function extractIbanInfo({ page }: { page: Page }) {
-  const itemsLines = await page
-    .locator('.c-key-value-list__item').all();
+  const itemsLines = await page.locator('.c-key-value-list__item').all();
 
   return await Promise.all(
-    itemsLines.map(async item => [
-      (await item.locator('.c-key-value-list__key').textContent() ?? '').trim(),
-      (await item.locator('.c-key-value-list__value').textContent() ?? '').trim(),
+    itemsLines.map(async (item) => [
+      ((await item.locator('.c-key-value-list__key').textContent()) ?? '').trim(),
+      ((await item.locator('.c-key-value-list__value').textContent()) ?? '').trim(),
     ]),
   );
 }
@@ -32,6 +31,12 @@ test.describe('Tool - Iban validator and parser', () => {
       ['Country code', 'DE'],
       ['BBAN', '370400440532013000'],
       ['IBAN friendly format', 'DE89 3704 0044 0532 0130 00'],
+      ['Country', 'Germany / The Federal Republic of Germany'],
+      ['Bank Identifier', '37040044'],
+      ['Branch Identifier', 'N/A'],
+      ['Account Number', '0532013000'],
+      ['BIC', 'COBADEFFXXX'],
+      ['Bank Name', 'Commerzbank Köln'],
     ]);
   });
 
@@ -47,6 +52,12 @@ test.describe('Tool - Iban validator and parser', () => {
       ['Country code', 'N/A'],
       ['BBAN', 'N/A'],
       ['IBAN friendly format', 'FR76 3000 6060 0112 3456 7890 189'],
+      ['Country', 'undefined / undefined'],
+      ['Bank Identifier', 'N/A'],
+      ['Branch Identifier', 'N/A'],
+      ['Account Number', 'N/A'],
+      ['BIC', 'N/A'],
+      ['Bank Name', 'Unknown'],
     ]);
   });
 });

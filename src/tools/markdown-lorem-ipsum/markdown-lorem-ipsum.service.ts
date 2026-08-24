@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import languageLorems from '../lorem-ipsum-generator/lorem-ipsum.i18n.json';
 
 export type HeaderStyle = 'atx' | 'setext';
@@ -26,7 +26,7 @@ export interface GeneratorConfig {
 }
 
 export function getSupportedLanguages() {
-  return _.flatten(_.chain(languageLorems).map(l => l.languages).value()).sort();
+  return languageLorems.flatMap(l => l.languages).sort();
 }
 
 export function hashSeed(str: string): number {

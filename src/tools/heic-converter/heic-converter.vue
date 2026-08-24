@@ -80,7 +80,8 @@ async function onFileUploaded(uploadedFile: File) {
 
     <div mt-3 flex justify-center>
       <c-alert v-if="status === 'error'" type="error">
-        An error occured processing {{ fileName }}. HEIC/HEIF is invalid.
+        {{ $t('tools.heic-converter.texts.an-error-occured-processing-heic-heif-is-invalid') }}
+        <span>{{ fileName }}</span>
       </c-alert>
       <n-spin
         v-if="status === 'processing'"

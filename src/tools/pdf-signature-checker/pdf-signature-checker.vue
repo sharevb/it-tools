@@ -17,7 +17,7 @@ async function onVerifyClicked(uploadedFile: File) {
   status.value = 'loading';
   try {
     const { signatures: parsedSignatures } = verifyPDF(fileBuffer);
-    signatures.value = parsedSignatures;
+    signatures.value = parsedSignatures || [];
     status.value = 'parsed';
   }
   catch (e) {

@@ -1,12 +1,11 @@
-import CryptoJS from 'crypto-js';
-import pbkdf2 from 'crypto-js/pbkdf2';
+import { Hex, PBKDF2, SHA1Algo } from 'crypto-es';
 
 export function generateWpaPskRawKey(ssid: string, passphrase: string) {
-  const psk = pbkdf2(passphrase, ssid, {
+  const psk = PBKDF2(passphrase, ssid, {
     keySize: 256 / 32,
     iterations: 4096,
-    hasher: CryptoJS.algo.SHA1,
-  }).toString(CryptoJS.enc.Hex);
+    hasher: SHA1Algo,
+  }).toString(Hex);
   return {
     ssid,
     passphrase,

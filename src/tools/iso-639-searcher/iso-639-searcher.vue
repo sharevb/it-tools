@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { computed, nextTick, onUnmounted, ref } from 'vue';
 import { all as allCodes } from 'langs';
 import useDebouncedRef from '@/composable/debouncedref';
 import { useFlexSearch } from '@/composable/flexSearch';
+
+const { t } = useI18n();
 
 const searchQuery = useDebouncedRef('', 250);
 const langsSearchData = allCodes();
@@ -80,32 +83,32 @@ onUnmounted(() => {
 <template>
   <div mx-auto max-w-2400px important:flex-1>
     <div mx-auto max-w-600px flex justify-center gap-3>
-      <c-input-text v-model:value="searchQuery" placeholder="Search iso-639 language code by iso-1, iso-2T/2B, iso-3, name...">
+      <c-input-text v-model:value="searchQuery" :placeholder="t('tools.iso-639-searcher.texts.placeholder-search-iso-639-language-code-by-iso-1-iso-2t-2b-iso-3-name')">
         <template #prefix>
           <icon-mdi-search mr-6px color-black op-70 dark:color-white />
         </template>
       </c-input-text>
-      <n-form-item label="Max results:" label-placement="left">
+      <n-form-item :label="t('tools.iso-639-searcher.texts.label-max-results')" label-placement="left">
         <n-input-number-i18n v-model:value="limit" :min="1" />
       </n-form-item>
     </div>
 
     <div v-if="searchQuery.trim().length > 0">
       <div v-if="searchResult.length === 0" mt-4 text-20px font-bold>
-        No results
+        {{ t('tools.iso-639-searcher.texts.tag-no-results') }}
       </div>
 
       <div v-else>
         <div mt-4 text-20px font-bold>
-          Search Results
+          {{ t('tools.iso-639-searcher.texts.tag-search-results') }}
         </div>
 
         <n-table>
           <thead>
-            <th>iso-639-1</th>
-            <th>iso-639-2T/2B</th>
-            <th>iso-639-3</th>
-            <th>English and local name</th>
+            <th>{{ t('tools.iso-639-searcher.texts.tag-iso-639-1') }}</th>
+            <th>{{ t('tools.iso-639-searcher.texts.tag-iso-639-2t-2b') }}</th>
+            <th>{{ t('tools.iso-639-searcher.texts.tag-iso-639-3') }}</th>
+            <th>{{ t('tools.iso-639-searcher.texts.tag-english-and-local-name') }}</th>
           </thead>
           <tbody>
             <tr v-for="(result, ix) in visibleSearchResults" :key="ix">
@@ -113,14 +116,14 @@ onUnmounted(() => {
                 <input-copyable :value="result[1]" :readonly="true" />
               </td>
               <td>
-                <input-copyable label-position="left" label="2B:" :value="result['2B']" :readonly="true" mb-1 />
-                <input-copyable label-position="left" label="2T:" :value="result['2T']" :readonly="true" />
+                <input-copyable label-position="left" :label="t('tools.iso-639-searcher.texts.label-2b')" :value="result['2B']" :readonly="true" mb-1 />
+                <input-copyable label-position="left" :label="t('tools.iso-639-searcher.texts.label-2t')" :value="result['2T']" :readonly="true" />
               </td>
               <td>
                 <input-copyable :value="result['3']" :readonly="true" />
               </td>
               <td>
-                <input-copyable label-position="left" label="ENG:" :value="result.name" :readonly="true" mb-1 />
+                <input-copyable label-position="left" :label="t('tools.iso-639-searcher.texts.label-eng')" :value="result.name" :readonly="true" mb-1 />
                 <input-copyable :value="result.local" :readonly="true" />
               </td>
             </tr>
@@ -130,7 +133,7 @@ onUnmounted(() => {
         <!-- Loading indicator when more results are coming -->
         <div v-if="visibleResultsCount < searchResult.length" mt-6 text-center>
           <div text-14px op-70>
-            Loading more results... ({{ visibleSearchResults.length }}/{{ searchResult.length }})
+            {{ $t('tools.iso-639-searcher.texts.loading-more-results') }} ({{ visibleSearchResults.length }}/{{ searchResult.length }})
           </div>
         </div>
       </div>

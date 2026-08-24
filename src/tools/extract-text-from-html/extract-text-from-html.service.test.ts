@@ -9,22 +9,23 @@ describe('extract-text-from-html service', () => {
       expect(validateHtml('<div><p>Paste your HTML in the input form on the left</p></div>')).toBeTruthy();
       expect(validateHtml('<body><div><p>Paste your HTML in the input form on the left</p></div></body>')).toBeTruthy();
       expect(validateHtml('<p>Paste your HTML in the input form on the left</p>')).toBeTruthy();
+      // An unclosed outer tag still counts as valid: the inner pair matches.
+      expect(validateHtml('<div><p>Paste your HTML in the input form on the left</p>')).toBeTruthy();
     });
 
-    it('check if the value is an html invlid', () => {
+    it('check if the value is an html invalid', () => {
       expect(validateHtml('<p>Paste your HTML in the input form on the left<p>')).toBeFalsy();
       expect(validateHtml('Paste your HTML in the input form on the left<p>')).toBeFalsy();
       expect(validateHtml('<p>Paste your HTML in the input form on the left')).toBeFalsy();
       expect(validateHtml('<p>Paste your HTML in the input form on the left<>')).toBeFalsy();
       expect(validateHtml('<>Paste your HTML in the input form on the left<>')).toBeFalsy();
       expect(validateHtml('<p>Paste your HTML in the input form on the left</a>')).toBeFalsy();
-      expect(validateHtml('<div><p>Paste your HTML in the input form on the left</p>')).toBeTruthy();
     });
   });
 
   describe('getTextFromHtml', () => {
     it('must be return a string', () => {
-      expect(getTextFromHtml('<p>Paste your HTML in the input form on the left</p>')).toString();
+      expect(typeof getTextFromHtml('<p>Paste your HTML in the input form on the left</p>')).toBe('string');
     });
 
     it('must be return text from html', () => {

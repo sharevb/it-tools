@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { IconMeterCube } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -10,7 +9,7 @@ export const tool = defineTool({
     'units', 'meter', 'stere', 'cubic', 'liter', 'barrel', 'gallon', 'pint', 'ounce', 'quart', 'm3',
   ],
   component: () => import('./volume-converter.vue'),
-  icon: IconMeterCube,
+  icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconMeterCube.mjs')),
   createdAt: new Date('2024-08-15'),
   category: 'Physics',
 });

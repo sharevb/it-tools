@@ -1,4 +1,3 @@
-import { FileExport } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.pdf-text-extractor.description'),
   keywords: ['pdf', 'text', 'extractor'],
   component: () => import('./pdf-text-extractor.vue'),
-  icon: FileExport,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/FileExport')),
   createdAt: new Date('2025-05-08'),
   category: 'PDF',
 });

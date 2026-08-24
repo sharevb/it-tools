@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { IconLockCog } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.passphrase-generator.description'),
   keywords: ['passphrase', 'random', 'password', 'generator'],
   component: () => import('./passphrase-generator.vue'),
-  icon: IconLockCog,
+  icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconLockCog.mjs')),
   createdAt: new Date('2024-08-15'),
   category: 'Generators',
 });

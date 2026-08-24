@@ -11,26 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-      - run: |
-          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
-          npm install -g corepack@latest
-          echo "After : corepack version => $(corepack --version)"
-          corepack enable
-          pnpm --version
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.0
+      - name: Setup pnpm and install dependencies
+        uses: pnpm/setup@v2.0.2
         with:
-          node-version: 22
-          cache: 'pnpm'
+          cache: true
 
-      - name: Install dependencies
-        run: pnpm i --ignore-scripts
+      - name: Check formatting
+        # Reported but not enforced: 832 of 1613 files predate oxfmt being run
+        # in CI, so this fails today. Kept visible so the drift stays tracked
+        # until a repo-wide reformat lands, then drop continue-on-error.
+        continue-on-error: true
+        run: pnpm fmt:check
 
       - name: Run linters
         run: pnpm lint
 
       - name: Run unit test
-        run: pnpm test
+        run: pnpm test:unit
 
       - name: Type check
         run: pnpm typecheck

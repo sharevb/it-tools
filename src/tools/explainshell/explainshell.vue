@@ -27,7 +27,11 @@ function openExplain() {
           mb-1
         />
         <n-p>
-          {{ t('tools.explainshell.texts.tag-you-can-self-host-explain-shell-to-get-total-privacy-see') }}<c-link href="https://github.com/idank/explainshell?tab=readme-ov-file#running-explainshell-locally" target="_blank">
+          {{ t('tools.explainshell.texts.tag-you-can-self-host-explain-shell-to-get-total-privacy-see')
+          }}<c-link
+            href="https://github.com/idank/explainshell?tab=readme-ov-file#running-explainshell-locally"
+            target="_blank"
+          >
             {{ t('tools.explainshell.texts.tag-local-explain-shell-docker-install') }}
           </c-link>
         </n-p>
@@ -43,24 +47,16 @@ function openExplain() {
     </n-form-item>
 
     <n-space justify="center">
-      <n-button
-        type="primary"
-        :disabled="!command"
-        @click="openExplain"
-      >
+      <n-button type="primary" :disabled="!command" @click="openExplain">
         {{ t('tools.explainshell.texts.tag-explain') }}
       </n-button>
     </n-space>
 
     <n-divider />
 
-    <div style="height: 70vh; border: 1px solid #ddd; border-radius: 6px; overflow: hidden;">
-      <iframe
-        v-if="iframeUrl"
-        :src="iframeUrl"
-        style="width: 100%; height: 100%; border: none;"
-      />
-      <div v-else style="padding: 1rem; text-align: center; color: #888;">
+    <div style="height: 70vh; border: 1px solid #ddd; border-radius: 6px; overflow: hidden">
+      <iframe v-if="iframeUrl" :src="iframeUrl" style="width: 100%; height: 100%; border: none" credentialless />
+      <div v-else style="padding: 1rem; text-align: center; color: #888">
         {{ t('tools.explainshell.texts.tag-enter-a-shell-command-to-explain') }}
       </div>
     </div>

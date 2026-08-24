@@ -13,10 +13,9 @@ const rootName = ref<string>('RootName');
 function transformer(value: string) {
   try {
     const object = JSON5.parse(value);
-    const schema = JSON.stringify({ ...{ name: rootName.value }, ...GenerateSchema.json(rootName.value, object) });
+    const schema = JSON.stringify({ name: rootName.value, ...GenerateSchema.json(rootName.value, object) });
     return convert(schema);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 }
@@ -30,7 +29,11 @@ const rules: UseValidationRule<string>[] = [
 </script>
 
 <template>
-  <c-input-text v-model:value="rootName" :label="t('tools.json-to-protobuf.texts.label-root-name')" label-placement="left" />
+  <c-input-text
+    v-model:value="rootName"
+    :label="t('tools.json-to-protobuf.texts.label-root-name')"
+    label-placement="left"
+  />
 
   <FormatTransformer
     :input-label="t('tools.json-to-protobuf.texts.input-label-your-json')"

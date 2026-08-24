@@ -32,32 +32,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.0
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
+      - name: Setup pnpm and install dependencies
+        uses: pnpm/setup@v2.0.2
         with:
-          node-version: 22
+          cache: true
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 9
-          run_install: true
+      - name: Run linters
+        run: pnpm lint
+
+      - name: Type check
+        run: pnpm typecheck
 
       - name: Build
         run: |
           BASE_URL="/it-tools/" pnpm build
           cp dist/index.html dist/404.html
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6.0.0
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.0

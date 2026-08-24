@@ -1,4 +1,3 @@
-import { Phone } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -23,7 +22,7 @@ export const tool = defineTool({
     'message',
   ],
   component: () => import('./phone-parser-and-formatter.vue'),
-  icon: Phone,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Phone')),
   createdAt: new Date('2023-05-01'),
   npmPackages: ['libphonenumber-js', 'country-code-lookup'],
   category: 'Data',

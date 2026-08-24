@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n';
 import { Base64 } from 'js-base64';
 import createGSModule from 'ghostscript-wasm-esm';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const { t } = useI18n();
 
@@ -67,8 +68,6 @@ async function onFileUploaded(uploadedFile: File) {
   }
 }
 
-const base = import.meta.env.BASE_URL ?? '/';
-
 async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_exitcode: number) {
   gsCommand.value = args.join(' ');
   logs.value = [];
@@ -86,7 +85,7 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
   mod.FS.writeFile('in.pdf', new Uint8Array(data));
   const ret = mod.callMain(args);
   if (expected_exitcode !== ret) {
-    throw new Error('Process run failed');
+    throw new Error(t('tools.pdf-compressor.texts.process-run-failed'));
   }
   return mod.FS.readFile('out.pdf');
 }
@@ -124,7 +123,7 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
 
     <div mt-3 flex justify-center>
       <c-alert v-if="status === 'error'" type="error">
-        An error occured processing {{ fileName }}
+        {{ $t('tools.pdf-compressor.texts.an-error-occured-processing') }} <span>{{ fileName }}</span>
       </c-alert>
       <n-spin
         v-if="status === 'processing'"

@@ -1,4 +1,4 @@
-import { MD5 } from 'crypto-js';
+import { MD5 } from 'crypto-es';
 import { translate as t } from '@/plugins/i18n.plugin';
 
 export { getAuthHeaderCheckResult };

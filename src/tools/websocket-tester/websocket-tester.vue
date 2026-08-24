@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import WSC from 'w-websocket-client/dist/w-websocket-client.umd.js';
+import { createWebSocketClient, formatWebSocketError } from './websocket-tester.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -10,31 +10,37 @@ const token = useQueryParamOrStorage({ name: 'token', storageName: 'ws-tester:to
 const logs = ref<string[]>([]);
 const message = ref('');
 const connected = ref(false);
-let wsc: WSC;
+let wsc: WebSocket | null = null;
 
 function send() {
   logs.value.push(`Sent: ${message.value}`);
-  wsc.send(message.value);
+  wsc?.send(message.value);
 }
 function connect() {
-  wsc = new WSC({
-    url: url.value,
-    token: token.value,
-    open() {
-      logs.value.push('WebSocket Connection opened');
-      connected.value = true;
-    },
-    close() {
-      connected.value = false;
-      logs.value.push('WebSocket Connection closed');
-    },
-    message(data: any) {
-      logs.value.push(`Received: ${JSON.stringify(data)}`);
-    },
-    error(err: any) {
-      logs.value.push(`Error: ${err}`);
-    },
-  });
+  try {
+    wsc = createWebSocketClient({
+      url: url.value,
+      token: token.value,
+      open() {
+        logs.value.push('WebSocket Connection opened');
+        connected.value = true;
+      },
+      close() {
+        connected.value = false;
+        logs.value.push('WebSocket Connection closed');
+      },
+      message(data: any) {
+        logs.value.push(`Received: ${JSON.stringify(data)}`);
+      },
+      error(err: unknown) {
+        logs.value.push(`Error: ${formatWebSocketError(err)}`);
+      },
+    });
+  } catch (err) {
+    // an invalid url throws before the socket exists, so it never reaches the error handler above
+    wsc = null;
+    logs.value.push(`Error: ${formatWebSocketError(err)}`);
+  }
 }
 </script>
 

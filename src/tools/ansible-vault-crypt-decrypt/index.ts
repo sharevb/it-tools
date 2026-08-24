@@ -1,4 +1,3 @@
-import { LockSquare } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.ansible-vault-crypt-decrypt.description'),
   keywords: ['ansible', 'vault', 'crypt', 'decrypt'],
   component: () => import('./ansible-vault-crypt-decrypt.vue'),
-  icon: LockSquare,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/LockSquare')),
   createdAt: new Date('2024-02-25'),
   category: 'Crypto',
 });

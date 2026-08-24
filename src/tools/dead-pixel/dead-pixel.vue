@@ -17,8 +17,7 @@ async function startDeadPixel() {
   iframe.onload = async () => {
     try {
       await iframe.requestFullscreen();
-    }
-    catch (e) {
+    } catch (e) {
       console.warn('Fullscreen failed', e);
     }
   };
@@ -104,19 +103,33 @@ const iframeHTML = `
 <template>
   <div class="flex flex-col">
     <p>
-      {{ t('tools.dead-pixel.texts.tag-keyboard-shortcuts') }}<ul>
-        <li><strong>{{ t('tools.dead-pixel.texts.tag-arrow-right-arrow-down-space') }}</strong>{{ t('tools.dead-pixel.texts.tag-next-color') }}</li>
-        <li><strong>{{ t('tools.dead-pixel.texts.tag-arrow-left-arrow-up') }}</strong>{{ t('tools.dead-pixel.texts.tag-previous-color') }}</li>
-        <li><strong>{{ t('tools.dead-pixel.texts.tag-esc') }}</strong>{{ t('tools.dead-pixel.texts.tag-exit-dead-pixel-mode') }}</li>
-      </ul>
+      {{ t('tools.dead-pixel.texts.tag-keyboard-shortcuts') }}
     </p>
+    <ul>
+      <li>
+        <strong>{{ t('tools.dead-pixel.texts.tag-arrow-right-arrow-down-space') }}</strong
+        >{{ t('tools.dead-pixel.texts.tag-next-color') }}
+      </li>
+      <li>
+        <strong>{{ t('tools.dead-pixel.texts.tag-arrow-left-arrow-up') }}</strong
+        >{{ t('tools.dead-pixel.texts.tag-previous-color') }}
+      </li>
+      <li>
+        <strong>{{ t('tools.dead-pixel.texts.tag-esc') }}</strong
+        >{{ t('tools.dead-pixel.texts.tag-exit-dead-pixel-mode') }}
+      </li>
+    </ul>
     <c-button v-if="!showIframe" class="mx-auto" @click="startDeadPixel">
       {{ t('tools.dead-pixel.texts.tag-start-dead-pixel') }}
     </c-button>
   </div>
 
   <iframe
-    v-if="showIframe" ref="iframeRef" :title="t('tools.dead-pixel.texts.title-dead-pixel-iframe')" class="dead-pixel-iframe" :srcdoc="iframeHTML"
+    v-if="showIframe"
+    ref="iframeRef"
+    :title="t('tools.dead-pixel.texts.title-dead-pixel-iframe')"
+    class="dead-pixel-iframe"
+    :srcdoc="iframeHTML"
     allow="fullscreen"
   />
 </template>

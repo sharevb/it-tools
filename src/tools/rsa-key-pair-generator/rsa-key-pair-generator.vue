@@ -33,7 +33,7 @@ const { attrs: bitsValidationAttrs } = useValidation({
   source: bits,
   rules: [
     {
-      message: 'Bits should be 256 <= bits <= 16384 and be a multiple of 8',
+      message: t('tools.rsa-key-pair-generator.text.bits-should-be-256-less-than-bits-less-than-16384-and-be-a-multiple-of-8'),
       validator: value => value >= 256 && value <= 16384 && value % 8 === 0,
     },
   ],

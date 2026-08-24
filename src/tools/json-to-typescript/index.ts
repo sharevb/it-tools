@@ -1,5 +1,4 @@
 import { translate as t } from '@/plugins/i18n.plugin';
-import { IconBrandTypescript } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.json-to-typescript.description'),
   keywords: ['json', 'typescript'],
   component: () => import('./json-to-typescript.vue'),
-  icon: IconBrandTypescript,
+  icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconBrandTypescript.mjs')),
   createdAt: new Date('2025-05-01'),
   category: 'Development',
 });

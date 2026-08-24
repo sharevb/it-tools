@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 
 import { computed, ref } from 'vue';
-import { countBy, orderBy } from 'lodash';
+import { countBy, orderBy } from 'es-toolkit/compat';
 
 const { t } = useI18n();
 

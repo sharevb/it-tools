@@ -36,8 +36,7 @@ async function loadOptions() {
         value: name,
       }));
     lastFetched.value = now;
-  }
-  catch {
+  } catch {
     if (!options.value?.length) {
       options.value = [
         'ActionScript',
@@ -63,7 +62,7 @@ async function loadOptions() {
         'Servoy',
         'VisualStudio',
         'Web',
-      ].map(name => ({
+      ].map((name) => ({
         label: name,
         value: name,
       }));
@@ -85,10 +84,10 @@ async function generateOutput() {
 // Multi-command generation
 const commands = computed(() => {
   if (!selected.value.length) {
-    return {};
+    return { curl: '', wget: '', powershell: '', cmd: '' };
   }
   const urls = selected.value
-    .map(lang => `https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/${lang}.gitattributes`)
+    .map((lang) => `https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/${lang}.gitattributes`)
     .join(' ');
   return {
     curl: `curl ${urls} > .gitattributes`,

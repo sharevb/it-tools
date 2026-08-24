@@ -4,6 +4,13 @@
   "prHourlyLimit": 25,
   "recreateWhen": "never",
   "prCreation": "immediate",
+  "timezone": "Europe/Paris",
+  "schedule": [
+    "* 0-3 * * *"
+  ],
+  "automergeSchedule": [
+    "* 0-3 * * *"
+  ],
   "extends": [
     "config:recommended",
     "docker:pinDigests",
@@ -13,7 +20,7 @@
   "packageRules": [
     {
       "groupName": "TypeScript toolchain",
-      "matchPackageNames": ["typescript", "vue-tsc"],
+      "matchPackageNames": ["typescript", "vue-tsc", "oxlint-tsgolint"],
       "matchUpdateTypes": ["major", "minor", "patch"]
     },
     {
@@ -43,7 +50,6 @@
       "groupName": "UnoCSS ecosystem",
       "matchPackageNames": [
         "unocss",
-        "@unocss/eslint-config",
         "unocss-preset-scrollbar"
       ],
       "matchUpdateTypes": ["major", "minor", "patch"]
@@ -68,16 +74,11 @@
       "matchUpdateTypes": ["major", "minor", "patch"]
     },
     {
-      "groupName": "uuid with types",
-      "matchPackageNames": ["uuid", "@types/uuid"],
-      "matchUpdateTypes": ["major", "minor", "patch"]
-    },
-    {
       "groupName": "Type packages with their dependencies",
       "matchDepTypes": ["devDependencies"],
       "groupSlug": "types",
       "automerge": true,
-      "matchPackageNames": ["/^@types//", "!@types/uuid"]
+      "matchPackageNames": ["/^@types//"]
     }
   ]
 }

@@ -190,7 +190,7 @@ function generatePrivateKey() {
 // }
 
 export function generateKeyPair({
-  privateKey = undefined,
+  privateKey,
   preSharedKey = false,
 }: {
   privateKey: Uint8Array | string | undefined

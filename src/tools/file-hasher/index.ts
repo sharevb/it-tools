@@ -1,4 +1,3 @@
-import { EyeOff } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -34,7 +33,7 @@ export const tool = defineTool({
     'XXHASH32',
     'XXHASH64'],
   component: () => import('./file-hasher.vue'),
-  icon: EyeOff,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/EyeOff')),
   createdAt: new Date('2024-05-11'),
   category: 'Crypto',
 });

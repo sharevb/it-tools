@@ -1,4 +1,5 @@
 import { figue } from 'figue';
+import { appBaseUrl } from '@/utils/base-url';
 
 export const config = figue({
   app: {
@@ -18,6 +19,8 @@ export const config = figue({
       doc: 'Application base url',
       format: 'string',
       default: '/',
+      // Not import.meta.env.BASE_URL: the bundle is built path-agnostic, so the real
+      // base only shows up at runtime. See src/utils/base-url.ts.
       env: 'BASE_URL',
     },
     env: {
@@ -70,6 +73,7 @@ export const config = figue({
     ...import.meta.env,
     // Because the string 'import.meta.env.PACKAGE_VERSION' is statically replaced during build time (see 'define' in vite.config.ts)
     PACKAGE_VERSION: import.meta.env.PACKAGE_VERSION,
+    BASE_URL: appBaseUrl,
   })
   .validate()
   .getConfig();

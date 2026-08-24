@@ -1,0 +1,765 @@
+diff --git a/lib/asn1-validator.js b/lib/asn1-validator.js
+index 2be328501e93e5f0e38245b6ee797bfc426dfcaa..4deb9f17e77b9c1a602fc6e034012b4c1ccf7e52 100644
+--- a/lib/asn1-validator.js
++++ b/lib/asn1-validator.js
+@@ -17,7 +17,6 @@ exports.privateKeyValidator = {
+     name: 'PrivateKeyInfo.version',
+     tagClass: asn1.Class.UNIVERSAL,
+     type: asn1.Type.INTEGER,
+-    constructed: false,
+     capture: 'privateKeyVersion'
+   }, {
+     // privateKeyAlgorithm
+@@ -29,7 +28,6 @@ exports.privateKeyValidator = {
+       name: 'AlgorithmIdentifier.algorithm',
+       tagClass: asn1.Class.UNIVERSAL,
+       type: asn1.Type.OID,
+-      constructed: false,
+       capture: 'privateKeyOid'
+     }]
+   }, {
+@@ -37,12 +35,11 @@ exports.privateKeyValidator = {
+     name: 'PrivateKeyInfo',
+     tagClass: asn1.Class.UNIVERSAL,
+     type: asn1.Type.OCTETSTRING,
+-    constructed: false,
+     capture: 'privateKey'
+   }]
+ };
+ 
+-exports.publicKeyValidator = {
++exports.publicKeyInfoValidator = {
+   name: 'SubjectPublicKeyInfo',
+   tagClass: asn1.Class.UNIVERSAL,
+   type: asn1.Type.SEQUENCE,
+@@ -54,38 +51,24 @@ exports.publicKeyValidator = {
+     type: asn1.Type.SEQUENCE,
+     constructed: true,
+     value: [{
+-      name: 'AlgorithmIdentifier.algorithm',
+-      tagClass: asn1.Class.UNIVERSAL,
+-      type: asn1.Type.OID,
+-      constructed: false,
+-      capture: 'publicKeyOid'
+-    }]
+-  },
+-  // capture group for ed25519PublicKey
+-  {
+-    tagClass: asn1.Class.UNIVERSAL,
+-    type: asn1.Type.BITSTRING,
+-    constructed: false,
+-    composed: true,
+-    captureBitStringValue: 'ed25519PublicKey'
+-  }
+-  // FIXME: this is capture group for rsaPublicKey, use it in this API or
+-  // discard?
+-  /* {
++        name: 'AlgorithmIdentifier.algorithm',
++        tagClass: asn1.Class.UNIVERSAL,
++        type: asn1.Type.OID,
++        capture: 'publicKeyOid'
++      },
++      {
++        name: 'AlgorithmIdentifier.parameters',
++        tagClass: asn1.Class.UNIVERSAL,
++        optional: true,
++        captureAsn1: 'parameters',
++      }]
++  }, {
+     // subjectPublicKey
+     name: 'SubjectPublicKeyInfo.subjectPublicKey',
+     tagClass: asn1.Class.UNIVERSAL,
+     type: asn1.Type.BITSTRING,
+     constructed: false,
+-    value: [{
+-      // RSAPublicKey
+-      name: 'SubjectPublicKeyInfo.subjectPublicKey.RSAPublicKey',
+-      tagClass: asn1.Class.UNIVERSAL,
+-      type: asn1.Type.SEQUENCE,
+-      constructed: true,
+-      optional: true,
+-      captureAsn1: 'rsaPublicKey'
+-    }]
+-  } */
+-  ]
++    captureAsn1: 'subjectPublicKey', // used by RSA
++    captureBitStringValue: 'subjectPublicKeyRaw', // used by ECDSA and ED25519
++  }]
+ };
+diff --git a/lib/ecdsa.js b/lib/ecdsa.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..6373401341a319edcd5360d3002cab2de4b81942
+--- /dev/null
++++ b/lib/ecdsa.js
+@@ -0,0 +1,390 @@
++/**
++ * JavaScript implementation of ECDSA.
++ *
++ * Copyright (c) 2021 HAMANO Tsukasa <hamano@osstech.co.jp>
++ *
++ * This implementation is based on the elliptic
++ *
++ * https://github.com/indutny/elliptic/
++ */
++var forge = require('./forge');
++require('./asn1');
++require('./jsbn');
++require('./random');
++require('./sha512');
++var util = require('./util');
++var elliptic = require('elliptic');
++var asn1Validator = require('./asn1-validator');
++var publicKeyInfoValidator = asn1Validator.publicKeyInfoValidator;
++var privateKeyValidator = asn1Validator.privateKeyValidator;
++var asn1 = forge.asn1;
++
++if(typeof BigInteger === 'undefined') {
++  var BigInteger = forge.jsbn.BigInteger;
++}
++
++var ByteBuffer = util.ByteBuffer;
++var NativeBuffer = typeof Buffer === 'undefined' ? Uint8Array : Buffer;
++
++forge.pki = forge.pki || {};
++module.exports = forge.pki.ecdsa = forge.ecdsa = forge.ecdsa || {};
++var ecdsa = forge.ecdsa;
++
++ecdsa.constants = {};
++
++/*
++ * Supported namedCurve listed here:
++ * https://github.com/indutny/elliptic/blob/master/lib/elliptic/curves.js
++ */
++ecdsa.supportedCueves = [
++  'p192',     // secp192r1, prime192v1
++  'p256',     // secp256r1, prime256v1
++  'p224',     // secp224r1,
++  'p384',     // secp384r1
++  'p521',     // secp521r1
++  'secp256k1',// secp256k1
++];
++
++/*
++ * RCF5915: Elliptic Curve Private Key Format
++ * https://datatracker.ietf.org/doc/html/rfc5915
++ *
++ * ECPrivateKey ::= SEQUENCE {
++ *   version        INTEGER { ecPrivkeyVer1(1) } (ecPrivkeyVer1),
++ *   privateKey     OCTET STRING,
++ *   parameters [0] ECParameters {{ NamedCurve }} OPTIONAL,
++ *   publicKey  [1] BIT STRING OPTIONAL
++ * }
++ */
++var ecPrivateKeyValidator = {
++  name: 'ECPrivateKey',
++  tagClass: asn1.Class.UNIVERSAL,
++  type: asn1.Type.SEQUENCE,
++  constructed: true,
++  value: [{
++    name: 'ECPrivateKey.version',
++    tagClass: asn1.Class.UNIVERSAL,
++    type: asn1.Type.INTEGER,
++    capture: 'version',
++  }, {
++    name: 'ECPrivateKey.privateKey',
++    tagClass: asn1.Class.UNIVERSAL,
++    type: asn1.Type.OCTETSTRING,
++    capture: 'privateKey',
++  }, {
++    tagClass: asn1.Class.CONTEXT_SPECIFIC,
++    type: 0x0,
++    optional: true,
++    value: [{
++      name: 'ECPrivateKey.parameters',
++      tagClass: asn1.Class.UNIVERSAL,
++      type: asn1.Type.OID,
++      captureAsn1: 'parameters',
++    }],
++  }, {
++    tagClass: asn1.Class.CONTEXT_SPECIFIC,
++    type: 0x1,
++    optional: true,
++    value: [{
++      name: 'ECPrivateKey.publicKey',
++      type: asn1.Type.BITSTRING,
++      captureAsn1: 'publicKey',
++    }],
++  }]
++};
++
++var ecSpecifiedCurveValidator = {
++  name: 'SpecifiedCurve',
++  tagClass: asn1.Class.UNIVERSAL,
++  type: asn1.Type.SEQUENCE,
++  constructed: true,
++  value: [{
++    name: 'SpecifiedCurveVersion',
++    tagClass: asn1.Class.UNIVERSAL,
++    type: asn1.Type.INTEGER,
++    capture: 'version',
++  }, {
++    name: 'SpecifiedCurve.FieldID',
++    tagClass: asn1.Class.UNIVERSAL,
++    type: asn1.Type.SEQUENCE,
++    constructed: true,
++    value: [{
++      name: 'SpecifiedCurve.FieldID.fieldType',
++      tagClass: asn1.Class.UNIVERSAL,
++      type: asn1.Type.OID,
++      capture: 'fieldType',
++    }, {
++      name: 'SpecifiedCurve.FieldID.prime',
++      tagClass: asn1.Class.UNIVERSAL,
++      type: asn1.Type.INTEGER,
++      capture: 'p',
++    }]
++  }, {
++    name: 'SpecifiedCurve.Curve',
++    tagClass: asn1.Class.UNIVERSAL,
++    type: asn1.Type.SEQUENCE,
++    constructed: true,
++    value: [{
++      name: 'SpecifiedCurve.Curve.a',
++      tagClass: asn1.Class.UNIVERSAL,
++      type: asn1.Type.OCTETSTRING,
++      capture: 'a',
++    }, {
++      name: 'SpecifiedCurve.Curve.b',
++      tagClass: asn1.Class.UNIVERSAL,
++      type: asn1.Type.OCTETSTRING,
++      capture: 'b',
++    }]
++  }, {
++    name: 'SpecifiedCurve.Generator',
++    tagClass: asn1.Class.UNIVERSAL,
++    type: asn1.Type.OCTETSTRING,
++    capture: 'g',
++  }, {
++    name: 'SpecifiedCurve.Order',
++    tagClass: asn1.Class.UNIVERSAL,
++    type: asn1.Type.INTEGER,
++    capture: 'n',
++  }, {
++    name: 'SpecifiedCurve.Confactor',
++    tagClass: asn1.Class.UNIVERSAL,
++    type: asn1.Type.INTEGER,
++    capture: 'c',
++    optional: true
++  }]
++};
++
++ecdsa.generateKeyPair = function(options) {
++  options = options || {};
++  var curveName = options.name || 'p256';
++  var seed = options.seed;
++  var errors = [];
++
++  if (!(ecdsa.supportedCueves.includes(curveName))) {
++    var error = new Error('unsupported curveName: ' + curveName);
++    error.errors = errors;
++    throw error;
++  }
++  var curve = elliptic.curves[curveName];
++  var ec = new elliptic.ec(curve);
++  ec.curveName = curveName;
++  var kp = ec.genKeyPair({
++    entropy: seed,
++  });
++  var privateKey = kp.getPrivate();
++  var publicKey = kp.getPublic();
++  return {
++    publicKey: new ecdsa.ECPublicKey(kp.ec, publicKey),
++    privateKey: new ecdsa.ECPrivateKey(kp.ec, privateKey)
++  };
++};
++
++/**
++ * Converts a ECPrivateKey to an ASN.1 representation.
++ *
++ * @param key the ECPrivateKey.
++ *
++ * @return the ASN.1 representation of an ECPrivateKey.
++ */
++ecdsa.privateKeyToAsn1 = function(key, options) {
++  return key.toAsn1(options);
++};
++
++var ECPublicKey = function(ec, publicKey) {
++  this._ec = ec;
++  this._publicKey = publicKey;
++};
++
++ecdsa.ECPublicKey = ECPublicKey;
++
++/**
++ * Converts a public key from a RFC8410 ASN.1 encoding.
++ *
++ * @param obj - The asn1 representation of a public key.
++ *
++ * @return {ECPublicKey} - ECPublicKey object.
++ */
++ECPublicKey.fromAsn1 = function(obj) {
++  var capture = {};
++  var errors = [];
++  if(!forge.asn1.validate(obj, publicKeyInfoValidator, capture, errors)) {
++    var error = new Error('Cannot read PublicKeyInfo ASN.1 object.');
++    error.errors = errors;
++    throw error;
++  }
++  var publicKey = capture.subjectPublicKeyRaw;
++  var params = capture.parameters;
++  var curve;
++  var curveName;
++  if(params && params.type === forge.asn1.Type.OID) {
++    var oid = forge.asn1.derToOid(params.value);
++    curveName = forge.oids[oid];
++    if(!ecdsa.supportedCueves.includes(curveName)) {
++      var error = new Error('Unsupported curveName: ' + curveName);
++      error.errors = errors;
++      throw error;
++    }
++    curve = elliptic.curves[curveName];
++  } else if(params && params.type === forge.asn1.Type.SEQUENCE) {
++    var capture = {};
++    if(!forge.asn1.validate(params, ecSpecifiedCurveValidator, capture, errors)) {
++      var error = new Error('Cannot read specified curve ASN.1 object.');
++      error.errors = errors;
++      throw error;
++    }
++    var options = {
++      p: util.bytesToHex(capture.p),
++      a: util.bytesToHex(capture.a),
++      b: util.bytesToHex(capture.b),
++      n: util.bytesToHex(capture.n),
++    };
++    var _curve = new elliptic.curve.short(options);
++    var g = _curve.decodePoint(util.bytesToHex(capture.g), 'hex');
++    curve = {
++      curve: _curve,
++      n: _curve.n,
++      g: g
++    };
++  } else {
++    var error = new Error('no ECParameters');
++    error.errors = errors;
++    throw error;
++  }
++  var ec = new elliptic.ec({curve: curve});
++  ec.curveName = curveName;
++  var kp = ec.keyFromPublic(publicKey);
++  return new ECPublicKey(ec, kp.getPublic());
++};
++
++ECPublicKey.prototype.verify = function(msg, signature) {
++    var hexMsg = util.bytesToHex(msg);
++    var hexSignature = util.bytesToHex(signature);
++    return this._ec.verify(hexMsg, hexSignature, this._publicKey, 'hex');
++};
++
++ECPublicKey.prototype.toString = function() {
++  return this._publicKey.encode('hex');
++};
++
++ECPublicKey.prototype.getBytes = function() {
++  return String.fromCharCode.apply(null, this._publicKey.encode());
++};
++
++ECPublicKey.prototype.toAsn1 = function(options) {
++  var curveOID = forge.oids[this._ec.curveName];
++  if (!curveOID) {
++    var error = new Error('unsupported namedCurve or specifiedCurve.');
++      error.errors = errors;
++      throw error;
++  }
++
++  var obj = asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, []);
++  var aid = asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
++    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OID, false,
++                asn1.oidToDer(forge.oids['ecPublicKey']).getBytes()),
++    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OID, false,
++                asn1.oidToDer(curveOID).getBytes())]);
++  obj.value.push(aid);
++  obj.value.push(
++    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.BITSTRING, false,
++                "\0" + this.getBytes()));
++  return obj;
++};
++
++ECPublicKey.prototype.toDer = function() {
++  return asn1.toDer(this.toAsn1()).getBytes();
++};
++
++ECPublicKey.prototype.toPem = function() {
++  return '-----BEGIN PUBLIC KEY-----\n' +
++    util.encode64(this.toDer(), 64) +
++    '\n-----END PUBLIC KEY-----\n';
++};
++
++
++var ECPrivateKey = function(ec, privateKey) {
++  this._ec = ec;
++  this._privateKey = privateKey;
++};
++ecdsa.ECPrivateKey = ECPrivateKey;
++
++/**
++ * Converts a private key from a RFC5915 ASN.1 Object.
++ *
++ * @param obj - The asn1 representation of a private key.
++ *
++ * @returns {Object} obj - The ASN.1 key object.
++ * @returns {ECPrivateKey} ECPrivateKey object.
++ */
++ECPrivateKey.fromAsn1 = function(obj) {
++  var capture = {};
++  var errors = [];
++  var valid = forge.asn1.validate(obj, ecPrivateKeyValidator, capture, errors);
++  if(!valid) {
++    var error = new Error('Invalid ECPrivateKey object.');
++    error.errors = errors;
++    throw error;
++  }
++  var params;
++  if (!capture.parameters) {
++    var error = new Error('no ECPrivateKey.parameters.');
++    error.errors = errors;
++    throw error;
++  }
++  var oid = asn1.derToOid(capture.parameters.value)
++  var curveName = forge.oids[oid];
++  if (!ecdsa.supportedCueves.includes(curveName)) {
++    var error = new Error('unsupported curveName: ' + curveName);
++    error.errors = errors;
++    throw error;
++  }
++  curve = elliptic.curves[curveName];
++  var ec = new elliptic.ec({curve: curve});
++  ec.curveName = curveName;
++  var kp = ec.keyFromPrivate(util.bytesToHex(capture.privateKey));
++  return new ECPrivateKey(ec, kp.getPrivate());
++};
++
++ECPrivateKey.prototype.sign = function(msg) {
++  var hexMsg = util.bytesToHex(msg);
++  var signature = this._ec.sign(hexMsg, this._privateKey);
++  return String.fromCharCode.apply(null, signature.toDER());
++};
++
++ECPrivateKey.prototype.toString = function() {
++  return this._privateKey.toString('hex');
++};
++
++ECPrivateKey.prototype.getBytes = function() {
++  return String.fromCharCode.apply(null, this._privateKey.toArray());
++};
++
++ECPrivateKey.prototype.toAsn1 = function(options) {
++  var curveOID = forge.oids[this._ec.curveName];
++  if (!curveOID) {
++    var error = new Error('unsupported namedCurve');
++      error.errors = errors;
++      throw error;
++  }
++  return asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
++    asn1.create(asn1.Class.UNIVERSAL,
++                asn1.Type.INTEGER, false,
++                asn1.integerToDer(1).getBytes()),
++    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OCTETSTRING, false,
++                this.getBytes()),
++    asn1.create(asn1.Class.CONTEXT_SPECIFIC, 0x0, true, [
++      asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OID, false,
++                  asn1.oidToDer(curveOID).getBytes())
++    ]),
++  ]);
++};
++
++ECPrivateKey.prototype.toDer = function(options) {
++  return asn1.toDer(this.toAsn1(options)).getBytes();
++};
++
++ECPrivateKey.prototype.toPem = function(options) {
++  return '-----BEGIN EC PRIVATE KEY-----\n' +
++    util.encode64(this.toDer(options), 64) +
++    '\n-----END EC PRIVATE KEY-----\n';
++};
+diff --git a/lib/ed25519.js b/lib/ed25519.js
+index 87eb7097aff14b2a26103c10ce6777a672e0a0e8..31c48254c6112625a581945029f541269e74b46e 100644
+--- a/lib/ed25519.js
++++ b/lib/ed25519.js
+@@ -114,7 +114,7 @@ ed25519.publicKeyFromAsn1 = function(obj) {
+   // get SubjectPublicKeyInfo
+   var capture = {};
+   var errors = [];
+-  var valid = forge.asn1.validate(obj, publicKeyValidator, capture, errors);
++  var valid = forge.asn1.validate(obj, publicKeyInfoValidator, capture, errors);
+   if(!valid) {
+     var error = new Error('Invalid Key.');
+     error.errors = errors;
+@@ -126,7 +126,7 @@ ed25519.publicKeyFromAsn1 = function(obj) {
+     throw new Error('Invalid OID "' + oid + '"; OID must be "' +
+       ed25519Oid + '".');
+   }
+-  var publicKeyBytes = capture.ed25519PublicKey;
++  var publicKeyBytes = capture.ed25519PublicKeyRaw;
+   if(publicKeyBytes.length !== ed25519.constants.PUBLIC_KEY_BYTE_LENGTH) {
+     throw new Error('Key length is invalid.');
+   }
+diff --git a/lib/oids.js b/lib/oids.js
+index 817ed1be2001cf1640df2b59cc4822cb01877cce..6ead3acf140269037eba6e1e0bd047fccc95167b 100644
+--- a/lib/oids.js
++++ b/lib/oids.js
+@@ -39,6 +39,18 @@ _IN('1.3.101.112', 'EdDSA25519');
+ 
+ _IN('1.2.840.10040.4.3', 'dsa-with-sha1');
+ 
++_IN('1.2.840.10045.2.1', 'ecPublicKey');
++_IN('1.2.840.10045.4.3.2', 'ecdsa-with-SHA256');
++_IN('1.2.840.10045.4.3.3', 'ecdsa-with-SHA384');
++_IN('1.2.840.10045.4.3.4', 'ecdsa-with-SHA512');
++
++_IN('1.2.840.10045.3.1.1', 'p192');
++_IN('1.2.840.10045.3.1.7', 'p256');
++_IN('1.3.132.0.33', 'p224');
++_IN('1.3.132.0.34', 'p384');
++_IN('1.3.132.0.35', 'p521');
++_IN('1.3.132.0.10', 'secp256k1');
++
+ _IN('1.3.14.3.2.7', 'desCBC');
+ 
+ _IN('1.3.14.3.2.26', 'sha1');
+@@ -60,6 +72,7 @@ _IN('1.2.840.113549.1.7.3', 'envelopedData');
+ _IN('1.2.840.113549.1.7.4', 'signedAndEnvelopedData');
+ _IN('1.2.840.113549.1.7.5', 'digestedData');
+ _IN('1.2.840.113549.1.7.6', 'encryptedData');
++_IN('2.23.136.1.1.1', 'mrtdSignatureData');
+ 
+ // pkcs#9 oids
+ _IN('1.2.840.113549.1.9.1', 'emailAddress');
+diff --git a/lib/pkcs7.js b/lib/pkcs7.js
+index 3a5d845c5d6d62ac9fc6195ee6ef4155ecc0619c..5a773bcce033d69ebdc73d8586c0c2258eb9419b 100644
+--- a/lib/pkcs7.js
++++ b/lib/pkcs7.js
+@@ -1167,7 +1167,7 @@ function _fromAsn1(msg, obj, validator) {
+ 
+   // Check contentType, so far we only support (raw) Data.
+   var contentType = asn1.derToOid(capture.contentType);
+-  if(contentType !== forge.pki.oids.data) {
++  if(![forge.pki.oids.data, forge.pki.oids.mrtdSignatureData].includes(contentType)) {
+     throw new Error('Unsupported PKCS#7 message. ' +
+       'Only wrapped ContentType Data supported.');
+   }
+diff --git a/lib/rsa.js b/lib/rsa.js
+index a4264822b4dcd6dca44ca3e59e410c982eed7183..8cab56a1b776e808f550ded9ef14395fa6304da1 100644
+--- a/lib/rsa.js
++++ b/lib/rsa.js
+@@ -70,6 +70,10 @@ require('./prime');
+ require('./random');
+ require('./util');
+ 
++var asn1Validator = require('./asn1-validator');
++var publicKeyInfoValidator = asn1Validator.publicKeyInfoValidator;
++var ecdsa = require('./ecdsa');
++
+ if(typeof BigInteger === 'undefined') {
+   var BigInteger = forge.jsbn.BigInteger;
+ }
+@@ -226,44 +230,6 @@ var rsaPublicKeyValidator = {
+   }]
+ };
+ 
+-// validator for an SubjectPublicKeyInfo structure
+-// Note: Currently only works with an RSA public key
+-var publicKeyValidator = forge.pki.rsa.publicKeyValidator = {
+-  name: 'SubjectPublicKeyInfo',
+-  tagClass: asn1.Class.UNIVERSAL,
+-  type: asn1.Type.SEQUENCE,
+-  constructed: true,
+-  captureAsn1: 'subjectPublicKeyInfo',
+-  value: [{
+-    name: 'SubjectPublicKeyInfo.AlgorithmIdentifier',
+-    tagClass: asn1.Class.UNIVERSAL,
+-    type: asn1.Type.SEQUENCE,
+-    constructed: true,
+-    value: [{
+-      name: 'AlgorithmIdentifier.algorithm',
+-      tagClass: asn1.Class.UNIVERSAL,
+-      type: asn1.Type.OID,
+-      constructed: false,
+-      capture: 'publicKeyOid'
+-    }]
+-  }, {
+-    // subjectPublicKey
+-    name: 'SubjectPublicKeyInfo.subjectPublicKey',
+-    tagClass: asn1.Class.UNIVERSAL,
+-    type: asn1.Type.BITSTRING,
+-    constructed: false,
+-    value: [{
+-      // RSAPublicKey
+-      name: 'SubjectPublicKeyInfo.subjectPublicKey.RSAPublicKey',
+-      tagClass: asn1.Class.UNIVERSAL,
+-      type: asn1.Type.SEQUENCE,
+-      constructed: true,
+-      optional: true,
+-      captureAsn1: 'rsaPublicKey'
+-    }]
+-  }]
+-};
+-
+ // validator for a DigestInfo structure
+ var digestInfoValidator = {
+   name: 'DigestInfo',
+@@ -1465,36 +1431,29 @@ pki.privateKeyToAsn1 = pki.privateKeyToRSAPrivateKey = function(key) {
+ };
+ 
+ /**
+- * Converts a public key from an ASN.1 SubjectPublicKeyInfo or RSAPublicKey.
++ * Converts a RSA public key from an ASN.1 SubjectPublicKeyInfo.
+  *
+- * @param obj the asn1 representation of a SubjectPublicKeyInfo or RSAPublicKey.
++ * @param obj the asn1 representation of a SubjectPublicKeyInfo.
+  *
+  * @return the public key.
+  */
+-pki.publicKeyFromAsn1 = function(obj) {
+-  // get SubjectPublicKeyInfo
++pki.rsa.publicKeyFromAsn1 = function(obj) {
++  //var subjectPublicKey = obj.value[1].value[0];
+   var capture = {};
+   var errors = [];
+-  if(asn1.validate(obj, publicKeyValidator, capture, errors)) {
+-    // get oid
+-    var oid = asn1.derToOid(capture.publicKeyOid);
+-    if(oid !== pki.oids.rsaEncryption) {
+-      var error = new Error('Cannot read public key. Unknown OID.');
+-      error.oid = oid;
+-      throw error;
+-    }
+-    obj = capture.rsaPublicKey;
++  if(!asn1.validate(obj, publicKeyInfoValidator, capture, errors)) {
++    var error = new Error('Cannot read public key. ' +
++                          'ASN.1 object does not contain an PublicKeyInfo.');
++    error.errors = errors;
++    throw error;
+   }
+-
+-  // get RSA params
+-  errors = [];
++  obj = capture.subjectPublicKey.value[0];
+   if(!asn1.validate(obj, rsaPublicKeyValidator, capture, errors)) {
+     var error = new Error('Cannot read public key. ' +
+-      'ASN.1 object does not contain an RSAPublicKey.');
++                          'ASN.1 object does not contain an RSAPublicKey.');
+     error.errors = errors;
+     throw error;
+   }
+-
+   // FIXME: inefficient, get a BigInteger that uses byte strings
+   var n = forge.util.createBuffer(capture.publicKeyModulus).toHex();
+   var e = forge.util.createBuffer(capture.publicKeyExponent).toHex();
+@@ -1503,6 +1462,31 @@ pki.publicKeyFromAsn1 = function(obj) {
+   return pki.setRsaPublicKey(
+     new BigInteger(n, 16),
+     new BigInteger(e, 16));
++}
++
++/**
++ * Converts a public key from an ASN.1 SubjectPublicKeyInfo or RSAPublicKey.
++ *
++ * @param obj the asn1 representation of a SubjectPublicKeyInfo or RSAPublicKey.
++ *
++ * @return the public key.
++ */
++pki.publicKeyFromAsn1 = function(obj) {
++  // get SubjectPublicKeyInfo
++  var capture = {};
++  var errors = [];
++  // get oid
++  var oid = asn1.derToOid(obj.value[0].value[0].value);
++  switch (oid) {
++  case pki.oids.rsaEncryption:
++    return pki.rsa.publicKeyFromAsn1(obj);
++  case pki.oids.ecPublicKey:
++    return ecdsa.ECPublicKey.fromAsn1(obj);
++  default:
++    var error = new Error('Cannot read public key. Unknown OID.');
++    error.oid = oid;
++    throw error;
++  }
+ };
+ 
+ /**
+diff --git a/lib/x509.js b/lib/x509.js
+index b4a4f6d7a4c57bea6d986a733f360a299bd15f5f..ce83d6dec9140d7df79c0e61bfc754df44f907a8 100644
+--- a/lib/x509.js
++++ b/lib/x509.js
+@@ -144,8 +144,8 @@ _shortNames['E'] = oids['emailAddress'];
+ _shortNames['emailAddress'] = 'E';
+ 
+ // validator for an SubjectPublicKeyInfo structure
+-// Note: Currently only works with an RSA public key
+-var publicKeyValidator = forge.pki.rsa.publicKeyValidator;
++var asn1Validator = require('./asn1-validator');
++var publicKeyInfoValidator = asn1Validator.publicKeyInfoValidator;
+ 
+ // validator for an X.509v3 certificate
+ var x509CertificateValidator = {
+@@ -252,7 +252,7 @@ var x509CertificateValidator = {
+       captureAsn1: 'certSubject'
+     },
+     // SubjectPublicKeyInfo
+-    publicKeyValidator,
++    publicKeyInfoValidator,
+     {
+       // issuerUniqueID (optional)
+       name: 'Certificate.TBSCertificate.issuerUniqueID',
+@@ -427,7 +427,7 @@ var certificationRequestInfoValidator = {
+     captureAsn1: 'certificationRequestInfoSubject'
+   },
+   // SubjectPublicKeyInfo
+-  publicKeyValidator,
++  publicKeyInfoValidator,
+   {
+     name: 'CertificationRequestInfo.attributes',
+     tagClass: asn1.Class.CONTEXT_SPECIFIC,
+@@ -706,13 +706,15 @@ var _createSignatureDigest = function(options) {
+     case 'md5WithRSAEncryption':
+       return forge.md.md5.create();
+     case 'sha256WithRSAEncryption':
++    case 'RSASSA-PSS':
++    case 'ecdsa-with-SHA256':
+       return forge.md.sha256.create();
+     case 'sha384WithRSAEncryption':
++    case 'ecdsa-with-SHA384':
+       return forge.md.sha384.create();
+     case 'sha512WithRSAEncryption':
++    case 'ecdsa-with-SHA512':
+       return forge.md.sha512.create();
+-    case 'RSASSA-PSS':
+-      return forge.md.sha256.create();
+     default:
+       var error = new Error(
+         'Could not compute ' + options.type + ' digest. ' +
+@@ -1312,8 +1314,8 @@ pki.certificateFromAsn1 = function(obj, computeHash) {
+ 
+   // get oid
+   var oid = asn1.derToOid(capture.publicKeyOid);
+-  if(oid !== pki.oids.rsaEncryption) {
+-    throw new Error('Cannot read public key. OID is not RSA.');
++  if(![pki.oids.rsaEncryption, pki.oids.ecPublicKey].includes(oid)) {
++    throw new Error('Cannot read public key. publicKeyOid: ' + oid);
+   }
+ 
+   // create certificate
+diff --git a/package.json b/package.json
+index a78076c0f5020f48af7d9bf0b88ef39883374d08..b4d0074930f08c206c6071167cf43e2db0fc477e 100644
+--- a/package.json
++++ b/package.json
+@@ -119,5 +119,8 @@
+     "buffer": false,
+     "crypto": false,
+     "process": false
++  },
++  "dependencies": {
++    "elliptic": "^6.5.4"
+   }
+ }

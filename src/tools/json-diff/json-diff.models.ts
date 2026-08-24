@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import Decimal from 'decimal.js';
 import type { Difference, DifferenceStatus } from './json-diff.types';
 

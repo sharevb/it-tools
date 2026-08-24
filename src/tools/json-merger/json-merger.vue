@@ -39,6 +39,6 @@ const rules: UseValidationRule<string>[] = [
     <c-input-text v-model:value="json2" multiline mb-1 rows="10" :placeholder="t('tools.json-merger.texts.placeholder-put-your-json-content')" :validation-rules="rules" />
   </c-card>
   <c-card :title="t('tools.json-merger.texts.title-merged-json')">
-    <textarea-copyable v-model:value="merged" language="json" :placeholder="t('tools.json-merger.texts.placeholder-your-merged-json-will-be-here')" download-file-name="merge.json" />
+    <CodeBlockCopyable v-model:value="merged" language="json" :placeholder="t('tools.json-merger.texts.placeholder-your-merged-json-will-be-here')" download-file-name="merge.json" />
   </c-card>
 </template>

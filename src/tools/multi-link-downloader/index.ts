@@ -1,4 +1,3 @@
-import { IconFileDownload } from '@tabler/icons-vue';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.multi-link-downloader.description'),
   keywords: ['multi', 'link', 'downloader'],
   component: () => import('./multi-link-downloader.vue'),
-  icon: IconFileDownload,
+  icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconFileDownload.mjs')),
   createdAt: new Date('2024-10-18'),
   category: 'Network',
   externAccessDescription: t('tools.multi-link-downloader.externalAccess'),

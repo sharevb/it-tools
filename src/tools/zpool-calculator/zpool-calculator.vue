@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { useThemeVars } from 'naive-ui';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const { t } = useI18n();
 
 const themeVars = useThemeVars();
-
-const base = import.meta.env.BASE_URL ?? '/';
 
 const { load: loadJQuery } = useScriptTag(`${base}zpool-calc/jquery.js`);
 await loadJQuery();

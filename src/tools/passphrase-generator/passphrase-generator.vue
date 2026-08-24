@@ -14,6 +14,7 @@ const numbers = useQueryParamOrStorage({ name: 'nums', storageName: 'pass-genera
 const capitalize = useQueryParamOrStorage({ name: 'capitalize', storageName: 'pass-generator:capitalize', defaultValue: false });
 const saltChars = useQueryParamOrStorage({ name: 'salt', storageName: 'pass-generator:salt', defaultValue: '' });
 const separator = useQueryParamOrStorage({ name: 'sep', storageName: 'pass-generator:sep', defaultValue: '-' });
+const minLen = useQueryParamOrStorage({ name: 'minlen', storageName: 'pass-generator:minlen', defaultValue: 0 });
 const maxLen = useQueryParamOrStorage({ name: 'maxlen', storageName: 'pass-generator:maxlen', defaultValue: 100 });
 
 const [passphrases, refreshPassphrases] = computedRefreshable(
@@ -35,7 +36,7 @@ const [passphrases, refreshPassphrases] = computedRefreshable(
         }
       }
 
-      let maxIter = 10;
+      let maxIter = 1000;
       while (maxIter > 0) {
         const passphrase = generateSillyPassword({
           capitalize: capitalize.value,
@@ -47,12 +48,13 @@ const [passphrases, refreshPassphrases] = computedRefreshable(
           }
           return word;
         }).join(separator.value);
-        if (passphrase.length < maxLen.value) {
+        if (minLen.value < passphrase.length && passphrase.length < maxLen.value) {
           return passphrase;
         }
         maxIter -= 1;
       }
-      return `# Cannot generate a passphrase of max ${maxLen.value} characters`;
+      return t('tools.passphrase-generator.texts.cannot-generate-a-passphrase-of-minlen-value-maxlen-value-characters-please-retry',
+        [minLen.value, maxLen.value]);
     }).join('\n'),
 );
 
@@ -63,7 +65,7 @@ const { copy } = useCopy({ source: passphrases, text: t('tools.passphrase-genera
   <div>
     <c-card>
       <n-space>
-        <n-form-item :label="`Words (${words})`" label-placement="left">
+        <n-form-item :label="t('tools.passphrase-generator.texts.words-words', [words])" label-placement="left">
           <n-slider v-model:value="words" :step="1" :min="1" :max="512" mr-2 />
           <n-input-number-i18n v-model:value="words" size="small" />
         </n-form-item>
@@ -74,8 +76,11 @@ const { copy } = useCopy({ source: passphrases, text: t('tools.passphrase-genera
       </n-space>
 
       <n-space>
+        <n-form-item :label="t('tools.passphrase-generator.texts.label-min-passphrase-len')" label-placement="left">
+          <n-input-number-i18n v-model:value="minLen" :max="maxLen" size="small" />
+        </n-form-item>
         <n-form-item :label="t('tools.passphrase-generator.texts.label-max-passphrase-len')" label-placement="left">
-          <n-input-number-i18n v-model:value="maxLen" size="small" />
+          <n-input-number-i18n v-model:value="maxLen" :min="minLen" size="small" />
         </n-form-item>
 
         <n-form-item :label="t('tools.passphrase-generator.texts.label-capitalize')" label-placement="left">

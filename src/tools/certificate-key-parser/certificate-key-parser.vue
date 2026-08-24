@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { Buffer } from 'node:buffer';
 import { useI18n } from 'vue-i18n';
+import 'webcrypto-liner-shim';
 
 import { getKeysOrCertificatesInfosAsync } from './certificate-key-parser.service';
 import { type LabelValue } from './certificate-key-parser.infos';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
@@ -12,6 +14,11 @@ const inputKeyOrCertificate = ref('');
 const passphrase = ref('');
 const fileInput = ref() as Ref<Buffer>;
 const inputType = ref<'file' | 'content'>('file');
+const pemHeader = useQueryParamOrStorage({
+  name: 'pemtype',
+  storageName: 'cert-key-parser:t',
+  defaultValue: '',
+});
 
 async function onUpload(file: File) {
   if (file) {
@@ -51,7 +58,7 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
     inputKeyOrCertificateValue = inputContent;
   }
   try {
-    const parsed = await getKeysOrCertificatesInfosAsync(inputKeyOrCertificateValue, passphrase.value);
+    const parsed = await getKeysOrCertificatesInfosAsync(inputKeyOrCertificateValue, passphrase.value, pemHeader.value);
     if (parsed.length === 1) {
       const { values, certificateX509DER: certPEM } = parsed[0];
       certificateX509DER.value = certPEM || '';
@@ -67,6 +74,32 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
     ];
   }
 });
+
+const pemHeaders = [
+  { label: t('tools.certificate-key-parser.texts.autodetect'), value: '' },
+
+  { label: t('tools.certificate-key-parser.texts.certificate-x-509'), value: 'CERTIFICATE' },
+  { label: t('tools.certificate-key-parser.texts.certificate-request-csr-pkcs-10'), value: 'CERTIFICATE REQUEST' },
+
+  { label: t('tools.certificate-key-parser.texts.private-key-pkcs-8'), value: 'PRIVATE KEY' },
+  { label: t('tools.certificate-key-parser.texts.public-key-pkcs-8'), value: 'PUBLIC KEY' },
+  { label: t('tools.certificate-key-parser.texts.encrypted-private-key-pkcs-8-encrypted'), value: 'ENCRYPTED PRIVATE KEY' },
+
+  { label: t('tools.certificate-key-parser.texts.rsa-private-key-pkcs-1'), value: 'RSA PRIVATE KEY' },
+  { label: t('tools.certificate-key-parser.texts.rsa-public-key-pkcs-1'), value: 'RSA PUBLIC KEY' },
+
+  { label: t('tools.certificate-key-parser.texts.ec-private-key'), value: 'EC PRIVATE KEY' },
+  { label: t('tools.certificate-key-parser.texts.ec-parameters'), value: 'EC PARAMETERS' },
+
+  { label: t('tools.certificate-key-parser.texts.dsa-private-key'), value: 'DSA PRIVATE KEY' },
+  { label: t('tools.certificate-key-parser.texts.dsa-public-key'), value: 'DSA PUBLIC KEY' },
+
+  { label: t('tools.certificate-key-parser.texts.openssh-private-key'), value: 'OPENSSH PRIVATE KEY' },
+  { label: t('tools.certificate-key-parser.texts.ssh-public-key-rfc4716'), value: 'SSH PUBLIC KEY' },
+
+  { label: t('tools.certificate-key-parser.texts.pgp-public-key-block'), value: 'PGP PUBLIC KEY BLOCK' },
+  { label: t('tools.certificate-key-parser.texts.pgp-private-key-block'), value: 'PGP PRIVATE KEY BLOCK' },
+];
 </script>
 
 <template>
@@ -108,6 +141,16 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
       :placeholder="t('tools.certificate-key-parser.texts.placeholder-passphrase-for-encrypted-keys')"
       type="password"
       data-test-id="pass"
+      label-position="left"
+      mt-1
+    />
+
+    <c-select
+      v-model:value="pemHeader"
+      :options="pemHeaders"
+      :label="t('tools.certificate-key-parser.texts.label-pem-header')"
+      label-position="left"
+      mt-1
     />
 
     <n-divider />

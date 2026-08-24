@@ -1,4 +1,3 @@
-import { DeviceAudioTape } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,7 +7,7 @@ export const tool = defineTool({
   description: t('tools.dbm-mw-converter.description'),
   keywords: ['dbm', 'mw', 'converter', 'units'],
   component: () => import('./dbm-mw-converter.vue'),
-  icon: DeviceAudioTape,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/DeviceAudioTape')),
   createdAt: new Date('2025-10-03'),
   category: 'Converters',
 });

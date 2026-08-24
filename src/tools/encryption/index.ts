@@ -1,4 +1,3 @@
-import { Lock } from '@vicons/tabler';
 import { defineTool } from '../tool';
 import { translate as t } from '@/plugins/i18n.plugin';
 
@@ -8,8 +7,8 @@ export const tool = defineTool({
   description: t('tools.encryption.description'),
   keywords: ['cypher', 'encipher', 'text', 'AES', 'TripleDES', 'Rabbit', 'RC4', 'Salsa', 'ChaCha'],
   component: () => import('./encryption.vue'),
-  icon: Lock,
+  icon: defineAsyncComponent(() => import('@vicons/tabler/es/Lock')),
   redirectFrom: ['/cypher'],
-  npmPackages: ['crypto-s'],
+  npmPackages: ['crypto-es', '@noble/ciphers'],
   category: 'Crypto',
 });
