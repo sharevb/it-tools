@@ -4,7 +4,7 @@ import DOMPurify from 'dompurify';
 const route = useRoute();
 
 const sanitizedContent = computed(() => {
-  return DOMPurify.sanitize(route.meta.externalHTMLContent ?? '', {
+  return DOMPurify.sanitize(String(route.meta.externalHTMLContent ?? ''), {
     ADD_TAGS: ['iframe'],
     ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'],
   });

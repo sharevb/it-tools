@@ -58,7 +58,7 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
     inputKeyOrCertificateValue = inputContent;
   }
   try {
-    const parsed = await getKeysOrCertificatesInfosAsync(inputKeyOrCertificateValue, passphrase.value, pemHeader.value);
+    const parsed = await getKeysOrCertificatesInfosAsync(inputKeyOrCertificateValue, passphrase.value);
     if (parsed.length === 1) {
       const { values, certificateX509DER: certPEM } = parsed[0];
       certificateX509DER.value = certPEM || '';

@@ -175,7 +175,12 @@ function handleKeydown(e: KeyboardEvent) {
   // Space → Play/Pause
   if (e.code === 'Space') {
     e.preventDefault();
-    isPlaying.value ? pause() : start();
+    if (isPlaying.value) {
+      pause();
+    }
+    else {
+      start();
+    }
   }
 
   // Right arrow → skip forward

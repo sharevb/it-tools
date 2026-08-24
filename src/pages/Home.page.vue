@@ -23,6 +23,7 @@ const homeCustomMarkdown = computedAsync(async () => {
 });
 
 const toolStore = useToolStore();
+const { t } = useI18n();
 const desc = t(
   'home.page.text.collection-of-handy-online-tools-for-developers-with-great-ux-it-tools-is-a-free-and-open-source-collection-of-handy-online-tools-for-developers-and-people-working-in-it',
 );
@@ -31,10 +32,6 @@ const title = t('home.page.text.it-tools-handy-online-tools-for-developers');
 useHead({
   title,
   meta: [
-    {
-      itemprop: 'name',
-      content: title,
-    },
     {
       property: 'og:title',
       content: title,
@@ -48,10 +45,6 @@ useHead({
       content: desc,
     },
     {
-      itemprop: 'description',
-      content: desc,
-    },
-    {
       property: 'og:description',
       content: desc,
     },
@@ -61,8 +54,6 @@ useHead({
     },
   ],
 });
-const { t } = useI18n();
-
 const favoriteTools = computed(() => toolStore.favoriteTools);
 
 const linkTheme = useTheme();
@@ -90,6 +81,10 @@ onMounted(() => {
 function stopOrderingFavorites() {
   isOrderingFavorites.value = false;
   toolStore.updateFavoriteTools(favoriteTools.value); // Update the store with the new order
+}
+
+function startOrderingFavorites() {
+  isOrderingFavorites.value = true;
 }
 
 // Batch loading logic for tool cards

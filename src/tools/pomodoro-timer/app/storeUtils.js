@@ -14,16 +14,22 @@ function startTitleAlarm(str, delay) {
   }
 
   titleInterval = setInterval(() => {
-    document.title.startsWith('⏰')
-      ? (document.title = `${str} - IT Tools`)
-      : (document.title = '⏰⏰⏰⏰⏰⏰⏰⏰⏰⏰' + ' - IT Tools');
+    if (document.title.startsWith('⏰')) {
+      document.title = `${str} - IT Tools`;
+    }
+    else {
+      document.title = '⏰⏰⏰⏰⏰⏰⏰⏰⏰⏰ - IT Tools';
+    }
   }, delay);
 }
 
 function stopTitleAlarm() {
-  titleInterval
-    ? clearInterval(titleInterval)
-    : alert('Error:  something went wrong when trying to stop the title alarm.');
+  if (titleInterval) {
+    clearInterval(titleInterval);
+  }
+  else {
+    alert('Error:  something went wrong when trying to stop the title alarm.');
+  }
   document.title = 'Pomodoro Timer - IT Tools';
 }
 
