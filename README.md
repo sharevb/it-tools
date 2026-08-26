@@ -10,6 +10,12 @@ You can serve the app from a subfolder using environment variable `BASE_URL` (do
 
 If the container needs to listen to IPv6, it needs to be enabled: https://serverfault.com/questions/1147296/how-to-enable-ipv6-on-ubuntu-20-04. Alternatively, you can mount your own `nginx.conf` own using docker option `-v "./nginx.conf:/etc/nginx/templates/default.conf.template"` (with `listen [::]:8080;` removed)
 
+## Proxmox Install
+
+Run the command below in the Proxmox VE Shell
+
+```bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/alpine-it-tools.sh)"```
+
 ## Build requirements
 
 **To build this project**, around **8GB** of RAM is enough. Measured on a 4-core
