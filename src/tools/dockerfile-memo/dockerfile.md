@@ -206,7 +206,7 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 You can name each stage using `AS <name>` and reference it later with `--from=<name>`.
 
 ```Dockerfile
-FROM golang:1.21 AS build
+FROM golang:1.26@sha256:7caba5286b4c3613a337b709c573047d8ae62ee76106647313b61e72b99f20af AS build
 WORKDIR /src
 COPY . .
 RUN go build -o myapp
