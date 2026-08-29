@@ -14,7 +14,7 @@ Specifies the base image.
 
 ```Dockerfile
 FROM ubuntu:20.04
-FROM node:22-alpine
+FROM node:24-alpine@sha256:d32cdf619f63fe0471182d08996dd516c6275bb5fd31ae06e55a570bd9e1ad43
 ```
 
 ### `LABEL`
@@ -138,7 +138,7 @@ ONBUILD COPY . /app
 ## 🧪 Example Dockerfile
 
 ```Dockerfile
-FROM node:22-alpine
+FROM node:24-alpine@sha256:d32cdf619f63fe0471182d08996dd516c6275bb5fd31ae06e55a570bd9e1ad43
 
 LABEL maintainer="guillaume@example.com"
 
@@ -189,7 +189,7 @@ Dockerfile
 
 ```Dockerfile
 # Stage 1: Build
-FROM node:22-alpine AS builder
+FROM node:24-alpine@sha256:d32cdf619f63fe0471182d08996dd516c6275bb5fd31ae06e55a570bd9e1ad43 AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -243,7 +243,7 @@ Multistage builds help you avoid bloated images:
 
 ```Dockerfile
 # Build stage
-FROM node:22 AS build
+FROM node:24@sha256:934240a162082fd8b8a2f90cd5114446443f1eba1c5378f6687167ca405e6584 AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
