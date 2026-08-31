@@ -2,8 +2,15 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { useCopy } from '@/composable/copy';
+import DOMPurify from 'dompurify';
 
 const { t } = useI18n();
+
+function escapeHtml(text: string): string {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
 
 const str = ref('Lorem ipsum dolor sit amet DOLOR Lorem ipsum dolor sit amet DOLOR');
 const findWhat = ref('');
@@ -18,6 +25,44 @@ const splitEveryCharacterCounts = ref(0);
 const currentActiveIndex = ref(0);
 // Tracks the total number of matches found to cycle through them.
 const totalMatches = ref(0);
+// Track if regex is unsafe
+const regexWarning = ref('');
+
+const DANGEROUS_REGEX_PATTERNS = [
+  /\(\.\*\)\+/, /\(\.\+\)\+/, /\(\.\?\)\+/,
+  /\(\w\+\)\+/, /\(\w\*\)\+/, /\(\w\?\)\+/,
+  /\(\w+\*\)\+/, /\(\w+\+\)\+/, /\(\w+\?\)\+/,
+  /\([^)]+\)\+/, /\([^)]+\)\*/, /\([^)]+\)\?/,
+];
+
+function isRegexSafe(pattern: string): boolean {
+  try {
+    for (const dangerousPattern of DANGEROUS_REGEX_PATTERNS) {
+      if (dangerousPattern.test(pattern)) {
+        return false;
+      }
+    }
+    // eslint-disable-next-line no-new
+    new RegExp(pattern);
+    return true;
+  }
+  catch {
+    return false;
+  }
+}
+
+function validateRegex(pattern: string): boolean {
+  if (!pattern) {
+    regexWarning.value = '';
+    return true;
+  }
+  if (!isRegexSafe(pattern)) {
+    regexWarning.value = 'unsafe-regex';
+    return false;
+  }
+  regexWarning.value = '';
+  return true;
+}
 
 const highlightedText = computed(() => {
   const findWhatValue = findWhat.value;
@@ -32,6 +77,9 @@ const highlightedText = computed(() => {
   }
 
   if (addLineBreakRegex.value) {
+    if (!validateRegex(addLineBreakRegex.value)) {
+      return strValue;
+    }
     const addLBRegex = new RegExp(addLineBreakRegex.value, matchCase.value ? 'g' : 'gi');
     if (addLineBreakPlace.value === 'before') {
       strValue = strValue.replace(addLBRegex, m => `\n${m}`);
@@ -48,14 +96,19 @@ const highlightedText = computed(() => {
   }
 
   if (!findWhatValue) {
-    return strValue;
+    return DOMPurify.sanitize(strValue);
+  }
+
+  if (!validateRegex(findWhatValue)) {
+    return DOMPurify.sanitize(strValue);
   }
 
   const regex = new RegExp(findWhatValue, matchCase.value ? 'g' : 'gi');
   let index = 0;
   const newStr = strValue.replace(regex, (match) => {
     index++;
-    return `<span class="${match === findWhatValue ? 'highlight' : 'outline'}">${match}</span>`;
+    const escapedMatch = escapeHtml(match);
+    return `<span class="${match === findWhatValue ? 'highlight' : 'outline'}">${escapedMatch}</span>`;
   });
 
   totalMatches.value = index;
@@ -137,16 +190,32 @@ const { copy } = useCopy({ source: highlightedText });
 
 <template>
   <div>
-    <c-input-text v-model:value="str" raw-text :placeholder="t('tools.smart-text-replacer.texts.placeholder-enter-text-here')" :label="t('tools.smart-text-replacer.texts.label-text-to-search-and-replace')" clearable multiline rows="10" />
+    <c-input-text
+      v-model:value="str"
+      raw-text
+      :placeholder="t('tools.smart-text-replacer.texts.placeholder-enter-text-here')"
+      :label="t('tools.smart-text-replacer.texts.label-text-to-search-and-replace')"
+      clearable
+      multiline
+      rows="10"
+    />
 
     <div mt-4 w-full flex gap-10px>
       <div flex-1>
         <div>{{ t('tools.smart-text-replacer.texts.tag-find-what') }}</div>
-        <c-input-text v-model:value="findWhat" :placeholder="t('tools.smart-text-replacer.texts.placeholder-search-regex')" @keyup.enter="findNext()" />
+        <c-input-text
+          v-model:value="findWhat"
+          :placeholder="t('tools.smart-text-replacer.texts.placeholder-search-regex')"
+          @keyup.enter="findNext()"
+        />
       </div>
       <div flex-1>
         <div>{{ t('tools.smart-text-replacer.texts.tag-replace-with') }}</div>
-        <c-input-text v-model:value="replaceWith" :placeholder="t('tools.smart-text-replacer.texts.placeholder-replacement-expression')" @keyup.enter="replaceSelected()" />
+        <c-input-text
+          v-model:value="replaceWith"
+          :placeholder="t('tools.smart-text-replacer.texts.placeholder-replacement-expression')"
+          @keyup.enter="replaceSelected()"
+        />
       </div>
     </div>
 
@@ -168,12 +237,20 @@ const { copy } = useCopy({ source: highlightedText });
       </n-checkbox>
     </n-space>
 
+    <n-alert v-if="regexWarning === 'unsafe-regex'" type="warning" mt-4>
+      {{ t('tools.smart-text-replacer.texts.warning-unsafe-regex') }}
+    </n-alert>
+
     <n-divider />
 
     <div mt-4 w-full flex items-baseline gap-10px>
       <c-select
         v-model:value="addLineBreakPlace"
-        :options="[{ value: 'before', label: t('tools.smart-text-replacer.texts.label-add-linebreak-before') }, { value: 'after', label: t('tools.smart-text-replacer.texts.label-add-linebreak-after') }, { value: 'place', label: t('tools.smart-text-replacer.texts.label-add-linebreak-in-place-of') }]"
+        :options="[
+          { value: 'before', label: t('tools.smart-text-replacer.texts.label-add-linebreak-before') },
+          { value: 'after', label: t('tools.smart-text-replacer.texts.label-add-linebreak-after') },
+          { value: 'place', label: t('tools.smart-text-replacer.texts.label-add-linebreak-in-place-of') },
+        ]"
       />
 
       <c-input-text
@@ -187,7 +264,8 @@ const { copy } = useCopy({ source: highlightedText });
       </n-form-item>
     </div>
     <c-card v-if="highlightedText" mt-60px flex items-center gap-5px font-mono>
-      <!-- //NOSONAR --><div flex-1 break-anywhere text-wrap style="white-space: pre-wrap" v-html="highlightedText" />
+      <!-- //NOSONAR -->
+      <div flex-1 break-anywhere text-wrap style="white-space: pre-wrap" v-html="highlightedText" />
 
       <c-button @click="copy()">
         <icon-mdi:content-copy />

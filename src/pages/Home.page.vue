@@ -1,18 +1,29 @@
 <script setup lang="ts">
-import IconDragDrop from '~icons/tabler/drag-drop';
-import IconHeart from '~icons/tabler/heart';
-import { useHead } from '@vueuse/head';
+import { IconDragDrop, IconHeart } from '@tabler/icons-vue';
+import { useHead } from '@unhead/vue';
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 import Draggable from 'vuedraggable';
+import VueMarkdown from 'vue-markdown-render';
 import ColoredCard from '../components/ColoredCard.vue';
 import ToolCard from '../components/ToolCard.vue';
-import HomeCustom from './Home.custom.vue';
 import { useToolStore } from '@/tools/tools.store';
 import { config } from '@/config';
+import { useTheme } from '../ui/c-link/c-link.theme';
 
-const { t } = useI18n();
+const base = import.meta.env.BASE_URL ?? '/';
+const homeCustomMarkdown = computedAsync(async () => {
+  try {
+    const remoteCustomHomeMarkdownResponse = await fetch(`${base}home.custom.md`);
+    if (remoteCustomHomeMarkdownResponse.ok) {
+      return await remoteCustomHomeMarkdownResponse.text();
+    }
+  }
+  catch {}
+  return '';
+});
 
 const toolStore = useToolStore();
+const { t } = useI18n();
 const desc = t(
   'home.page.text.collection-of-handy-online-tools-for-developers-with-great-ux-it-tools-is-a-free-and-open-source-collection-of-handy-online-tools-for-developers-and-people-working-in-it',
 );
@@ -21,10 +32,6 @@ const title = t('home.page.text.it-tools-handy-online-tools-for-developers');
 useHead({
   title,
   meta: [
-    {
-      itemprop: 'name',
-      content: title,
-    } as never,
     {
       property: 'og:title',
       content: title,
@@ -38,10 +45,6 @@ useHead({
       content: desc,
     },
     {
-      itemprop: 'description',
-      content: desc,
-    } as never,
-    {
       property: 'og:description',
       content: desc,
     },
@@ -51,27 +54,37 @@ useHead({
     },
   ],
 });
-
 const favoriteTools = computed(() => toolStore.favoriteTools);
+
+const linkTheme = useTheme();
+
 const isOrderingFavorites = ref(false);
 
-window.addEventListener('contextmenu', (e) => {
+function handleContextMenu(e: Event) {
   if (isOrderingFavorites.value) {
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
     return false;
   }
-});
-
-function startOrderingFavorites() {
-  isOrderingFavorites.value = true;
 }
+
+onMounted(() => {
+  window.addEventListener('contextmenu', handleContextMenu);
+
+  nextTick(() => {
+    isOrderingFavorites.value = true;
+  });
+});
 
 // Update favorite tools order when drag is finished
 function stopOrderingFavorites() {
   isOrderingFavorites.value = false;
   toolStore.updateFavoriteTools(favoriteTools.value); // Update the store with the new order
+}
+
+function startOrderingFavorites() {
+  isOrderingFavorites.value = true;
 }
 
 // Batch loading logic for tool cards
@@ -118,6 +131,8 @@ onMounted(() => {
 
 // Clean up on component unmount
 onUnmounted(() => {
+  window.removeEventListener('contextmenu', handleContextMenu);
+
   if (loadingObserver) {
     loadingObserver.disconnect();
     loadingObserver = null;
@@ -126,7 +141,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="home-content pt-50px">
+  <div class="pt-50px">
     <div class="grid-wrapper">
       <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
         <ColoredCard v-if="config.showBanner" :title="$t('home.follow.title')" :icon="IconHeart">
@@ -136,8 +151,7 @@ onUnmounted(() => {
             rel="noopener"
             target="_blank"
             :aria-label="$t('home.follow.githubRepository')"
-            >GitHub</a
-          >
+          >GitHub</a>
           {{ $t('home.follow.thankYou') }}
           <n-icon :component="IconHeart" />
         </ColoredCard>
@@ -176,9 +190,9 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <Suspense>
-        <HomeCustom />
-      </Suspense>
+      <div v-if="homeCustomMarkdown" class="home-custom-md">
+        <VueMarkdown :source="homeCustomMarkdown" />
+      </div>
 
       <h3 class="mb-5px mt-25px font-500 text-neutral-400">
         {{ $t('home.categories.allTools') }}
@@ -198,14 +212,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="less">
-// The 50px top spacing is a desktop nicety; on mobile it pushes the content
-// too far below the top bar.
-.home-content {
-  @media (max-width: 700px) {
-    padding-top: 0;
-  }
-}
-
 .height-enter-active,
 .height-leave-active {
   transition: all 0.5s ease-in-out;
@@ -238,6 +244,33 @@ onUnmounted(() => {
   100% {
     opacity: 0.4;
     transform: scale(1);
+  }
+}
+
+::v-deep(.home-custom-md) a {
+  line-height: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 400;
+  color: v-bind('linkTheme.default.textColor');
+  border-radius: 4px;
+  transition: color cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+
+  outline-offset: 1px;
+
+  &:hover {
+    color: v-bind('linkTheme.default.hover.textColor');
+  }
+
+  &:active {
+    color: v-bind('linkTheme.default.textColor');
+  }
+
+  &:focus {
+    color: v-bind('linkTheme.default.outline.color');
   }
 }
 </style>

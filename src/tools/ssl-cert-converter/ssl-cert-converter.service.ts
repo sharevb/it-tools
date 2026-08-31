@@ -1,12 +1,7 @@
 import type { Buffer } from 'node:buffer';
-import {
-  parseCertificate,
-} from 'sshpk';
+import { parseCertificate } from 'sshpk';
 
-import type {
-  Certificate,
-  CertificateFormat,
-} from 'sshpk';
+import type { Certificate, CertificateFormat } from 'sshpk';
 
 import * as forge from 'node-forge';
 import jks from 'jks-js';
@@ -40,20 +35,33 @@ function getKeyFromP12(p12: forge.pkcs12.Pkcs12Pfx) {
 
 function getCertificateFromP12(p12: any) {
   const certData = p12.getBags({ bagType: forge.pki.oids.certBag });
-  const certificate = certData[forge.pki.oids.certBag][0];
+  const certBag = certData[forge.pki.oids.certBag];
+
+  if (!certBag || !certBag[0]) {
+    throw new TypeError(t('tools.ssl-cert-converter.text.unable-to-get-certificate'));
+  }
+
+  const certificate = certBag[0];
+
+  if (!certificate?.cert?.subject?.attributes?.length) {
+    throw new TypeError(t('tools.ssl-cert-converter.text.unable-to-get-certificate'));
+  }
 
   const pemCertificate = forge.pki.certificateToPem(certificate.cert);
-  const commonName = certificate.cert.subject.attributes[0].value;
+  const firstAttribute = certificate.cert.subject.attributes[0];
+  const commonName = firstAttribute?.value ?? '';
   return { pemCertificate, commonName };
 }
 
-export function convertCertificates(
-  inputKeyOrCertificateValue: string | Buffer,
-  password: string) {
+export function convertCertificates(inputKeyOrCertificateValue: string | Buffer, password: string) {
   if (typeof inputKeyOrCertificateValue !== 'string') {
     return convertCertificate(inputKeyOrCertificateValue, password);
   }
-  const parts = inputKeyOrCertificateValue.toString().trim().split(/(-----BEGIN [^-]+-----\n)/).filter(s => s !== '');
+  const parts = inputKeyOrCertificateValue
+    .toString()
+    .trim()
+    .split(/(-----BEGIN [^-]+-----\n)/)
+    .filter(s => s !== '');
   if (!parts.length) {
     return convertCertificate(inputKeyOrCertificateValue, password);
   }
@@ -70,9 +78,7 @@ export function convertCertificates(
   return parsedPEMs;
 }
 
-export function convertCertificate(
-  inputKeyOrCertificateValue: string | Buffer,
-  password: string) {
+export function convertCertificate(inputKeyOrCertificateValue: string | Buffer, password: string) {
   const canParse = (value: any, parseFunction: (value: any) => any) => {
     try {
       return parseFunction(value);
@@ -88,37 +94,37 @@ export function convertCertificate(
       try {
         return parseCertificate(value, format as CertificateFormat);
       }
-      catch {
-      }
+      catch {}
     }
     return null;
   }) as Certificate;
   if (cert) {
-    return [{
-      alias: '#default',
-      key: null,
-      der: canParse(cert, c => c.toBuffer('x509')),
-      pem: cert.toString('pem'),
-    }];
+    return [
+      {
+        alias: '#default',
+        key: null,
+        der: canParse(cert, c => c.toBuffer('x509')),
+        pem: cert.toString('pem'),
+      },
+    ];
   }
 
   const pkcs12 = canParse(inputKeyOrCertificateValue, (value) => {
     return convertPKCS12ToPem(forge.util.createBuffer(value, 'raw'), password);
   });
   if (pkcs12) {
-    return [{
-      alias: pkcs12.commonName,
-      key: pkcs12.pemKey,
-      der: canParse(pkcs12.pemCertificate, pemCert => parseCertificate(pemCert, 'pem').toBuffer('x509')),
-      pem: pkcs12.pemCertificate,
-    }];
+    return [
+      {
+        alias: pkcs12.commonName,
+        key: pkcs12.pemKey,
+        der: canParse(pkcs12.pemCertificate, pemCert => parseCertificate(pemCert, 'pem').toBuffer('x509')),
+        pem: pkcs12.pemCertificate,
+      },
+    ];
   }
 
   const parsedJKS = canParse(inputKeyOrCertificateValue, (value) => {
-    return jks.toPem(
-      value,
-      password,
-    );
+    return jks.toPem(value, password);
   });
   if (parsedJKS) {
     return Object.entries(parsedJKS).map(([k, v]) => {

@@ -7,6 +7,7 @@ import { layouts } from './layouts';
 import { useStyleStore } from './stores/style.store';
 import { useAppTheme } from './ui/theme/themes';
 import { getITToolsSetting } from './composable/queryParams';
+import { resolveLocale, setLocale } from './plugins/i18n.plugin';
 
 const route = useRoute();
 const layout = computed(() => route?.meta?.layout ?? layouts.base);
@@ -16,6 +17,7 @@ const theme = computed(() => (styleStore.isDarkTheme ? darkTheme : null));
 const themeOverrides = computed(() => (styleStore.isDarkTheme ? darkThemeOverrides : lightThemeOverrides));
 
 const { locale } = useI18n();
+const storedLocale = useStorage<string | null>('locale', null);
 
 const colorPalette = useAppTheme();
 
@@ -41,12 +43,13 @@ watchEffect(() => {
   });
 });
 
-locale.value = get(getITToolsSetting('default_locale', locale.value));
+const configuredLocale = get(getITToolsSetting('default_locale', locale.value));
+const initialLocale = resolveLocale(String(storedLocale.value ?? configuredLocale));
+void setLocale(initialLocale);
 
-syncRef(
-  locale,
-  useStorage('locale', locale),
-);
+watch(locale, (value) => {
+  storedLocale.value = value;
+});
 </script>
 
 <template>

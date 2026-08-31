@@ -11,6 +11,33 @@ overrides:
   isolated-vm: file:./stubs/empty-stub
   onnxruntime-node: file:./stubs/empty-stub
   elliptic: ^6.6.1
+  protobufjs: ^7.6.5
+  '@xmldom/xmldom': ^0.9.11
+  'brace-expansion@1': ^1.1.18
+  'brace-expansion@2': ^2.1.4
+  'brace-expansion@5': ^5.0.9
+  deepmerge-ts: ^8.0.0
+  fast-uri: ^3.1.5
+  fast-xml-parser: ^5.10.1
+  'file-type@16': ^21.3.1
+  ip-address: ^10.3.1
+  'js-yaml@4': ^4.3.1
+  'js-yaml@5': ^5.2.2
+  'js-yaml@3': ^3.15.1
+  linkify-it: ^5.0.2
+  mathjs: ^15.2.0
+  nanoid: ^3.3.18
+  postcss: ^8.5.23
+  sharp: ^0.35.0
+  svgo: ^3.3.4
+  underscore: ^1.13.8
+  dompurify: ^3.4.13
+  mermaid: ^11.16.1
+  phin: ^3.7.1
+  protocol-buffers-schema: ^3.6.1
+  undici: ^6.28.0
+  unhead: ^3.4.0
+  uuid: ^11.1.1
   # @boxyhq/saml20 pins 0.9.10 exactly, which upstream deprecated for "critical
   # issues"; 0.9.11 is the patched release of that same line.
   '@xmldom/xmldom@0.9.10': 0.9.11

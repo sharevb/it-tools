@@ -29,7 +29,7 @@ about:
 
     ## Technologies
 
-    IT Tools is made in Vue.js (Vue 3) with the the Naive UI component library
+    IT Tools is made in Vue.js (Vue 3) with the Naive UI component library
     and is hosted and continuously deployed by Vercel. Third-party open-source
     libraries are used in some tools, you may find the complete list in the
     [package.json](https://github.com/sharevb/it-tools/blob/main/package.json)
@@ -9969,6 +9969,22 @@ tools:
         get-a-random-tool-from-the-list: Get a random tool from the list.
         random-tool: Random tool
         tools: Tools
+  password-generator:
+    title: Password Generator
+    description: Generate random passwords with configurable character types and exclusions.
+    texts:
+      label-password-length: Password length
+      label-lowercase: Lowercase letters
+      label-uppercase: Uppercase letters
+      label-numbers: Numbers
+      label-symbols: Special characters
+      label-excluded-characters: Excluded characters
+      placeholder-excluded-characters: Characters to exclude, such as O0l1
+      placeholder-generated-password: Generated password
+      text-password-copied-to-clipboard: Password copied to clipboard
+      error-generate-password: Unable to generate password
+      button-copy: Copy
+      button-refresh: Refresh
   external-self-hosted-required: External Self Hosted Required
 collapsibleToolMenu:
   text:

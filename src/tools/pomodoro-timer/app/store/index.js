@@ -33,8 +33,9 @@ export default createStore({
     },
     updateTimeSetting(state, payload) {
       state[payload.propName] = payload.propValue;
-      // eslint-disable-next-line no-unused-expressions
-      state.isTimerInProgress ? {} : setupNextTimerMode(state);
+      if (!state.isTimerInProgress) {
+        setupNextTimerMode(state);
+      }
     },
     updateAppColor(state, payload) {
       state[payload.propName] = payload.propValue;

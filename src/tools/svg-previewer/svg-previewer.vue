@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import DOMPurify from 'dompurify';
 
 const svgContent = ref<string | undefined>(undefined);
 const backgroundColor = ref<string>('#ffffff');
@@ -16,7 +17,16 @@ function readAsTextAsync(file: File) {
 }
 
 async function onFileUploaded(uploadedFile: File) {
-  svgContent.value = await readAsTextAsync(uploadedFile);
+  const rawSvg = await readAsTextAsync(uploadedFile);
+  // Sanitize SVG to prevent XSS attacks
+  svgContent.value = DOMPurify.sanitize(rawSvg, { USE_PROFILES: { svg: true } });
+}
+
+function updateSvgContent() {
+  if (svgContent.value) {
+    // Sanitize SVG to prevent XSS attacks
+    svgContent.value = DOMPurify.sanitize(svgContent.value, { USE_PROFILES: { svg: true } });
+  }
 }
 </script>
 

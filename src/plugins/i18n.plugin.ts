@@ -5,15 +5,19 @@ import { watch } from 'vue';
 import { createI18n } from 'vue-i18n';
 import enBaseMessages from '../../locales/en.yml';
 
-const DEFAULT_LOCALE = String(import.meta.env.VITE_LANGUAGE || 'en');
 const FALLBACK_LOCALE = 'en';
+const requestedLocale = String(
+  window.__IT_TOOLS_CONFIG__?.language || import.meta.env.VITE_LANGUAGE || FALLBACK_LOCALE,
+);
 
 // The fallback locale (and its tool-level files) is bundled eagerly so the app always has
 // complete messages at startup; every other locale is compiled into its own lazy chunk and
 // only fetched the first time it becomes the active locale.
 const eagerToolMessages = import.meta.glob('../tools/*/locales/en.yml', { eager: true, import: 'default' });
 const lazyBaseMessages = import.meta.glob(['../../locales/*.yml', '!../../locales/en.yml'], { import: 'default' });
-const lazyToolMessages = import.meta.glob(['../tools/*/locales/*.yml', '!../tools/*/locales/en.yml'], { import: 'default' });
+const lazyToolMessages = import.meta.glob(['../tools/*/locales/*.yml', '!../tools/*/locales/en.yml'], {
+  import: 'default',
+});
 
 function localeOfPath(path: string): string {
   return path.replace(/^.*\/([^/]+)\.yml$/, '$1');
@@ -31,9 +35,22 @@ export const appLocales = (() => {
   if (available === '*' || available === 'all') {
     return allLocales;
   }
-  const wantedLocales = available.split(',').map(locale => locale.trim());
-  return allLocales.filter(locale => wantedLocales.includes(locale) || locale === FALLBACK_LOCALE);
+  const wantedLocales = available.split(',').map((locale) => locale.trim());
+  return allLocales.filter((locale) => wantedLocales.includes(locale) || locale === FALLBACK_LOCALE);
 })();
+
+export function resolveLocale(locale: string): string {
+  const normalizedLocale = locale.trim().toLowerCase();
+  const language = normalizedLocale.split('-')[0];
+
+  return appLocales.includes(normalizedLocale)
+    ? normalizedLocale
+    : appLocales.includes(language)
+      ? language
+      : FALLBACK_LOCALE;
+}
+
+const DEFAULT_LOCALE = resolveLocale(requestedLocale);
 
 const i18n = createI18n({
   legacy: false,
@@ -64,9 +81,15 @@ export async function loadLocaleMessages(locale: string) {
     return;
   }
 
-  const messageParts = await Promise.all(loaders.map(loader => loader()));
+  const messageParts = await Promise.all(loaders.map((loader) => loader()));
   i18n.global.setLocaleMessage(locale, merge({}, ...messageParts));
   loadedLocales.add(locale);
+}
+
+export async function setLocale(locale: string) {
+  const resolvedLocale = resolveLocale(locale);
+  await loadLocaleMessages(resolvedLocale);
+  i18n.global.locale.value = resolvedLocale;
 }
 
 export const i18nPlugin: Plugin = {
@@ -75,7 +98,11 @@ export const i18nPlugin: Plugin = {
     // Messages arrive after the switch; vue-i18n falls back to English until
     // setLocaleMessage triggers a reactive re-render. Watching through the getter
     // avoids depending on vue-i18n's locale ref generics.
-    watch(() => getCurrentLocale(), locale => loadLocaleMessages(locale), { immediate: true });
+    watch(
+      () => getCurrentLocale(),
+      (locale) => loadLocaleMessages(locale),
+      { immediate: true },
+    );
   },
 };
 

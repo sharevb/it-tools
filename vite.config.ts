@@ -51,7 +51,7 @@ function normalizeBaseUrl(value: string | undefined): string {
   // quietly produce a page that loads from the wrong place. Fail the build instead.
   const segments = trimmed.split('/');
 
-  if (segments.some(segment => segment === '..' || !/^[\w.~-]+$/.test(segment))) {
+  if (segments.some((segment) => segment === '..' || !/^[\w.~-]+$/.test(segment))) {
     throw new Error(`BASE_URL must be a plain path such as "/it-tools/", got ${JSON.stringify(value)}`);
   }
 
@@ -72,7 +72,7 @@ function baseHref(base: string): Plugin {
     transformIndexHtml: {
       order: 'post',
       handler(html) {
-        const withBase = html.replace(/<head(\s[^>]*)?>/i, match => `${match}\n    <base href="${base}">`);
+        const withBase = html.replace(/<head(\s[^>]*)?>/i, (match) => `${match}\n    <base href="${base}">`);
 
         if (withBase === html) {
           throw new Error('it-tools:base-href: no <head> to inject the <base href> into');
@@ -314,13 +314,13 @@ export default defineConfig({
       '@lezer/highlight',
       'pdfjs-dist',
       'onnxruntime-node',
-      'onnxruntime-web',
       'unpdf',
       'unpdf/pdfjs',
       ...(process.env.VERCEL ? ['webcrypto-liner-shim'] : []),
     ], // optionally specify dependency name
   },
   server: {
+    allowedHosts: ['.monkeycode-ai.online'],
     watch: {
       ignored: ['**/.pnpm-store/**'],
     },

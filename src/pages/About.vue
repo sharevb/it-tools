@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as _ from 'es-toolkit/compat';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
 import { useMessage } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { useToolStore } from '@/tools/tools.store';

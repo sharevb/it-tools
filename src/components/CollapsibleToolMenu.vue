@@ -2,11 +2,13 @@
 import { useStorage } from '@vueuse/core';
 import { useThemeVars } from 'naive-ui';
 import { useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import MenuIconItem from './MenuIconItem.vue';
 import MenuItemWithTooltip from './MenuItemTooltip.vue';
 import type { Tool, ToolCategory } from '@/tools/tools.types';
 
 const props = withDefaults(defineProps<{ toolsByCategory?: ToolCategory[] }>(), { toolsByCategory: () => [] });
+const { t } = useI18n();
 const { toolsByCategory } = toRefs(props);
 const route = useRoute();
 
@@ -52,9 +54,7 @@ function toggleCategoryCollapse({ name }: { name: string }) {
 }
 
 const areAllCollapsed = computed(() => {
-  return toolsByCategory.value.every(({ name }) =>
-    collapsedCategories.value[name] !== false,
-  );
+  return toolsByCategory.value.every(({ name }) => collapsedCategories.value[name] !== false);
 });
 
 async function toggleAllCategories() {
@@ -82,7 +82,7 @@ function getAnimationDuration(itemCount: number): number {
   const baseDuration = 250;
   const durationIncrement = 5;
 
-  return baseDuration + (Math.min(itemCount, 30) * durationIncrement);
+  return baseDuration + Math.min(itemCount, 30) * durationIncrement;
 }
 
 // Function to check if any tool in the category is active
@@ -105,9 +105,7 @@ const menuOptions = computed(() =>
 );
 
 async function scrollToActiveItem() {
-  const activeCategory = toolsByCategory.value.find(({ components }) =>
-    isCategoryActive(components),
-  );
+  const activeCategory = toolsByCategory.value.find(({ components }) => isCategoryActive(components));
 
   if (activeCategory) {
     // Expand the active category
@@ -131,35 +129,50 @@ onMounted(() => {
   scrollToActiveItem();
 });
 
-watch(() => route.path, () => {
-  scrollToActiveItem();
-});
+watch(
+  () => route.path,
+  () => {
+    scrollToActiveItem();
+  },
+);
 
 const themeVars = useThemeVars();
 </script>
 
 <template>
-  <!-- Full width: the label changes between expand/collapse, and a
-       hug-content button would jump in width on every toggle -->
-  <div class="top-controls" mb-12px mx-12px>
-    <c-button w-full :disabled="isToggling" @click="toggleAllCategories">
+  <div class="top-controls" mb-12px ml-12px>
+    <c-button :disabled="isToggling" @click="toggleAllCategories">
       <span v-if="isToggling">
-        {{ areAllCollapsed ? $t('collapsibleToolMenu.text.expanding') : $t('collapsibleToolMenu.text.collapsing') }}
+        {{ areAllCollapsed ? t('home.expanding') : t('home.collapsing') }}
       </span>
       <span v-else>
-        {{ areAllCollapsed ? $t('collapsibleToolMenu.text.expand-all-tools') : $t('collapsibleToolMenu.text.collapse-all-tools') }}
+        {{ areAllCollapsed ? t('home.expandAllTools') : t('home.collapseAllTools') }}
       </span>
     </c-button>
   </div>
 
-  <div v-for="{ name, tools, isCollapsed, isActive, animationDuration } of menuOptions" :key="name" class="category-container">
+  <div
+    v-for="{ name, tools, isCollapsed, isActive, animationDuration } of menuOptions"
+    :key="name"
+    class="category-container"
+  >
     <button
       class="category-button"
       :class="{ 'category-active': isActive }"
-      flex cursor-pointer items-center op-60
+      flex
+      cursor-pointer
+      items-center
+      op-60
       @click="toggleCategoryCollapse({ name })"
     >
-      <span :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }" text-16px lh-1 op-50 transition-transform duration-200>
+      <span
+        :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }"
+        text-16px
+        lh-1
+        op-50
+        transition-transform
+        duration-200
+      >
         <icon-mdi-chevron-right />
       </span>
 
@@ -169,7 +182,11 @@ const themeVars = useThemeVars();
     </button>
 
     <div
-      :ref="el => { if (el) menuContainerRefs[name] = el as HTMLElement }"
+      :ref="
+        (el) => {
+          if (el) menuContainerRefs[name] = el as HTMLElement;
+        }
+      "
       class="menu-container"
       :class="{ collapsed: isCollapsed }"
       :style="{ '--animation-duration': `${animationDuration}ms` }"
@@ -184,6 +201,7 @@ const themeVars = useThemeVars();
           :collapsed-icon-size="22"
           :options="tools"
           :indent="8"
+          :default-expand-all="true"
         />
       </div>
     </div>
@@ -200,12 +218,9 @@ const themeVars = useThemeVars();
   text-align: left;
   user-select: none;
 
-  // Hover only on hover-capable devices; on touch it sticks after tapping
-  @media (hover: hover) {
-    &:hover {
-      background-color: v-bind('themeVars.buttonColor2Hover');
-      opacity: 0.8;
-    }
+  &:hover {
+    background-color: v-bind('themeVars.buttonColor2Hover');
+    opacity: 0.8;
   }
 
   &.category-active {
@@ -213,25 +228,17 @@ const themeVars = useThemeVars();
     opacity: 1;
     color: white;
 
-    @media (hover: hover) {
-      &:hover {
-        background-color: color-mix(in srgb, v-bind('themeVars.primaryColorHover') 50%, transparent);
-      }
+    &:hover {
+      background-color: color-mix(in srgb, v-bind('themeVars.primaryColorHover') 50%, transparent);
     }
   }
 }
 .category-container {
-  // Offscreen categories skip layout and paint entirely, which keeps the sider
-  // width transition and expand/collapse animations from re-laying-out all ~460
-  // menu items on every frame.
-  content-visibility: auto;
-  contain-intrinsic-size: auto 36px;
-
-.menu-container {
-  display: grid;
-  grid-template-rows: 1fr;
-  transition: grid-template-rows var(--animation-duration, 250ms) ease-out;
-  will-change: grid-template-rows;
+  .menu-container {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows var(--animation-duration, 250ms) ease-out;
+    will-change: grid-template-rows;
 
     &.collapsed {
       grid-template-rows: 0fr;
@@ -271,10 +278,8 @@ const themeVars = useThemeVars();
           left: 14px;
         }
 
-        @media (hover: hover) {
-          &:hover {
-            opacity: 0.5;
-          }
+        &:hover {
+          opacity: 0.5;
         }
       }
     }

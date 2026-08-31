@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { onBeforeUnmount } from 'vue';
 import type { UploadFileInfo } from 'naive-ui';
 import ImageCompare from 'image-compare-viewer';
 import 'image-compare-viewer/dist/image-compare-viewer.min.css';
@@ -11,20 +12,32 @@ const rightUrl = ref('');
 const leftImage = ref<string | null>(null);
 const rightImage = ref<string | null>(null);
 const viewerContainer = ref<HTMLDivElement | null>(null);
-let viewerInstance = null;
+  let viewerInstance: { mount: () => void } | null = null;
+
+function cleanupObjectUrls() {
+  if (leftImage.value && leftImage.value.startsWith('blob:')) {
+    URL.revokeObjectURL(leftImage.value);
+  }
+  if (rightImage.value && rightImage.value.startsWith('blob:')) {
+    URL.revokeObjectURL(rightImage.value);
+  }
+}
 
 function loadFromUrl() {
+  cleanupObjectUrls();
   leftImage.value = leftUrl.value;
   rightImage.value = rightUrl.value;
   renderViewer();
 }
 
 function handleLeftUpload({ file }: { file: UploadFileInfo }) {
+  cleanupObjectUrls();
   leftImage.value = URL.createObjectURL(file.file!);
   renderViewer();
 }
 
 function handleRightUpload({ file }: { file: UploadFileInfo }) {
+  cleanupObjectUrls();
   rightImage.value = URL.createObjectURL(file.file!);
   renderViewer();
 }
@@ -43,25 +56,37 @@ function renderViewer() {
   `;
   viewerContainer.value.appendChild(container);
 
-  viewerInstance = new ImageCompare(container, {
+  const instance = new ImageCompare(container, {
     controlColor: '#409EFF',
     smoothing: true,
     addCircle: true,
   });
-  viewerInstance.mount();
+  instance.mount();
+  viewerInstance = instance;
 }
+
+onBeforeUnmount(() => {
+  cleanupObjectUrls();
+  viewerInstance = null;
+});
 </script>
 
 <template>
-  <NCard :title="t('tools.image-comparer.texts.title-image-compare-viewer')" style="max-width: 800px; margin: auto;">
+  <NCard :title="t('tools.image-comparer.texts.title-image-compare-viewer')" style="max-width: 800px; margin: auto">
     <NTabs type="segment">
-      <NTabPane name="url" :tab="t('tools.image-comparer.text.compare-by-url')">
+      <NTabPane name="url" :tab="t('tools.image-comparer.texts.tab-compare-by-url')">
         <NForm label-placement="left" label-width="150px">
           <NFormItem :label="t('tools.image-comparer.texts.label-left-image-url')">
-            <NInput v-model:value="leftUrl" :placeholder="t('tools.image-comparer.texts.placeholder-enter-left-image-url')" />
+            <NInput
+              v-model:value="leftUrl"
+              :placeholder="t('tools.image-comparer.texts.placeholder-enter-left-image-url')"
+            />
           </NFormItem>
           <NFormItem :label="t('tools.image-comparer.texts.label-right-image-url')">
-            <NInput v-model:value="rightUrl" :placeholder="t('tools.image-comparer.texts.placeholder-enter-right-image-url')" />
+            <NInput
+              v-model:value="rightUrl"
+              :placeholder="t('tools.image-comparer.texts.placeholder-enter-right-image-url')"
+            />
           </NFormItem>
           <n-space justify="center">
             <NButton type="primary" @click="loadFromUrl">
@@ -71,7 +96,7 @@ function renderViewer() {
         </NForm>
       </NTabPane>
 
-      <NTabPane name="upload" :tab="t('tools.image-comparer.text.compare-by-upload')">
+      <NTabPane name="upload" :tab="t('tools.image-comparer.texts.tab-compare-by-upload')">
         <NForm label-placement="left">
           <n-space justify="space-evenly">
             <NFormItem :label="t('tools.image-comparer.texts.label-upload-left-image')">

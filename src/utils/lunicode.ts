@@ -1,6 +1,5 @@
 export const lunicode = {
   tools: {
-
     // Flip/rotate Text by 180°
 
     flip: {
@@ -19,16 +18,13 @@ export const lunicode = {
           ch = text.charAt(i);
 
           // combining diacritical marks: combine with previous character for ä,ö,ü,...
-          if (i > 0 && (ch === '\u0324'
-                        || ch === '\u0317'
-                        || ch === '\u0316'
-                        || ch === '\u032E')) {
+          if (i > 0 && (ch === '\u0324' || ch === '\u0317' || ch === '\u0316' || ch === '\u032E')) {
             ch = this.map[text.charAt(i - 1) + ch];
             ret.pop();
           }
           else {
             ch = this.map[ch];
-            if (typeof (ch) === 'undefined') {
+            if (typeof ch === 'undefined') {
               ch = text.charAt(i);
             }
           }
@@ -48,16 +44,13 @@ export const lunicode = {
           ch = text.charAt(i);
 
           // combining diacritical marks: combine with previous character for ä,ö,ü,...
-          if (i > 0 && (ch === '\u0324'
-                        || ch === '\u0317'
-                        || ch === '\u0316'
-                        || ch === '\u032E')) {
+          if (i > 0 && (ch === '\u0324' || ch === '\u0317' || ch === '\u0316' || ch === '\u032E')) {
             ch = this.map[text.charAt(i - 1) + ch];
             ret.pop();
           }
           else {
             ch = this.map[ch];
-            if (typeof (ch) === 'undefined') {
+            if (typeof ch === 'undefined') {
               ch = text.charAt(i);
             }
           }
@@ -172,7 +165,6 @@ export const lunicode = {
         'Ô': 'O' + '\u032E',
         'Û': '\u2229' + '\u032E',
         // TODO: flip more letters with stuff around them. See http://en.wikipedia.org/wiki/Combining_character
-
       } as Record<string, string>,
     },
 
@@ -194,16 +186,13 @@ export const lunicode = {
           ch = text.charAt(i);
 
           // combining diacritical marks: combine with previous character for ä,ö,ü,...
-          if (i > 0 && (ch === '\u0308'
-                        || ch === '\u0300'
-                        || ch === '\u0301'
-                        || ch === '\u0302')) {
+          if (i > 0 && (ch === '\u0308' || ch === '\u0300' || ch === '\u0301' || ch === '\u0302')) {
             ch = this.map[text.charAt(i - 1) + ch];
             ret.pop();
           }
           else {
             ch = this.map[ch];
-            if (typeof (ch) === 'undefined') {
+            if (typeof ch === 'undefined') {
               ch = text.charAt(i);
             }
           }
@@ -229,16 +218,13 @@ export const lunicode = {
           ch = text.charAt(i);
 
           // combining diacritical marks: combine with previous character for ä,ö,ü,...
-          if (i > 0 && (ch === '\u0308'
-                        || ch === '\u0300'
-                        || ch === '\u0301'
-                        || ch === '\u0302')) {
+          if (i > 0 && (ch === '\u0308' || ch === '\u0300' || ch === '\u0301' || ch === '\u0302')) {
             ch = this.map[text.charAt(i - 1) + ch];
             ret.pop();
           }
           else {
             ch = this.map[ch];
-            if (typeof (ch) === 'undefined') {
+            if (typeof ch === 'undefined') {
               ch = text.charAt(i);
             }
           }
@@ -329,7 +315,6 @@ export const lunicode = {
 
         'Ø': 'ᴓ',
         'ø': 'ᴓ',
-
       } as Record<string, string>,
     },
 
@@ -414,8 +399,14 @@ export const lunicode = {
             //                30%: 70% of maxHeight to maxHeight
             //                 x%: 100-x% of maxHeight to maxHeight
             const diacriticsTopLength = this.diacriticsTop.length - 1;
-            for (let count = 0,
-              len = this.options.maxHeight - Math.random() * ((this.options.randomization / 100) * this.options.maxHeight); count < len; count++) {
+            for (
+              let count = 0,
+                len
+                  = this.options.maxHeight
+                  - Math.random() * ((this.options.randomization / 100) * this.options.maxHeight);
+              count < len;
+              count++
+            ) {
               newChar += this.diacriticsTop[Math.floor(Math.random() * diacriticsTopLength)];
             }
           }
@@ -423,8 +414,14 @@ export const lunicode = {
           // Bottom
           if (this.options.bottom) {
             const diacriticsBottomLength = this.diacriticsBottom.length - 1;
-            for (let count = 0,
-              len = this.options.maxHeight - Math.random() * ((this.options.randomization / 100) * this.options.maxHeight); count < len; count++) {
+            for (
+              let count = 0,
+                len
+                  = this.options.maxHeight
+                  - Math.random() * ((this.options.randomization / 100) * this.options.maxHeight);
+              count < len;
+              count++
+            ) {
               newChar += this.diacriticsBottom[Math.floor(Math.random() * diacriticsBottomLength)];
             }
           }
@@ -497,11 +494,16 @@ export const lunicode = {
 
           // No dedicated circled character available? Use a Combining Diacritical Mark surrounded
           // with non-breaking spaces, so it doesn't overlap
-          if ((typeof (ch) === 'undefined')) {
+          if (typeof ch === 'undefined') {
             if (text[i].charCodeAt(0) >= 33) {
               ch = text[i] + String.fromCharCode(8413);
               if (!first) {
-                ch = String.fromCharCode(8239) + String.fromCharCode(160) + String.fromCharCode(160) + String.fromCharCode(8239) + ch;
+                ch
+                  = String.fromCharCode(8239)
+                  + String.fromCharCode(160)
+                  + String.fromCharCode(160)
+                  + String.fromCharCode(8239)
+                  + ch;
               }
             }
             else {
@@ -509,7 +511,7 @@ export const lunicode = {
             }
           }
           ret += ch;
-          first = (ch === '\n');
+          first = ch === '\n';
         }
         return ret;
       },
@@ -521,7 +523,7 @@ export const lunicode = {
 
         for (let i = 0; i < text.length; i++) {
           ch = this.mapInverse[text[i]];
-          ret += ((typeof (ch) === 'undefined') ? text[i] : ch);
+          ret += typeof ch === 'undefined' ? text[i] : ch;
         }
 
         for (let i = 0; i < ret.length; i++) {
@@ -551,7 +553,12 @@ export const lunicode = {
           if (text[i].charCodeAt(0) >= 33) {
             ch = text[i] + String.fromCharCode(8414);
             if (!first) {
-              ch = String.fromCharCode(8239) + String.fromCharCode(160) + String.fromCharCode(160) + String.fromCharCode(8239) + ch;
+              ch
+                = String.fromCharCode(8239)
+                + String.fromCharCode(160)
+                + String.fromCharCode(160)
+                + String.fromCharCode(8239)
+                + ch;
             }
           }
           else {
@@ -559,7 +566,7 @@ export const lunicode = {
           }
 
           ret += ch;
-          first = (ch === '\n');
+          first = ch === '\n';
         }
         return ret;
       },
@@ -600,7 +607,7 @@ export const lunicode = {
           }
 
           ret += ch;
-          first = (ch === '\n');
+          first = ch === '\n';
         }
         return ret;
       },
@@ -635,7 +642,7 @@ export const lunicode = {
 
         for (let i = 0, len = text.length; i < len; i++) {
           ch = this.map[text.charAt(i)];
-          if (typeof (ch) === 'undefined') {
+          if (typeof ch === 'undefined') {
             ch = text.charAt(i);
           }
           ret += ch;
@@ -650,7 +657,7 @@ export const lunicode = {
 
         for (let i = 0, len = text.length; i < len; i++) {
           ch = this.map[text.charAt(i)];
-          if (typeof (ch) === 'undefined') {
+          if (typeof ch === 'undefined') {
             ch = text.charAt(i);
           }
           ret += ch;
@@ -779,7 +786,7 @@ export const lunicode = {
         text = text.toUpperCase();
         for (let i = 0, len = text.length; i < len; i++) {
           ch = this.map[text.charAt(i)];
-          if (typeof (ch) === 'undefined') {
+          if (typeof ch === 'undefined') {
             ch = text.charAt(i);
           }
           ret += ch;
@@ -794,7 +801,7 @@ export const lunicode = {
 
         for (let i = 0, len = text.length; i < len; i++) {
           ch = this.map[text.charAt(i)];
-          if (typeof (ch) === 'undefined') {
+          if (typeof ch === 'undefined') {
             ch = text.charAt(i);
           }
           ret += ch;
@@ -802,14 +809,14 @@ export const lunicode = {
         return ret;
       },
 
-      // TODO: Find small lower case letters
+      // Small caps (both upper and lower case)
       map: {
         A: 'ᴀ',
         B: 'ʙ',
         C: 'ᴄ',
         D: 'ᴅ',
         E: 'ᴇ',
-        F: 'ꜰ',
+        F: 'ꜱ',
         G: 'ɢ',
         H: 'ʜ',
         I: 'ɪ',
@@ -830,9 +837,34 @@ export const lunicode = {
         X: 'x',
         Y: 'ʏ',
         Z: 'ᴢ',
+        a: 'ᴀ',
+        b: 'ʙ',
+        c: 'ᴄ',
+        d: 'ᴅ',
+        e: 'ᴇ',
+        f: 'ꜱ',
+        g: 'ɢ',
+        h: 'ʜ',
+        i: 'ɪ',
+        j: 'ᴊ',
+        k: 'ᴋ',
+        l: 'ʟ',
+        m: 'ᴍ',
+        n: 'ɴ',
+        o: 'ᴏ',
+        p: 'ᴘ',
+        q: 'ǫ',
+        r: 'ʀ',
+        s: 'ꜱ',
+        t: 'ᴛ',
+        u: 'ᴜ',
+        v: 'ᴠ',
+        w: 'ᴡ',
+        x: 'x',
+        y: 'ʏ',
+        z: 'ᴢ',
       } as Record<string, string>,
     },
-
   },
 
   // Encode every character: U+00A0 -> &#x00a0; etc.
@@ -851,8 +883,8 @@ export const lunicode = {
         html += '<br>\n';
         lastSpaceWasNonBreaking = true;
 
-      // space: add alternating space and non-breaking space (U+00A0). Otherwise
-      // a series of normal spaces       would collapse to one in the browser
+        // space: add alternating space and non-breaking space (U+00A0). Otherwise
+        // a series of normal spaces       would collapse to one in the browser
       }
       else if (ch === 32) {
         if (lastSpaceWasNonBreaking) {
@@ -864,8 +896,8 @@ export const lunicode = {
           lastSpaceWasNonBreaking = true;
         }
 
-      // Normal character: Decode. Special cases for higher numbers:
-      // http://en.wikipedia.org/wiki/Mapping_of_Unicode_characters#Surrogates
+        // Normal character: Decode. Special cases for higher numbers:
+        // http://en.wikipedia.org/wiki/Mapping_of_Unicode_characters#Surrogates
       }
       else {
         // Character is high surrogate: Remember and continue
@@ -873,7 +905,7 @@ export const lunicode = {
           highSurrogate = ch;
           codepoint = 0;
 
-        // last character was high surrogate: Combine with low surrogate
+          // last character was high surrogate: Combine with low surrogate
         }
         else if (highSurrogate > 0) {
           // If char is low surrogate:
@@ -882,7 +914,7 @@ export const lunicode = {
           }
           highSurrogate = 0;
 
-        // no surrogates: Just take the character
+          // no surrogates: Just take the character
         }
         else {
           codepoint = ch;

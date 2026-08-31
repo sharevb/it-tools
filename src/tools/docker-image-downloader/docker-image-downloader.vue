@@ -2,7 +2,6 @@
 import { useI18n } from 'vue-i18n';
 import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 import { Base64 } from 'js-base64';
-import { useNetworkUtilsConfig } from '../network-utils/network-utils-config';
 
 const { t } = useI18n();
 
@@ -15,12 +14,8 @@ const password = ref('');
 const image = useQueryParamOrStorage({ name: 'image', storageName: 'docker-dl:i', defaultValue: '' });
 const platform = useQueryParamOrStorage({ name: 'platform', storageName: 'docker-dl:p', defaultValue: '' });
 const registry = useQueryParamOrStorage({ name: 'registry', storageName: 'docker-dl:r', defaultValue: '' });
-
-const { serverHost, serverAuth, hasFixedConfig } = useNetworkUtilsConfig({
-  urlStorageKey: 'docker-dl:url',
-  authStorageKey: 'docker-dl:auth',
-  defaultUrl: 'http://localhost:3000',
-});
+const serverHost = useITStorage('docker-dl:url', 'http://localhost:3000');
+const serverAuth = useITStorage('docker-dl:auth', '');
 
 const loading = ref(false);
 const error = ref<string | null>(null);
@@ -86,19 +81,27 @@ async function downloadImage() {
 
     // Download file
     const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
+    link.href = blobUrl;
     link.download = filename;
     link.click();
+
+    // Cleanup the blob URL after download
+    setTimeout(() => {
+      URL.revokeObjectURL(blobUrl);
+    }, 1000);
 
     notification.success({
       title: 'Download started',
       description: `Downloading ${filename}`,
     });
-  } catch (err: any) {
+  }
+  catch (err: any) {
     error.value = err.message || 'Unknown error';
     message.error(error.value!);
-  } finally {
+  }
+  finally {
     loading.value = false;
   }
 }
@@ -107,9 +110,8 @@ async function downloadImage() {
 <template>
   <div>
     <NForm label-width="120px" label-placement="left">
-      <details mb-2 v-if="!hasFixedConfig">
+      <details mb-2>
         <summary>
-          ⚠ {{ t('tools.external-self-hosted-required') }} ⚠ -
           {{ t('tools.docker-image-downloader.texts.tag-docker-image-download-service-configuration-self-hosted') }}
         </summary>
         <n-card>

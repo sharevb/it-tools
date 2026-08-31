@@ -112,19 +112,24 @@ export async function downloadLinks(
     );
 
     // Generate the zip file and trigger download
-    zip.generateAsync({ type: 'blob' }).then((zipBlob: Blob) => {
-      const downloadUrl: string = window.URL.createObjectURL(zipBlob);
+    zip
+      .generateAsync({ type: 'blob' })
+      .then((zipBlob: Blob) => {
+        const downloadUrl: string = window.URL.createObjectURL(zipBlob);
 
-      // Trigger download of the zip file
-      const a: HTMLAnchorElement = document.createElement('a');
-      a.href = downloadUrl;
-      a.download = 'downloaded_files.zip';
-      document.body.appendChild(a);
-      a.click();
+        // Trigger download of the zip file
+        const a: HTMLAnchorElement = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = 'downloaded_files.zip';
+        document.body.appendChild(a);
+        a.click();
 
-      // Clean up
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(downloadUrl);
-    });
+        // Clean up
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(downloadUrl);
+      })
+      .catch((error) => {
+        console.error('Error generating ZIP file:', error);
+      });
   }
 }

@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
-import { useNetworkUtilsConfig } from '../network-utils/network-utils-config';
+import { ref } from 'vue';
+import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
-const { serverHost: wsUrl, hasFixedConfig } = useNetworkUtilsConfig({
-  urlStorageKey: 'tcp-udp-port-tester:ws',
-  authStorageKey: 'tcp-udp-port-tester:auth',
-  defaultUrl: 'ws://localhost:8080',
-});
+const wsUrl = useITStorage('tcp-udp-port-tester:ws', 'ws://localhost:8080');
 const socket = ref<WebSocket | null>(null);
 const isConnected = ref(false);
 const logs = ref<string[]>([]);
@@ -32,7 +28,7 @@ const hexPayload = useQueryParamOrStorage({ name: 'hex', storageName: 'tcp-udp-p
 
 function connect() {
   if (socket.value && isConnected.value) {
-    addLog(t('tools.tcp-udp-port-tester.texts.already-connected'));
+    addLog('⚠️ Already connected');
     return;
   }
 
@@ -41,47 +37,51 @@ function connect() {
 
   socket.value.onopen = () => {
     isConnected.value = true;
-    addLog(t('tools.tcp-udp-port-tester.texts.connected-to-websocket-bridge'));
+    addLog('✅ Connected to WebSocket bridge');
   };
 
   socket.value.onmessage = (event) => {
     try {
       const json = JSON.parse(event.data);
       if (json.error) {
-        addLog(`${t('tools.tcp-udp-port-tester.texts.error')} ${json.error}`);
-      } else if (json.end) {
-        addLog(`${t('tools.tcp-udp-port-tester.texts.end')} ${json.end}`);
+        addLog(`❌ Error: ${json.error}`);
       }
-    } catch {
+      else if (json.end) {
+        addLog(`🛑 End: ${json.end}`);
+      }
+    }
+    catch {
       if (typeof event.data === 'string') {
-        addLog(`${t('tools.tcp-udp-port-tester.texts.text')} ${event.data}`);
-      } else {
+        addLog(`📩 Text: ${event.data}`);
+      }
+      else {
         const buffer = new Uint8Array(event.data);
         addLog(
-          `${t('tools.tcp-udp-port-tester.texts.binary')} ${Array.from(buffer)
-            .map((b) => b.toString(16).padStart(2, '0'))
+          `📩 Binary: ${Array.from(buffer)
+            .map(b => b.toString(16).padStart(2, '0'))
             .join(' ')}`,
         );
         try {
-          addLog(`${t('tools.tcp-udp-port-tester.texts.text')} ${new TextDecoder().decode(buffer)}`);
-        } catch {}
+          addLog(`📩 Text: ${new TextDecoder().decode(buffer)}`);
+        }
+        catch {}
       }
     }
   };
 
   socket.value.onclose = () => {
     isConnected.value = false;
-    addLog(t('tools.tcp-udp-port-tester.texts.disconnected'));
+    addLog('🔌 Disconnected');
   };
 }
 
 function disconnect() {
   if (!socket.value) {
-    addLog(t('tools.tcp-udp-port-tester.texts.no-active-connection'));
+    addLog('⚠️ No active connection');
     return;
   }
 
-  addLog(t('tools.tcp-udp-port-tester.texts.disconnecting'));
+  addLog('🔻 Disconnecting...');
   socket.value.close();
   socket.value = null;
   isConnected.value = false;
@@ -96,9 +96,7 @@ function configureTarget() {
       port: targetPort.value,
     };
     socket.value.send(JSON.stringify(config));
-    addLog(
-      `${t('tools.tcp-udp-port-tester.texts.configured')} ${protocol.value.toUpperCase()} → ${targetHost.value}:${targetPort.value}`,
-    );
+    addLog(`⚙️ Configured ${protocol.value.toUpperCase()} → ${targetHost.value}:${targetPort.value}`);
   }
 }
 
@@ -107,7 +105,7 @@ function sendText() {
     socket.value.send(
       JSON.stringify({ type: 'send', payload: textPayload.value.replace(/\\n/g, '\n').replace(/\\r/g, '\r') }),
     );
-    addLog(`${t('tools.tcp-udp-port-tester.texts.sent-text')} ${textPayload.value}`);
+    addLog(`➡️ Sent text: ${textPayload.value}`);
   }
 }
 
@@ -115,12 +113,12 @@ function sendHex() {
   if (socket.value && isConnected.value) {
     const buffer = hexStringToBytes(hexPayload.value);
     socket.value.send(JSON.stringify({ type: 'send', payload: buffer }));
-    addLog(`${t('tools.tcp-udp-port-tester.texts.sent-hex')} ${hexPayload.value}`);
+    addLog(`➡️ Sent hex: ${hexPayload.value}`);
   }
 }
 
 function hexStringToBytes(hex: string): number[] {
-  return hex.match(/.{1,2}/g)?.map((byte) => Number.parseInt(byte, 16)) ?? [];
+  return hex.match(/.{1,2}/g)?.map(byte => Number.parseInt(byte, 16)) ?? [];
 }
 
 function clearLogs() {
@@ -149,9 +147,8 @@ onBeforeUnmount(() => {
 <template>
   <div>
     <div mb-1>
-      <details mb-2 v-if="!hasFixedConfig">
+      <details mb-2>
         <summary mb-1>
-          ⚠ {{ t('tools.external-self-hosted-required') }} ⚠ -
           {{ t('tools.tcp-udp-port-tester.texts.tag-websocket-tcp-udp-bridge-configuration') }}
         </summary>
         <c-input-text
@@ -186,11 +183,7 @@ onBeforeUnmount(() => {
 
       <n-space justify="center">
         <n-tag :type="isConnected ? 'success' : 'error'">
-          {{
-            isConnected
-              ? t('tools.tcp-udp-port-tester.text.connected')
-              : t('tools.tcp-udp-port-tester.text.disconnected')
-          }}
+          {{ isConnected ? 'Connected' : 'Disconnected' }}
         </n-tag>
       </n-space>
     </div>
