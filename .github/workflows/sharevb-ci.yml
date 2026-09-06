@@ -18,10 +18,6 @@ jobs:
           cache: true
 
       - name: Check formatting
-        # Reported but not enforced: 832 of 1613 files predate oxfmt being run
-        # in CI, so this fails today. Kept visible so the drift stays tracked
-        # until a repo-wide reformat lands, then drop continue-on-error.
-        continue-on-error: true
         run: pnpm fmt:check
 
       - name: Run linters
