@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type RouteLocationRaw, RouterLink } from 'vue-router';
+import { type RouteLocationRaw } from 'vue-router';
 import { useTheme } from './c-link.theme';
 
 const props = defineProps<{
@@ -11,21 +11,18 @@ const props = defineProps<{
 const { href, to, target } = toRefs(props);
 
 const theme = useTheme();
-const tag = computed(() => {
-  if (href?.value) {
-    return 'a';
-  }
-  if (to?.value) {
-    return RouterLink;
-  }
-  return 'span';
-});
 </script>
 
 <template>
-  <component :is="tag" :href="href ?? to" class="c-link" :to="to" :target="target">
+  <a v-if="href" :href="href" class="c-link" :target="target">
     <slot />
-  </component>
+  </a>
+  <router-link v-else-if="to" :to="to" class="c-link" :target="target">
+    <slot />
+  </router-link>
+  <span v-else class="c-link">
+    <slot />
+  </span>
 </template>
 
 <style lang="less" scoped>
