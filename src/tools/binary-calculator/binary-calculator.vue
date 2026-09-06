@@ -7,8 +7,16 @@ const { t } = useI18n();
 
 type NumberFormat = 'dec' | 'hex' | 'oct' | 'bin';
 
-const inputFormatA = useQueryParamOrStorage<NumberFormat>({ name: 'text', storageName: 'bin-calc:fa', defaultValue: 'dec' });
-const inputFormatB = useQueryParamOrStorage<NumberFormat>({ name: 'text', storageName: 'bin-calc:fb', defaultValue: 'dec' });
+const inputFormatA = useQueryParamOrStorage<NumberFormat>({
+  name: 'text',
+  storageName: 'bin-calc:fa',
+  defaultValue: 'dec',
+});
+const inputFormatB = useQueryParamOrStorage<NumberFormat>({
+  name: 'text',
+  storageName: 'bin-calc:fb',
+  defaultValue: 'dec',
+});
 const operation = useQueryParamOrStorage({ name: 'op', storageName: 'bin-calc:o', defaultValue: 'AND' });
 const inputA = ref('');
 const inputB = ref('');
@@ -34,7 +42,7 @@ const inputAValidation = useValidation({
   watch: [inputFormatA],
   rules: [
     {
-      validator: v => parseInputA(v) !== null,
+      validator: (v) => parseInputA(v) !== null,
       message: t('tools.binary-calculator.texts.message-number-is-invalid'),
     },
   ],
@@ -44,7 +52,7 @@ const inputBValidation = useValidation({
   watch: [inputFormatB],
   rules: [
     {
-      validator: v => parseInputB(v) !== null,
+      validator: (v) => parseInputB(v) !== null,
       message: t('tools.binary-calculator.texts.message-number-is-invalid'),
     },
   ],
@@ -77,8 +85,7 @@ function parseInput(value: string, format: NumberFormat): number | null {
       return null;
     }
     return num;
-  }
-  catch {
+  } catch {
     return null;
   }
 }
@@ -115,22 +122,35 @@ const result = computed(() => {
   }
 });
 
-const signedResult = computed(() => result.value !== null ? (result.value | 0).toString() : '');
-const unsignedResult = computed(() => result.value !== null ? (result.value >>> 0).toString() : '');
+const signedResult = computed(() => (result.value !== null ? (result.value | 0).toString() : ''));
+const unsignedResult = computed(() => (result.value !== null ? (result.value >>> 0).toString() : ''));
 const bitmask = computed(() =>
-  result.value !== null
-    ? (result.value >>> 0).toString(2).padStart(32, '0').split('')
-    : [],
+  result.value !== null ? (result.value >>> 0).toString(2).padStart(32, '0').split('') : [],
 );
 </script>
 
 <template>
-  <div style="min-height: 50vh; max-width: 800px;">
+  <div style="min-height: 50vh; max-width: 800px">
     <n-space justify="space-evenly" mb-2>
       <NSelect v-model:value="inputFormatA" :options="formatOptions" style="width: 130px" />
-      <c-input-text v-model:value="inputA" style="width: 150px" :validation="inputAValidation" label-position="left" :label="t('tools.binary-calculator.texts.label-a')" :placeholder="t('tools.binary-calculator.texts.placeholder-enter-a')" />
+      <c-input-text
+        v-model:value="inputA"
+        style="width: 150px"
+        :validation="inputAValidation"
+        label-position="left"
+        :label="t('tools.binary-calculator.texts.label-a')"
+        :placeholder="t('tools.binary-calculator.texts.placeholder-enter-a')"
+      />
       <NSelect v-model:value="inputFormatB" :options="formatOptions" style="width: 130px" />
-      <c-input-text v-model:value="inputB" style="width: 150px" :validation="inputBValidation" label-position="left" :label="t('tools.binary-calculator.texts.label-b')" :placeholder="t('tools.binary-calculator.texts.placeholder-enter-b')" :disabled="isUnary" />
+      <c-input-text
+        v-model:value="inputB"
+        style="width: 150px"
+        :validation="inputBValidation"
+        label-position="left"
+        :label="t('tools.binary-calculator.texts.label-b')"
+        :placeholder="t('tools.binary-calculator.texts.placeholder-enter-b')"
+        :disabled="isUnary"
+      />
     </n-space>
 
     <c-select
@@ -143,21 +163,46 @@ const bitmask = computed(() =>
     />
 
     <c-card v-if="result !== null" :title="t('tools.binary-calculator.texts.title-result')" mb-1>
-      <input-copyable label-width="130px" mb-1 :label="t('tools.binary-calculator.texts.label-decimal-signed')" label-position="left" :value="signedResult" />
-      <input-copyable label-width="130px" mb-1 :label="t('tools.binary-calculator.texts.label-decimal-unigned')" label-position="left" :value="unsignedResult" />
-      <input-copyable label-width="130px" mb-1 :label="t('tools.binary-calculator.texts.label-binary')" label-position="left" :value="`0b${result.toString(2).padStart(32, '0')}`" />
-      <input-copyable label-width="130px" mb-1 :label="t('tools.binary-calculator.texts.label-hexadecimal')" label-position="left" :value="`0x${result.toString(16).toUpperCase()}`" />
-      <input-copyable label-width="130px" mb-1 :label="t('tools.binary-calculator.texts.label-octal')" label-position="left" :value="`0o${result.toString(8)}`" />
+      <input-copyable
+        label-width="130px"
+        mb-1
+        :label="t('tools.binary-calculator.texts.label-decimal-signed')"
+        label-position="left"
+        :value="signedResult"
+      />
+      <input-copyable
+        label-width="130px"
+        mb-1
+        :label="t('tools.binary-calculator.texts.label-decimal-unigned')"
+        label-position="left"
+        :value="unsignedResult"
+      />
+      <input-copyable
+        label-width="130px"
+        mb-1
+        :label="t('tools.binary-calculator.texts.label-binary')"
+        label-position="left"
+        :value="`0b${result.toString(2).padStart(32, '0')}`"
+      />
+      <input-copyable
+        label-width="130px"
+        mb-1
+        :label="t('tools.binary-calculator.texts.label-hexadecimal')"
+        label-position="left"
+        :value="`0x${result.toString(16).toUpperCase()}`"
+      />
+      <input-copyable
+        label-width="130px"
+        mb-1
+        :label="t('tools.binary-calculator.texts.label-octal')"
+        label-position="left"
+        :value="`0o${result.toString(8)}`"
+      />
     </c-card>
 
     <c-card v-if="result !== null" :title="t('tools.binary-calculator.texts.title-bitmask')">
       <NSpace justify="center" wrap>
-        <NTag
-          v-for="(bit, index) in bitmask"
-          :key="index"
-          :type="bit === '1' ? 'success' : 'default'"
-          size="small"
-        >
+        <NTag v-for="(bit, index) in bitmask" :key="index" :type="bit === '1' ? 'success' : 'default'" size="small">
           {{ bit }}
         </NTag>
       </NSpace>

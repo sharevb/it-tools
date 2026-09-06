@@ -46,7 +46,8 @@ function printHtml() {
   <div>
     <c-input-text
       v-model:value="inputMarkdown"
-      multiline raw-text
+      multiline
+      raw-text
       :placeholder="t('tools.markdown-to-html.markdownInput')"
       rows="8"
       autofocus
@@ -64,7 +65,8 @@ function printHtml() {
         {{ t('tools.markdown-to-html.texts.tag-allow-superscript-and-subscript') }}
       </n-checkbox>
       <n-checkbox v-model:checked="handleAlign">
-        {{ t('tools.markdown-to-html.texts.tag-handle') }}<n-a href="https://mdit-plugins.github.io/align.html#syntax" target="blank">
+        {{ t('tools.markdown-to-html.texts.tag-handle')
+        }}<n-a href="https://mdit-plugins.github.io/align.html#syntax" target="blank">
           {{ t('tools.markdown-to-html.texts.tag-alignment') }}
         </n-a>
       </n-checkbox>

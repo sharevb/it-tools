@@ -11,12 +11,18 @@ const { t } = useI18n();
 const dockerRuns = ref(
   'docker run -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --restart always --log-opt max-size=1g nginx',
 );
-const indentSize = useQueryParamOrStorage({ name: 'indent', storageName: 'docker-run-to-compose:indent-size', defaultValue: 4 });
+const indentSize = useQueryParamOrStorage({
+  name: 'indent',
+  storageName: 'docker-run-to-compose:indent-size',
+  defaultValue: 4,
+});
 
-const existingDockerComposeFile = ref(
-  '',
-);
-const format = useQueryParamOrStorage({ name: 'fmt', storageName: 'docker-run-to-compose:format', defaultValue: 'latest' });
+const existingDockerComposeFile = ref('');
+const format = useQueryParamOrStorage({
+  name: 'fmt',
+  storageName: 'docker-run-to-compose:format',
+  defaultValue: 'latest',
+});
 const formatOptions = [
   { value: 'v2x', label: t('tools.docker-run-to-docker-compose-converter.texts.label-v2-2-x') },
   { value: 'v3x', label: t('tools.docker-run-to-docker-compose-converter.texts.label-v2-3-x') },
@@ -25,9 +31,11 @@ const formatOptions = [
 
 const conversionResult = computed(() => {
   try {
-    return { yaml: composerize(dockerRuns.value.trim(), existingDockerComposeFile.value, format.value, indentSize.value), errors: [] };
-  }
-  catch (e: any) {
+    return {
+      yaml: composerize(dockerRuns.value.trim(), existingDockerComposeFile.value, format.value, indentSize.value),
+      errors: [],
+    };
+  } catch (e: any) {
     return { yaml: '#see error messages', errors: e.toString().split('\n') };
   }
 });
@@ -54,13 +62,19 @@ const MONACO_EDITOR_OPTIONS = {
       multiline
       raw-text
       monospace
-      :placeholder="t('tools.docker-run-to-docker-compose-converter.texts.placeholder-your-docker-run-command-s-to-convert')"
+      :placeholder="
+        t('tools.docker-run-to-docker-compose-converter.texts.placeholder-your-docker-run-command-s-to-convert')
+      "
       rows="4"
     />
 
     <n-divider />
 
-    <c-label :label="t('tools.docker-run-to-docker-compose-converter.texts.label-eventually-paste-your-existing-docker-compose')">
+    <c-label
+      :label="
+        t('tools.docker-run-to-docker-compose-converter.texts.label-eventually-paste-your-existing-docker-compose')
+      "
+    >
       <div relative w-full>
         <c-monaco-editor
           v-model:value="existingDockerComposeFile"
@@ -81,11 +95,18 @@ const MONACO_EDITOR_OPTIONS = {
           label-position="top"
           :label="t('tools.docker-run-to-docker-compose-converter.texts.label-docker-compose-format')"
           :options="formatOptions"
-          :placeholder="t('tools.docker-run-to-docker-compose-converter.texts.placeholder-select-docker-compose-format')"
+          :placeholder="
+            t('tools.docker-run-to-docker-compose-converter.texts.placeholder-select-docker-compose-format')
+          "
         />
       </n-gi>
       <n-gi span="2">
-        <n-form-item :label="t('tools.docker-run-to-docker-compose-converter.texts.label-indent-size')" label-placement="top" label-width="100" :show-feedback="false">
+        <n-form-item
+          :label="t('tools.docker-run-to-docker-compose-converter.texts.label-indent-size')"
+          label-placement="top"
+          label-width="100"
+          :show-feedback="false"
+        >
           <n-input-number-i18n v-model:value="indentSize" min="0" max="10" w-100px />
         </n-form-item>
       </n-gi>
@@ -102,7 +123,11 @@ const MONACO_EDITOR_OPTIONS = {
     </div>
 
     <div v-if="errors.length > 0">
-      <n-alert :title="t('tools.docker-run-to-docker-compose-converter.texts.title-the-following-errors-occured')" type="error" mt-5>
+      <n-alert
+        :title="t('tools.docker-run-to-docker-compose-converter.texts.title-the-following-errors-occured')"
+        type="error"
+        mt-5
+      >
         <ul>
           <li v-for="(message, index) of errors" :key="index">
             {{ message }}

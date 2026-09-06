@@ -54,18 +54,16 @@ export function parseInput(input: string): FileStructure {
  * @param input The plain-text input from the user
  */
 export function splitInput(input: string): FileStructure[] {
-  let lines = input.match(newlineSplitterRegex)?.map(m => m) || [];
+  let lines = input.match(newlineSplitterRegex)?.map((m) => m) || [];
 
   // filter out empty lines
-  lines = lines.filter(l => !onlyWhitespaceRegex.test(l));
+  lines = lines.filter((l) => !onlyWhitespaceRegex.test(l));
 
   return lines.map((l) => {
     const matchResult = leadingWhitespaceAndBulletRegex.exec(l);
 
     if (!matchResult) {
-      throw new Error(
-        `Unable to execute leadingWhitespaceAndBulletRegex against string: "${l}"`,
-      );
+      throw new Error(`Unable to execute leadingWhitespaceAndBulletRegex against string: "${l}"`);
     }
 
     const name = l.replace(matchResult[1], '');

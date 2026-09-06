@@ -4,13 +4,13 @@ import { formatShellCommand } from '@/utils/shell-formatter';
 
 const { t } = useI18n();
 
-const defaultValue = 'docker run -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --restart always --log-opt max-size=1g nginx';
+const defaultValue =
+  'docker run -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --restart always --log-opt max-size=1g nginx';
 
 function transformer(value: string) {
   try {
     return formatShellCommand(value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return `# ERROR: ${e.toString()}`;
   }
 }

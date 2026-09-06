@@ -1,9 +1,19 @@
-export type SortOrder = 'asc' | 'desc' | 'asc-num' | 'desc-num' | 'asc-bin' | 'desc-bin' | 'asc-upper' | 'desc-upper' | null | undefined;
+export type SortOrder =
+  | 'asc'
+  | 'desc'
+  | 'asc-num'
+  | 'desc-num'
+  | 'asc-bin'
+  | 'desc-bin'
+  | 'asc-upper'
+  | 'desc-upper'
+  | null
+  | undefined;
 
 export function byOrder({ order }: { order: SortOrder }) {
   if (order === 'asc-bin' || order === 'desc-bin') {
     return (a: string, b: string) => {
-      const compare = a > b ? 1 : (a < b ? -1 : 0); // NOSONAR
+      const compare = a > b ? 1 : a < b ? -1 : 0; // NOSONAR
       return order === 'asc-bin' ? compare : -compare;
     };
   }

@@ -6,7 +6,11 @@ import { useMediaRecorder } from './useMediaRecorder';
 
 const { t } = useI18n();
 
-interface Media { type: 'image' | 'video'; value: string; createdAt: Date }
+interface Media {
+  type: 'image' | 'video';
+  value: string;
+  createdAt: Date;
+}
 
 const {
   videoInputs: cameras,
@@ -58,11 +62,11 @@ onRecordAvailable((value) => {
 });
 
 function refreshCurrentDevices() {
-  if (_.isNil(currentCamera) || !cameras.value.find(i => i.deviceId === currentCamera.value)) {
+  if (_.isNil(currentCamera) || !cameras.value.find((i) => i.deviceId === currentCamera.value)) {
     currentCamera.value = cameras.value[0]?.deviceId;
   }
 
-  if (_.isNil(microphones) || !microphones.value.find(i => i.deviceId === currentMicrophone.value)) {
+  if (_.isNil(microphones) || !microphones.value.find((i) => i.deviceId === currentMicrophone.value)) {
     currentMicrophone.value = microphones.value[0]?.deviceId;
   }
 }
@@ -92,8 +96,7 @@ onBeforeUnmount(() => stop());
 async function requestPermissions() {
   try {
     await ensurePermissions();
-  }
-  catch (e) {
+  } catch (e) {
     permissionCannotBePrompted.value = true;
   }
 }
@@ -113,7 +116,8 @@ function downloadMedia({ type, value, createdAt }: Media) {
     </c-card>
 
     <c-card v-else-if="!permissionGranted" text-center>
-      {{ t('tools.camera-recorder.texts.tag-you-need-to-grant-permission-to-use-your-camera-and-microphone') }}<c-alert v-if="permissionCannotBePrompted" mt-4 text-left>
+      {{ t('tools.camera-recorder.texts.tag-you-need-to-grant-permission-to-use-your-camera-and-microphone')
+      }}<c-alert v-if="permissionCannotBePrompted" mt-4 text-left>
         Your browser has blocked permission request or does not support it. You need to grant permission manually in
         your browser settings (usually the lock icon in the address bar).
       </c-alert>
@@ -188,7 +192,7 @@ function downloadMedia({ type, value, createdAt }: Media) {
 
     <div grid grid-cols-2 mt-5 gap-2>
       <c-card v-for="({ type, value, createdAt }, index) in medias" :key="index">
-        <img v-if="type === 'image'" :src="value" max-h-full w-full alt="screenshot">
+        <img v-if="type === 'image'" :src="value" max-h-full w-full alt="screenshot" />
 
         <video v-else :src="value" controls max-h-full w-full />
 

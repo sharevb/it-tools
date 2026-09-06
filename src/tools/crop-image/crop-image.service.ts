@@ -11,8 +11,7 @@ export function getViewportDimensions(
       width: maxWidth,
       height: maxWidth / ratio,
     };
-  }
-  else {
+  } else {
     return {
       width: maxHeight * ratio,
       height: maxHeight,
@@ -41,8 +40,7 @@ export function getBaseDimensions(
       width: vH * iRatio,
       height: vH,
     };
-  }
-  else {
+  } else {
     // Portrait relative to viewport
     return {
       width: vW,

@@ -1,6 +1,7 @@
 // from option43.org
 
-function IPToHexDigit(ip_addr: string) { // Ruckus
+function IPToHexDigit(ip_addr: string) {
+  // Ruckus
   const arr1 = [];
   // ip_addr = ip_addr.split('.').join('');
   for (let n = 0, l = ip_addr.length; n < l; n++) {
@@ -14,7 +15,7 @@ function IPToHexNumber(ip_addr: string) {
   const arr1 = [];
   const ips = ip_addr.split('.');
   for (let n = 0, l = ips.length; n < l; n++) {
-    const hex = (`0${Number(ips[n]).toString(16)}`).slice(-2);
+    const hex = `0${Number(ips[n]).toString(16)}`.slice(-2);
     arr1.push(hex);
   }
   return arr1.join('');
@@ -22,9 +23,8 @@ function IPToHexNumber(ip_addr: string) {
 
 function IPCharCounter(ip_addr: string, ret: string) {
   if (ret === 'hex') {
-    return (`0${ip_addr.length.toString(16)}`).slice(-2);
-  }
-  else {
+    return `0${ip_addr.length.toString(16)}`.slice(-2);
+  } else {
     return ip_addr.length;
   }
 }
@@ -33,7 +33,11 @@ function splitIPs(ip_addr: string) {
   const validIPs = [];
   const rows = ip_addr.split('\n');
   for (let n = 0, l = rows.length; n < l; n++) {
-    if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(rows[n])) {
+    if (
+      /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+        rows[n],
+      )
+    ) {
       validIPs.push(rows[n]);
     }
   }
@@ -52,7 +56,8 @@ function renderSettings(
   option60_type: string | undefined,
   option60_value: string | undefined,
   vendor_link: string | undefined,
-  diff_number: number | undefined) {
+  diff_number: number | undefined,
+) {
   let output;
   switch (dhcp_vendor) {
     case 'cisco_01':
@@ -60,8 +65,9 @@ function renderSettings(
       output = '<p>Cisco CLI commands:</p><div class="cli"><p>option ';
       if (typeof diff_number !== 'undefined') {
         output = output + diff_number;
+      } else {
+        output = `${output}43`;
       }
-      else { output = `${output}43`; }
       output = `${output} ${option43_type}`;
       output = `${output} ${option43_subtype}${option43_value}`;
       if (typeof option60_value !== 'undefined') {
@@ -75,8 +81,9 @@ function renderSettings(
       output = '<p>Juniper EX CLI commands:</p><div class="cli"><p>set system services dhcp option  ';
       if (typeof diff_number !== 'undefined') {
         output = output + diff_number;
+      } else {
+        output = `${output}43`;
       }
-      else { output = `${output}43`; }
       if (option43_type === 'ascii') {
         option43_type = 'string';
       }
@@ -93,11 +100,13 @@ function renderSettings(
     case 'juniper_02':
       // https://www.juniper.net/documentation/en_US/junos/topics/topic-map/dhcp-serever-options.html#id-configure-user-defined-dhcp-options
 
-      output = '<p>Juniper SRX CLI commands:</p><div class="cli"><p>set access address-assignment pool <i>AP_DHCP_POOL</i> family inet dhcp-attributes option ';
+      output =
+        '<p>Juniper SRX CLI commands:</p><div class="cli"><p>set access address-assignment pool <i>AP_DHCP_POOL</i> family inet dhcp-attributes option ';
       if (typeof diff_number !== 'undefined') {
         output = output + diff_number;
+      } else {
+        output = `${output}43`;
       }
-      else { output = `${output}43`; }
       if (option43_type === 'ascii') {
         option43_type = 'string';
       }
@@ -107,8 +116,7 @@ function renderSettings(
       output = `${output} ${option43_type}`;
       if (option43_type === 'byte-stream') {
         output = `${output} "0x${(option43_subtype + option43_value).match(/.{1,2}/g)?.join(' 0x')}"`;
-      }
-      else {
+      } else {
         output = `${output} ${option43_subtype}${option43_value}`;
       }
       if (option60_type === 'ascii') {
@@ -123,8 +131,7 @@ function renderSettings(
       output = '<p>Raw values:</p><p><b>Option ';
       if (typeof diff_number !== 'undefined') {
         output = output + diff_number;
-      }
-      else {
+      } else {
         output = `${output}43`;
       }
       output = `${output}</b><br />Type: "`;
@@ -152,12 +159,12 @@ function renderSettings(
 
 export function getOption43Infos(ip_addr: string, wifi_vendor: string, dhcp_vendor: string) {
   const ip_addr_array = splitIPs(ip_addr);
-  const ip_addr_hexDigit = IPToHexDigit (ip_addr_array.join(',')); // Ruckus, comma separation
-  const ip_addr_hexNumber = IPToHexNumber (ip_addr_array.join('.')); // valid for Cisco, no separation
-  const ip_addr_hexNumber_first = IPToHexNumber (ip_addr_array[0]);
+  const ip_addr_hexDigit = IPToHexDigit(ip_addr_array.join(',')); // Ruckus, comma separation
+  const ip_addr_hexNumber = IPToHexNumber(ip_addr_array.join('.')); // valid for Cisco, no separation
+  const ip_addr_hexNumber_first = IPToHexNumber(ip_addr_array[0]);
 
-  const num_ips = IPNumberCounter (ip_addr_array);
-  const num_ip_bytes = (`0${(num_ips * 4).toString(16)}`).slice(-2);
+  const num_ips = IPNumberCounter(ip_addr_array);
+  const num_ip_bytes = `0${(num_ips * 4).toString(16)}`.slice(-2);
 
   let option43_type = ''; // hex, ascii, ip
   let option43_subtype = ''; // vendor prefix
@@ -172,42 +179,97 @@ export function getOption43Infos(ip_addr: string, wifi_vendor: string, dhcp_vend
       option43_type = 'hex';
       option43_subtype = 'f1';
       option43_value = num_ip_bytes + ip_addr_hexNumber;
-      return renderSettings(dhcp_vendor, option43_type, option43_subtype, option43_value, option60_type, option60_value, vendor_link, diff_number);
+      return renderSettings(
+        dhcp_vendor,
+        option43_type,
+        option43_subtype,
+        option43_value,
+        option60_type,
+        option60_value,
+        vendor_link,
+        diff_number,
+      );
     case 'ruckus_01':
       option43_type = 'hex';
       option43_subtype = '06';
-      option43_value = IPCharCounter (ip_addr_array.join(','), 'hex') + ip_addr_hexDigit;
+      option43_value = IPCharCounter(ip_addr_array.join(','), 'hex') + ip_addr_hexDigit;
       option60_type = 'ascii';
       option60_value = 'Ruckus CPE';
-      return renderSettings(dhcp_vendor, option43_type, option43_subtype, option43_value, option60_type, option60_value, vendor_link, diff_number);
+      return renderSettings(
+        dhcp_vendor,
+        option43_type,
+        option43_subtype,
+        option43_value,
+        option60_type,
+        option60_value,
+        vendor_link,
+        diff_number,
+      );
     case 'ruckus_02':
       option43_type = 'hex';
       option43_subtype = '03';
-      option43_value = IPCharCounter (ip_addr_array.join(','), 'hex') + ip_addr_hexDigit;
+      option43_value = IPCharCounter(ip_addr_array.join(','), 'hex') + ip_addr_hexDigit;
       option60_type = 'ascii';
       option60_value = 'Ruckus CPE';
-      vendor_link = 'https://docs.commscope.com/bundle/zd-10.2-userguide/page/GUID-D5CF7FE0-D73F-4B4B-95C8-08CAB5B235D5.html';
-      return renderSettings(dhcp_vendor, option43_type, option43_subtype, option43_value, option60_type, option60_value, vendor_link, diff_number);
+      vendor_link =
+        'https://docs.commscope.com/bundle/zd-10.2-userguide/page/GUID-D5CF7FE0-D73F-4B4B-95C8-08CAB5B235D5.html';
+      return renderSettings(
+        dhcp_vendor,
+        option43_type,
+        option43_subtype,
+        option43_value,
+        option60_type,
+        option60_value,
+        vendor_link,
+        diff_number,
+      );
     case 'aruba_01':
       option43_type = 'ip';
       option43_value = ip_addr;
       option60_type = 'ascii';
       option60_value = 'ArubaAP';
-      return renderSettings(dhcp_vendor, option43_type, option43_subtype, option43_value, option60_type, option60_value, vendor_link, diff_number);
+      return renderSettings(
+        dhcp_vendor,
+        option43_type,
+        option43_subtype,
+        option43_value,
+        option60_type,
+        option60_value,
+        vendor_link,
+        diff_number,
+      );
     case 'fortinet_01':
       option43_type = 'ip';
       option43_value = ip_addr_array.join(' ');
       // diff_number = 138;
       // option60_type = "ascii";
       // option60_value = "ArubaAP";
-      return renderSettings(dhcp_vendor, option43_type, option43_subtype, option43_value, option60_type, option60_value, vendor_link, diff_number);
+      return renderSettings(
+        dhcp_vendor,
+        option43_type,
+        option43_subtype,
+        option43_value,
+        option60_type,
+        option60_value,
+        vendor_link,
+        diff_number,
+      );
     case 'fortinet_02':
       option43_type = 'ip';
       option43_value = ip_addr_array.join(' ');
       diff_number = 138;
       // option60_type = "ascii";
       // option60_value = "ArubaAP";
-      return renderSettings(dhcp_vendor, option43_type, option43_subtype, option43_value, option60_type, option60_value, vendor_link, diff_number);
+      return renderSettings(
+        dhcp_vendor,
+        option43_type,
+        option43_subtype,
+        option43_value,
+        option60_type,
+        option60_value,
+        vendor_link,
+        diff_number,
+      );
     case 'ubiquiti_01':
       option43_type = 'hex';
       option43_subtype = '01';
@@ -215,7 +277,16 @@ export function getOption43Infos(ip_addr: string, wifi_vendor: string, dhcp_vend
       // option60_type = "ascii";
       // option60_value = "Ruckus CPE";
       // vendor_link = "https://docs.commscope.com/bundle/zd-10.2-userguide/page/GUID-D5CF7FE0-D73F-4B4B-95C8-08CAB5B235D5.html";
-      return renderSettings(dhcp_vendor, option43_type, option43_subtype, option43_value, option60_type, option60_value, vendor_link, diff_number);
+      return renderSettings(
+        dhcp_vendor,
+        option43_type,
+        option43_subtype,
+        option43_value,
+        option60_type,
+        option60_value,
+        vendor_link,
+        diff_number,
+      );
     case 'cambium_01':
       option43_type = 'ascii';
       // option43_subtype = "01";
@@ -223,15 +294,33 @@ export function getOption43Infos(ip_addr: string, wifi_vendor: string, dhcp_vend
       // option60_type = "ascii";
       // option60_value = "Ruckus CPE";
       // vendor_link = "https://docs.commscope.com/bundle/zd-10.2-userguide/page/GUID-D5CF7FE0-D73F-4B4B-95C8-08CAB5B235D5.html";
-      return renderSettings(dhcp_vendor, option43_type, option43_subtype, option43_value, option60_type, option60_value, vendor_link, diff_number);
+      return renderSettings(
+        dhcp_vendor,
+        option43_type,
+        option43_subtype,
+        option43_value,
+        option60_type,
+        option60_value,
+        vendor_link,
+        diff_number,
+      );
     case 'linux_01':
       return `Linux:<br />Option 43 (IP-address): ${ip_addr}<br /> You also <b>need</b>:<br />Option 60 (String): "ArubaAP".`;
     case 'netgear_01':
       option43_type = 'hex';
       option43_subtype = '0204';
       option43_value = ip_addr_hexNumber_first;
-      return renderSettings(dhcp_vendor, option43_type, option43_subtype, option43_value, option60_type, option60_value, vendor_link, diff_number);
+      return renderSettings(
+        dhcp_vendor,
+        option43_type,
+        option43_subtype,
+        option43_value,
+        option60_type,
+        option60_value,
+        vendor_link,
+        diff_number,
+      );
     default:
       return 'Not implemented';
   }
-};
+}

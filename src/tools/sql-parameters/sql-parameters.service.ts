@@ -5,7 +5,7 @@ export function detectTypeAndEscape(val: string | null | undefined) {
   if (!Number.isNaN(Number(val)) && val.trim() !== '') {
     return val.includes('.') ? Number.parseFloat(val) : Number.parseInt(val);
   }
-  return `'${val.replace(/'/g, '\'\'')}'`;
+  return `'${val.replace(/'/g, "''")}'`;
 }
 
 export function generateSQLFromTemplate(template: string, parameters: Array<{ key: string; value: string }>) {
@@ -15,8 +15,7 @@ export function generateSQLFromTemplate(template: string, parameters: Array<{ ke
   parameters.forEach(({ key, value }) => {
     if (key !== '' && !/^\d+$/.test(key)) {
       paramMap.set(key, detectTypeAndEscape(value));
-    }
-    else {
+    } else {
       const indexKey = (keyIndex++).toString();
       indexedParams.push({ key: indexKey, value });
     }
@@ -37,7 +36,7 @@ export function generateSQLFromTemplate(template: string, parameters: Array<{ ke
 
   // Replace positional parameters
   let positionalIndex = 0;
-  const positionalParams = indexedParams.filter(p => /^\d+$/.test(p.key));
+  const positionalParams = indexedParams.filter((p) => /^\d+$/.test(p.key));
 
   sql = sql.replace(/(^|[^\\])\?/g, (_, prefix) => {
     const param = positionalParams[positionalIndex++];

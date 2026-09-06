@@ -3,7 +3,13 @@ import type { GroupPermissions, Permissions, SpecialPermissions } from './chmod-
 
 import { translate as t } from '@/plugins/i18n.plugin';
 
-export { computeUmaskRepresentation, computeChmodOctalRepresentation, computeChmodSymbolicRepresentation, computePermissionsFromChmodOctalRepresentation, computePermissionsFromChmodSymbolicRepresentation };
+export {
+  computeUmaskRepresentation,
+  computeChmodOctalRepresentation,
+  computeChmodSymbolicRepresentation,
+  computePermissionsFromChmodOctalRepresentation,
+  computePermissionsFromChmodSymbolicRepresentation,
+};
 
 function computeChmodOctalRepresentation({ permissions }: { permissions: Permissions }): string {
   const permissionValue = { read: 4, write: 2, execute: 1 };
@@ -12,7 +18,11 @@ function computeChmodOctalRepresentation({ permissions }: { permissions: Permiss
   const getGroupPermissionValue = (permission: GroupPermissions) =>
     _.reduce(permission, (acc, isPermSet, key) => acc + (isPermSet ? _.get(permissionValue, key, 0) : 0), 0);
   const getSpecialPermissionValue = (permission: SpecialPermissions) => {
-    const octalValue = _.reduce(permission, (acc, isPermSet, key) => acc + (isPermSet ? _.get(specialPermissionValue, key, 0) : 0), 0);
+    const octalValue = _.reduce(
+      permission,
+      (acc, isPermSet, key) => acc + (isPermSet ? _.get(specialPermissionValue, key, 0) : 0),
+      0,
+    );
     return octalValue > 0 ? octalValue.toString() : '';
   };
 
@@ -29,8 +39,14 @@ function computeChmodSymbolicRepresentation({ permissions }: { permissions: Perm
   const specialFlagPermission = 'execute';
 
   const getGroupPermissionValue = (permission: GroupPermissions, specialFlag: null | 's' | 't') =>
-    _.reduce(permission, (acc, isPermSet, key) => acc + ((key === specialFlagPermission ? specialFlag : undefined)
-    || (isPermSet ? _.get(permissionValue, key, '') : '-')), '');
+    _.reduce(
+      permission,
+      (acc, isPermSet, key) =>
+        acc +
+        ((key === specialFlagPermission ? specialFlag : undefined) ||
+          (isPermSet ? _.get(permissionValue, key, '') : '-')),
+      '',
+    );
 
   return [
     getGroupPermissionValue(permissions.owner, permissions.flags?.setuid ? 's' : null),
@@ -44,11 +60,16 @@ function computePermissionsFromChmodOctalRepresentation(octalPermissions: string
   const specialPermissionValue = { setuid: 4, setgid: 2, stickybit: 1 };
 
   if (!octalPermissions || !octalPermissions.match(/^[0-7]{3,4}$/)) {
-    throw new Error(t('tools.chmod-calculator.service.text.invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions', [octalPermissions]));
+    throw new Error(
+      t('tools.chmod-calculator.service.text.invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions', [
+        octalPermissions,
+      ]),
+    );
   }
   const fullOctalPermissions = octalPermissions.length === 3 ? `0${octalPermissions}` : octalPermissions;
 
-  const hasSet = (position: number, flagValue: number) => (Number(fullOctalPermissions[position]) & flagValue) === flagValue;
+  const hasSet = (position: number, flagValue: number) =>
+    (Number(fullOctalPermissions[position]) & flagValue) === flagValue;
   function computePermissionObject<T>(permissionSet: object, position: number): T {
     return _.reduce(permissionSet, (acc, flag, key) => ({ ...acc, [key]: hasSet(position, flag) }), {}) as T;
   }
@@ -67,51 +88,56 @@ function computePermissionsFromChmodOctalRepresentation(octalPermissions: string
 function computePermissionsFromChmodSymbolicRepresentation(symbolicPermissions: string): Permissions {
   const formatRegex = /^[-dlbcsp]?([r-])([w-])([xs-])([r-])([w-])([xs-])([r-])([w-])([xt-])$/;
   if (!symbolicPermissions || !symbolicPermissions.match(formatRegex)) {
-    throw new Error(t('tools.chmod-calculator.service.text.invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions', [symbolicPermissions]));
+    throw new Error(
+      t(
+        'tools.chmod-calculator.service.text.invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions',
+        [symbolicPermissions],
+      ),
+    );
   }
 
-  const [_, rOwner, wOwner, xOwner, rGroup, wGroup, xGroup, rAll, wAll, xAll] = formatRegex.exec(symbolicPermissions) || [];
-  const getOctal = (flag: string, flagLetter: string, flagValue: number) => flag === flagLetter ? flagValue : 0;
-  const owner = getOctal(rOwner, 'r', 4)
-  + getOctal(wOwner, 'w', 2)
-  + getOctal(xOwner, 'x', 1) + getOctal(xOwner, 's', 1);
-  const groups = getOctal(rGroup, 'r', 4)
-  + getOctal(wGroup, 'w', 2)
-  + getOctal(xGroup, 'x', 1) + getOctal(xGroup, 's', 1);
-  const all = getOctal(rAll, 'r', 4)
-  + getOctal(wAll, 'w', 2)
-  + getOctal(xAll, 'x', 1) + getOctal(xAll, 't', 1);
-  const flags = getOctal(xOwner, 's', 4)
-    + getOctal(xGroup, 's', 2)
-    + getOctal(xAll, 't', 1);
-  const octalString = `${(flags > 0 ? flags : '')}${owner}${groups}${all}`;
+  const [_, rOwner, wOwner, xOwner, rGroup, wGroup, xGroup, rAll, wAll, xAll] =
+    formatRegex.exec(symbolicPermissions) || [];
+  const getOctal = (flag: string, flagLetter: string, flagValue: number) => (flag === flagLetter ? flagValue : 0);
+  const owner =
+    getOctal(rOwner, 'r', 4) + getOctal(wOwner, 'w', 2) + getOctal(xOwner, 'x', 1) + getOctal(xOwner, 's', 1);
+  const groups =
+    getOctal(rGroup, 'r', 4) + getOctal(wGroup, 'w', 2) + getOctal(xGroup, 'x', 1) + getOctal(xGroup, 's', 1);
+  const all = getOctal(rAll, 'r', 4) + getOctal(wAll, 'w', 2) + getOctal(xAll, 'x', 1) + getOctal(xAll, 't', 1);
+  const flags = getOctal(xOwner, 's', 4) + getOctal(xGroup, 's', 2) + getOctal(xAll, 't', 1);
+  const octalString = `${flags > 0 ? flags : ''}${owner}${groups}${all}`;
 
   return computePermissionsFromChmodOctalRepresentation(octalString);
 }
 
 function computeUmaskRepresentation({ permissions }: { permissions: Permissions }): {
-  octal: string
-  symbolic: string
+  octal: string;
+  symbolic: string;
 } {
   const permissionValue = { read: 'r', write: 'w', execute: 'x' };
   const getGroupPermissionValue = (permission: GroupPermissions) =>
-    _.reduce(permission, (acc, isPermSet, key) => acc + ((isPermSet ? _.get(permissionValue, key, '') : '')), '');
+    _.reduce(permission, (acc, isPermSet, key) => acc + (isPermSet ? _.get(permissionValue, key, '') : ''), '');
 
   const symbolic = `umask u=${getGroupPermissionValue(permissions.owner)},g=${getGroupPermissionValue(permissions.group)},o=${getGroupPermissionValue(permissions.public)}`;
-  const octal = (0o777 - Number.parseInt(
-    computeChmodOctalRepresentation({
-      permissions:
-      {
-        owner: permissions.owner,
-        group: permissions.group,
-        public: permissions.public,
-        flags: { setuid: false, setgid: false, stickybit: false },
-      },
-    }), 8))
+  const octal = (
+    0o777 -
+    Number.parseInt(
+      computeChmodOctalRepresentation({
+        permissions: {
+          owner: permissions.owner,
+          group: permissions.group,
+          public: permissions.public,
+          flags: { setuid: false, setgid: false, stickybit: false },
+        },
+      }),
+      8,
+    )
+  )
     .toString(8)
     .padStart(3, '0');
 
   return {
-    symbolic, octal,
+    symbolic,
+    octal,
   };
 }

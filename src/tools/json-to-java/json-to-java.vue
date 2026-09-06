@@ -44,10 +44,6 @@ const rules: UseValidationRule<string>[] = [
     />
   </c-card>
   <c-card :title="t('tools.json-to-java.texts.title-you-java-string')">
-    <TextareaCopyable
-      :value="javaOutput"
-      language="java"
-      download-file-name="output.java"
-    />
+    <TextareaCopyable :value="javaOutput" language="java" download-file-name="output.java" />
   </c-card>
 </template>

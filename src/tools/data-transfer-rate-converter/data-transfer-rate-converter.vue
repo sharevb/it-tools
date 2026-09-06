@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { formatDuration, intervalToDuration } from 'date-fns';
-import { type AllSupportedUnits, displayStorageAndRateUnits } from '../data-storage-unit-converter/data-storage-unit-converter.service';
+import {
+  type AllSupportedUnits,
+  displayStorageAndRateUnits,
+} from '../data-storage-unit-converter/data-storage-unit-converter.service';
 import { amountTransferable, transferSpeedRate, transferTimeSeconds } from './data-transfer-rate-converter.service';
 
 const { t } = useI18n();
@@ -48,10 +51,10 @@ function convertToTimeDisplay(seconds: number) {
 }
 
 const transferTimeInput = ref<{
-  dataSize: string
-  dataSizeUnit: string
-  bitRate: string
-  bitRateUnit: string
+  dataSize: string;
+  dataSizeUnit: string;
+  bitRate: string;
+  bitRateUnit: string;
 }>({
   dataSize: '0',
   dataSizeUnit: 'MB',
@@ -60,25 +63,26 @@ const transferTimeInput = ref<{
 });
 const transferTimeOutput = computed(() => {
   try {
-    return convertToTimeDisplay(transferTimeSeconds({
-      dataSize: Number(transferTimeInput.value.dataSize),
-      dataSizeUnit: transferTimeInput.value.dataSizeUnit as AllSupportedUnits,
-      bitRate: Number(transferTimeInput.value.bitRate),
-      bitRateUnit: transferTimeInput.value.bitRateUnit as AllSupportedUnits,
-    }));
-  }
-  catch (e: any) {
+    return convertToTimeDisplay(
+      transferTimeSeconds({
+        dataSize: Number(transferTimeInput.value.dataSize),
+        dataSizeUnit: transferTimeInput.value.dataSizeUnit as AllSupportedUnits,
+        bitRate: Number(transferTimeInput.value.bitRate),
+        bitRateUnit: transferTimeInput.value.bitRateUnit as AllSupportedUnits,
+      }),
+    );
+  } catch (e: any) {
     return e.toString();
   }
 });
 
 const transferSpeedRateInput = ref<{
-  dataSize: string
-  dataSizeUnit: string
-  hours: number
-  minutes: number
-  seconds: number
-  bitRateUnit: string
+  dataSize: string;
+  dataSizeUnit: string;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  bitRateUnit: string;
 }>({
   dataSize: '0',
   dataSizeUnit: 'GB',
@@ -101,19 +105,18 @@ const transferSpeedRateOutput = computed(() => {
         bitRateUnit: transferSpeedRateInput.value.bitRateUnit as AllSupportedUnits,
       }),
     });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
 
 const amountTransferableInput = ref<{
-  bitRate: string
-  bitRateUnit: string
-  hours: number
-  minutes: number
-  seconds: number
-  dataSizeUnit: string
+  bitRate: string;
+  bitRateUnit: string;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  dataSizeUnit: string;
 }>({
   bitRate: '0',
   bitRateUnit: 'Mb',
@@ -136,8 +139,7 @@ const amountTransferableOutput = computed(() => {
         dataSizeUnit: amountTransferableInput.value.dataSizeUnit as AllSupportedUnits,
       }),
     });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -146,14 +148,20 @@ const amountTransferableOutput = computed(() => {
 <template>
   <div>
     <n-p text-center>
-      {{ t('tools.data-transfer-rate-converter.texts.tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb') }}<n-a href="https://en.wikipedia.org/wiki/Byte" target="_blank" rel="noopener">
+      {{ t('tools.data-transfer-rate-converter.texts.tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb')
+      }}<n-a href="https://en.wikipedia.org/wiki/Byte" target="_blank" rel="noopener">
         {{ t('tools.data-transfer-rate-converter.texts.tag-see-here-for-details') }}
       </n-a>
     </n-p>
 
     <c-card :title="t('tools.data-transfer-rate-converter.texts.title-transfer-time')" mb-2>
       <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-data-size')" label-placement="left">
-        <n-input v-model:value="transferTimeInput.dataSize" :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-data-size')" :min="0" w-full />
+        <n-input
+          v-model:value="transferTimeInput.dataSize"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-data-size')"
+          :min="0"
+          w-full
+        />
         <c-select
           v-model:value="transferTimeInput.dataSizeUnit"
           searchable
@@ -164,7 +172,12 @@ const amountTransferableOutput = computed(() => {
       </n-form-item>
 
       <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-bit-rate')" label-placement="left">
-        <n-input v-model:value="transferTimeInput.bitRate" :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-bit-rate')" :min="0" w-full />
+        <n-input
+          v-model:value="transferTimeInput.bitRate"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-bit-rate')"
+          :min="0"
+          w-full
+        />
         <c-select
           v-model:value="transferTimeInput.bitRateUnit"
           searchable
@@ -184,7 +197,12 @@ const amountTransferableOutput = computed(() => {
     </c-card>
     <c-card :title="t('tools.data-transfer-rate-converter.texts.title-transfer-bit-rate-speed')" mb-2>
       <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-data-size')" label-placement="left">
-        <n-input v-model:value="transferSpeedRateInput.dataSize" :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-data-size')" :min="0" w-full />
+        <n-input
+          v-model:value="transferSpeedRateInput.dataSize"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-data-size')"
+          :min="0"
+          w-full
+        />
         <c-select
           v-model:value="transferSpeedRateInput.dataSizeUnit"
           :options="allStorateUnits"
@@ -194,9 +212,27 @@ const amountTransferableOutput = computed(() => {
       </n-form-item>
 
       <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-duration-h-m-s')" label-placement="left">
-        <n-input-number-i18n v-model:value="transferSpeedRateInput.hours" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-hours')" :min="0" w-full />
-        <n-input-number-i18n v-model:value="transferSpeedRateInput.minutes" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-minutes')" :min="0" w-full />
-        <n-input-number-i18n v-model:value="transferSpeedRateInput.seconds" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-seconds')" :min="0" w-full />
+        <n-input-number-i18n
+          v-model:value="transferSpeedRateInput.hours"
+          mr-1
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-hours')"
+          :min="0"
+          w-full
+        />
+        <n-input-number-i18n
+          v-model:value="transferSpeedRateInput.minutes"
+          mr-1
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-minutes')"
+          :min="0"
+          w-full
+        />
+        <n-input-number-i18n
+          v-model:value="transferSpeedRateInput.seconds"
+          mr-1
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-seconds')"
+          :min="0"
+          w-full
+        />
       </n-form-item>
 
       <n-divider />
@@ -218,7 +254,12 @@ const amountTransferableOutput = computed(() => {
     </c-card>
     <c-card :title="t('tools.data-transfer-rate-converter.texts.title-amount-transferable')" mb-2>
       <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-bit-rate')" label-placement="left">
-        <n-input v-model:value="amountTransferableInput.bitRate" :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-bit-rate')" :min="0" w-full />
+        <n-input
+          v-model:value="amountTransferableInput.bitRate"
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-bit-rate')"
+          :min="0"
+          w-full
+        />
         <c-select
           v-model:value="amountTransferableInput.bitRateUnit"
           :options="allRateUnits"
@@ -228,9 +269,27 @@ const amountTransferableOutput = computed(() => {
       </n-form-item>
 
       <n-form-item :label="t('tools.data-transfer-rate-converter.texts.label-duration-h-m-s')" label-placement="left">
-        <n-input-number-i18n v-model:value="amountTransferableInput.hours" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-hours')" :min="0" w-full />
-        <n-input-number-i18n v-model:value="amountTransferableInput.minutes" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-minutes')" :min="0" w-full />
-        <n-input-number-i18n v-model:value="amountTransferableInput.seconds" mr-1 :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-seconds')" :min="0" w-full />
+        <n-input-number-i18n
+          v-model:value="amountTransferableInput.hours"
+          mr-1
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-hours')"
+          :min="0"
+          w-full
+        />
+        <n-input-number-i18n
+          v-model:value="amountTransferableInput.minutes"
+          mr-1
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-minutes')"
+          :min="0"
+          w-full
+        />
+        <n-input-number-i18n
+          v-model:value="amountTransferableInput.seconds"
+          mr-1
+          :placeholder="t('tools.data-transfer-rate-converter.texts.placeholder-seconds')"
+          :min="0"
+          w-full
+        />
       </n-form-item>
 
       <n-divider />

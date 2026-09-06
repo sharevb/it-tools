@@ -10,7 +10,8 @@ test.describe('Tool - TOML to YAML', () => {
   });
 
   test('TOML is parsed and outputs clean YAML', async ({ page }) => {
-    await page.getByTestId('input').fill(`
+    await page.getByTestId('input').fill(
+      `
 foo = "bar"
 
 # This is a comment
@@ -19,7 +20,8 @@ foo = "bar"
   name = "item"
 [list.another]
   key = "value"
-    `.trim());
+    `.trim(),
+    );
 
     const generatedJson = await page.getByTestId('area-content').innerText();
 

@@ -63,12 +63,8 @@ describe('hmac-generator', () => {
       expect(computeHmac({ ...args, encoding: 'Hex' })).toEqual(
         'fb8626bea6af7aca505231f3fa99c27995e34bf32128625aac73ac2a67d8b409',
       );
-      expect(computeHmac({ ...args, encoding: 'Base64' })).toEqual(
-        '+4YmvqavespQUjHz+pnCeZXjS/MhKGJarHOsKmfYtAk=',
-      );
-      expect(computeHmac({ ...args, encoding: 'Base64url' })).toEqual(
-        '-4YmvqavespQUjHz-pnCeZXjS_MhKGJarHOsKmfYtAk',
-      );
+      expect(computeHmac({ ...args, encoding: 'Base64' })).toEqual('+4YmvqavespQUjHz+pnCeZXjS/MhKGJarHOsKmfYtAk=');
+      expect(computeHmac({ ...args, encoding: 'Base64url' })).toEqual('-4YmvqavespQUjHz-pnCeZXjS_MhKGJarHOsKmfYtAk');
       expect(computeHmac({ ...args, encoding: 'Bin' })).toEqual(
         '1111101110000110001001101011111010100110101011110111101011001010010100000101001000110001111100111111101010011001110000100111100110010101111000110100101111110011001000010010100001100010010110101010110001110011101011000010101001100111110110001011010000001001',
       );

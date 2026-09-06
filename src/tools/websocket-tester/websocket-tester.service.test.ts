@@ -40,7 +40,9 @@ describe('websocket-tester', () => {
     it('does not double the slash when the url already ends with one', () => {
       expect(buildWebSocketUrl({ url: 'ws://example.com/', token: 'abc' })).toBe('ws://example.com/?token=abc');
       expect(buildWebSocketUrl({ url: 'ws://example.com///', token: 'abc' })).toBe('ws://example.com/?token=abc');
-      expect(buildWebSocketUrl({ url: 'ws://example.com/path/', token: 'abc' })).toBe('ws://example.com/path/?token=abc');
+      expect(buildWebSocketUrl({ url: 'ws://example.com/path/', token: 'abc' })).toBe(
+        'ws://example.com/path/?token=abc',
+      );
     });
   });
 

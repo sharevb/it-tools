@@ -45,12 +45,7 @@ describe('splitContent - nodes mode with JSON object', () => {
 
   it('splits by maxSize', () => {
     const result = splitContent(jsonObject, 'nodes', 14, 'maxSize');
-    expect(result).toEqual([
-      '{"a":1}',
-      '{"b":2}',
-      '{"c":3}',
-      '{"d":4}',
-    ]);
+    expect(result).toEqual(['{"a":1}', '{"b":2}', '{"c":3}', '{"d":4}']);
   });
 
   it('splits by fixedCount', () => {
@@ -69,18 +64,12 @@ describe('splitContent - nodes mode with XML', () => {
 
   it('splits by maxSize', () => {
     const result = splitContent(xml, 'nodes', 30, 'maxSize');
-    expect(result).toEqual([
-      '<root><a>1</a><b>2</b></root>',
-      '<root><c>3</c><d>4</d></root>',
-    ]);
+    expect(result).toEqual(['<root><a>1</a><b>2</b></root>', '<root><c>3</c><d>4</d></root>']);
   });
 
   it('splits by fixedCount', () => {
     const result = splitContent(xml, 'nodes', 3, 'fixedCount');
-    expect(result).toEqual([
-      '<root><a>1</a><b>2</b><c>3</c></root>',
-      '<root><d>4</d></root>',
-    ]);
+    expect(result).toEqual(['<root><a>1</a><b>2</b><c>3</c></root>', '<root><d>4</d></root>']);
   });
 
   it('splits by chunkCount', () => {

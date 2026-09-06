@@ -46,7 +46,11 @@ const algosWasm = {
 type AlgoWasmNames = keyof typeof algosWasm;
 const algoWasmNames = Object.keys(algosWasm) as AlgoWasmNames[];
 
-const encoding = useQueryParamOrStorage<Encoding>({ defaultValue: 'Hex', storageName: 'hash-text:encoding', name: 'encoding' });
+const encoding = useQueryParamOrStorage<Encoding>({
+  defaultValue: 'Hex',
+  storageName: 'hash-text:encoding',
+  name: 'encoding',
+});
 const clearText = ref('');
 
 const defaultHashWasmValues = {
@@ -128,9 +132,13 @@ const hashWasmPBKDF2 = computedAsync(async () => {
     <c-card>
       <c-input-text
         v-model:value="clearText"
-        multiline raw-text
-        :placeholder="t('tools.hash-text.texts.placeholder-your-string-to-hash')" rows="3"
-        autosize autofocus :label="t('tools.hash-text.texts.label-your-text-to-hash')"
+        multiline
+        raw-text
+        :placeholder="t('tools.hash-text.texts.placeholder-your-string-to-hash')"
+        rows="3"
+        autosize
+        autofocus
+        :label="t('tools.hash-text.texts.label-your-text-to-hash')"
       />
 
       <n-divider />

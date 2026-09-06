@@ -15,31 +15,26 @@ const base64Input = computed(() => {
   const hexString = hexInput.value?.replace(/^(?:0x|&H|\\x)/gi, '').replace(/[^\da-f]/gi, '');
   try {
     return `data:application/octet-stream;base64,${Buffer.from(hexString, 'hex').toString('base64')}`;
-  }
-  catch {
+  } catch {
     return '';
   }
 });
-const { download } = useDownloadFileFromBase64(
-  {
-    source: base64Input,
-    filename: fileName,
-    extension: fileExtension,
-  });
+const { download } = useDownloadFileFromBase64({
+  source: base64Input,
+  filename: fileName,
+  extension: fileExtension,
+});
 
 function downloadFile() {
   try {
     download();
-  }
-  catch (_) {
+  } catch (_) {
     //
   }
 }
 
 function buf2hex(buffer: ArrayBuffer, separator: string): string {
-  return [...new Uint8Array(buffer)]
-    .map(x => x.toString(16).padStart(2, '0'))
-    .join(separator);
+  return [...new Uint8Array(buffer)].map((x) => x.toString(16).padStart(2, '0')).join(separator);
 }
 
 async function ReadFileAsHex(file: File, separator: string = ' '): Promise<string> {
@@ -61,9 +56,12 @@ const fileHex = computedAsync(async () => {
   const sep = separator.value;
   const pref = prefix.value;
 
-  return pref + await ReadFileAsHex(file, sep);
+  return pref + (await ReadFileAsHex(file, sep));
 });
-const { copy: copyFileHex } = useCopy({ source: fileHex, text: t('tools.hex-file-converter.texts.text-hex-string-copied-to-the-clipboard') });
+const { copy: copyFileHex } = useCopy({
+  source: fileHex,
+  text: t('tools.hex-file-converter.texts.text-hex-string-copied-to-the-clipboard'),
+});
 
 function onUpload(file: File) {
   if (file) {
@@ -138,9 +136,11 @@ function onUpload(file: File) {
     <n-form-item :label="t('tools.hex-file-converter.texts.label-file-in-hex')">
       <c-input-text
         :value="fileHex"
-        multiline readonly
+        multiline
+        readonly
         :placeholder="t('tools.hex-file-converter.texts.placeholder-file-in-hex-will-be-here')"
-        rows="5" mb-2
+        rows="5"
+        mb-2
       />
     </n-form-item>
 

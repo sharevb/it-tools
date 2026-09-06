@@ -34,9 +34,8 @@ function splitSecret() {
       throw new Error(`Cannot convert "${secret.value}" to ${secretMode.value}`);
     }
     const parts = sss.split(secretBuffer, { shares: shareCount.value, threshold: threshold.value });
-    shares.value = parts.map(p => p.toString('hex'));
-  }
-  catch (err: any) {
+    shares.value = parts.map((p) => p.toString('hex'));
+  } catch (err: any) {
     sharesError.value = err.toString();
   }
 }
@@ -53,8 +52,7 @@ function recombineSecret() {
     });
     const result = sss.combine(buffers);
     recombinedSecret.value = result.toString(secretMode.value);
-  }
-  catch (err: any) {
+  } catch (err: any) {
     recombineError.value = err.toString();
   }
 }
@@ -72,7 +70,10 @@ function recombineSecret() {
     <c-card :title="t('tools.shamirs-secret-sharing.texts.title-share-a-secret-split')">
       <NForm label-placement="left">
         <NFormItem :label="t('tools.shamirs-secret-sharing.texts.label-secret')">
-          <NInput v-model:value="secret" :placeholder="t('tools.shamirs-secret-sharing.texts.placeholder-enter-secret-text')" />
+          <NInput
+            v-model:value="secret"
+            :placeholder="t('tools.shamirs-secret-sharing.texts.placeholder-enter-secret-text')"
+          />
         </NFormItem>
 
         <n-space justify="center">
@@ -95,7 +96,10 @@ function recombineSecret() {
       <c-alert v-if="sharesError">
         {{ sharesError }}
       </c-alert>
-      <c-card v-if="!sharesError && shares.length" :title="t('tools.shamirs-secret-sharing.texts.title-generated-shares')">
+      <c-card
+        v-if="!sharesError && shares.length"
+        :title="t('tools.shamirs-secret-sharing.texts.title-generated-shares')"
+      >
         <template v-for="(share, idx) in shares" :key="idx">
           <input-copyable v-model:value="shares[idx]" readonly mb-1 />
         </template>

@@ -28,29 +28,65 @@ const distanceNMI = computed(() => haversine(start.value, end.value, { unit: 'nm
     <c-card :title="t('tools.geo-distance-calculator.texts.title-distance-computer')" mb-2>
       <n-form-item :label="t('tools.geo-distance-calculator.texts.label-geolocation-1-latitude-longitude')">
         <n-space justify="space-between">
-          <n-input-number-i18n v-model:value="latitude1" :min="-90" :max="90" :placeholder="t('tools.geo-distance-calculator.texts.placeholder-latitude')" />
-          <n-input-number-i18n v-model:value="longitude1" :min="-180" :max="180" :placeholder="t('tools.geo-distance-calculator.texts.placeholder-longitude')" />
+          <n-input-number-i18n
+            v-model:value="latitude1"
+            :min="-90"
+            :max="90"
+            :placeholder="t('tools.geo-distance-calculator.texts.placeholder-latitude')"
+          />
+          <n-input-number-i18n
+            v-model:value="longitude1"
+            :min="-180"
+            :max="180"
+            :placeholder="t('tools.geo-distance-calculator.texts.placeholder-longitude')"
+          />
         </n-space>
       </n-form-item>
       <n-form-item :label="t('tools.geo-distance-calculator.texts.label-geolocation-2-latitude-longitude')" gap-2>
         <n-space justify="space-between">
-          <n-input-number-i18n v-model:value="latitude2" :min="-90" :max="90" :placeholder="t('tools.geo-distance-calculator.texts.placeholder-latitude')" />
-          <n-input-number-i18n v-model:value="longitude2" :min="-180" :max="180" :placeholder="t('tools.geo-distance-calculator.texts.placeholder-longitude')" />
+          <n-input-number-i18n
+            v-model:value="latitude2"
+            :min="-90"
+            :max="90"
+            :placeholder="t('tools.geo-distance-calculator.texts.placeholder-latitude')"
+          />
+          <n-input-number-i18n
+            v-model:value="longitude2"
+            :min="-180"
+            :max="180"
+            :placeholder="t('tools.geo-distance-calculator.texts.placeholder-longitude')"
+          />
         </n-space>
       </n-form-item>
 
       <n-divider />
 
-      <n-form-item :label="t('tools.geo-distance-calculator.texts.label-distance-km')" label-width="120px" label-placement="left">
+      <n-form-item
+        :label="t('tools.geo-distance-calculator.texts.label-distance-km')"
+        label-width="120px"
+        label-placement="left"
+      >
         <SpanCopyable :value="distanceKM.toString()" />
       </n-form-item>
-      <n-form-item :label="t('tools.geo-distance-calculator.texts.label-distance-mile')" label-width="120px" label-placement="left">
+      <n-form-item
+        :label="t('tools.geo-distance-calculator.texts.label-distance-mile')"
+        label-width="120px"
+        label-placement="left"
+      >
         <SpanCopyable :value="distanceMile.toString()" />
       </n-form-item>
-      <n-form-item :label="t('tools.geo-distance-calculator.texts.label-distance-meter')" label-width="120px" label-placement="left">
+      <n-form-item
+        :label="t('tools.geo-distance-calculator.texts.label-distance-meter')"
+        label-width="120px"
+        label-placement="left"
+      >
         <SpanCopyable :value="distanceMeter.toString()" />
       </n-form-item>
-      <n-form-item :label="t('tools.geo-distance-calculator.texts.label-distance-nmi')" label-width="120px" label-placement="left">
+      <n-form-item
+        :label="t('tools.geo-distance-calculator.texts.label-distance-nmi')"
+        label-width="120px"
+        label-placement="left"
+      >
         <SpanCopyable :value="distanceNMI.toString()" />
       </n-form-item>
     </c-card>

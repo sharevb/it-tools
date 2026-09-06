@@ -1,4 +1,4 @@
-Patterns you reach for again and again, written for the **JavaScript/PCRE** flavour. Drop the surrounding anchors (`^`…`$`) when you want to *find* matches inside a longer text instead of validating a whole string.
+Patterns you reach for again and again, written for the **JavaScript/PCRE** flavour. Drop the surrounding anchors (`^`…`$`) when you want to _find_ matches inside a longer text instead of validating a whole string.
 
 > ⚠️ Validation by regex is always an approximation. For emails, phone numbers, URLs and credit cards, a regex is a cheap first filter — the real check is a library, or sending the confirmation.
 
@@ -134,7 +134,7 @@ https?:\/\/[^\s<>"']+
 ^P(?!$)(\d+Y)?(\d+M)?(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+S)?)?$
 ```
 
-> ℹ️ These check the *shape*, not the calendar — `2026-02-31` passes. Parse the value if the date has to be real.
+> ℹ️ These check the _shape_, not the calendar — `2026-02-31` passes. Parse the value if the date has to be real.
 
 ## 🔐 Password Rules
 

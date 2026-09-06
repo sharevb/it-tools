@@ -1,10 +1,10 @@
 export interface WebSocketClientOptions {
-  url?: string
-  token?: string
-  open?: () => void
-  close?: () => void
-  message?: (data: unknown) => void
-  error?: (error: unknown) => void
+  url?: string;
+  token?: string;
+  open?: () => void;
+  close?: () => void;
+  message?: (data: unknown) => void;
+  error?: (error: unknown) => void;
 }
 
 const defaultUrl = 'ws://localhost:8080';
@@ -46,7 +46,7 @@ export function createWebSocketClient(
 
   socket.onopen = () => open?.();
   socket.onclose = () => close?.();
-  socket.onmessage = event => message?.(event.data);
+  socket.onmessage = (event) => message?.(event.data);
   socket.onerror = (event) => {
     error?.(event);
     // an errored socket never recovers, so close it rather than leaving it half open

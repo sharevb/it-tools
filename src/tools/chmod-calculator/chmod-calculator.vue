@@ -3,7 +3,13 @@ import { useI18n } from 'vue-i18n';
 import { useThemeVars } from 'naive-ui';
 
 import InputCopyable from '../../components/InputCopyable.vue';
-import { computeChmodOctalRepresentation, computeChmodSymbolicRepresentation, computePermissionsFromChmodOctalRepresentation, computePermissionsFromChmodSymbolicRepresentation, computeUmaskRepresentation } from './chmod-calculator.service';
+import {
+  computeChmodOctalRepresentation,
+  computeChmodSymbolicRepresentation,
+  computePermissionsFromChmodOctalRepresentation,
+  computePermissionsFromChmodSymbolicRepresentation,
+  computeUmaskRepresentation,
+} from './chmod-calculator.service';
 
 import type { Group, Scope } from './chmod-calculator.types';
 import { useValidation } from '@/composable/validation';
@@ -36,23 +42,19 @@ const octalPermissionsInputValidation = useValidation({
         try {
           computePermissionsFromChmodOctalRepresentation(value.trim());
           return true;
-        }
-        catch {
+        } catch {
           return false;
         }
       },
     },
   ],
 });
-watch(
-  octalPermissionsInput,
-  (newPermissions) => {
-    if (!octalPermissionsInputValidation.isValid) {
-      return;
-    }
-    permissions.value = computePermissionsFromChmodOctalRepresentation(newPermissions.trim());
-  },
-);
+watch(octalPermissionsInput, (newPermissions) => {
+  if (!octalPermissionsInputValidation.isValid) {
+    return;
+  }
+  permissions.value = computePermissionsFromChmodOctalRepresentation(newPermissions.trim());
+});
 
 const symbolicPermissionsInput = ref('---------');
 const symbolicPermissionsInputValidation = useValidation({
@@ -64,23 +66,19 @@ const symbolicPermissionsInputValidation = useValidation({
         try {
           computePermissionsFromChmodSymbolicRepresentation(value.trim());
           return true;
-        }
-        catch {
+        } catch {
           return false;
         }
       },
     },
   ],
 });
-watch(
-  symbolicPermissionsInput,
-  (newPermissions) => {
-    if (!symbolicPermissionsInputValidation.isValid) {
-      return;
-    }
-    permissions.value = computePermissionsFromChmodSymbolicRepresentation(newPermissions.trim());
-  },
-);
+watch(symbolicPermissionsInput, (newPermissions) => {
+  if (!symbolicPermissionsInputValidation.isValid) {
+    return;
+  }
+  permissions.value = computePermissionsFromChmodSymbolicRepresentation(newPermissions.trim());
+});
 
 const octal = computed(() => computeChmodOctalRepresentation({ permissions: permissions.value }));
 const symbolic = computed(() => computeChmodSymbolicRepresentation({ permissions: permissions.value }));
@@ -90,9 +88,7 @@ const umask = computed(() => computeUmaskRepresentation({ permissions: permissio
 <template>
   <div>
     <div mb-2 flex justify-center>
-      <c-link target="_blank" to="/chmod-memo">
-        See <code>chmod</code> command cheatsheet.
-      </c-link>
+      <c-link target="_blank" to="/chmod-memo"> See <code>chmod</code> command cheatsheet. </c-link>
     </div>
 
     <n-space justify="center">
@@ -169,8 +165,20 @@ const umask = computed(() => computeUmaskRepresentation({ permissions: permissio
     </c-card>
 
     <c-card :title="t('tools.chmod-calculator.texts.title-umask')">
-      <InputCopyable :label="t('tools.chmod-calculator.texts.label-octal')" label-position="left" label-width="100px" :value="umask.octal" readonly />
-      <InputCopyable :label="t('tools.chmod-calculator.texts.label-symbolic')" label-position="left" label-width="100px" :value="umask.symbolic" readonly />
+      <InputCopyable
+        :label="t('tools.chmod-calculator.texts.label-octal')"
+        label-position="left"
+        label-width="100px"
+        :value="umask.octal"
+        readonly
+      />
+      <InputCopyable
+        :label="t('tools.chmod-calculator.texts.label-symbolic')"
+        label-position="left"
+        label-width="100px"
+        :value="umask.symbolic"
+        readonly
+      />
     </c-card>
   </div>
 </template>

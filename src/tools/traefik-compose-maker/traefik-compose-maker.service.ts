@@ -1,16 +1,16 @@
 export interface TraefikComposeOptions {
-  logDebug: boolean
-  certResolverName: string
-  postmasterEmail: string
-  letEncryptTest: boolean
-  dashboard: boolean
-  traefikDashboardHostName: string
-  dashboardUserAndPass: string
-  proxiedServiceName: string
-  proxiedServiceImage: string
-  proxiedServiceLoadBalancePort: number
-  proxiedServiceHostName: string
-  loadBalance: boolean
+  logDebug: boolean;
+  certResolverName: string;
+  postmasterEmail: string;
+  letEncryptTest: boolean;
+  dashboard: boolean;
+  traefikDashboardHostName: string;
+  dashboardUserAndPass: string;
+  proxiedServiceName: string;
+  proxiedServiceImage: string;
+  proxiedServiceLoadBalancePort: number;
+  proxiedServiceHostName: string;
+  loadBalance: boolean;
 }
 
 /**
@@ -19,9 +19,7 @@ export interface TraefikComposeOptions {
  * @returns Docker Compose YAML string
  */
 export function generateCompose(config: TraefikComposeOptions): string {
-  if (config.proxiedServiceName === ''
-    || config.proxiedServiceImage === ''
-    || config.proxiedServiceHostName === '') {
+  if (config.proxiedServiceName === '' || config.proxiedServiceImage === '' || config.proxiedServiceHostName === '') {
     return '';
   }
 
@@ -44,14 +42,16 @@ services:
       - "--certificatesresolvers.${config.certResolverName}.acme.email=${config.postmasterEmail}"
       - "--certificatesresolvers.${config.certResolverName}.acme.storage=/letsencrypt/acme.json"
     labels:
-      ${config.dashboard
-? `
+      ${
+        config.dashboard
+          ? `
       - "traefik.http.routers.dashboard.rule=Host(\`${config.traefikDashboardHostName}\`) && (PathPrefix('/api') || PathPrefix('/dashboard'))"
       - "traefik.http.routers.dashboard.service=api@internal"
       - "traefik.http.routers.dashboard.middlewares=auth"
       - "traefik.http.middlewares.auth.basicauth.users=${config.dashboardUserAndPass}"
       `
-: ''}
+          : ''
+      }
     ports:
       - "80:80"
       - "443:443"

@@ -7,14 +7,14 @@ import isCidr from 'is-cidr';
 import ipv4registry from './ipv4registry.json';
 import ipv6registry from './ipv6registry.json';
 
-const IPv4MAX = (BigInt(2) ** BigInt(32)) - BigInt(1);
+const IPv4MAX = BigInt(2) ** BigInt(32) - BigInt(1);
 
 // IP range specific information, see IANA allocations.
 // http://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
-const _ipv4Registry = new Map(ipv4registry.map(v => [v[0] as string, v[1]]));
+const _ipv4Registry = new Map(ipv4registry.map((v) => [v[0] as string, v[1]]));
 
 // https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml
-const _ipv6Registry = new Map(ipv6registry.map(v => [v[0] as string, v[1]]));
+const _ipv6Registry = new Map(ipv6registry.map((v) => [v[0] as string, v[1]]));
 
 export function parseAsCIDR(form: string) {
   if (isCidr(form)) {
@@ -32,12 +32,12 @@ export function parseAsCIDR(form: string) {
 }
 
 export interface SubnetInfo {
-  netAddress: string
-  firstIP: string
-  lastIP: string
-  broadcastIP: string
-  prefix: number
-  hostsCount: number
+  netAddress: string;
+  firstIP: string;
+  lastIP: string;
+  broadcastIP: string;
+  prefix: number;
+  hostsCount: number;
 }
 
 export function getSubnetsInfos(cidr: string): SubnetInfo[] {
@@ -45,7 +45,7 @@ export function getSubnetsInfos(cidr: string): SubnetInfo[] {
   if (isIPv4(address)) {
     const prefix4Int = Number(prefix || '32');
     const getMask = (prefix: number) => (IPv4MAX >> (BigInt(32) - BigInt(prefix))) << (BigInt(32) - BigInt(prefix));
-    const bigInt = BigInt((new Address4(address)).bigInt());
+    const bigInt = BigInt(new Address4(address).bigInt());
 
     const subnets = [];
     let startNetwork;
@@ -83,23 +83,19 @@ export function getNetworksCount(cidr: string) {
 
     if (prefix4Int % 8 === 0) {
       return 0;
-    }
-    else if (prefix4Int < 8) {
+    } else if (prefix4Int < 8) {
       return 2 ** prefix4Int;
-    }
-    else if (prefix4Int < 16) {
+    } else if (prefix4Int < 16) {
       return 2 ** (prefix4Int - 8);
-    }
-    else if (prefix4Int < 24) {
+    } else if (prefix4Int < 24) {
       return 2 ** (prefix4Int - 16);
-    }
-    else {
+    } else {
       return 2 ** (prefix4Int - 24);
     }
   }
 
   const prefix6Int = Number(prefix || '128');
-  return prefix6Int <= 64 ? (BigInt(2) ** BigInt(64n - BigInt(prefix6Int))) : -1;
+  return prefix6Int <= 64 ? BigInt(2) ** BigInt(64n - BigInt(prefix6Int)) : -1;
 }
 
 export function getIPNetworkType(address: string) {
@@ -115,17 +111,17 @@ export function getIPNetworkType(address: string) {
 
 export function toARPA(address: string) {
   if (isIPv4(address)) {
-    const bigInt = BigInt((new Address4(address)).bigInt());
-    const reverseIP = (
-      [(bigInt & BigInt(255)), (bigInt >> BigInt(8) & BigInt(255)),
-        (bigInt >> BigInt(16) & BigInt(255)),
-        (bigInt >> BigInt(24) & BigInt(255)),
-      ].join('.')
-    );
+    const bigInt = BigInt(new Address4(address).bigInt());
+    const reverseIP = [
+      bigInt & BigInt(255),
+      (bigInt >> BigInt(8)) & BigInt(255),
+      (bigInt >> BigInt(16)) & BigInt(255),
+      (bigInt >> BigInt(24)) & BigInt(255),
+    ].join('.');
     return `${reverseIP}.in-addr.arpa.`;
   }
 
-  return (new Address6(address)).reverseForm();
+  return new Address6(address).reverseForm();
 }
 
 export function fromARPA(arpa: string) {
@@ -147,7 +143,7 @@ export function toIPv4MappedAddress(address: string) {
     return '';
   }
 
-  const hexIP = (new Address4(address)).toHex().replace(/:/g, '');
+  const hexIP = new Address4(address).toHex().replace(/:/g, '');
   return `::ffff:${hexIP.substring(0, 4)}:${hexIP.substring(4)}`;
 }
 
@@ -164,7 +160,7 @@ export function to6to4Prefix(address: string) {
     return '';
   }
 
-  const hexIP = (new Address4(address)).toHex();
+  const hexIP = new Address4(address).toHex();
   return `2002:${hexIP.substring(0, 4)}:${hexIP.substring(4)}::/48`;
 }
 
@@ -173,5 +169,5 @@ export function toMicrosoftTranscription(address: string) {
     return '';
   }
 
-  return (new Address6(address)).microsoftTranscription();
+  return new Address6(address).microsoftTranscription();
 }

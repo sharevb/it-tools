@@ -21,7 +21,8 @@ const outputHtml = computed(() => {
   <div>
     <c-input-text
       v-model:value="inputHtml"
-      multiline raw-text
+      multiline
+      raw-text
       :placeholder="t('tools.html-prettifier.texts.placeholder-your-html-content')"
       rows="8"
       autofocus

@@ -1,3 +1,1 @@
-declare module "vue-mathjax-next" {
-    
-}
+declare module 'vue-mathjax-next' {}

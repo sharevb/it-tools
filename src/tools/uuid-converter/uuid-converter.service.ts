@@ -11,10 +11,9 @@ function normalizeUUID(value: string) {
 
   if (isCondensedUuid) {
     uuid = probablyUuid.replace(uuidHexRegEx, '$1-$2-$3-$4-$5');
-  }
-  else {
+  } else {
     uuid = value;
-  };
+  }
 
   return uuidValidate(uuid) ? uuid : '';
 }

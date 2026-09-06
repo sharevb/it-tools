@@ -48,12 +48,12 @@ const { t } = useI18n();
 
 const inputDate = useQueryParam({ tool: 'date-time-converter', name: 'date', defaultValue: '' });
 
-const toDate: ToDateMapper = date => new Date(date);
+const toDate: ToDateMapper = (date) => new Date(date);
 
 const formats: DateFormat[] = [
   {
     name: 'JS locale date string',
-    fromDate: date => date.toString(),
+    fromDate: (date) => date.toString(),
     toDate,
     formatMatcher: () => false,
   },
@@ -61,85 +61,85 @@ const formats: DateFormat[] = [
     name: 'ISO 8601',
     fromDate: formatISO,
     toDate: parseISO,
-    formatMatcher: date => isISO8601DateTimeString(date),
+    formatMatcher: (date) => isISO8601DateTimeString(date),
   },
   {
     name: 'ISO 8601 UTC',
-    fromDate: date => (new UTCDate(date)).toISOString(),
+    fromDate: (date) => new UTCDate(date).toISOString(),
     toDate: parseISO,
-    formatMatcher: date => isISO8601DateTimeString(date),
+    formatMatcher: (date) => isISO8601DateTimeString(date),
   },
   {
     name: 'ISO 9075',
     fromDate: formatISO9075,
     toDate: parseISO,
-    formatMatcher: date => isISO9075DateString(date),
+    formatMatcher: (date) => isISO9075DateString(date),
   },
   {
     name: 'RFC 3339',
     fromDate: formatRFC3339,
     toDate,
-    formatMatcher: date => isRFC3339DateString(date),
+    formatMatcher: (date) => isRFC3339DateString(date),
   },
   {
     name: 'RFC 7231',
     fromDate: formatRFC7231,
     toDate,
-    formatMatcher: date => isRFC7231DateString(date),
+    formatMatcher: (date) => isRFC7231DateString(date),
   },
   {
     name: 'Unix timestamp',
-    fromDate: date => String(getUnixTime(date)),
-    toDate: sec => fromUnixTime(+sec),
-    formatMatcher: date => isUnixTimestamp(date),
+    fromDate: (date) => String(getUnixTime(date)),
+    toDate: (sec) => fromUnixTime(+sec),
+    formatMatcher: (date) => isUnixTimestamp(date),
   },
   {
     name: 'Timestamp',
-    fromDate: date => String(getTime(date)),
-    toDate: ms => fromTimestamp(ms),
-    formatMatcher: date => isTimestamp(date),
+    fromDate: (date) => String(getTime(date)),
+    toDate: (ms) => fromTimestamp(ms),
+    formatMatcher: (date) => isTimestamp(date),
   },
   {
     name: 'UTC format',
-    fromDate: date => date.toUTCString(),
+    fromDate: (date) => date.toUTCString(),
     toDate,
-    formatMatcher: date => isUTCDateString(date),
+    formatMatcher: (date) => isUTCDateString(date),
   },
   {
     name: 'Mongo ObjectID',
-    fromDate: date => `${Math.floor(date.getTime() / 1000).toString(16)}0000000000000000`,
-    toDate: objectId => new Date(Number.parseInt(objectId.substring(0, 8), 16) * 1000),
-    formatMatcher: date => isMongoObjectId(date),
+    fromDate: (date) => `${Math.floor(date.getTime() / 1000).toString(16)}0000000000000000`,
+    toDate: (objectId) => new Date(Number.parseInt(objectId.substring(0, 8), 16) * 1000),
+    formatMatcher: (date) => isMongoObjectId(date),
   },
   {
     name: 'Excel date/time',
-    fromDate: date => dateToExcelFormat(date),
+    fromDate: (date) => dateToExcelFormat(date),
     toDate: excelFormatToDate,
     formatMatcher: isExcelFormat,
   },
   {
     name: 'JS Date',
-    fromDate: date => toJSDate(date),
-    toDate: date => fromJSDate(date),
+    fromDate: (date) => toJSDate(date),
+    toDate: (date) => fromJSDate(date),
     formatMatcher: isJSDate,
   },
   {
     name: 'LDAP YMD Timestamp',
-    fromDate: date => dateToLDAPTimestamp(date),
-    toDate: date => lDAPTimestampToDate(date),
+    fromDate: (date) => dateToLDAPTimestamp(date),
+    toDate: (date) => lDAPTimestampToDate(date),
     formatMatcher: isLDAPTimestamp,
   },
   {
     name: 'Win32 FileTime/LDAP 18 digits Timestamp',
-    fromDate: date => dateToWin32FileTime(date),
-    toDate: date => win32FileTimeToUnix(date),
+    fromDate: (date) => dateToWin32FileTime(date),
+    toDate: (date) => win32FileTimeToUnix(date),
     formatMatcher: isWin32FileTime,
   },
   {
     name: '.Net ticks',
-    fromDate: date => ticksFromDate(date),
-    toDate: date => ticksToDate(date) || new Date(),
-    formatMatcher: date => /\d+/.test(date || ''),
+    fromDate: (date) => ticksFromDate(date),
+    toDate: (date) => ticksToDate(date) || new Date(),
+    formatMatcher: (date) => /\d+/.test(date || ''),
   },
 ];
 
@@ -150,18 +150,19 @@ const now = useNow();
 const browserTimezone = getBrowserTimeZone();
 const defaultStoredTimezone = isAllowedTimeZone(browserTimezone) ? browserTimezone : 'Etc/UTC';
 
-const selectedTimezones = useStorage<{ name: string }[]>(
-  'date-time-converter:timezones',
-  [],
+const selectedTimezones = useStorage<{ name: string }[]>('date-time-converter:timezones', []);
+
+watch(
+  selectedTimezones,
+  (timezones) => {
+    const filteredTimezones = timezones.filter(({ name }) => isAllowedTimeZone(name));
+
+    if (filteredTimezones.length !== timezones.length) {
+      selectedTimezones.value = filteredTimezones;
+    }
+  },
+  { deep: true, immediate: true },
 );
-
-watch(selectedTimezones, (timezones) => {
-  const filteredTimezones = timezones.filter(({ name }) => isAllowedTimeZone(name));
-
-  if (filteredTimezones.length !== timezones.length) {
-    selectedTimezones.value = filteredTimezones;
-  }
-}, { deep: true, immediate: true });
 
 const allTimezones = computed(() => getIanaTimeZoneOptions(browserTimezone));
 
@@ -174,8 +175,7 @@ const normalizedDate = computed(() => {
 
   try {
     return toDate(inputDate.value);
-  }
-  catch (_ignored) {
+  } catch (_ignored) {
     return undefined;
   }
 });
@@ -193,7 +193,7 @@ const validation = useValidation({
   rules: [
     {
       message: t('tools.date-time-converter.texts.message-this-date-is-invalid-for-this-format'),
-      validator: value =>
+      validator: (value) =>
         withDefaultOnError(() => {
           if (value === '') {
             return true;
@@ -220,7 +220,7 @@ function formatDateInTimezone(date: Date | undefined, timezone: string): string 
   }
 
   return withDefaultOnError(() => {
-    return formatInTimeZone(date, timezone, 'yyyy-MM-dd\'T\'HH:mm:ssXXX');
+    return formatInTimeZone(date, timezone, "yyyy-MM-dd'T'HH:mm:ssXXX");
   }, '');
 }
 </script>
@@ -278,10 +278,7 @@ function formatDateInTimezone(date: Date | undefined, timezone: string): string 
 
     <!-- Add timezone button (shown when list is empty) -->
     <div v-else mb-4 mt-4>
-      <c-button
-        size="small"
-        @click="selectedTimezones.push({ name: defaultStoredTimezone })"
-      >
+      <c-button size="small" @click="selectedTimezones.push({ name: defaultStoredTimezone })">
         {{ t('tools.date-time-converter.texts.button-add-timezone') }}
       </c-button>
     </div>

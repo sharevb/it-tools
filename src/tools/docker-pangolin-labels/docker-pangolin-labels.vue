@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import yaml from 'yaml';
-import { blueprintToLabels, extractPangolinLabelsFromCompose, pangolinLabelsToBlueprint } from './docker-pangolin-labels.service';
+import {
+  blueprintToLabels,
+  extractPangolinLabelsFromCompose,
+  pangolinLabelsToBlueprint,
+} from './docker-pangolin-labels.service';
 
 const { t } = useI18n();
 
@@ -28,8 +32,7 @@ function convertComposeToBlueprint() {
     const blueprint = pangolinLabelsToBlueprint(labels);
 
     blueprintOutput.value = yaml.stringify(blueprint);
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err.toString();
   }
 }
@@ -50,8 +53,7 @@ function convertBlueprintToLabels() {
     const labels = blueprintToLabels(blueprint, labelsAsArray.value ? 'array' : 'object');
 
     labelsOutput.value = yaml.stringify(labels);
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err?.message ?? String(err);
   }
 }

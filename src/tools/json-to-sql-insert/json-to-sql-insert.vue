@@ -18,7 +18,11 @@ const defaultValue = `{
   }
 }`;
 const jsonInput = ref(defaultValue);
-const tableName = useQueryParamOrStorage({ name: 'table', storageName: 'json-to-sql-insert:tbl', defaultValue: 'TableName' });
+const tableName = useQueryParamOrStorage({
+  name: 'table',
+  storageName: 'json-to-sql-insert:tbl',
+  defaultValue: 'TableName',
+});
 
 const sqlOutput = computed(() => {
   try {
@@ -26,9 +30,12 @@ const sqlOutput = computed(() => {
     if (!Array.isArray(arr)) {
       arr = [arr];
     }
-    return objectArrayToData(arr.map((o: any) => flatten(o)), 'sql', { tableName: tableName.value });
-  }
-  catch (e: any) {
+    return objectArrayToData(
+      arr.map((o: any) => flatten(o)),
+      'sql',
+      { tableName: tableName.value },
+    );
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -43,7 +50,12 @@ const rules: UseValidationRule<string>[] = [
 
 <template>
   <c-card :title="t('tools.json-to-sql-insert.texts.title-json-to-sql-insert')">
-    <c-input-text v-model:value="tableName" :label="t('tools.json-to-sql-insert.texts.label-table-name')" label-placement="left" mb-1 />
+    <c-input-text
+      v-model:value="tableName"
+      :label="t('tools.json-to-sql-insert.texts.label-table-name')"
+      label-placement="left"
+      mb-1
+    />
     <c-input-text
       v-model:value="jsonInput"
       multiline
@@ -55,10 +67,6 @@ const rules: UseValidationRule<string>[] = [
     />
   </c-card>
   <c-card :title="t('tools.json-to-sql-insert.texts.title-your-sql-insert-code')">
-    <TextareaCopyable
-      :value="sqlOutput"
-      language="sql"
-      download-file-name="output.sql"
-    />
+    <TextareaCopyable :value="sqlOutput" language="sql" download-file-name="output.sql" />
   </c-card>
 </template>

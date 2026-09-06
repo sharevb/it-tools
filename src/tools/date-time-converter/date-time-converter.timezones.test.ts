@@ -1,5 +1,10 @@
 import { describe, expect, test } from 'vitest';
-import { getTimeZoneOptionLabel, isAllowedTimeZone, resolveBrowserTimeZone, resolveIanaTimeZone } from './date-time-converter.timezones';
+import {
+  getTimeZoneOptionLabel,
+  isAllowedTimeZone,
+  resolveBrowserTimeZone,
+  resolveIanaTimeZone,
+} from './date-time-converter.timezones';
 
 describe('date-time-converter timezones', () => {
   describe('resolveIanaTimeZone', () => {
@@ -44,21 +49,25 @@ describe('date-time-converter timezones', () => {
 
   describe('getTimeZoneOptionLabel', () => {
     test('shows both standard and daylight offsets for DST-aware zones', () => {
-      expect(getTimeZoneOptionLabel({
-        browserTimezone: 'Etc/UTC',
-        dstOffsetStr: '-04:00',
-        name: 'America/New_York',
-        utcOffsetStr: '-05:00',
-      })).toBe('America/New_York (-05:00/-04:00)');
+      expect(
+        getTimeZoneOptionLabel({
+          browserTimezone: 'Etc/UTC',
+          dstOffsetStr: '-04:00',
+          name: 'America/New_York',
+          utcOffsetStr: '-05:00',
+        }),
+      ).toBe('America/New_York (-05:00/-04:00)');
     });
 
     test('marks the browser timezone in the label', () => {
-      expect(getTimeZoneOptionLabel({
-        browserTimezone: 'America/New_York',
-        dstOffsetStr: '-04:00',
-        name: 'America/New_York',
-        utcOffsetStr: '-05:00',
-      })).toBe('Browser TZ - America/New_York (-05:00/-04:00)');
+      expect(
+        getTimeZoneOptionLabel({
+          browserTimezone: 'America/New_York',
+          dstOffsetStr: '-04:00',
+          name: 'America/New_York',
+          utcOffsetStr: '-05:00',
+        }),
+      ).toBe('Browser TZ - America/New_York (-05:00/-04:00)');
     });
   });
 });

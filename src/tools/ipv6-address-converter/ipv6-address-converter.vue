@@ -55,21 +55,26 @@ const convertedSections = computed(() => {
         value: getIPNetworkType(parsedIPv6.ip),
       },
     ];
-  }
-  catch (e) {
+  } catch (e) {
     return [];
   }
 });
 
 const { attrs: validationAttrs } = useValidation({
   source: rawIpAddress,
-  rules: [{ message: t('tools.ipv6-address-converter.texts.message-invalid-ipv6-address'), validator: ip => isIPv6(ip) }],
+  rules: [
+    { message: t('tools.ipv6-address-converter.texts.message-invalid-ipv6-address'), validator: (ip) => isIPv6(ip) },
+  ],
 });
 </script>
 
 <template>
   <div>
-    <c-input-text v-model:value="rawIpAddress" :label="t('tools.ipv6-address-converter.texts.label-the-ipv6-address')" :placeholder="t('tools.ipv6-address-converter.texts.placeholder-the-ipv6-address')" />
+    <c-input-text
+      v-model:value="rawIpAddress"
+      :label="t('tools.ipv6-address-converter.texts.label-the-ipv6-address')"
+      :placeholder="t('tools.ipv6-address-converter.texts.placeholder-the-ipv6-address')"
+    />
 
     <n-divider />
 

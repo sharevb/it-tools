@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { onMounted, ref } from 'vue';
-import {
-  NButton, NCheckbox, NCheckboxGroup, NInput,
-} from 'naive-ui';
+import { NButton, NCheckbox, NCheckboxGroup, NInput } from 'naive-ui';
 import { Terminal } from '@xterm/xterm';
 import '@xterm/xterm/css/xterm.css';
 import styles from 'ansi-styles';
@@ -27,11 +25,9 @@ const outputEscapeSequence = computed(() => {
   if (foregroundColor.value) {
     if (colorMode.value === 'basic') {
       openSeq += styles.color.ansi(styles.hexToAnsi(foregroundColor.value));
-    }
-    else if (colorMode.value === '256') {
+    } else if (colorMode.value === '256') {
       openSeq += styles.color.ansi256(styles.hexToAnsi256(foregroundColor.value));
-    }
-    else {
+    } else {
       openSeq += styles.color.ansi16m(...styles.hexToRgb(foregroundColor.value));
     }
     closeSeq = styles.color.close + closeSeq;
@@ -39,11 +35,9 @@ const outputEscapeSequence = computed(() => {
   if (backgroundColor.value) {
     if (colorMode.value === 'basic') {
       openSeq += styles.bgColor.ansi(styles.hexToAnsi(backgroundColor.value));
-    }
-    else if (colorMode.value === '256') {
+    } else if (colorMode.value === '256') {
       openSeq += styles.bgColor.ansi256(styles.hexToAnsi256(backgroundColor.value));
-    }
-    else {
+    } else {
       openSeq += styles.bgColor.ansi16m(...styles.hexToRgb(backgroundColor.value));
     }
     closeSeq = styles.bgColor.close + closeSeq;
@@ -75,7 +69,7 @@ onMounted(() => {
   writeTermAndScrollBottom(outputEscapeSequence.value);
 });
 
-watch(outputEscapeSequence, seq => writeTermAndScrollBottom(seq), { immediate: true });
+watch(outputEscapeSequence, (seq) => writeTermAndScrollBottom(seq), { immediate: true });
 
 const escapeSequenceToTest = useQueryParam({ tool: 'ansi', name: 'seq', defaultValue: '' });
 </script>
@@ -142,7 +136,10 @@ const escapeSequenceToTest = useQueryParam({ tool: 'ansi', name: 'seq', defaultV
     </c-card>
     <c-card :title="t('tools.ansi-escape-tester.texts.title-terminal-preview')">
       <n-form-item label-placement="left" :label="t('tools.ansi-escape-tester.texts.label-custom-ansi-sequence')">
-        <NInput v-model:value="escapeSequenceToTest" :placeholder="t('tools.ansi-escape-tester.texts.placeholder-enter-ansi-escape-sequence')" />
+        <NInput
+          v-model:value="escapeSequenceToTest"
+          :placeholder="t('tools.ansi-escape-tester.texts.placeholder-enter-ansi-escape-sequence')"
+        />
         <NButton type="primary" ml-1 @click="term?.writeln(escapeSequenceToTest)">
           {{ t('tools.ansi-escape-tester.texts.tag-test') }}
         </NButton>

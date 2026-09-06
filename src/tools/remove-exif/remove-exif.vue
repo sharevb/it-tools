@@ -12,17 +12,16 @@ const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
 
 interface ToBufferMemoryStream extends MemoryStream {
-  toBuffer(): Buffer
+  toBuffer(): Buffer;
 }
 
 const base64OutputFile = ref('');
 const fileName = ref('');
-const { download } = useDownloadFileFromBase64(
-  {
-    source: base64OutputFile,
-    filename: fileName,
-    extension: 'jpg',
-  });
+const { download } = useDownloadFileFromBase64({
+  source: base64OutputFile,
+  filename: fileName,
+  extension: 'jpg',
+});
 
 async function onFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;
@@ -35,7 +34,10 @@ async function onFileUploaded(uploadedFile: File) {
     const outStream = MemoryStream.createWriteStream();
     const trans = new ExifTransformer();
     await new Promise((resolve, _reject) => {
-      inStream.pipe(trans).pipe(outStream).on('finish', () => resolve(true));
+      inStream
+        .pipe(trans)
+        .pipe(outStream)
+        .on('finish', () => resolve(true));
     });
 
     const outFileBuffer = (outStream as ToBufferMemoryStream).toBuffer();
@@ -43,8 +45,7 @@ async function onFileUploaded(uploadedFile: File) {
     status.value = 'done';
 
     download();
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
@@ -54,7 +55,11 @@ async function onFileUploaded(uploadedFile: File) {
   <div>
     <div style="flex: 0 0 100%">
       <div mx-auto max-w-600px>
-        <c-file-upload :title="t('tools.remove-exif.texts.title-drag-and-drop-a-image-file-here-or-click-to-select-a-file')" accept="image/*" @file-upload="onFileUploaded" />
+        <c-file-upload
+          :title="t('tools.remove-exif.texts.title-drag-and-drop-a-image-file-here-or-click-to-select-a-file')"
+          accept="image/*"
+          @file-upload="onFileUploaded"
+        />
       </div>
     </div>
 
@@ -62,10 +67,7 @@ async function onFileUploaded(uploadedFile: File) {
       <c-alert v-if="status === 'error'" type="error">
         An error occured processing <span>{{ fileName }}</span>
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
   </div>
 </template>

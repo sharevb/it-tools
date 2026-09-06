@@ -29,11 +29,9 @@ async function onUpload(file: File) {
     metadata.value = parsed.metadata;
 
     output.value = parsed.content;
-  }
-  catch (err: any) {
+  } catch (err: any) {
     output.value = err.toString();
-  }
-  finally {
+  } finally {
     loading.value = false;
   }
 }
@@ -61,13 +59,55 @@ async function onUpload(file: File) {
 
     <!-- Metadata -->
     <n-card v-if="metadata" :title="t('tools.epub-to-markdown.texts.title-metadata')" mb-1>
-      <input-copyable :label="t('tools.epub-to-markdown.texts.label-title')" label-position="left" label-width="100px" mb-1 :value="metadata.title" />
-      <input-copyable :label="t('tools.epub-to-markdown.texts.label-creator')" label-position="left" label-width="100px" mb-1 :value="metadata.creator" />
-      <input-copyable :label="t('tools.epub-to-markdown.texts.label-language')" label-position="left" label-width="100px" mb-1 :value="metadata.language" />
-      <input-copyable :label="t('tools.epub-to-markdown.texts.label-publisher')" label-position="left" label-width="100px" mb-1 :value="metadata.publisher" />
-      <input-copyable :label="t('tools.epub-to-markdown.texts.label-identifier')" label-position="left" label-width="100px" mb-1 :value="metadata.identifier" />
-      <input-copyable :label="t('tools.epub-to-markdown.texts.label-rights')" label-position="left" label-width="100px" mb-1 :value="metadata.rights" />
-      <input-copyable :label="t('tools.epub-to-markdown.texts.label-description')" label-position="left" label-width="100px" mb-1 :value="metadata.description" />
+      <input-copyable
+        :label="t('tools.epub-to-markdown.texts.label-title')"
+        label-position="left"
+        label-width="100px"
+        mb-1
+        :value="metadata.title"
+      />
+      <input-copyable
+        :label="t('tools.epub-to-markdown.texts.label-creator')"
+        label-position="left"
+        label-width="100px"
+        mb-1
+        :value="metadata.creator"
+      />
+      <input-copyable
+        :label="t('tools.epub-to-markdown.texts.label-language')"
+        label-position="left"
+        label-width="100px"
+        mb-1
+        :value="metadata.language"
+      />
+      <input-copyable
+        :label="t('tools.epub-to-markdown.texts.label-publisher')"
+        label-position="left"
+        label-width="100px"
+        mb-1
+        :value="metadata.publisher"
+      />
+      <input-copyable
+        :label="t('tools.epub-to-markdown.texts.label-identifier')"
+        label-position="left"
+        label-width="100px"
+        mb-1
+        :value="metadata.identifier"
+      />
+      <input-copyable
+        :label="t('tools.epub-to-markdown.texts.label-rights')"
+        label-position="left"
+        label-width="100px"
+        mb-1
+        :value="metadata.rights"
+      />
+      <input-copyable
+        :label="t('tools.epub-to-markdown.texts.label-description')"
+        label-position="left"
+        label-width="100px"
+        mb-1
+        :value="metadata.description"
+      />
     </n-card>
 
     <n-space justify="center">
@@ -75,11 +115,7 @@ async function onUpload(file: File) {
     </n-space>
 
     <n-card v-if="output" :title="t('tools.epub-to-markdown.texts.title-epub-content')">
-      <textarea-copyable
-        :value="output"
-        :language="format"
-        download-file-name="book.md"
-      />
+      <textarea-copyable :value="output" :language="format" download-file-name="book.md" />
     </n-card>
   </div>
 </template>

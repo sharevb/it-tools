@@ -8,13 +8,18 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
-const tableName = useQueryParamOrStorage({ name: 'table', storageName: 'json-to-sqlddl:tbl', defaultValue: 'TableName' });
+const tableName = useQueryParamOrStorage({
+  name: 'table',
+  storageName: 'json-to-sqlddl:tbl',
+  defaultValue: 'TableName',
+});
 
 function convertJsonToDDL(value: string) {
   const object = JSON5.parse(value);
   return GenerateSchema.mysql(tableName.value, object);
 }
-const transformer = (value: string) => value.trim() === '' ? '' : withDefaultOnError(() => convertJsonToDDL(value), '');
+const transformer = (value: string) =>
+  value.trim() === '' ? '' : withDefaultOnError(() => convertJsonToDDL(value), '');
 
 const rules: UseValidationRule<string>[] = [
   {

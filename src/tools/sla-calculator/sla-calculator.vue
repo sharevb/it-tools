@@ -16,13 +16,13 @@ function prettySeconds(seconds: number | null) {
 }
 
 const daysHours = useQueryParamOrStorage<{
-  mon?: number
-  tue?: number
-  wed?: number
-  thu?: number
-  fri?: number
-  sat?: number
-  sun?: number
+  mon?: number;
+  tue?: number;
+  wed?: number;
+  thu?: number;
+  fri?: number;
+  sat?: number;
+  sun?: number;
 }>({
   name: 'days',
   storageName: 'sla:days',
@@ -64,7 +64,7 @@ const inputDurationValidation = useValidation({
   rules: [
     {
       message: t('tools.sla-calculator.texts.message-invalid-duration'),
-      validator: value => parse(value),
+      validator: (value) => parse(value),
     },
   ],
 });
@@ -105,19 +105,40 @@ const outputSLAs = computed(() => {
 
       <n-divider />
 
-      <n-form-item v-if="outputDownTimes.durationPerDay" :label="t('tools.sla-calculator.texts.label-daily-downtime')" label-placement="left" label-width="100">
+      <n-form-item
+        v-if="outputDownTimes.durationPerDay"
+        :label="t('tools.sla-calculator.texts.label-daily-downtime')"
+        label-placement="left"
+        label-width="100"
+      >
         <input-copyable :value="outputDownTimes.durationPerDay" />
       </n-form-item>
-      <n-form-item :label="t('tools.sla-calculator.texts.label-weekly-downtime')" label-placement="left" label-width="100">
+      <n-form-item
+        :label="t('tools.sla-calculator.texts.label-weekly-downtime')"
+        label-placement="left"
+        label-width="100"
+      >
         <input-copyable :value="outputDownTimes.durationPerWeek" />
       </n-form-item>
-      <n-form-item :label="t('tools.sla-calculator.texts.label-monthly-downtime')" label-placement="left" label-width="100">
+      <n-form-item
+        :label="t('tools.sla-calculator.texts.label-monthly-downtime')"
+        label-placement="left"
+        label-width="100"
+      >
         <input-copyable :value="outputDownTimes.durationPerMonth" />
       </n-form-item>
-      <n-form-item :label="t('tools.sla-calculator.texts.label-quarterly-downtime')" label-placement="left" label-width="100">
+      <n-form-item
+        :label="t('tools.sla-calculator.texts.label-quarterly-downtime')"
+        label-placement="left"
+        label-width="100"
+      >
         <input-copyable :value="outputDownTimes.durationPerQuarter" />
       </n-form-item>
-      <n-form-item :label="t('tools.sla-calculator.texts.label-yearly-downtime')" label-placement="left" label-width="100">
+      <n-form-item
+        :label="t('tools.sla-calculator.texts.label-yearly-downtime')"
+        label-placement="left"
+        label-width="100"
+      >
         <input-copyable :value="outputDownTimes.durationPerYear" />
       </n-form-item>
     </c-card>
@@ -134,7 +155,12 @@ const outputSLAs = computed(() => {
 
       <n-divider />
 
-      <n-form-item v-if="outputSLAs.slaForDay" :label="t('tools.sla-calculator.texts.label-daily-sla')" label-placement="left" label-width="100">
+      <n-form-item
+        v-if="outputSLAs.slaForDay"
+        :label="t('tools.sla-calculator.texts.label-daily-sla')"
+        label-placement="left"
+        label-width="100"
+      >
         <input-copyable :value="outputSLAs.slaForDay" />
       </n-form-item>
       <n-form-item :label="t('tools.sla-calculator.texts.label-weekly-sla')" label-placement="left" label-width="100">
@@ -143,7 +169,11 @@ const outputSLAs = computed(() => {
       <n-form-item :label="t('tools.sla-calculator.texts.label-monthly-sla')" label-placement="left" label-width="100">
         <input-copyable :value="outputSLAs.slaForMonth" />
       </n-form-item>
-      <n-form-item :label="t('tools.sla-calculator.texts.label-quarterly-sla')" label-placement="left" label-width="100">
+      <n-form-item
+        :label="t('tools.sla-calculator.texts.label-quarterly-sla')"
+        label-placement="left"
+        label-width="100"
+      >
         <input-copyable :value="outputSLAs.slaForQuarter" />
       </n-form-item>
       <n-form-item :label="t('tools.sla-calculator.texts.label-yearly-sla')" label-placement="left" label-width="100">

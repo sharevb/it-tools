@@ -2,17 +2,17 @@ import sanitizeHtml from 'sanitize-html';
 
 function stripNonLatinCharacters(text: string) {
   return text.replace(/[^A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\u02BB\u02EE\uA78C\d\s_-]/g, '');
-};
+}
 
 function transformInlineCode(text: string, transform: (s: string) => string) {
   return text.replace(/`(.*?)`/g, (_, p) => {
     return `\`${transform(p)}\``;
   });
-};
+}
 
 function spacesToDash(text: string) {
   return text.replace(/\s/g, '-');
-};
+}
 
 function stripHtmlTags(text: string) {
   return sanitizeHtml(text, {
@@ -23,11 +23,11 @@ function stripHtmlTags(text: string) {
 
 function stripMarkdownLinks(text: string, replacement: string = '$1') {
   return text.replace(/\[([^\]]*)\]\([^\)]*\)/g, replacement); // NOSONAR
-};
+}
 
 function concatDashes(text: string) {
   return text.replace(/--+/g, '-');
-};
+}
 
 function removeUnderscoreBoldAndItalics(text: string) {
   const underscoreBoldAndItalicsRegexes = ['__', '_'].map((it) => {
@@ -40,7 +40,7 @@ function removeUnderscoreBoldAndItalics(text: string) {
     result = result.replace(regex, '$1');
   });
   return result;
-};
+}
 
 function genericAnchorGenerator(text: string, concatSpaces: boolean) {
   let result = text;
@@ -58,30 +58,31 @@ function genericAnchorGenerator(text: string, concatSpaces: boolean) {
     result = concatDashes(result);
   }
   return result;
-};
+}
 
 function escapeRegExp(string: string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
 
 interface Title {
-  level: number
-  id: string
-  name: string
-  md: string
+  level: number;
+  id: string;
+  name: string;
+  md: string;
 }
 
 function getTitles(markdown: string, idGenerator: (titleMarkdownContent: string) => string) {
   const titles: Title[] = [];
 
-  markdown = markdown.replace(/^```[\s\S]*?\n```/mg, () => {
+  markdown = markdown.replace(/^```[\s\S]*?\n```/gm, () => {
     return '';
   });
-  markdown = markdown.replace(/^~~~[\s\S]*?\n~~~/mg, () => {
+  markdown = markdown.replace(/^~~~[\s\S]*?\n~~~/gm, () => {
     return '';
   });
 
-  [...markdown.matchAll(/^(#+)(.*$)/mg)].forEach( // NOSONAR
+  [...markdown.matchAll(/^(#+)(.*$)/gm)].forEach(
+    // NOSONAR
     ([match, levelString, titleContent]) => {
       const level = levelString.length;
 
@@ -91,10 +92,11 @@ function getTitles(markdown: string, idGenerator: (titleMarkdownContent: string)
         id: idGenerator(titleContent),
         name: titleContent.trim(),
       });
-    });
+    },
+  );
 
   return titles;
-};
+}
 
 export function getTocMarkdown({
   markdown,
@@ -106,27 +108,26 @@ export function getTocMarkdown({
   concatSpaces = true,
   commentStyle = 'html',
 }: {
-  markdown: string
-  generateAnchors?: boolean
-  indentChars?: string
-  indentSpaces?: number
-  maxLevel?: number
-  anchorPrefix?: string
-  concatSpaces?: boolean
-  commentStyle?: 'html' | 'liquid'
+  markdown: string;
+  generateAnchors?: boolean;
+  indentChars?: string;
+  indentSpaces?: number;
+  maxLevel?: number;
+  anchorPrefix?: string;
+  concatSpaces?: boolean;
+  commentStyle?: 'html' | 'liquid';
 }) {
   const allIds: { [id: string]: number } = {};
   const getFinalId = (id: string) => {
     if (typeof allIds[id] === 'undefined') {
       allIds[id] = 0;
       return id;
-    }
-    else {
+    } else {
       allIds[id] += 1;
       return `${id}-${allIds[id]}`;
     }
   };
-  const titles = getTitles(markdown, titleContent => getFinalId(genericAnchorGenerator(titleContent, concatSpaces)));
+  const titles = getTitles(markdown, (titleContent) => getFinalId(genericAnchorGenerator(titleContent, concatSpaces)));
 
   const createLink = (linkText: string, url: string) => {
     return `[${linkText.replace(/\\/g, '\\\\').replace(/\[/g, '\\[').replace(/\]/g, '\\]')}](${url.replace(/\(/g, '%28').replace(/\(/g, '%29')})`;
@@ -141,10 +142,7 @@ export function getTocMarkdown({
     new RegExp(`\n${escapeRegExp(commentOpen)} TOC START.*?TOC END ${escapeRegExp(commentClose)}\n`, 'smg'),
     '\n[TOC]\n',
   );
-  resultMarkdown = resultMarkdown.replace(
-    new RegExp(`^${escapeRegExp(commentOpen)} TOC ANCHOR.*?\n`, 'mg'),
-    '',
-  );
+  resultMarkdown = resultMarkdown.replace(new RegExp(`^${escapeRegExp(commentOpen)} TOC ANCHOR.*?\n`, 'mg'), '');
 
   titles.forEach((title) => {
     if (title.level === 1) {
@@ -169,13 +167,13 @@ export function getTocMarkdown({
     if (generateAnchors) {
       resultMarkdown = resultMarkdown.replace(
         new RegExp(`(?<!^${commentOpen} TOC ANCHOR.*\n)^${escapeRegExp(title.md)}`, 'm'),
-          `${commentOpen} TOC ANCHOR ${commentClose}<a name="${title.id}"></a>\n${title.md}`,
+        `${commentOpen} TOC ANCHOR ${commentClose}<a name="${title.id}"></a>\n${title.md}`,
       );
     }
   });
 
   resultMarkdown = resultMarkdown.replace(
-    /^\[TOC\]\n/mg,
+    /^\[TOC\]\n/gm,
     `${commentOpen} TOC START ${commentClose}\n${markdownTOC}${commentOpen} TOC END ${commentClose}\n`,
   );
 

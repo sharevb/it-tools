@@ -11,7 +11,11 @@ const { t } = useI18n();
 const workbook = ref<XLSX.WorkBook | null>(null);
 const convertedData = ref<string>('');
 const selectedFormat = useQueryParamOrStorage({ name: 'fmt', storageName: 'excel-to-data:fmt', defaultValue: 'json' });
-const tableName = useQueryParamOrStorage({ name: 'table', storageName: 'excel-to-data:tbl', defaultValue: 'TableName' });
+const tableName = useQueryParamOrStorage({
+  name: 'table',
+  storageName: 'excel-to-data:tbl',
+  defaultValue: 'TableName',
+});
 const nestify = ref(false);
 const sheetName = ref('');
 const error = ref('');
@@ -34,8 +38,7 @@ async function handleFileUpload(file: File) {
   try {
     workbook.value = XLSX.read(await file.arrayBuffer(), { type: 'binary' });
     sheetName.value = workbook.value.SheetNames[0];
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
 }
@@ -53,7 +56,7 @@ function convertFile() {
     tableName: tableName.value,
     nestify: nestify.value,
   });
-};
+}
 </script>
 
 <template>
@@ -66,18 +69,31 @@ function convertFile() {
     />
 
     <NFormItem v-if="workbook" :label="t('tools.excel-to-data.texts.label-select-sheet-to-use')" label-placement="left">
-      <NSelect v-model:value="sheetName" :options="workbook.SheetNames?.map((s) => ({ label: s, value: s }))" :placeholder="t('tools.excel-to-data.texts.placeholder-select-sheet')" />
+      <NSelect
+        v-model:value="sheetName"
+        :options="workbook.SheetNames?.map((s) => ({ label: s, value: s }))"
+        :placeholder="t('tools.excel-to-data.texts.placeholder-select-sheet')"
+      />
     </NFormItem>
 
     <NFormItem :label="t('tools.excel-to-data.texts.label-select-output-format')" label-placement="left">
-      <NSelect v-model:value="selectedFormat" :options="formats" :placeholder="t('tools.excel-to-data.texts.placeholder-select-format')" />
+      <NSelect
+        v-model:value="selectedFormat"
+        :options="formats"
+        :placeholder="t('tools.excel-to-data.texts.placeholder-select-format')"
+      />
     </NFormItem>
 
     <n-form-item :label="t('tools.excel-to-data.texts.label-nestify-a-b-c-to-nested-objects')" label-placement="left">
       <n-checkbox v-model:checked="nestify" />
     </n-form-item>
 
-    <c-input-text v-if="selectedFormat === 'sql'" v-model:value="tableName" :label="t('tools.excel-to-data.texts.label-table-name')" label-placement="left" />
+    <c-input-text
+      v-if="selectedFormat === 'sql'"
+      v-model:value="tableName"
+      :label="t('tools.excel-to-data.texts.label-table-name')"
+      label-placement="left"
+    />
 
     <div mt-3 flex justify-center>
       <NButton :disabled="!workbook" @click="convertFile">
@@ -90,7 +106,11 @@ function convertFile() {
     </c-alert>
 
     <c-card v-if="convertedData" :title="t('tools.excel-to-data.texts.title-converted-data')">
-      <textarea-copyable :value="convertedData" :language="selectedFormat" :download-file-name="`output.${selectedFormat}`" />
+      <textarea-copyable
+        :value="convertedData"
+        :language="selectedFormat"
+        :download-file-name="`output.${selectedFormat}`"
+      />
     </c-card>
   </NCard>
 </template>

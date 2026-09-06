@@ -57,7 +57,7 @@ zpool history mypool
 ## 🛠 Vdev Types
 
 | Vdev type | Description                         | RAID equivalent     | Min. disks | Survives                       |
-|-----------|-------------------------------------|---------------------|------------|--------------------------------|
+| --------- | ----------------------------------- | ------------------- | ---------- | ------------------------------ |
 | `stripe`  | Data spread across disks, no parity | RAID 0              | 1          | nothing                        |
 | `mirror`  | A full copy on every disk           | RAID 1              | 2          | all but one disk               |
 | `raidz1`  | Single parity                       | RAID 5              | 3          | 1 disk                         |

@@ -18,11 +18,14 @@ function ipv4ToIpv6({ ip, prefix = '0000:0000:0000:0000:0000:ffff:' }: { ip: str
     return '';
   }
 
-  const hexParts = ip.trim().split('.').map(part => Number.parseInt(part).toString(16).padStart(2, '0'));
+  const hexParts = ip
+    .trim()
+    .split('.')
+    .map((part) => Number.parseInt(part).toString(16).padStart(2, '0'));
   return (
-    prefix
-    + _.chunk(hexParts, 2)
-      .map(blocks => blocks.join(''))
+    prefix +
+    _.chunk(hexParts, 2)
+      .map((blocks) => blocks.join(''))
       .join(':')
   );
 }

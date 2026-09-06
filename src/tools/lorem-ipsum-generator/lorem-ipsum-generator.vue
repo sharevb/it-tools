@@ -28,7 +28,10 @@ const [loremIpsumText, refreshLoremIpsum] = computedRefreshable(() =>
   }),
 );
 
-const { copy } = useCopy({ source: loremIpsumText, text: t('tools.lorem-ipsum-generator.texts.text-lorem-ipsum-copied-to-the-clipboard') });
+const { copy } = useCopy({
+  source: loremIpsumText,
+  text: t('tools.lorem-ipsum-generator.texts.text-lorem-ipsum-copied-to-the-clipboard'),
+});
 
 function printLorem() {
   const w = window.open();
@@ -49,23 +52,55 @@ function printLorem() {
       :options="Object.values(supportedLanguages)"
       mb-2
     />
-    <n-form-item :label="t('tools.lorem-ipsum-generator.texts.label-paragraphs')" :show-feedback="false" label-width="200" label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.texts.label-paragraphs')"
+      :show-feedback="false"
+      label-width="200"
+      label-placement="left"
+    >
       <n-slider v-model:value="paragraphs" :step="1" :min="1" :max="20" />
     </n-form-item>
-    <n-form-item :label="t('tools.lorem-ipsum-generator.texts.label-sentences-per-paragraph')" :show-feedback="false" label-width="200" label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.texts.label-sentences-per-paragraph')"
+      :show-feedback="false"
+      label-width="200"
+      label-placement="left"
+    >
       <n-slider v-model:value="sentences" range :step="1" :min="1" :max="50" />
     </n-form-item>
-    <n-form-item :label="t('tools.lorem-ipsum-generator.texts.label-words-per-sentence')" :show-feedback="false" label-width="200" label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.texts.label-words-per-sentence')"
+      :show-feedback="false"
+      label-width="200"
+      label-placement="left"
+    >
       <n-slider v-model:value="words" range :step="1" :min="1" :max="50" />
     </n-form-item>
-    <n-form-item :label="t('tools.lorem-ipsum-generator.texts.label-start-with-lorem-ipsum')" :show-feedback="false" label-width="200" label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.texts.label-start-with-lorem-ipsum')"
+      :show-feedback="false"
+      label-width="200"
+      label-placement="left"
+    >
       <n-switch v-model:value="startWithLoremIpsum" />
     </n-form-item>
-    <n-form-item :label="t('tools.lorem-ipsum-generator.texts.label-as-html')" :show-feedback="false" label-width="200" label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.texts.label-as-html')"
+      :show-feedback="false"
+      label-width="200"
+      label-placement="left"
+    >
       <n-switch v-model:value="asHTML" />
     </n-form-item>
 
-    <c-input-text :value="loremIpsumText" multiline :placeholder="t('tools.lorem-ipsum-generator.texts.placeholder-your-lorem-ipsum')" readonly mt-5 rows="5" />
+    <c-input-text
+      :value="loremIpsumText"
+      multiline
+      :placeholder="t('tools.lorem-ipsum-generator.texts.placeholder-your-lorem-ipsum')"
+      readonly
+      mt-5
+      rows="5"
+    />
 
     <div mt-5 flex justify-center gap-3>
       <c-button autofocus @click="copy()">

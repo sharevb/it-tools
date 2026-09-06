@@ -6,7 +6,16 @@ import { getIPClass } from './ipv4-subnet-calculator.models';
 import { withDefaultOnError } from '@/utils/defaults';
 import { isNotThrowing } from '@/utils/boolean';
 import SpanCopyable from '@/components/SpanCopyable.vue';
-import { getIPNetworkType, getNetworksCount, getSubnets, parseAsCIDR, to6to4Prefix, toARPA, toIPv4MappedAddress, toIPv4MappedAddressDecimal } from '@/utils/ip';
+import {
+  getIPNetworkType,
+  getNetworksCount,
+  getSubnets,
+  parseAsCIDR,
+  to6to4Prefix,
+  toARPA,
+  toIPv4MappedAddress,
+  toIPv4MappedAddressDecimal,
+} from '@/utils/ip';
 import { useITStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -25,13 +34,13 @@ const ipValidationRules = [
 ];
 
 const sections: {
-  label: string
-  getValue: (blocks: Netmask) => string | undefined
-  undefinedFallback?: string
+  label: string;
+  getValue: (blocks: Netmask) => string | undefined;
+  undefinedFallback?: string;
 }[] = [
   {
     label: t('tools.ipv4-subnet-calculator.texts.label-netmask'),
-    getValue: block => block.toString(),
+    getValue: (block) => block.toString(),
   },
   {
     label: t('tools.ipv4-subnet-calculator.texts.label-network-address'),
@@ -118,7 +127,11 @@ function switchToBlock({ count = 1 }: { count?: number }) {
   <div>
     <c-input-text
       v-model:value="ip"
-      :label="t('tools.ipv4-subnet-calculator.texts.label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask')"
+      :label="
+        t(
+          'tools.ipv4-subnet-calculator.texts.label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask',
+        )
+      "
       :placeholder="t('tools.ipv4-subnet-calculator.texts.placeholder-the-ipv4-address')"
       :validation-rules="ipValidationRules"
       mb-4

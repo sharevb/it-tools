@@ -9,8 +9,7 @@ const lintErrors = computed(() => {
   try {
     parseToml(tomlContent.value);
     return '';
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString().trim();
   }
 });
@@ -26,12 +25,7 @@ const MONACO_EDITOR_OPTIONS = {
   <div>
     <n-card :title="t('tools.toml-linter.texts.title-your-toml-content')" mb-2>
       <div relative w-full>
-        <c-monaco-editor
-          v-model:value="tomlContent"
-          theme="vs-dark"
-          height="250px"
-          :options="MONACO_EDITOR_OPTIONS"
-        />
+        <c-monaco-editor v-model:value="tomlContent" theme="vs-dark" height="250px" :options="MONACO_EDITOR_OPTIONS" />
       </div>
     </n-card>
 

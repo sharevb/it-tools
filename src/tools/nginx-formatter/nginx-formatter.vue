@@ -25,13 +25,17 @@ proxy_cache_bypass $http_upgrade;
 }  
 }`;
 function transformer(value: string) {
-  return withDefaultOnError(() => formatContent(value, {
-    indentStyle: 'space',
-    dontJoinCurlyBracket: false,
-    align: true,
-    trailingBlankLines: false,
-    extension: 'conf',
-  }), '');
+  return withDefaultOnError(
+    () =>
+      formatContent(value, {
+        indentStyle: 'space',
+        dontJoinCurlyBracket: false,
+        align: true,
+        trailingBlankLines: false,
+        extension: 'conf',
+      }),
+    '',
+  );
 }
 
 const rules: UseValidationRule<string>[] = [

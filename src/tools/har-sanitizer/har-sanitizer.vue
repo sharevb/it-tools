@@ -6,12 +6,7 @@ import { defaultScrubItems, getHarInfo, sanitize } from './lib/har_sanitize';
 const { t } = useI18n();
 
 type ScrubState = Record<ScrubType, Record<string, boolean>>;
-type ScrubType =
- | 'cookies'
- | 'headers'
- | 'queryArgs'
- | 'postParams'
- | 'mimeTypes';
+type ScrubType = 'cookies' | 'headers' | 'queryArgs' | 'postParams' | 'mimeTypes';
 
 const typeMap: Record<ScrubType, string> = {
   cookies: 'Cookies',
@@ -93,7 +88,7 @@ function readAsTextAsync(file: File) {
     const reader = new FileReader();
     reader.readAsText(file);
     reader.onload = () => resolve(reader.result?.toString() ?? '');
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
@@ -105,8 +100,7 @@ async function onFileUploaded(uploadedFile: File) {
   error.value = '';
   try {
     scrubItemsToClean.value = getScrubableItems(harContent.value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
 }
@@ -122,7 +116,8 @@ function processHar() {
       <div mx-auto max-w-600px>
         <c-file-upload
           :title="t('tools.har-sanitizer.texts.title-drag-and-drop-a-har-file-here-or-click-to-select-a-file')"
-          accept=".har" @file-upload="onFileUploaded"
+          accept=".har"
+          @file-upload="onFileUploaded"
         />
       </div>
     </div>
@@ -133,11 +128,22 @@ function processHar() {
 
     <div v-for="(title, key) in typeMap" :key="key" mb-1>
       <c-card v-if="Object.keys(scrubItemsToClean[key]).length" :title="title">
-        <n-checkbox font-size-5 @update:checked="(allChecked: boolean) => Object.keys(scrubItemsToClean[key]).forEach((name) => scrubItemsToClean[key][name] = allChecked)">
+        <n-checkbox
+          font-size-5
+          @update:checked="
+            (allChecked: boolean) =>
+              Object.keys(scrubItemsToClean[key]).forEach((name) => (scrubItemsToClean[key][name] = allChecked))
+          "
+        >
           All {{ title }}
         </n-checkbox>
         <n-space size="large">
-          <n-checkbox v-for="(checked, name) in scrubItemsToClean[key]" :key="name" v-model:checked="scrubItemsToClean[key][name]" style="width: 150px">
+          <n-checkbox
+            v-for="(checked, name) in scrubItemsToClean[key]"
+            :key="name"
+            v-model:checked="scrubItemsToClean[key][name]"
+            style="width: 150px"
+          >
             {{ name }}
           </n-checkbox>
         </n-space>

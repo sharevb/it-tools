@@ -2,7 +2,8 @@ const random = () => Math.random();
 
 const randFromArray = (array: unknown[]) => array[Math.floor(random() * array.length)];
 
-const multiRandFromArray = (array: unknown[], length: number) => Array.from({ length }, () => array[Math.floor(random() * array.length)]);
+const multiRandFromArray = (array: unknown[], length: number) =>
+  Array.from({ length }, () => array[Math.floor(random() * array.length)]);
 
 const randIntFromInterval = (min: number, max: number) => Math.floor(random() * (max - min) + min);
 

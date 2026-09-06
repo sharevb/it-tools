@@ -20,13 +20,11 @@ const fileInput = ref() as Ref<File | null>;
 const cssCode = computedAsync(async () => {
   try {
     if (inputType.value === 'file' && fileInput.value) {
-      return (await imageToCSS(fileInput.value, type.value as CSSType));
+      return await imageToCSS(fileInput.value, type.value as CSSType);
+    } else {
+      return await imageToCSS(svgContent.value, type.value as CSSType);
     }
-    else {
-      return (await imageToCSS(svgContent.value, type.value as CSSType));
-    }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -48,14 +46,8 @@ watch(svgContent, (newValue) => {
   <div>
     <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
       <n-space>
-        <n-radio
-          value="file"
-          :label="t('tools.image-to-css.texts.label-file')"
-        />
-        <n-radio
-          value="content"
-          :label="t('tools.image-to-css.texts.label-content')"
-        />
+        <n-radio value="file" :label="t('tools.image-to-css.texts.label-file')" />
+        <n-radio value="content" :label="t('tools.image-to-css.texts.label-content')" />
       </n-space>
     </n-radio-group>
 
@@ -90,11 +82,7 @@ watch(svgContent, (newValue) => {
       <n-divider />
 
       <h3>{{ t('tools.image-to-css.texts.tag-css-code') }}</h3>
-      <TextareaCopyable
-        :value="cssCode"
-        download-file-name="output.css"
-        word-wrap
-      />
+      <TextareaCopyable :value="cssCode" download-file-name="output.css" word-wrap />
     </div>
   </div>
 </template>

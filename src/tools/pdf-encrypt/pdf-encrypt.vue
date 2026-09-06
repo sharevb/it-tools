@@ -10,13 +10,37 @@ const { t } = useI18n();
 const status = ref<'idle' | 'done' | 'error' | 'processing'>('idle');
 const file = ref<File | null>(null);
 
-const restrictAccessibility = useQueryParamOrStorage({ name: 'a11y', storageName: 'pdf-encrypt:accessibility', defaultValue: false });
-const restrictAnnotate = useQueryParamOrStorage({ name: 'annot', storageName: 'pdf-encrypt:annotate', defaultValue: false });
-const restrictAssemble = useQueryParamOrStorage({ name: 'assemble', storageName: 'pdf-encrypt:assemble', defaultValue: false });
-const restrictExtract = useQueryParamOrStorage({ name: 'extract', storageName: 'pdf-encrypt:extract', defaultValue: false });
+const restrictAccessibility = useQueryParamOrStorage({
+  name: 'a11y',
+  storageName: 'pdf-encrypt:accessibility',
+  defaultValue: false,
+});
+const restrictAnnotate = useQueryParamOrStorage({
+  name: 'annot',
+  storageName: 'pdf-encrypt:annotate',
+  defaultValue: false,
+});
+const restrictAssemble = useQueryParamOrStorage({
+  name: 'assemble',
+  storageName: 'pdf-encrypt:assemble',
+  defaultValue: false,
+});
+const restrictExtract = useQueryParamOrStorage({
+  name: 'extract',
+  storageName: 'pdf-encrypt:extract',
+  defaultValue: false,
+});
 const restrictForm = useQueryParamOrStorage({ name: 'form', storageName: 'pdf-encrypt:form', defaultValue: false });
-const restrictModifyOther = useQueryParamOrStorage({ name: 'othermodify', storageName: 'pdf-encrypt:modoth', defaultValue: false });
-const clearTextMetadata = useQueryParamOrStorage({ name: 'clearmeta', storageName: 'pdf-encrypt:clearmeta', defaultValue: false });
+const restrictModifyOther = useQueryParamOrStorage({
+  name: 'othermodify',
+  storageName: 'pdf-encrypt:modoth',
+  defaultValue: false,
+});
+const clearTextMetadata = useQueryParamOrStorage({
+  name: 'clearmeta',
+  storageName: 'pdf-encrypt:clearmeta',
+  defaultValue: false,
+});
 const restrictModify = useQueryParamOrStorage({ name: 'modify', storageName: 'pdf-encrypt:mod', defaultValue: 'all' });
 const restrictPrint = useQueryParamOrStorage({ name: 'print', storageName: 'pdf-encrypt:print', defaultValue: 'full' });
 const userPassword = ref('');
@@ -26,12 +50,11 @@ const base64OutputPDF = ref('');
 const logs = ref<string[]>([]);
 const fileName = ref('');
 const fileExtension = ref('pdf');
-const { download } = useDownloadFileFromBase64Refs(
-  {
-    source: base64OutputPDF,
-    filename: fileName,
-    extension: fileExtension,
-  });
+const { download } = useDownloadFileFromBase64Refs({
+  source: base64OutputPDF,
+  filename: fileName,
+  extension: fileExtension,
+});
 const qpdfCommand = ref('');
 
 function onFileUploaded(uploadedFile: File) {
@@ -47,36 +70,31 @@ async function onProcessClicked() {
 
   status.value = 'processing';
   try {
-    const options = [
-      '--verbose',
-      '--encrypt',
-    ];
+    const options = ['--verbose', '--encrypt'];
     options.push(`${userPassword.value}`);
     options.push(`${ownerPassword.value}`);
     options.push('128');
     options.push('--use-aes=y');
-    options.push(`--accessibility=${(restrictAccessibility.value ? 'n' : 'y')}`);
-    options.push(`--annotate=${(restrictAnnotate.value ? 'n' : 'y')}`);
-    options.push(`--assemble=${(restrictAssemble.value ? 'n' : 'y')}`);
-    options.push(`--extract=${(restrictExtract.value ? 'n' : 'y')}`);
-    options.push(`--form=${(restrictForm.value ? 'n' : 'y')}`);
-    options.push(`--modify-other=${(restrictModifyOther.value ? 'n' : 'y')}`);
-    options.push(`--modify=${(restrictModify.value)}`);
-    options.push(`--print=${(restrictPrint.value)}`);
+    options.push(`--accessibility=${restrictAccessibility.value ? 'n' : 'y'}`);
+    options.push(`--annotate=${restrictAnnotate.value ? 'n' : 'y'}`);
+    options.push(`--assemble=${restrictAssemble.value ? 'n' : 'y'}`);
+    options.push(`--extract=${restrictExtract.value ? 'n' : 'y'}`);
+    options.push(`--form=${restrictForm.value ? 'n' : 'y'}`);
+    options.push(`--modify-other=${restrictModifyOther.value ? 'n' : 'y'}`);
+    options.push(`--modify=${restrictModify.value}`);
+    options.push(`--print=${restrictPrint.value}`);
     if (clearTextMetadata.value) {
       options.push('--cleartext-metadata');
     }
     options.push('--');
     options.push('in.pdf');
     options.push('out.pdf');
-    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
-      options, 0);
+    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer, options, 0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
 
     download();
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
@@ -100,15 +118,24 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
   return mod.FS.readFile('out.pdf');
 }
 
-const printRestrictionOptions = [{ value: 'none', label: t('tools.pdf-encrypt.texts.label-disallow-printing') },
+const printRestrictionOptions = [
+  { value: 'none', label: t('tools.pdf-encrypt.texts.label-disallow-printing') },
   { value: 'low', label: t('tools.pdf-encrypt.texts.label-allow-only-low-resolution-printing') },
   { value: 'full', label: t('tools.pdf-encrypt.texts.label-allow-full-printing') },
 ];
 const modificationRestrictionOptions = [
   { value: 'none', label: t('tools.pdf-encrypt.texts.label-allow-no-modifications') },
   { value: 'assembly', label: t('tools.pdf-encrypt.texts.label-allow-document-assembly-only') },
-  { value: 'form', label: t('tools.pdf-encrypt.texts.label-allow-document-assembly-only-filling-in-form-fields-and-signing') },
-  { value: 'annotate', label: t('tools.pdf-encrypt.texts.label-allow-document-assembly-only-filling-in-form-fields-and-signing-commenting-and-modifying-forms') },
+  {
+    value: 'form',
+    label: t('tools.pdf-encrypt.texts.label-allow-document-assembly-only-filling-in-form-fields-and-signing'),
+  },
+  {
+    value: 'annotate',
+    label: t(
+      'tools.pdf-encrypt.texts.label-allow-document-assembly-only-filling-in-form-fields-and-signing-commenting-and-modifying-forms',
+    ),
+  },
   { value: 'all', label: t('tools.pdf-encrypt.texts.label-allow-full-document-modification') },
 ];
 </script>
@@ -165,11 +192,7 @@ const modificationRestrictionOptions = [
         mt-3
       />
     </c-card>
-    <n-form-item
-      :label="t('tools.pdf-encrypt.texts.label-owner-password')"
-      label-placement="left"
-      mb-1
-    >
+    <n-form-item :label="t('tools.pdf-encrypt.texts.label-owner-password')" label-placement="left" mb-1>
       <n-input
         :value="ownerPassword"
         type="password"
@@ -177,11 +200,7 @@ const modificationRestrictionOptions = [
       />
     </n-form-item>
 
-    <n-form-item
-      :label="t('tools.pdf-encrypt.texts.label-user-password')"
-      label-placement="left"
-      mb-1
-    >
+    <n-form-item :label="t('tools.pdf-encrypt.texts.label-user-password')" label-placement="left" mb-1>
       <n-input
         :value="userPassword"
         type="password"
@@ -201,10 +220,7 @@ const modificationRestrictionOptions = [
       <c-alert v-if="status === 'error'" type="error">
         {{ $t('tools.file-type.texts.an-error-occured-processing') }} <span>{{ fileName }}</span>
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
 
     <c-card :title="t('tools.pdf-encrypt.texts.title-logs')">

@@ -2,13 +2,15 @@
 
 ```css
 /* every <a> inside a .card that opens in a new tab */
-.card a[target="_blank"] { color: rebeccapurple; }
+.card a[target='_blank'] {
+  color: rebeccapurple;
+}
 ```
 
 ## 🎯 Basic Selectors
 
 | Selector         | Example        | Selects                                    |
-|------------------|----------------|--------------------------------------------|
+| ---------------- | -------------- | ------------------------------------------ |
 | `*`              | `*`            | Every element                              |
 | `element`        | `p`            | Every `<p>` element                        |
 | `.class`         | `.intro`       | Every element with `class="intro"`         |
@@ -20,7 +22,7 @@
 ## 🔗 Combinators
 
 | Selector | Example   | Selects                                                                   |
-|----------|-----------|---------------------------------------------------------------------------|
+| -------- | --------- | ------------------------------------------------------------------------- |
 | `a b`    | `div p`   | Every `<p>` anywhere inside a `<div>` (descendant)                        |
 | `a > b`  | `div > p` | Every `<p>` whose direct parent is a `<div>` (child)                      |
 | `a + b`  | `div + p` | The `<p>` immediately after a `<div>` (adjacent sibling)                  |
@@ -29,7 +31,7 @@
 ## 🏷 Attribute Selectors
 
 | Selector           | Example             | Selects                                                            |
-|--------------------|---------------------|--------------------------------------------------------------------|
+| ------------------ | ------------------- | ------------------------------------------------------------------ |
 | `[attr]`           | `[target]`          | Elements that have the attribute at all                            |
 | `[attr="value"]`   | `[target="_blank"]` | Exact value                                                        |
 | `[attr~="value"]`  | `[title~="flower"]` | Value is one of a space-separated list                             |
@@ -42,7 +44,7 @@
 ## 🌳 Structural Pseudo-Classes
 
 | Selector               | Example                 | Selects                                                  |
-|------------------------|-------------------------|----------------------------------------------------------|
+| ---------------------- | ----------------------- | -------------------------------------------------------- |
 | `:root`                | `:root`                 | The document root — where custom properties usually live |
 | `:first-child`         | `p:first-child`         | A `<p>` that is the first child of its parent            |
 | `:last-child`          | `p:last-child`          | A `<p>` that is the last child of its parent             |
@@ -59,13 +61,13 @@
 ## 🖱 State & Interaction
 
 | Selector         | Example                | Selects                                                          |
-|------------------|------------------------|------------------------------------------------------------------|
+| ---------------- | ---------------------- | ---------------------------------------------------------------- |
 | `:link`          | `a:link`               | Unvisited links                                                  |
 | `:visited`       | `a:visited`            | Visited links                                                    |
 | `:hover`         | `a:hover`              | The element under the pointer                                    |
 | `:active`        | `a:active`             | The element being clicked                                        |
 | `:focus`         | `input:focus`          | The focused element                                              |
-| `:focus-visible` | `button:focus-visible` | Focused *and* the browser thinks a ring belongs there (keyboard) |
+| `:focus-visible` | `button:focus-visible` | Focused _and_ the browser thinks a ring belongs there (keyboard) |
 | `:focus-within`  | `form:focus-within`    | An element containing the focused element                        |
 | `:target`        | `#news:target`         | The element the URL fragment points at                           |
 | `:fullscreen`    | `:fullscreen`          | The element displayed full-screen                                |
@@ -73,7 +75,7 @@
 ## 📝 Form Pseudo-Classes
 
 | Selector             | Example                   | Selects                                         |
-|----------------------|---------------------------|-------------------------------------------------|
+| -------------------- | ------------------------- | ----------------------------------------------- |
 | `:checked`           | `input:checked`           | Checked checkboxes, radios and selected options |
 | `:default`           | `input:default`           | The default control in a form                   |
 | `:disabled`          | `input:disabled`          | Disabled controls                               |
@@ -94,7 +96,7 @@
 ## 🧩 Functional Pseudo-Classes
 
 | Selector                | Example                        | Selects                                                                 |
-|-------------------------|--------------------------------|-------------------------------------------------------------------------|
+| ----------------------- | ------------------------------ | ----------------------------------------------------------------------- |
 | `:is()`                 | `:is(h1, h2, h3) > code`       | Any of the listed selectors — takes the highest specificity of the list |
 | `:where()`              | `:where(h1, h2) a`             | Same matching as `:is()`, but contributes **zero** specificity          |
 | `:not()`                | `li:not(.done, .hidden)`       | Elements that match none of the listed selectors                        |
@@ -104,10 +106,10 @@
 
 ## ✨ Pseudo-Elements
 
-Pseudo-elements use `::` (double colon) and target a *part* of an element rather than the element itself.
+Pseudo-elements use `::` (double colon) and target a _part_ of an element rather than the element itself.
 
 | Selector                 | Example                       | Targets                                         |
-|--------------------------|-------------------------------|-------------------------------------------------|
+| ------------------------ | ----------------------------- | ----------------------------------------------- |
 | `::before`               | `p::before`                   | Generated content in front of the content       |
 | `::after`                | `p::after`                    | Generated content after the content             |
 | `::first-letter`         | `p::first-letter`             | The first letter                                |
@@ -125,7 +127,7 @@ Pseudo-elements use `::` (double colon) and target a *part* of an element rather
 Specificity is compared as three numbers, **ID – class – type**, highest wins; a later rule only wins against an equal score.
 
 | Selector kind                  | Weight                     | Example                     |
-|--------------------------------|----------------------------|-----------------------------|
+| ------------------------------ | -------------------------- | --------------------------- |
 | Inline `style` attribute       | overrides everything below | `style="…"`                 |
 | ID                             | `1-0-0`                    | `#header`                   |
 | Class, attribute, pseudo-class | `0-1-0`                    | `.card`, `[href]`, `:hover` |

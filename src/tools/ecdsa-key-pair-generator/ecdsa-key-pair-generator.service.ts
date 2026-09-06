@@ -2,12 +2,14 @@ import sshpk from 'sshpk';
 
 export { generateKeyPair };
 
-async function generateKeyPair(config: {
-  password?: string
-  format?: sshpk.PrivateKeyFormatType
-  curve?: sshpk.CurveType
-  comment?: string
-} = {}) {
+async function generateKeyPair(
+  config: {
+    password?: string;
+    format?: sshpk.PrivateKeyFormatType;
+    curve?: sshpk.CurveType;
+    comment?: string;
+  } = {},
+) {
   const privKey = sshpk.generatePrivateKey('ecdsa', {
     curve: config?.curve,
   });
@@ -22,12 +24,10 @@ async function generateKeyPair(config: {
   return {
     publicKey: pubKey.toString(pubFormat),
     privateKey: config?.password
-      ? privKey.toString(privFormat,
-        {
+      ? privKey.toString(privFormat, {
           passphrase: config?.password,
           comment: config?.comment,
-        },
-      )
+        })
       : privKey.toString(privFormat, { comment: config?.comment }),
   };
 }

@@ -9,13 +9,13 @@ const daysMonth = daysYear.div(monthsYear);
 const weeksMonth = daysMonth.div(daysWeek);
 
 interface DaysHours {
-  mondayHours?: number
-  tuesdayHours?: number
-  wednesdayHours?: number
-  thursdayHours?: number
-  fridayHours?: number
-  saturdayHours?: number
-  sundayHours?: number
+  mondayHours?: number;
+  tuesdayHours?: number;
+  wednesdayHours?: number;
+  thursdayHours?: number;
+  fridayHours?: number;
+  saturdayHours?: number;
+  sundayHours?: number;
 }
 
 function prepareDurations({
@@ -27,7 +27,13 @@ function prepareDurations({
   saturdayHours = 24,
   sundayHours = 24,
 }: DaysHours) {
-  const durHoursWeek = Big(mondayHours).plus(tuesdayHours).plus(wednesdayHours).plus(thursdayHours).plus(fridayHours).plus(saturdayHours).plus(sundayHours);
+  const durHoursWeek = Big(mondayHours)
+    .plus(tuesdayHours)
+    .plus(wednesdayHours)
+    .plus(thursdayHours)
+    .plus(fridayHours)
+    .plus(saturdayHours)
+    .plus(sundayHours);
   const durSecondsWeek = durHoursWeek.mul('3600');
   const durSecondsDay = durSecondsWeek.div(daysWeek);
   const durSecondsMonth = durSecondsWeek.mul(weeksMonth);
@@ -56,7 +62,7 @@ export function downTimeToSLA({
   saturdayHours = 24,
   sundayHours = 24,
 }: {
-  downTimeSeconds: number
+  downTimeSeconds: number;
 } & DaysHours) {
   const {
     durHoursWeek,
@@ -67,7 +73,13 @@ export function downTimeToSLA({
     durSecondsYear,
     fullWeekHours,
   } = prepareDurations({
-    mondayHours, tuesdayHours, wednesdayHours, thursdayHours, fridayHours, saturdayHours, sundayHours,
+    mondayHours,
+    tuesdayHours,
+    wednesdayHours,
+    thursdayHours,
+    fridayHours,
+    saturdayHours,
+    sundayHours,
   });
 
   const one = Big('1');
@@ -75,7 +87,9 @@ export function downTimeToSLA({
   const downTimeSecondsBig = Big(downTimeSeconds);
 
   return {
-    slaForDay: fullWeekHours.eq(durHoursWeek) ? one.minus(downTimeSecondsBig.div(durSecondsDay)).mul(hundred).toNumber() : null,
+    slaForDay: fullWeekHours.eq(durHoursWeek)
+      ? one.minus(downTimeSecondsBig.div(durSecondsDay)).mul(hundred).toNumber()
+      : null,
     slaForWeek: one.minus(downTimeSecondsBig.div(durSecondsWeek)).mul(hundred).toNumber(),
     slaForMonth: one.minus(downTimeSecondsBig.div(durSecondsMonth)).mul(hundred).toNumber(),
     slaForQuarter: one.minus(downTimeSecondsBig.div(durSecondsQuarter)).mul(hundred).toNumber(),
@@ -93,14 +107,14 @@ export function slaToDowntimes({
   saturdayHours = 24,
   sundayHours = 24,
 }: {
-  targetSLA: number
-  mondayHours?: number
-  tuesdayHours?: number
-  wednesdayHours?: number
-  thursdayHours?: number
-  fridayHours?: number
-  saturdayHours?: number
-  sundayHours?: number
+  targetSLA: number;
+  mondayHours?: number;
+  tuesdayHours?: number;
+  wednesdayHours?: number;
+  thursdayHours?: number;
+  fridayHours?: number;
+  saturdayHours?: number;
+  sundayHours?: number;
 }) {
   const {
     durHoursWeek,
@@ -111,7 +125,13 @@ export function slaToDowntimes({
     durSecondsYear,
     fullWeekHours,
   } = prepareDurations({
-    mondayHours, tuesdayHours, wednesdayHours, thursdayHours, fridayHours, saturdayHours, sundayHours,
+    mondayHours,
+    tuesdayHours,
+    wednesdayHours,
+    thursdayHours,
+    fridayHours,
+    saturdayHours,
+    sundayHours,
   });
 
   const allowedDowntime = Big('1').minus(Big(targetSLA).div('100'));

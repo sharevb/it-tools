@@ -6,52 +6,14 @@ describe('days-calculator', () => {
   describe('diffDateTimes', () => {
     it('compute right values', () => {
       const daysInfos = {
-        saturdays: [
-          '2024-08-03',
-          '2024-08-10',
-          '2024-08-17',
-          '2024-08-24',
-          '2024-08-31',
-        ],
-        tuesdays: [
-          '2024-08-06',
-          '2024-08-13',
-          '2024-08-20',
-          '2024-08-27',
-        ],
-        sundays: [
-          '2024-08-04',
-          '2024-08-11',
-          '2024-08-18',
-          '2024-08-25',
-        ],
-        mondays: [
-          '2024-08-05',
-          '2024-08-12',
-          '2024-08-19',
-          '2024-08-26',
-        ],
-        fridays: [
-          '2024-08-02',
-          '2024-08-09',
-          '2024-08-16',
-          '2024-08-23',
-          '2024-08-30',
-        ],
+        saturdays: ['2024-08-03', '2024-08-10', '2024-08-17', '2024-08-24', '2024-08-31'],
+        tuesdays: ['2024-08-06', '2024-08-13', '2024-08-20', '2024-08-27'],
+        sundays: ['2024-08-04', '2024-08-11', '2024-08-18', '2024-08-25'],
+        mondays: ['2024-08-05', '2024-08-12', '2024-08-19', '2024-08-26'],
+        fridays: ['2024-08-02', '2024-08-09', '2024-08-16', '2024-08-23', '2024-08-30'],
 
-        wednesdays: [
-          '2024-08-07',
-          '2024-08-14',
-          '2024-08-21',
-          '2024-08-28',
-        ],
-        thursdays: [
-          '2024-08-01',
-          '2024-08-08',
-          '2024-08-15',
-          '2024-08-22',
-          '2024-08-29',
-        ],
+        wednesdays: ['2024-08-07', '2024-08-14', '2024-08-21', '2024-08-28'],
+        thursdays: ['2024-08-01', '2024-08-08', '2024-08-15', '2024-08-22', '2024-08-29'],
         weekendDays: 9,
         weekends: 4,
       };
@@ -80,17 +42,19 @@ describe('days-calculator', () => {
       const date1 = new Date('2024-08-01T07:21:46Z');
       const date2 = new Date('2024-08-31T17:21:46Z');
 
-      expect(diffDateTimes({
-        date1,
-        date2,
-        country: 'FR',
-        businessTimezone: 'Europe/Paris',
-        includeWeekDays: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
-        includeEndDate: true,
-        includeHolidays: true,
-        businessStartHour: 9,
-        businessEndHour: 18,
-      })).to.deep.eq({
+      expect(
+        diffDateTimes({
+          date1,
+          date2,
+          country: 'FR',
+          businessTimezone: 'Europe/Paris',
+          includeWeekDays: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
+          includeEndDate: true,
+          includeHolidays: true,
+          businessStartHour: 9,
+          businessEndHour: 18,
+        }),
+      ).to.deep.eq({
         startDate: date1,
         endDate: date2,
         businessDays: 29.959691358024696,
@@ -104,17 +68,19 @@ describe('days-calculator', () => {
         holidays,
         ...daysInfos,
       });
-      expect(diffDateTimes({
-        date1,
-        date2,
-        country: 'FR',
-        businessTimezone: 'Europe/Paris',
-        includeEndDate: false,
-        includeWeekDays: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
-        includeHolidays: true,
-        businessStartHour: 9,
-        businessEndHour: 18,
-      })).to.deep.eq({
+      expect(
+        diffDateTimes({
+          date1,
+          date2,
+          country: 'FR',
+          businessTimezone: 'Europe/Paris',
+          includeEndDate: false,
+          includeWeekDays: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
+          includeHolidays: true,
+          businessStartHour: 9,
+          businessEndHour: 18,
+        }),
+      ).to.deep.eq({
         startDate: date1,
         endDate: new Date('2024-08-30T23:59:59.999Z'),
         businessDays: 28.959722191358026,
@@ -135,24 +101,21 @@ describe('days-calculator', () => {
         totalDifferenceFormatted: '29d 16h 38m 13.9s',
         holidays,
         ...daysInfos,
-        saturdays: [
-          '2024-08-03',
-          '2024-08-10',
-          '2024-08-17',
-          '2024-08-24',
-        ],
+        saturdays: ['2024-08-03', '2024-08-10', '2024-08-17', '2024-08-24'],
       });
-      expect(diffDateTimes({
-        date1,
-        date2,
-        country: 'FR',
-        businessTimezone: 'Europe/Paris',
-        includeEndDate: true,
-        includeWeekDays: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'],
-        includeHolidays: false,
-        businessStartHour: 9,
-        businessEndHour: 18,
-      })).to.deep.eq({
+      expect(
+        diffDateTimes({
+          date1,
+          date2,
+          country: 'FR',
+          businessTimezone: 'Europe/Paris',
+          includeEndDate: true,
+          includeWeekDays: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'],
+          includeHolidays: false,
+          businessStartHour: 9,
+          businessEndHour: 18,
+        }),
+      ).to.deep.eq({
         startDate: date1,
         endDate: date2,
         businessDays: 21.959691358024692,
@@ -166,17 +129,19 @@ describe('days-calculator', () => {
         holidays,
         ...daysInfos,
       });
-      expect(diffDateTimes({
-        date1,
-        date2,
-        country: 'FR',
-        businessTimezone: 'Europe/Paris',
-        includeEndDate: true,
-        includeWeekDays: ['monday'],
-        includeHolidays: false,
-        businessStartHour: 9,
-        businessEndHour: 18,
-      })).to.deep.eq({
+      expect(
+        diffDateTimes({
+          date1,
+          date2,
+          country: 'FR',
+          businessTimezone: 'Europe/Paris',
+          includeEndDate: true,
+          includeWeekDays: ['monday'],
+          includeHolidays: false,
+          businessStartHour: 9,
+          businessEndHour: 18,
+        }),
+      ).to.deep.eq({
         startDate: date1,
         endDate: date2,
         businessDays: 4,
@@ -206,51 +171,13 @@ describe('days-calculator', () => {
   describe('datesByDays', () => {
     it('compute week days dates', () => {
       expect(datesByDays(DateTime.utc(2014, 8, 1), DateTime.utc(2014, 8, 31))).to.deep.eq({
-        1: [
-          '2014-08-04',
-          '2014-08-11',
-          '2014-08-18',
-          '2014-08-25',
-        ],
-        2: [
-          '2014-08-05',
-          '2014-08-12',
-          '2014-08-19',
-          '2014-08-26',
-        ],
-        3: [
-          '2014-08-06',
-          '2014-08-13',
-          '2014-08-20',
-          '2014-08-27',
-        ],
-        4: [
-          '2014-08-07',
-          '2014-08-14',
-          '2014-08-21',
-          '2014-08-28',
-        ],
-        5: [
-          '2014-08-01',
-          '2014-08-08',
-          '2014-08-15',
-          '2014-08-22',
-          '2014-08-29',
-        ],
-        6: [
-          '2014-08-02',
-          '2014-08-09',
-          '2014-08-16',
-          '2014-08-23',
-          '2014-08-30',
-        ],
-        7: [
-          '2014-08-03',
-          '2014-08-10',
-          '2014-08-17',
-          '2014-08-24',
-          '2014-08-31',
-        ],
+        1: ['2014-08-04', '2014-08-11', '2014-08-18', '2014-08-25'],
+        2: ['2014-08-05', '2014-08-12', '2014-08-19', '2014-08-26'],
+        3: ['2014-08-06', '2014-08-13', '2014-08-20', '2014-08-27'],
+        4: ['2014-08-07', '2014-08-14', '2014-08-21', '2014-08-28'],
+        5: ['2014-08-01', '2014-08-08', '2014-08-15', '2014-08-22', '2014-08-29'],
+        6: ['2014-08-02', '2014-08-09', '2014-08-16', '2014-08-23', '2014-08-30'],
+        7: ['2014-08-03', '2014-08-10', '2014-08-17', '2014-08-24', '2014-08-31'],
       });
     });
   });

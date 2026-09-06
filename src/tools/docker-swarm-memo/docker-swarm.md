@@ -11,8 +11,8 @@
 ## 🧱 Concepts
 
 | Term        | What it is                                                        |
-|-------------|-------------------------------------------------------------------|
-| **Node**    | A Docker engine that joined the swarm — a *manager* or a *worker* |
+| ----------- | ----------------------------------------------------------------- |
+| **Node**    | A Docker engine that joined the swarm — a _manager_ or a _worker_ |
 | **Manager** | Keeps cluster state via Raft, schedules tasks, serves the API     |
 | **Worker**  | Runs tasks only; has no view of the cluster state                 |
 | **Service** | The declaration of what should run (image, replicas, ports, …)    |
@@ -62,7 +62,7 @@ docker swarm ca --rotate
 ### 🔌 Ports that must be open between nodes
 
 | Port                   | Protocol  | Used for                             |
-|------------------------|-----------|--------------------------------------|
+| ---------------------- | --------- | ------------------------------------ |
 | `2377`                 | TCP       | Cluster management (managers only)   |
 | `7946`                 | TCP + UDP | Node discovery and gossip            |
 | `4789`                 | UDP       | Overlay network data plane (VXLAN)   |
@@ -227,7 +227,7 @@ docker service update --limit-memory 512m --reserve-memory 256m <service>
 Replicas define how many instances of a service run across the swarm. Swarm spreads them over the available nodes and reschedules them when a task or a node fails.
 
 | Mode           | Flag                          | Behaviour                                         |
-|----------------|-------------------------------|---------------------------------------------------|
+| -------------- | ----------------------------- | ------------------------------------------------- |
 | Replicated     | `--mode replicated` (default) | Run exactly `--replicas` tasks, anywhere they fit |
 | Global         | `--mode global`               | Exactly one task per eligible node                |
 | Replicated job | `--mode replicated-job`       | Run `--replicas` tasks **to completion**          |
@@ -273,7 +273,7 @@ docker container inspect <container-id>
 ```
 
 | Task state               | Meaning                                                     |
-|--------------------------|-------------------------------------------------------------|
+| ------------------------ | ----------------------------------------------------------- |
 | `NEW` / `PENDING`        | Accepted, waiting for a node that satisfies the constraints |
 | `ASSIGNED` / `PREPARING` | Sent to a node, image being pulled                          |
 | `STARTING` / `RUNNING`   | The container is starting or up                             |
@@ -296,7 +296,7 @@ docker service create --replicas-max-per-node 1 --name web nginx
 ```
 
 | Expression                                | Matches                                           |
-|-------------------------------------------|---------------------------------------------------|
+| ----------------------------------------- | ------------------------------------------------- |
 | `node.role`                               | `manager` or `worker`                             |
 | `node.hostname`                           | The node's hostname                               |
 | `node.id`                                 | The node's ID                                     |
@@ -345,7 +345,7 @@ docker service create --publish mode=host,target=80,published=8080 --name web ng
 ```
 
 | Mode                | Behaviour                                                                  |
-|---------------------|----------------------------------------------------------------------------|
+| ------------------- | -------------------------------------------------------------------------- |
 | `ingress` (default) | Every node accepts the port and load-balances to the tasks                 |
 | `host`              | The port is published only on nodes running a task — no mesh, no extra hop |
 
@@ -369,7 +369,7 @@ docker service rollback web
 ```
 
 | Flag                      | Description                                                                                                                  |
-|---------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | `--update-parallelism`    | How many tasks are updated at once (`0` = all)                                                                               |
 | `--update-delay`          | Pause between batches                                                                                                        |
 | `--update-failure-action` | `pause` (default), `continue` or `rollback`                                                                                  |
@@ -518,7 +518,7 @@ docker events --filter type=service
 ```
 
 | Symptom                              | Usual cause                                                                          |
-|--------------------------------------|--------------------------------------------------------------------------------------|
+| ------------------------------------ | ------------------------------------------------------------------------------------ |
 | Task stuck in `PENDING`              | No node satisfies the constraints, ports, or resource reservations                   |
 | `no suitable node`                   | Placement constraint or `--replicas-max-per-node` cannot be met                      |
 | Task loops `FAILED` → `STARTING`     | The container exits immediately — read `docker service logs`                         |
@@ -530,7 +530,7 @@ docker events --filter type=service
 ### `docker service create` / `docker service update`
 
 | Flag                                 | Description                                                      |
-|--------------------------------------|------------------------------------------------------------------|
+| ------------------------------------ | ---------------------------------------------------------------- |
 | `--replicas`                         | Number of tasks for a replicated service                         |
 | `--mode`                             | `replicated` (default), `global`, `replicated-job`, `global-job` |
 | `--publish`                          | Port mapping (`<published>:<target>`, or `mode=host,...`)        |

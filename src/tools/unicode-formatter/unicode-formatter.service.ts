@@ -3,11 +3,11 @@ import fonts from './unicode-fonts.json';
 
 export type AllFontNames = keyof typeof fonts;
 export interface AllOptions {
-  remove?: string
-  append?: string
-  reverse?: boolean
-  clear?: boolean
-};
+  remove?: string;
+  append?: string;
+  reverse?: boolean;
+  clear?: boolean;
+}
 
 // list of font characters for checking if character is formatted
 const allCharacters = new Set(Object.values(fonts).join(''));
@@ -16,13 +16,13 @@ const allCharacters = new Set(Object.values(fonts).join(''));
 function alreadyFormatted(text: string, font: AllFontNames) {
   const fontCharacters = new Set(fonts[font]);
   // flag as already formatted if all characters are in font or not in any other font
-  return Array.from(text).every(char => fontCharacters.has(char) || !allCharacters.has(char));
+  return Array.from(text).every((char) => fontCharacters.has(char) || !allCharacters.has(char));
 }
 
 // check if text is already formatted with a certain font
 function alreadyAppended(text: string, append: string) {
   // check if at least half the characters are the append character
-  return Array.from(text).filter(char => char === append).length >= text.length / 2;
+  return Array.from(text).filter((char) => char === append).length >= text.length / 2;
 }
 
 // format text into selected font
@@ -58,25 +58,26 @@ function formatText(text: string, font: AllFontNames | undefined, options?: AllO
   // reverse text if reverse option is set
   newText = options?.reverse ? newText.reverse() : newText;
   // remove appended symbol of specific type from the end
-  newText = options?.remove
-    ? newText.map(char => char.replace(new RegExp(`${options.remove}$`, 'u'), ''))
-    : newText;
+  newText = options?.remove ? newText.map((char) => char.replace(new RegExp(`${options.remove}$`, 'u'), '')) : newText;
   // append symbol (underline, strikethrough, etc.) to end of each character if append is set
-  newText = options?.append ? newText.map(char => char + options.append) : newText;
+  newText = options?.append ? newText.map((char) => char + options.append) : newText;
   // remove appended symbols (underline, strikethrough, etc.) if using eraser
   // \u035f = Underline, \u0333 = Double Underline, \u0335 = Short Strikethrough \u0336 = Strikethrough
-  newText = options?.clear ? newText.map(char => char.replace(/\u035F|\u0333|\u0335|\u0336/gu, '')) : newText;
+  newText = options?.clear ? newText.map((char) => char.replace(/\u035F|\u0333|\u0335|\u0336/gu, '')) : newText;
   // set textarea content and select text around the replacement
   return newText.join('');
 }
 
 export function formatTextPart(
   text: string,
-  selectionStart: number, selectionEnd: number,
+  selectionStart: number,
+  selectionEnd: number,
   font: AllFontNames | undefined,
-  options?: AllOptions) {
+  options?: AllOptions,
+) {
   const regexSpaces = /^(\s*)(.+?)(\s*)$/g; // NOSONAR
-  const [_, spaceBefore, selection, spaceAfter] = regexSpaces.exec(text.substring(selectionStart, selectionEnd) || '') || [];
+  const [_, spaceBefore, selection, spaceAfter] =
+    regexSpaces.exec(text.substring(selectionStart, selectionEnd) || '') || [];
 
   const prefix = text.substring(0, selectionStart);
   const newSelection = formatText(selection, font, options);

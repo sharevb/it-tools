@@ -8,7 +8,7 @@ describe('computeCost', () => {
     const duration = 5; // 5 hours
     const kWhCost = 0.12; // $0.12 per kWh
     const result = computeCost(wattage, duration, kWhCost);
-    expect(result).toBeCloseTo(0.60); // 1 kW * 5h * 0.12 = 0.60
+    expect(result).toBeCloseTo(0.6); // 1 kW * 5h * 0.12 = 0.60
   });
 
   it('should return 0 when the duration is 0', () => {
@@ -38,7 +38,7 @@ describe('computeCost', () => {
   it('should handle fractional wattage and duration correctly', () => {
     const wattage = 750; // 0.75 kW
     const duration = 2.5; // 2.5 hours
-    const kWhCost = 0.10; // $0.10 per kWh
+    const kWhCost = 0.1; // $0.10 per kWh
     const result = computeCost(wattage, duration, kWhCost);
     expect(result).toBeCloseTo(0.1875); // 0.75 kW * 2.5h * 0.10 = 0.1875
   });

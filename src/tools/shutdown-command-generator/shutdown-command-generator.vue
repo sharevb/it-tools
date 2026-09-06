@@ -50,11 +50,11 @@ function buildWindowsCommand() {
 
   if (reboot.value) {
     args.push('/r');
-  }
-  else if (logoff.value) {
+  } else if (logoff.value) {
     args.push('/l');
+  } else {
+    args.push('/s');
   }
-  else { args.push('/s'); }
 
   if (force.value) {
     args.push('/f');
@@ -62,8 +62,7 @@ function buildWindowsCommand() {
 
   if (mode.value === 'delay') {
     args.push(`/t ${delay.value}`);
-  }
-  else if (timeValue.value) {
+  } else if (timeValue.value) {
     const now = Date.now();
     const diff = Math.max(0, Math.floor((timeValue.value - now) / 1000));
     args.push(`/t ${diff}`);
@@ -92,16 +91,15 @@ function buildLinuxCommand() {
 
   if (reboot.value) {
     args.push('-r');
-  }
-  else if (logoff.value) {
+  } else if (logoff.value) {
     return 'logout';
+  } else {
+    args.push('-h');
   }
-  else { args.push('-h'); }
 
   if (mode.value === 'delay') {
     args.push(`+${Math.ceil(delay.value / 60)}`);
-  }
-  else if (timeValue.value) {
+  } else if (timeValue.value) {
     const date = new Date(timeValue.value);
     const hh = String(date.getHours()).padStart(2, '0');
     const mm = String(date.getMinutes()).padStart(2, '0');
@@ -135,13 +133,13 @@ function buildMacCommand() {
 
   if (reboot.value) {
     args.push('-r');
+  } else {
+    args.push('-h');
   }
-  else { args.push('-h'); }
 
   if (mode.value === 'delay') {
     args.push(`+${Math.ceil(delay.value / 60)}`);
-  }
-  else if (timeValue.value) {
+  } else if (timeValue.value) {
     const date = new Date(timeValue.value);
     const hh = String(date.getHours()).padStart(2, '0');
     const mm = String(date.getMinutes()).padStart(2, '0');
@@ -177,11 +175,7 @@ const command = computed(() => {
 
     <NSpace justify="center" mb-1>
       <NRadioGroup v-model:value="mode" name="mode">
-        <NRadioButton
-          v-for="opt in modeOptions"
-          :key="opt.value"
-          :value="opt.value"
-        >
+        <NRadioButton v-for="opt in modeOptions" :key="opt.value" :value="opt.value">
           {{ opt.label }}
         </NRadioButton>
       </NRadioGroup>
@@ -189,25 +183,19 @@ const command = computed(() => {
 
     <NSpace v-if="mode === 'delay'" justify="center" mb-1>
       <NFormItem :label="t('tools.shutdown-command-generator.texts.label-delay')" label-placement="left" mb-1>
-        <NInputNumber
-          v-model:value="delayHours"
-          :min="0"
-        />{{ t('tools.shutdown-command-generator.texts.tag-nbsp-h-nbsp') }}<NInputNumber
-          v-model:value="delayMinutes"
-          :min="0"
-        />{{ t('tools.shutdown-command-generator.texts.tag-nbsp-m-nbsp') }}<NInputNumber
-          v-model:value="delaySeconds"
-          :min="0"
-        />{{ t('tools.shutdown-command-generator.texts.tag-nbsp-s') }}
+        <NInputNumber v-model:value="delayHours" :min="0" />{{
+          t('tools.shutdown-command-generator.texts.tag-nbsp-h-nbsp')
+        }}<NInputNumber v-model:value="delayMinutes" :min="0" />{{
+          t('tools.shutdown-command-generator.texts.tag-nbsp-m-nbsp')
+        }}<NInputNumber v-model:value="delaySeconds" :min="0" />{{
+          t('tools.shutdown-command-generator.texts.tag-nbsp-s')
+        }}
       </NFormItem>
     </NSpace>
 
     <NSpace v-if="mode === 'time'" justify="center" mb-1>
       <NFormItem :label="t('tools.shutdown-command-generator.texts.label-shutdown-time')" label-placement="left">
-        <NDatePicker
-          v-model:value="timeValue"
-          type="datetime"
-        />
+        <NDatePicker v-model:value="timeValue" type="datetime" />
       </NFormItem>
     </NSpace>
 

@@ -9,7 +9,7 @@ const { t } = useI18n();
 const payload = ref(`{
   "sub": "1234567890",
   "name": "John Doe",
-  "iat": "${(new Date()).toISOString()}"
+  "iat": "${new Date().toISOString()}"
 }`);
 const footer = ref('{}');
 
@@ -31,22 +31,17 @@ const encryptedToken = computedAsync(async () => {
   const footerValue = footer.value;
   const validatePayloadValue = validatePayload.value;
   try {
-    const token = await encrypt(
-      localKeyValue,
-      payloadValue,
-      {
-        addExp: addExpValue,
-        addIat: addIatValue,
-        footer: footerValue,
-        validatePayload: validatePayloadValue,
-      },
-    );
+    const token = await encrypt(localKeyValue, payloadValue, {
+      addExp: addExpValue,
+      addIat: addIatValue,
+      footer: footerValue,
+      validatePayload: validatePayloadValue,
+    });
     return {
       token,
       error: '',
     };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { error: e.toString(), token: '' };
   }
 });
@@ -56,7 +51,7 @@ const jsonInputValidation = useValidation({
   rules: [
     {
       message: t('tools.paseto-encryption.texts.message-invalid-json-string'),
-      validator: value => JSON5.parse(value),
+      validator: (value) => JSON5.parse(value),
     },
   ],
 });
@@ -65,7 +60,7 @@ const jsonFooterValidation = useValidation({
   rules: [
     {
       message: t('tools.paseto-encryption.texts.message-invalid-json-string'),
-      validator: value => JSON5.parse(value),
+      validator: (value) => JSON5.parse(value),
     },
   ],
 });
@@ -77,20 +72,15 @@ const decryptedToken = computedAsync(async () => {
   const validatePayloadValue = validatePayload.value;
   try {
     // generic type parameter is optional but will give you type safety on the payload
-    const { payload, footer } = await decrypt<any>(
-      localKeyValue,
-      tokenValue,
-      {
-        validatePayload: validatePayloadValue,
-      },
-    );
+    const { payload, footer } = await decrypt<any>(localKeyValue, tokenValue, {
+      validatePayload: validatePayloadValue,
+    });
     return {
       payload,
       footer,
       error: '',
     };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { error: e.toString(), payload: '', footer: '' };
   }
 });

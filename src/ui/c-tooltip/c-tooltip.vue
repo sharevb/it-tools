@@ -27,10 +27,7 @@ const isTargetHovered = useElementHover(targetRef);
         'left-100% top-50% -translate-y-1/2 ml-5px': position === 'right',
       }"
     >
-      <slot
-        v-if="isTargetHovered"
-        name="tooltip"
-      >
+      <slot v-if="isTargetHovered" name="tooltip">
         {{ tooltip }}
       </slot>
     </div>

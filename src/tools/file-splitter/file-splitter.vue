@@ -5,8 +5,16 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
-const splitMode = useQueryParamOrStorage<'lines' | 'nodes'>({ name: 'mode', storageName: 'file-split:m', defaultValue: 'lines' });
-const strategy = useQueryParamOrStorage<'maxSize' | 'fixedCount' | 'chunkCount'>({ name: 'strategy', storageName: 'file-split:s', defaultValue: 'fixedCount' });
+const splitMode = useQueryParamOrStorage<'lines' | 'nodes'>({
+  name: 'mode',
+  storageName: 'file-split:m',
+  defaultValue: 'lines',
+});
+const strategy = useQueryParamOrStorage<'maxSize' | 'fixedCount' | 'chunkCount'>({
+  name: 'strategy',
+  storageName: 'file-split:s',
+  defaultValue: 'fixedCount',
+});
 const count = useQueryParamOrStorage({ name: 'count', storageName: 'file-split:c', defaultValue: 100 });
 const extension = ref('');
 const preview = ref(false);
@@ -26,18 +34,19 @@ async function prepareChunks() {
   try {
     chunks.value = await new Promise((resolve, reject) => {
       try {
-        resolve(splitContent(
-          fileContentValue,
-          splitModeValue,
-          (strategyValue === 'maxSize' ? 1024 : 1) * countValue,
-          strategyValue));
-      }
-      catch (e: any) {
+        resolve(
+          splitContent(
+            fileContentValue,
+            splitModeValue,
+            (strategyValue === 'maxSize' ? 1024 : 1) * countValue,
+            strategyValue,
+          ),
+        );
+      } catch (e: any) {
         reject(e);
       }
     });
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err.toString();
     chunks.value = [];
   }
@@ -47,7 +56,7 @@ function readFileAsString(file: File) {
   return new Promise<string>((resolve, reject) => {
     const fr = new FileReader();
     fr.onload = () => {
-      resolve(fr.result as string || '');
+      resolve((fr.result as string) || '');
     };
     fr.onerror = reject;
     fr.readAsText(file);
@@ -100,13 +109,20 @@ function downloadAllChunks() {
           {{ t('tools.file-splitter.texts.tag-chunk-count') }}
         </NRadio>
       </NRadioGroup>
-      <NInputNumber v-model:value="count" :min="1" :placeholder="t('tools.file-splitter.texts.placeholder-strategy-value')" style="width: 150px" />
+      <NInputNumber
+        v-model:value="count"
+        :min="1"
+        :placeholder="t('tools.file-splitter.texts.placeholder-strategy-value')"
+        style="width: 150px"
+      />
     </n-space>
 
     <div style="flex: 0 0 100%" mb-2>
       <div mx-auto max-w-600px>
         <c-file-upload
-          :title="t('tools.file-splitter.texts.title-drag-and-drop-a-txt-json-or-xml-file-here-or-click-to-select-a-file')"
+          :title="
+            t('tools.file-splitter.texts.title-drag-and-drop-a-txt-json-or-xml-file-here-or-click-to-select-a-file')
+          "
           accept=".txt,.json,.xml"
           @file-upload="onFileUploaded"
         />
@@ -136,10 +152,7 @@ function downloadAllChunks() {
         </NButton>
       </div>
       <div v-if="preview">
-        <template
-          v-for="(chunk, index) in chunks"
-          :key="index"
-        >
+        <template v-for="(chunk, index) in chunks" :key="index">
           <n-divider>Chunk {{ index + 1 }}</n-divider>
           <textarea-copyable :value="chunk" :language="extension" style="max-height: 10em" multiline word-wrap mb-1 />
           <div flex justify-center>

@@ -66,11 +66,12 @@ const emojis = _.map(emojiUnicodeData, (emojiInfo, emoji) => ({
 }));
 
 // Group emojis and sort groups for better organization
-const emojisGroups: { emojiInfos: EmojiInfo[]; group: string }[] = Object.entries(_.groupBy(emojis, e => e.group))
-  .map(([group, emojiInfos]) => ({
-    group: _.startCase(group), // Better group name formatting
-    emojiInfos,
-  }));
+const emojisGroups: { emojiInfos: EmojiInfo[]; group: string }[] = Object.entries(
+  _.groupBy(emojis, (e) => e.group),
+).map(([group, emojiInfos]) => ({
+  group: _.startCase(group), // Better group name formatting
+  emojiInfos,
+}));
 
 const limit = ref(150);
 const rawSearchQuery = ref('');
@@ -86,8 +87,7 @@ watch(rawSearchQuery, (newQuery) => {
     // Convert emojis to unicode and update the debounced search query
     const unicodeQuery = convertEmojisToUnicode(newQuery);
     searchQuery.value = unicodeQuery;
-  }
-  else {
+  } else {
     // Regular text search
     searchQuery.value = newQuery;
   }
@@ -132,8 +132,7 @@ function startAutomatedLoading() {
   loadingInterval = setInterval(() => {
     if (visibleGroupsCount.value < emojisGroups.length) {
       visibleGroupsCount.value++;
-    }
-    else {
+    } else {
       // Stop loading when all groups are visible
       stopAutomatedLoading();
     }
@@ -145,8 +144,7 @@ watch(searchQuery, (newQuery, oldQuery) => {
   if (newQuery.trim()) {
     // Stop automated loading when searching
     stopAutomatedLoading();
-  }
-  else if (oldQuery && oldQuery.trim()) {
+  } else if (oldQuery && oldQuery.trim()) {
     // Reset and start automated loading when switching from search to browse
     visibleGroupsCount.value = 1;
     nextTick(() => {
@@ -197,7 +195,9 @@ onUnmounted(() => {
       <div v-else>
         <div mb-3 mt-4 flex items-center gap-2 text-20px font-bold>
           <span>{{ t('tools.emoji-picker.texts.tag-search-results') }}</span>
-          <span text-14px font-normal op-70>{{ $t('tools.emoji-picker.text.displayedsearchresults-length-found', [displayedSearchResults.length]) }}</span>
+          <span text-14px font-normal op-70>{{
+            $t('tools.emoji-picker.text.displayedsearchresults-length-found', [displayedSearchResults.length])
+          }}</span>
         </div>
 
         <emoji-grid :emoji-infos="displayedSearchResults" />
@@ -218,7 +218,9 @@ onUnmounted(() => {
       <!-- Loading indicator when more groups are coming -->
       <div v-if="visibleGroupsCount < emojisGroups.length" mt-6 text-center>
         <div text-14px op-70>
-          <span>{{ $t('tools.emoji-picker.text.loading-more-groups') }}</span> ({{ visibleGroupsCount }}/{{ emojisGroups.length }})
+          <span>{{ $t('tools.emoji-picker.text.loading-more-groups') }}</span> ({{ visibleGroupsCount }}/{{
+            emojisGroups.length
+          }})
         </div>
       </div>
     </div>

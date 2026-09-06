@@ -15,7 +15,7 @@ function toPaddedHex(num: number) {
 
 function toUTF8(codePoint: number) {
   const utf8String = utf8.encode(String.fromCodePoint(codePoint));
-  const bytes = [...utf8String].map(c => `\\x${c.codePointAt(0)?.toString(16).toUpperCase()}`);
+  const bytes = [...utf8String].map((c) => `\\x${c.codePointAt(0)?.toString(16).toUpperCase()}`);
   return bytes.join(''); // Join the string array into a single string to fix a bug where it would otherwise join the array items with a comma
 }
 
@@ -28,7 +28,7 @@ const parsedSearchQuery = computed(() => {
     const firstCodePoint = trimmedQuery.codePointAt(0);
     if (firstCodePoint != null) {
       // If it's a single character, convert to hex for exact search
-      const charLength = firstCodePoint > 0xFFFF ? 2 : 1;
+      const charLength = firstCodePoint > 0xffff ? 2 : 1;
       if (trimmedQuery.length === charLength) {
         return `=${toPaddedHex(firstCodePoint)}`;
       }

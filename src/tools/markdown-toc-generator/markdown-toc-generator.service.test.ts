@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import {
-  getTocMarkdown,
-} from './markdown-toc-generator.service';
+import { getTocMarkdown } from './markdown-toc-generator.service';
 
 describe('markdown-toc-generator', () => {
   it('Generate TOC correctly', async () => {
-    expect(getTocMarkdown({
-      markdown: '',
-    })).to.equal('');
+    expect(
+      getTocMarkdown({
+        markdown: '',
+      }),
+    ).to.equal('');
 
     const sourceMarkdown = `# Some main title
 
@@ -34,10 +34,12 @@ Some text
 
 ## Last Title`;
 
-    expect(getTocMarkdown({
-      markdown: sourceMarkdown,
-      anchorPrefix: 'h-',
-    })).to.equal(`# Some main title
+    expect(
+      getTocMarkdown({
+        markdown: sourceMarkdown,
+        anchorPrefix: 'h-',
+      }),
+    ).to.equal(`# Some main title
 
 <!-- TOC START -->
 - [First Title](#h-first-title)
@@ -72,10 +74,12 @@ Some text
 
 <!-- TOC ANCHOR --><a name="last-title"></a>
 ## Last Title`);
-    expect(getTocMarkdown({
-      markdown: sourceMarkdown,
-      maxLevel: 2,
-    })).to.equal(`# Some main title
+    expect(
+      getTocMarkdown({
+        markdown: sourceMarkdown,
+        maxLevel: 2,
+      }),
+    ).to.equal(`# Some main title
 
 <!-- TOC START -->
 - [First Title](#first-title)
@@ -106,10 +110,12 @@ Some text
 
 <!-- TOC ANCHOR --><a name="last-title"></a>
 ## Last Title`);
-    expect(getTocMarkdown({
-      markdown: sourceMarkdown,
-      commentStyle: 'liquid',
-    })).to.equal(`# Some main title
+    expect(
+      getTocMarkdown({
+        markdown: sourceMarkdown,
+        commentStyle: 'liquid',
+      }),
+    ).to.equal(`# Some main title
 
 {%- # TOC START -%}
 - [First Title](#first-title)
@@ -144,10 +150,12 @@ Some text
 
 {%- # TOC ANCHOR -%}<a name="last-title"></a>
 ## Last Title`);
-    expect(getTocMarkdown({
-      markdown: sourceMarkdown,
-      generateAnchors: false,
-    })).to.equal(`# Some main title
+    expect(
+      getTocMarkdown({
+        markdown: sourceMarkdown,
+        generateAnchors: false,
+      }),
+    ).to.equal(`# Some main title
 
 <!-- TOC START -->
 - [First Title](#first-title)
@@ -177,12 +185,14 @@ echo 'test';
 Some text
 
 ## Last Title`);
-    expect(getTocMarkdown({
-      markdown: sourceMarkdown,
-      indentSpaces: 4,
-      indentChars: '-',
-      concatSpaces: false,
-    })).to.equal(`# Some main title
+    expect(
+      getTocMarkdown({
+        markdown: sourceMarkdown,
+        indentSpaces: 4,
+        indentChars: '-',
+        concatSpaces: false,
+      }),
+    ).to.equal(`# Some main title
 
 <!-- TOC START -->
 - [First Title](#first-title)
@@ -220,8 +230,9 @@ Some text
   });
 
   it('Regenerate TOC correctly', async () => {
-    expect(getTocMarkdown({
-      markdown: `# Some main title
+    expect(
+      getTocMarkdown({
+        markdown: `# Some main title
 
 <!-- TOC START -->
 - [First Title](#first-title)
@@ -256,8 +267,9 @@ Some text
 
 <!-- TOC ANCHOR --><a name="last-title"></a>
 ## Last Title`,
-      anchorPrefix: 'h-',
-    })).to.equal(`# Some main title
+        anchorPrefix: 'h-',
+      }),
+    ).to.equal(`# Some main title
 
 <!-- TOC START -->
 - [First Title](#h-first-title)
@@ -295,8 +307,9 @@ Some text
   });
 
   it('Generate distinct TOC ids', async () => {
-    expect(getTocMarkdown({
-      markdown: `# Some main title
+    expect(
+      getTocMarkdown({
+        markdown: `# Some main title
 
 [TOC]
 
@@ -311,8 +324,9 @@ Some text
 ### Same title 1
 
 Some text`,
-      anchorPrefix: 'h-',
-    })).to.equal(`# Some main title
+        anchorPrefix: 'h-',
+      }),
+    ).to.equal(`# Some main title
 
 <!-- TOC START -->
 - [Same Title 1](#h-same-title-1)
@@ -337,8 +351,9 @@ Some text`);
   });
 
   it('Generate ids for non latin', async () => {
-    expect(getTocMarkdown({
-      markdown: `# Some main title
+    expect(
+      getTocMarkdown({
+        markdown: `# Some main title
 
 [TOC]
 
@@ -353,8 +368,9 @@ Some text
 ### Other title 1
 
 Some text`,
-      anchorPrefix: 'h-',
-    })).to.equal(`# Some main title
+        anchorPrefix: 'h-',
+      }),
+    ).to.equal(`# Some main title
 
 <!-- TOC START -->
 - [Привет non-latin 你好](#h--non-latin-)

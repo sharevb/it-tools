@@ -16,15 +16,19 @@ const dockerCompose = ref(
         - '/var/run/docker.sock:/tmp/docker.sock:ro'
     image: nginx`,
 );
-const indentSize = useQueryParamOrStorage({ name: 'indent', storageName: 'docker-compose-converter:indent-size', defaultValue: 4 });
+const indentSize = useQueryParamOrStorage({
+  name: 'indent',
+  storageName: 'docker-compose-converter:indent-size',
+  defaultValue: 4,
+});
 
-const expandVolumes = ref(
-  false,
-);
-const expandPorts = ref(
-  false,
-);
-const conversion = useQueryParamOrStorage({ name: 'conv', storageName: 'docker-compose-converter:conversion', defaultValue: 'latest' });
+const expandVolumes = ref(false);
+const expandPorts = ref(false);
+const conversion = useQueryParamOrStorage({
+  name: 'conv',
+  storageName: 'docker-compose-converter:conversion',
+  defaultValue: 'latest',
+});
 const conversionOptions = [
   { value: 'v1ToV2x', label: t('tools.docker-compose-converter.texts.label-v1-to-v2-2-x') },
   { value: 'v1ToV3x', label: t('tools.docker-compose-converter.texts.label-v1-to-v2-3-x') },
@@ -49,7 +53,10 @@ const conversionResult = computed(() => {
         convertedDockerCompose = Composeverter.migrateFromV1ToV2x(dockerCompose.value, config);
         break;
       case 'v1ToV3x':
-        convertedDockerCompose = Composeverter.migrateFromV2xToV3x(Composeverter.migrateFromV1ToV2x(dockerCompose.value), config);
+        convertedDockerCompose = Composeverter.migrateFromV2xToV3x(
+          Composeverter.migrateFromV1ToV2x(dockerCompose.value),
+          config,
+        );
         break;
       case 'v2xToV3x':
         convertedDockerCompose = Composeverter.migrateFromV2xToV3x(dockerCompose.value, config);
@@ -62,8 +69,7 @@ const conversionResult = computed(() => {
         throw new Error(`Unknown conversion '${conversion}'`);
     }
     return { yaml: convertedDockerCompose, errors: [] };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { yaml: '#see error messages', errors: e.toString().split('\n') };
   }
 });
@@ -71,8 +77,13 @@ const conversionResult = computed(() => {
 const convertedDockerCompose = computed(() => conversionResult.value.yaml);
 const errors = computed(() => conversionResult.value.errors);
 
-const convertedDockerComposeBase64 = computed(() => `data:application/yaml;base64,${textToBase64(convertedDockerCompose.value)}`);
-const { download } = useDownloadFileFromBase64({ source: convertedDockerComposeBase64, filename: 'docker-compose.yml' });
+const convertedDockerComposeBase64 = computed(
+  () => `data:application/yaml;base64,${textToBase64(convertedDockerCompose.value)}`,
+);
+const { download } = useDownloadFileFromBase64({
+  source: convertedDockerComposeBase64,
+  filename: 'docker-compose.yml',
+});
 
 const MONACO_EDITOR_OPTIONS = {
   automaticLayout: true,
@@ -118,7 +129,12 @@ const MONACO_EDITOR_OPTIONS = {
         />
       </n-gi>
       <n-gi span="2">
-        <n-form-item :label="t('tools.docker-compose-converter.texts.label-indent-size')" label-placement="top" label-width="100" :show-feedback="false">
+        <n-form-item
+          :label="t('tools.docker-compose-converter.texts.label-indent-size')"
+          label-placement="top"
+          label-width="100"
+          :show-feedback="false"
+        >
           <n-input-number-i18n v-model:value="indentSize" min="0" max="10" w-100px />
         </n-form-item>
       </n-gi>

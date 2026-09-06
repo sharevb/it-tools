@@ -78,7 +78,7 @@ function clearImages() {
           <div>
             <n-h3>{{ t('tools.image-color-inverter.texts.tag-original-image') }}</n-h3>
             <div class="image-container">
-              <img :src="originalImageSrc" alt="Original">
+              <img :src="originalImageSrc" alt="Original" />
             </div>
           </div>
         </n-gi>
@@ -87,7 +87,7 @@ function clearImages() {
           <div>
             <n-h3>{{ t('tools.image-color-inverter.texts.tag-inverted-image') }}</n-h3>
             <div class="image-container">
-              <img :src="invertedImageSrc" alt="Inverted">
+              <img :src="invertedImageSrc" alt="Inverted" />
             </div>
             <n-space style="margin-top: 12px" justify="start">
               <c-button @click="downloadInvertedImage()">

@@ -274,8 +274,7 @@ async function renderMermaid(): Promise<void> {
     }
     renderError.value = false;
     container.innerHTML = svg;
-  }
-  catch (error: unknown) {
+  } catch (error: unknown) {
     if (seq !== renderSeq) {
       return;
     }
@@ -308,10 +307,13 @@ function initMermaid(isDark: boolean): void {
 
 initMermaid(styleStore.isDarkTheme);
 
-watch(() => styleStore.isDarkTheme, (isDark) => {
-  initMermaid(isDark);
-  renderMermaid();
-});
+watch(
+  () => styleStore.isDarkTheme,
+  (isDark) => {
+    initMermaid(isDark);
+    renderMermaid();
+  },
+);
 
 watchDebounced(mermaidCode, () => renderMermaid(), { debounce: RENDER_DEBOUNCE_MS });
 
@@ -427,7 +429,8 @@ function exportAs(format: 'svg' | 'png' | 'jpg'): void {
         <c-input-text
           v-model:value="mermaidCode"
           class=""
-          multiline raw-text
+          multiline
+          raw-text
           :placeholder="t('tools.mermaid-exporter.texts.placeholder-write-your-mermaid-code-here')"
           rows="8"
           autofocus
@@ -439,7 +442,9 @@ function exportAs(format: 'svg' | 'png' | 'jpg'): void {
         <div ref="previewWrapper" class="preview-wrapper" :class="{ fullscreen: isFullscreen }">
           <div class="toolbar">
             <c-button
-              circle variant="text" size="small"
+              circle
+              variant="text"
+              size="small"
               data-test-id="zoom-out"
               :disabled="!canZoomOut"
               :aria-disabled="!canZoomOut"
@@ -449,7 +454,8 @@ function exportAs(format: 'svg' | 'png' | 'jpg'): void {
               <icon-mdi-magnify-minus-outline />
             </c-button>
             <c-button
-              variant="text" size="small"
+              variant="text"
+              size="small"
               class="zoom-level"
               data-test-id="zoom-level"
               :disabled="!hasDiagram"
@@ -461,7 +467,9 @@ function exportAs(format: 'svg' | 'png' | 'jpg'): void {
               {{ Math.round(zoom * 100) }}%
             </c-button>
             <c-button
-              circle variant="text" size="small"
+              circle
+              variant="text"
+              size="small"
               data-test-id="zoom-in"
               :disabled="!canZoomIn"
               :aria-disabled="!canZoomIn"
@@ -471,7 +479,9 @@ function exportAs(format: 'svg' | 'png' | 'jpg'): void {
               <icon-mdi-magnify-plus-outline />
             </c-button>
             <c-button
-              circle variant="text" size="small"
+              circle
+              variant="text"
+              size="small"
               data-test-id="fit-view"
               :disabled="!hasDiagram"
               :aria-disabled="!hasDiagram"
@@ -482,11 +492,15 @@ function exportAs(format: 'svg' | 'png' | 'jpg'): void {
             </c-button>
             <c-button
               v-if="isFullscreenSupported"
-              circle variant="text" size="small"
+              circle
+              variant="text"
+              size="small"
               data-test-id="toggle-fullscreen"
-              :title="isFullscreen
-                ? t('tools.mermaid-exporter.texts.title-exit-fullscreen')
-                : t('tools.mermaid-exporter.texts.title-fullscreen')"
+              :title="
+                isFullscreen
+                  ? t('tools.mermaid-exporter.texts.title-exit-fullscreen')
+                  : t('tools.mermaid-exporter.texts.title-fullscreen')
+              "
               @click="toggleFullscreen"
             >
               <icon-mdi-fullscreen-exit v-if="isFullscreen" />

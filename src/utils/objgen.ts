@@ -10,13 +10,14 @@ const arrayRegx = /\[\s*?([0-9]{1,100})?\s*?\]/;
 const typesRegx = /^(\w+)(\s+)(\w+).*?$/;
 
 function isNotUndefined(variable: any) {
-  return typeof (variable) !== 'undefined' && variable !== null;
+  return typeof variable !== 'undefined' && variable !== null;
 }
 
 export function parseLines(
   val: string,
   options?: { numSpaces?: number },
-  callback?: (line: string, depth: number) => void) {
+  callback?: (line: string, depth: number) => void,
+) {
   if (callback === null) {
     return;
   }
@@ -41,11 +42,9 @@ export function parseLines(
           if (c === '\t') {
             level++;
             spaces = 0;
-          }
-          else if (c === ' ') {
+          } else if (c === ' ') {
             spaces++;
-          }
-          else {
+          } else {
             break;
           }
 
@@ -55,8 +54,7 @@ export function parseLines(
           }
         }
         currentLevel = level;
-      }
-      else {
+      } else {
         currentLevel = 1;
       }
 
@@ -75,7 +73,7 @@ export function parseLines(
     }
     return match;
   });
-};
+}
 
 function newValueOfType(dataType: string, initialVal: any) {
   if (initialVal === null) {
@@ -89,18 +87,15 @@ function newValueOfType(dataType: string, initialVal: any) {
     if (typeof val !== 'string') {
       val = '';
     }
-  }
-  else if (t === 'b') {
+  } else if (t === 'b') {
     val = initialVal === 'true';
-  }
-  else if (t === 'd') {
+  } else if (t === 'd') {
     const dt = new Date();
     if (initialVal.length > 0) {
       dt.setTime(Date.parse(initialVal));
     }
     val = dt;
-  }
-  else if (t === 'n') {
+  } else if (t === 'n') {
     let num;
     if (initialVal.length > 0) {
       num = Number.parseFloat(initialVal);
@@ -110,18 +105,16 @@ function newValueOfType(dataType: string, initialVal: any) {
           num = 0;
         }
       }
-    }
-    else {
+    } else {
       num = 0;
     }
     val = num;
-  }
-  else {
+  } else {
     val = {};
   }
 
   return val;
-};
+}
 
 function newArrayOfType(dataType: string, initialVal: any) {
   const a: any[] = [];
@@ -134,7 +127,7 @@ function newArrayOfType(dataType: string, initialVal: any) {
   }
 
   return a;
-};
+}
 
 export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
   const propStack: string[] = [];
@@ -147,8 +140,7 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
     options = {
       numSpaces: 2,
     };
-  }
-  else if (!isNotUndefined(options.numSpaces)) {
+  } else if (!isNotUndefined(options.numSpaces)) {
     options.numSpaces = 2;
   }
 
@@ -161,8 +153,7 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
     while (depth !== propStack.length) {
       if (depth > propStack.length) {
         propStack.push('');
-      }
-      else {
+      } else {
         propStack.pop();
       }
     }
@@ -188,8 +179,7 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
 
     if (rootArray === true) {
       type = 'object';
-    }
-    else {
+    } else {
       const typeSearch = typesRegx.exec(line.replace(arrayRegx, ''));
       if (typeSearch !== null && typeSearch.length >= 4) {
         type = typeSearch[3].toLowerCase();
@@ -209,18 +199,15 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
         }
       }
       line = line.substring(0, eqs);
-    }
-    else {
+    } else {
       // Create a default initial value
       if (isArray === true) {
         if (arrayIndex > 0) {
           initialVal = {};
-        }
-        else {
+        } else {
           initialVal = [];
         }
-      }
-      else {
+      } else {
         initialVal = {};
       }
     }
@@ -231,8 +218,7 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
     if (type !== null) {
       if (isArray === true) {
         initialVal = newArrayOfType(type, initialVal);
-      }
-      else {
+      } else {
         initialVal = newValueOfType(type, initialVal);
       }
 
@@ -301,13 +287,14 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
         if (!isNotUndefined(curProp.genParent)) {
           curProp.genParent = [];
         }
-        if ((curProp.genParent.length < modelParent.index + 1)
-            || (Array.isArray(curProp.genParent[modelParent.index]) && curProp.genParent[modelParent.index].length === 0)) {
+        if (
+          curProp.genParent.length < modelParent.index + 1 ||
+          (Array.isArray(curProp.genParent[modelParent.index]) && curProp.genParent[modelParent.index].length === 0)
+        ) {
           curProp.genParent[modelParent.index] = {};
         }
         curProp.genParent = curProp.genParent[modelParent.index];
-      }
-      else {
+      } else {
         curProp.genParent = modelParent.genParent[modelParent.name];
       }
     }
@@ -320,15 +307,13 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
       if (!isNotUndefined(curProp.genParent[prop])) {
         curProp.genParent[prop] = [];
         curProp.genParent[prop][0] = curProp.val;
-      }
-      else {
+      } else {
         curProp.genParent[prop][arrayIndex] = curProp.val;
       }
-    }
-    else {
+    } else {
       curProp.genParent[prop] = curProp.val;
     }
   });
 
   return JSON.stringify(genRoot, undefined, options.numSpaces);
-};
+}

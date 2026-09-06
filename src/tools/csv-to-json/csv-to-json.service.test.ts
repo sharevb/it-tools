@@ -57,9 +57,7 @@ describe('csv-to-json service', () => {
     it('when a value is "null", it is converted to null', () => {
       const csv = 'a,b\nnull,2';
 
-      expect(convertCsvToArray(csv)).toEqual([
-        { a: null, b: '2' },
-      ]);
+      expect(convertCsvToArray(csv)).toEqual([{ a: null, b: '2' }]);
     });
 
     it('when a value is empty, it is converted to undefined', () => {
@@ -74,17 +72,13 @@ describe('csv-to-json service', () => {
     it('when a value is wrapped in double quotes, the quotes are removed', () => {
       const csv = 'a,b\n"hello, world",2';
 
-      expect(convertCsvToArray(csv)).toEqual([
-        { a: 'hello, world', b: '2' },
-      ]);
+      expect(convertCsvToArray(csv)).toEqual([{ a: 'hello, world', b: '2' }]);
     });
 
     it('when a value contains an escaped double quote, the escape character is removed', () => {
       const csv = 'a,b\nhello \\"world\\",2';
 
-      expect(convertCsvToArray(csv)).toEqual([
-        { a: 'hello "world"', b: '2' },
-      ]);
+      expect(convertCsvToArray(csv)).toEqual([{ a: 'hello "world"', b: '2' }]);
     });
   });
 });

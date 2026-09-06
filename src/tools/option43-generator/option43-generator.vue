@@ -36,7 +36,7 @@ const option43Infos = computed(() => getOption43Infos(ipAdresses.value, wifiVend
 </script>
 
 <template>
-  <div style="margin: 0 auto;">
+  <div style="margin: 0 auto">
     <c-card>
       <c-select
         v-model:value="wifiVendor"
@@ -68,13 +68,15 @@ const option43Infos = computed(() => getOption43Infos(ipAdresses.value, wifiVend
         label-position="left"
         label-width="120px"
         label-align="right"
-        multiline mb-2
+        multiline
+        mb-2
         :placeholder="t('tools.option43-generator.texts.placeholder-enter-your-ip-addresses-one-per-line')"
       />
     </c-card>
 
     <c-card :title="t('tools.option43-generator.texts.title-option-43-result')">
-      <!-- //NOSONAR --><div v-html="option43Infos" />
+      <!-- //NOSONAR -->
+      <div v-html="option43Infos" />
     </c-card>
   </div>
 </template>

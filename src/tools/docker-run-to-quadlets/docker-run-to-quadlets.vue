@@ -6,7 +6,8 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 const { t } = useI18n();
 
 const form = ref({
-  runCommands: 'docker run -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --restart always --log-opt max-size=1g nginx',
+  runCommands:
+    'docker run -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --restart always --log-opt max-size=1g nginx',
   unit: {
     description: 'My Application Stack',
     after: ['network-online.target'],
@@ -38,8 +39,7 @@ const conversionResult = computed(() => {
       }),
       errors: '',
     };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { quadlet: '', errors: e.toString() };
   }
 });
@@ -79,8 +79,15 @@ const conversionResult = computed(() => {
 
     <n-divider />
 
-    <c-card v-if="conversionResult.quadlet" :title="t('tools.docker-run-to-quadlets.texts.title-converted-quadlet-content')">
-      <input-copyable :label="t('tools.docker-run-to-quadlets.texts.label-typical-storage-location')" label-placement="left" value="/etc/containers/systemd/<name of your service>.container" />
+    <c-card
+      v-if="conversionResult.quadlet"
+      :title="t('tools.docker-run-to-quadlets.texts.title-converted-quadlet-content')"
+    >
+      <input-copyable
+        :label="t('tools.docker-run-to-quadlets.texts.label-typical-storage-location')"
+        label-placement="left"
+        value="/etc/containers/systemd/<name of your service>.container"
+      />
       <TextareaCopyable :value="conversionResult.quadlet" language="ini" />
     </c-card>
 

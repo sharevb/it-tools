@@ -18,9 +18,9 @@ async function onUpload(file: File) {
 }
 
 function downloadFile(data: ArrayBuffer | string, fileName: string, fileType?: string) {
-  const blob = new Blob(
-    [typeof data === 'string' ? new TextEncoder().encode(data) : data],
-    { type: fileType || 'application/octet-stream' });
+  const blob = new Blob([typeof data === 'string' ? new TextEncoder().encode(data) : data], {
+    type: fileType || 'application/octet-stream',
+  });
   const downloadUrl = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = downloadUrl;
@@ -36,8 +36,7 @@ const convertedCertificates = computed(() => {
   let inputKeyOrCertificateValue: string | Buffer = '';
   if (inputType.value === 'file' && file) {
     inputKeyOrCertificateValue = file;
-  }
-  else if (inputType.value === 'content' && inputContent) {
+  } else if (inputType.value === 'content' && inputContent) {
     inputKeyOrCertificateValue = inputContent;
   }
 
@@ -50,20 +49,18 @@ const convertedCertificates = computed(() => {
     <c-card>
       <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
         <n-space>
-          <n-radio
-            value="file"
-            :label="t('tools.ssl-cert-converter.texts.label-file')"
-          />
-          <n-radio
-            value="content"
-            :label="t('tools.ssl-cert-converter.texts.label-content')"
-          />
+          <n-radio value="file" :label="t('tools.ssl-cert-converter.texts.label-file')" />
+          <n-radio value="content" :label="t('tools.ssl-cert-converter.texts.label-content')" />
         </n-space>
       </n-radio-group>
 
       <c-file-upload
         v-if="inputType === 'file'"
-        :title="t('tools.ssl-cert-converter.texts.title-drag-and-drop-a-pem-der-jks-or-pkcs-12-file-here-or-click-to-select-a-file')"
+        :title="
+          t(
+            'tools.ssl-cert-converter.texts.title-drag-and-drop-a-pem-der-jks-or-pkcs-12-file-here-or-click-to-select-a-file',
+          )
+        "
         @file-upload="onUpload"
       />
 

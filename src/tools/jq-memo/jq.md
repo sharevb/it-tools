@@ -1,4 +1,4 @@
-**jq** is a command-line JSON processor: it slices, filters, maps and transforms structured data the way `sed` and `awk` do for text. A jq program is a *filter* — it takes an input, and produces an output.
+**jq** is a command-line JSON processor: it slices, filters, maps and transforms structured data the way `sed` and `awk` do for text. A jq program is a _filter_ — it takes an input, and produces an output.
 
 ```bash
 # pretty-print a file
@@ -20,7 +20,7 @@ choco install jq         # Windows
 ## 🚩 Command-Line Flags
 
 | Flag                     | Description                                                      |
-|--------------------------|------------------------------------------------------------------|
+| ------------------------ | ---------------------------------------------------------------- |
 | `-r`, `--raw-output`     | Print strings without quotes — what you want for shell variables |
 | `-c`, `--compact-output` | One compact line per result instead of pretty-printed JSON       |
 | `-n`, `--null-input`     | Do not read input; build JSON from scratch                       |
@@ -37,7 +37,7 @@ choco install jq         # Windows
 ## 🧭 Core Syntax
 
 | Filter       | Description                                                   |
-|--------------|---------------------------------------------------------------|
+| ------------ | ------------------------------------------------------------- |
 | `.`          | The identity filter — the input, unchanged                    |
 | `.foo`       | The value of field `foo`                                      |
 | `.foo.bar`   | Nested field access                                           |
@@ -55,7 +55,7 @@ choco install jq         # Windows
 ## 📇 Objects
 
 | Task                        | Filter                                            |
-|-----------------------------|---------------------------------------------------|
+| --------------------------- | ------------------------------------------------- |
 | List the keys               | `jq 'keys'` (`keys_unsorted` to keep order)       |
 | Does a key exist?           | `jq 'has("foo")'`                                 |
 | Pick a few fields           | `jq '{name, id}'`                                 |
@@ -73,7 +73,7 @@ choco install jq         # Windows
 ### Slicing and filtering
 
 | Task                         | Filter                                                                                                             |
-|------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | Every element                | `jq '.[]'`                                                                                                         |
 | First / last                 | `jq '.[0]'` / `jq '.[-1]'`                                                                                         |
 | Range, first three, last two | `jq '.[2:4]'`, `jq '.[:3]'`, `jq '.[-2:]'`                                                                         |
@@ -86,7 +86,7 @@ choco install jq         # Windows
 ### Mapping and transforming
 
 | Task                       | Filter                                      |
-|----------------------------|---------------------------------------------|
+| -------------------------- | ------------------------------------------- |
 | Apply to every element     | `jq 'map(.+1)'`                             |
 | Pull one field out of each | `jq 'map(.name)'` or `jq '.[].name'`        |
 | Drop elements by index     | `jq 'del(.[1, 2])'`                         |
@@ -106,7 +106,7 @@ choco install jq         # Windows
 ## 🔤 Strings & Formatting
 
 | Task                      | Filter                                         |
-|---------------------------|------------------------------------------------|
+| ------------------------- | ---------------------------------------------- |
 | Interpolate               | `jq -r '"\(.name) is \(.age)"'`                |
 | Change case               | `jq 'ascii_downcase'` / `ascii_upcase`         |
 | Split and join            | `jq 'split(",")'` / `jq 'join(", ")'`          |

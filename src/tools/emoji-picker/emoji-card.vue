@@ -30,25 +30,33 @@ const isKeywordsTruncated = computed(() => {
 // Copy functions with better notifications
 async function copyEmoji() {
   await copy(emojiInfo.value.emoji, {
-    notificationMessage: t('tools.emoji-card.text.emoji-emojiinfo-value-emoji-copied-to-clipboard', [emojiInfo.value.emoji]),
+    notificationMessage: t('tools.emoji-card.text.emoji-emojiinfo-value-emoji-copied-to-clipboard', [
+      emojiInfo.value.emoji,
+    ]),
   });
 }
 
 async function copyCodePoints() {
   await copy(completeCodePoints.value, {
-    notificationMessage: t('tools.emoji-card.text.code-points-completecodepoints-value-copied-to-clipboard', [completeCodePoints.value]),
+    notificationMessage: t('tools.emoji-card.text.code-points-completecodepoints-value-copied-to-clipboard', [
+      completeCodePoints.value,
+    ]),
   });
 }
 
 async function copyUnicode() {
   await copy(emojiInfo.value.unicode, {
-    notificationMessage: t('tools.emoji-card.text.unicode-emojiinfo-value-unicode-copied-to-clipboard', [emojiInfo.value.unicode]),
+    notificationMessage: t('tools.emoji-card.text.unicode-emojiinfo-value-unicode-copied-to-clipboard', [
+      emojiInfo.value.unicode,
+    ]),
   });
 }
 
 async function copyName() {
   await copy(emojiInfo.value.title, {
-    notificationMessage: t('tools.emoji-card.text.name-emojiinfo-value-title-copied-to-clipboard', [emojiInfo.value.title]),
+    notificationMessage: t('tools.emoji-card.text.name-emojiinfo-value-title-copied-to-clipboard', [
+      emojiInfo.value.title,
+    ]),
   });
 }
 </script>
@@ -148,7 +156,12 @@ async function copyName() {
     </div>
 
     <!-- Support indicator -->
-    <div v-if="!emojiSupported" text-xs op-50 :title="t('tools.emoji-picker.texts.title-this-emoji-might-not-display-correctly-on-your-system')">
+    <div
+      v-if="!emojiSupported"
+      text-xs
+      op-50
+      :title="t('tools.emoji-picker.texts.title-this-emoji-might-not-display-correctly-on-your-system')"
+    >
       {{ t('tools.emoji-picker.texts.tag-️') }}
     </div>
   </c-card>
@@ -157,12 +170,12 @@ async function copyName() {
 <style scoped>
 .emoji-display {
   font-family:
-    'Noto Color Emoji', /* Best flag and complex emoji support */
-    'Apple Color Emoji', /* Apple devices */
-    'Segoe UI Emoji', /* Windows */
-    'Twemoji Mozilla', /* Firefox fallback */
-    'EmojiOne Color', /* Additional fallback */
-    sans-serif;
+    'Noto Color Emoji',
+    /* Best flag and complex emoji support */ 'Apple Color Emoji',
+    /* Apple devices */ 'Segoe UI Emoji',
+    /* Windows */ 'Twemoji Mozilla',
+    /* Firefox fallback */ 'EmojiOne Color',
+    /* Additional fallback */ sans-serif;
   font-feature-settings: 'liga' off;
   font-variant-emoji: emoji;
   text-rendering: optimizeQuality;

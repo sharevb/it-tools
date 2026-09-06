@@ -4,9 +4,12 @@ import { expect, test } from '@playwright/test';
 const timezoneOutput = '.n-dynamic-input input[readonly]';
 
 async function openConverterWithTimezone(page: Page, timezone: string) {
-  await page.addInitScript(({ timezone }: { timezone: string }) => {
-    localStorage.setItem('date-time-converter:timezones', JSON.stringify([{ name: timezone }]));
-  }, { timezone });
+  await page.addInitScript(
+    ({ timezone }: { timezone: string }) => {
+      localStorage.setItem('date-time-converter:timezones', JSON.stringify([{ name: timezone }]));
+    },
+    { timezone },
+  );
 
   await page.goto('/date-converter');
 }

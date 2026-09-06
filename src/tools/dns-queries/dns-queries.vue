@@ -13,19 +13,24 @@ const answers = ref<string[]>([]);
 async function queryDNS() {
   const endpoints = await wellknown.endpoints('doh');
   try {
-    const response = await query({
-      question: { type: type.value, name: name.value },
-    }, {
-      endpoints,
-    });
+    const response = await query(
+      {
+        question: { type: type.value, name: name.value },
+      },
+      {
+        endpoints,
+      },
+    );
     if (type.value === 'TXT') {
-      answers.value = (response.answers || []).map(answer => `${answer.name} ${answer.type} ${combineTXT(answer.data as Uint8Array[])} (TTL=${answer.ttl})`);
+      answers.value = (response.answers || []).map(
+        (answer) => `${answer.name} ${answer.type} ${combineTXT(answer.data as Uint8Array[])} (TTL=${answer.ttl})`,
+      );
+    } else {
+      answers.value = (response.answers || []).map(
+        (answer) => `${answer.name} ${answer.type} ${answer.data} (TTL=${answer.ttl})`,
+      );
     }
-    else {
-      answers.value = (response.answers || []).map(answer => `${answer.name} ${answer.type} ${answer.data} (TTL=${answer.ttl})`);
-    }
-  }
-  catch (error: any) {
+  } catch (error: any) {
     answers.value = [error.toString()];
   }
 }
@@ -45,14 +50,12 @@ async function queryDNS() {
       searchable
       :label="t('tools.dns-queries.texts.label-dns-record-type')"
       label-position="left"
-      :options="Object.values(types).map(kv => ({ value: kv.value, label: `${kv.value}: ${kv.label}` }))"
+      :options="Object.values(types).map((kv) => ({ value: kv.value, label: `${kv.value}: ${kv.label}` }))"
       mb-2
     />
 
     <div flex justify-center>
-      <c-button
-        @click="queryDNS"
-      >
+      <c-button @click="queryDNS">
         {{ t('tools.dns-queries.texts.tag-send-dns-query') }}
       </c-button>
     </div>
@@ -60,13 +63,7 @@ async function queryDNS() {
     <n-divider />
 
     <c-card :title="t('tools.dns-queries.texts.title-query-results')">
-      <textarea-copyable
-        v-for="(answer, index) in answers"
-        :key="index"
-        :value="answer"
-        word-wrap
-        mb-2
-      />
+      <textarea-copyable v-for="(answer, index) in answers" :key="index" :value="answer" word-wrap mb-2 />
     </c-card>
   </div>
 </template>

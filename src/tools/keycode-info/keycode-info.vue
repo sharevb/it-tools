@@ -84,7 +84,9 @@ const fields = computed(() => {
       <div v-if="event" mb-2 text-3xl>
         {{ event.key }}
       </div>
-      <span lh-1 op-70>{{ t('tools.keycode-info.texts.tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key') }}</span>
+      <span lh-1 op-70>{{
+        t('tools.keycode-info.texts.tag-press-the-key-on-your-keyboard-you-want-to-get-info-about-this-key')
+      }}</span>
     </c-card>
 
     <n-input-group v-for="({ label, value, placeholder }, i) of fields" :key="i" style="margin-bottom: 5px">

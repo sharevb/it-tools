@@ -7,28 +7,22 @@ import { useQueryParam } from '@/composable/queryParams';
 const { t } = useI18n();
 
 const punycodeInput = useQueryParam({ tool: 'puny-conv', name: 'punycode', defaultValue: '' });
-const intlOutput = computed(
-  () => {
-    try {
-      return toUnicode(punycodeInput.value?.trim());
-    }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+const intlOutput = computed(() => {
+  try {
+    return toUnicode(punycodeInput.value?.trim());
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 
 const intlInput = useQueryParam({ tool: 'puny-conv', name: 'intl', defaultValue: '' });
-const punycodeOutput = computed(
-  () => {
-    try {
-      return toASCII(intlInput.value?.trim());
-    }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+const punycodeOutput = computed(() => {
+  try {
+    return toASCII(intlInput.value?.trim());
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 </script>
 
 <template>

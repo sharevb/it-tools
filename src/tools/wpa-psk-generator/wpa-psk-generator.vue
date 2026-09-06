@@ -13,8 +13,7 @@ const wpaPSKRawKey = ref('');
 function computeRawKey() {
   try {
     wpaPSKRawKey.value = generateWpaPskRawKey(ssid.value, passphrase.value)?.psk;
-  }
-  catch (e: any) {
+  } catch (e: any) {
     wpaPSKRawKey.value = e.toString();
   }
 }
@@ -23,7 +22,7 @@ const ssidValidation = useValidation({
   source: ssid,
   rules: [
     {
-      validator: v => v !== '',
+      validator: (v) => v !== '',
       message: t('tools.wpa-psk-generator.texts.message-ssid-must-not-be-empty'),
     },
   ],

@@ -10,7 +10,8 @@ const { t } = useI18n();
 
 const convertJsonToToml = (value: string) => [stringifyToml(JSON5.parse(value))].flat().join('\n').trim();
 
-const transformer = (value: string) => value.trim() === '' ? '' : withDefaultOnError(() => convertJsonToToml(value), '');
+const transformer = (value: string) =>
+  value.trim() === '' ? '' : withDefaultOnError(() => convertJsonToToml(value), '');
 
 const rules: UseValidationRule<string>[] = [
   {

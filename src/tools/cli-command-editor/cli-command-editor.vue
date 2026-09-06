@@ -25,7 +25,11 @@ const command = ref('');
           :placeholder="$t('tools.cli-command-editor.placeholder')"
           :aria-placeholder="t('tools.cli-command-editor.placeholder')"
           raw-text
-          @update:value="() => { command = inputCommand }"
+          @update:value="
+            () => {
+              command = inputCommand;
+            }
+          "
         />
         <div v-for="option in options" :key="option" flex justify-center>
           <c-input-text
@@ -38,17 +42,15 @@ const command = ref('');
             :placeholder="service.sanitizeOption(option)"
             :aria-placeholder="service.sanitizeOption(option)"
             mt-6
-            @update:value="() => { command = service.buildEditedCommand(optionsInput, optionsObject, inputCommand) }"
+            @update:value="
+              () => {
+                command = service.buildEditedCommand(optionsInput, optionsObject, inputCommand);
+              }
+            "
           />
         </div>
 
-        <c-text-copyable
-          v-if="command"
-          :value="command"
-
-          :show-icon="false"
-          mt-6 font-mono
-        />
+        <c-text-copyable v-if="command" :value="command" :show-icon="false" mt-6 font-mono />
       </n-gi>
     </n-grid>
   </c-card>

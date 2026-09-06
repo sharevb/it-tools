@@ -48,8 +48,7 @@ function convertScalarSafe(value: any, type: BaseType): any {
       default:
         return String(value ?? '');
     }
-  }
-  catch {
+  } catch {
     // Absolute fallback: never throw
     if (type === 'boolean') {
       return false;
@@ -71,19 +70,14 @@ function convertArraySafe(values: any[], elementType: BaseType): any[] {
   if (!Array.isArray(values)) {
     return [];
   }
-  return values.map(v => convertScalarSafe(v, elementType));
+  return values.map((v) => convertScalarSafe(v, elementType));
 }
 
 /**
  * Main safe conversion function when changing types.
  * Always returns a valid value. Never throws.
  */
-function convertValueOnTypeChangeSafe(
-  oldType: ParamType,
-  newType: ParamType,
-  value: any,
-  elementType?: BaseType,
-): any {
+function convertValueOnTypeChangeSafe(oldType: ParamType, newType: ParamType, value: any, elementType?: BaseType): any {
   try {
     // Switching to array
     if (newType === 'array') {
@@ -105,8 +99,7 @@ function convertValueOnTypeChangeSafe(
 
     // Scalar → scalar
     return convertScalarSafe(value, newType);
-  }
-  catch {
+  } catch {
     // Absolute fallback: never throw
     if (newType === 'array') {
       return [];
@@ -116,10 +109,10 @@ function convertValueOnTypeChangeSafe(
 }
 
 interface ParamInstance {
-  key: string
-  type: ParamType
-  value: any
-  elementType?: BaseType
+  key: string;
+  type: ParamType;
+  value: any;
+  elementType?: BaseType;
 }
 
 const loadUrl = useQueryParamOrStorage({
@@ -140,11 +133,16 @@ function createParam(): ParamInstance {
 
 function createArrayItem(elementType: BaseType) {
   switch (elementType) {
-    case 'boolean': return false;
-    case 'number': return 0;
-    case 'date': return Date.now();
-    case 'datetime': return Date.now();
-    default: return '';
+    case 'boolean':
+      return false;
+    case 'number':
+      return 0;
+    case 'date':
+      return Date.now();
+    case 'datetime':
+      return Date.now();
+    default:
+      return '';
   }
 }
 
@@ -159,8 +157,7 @@ function isIsoDate(value: string): boolean {
 }
 
 function isIsoDateTime(value: string): boolean {
-  const isoRegex
-    = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/;
+  const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/;
 
   if (!isoRegex.test(value)) {
     return false;
@@ -188,11 +185,16 @@ function inferType(value: string): BaseType {
 
 function convertValue(raw: string, type: BaseType) {
   switch (type) {
-    case 'boolean': return raw === 'true';
-    case 'number': return Number(raw);
-    case 'date': return new Date(raw).getTime();
-    case 'datetime': return new Date(raw).getTime();
-    default: return raw;
+    case 'boolean':
+      return raw === 'true';
+    case 'number':
+      return Number(raw);
+    case 'date':
+      return new Date(raw).getTime();
+    case 'datetime':
+      return new Date(raw).getTime();
+    default:
+      return raw;
   }
 }
 
@@ -209,7 +211,7 @@ function parseInitialUrl() {
       const isArray = rawKey.endsWith('[]');
       const key = isArray ? rawKey.slice(0, -2) : rawKey;
 
-      let existing = parsed.find(p => p.key === key);
+      let existing = parsed.find((p) => p.key === key);
 
       if (!existing) {
         if (isArray) {
@@ -220,8 +222,7 @@ function parseInitialUrl() {
             elementType,
             value: [],
           };
-        }
-        else {
+        } else {
           const type = inferType(rawValue);
           existing = {
             key,
@@ -234,15 +235,13 @@ function parseInitialUrl() {
 
       if (existing.type === 'array') {
         existing.value.push(convertValue(rawValue, existing.elementType!));
-      }
-      else {
+      } else {
         existing.value = convertValue(rawValue, existing.type);
       }
     });
 
     params.value = parsed;
-  }
-  catch (e) {
+  } catch (e) {
     console.error('Invalid URL', e);
   }
 }
@@ -295,8 +294,7 @@ const finalUrl = computed(() => {
     });
 
     return url.toString();
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -305,11 +303,7 @@ const finalUrl = computed(() => {
 <template>
   <div>
     <NFormItem :label="t('tools.url-builder.texts.label-load-url')" label-placement="left">
-      <NInput
-        v-model:value="loadUrl"
-        :placeholder="t('tools.url-builder.texts.placeholder-paste-url-to-parse')"
-        mr-1
-      />
+      <NInput v-model:value="loadUrl" :placeholder="t('tools.url-builder.texts.placeholder-paste-url-to-parse')" mr-1 />
       <NButton @click="parseInitialUrl()">{{ t('tools.url-builder.texts.tag-parse') }}</NButton>
     </NFormItem>
 
@@ -320,12 +314,9 @@ const finalUrl = computed(() => {
     </NFormItem>
 
     <c-card v-if="baseUrl" :title="t('tools.url-builder.texts.title-url-parameters')" mb-3>
-      <NDynamicInput
-        v-model:value="params"
-        :on-create="createParam"
-      >
+      <NDynamicInput v-model:value="params" :on-create="createParam">
         <template #default="{ value }">
-          <div style="display:flex; gap:12px; width:100%">
+          <div style="display: flex; gap: 12px; width: 100%">
             <NInput
               v-model:value="value.key"
               :placeholder="t('tools.url-builder.texts.placeholder-key')"
@@ -343,15 +334,17 @@ const finalUrl = computed(() => {
                 { label: t('tools.url-builder.texts.label-array'), value: 'array' },
               ]"
               style="width: 140px"
-              @update:value="(newType: string) => {
-                value.value = convertValueOnTypeChangeSafe(
-                  value.type,
-                  newType as ParamType,
-                  value.value,
-                  value.elementType,
-                )
-                value.type = newType
-              }"
+              @update:value="
+                (newType: string) => {
+                  value.value = convertValueOnTypeChangeSafe(
+                    value.type,
+                    newType as ParamType,
+                    value.value,
+                    value.elementType,
+                  );
+                  value.type = newType;
+                }
+              "
             />
 
             <NSelect
@@ -365,48 +358,55 @@ const finalUrl = computed(() => {
                 { label: t('tools.url-builder.texts.label-datetime'), value: 'datetime' },
               ]"
               style="width: 140px"
-              @update:value="(newElementType: string) => {
-                value.value = convertArraySafe(value.value, newElementType as BaseType)
-                value.elementType = newElementType
-              }"
+              @update:value="
+                (newElementType: string) => {
+                  value.value = convertArraySafe(value.value, newElementType as BaseType);
+                  value.elementType = newElementType;
+                }
+              "
             />
 
-            <div v-if="value.type === 'array'" style="flex:1">
-              <NDynamicInput
-                v-model:value="value.value"
-                :on-create="() => createArrayItem(value.elementType)"
-              >
+            <div v-if="value.type === 'array'" style="flex: 1">
+              <NDynamicInput v-model:value="value.value" :on-create="() => createArrayItem(value.elementType)">
                 <template #default="{ value: item, index }">
                   <component
-                    :is="({
-                      string: NInput,
-                      number: NInputNumber,
-                      boolean: NSwitch,
-                      date: NDatePicker,
-                      datetime: NDatePicker,
-                    } as Record<string, any>)[value.elementType]"
+                    :is="
+                      (
+                        {
+                          string: NInput,
+                          number: NInputNumber,
+                          boolean: NSwitch,
+                          date: NDatePicker,
+                          datetime: NDatePicker,
+                        } as Record<string, any>
+                      )[value.elementType]
+                    "
                     v-model:value="value.value[index]"
                     :type="value.elementType === 'datetime' ? 'datetime' : undefined"
                     :placeholder="item"
-                    style="width:100%"
+                    style="width: 100%"
                   />
                 </template>
               </NDynamicInput>
             </div>
 
             <component
-              :is="({
-                string: NInput,
-                number: NInputNumber,
-                boolean: NSwitch,
-                date: NDatePicker,
-                datetime: NDatePicker,
-              } as Record<string, any>)[value.type]"
+              :is="
+                (
+                  {
+                    string: NInput,
+                    number: NInputNumber,
+                    boolean: NSwitch,
+                    date: NDatePicker,
+                    datetime: NDatePicker,
+                  } as Record<string, any>
+                )[value.type]
+              "
               v-else
               v-model:value="value.value"
               :type="value.type === 'datetime' ? 'datetime' : undefined"
               :placeholder="t('tools.url-builder.texts.placeholder-value')"
-              style="flex:1"
+              style="flex: 1"
             />
           </div>
         </template>

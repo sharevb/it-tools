@@ -12,7 +12,5 @@ export function toHashString(obj: HashMap): string {
 
 export function getHashMap(hash: string): HashMap {
   const existingParams = new URLSearchParams(hash.replace('#', ''));
-  return Object.fromEntries(
-    [...existingParams.keys()].map(key => [key, existingParams.getAll(key)]),
-  );
+  return Object.fromEntries([...existingParams.keys()].map((key) => [key, existingParams.getAll(key)]));
 }

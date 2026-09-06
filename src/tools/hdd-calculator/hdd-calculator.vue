@@ -52,7 +52,8 @@ function updateBytes(val: string | number | null, unit: Units, type: 'dec' | 'bi
 <template>
   <div>
     <n-p>
-      {{ t('tools.hdd-calculator.texts.tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb') }}<n-a href="https://en.wikipedia.org/wiki/Byte" target="_blank" rel="noopener">
+      {{ t('tools.hdd-calculator.texts.tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb')
+      }}<n-a href="https://en.wikipedia.org/wiki/Byte" target="_blank" rel="noopener">
         {{ t('tools.hdd-calculator.texts.tag-see-here-for-details') }}
       </n-a>
     </n-p>

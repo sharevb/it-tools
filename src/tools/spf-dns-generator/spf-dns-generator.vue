@@ -9,11 +9,11 @@ const policy = ref<string>('~all');
 const spfRecord = computed(() => {
   let record = 'v=spf1';
 
-  allowedDomains.value.forEach(domain => record += ` a:${domain}`);
-  allowedIPv4s.value.forEach(ip => record += ` ip4:${ip}`);
-  allowedIPv6s.value.forEach(ip => record += ` ip6:${ip}`);
-  includeDomains.value.forEach(domain => record += ` include:${domain}`);
-  mechanisms.value.forEach(mech => record += ` ${mech}`);
+  allowedDomains.value.forEach((domain) => (record += ` a:${domain}`));
+  allowedIPv4s.value.forEach((ip) => (record += ` ip4:${ip}`));
+  allowedIPv6s.value.forEach((ip) => (record += ` ip6:${ip}`));
+  includeDomains.value.forEach((domain) => (record += ` include:${domain}`));
+  mechanisms.value.forEach((mech) => (record += ` ${mech}`));
 
   record += ` ${policy.value}`;
   return record;
@@ -38,15 +38,9 @@ const spfRecord = computed(() => {
       <n-form-item :label="$t('tools.spf-dns-generator.text.mechanisms')" label-placement="left">
         <n-checkbox-group v-model:value="mechanisms">
           <n-space>
-            <n-checkbox value="a">
-              A
-            </n-checkbox>
-            <n-checkbox value="mx">
-              MX
-            </n-checkbox>
-            <n-checkbox value="ptr">
-              PTR
-            </n-checkbox>
+            <n-checkbox value="a"> A </n-checkbox>
+            <n-checkbox value="mx"> MX </n-checkbox>
+            <n-checkbox value="ptr"> PTR </n-checkbox>
             <n-checkbox value="exists">
               {{ $t('tools.spf-dns-generator.texts.tag-exists') }}
             </n-checkbox>

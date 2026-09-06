@@ -6,7 +6,11 @@ import { type AllSupportedUnits, convertStorageAndRateUnitsDisplay } from './dat
 const { t } = useI18n();
 
 const input = ref<{ size: string; unit: string }>({ size: '0', unit: 'KB' });
-const output = ref<{ unit: string; precision: number; appendUnit: boolean }>({ unit: 'MB', precision: 3, appendUnit: false });
+const output = ref<{ unit: string; precision: number; appendUnit: boolean }>({
+  unit: 'MB',
+  precision: 3,
+  appendUnit: false,
+});
 
 const allUnits = [
   { value: 'B', label: t('tools.data-storage-unit-converter.texts.label-bytes-b') },
@@ -47,8 +51,7 @@ const convertedValue = computed(() => {
       precision: output.value.precision,
       appendUnit: output.value.appendUnit,
     });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -57,7 +60,8 @@ const convertedValue = computed(() => {
 <template>
   <div>
     <n-p text-center>
-      {{ t('tools.data-storage-unit-converter.texts.tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb') }}<n-a href="https://en.wikipedia.org/wiki/Byte" target="_blank" rel="noopener">
+      {{ t('tools.data-storage-unit-converter.texts.tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb')
+      }}<n-a href="https://en.wikipedia.org/wiki/Byte" target="_blank" rel="noopener">
         {{ t('tools.data-storage-unit-converter.texts.tag-see-here-for-details') }}
       </n-a>
     </n-p>
@@ -79,13 +83,20 @@ const convertedValue = computed(() => {
       <div flex items-baseline gap-2>
         <c-select
           v-model:value="output.unit"
-          :label="t('tools.data-storage-unit-converter.texts.label-output')" label-position="left"
+          :label="t('tools.data-storage-unit-converter.texts.label-output')"
+          label-position="left"
           :options="allUnits"
           :placeholder="t('tools.data-storage-unit-converter.texts.placeholder-select-output-unit')"
         />
 
         <n-form-item :label="t('tools.data-storage-unit-converter.texts.label-precision')" label-placement="left">
-          <n-input-number-i18n v-model:value="output.precision" style="width:100px" :placeholder="t('tools.data-storage-unit-converter.texts.placeholder-precision')" :max="10" :min="0" />
+          <n-input-number-i18n
+            v-model:value="output.precision"
+            style="width: 100px"
+            :placeholder="t('tools.data-storage-unit-converter.texts.placeholder-precision')"
+            :max="10"
+            :min="0"
+          />
         </n-form-item>
 
         <n-checkbox v-model:checked="output.appendUnit">

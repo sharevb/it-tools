@@ -25,13 +25,12 @@ async function traceAsync(input: Buffer) {
 
 async function posterizeAsync(input: Buffer) {
   return new Promise<string>((resolve, reject) => {
-    potrace.posterize(input,
-      (err: Error | null, svg: string) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(svg);
-      });
+    potrace.posterize(input, (err: Error | null, svg: string) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(svg);
+    });
   });
 }
 
@@ -47,30 +46,69 @@ function file2Buffer(file: File) {
 }
 
 // import vtracer as JS module populating window.vtracerInit and ColorImageConverter
-const { load: loadVTracer } = useScriptTag(`${base}vtracer/vtracer_webapp.js`, undefined, { type: 'module', manual: true });
+const { load: loadVTracer } = useScriptTag(`${base}vtracer/vtracer_webapp.js`, undefined, {
+  type: 'module',
+  manual: true,
+});
 await loadVTracer();
 
 const file2Blob = async (file: File) => new Blob([new Uint8Array(await file.arrayBuffer())], { type: file.type });
 
 const processing = ref(false);
 
-const colorspace = useQueryParamOrStorage<'bw' | 'gray' | 'color' | 'vtracer'>({ name: 'mode', storageName: 'potrace:m', defaultValue: 'bw' });
+const colorspace = useQueryParamOrStorage<'bw' | 'gray' | 'color' | 'vtracer'>({
+  name: 'mode',
+  storageName: 'potrace:m',
+  defaultValue: 'bw',
+});
 
-const hierarchical = useQueryParamOrStorage<'stacked' | 'cutout'>({ name: 'hierarchical', storageName: 'potrace:h', defaultValue: 'stacked' });
-const filter_speckle = useQueryParamOrStorage<number>({ name: 'filter_speckle', storageName: 'potrace:fs', defaultValue: 4 });
-const corner_threshold = useQueryParamOrStorage<number>({ name: 'corner_threshold', storageName: 'potrace:ct', defaultValue: 60 });
-const color_precision = useQueryParamOrStorage<number>({ name: 'color_precision', storageName: 'potrace:cp', defaultValue: 6 });
-const length_threshold = useQueryParamOrStorage<number>({ name: 'length_threshold', storageName: 'potrace:lt', defaultValue: 4 });
-const splice_threshold = useQueryParamOrStorage<number>({ name: 'splice_threshold', storageName: 'potrace:st', defaultValue: 45 });
-const layer_difference = useQueryParamOrStorage<number>({ name: 'layer_difference', storageName: 'potrace:ld', defaultValue: 16 });
-const fitting = useQueryParamOrStorage<'pixel' | 'polygon' | 'spline'>({ name: 'fit', storageName: 'potrace:f', defaultValue: 'spline' });
+const hierarchical = useQueryParamOrStorage<'stacked' | 'cutout'>({
+  name: 'hierarchical',
+  storageName: 'potrace:h',
+  defaultValue: 'stacked',
+});
+const filter_speckle = useQueryParamOrStorage<number>({
+  name: 'filter_speckle',
+  storageName: 'potrace:fs',
+  defaultValue: 4,
+});
+const corner_threshold = useQueryParamOrStorage<number>({
+  name: 'corner_threshold',
+  storageName: 'potrace:ct',
+  defaultValue: 60,
+});
+const color_precision = useQueryParamOrStorage<number>({
+  name: 'color_precision',
+  storageName: 'potrace:cp',
+  defaultValue: 6,
+});
+const length_threshold = useQueryParamOrStorage<number>({
+  name: 'length_threshold',
+  storageName: 'potrace:lt',
+  defaultValue: 4,
+});
+const splice_threshold = useQueryParamOrStorage<number>({
+  name: 'splice_threshold',
+  storageName: 'potrace:st',
+  defaultValue: 45,
+});
+const layer_difference = useQueryParamOrStorage<number>({
+  name: 'layer_difference',
+  storageName: 'potrace:ld',
+  defaultValue: 16,
+});
+const fitting = useQueryParamOrStorage<'pixel' | 'polygon' | 'spline'>({
+  name: 'fit',
+  storageName: 'potrace:f',
+  defaultValue: 'spline',
+});
 
 const interpolate = ref(false);
 const fileInput = ref() as Ref<File>;
 const svg = ref<string>('');
 
 function deg2rad(deg: number) {
-  return deg / 180 * 3.141592654;
+  return (deg / 180) * 3.141592654;
 }
 async function computeSVG() {
   const file = fileInput.value;
@@ -119,20 +157,17 @@ async function computeSVG() {
           clustering_mode: 'color',
           layer_difference: layer_difference.value,
           path_precision: 8,
-        },
-        );
+        });
         break;
     }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     svg.value = e.toString();
-  }
-  finally {
+  } finally {
     processing.value = false;
   }
-};
+}
 
-const svgBase64 = computed(() => svg.value ? `data:image/svg+xml;base64,${Base64.encode(svg.value)}` : '');
+const svgBase64 = computed(() => (svg.value ? `data:image/svg+xml;base64,${Base64.encode(svg.value)}` : ''));
 
 async function onUpload(file: File) {
   if (file) {
@@ -199,32 +234,66 @@ async function onUpload(file: File) {
           />
         </n-form-item>
 
-        <n-form-item :label="$t('tools.potrace.texts.filter-speckle-cleaner')" label-placement="left" :title="$t('tools.potrace.texts.discard-patches-small-than-x-px-in-size')">
+        <n-form-item
+          :label="$t('tools.potrace.texts.filter-speckle-cleaner')"
+          label-placement="left"
+          :title="$t('tools.potrace.texts.discard-patches-small-than-x-px-in-size')"
+        >
           <n-input-number v-model:value="filter_speckle" min="0" max="128" />
         </n-form-item>
-        <n-form-item :label="$t('tools.potrace.texts.gradient-step-less-layers')" label-placement="left" :title="$t('tools.potrace.texts.color-difference-between-gradient-layers')">
+        <n-form-item
+          :label="$t('tools.potrace.texts.gradient-step-less-layers')"
+          label-placement="left"
+          :title="$t('tools.potrace.texts.color-difference-between-gradient-layers')"
+        >
           <n-input-number v-model:value="layer_difference" min="0" max="255" />
         </n-form-item>
-        <n-form-item :label="$t('tools.potrace.texts.color-precision-more-accurate')" label-placement="left" :title="$t('tools.potrace.texts.number-of-significant-bits-to-use-in-a-rgb-channel')">
+        <n-form-item
+          :label="$t('tools.potrace.texts.color-precision-more-accurate')"
+          label-placement="left"
+          :title="$t('tools.potrace.texts.number-of-significant-bits-to-use-in-a-rgb-channel')"
+        >
           <n-input-number v-model:value="color_precision" min="1" max="8" />
         </n-form-item>
-        <n-form-item v-if="fitting === 'spline'" :label="$t('tools.potrace.texts.corner-threshold-smoother')" label-placement="left" :title="$t('tools.potrace.texts.minimum-momentary-angle-in-degrees-to-be-considered-a-corner-to-be-kept-after-smoothing')">
+        <n-form-item
+          v-if="fitting === 'spline'"
+          :label="$t('tools.potrace.texts.corner-threshold-smoother')"
+          label-placement="left"
+          :title="
+            $t(
+              'tools.potrace.texts.minimum-momentary-angle-in-degrees-to-be-considered-a-corner-to-be-kept-after-smoothing',
+            )
+          "
+        >
           <n-input-number v-model:value="corner_threshold" min="0" max="180" />
         </n-form-item>
-        <n-form-item v-if="fitting === 'spline'" :label="$t('tools.potrace.texts.length-threshold-more-coarse')" label-placement="left" :title="$t('tools.potrace.texts.perform-iterative-subdivide-smooth-until-all-segments-are-shorter-than-this-length')">
+        <n-form-item
+          v-if="fitting === 'spline'"
+          :label="$t('tools.potrace.texts.length-threshold-more-coarse')"
+          label-placement="left"
+          :title="
+            $t('tools.potrace.texts.perform-iterative-subdivide-smooth-until-all-segments-are-shorter-than-this-length')
+          "
+        >
           <n-input-number v-model:value="length_threshold" min="3.5" max="10" step="0.5" />
         </n-form-item>
-        <n-form-item v-if="fitting === 'spline'" :label="$t('tools.potrace.texts.splice-threshold-more-accurate')" label-placement="left" :title="$t('tools.potrace.texts.minimum-angle-displacement-in-degrees-to-be-considered-a-cutting-point-between-curves')">
+        <n-form-item
+          v-if="fitting === 'spline'"
+          :label="$t('tools.potrace.texts.splice-threshold-more-accurate')"
+          label-placement="left"
+          :title="
+            $t(
+              'tools.potrace.texts.minimum-angle-displacement-in-degrees-to-be-considered-a-cutting-point-between-curves',
+            )
+          "
+        >
           <n-input-number v-model:value="splice_threshold" min="0" max="180" />
         </n-form-item>
       </n-space>
     </div>
 
     <n-space justify="center" mb-2>
-      <n-button
-        :disabled="!fileInput"
-        @click="computeSVG"
-      >
+      <n-button :disabled="!fileInput" @click="computeSVG">
         {{ t('tools.potrace.texts.button-trace') }}
       </n-button>
     </n-space>
@@ -234,17 +303,13 @@ async function onUpload(file: File) {
     </n-space>
 
     <n-card v-if="svg && !processing" :title="t('tools.potrace.texts.tag-potrace-result')">
-      <div style="text-align: center;">
-        <img width="300" :src="svgBase64" style="background-color: white">
+      <div style="text-align: center">
+        <img width="300" :src="svgBase64" style="background-color: white" />
       </div>
 
       <n-divider />
 
-      <TextareaCopyable
-        :value="svg"
-        word-wrap
-        download-file-name="output.svg"
-      />
+      <TextareaCopyable :value="svg" word-wrap download-file-name="output.svg" />
     </n-card>
   </div>
 </template>

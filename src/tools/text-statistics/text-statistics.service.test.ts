@@ -94,8 +94,10 @@ describe('text-statistics', () => {
         words_uniques: 10,
         words_uniques_ci: 10,
       });
-      expect(textStatistics(`Some sentence! Une autre phrase ? 
-      « et avec des chiffres 1234 ! »`)).to.deep.eq({
+      expect(
+        textStatistics(`Some sentence! Une autre phrase ? 
+      « et avec des chiffres 1234 ! »`),
+      ).to.deep.eq({
         chars: 72,
         chars_digits: 4,
         chars_lower: 41,

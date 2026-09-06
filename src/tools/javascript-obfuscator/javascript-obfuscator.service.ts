@@ -10,7 +10,9 @@ function base64Encode(str: string) {
 }
 
 function rot13Encode(str: string) {
-  return str.replace(/[A-Za-z]/g, c => String.fromCharCode((c <= 'Z' ? 65 : 97) + ((c.charCodeAt(0) - (c <= 'Z' ? 65 : 97) + 13) % 26)));
+  return str.replace(/[A-Za-z]/g, (c) =>
+    String.fromCharCode((c <= 'Z' ? 65 : 97) + ((c.charCodeAt(0) - (c <= 'Z' ? 65 : 97) + 13) % 26)),
+  );
 }
 
 function obfuscateJavascript(code: string, method: 'base64' | 'rot13' | 'obfuscator.io' = 'base64'): string {
@@ -20,18 +22,16 @@ function obfuscateJavascript(code: string, method: 'base64' | 'rot13' | 'obfusca
 
   try {
     if (method === 'obfuscator.io') {
-      return JavaScriptObfuscator.obfuscate(code,
-        {
-          compact: false,
-          controlFlowFlattening: true,
-          controlFlowFlatteningThreshold: 1,
-          numbersToExpressions: true,
-          simplify: true,
-          stringArrayShuffle: true,
-          splitStrings: true,
-          stringArrayThreshold: 1,
-        },
-      ).getObfuscatedCode();
+      return JavaScriptObfuscator.obfuscate(code, {
+        compact: false,
+        controlFlowFlattening: true,
+        controlFlowFlatteningThreshold: 1,
+        numbersToExpressions: true,
+        simplify: true,
+        stringArrayShuffle: true,
+        splitStrings: true,
+        stringArrayThreshold: 1,
+      }).getObfuscatedCode();
     }
 
     if (method === 'base64') {
@@ -41,8 +41,7 @@ function obfuscateJavascript(code: string, method: 'base64' | 'rot13' | 'obfusca
 
     const r = rot13Encode(code);
     return `(function(s){function r(u){return u.replace(/[A-Za-z]/g,c=>String.fromCharCode((c<='Z'?65:97)+((c.charCodeAt(0)-(c<='Z'?65:97)+13)%26)))};eval(r(s))})('${r}');`;
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return `/* ERROR: ${e.toString()} */`;
   }
 }

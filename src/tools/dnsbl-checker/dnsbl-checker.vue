@@ -64,9 +64,7 @@ const columns = [
 ];
 
 const filteredResults = computed(() => {
-  return showListedOnly.value
-    ? results.value.filter(r => r.listed)
-    : results.value;
+  return showListedOnly.value ? results.value.filter((r) => r.listed) : results.value;
 });
 
 function reverseIp(ip: string) {
@@ -82,10 +80,9 @@ async function resolveDomainToIp(domain: string) {
   try {
     const res = await fetch(url, { headers });
     const answer = (await res.json()).Answer as DnsAnswer;
-    const ip = answer?.find(a => a.type === 1)?.data;
+    const ip = answer?.find((a) => a.type === 1)?.data;
     return ip || null;
-  }
-  catch {
+  } catch {
     return null;
   }
 }
@@ -103,7 +100,9 @@ async function checkAllDnsbls() {
   if (!/^\d+\.\d+\.\d+\.\d+$/.test(ip)) {
     const resolved = await resolveDomainToIp(ip);
     if (!resolved) {
-      results.value = [{ dnsbl: 'Error', description: '', listed: false, response: 'Invalid domain or no A record found' }];
+      results.value = [
+        { dnsbl: 'Error', description: '', listed: false, response: 'Invalid domain or no A record found' },
+      ];
       loading.value = false;
       return;
     }
@@ -132,10 +131,9 @@ async function checkAllDnsbls() {
         dnsbl: entry.dnsbl,
         description: entry.description,
         listed: !!answer,
-        response: answer ? answer.map(a => a.data).join(', ') : 'No listing',
+        response: answer ? answer.map((a) => a.data).join(', ') : 'No listing',
       };
-    }
-    catch (e: any) {
+    } catch (e: any) {
       return {
         dnsbl: entry.dnsbl,
         description: entry.description,
@@ -156,7 +154,12 @@ function getRowClass(row: { listed: boolean }) {
 
 <template>
   <NCard :title="t('tools.dnsbl-checker.texts.title-dnsbl-multi-checker')">
-    <NInput v-model:value="query" :placeholder="t('tools.dnsbl-checker.texts.placeholder-enter-ip-or-domain')" clearable mb-2 />
+    <NInput
+      v-model:value="query"
+      :placeholder="t('tools.dnsbl-checker.texts.placeholder-enter-ip-or-domain')"
+      clearable
+      mb-2
+    />
     <NSpace justify="center">
       <NButton type="primary" :loading="loading" @click="checkAllDnsbls">
         {{ t('tools.dnsbl-checker.texts.tag-check-all') }}
@@ -168,10 +171,18 @@ function getRowClass(row: { listed: boolean }) {
 
     <NDivider />
 
-    <input-copyable :label="t('tools.dnsbl-checker.texts.label-resolved-ip')" label-position="left" :value="resolvedIp" mb-1 />
+    <input-copyable
+      :label="t('tools.dnsbl-checker.texts.label-resolved-ip')"
+      label-position="left"
+      :value="resolvedIp"
+      mb-1
+    />
     <n-p>
       <span>{{ t('tools.dnsbl-checker.texts.tag-want-to-understand-why-an-ip-might-be-blacklisted-check-out') }}</span>
-      <a href="https://letsextract.com/fr/dnsbl-checker/" target="_blank">{{ t('tools.dnsbl-checker.texts.tag-this-dnsbl-explanation-and-removal-guide') }}</a>{{ t('tools.dnsbl-checker.texts.tag-') }}
+      <a href="https://letsextract.com/fr/dnsbl-checker/" target="_blank">{{
+        t('tools.dnsbl-checker.texts.tag-this-dnsbl-explanation-and-removal-guide')
+      }}</a
+      >{{ t('tools.dnsbl-checker.texts.tag-') }}
     </n-p>
 
     <NDivider />
@@ -183,7 +194,7 @@ function getRowClass(row: { listed: boolean }) {
       :pagination="false"
       :bordered="false"
       :row-class-name="getRowClass"
-      style="margin-top: 12px;"
+      style="margin-top: 12px"
     />
   </NCard>
 </template>

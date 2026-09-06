@@ -64,18 +64,22 @@ export function getSubjectAlternativeNames(values: string | undefined) {
   }
   return {
     name: 'subjectAltName',
-    altNames: (values || '').split('\n').map(v => v?.trim()).filter(v => v && v !== '').map((v) => {
-      const valueType = getSANType(v.trim());
-      if (valueType === SANType_IPAddress) {
+    altNames: (values || '')
+      .split('\n')
+      .map((v) => v?.trim())
+      .filter((v) => v && v !== '')
+      .map((v) => {
+        const valueType = getSANType(v.trim());
+        if (valueType === SANType_IPAddress) {
+          return {
+            type: valueType,
+            ip: v.trim(),
+          };
+        }
         return {
           type: valueType,
-          ip: v.trim(),
+          value: v.trim(),
         };
-      }
-      return {
-        type: valueType,
-        value: v.trim(),
-      };
-    }),
+      }),
   };
 }

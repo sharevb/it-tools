@@ -28,22 +28,22 @@ const formats = isWindowSecureContext()
       'curve25519',
       'curve448',
       'ed25519',
-      'p256', 'p384', 'p521',
-      'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1',
+      'p256',
+      'p384',
+      'p521',
+      'brainpoolP256r1',
+      'brainpoolP384r1',
+      'brainpoolP512r1',
       'secp256k1',
     ]
-  : [
-      'p256', 'p384', 'p521',
-      'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1',
-      'secp256k1',
-    ];
+  : ['p256', 'p384', 'p521', 'brainpoolP256r1', 'brainpoolP384r1', 'brainpoolP512r1', 'secp256k1'];
 
 const { attrs: bitsValidationAttrs } = useValidation({
   source: bits,
   rules: [
     {
       message: 'Bits should be 256 <= bits <= 16384 and be a multiple of 8',
-      validator: value => value >= 256 && value <= 16384 && value % 8 === 0,
+      validator: (value) => value >= 256 && value <= 16384 && value % 8 === 0,
     },
   ],
 });
@@ -77,11 +77,11 @@ const [certs, refreshCerts] = computedRefreshableAsync(
         format: 'armored',
       });
       return { privateKey, publicKey, revocationCertificate };
-    }
-    catch (e: any) {
+    } catch (e: any) {
       return { privateKey: `#${e.toString()}`, publicKey: `#${e.toString()}`, revocationCertificate: '' };
     }
-  }, { privateKey: '', publicKey: '', revocationCertificate: '' },
+  },
+  { privateKey: '', publicKey: '', revocationCertificate: '' },
 );
 </script>
 
@@ -89,9 +89,10 @@ const [certs, refreshCerts] = computedRefreshableAsync(
   <div>
     <div mb-4>
       <c-alert v-if="!isWindowSecureContext()" mb-2>
-        {{ t('tools.pgp-keygen.texts.tag-your-browser-is-not-in') }}<n-a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts" target="_blank">
-          {{ t('tools.pgp-keygen.texts.tag-secure-context-https') }}
-        </n-a>{{ t('tools.pgp-keygen.texts.tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully') }}
+        {{ t('tools.pgp-keygen.texts.tag-your-browser-is-not-in')
+        }}<n-a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts" target="_blank">
+          {{ t('tools.pgp-keygen.texts.tag-secure-context-https') }} </n-a
+        >{{ t('tools.pgp-keygen.texts.tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully') }}
       </c-alert>
       <div style="flex: 0 0 100%">
         <div item-style="flex: 1 1 0" style="max-width: 600px" mx-auto flex gap-3>
@@ -104,7 +105,12 @@ const [certs, refreshCerts] = computedRefreshableAsync(
             style="min-width: 150px"
           />
 
-          <n-form-item v-if="format === 'rsa'" :label="t('tools.pgp-keygen.texts.label-rsa-bits')" v-bind="bitsValidationAttrs as any" label-placement="left">
+          <n-form-item
+            v-if="format === 'rsa'"
+            :label="t('tools.pgp-keygen.texts.label-rsa-bits')"
+            v-bind="bitsValidationAttrs as any"
+            label-placement="left"
+          >
             <n-input-number-i18n v-model:value="bits" min="256" max="16384" step="8" />
           </n-form-item>
         </div>

@@ -50,8 +50,7 @@ const curlCommand = computed(() => {
 
   if (bodyType.value === 'json' && jsonData.value) {
     command += ` -H "Content-Type: application/json" --data '${JSON.stringify(JSON5.parse(jsonData.value))}'`;
-  }
-  else if (bodyType.value === 'form-data') {
+  } else if (bodyType.value === 'form-data') {
     formData.value.forEach(({ key, value }) => {
       if (key && value) {
         command += ` -F "${key}=${value}"`;
@@ -73,7 +72,7 @@ const jsonBodyValidation = useValidation({
   rules: [
     {
       message: t('tools.curl-generator.texts.message-invalid-json-string'),
-      validator: value => !value || JSON5.parse(value),
+      validator: (value) => !value || JSON5.parse(value),
     },
   ],
 });
@@ -85,7 +84,7 @@ const jsonBodyValidation = useValidation({
       <NInput v-model:value="url" :placeholder="t('tools.curl-generator.texts.placeholder-enter-url')" />
     </NFormItem>
     <NFormItem :label="t('tools.curl-generator.texts.label-method')" label-placement="left">
-      <NSelect v-model:value="method" :options="methods.map(m => ({ label: m, value: m }))" />
+      <NSelect v-model:value="method" :options="methods.map((m) => ({ label: m, value: m }))" />
     </NFormItem>
 
     <NRadioGroup v-model:value="bodyType" mb-2>
@@ -99,17 +98,30 @@ const jsonBodyValidation = useValidation({
 
     <c-card v-if="bodyType === 'json'" :title="t('tools.curl-generator.texts.title-json-body')" mb-2>
       <c-input-text
-        v-model:value="jsonData" multiline rows="6"
-        :placeholder="t('tools.curl-generator.texts.placeholder-enter-json-body')" :validation="jsonBodyValidation"
+        v-model:value="jsonData"
+        multiline
+        rows="6"
+        :placeholder="t('tools.curl-generator.texts.placeholder-enter-json-body')"
+        :validation="jsonBodyValidation"
       />
     </c-card>
 
     <c-card v-else :title="t('tools.curl-generator.texts.title-form-entries')" mb-2>
-      <NDynamicInput v-model:value="formData" preset="pair" :key-placeholder="t('tools.curl-generator.texts.placeholder-key')" :value-placeholder="t('tools.curl-generator.texts.placeholder-value')" />
+      <NDynamicInput
+        v-model:value="formData"
+        preset="pair"
+        :key-placeholder="t('tools.curl-generator.texts.placeholder-key')"
+        :value-placeholder="t('tools.curl-generator.texts.placeholder-value')"
+      />
     </c-card>
 
     <c-card :title="t('tools.curl-generator.texts.title-http-headers')" mb-2>
-      <NDynamicInput v-model:value="headers" preset="pair" :key-placeholder="t('tools.curl-generator.texts.placeholder-header')" :value-placeholder="t('tools.curl-generator.texts.placeholder-value')" />
+      <NDynamicInput
+        v-model:value="headers"
+        preset="pair"
+        :key-placeholder="t('tools.curl-generator.texts.placeholder-header')"
+        :value-placeholder="t('tools.curl-generator.texts.placeholder-value')"
+      />
     </c-card>
 
     <c-card :title="t('tools.curl-generator.texts.title-options')" mb-2>

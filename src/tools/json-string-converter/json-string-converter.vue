@@ -18,8 +18,7 @@ const parseTransformer = (value: string) => withDefaultOnError(() => JSON.parse(
 const transformer = computed(() => {
   if (selectedMode.value === 'stringify') {
     return stringifyTransformer;
-  }
-  else {
+  } else {
     return parseTransformer;
   }
 });
@@ -27,7 +26,9 @@ const transformer = computed(() => {
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || (selectedMode.value === 'stringify' ? JSON.stringify(v) : JSON.parse(v)),
-    message: t('tools.json-string-converter.texts.message-provided-text-is-not-valid-make-sure-your-json-is-in-double-quotes'),
+    message: t(
+      'tools.json-string-converter.texts.message-provided-text-is-not-valid-make-sure-your-json-is-in-double-quotes',
+    ),
   },
 ];
 

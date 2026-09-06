@@ -5,20 +5,15 @@ import { Formats } from './formats';
 function outputFormatter(outputType, properties) {
   if (outputType === Formats.SIMPLE) {
     return simpleFormatter(properties);
-  }
-  else if (outputType === Formats.TERMINAL) {
+  } else if (outputType === Formats.TERMINAL) {
     return terminalFormatter(properties);
-  }
-  else if (outputType === Formats.KUBERNETES) {
+  } else if (outputType === Formats.KUBERNETES) {
     return kubernetesFormatter(properties);
-  }
-  else if (outputType === Formats.PROPERTIES) {
+  } else if (outputType === Formats.PROPERTIES) {
     return propertiesFormatter(properties);
-  }
-  else if (outputType === Formats.YAML) {
+  } else if (outputType === Formats.YAML) {
     return yamlFormatter(properties);
-  }
-  else {
+  } else {
     throw new Error(`outputType ${outputType}not supported`);
   }
 }
@@ -36,18 +31,13 @@ function getName(property) {
 }
 
 function getValue(property) {
-  return (property.split('=')[1])
-    .replace(/^["'](.+(?=["']$))["']$/, '$1');
+  return property.split('=')[1].replace(/^["'](.+(?=["']$))["']$/, '$1');
 }
 
 function simpleFormatter(properties) {
   let result = '';
   properties.forEach((property) => {
-    result = result
-      .concat(getName(property))
-      .concat('=')
-      .concat(getValue(property))
-      .concat('\n');
+    result = result.concat(getName(property)).concat('=').concat(getValue(property)).concat('\n');
   });
   return result;
 }
@@ -55,11 +45,7 @@ function simpleFormatter(properties) {
 function terminalFormatter(properties) {
   let result = '';
   properties.forEach((property) => {
-    result = result
-      .concat(getName(property))
-      .concat('=')
-      .concat(getValue(property))
-      .concat(' ');
+    result = result.concat(getName(property)).concat('=').concat(getValue(property)).concat(' ');
   });
   return result;
 }
@@ -70,10 +56,10 @@ function kubernetesFormatter(properties) {
     result = result
       .concat('- name: ')
       .concat(getName(property))
-    // .concat('\n  value: \'')
+      // .concat('\n  value: \'')
       .concat('\n  value: ')
       .concat(`'${getValue(property)}'`)
-    // .concat('\'\n')
+      // .concat('\'\n')
       .concat('\n');
   });
   return result;
@@ -82,11 +68,7 @@ function kubernetesFormatter(properties) {
 function propertiesFormatter(properties) {
   let result = '';
   properties.forEach((property) => {
-    result = result
-      .concat(property.split('=')[0])
-      .concat('=')
-      .concat(property.split('=')[1])
-      .concat('\n');
+    result = result.concat(property.split('=')[0]).concat('=').concat(property.split('=')[1]).concat('\n');
   });
   return result;
 }
@@ -99,8 +81,7 @@ function yamlFormatter(properties) {
       if (pair[1]) {
         if (pair[1] === 'true') {
           pair[1] = true;
-        }
-        else if (pair[1] === 'false') {
+        } else if (pair[1] === 'false') {
           pair[1] = false;
         }
       }

@@ -8,15 +8,18 @@ function sortObjectKeys<T>(obj: T, sortMethod: string): T {
   }
 
   if (Array.isArray(obj)) {
-    return obj.map(value => sortObjectKeys(value, sortMethod)) as unknown as T;
+    return obj.map((value) => sortObjectKeys(value, sortMethod)) as unknown as T;
   }
 
   return Object.keys(obj)
-    .sort((a, b) => sortMethod === 'key_name' ? a.localeCompare(b) : b.localeCompare(a))
-    .reduce((sortedObj, key) => {
-      sortedObj[key] = sortObjectKeys((obj as Record<string, unknown>)[key], sortMethod);
-      return sortedObj;
-    }, Object.create(obj, {}) as Record<string, unknown>) as T;
+    .sort((a, b) => (sortMethod === 'key_name' ? a.localeCompare(b) : b.localeCompare(a)))
+    .reduce(
+      (sortedObj, key) => {
+        sortedObj[key] = sortObjectKeys((obj as Record<string, unknown>)[key], sortMethod);
+        return sortedObj;
+      },
+      Object.create(obj, {}) as Record<string, unknown>,
+    ) as T;
 }
 
 function sortObjectValues<T>(obj: T, sortMethod: string, keyName: string): T {
@@ -43,10 +46,13 @@ function sortObjectValues<T>(obj: T, sortMethod: string, keyName: string): T {
       return b.localeCompare(a);
     });
 
-    return sortedKeys.reduce((sortedObj, key) => {
-      sortedObj[key] = sortObjectValues((obj as Record<string, unknown>)[key], sortMethod, keyName);
-      return sortedObj;
-    }, Object.create(obj, {}) as Record<string, unknown>) as T;
+    return sortedKeys.reduce(
+      (sortedObj, key) => {
+        sortedObj[key] = sortObjectValues((obj as Record<string, unknown>)[key], sortMethod, keyName);
+        return sortedObj;
+      },
+      Object.create(obj, {}) as Record<string, unknown>,
+    ) as T;
   }
 
   return obj;
@@ -58,10 +64,10 @@ function formatJson({
   keyName = '',
   indentSize = 3,
 }: {
-  rawJson: MaybeRef<string>
-  sortMethod: MaybeRef<string>
-  keyName: MaybeRef<string>
-  indentSize?: MaybeRef<number>
+  rawJson: MaybeRef<string>;
+  sortMethod: MaybeRef<string>;
+  keyName: MaybeRef<string>;
+  indentSize?: MaybeRef<number>;
 }) {
   const parsedObject = JSON.parseBigNum(get(rawJson));
 

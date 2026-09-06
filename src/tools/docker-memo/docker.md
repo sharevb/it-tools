@@ -1,4 +1,4 @@
-**Docker** packages an application and everything it needs into a *container* — a lightweight, isolated process that runs the same way on any host. Images are the immutable blueprints; containers are running instances of them.
+**Docker** packages an application and everything it needs into a _container_ — a lightweight, isolated process that runs the same way on any host. Images are the immutable blueprints; containers are running instances of them.
 
 - **Image** — a read-only template built from a `Dockerfile`
 - **Container** — a running (or stopped) instance of an image
@@ -11,11 +11,11 @@
 ## ⚡ Most-Used Commands
 
 | Command                          | What it does                               |
-|----------------------------------|--------------------------------------------|
+| -------------------------------- | ------------------------------------------ |
 | `docker ps -a`                   | List all containers, running or not        |
 | `docker images`                  | List local images                          |
 | `docker run -it --rm <image> sh` | Throwaway shell in a fresh container       |
-| `docker exec -it <container> sh` | Shell inside a *running* container         |
+| `docker exec -it <container> sh` | Shell inside a _running_ container         |
 | `docker logs -f <container>`     | Follow a container's output                |
 | `docker build -t <name>:<tag> .` | Build an image from the local `Dockerfile` |
 | `docker compose up -d --build`   | Rebuild and start a whole stack            |
@@ -514,7 +514,7 @@ docker inspect \
 ## 🛠 Common Flags Reference
 
 | Flag                          | Meaning                                          |
-|-------------------------------|--------------------------------------------------|
+| ----------------------------- | ------------------------------------------------ |
 | `-d`, `--detach`              | Run in the background                            |
 | `-it`                         | Interactive session with a TTY (shells)          |
 | `--rm`                        | Remove the container when it exits               |

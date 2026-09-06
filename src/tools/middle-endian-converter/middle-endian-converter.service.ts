@@ -1,9 +1,9 @@
 import { translate as t } from '@/plugins/i18n.plugin';
 
 export interface EndianResult {
-  bigEndian: string
-  littleEndian: string
-};
+  bigEndian: string;
+  littleEndian: string;
+}
 
 export function convertEndian(
   hexInput: string,
@@ -18,7 +18,12 @@ export function convertEndian(
 
   const byteCount = bitLength / 8;
   if (hex.length !== byteCount * 2) {
-    throw new Error(t('tools.middle-endian-converter.service.texts.input-must-be-bytecount-2-hex-characters-for-bitlength-bit', [byteCount * 2, bitLength]));
+    throw new Error(
+      t('tools.middle-endian-converter.service.texts.input-must-be-bytecount-2-hex-characters-for-bitlength-bit', [
+        byteCount * 2,
+        bitLength,
+      ]),
+    );
   }
 
   const bytes = hex.match(/.{2}/g);
@@ -32,13 +37,11 @@ export function convertEndian(
     for (let i = 0; i < bytes.length; i += 2) {
       reordered.push(bytes[i + 1], bytes[i]);
     }
-  }
-  else if (middleEndianType === 'word-swapped') {
+  } else if (middleEndianType === 'word-swapped') {
     for (let i = 0; i < bytes.length; i += 4) {
       reordered.push(...bytes.slice(i + 2, i + 4), ...bytes.slice(i, i + 2));
     }
-  }
-  else {
+  } else {
     throw new Error(t('tools.middle-endian-converter.service.texts.unsupported-middle-endian-format'));
   }
 
@@ -49,9 +52,9 @@ export function convertEndian(
 }
 
 export function formatInteger(hexInput: string): {
-  decimal: string
-  octal: string
-  hexadecimal: string
+  decimal: string;
+  octal: string;
+  hexadecimal: string;
 } {
   try {
     const hex = hexInput.replace(/^0x/, '');
@@ -62,8 +65,7 @@ export function formatInteger(hexInput: string): {
       octal: `0o${intValue.toString(8)}`,
       hexadecimal: `0x${intValue.toString(16).toUpperCase()}`,
     };
-  }
-  catch {
+  } catch {
     return {
       decimal: t('tools.middle-endian-converter.service.texts.invalid'),
       octal: t('tools.middle-endian-converter.service.texts.invalid-0'),

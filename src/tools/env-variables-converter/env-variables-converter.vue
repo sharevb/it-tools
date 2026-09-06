@@ -13,26 +13,29 @@ const { t } = useI18n();
 const defaultInputType = Formats.YAML;
 const inputText = ref(DefaultsMap.get(defaultInputType)!.inputValue);
 const inputType = useQueryParamOrStorage({ name: 'in', storageName: 'env-var-conv:i', defaultValue: defaultInputType });
-const outputType = useQueryParamOrStorage({ name: 'out', storageName: 'env-var-conv:o', defaultValue: DefaultsMap.get(defaultInputType)!.outputType });
+const outputType = useQueryParamOrStorage({
+  name: 'out',
+  storageName: 'env-var-conv:o',
+  defaultValue: DefaultsMap.get(defaultInputType)!.outputType,
+});
 const alertText = ref('');
 
-const inputOptions = Object.keys(Formats).map(key => ({ label: FormatsDesc[key], value: FormatsDesc[key] }));
+const inputOptions = Object.keys(Formats).map((key) => ({ label: FormatsDesc[key], value: FormatsDesc[key] }));
 const outputOptions = ref<{ label: Formats; value: Formats }[]>([]);
 
 function updateOutputOptions() {
-  const regular = [Formats.SIMPLE, Formats.TERMINAL, Formats.KUBERNETES].filter(opt => opt !== inputType.value);
+  const regular = [Formats.SIMPLE, Formats.TERMINAL, Formats.KUBERNETES].filter((opt) => opt !== inputType.value);
   if (DefaultsMap.get(inputType.value)?.modelType === ModelType.FLAT) {
     regular.push(inputType.value === Formats.YAML ? Formats.PROPERTIES : Formats.YAML);
   }
-  outputOptions.value = regular.map(value => ({ label: value, value }));
+  outputOptions.value = regular.map((value) => ({ label: value, value }));
 }
 
 const outputText = computed(() => {
   alertText.value = '';
   try {
     return outputFormatter(outputType.value, deflate(inputHandler(inputType.value, inputText.value)));
-  }
-  catch (error: any) {
+  } catch (error: any) {
     alertText.value = error.toString();
     return '';
   }
@@ -51,7 +54,12 @@ updateOutputOptions();
     <NFormItem :label="t('tools.env-variables-converter.texts.label-input-type')">
       <NSelect v-model:value="inputType" :options="inputOptions" @update:value="onChangeInputTypeHandler" />
     </NFormItem>
-    <c-input-text v-model:value="inputText" :label="t('tools.env-variables-converter.texts.label-input')" rows="10" multiline />
+    <c-input-text
+      v-model:value="inputText"
+      :label="t('tools.env-variables-converter.texts.label-input')"
+      rows="10"
+      multiline
+    />
     <NFormItem :label="t('tools.env-variables-converter.texts.label-output-type')">
       <NSelect v-model:value="outputType" :options="outputOptions" />
     </NFormItem>

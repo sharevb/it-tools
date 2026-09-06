@@ -6,9 +6,7 @@ import { translate as t } from '@/plugins/i18n.plugin';
 export function decodeTransaction(abiContract: string, transactionJson: string) {
   const abi = JSON5.parse(abiContract);
   const iface = new ethers.Interface(abi);
-  const tx = transactionJson.startsWith('0x')
-    ? { data: transactionJson?.trim() }
-    : JSON5.parse(transactionJson);
+  const tx = transactionJson.startsWith('0x') ? { data: transactionJson?.trim() } : JSON5.parse(transactionJson);
 
   if (!tx.data || !tx.data.startsWith('0x')) {
     throw new Error(t('tools.eth-transaction-decoder.service.texts.transaction-data-must-start-with-0x'));

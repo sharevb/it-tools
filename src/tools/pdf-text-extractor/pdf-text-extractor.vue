@@ -38,8 +38,7 @@ async function processPDF() {
     totalPages.value = data.totalPages;
     text.value = Array.isArray(data.text) ? data.text.join('\n') : data.text;
     status.value = 'done';
-  }
-  catch (e: any) {
+  } catch (e: any) {
     errorMessage.value = e.toString();
     status.value = 'error';
   }
@@ -50,7 +49,11 @@ async function processPDF() {
   <div>
     <div style="flex: 0 0 100%" mb-1>
       <div mx-auto max-w-600px>
-        <c-file-upload :title="t('tools.pdf-text-extractor.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')" accept=".pdf" @file-upload="onFileUploaded" />
+        <c-file-upload
+          :title="t('tools.pdf-text-extractor.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')"
+          accept=".pdf"
+          @file-upload="onFileUploaded"
+        />
       </div>
     </div>
 
@@ -69,16 +72,22 @@ async function processPDF() {
       <c-alert v-if="errorMessage" type="error">
         {{ errorMessage }}
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
 
     <c-card v-if="file && text" :title="t('tools.pdf-text-extractor.texts.title-output')">
       <input-copyable :label="t('tools.pdf-text-extractor.texts.label-file-name')" :value="file?.name" mb-1 />
-      <textarea-copyable :label="t('tools.pdf-text-extractor.texts.label-text')" :value="text" mb-1 download-file-name="output.txt" />
-      <input-copyable :label="t('tools.pdf-text-extractor.texts.label-total-pages')" :value="totalPages.toString()" mb-1 />
+      <textarea-copyable
+        :label="t('tools.pdf-text-extractor.texts.label-text')"
+        :value="text"
+        mb-1
+        download-file-name="output.txt"
+      />
+      <input-copyable
+        :label="t('tools.pdf-text-extractor.texts.label-total-pages')"
+        :value="totalPages.toString()"
+        mb-1
+      />
     </c-card>
   </div>
 </template>

@@ -10,12 +10,12 @@ function createState({
   pressedBackground,
   pressedTextColor = textColor,
 }: {
-  textColor: string
-  backgroundColor: string
-  hoverBackground: string
-  hoveredTextColor?: string
-  pressedBackground: string
-  pressedTextColor?: string
+  textColor: string;
+  backgroundColor: string;
+  hoverBackground: string;
+  hoveredTextColor?: string;
+  pressedBackground: string;
+  pressedTextColor?: string;
 }) {
   return {
     textColor,

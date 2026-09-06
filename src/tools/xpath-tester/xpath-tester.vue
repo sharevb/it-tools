@@ -14,14 +14,14 @@ const xml = ref('<book><title>Harry Potter</title></book>');
 const selectedNodes = computed(() => {
   try {
     const doc = new DOMParser().parseFromString(xml.value, 'text/xml');
-    const select = XPathEngine.useNamespaces(Object.fromEntries(
-      [...xml.value.matchAll(/xmlns\:([^\=]+)\=["']([^"']+)["']/g)].map(
-        ([_, prefix, uri]) => [prefix, uri],
-      )));
+    const select = XPathEngine.useNamespaces(
+      Object.fromEntries(
+        [...xml.value.matchAll(/xmlns\:([^\=]+)\=["']([^"']+)["']/g)].map(([_, prefix, uri]) => [prefix, uri]),
+      ),
+    );
     const result = select(xpath.value, doc);
     return Array.isArray(result) ? result : [result];
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return [e.toString()];
   }
 });
@@ -30,7 +30,7 @@ const xmlValidation = useValidation({
   source: xml,
   rules: [
     {
-      validator: v => isNotThrowing(() => new DOMParser().parseFromString(v, 'text/xml')),
+      validator: (v) => isNotThrowing(() => new DOMParser().parseFromString(v, 'text/xml')),
       message: t('tools.xpath-tester.texts.message-provided-xml-is-not-valid'),
     },
   ],

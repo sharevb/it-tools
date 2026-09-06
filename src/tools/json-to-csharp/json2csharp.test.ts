@@ -17,7 +17,7 @@ describe('isDate', () => {
 
 // Test getPrimitiveProp function
 describe('getPrimitiveProp', () => {
-  it('should return \'string\' type for non-date strings', () => {
+  it("should return 'string' type for non-date strings", () => {
     expect(getPrimitiveProp('hello', 'testKey')).toEqual({
       type: 'string',
       name: 'testKey',
@@ -25,7 +25,7 @@ describe('getPrimitiveProp', () => {
     });
   });
 
-  it('should return \'DateTime\' type for date strings', () => {
+  it("should return 'DateTime' type for date strings", () => {
     expect(getPrimitiveProp('2024-03-08', 'dateKey')).toEqual({
       type: 'DateTime',
       name: 'dateKey',
@@ -33,7 +33,7 @@ describe('getPrimitiveProp', () => {
     });
   });
 
-  it('should return \'int\' for integers', () => {
+  it("should return 'int' for integers", () => {
     expect(getPrimitiveProp(42, 'numberKey')).toEqual({
       type: 'int',
       name: 'numberKey',
@@ -41,7 +41,7 @@ describe('getPrimitiveProp', () => {
     });
   });
 
-  it('should return \'double\' for floating point numbers', () => {
+  it("should return 'double' for floating point numbers", () => {
     expect(getPrimitiveProp(3.14, 'floatKey')).toEqual({
       type: 'double',
       name: 'floatKey',
@@ -49,7 +49,7 @@ describe('getPrimitiveProp', () => {
     });
   });
 
-  it('should return \'bool\' for boolean values', () => {
+  it("should return 'bool' for boolean values", () => {
     expect(getPrimitiveProp(true, 'boolKey')).toEqual({
       type: 'bool',
       name: 'boolKey',
@@ -58,7 +58,7 @@ describe('getPrimitiveProp', () => {
   });
 
   it('should throw an error for unsupported types', () => {
-    expect(() => getPrimitiveProp({}, 'objKey')).toThrow('Unexpected key \'objKey\' of type object');
+    expect(() => getPrimitiveProp({}, 'objKey')).toThrow("Unexpected key 'objKey' of type object");
   });
 });
 
@@ -225,7 +225,10 @@ public class Root
 
   it('should convert JSON with arrays into C# classes', () => {
     const json = {
-      users: [{ name: 'John', age: 30 }, { name: 'Jane', age: 25 }],
+      users: [
+        { name: 'John', age: 30 },
+        { name: 'Jane', age: 25 },
+      ],
     };
 
     expect(cleanTabs(json2csharp({ src: json }))).toBe(`using System;
@@ -258,7 +261,8 @@ public record UsersItem(
     [property: JsonPropertyName(\"age\")]
     int Age
 );`);
-    expect(cleanTabs(json2csharp({ src: json, useRecordTypes: true, pascalCase: false, useReadonlyLists: true }))).toBe(`using System;
+    expect(cleanTabs(json2csharp({ src: json, useRecordTypes: true, pascalCase: false, useReadonlyLists: true })))
+      .toBe(`using System;
 using System.Text.Json;
 
 public record Root(
@@ -291,12 +295,14 @@ public record Root(
 
   it('should generate C# record types with attributes when useRecordTypes/addJsonProperty/addJsonPropertyName are true', () => {
     const json = JSON.stringify({ name: 'John', age: 30 });
-    const result = cleanTabs(json2csharp({
-      src: json,
-      useRecordTypes: true,
-      addJsonProperty: true,
-      addJsonPropertyName: true,
-    }));
+    const result = cleanTabs(
+      json2csharp({
+        src: json,
+        useRecordTypes: true,
+        addJsonProperty: true,
+        addJsonPropertyName: true,
+      }),
+    );
 
     expect(result).toBe(`using System;
 using Newtonsoft.Json;
@@ -330,12 +336,14 @@ public class Root
     const json = JSON.stringify({
       items: [{ item_name: 'A', price: 10.5 }],
     });
-    const result = cleanTabs(json2csharp({
-      src: json,
-      pascalCase: true,
-      addJsonProperty: true,
-      addJsonPropertyName: true,
-    }));
+    const result = cleanTabs(
+      json2csharp({
+        src: json,
+        pascalCase: true,
+        addJsonProperty: true,
+        addJsonPropertyName: true,
+      }),
+    );
 
     expect(result).toBe(`using System;
 using Newtonsoft.Json;
@@ -435,7 +443,12 @@ public class Root
 
   it('should handle all types', () => {
     const json = JSON.stringify({
-      id: 1, date: '2025-06-09', amount: 1.4, group: null, active: true, email: 'test@example.com',
+      id: 1,
+      date: '2025-06-09',
+      amount: 1.4,
+      group: null,
+      active: true,
+      email: 'test@example.com',
     });
     const result = cleanTabs(json2csharp({ src: json }));
 
@@ -517,15 +530,19 @@ public class Root
       ],
     });
 
-    expect(cleanTabs(json2csharp({
-      src: json,
-      pascalCase: true,
-      useNullable: true,
-      addJsonProperty: true,
-      generateImmutableClasses: true,
-      useRecordTypes: false,
-      useReadonlyLists: true,
-    }))).toBe(`using System;
+    expect(
+      cleanTabs(
+        json2csharp({
+          src: json,
+          pascalCase: true,
+          useNullable: true,
+          addJsonProperty: true,
+          generateImmutableClasses: true,
+          useRecordTypes: false,
+          useReadonlyLists: true,
+        }),
+      ),
+    ).toBe(`using System;
 using Newtonsoft.Json;
 using System.Text.Json;
 
@@ -559,16 +576,20 @@ public class PeopleItem
     [JsonPropertyName(\"age\")]
     public int? Age { get; }
 }`);
-    expect(cleanTabs(json2csharp({
-      src: json,
-      pascalCase: true,
-      useNullable: true,
-      addJsonProperty: true,
-      addJsonPropertyName: true,
-      generateImmutableClasses: false,
-      useRecordTypes: false,
-      useReadonlyLists: true,
-    }))).toBe(`using System;
+    expect(
+      cleanTabs(
+        json2csharp({
+          src: json,
+          pascalCase: true,
+          useNullable: true,
+          addJsonProperty: true,
+          addJsonPropertyName: true,
+          generateImmutableClasses: false,
+          useRecordTypes: false,
+          useReadonlyLists: true,
+        }),
+      ),
+    ).toBe(`using System;
 using Newtonsoft.Json;
 using System.Text.Json;
 
@@ -588,14 +609,18 @@ public class PeopleItem
     [JsonPropertyName(\"age\")]
     public int? Age { get; set; }
 }`);
-    expect(cleanTabs(json2csharp({
-      src: json,
-      pascalCase: true,
-      useNullable: true,
-      addJsonProperty: true,
-      useRecordTypes: true,
-      useReadonlyLists: true,
-    }))).toBe(`using System;
+    expect(
+      cleanTabs(
+        json2csharp({
+          src: json,
+          pascalCase: true,
+          useNullable: true,
+          addJsonProperty: true,
+          useRecordTypes: true,
+          useReadonlyLists: true,
+        }),
+      ),
+    ).toBe(`using System;
 using Newtonsoft.Json;
 using System.Text.Json;
 

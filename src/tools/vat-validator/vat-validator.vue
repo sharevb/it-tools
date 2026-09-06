@@ -50,7 +50,12 @@ const vatInfos = computed<{ isValid: boolean; infos: CKeyValueListItems }>(() =>
 
 <template>
   <div>
-    <c-input-text v-model:value="rawVATNumber" :placeholder="t('tools.vat-validator.texts.placeholder-enter-a-vat-number-to-check-for-validity')" test-id="vat-input" mb-2 />
+    <c-input-text
+      v-model:value="rawVATNumber"
+      :placeholder="t('tools.vat-validator.texts.placeholder-enter-a-vat-number-to-check-for-validity')"
+      test-id="vat-input"
+      mb-2
+    />
     <n-alert v-if="!vatInfos.isValid" type="error" mb-2>
       {{ t('tools.vat-validator.texts.tag-invalid-vat-number') }}
     </n-alert>

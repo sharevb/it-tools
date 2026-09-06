@@ -8,8 +8,16 @@ import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams'
 const { t } = useI18n();
 
 const allCurrencies = Object.entries(moneysData).map(([k, v]) => ({ value: k, label: v || k }));
-const otherCurrencies = useQueryParamOrStorage<{ name: string }[]>({ name: 'to', storageName: 'currency-conv:others', defaultValue: [{ name: 'usd' }] });
-const currentCurrency = useQueryParamOrStorage<string>({ name: 'from', storageName: 'currency-conv:cur', defaultValue: 'eur' });
+const otherCurrencies = useQueryParamOrStorage<{ name: string }[]>({
+  name: 'to',
+  storageName: 'currency-conv:others',
+  defaultValue: [{ name: 'usd' }],
+});
+const currentCurrency = useQueryParamOrStorage<string>({
+  name: 'from',
+  storageName: 'currency-conv:cur',
+  defaultValue: 'eur',
+});
 const amount = useQueryParam({ tool: 'currency-conv', name: 'amount', defaultValue: 1 });
 const currentDatetime = ref(Date.now());
 
@@ -21,7 +29,12 @@ const convertedCurrencies = computedAsync<Record<string, number>>(async () => {
 
   let result = {};
   for (const targetCurrency of otherCurrenciesValues) {
-    const value = await converter.convertOnDate(amountValue, currentCurrencyValue, targetCurrency.name, new Date(currentDatetimeValue));
+    const value = await converter.convertOnDate(
+      amountValue,
+      currentCurrencyValue,
+      targetCurrency.name,
+      new Date(currentDatetimeValue),
+    );
     result = { ...result, [targetCurrency.name]: value };
   }
   return result;
@@ -51,18 +64,11 @@ const currencyToCountriesOutput = computed(() => code(currencyToCountriesInput.v
       </n-form-item>
 
       <n-form-item :label="t('tools.currency-converter.texts.label-for-date')" label-placement="left" mb-2>
-        <n-date-picker
-          v-model:value="currentDatetime"
-          type="date"
-        />
+        <n-date-picker v-model:value="currentDatetime" type="date" />
       </n-form-item>
 
       <c-card :title="t('tools.currency-converter.texts.title-converted-currencies')">
-        <n-dynamic-input
-          v-model:value="otherCurrencies"
-          show-sort-button
-          :on-create="() => ({ name: 'eur' })"
-        >
+        <n-dynamic-input v-model:value="otherCurrencies" show-sort-button :on-create="() => ({ name: 'eur' })">
           <template #default="{ value }">
             <div flex flex-wrap items-center gap-1>
               <n-select
@@ -92,7 +98,8 @@ const currencyToCountriesOutput = computed(() => code(currencyToCountriesInput.v
 
       <ul>
         <li v-for="(currency, ix) in countryToCurrenciesOutput" :key="ix">
-          {{ currency.currency }} [{{ currency.code }}/{{ currency.number }} - {{ currency.digits }}digits] (also in: {{ currency.countries?.join(', ') }})
+          {{ currency.currency }} [{{ currency.code }}/{{ currency.number }} - {{ currency.digits }}digits] (also in:
+          {{ currency.countries?.join(', ') }})
         </li>
       </ul>
     </c-card>
@@ -109,7 +116,10 @@ const currencyToCountriesOutput = computed(() => code(currencyToCountriesInput.v
       <n-divider />
 
       <n-p v-if="currencyToCountriesOutput">
-        {{ currencyToCountriesOutput.currency }} [{{ currencyToCountriesOutput.code }}/{{ currencyToCountriesOutput.number }} - {{ currencyToCountriesOutput.digits }}digits]
+        {{ currencyToCountriesOutput.currency }} [{{ currencyToCountriesOutput.code }}/{{
+          currencyToCountriesOutput.number
+        }}
+        - {{ currencyToCountriesOutput.digits }}digits]
       </n-p>
 
       <ul v-if="currencyToCountriesOutput">

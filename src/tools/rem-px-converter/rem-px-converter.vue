@@ -17,7 +17,11 @@ const pxOutput = computed(() => (remInput.value * pxRemRatio).toFixed(3));
       <n-input-number-i18n v-model:value="pxInput" />
     </n-form-item>
 
-    <input-copyable :label="t('tools.rem-px-converter.texts.label-corresponding-rem-value')" label-position="left" :value="remOutput" />
+    <input-copyable
+      :label="t('tools.rem-px-converter.texts.label-corresponding-rem-value')"
+      label-position="left"
+      :value="remOutput"
+    />
   </c-card>
 
   <c-card :title="t('tools.rem-px-converter.texts.title-rem-to-px')">
@@ -25,6 +29,10 @@ const pxOutput = computed(() => (remInput.value * pxRemRatio).toFixed(3));
       <n-input-number-i18n v-model:value="remInput" />
     </n-form-item>
 
-    <input-copyable :label="t('tools.rem-px-converter.texts.label-corresponding-px-value')" label-position="left" :value="pxOutput" />
+    <input-copyable
+      :label="t('tools.rem-px-converter.texts.label-corresponding-px-value')"
+      label-position="left"
+      :value="pxOutput"
+    />
   </c-card>
 </template>

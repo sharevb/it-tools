@@ -14,7 +14,11 @@ const scale = useQueryParamOrStorage({ name: 'scale', storageName: 'barcode-gen:
 const height = useQueryParamOrStorage({ name: 'height', storageName: 'barcode-gen:height', defaultValue: 25 });
 const margin = useQueryParamOrStorage({ name: 'margin', storageName: 'barcode-gen:margin', defaultValue: 10 });
 const format = useQueryParamOrStorage({ name: 'format', storageName: 'barcode-gen:format', defaultValue: 'code128' });
-const displayValue = useQueryParamOrStorage({ name: 'display', storageName: 'barcode-gen:display', defaultValue: true });
+const displayValue = useQueryParamOrStorage({
+  name: 'display',
+  storageName: 'barcode-gen:display',
+  defaultValue: true,
+});
 const value = useQueryParam({ tool: 'barcode-gen', name: 'text', defaultValue: '123456789' });
 const barcodeCanvas = ref<HTMLCanvasElement>();
 
@@ -39,8 +43,7 @@ watchEffect(() => {
 
   try {
     bwipjs.toCanvas(barcodeCanvas.value, options.value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
 });
@@ -51,8 +54,7 @@ const barcodePNG = computed(() => {
 const barcodeSVG = computed(() => {
   try {
     return Base64.encode(bwipjs.toSVG(options.value));
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return '';
   }
 });

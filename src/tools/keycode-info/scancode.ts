@@ -1,7 +1,7 @@
 interface KeyMapping {
-  key: string
-  code: string
-  scancode: number | null
+  key: string;
+  code: string;
+  scancode: number | null;
 }
 
 //
@@ -10,9 +10,9 @@ interface KeyMapping {
 //
 const baseMap: Record<string, KeyMapping> = {
   // Letters
-  KeyA: { key: 'a', code: 'KeyA', scancode: 0x1E },
+  KeyA: { key: 'a', code: 'KeyA', scancode: 0x1e },
   KeyB: { key: 'b', code: 'KeyB', scancode: 0x30 },
-  KeyC: { key: 'c', code: 'KeyC', scancode: 0x2E },
+  KeyC: { key: 'c', code: 'KeyC', scancode: 0x2e },
   KeyD: { key: 'd', code: 'KeyD', scancode: 0x20 },
   KeyE: { key: 'e', code: 'KeyE', scancode: 0x12 },
   KeyF: { key: 'f', code: 'KeyF', scancode: 0x21 },
@@ -28,14 +28,14 @@ const baseMap: Record<string, KeyMapping> = {
   KeyP: { key: 'p', code: 'KeyP', scancode: 0x19 },
   KeyQ: { key: 'q', code: 'KeyQ', scancode: 0x10 },
   KeyR: { key: 'r', code: 'KeyR', scancode: 0x13 },
-  KeyS: { key: 's', code: 'KeyS', scancode: 0x1F },
+  KeyS: { key: 's', code: 'KeyS', scancode: 0x1f },
   KeyT: { key: 't', code: 'KeyT', scancode: 0x14 },
   KeyU: { key: 'u', code: 'KeyU', scancode: 0x16 },
-  KeyV: { key: 'v', code: 'KeyV', scancode: 0x2F },
+  KeyV: { key: 'v', code: 'KeyV', scancode: 0x2f },
   KeyW: { key: 'w', code: 'KeyW', scancode: 0x11 },
-  KeyX: { key: 'x', code: 'KeyX', scancode: 0x2D },
+  KeyX: { key: 'x', code: 'KeyX', scancode: 0x2d },
   KeyY: { key: 'y', code: 'KeyY', scancode: 0x15 },
-  KeyZ: { key: 'z', code: 'KeyZ', scancode: 0x2C },
+  KeyZ: { key: 'z', code: 'KeyZ', scancode: 0x2c },
 
   // Digits (top row)
   Digit1: { key: '1', code: 'Digit1', scancode: 0x02 },
@@ -46,16 +46,16 @@ const baseMap: Record<string, KeyMapping> = {
   Digit6: { key: '6', code: 'Digit6', scancode: 0x07 },
   Digit7: { key: '7', code: 'Digit7', scancode: 0x08 },
   Digit8: { key: '8', code: 'Digit8', scancode: 0x09 },
-  Digit9: { key: '9', code: 'Digit9', scancode: 0x0A },
-  Digit0: { key: '0', code: 'Digit0', scancode: 0x0B },
+  Digit9: { key: '9', code: 'Digit9', scancode: 0x0a },
+  Digit0: { key: '0', code: 'Digit0', scancode: 0x0b },
 
   // Function keys
   Escape: { key: 'Escape', code: 'Escape', scancode: 0x01 },
-  F1: { key: 'F1', code: 'F1', scancode: 0x3B },
-  F2: { key: 'F2', code: 'F2', scancode: 0x3C },
-  F3: { key: 'F3', code: 'F3', scancode: 0x3D },
-  F4: { key: 'F4', code: 'F4', scancode: 0x3E },
-  F5: { key: 'F5', code: 'F5', scancode: 0x3F },
+  F1: { key: 'F1', code: 'F1', scancode: 0x3b },
+  F2: { key: 'F2', code: 'F2', scancode: 0x3c },
+  F3: { key: 'F3', code: 'F3', scancode: 0x3d },
+  F4: { key: 'F4', code: 'F4', scancode: 0x3e },
+  F5: { key: 'F5', code: 'F5', scancode: 0x3f },
   F6: { key: 'F6', code: 'F6', scancode: 0x40 },
   F7: { key: 'F7', code: 'F7', scancode: 0x41 },
   F8: { key: 'F8', code: 'F8', scancode: 0x42 },
@@ -73,40 +73,40 @@ const baseMap: Record<string, KeyMapping> = {
   Home: { key: 'Home', code: 'Home', scancode: 0x47 },
   PageUp: { key: 'PageUp', code: 'PageUp', scancode: 0x49 },
   Delete: { key: 'Delete', code: 'Delete', scancode: 0x53 },
-  End: { key: 'End', code: 'End', scancode: 0x4F },
+  End: { key: 'End', code: 'End', scancode: 0x4f },
   PageDown: { key: 'PageDown', code: 'PageDown', scancode: 0x51 },
 
   // Arrow keys (usually on extended set)
   ArrowUp: { key: 'ArrowUp', code: 'ArrowUp', scancode: 0x48 },
   ArrowDown: { key: 'ArrowDown', code: 'ArrowDown', scancode: 0x50 },
-  ArrowLeft: { key: 'ArrowLeft', code: 'ArrowLeft', scancode: 0x4B },
-  ArrowRight: { key: 'ArrowRight', code: 'ArrowRight', scancode: 0x4D },
+  ArrowLeft: { key: 'ArrowLeft', code: 'ArrowLeft', scancode: 0x4b },
+  ArrowRight: { key: 'ArrowRight', code: 'ArrowRight', scancode: 0x4d },
 
   // Whitespace / control
   Space: { key: ' ', code: 'Space', scancode: 0x39 },
-  Enter: { key: 'Enter', code: 'Enter', scancode: 0x1C },
-  Backspace: { key: 'Backspace', code: 'Backspace', scancode: 0x0E },
-  Tab: { key: 'Tab', code: 'Tab', scancode: 0x0F },
+  Enter: { key: 'Enter', code: 'Enter', scancode: 0x1c },
+  Backspace: { key: 'Backspace', code: 'Backspace', scancode: 0x0e },
+  Tab: { key: 'Tab', code: 'Tab', scancode: 0x0f },
 
   // Modifiers
-  CapsLock: { key: 'CapsLock', code: 'CapsLock', scancode: 0x3A },
-  ShiftLeft: { key: 'Shift', code: 'ShiftLeft', scancode: 0x2A },
+  CapsLock: { key: 'CapsLock', code: 'CapsLock', scancode: 0x3a },
+  ShiftLeft: { key: 'Shift', code: 'ShiftLeft', scancode: 0x2a },
   ShiftRight: { key: 'Shift', code: 'ShiftRight', scancode: 0x36 },
-  ControlLeft: { key: 'Control', code: 'ControlLeft', scancode: 0x1D },
-  ControlRight: { key: 'Control', code: 'ControlRight', scancode: 0x1D }, // extended in some sets
+  ControlLeft: { key: 'Control', code: 'ControlLeft', scancode: 0x1d },
+  ControlRight: { key: 'Control', code: 'ControlRight', scancode: 0x1d }, // extended in some sets
   AltLeft: { key: 'Alt', code: 'AltLeft', scancode: 0x38 },
   AltRight: { key: 'Alt', code: 'AltRight', scancode: 0x38 }, // extended variants exist
-  MetaLeft: { key: 'Meta', code: 'MetaLeft', scancode: 0xE05B },
-  MetaRight: { key: 'Meta', code: 'MetaRight', scancode: 0xE05C },
+  MetaLeft: { key: 'Meta', code: 'MetaLeft', scancode: 0xe05b },
+  MetaRight: { key: 'Meta', code: 'MetaRight', scancode: 0xe05c },
 
   // Symbols / punctuation (US-centric approximations)
-  Minus: { key: '-', code: 'Minus', scancode: 0x0C },
-  Equal: { key: '=', code: 'Equal', scancode: 0x0D },
-  BracketLeft: { key: '[', code: 'BracketLeft', scancode: 0x1A },
-  BracketRight: { key: ']', code: 'BracketRight', scancode: 0x1B },
-  Backslash: { key: '\\', code: 'Backslash', scancode: 0x2B },
+  Minus: { key: '-', code: 'Minus', scancode: 0x0c },
+  Equal: { key: '=', code: 'Equal', scancode: 0x0d },
+  BracketLeft: { key: '[', code: 'BracketLeft', scancode: 0x1a },
+  BracketRight: { key: ']', code: 'BracketRight', scancode: 0x1b },
+  Backslash: { key: '\\', code: 'Backslash', scancode: 0x2b },
   Semicolon: { key: ';', code: 'Semicolon', scancode: 0x27 },
-  Quote: { key: '\'', code: 'Quote', scancode: 0x28 },
+  Quote: { key: "'", code: 'Quote', scancode: 0x28 },
   Backquote: { key: '`', code: 'Backquote', scancode: 0x29 },
   Comma: { key: ',', code: 'Comma', scancode: 0x33 },
   Period: { key: '.', code: 'Period', scancode: 0x34 },
@@ -114,33 +114,33 @@ const baseMap: Record<string, KeyMapping> = {
 
   // Numpad
   Numpad0: { key: '0', code: 'Numpad0', scancode: 0x52 },
-  Numpad1: { key: '1', code: 'Numpad1', scancode: 0x4F },
+  Numpad1: { key: '1', code: 'Numpad1', scancode: 0x4f },
   Numpad2: { key: '2', code: 'Numpad2', scancode: 0x50 },
   Numpad3: { key: '3', code: 'Numpad3', scancode: 0x51 },
-  Numpad4: { key: '4', code: 'Numpad4', scancode: 0x4B },
-  Numpad5: { key: '5', code: 'Numpad5', scancode: 0x4C },
-  Numpad6: { key: '6', code: 'Numpad6', scancode: 0x4D },
+  Numpad4: { key: '4', code: 'Numpad4', scancode: 0x4b },
+  Numpad5: { key: '5', code: 'Numpad5', scancode: 0x4c },
+  Numpad6: { key: '6', code: 'Numpad6', scancode: 0x4d },
   Numpad7: { key: '7', code: 'Numpad7', scancode: 0x47 },
   Numpad8: { key: '8', code: 'Numpad8', scancode: 0x48 },
   Numpad9: { key: '9', code: 'Numpad9', scancode: 0x49 },
   NumpadMultiply: { key: '*', code: 'NumpadMultiply', scancode: 0x37 },
-  NumpadAdd: { key: '+', code: 'NumpadAdd', scancode: 0x4E },
-  NumpadSubtract: { key: '-', code: 'NumpadSubtract', scancode: 0x4A },
+  NumpadAdd: { key: '+', code: 'NumpadAdd', scancode: 0x4e },
+  NumpadSubtract: { key: '-', code: 'NumpadSubtract', scancode: 0x4a },
   NumpadDecimal: { key: '.', code: 'NumpadDecimal', scancode: 0x53 },
-  NumpadDivide: { key: '/', code: 'NumpadDivide', scancode: 0xE035 },
+  NumpadDivide: { key: '/', code: 'NumpadDivide', scancode: 0xe035 },
 
   // Media / browser keys (best-effort approximate extended codes)
-  MediaTrackNext: { key: 'MediaTrackNext', code: 'MediaTrackNext', scancode: 0xE019 },
-  MediaTrackPrevious: { key: 'MediaTrackPrevious', code: 'MediaTrackPrevious', scancode: 0xE010 },
-  MediaStop: { key: 'MediaStop', code: 'MediaStop', scancode: 0xE024 },
-  MediaPlayPause: { key: 'MediaPlayPause', code: 'MediaPlayPause', scancode: 0xE022 },
-  VolumeMute: { key: 'VolumeMute', code: 'VolumeMute', scancode: 0xE020 },
-  VolumeDown: { key: 'VolumeDown', code: 'VolumeDown', scancode: 0xE012 },
-  VolumeUp: { key: 'VolumeUp', code: 'VolumeUp', scancode: 0xE013 },
+  MediaTrackNext: { key: 'MediaTrackNext', code: 'MediaTrackNext', scancode: 0xe019 },
+  MediaTrackPrevious: { key: 'MediaTrackPrevious', code: 'MediaTrackPrevious', scancode: 0xe010 },
+  MediaStop: { key: 'MediaStop', code: 'MediaStop', scancode: 0xe024 },
+  MediaPlayPause: { key: 'MediaPlayPause', code: 'MediaPlayPause', scancode: 0xe022 },
+  VolumeMute: { key: 'VolumeMute', code: 'VolumeMute', scancode: 0xe020 },
+  VolumeDown: { key: 'VolumeDown', code: 'VolumeDown', scancode: 0xe012 },
+  VolumeUp: { key: 'VolumeUp', code: 'VolumeUp', scancode: 0xe013 },
 
   // Intl variants (placeholders for layouts that remap keys)
   IntlBackslash: { key: '\\', code: 'IntlBackslash', scancode: 0x56 },
-  IntlYen: { key: '¥', code: 'IntlYen', scancode: 0x7D },
+  IntlYen: { key: '¥', code: 'IntlYen', scancode: 0x7d },
 };
 
 const layoutOverrides: Record<string, Partial<Record<string, KeyMapping>>> = {
@@ -154,7 +154,7 @@ const layoutOverrides: Record<string, Partial<Record<string, KeyMapping>>> = {
     Digit1: { key: '&', code: 'Digit1', scancode: baseMap.Digit1.scancode },
     Digit2: { key: 'é', code: 'Digit2', scancode: baseMap.Digit2.scancode },
     Digit3: { key: '"', code: 'Digit3', scancode: baseMap.Digit3.scancode },
-    Digit4: { key: '\'', code: 'Digit4', scancode: baseMap.Digit4.scancode },
+    Digit4: { key: "'", code: 'Digit4', scancode: baseMap.Digit4.scancode },
     Digit5: { key: '(', code: 'Digit5', scancode: baseMap.Digit5.scancode },
     Digit6: { key: '-', code: 'Digit6', scancode: baseMap.Digit6.scancode },
     Digit7: { key: 'è', code: 'Digit7', scancode: baseMap.Digit7.scancode },
@@ -181,7 +181,7 @@ const layoutOverrides: Record<string, Partial<Record<string, KeyMapping>>> = {
   },
 
   DVORAK: {
-    KeyQ: { key: '\'', code: 'KeyQ', scancode: baseMap.Quote.scancode },
+    KeyQ: { key: "'", code: 'KeyQ', scancode: baseMap.Quote.scancode },
     KeyW: { key: ',', code: 'KeyW', scancode: baseMap.Comma.scancode },
     KeyE: { key: '.', code: 'KeyE', scancode: baseMap.Period.scancode },
     KeyR: { key: 'p', code: 'KeyR', scancode: baseMap.KeyP.scancode },
@@ -225,11 +225,11 @@ const layoutOverrides: Record<string, Partial<Record<string, KeyMapping>>> = {
     Digit6: { key: '6', code: 'Digit6', scancode: 0x07 },
     Digit7: { key: '7', code: 'Digit7', scancode: 0x08 },
     Digit8: { key: '8', code: 'Digit8', scancode: 0x09 },
-    Digit9: { key: '9', code: 'Digit9', scancode: 0x0A },
-    Digit0: { key: '0', code: 'Digit0', scancode: 0x0B },
-    Minus: { key: '-', code: 'Minus', scancode: 0x0C },
-    Equal: { key: '^', code: 'Equal', scancode: 0x0D },
-    IntlBackslash: { key: '¥', code: 'IntlBackslash', scancode: 0x7D },
+    Digit9: { key: '9', code: 'Digit9', scancode: 0x0a },
+    Digit0: { key: '0', code: 'Digit0', scancode: 0x0b },
+    Minus: { key: '-', code: 'Minus', scancode: 0x0c },
+    Equal: { key: '^', code: 'Equal', scancode: 0x0d },
+    IntlBackslash: { key: '¥', code: 'IntlBackslash', scancode: 0x7d },
 
     // QWERTY row
     KeyQ: { key: 'た', code: 'KeyQ', scancode: 0x10 },
@@ -242,12 +242,12 @@ const layoutOverrides: Record<string, Partial<Record<string, KeyMapping>>> = {
     KeyI: { key: 'に', code: 'KeyI', scancode: 0x17 },
     KeyO: { key: 'ら', code: 'KeyO', scancode: 0x18 },
     KeyP: { key: 'せ', code: 'KeyP', scancode: 0x19 },
-    BracketLeft: { key: '@', code: 'BracketLeft', scancode: 0x1A },
-    BracketRight: { key: '[', code: 'BracketRight', scancode: 0x1B },
+    BracketLeft: { key: '@', code: 'BracketLeft', scancode: 0x1a },
+    BracketRight: { key: '[', code: 'BracketRight', scancode: 0x1b },
 
     // Home row
-    KeyA: { key: 'ち', code: 'KeyA', scancode: 0x1E },
-    KeyS: { key: 'と', code: 'KeyS', scancode: 0x1F },
+    KeyA: { key: 'ち', code: 'KeyA', scancode: 0x1e },
+    KeyS: { key: 'と', code: 'KeyS', scancode: 0x1f },
     KeyD: { key: 'し', code: 'KeyD', scancode: 0x20 },
     KeyF: { key: 'は', code: 'KeyF', scancode: 0x21 },
     KeyG: { key: 'き', code: 'KeyG', scancode: 0x22 },
@@ -257,13 +257,13 @@ const layoutOverrides: Record<string, Partial<Record<string, KeyMapping>>> = {
     KeyL: { key: 'り', code: 'KeyL', scancode: 0x26 },
     Semicolon: { key: ';', code: 'Semicolon', scancode: 0x27 },
     Quote: { key: ':', code: 'Quote', scancode: 0x28 },
-    Backslash: { key: ']', code: 'Backslash', scancode: 0x2B },
+    Backslash: { key: ']', code: 'Backslash', scancode: 0x2b },
 
     // Bottom row
-    KeyZ: { key: 'つ', code: 'KeyZ', scancode: 0x2C },
-    KeyX: { key: 'さ', code: 'KeyX', scancode: 0x2D },
-    KeyC: { key: 'そ', code: 'KeyC', scancode: 0x2E },
-    KeyV: { key: 'ひ', code: 'KeyV', scancode: 0x2F },
+    KeyZ: { key: 'つ', code: 'KeyZ', scancode: 0x2c },
+    KeyX: { key: 'さ', code: 'KeyX', scancode: 0x2d },
+    KeyC: { key: 'そ', code: 'KeyC', scancode: 0x2e },
+    KeyV: { key: 'ひ', code: 'KeyV', scancode: 0x2f },
     KeyB: { key: 'こ', code: 'KeyB', scancode: 0x30 },
     KeyN: { key: 'み', code: 'KeyN', scancode: 0x31 },
     KeyM: { key: 'も', code: 'KeyM', scancode: 0x32 },
@@ -272,7 +272,7 @@ const layoutOverrides: Record<string, Partial<Record<string, KeyMapping>>> = {
     Slash: { key: '/', code: 'Slash', scancode: 0x35 },
 
     // Extra JIS keys
-    NonConvert: { key: '無変換', code: 'NonConvert', scancode: 0x7B },
+    NonConvert: { key: '無変換', code: 'NonConvert', scancode: 0x7b },
     Convert: { key: '変換', code: 'Convert', scancode: 0x79 },
     KanaMode: { key: 'かな', code: 'KanaMode', scancode: 0x70 },
     Eisu: { key: '英数', code: 'Eisu', scancode: 0x72 },
@@ -323,7 +323,7 @@ const layoutOverrides: Record<string, Partial<Record<string, KeyMapping>>> = {
     IntlBackslash: { key: '<', code: 'IntlBackslash', scancode: baseMap.IntlBackslash.scancode },
     Minus: { key: '+', code: 'Minus', scancode: baseMap.Minus.scancode },
     Equal: { key: '´', code: 'Equal', scancode: baseMap.Equal.scancode },
-    Backslash: { key: '\'', code: 'Backslash', scancode: baseMap.Backslash.scancode },
+    Backslash: { key: "'", code: 'Backslash', scancode: baseMap.Backslash.scancode },
   },
 };
 

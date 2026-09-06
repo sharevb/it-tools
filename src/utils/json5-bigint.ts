@@ -36,8 +36,7 @@ JSON.parseBigInt = function (jsonStr: string, options?: { minDigits?: number }):
             // take only part xxx between ¤xxx¤
             return BigInt(bigintValue);
           }
-        }
-        catch {
+        } catch {
           return bigintValue;
         }
       }

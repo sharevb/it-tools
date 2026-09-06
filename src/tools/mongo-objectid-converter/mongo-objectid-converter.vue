@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { dateFromObjectId, generateMongoFilter, objectIdFromDate, objectIdSyntaxFromDate } from './mongo-objectid-converter.service';
+import {
+  dateFromObjectId,
+  generateMongoFilter,
+  objectIdFromDate,
+  objectIdSyntaxFromDate,
+} from './mongo-objectid-converter.service';
 import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
@@ -8,25 +13,19 @@ const { t } = useI18n();
 const currentTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const objectIdInput = ref(objectIdFromDate(new Date()));
-const dateOutput = computed(() =>
-  withDefaultOnError(() => dateFromObjectId(objectIdInput.value), 'Invalid ObjectId'),
-);
+const dateOutput = computed(() => withDefaultOnError(() => dateFromObjectId(objectIdInput.value), 'Invalid ObjectId'));
 
 const dateInput = ref(Date.now());
 const dateValue = computed(() => new Date(dateInput.value));
 const tableName = ref('tbl');
-const objectIdOutput = computed(() =>
-  withDefaultOnError(() => objectIdFromDate(dateValue.value), 'Invalid Date'),
-);
+const objectIdOutput = computed(() => withDefaultOnError(() => objectIdFromDate(dateValue.value), 'Invalid Date'));
 const objectIdSyntaxOutput = computed(() =>
   withDefaultOnError(() => objectIdSyntaxFromDate(dateValue.value), 'Invalid Date'),
 );
 const objectIdQueryOutput = computed(() =>
   withDefaultOnError(() => generateMongoFilter({ date: dateValue.value, tableName: tableName.value }), 'Invalid Date'),
 );
-const objectIdUTCDate = computed(() =>
-  dateValue.value.toISOString(),
-);
+const objectIdUTCDate = computed(() => dateValue.value.toISOString());
 </script>
 
 <template>
@@ -44,13 +43,16 @@ const objectIdUTCDate = computed(() =>
     <textarea-copyable
       :value="dateOutput instanceof Date ? dateOutput.toLocaleString(undefined, { timeZoneName: 'short' }) : dateOutput"
     />
-    <textarea-copyable
-      :value="dateOutput instanceof Date ? dateOutput.toISOString() : dateOutput"
-    />
+    <textarea-copyable :value="dateOutput instanceof Date ? dateOutput.toISOString() : dateOutput" />
   </c-card>
 
   <c-card :title="`Date to ObjectId (${currentTimeZone})`">
-    <n-form-item :label="t('tools.mongo-objectid-converter.texts.label-date-and-time')" label-placement="left" mb-2 flex-1>
+    <n-form-item
+      :label="t('tools.mongo-objectid-converter.texts.label-date-and-time')"
+      label-placement="left"
+      mb-2
+      flex-1
+    >
       <n-date-picker v-model:value="dateInput" type="datetime" />
     </n-form-item>
 

@@ -8,7 +8,9 @@ import { useQueryParam } from '@/composable/queryParams';
 const { t } = useI18n();
 
 const encodedInput = useQueryParam({ tool: 'mime-conv', name: 'decode', defaultValue: '' });
-const decodedOutput = computed(() => withDefaultOnError(() => libmime.decodeWords(encodedInput.value), '# invalid encoded value'));
+const decodedOutput = computed(() =>
+  withDefaultOnError(() => libmime.decodeWords(encodedInput.value), '# invalid encoded value'),
+);
 
 const rawInput = useQueryParam({ tool: 'mime-conv', name: 'encode', defaultValue: '' });
 const encodedQOutput = computed(() => withDefaultOnError(() => libmime.encodeWord(rawInput.value, 'Q'), ''));
@@ -32,7 +34,11 @@ const encodedBOutput = computed(() => withDefaultOnError(() => libmime.encodeWor
         <h3>{{ t('tools.mime-converter.texts.tag-quotted-printable-encoded-string') }}</h3>
         <TextareaCopyable
           :value="encodedQOutput"
-          :placeholder="t('tools.mime-converter.texts.placeholder-the-quotted-printable-encoded-version-of-your-string-will-be-here')"
+          :placeholder="
+            t(
+              'tools.mime-converter.texts.placeholder-the-quotted-printable-encoded-version-of-your-string-will-be-here',
+            )
+          "
           mb-5
         />
       </div>
@@ -41,7 +47,9 @@ const encodedBOutput = computed(() => withDefaultOnError(() => libmime.encodeWor
         <h3>{{ t('tools.mime-converter.texts.tag-base64-encoded-string') }}</h3>
         <TextareaCopyable
           :value="encodedBOutput"
-          :placeholder="t('tools.mime-converter.texts.placeholder-the-base64-encoded-version-of-your-string-will-be-here')"
+          :placeholder="
+            t('tools.mime-converter.texts.placeholder-the-base64-encoded-version-of-your-string-will-be-here')
+          "
           mb-5
         />
       </div>

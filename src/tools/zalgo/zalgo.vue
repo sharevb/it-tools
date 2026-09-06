@@ -44,10 +44,7 @@ function unZalgo() {
     </n-form-item>
 
     <n-space justify="center" mb-2>
-      <n-button
-        type="primary"
-        @click="doZalgo"
-      >
+      <n-button type="primary" @click="doZalgo">
         {{ t('tools.zalgo.texts.tag-generate') }}
       </n-button>
     </n-space>
@@ -78,10 +75,7 @@ function unZalgo() {
     />
 
     <n-space justify="center" mb-2>
-      <n-button
-        type="primary"
-        @click="unZalgo"
-      >
+      <n-button type="primary" @click="unZalgo">
         {{ t('tools.zalgo.texts.tag-clean') }}
       </n-button>
     </n-space>

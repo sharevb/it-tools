@@ -1,14 +1,14 @@
 import { LINE_STRINGS } from './line-strings';
 
 export default function convertTreeToStructure(tree: string): string {
-  const treeLines = tree.split('\n').filter(line => line.trim());
+  const treeLines = tree.split('\n').filter((line) => line.trim());
 
   if (treeLines.length === 0) {
     return '';
   }
 
   // Detect charset by checking for unicode box drawing characters (U+2500 to U+257F)
-  const charset = treeLines.some(line => /[\u2500-\u257F]/.test(line)) ? 'utf-8' : 'ascii';
+  const charset = treeLines.some((line) => /[\u2500-\u257F]/.test(line)) ? 'utf-8' : 'ascii';
   const lines = LINE_STRINGS[charset];
 
   // Create a single regex to match all tree connectors

@@ -17,7 +17,11 @@ const dbmOutput = computed(() => mwToDbm(mwInput.value).toFixed(3));
       <n-input-number-i18n v-model:value="dbmInput" />
     </n-form-item>
 
-    <input-copyable :label="t('tools.dbm-mw-converter.texts.label-corresponding-mw-value')" label-position="left" :value="mwOutput" />
+    <input-copyable
+      :label="t('tools.dbm-mw-converter.texts.label-corresponding-mw-value')"
+      label-position="left"
+      :value="mwOutput"
+    />
   </c-card>
 
   <c-card :title="t('tools.dbm-mw-converter.texts.title-mw-to-dbm')">
@@ -25,6 +29,10 @@ const dbmOutput = computed(() => mwToDbm(mwInput.value).toFixed(3));
       <n-input-number-i18n v-model:value="mwInput" :min="0" />
     </n-form-item>
 
-    <input-copyable :label="t('tools.dbm-mw-converter.texts.label-corresponding-dbm-value')" label-position="left" :value="dbmOutput" />
+    <input-copyable
+      :label="t('tools.dbm-mw-converter.texts.label-corresponding-dbm-value')"
+      label-position="left"
+      :value="dbmOutput"
+    />
   </c-card>
 </template>

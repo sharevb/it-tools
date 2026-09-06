@@ -57,35 +57,74 @@ const alignments = [
     </n-form-item>
 
     <n-form-item :label="t('tools.dmarc-dns-generator.texts.label-policy')" label-placement="left">
-      <n-select v-model:value="policy" :options="policies" :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-select-policy')" />
+      <n-select
+        v-model:value="policy"
+        :options="policies"
+        :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-select-policy')"
+      />
     </n-form-item>
 
     <n-form-item :label="t('tools.dmarc-dns-generator.texts.label-subdomain-policy')" label-placement="left">
-      <n-select v-model:value="subPolicy" :options="policies" :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-select-policy')" />
+      <n-select
+        v-model:value="subPolicy"
+        :options="policies"
+        :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-select-policy')"
+      />
     </n-form-item>
 
-    <n-form-item :label="t('tools.dmarc-dns-generator.texts.label-percentage-of-emails-subject-to-dmarc-policy-enforcement-0-100')" label-placement="top">
-      <n-input-number-i18n v-model:value="percentage" :min="0" :max="100" :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-enter-percentage')" />
+    <n-form-item
+      :label="t('tools.dmarc-dns-generator.texts.label-percentage-of-emails-subject-to-dmarc-policy-enforcement-0-100')"
+      label-placement="top"
+    >
+      <n-input-number-i18n
+        v-model:value="percentage"
+        :min="0"
+        :max="100"
+        :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-enter-percentage')"
+      />
     </n-form-item>
 
-    <n-form-item :label="t('tools.dmarc-dns-generator.texts.label-aggregate-email-where-aggregate-dmarc-reports-should-be-sent')" label-placement="top">
+    <n-form-item
+      :label="t('tools.dmarc-dns-generator.texts.label-aggregate-email-where-aggregate-dmarc-reports-should-be-sent')"
+      label-placement="top"
+    >
       <n-input v-model:value="rua" :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-admin-example-com')" />
     </n-form-item>
 
-    <n-form-item :label="t('tools.dmarc-dns-generator.texts.label-forensic-email-where-forensic-dmarc-failure-reports-should-be-sent')" label-placement="top">
+    <n-form-item
+      :label="
+        t('tools.dmarc-dns-generator.texts.label-forensic-email-where-forensic-dmarc-failure-reports-should-be-sent')
+      "
+      label-placement="top"
+    >
       <n-input v-model:value="ruf" :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-admin-example-com')" />
     </n-form-item>
 
     <n-form-item :label="t('tools.dmarc-dns-generator.texts.label-alignment-spf')" label-placement="left">
-      <n-select v-model:value="aspf" :options="alignments" :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-select-alignment')" />
+      <n-select
+        v-model:value="aspf"
+        :options="alignments"
+        :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-select-alignment')"
+      />
     </n-form-item>
 
     <n-form-item :label="t('tools.dmarc-dns-generator.texts.label-alignment-dkim')" label-placement="left">
-      <n-select v-model:value="adkim" :options="alignments" :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-select-alignment')" />
+      <n-select
+        v-model:value="adkim"
+        :options="alignments"
+        :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-select-alignment')"
+      />
     </n-form-item>
 
-    <n-form-item :label="t('tools.dmarc-dns-generator.texts.label-reporting-interval-for-sending-dmarc-aggregate-reports')" label-placement="top">
-      <n-input-number-i18n v-model:value="ri" :min="3600" :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-enter-interval')">
+    <n-form-item
+      :label="t('tools.dmarc-dns-generator.texts.label-reporting-interval-for-sending-dmarc-aggregate-reports')"
+      label-placement="top"
+    >
+      <n-input-number-i18n
+        v-model:value="ri"
+        :min="3600"
+        :placeholder="t('tools.dmarc-dns-generator.texts.placeholder-enter-interval')"
+      >
         <template #suffix>
           {{ t('tools.dmarc-dns-generator.texts.tag-seconds') }}
         </template>

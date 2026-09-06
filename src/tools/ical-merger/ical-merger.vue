@@ -30,8 +30,7 @@ async function mergeFiles() {
       caldesc: calendarDescription.value,
       regenerate_uids: regenerateUids.value,
     });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     errors.value = e.toString();
   }
 }
@@ -40,7 +39,7 @@ function readFileAsString(file: File) {
   return new Promise<string>((resolve, reject) => {
     const fr = new FileReader();
     fr.onload = () => {
-      resolve(fr.result as string || '');
+      resolve((fr.result as string) || '');
     };
     fr.onerror = reject;
     fr.readAsText(file);
@@ -58,11 +57,17 @@ function readFileAsString(file: File) {
     />
 
     <n-form-item :label="t('tools.ical-merger.texts.label-title')" label-placement="left">
-      <n-input v-model:value="calendarName" :placeholder="t('tools.ical-merger.texts.placeholder-please-input-merge-calendar-title')" />
+      <n-input
+        v-model:value="calendarName"
+        :placeholder="t('tools.ical-merger.texts.placeholder-please-input-merge-calendar-title')"
+      />
     </n-form-item>
 
     <n-form-item :label="t('tools.ical-merger.texts.label-description')">
-      <n-input v-model:value="calendarDescription" :placeholder="t('tools.ical-merger.texts.placeholder-please-input-merged-calendar-description')" />
+      <n-input
+        v-model:value="calendarDescription"
+        :placeholder="t('tools.ical-merger.texts.placeholder-please-input-merged-calendar-description')"
+      />
     </n-form-item>
 
     <n-space justify="center">

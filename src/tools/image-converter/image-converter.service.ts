@@ -16,7 +16,7 @@ let initialization: Promise<void> | undefined;
  */
 export function initializeSvgRenderer(loadWasm: WasmLoader = defaultWasmLoader) {
   initialization ??= Promise.resolve(loadWasm())
-    .then(input => initWasm(input))
+    .then((input) => initWasm(input))
     .catch((error) => {
       // a failed download must not be memoized, otherwise a single network hiccup would leave the
       // tool broken until the page is reloaded
@@ -45,12 +45,10 @@ export async function convertSvgToPng({ svg, scale }: { svg: string; scale: numb
 
     try {
       return rendered.asPng();
-    }
-    finally {
+    } finally {
       rendered.free();
     }
-  }
-  finally {
+  } finally {
     renderer.free();
   }
 }

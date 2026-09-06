@@ -7,7 +7,8 @@ import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 
-const defaultValue = '{\n  "ACCESS_KEY": "mySecretAccessKey",\n  "AMQP_DNS": "amqp://a:b@rabbit/po",\n  "APP_ENV": "prod"\n}';
+const defaultValue =
+  '{\n  "ACCESS_KEY": "mySecretAccessKey",\n  "AMQP_DNS": "amqp://a:b@rabbit/po",\n  "APP_ENV": "prod"\n}';
 
 function transformer(value: string) {
   return withDefaultOnError(() => {

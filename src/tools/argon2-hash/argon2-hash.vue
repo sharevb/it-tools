@@ -7,7 +7,11 @@ const { t } = useI18n();
 
 // Inputs
 const password = ref('');
-const algorithm = useQueryParamOrStorage<'argon2id' | 'argon2i' | 'argon2d'>({ name: 'algo', storageName: 'argon2:a', defaultValue: 'argon2id' });
+const algorithm = useQueryParamOrStorage<'argon2id' | 'argon2i' | 'argon2d'>({
+  name: 'algo',
+  storageName: 'argon2:a',
+  defaultValue: 'argon2id',
+});
 
 // Parameters
 const salt = useQueryParamOrStorage({ name: 'salt', storageName: 'argon2:s', defaultValue: '' });
@@ -15,7 +19,11 @@ const iterations = useQueryParamOrStorage({ name: 'iter', storageName: 'argon2:i
 const memorySizeKB = useQueryParamOrStorage({ name: 'memory', storageName: 'argon2:m', defaultValue: 512 });
 const parallelism = useQueryParamOrStorage({ name: 'paral', storageName: 'argon2:p', defaultValue: 1 });
 const hashLength = useQueryParamOrStorage({ name: 'len', storageName: 'argon2:l', defaultValue: 32 });
-const outputType = useQueryParamOrStorage<'hex' | 'encoded' | 'binary'>({ name: 'output', storageName: 'argon2:o', defaultValue: 'encoded' });
+const outputType = useQueryParamOrStorage<'hex' | 'encoded' | 'binary'>({
+  name: 'output',
+  storageName: 'argon2:o',
+  defaultValue: 'encoded',
+});
 
 // Result
 const result = ref('');
@@ -45,16 +53,10 @@ async function generateHash() {
       outputType: outputType.value,
     } as const;
 
-    const fn
-      = algorithm.value === 'argon2id'
-        ? argon2id
-        : algorithm.value === 'argon2i'
-          ? argon2i
-          : argon2d;
+    const fn = algorithm.value === 'argon2id' ? argon2id : algorithm.value === 'argon2i' ? argon2i : argon2d;
 
     result.value = await fn(options);
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err.toString();
   }
 }
@@ -65,7 +67,8 @@ async function generateHash() {
     <NForm label-width="120" label-placement="left">
       <NFormItem :label="t('tools.argon2-hash.texts.label-algorithm')">
         <NSelect
-          v-model:value="algorithm" :options="[
+          v-model:value="algorithm"
+          :options="[
             { label: t('tools.argon2-hash.texts.label-argon2id'), value: 'argon2id' },
             { label: t('tools.argon2-hash.texts.label-argon2i'), value: 'argon2i' },
             { label: t('tools.argon2-hash.texts.label-argon2d'), value: 'argon2d' },
@@ -101,7 +104,8 @@ async function generateHash() {
 
       <NFormItem :label="t('tools.argon2-hash.texts.label-output-type')">
         <NSelect
-          v-model:value="outputType" :options="[
+          v-model:value="outputType"
+          :options="[
             { label: t('tools.argon2-hash.texts.label-hex'), value: 'hex' },
             { label: t('tools.argon2-hash.texts.label-encoded'), value: 'encoded' },
             { label: t('tools.argon2-hash.texts.label-binary'), value: 'binary' },

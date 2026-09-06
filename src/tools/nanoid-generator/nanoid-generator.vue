@@ -35,7 +35,10 @@ const [nanoIds, refreshNanoIds] = computedRefreshable(() =>
   ),
 );
 
-const { copy } = useCopy({ source: nanoIds, text: t('tools.nanoid-generator.texts.text-nanoids-copied-to-the-clipboard') });
+const { copy } = useCopy({
+  source: nanoIds,
+  text: t('tools.nanoid-generator.texts.text-nanoids-copied-to-the-clipboard'),
+});
 </script>
 
 <template>
@@ -45,9 +48,7 @@ const { copy } = useCopy({ source: nanoIds, text: t('tools.nanoid-generator.text
         <div class="column">
           <div>
             <n-text>{{ t('tools.nanoid-generator.uppercase') }}</n-text>
-            <c-tooltip
-              tooltip="ABCDEFGHIJKLMNOPQRSTUVWXYZ" position="bottom"
-            >
+            <c-tooltip tooltip="ABCDEFGHIJKLMNOPQRSTUVWXYZ" position="bottom">
               <n-icon size="20" :component="InfoCircle" />
             </c-tooltip>
             <n-switch v-model:value="withUppercase" />
@@ -55,9 +56,7 @@ const { copy } = useCopy({ source: nanoIds, text: t('tools.nanoid-generator.text
 
           <div>
             <n-text>{{ t('tools.nanoid-generator.lowercase') }}</n-text>
-            <c-tooltip
-              tooltip="abcdefghijklmnopqrstuvwxyz" position="bottom"
-            >
+            <c-tooltip tooltip="abcdefghijklmnopqrstuvwxyz" position="bottom">
               <n-icon size="20" :component="InfoCircle" />
             </c-tooltip>
             <n-switch v-model:value="withLowercase" />
@@ -69,9 +68,7 @@ const { copy } = useCopy({ source: nanoIds, text: t('tools.nanoid-generator.text
             <n-text>
               {{ t('tools.nanoid-generator.numbers') }}
             </n-text>
-            <c-tooltip
-              tooltip="0123456789" position="bottom"
-            >
+            <c-tooltip tooltip="0123456789" position="bottom">
               <n-icon size="20" :component="InfoCircle" />
             </c-tooltip>
             <n-switch v-model:value="withNumbers" />
@@ -81,9 +78,7 @@ const { copy } = useCopy({ source: nanoIds, text: t('tools.nanoid-generator.text
             <n-text>
               {{ t('tools.nanoid-generator.symbols') }}
             </n-text>
-            <c-tooltip
-              tooltip="-_" position="bottom"
-            >
+            <c-tooltip tooltip="-_" position="bottom">
               <n-icon size="20" :component="InfoCircle" />
             </c-tooltip>
             <n-switch v-model:value="withSymbols" />
@@ -94,9 +89,7 @@ const { copy } = useCopy({ source: nanoIds, text: t('tools.nanoid-generator.text
             <n-text>
               {{ t('tools.nanoid-generator.excludeLookalikes') }}
             </n-text>
-            <c-tooltip
-              tooltip="1lI0Oouv5Ss2Z" position="bottom"
-            >
+            <c-tooltip tooltip="1lI0Oouv5Ss2Z" position="bottom">
               <n-icon size="20" :component="InfoCircle" />
             </c-tooltip>
             <n-switch v-model:value="excludeLookalikes" />
@@ -107,11 +100,23 @@ const { copy } = useCopy({ source: nanoIds, text: t('tools.nanoid-generator.text
 
     <div mb-2 flex items-center>
       <span w-100px>{{ t('tools.nanoid-generator.length') }}</span>
-      <n-input-number-i18n v-model:value="length" flex-1 :min="1" :max="100" :placeholder="t('tools.nanoid-generator.texts.placeholder-nanoid-length')" />
+      <n-input-number-i18n
+        v-model:value="length"
+        flex-1
+        :min="1"
+        :max="100"
+        :placeholder="t('tools.nanoid-generator.texts.placeholder-nanoid-length')"
+      />
     </div>
     <div mb-2 flex items-center>
       <span w-100px>{{ t('tools.nanoid-generator.quantity') }}</span>
-      <n-input-number-i18n v-model:value="count" flex-1 :min="1" :max="50" :placeholder="t('tools.nanoid-generator.texts.placeholder-nanoids-quantity')" />
+      <n-input-number-i18n
+        v-model:value="count"
+        flex-1
+        :min="1"
+        :max="50"
+        :placeholder="t('tools.nanoid-generator.texts.placeholder-nanoids-quantity')"
+      />
     </div>
 
     <c-input-text

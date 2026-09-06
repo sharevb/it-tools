@@ -82,7 +82,14 @@ describe('generateMarkdown', () => {
   });
 
   it('can be skewed towards headers via frequency', () => {
-    const cfg = { ...baseCfg, seedStr: 'freq-headers', headerFrequency: 0.8, listFrequency: 0.05, codeFrequency: 0.05, quoteFrequency: 0.05 };
+    const cfg = {
+      ...baseCfg,
+      seedStr: 'freq-headers',
+      headerFrequency: 0.8,
+      listFrequency: 0.05,
+      codeFrequency: 0.05,
+      quoteFrequency: 0.05,
+    };
     const out = generateMarkdown(cfg);
     const headers = out.match(/^#{1,6}\s.+|^[A-Z][^\n]+\n[=-]+$/gm) ?? [];
     expect(headers.length).toBeGreaterThan(3);

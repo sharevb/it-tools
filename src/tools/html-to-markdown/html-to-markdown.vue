@@ -7,8 +7,16 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
-const headingsStyle = useQueryParamOrStorage<string>({ name: 'headings', storageName: 'html-to-md:hs', defaultValue: 'hash' });
-const emphasisStyle = useQueryParamOrStorage<string>({ name: 'emphasis', storageName: 'html-to-md:em', defaultValue: 'standard' });
+const headingsStyle = useQueryParamOrStorage<string>({
+  name: 'headings',
+  storageName: 'html-to-md:hs',
+  defaultValue: 'hash',
+});
+const emphasisStyle = useQueryParamOrStorage<string>({
+  name: 'emphasis',
+  storageName: 'html-to-md:em',
+  defaultValue: 'standard',
+});
 
 const turndownService = new TurndownService();
 
@@ -47,8 +55,7 @@ turndownService.addRule('normalizedHeading', {
       if (level === 2) {
         return `\n${text}\n${'-'.repeat(text.length)}\n\n`;
       }
-    }
-    else if (headingsStyle.value === 'surround') {
+    } else if (headingsStyle.value === 'surround') {
       return `\n${'='.repeat(level)} ${text} ${'='.repeat(level)}\n\n`;
     }
 
@@ -88,8 +95,7 @@ const inputHtml = ref('');
 const outputMarkdown = computed(() => {
   try {
     return turndownService.turndown(inputHtml.value ?? '');
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -124,7 +130,8 @@ const outputMarkdown = computed(() => {
 
     <c-input-text
       v-model:value="inputHtml"
-      multiline raw-text
+      multiline
+      raw-text
       :placeholder="t('tools.html-to-markdown.texts.placeholder-your-html-content')"
       rows="8"
       autofocus

@@ -15,9 +15,8 @@ function transformer(value: string) {
     let obj = parseYaml(value, { merge: true, intAsBigInt: true });
     if (nestify.value) {
       if (obj && Array.isArray(obj)) {
-        obj = (obj as any[]).map(o => nestifyObject(o));
-      }
-      else {
+        obj = (obj as any[]).map((o) => nestifyObject(o));
+      } else {
         obj = nestifyObject(obj);
       }
     }
@@ -35,7 +34,10 @@ const rules: UseValidationRule<string>[] = [
 
 <template>
   <n-space justify="center">
-    <n-form-item :label="t('tools.yaml-to-json-converter.texts.label-nestify-a-b-c-to-nested-objects')" label-placement="left">
+    <n-form-item
+      :label="t('tools.yaml-to-json-converter.texts.label-nestify-a-b-c-to-nested-objects')"
+      label-placement="left"
+    >
       <n-checkbox v-model:checked="nestify" />
     </n-form-item>
   </n-space>

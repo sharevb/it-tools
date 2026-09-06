@@ -77,10 +77,22 @@ function transformer(value: string) {
       <c-card>
         <n-space>
           <div>
-            <n-form-item :label="t('tools.list-converter.texts.label-trim-list-items')" label-placement="left" label-width="150" :show-feedback="false" mb-2>
+            <n-form-item
+              :label="t('tools.list-converter.texts.label-trim-list-items')"
+              label-placement="left"
+              label-width="150"
+              :show-feedback="false"
+              mb-2
+            >
               <n-switch v-model:value="conversionConfig.trimItems" />
             </n-form-item>
-            <n-form-item :label="t('tools.list-converter.texts.label-remove-duplicates')" label-placement="left" label-width="150" :show-feedback="false" mb-2>
+            <n-form-item
+              :label="t('tools.list-converter.texts.label-remove-duplicates')"
+              label-placement="left"
+              label-width="150"
+              :show-feedback="false"
+              mb-2
+            >
               <n-switch v-model:value="conversionConfig.removeDuplicates" data-test-id="removeDuplicates" />
             </n-form-item>
             <n-form-item
@@ -92,10 +104,22 @@ function transformer(value: string) {
             >
               <n-switch v-model:value="conversionConfig.lowerCase" />
             </n-form-item>
-            <n-form-item :label="t('tools.list-converter.texts.label-keep-line-breaks')" label-placement="left" label-width="150" :show-feedback="false" mb-2>
+            <n-form-item
+              :label="t('tools.list-converter.texts.label-keep-line-breaks')"
+              label-placement="left"
+              label-width="150"
+              :show-feedback="false"
+              mb-2
+            >
               <n-switch v-model:value="conversionConfig.keepLineBreaks" :disabled="conversionConfig.outputAsColumn" />
             </n-form-item>
-            <n-form-item :label="t('tools.list-converter.texts.label-output-as-column')" label-placement="left" label-width="150" :show-feedback="false" mb-2>
+            <n-form-item
+              :label="t('tools.list-converter.texts.label-output-as-column')"
+              label-placement="left"
+              label-width="150"
+              :show-feedback="false"
+              mb-2
+            >
               <n-switch v-model:value="conversionConfig.outputAsColumn" data-test-id="outputAsColumn" />
             </n-form-item>
           </div>
@@ -137,7 +161,13 @@ function transformer(value: string) {
               :placeholder="t('tools.list-converter.texts.placeholder-separator-for-splitting')"
             />
 
-            <n-form-item :label="t('tools.list-converter.texts.label-filter-item')" label-placement="left" label-width="120" :show-feedback="false" mb-2>
+            <n-form-item
+              :label="t('tools.list-converter.texts.label-filter-item')"
+              label-placement="left"
+              label-width="120"
+              :show-feedback="false"
+              mb-2
+            >
               <c-input-text
                 v-model:value="conversionConfig.filterRegex"
                 :placeholder="t('tools.list-converter.texts.placeholder-remove-item-filter-regex')"
@@ -150,7 +180,13 @@ function transformer(value: string) {
               />
             </n-form-item>
 
-            <n-form-item :label="t('tools.list-converter.texts.label-unwrap-item')" label-placement="left" label-width="120" :show-feedback="false" mb-2>
+            <n-form-item
+              :label="t('tools.list-converter.texts.label-unwrap-item')"
+              label-placement="left"
+              label-width="120"
+              :show-feedback="false"
+              mb-2
+            >
               <c-input-text
                 v-model:value="conversionConfig.removeItemPrefix"
                 :placeholder="t('tools.list-converter.texts.placeholder-remove-item-prefix-regex')"
@@ -163,7 +199,13 @@ function transformer(value: string) {
               />
             </n-form-item>
 
-            <n-form-item :label="t('tools.list-converter.texts.label-wrap-item')" label-placement="left" label-width="120" :show-feedback="false" mb-2>
+            <n-form-item
+              :label="t('tools.list-converter.texts.label-wrap-item')"
+              label-placement="left"
+              label-width="120"
+              :show-feedback="false"
+              mb-2
+            >
               <c-input-text
                 v-model:value="conversionConfig.itemPrefix"
                 :placeholder="t('tools.list-converter.texts.placeholder-item-prefix')"
@@ -175,7 +217,13 @@ function transformer(value: string) {
                 test-id="itemSuffix"
               />
             </n-form-item>
-            <n-form-item :label="t('tools.list-converter.texts.label-wrap-list')" label-placement="left" label-width="120" :show-feedback="false" mb-2>
+            <n-form-item
+              :label="t('tools.list-converter.texts.label-wrap-list')"
+              label-placement="left"
+              label-width="120"
+              :show-feedback="false"
+              mb-2
+            >
               <c-input-text
                 v-model:value="conversionConfig.listPrefix"
                 :placeholder="t('tools.list-converter.texts.placeholder-list-prefix')"

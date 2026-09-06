@@ -54,9 +54,7 @@ const minifyOutput = computed(() =>
     if (!minifyInput.value) {
       return '';
     }
-    return selectedLanguage.value === 'css'
-      ? minifyCss(minifyInput.value)
-      : minifyJs(minifyInput.value);
+    return selectedLanguage.value === 'css' ? minifyCss(minifyInput.value) : minifyJs(minifyInput.value);
   }, ''),
 );
 </script>

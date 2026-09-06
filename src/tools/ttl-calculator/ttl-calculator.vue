@@ -10,7 +10,9 @@ const days = useQueryParam({ tool: 'ttl-calc', name: 'd', defaultValue: 0 });
 const hours = useQueryParam({ tool: 'ttl-calc', name: 'h', defaultValue: 24 });
 const minutes = useQueryParam({ tool: 'ttl-calc', name: 'm', defaultValue: 0 });
 const seconds = useQueryParam({ tool: 'ttl-calc', name: 's', defaultValue: 0 });
-const ttlDisplay = computed(() => (days.value * 86400 + hours.value * 3600 + minutes.value * 60 + seconds.value).toString());
+const ttlDisplay = computed(() =>
+  (days.value * 86400 + hours.value * 3600 + minutes.value * 60 + seconds.value).toString(),
+);
 
 const ttl = ref(0);
 const timeDisplay = computed(() => formatDuration(intervalToDuration({ start: 0, end: ttl.value * 1000 })));

@@ -15,10 +15,7 @@ const isCollapsed = ref(true);
       </slot>
     </div>
 
-    <div
-      v-show="!isCollapsed"
-      mt-2
-    >
+    <div v-show="!isCollapsed" mt-2>
       <slot />
     </div>
   </div>

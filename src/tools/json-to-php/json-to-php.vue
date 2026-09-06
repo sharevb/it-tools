@@ -19,20 +19,30 @@ const defaultValue = `{
 const jsonInput = ref(defaultValue);
 const rootName = useQueryParamOrStorage({ name: 'root', storageName: 'json-php:r', defaultValue: 'GeneratedClass' });
 const createGetter = useQueryParamOrStorage({ name: 'getter', storageName: 'json-php:pv', defaultValue: true });
-const getterWithoutValidation = useQueryParamOrStorage({ name: 'novalid', storageName: 'json-php:cl', defaultValue: false });
+const getterWithoutValidation = useQueryParamOrStorage({
+  name: 'novalid',
+  storageName: 'json-php:cl',
+  defaultValue: false,
+});
 const createSetter = useQueryParamOrStorage({ name: 'setter', storageName: 'json-php:pn', defaultValue: true });
 const phpClosingTag = useQueryParamOrStorage({ name: 'closing', storageName: 'json-php:pn', defaultValue: true });
-const optionalProperties = useQueryParamOrStorage({ name: 'optional', storageName: 'json-php:op', defaultValue: false });
+const optionalProperties = useQueryParamOrStorage({
+  name: 'optional',
+  storageName: 'json-php:op',
+  defaultValue: false,
+});
 
-async function convertJsonToPHP(json: string,
+async function convertJsonToPHP(
+  json: string,
   options: {
-    rootName: string
-    createGetter?: boolean
-    getterWithoutValidation?: boolean
-    createSetter?: boolean
-    phpClosingTag?: boolean
-    optionalProperties?: boolean
-  }): Promise<string> {
+    rootName: string;
+    createGetter?: boolean;
+    getterWithoutValidation?: boolean;
+    createSetter?: boolean;
+    phpClosingTag?: boolean;
+    optionalProperties?: boolean;
+  },
+): Promise<string> {
   const jsonInput = jsonInputForTargetLanguage('php');
   await jsonInput.addSource({ name: options.rootName, samples: [JSON.stringify(JSON5.parse(json))] });
 
@@ -56,18 +66,15 @@ async function convertJsonToPHP(json: string,
 
 const phpOutput = computedAsync(async () => {
   try {
-    return await convertJsonToPHP(jsonInput.value,
-      {
-        rootName: rootName.value,
-        createGetter: createGetter.value,
-        getterWithoutValidation: getterWithoutValidation.value,
-        createSetter: createSetter.value,
-        phpClosingTag: phpClosingTag.value,
-        optionalProperties: optionalProperties.value,
-      },
-    );
-  }
-  catch (e: any) {
+    return await convertJsonToPHP(jsonInput.value, {
+      rootName: rootName.value,
+      createGetter: createGetter.value,
+      getterWithoutValidation: getterWithoutValidation.value,
+      createSetter: createSetter.value,
+      phpClosingTag: phpClosingTag.value,
+      optionalProperties: optionalProperties.value,
+    });
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -92,7 +99,12 @@ const rules: UseValidationRule<string>[] = [
       raw-text
       mb-5
     />
-    <c-input-text v-model:value="rootName" :label="t('tools.json-to-php.texts.label-root-name')" label-position="left" mb-2 />
+    <c-input-text
+      v-model:value="rootName"
+      :label="t('tools.json-to-php.texts.label-root-name')"
+      label-position="left"
+      mb-2
+    />
     <n-space justify="center">
       <n-checkbox v-model:checked="createGetter">
         {{ t('tools.json-to-php.texts.tag-create-getter') }}
@@ -112,10 +124,6 @@ const rules: UseValidationRule<string>[] = [
     </n-space>
   </c-card>
   <c-card :title="t('tools.json-to-php.texts.title-your-php-code')">
-    <TextareaCopyable
-      :value="phpOutput"
-      language="php"
-      download-file-name="output.php"
-    />
+    <TextareaCopyable :value="phpOutput" language="php" download-file-name="output.php" />
   </c-card>
 </template>

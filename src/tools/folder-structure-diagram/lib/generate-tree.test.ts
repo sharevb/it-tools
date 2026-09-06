@@ -108,7 +108,7 @@ grandparent
     expect(actual).toEqual(expected);
   });
 
-  it('prints each items\' full path if fullPath === true', () => {
+  it("prints each items' full path if fullPath === true", () => {
     const input = `
 
 grandparent

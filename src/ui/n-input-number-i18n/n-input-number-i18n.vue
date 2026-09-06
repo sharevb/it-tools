@@ -4,7 +4,7 @@ import type { InputNumberProps } from 'naive-ui';
 import { formatNumber, parseNumber } from './n-input-number-i18n.utils';
 
 // workaround for compiler sfc failing to interprete InputNumberProps
-interface InputNumberPropsI18N extends /** @vue-ignore */ InputNumberProps { }
+interface InputNumberPropsI18N extends /** @vue-ignore */ InputNumberProps {}
 
 const props = defineProps<InputNumberPropsI18N>();
 </script>

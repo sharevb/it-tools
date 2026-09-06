@@ -23,8 +23,8 @@ export async function extractTextFromPDF(file: File): Promise<string> {
 }
 
 interface SpineItems {
-  items: SpineItem[]
-  get(href: string | undefined): Section
+  items: SpineItem[];
+  get(href: string | undefined): Section;
 }
 export async function extractTextFromEPUB(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer();
@@ -34,7 +34,7 @@ export async function extractTextFromEPUB(file: File): Promise<string> {
   await book.ready;
 
   // Ensure spine is loaded
-  const spine = await ((book.loaded.spine as unknown) as Promise<SpineItems>);
+  const spine = await (book.loaded.spine as unknown as Promise<SpineItems>);
 
   let text = '';
 
@@ -42,7 +42,7 @@ export async function extractTextFromEPUB(file: File): Promise<string> {
   for (const spineItem of spine.items) {
     // Load the item (returns XHTML)
     const section = spine.get(spineItem.href);
-    const content = await ((section.load(book.load.bind(book)) as unknown) as Promise<HTMLElement>);
+    const content = await (section.load(book.load.bind(book)) as unknown as Promise<HTMLElement>);
 
     text += `${content.ownerDocument?.body?.textContent}\n\n`;
 

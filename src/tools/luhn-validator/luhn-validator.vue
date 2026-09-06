@@ -11,8 +11,7 @@ const cleanedValue = computed(() => rawValue.value.replace(/[^\d]/g, ''));
 const isValid = computed(() => {
   try {
     return Luhn.isValid(cleanedValue.value);
-  }
-  catch (_) {
+  } catch (_) {
     return false;
   }
 });
@@ -24,15 +23,11 @@ const luhnInfos = computed<CKeyValueListItems>(() => {
     },
     {
       label: t('tools.luhn-validator.texts.label-luhn-key'),
-      value: (isValid.value
-        ? cleanedValue.value.slice(-1)
-        : Luhn.generate(cleanedValue.value).slice(-1)) || '',
+      value: (isValid.value ? cleanedValue.value.slice(-1) : Luhn.generate(cleanedValue.value).slice(-1)) || '',
     },
     {
       label: t('tools.luhn-validator.texts.label-value-with-luhn-key'),
-      value: (isValid.value
-        ? cleanedValue.value
-        : Luhn.generate(cleanedValue.value)) || '',
+      value: (isValid.value ? cleanedValue.value : Luhn.generate(cleanedValue.value)) || '',
     },
   ];
 });
@@ -40,9 +35,18 @@ const luhnInfos = computed<CKeyValueListItems>(() => {
 
 <template>
   <div>
-    <c-input-text v-model:value="rawValue" :placeholder="t('tools.luhn-validator.texts.placeholder-enter-a-luhn-validated-value')" />
+    <c-input-text
+      v-model:value="rawValue"
+      :placeholder="t('tools.luhn-validator.texts.placeholder-enter-a-luhn-validated-value')"
+    />
     <n-alert v-if="!isValid" type="error">
-      {{ t('tools.luhn-validator.texts.tag-invalid-luhn-key') }}<input-copyable :label="t('tools.luhn-validator.texts.label-probably-correct')" label-position="left" :value="Luhn.generate(cleanedValue)" disabled="true" />
+      {{ t('tools.luhn-validator.texts.tag-invalid-luhn-key')
+      }}<input-copyable
+        :label="t('tools.luhn-validator.texts.label-probably-correct')"
+        label-position="left"
+        :value="Luhn.generate(cleanedValue)"
+        disabled="true"
+      />
     </n-alert>
 
     <c-card v-if="luhnInfos.length > 0" mt-5 :title="t('tools.luhn-validator.texts.title-infos')">

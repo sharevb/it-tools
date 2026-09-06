@@ -25,7 +25,7 @@ const caseOptions = [
 const rawSQL = ref('select field1,field2,field3 from my_table where my_condition;');
 const prettySQL = computed(() => {
   try {
-    return ({
+    return {
       prettyQuery: formatSQL(rawSQL.value, {
         keywordCase: keywordCase.value as KeywordCase,
         dataTypeCase: dataTypeCase.value as KeywordCase,
@@ -36,9 +36,8 @@ const prettySQL = computed(() => {
         expressionWidth: expressionWidth.value,
       }),
       error: '',
-    });
-  }
-  catch (e: any) {
+    };
+  } catch (e: any) {
     return { prettyQuery: rawSQL.value, error: e.toString() };
   }
 });
@@ -75,22 +74,26 @@ const sqlDialects = [
         :options="sqlDialects"
       />
       <c-select
-        v-model:value="keywordCase" :label="t('tools.sql-prettify.texts.label-keyword-case')"
+        v-model:value="keywordCase"
+        :label="t('tools.sql-prettify.texts.label-keyword-case')"
         flex-1
         :options="caseOptions"
       />
       <c-select
-        v-model:value="dataTypeCase" :label="t('tools.sql-prettify.texts.label-datatype-case')"
+        v-model:value="dataTypeCase"
+        :label="t('tools.sql-prettify.texts.label-datatype-case')"
         flex-1
         :options="caseOptions"
       />
       <c-select
-        v-model:value="functionCase" :label="t('tools.sql-prettify.texts.label-function-case')"
+        v-model:value="functionCase"
+        :label="t('tools.sql-prettify.texts.label-function-case')"
         flex-1
         :options="caseOptions"
       />
       <c-select
-        v-model:value="indentStyle" :label="t('tools.sql-prettify.texts.label-indent-style')"
+        v-model:value="indentStyle"
+        :label="t('tools.sql-prettify.texts.label-indent-style')"
         flex-1
         :options="[
           { label: t('tools.sql-prettify.texts.label-standard'), value: 'standard' },
@@ -126,7 +129,12 @@ const sqlDialects = [
   </n-form-item>
 
   <n-form-item v-if="!prettySQL.error" :label="t('tools.sql-prettify.texts.label-prettify-version-of-your-query')">
-    <TextareaCopyable :value="prettySQL.prettyQuery" language="sql" :follow-height-of="inputElement" download-file-name="output.sql" />
+    <TextareaCopyable
+      :value="prettySQL.prettyQuery"
+      language="sql"
+      :follow-height-of="inputElement"
+      download-file-name="output.sql"
+    />
   </n-form-item>
 
   <c-alert v-if="prettySQL.error" :title="t('tools.sql-prettify.texts.title-parsing-error')">

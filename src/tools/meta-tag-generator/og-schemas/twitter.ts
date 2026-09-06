@@ -20,7 +20,9 @@ export const twitter: OGSchemaType = {
     {
       type: 'input',
       label: t('tools.meta-tag-generator.twitter.text.site-account'),
-      placeholder: t('tools.meta-tag-generator.twitter.text.the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech'),
+      placeholder: t(
+        'tools.meta-tag-generator.twitter.text.the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech',
+      ),
       key: 'twitter:site',
     },
     {

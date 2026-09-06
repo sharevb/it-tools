@@ -19,8 +19,7 @@ async function onVerifyClicked(uploadedFile: File) {
     const { signatures: parsedSignatures } = verifyPDF(fileBuffer);
     signatures.value = parsedSignatures || [];
     status.value = 'parsed';
-  }
-  catch (e) {
+  } catch (e) {
     signatures.value = [];
     status.value = 'error';
   }
@@ -30,7 +29,11 @@ async function onVerifyClicked(uploadedFile: File) {
 <template>
   <div style="flex: 0 0 100%">
     <div mx-auto max-w-600px>
-      <c-file-upload :title="t('tools.pdf-signature-checker.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')" accept=".pdf" @file-upload="onVerifyClicked" />
+      <c-file-upload
+        :title="t('tools.pdf-signature-checker.texts.title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file')"
+        accept=".pdf"
+        @file-upload="onVerifyClicked"
+      />
 
       <c-card v-if="file" mt-4 flex gap-2>
         <div font-bold>
@@ -52,9 +55,7 @@ async function onVerifyClicked(uploadedFile: File) {
 
   <div v-if="status === 'parsed' && signatures.length" style="flex: 0 0 100%" mt-5 flex flex-col gap-4>
     <div v-for="(signature, index) of signatures" :key="index">
-      <div mb-2 font-bold>
-        Signature {{ index + 1 }} certificates :
-      </div>
+      <div mb-2 font-bold>Signature {{ index + 1 }} certificates :</div>
 
       <pdf-signature-details :signature="signature" />
     </div>

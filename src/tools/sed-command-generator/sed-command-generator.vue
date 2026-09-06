@@ -29,11 +29,7 @@ const sedCommand = computed(() => {
     targetFile,
   } = form.value;
 
-  const options = [
-    inPlace ? '-i' : '',
-    extendedRegex ? '-E' : '',
-    suppressPrint ? '-n' : '',
-  ].filter(Boolean).join(' ');
+  const options = [inPlace ? '-i' : '', extendedRegex ? '-E' : '', suppressPrint ? '-n' : ''].filter(Boolean).join(' ');
 
   let expr = '';
 
@@ -43,20 +39,17 @@ const sedCommand = computed(() => {
     }
     const flags = `${global ? 'g' : ''}${caseInsensitive ? 'i' : ''}`;
     expr = `s${delimiter}${pattern}${delimiter}${replacement}${delimiter}${flags}`;
-  }
-  else if (commandType === 'delete') {
+  } else if (commandType === 'delete') {
     if (!pattern) {
       return '';
     }
     expr = `/${pattern}/d`;
-  }
-  else if (commandType === 'extract') {
+  } else if (commandType === 'extract') {
     if (!pattern) {
       return '';
     }
     expr = `/${pattern}/p`;
-  }
-  else if (commandType === 'number') {
+  } else if (commandType === 'number') {
     expr = '=';
   }
 
@@ -69,7 +62,10 @@ const sedCommand = computed(() => {
   <div>
     <n-space justify="center" mb-1 mt-1>
       <n-p>
-        {{ t('tools.sed-command-generator.texts.tag-for-more-information-about') }}<code>{{ t('tools.sed-command-generator.texts.tag-sed') }}</code>{{ t('tools.sed-command-generator.texts.tag-command-see') }}<c-link target="_blank" to="/sed-memo">
+        {{ t('tools.sed-command-generator.texts.tag-for-more-information-about')
+        }}<code>{{ t('tools.sed-command-generator.texts.tag-sed') }}</code
+        >{{ t('tools.sed-command-generator.texts.tag-command-see')
+        }}<c-link target="_blank" to="/sed-memo">
           {{ t('tools.sed-command-generator.texts.tag-sed-command-cheatsheet') }}
         </c-link>
       </n-p>
@@ -96,18 +92,34 @@ const sedCommand = computed(() => {
       </n-space>
 
       <n-card v-if="form.commandType !== 'number'" :title="t('tools.sed-command-generator.texts.title-search-pattern')">
-        <n-input v-model:value="form.pattern" :placeholder="t('tools.sed-command-generator.texts.placeholder-e-g-foo')" />
+        <n-input
+          v-model:value="form.pattern"
+          :placeholder="t('tools.sed-command-generator.texts.placeholder-e-g-foo')"
+        />
         <c-link target="_blank" to="/regex-memo">
           {{ t('tools.sed-command-generator.texts.tag-see-regex-cheatsheet') }}
         </c-link>
       </n-card>
 
-      <n-form-item v-if="form.commandType === 'substitute'" :label="t('tools.sed-command-generator.texts.label-replacement')" mt-3>
-        <n-input v-model:value="form.replacement" :placeholder="t('tools.sed-command-generator.texts.placeholder-e-g-bar')" />
+      <n-form-item
+        v-if="form.commandType === 'substitute'"
+        :label="t('tools.sed-command-generator.texts.label-replacement')"
+        mt-3
+      >
+        <n-input
+          v-model:value="form.replacement"
+          :placeholder="t('tools.sed-command-generator.texts.placeholder-e-g-bar')"
+        />
       </n-form-item>
 
-      <n-form-item v-if="form.commandType === 'substitute'" :label="t('tools.sed-command-generator.texts.label-delimiter')">
-        <n-input v-model:value="form.delimiter" :placeholder="t('tools.sed-command-generator.texts.placeholder-e-g-or')" />
+      <n-form-item
+        v-if="form.commandType === 'substitute'"
+        :label="t('tools.sed-command-generator.texts.label-delimiter')"
+      >
+        <n-input
+          v-model:value="form.delimiter"
+          :placeholder="t('tools.sed-command-generator.texts.placeholder-e-g-or')"
+        />
       </n-form-item>
 
       <n-form-item v-if="form.commandType === 'substitute'" :label="t('tools.sed-command-generator.texts.label-flags')">
@@ -132,7 +144,10 @@ const sedCommand = computed(() => {
       </n-form-item>
 
       <n-form-item :label="t('tools.sed-command-generator.texts.label-target-file')">
-        <n-input v-model:value="form.targetFile" :placeholder="t('tools.sed-command-generator.texts.placeholder-e-g-file-txt')" />
+        <n-input
+          v-model:value="form.targetFile"
+          :placeholder="t('tools.sed-command-generator.texts.placeholder-e-g-file-txt')"
+        />
       </n-form-item>
 
       <c-card :title="t('tools.sed-command-generator.texts.title-generated-sed-command')" mt-3>

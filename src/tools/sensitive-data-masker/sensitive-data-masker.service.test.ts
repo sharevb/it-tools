@@ -18,9 +18,11 @@ describe('sensitive-data-masker', () => {
 }`;
 
     it('should maks sensitive data', () => {
-      expect(maskSensitiveData({
-        value: data,
-      })).toBe(`{
+      expect(
+        maskSensitiveData({
+          value: data,
+        }),
+      ).toBe(`{
   email: 'jo****************om',
   creditCard: '12***************76',
   id: '3f********************************7b',
@@ -35,10 +37,12 @@ describe('sensitive-data-masker', () => {
 }`);
     });
     it('should maks sensitive data (with custom regex)', () => {
-      expect(maskSensitiveData({
-        value: data,
-        customRegex: 'John\nDoe',
-      })).toBe(`{
+      expect(
+        maskSensitiveData({
+          value: data,
+          customRegex: 'John\nDoe',
+        }),
+      ).toBe(`{
   email: 'jo****************om',
   creditCard: '12***************76',
   id: '3f********************************7b',
@@ -54,10 +58,12 @@ describe('sensitive-data-masker', () => {
     });
 
     it('should maks sensitive data (with excluded matchers)', () => {
-      expect(maskSensitiveData({
-        value: data,
-        excludedMatchers: ['mac', 'ipv4'],
-      })).toBe(`{
+      expect(
+        maskSensitiveData({
+          value: data,
+          excludedMatchers: ['mac', 'ipv4'],
+        }),
+      ).toBe(`{
   email: 'jo****************om',
   creditCard: '12***************76',
   id: '3f********************************7b',

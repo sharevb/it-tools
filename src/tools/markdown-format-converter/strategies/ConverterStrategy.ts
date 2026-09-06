@@ -17,7 +17,9 @@ export function getMarkdownExtensions(strategy: ConverterStrategy) {
     {
       name: 'wikilink',
       level: 'inline' as const,
-      start(src: string) { return src.indexOf('[['); },
+      start(src: string) {
+        return src.indexOf('[[');
+      },
       tokenizer(src: string) {
         const rule = /^\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/;
         const match = rule.exec(src);
@@ -41,7 +43,9 @@ export function getMarkdownExtensions(strategy: ConverterStrategy) {
     {
       name: 'callout',
       level: 'block' as const,
-      start(src: string) { return src.indexOf('>'); },
+      start(src: string) {
+        return src.indexOf('>');
+      },
       tokenizer(src: string) {
         const rule = /^> \[!([a-zA-Z-]+)\]([^\n]*)\n?((?:>.*\n?)*)/;
         const match = rule.exec(src);
@@ -50,7 +54,7 @@ export function getMarkdownExtensions(strategy: ConverterStrategy) {
           const title = match[2].trim();
           const content = match[3]
             .split('\n')
-            .map(line => line.replace(/^>\s?/, ''))
+            .map((line) => line.replace(/^>\s?/, ''))
             .join('\n');
           return {
             type: 'callout',
@@ -70,7 +74,11 @@ export function getMarkdownExtensions(strategy: ConverterStrategy) {
           ? `**[${token.calloutType.toUpperCase()}] ${token.title}**\n`
           : `**[${token.calloutType.toUpperCase()}]**\n`;
         const text = `${header}${token.content}`;
-        const lines = text.trim().split('\n').map(line => `> ${line}`).join('\n');
+        const lines = text
+          .trim()
+          .split('\n')
+          .map((line) => `> ${line}`)
+          .join('\n');
         return `\n${lines}\n`;
       },
     },
@@ -115,7 +123,7 @@ export class PlainRenderer extends Renderer {
     const lines = quote
       .trim()
       .split('\n')
-      .map(line => `> ${line}`)
+      .map((line) => `> ${line}`)
       .join('\n');
     return `\n${lines}\n`;
   }
@@ -136,7 +144,7 @@ export class PlainRenderer extends Renderer {
     if (ordered) {
       let index = start;
       const lines = body.split('\n');
-      const formattedLines = lines.map(line => {
+      const formattedLines = lines.map((line) => {
         // Only convert lines that start with our custom item bullet prefix directly
         if (line.startsWith('- ')) {
           return line.replace(/^- /, `${index++}. `);
@@ -154,11 +162,14 @@ export class PlainRenderer extends Renderer {
       prefix = checked ? '- [x] ' : '- [ ] ';
     }
 
-    const lines = text.trim().split('\n').filter(line => line.trim() !== '');
+    const lines = text
+      .trim()
+      .split('\n')
+      .filter((line) => line.trim() !== '');
     const firstLine = lines[0].trim();
     const otherLines = lines
       .slice(1)
-      .map(line => `  ${line}`)
+      .map((line) => `  ${line}`)
       .join('\n');
 
     const formatted = otherLines ? `${firstLine}\n${otherLines}` : firstLine;

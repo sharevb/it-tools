@@ -12,16 +12,20 @@ const { t } = useI18n();
 const jsonInput = useQueryParamOrStorage({
   name: 'template',
   storageName: 'faker:tmpl',
-  defaultValue: JSON.stringify({
-    name: 'faker.person.fullName',
-    email: 'faker.internet.email',
-    address: {
-      street: 'faker.location.streetAddress',
-      city: 'faker.location.city',
-      country: 'faker.location.country',
+  defaultValue: JSON.stringify(
+    {
+      name: 'faker.person.fullName',
+      email: 'faker.internet.email',
+      address: {
+        street: 'faker.location.streetAddress',
+        city: 'faker.location.city',
+        country: 'faker.location.country',
+      },
+      phone: 'faker.phone.number',
     },
-    phone: 'faker.phone.number',
-  }, null, 2),
+    null,
+    2,
+  ),
 });
 
 const generatedData = ref<string>('');
@@ -49,7 +53,7 @@ const formats = [
 // Extract all faker methods dynamically
 const fakerMethods = computed(() => {
   const methods: string[] = [];
-  const fakerObj = (faker.value as Record<string, any>);
+  const fakerObj = faker.value as Record<string, any>;
   Object.keys(fakerObj).forEach((category) => {
     if (typeof fakerObj[category] === 'object') {
       Object.keys(fakerObj[category]).forEach((method) => {
@@ -57,7 +61,7 @@ const fakerMethods = computed(() => {
       });
     }
   });
-  return methods.map(method => ({ label: method, value: method }));
+  return methods.map((method) => ({ label: method, value: method }));
 });
 
 // Selected faker method for insertion
@@ -72,18 +76,19 @@ function resolveFakerValue(value: string) {
       if (args?.trim()) {
         try {
           argsArray = JSON5.parse(`[${args}]`);
-        }
-        catch {
+        } catch {
           try {
             argsArray = [JSON5.parse(`{${args}}`).options];
-          }
-          catch {
+          } catch {
             throw new Error(`Unable to parse faker function options: ${args}`);
           }
         }
       }
 
-      const fakerFunc = funcName.split('.').slice(1).reduce((acc: any, prop: string) => acc[prop], faker.value) as CallableFunction;
+      const fakerFunc = funcName
+        .split('.')
+        .slice(1)
+        .reduce((acc: any, prop: string) => acc[prop], faker.value) as CallableFunction;
       if (fakerFunc === null) {
         throw new Error(`Cannot find faker function: ${funcName}`);
       }
@@ -91,19 +96,22 @@ function resolveFakerValue(value: string) {
       return fakerFunc(...argsArray);
     }
     return value; // raw value
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString(); // in case, of error, emit error as value
   }
 }
 
 function generateFakeData(template: Record<string, any>): Record<string, any> {
-  return Object.entries(template).reduce((result, [key, value]) => {
-    result[key] = typeof value === 'object' && value !== null
-      ? generateFakeData(value) // Recursive handling for nested objects
-      : resolveFakerValue(value);
-    return result;
-  }, {} as Record<string, any>);
+  return Object.entries(template).reduce(
+    (result, [key, value]) => {
+      result[key] =
+        typeof value === 'object' && value !== null
+          ? generateFakeData(value) // Recursive handling for nested objects
+          : resolveFakerValue(value);
+      return result;
+    },
+    {} as Record<string, any>,
+  );
 }
 
 function handleGenerate() {
@@ -111,14 +119,14 @@ function handleGenerate() {
     error.value = '';
     const parsedTemplate = JSON.parse(jsonInput.value);
     generatedData.value = objectArrayToData(
-      Array.from({ length: itemCount.value },
-        () => generateFakeData(parsedTemplate)),
-      selectedFormat.value as ExportFormat, {
+      Array.from({ length: itemCount.value }, () => generateFakeData(parsedTemplate)),
+      selectedFormat.value as ExportFormat,
+      {
         tableName: tableName.value,
         nestify: nestify.value,
-      });
-  }
-  catch (e: any) {
+      },
+    );
+  } catch (e: any) {
     error.value = e.toString();
   }
 }
@@ -139,11 +147,25 @@ const rules: UseValidationRule<string>[] = [
 
 <template>
   <NCard :title="t('tools.data-faker.texts.title-fake-data-generator')">
-    <c-input-text v-model:value="jsonInput" :label="t('tools.data-faker.texts.label-json-template')" multiline mb-1 rows="10" :placeholder="t('tools.data-faker.texts.placeholder-enter-json-template')" :validation-rules="rules" />
+    <c-input-text
+      v-model:value="jsonInput"
+      :label="t('tools.data-faker.texts.label-json-template')"
+      multiline
+      mb-1
+      rows="10"
+      :placeholder="t('tools.data-faker.texts.placeholder-enter-json-template')"
+      :validation-rules="rules"
+    />
 
     <c-card :title="t('tools.data-faker.texts.title-faker-method-insertion')" mb-1>
       <n-space>
-        <c-select v-model:value="selectedMethod" style="width: 200px" :options="fakerMethods" searchable :placeholder="t('tools.data-faker.texts.placeholder-search-faker-method')" />
+        <c-select
+          v-model:value="selectedMethod"
+          style="width: 200px"
+          :options="fakerMethods"
+          searchable
+          :placeholder="t('tools.data-faker.texts.placeholder-search-faker-method')"
+        />
         <NButton @click="insertMethodIntoJson">
           {{ t('tools.data-faker.texts.tag-insert-selected-method') }}
         </NButton>
@@ -152,20 +174,42 @@ const rules: UseValidationRule<string>[] = [
 
     <n-space mb-1>
       <NFormItem :label="t('tools.data-faker.texts.label-number-of-objects-to-generate')" label-placement="left">
-        <n-input-number-i18n v-model:value="itemCount" :min="1" :placeholder="t('tools.data-faker.texts.placeholder-number-of-objects-to-generate')" />
+        <n-input-number-i18n
+          v-model:value="itemCount"
+          :min="1"
+          :placeholder="t('tools.data-faker.texts.placeholder-number-of-objects-to-generate')"
+        />
       </NFormItem>
       <n-form-item :label="t('tools.data-faker.texts.label-nestify-handle-nested-objects')" label-placement="left">
         <n-checkbox v-model:checked="nestify" />
       </n-form-item>
     </n-space>
 
-    <c-select v-model:value="selectedLocale" :label="t('tools.data-faker.texts.label-locale')" label-position="left" :options="allLocales" searchable mb-1 :placeholder="t('tools.data-faker.texts.placeholder-search-locale-version')" />
+    <c-select
+      v-model:value="selectedLocale"
+      :label="t('tools.data-faker.texts.label-locale')"
+      label-position="left"
+      :options="allLocales"
+      searchable
+      mb-1
+      :placeholder="t('tools.data-faker.texts.placeholder-search-locale-version')"
+    />
 
     <NFormItem :label="t('tools.data-faker.texts.label-select-output-format')" label-placement="left" mb-1>
-      <NSelect v-model:value="selectedFormat" :options="formats" :placeholder="t('tools.data-faker.texts.placeholder-select-format')" />
+      <NSelect
+        v-model:value="selectedFormat"
+        :options="formats"
+        :placeholder="t('tools.data-faker.texts.placeholder-select-format')"
+      />
     </NFormItem>
 
-    <c-input-text v-if="selectedFormat === 'sql'" v-model:value="tableName" :label="t('tools.data-faker.texts.label-table-name')" label-placement="left" mb-1 />
+    <c-input-text
+      v-if="selectedFormat === 'sql'"
+      v-model:value="tableName"
+      :label="t('tools.data-faker.texts.label-table-name')"
+      label-placement="left"
+      mb-1
+    />
 
     <NButton mb-2 mt-2 @click="handleGenerate">
       {{ t('tools.data-faker.texts.tag-generate-fake-data') }}
@@ -176,7 +220,11 @@ const rules: UseValidationRule<string>[] = [
     </c-alert>
 
     <c-card v-if="generatedData" :title="t('tools.data-faker.texts.title-generated-data')">
-      <textarea-copyable :value="generatedData" :language="selectedFormat" :download-file-name="`data.${selectedFormat}`" />
+      <textarea-copyable
+        :value="generatedData"
+        :language="selectedFormat"
+        :download-file-name="`data.${selectedFormat}`"
+      />
     </c-card>
   </NCard>
 </template>

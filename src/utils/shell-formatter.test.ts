@@ -7,9 +7,11 @@ describe('collapseBackslashLines', () => {
 echo hello \\
   world
 `;
-    expect(collapseBackslashLines(input)).toBe(`
+    expect(collapseBackslashLines(input)).toBe(
+      `
 echo hello world
-`.trim());
+`.trim(),
+    );
   });
 
   it('keeps comments untouched', () => {
@@ -17,10 +19,12 @@ echo hello world
 # comment
 echo test
 `;
-    expect(collapseBackslashLines(input)).toBe(`
+    expect(collapseBackslashLines(input)).toBe(
+      `
 # comment
 echo test
-`.trim());
+`.trim(),
+    );
   });
 
   it('keeps unrelated lines as-is', () => {
@@ -28,10 +32,12 @@ echo test
 line1
 line2
 `;
-    expect(collapseBackslashLines(input)).toBe(`
+    expect(collapseBackslashLines(input)).toBe(
+      `
 line1
 line2
-`.trim());
+`.trim(),
+    );
   });
 
   it('collapses multiple continuation lines', () => {
@@ -50,11 +56,13 @@ cmd a \\
   b
 # after
 `;
-    expect(collapseBackslashLines(input)).toBe(`
+    expect(collapseBackslashLines(input)).toBe(
+      `
 # before
 cmd a b
 # after
-`.trim());
+`.trim(),
+    );
   });
 });
 
@@ -68,13 +76,7 @@ describe('formatShellCommand', () => {
     const result = formatShellCommand(cmd);
 
     expect(result).toBe(
-      [
-        'docker run \\',
-        '  -d \\',
-        '  --name mycontainer \\',
-        '  -p 8080:80 \\',
-        '  myimage',
-      ].join('\n'),
+      ['docker run \\', '  -d \\', '  --name mycontainer \\', '  -p 8080:80 \\', '  myimage'].join('\n'),
     );
   });
 
@@ -83,13 +85,7 @@ describe('formatShellCommand', () => {
     const result = formatShellCommand(cmd, 4);
 
     expect(result).toBe(
-      [
-        'docker run \\',
-        '    -d \\',
-        '    --name mycontainer \\',
-        '    -p 8080:80 \\',
-        '    myimage',
-      ].join('\n'),
+      ['docker run \\', '    -d \\', '    --name mycontainer \\', '    -p 8080:80 \\', '    myimage'].join('\n'),
     );
   });
 
@@ -97,13 +93,7 @@ describe('formatShellCommand', () => {
     const cmd = 'docker run --label "some label with spaces" myimage';
     const result = formatShellCommand(cmd);
 
-    expect(result).toBe(
-      [
-        'docker run \\',
-        '  --label "some label with spaces" \\',
-        '  myimage',
-      ].join('\n'),
-    );
+    expect(result).toBe(['docker run \\', '  --label "some label with spaces" \\', '  myimage'].join('\n'));
   });
 
   it('handles base command with no args', () => {

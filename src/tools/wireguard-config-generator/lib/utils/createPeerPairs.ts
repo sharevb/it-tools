@@ -3,9 +3,11 @@ import type { WgConfig } from '../WgConfig';
 
 interface CreatePeerPairsOptions {
   /** The config to derive public key from for the peer */
-  config: WgConfig
+  config: WgConfig;
   /** The peer settings to apply when adding this config as a peer */
-  peerSettings: Omit<WgConfigPeer, 'publicKey'> | ((args: { thisConfig: WgConfig; peerConfig: WgConfig }) => Omit<WgConfigPeer, 'publicKey'>)
+  peerSettings:
+    | Omit<WgConfigPeer, 'publicKey'>
+    | ((args: { thisConfig: WgConfig; peerConfig: WgConfig }) => Omit<WgConfigPeer, 'publicKey'>);
 }
 
 /**
@@ -22,9 +24,10 @@ export function createPeerPairs(pairs: CreatePeerPairsOptions[]) {
       if (thisConfig.config.publicKey === peerConfig.config.publicKey) {
         continue;
       }
-      const peerSettings = typeof peerConfig.peerSettings === 'function'
-        ? peerConfig.peerSettings({ thisConfig: thisConfig.config, peerConfig: peerConfig.config })
-        : peerConfig.peerSettings;
+      const peerSettings =
+        typeof peerConfig.peerSettings === 'function'
+          ? peerConfig.peerSettings({ thisConfig: thisConfig.config, peerConfig: peerConfig.config })
+          : peerConfig.peerSettings;
       const thisConfigPreSharedKey = thisConfig.config.preSharedKey;
       if (thisConfigPreSharedKey) {
         peerSettings.preSharedKey = thisConfigPreSharedKey;

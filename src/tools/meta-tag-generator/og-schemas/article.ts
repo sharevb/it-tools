@@ -23,13 +23,23 @@ export const article: OGSchemaType = {
       key: 'article:expiration_time',
       placeholder: t('tools.meta-tag-generator.article.text.when-the-article-is-out-of-date-after'),
     },
-    { type: 'input', label: t('tools.meta-tag-generator.article.text.author'), key: 'article:author', placeholder: t('tools.meta-tag-generator.article.text.writers-of-the-article') },
+    {
+      type: 'input',
+      label: t('tools.meta-tag-generator.article.text.author'),
+      key: 'article:author',
+      placeholder: t('tools.meta-tag-generator.article.text.writers-of-the-article'),
+    },
     {
       type: 'input',
       label: t('tools.meta-tag-generator.article.text.section'),
       key: 'article:section',
       placeholder: t('tools.meta-tag-generator.article.text.a-high-level-section-name-e-g-technology'),
     },
-    { type: 'input', label: t('tools.meta-tag-generator.article.text.tag'), key: 'article:tag', placeholder: t('tools.meta-tag-generator.article.text.tag-words-associated-with-this-article') },
+    {
+      type: 'input',
+      label: t('tools.meta-tag-generator.article.text.tag'),
+      key: 'article:tag',
+      placeholder: t('tools.meta-tag-generator.article.text.tag-words-associated-with-this-article'),
+    },
   ],
 };

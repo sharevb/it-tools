@@ -8,7 +8,7 @@ const { value } = toRefs(props);
 const initialText = t('spanCopyable.copy');
 
 const { copy, isJustCopied } = useCopy({ source: value, createToast: false });
-const tooltipText = computed(() => isJustCopied.value ? t('spanCopyable.copied') : initialText);
+const tooltipText = computed(() => (isJustCopied.value ? t('spanCopyable.copied') : initialText));
 </script>
 
 <template>

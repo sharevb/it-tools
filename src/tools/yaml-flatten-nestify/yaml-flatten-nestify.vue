@@ -12,18 +12,15 @@ const mode = ref<'flatten' | 'nestify'>('flatten');
 const defaultValue = `a:
   b: 5`;
 function transformer(value: string) {
-  return withDefaultOnError(
-    () => {
-      let o = YAML.parse(value, { intAsBigInt: true });
-      if (mode.value === 'flatten') {
-        o = flatten(o);
-      }
-      else {
-        o = nestifyObject(o);
-      }
-      return YAML.stringify(o);
-    },
-    '');
+  return withDefaultOnError(() => {
+    let o = YAML.parse(value, { intAsBigInt: true });
+    if (mode.value === 'flatten') {
+      o = flatten(o);
+    } else {
+      o = nestifyObject(o);
+    }
+    return YAML.stringify(o);
+  }, '');
 }
 
 const rules: UseValidationRule<string>[] = [

@@ -31,7 +31,7 @@ const outputTree = computed(() => withDefaultOnError(() => generateTree(parseInp
 
 const inputTree = ref(generateTree(parseInput(inputStructureTemplate)));
 
-const outputStructure = computed(() => withDefaultOnError(() => convertTreeToStructure((inputTree.value)), ''));
+const outputStructure = computed(() => withDefaultOnError(() => convertTreeToStructure(inputTree.value), ''));
 
 const MONACO_EDITOR_OPTIONS = {
   automaticLayout: true,
@@ -41,7 +41,7 @@ const MONACO_EDITOR_OPTIONS = {
 </script>
 
 <template>
-  <div class="min-h-0 flex flex-row gap-8" style="margin: 0 auto; max-width: 2200px; flex: 1 !important;">
+  <div class="min-h-0 flex flex-row gap-8" style="margin: 0 auto; max-width: 2200px; flex: 1 !important">
     <div class="min-w-0 flex-1">
       <c-card :title="t('tools.folder-structure-diagram.texts.title-indented-structure-folder-tree')">
         <c-monaco-editor

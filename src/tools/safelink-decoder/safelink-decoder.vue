@@ -8,8 +8,7 @@ const inputSafeLinkUrl = useQueryParam({ tool: 'safelink-decoder', name: 'url', 
 const outputDecodedUrl = computed(() => {
   try {
     return decodeSafeLinksURL(inputSafeLinkUrl.value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });

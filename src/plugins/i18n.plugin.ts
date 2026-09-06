@@ -13,7 +13,9 @@ const FALLBACK_LOCALE = 'en';
 // only fetched the first time it becomes the active locale.
 const eagerToolMessages = import.meta.glob('../tools/*/locales/en.yml', { eager: true, import: 'default' });
 const lazyBaseMessages = import.meta.glob(['../../locales/*.yml', '!../../locales/en.yml'], { import: 'default' });
-const lazyToolMessages = import.meta.glob(['../tools/*/locales/*.yml', '!../tools/*/locales/en.yml'], { import: 'default' });
+const lazyToolMessages = import.meta.glob(['../tools/*/locales/*.yml', '!../tools/*/locales/en.yml'], {
+  import: 'default',
+});
 
 function localeOfPath(path: string): string {
   return path.replace(/^.*\/([^/]+)\.yml$/, '$1');
@@ -31,8 +33,8 @@ export const appLocales = (() => {
   if (available === '*' || available === 'all') {
     return allLocales;
   }
-  const wantedLocales = available.split(',').map(locale => locale.trim());
-  return allLocales.filter(locale => wantedLocales.includes(locale) || locale === FALLBACK_LOCALE);
+  const wantedLocales = available.split(',').map((locale) => locale.trim());
+  return allLocales.filter((locale) => wantedLocales.includes(locale) || locale === FALLBACK_LOCALE);
 })();
 
 const i18n = createI18n({
@@ -64,7 +66,7 @@ export async function loadLocaleMessages(locale: string) {
     return;
   }
 
-  const messageParts = await Promise.all(loaders.map(loader => loader()));
+  const messageParts = await Promise.all(loaders.map((loader) => loader()));
   i18n.global.setLocaleMessage(locale, merge({}, ...messageParts));
   loadedLocales.add(locale);
 }
@@ -75,7 +77,11 @@ export const i18nPlugin: Plugin = {
     // Messages arrive after the switch; vue-i18n falls back to English until
     // setLocaleMessage triggers a reactive re-render. Watching through the getter
     // avoids depending on vue-i18n's locale ref generics.
-    watch(() => getCurrentLocale(), locale => loadLocaleMessages(locale), { immediate: true });
+    watch(
+      () => getCurrentLocale(),
+      (locale) => loadLocaleMessages(locale),
+      { immediate: true },
+    );
   },
 };
 

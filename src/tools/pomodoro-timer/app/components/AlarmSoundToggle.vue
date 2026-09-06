@@ -22,15 +22,16 @@ const bool = computed({
 </script>
 
 <template>
-  <label :for="id" class="settings-label">{{ label }}
+  <label :for="id" class="settings-label"
+    >{{ label }}
     <FontAwesomeIcon icon="fa-solid fa-volume-high" />
   </label>
-  <input :id="id" v-model="bool" class="toggle toggle-spacing" type="checkbox">
+  <input :id="id" v-model="bool" class="toggle toggle-spacing" type="checkbox" />
 </template>
 
 <style scoped>
 .toggle-spacing {
-    margin: 0rem 0rem -0.4375rem 0rem;
+  margin: 0rem 0rem -0.4375rem 0rem;
 }
 .toggle {
   -webkit-appearance: none;
@@ -49,7 +50,7 @@ const bool = computed({
   transition: background-color ease 0.3s;
 }
 .toggle:before {
-  content: "on off";
+  content: 'on off';
   display: block;
   position: absolute;
   z-index: 2;
@@ -65,9 +66,9 @@ const bool = computed({
   text-indent: -1.375rem;
   word-spacing: 2.3125rem;
   color: #fff;
-  text-shadow: -0.0625rem -0.0625rem rgba(0,0,0,0.15);
+  text-shadow: -0.0625rem -0.0625rem rgba(0, 0, 0, 0.15);
   white-space: nowrap;
-  box-shadow: 0 0.0625rem 0.125rem rgba(0,0,0,0.2);
+  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
   transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
 }
 .toggle:checked {

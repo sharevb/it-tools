@@ -14,8 +14,7 @@ const lintErrors = computed(() => {
       parser.parse(xml, true);
     }
     return '';
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString().trim();
   }
 });

@@ -30,7 +30,11 @@ const layoutOptions = [
 ];
 
 const inputText = useQueryParam({ tool: 'keyboard-layout-conv', name: 'input', defaultValue: '' });
-const sourceLayout = useQueryParamOrStorage({ name: 'from', storageName: 'keyboard-layout-conv:f', defaultValue: 'fr' });
+const sourceLayout = useQueryParamOrStorage({
+  name: 'from',
+  storageName: 'keyboard-layout-conv:f',
+  defaultValue: 'fr',
+});
 const targetLayout = useQueryParamOrStorage({ name: 'to', storageName: 'keyboard-layout-conv:t', defaultValue: 'en' });
 
 const defaultEn = {
@@ -57,7 +61,7 @@ const outputText = computed(() => {
           label-field="label"
           value-field="value"
           :placeholder="t('tools.keyboard-layout-converter.texts.placeholder-source-layout')"
-          style="min-width: 200px;"
+          style="min-width: 200px"
         />
         <NIcon size="20">
           <ArrowRight />
@@ -68,7 +72,7 @@ const outputText = computed(() => {
           label-field="label"
           value-field="value"
           :placeholder="t('tools.keyboard-layout-converter.texts.placeholder-target-layout')"
-          style="min-width: 200px;"
+          style="min-width: 200px"
         />
       </NSpace>
 

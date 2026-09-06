@@ -59,43 +59,74 @@ const dockerfileLabels = computed(() => {
   <div>
     <n-form :model="form" label-placement="left" label-width="150px" size="large" mb-2>
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-title')">
-        <n-input v-model:value="form.title" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-my-project')" />
+        <n-input
+          v-model:value="form.title"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-my-project')"
+        />
       </n-form-item>
 
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-description')">
-        <n-input v-model:value="form.description" type="textarea" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-short-project-description')" />
+        <n-input
+          v-model:value="form.description"
+          type="textarea"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-short-project-description')"
+        />
       </n-form-item>
 
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-repository-url')">
-        <n-input v-model:value="form.url" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-https-github-com-username-repo')" />
+        <n-input
+          v-model:value="form.url"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-https-github-com-username-repo')"
+        />
       </n-form-item>
 
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-source-url')">
-        <n-input v-model:value="form.source" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-https-github-com-username-repo')" />
+        <n-input
+          v-model:value="form.source"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-https-github-com-username-repo')"
+        />
       </n-form-item>
 
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-documentation-url')">
-        <n-input v-model:value="form.documentation" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-https-github-com-username-repo-readme')" />
+        <n-input
+          v-model:value="form.documentation"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-https-github-com-username-repo-readme')"
+        />
       </n-form-item>
 
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-license-spdx')">
-        <n-input v-model:value="form.licenses" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-mit')" />
+        <n-input
+          v-model:value="form.licenses"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-mit')"
+        />
       </n-form-item>
 
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-version')">
-        <n-input v-model:value="form.version" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-1-0-0')" />
+        <n-input
+          v-model:value="form.version"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-1-0-0')"
+        />
       </n-form-item>
 
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-revision-commit-sha')">
-        <n-input v-model:value="form.revision" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-abcdef123456')" />
+        <n-input
+          v-model:value="form.revision"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-abcdef123456')"
+        />
       </n-form-item>
 
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-created')">
-        <n-date-picker v-model:value="form.created" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-2024-01-01t12-00-00z')" />
+        <n-date-picker
+          v-model:value="form.created"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-2024-01-01t12-00-00z')"
+        />
       </n-form-item>
 
       <n-form-item :label="t('tools.dockerfile-label-generator.texts.label-authors')">
-        <n-input v-model:value="form.authors" :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-your-name-you-example-com')" />
+        <n-input
+          v-model:value="form.authors"
+          :placeholder="t('tools.dockerfile-label-generator.texts.placeholder-your-name-you-example-com')"
+        />
       </n-form-item>
     </n-form>
 

@@ -5,7 +5,7 @@
 ## 🧭 Path Syntax
 
 | XPath      | Selects                                     |
-|------------|---------------------------------------------|
+| ---------- | ------------------------------------------- |
 | `/`        | From the document root — an absolute path   |
 | `//`       | Anywhere in the document, at any depth      |
 | `.`        | The current (context) node                  |
@@ -30,7 +30,7 @@
 ## 🏷 Elements & Attributes
 
 | XPath                                         | Description                               | CSS            |
-|-----------------------------------------------|-------------------------------------------|----------------|
+| --------------------------------------------- | ----------------------------------------- | -------------- |
 | `//E`                                         | Every `<E>` element                       | `E`            |
 | `(//E)[2]`                                    | The second `<E>` in the document          | —              |
 | `//E[@A]`                                     | `<E>` carrying attribute `A`              | `E[A]`         |
@@ -49,7 +49,7 @@
 ## 🆔 Id, Name, Class & Language
 
 | XPath                                                             | Description                                               | CSS                     |
-|-------------------------------------------------------------------|-----------------------------------------------------------|-------------------------|
+| ----------------------------------------------------------------- | --------------------------------------------------------- | ----------------------- |
 | `//*[@id="I"]`                                                    | The element with id `I`                                   | `#I`                    |
 | `//E[@id="I"]`                                                    | `<E>` with id `I`                                         | `E#I`                   |
 | `//*[@name="N"]`                                                  | Any element named `N`                                     | `[name='N']`            |
@@ -61,7 +61,7 @@
 ## 📝 Text & Links
 
 | XPath                             | Description                                          | CSS                |
-|-----------------------------------|------------------------------------------------------|--------------------|
+| --------------------------------- | ---------------------------------------------------- | ------------------ |
 | `//*[.="t"]`                      | Element whose whole text is exactly `t`              | —                  |
 | `//E[contains(text(),"t")]`       | `<E>` with a text node containing `t`                | —                  |
 | `//E[contains(.,"t")]`            | `<E>` whose text, descendants included, contains `t` | —                  |
@@ -75,7 +75,7 @@
 ## 👪 Parents & Children
 
 | XPath                                                            | Description                                            | CSS                     |
-|------------------------------------------------------------------|--------------------------------------------------------|-------------------------|
+| ---------------------------------------------------------------- | ------------------------------------------------------ | ----------------------- |
 | `//E/*[1]`                                                       | First child of `<E>`                                   | `E > *:first-child`     |
 | `//E/*[last()]`                                                  | Last child of `<E>`                                    | `E > *:last-child`      |
 | `//E[1]`                                                         | Each `<E>` that is the first of its type in its parent | `E:first-of-type`       |
@@ -96,7 +96,7 @@
 ## 👥 Siblings
 
 | XPath                                       | Description                          | CSS           |
-|---------------------------------------------|--------------------------------------|---------------|
+| ------------------------------------------- | ------------------------------------ | ------------- |
 | `//E2/following-sibling::E1`                | Every `<E1>` after a sibling `<E2>`  | `E2 ~ E1`     |
 | `//E2/following-sibling::*[1][name()="E1"]` | `<E1>` immediately after `<E2>`      | `E2 + E1`     |
 | `//E2/following-sibling::*[2][name()="E1"]` | `<E1>` two siblings after `<E2>`     | `E2 + * + E1` |
@@ -108,7 +108,7 @@
 ## 📊 Tables & Form State
 
 | XPath                                          | Description                              | CSS                                  |
-|------------------------------------------------|------------------------------------------|--------------------------------------|
+| ---------------------------------------------- | ---------------------------------------- | ------------------------------------ |
 | `//*[@id="T"]//tr[3]//td[2]`                   | Third row, second cell                   | `#T tr:nth-child(3) td:nth-child(2)` |
 | `//td[preceding-sibling::td="t"]`              | The cell right after the one reading `t` | —                                    |
 | `//td[preceding-sibling::td[contains(.,"t")]]` | Cells following one containing `t`       | `td:has(~ td)`                       |
@@ -123,7 +123,7 @@
 ### Strings
 
 | Function                             | Returns                                                  |
-|--------------------------------------|----------------------------------------------------------|
+| ------------------------------------ | -------------------------------------------------------- |
 | `contains(haystack, needle)`         | True when the first string contains the second           |
 | `starts-with(haystack, needle)`      | True when it starts with it                              |
 | `concat(s1, s2, …)`                  | The strings joined together                              |
@@ -137,7 +137,7 @@
 ### Numbers, logic & nodes
 
 | Function                                    | Returns                                                   |
-|---------------------------------------------|-----------------------------------------------------------|
+| ------------------------------------------- | --------------------------------------------------------- |
 | `count(node-set)`                           | How many nodes matched                                    |
 | `sum(node-set)`                             | The sum of their numeric values                           |
 | `position()`                                | The index of the context node within its step             |
@@ -156,8 +156,8 @@
 ## 🧭 Axes
 
 | Axis                 | Short form  | Selects                                                         |
-|----------------------|-------------|-----------------------------------------------------------------|
-| `child`              | *(default)* | The direct children of the context node                         |
+| -------------------- | ----------- | --------------------------------------------------------------- |
+| `child`              | _(default)_ | The direct children of the context node                         |
 | `descendant`         | `//`        | Every node below the context node                               |
 | `descendant-or-self` | `//`        | The context node and everything below it                        |
 | `parent`             | `..`        | The single parent node                                          |
@@ -205,10 +205,10 @@
 
 ```javascript
 // browser devtools console
-$x('//a[contains(@href, "docs")]')
+$x('//a[contains(@href, "docs")]');
 
 // plain DOM API
-document.evaluate('//h1', document, null, XPathResult.ANY_TYPE, null).iterateNext()
+document.evaluate('//h1', document, null, XPathResult.ANY_TYPE, null).iterateNext();
 ```
 
 ```bash

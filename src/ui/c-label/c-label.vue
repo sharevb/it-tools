@@ -2,7 +2,13 @@
 import { toRefs } from 'vue';
 import type { CLabelProps } from './c-label.types';
 
-const props = withDefaults(defineProps<CLabelProps>(), { label: undefined, labelAlign: 'left', labelFor: undefined, labelPosition: 'top', labelWidth: 'auto' });
+const props = withDefaults(defineProps<CLabelProps>(), {
+  label: undefined,
+  labelAlign: 'left',
+  labelFor: undefined,
+  labelPosition: 'top',
+  labelWidth: 'auto',
+});
 const { label, labelAlign, labelFor, labelPosition, labelWidth } = toRefs(props);
 </script>
 
@@ -16,7 +22,9 @@ const { label, labelAlign, labelFor, labelPosition, labelWidth } = toRefs(props)
     items-baseline
   >
     <label
-      v-if="label" :for="labelFor" :style="{ flex: `0 0 ${labelWidth}` }"
+      v-if="label"
+      :for="labelFor"
+      :style="{ flex: `0 0 ${labelWidth}` }"
       mb-5px
       pr-12px
       :class="{

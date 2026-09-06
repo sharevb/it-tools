@@ -17,8 +17,7 @@ const sortKeys = useITStorage('yaml-prettify:sort-keys', false);
 const yamlFormattingResult = computed(() => {
   try {
     return { yaml: formatYaml({ rawYaml, indentSize, sortKeys }), errors: [] };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { yaml: t('tools.yaml-viewer.text.see-error-messages'), errors: e.toString().split('\n') };
   }
 });
@@ -42,21 +41,32 @@ const { schemas, errors: validationErrors } = useYamlSchemaValidation({ yaml: ra
         <n-form-item :label="t('tools.yaml-viewer.texts.label-sort-keys')" label-placement="left" label-width="100">
           <n-switch v-model:value="sortKeys" />
         </n-form-item>
-        <n-form-item :label="t('tools.yaml-viewer.texts.label-indent-size')" label-placement="left" label-width="100" :show-feedback="false">
+        <n-form-item
+          :label="t('tools.yaml-viewer.texts.label-indent-size')"
+          label-placement="left"
+          label-width="100"
+          :show-feedback="false"
+        >
           <n-input-number-i18n v-model:value="indentSize" min="1" max="10" style="width: 100px" />
         </n-form-item>
       </div>
     </div>
 
-    <n-form-item :label="t('tools.yaml-viewer.texts.label-json-schema')" label-placement="left" label-width="130px" label-align="right">
+    <n-form-item
+      :label="t('tools.yaml-viewer.texts.label-json-schema')"
+      label-placement="left"
+      label-width="130px"
+      label-align="right"
+    >
       <n-select
         v-model:value="schemaUrl"
         :options="[
           { label: t('tools.yaml-viewer.texts.label-no-validation'), value: '' },
           { label: t('tools.yaml-viewer.texts.label-custom'), value: 'custom' },
-          ...schemas.map(s => ({ label: `${s.name} / ${s.description}`, value: s.url })),
+          ...schemas.map((s) => ({ label: `${s.name} / ${s.description}`, value: s.url })),
         ]"
-        filterable mb-4
+        filterable
+        mb-4
       />
     </n-form-item>
     <c-input-text
@@ -97,10 +107,7 @@ const { schemas, errors: validationErrors } = useYamlSchemaValidation({ yaml: ra
 
     <div v-if="validationErrors.length > 0" mb-2 mt-2>
       <n-alert :title="t('tools.yaml-viewer.texts.title-schema-validation-errors')" type="error">
-        <ul
-          v-for="error in validationErrors"
-          :key="error"
-        >
+        <ul v-for="error in validationErrors" :key="error">
           <li>{{ error }}</li>
         </ul>
       </n-alert>
@@ -114,13 +121,13 @@ const { schemas, errors: validationErrors } = useYamlSchemaValidation({ yaml: ra
   </div>
 </template>
 
-  <style lang="less" scoped>
-    .result-card {
-    position: relative;
-    .copy-button {
+<style lang="less" scoped>
+.result-card {
+  position: relative;
+  .copy-button {
     position: absolute;
     top: 10px;
     right: 10px;
-    }
-    }
-  </style>
+  }
+}
+</style>

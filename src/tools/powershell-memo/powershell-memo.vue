@@ -23,14 +23,18 @@ async function loadMemo(currentLocale = locale.value) {
   memoComponent.value = module.default ?? module;
 }
 
-watch(locale, () => {
-  loadMemo();
-}, { immediate: true });
+watch(
+  locale,
+  () => {
+    loadMemo();
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
   <div>
-    <component :is="memoComponent" style="overflow-x: auto;" />
+    <component :is="memoComponent" style="overflow-x: auto" />
   </div>
 </template>
 
@@ -45,7 +49,9 @@ watch(locale, () => {
 ::v-deep(table) {
   border-collapse: collapse;
 }
-::v-deep(table), ::v-deep(td), ::v-deep(th) {
+::v-deep(table),
+::v-deep(td),
+::v-deep(th) {
   border: 1px solid v-bind('themeVars.textColor1');
   padding: 5px;
 }

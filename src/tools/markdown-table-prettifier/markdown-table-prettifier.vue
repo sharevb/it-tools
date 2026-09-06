@@ -15,7 +15,8 @@ const outputMarkdown = computed(() => {
   <div>
     <c-input-text
       v-model:value="inputMarkdown"
-      multiline raw-text
+      multiline
+      raw-text
       :placeholder="t('tools.markdown-table-prettifier.texts.placeholder-your-markdown-table-to-prettify')"
       rows="8"
       autofocus

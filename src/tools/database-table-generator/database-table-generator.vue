@@ -5,34 +5,40 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 const { t } = useI18n();
 
 interface Column {
-  name: string
-  type: string
-  nullable: boolean
-  primaryKey: boolean
-  unique: boolean
-  autoIncrement: boolean
-  defaultValue: string
+  name: string;
+  type: string;
+  nullable: boolean;
+  primaryKey: boolean;
+  unique: boolean;
+  autoIncrement: boolean;
+  defaultValue: string;
 }
 
 interface Table {
-  name: string
-  columns: Column[]
+  name: string;
+  columns: Column[];
 }
 
 const dbName = useQueryParamOrStorage({ name: 'db', storageName: 'db-tbl-gen:d', defaultValue: '' });
-const dbType = useQueryParamOrStorage<'mysql' | 'postgres' | 'sqlite' | 'sqlserver'>({ name: 'type', storageName: 'db-tbl-gen:t', defaultValue: 'mysql' });
+const dbType = useQueryParamOrStorage<'mysql' | 'postgres' | 'sqlite' | 'sqlserver'>({
+  name: 'type',
+  storageName: 'db-tbl-gen:t',
+  defaultValue: 'mysql',
+});
 const tables = useLocalStorage<Table[]>('db-tbl-gen:tbs', [
   {
     name: '',
-    columns: [{
-      name: '',
-      type: 'VARCHAR(255)',
-      nullable: true,
-      primaryKey: false,
-      unique: false,
-      autoIncrement: false,
-      defaultValue: '',
-    }],
+    columns: [
+      {
+        name: '',
+        type: 'VARCHAR(255)',
+        nullable: true,
+        primaryKey: false,
+        unique: false,
+        autoIncrement: false,
+        defaultValue: '',
+      },
+    ],
   },
 ]);
 
@@ -49,15 +55,17 @@ const dialectTypes: Record<string, string[]> = {
 function addTable() {
   tables.value.push({
     name: '',
-    columns: [{
-      name: '',
-      type: dialectTypes[dbType.value][0],
-      nullable: true,
-      primaryKey: false,
-      unique: false,
-      autoIncrement: false,
-      defaultValue: '',
-    }],
+    columns: [
+      {
+        name: '',
+        type: dialectTypes[dbType.value][0],
+        nullable: true,
+        primaryKey: false,
+        unique: false,
+        autoIncrement: false,
+        defaultValue: '',
+      },
+    ],
   });
 }
 
@@ -103,7 +111,7 @@ function generateSQL() {
     }
 
     const cols = table.columns
-      .filter(c => c.name.trim() !== '')
+      .filter((c) => c.name.trim() !== '')
       .map((c) => {
         let colDef = `${c.name} ${c.type}`;
         if (!c.nullable) {
@@ -115,14 +123,11 @@ function generateSQL() {
         if (c.autoIncrement) {
           if (dbType.value === 'mysql') {
             colDef += ' AUTO_INCREMENT';
-          }
-          else if (dbType.value === 'postgres') {
+          } else if (dbType.value === 'postgres') {
             colDef = `${c.name} SERIAL`;
-          }
-          else if (dbType.value === 'sqlite') {
+          } else if (dbType.value === 'sqlite') {
             colDef += ' AUTOINCREMENT';
-          }
-          else if (dbType.value === 'sqlserver') {
+          } else if (dbType.value === 'sqlserver') {
             colDef += ' IDENTITY(1,1)';
           }
         }
@@ -134,7 +139,7 @@ function generateSQL() {
       .join(',\n  ');
 
     // Primary key handling
-    const pkCols = table.columns.filter(c => c.primaryKey).map(c => c.name);
+    const pkCols = table.columns.filter((c) => c.primaryKey).map((c) => c.name);
     const pkClause = pkCols.length ? `,\n  PRIMARY KEY (${pkCols.join(', ')})` : '';
 
     script += `CREATE TABLE ${table.name} (\n  ${cols}${pkClause}\n);\n\n`;
@@ -160,12 +165,19 @@ function generateSQL() {
       </NFormItem>
 
       <NFormItem :label="t('tools.database-table-generator.texts.label-database-name')">
-        <NInput v-model:value="dbName" :placeholder="t('tools.database-table-generator.texts.placeholder-enter-database-name')" />
+        <NInput
+          v-model:value="dbName"
+          :placeholder="t('tools.database-table-generator.texts.placeholder-enter-database-name')"
+        />
       </NFormItem>
 
       <c-card v-for="(table, tIndex) in tables" :key="tIndex" mt-1>
         <NFormItem :label="`Table ${tIndex + 1} Name`">
-          <NInput v-model:value="table.name" :placeholder="t('tools.database-table-generator.texts.placeholder-table-name')" mr-1 />
+          <NInput
+            v-model:value="table.name"
+            :placeholder="t('tools.database-table-generator.texts.placeholder-table-name')"
+            mr-1
+          />
           <NButton type="error" @click="removeTable(tIndex)">
             {{ t('tools.database-table-generator.texts.tag-remove-table') }}
           </NButton>
@@ -177,8 +189,18 @@ function generateSQL() {
           </template>
           <template #default="{ value: col }">
             <div style="display: flex; align-items: center; width: 100%">
-              <NInput v-model:value="col.name" :placeholder="t('tools.database-table-generator.texts.placeholder-column-name')" style="width: 20%;" mr-1 />
-              <NSelect v-model:value="col.type" :options="dialectTypes[dbType].map(t => ({ label: t, value: t }))" style="width: 20%" mr-1 />
+              <NInput
+                v-model:value="col.name"
+                :placeholder="t('tools.database-table-generator.texts.placeholder-column-name')"
+                style="width: 20%"
+                mr-1
+              />
+              <NSelect
+                v-model:value="col.type"
+                :options="dialectTypes[dbType].map((t) => ({ label: t, value: t }))"
+                style="width: 20%"
+                mr-1
+              />
               <NCheckbox v-model:checked="col.nullable">
                 {{ t('tools.database-table-generator.texts.tag-nullable') }}
               </NCheckbox>
@@ -191,7 +213,11 @@ function generateSQL() {
               <NCheckbox v-model:checked="col.autoIncrement">
                 {{ t('tools.database-table-generator.texts.tag-autoinc') }}
               </NCheckbox>
-              <NInput v-model:value="col.defaultValue" :placeholder="t('tools.database-table-generator.texts.placeholder-default-value')" style="width: 20%;" />
+              <NInput
+                v-model:value="col.defaultValue"
+                :placeholder="t('tools.database-table-generator.texts.placeholder-default-value')"
+                style="width: 20%"
+              />
             </div>
           </template>
         </n-dynamic-input>

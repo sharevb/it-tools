@@ -11,18 +11,15 @@ const { t } = useI18n();
 const mode = ref<'flatten' | 'nestify'>('flatten');
 const defaultValue = '{a: {b: 2}}';
 function transformer(value: string) {
-  return withDefaultOnError(
-    () => {
-      let o = JSON.parseBigNum(value);
-      if (mode.value === 'flatten') {
-        o = flatten(o);
-      }
-      else {
-        o = nestifyObject(o);
-      }
-      return JSON.stringify(o, null, 2);
-    },
-    '');
+  return withDefaultOnError(() => {
+    let o = JSON.parseBigNum(value);
+    if (mode.value === 'flatten') {
+      o = flatten(o);
+    } else {
+      o = nestifyObject(o);
+    }
+    return JSON.stringify(o, null, 2);
+  }, '');
 }
 
 const rules: UseValidationRule<string>[] = [

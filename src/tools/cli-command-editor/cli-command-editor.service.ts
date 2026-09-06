@@ -14,15 +14,17 @@ export function extractOptions(command: string = ''): string[] {
   const tokens = command.split(' ');
 
   // map each token of the command to an option
-  const options = tokens.map((token: string) => {
-    // every option in a starts with either a hyphen or double hyphens
-    if (isOption(token)) {
-      const randomId = generateRandomId();
-      return `${token}-${randomId}`;
-    }
+  const options = tokens
+    .map((token: string) => {
+      // every option in a starts with either a hyphen or double hyphens
+      if (isOption(token)) {
+        const randomId = generateRandomId();
+        return `${token}-${randomId}`;
+      }
 
-    return '';
-  }).filter((option: string): boolean => !!option);
+      return '';
+    })
+    .filter((option: string): boolean => !!option);
   return options;
 }
 
@@ -40,7 +42,11 @@ export function sanitizeOption(option: string): string {
   return option.split('-id')?.[0];
 }
 
-export function buildEditedCommand(options: Record<string, string>, originalOptions: Record<string, string>, command: string): string {
+export function buildEditedCommand(
+  options: Record<string, string>,
+  originalOptions: Record<string, string>,
+  command: string,
+): string {
   if (!Object.keys(options).length) {
     return command;
   }
@@ -53,12 +59,11 @@ export function buildEditedCommand(options: Record<string, string>, originalOpti
   // order as they appear in the original command, this is done
   // to handle the interpolation of edited option values into the
   // command
-  originalOptions = Object.entries(options)
-    .reduce((previousValue: Record<string, string>, currentValue: string[]) => {
-      previousValue[currentValue[0]] = currentValue[1];
+  originalOptions = Object.entries(options).reduce((previousValue: Record<string, string>, currentValue: string[]) => {
+    previousValue[currentValue[0]] = currentValue[1];
 
-      return previousValue;
-    }, originalOptions);
+    return previousValue;
+  }, originalOptions);
 
   const defaultValues: Record<string, string> = {};
   // replacing the options and their values (if any) with formatter ($i) to
@@ -92,8 +97,7 @@ export function buildEditedCommand(options: Record<string, string>, originalOpti
 
     if (originalOptions[key]) {
       editedCommand = editedCommand.replace(`$${i}`, `${keyWithoutIdSuffix} ${originalOptions[key]}`);
-    }
-    else {
+    } else {
       const value = defaultValues[`$${i}`];
       const replaceValue = value ? `${keyWithoutIdSuffix} ${value}` : keyWithoutIdSuffix;
       editedCommand = editedCommand.replace(`$${i}`, replaceValue);

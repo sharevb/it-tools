@@ -13,8 +13,6 @@ const data = ref([
   <c-table :data="data" :headers="['age', { key: 'name', label: 'Full name' }]" mb-2 />
   <c-table :data="data" :headers="{ name: 'full name' }" mb-2 />
   <c-table :data="data" :headers="['age', 'name']">
-    <template #age="{ value }">
-      {{ value }}yo
-    </template>
+    <template #age="{ value }"> {{ value }}yo </template>
   </c-table>
 </template>

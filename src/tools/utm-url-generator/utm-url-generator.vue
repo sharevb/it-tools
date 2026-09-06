@@ -25,8 +25,7 @@ const utmifiedUrl = computed(() => {
       utmUrl.searchParams.set('utm_term', utmTerm.value);
     }
     return utmUrl.href;
-  }
-  catch {
+  } catch {
     return '# invalid inputs';
   }
 });
@@ -38,10 +37,9 @@ const urlValidation = useValidation({
       message: t('tools.utm-url-generator.texts.message-invalid-url-string'),
       validator: (value) => {
         try {
-          const _ = (new URL(value));
+          const _ = new URL(value);
           return true;
-        }
-        catch {
+        } catch {
           return false;
         }
       },
@@ -53,7 +51,7 @@ const utmMediumValidation = useValidation({
   rules: [
     {
       message: t('tools.utm-url-generator.texts.message-utm-medium-is-required'),
-      validator: value => value !== '',
+      validator: (value) => value !== '',
     },
   ],
 });
@@ -62,7 +60,7 @@ const utmSourceValidation = useValidation({
   rules: [
     {
       message: t('tools.utm-url-generator.texts.message-utm-source-is-required'),
-      validator: value => value !== '',
+      validator: (value) => value !== '',
     },
   ],
 });
@@ -71,7 +69,7 @@ const utmCampaignValidation = useValidation({
   rules: [
     {
       message: t('tools.utm-url-generator.texts.message-utm-campaign-is-required'),
-      validator: value => value !== '',
+      validator: (value) => value !== '',
     },
   ],
 });
@@ -81,7 +79,8 @@ const { copy } = useCopy({ source: utmifiedUrl, text: t('tools.utm-url-generator
 <template>
   <div>
     <n-p>
-      {{ t('tools.utm-url-generator.texts.tag-for-more-info-about-utm-see') }}<n-a href="https://en.wikipedia.org/wiki/UTM_parameters" target="_blank" rel="noopener noreferrer">
+      {{ t('tools.utm-url-generator.texts.tag-for-more-info-about-utm-see')
+      }}<n-a href="https://en.wikipedia.org/wiki/UTM_parameters" target="_blank" rel="noopener noreferrer">
         {{ t('tools.utm-url-generator.texts.tag-utm-parameters') }}
       </n-a>
     </n-p>
@@ -112,7 +111,11 @@ const { copy } = useCopy({ source: utmifiedUrl, text: t('tools.utm-url-generator
     />
     <c-input-text
       v-model:value="utmCampaign"
-      :label="t('tools.utm-url-generator.texts.label-utm-campaign-identifies-a-specific-product-promotion-or-strategic-campaign')"
+      :label="
+        t(
+          'tools.utm-url-generator.texts.label-utm-campaign-identifies-a-specific-product-promotion-or-strategic-campaign',
+        )
+      "
       :placeholder="t('tools.utm-url-generator.texts.placeholder-put-your-utm-campaign-here')"
       clearable
       mb-2
@@ -127,7 +130,11 @@ const { copy } = useCopy({ source: utmifiedUrl, text: t('tools.utm-url-generator
     />
     <c-input-text
       v-model:value="utmTerm"
-      :label="t('tools.utm-url-generator.texts.label-utm-term-identifies-what-specifically-was-clicked-to-bring-the-user-to-the-site')"
+      :label="
+        t(
+          'tools.utm-url-generator.texts.label-utm-term-identifies-what-specifically-was-clicked-to-bring-the-user-to-the-site',
+        )
+      "
       :placeholder="t('tools.utm-url-generator.texts.placeholder-put-your-utm-term-here')"
       clearable
       mb-2

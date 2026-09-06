@@ -29,12 +29,10 @@ function generateData(expr: string) {
       const y = evaluate(expr, { x });
       if (typeof y === 'number' && Math.abs(y) < 1e4) {
         yValues.push(y);
-      }
-      else {
+      } else {
         yValues.push(Number.NaN);
       }
-    }
-    catch {
+    } catch {
       yValues.push(Number.NaN);
     }
   }
@@ -54,8 +52,7 @@ function initChart() {
     chart.data.labels = xValues;
     chart.data.datasets[0].data = yValues;
     chart.update();
-  }
-  else {
+  } else {
     chartInstance.value = new Chart(canvasRef.value, {
       type: 'line',
       data: {
@@ -121,23 +118,11 @@ onMounted(() => {
     />
 
     <n-form-item :label="t('tools.trigo-viewer.texts.label-domain')" label-placement="left">
-      <NInputNumber
-        v-model:value="xmin"
-        :min="-720"
-        :max="720"
-        :step="10"
-        mr-1
-      />
-      <NInputNumber
-        v-model:value="xmax"
-        :min="-720"
-        :max="720"
-        :step="10"
-        mr-1
-      />
+      <NInputNumber v-model:value="xmin" :min="-720" :max="720" :step="10" mr-1 />
+      <NInputNumber v-model:value="xmax" :min="-720" :max="720" :step="10" mr-1 />
     </n-form-item>
 
-    <n-card style="position: relative; height: 50vh;" mb-1>
+    <n-card style="position: relative; height: 50vh" mb-1>
       <canvas ref="canvasRef" style="width: 100%; height: 100%" />
     </n-card>
     <n-space justify="center">

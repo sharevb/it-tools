@@ -12,11 +12,12 @@ const length = useQueryParamOrStorage({ name: 'length', storageName: 'pin-genera
 const repeat = useQueryParamOrStorage({ name: 'repeat', storageName: 'pin-generator:repeat', defaultValue: true });
 
 const [pins, refreshPins] = computedRefreshable(() =>
-  Array.from({ length: count.value },
-    () => randomNumber({
+  Array.from({ length: count.value }, () =>
+    randomNumber({
       length: length.value,
       repeatDigits: repeat.value,
-    })).join('\n'),
+    }),
+  ).join('\n'),
 );
 
 const { copy } = useCopy({ source: pins, text: t('tools.pin-code-generator.texts.text-pin-code-copied-to-clipboard') });
@@ -34,7 +35,10 @@ const { copy } = useCopy({ source: pins, text: t('tools.pin-code-generator.texts
         <n-switch v-model:value="repeat" />
       </n-form-item>
 
-      <n-form-item :label="t('tools.pin-code-generator.texts.label-number-of-pin-codes-to-generate')" label-placement="left">
+      <n-form-item
+        :label="t('tools.pin-code-generator.texts.label-number-of-pin-codes-to-generate')"
+        label-placement="left"
+      >
         <n-input-number-i18n v-model:value="count" size="small" />
       </n-form-item>
 

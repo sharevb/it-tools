@@ -13,7 +13,11 @@ const { item } = toRefs(props);
     </div>
   </div>
   <div v-else-if="_.isBoolean(item.value)">
-    <c-text-copyable :value="item.value ? 'true' : 'false'" :displayed-value="item.value ? 'Yes' : 'No'" :show-icon="item.showCopyButton ?? true" />
+    <c-text-copyable
+      :value="item.value ? 'true' : 'false'"
+      :displayed-value="item.value ? 'Yes' : 'No'"
+      :show-icon="item.showCopyButton ?? true"
+    />
   </div>
   <div v-else-if="_.isNumber(item.value)" font-mono>
     <c-text-copyable :value="String(item.value)" :show-icon="item.showCopyButton ?? true" />

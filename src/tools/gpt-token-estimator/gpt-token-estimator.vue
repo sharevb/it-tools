@@ -10,7 +10,11 @@ const { t } = useI18n();
 
 const models = GPTTokens.supportModels;
 
-const model = useQueryParamOrStorage({ name: 'model', storageName: 'gpt-counter:model', defaultValue: 'gpt-3.5-turbo-1106' });
+const model = useQueryParamOrStorage({
+  name: 'model',
+  storageName: 'gpt-counter:model',
+  defaultValue: 'gpt-3.5-turbo-1106',
+});
 const systemPrompt = ref('');
 const userPrompt = ref('');
 
@@ -23,7 +27,7 @@ const messagesValidation = useValidation({
   rules: [
     {
       message: t('tools.gpt-token-estimator.texts.message-invalid-messages-array'),
-      validator: value => value && JSON5.parse(value.trim()),
+      validator: (value) => value && JSON5.parse(value.trim()),
     },
   ],
 });
@@ -32,7 +36,7 @@ const toolsValidation = useValidation({
   rules: [
     {
       message: t('tools.gpt-token-estimator.texts.message-invalid-tools-array'),
-      validator: value => value && JSON5.parse(value.trim()),
+      validator: (value) => value && JSON5.parse(value.trim()),
     },
   ],
 });
@@ -45,8 +49,7 @@ const outputTokenCosts = computed(() => {
     if (isAdvancedMode.value) {
       messagesArray = messagesJsonArray.value ? JSON5.parse(messagesJsonArray.value.trim()) : [];
       toolsArray = toolsJsonArray.value ? JSON5.parse(toolsJsonArray.value.trim()) : [];
-    }
-    else {
+    } else {
       if (systemPrompt.value) {
         messagesArray.push({ role: 'system', content: systemPrompt.value });
       }
@@ -75,8 +78,7 @@ const outputTokenCosts = computed(() => {
       promptUsedTokens: tokens.promptUsedTokens.toString(),
       completionUsedTokens: tokens.completionUsedTokens.toString(),
     };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return {
       error: e.toString(),
       usedTokens: '',
@@ -107,7 +109,8 @@ const outputTokenCosts = computed(() => {
     <c-card v-if="isAdvancedMode" :title="t('tools.gpt-token-estimator.texts.title-prompts')">
       <c-input-text
         v-model:value="messagesJsonArray"
-        multiline raw-text
+        multiline
+        raw-text
         :placeholder="t('tools.gpt-token-estimator.texts.placeholder-your-messages-json-array')"
         rows="5"
         autofocus
@@ -117,7 +120,8 @@ const outputTokenCosts = computed(() => {
 
       <c-input-text
         v-model:value="toolsJsonArray"
-        multiline raw-text
+        multiline
+        raw-text
         :placeholder="t('tools.gpt-token-estimator.texts.placeholder-your-tools-json-array')"
         rows="5"
         autofocus
@@ -128,7 +132,8 @@ const outputTokenCosts = computed(() => {
     <c-card v-else :title="t('tools.gpt-token-estimator.texts.title-input-json-s')">
       <c-input-text
         v-model:value="systemPrompt"
-        multiline raw-text
+        multiline
+        raw-text
         :placeholder="t('tools.gpt-token-estimator.texts.placeholder-your-system-prompt-content')"
         rows="2"
         autofocus
@@ -137,7 +142,8 @@ const outputTokenCosts = computed(() => {
 
       <c-input-text
         v-model:value="userPrompt"
-        multiline raw-text
+        multiline
+        raw-text
         :placeholder="t('tools.gpt-token-estimator.texts.placeholder-your-user-prompt-content')"
         rows="6"
         autofocus

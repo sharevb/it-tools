@@ -7,13 +7,15 @@ import { clamp } from '@/modules/shared/number.models';
 import { useFlexSearch } from '@/composable/flexSearch';
 
 const props = withDefaults(
-  defineProps<{
-    options?: CSelectOption<T>[] | string[]
-    value?: T
-    placeholder?: string
-    size?: 'small' | 'medium' | 'large'
-    searchable?: boolean
-  } & CLabelProps >(),
+  defineProps<
+    {
+      options?: CSelectOption<T>[] | string[];
+      value?: T;
+      placeholder?: string;
+      size?: 'small' | 'medium' | 'large';
+      searchable?: boolean;
+    } & CLabelProps
+  >(),
   {
     options: () => [],
     value: undefined,
@@ -43,7 +45,9 @@ const theme = useTheme();
 const appTheme = useAppTheme();
 
 const isOpen = ref(false);
-const selectedOption = shallowRef<CSelectOption<T> | undefined>(options.value.find((option: CSelectOption<T>) => option.value === value.value));
+const selectedOption = shallowRef<CSelectOption<T> | undefined>(
+  options.value.find((option: CSelectOption<T>) => option.value === value.value),
+);
 const focusIndex = ref(0);
 const elementRef = ref(null);
 
@@ -52,27 +56,30 @@ const size = computed(() => theme.value.sizes[sizeName.value as 'small' | 'mediu
 const searchQuery = ref('');
 const searchInputRef = ref();
 
-whenever(() => !isOpen.value, () => {
-  focusIndex.value = 0;
-  searchQuery.value = '';
-});
+whenever(
+  () => !isOpen.value,
+  () => {
+    focusIndex.value = 0;
+    searchQuery.value = '';
+  },
+);
 
-whenever(() => isOpen.value, () => {
-  nextTick(() => searchInputRef.value?.focus());
-});
+whenever(
+  () => isOpen.value,
+  () => {
+    nextTick(() => searchInputRef.value?.focus());
+  },
+);
 
 onClickOutside(elementRef, close);
 whenever(keys.escape, close);
 
-watch(
-  value,
-  (newValue) => {
-    const option = options.value.find((option: CSelectOption<T>) => option.value === newValue);
-    if (option) {
-      selectedOption.value = option;
-    }
-  },
-);
+watch(value, (newValue) => {
+  const option = options.value.find((option: CSelectOption<T>) => option.value === newValue);
+  if (option) {
+    selectedOption.value = option;
+  }
+});
 
 const { searchResult: filteredOptions } = useFlexSearch<CSelectOption<T>>({
   search: searchQuery,
@@ -110,8 +117,7 @@ function handleKeydown(event: KeyboardEvent) {
 
     if (valueCanBeSelected) {
       selectOption({ option: filteredOptions.value[focusIndex.value] });
-    }
-    else {
+    } else {
       toggleOpen();
     }
 
@@ -140,7 +146,10 @@ function onSearchInput() {
   <c-label v-bind="props">
     <div ref="elementRef" relative class="c-select" w-full>
       <div
-        flex flex-nowrap cursor-pointer items-center
+        flex
+        flex-nowrap
+        cursor-pointer
+        items-center
         :class="{ 'is-open': isOpen, 'important:border-primary': isOpen }"
         class="c-select-input"
         tabindex="0"
@@ -150,7 +159,18 @@ function onSearchInput() {
       >
         <div flex-1 truncate>
           <slot name="displayed-value">
-            <input v-if="searchable && isOpen" ref="searchInputRef" v-model="searchQuery" type="text" placeholder="Search..." class="search-input" w-full lh-normal color-current @input="onSearchInput">
+            <input
+              v-if="searchable && isOpen"
+              ref="searchInputRef"
+              v-model="searchQuery"
+              type="text"
+              placeholder="Search..."
+              class="search-input"
+              w-full
+              lh-normal
+              color-current
+              @input="onSearchInput"
+            />
             <span v-else-if="selectedOption" lh-normal>
               {{ selectedOption.label }}
             </span>
@@ -164,12 +184,20 @@ function onSearchInput() {
       </div>
 
       <transition name="dropdown">
-        <div v-show="isOpen" class="c-select-dropdown" absolute z-10 mt-1 max-h-312px w-full overflow-y-auto pretty-scrollbar>
+        <div
+          v-show="isOpen"
+          class="c-select-dropdown"
+          absolute
+          z-10
+          mt-1
+          max-h-312px
+          w-full
+          overflow-y-auto
+          pretty-scrollbar
+        >
           <template v-if="!filteredOptions.length">
             <slot name="empty">
-              <div px-4 py-1 opacity-70>
-                No results found
-              </div>
+              <div px-4 py-1 opacity-70>No results found</div>
             </slot>
           </template>
           <template v-else>
@@ -194,7 +222,7 @@ function onSearchInput() {
 
 <style lang="less" scoped>
 .c-select {
-  .search-input{
+  .search-input {
     all: unset;
 
     &::placeholder {
@@ -212,7 +240,8 @@ function onSearchInput() {
     height: v-bind('size.height');
     transition: border-color 0.2s ease-in-out;
 
-    .placeholder, .chevron {
+    .placeholder,
+    .chevron {
       color: v-bind('appTheme.text.mutedColor');
     }
   }
@@ -227,7 +256,7 @@ function onSearchInput() {
     line-height: 1;
     padding: 6px;
 
-    .c-select-dropdown-option{
+    .c-select-dropdown-option {
       border-radius: 4px;
       padding: 8px 12px;
       background-color: transparent;
@@ -237,7 +266,8 @@ function onSearchInput() {
         color: v-bind('theme.option.active.textColor');
       }
 
-      &:hover, &.hover {
+      &:hover,
+      &.hover {
         background-color: v-bind('theme.option.hover.backgroundColor');
       }
     }
@@ -246,7 +276,9 @@ function onSearchInput() {
 
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: opacity 0.2s, transform 0.2s;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
 }
 
 .dropdown-enter-from,

@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { createMarkdownTable, escapeMarkdownTableCell, generateMarkdownTable } from './markdown-table-generator.service';
+import {
+  createMarkdownTable,
+  escapeMarkdownTableCell,
+  generateMarkdownTable,
+} from './markdown-table-generator.service';
 
 describe('markdown-table-generator service', () => {
   describe('createMarkdownTable', () => {
@@ -20,14 +24,16 @@ describe('markdown-table-generator service', () => {
 
   describe('generateMarkdownTable', () => {
     it('generates a markdown table with column alignment', () => {
-      expect(generateMarkdownTable({
-        headers: ['Name', 'Count', 'Notes'],
-        alignments: ['left', 'right', 'center'],
-        rows: [
-          ['Alpha', '10', 'Ready'],
-          ['Beta', '3', 'Needs review'],
-        ],
-      })).toMatchInlineSnapshot(`
+      expect(
+        generateMarkdownTable({
+          headers: ['Name', 'Count', 'Notes'],
+          alignments: ['left', 'right', 'center'],
+          rows: [
+            ['Alpha', '10', 'Ready'],
+            ['Beta', '3', 'Needs review'],
+          ],
+        }),
+      ).toMatchInlineSnapshot(`
         "| Name | Count | Notes |
         | :--- | ---: | :---: |
         | Alpha | 10 | Ready |
@@ -36,11 +42,13 @@ describe('markdown-table-generator service', () => {
     });
 
     it('pads uneven rows to keep the table shape valid', () => {
-      expect(generateMarkdownTable({
-        headers: ['Name'],
-        alignments: ['left'],
-        rows: [['Alpha', 'Extra']],
-      })).toMatchInlineSnapshot(`
+      expect(
+        generateMarkdownTable({
+          headers: ['Name'],
+          alignments: ['left'],
+          rows: [['Alpha', 'Extra']],
+        }),
+      ).toMatchInlineSnapshot(`
         "| Name |  |
         | :--- | :--- |
         | Alpha | Extra |"

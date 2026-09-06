@@ -9,13 +9,12 @@ const { t } = useI18n();
 declare global {
   interface Window {
     IpLookup: (ip: string) => Promise<{
-      country: string
-      country_name: string
-      country_native: string
-      continent: string
-      continent_name: string
-
-    }>
+      country: string;
+      country_name: string;
+      country_native: string;
+      continent: string;
+      continent_name: string;
+    }>;
   }
 }
 
@@ -35,27 +34,32 @@ const [clientIPDetails, refreshClientIP] = computedRefreshableAsync(async () => 
     error: '',
   };
   try {
-    ipv4.ip = (await (await fetch('//api4.ipify.org?format=json', {
-      mode: 'cors',
-    })).json()).ip?.toString();
-  }
-  catch (e: any) {
+    ipv4.ip = (
+      await (
+        await fetch('//api4.ipify.org?format=json', {
+          mode: 'cors',
+        })
+      ).json()
+    ).ip?.toString();
+  } catch (e: any) {
     ipv4.error = `Not detected (${e.toString()})`;
   }
   try {
-    ipv6.ip = (await (await fetch('//api6.ipify.org?format=json', {
-      mode: 'cors',
-    })).json()).ip?.toString();
-  }
-  catch (e: any) {
+    ipv6.ip = (
+      await (
+        await fetch('//api6.ipify.org?format=json', {
+          mode: 'cors',
+        })
+      ).json()
+    ).ip?.toString();
+  } catch (e: any) {
     ipv6.error = `Not detected (${e.toString()})`;
   }
 
   await loadIpLookup();
   try {
     location.country = await window.IpLookup(ipv4.ip || ipv6.ip);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     location.error = e.toString();
   }
 
@@ -74,11 +78,48 @@ const [clientIPDetails, refreshClientIP] = computedRefreshableAsync(async () => 
 <template>
   <c-card :title="t('tools.my-ip.texts.title-your-ipv4-6-address-details')">
     <div v-if="clientIPDetails">
-      <input-copyable v-model:value="clientIPDetails.ipv4" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-ipv4')" :placeholder="t('tools.my-ip.texts.placeholder-your-ipv4')" />
-      <input-copyable v-model:value="clientIPDetails.ipv6" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-ipv6')" :placeholder="t('tools.my-ip.texts.placeholder-your-ipv6')" />
-      <input-copyable v-model:value="clientIPDetails.location.country" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-country')" />
-      <input-copyable v-model:value="clientIPDetails.location.country_name" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-country-name')" />
-      <input-copyable v-model:value="clientIPDetails.location.continent" label-position="left" label-width="100px" label-align="right" readonly :label="t('tools.my-ip.texts.label-continent-name')" />
+      <input-copyable
+        v-model:value="clientIPDetails.ipv4"
+        label-position="left"
+        label-width="100px"
+        label-align="right"
+        readonly
+        :label="t('tools.my-ip.texts.label-ipv4')"
+        :placeholder="t('tools.my-ip.texts.placeholder-your-ipv4')"
+      />
+      <input-copyable
+        v-model:value="clientIPDetails.ipv6"
+        label-position="left"
+        label-width="100px"
+        label-align="right"
+        readonly
+        :label="t('tools.my-ip.texts.label-ipv6')"
+        :placeholder="t('tools.my-ip.texts.placeholder-your-ipv6')"
+      />
+      <input-copyable
+        v-model:value="clientIPDetails.location.country"
+        label-position="left"
+        label-width="100px"
+        label-align="right"
+        readonly
+        :label="t('tools.my-ip.texts.label-country')"
+      />
+      <input-copyable
+        v-model:value="clientIPDetails.location.country_name"
+        label-position="left"
+        label-width="100px"
+        label-align="right"
+        readonly
+        :label="t('tools.my-ip.texts.label-country-name')"
+      />
+      <input-copyable
+        v-model:value="clientIPDetails.location.continent"
+        label-position="left"
+        label-width="100px"
+        label-align="right"
+        readonly
+        :label="t('tools.my-ip.texts.label-continent-name')"
+      />
     </div>
     <div flex justify-center gap-3>
       <c-button @click="refreshClientIP">

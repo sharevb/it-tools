@@ -3,10 +3,7 @@ import proj4List from 'proj4-list';
 import type { CRSTypes } from 'gcoord';
 import gcoord from 'gcoord';
 
-proj4.defs([
-  proj4List['EPSG:4490'],
-  proj4List['EPSG:4326'],
-]);
+proj4.defs([proj4List['EPSG:4490'], proj4List['EPSG:4326']]);
 
 export const CGCS2000 = 'EPSG:4490';
 export const WGS84 = 'EPSG:4326';
@@ -23,7 +20,7 @@ export function convertFrom(source: string, lng: number, lat: number) {
     default: {
       const [x, y] = gcoord.transform(
         [lng, lat],
-        ((gcoord as unknown) as Record<string, CRSTypes>)[source] as CRSTypes,
+        (gcoord as unknown as Record<string, CRSTypes>)[source] as CRSTypes,
         gcoord.WGS84,
       );
       wgsLng = x;

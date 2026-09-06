@@ -26,9 +26,7 @@ const showResults = computed(() => !_.isUndefined(leftJson.value) && !_.isUndefi
     </div>
 
     <c-card data-test-id="diff-result">
-      <div v-if="jsonAreTheSame" text-center op-70>
-        The provided JSONs are the same
-      </div>
+      <div v-if="jsonAreTheSame" text-center op-70>The provided JSONs are the same</div>
       <DiffRootViewer v-else :diff="result" />
     </c-card>
   </div>

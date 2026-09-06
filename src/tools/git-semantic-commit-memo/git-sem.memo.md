@@ -15,7 +15,7 @@ feat(auth): add OAuth2 login
 ## 🏷 Types
 
 | Type       | Use it for                                              | Release effect |
-|------------|---------------------------------------------------------|----------------|
+| ---------- | ------------------------------------------------------- | -------------- |
 | `feat`     | A new feature for the user                              | Minor          |
 | `fix`      | A bug fix for the user                                  | Patch          |
 | `docs`     | Documentation only                                      | None           |
@@ -44,7 +44,7 @@ refactor(parser)!: drop support for the legacy format
 ## ✍️ Description
 
 | Rule                           | ✅ Good                     | ❌ Avoid                         |
-|--------------------------------|-----------------------------|----------------------------------|
+| ------------------------------ | --------------------------- | -------------------------------- |
 | Imperative mood                | `add user export`           | `added user export`              |
 | Lower case, no trailing period | `fix flaky login test`      | `Fix flaky login test.`          |
 | Say what changed, not where    | `fix off-by-one in paging`  | `fix bug in file`                |
@@ -57,7 +57,7 @@ The body explains **why**, not how — the diff already shows how. Separate it f
 Footers come last, one per line:
 
 | Footer                         | Meaning                                       |
-|--------------------------------|-----------------------------------------------|
+| ------------------------------ | --------------------------------------------- |
 | `BREAKING CHANGE: <what>`      | Incompatible change, forces a major release   |
 | `Closes #123` / `Fixes #456`   | Closes the issue when merged (GitHub, GitLab) |
 | `Refs #789`                    | Related, but does not close it                |
@@ -117,7 +117,7 @@ Co-authored-by: Jane Doe <jane@example.com>
 Release tooling maps the history since the last tag onto a semantic version:
 
 | Commits since the last release | New version from `1.4.2` |
-|--------------------------------|--------------------------|
+| ------------------------------ | ------------------------ |
 | Only `docs`, `chore`, `style`… | no release               |
 | At least one `fix` or `perf`   | `1.4.3`                  |
 | At least one `feat`            | `1.5.0`                  |

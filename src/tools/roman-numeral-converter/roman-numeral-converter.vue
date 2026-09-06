@@ -20,7 +20,7 @@ const { attrs: validationNumeral } = useValidation({
   source: inputNumeral,
   rules: [
     {
-      validator: value => value >= MIN_ARABIC_TO_ROMAN && value <= MAX_ARABIC_TO_ROMAN,
+      validator: (value) => value >= MIN_ARABIC_TO_ROMAN && value <= MAX_ARABIC_TO_ROMAN,
       message: `We can only convert numbers between ${MIN_ARABIC_TO_ROMAN.toLocaleString()} and ${MAX_ARABIC_TO_ROMAN.toLocaleString()}`,
     },
   ],
@@ -33,14 +33,20 @@ const validationRoman = useValidation({
   source: inputRoman,
   rules: [
     {
-      validator: value => isValidRomanNumber(value),
+      validator: (value) => isValidRomanNumber(value),
       message: t('tools.roman-numeral-converter.texts.message-the-input-you-entered-is-not-a-valid-roman-number'),
     },
   ],
 });
 
-const { copy: copyRoman } = useCopy({ source: outputRoman, text: t('tools.roman-numeral-converter.texts.text-roman-number-copied-to-the-clipboard') });
-const { copy: copyArabic } = useCopy({ source: () => String(outputNumeral), text: t('tools.roman-numeral-converter.texts.text-arabic-number-copied-to-the-clipboard') });
+const { copy: copyRoman } = useCopy({
+  source: outputRoman,
+  text: t('tools.roman-numeral-converter.texts.text-roman-number-copied-to-the-clipboard'),
+});
+const { copy: copyArabic } = useCopy({
+  source: () => String(outputNumeral),
+  text: t('tools.roman-numeral-converter.texts.text-arabic-number-copied-to-the-clipboard'),
+});
 </script>
 
 <template>

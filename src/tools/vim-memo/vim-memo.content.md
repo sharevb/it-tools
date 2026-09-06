@@ -5,7 +5,7 @@
 ## 🚦 Modes
 
 | Mode         | Enter with              | Leave with       | For                         |
-|--------------|-------------------------|------------------|-----------------------------|
+| ------------ | ----------------------- | ---------------- | --------------------------- |
 | Normal       | `Esc` (or `Ctrl-[`)     | —                | Moving and running commands |
 | Insert       | `i` `a` `o` `I` `A` `O` | `Esc`            | Typing text                 |
 | Visual       | `v` `V` `Ctrl-v`        | `Esc`            | Selecting text              |
@@ -15,7 +15,7 @@
 ## 🧭 Cursor Movement
 
 | Key                   | Moves to                                                          |
-|-----------------------|-------------------------------------------------------------------|
+| --------------------- | ----------------------------------------------------------------- |
 | `h` `j` `k` `l`       | Left, down, up, right                                             |
 | `w` / `W`             | Start of the next word / WORD (WORD ignores punctuation)          |
 | `e` / `E`             | End of the next word / WORD                                       |
@@ -44,7 +44,7 @@
 ## ✏️ Entering Insert Mode
 
 | Key       | Starts typing                                        |
-|-----------|------------------------------------------------------|
+| --------- | ---------------------------------------------------- |
 | `i` / `I` | Before the cursor / at the first non-blank character |
 | `a` / `A` | After the cursor / at the end of the line            |
 | `o` / `O` | On a new line below / above                          |
@@ -59,7 +59,7 @@
 An operator waits for a motion or a text object. Doubling the operator (`dd`, `yy`, `>>`) applies it to the whole line.
 
 | Operator           | Does                                  |
-|--------------------|---------------------------------------|
+| ------------------ | ------------------------------------- |
 | `d`                | Delete (into a register)              |
 | `c`                | Change — delete, then insert          |
 | `y`                | Yank (copy)                           |
@@ -69,7 +69,7 @@ An operator waits for a motion or a text object. Doubling the operator (`dd`, `y
 | `gq`               | Reformat to `textwidth`               |
 
 | Text object | Selects                                              |
-|-------------|------------------------------------------------------|
+| ----------- | ---------------------------------------------------- |
 | `iw` / `aw` | Inner word / a word plus its trailing space          |
 | `is` / `as` | Sentence                                             |
 | `ip` / `ap` | Paragraph                                            |
@@ -94,7 +94,7 @@ d3w     delete three words
 ## ✂️ Editing
 
 | Key                          | Does                                                  |
-|------------------------------|-------------------------------------------------------|
+| ---------------------------- | ----------------------------------------------------- |
 | `x` / `X`                    | Delete the character under / before the cursor        |
 | `r<char>`                    | Replace one character, staying in normal mode         |
 | `R`                          | Overtype until `Esc`                                  |
@@ -111,7 +111,7 @@ d3w     delete three words
 ## 📋 Copy, Paste & Registers
 
 | Key            | Does                                                   |
-|----------------|--------------------------------------------------------|
+| -------------- | ------------------------------------------------------ |
 | `yy` (or `Y`)  | Yank the line                                          |
 | `y<motion>`    | Yank what the motion covers                            |
 | `p` / `P`      | Paste after / before the cursor                        |
@@ -123,12 +123,12 @@ d3w     delete three words
 | `:registers`   | Show every register                                    |
 | `xp` / `ddp`   | Swap two characters / two lines                        |
 
-> ⚠️ In Vim, deleting also *yanks* — `dd` overwrites the unnamed register. Use `"0p` to paste what you last copied, or yank into a named register first.
+> ⚠️ In Vim, deleting also _yanks_ — `dd` overwrites the unnamed register. Use `"0p` to paste what you last copied, or yank into a named register first.
 
 ## 🔍 Search & Replace
 
 | Command                 | Does                                                       |
-|-------------------------|------------------------------------------------------------|
+| ----------------------- | ---------------------------------------------------------- |
 | `/pattern` / `?pattern` | Search forwards / backwards                                |
 | `n` / `N`               | Next / previous match                                      |
 | `*` / `#`               | Search for the word under the cursor, forwards / backwards |
@@ -158,7 +158,7 @@ d3w     delete three words
 ## 🎨 Visual Mode
 
 | Key             | Does                                   |
-|-----------------|----------------------------------------|
+| --------------- | -------------------------------------- |
 | `v`             | Character-wise selection               |
 | `V`             | Line-wise selection                    |
 | `Ctrl-v`        | Block (column) selection               |
@@ -178,7 +178,7 @@ Ctrl-v, select, d                      delete a rectangular block
 ## 🔖 Marks & Jumps
 
 | Key           | Does                                           |
-|---------------|------------------------------------------------|
+| ------------- | ---------------------------------------------- |
 | `m<a-z>`      | Set a mark in this file                        |
 | `m<A-Z>`      | Set a global mark, across files                |
 | `` `a ``      | Jump to mark `a`, exact position               |
@@ -190,7 +190,7 @@ Ctrl-v, select, d                      delete a rectangular block
 ## 🎬 Macros
 
 | Key           | Does                             |
-|---------------|----------------------------------|
+| ------------- | -------------------------------- |
 | `q<a-z>`      | Start recording into a register  |
 | `q`           | Stop recording                   |
 | `@a`          | Play the macro back              |
@@ -201,7 +201,7 @@ Ctrl-v, select, d                      delete a rectangular block
 ## 📂 Files, Buffers, Windows & Tabs
 
 | Command                      | Does                                                |
-|------------------------------|-----------------------------------------------------|
+| ---------------------------- | --------------------------------------------------- |
 | `:e <file>`                  | Open a file                                         |
 | `:e!`                        | Reload, discarding changes                          |
 | `:w` / `:w <file>`           | Save / save as                                      |
@@ -229,7 +229,7 @@ Ctrl-v, select, d                      delete a rectangular block
 ## 📑 Folding
 
 | Key          | Does                             |
-|--------------|----------------------------------|
+| ------------ | -------------------------------- |
 | `zf<motion>` | Create a fold                    |
 | `za` / `zA`  | Toggle this fold / recursively   |
 | `zo` / `zc`  | Open / close this fold           |
@@ -239,7 +239,7 @@ Ctrl-v, select, d                      delete a rectangular block
 ## 🧩 Completion & Spelling
 
 | Key                          | Does                                      |
-|------------------------------|-------------------------------------------|
+| ---------------------------- | ----------------------------------------- |
 | `Ctrl-n` / `Ctrl-p`          | Complete a word from the open buffers     |
 | `Ctrl-x Ctrl-f`              | Complete a file path                      |
 | `Ctrl-x Ctrl-l`              | Complete a whole line                     |
@@ -252,7 +252,7 @@ Ctrl-v, select, d                      delete a rectangular block
 ## 🧵 Quickfix & Diff
 
 | Command                 | Does                                     |
-|-------------------------|------------------------------------------|
+| ----------------------- | ---------------------------------------- |
 | `:make` / `:grep <pat>` | Fill the quickfix list                   |
 | `:copen` / `:cclose`    | Open / close the quickfix window         |
 | `:cn` / `:cp`           | Jump to the next / previous entry        |
@@ -265,7 +265,7 @@ Ctrl-v, select, d                      delete a rectangular block
 ## ⚙️ Handy `:set` Options
 
 | Option                      | Effect                                     |
-|-----------------------------|--------------------------------------------|
+| --------------------------- | ------------------------------------------ |
 | `:set nu` / `:set nonu`     | Show / hide line numbers                   |
 | `:set rnu`                  | Relative line numbers — makes `5j` obvious |
 | `:set ic` / `:set noic`     | Ignore case when searching                 |

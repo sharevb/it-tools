@@ -12,9 +12,15 @@ describe('week-number-converter', () => {
   });
   describe('getFirstMondayFromMonthWeek', () => {
     it('return right date from month week number', () => {
-      expect(getFirstMondayFromMonthWeek(getWeekOfMonth(new Date('2022-03-14')), 3, 2022).toDateString()).toBe('Mon Mar 14 2022');
-      expect(getFirstMondayFromMonthWeek(getWeekOfMonth(new Date('2023-01-02')), 1, 2023).toDateString()).toBe('Mon Jan 02 2023');
-      expect(getFirstMondayFromMonthWeek(getWeekOfMonth(new Date('2026-12-28')), 12, 2026).toDateString()).toBe('Mon Dec 28 2026');
+      expect(getFirstMondayFromMonthWeek(getWeekOfMonth(new Date('2022-03-14')), 3, 2022).toDateString()).toBe(
+        'Mon Mar 14 2022',
+      );
+      expect(getFirstMondayFromMonthWeek(getWeekOfMonth(new Date('2023-01-02')), 1, 2023).toDateString()).toBe(
+        'Mon Jan 02 2023',
+      );
+      expect(getFirstMondayFromMonthWeek(getWeekOfMonth(new Date('2026-12-28')), 12, 2026).toDateString()).toBe(
+        'Mon Dec 28 2026',
+      );
     });
   });
 });

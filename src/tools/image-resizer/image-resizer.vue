@@ -39,9 +39,11 @@ const MAX_CANVAS_DIMENSION = 32767; // Maximum pixels per side
 const MAX_CANVAS_AREA = 268435456; // Maximum total pixels (conservative estimate)
 
 const isCanvasTooLarge = computed(() => {
-  return imageWidth.value > MAX_CANVAS_DIMENSION
-         || imageHeight.value > MAX_CANVAS_DIMENSION
-         || (imageWidth.value * imageHeight.value) > MAX_CANVAS_AREA;
+  return (
+    imageWidth.value > MAX_CANVAS_DIMENSION ||
+    imageHeight.value > MAX_CANVAS_DIMENSION ||
+    imageWidth.value * imageHeight.value > MAX_CANVAS_AREA
+  );
 });
 
 const isPreviewTooLarge = computed(() => {
@@ -50,11 +52,13 @@ const isPreviewTooLarge = computed(() => {
 
 // Computed property to check if dimensions are valid for download
 const canDownload = computed(() => {
-  return (resizedImageUrl.value || (originalImageUrl.value && isPreviewTooLarge.value))
-         && imageFile.value
-         && imageWidth.value > 0
-         && imageHeight.value > 0
-         && !isCanvasTooLarge.value;
+  return (
+    (resizedImageUrl.value || (originalImageUrl.value && isPreviewTooLarge.value)) &&
+    imageFile.value &&
+    imageWidth.value > 0 &&
+    imageHeight.value > 0 &&
+    !isCanvasTooLarge.value
+  );
 });
 
 // Computed property to check if reset is available
@@ -164,19 +168,16 @@ function toggleAspectRatioLock() {
   if (aspectRatioLocked.value) {
     if (selectedAspectRatio.value !== 'custom') {
       aspectRatio.value = getAspectRatioValue(selectedAspectRatio.value);
-    }
-    else if (imageWidth.value && imageHeight.value && imageWidth.value > 0 && imageHeight.value > 0) {
+    } else if (imageWidth.value && imageHeight.value && imageWidth.value > 0 && imageHeight.value > 0) {
       aspectRatio.value = imageWidth.value / imageHeight.value;
       const divisor = gcd(Math.round(imageWidth.value), Math.round(imageHeight.value));
       customAspectRatioWidth.value = Math.round(imageWidth.value) / divisor;
       customAspectRatioHeight.value = Math.round(imageHeight.value) / divisor;
-    }
-    else {
+    } else {
       // Don't lock if dimensions are invalid
       aspectRatioLocked.value = false;
     }
-  }
-  else {
+  } else {
     aspectRatio.value = null;
   }
 }
@@ -272,7 +273,7 @@ async function handleFileUpload(uploadedFile: File) {
     const reader = new FileReader();
     const fileDataUrl = await new Promise<string>((resolve, reject) => {
       reader.onload = () => resolve(reader.result as string);
-      reader.onerror = error => reject(error);
+      reader.onerror = (error) => reject(error);
       reader.readAsDataURL(uploadedFile);
     });
 
@@ -319,8 +320,7 @@ async function handleFileUpload(uploadedFile: File) {
         resolve();
       };
     });
-  }
-  catch (error) {
+  } catch (error) {
     console.error('Error reading file:', error);
   }
 }
@@ -435,8 +435,8 @@ function downloadImage(format: string) {
       />
 
       <!-- Original image dimensions -->
-      <div v-if="originalImageWidth && originalImageHeight" display="flex" direction="row" style="align-items: center;">
-        <p style="margin: 0; margin-right: 10px;">
+      <div v-if="originalImageWidth && originalImageHeight" display="flex" direction="row" style="align-items: center">
+        <p style="margin: 0; margin-right: 10px">
           Original Image Dimensions: {{ originalImageWidth }}x{{ originalImageHeight }}px
         </p>
         <n-button
@@ -446,12 +446,14 @@ function downloadImage(format: string) {
           mt-1
           @click="resetToOriginal"
         >
-          <n-icon :component="IconReload" size="16" style="margin-right: 5px;" />{{ t('tools.image-resizer.texts.tag-reset-width-and-height-to-image-dimensions') }}
+          <n-icon :component="IconReload" size="16" style="margin-right: 5px" />{{
+            t('tools.image-resizer.texts.tag-reset-width-and-height-to-image-dimensions')
+          }}
         </n-button>
       </div>
 
       <!-- Compact Width/Height and Aspect Ratio Controls -->
-      <div class="compact-controls" style="margin-bottom: 20px; margin-top: 20px;">
+      <div class="compact-controls" style="margin-bottom: 20px; margin-top: 20px">
         <!-- Left side: Width and Height inputs -->
         <div class="dimensions-section">
           <h4>{{ t('tools.image-resizer.texts.tag-dimensions') }}</h4>
@@ -480,13 +482,14 @@ function downloadImage(format: string) {
 
           <!-- Validation warnings -->
           <div v-if="imageWidth <= 0 || imageHeight <= 0" class="validation-warning">
-            <p style="color: red; font-size: 12px; margin: 5px 0 0 0;">
+            <p style="color: red; font-size: 12px; margin: 5px 0 0 0">
               {{ t('tools.image-resizer.texts.tag-️-width-and-height-must-be-greater-than-0') }}
             </p>
           </div>
           <div v-else-if="isCanvasTooLarge" class="validation-warning">
-            <p style="color: red; font-size: 12px; margin: 5px 0 0 0;">
-              ⚠️ Canvas size exceeds browser limits (max: {{ MAX_CANVAS_DIMENSION.toLocaleString() }}px per side, max area: {{ Math.floor(MAX_CANVAS_AREA / 1000000) }}M pixels)
+            <p style="color: red; font-size: 12px; margin: 5px 0 0 0">
+              ⚠️ Canvas size exceeds browser limits (max: {{ MAX_CANVAS_DIMENSION.toLocaleString() }}px per side, max
+              area: {{ Math.floor(MAX_CANVAS_AREA / 1000000) }}M pixels)
             </p>
           </div>
         </div>
@@ -522,7 +525,7 @@ function downloadImage(format: string) {
               :options="aspectRatioOptions"
               :placeholder="t('tools.image-resizer.texts.placeholder-choose-ratio')"
               size="small"
-              style="width: 160px;"
+              style="width: 160px"
             />
             <n-button type="primary" size="small" @click="applyAspectRatio">
               {{ t('tools.image-resizer.texts.tag-apply') }}
@@ -537,7 +540,7 @@ function downloadImage(format: string) {
                 :placeholder="t('tools.image-resizer.texts.placeholder-w')"
                 :min="1"
                 size="small"
-                style="width: 100px;"
+                style="width: 100px"
               />
               <span>{{ t('tools.image-resizer.texts.tag-') }}</span>
               <n-input-number
@@ -545,7 +548,7 @@ function downloadImage(format: string) {
                 :placeholder="t('tools.image-resizer.texts.placeholder-h')"
                 :min="1"
                 size="small"
-                style="width: 100px;"
+                style="width: 100px"
               />
             </div>
           </div>
@@ -553,18 +556,25 @@ function downloadImage(format: string) {
       </div>
 
       <!-- Image preview and download section -->
-      <div v-if="originalImageUrl" class="image-container" style="text-align: center; margin-top: 20px;">
+      <div v-if="originalImageUrl" class="image-container" style="text-align: center; margin-top: 20px">
         <!-- Show preview when dimensions are within limits -->
         <div v-if="resizedImageUrl && !isPreviewTooLarge" class="image-wrapper">
-          <img :src="resizedImageUrl" :alt="`Resized Preview (${imageWidth}px x ${imageHeight}px)`" :style="{ width: `${imageWidth}px`, height: `${imageHeight}px` }">
+          <img
+            :src="resizedImageUrl"
+            :alt="`Resized Preview (${imageWidth}px x ${imageHeight}px)`"
+            :style="{ width: `${imageWidth}px`, height: `${imageHeight}px` }"
+          />
           <p>Preview: {{ imageWidth }}x{{ imageHeight }}px</p>
         </div>
 
         <!-- Show message when preview is too large -->
         <div v-if="isPreviewTooLarge" class="preview-too-large">
-          <p style="color: #666; font-style: italic; margin: 20px 0;">
-            ⚠️ Preview not shown - dimensions too large ({{ imageWidth }}x{{ imageHeight }}px)
-            <br>{{ t('tools.image-resizer.texts.tag-preview-is-disabled-when-width-or-height-exceeds-7-680-pixels-for-performance-reasons') }}
+          <p style="color: #666; font-style: italic; margin: 20px 0">
+            ⚠️ Preview not shown - dimensions too large ({{ imageWidth }}x{{ imageHeight }}px) <br />{{
+              t(
+                'tools.image-resizer.texts.tag-preview-is-disabled-when-width-or-height-exceeds-7-680-pixels-for-performance-reasons',
+              )
+            }}
           </p>
         </div>
 

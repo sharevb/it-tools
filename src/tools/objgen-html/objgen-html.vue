@@ -137,8 +137,7 @@ container-fluid
 function transformer(value: string) {
   try {
     return xHtml(value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return `/* ERROR: ${e.toString()} */`;
   }
 }

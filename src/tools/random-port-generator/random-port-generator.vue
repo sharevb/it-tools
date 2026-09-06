@@ -8,7 +8,10 @@ const { t } = useI18n();
 
 const [port, refreshPort] = computedRefreshable(() => String(generatePort()));
 
-const { copy } = useCopy({ source: port, text: t('tools.random-port-generator.texts.text-port-copied-to-the-clipboard') });
+const { copy } = useCopy({
+  source: port,
+  text: t('tools.random-port-generator.texts.text-port-copied-to-the-clipboard'),
+});
 </script>
 
 <template>

@@ -8,7 +8,7 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 // Since type guards do not work in template
 
 const metadata = ref<{ type: string; [k: string]: any }>({
-  'type': 'website',
+  type: 'website',
   'twitter:card': 'summary_large_image',
 });
 

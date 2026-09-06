@@ -13,5 +13,5 @@ export type SpecialPermissions = {
 export type Permissions = {
   [k in Group]: GroupPermissions;
 } & {
-  flags: SpecialPermissions
+  flags: SpecialPermissions;
 };

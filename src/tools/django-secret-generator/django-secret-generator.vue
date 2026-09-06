@@ -6,11 +6,12 @@ import { computedRefreshable } from '@/composable/computedRefreshable';
 
 const { t } = useI18n();
 
-const [tokens, refreshTokens] = computedRefreshable(() =>
-  getSecretKey(),
-);
+const [tokens, refreshTokens] = computedRefreshable(() => getSecretKey());
 
-const { copy } = useCopy({ source: tokens, text: t('tools.django-secret-generator.texts.text-django-secret-key-copied-to-clipboard') });
+const { copy } = useCopy({
+  source: tokens,
+  text: t('tools.django-secret-generator.texts.text-django-secret-key-copied-to-clipboard'),
+});
 </script>
 
 <template>

@@ -27,13 +27,16 @@ const formatOptions = [
 const supportsPassphrase = computed(() => format.value === 'ssh');
 
 const [certs, refreshCerts] = computedRefreshableAsync(
-  () => withDefaultOnErrorAsync(() => generateKeyPair(
-    {
-      password: debouncedPassword.value,
-      format: format.value as sshpk.PrivateKeyFormatType,
-      comment: debouncedComment.value,
-    },
-  ), emptyCerts),
+  () =>
+    withDefaultOnErrorAsync(
+      () =>
+        generateKeyPair({
+          password: debouncedPassword.value,
+          format: format.value as sshpk.PrivateKeyFormatType,
+          comment: debouncedComment.value,
+        }),
+      emptyCerts,
+    ),
   emptyCerts,
 );
 </script>
@@ -49,7 +52,11 @@ const [certs, refreshCerts] = computedRefreshableAsync(
         :placeholder="t('tools.ed25519-key-pair-generator.texts.placeholder-select-a-key-format')"
       />
 
-      <n-form-item v-if="supportsPassphrase" :label="t('tools.ed25519-key-pair-generator.texts.label-passphrase')" label-placement="left">
+      <n-form-item
+        v-if="supportsPassphrase"
+        :label="t('tools.ed25519-key-pair-generator.texts.label-passphrase')"
+        label-placement="left"
+      >
         <n-input
           v-model:value="password"
           type="password"

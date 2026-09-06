@@ -12,22 +12,36 @@ const stats = computed(() => textStatistics(text.value));
 
 <template>
   <c-card>
-    <c-input-text v-model:value="text" multiline :placeholder="t('tools.text-statistics.texts.placeholder-your-text')" rows="5" />
+    <c-input-text
+      v-model:value="text"
+      multiline
+      :placeholder="t('tools.text-statistics.texts.placeholder-your-text')"
+      rows="5"
+    />
 
     <n-space mt-3>
       <n-statistic :label="t('tools.text-statistics.texts.label-character-count')" :value="stats.chars" />
       <n-statistic :label="t('tools.text-statistics.texts.label-word-count')" :value="stats.words" />
       <n-statistic :label="t('tools.text-statistics.texts.label-sentences-count')" :value="stats.sentences" />
       <n-statistic :label="t('tools.text-statistics.texts.label-line-count')" :value="stats.lines" />
-      <n-statistic :label="t('tools.text-statistics.texts.label-byte-size')" :value="formatBytes(getStringSizeInBytes(text))" />
+      <n-statistic
+        :label="t('tools.text-statistics.texts.label-byte-size')"
+        :value="formatBytes(getStringSizeInBytes(text))"
+      />
     </n-space>
 
     <n-divider />
 
     <n-space mt-3>
       <n-statistic :label="t('tools.text-statistics.texts.label-unique-word-count')" :value="stats.words_uniques" />
-      <n-statistic :label="t('tools.text-statistics.texts.label-unique-word-count-case-insensitive')" :value="stats.words_uniques_ci" />
-      <n-statistic :label="t('tools.text-statistics.texts.label-read-time')" :value="formatMsDuration(stats.read_time * 1000)" />
+      <n-statistic
+        :label="t('tools.text-statistics.texts.label-unique-word-count-case-insensitive')"
+        :value="stats.words_uniques_ci"
+      />
+      <n-statistic
+        :label="t('tools.text-statistics.texts.label-read-time')"
+        :value="formatMsDuration(stats.read_time * 1000)"
+      />
     </n-space>
 
     <n-divider />

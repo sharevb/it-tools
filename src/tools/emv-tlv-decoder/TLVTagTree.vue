@@ -3,8 +3,8 @@ import { useI18n } from 'vue-i18n';
 import type { EmvTag } from 'node-emv';
 
 defineProps<{
-  tags: EmvTag[]
-  title?: string
+  tags: EmvTag[];
+  title?: string;
 }>();
 
 const { t } = useI18n();
@@ -40,7 +40,7 @@ const { t } = useI18n();
               </td>
             </tr>
             <tr v-if="Array.isArray(tag.value)">
-              <td colspan="5" style="padding-left: 2em;">
+              <td colspan="5" style="padding-left: 2em">
                 <TLVTagTree :tags="tag.value" :title="`Nested in ${tag.tag}`" />
               </td>
             </tr>

@@ -14,10 +14,12 @@ test.describe('Tool - XML formatter', () => {
 
     const formattedXml = await page.getByTestId('area-content').innerText();
 
-    expect(formattedXml.trim()).toEqual(`
+    expect(formattedXml.trim()).toEqual(
+      `
 <foo>
   <bar>baz</bar>
   <bar>baz</bar>
-</foo>`.trim());
+</foo>`.trim(),
+    );
   });
 });

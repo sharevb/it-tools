@@ -9,9 +9,9 @@ function formatYaml({
   sortKeys = false,
   indentSize = 2,
 }: {
-  rawYaml: MaybeRef<string>
-  sortKeys?: MaybeRef<boolean>
-  indentSize?: MaybeRef<number>
+  rawYaml: MaybeRef<string>;
+  sortKeys?: MaybeRef<boolean>;
+  indentSize?: MaybeRef<number>;
 }) {
   const rawYamlString = get(rawYaml);
   yamlCheck(rawYamlString);

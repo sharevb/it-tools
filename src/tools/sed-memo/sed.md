@@ -1,4 +1,4 @@
-**`sed`** is the stream editor: it reads input line by line into the *pattern space*, applies a script to each line, and prints the result. It never needs the whole file in memory, so it happily edits gigabytes.
+**`sed`** is the stream editor: it reads input line by line into the _pattern space_, applies a script to each line, and prints the result. It never needs the whole file in memory, so it happily edits gigabytes.
 
 ```bash
 sed [options] 'script' [file...]
@@ -9,7 +9,7 @@ sed [options] 'script' [file...]
 ## ⚙️ Options
 
 | Option         | Description                                                        |
-|----------------|--------------------------------------------------------------------|
+| -------------- | ------------------------------------------------------------------ |
 | `-n`           | Do not print automatically — pair it with `p`                      |
 | `-e <script>`  | Add a script; repeat for several                                   |
 | `-f <file>`    | Read the script from a file                                        |
@@ -21,10 +21,10 @@ sed [options] 'script' [file...]
 
 ## 📍 Addressing
 
-An address decides *which* lines a command applies to. Without one, the command applies to every line.
+An address decides _which_ lines a command applies to. Without one, the command applies to every line.
 
 | Address         | Matches                                             |
-|-----------------|-----------------------------------------------------|
+| --------------- | --------------------------------------------------- |
 | `5`             | Line 5                                              |
 | `$`             | The last line                                       |
 | `/regex/`       | Every line matching the pattern                     |
@@ -62,8 +62,8 @@ sed 's/pattern/replacement/flags' file
 ```
 
 | Flag   | Effect                                               |
-|--------|------------------------------------------------------|
-| *none* | Replace the first match on each line                 |
+| ------ | ---------------------------------------------------- |
+| _none_ | Replace the first match on each line                 |
 | `g`    | Replace every match on the line                      |
 | `i`    | Case-insensitive matching                            |
 | `p`    | Print the line when a replacement happened           |
@@ -109,7 +109,7 @@ sed '/^deb /s/http:/https:/' sources.list
 ## ✂️ Command Reference
 
 | Command              | Does                                                            |
-|----------------------|-----------------------------------------------------------------|
+| -------------------- | --------------------------------------------------------------- |
 | `p`                  | Print the pattern space                                         |
 | `d`                  | Delete it and start the next cycle                              |
 | `s`                  | Substitute                                                      |

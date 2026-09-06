@@ -8,17 +8,19 @@ import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 const { t } = useI18n();
 
 interface Event {
-  startend: [number, number]
-  summary?: string
-  description?: string
-  location?: string
-  url?: string
+  startend: [number, number];
+  summary?: string;
+  description?: string;
+  location?: string;
+  url?: string;
 }
 
-const events = ref<Array<Event>>([{
-  startend: [Date.now(), Date.now()],
-  summary: 'An event',
-}]);
+const events = ref<Array<Event>>([
+  {
+    startend: [Date.now(), Date.now()],
+    summary: 'An event',
+  },
+]);
 function deleteEvent(index: number) {
   if (events.value.length === 1) {
     return;
@@ -52,8 +54,7 @@ const output = computed(() => {
     }
 
     return { ical: calendar.toString() };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { error: e.toString() };
   }
 });
@@ -66,12 +67,11 @@ const outputFileName = computed(() => {
 
   return slugify(events.value[0]?.summary || 'unamed');
 });
-const { download } = useDownloadFileFromBase64(
-  {
-    source: outputBase64,
-    filename: outputFileName,
-    extension: 'ics',
-  });
+const { download } = useDownloadFileFromBase64({
+  source: outputBase64,
+  filename: outputFileName,
+  extension: 'ics',
+});
 </script>
 
 <template>
@@ -95,7 +95,7 @@ const { download } = useDownloadFileFromBase64(
 
     <c-card v-for="(event, index) in events" :key="index" mb-2>
       <n-form-item :label="t('tools.ical-generator.texts.label-title')" label-placement="left">
-        <n-input v-model:value="event.summary" :allow-input="(value:string) => !!value" />
+        <n-input v-model:value="event.summary" :allow-input="(value: string) => !!value" />
       </n-form-item>
       <n-form-item :label="t('tools.ical-generator.texts.label-dates-and-hours')" label-placement="left">
         <n-date-picker v-model:value="event.startend" type="datetimerange" />

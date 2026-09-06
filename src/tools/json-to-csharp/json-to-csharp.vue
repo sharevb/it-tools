@@ -22,27 +22,40 @@ const pascalCase = useQueryParamOrStorage({ name: 'pascalcase', storageName: 'js
 const useFields = useQueryParamOrStorage({ name: 'fields', storageName: 'json-c#:fi', defaultValue: false });
 const useNullable = useQueryParamOrStorage({ name: 'nullable', storageName: 'json-c#:null', defaultValue: false });
 const addJsonProperty = useQueryParamOrStorage({ name: 'pascal', storageName: 'json-c#:jsp', defaultValue: false });
-const nullValueHandlingIgnore = useQueryParamOrStorage({ name: 'pascal', storageName: 'json-c#:ign', defaultValue: true });
+const nullValueHandlingIgnore = useQueryParamOrStorage({
+  name: 'pascal',
+  storageName: 'json-c#:ign',
+  defaultValue: true,
+});
 const addJsonPropertyName = useQueryParamOrStorage({ name: 'pascal', storageName: 'json-c#:jspp', defaultValue: true });
-const generateImmutableClasses = useQueryParamOrStorage({ name: 'pascal', storageName: 'json-c#:imm', defaultValue: false });
+const generateImmutableClasses = useQueryParamOrStorage({
+  name: 'pascal',
+  storageName: 'json-c#:imm',
+  defaultValue: false,
+});
 const useRecordTypes = useQueryParamOrStorage({ name: 'pascal', storageName: 'json-c#:rec', defaultValue: true });
 const useReadonlyLists = useQueryParamOrStorage({ name: 'pascal', storageName: 'json-c#:rdl', defaultValue: false });
 const rootTypeName = useQueryParamOrStorage({ name: 'root', storageName: 'json-c#:rt', defaultValue: 'Root' });
 
-const csharpOutput = computed(() => withDefaultOnError(
-  () => json2csharp({
-    src: JSON5.parse(jsonInput.value),
-    rootTypeName: rootTypeName.value,
-    pascalCase: pascalCase.value,
-    useFields: useFields.value,
-    useNullable: useNullable.value,
-    addJsonProperty: addJsonProperty.value,
-    nullValueHandlingIgnore: nullValueHandlingIgnore.value,
-    addJsonPropertyName: addJsonPropertyName.value,
-    generateImmutableClasses: generateImmutableClasses.value,
-    useRecordTypes: useRecordTypes.value,
-    useReadonlyLists: useReadonlyLists.value,
-  }), ''));
+const csharpOutput = computed(() =>
+  withDefaultOnError(
+    () =>
+      json2csharp({
+        src: JSON5.parse(jsonInput.value),
+        rootTypeName: rootTypeName.value,
+        pascalCase: pascalCase.value,
+        useFields: useFields.value,
+        useNullable: useNullable.value,
+        addJsonProperty: addJsonProperty.value,
+        nullValueHandlingIgnore: nullValueHandlingIgnore.value,
+        addJsonPropertyName: addJsonPropertyName.value,
+        generateImmutableClasses: generateImmutableClasses.value,
+        useRecordTypes: useRecordTypes.value,
+        useReadonlyLists: useReadonlyLists.value,
+      }),
+    '',
+  ),
+);
 const rules: UseValidationRule<string>[] = [
   {
     validator: (v: string) => v === '' || JSON5.parse(v),
@@ -93,14 +106,17 @@ const rules: UseValidationRule<string>[] = [
           {{ t('tools.json-to-csharp.texts.tag-use-readonly-lists') }}
         </n-checkbox>
       </n-space>
-      <c-input-text v-model:value="rootTypeName" :label="t('tools.json-to-csharp.texts.label-root-type-name')" :placeholder="t('tools.json-to-csharp.texts.placeholder-your-root-type-name')" clearable raw-text mb-5 />
+      <c-input-text
+        v-model:value="rootTypeName"
+        :label="t('tools.json-to-csharp.texts.label-root-type-name')"
+        :placeholder="t('tools.json-to-csharp.texts.placeholder-your-root-type-name')"
+        clearable
+        raw-text
+        mb-5
+      />
     </c-card>
     <c-card :title="t('tools.json-to-csharp.texts.title-your-c-code')" mt-2>
-      <TextareaCopyable
-        :value="csharpOutput"
-        language="csharp"
-        download-file-name="output.cs"
-      />
+      <TextareaCopyable :value="csharpOutput" language="csharp" download-file-name="output.cs" />
     </c-card>
   </div>
 </template>

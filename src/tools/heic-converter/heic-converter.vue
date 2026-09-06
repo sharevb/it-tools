@@ -16,11 +16,10 @@ const formats = [
   { value: 'jpg', label: t('tools.heic-converter.texts.label-jpeg') },
   { value: 'png', label: t('tools.heic-converter.texts.label-png') },
 ];
-const { download } = useDownloadFileFromBase64(
-  {
-    source: base64OutputImage,
-    filename: fileName,
-  });
+const { download } = useDownloadFileFromBase64({
+  source: base64OutputImage,
+  filename: fileName,
+});
 
 async function onFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;
@@ -32,17 +31,15 @@ async function onFileUploaded(uploadedFile: File) {
     let convertFormat;
     if (format.value === 'jpg') {
       convertFormat = 'JPEG';
-    }
-    else if (format.value === 'png') {
+    } else if (format.value === 'png') {
       convertFormat = 'PNG';
-    }
-    else {
+    } else {
       throw new Error('unknown format');
     }
 
     const outputBuffer = await heicConvert({
       buffer: new Uint8Array(fileBuffer),
-      format: convertFormat as ('JPEG' | 'PNG'),
+      format: convertFormat as 'JPEG' | 'PNG',
       quality: 0.98,
     });
     base64OutputImage.value = `data:image/${convertFormat.toLowerCase()};base64,${Base64.fromUint8Array(new Uint8Array(outputBuffer))}`;
@@ -50,8 +47,7 @@ async function onFileUploaded(uploadedFile: File) {
     status.value = 'done';
 
     download();
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
@@ -70,12 +66,13 @@ async function onFileUploaded(uploadedFile: File) {
       <div mx-auto max-w-600px>
         <c-file-upload
           :title="t('tools.heic-converter.texts.title-drag-and-drop-a-heic-file-here-or-click-to-select-a-file')"
-          accept=".heic,.heif" @file-upload="onFileUploaded"
+          accept=".heic,.heif"
+          @file-upload="onFileUploaded"
         />
       </div>
     </div>
     <div mt-3 flex justify-center>
-      <img :src="base64OutputImage" max-w-300px>
+      <img :src="base64OutputImage" max-w-300px />
     </div>
 
     <div mt-3 flex justify-center>
@@ -83,10 +80,7 @@ async function onFileUploaded(uploadedFile: File) {
         {{ $t('tools.heic-converter.texts.an-error-occured-processing-heic-heif-is-invalid') }}
         <span>{{ fileName }}</span>
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
   </div>
 </template>

@@ -134,12 +134,12 @@ const htmlElements = {
 };
 
 interface Element {
-  kind: string
-  id: string
-  clazz: string[]
-  content: string
-  elements: Element[]
-  attributes: string
+  kind: string;
+  id: string;
+  clazz: string[];
+  content: string;
+  elements: Element[];
+  attributes: string;
 }
 
 export function xHtml(modelText: string) {
@@ -166,8 +166,7 @@ export function xHtml(modelText: string) {
       parent = null;
       parents = [];
       parents.push(elem);
-    }
-    else {
+    } else {
       while (parents.length > depth - 1) {
         parent = parents.pop()!;
       }
@@ -177,8 +176,7 @@ export function xHtml(modelText: string) {
 
     if (parent === null) {
       elements.push(elem);
-    }
-    else {
+    } else {
       parent.elements.push(elem);
     }
 
@@ -191,21 +189,16 @@ export function xHtml(modelText: string) {
       matches += 1;
       if (matches === 1 && isHtmlElement(match[0])) {
         elem.kind = match[0];
-      }
-      else if (match[2]) {
+      } else if (match[2]) {
         elem.clazz[elem.clazz.length] = match[0].replace(/\./, '');
-      }
-      else if (match[3]) {
+      } else if (match[3]) {
         elem.id = match[0].replace(/#/, '');
-      }
-      else if (match[4]) {
+      } else if (match[4]) {
         elem.attributes = match[0].replace(/^\(|\)$/g, '');
         elem.attributes = elem.attributes.trim().replace(/\s+/g, ' ');
-      }
-      else if (match[5]) {
+      } else if (match[5]) {
         elem.content = match[0].replace(/=/, '').trim();
-      }
-      else {
+      } else {
         elem.clazz.push(match[0]);
       }
 

@@ -15,12 +15,16 @@ import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams'
 const { t } = useI18n();
 
 const rawPhone = useQueryParam({ tool: 'phone-parser', name: 'phone', defaultValue: '' });
-const defaultCountryCode = useQueryParamOrStorage({ name: 'country', storageName: 'phone-parser:country', defaultValue: getDefaultCountryCode() });
+const defaultCountryCode = useQueryParamOrStorage({
+  name: 'country',
+  storageName: 'phone-parser:country',
+  defaultValue: getDefaultCountryCode(),
+});
 const validation = useValidation({
   source: rawPhone,
   rules: [
     {
-      validator: value => value === '' || /^[0-9 +\-()]+$/.test(value),
+      validator: (value) => value === '' || /^[0-9 +\-()]+$/.test(value),
       message: t('tools.phone-parser-and-formatter.texts.message-invalid-phone-number'),
     },
   ],
@@ -84,7 +88,7 @@ const parsedDetails = computed(() => {
   ];
 });
 
-const countriesOptions = getCountries().map(code => ({
+const countriesOptions = getCountries().map((code) => ({
   label: `${lookup.byIso(code)?.country || code} (+${getCountryCallingCode(code)})`,
   value: code,
 }));
@@ -113,7 +117,13 @@ const smsLink = computed(() => {
 
 <template>
   <div>
-    <c-select v-model:value="defaultCountryCode" :label="t('tools.phone-parser-and-formatter.texts.label-default-country-code')" :options="countriesOptions" searchable mb-5 />
+    <c-select
+      v-model:value="defaultCountryCode"
+      :label="t('tools.phone-parser-and-formatter.texts.label-default-country-code')"
+      :options="countriesOptions"
+      searchable
+      mb-5
+    />
 
     <c-input-text
       v-model:value="rawPhone"

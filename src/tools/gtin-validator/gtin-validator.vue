@@ -22,8 +22,7 @@ const results = computed(() => {
   const getValueOrError = (func: () => string) => {
     try {
       return func();
-    }
-    catch (e: any) {
+    } catch (e: any) {
       return e.toString();
     }
   };
@@ -32,19 +31,22 @@ const results = computed(() => {
     minified: getValueOrError(() => removeGTINLeadingZerosToUpcOrGTIN13(gtin)),
     format: getValueOrError(() => getFormatOfGTIN(gtin)),
     minifiedFormat: getValueOrError(() => getFormatOfMinifiedGTIN(gtin)),
-    checkDigit: getValueOrError(() => isValid ? calculateCheckDigitForGTIN(gtin.slice(0, -1)) : calculateCheckDigitForGTIN(gtin)),
+    checkDigit: getValueOrError(() =>
+      isValid ? calculateCheckDigitForGTIN(gtin.slice(0, -1)) : calculateCheckDigitForGTIN(gtin),
+    ),
     isValid,
-    message: getValueOrError(() => isValidGTIN(gtin, 'error') ? 'ok' : 'nok'),
+    message: getValueOrError(() => (isValidGTIN(gtin, 'error') ? 'ok' : 'nok')),
   };
 });
 </script>
 
 <template>
-  <div style="max-width: 600px; margin: auto;">
+  <div style="max-width: 600px; margin: auto">
     <c-input-text
       v-model:value="input"
       :placeholder="t('tools.gtin-validator.texts.placeholder-enter-gtin-e-g-4006381333931')"
-      :label="t('tools.gtin-validator.texts.label-gtin')" label-position="left"
+      :label="t('tools.gtin-validator.texts.label-gtin')"
+      label-position="left"
       mb-2
     />
 
@@ -56,10 +58,34 @@ const results = computed(() => {
         {{ t('tools.gtin-validator.texts.tag-gtin-is-valid') }}
       </n-alert>
 
-      <input-copyable :value="results.format" :label="t('tools.gtin-validator.texts.label-format')" label-position="left" label-width="120px" mb-1 />
-      <input-copyable :value="results.minified" :label="t('tools.gtin-validator.texts.label-minified')" label-position="left" label-width="120px" mb-1 />
-      <input-copyable :value="results.minifiedFormat" :label="t('tools.gtin-validator.texts.label-minified-format')" label-position="left" label-width="120px" mb-1 />
-      <input-copyable :value="results.checkDigit" :label="t('tools.gtin-validator.texts.label-check-digit')" label-position="left" label-width="120px" mb-1 />
+      <input-copyable
+        :value="results.format"
+        :label="t('tools.gtin-validator.texts.label-format')"
+        label-position="left"
+        label-width="120px"
+        mb-1
+      />
+      <input-copyable
+        :value="results.minified"
+        :label="t('tools.gtin-validator.texts.label-minified')"
+        label-position="left"
+        label-width="120px"
+        mb-1
+      />
+      <input-copyable
+        :value="results.minifiedFormat"
+        :label="t('tools.gtin-validator.texts.label-minified-format')"
+        label-position="left"
+        label-width="120px"
+        mb-1
+      />
+      <input-copyable
+        :value="results.checkDigit"
+        :label="t('tools.gtin-validator.texts.label-check-digit')"
+        label-position="left"
+        label-width="120px"
+        mb-1
+      />
     </n-card>
   </div>
 </template>

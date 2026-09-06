@@ -26,7 +26,15 @@ const transformers = {
   },
 };
 
-function useQueryParam<T>({ tool, name, defaultValue }: { tool: string; name: string; defaultValue: T }): RemovableRef<T> {
+function useQueryParam<T>({
+  tool,
+  name,
+  defaultValue,
+}: {
+  tool: string;
+  name: string;
+  defaultValue: T;
+}): RemovableRef<T> {
   const type = typeof defaultValue;
   const transformer = transformers[type as keyof typeof transformers] ?? transformers.string;
   const defaultValueOrSetting = getITToolsSetting(`${tool}:${name}`, defaultValue);
@@ -43,7 +51,15 @@ function useQueryParam<T>({ tool, name, defaultValue }: { tool: string; name: st
   });
 }
 
-function useQueryParamOrStorage<T>({ name, storageName, defaultValue }: { name: string; storageName: string; defaultValue: T }) {
+function useQueryParamOrStorage<T>({
+  name,
+  storageName,
+  defaultValue,
+}: {
+  name: string;
+  storageName: string;
+  defaultValue: T;
+}) {
   const type = typeof defaultValue;
   const transformer = transformers[type as keyof typeof transformers] ?? transformers.string;
 
@@ -53,23 +69,32 @@ function useQueryParamOrStorage<T>({ name, storageName, defaultValue }: { name: 
   const proxyDefaultValue = transformer.toQuery(defaultValueOrSetting as never);
   const proxy = useRouteQuery(name, proxyDefaultValue);
 
-  const r = isRef(defaultValueOrSetting) ? defaultValueOrSetting as Ref<T> : ref(get(defaultValueOrSetting));
+  const r = isRef(defaultValueOrSetting) ? (defaultValueOrSetting as Ref<T>) : ref(get(defaultValueOrSetting));
 
-  watch(r,
+  watch(
+    r,
     (value) => {
       proxy.value = transformer.toQuery(value as never);
       storageRef.value = value as never;
     },
-    { deep: true });
+    { deep: true },
+  );
 
-  r.value = (proxy.value && proxy.value !== proxyDefaultValue
-    ? transformer.fromQuery(proxy.value) as unknown as T
-    : storageRef.value as T) as never;
+  r.value = (
+    proxy.value && proxy.value !== proxyDefaultValue
+      ? (transformer.fromQuery(proxy.value) as unknown as T)
+      : (storageRef.value as T)
+  ) as never;
 
   return r;
 }
 
-function useITStorage<T>(key: string, defaults: MaybeRef<T>, storage?: StorageLike, options?: UseStorageOptions<T>): RemovableRef<T> {
+function useITStorage<T>(
+  key: string,
+  defaults: MaybeRef<T>,
+  storage?: StorageLike,
+  options?: UseStorageOptions<T>,
+): RemovableRef<T> {
   const defaultValueOrSetting = getITToolsSetting(key, defaults);
   return useStorage<T>(key, defaultValueOrSetting, storage, options);
 }
@@ -81,10 +106,9 @@ function getITToolsSetting<T>(key: string, defaultValue: MaybeRef<T>) {
   }
   if (key.includes(':')) {
     const [tool, subkey] = key.split(':');
-    return (itToolsSettings[tool] || {})[subkey] as T ?? defaultValue;
-  }
-  else {
-    return (itToolsSettings)[key] as T ?? defaultValue;
+    return ((itToolsSettings[tool] || {})[subkey] as T) ?? defaultValue;
+  } else {
+    return (itToolsSettings[key] as T) ?? defaultValue;
   }
 }
 

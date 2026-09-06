@@ -10,9 +10,8 @@ import { useAppTheme } from './ui/theme/themes';
 // Conditional dynamic import: import.meta.env.DEV is statically false in production
 // builds, so the demo gallery (and everything it imports: c-markdown, markdown-it, …)
 // is dead-code-eliminated from the bundle instead of shipping in the entry graph.
-const demoRoutes = import.meta.env.DEV && config.app.env === 'development'
-  ? (await import('./ui/demo/demo.routes')).routes
-  : [];
+const demoRoutes =
+  import.meta.env.DEV && config.app.env === 'development' ? (await import('./ui/demo/demo.routes')).routes : [];
 
 const $loading = useLoading();
 const toolsRoutes = tools.map(({ path, name, component, ...config }) => ({
@@ -24,7 +23,7 @@ const toolsRoutes = tools.map(({ path, name, component, ...config }) => ({
 const toolsRedirectRoutes = tools
   .filter(({ redirectFrom }) => redirectFrom && redirectFrom.length > 0)
   .flatMap(
-    ({ path, redirectFrom }) => redirectFrom?.map(redirectSource => ({ path: redirectSource, redirect: path })) ?? [],
+    ({ path, redirectFrom }) => redirectFrom?.map((redirectSource) => ({ path: redirectSource, redirect: path })) ?? [],
   );
 
 const router = createRouter({

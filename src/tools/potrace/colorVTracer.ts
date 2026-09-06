@@ -1,10 +1,10 @@
 // Assumes vtracer_webapp.js, vtracer_webapp_bg.wasm, and vtracer_webapp.d.ts are in './wasm/'
 
 export interface ColorVTracerOptions {
-  wasmPath?: string // custom path to vtracer_webapp_bg.wasm
-  potraceOptions?: any // options for Potrace
+  wasmPath?: string; // custom path to vtracer_webapp_bg.wasm
+  potraceOptions?: any; // options for Potrace
   // VTracer and Potrace options can be passed through
-  [key: string]: any
+  [key: string]: any;
 }
 
 export async function createCanvasFromFile(file: File | Blob): Promise<HTMLCanvasElement> {
@@ -46,10 +46,7 @@ export async function createCanvasFromFile(file: File | Blob): Promise<HTMLCanva
  * @param options SVGit4MeOptions (use 'wasmPath' to customize WASM location for VTracer)
  * @returns SVG string
  */
-export async function convertToSVG(
-  image: File | Blob,
-  options: ColorVTracerOptions = {},
-): Promise<string> {
+export async function convertToSVG(image: File | Blob, options: ColorVTracerOptions = {}): Promise<string> {
   // Decide which engine to use
 
   // Use VTracer for color (default)
@@ -62,8 +59,7 @@ export async function convertToSVG(
   }
   if (options.wasmPath) {
     await vtracerInit(options.wasmPath);
-  }
-  else {
+  } else {
     await vtracerInit();
   }
   // Create a hidden SVG element in the DOM
@@ -101,8 +97,10 @@ export async function convertToSVG(
   let svgString = '';
   if (svgElem) {
     svgString = new XMLSerializer().serializeToString(svgElem);
-    svgString = svgString.replace(/<svg[^>]*>/,
-      `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${canvasElem.width}" height="${canvasElem.height}" viewBox="0 0 ${canvasElem.width} ${canvasElem.height}" version="1.1">`);
+    svgString = svgString.replace(
+      /<svg[^>]*>/,
+      `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${canvasElem.width}" height="${canvasElem.height}" viewBox="0 0 ${canvasElem.width} ${canvasElem.height}" version="1.1">`,
+    );
     converter.free();
     svgElem.remove();
     canvasElem.remove();

@@ -3,7 +3,7 @@ import QRCode, { type QRCodeToDataURLOptions } from 'qrcode';
 import { isRef, ref, watch } from 'vue';
 
 export const wifiEncryptions = ['WEP', 'WPA', 'WPA3', 'WPA2/WPA3', 'nopass', 'WPA2-EAP'] as const;
-export type WifiEncryption = typeof wifiEncryptions[number];
+export type WifiEncryption = (typeof wifiEncryptions)[number];
 
 // @see https://en.wikipedia.org/wiki/Extensible_Authentication_Protocol
 // for a list of available EAP methods. There are a lot (40!) of them.
@@ -15,7 +15,7 @@ export const EAPMethods = [
   'IKEv2',
   'SIM',
   'AKA',
-  'AKA\'',
+  "AKA'",
   'TTLS',
   'PWD',
   'LEAP',
@@ -26,35 +26,32 @@ export const EAPMethods = [
   'NOOB',
   'PEAP',
 ] as const;
-export type EAPMethod = typeof EAPMethods[number];
+export type EAPMethod = (typeof EAPMethods)[number];
 
-export const EAPPhase2Methods = [
-  'None',
-  'MSCHAPV2',
-] as const;
-export type EAPPhase2Method = typeof EAPPhase2Methods[number];
+export const EAPPhase2Methods = ['None', 'MSCHAPV2'] as const;
+export type EAPPhase2Method = (typeof EAPPhase2Methods)[number];
 
 interface IWifiQRCodeOptions {
-  ssid: MaybeRef<string>
-  password: MaybeRef<string>
-  eapMethod: MaybeRef<EAPMethod>
-  isHiddenSSID: MaybeRef<boolean>
-  eapAnonymous: MaybeRef<boolean>
-  eapIdentity: MaybeRef<string>
-  eapPhase2Method: MaybeRef<EAPPhase2Method>
-  color: { foreground: MaybeRef<string>; background: MaybeRef<string> }
-  options?: QRCodeToDataURLOptions
+  ssid: MaybeRef<string>;
+  password: MaybeRef<string>;
+  eapMethod: MaybeRef<EAPMethod>;
+  isHiddenSSID: MaybeRef<boolean>;
+  eapAnonymous: MaybeRef<boolean>;
+  eapIdentity: MaybeRef<string>;
+  eapPhase2Method: MaybeRef<EAPPhase2Method>;
+  color: { foreground: MaybeRef<string>; background: MaybeRef<string> };
+  options?: QRCodeToDataURLOptions;
 }
 
 interface GetQrCodeTextOptions {
-  ssid: string
-  password: string
-  encryption: WifiEncryption
-  eapMethod: EAPMethod
-  isHiddenSSID: boolean
-  eapAnonymous: boolean
-  eapIdentity: string
-  eapPhase2Method: EAPPhase2Method
+  ssid: string;
+  password: string;
+  encryption: WifiEncryption;
+  eapMethod: EAPMethod;
+  isHiddenSSID: boolean;
+  eapAnonymous: boolean;
+  eapIdentity: string;
+  eapPhase2Method: EAPPhase2Method;
 }
 
 function escapeString(str: string) {
@@ -121,7 +118,18 @@ export function useWifiQRCode({
   const encryption = ref<WifiEncryption>('WPA');
 
   watch(
-    [ssid, password, encryption, eapMethod, isHiddenSSID, eapAnonymous, eapIdentity, eapPhase2Method, background, foreground].filter(isRef),
+    [
+      ssid,
+      password,
+      encryption,
+      eapMethod,
+      isHiddenSSID,
+      eapAnonymous,
+      eapIdentity,
+      eapPhase2Method,
+      background,
+      foreground,
+    ].filter(isRef),
     async () => {
       // @see https://github.com/zxing/zxing/wiki/Barcode-Contents#wi-fi-network-config-android-ios-11
       // This is the full spec, there's quite a bit of logic to generate the string embeddedin the QR code.

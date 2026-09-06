@@ -6,9 +6,17 @@ import { computedRefreshable } from '@/composable/computedRefreshable';
 
 const count = useQueryParamOrStorage({ name: 'count', storageName: 'rnd-nums-gen:count', defaultValue: 1 });
 const length = useQueryParamOrStorage({ name: 'length', storageName: 'rnd-nums-gen:length', defaultValue: 64 });
-const toUpper = useQueryParamOrStorage({ name: 'uppercase', storageName: 'rnd-nums-gen:uppercase', defaultValue: false });
+const toUpper = useQueryParamOrStorage({
+  name: 'uppercase',
+  storageName: 'rnd-nums-gen:uppercase',
+  defaultValue: false,
+});
 const deniedChars = useQueryParamOrStorage({ name: 'deny', storageName: 'rnd-nums-gen:deny', defaultValue: '' });
-const numberMode = useQueryParamOrStorage<'hexa' | 'dec'>({ name: 'mode', storageName: 'rnd-nums-gen:mode', defaultValue: 'hexa' });
+const numberMode = useQueryParamOrStorage<'hexa' | 'dec'>({
+  name: 'mode',
+  storageName: 'rnd-nums-gen:mode',
+  defaultValue: 'hexa',
+});
 
 function transformCase(s: string) {
   return toUpper.value ? s.toUpperCase() : s.toLowerCase();
@@ -17,16 +25,19 @@ function transformCase(s: string) {
 const { t } = useI18n();
 
 const [numbers, refreshnumbers] = computedRefreshable(() =>
-  transformCase(Array.from({ length: count.value < 1 ? 1 : count.value },
-    () => createToken({
-      length: length.value,
-      withUppercase: false,
-      withLowercase: false,
-      withNumbers: numberMode.value === 'dec',
-      withHexaNumbers: numberMode.value === 'hexa',
-      withSymbols: false,
-      deniedChars: deniedChars.value,
-    })).join('\n')),
+  transformCase(
+    Array.from({ length: count.value < 1 ? 1 : count.value }, () =>
+      createToken({
+        length: length.value,
+        withUppercase: false,
+        withLowercase: false,
+        withNumbers: numberMode.value === 'dec',
+        withHexaNumbers: numberMode.value === 'hexa',
+        withSymbols: false,
+        deniedChars: deniedChars.value,
+      }),
+    ).join('\n'),
+  ),
 );
 
 const { copy } = useCopy({ source: numbers, text: t('tools.random-numbers-generator.copied') });
@@ -65,7 +76,10 @@ const { copy } = useCopy({ source: numbers, text: t('tools.random-numbers-genera
         <n-input-number-i18n v-model:value="length" :min="1" :max="512" size="small" />
       </n-form-item>
 
-      <n-form-item :label="t('tools.random-numbers-generator.texts.label-number-of-number-to-generate')" label-placement="left">
+      <n-form-item
+        :label="t('tools.random-numbers-generator.texts.label-number-of-number-to-generate')"
+        label-placement="left"
+      >
         <n-slider v-model:value="count" :step="1" :min="1" mr-2 />
         <n-input-number-i18n v-model:value="count" :min="1" size="small" />
       </n-form-item>

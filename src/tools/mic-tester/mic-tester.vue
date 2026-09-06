@@ -31,20 +31,20 @@ const { startMicReplay, stopMicReplay, loudnessLevel, isPlaying } = useMicrophon
 
 <style scoped>
 #loudnessMeter {
-width: 100%;
-height: 30px;
-background-color: rgba(46, 51, 56, 0.05);
-margin-top: 20px;
-position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: rgba(46, 51, 56, 0.05);
+  margin-top: 20px;
+  position: relative;
 }
 #loudnessBar {
-height: 100%;
-background: linear-gradient(48deg, rgba(37, 99, 108, 1) 0%, rgba(59, 149, 111, 1) 60%, rgba(20, 160, 88, 1) 100%);
+  height: 100%;
+  background: linear-gradient(48deg, rgba(37, 99, 108, 1) 0%, rgba(59, 149, 111, 1) 60%, rgba(20, 160, 88, 1) 100%);
 }
 .control-buttons {
-display: flex;
-gap: 10px;
-margin-bottom: 20px;
-justify-content: space-between;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: space-between;
 }
 </style>

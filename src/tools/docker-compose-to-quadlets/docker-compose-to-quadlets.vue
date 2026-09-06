@@ -59,8 +59,7 @@ const conversionResult = computed(() => {
       }),
       errors: '',
     };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { quadlets: [], errors: e.toString() };
   }
 });
@@ -74,7 +73,10 @@ const MONACO_EDITOR_OPTIONS = {
 
 <template>
   <div>
-    <c-label :label="t('tools.docker-compose-to-quadlets.texts.label-paste-your-docker-compose-file-content-here')" mb-2>
+    <c-label
+      :label="t('tools.docker-compose-to-quadlets.texts.label-paste-your-docker-compose-file-content-here')"
+      mb-2
+    >
       <div relative w-full>
         <c-monaco-editor
           v-model:value="form.compose"
@@ -106,8 +108,16 @@ const MONACO_EDITOR_OPTIONS = {
 
     <n-divider />
 
-    <c-card v-for="({ filename, content }) in conversionResult.quadlets" :key="filename" :title="`Quadlet file: ${filename}`">
-      <input-copyable :label="t('tools.docker-compose-to-quadlets.texts.label-typical-storage-location')" label-placement="left" :value="`/etc/containers/systemd/${filename}`" />
+    <c-card
+      v-for="{ filename, content } in conversionResult.quadlets"
+      :key="filename"
+      :title="`Quadlet file: ${filename}`"
+    >
+      <input-copyable
+        :label="t('tools.docker-compose-to-quadlets.texts.label-typical-storage-location')"
+        label-placement="left"
+        :value="`/etc/containers/systemd/${filename}`"
+      />
       <TextareaCopyable :value="content" language="ini" :download-file-name="filename" />
     </c-card>
 

@@ -18,10 +18,7 @@ const encodings = [
 const encoding = useQueryParamOrStorage({ name: 'enc', storageName: 'url-encode:enc', defaultValue: 'URIComponent' });
 
 function encodeRFC3986URIComponent(str: string) {
-  return encodeURIComponent(str).replace(
-    /[!'()*]/g,
-    (c: string) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`,
-  );
+  return encodeURIComponent(str).replace(/[!'()*]/g, (c: string) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
 }
 
 function encodeRFC5987ValueChars(str: string) {
@@ -31,15 +28,10 @@ function encodeRFC5987ValueChars(str: string) {
       // the valid encoding of "*" is %2A, which necessitates calling
       // toUpperCase() to properly encode). Although RFC3986 reserves "!",
       // RFC5987 does not, so we do not need to escape it.
-      .replace(
-        /['()*]/g,
-        c => `%${c.charCodeAt(0).toString(16).toUpperCase()}`,
-      )
+      .replace(/['()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`)
       // The following are not required for percent-encoding per RFC5987,
       // so we can allow for a little better readability over the wire: |`^
-      .replace(/%(7C|60|5E)/g, (str, hex) =>
-        String.fromCharCode(Number.parseInt(hex, 16)),
-      )
+      .replace(/%(7C|60|5E)/g, (str, hex) => String.fromCharCode(Number.parseInt(hex, 16)))
   );
 }
 
@@ -47,10 +39,7 @@ function encodeRFC3986URI(str: string) {
   return encodeURI(str)
     .replace(/%5B/g, '[')
     .replace(/%5D/g, ']')
-    .replace(
-      /[!'()*]/g,
-      c => `%${c.charCodeAt(0).toString(16).toUpperCase()}`,
-    );
+    .replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
 }
 
 function encode(str: string) {
@@ -79,13 +68,16 @@ const encodedValidation = useValidation({
   source: encodeInput,
   rules: [
     {
-      validator: value => isNotThrowing(() => encode(value)),
+      validator: (value) => isNotThrowing(() => encode(value)),
       message: t('tools.url-encoder.texts.message-impossible-to-parse-this-string'),
     },
   ],
 });
 
-const { copy: copyEncoded } = useCopy({ source: encodeOutput, text: t('tools.url-encoder.texts.text-encoded-string-copied-to-the-clipboard') });
+const { copy: copyEncoded } = useCopy({
+  source: encodeOutput,
+  text: t('tools.url-encoder.texts.text-encoded-string-copied-to-the-clipboard'),
+});
 
 const decodeInput = useQueryParam({ tool: 'url-encoder', name: 'decode', defaultValue: 'Hello%20world%20%3A)' });
 const decodeOutput = computed(() => withDefaultOnError(() => decodeURIComponent(decodeInput.value), ''));
@@ -94,13 +86,16 @@ const decodeValidation = useValidation({
   source: encodeInput,
   rules: [
     {
-      validator: value => isNotThrowing(() => decodeURIComponent(value)),
+      validator: (value) => isNotThrowing(() => decodeURIComponent(value)),
       message: t('tools.url-encoder.texts.message-impossible-to-parse-this-string'),
     },
   ],
 });
 
-const { copy: copyDecoded } = useCopy({ source: decodeOutput, text: t('tools.url-encoder.texts.text-decoded-string-copied-to-the-clipboard') });
+const { copy: copyDecoded } = useCopy({
+  source: decodeOutput,
+  text: t('tools.url-encoder.texts.text-decoded-string-copied-to-the-clipboard'),
+});
 </script>
 
 <template>

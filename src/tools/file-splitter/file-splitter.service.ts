@@ -58,7 +58,7 @@ export function splitContent(
       return result;
     }
 
-    return getChunks(lines).map(group => group.join('\n'));
+    return getChunks(lines).map((group) => group.join('\n'));
   }
 
   try {
@@ -88,7 +88,7 @@ export function splitContent(
         return result;
       }
 
-      return getChunks(parsed).map(chunk => JSON.stringify(chunk));
+      return getChunks(parsed).map((chunk) => JSON.stringify(chunk));
     }
 
     if (typeof parsed === 'object') {
@@ -117,12 +117,9 @@ export function splitContent(
         return result;
       }
 
-      return getChunks(entries).map(chunk =>
-        JSON.stringify(Object.fromEntries(chunk)),
-      );
+      return getChunks(entries).map((chunk) => JSON.stringify(Object.fromEntries(chunk)));
     }
-  }
-  catch {
+  } catch {
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(content, 'application/xml');
     const root = xmlDoc.documentElement;
@@ -134,14 +131,14 @@ export function splitContent(
 
       for (const child of children) {
         const tempDoc = document.implementation.createDocument('', root.tagName, null);
-        chunk.forEach(c => tempDoc.documentElement.appendChild(c.cloneNode(true)));
+        chunk.forEach((c) => tempDoc.documentElement.appendChild(c.cloneNode(true)));
         tempDoc.documentElement.appendChild(child.cloneNode(true));
         const serialized = new XMLSerializer().serializeToString(tempDoc);
         const chunkSize = serialized.length;
 
         if (chunkSize > count && chunk.length > 0) {
           const frag = document.implementation.createDocument('', root.tagName, null);
-          chunk.forEach(c => frag.documentElement.appendChild(c.cloneNode(true)));
+          chunk.forEach((c) => frag.documentElement.appendChild(c.cloneNode(true)));
           result.push(new XMLSerializer().serializeToString(frag));
           chunk = [];
         }
@@ -151,7 +148,7 @@ export function splitContent(
 
       if (chunk.length > 0) {
         const frag = document.implementation.createDocument('', root.tagName, null);
-        chunk.forEach(c => frag.documentElement.appendChild(c.cloneNode(true)));
+        chunk.forEach((c) => frag.documentElement.appendChild(c.cloneNode(true)));
         result.push(new XMLSerializer().serializeToString(frag));
       }
 
@@ -160,7 +157,7 @@ export function splitContent(
 
     return getChunks(children).map((group) => {
       const frag = document.implementation.createDocument('', root.tagName, null);
-      group.forEach(child => frag.documentElement.appendChild(child.cloneNode(true)));
+      group.forEach((child) => frag.documentElement.appendChild(child.cloneNode(true)));
       return new XMLSerializer().serializeToString(frag);
     });
   }

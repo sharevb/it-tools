@@ -19,43 +19,47 @@ function getNobleKey(key: string, keyEncoding: KeyEncoding) {
 // longer decrypt.
 function getCryptoESCipher(cipher: any) {
   return {
-    encrypt: (value: string, key: string, keyEncoding: KeyEncoding) => cipher.encrypt(value, getCryptoESKey(key, keyEncoding), { iv: Hex.parse('') }).toString(),
-    decrypt: (value: string, key: string, keyEncoding: KeyEncoding) => cipher.decrypt(value, getCryptoESKey(key, keyEncoding), { iv: Hex.parse('') }).toString(Utf8),
+    encrypt: (value: string, key: string, keyEncoding: KeyEncoding) =>
+      cipher.encrypt(value, getCryptoESKey(key, keyEncoding), { iv: Hex.parse('') }).toString(),
+    decrypt: (value: string, key: string, keyEncoding: KeyEncoding) =>
+      cipher.decrypt(value, getCryptoESKey(key, keyEncoding), { iv: Hex.parse('') }).toString(Utf8),
   };
 }
 function getNobleCipher(algo: any, nonceType: 'auto' | 'none' | 'manual' = 'auto', nonceSize: number = 0) {
   return {
     encrypt: (value: string, key: string, keyEncoding: KeyEncoding) => {
       if (nonceType === 'auto') {
-        return Buffer.from(managedNonce(algo)(getNobleKey(key, keyEncoding)).encrypt(utf8ToBytes(value))).toString('base64');
-      }
-      else if (nonceType === 'none') {
+        return Buffer.from(managedNonce(algo)(getNobleKey(key, keyEncoding)).encrypt(utf8ToBytes(value))).toString(
+          'base64',
+        );
+      } else if (nonceType === 'none') {
         return Buffer.from(algo(getNobleKey(key, keyEncoding)).encrypt(utf8ToBytes(value))).toString('base64');
-      }
-      else {
+      } else {
         const nonce = randomBytes(nonceSize);
-        return Buffer.from(new Uint8Array([...nonce, ...algo(getNobleKey(key, keyEncoding), nonce, utf8ToBytes(value))])).toString('base64');
+        return Buffer.from(
+          new Uint8Array([...nonce, ...algo(getNobleKey(key, keyEncoding), nonce, utf8ToBytes(value))]),
+        ).toString('base64');
       }
     },
     decrypt: (value: string, key: string, keyEncoding: KeyEncoding) => {
       if (nonceType === 'auto') {
         return bytesToUtf8(managedNonce(algo)(getNobleKey(key, keyEncoding)).decrypt(Buffer.from(value, 'base64')));
-      }
-      else if (nonceType === 'none') {
+      } else if (nonceType === 'none') {
         return bytesToUtf8(algo(getNobleKey(key, keyEncoding)).decrypt(Buffer.from(value, 'base64')));
-      }
-      else {
+      } else {
         const ciphered = Buffer.from(value, 'base64');
-        return bytesToUtf8(algo(getNobleKey(key, keyEncoding), ciphered.subarray(0, nonceSize), ciphered.subarray(nonceSize)));
+        return bytesToUtf8(
+          algo(getNobleKey(key, keyEncoding), ciphered.subarray(0, nonceSize), ciphered.subarray(nonceSize)),
+        );
       }
     },
   };
 }
 
 export const algos = {
-  'TripleDES': getCryptoESCipher(TripleDES),
-  'Rabbit': getCryptoESCipher(Rabbit),
-  'RC4': getCryptoESCipher(RC4),
+  TripleDES: getCryptoESCipher(TripleDES),
+  Rabbit: getCryptoESCipher(Rabbit),
+  RC4: getCryptoESCipher(RC4),
   'AES-GCM': getNobleCipher(gcm),
   'AES-SIV': getNobleCipher(siv),
   'AES-CTR': getNobleCipher(ctr),

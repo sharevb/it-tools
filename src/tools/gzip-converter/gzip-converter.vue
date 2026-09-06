@@ -8,15 +8,23 @@ import { withDefaultOnError } from '@/utils/defaults';
 const { t } = useI18n();
 
 const compressedInput = ref('');
-const decompressedOutput = computed(() => withDefaultOnError(() => {
-  const compressedBuf = Base64.toUint8Array(compressedInput.value);
-  return fflate.strFromU8(fflate.decompressSync(compressedBuf));
-}, '# invalid compressed base64 string'));
+const decompressedOutput = computed(() =>
+  withDefaultOnError(() => {
+    const compressedBuf = Base64.toUint8Array(compressedInput.value);
+    return fflate.strFromU8(fflate.decompressSync(compressedBuf));
+  }, '# invalid compressed base64 string'),
+);
 
 const rawInput = ref('');
-const compressedGzipOutput = computed(() => withDefaultOnError(() => Base64.fromUint8Array(fflate.gzipSync(fflate.strToU8(rawInput.value))), ''));
-const compressedDeflateOutput = computed(() => withDefaultOnError(() => Base64.fromUint8Array(fflate.deflateSync(fflate.strToU8(rawInput.value))), ''));
-const compressedZlibOutput = computed(() => withDefaultOnError(() => Base64.fromUint8Array(fflate.zlibSync(fflate.strToU8(rawInput.value))), ''));
+const compressedGzipOutput = computed(() =>
+  withDefaultOnError(() => Base64.fromUint8Array(fflate.gzipSync(fflate.strToU8(rawInput.value))), ''),
+);
+const compressedDeflateOutput = computed(() =>
+  withDefaultOnError(() => Base64.fromUint8Array(fflate.deflateSync(fflate.strToU8(rawInput.value))), ''),
+);
+const compressedZlibOutput = computed(() =>
+  withDefaultOnError(() => Base64.fromUint8Array(fflate.zlibSync(fflate.strToU8(rawInput.value))), ''),
+);
 </script>
 
 <template>
@@ -38,7 +46,9 @@ const compressedZlibOutput = computed(() => withDefaultOnError(() => Base64.from
           :value="compressedGzipOutput"
           :word-wrap="true"
           multiline
-          :placeholder="t('tools.gzip-converter.texts.placeholder-the-gzip-compressed-version-of-your-string-will-be-here')"
+          :placeholder="
+            t('tools.gzip-converter.texts.placeholder-the-gzip-compressed-version-of-your-string-will-be-here')
+          "
           mb-5
         />
       </div>
@@ -49,7 +59,9 @@ const compressedZlibOutput = computed(() => withDefaultOnError(() => Base64.from
           :value="compressedZlibOutput"
           :word-wrap="true"
           multiline
-          :placeholder="t('tools.gzip-converter.texts.placeholder-the-zlib-compressed-version-of-your-string-will-be-here')"
+          :placeholder="
+            t('tools.gzip-converter.texts.placeholder-the-zlib-compressed-version-of-your-string-will-be-here')
+          "
           mb-5
         />
       </div>
@@ -60,7 +72,9 @@ const compressedZlibOutput = computed(() => withDefaultOnError(() => Base64.from
           :value="compressedDeflateOutput"
           :word-wrap="true"
           multiline
-          :placeholder="t('tools.gzip-converter.texts.placeholder-the-deflate-compressed-version-of-your-string-will-be-here')"
+          :placeholder="
+            t('tools.gzip-converter.texts.placeholder-the-deflate-compressed-version-of-your-string-will-be-here')
+          "
           mb-5
         />
       </div>

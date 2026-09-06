@@ -30,8 +30,7 @@ const result = computedAsync(async () => {
       return JSON.stringify(await jq.json(obj, jqOrJsonPathString), null, indent);
     }
     return JSON.stringify(jsonpath.query(obj, jqOrJsonPathString), null, indent);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -40,7 +39,7 @@ const jsonValidation = useValidation({
   source: json,
   rules: [
     {
-      validator: v => JSON5.parse(v),
+      validator: (v) => JSON5.parse(v),
       message: t('tools.jq-tester.texts.message-provided-json-is-not-valid'),
     },
   ],
@@ -60,12 +59,7 @@ const jsonValidation = useValidation({
       <div mb-2 flex justify-center>
         <n-radio-group v-model:value="jqtype" name="jqtype">
           <n-space>
-            <n-radio
-              v-for="type in jqtypes"
-              :key="type.value"
-              :value="type.value"
-              :label="type.label"
-            />
+            <n-radio v-for="type in jqtypes" :key="type.value" :value="type.value" :label="type.label" />
           </n-space>
         </n-radio-group>
       </div>

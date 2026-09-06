@@ -58,7 +58,10 @@ const jsonValidation = useValidation({
     </c-card>
 
     <c-card v-if="jsonSizes" :title="t('tools.json-size-analyzer.texts.title-analysis')">
-      <n-input v-model:value="searchInAnalysis" :placeholder="t('tools.json-size-analyzer.texts.placeholder-search-in-result')" />
+      <n-input
+        v-model:value="searchInAnalysis"
+        :placeholder="t('tools.json-size-analyzer.texts.placeholder-search-in-result')"
+      />
       <n-tree
         :show-irrelevant-nodes="false"
         :pattern="searchInAnalysis"

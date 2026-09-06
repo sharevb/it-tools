@@ -27,5 +27,5 @@ const number = computed({
 
 <template>
   <label :for="id" class="settings-label">{{ label }}</label>
-  <input :id="id" v-model="number" type="number" :min="min" :max="max">
+  <input :id="id" v-model="number" type="number" :min="min" :max="max" />
 </template>

@@ -6,14 +6,26 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 const { t } = useI18n();
 
 interface KeyValuePair {
-  key: string
-  value?: string
+  key: string;
+  value?: string;
 }
 const baseUrl = useQueryParamOrStorage({ name: 'url', storageName: 'api-tester:url', defaultValue: '' });
 const method = useQueryParamOrStorage({ name: 'method', storageName: 'api-tester:m', defaultValue: 'POST' });
-const queryParams = useQueryParamOrStorage<KeyValuePair[]>({ name: 'params', storageName: 'api-tester:params', defaultValue: [] });
-const headers = useQueryParamOrStorage<KeyValuePair[]>({ name: 'headers', storageName: 'api-tester:headers', defaultValue: [] });
-const contentType = useQueryParamOrStorage({ name: 'ct', storageName: 'api-tester:ct', defaultValue: 'application/json' });
+const queryParams = useQueryParamOrStorage<KeyValuePair[]>({
+  name: 'params',
+  storageName: 'api-tester:params',
+  defaultValue: [],
+});
+const headers = useQueryParamOrStorage<KeyValuePair[]>({
+  name: 'headers',
+  storageName: 'api-tester:headers',
+  defaultValue: [],
+});
+const contentType = useQueryParamOrStorage({
+  name: 'ct',
+  storageName: 'api-tester:ct',
+  defaultValue: 'application/json',
+});
 const body = useQueryParamOrStorage({ name: 'body', storageName: 'api-tester:body', defaultValue: '' });
 const noCORS = ref(false);
 const apiCallResult = ref();
@@ -40,23 +52,20 @@ async function callAPI() {
     const response = await fetch(url, {
       method: method.value,
       headers: queryHeaders,
-      body: (method.value === 'GET' || method.value === 'HEAD') ? null : body.value,
+      body: method.value === 'GET' || method.value === 'HEAD' ? null : body.value,
       mode: noCORS.value ? 'no-cors' : 'cors',
     });
 
     let responseText = await response.text();
     try {
       responseText = JSON.stringify(JSON.parse(responseText), null, 2);
-    }
-    catch (_) {
-    }
+    } catch (_) {}
     apiCallResult.value = {
       code: response.status,
       error: '',
       result: responseText,
     };
-  }
-  catch (err: any) {
+  } catch (err: any) {
     apiCallResult.value = {
       code: -1,
       error: err.toString(),
@@ -97,8 +106,16 @@ function emptyKeyPair() {
           </template>
           <template #default="{ value }">
             <div v-if="value" w-100 flex justify-center gap-2>
-              <c-input-text v-model:value="value.key" :placeholder="t('tools.api-tester.texts.placeholder-header-name')" type="text" />
-              <c-input-text v-model:value="value.value" :placeholder="t('tools.api-tester.texts.placeholder-value')" type="text" />
+              <c-input-text
+                v-model:value="value.key"
+                :placeholder="t('tools.api-tester.texts.placeholder-header-name')"
+                type="text"
+              />
+              <c-input-text
+                v-model:value="value.value"
+                :placeholder="t('tools.api-tester.texts.placeholder-value')"
+                type="text"
+              />
             </div>
           </template>
         </n-dynamic-input>
@@ -117,8 +134,16 @@ function emptyKeyPair() {
           </template>
           <template #default="{ value }">
             <div v-if="value" w-100 flex justify-center gap-2>
-              <c-input-text v-model:value="value.key" :placeholder="t('tools.api-tester.texts.placeholder-param-name')" type="text" />
-              <c-input-text v-model:value="value.value" :placeholder="t('tools.api-tester.texts.placeholder-value')" type="text" />
+              <c-input-text
+                v-model:value="value.key"
+                :placeholder="t('tools.api-tester.texts.placeholder-param-name')"
+                type="text"
+              />
+              <c-input-text
+                v-model:value="value.value"
+                :placeholder="t('tools.api-tester.texts.placeholder-value')"
+                type="text"
+              />
             </div>
           </template>
         </n-dynamic-input>
@@ -143,15 +168,23 @@ function emptyKeyPair() {
         </c-button>
       </div>
     </c-card>
-    <n-spin
-      v-if="inprogress"
-      size="small"
-    />
-    <c-alert v-if="!inprogress && apiCallResult && apiCallResult.code !== 200" type="error" mt-12 :title="t('tools.api-tester.texts.title-error-while-calling-api')">
-      <p><strong>Status code = {{ apiCallResult.code }}</strong></p>
+    <n-spin v-if="inprogress" size="small" />
+    <c-alert
+      v-if="!inprogress && apiCallResult && apiCallResult.code !== 200"
+      type="error"
+      mt-12
+      :title="t('tools.api-tester.texts.title-error-while-calling-api')"
+    >
+      <p>
+        <strong>Status code = {{ apiCallResult.code }}</strong>
+      </p>
       <TextareaCopyable :value="apiCallResult.error" copy-placement="none" />
     </c-alert>
-    <c-card v-if="!inprogress && apiCallResult && apiCallResult.code === 200" mt-12 :title="t('tools.api-tester.texts.title-api-call-result')">
+    <c-card
+      v-if="!inprogress && apiCallResult && apiCallResult.code === 200"
+      mt-12
+      :title="t('tools.api-tester.texts.title-api-call-result')"
+    >
       <TextareaCopyable :value="apiCallResult.result" word-wrap />
     </c-card>
   </div>

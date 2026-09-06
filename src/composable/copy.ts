@@ -4,7 +4,11 @@ import { useMessage } from 'naive-ui';
 import type { MaybeRefOrGetter } from 'vue';
 import { translate as t } from '@/plugins/i18n.plugin';
 
-export function useCopy({ source, text = t('tools.copy.text.copied-to-the-clipboard'), createToast = true }: { source?: MaybeRefOrGetter<string>; text?: string; createToast?: boolean } = {}) {
+export function useCopy({
+  source,
+  text = t('tools.copy.text.copied-to-the-clipboard'),
+  createToast = true,
+}: { source?: MaybeRefOrGetter<string>; text?: string; createToast?: boolean } = {}) {
   const { copy, copied, ...rest } = useClipboard({
     source,
     legacy: true,
@@ -18,8 +22,7 @@ export function useCopy({ source, text = t('tools.copy.text.copied-to-the-clipbo
     async copy(content?: string, { notificationMessage }: { notificationMessage?: string } = {}) {
       if (source) {
         await copy();
-      }
-      else {
+      } else {
         await copy(content);
       }
 
@@ -30,7 +33,11 @@ export function useCopy({ source, text = t('tools.copy.text.copied-to-the-clipbo
   };
 }
 
-export function useCopyClipboardItems({ source, text = t('tools.copy.text.copied-to-the-clipboard'), createToast = true }: { source?: MaybeRefOrGetter<Array<{ mime: string; content: string }>>; text?: string; createToast?: boolean } = {}) {
+export function useCopyClipboardItems({
+  source,
+  text = t('tools.copy.text.copied-to-the-clipboard'),
+  createToast = true,
+}: { source?: MaybeRefOrGetter<Array<{ mime: string; content: string }>>; text?: string; createToast?: boolean } = {}) {
   function toClipboardItem(item: { mime: string; content: string }) {
     return new ClipboardItem({
       [item.mime]: new Blob([item.content], { type: item.mime }),
@@ -46,11 +53,13 @@ export function useCopyClipboardItems({ source, text = t('tools.copy.text.copied
   return {
     ...rest,
     isJustCopied: copied,
-    async copy(content?: { mime: string; content: string }[], { notificationMessage }: { notificationMessage?: string } = {}) {
+    async copy(
+      content?: { mime: string; content: string }[],
+      { notificationMessage }: { notificationMessage?: string } = {},
+    ) {
       if (source) {
         await copy();
-      }
-      else {
+      } else {
         await copy((content || []).map(toClipboardItem));
       }
 
@@ -61,7 +70,17 @@ export function useCopyClipboardItems({ source, text = t('tools.copy.text.copied
   };
 }
 
-export function useCopyHtml({ sourceHtml, fallbackText, toastText = t('tools.copy.text.copied-to-the-clipboard'), createToast = true }: { sourceHtml?: MaybeRefOrGetter<string>; fallbackText?: MaybeRefOrGetter<string>; toastText?: string; createToast?: boolean } = {}) {
+export function useCopyHtml({
+  sourceHtml,
+  fallbackText,
+  toastText = t('tools.copy.text.copied-to-the-clipboard'),
+  createToast = true,
+}: {
+  sourceHtml?: MaybeRefOrGetter<string>;
+  fallbackText?: MaybeRefOrGetter<string>;
+  toastText?: string;
+  createToast?: boolean;
+} = {}) {
   const message = useMessage();
 
   const copied = ref(false);
@@ -81,8 +100,7 @@ export function useCopyHtml({ sourceHtml, fallbackText, toastText = t('tools.cop
 
     try {
       document.execCommand('copy');
-    }
-    finally {
+    } finally {
       document.body.removeChild(textarea);
     }
   }
@@ -100,19 +118,16 @@ export function useCopyHtml({ sourceHtml, fallbackText, toastText = t('tools.cop
         const blobText = new Blob([fallbackText || html], { type: 'text/plain' });
         const item = new ClipboardItemCtor({ 'text/plain': blobText, 'text/html': blobHtml });
         await navigator.clipboard.write([item]);
-      }
-      else if (navigator.clipboard?.writeText) {
+      } else if (navigator.clipboard?.writeText) {
         // Async text fallback
         await navigator.clipboard.writeText(fallbackText || html);
-      }
-      else {
+      } else {
         // Legacy execCommand fallback
         legacyCopy(fallbackText || html);
       }
 
       copied.value = true;
-    }
-    catch (e: any) {
+    } catch (e: any) {
       error.value = e.toString();
     }
   }
@@ -122,16 +137,14 @@ export function useCopyHtml({ sourceHtml, fallbackText, toastText = t('tools.cop
     async copy(html?: string, text?: string, { notificationMessage }: { notificationMessage?: string } = {}) {
       if (sourceHtml) {
         await copyHtml(toValue(sourceHtml), toValue(fallbackText));
-      }
-      else if (html) {
+      } else if (html) {
         await copyHtml(html, text);
       }
 
       if (createToast) {
         if (error.value) {
           message.error(error.value);
-        }
-        else {
+        } else {
           message.success(notificationMessage ?? toastText);
         }
       }

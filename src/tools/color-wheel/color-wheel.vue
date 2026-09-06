@@ -33,11 +33,11 @@ const harmonyTypes: { type: HarmonyType; label: string }[] = [
 ];
 
 const colorList = computed(() => {
-  return colors.value.map(item => colord(item.rgb).toHex());
+  return colors.value.map((item) => colord(item.rgb).toHex());
 });
 
 function handleChangeGradient(harmonyColors: Harmony[]) {
-  const newColors = harmonyColors.map(color => colord(color.rgb).toHex());
+  const newColors = harmonyColors.map((color) => colord(color.rgb).toHex());
 
   const [base, secondary] = newColors;
 
@@ -50,27 +50,15 @@ function handleChangeGradient(harmonyColors: Harmony[]) {
     return null;
   });
   const secondaryRgb = colord(secondary).toRgb();
-  rootEl.style.setProperty(
-    '--color-interactive',
-    `${secondaryRgb.r}, ${secondaryRgb.g}, ${secondaryRgb.b}`,
-  );
+  rootEl.style.setProperty('--color-interactive', `${secondaryRgb.r}, ${secondaryRgb.g}, ${secondaryRgb.b}`);
   if (newColors.length === 3) {
     const lightColor = colord(base).saturate(0.25).toRgb();
     const darkColor = colord(base).desaturate(0.25).toRgb();
-    rootEl.style.setProperty(
-      '--color4',
-      `${lightColor.r}, ${lightColor.g}, ${lightColor.b}`,
-    );
-    rootEl.style.setProperty(
-      '--color5',
-      `${darkColor.r}, ${darkColor.g}, ${darkColor.b}`,
-    );
+    rootEl.style.setProperty('--color4', `${lightColor.r}, ${lightColor.g}, ${lightColor.b}`);
+    rootEl.style.setProperty('--color5', `${darkColor.r}, ${darkColor.g}, ${darkColor.b}`);
   }
 
-  isColorReadable.value = colord(base).isReadable(
-    isDarkTheme.value ? '#fff' : '#000',
-    { level: 'AAA' },
-  );
+  isColorReadable.value = colord(base).isReadable(isDarkTheme.value ? '#fff' : '#000', { level: 'AAA' });
 }
 
 function handleChangeColors(harmonyColors: Harmony[]) {
@@ -92,20 +80,13 @@ watch(
   <div>
     <c-card :title="t('tools.color-wheel.texts.title-pick-a-color')" mb-2>
       <n-color-picker v-model:value="inputColor" :show-alpha="false" />
-      <div
-        :style="{ backgroundColor: inputColor }"
-      />
+      <div :style="{ backgroundColor: inputColor }" />
     </c-card>
 
     <c-card :title="t('tools.color-wheel.texts.title-pick-a-palette-type')" mb-2>
       <n-radio-group v-model:value="currentType" name="radiogroup">
         <n-space>
-          <n-radio
-            v-for="v in harmonyTypes"
-            :key="v.type"
-            :value="v.type"
-            :label="v.label"
-          />
+          <n-radio v-for="v in harmonyTypes" :key="v.type" :value="v.type" :label="v.label" />
         </n-space>
       </n-radio-group>
     </c-card>
@@ -122,11 +103,7 @@ watch(
         />
       </div>
     </c-card>
-    <div
-      v-for="(color, i) in colorList"
-      :key="i"
-      mt-1 flex items-center justify-center gap-1
-    >
+    <div v-for="(color, i) in colorList" :key="i" mt-1 flex items-center justify-center gap-1>
       <div
         p-1
         :style="{

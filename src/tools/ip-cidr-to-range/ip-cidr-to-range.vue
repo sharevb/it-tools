@@ -8,7 +8,11 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
-const rawCIDR = useQueryParamOrStorage({ name: 'cidr', storageName: 'ip-cidr-to-range:cidr', defaultValue: '192.168.1.0/24' }); // NOSONAR
+const rawCIDR = useQueryParamOrStorage({
+  name: 'cidr',
+  storageName: 'ip-cidr-to-range:cidr',
+  defaultValue: '192.168.1.0/24',
+}); // NOSONAR
 
 const result = computed(() => {
   const parsedCIDR = parseAsCIDR(rawCIDR.value) || rawCIDR.value;
@@ -27,7 +31,12 @@ const result = computed(() => {
 
 const cidrValidation = useValidation({
   source: rawCIDR,
-  rules: [{ message: t('tools.ip-cidr-to-range.texts.message-invalid-ipv4-6-cidr'), validator: cidr => isCidr(parseAsCIDR(cidr) || cidr) }],
+  rules: [
+    {
+      message: t('tools.ip-cidr-to-range.texts.message-invalid-ipv4-6-cidr'),
+      validator: (cidr) => isCidr(parseAsCIDR(cidr) || cidr),
+    },
+  ],
 });
 
 const showResult = computed(() => cidrValidation.isValid && result.value !== undefined);
@@ -37,8 +46,16 @@ const showResult = computed(() => cidrValidation.isValid && result.value !== und
   <div>
     <c-input-text
       v-model:value="rawCIDR"
-      :label="t('tools.ip-cidr-to-range.texts.label-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0')"
-      :placeholder="t('tools.ip-cidr-to-range.texts.placeholder-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0')"
+      :label="
+        t(
+          'tools.ip-cidr-to-range.texts.label-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0',
+        )
+      "
+      :placeholder="
+        t(
+          'tools.ip-cidr-to-range.texts.placeholder-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0',
+        )
+      "
       :validation="cidrValidation"
       clearable
     />
@@ -49,9 +66,9 @@ const showResult = computed(() => cidrValidation.isValid && result.value !== und
         label-position="left"
         label-width="150px"
         label-align="right"
-
         :value="result?.parsedCIDR"
-        disabled mb-2
+        disabled
+        mb-2
       />
     </c-card>
 
@@ -61,18 +78,18 @@ const showResult = computed(() => cidrValidation.isValid && result.value !== und
         label-position="left"
         label-width="150px"
         label-align="right"
-
         :value="result?.startIpAddress"
-        disabled mb-2
+        disabled
+        mb-2
       />
       <input-copyable
         :label="t('tools.ip-cidr-to-range.texts.label-end-ip-address')"
         label-position="left"
         label-width="150px"
         label-align="right"
-
         :value="result?.endIpAddress"
-        disabled mb-2
+        disabled
+        mb-2
       />
 
       <input-copyable
@@ -80,9 +97,9 @@ const showResult = computed(() => cidrValidation.isValid && result.value !== und
         label-position="left"
         label-width="150px"
         label-align="right"
-
         :value="result?.networkType"
-        disabled mb-2
+        disabled
+        mb-2
       />
     </c-card>
   </div>

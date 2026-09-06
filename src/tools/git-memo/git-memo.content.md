@@ -456,7 +456,7 @@ git switch -c <branch> <commit>
 `git reset` modes at a glance:
 
 | Mode      | Moves `HEAD` | Index (staging) | Working tree | Use it to                                    |
-|-----------|--------------|-----------------|--------------|----------------------------------------------|
+| --------- | ------------ | --------------- | ------------ | -------------------------------------------- |
 | `--soft`  | ✅           | untouched       | untouched    | Recommit differently, keep everything staged |
 | `--mixed` | ✅           | reset           | untouched    | Unstage but keep the edits (default)         |
 | `--hard`  | ✅           | reset           | **reset**    | Throw the changes away entirely ⚠️           |

@@ -29,15 +29,27 @@ describe('mac-adress-generator models', () => {
     });
 
     it('generates a random mac address with a prefix', () => {
-      expect(generateRandomMacAddress({ prefix: 'ff:ee:aa', getRandomByte: createRandomByteGenerator() })).toBe('ff:ee:aa:00:01:02');
-      expect(generateRandomMacAddress({ prefix: 'ff:ee:a', getRandomByte: createRandomByteGenerator() })).toBe('ff:ee:0a:00:01:02');
+      expect(generateRandomMacAddress({ prefix: 'ff:ee:aa', getRandomByte: createRandomByteGenerator() })).toBe(
+        'ff:ee:aa:00:01:02',
+      );
+      expect(generateRandomMacAddress({ prefix: 'ff:ee:a', getRandomByte: createRandomByteGenerator() })).toBe(
+        'ff:ee:0a:00:01:02',
+      );
     });
 
     it('generates a random mac address with a prefix and a different separator', () => {
-      expect(generateRandomMacAddress({ prefix: 'ff-ee-aa', separator: '-', getRandomByte: createRandomByteGenerator() })).toBe('ff-ee-aa-00-01-02');
-      expect(generateRandomMacAddress({ prefix: 'ff:ee:aa', separator: '-', getRandomByte: createRandomByteGenerator() })).toBe('ff-ee-aa-00-01-02');
-      expect(generateRandomMacAddress({ prefix: 'ff-ee:aa', separator: '-', getRandomByte: createRandomByteGenerator() })).toBe('ff-ee-aa-00-01-02');
-      expect(generateRandomMacAddress({ prefix: 'ff ee:aa', separator: '-', getRandomByte: createRandomByteGenerator() })).toBe('ff-ee-aa-00-01-02');
+      expect(
+        generateRandomMacAddress({ prefix: 'ff-ee-aa', separator: '-', getRandomByte: createRandomByteGenerator() }),
+      ).toBe('ff-ee-aa-00-01-02');
+      expect(
+        generateRandomMacAddress({ prefix: 'ff:ee:aa', separator: '-', getRandomByte: createRandomByteGenerator() }),
+      ).toBe('ff-ee-aa-00-01-02');
+      expect(
+        generateRandomMacAddress({ prefix: 'ff-ee:aa', separator: '-', getRandomByte: createRandomByteGenerator() }),
+      ).toBe('ff-ee-aa-00-01-02');
+      expect(
+        generateRandomMacAddress({ prefix: 'ff ee:aa', separator: '-', getRandomByte: createRandomByteGenerator() }),
+      ).toBe('ff-ee-aa-00-01-02');
     });
   });
 });

@@ -9,7 +9,8 @@ const { t } = useI18n();
 
 const convertYamlToToml = (value: string) => [stringifyToml(parseYaml(value))].flat().join('\n').trim();
 
-const transformer = (value: string) => value.trim() === '' ? '' : withDefaultOnError(() => convertYamlToToml(value), '');
+const transformer = (value: string) =>
+  value.trim() === '' ? '' : withDefaultOnError(() => convertYamlToToml(value), '');
 
 const rules: UseValidationRule<string>[] = [
   {

@@ -21,10 +21,19 @@ const rootName = useQueryParamOrStorage({ name: 'root', storageName: 'json-pytho
 const pythonVersion = useQueryParamOrStorage({ name: 'version', storageName: 'json-python:pv', defaultValue: '3.6' });
 const classesOnly = useQueryParamOrStorage({ name: 'classes', storageName: 'json-python:cl', defaultValue: false });
 const pythonicNames = useQueryParamOrStorage({ name: 'pythonic', storageName: 'json-python:pn', defaultValue: true });
-const pydanticBaseModel = useQueryParamOrStorage({ name: 'basemodel', storageName: 'json-python:bm', defaultValue: false });
-const optionalProperties = useQueryParamOrStorage({ name: 'optional', storageName: 'json-python:op', defaultValue: false });
+const pydanticBaseModel = useQueryParamOrStorage({
+  name: 'basemodel',
+  storageName: 'json-python:bm',
+  defaultValue: false,
+});
+const optionalProperties = useQueryParamOrStorage({
+  name: 'optional',
+  storageName: 'json-python:op',
+  defaultValue: false,
+});
 
-async function convertJsonToPython(json: string,
+async function convertJsonToPython(
+  json: string,
   {
     pythonVersion = '3.9',
     classesOnly = true,
@@ -33,12 +42,12 @@ async function convertJsonToPython(json: string,
     pydanticBaseModel = false,
     rootName = 'GeneratedClass',
   }: {
-    pythonVersion?: string
-    classesOnly?: boolean
-    pythonicNames?: boolean
-    optionalProperties?: boolean
-    rootName?: string
-    pydanticBaseModel?: boolean
+    pythonVersion?: string;
+    classesOnly?: boolean;
+    pythonicNames?: boolean;
+    optionalProperties?: boolean;
+    rootName?: string;
+    pydanticBaseModel?: boolean;
   } = {},
 ) {
   const jsonInput = jsonInputForTargetLanguage('python');
@@ -64,18 +73,15 @@ async function convertJsonToPython(json: string,
 }
 const pythonOutput = computedAsync(async () => {
   try {
-    return await convertJsonToPython(jsonInput.value,
-      {
-        rootName: rootName.value,
-        pythonVersion: pythonVersion.value,
-        classesOnly: classesOnly.value,
-        pythonicNames: pythonicNames.value,
-        optionalProperties: optionalProperties.value,
-        pydanticBaseModel: pydanticBaseModel.value,
-      },
-    );
-  }
-  catch (e: any) {
+    return await convertJsonToPython(jsonInput.value, {
+      rootName: rootName.value,
+      pythonVersion: pythonVersion.value,
+      classesOnly: classesOnly.value,
+      pythonicNames: pythonicNames.value,
+      optionalProperties: optionalProperties.value,
+      pydanticBaseModel: pydanticBaseModel.value,
+    });
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -100,7 +106,12 @@ const rules: UseValidationRule<string>[] = [
       raw-text
       mb-5
     />
-    <c-input-text v-model:value="rootName" :label="t('tools.json-to-python.texts.label-root-name')" label-position="left" mb-2 />
+    <c-input-text
+      v-model:value="rootName"
+      :label="t('tools.json-to-python.texts.label-root-name')"
+      label-position="left"
+      mb-2
+    />
     <n-space justify="center" items-center>
       <c-select
         v-model:value="pythonVersion"
@@ -124,10 +135,6 @@ const rules: UseValidationRule<string>[] = [
     </n-space>
   </c-card>
   <c-card :title="t('tools.json-to-python.texts.title-your-python-code')">
-    <TextareaCopyable
-      :value="pythonOutput"
-      language="python"
-      download-file-name="output.py"
-    />
+    <TextareaCopyable :value="pythonOutput" language="python" download-file-name="output.py" />
   </c-card>
 </template>

@@ -16,7 +16,8 @@ describe('text-to-unicode', () => {
       expect(convertTextToUnicode('💩 AĀ', { encoding: 'utf16' })).toBe('\\ud83d\\udca9\\u0020\\u0041\\u0100');
       expect(convertTextToUnicode('💩 hello AĀ', { skipAscii: true })).toBe('&#128169; hello A&#256;');
       expect(convertTextToUnicode('linke the string convert to unicode')).toBe(
-        '&#108;&#105;&#110;&#107;&#101;&#32;&#116;&#104;&#101;&#32;&#115;&#116;&#114;&#105;&#110;&#103;&#32;&#99;&#111;&#110;&#118;&#101;&#114;&#116;&#32;&#116;&#111;&#32;&#117;&#110;&#105;&#99;&#111;&#100;&#101;');
+        '&#108;&#105;&#110;&#107;&#101;&#32;&#116;&#104;&#101;&#32;&#115;&#116;&#114;&#105;&#110;&#103;&#32;&#99;&#111;&#110;&#118;&#101;&#114;&#116;&#32;&#116;&#111;&#32;&#117;&#110;&#105;&#99;&#111;&#100;&#101;',
+      );
       expect(convertTextToUnicode('')).toBe('');
     });
   });
@@ -34,7 +35,11 @@ describe('text-to-unicode', () => {
       expect(convertUnicodeToText('\\ud83d\\udca9\\u0020\\u0041\\u0100')).toBe('💩 AĀ');
       expect(convertUnicodeToText('\\01f4a9 AĀ')).toBe('💩 AĀ');
       expect(convertUnicodeToText('&#128169; hello A&#256;')).toBe('💩 hello AĀ');
-      expect(convertUnicodeToText('&#108;&#105;&#110;&#107;&#101;&#32;&#116;&#104;&#101;&#32;&#115;&#116;&#114;&#105;&#110;&#103;&#32;&#99;&#111;&#110;&#118;&#101;&#114;&#116;&#32;&#116;&#111;&#32;&#117;&#110;&#105;&#99;&#111;&#100;&#101;')).toBe('linke the string convert to unicode');
+      expect(
+        convertUnicodeToText(
+          '&#108;&#105;&#110;&#107;&#101;&#32;&#116;&#104;&#101;&#32;&#115;&#116;&#114;&#105;&#110;&#103;&#32;&#99;&#111;&#110;&#118;&#101;&#114;&#116;&#32;&#116;&#111;&#32;&#117;&#110;&#105;&#99;&#111;&#100;&#101;',
+        ),
+      ).toBe('linke the string convert to unicode');
       expect(convertUnicodeToText('')).toBe('');
     });
   });

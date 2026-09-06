@@ -2,11 +2,11 @@
 import type { Cookie, Har, Header, Param, QueryString } from 'har-format';
 
 export interface PossibleScrubItems {
-  headers: string[]
-  cookies: string[]
-  queryArgs: string[]
-  postParams: string[]
-  mimeTypes: string[]
+  headers: string[];
+  cookies: string[];
+  queryArgs: string[];
+  postParams: string[];
+  mimeTypes: string[];
 }
 
 const defaultMimeTypesList = ['application/javascript', 'text/javascript'];
@@ -49,10 +49,7 @@ const defaultRegex = [
   [
     // Redact signature on JWTs
     {
-      regex: new RegExp(
-        '\\b(ey[A-Za-z0-9-_=]+)\\.(ey[A-Za-z0-9-_=]+)\\.[A-Za-z0-9-_.+/=]+\\b',
-        'g',
-      ),
+      regex: new RegExp('\\b(ey[A-Za-z0-9-_=]+)\\.(ey[A-Za-z0-9-_=]+)\\.[A-Za-z0-9-_.+/=]+\\b', 'g'),
       replacement: '$1.$2.redacted',
     },
   ],
@@ -62,10 +59,7 @@ function buildRegex(word: string) {
   return [
     {
       // [full word]=[capture]
-      regex: new RegExp(
-        `([\\s";,&?]+${word}=)([\\w+-_/=#|.%&:!*()\`~'"]+?)(&|\\\\",|",|"\\s|"}}|;){1}`,
-        'g',
-      ),
+      regex: new RegExp(`([\\s";,&?]+${word}=)([\\w+-_/=#|.%&:!*()\`~'"]+?)(&|\\\\",|",|"\\s|"}}|;){1}`, 'g'),
       replacement: `$1[${word} redacted]$3`,
     },
     // Set up this way in case "value" isn't directly after "name"
@@ -75,10 +69,7 @@ function buildRegex(word: string) {
     //    "value": "[capture]"
     // }
     {
-      regex: new RegExp(
-    `("name": "${word}",[\\s\\w+:"-\\%!*()\`~'.,#]*?"value": ")((?:\\\\"|[^"])*?)(")`,
-    'g',
-      ),
+      regex: new RegExp(`("name": "${word}",[\\s\\w+:"-\\%!*()\`~'.,#]*?"value": ")((?:\\\\"|[^"])*?)(")`, 'g'),
       replacement: `$1[${word} redacted]$3`,
     },
     // "name" comes after "value"
@@ -89,8 +80,8 @@ function buildRegex(word: string) {
     // }
     {
       regex: new RegExp(
-    `("value": ")([\\w+-_:&+=#$~/()\\\\.\\,*!|%"\\s;]+)("[,\\s}}]+)([\\s\\w+:"-\\\\%!*\`()~'#.]*"name": "${word}")`,
-    'g',
+        `("value": ")([\\w+-_:&+=#$~/()\\\\.\\,*!|%"\\s;]+)("[,\\s}}]+)([\\s\\w+:"-\\\\%!*\`()~'#.]*"name": "${word}")`,
+        'g',
       ),
       replacement: `$1[${word} redacted]$3$4`,
     },
@@ -138,14 +129,10 @@ export function getHarInfo(input: string): PossibleScrubItems {
 
     const request = entry.request;
     request.headers.map((header: Header) => output.headers.add(header.name));
-    request.queryString.map((arg: QueryString) =>
-      output.queryArgs.add(arg.name),
-    );
+    request.queryString.map((arg: QueryString) => output.queryArgs.add(arg.name));
     request.cookies.map((cookie: Cookie) => output.cookies.add(cookie.name));
     if (request.postData) {
-      request.postData.params?.map((param: Param) =>
-        output.postParams.add(param.name),
-      );
+      request.postData.params?.map((param: Param) => output.postParams.add(param.name));
     }
   }
 
@@ -158,20 +145,14 @@ export function getHarInfo(input: string): PossibleScrubItems {
   };
 }
 
-function getScrubMimeTypes(
-  options?: SanitizeOptions,
-  possibleScrubItems?: PossibleScrubItems,
-) {
+function getScrubMimeTypes(options?: SanitizeOptions, possibleScrubItems?: PossibleScrubItems) {
   if (options?.allMimeTypes && !!possibleScrubItems) {
     return possibleScrubItems.mimeTypes;
   }
   return options?.scrubMimetypes || defaultMimeTypesList;
 }
 
-function getScrubWords(
-  options?: SanitizeOptions,
-  possibleScrubItems?: PossibleScrubItems,
-) {
+function getScrubWords(options?: SanitizeOptions, possibleScrubItems?: PossibleScrubItems) {
   let scrubWords = options?.scrubWords || [];
   if (options?.allCookies && !!possibleScrubItems) {
     scrubWords = scrubWords.concat(possibleScrubItems.cookies);
@@ -190,41 +171,36 @@ function getScrubWords(
 }
 
 interface SanitizeOptions {
-  scrubWords?: string[]
-  scrubMimetypes?: string[]
-  allCookies?: boolean
-  allHeaders?: boolean
-  allQueryArgs?: boolean
-  allMimeTypes?: boolean
-  allPostParams?: boolean
+  scrubWords?: string[];
+  scrubMimetypes?: string[];
+  allCookies?: boolean;
+  allHeaders?: boolean;
+  allQueryArgs?: boolean;
+  allMimeTypes?: boolean;
+  allPostParams?: boolean;
 }
 
 export function sanitize(input: string, options?: SanitizeOptions) {
   let possibleScrubItems: PossibleScrubItems | undefined;
   if (
-    options?.allCookies
-  || options?.allHeaders
-  || options?.allMimeTypes
-  || options?.allQueryArgs
-  || options?.allPostParams
+    options?.allCookies ||
+    options?.allHeaders ||
+    options?.allMimeTypes ||
+    options?.allQueryArgs ||
+    options?.allPostParams
   ) {
     // we have to parse the HAR to get the full list of things we could scrub
     possibleScrubItems = getHarInfo(input);
   }
 
   // Remove specific mime responses first
-  input = removeContentForMimeTypes(
-    input,
-    getScrubMimeTypes(options, possibleScrubItems),
-  );
+  input = removeContentForMimeTypes(input, getScrubMimeTypes(options, possibleScrubItems));
 
   // trim the list of words we are looking for down to the ones actually in the HAR file
-  const wordList = getScrubWords(options, possibleScrubItems).filter(val =>
-    input.includes(val),
-  );
+  const wordList = getScrubWords(options, possibleScrubItems).filter((val) => input.includes(val));
 
   // build list of regexes needed to actually scrub the file
-  const wordSpecificScrubList = wordList.map(word => buildRegex(word));
+  const wordSpecificScrubList = wordList.map((word) => buildRegex(word));
   const allScrubList = defaultRegex.concat(wordSpecificScrubList);
 
   for (const scrubList of allScrubList) {

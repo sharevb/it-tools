@@ -24,10 +24,7 @@ function applyIframeTheme() {
     return;
   }
 
-  doc.documentElement.setAttribute(
-    'data-bs-theme',
-    isDarkTheme.value ? 'dark' : 'light',
-  );
+  doc.documentElement.setAttribute('data-bs-theme', isDarkTheme.value ? 'dark' : 'light');
 }
 
 // Watch for theme changes
@@ -50,10 +47,6 @@ onMounted(() => {
 
 <template>
   <div>
-    <iframe
-      ref="iframeRef"
-      :src="iframeSrc"
-      style="width:100%; height:95vh;"
-    />
+    <iframe ref="iframeRef" :src="iframeSrc" style="width: 100%; height: 95vh" />
   </div>
 </template>

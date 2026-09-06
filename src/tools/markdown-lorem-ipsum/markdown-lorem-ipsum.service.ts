@@ -5,28 +5,28 @@ export type HeaderStyle = 'atx' | 'setext';
 export type ListStyle = 'unordered' | 'ordered';
 
 export interface GeneratorConfig {
-  seedStr: string
-  blocks: number
-  avgSentencePerPara: number
-  enableHeaders: boolean
-  enableLists: boolean
-  enableCode: boolean
-  enableBlockquotes: boolean
-  inlineEmphasis: boolean
-  inlineStrong: boolean
-  inlineLinks: boolean
-  inlineCode: boolean
-  headerStyle: HeaderStyle
-  listStyle: ListStyle
-  headerFrequency: number
-  listFrequency: number
-  codeFrequency: number
-  quoteFrequency: number
-  language: string
+  seedStr: string;
+  blocks: number;
+  avgSentencePerPara: number;
+  enableHeaders: boolean;
+  enableLists: boolean;
+  enableCode: boolean;
+  enableBlockquotes: boolean;
+  inlineEmphasis: boolean;
+  inlineStrong: boolean;
+  inlineLinks: boolean;
+  inlineCode: boolean;
+  headerStyle: HeaderStyle;
+  listStyle: ListStyle;
+  headerFrequency: number;
+  listFrequency: number;
+  codeFrequency: number;
+  quoteFrequency: number;
+  language: string;
 }
 
 export function getSupportedLanguages() {
-  return languageLorems.flatMap(l => l.languages).sort();
+  return languageLorems.flatMap((l) => l.languages).sort();
 }
 
 export function hashSeed(str: string): number {
@@ -35,12 +35,12 @@ export function hashSeed(str: string): number {
     h ^= str.charCodeAt(i);
     h = Math.imul(h, 16777619);
   }
-  return (h >>> 0);
+  return h >>> 0;
 }
 
 export function mulberry32(a: number) {
   return function () {
-    let t = (a += 0x6D2B79F5);
+    let t = (a += 0x6d2b79f5);
     t = Math.imul(t ^ (t >>> 15), t | 1);
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -79,7 +79,14 @@ function capitalized(word: string): string {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-function sentence(cfg: GeneratorConfig, chain: Chain, latinWords: string[], rnd: () => number, min = 6, max = 16): string {
+function sentence(
+  cfg: GeneratorConfig,
+  chain: Chain,
+  latinWords: string[],
+  rnd: () => number,
+  min = 6,
+  max = 16,
+): string {
   const len = Math.floor(rnd() * (max - min + 1)) + min;
   let w = latinWords[Math.floor(rnd() * latinWords.length)];
   const parts: string[] = [];
@@ -101,13 +108,15 @@ function sentence(cfg: GeneratorConfig, chain: Chain, latinWords: string[], rnd:
     w = nextWord(chain, w, rnd, latinWords);
   }
   const body = parts.join(' ');
-  const end = rnd() < 0.1 ? '?!' : (rnd() < 0.5 ? '.' : '!');
+  const end = rnd() < 0.1 ? '?!' : rnd() < 0.5 ? '.' : '!';
   return capitalized(body) + end;
 }
 
 function paragraph(cfg: GeneratorConfig, chain: Chain, rnd: () => number, latinWords: string[]): string {
   const sCount = Math.max(1, Math.round(cfg.avgSentencePerPara + (rnd() - 0.5) * 2));
-  return Array.from({ length: sCount }).map(() => sentence(cfg, chain, latinWords, rnd)).join(' ');
+  return Array.from({ length: sCount })
+    .map(() => sentence(cfg, chain, latinWords, rnd))
+    .join(' ');
 }
 
 function header(rnd: () => number, level: number, style: HeaderStyle, latinWords: string[]): string {
@@ -115,8 +124,7 @@ function header(rnd: () => number, level: number, style: HeaderStyle, latinWords
   const title = `${pick()} ${pick()} ${pick()}`;
   if (style === 'atx') {
     return `${'#'.repeat(Math.min(level, 6))} ${title}`;
-  }
-  else {
+  } else {
     const underline = level <= 1 ? '='.repeat(title.length) : '-'.repeat(title.length);
     return `${title}\n${underline}`;
   }
@@ -127,9 +135,7 @@ function listBlock(cfg: GeneratorConfig, rnd: () => number, latinWords: string[]
   const lines: string[] = [];
   const chain = buildChain(latinWords);
   for (let i = 0; i < items; i++) {
-    const marker = cfg.listStyle === 'ordered'
-      ? `${i + 1}.`
-      : (rnd() < 0.33 ? '-' : (rnd() < 0.66 ? '*' : '+'));
+    const marker = cfg.listStyle === 'ordered' ? `${i + 1}.` : rnd() < 0.33 ? '-' : rnd() < 0.66 ? '*' : '+';
     const text = sentence(cfg, chain, latinWords, rnd, 4, 10);
     lines.push(`${marker} ${text}`);
   }
@@ -153,35 +159,10 @@ function codeBlock(rnd: () => number): string {
       'function square(n) { return n*n }',
       'console.log(square(5))',
     ],
-    json: [
-      '{',
-      '  "id": 42,',
-      '  "name": "ipsum",',
-      '  "active": true',
-      '}',
-    ],
-    bash: [
-      '#!/bin/bash',
-      'echo "Hello lorem"',
-      'for i in {1..3}; do',
-      '  echo "Item $i"',
-      'done',
-    ],
-    md: [
-      '# Sample Markdown',
-      '',
-      '- Item one',
-      '- Item two',
-      '',
-      '> Blockquote lorem ipsum',
-    ],
-    python: [
-      'def greet(name):',
-      '    print(f"Hello {name}")',
-      '',
-      'for n in ["lorem", "ipsum"]:',
-      '    greet(n)',
-    ],
+    json: ['{', '  "id": 42,', '  "name": "ipsum",', '  "active": true', '}'],
+    bash: ['#!/bin/bash', 'echo "Hello lorem"', 'for i in {1..3}; do', '  echo "Item $i"', 'done'],
+    md: ['# Sample Markdown', '', '- Item one', '- Item two', '', '> Blockquote lorem ipsum'],
+    python: ['def greet(name):', '    print(f"Hello {name}")', '', 'for n in ["lorem", "ipsum"]:', '    greet(n)'],
     csharp: [
       'public class Hello {',
       '  public static void Main() {',
@@ -218,26 +199,22 @@ export function generateMarkdown(cfg: GeneratorConfig): string {
       // update currentHeaderLevel realistically
       if (currentHeaderLevel === 1) {
         currentHeaderLevel = rnd() < 0.7 ? 2 : 1;
-      }
-      else if (currentHeaderLevel === 2) {
+      } else if (currentHeaderLevel === 2) {
         currentHeaderLevel = rnd() < 0.5 ? 3 : 1;
-      }
-      else {
+      } else {
         currentHeaderLevel = rnd() < 0.6 ? 2 : 1;
       }
       blocks.push(paragraph(cfg, chain, rnd, latinWords));
-    }
-    else if (cfg.enableLists && roll < cfg.headerFrequency + cfg.listFrequency) {
+    } else if (cfg.enableLists && roll < cfg.headerFrequency + cfg.listFrequency) {
       blocks.push(listBlock(cfg, rnd, latinWords));
-    }
-    else if (cfg.enableCode && roll < cfg.headerFrequency + cfg.listFrequency + cfg.codeFrequency) {
+    } else if (cfg.enableCode && roll < cfg.headerFrequency + cfg.listFrequency + cfg.codeFrequency) {
       blocks.push(codeBlock(rnd));
-    }
-    else if (cfg.enableBlockquotes
-               && roll < cfg.headerFrequency + cfg.listFrequency + cfg.codeFrequency + cfg.quoteFrequency) {
+    } else if (
+      cfg.enableBlockquotes &&
+      roll < cfg.headerFrequency + cfg.listFrequency + cfg.codeFrequency + cfg.quoteFrequency
+    ) {
       blocks.push(blockquote(cfg, rnd, latinWords));
-    }
-    else {
+    } else {
       blocks.push(paragraph(cfg, chain, rnd, latinWords));
     }
   }

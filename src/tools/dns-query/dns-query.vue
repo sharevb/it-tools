@@ -39,7 +39,10 @@ const groupedAnswers = computed(() => {
 
 const formattedResult = computed(() => formatDnsRecords(answers.value));
 
-const { copy } = useCopy({ source: formattedResult, text: t('tools.dns-query.texts.text-dns-records-copied-to-the-clipboard') });
+const { copy } = useCopy({
+  source: formattedResult,
+  text: t('tools.dns-query.texts.text-dns-records-copied-to-the-clipboard'),
+});
 
 async function doQuery() {
   const trimmed = domain.value.trim();
@@ -55,22 +58,18 @@ async function doQuery() {
 
   try {
     answers.value = await queryAllDns(trimmed, defaultRecordTypes);
-  }
-  catch (err: unknown) {
+  } catch (err: unknown) {
     errorMessage.value = err instanceof Error ? err.message : 'DNS query failed';
-  }
-  finally {
+  } finally {
     isLoading.value = false;
   }
 
   whoisLoading.value = true;
   try {
     whoisInfo.value = await queryWhois(trimmed);
-  }
-  catch {
+  } catch {
     // WHOIS is best-effort
-  }
-  finally {
+  } finally {
     whoisLoading.value = false;
   }
 }
@@ -119,7 +118,7 @@ async function doQuery() {
               <tr v-for="(answer, index) in group.records" :key="index">
                 <td>{{ answer.name }}</td>
                 <td>{{ answer.TTL }}s</td>
-                <td style="word-break: break-all;">
+                <td style="word-break: break-all">
                   {{ answer.data }}
                 </td>
               </tr>

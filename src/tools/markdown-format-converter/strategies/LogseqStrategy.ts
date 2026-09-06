@@ -107,7 +107,7 @@ class LogseqRenderer extends PlainRenderer {
     const lines = quote
       .trim()
       .split('\n')
-      .map(line => line.replace(/^>\s?/, '').trim());
+      .map((line) => line.replace(/^>\s?/, '').trim());
     return `- > ${lines.join('\n> ')}\n`;
   }
 
@@ -119,7 +119,7 @@ class LogseqRenderer extends PlainRenderer {
     if (ordered) {
       let index = start;
       const lines = body.split('\n');
-      const formattedLines = lines.map(line => {
+      const formattedLines = lines.map((line) => {
         // Convert the bullet list items to manual numbered list items nested in bullets
         if (line.startsWith('- ')) {
           return line.replace(/^- /, `- ${index++}. `);
@@ -166,7 +166,7 @@ export class LogseqStrategy implements ConverterStrategy {
     const lines = fullText
       .trim()
       .split('\n')
-      .map(l => `> ${l}`)
+      .map((l) => `> ${l}`)
       .join('\n');
     return `- ${lines}\n`;
   }

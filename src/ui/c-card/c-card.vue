@@ -2,7 +2,7 @@
 import { useTheme } from './c-card.theme';
 
 const props = defineProps<{
-  title?: string
+  title?: string;
 }>();
 
 const { title } = toRefs(props);

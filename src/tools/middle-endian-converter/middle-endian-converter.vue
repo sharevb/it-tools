@@ -15,8 +15,7 @@ const result = computed(() => {
       ...converted,
       ...formatInteger(converted.littleEndian),
     };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return {
       error: e.toString(),
       bigEndian: '',
@@ -41,7 +40,10 @@ const middleEndianOptions = [
 </script>
 
 <template>
-  <n-card :title="t('tools.middle-endian-converter.texts.title-endian-converter')" style="max-width: 700px; margin: auto;">
+  <n-card
+    :title="t('tools.middle-endian-converter.texts.title-endian-converter')"
+    style="max-width: 700px; margin: auto"
+  >
     <n-space vertical>
       <n-input
         v-model:value="inputHex"
@@ -63,12 +65,41 @@ const middleEndianOptions = [
       <c-alert v-if="inputHex && result.error">
         {{ result.error }}
       </c-alert>
-      <n-card v-if="inputHex && !result.error" :title="t('tools.middle-endian-converter.texts.title-conversion-result')">
-        <input-copyable :label="t('tools.middle-endian-converter.texts.label-big-endian')" label-width="120px" label-position="left" :value="result.bigEndian" />
-        <input-copyable :label="t('tools.middle-endian-converter.texts.label-little-endian')" label-width="120px" label-position="left" :value="result.littleEndian" />
-        <input-copyable :label="t('tools.middle-endian-converter.texts.label-decimal')" label-width="120px" label-position="left" :value="result.decimal" mt-2 />
-        <input-copyable :label="t('tools.middle-endian-converter.texts.label-octal')" label-width="120px" label-position="left" :value="result.octal" />
-        <input-copyable :label="t('tools.middle-endian-converter.texts.label-hexadecimal')" label-width="120px" label-position="left" :value="result.hexadecimal" />
+      <n-card
+        v-if="inputHex && !result.error"
+        :title="t('tools.middle-endian-converter.texts.title-conversion-result')"
+      >
+        <input-copyable
+          :label="t('tools.middle-endian-converter.texts.label-big-endian')"
+          label-width="120px"
+          label-position="left"
+          :value="result.bigEndian"
+        />
+        <input-copyable
+          :label="t('tools.middle-endian-converter.texts.label-little-endian')"
+          label-width="120px"
+          label-position="left"
+          :value="result.littleEndian"
+        />
+        <input-copyable
+          :label="t('tools.middle-endian-converter.texts.label-decimal')"
+          label-width="120px"
+          label-position="left"
+          :value="result.decimal"
+          mt-2
+        />
+        <input-copyable
+          :label="t('tools.middle-endian-converter.texts.label-octal')"
+          label-width="120px"
+          label-position="left"
+          :value="result.octal"
+        />
+        <input-copyable
+          :label="t('tools.middle-endian-converter.texts.label-hexadecimal')"
+          label-width="120px"
+          label-position="left"
+          :value="result.hexadecimal"
+        />
       </n-card>
     </n-space>
   </n-card>

@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { dateFromObjectId, generateMongoFilter, objectIdFromDate, objectIdSyntaxFromDate } from './mongo-objectid-converter.service';
+import {
+  dateFromObjectId,
+  generateMongoFilter,
+  objectIdFromDate,
+  objectIdSyntaxFromDate,
+} from './mongo-objectid-converter.service';
 
 describe('mongo-objectid-converter', () => {
   describe('objectIdFromDate', () => {
@@ -21,10 +26,12 @@ describe('mongo-objectid-converter', () => {
   });
   describe('generateMongoFilter', () => {
     it('convert a date to mongo query', () => {
-      expect(generateMongoFilter({
-        date: new Date(Date.UTC(2024, 0, 1, 12, 12, 12)),
-        tableName: 'comments',
-      })).to.eql('db.comments.find({_id: {$gt: ObjectId("6592ac1c0000000000000000")}})');
+      expect(
+        generateMongoFilter({
+          date: new Date(Date.UTC(2024, 0, 1, 12, 12, 12)),
+          tableName: 'comments',
+        }),
+      ).to.eql('db.comments.find({_id: {$gt: ObjectId("6592ac1c0000000000000000")}})');
     });
   });
 });

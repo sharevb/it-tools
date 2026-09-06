@@ -8,12 +8,16 @@ const { t } = useI18n();
 
 const rawInput = useQueryParam({ tool: 'string-escaper', name: 'text', defaultValue: 'Hello "every"\n A\'' });
 const language = useQueryParamOrStorage({ name: 'lang', storageName: 'string-escaper:l', defaultValue: 'raw' });
-const single_linize = useQueryParamOrStorage({ name: 'singleline', storageName: 'string-escaper:sl', defaultValue: false });
-const languagesOptions = languages.map(lang => ({ value: lang.id, label: lang.name }));
+const single_linize = useQueryParamOrStorage({
+  name: 'singleline',
+  storageName: 'string-escaper:sl',
+  defaultValue: false,
+});
+const languagesOptions = languages.map((lang) => ({ value: lang.id, label: lang.name }));
 
-const stringOutput = computed(() => escapeForLanguage(
-  rawInput.value, language.value,
-  { single_linize: single_linize.value }));
+const stringOutput = computed(() =>
+  escapeForLanguage(rawInput.value, language.value, { single_linize: single_linize.value }),
+);
 </script>
 
 <template>
@@ -27,7 +31,13 @@ const stringOutput = computed(() => escapeForLanguage(
       rows="4"
       mb-2
     />
-    <c-select v-model:value="language" :label="t('tools.string-escaper.texts.label-target-language')" :options="languagesOptions" searchable mb-2 />
+    <c-select
+      v-model:value="language"
+      :label="t('tools.string-escaper.texts.label-target-language')"
+      :options="languagesOptions"
+      searchable
+      mb-2
+    />
     <n-space justify="center">
       <n-checkbox v-model:checked="single_linize">
         {{ t('tools.string-escaper.texts.tag-single-linize') }}
@@ -35,8 +45,6 @@ const stringOutput = computed(() => escapeForLanguage(
     </n-space>
   </c-card>
   <c-card :title="t('tools.string-escaper.texts.title-your-escaped-string-in-target-language')">
-    <TextareaCopyable
-      :value="stringOutput"
-    />
+    <TextareaCopyable :value="stringOutput" />
   </c-card>
 </template>

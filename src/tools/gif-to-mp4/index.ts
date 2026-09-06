@@ -10,5 +10,6 @@ export const tool = defineTool({
   icon: defineAsyncComponent(() => import('@vicons/tabler/es/VideoPlus')),
   createdAt: new Date('2026-03-15'),
   category: 'Images',
-  externalHTMLContent: 'Download FFMPEG from https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10. All processing done in your browser.',
+  externalHTMLContent:
+    'Download FFMPEG from https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10. All processing done in your browser.',
 });

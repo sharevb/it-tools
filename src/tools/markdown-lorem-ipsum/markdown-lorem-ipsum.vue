@@ -130,19 +130,47 @@ onMounted(generate);
       <c-card :title="t('tools.markdown-lorem-ipsum.texts.title-block-frequencies')" mb-2>
         <n-space>
           <n-form-item :label="t('tools.markdown-lorem-ipsum.texts.label-headers')">
-            <n-input-number v-model:value="ui.headerFrequency" :step="0.05" :min="0" :max="1" size="small" style="width:180px" />
+            <n-input-number
+              v-model:value="ui.headerFrequency"
+              :step="0.05"
+              :min="0"
+              :max="1"
+              size="small"
+              style="width: 180px"
+            />
           </n-form-item>
 
           <n-form-item :label="t('tools.markdown-lorem-ipsum.texts.label-lists')">
-            <n-input-number v-model:value="ui.listFrequency" :step="0.05" :min="0" :max="1" size="small" style="width:180px" />
+            <n-input-number
+              v-model:value="ui.listFrequency"
+              :step="0.05"
+              :min="0"
+              :max="1"
+              size="small"
+              style="width: 180px"
+            />
           </n-form-item>
 
           <n-form-item :label="t('tools.markdown-lorem-ipsum.texts.label-code')">
-            <n-input-number v-model:value="ui.codeFrequency" :step="0.05" :min="0" :max="1" size="small" style="width:180px" />
+            <n-input-number
+              v-model:value="ui.codeFrequency"
+              :step="0.05"
+              :min="0"
+              :max="1"
+              size="small"
+              style="width: 180px"
+            />
           </n-form-item>
 
           <n-form-item :label="t('tools.markdown-lorem-ipsum.texts.label-quotes')">
-            <n-input-number v-model:value="ui.quoteFrequency" :step="0.05" :min="0" :max="1" size="small" style="width:180px" />
+            <n-input-number
+              v-model:value="ui.quoteFrequency"
+              :step="0.05"
+              :min="0"
+              :max="1"
+              size="small"
+              style="width: 180px"
+            />
           </n-form-item>
         </n-space>
       </c-card>

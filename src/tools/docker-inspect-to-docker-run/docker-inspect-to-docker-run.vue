@@ -13,9 +13,13 @@ const conversionResult = computed(() => {
     return { commands: '', errors: [] };
   }
   try {
-    return { commands: parse(inspects).map(c => c.command).join('\n'), errors: [] };
-  }
-  catch (e: any) {
+    return {
+      commands: parse(inspects)
+        .map((c) => c.command)
+        .join('\n'),
+      errors: [],
+    };
+  } catch (e: any) {
     return { commands: '#see error messages', errors: e.toString().split('\n') };
   }
 });
@@ -45,7 +49,11 @@ const MONACO_EDITOR_OPTIONS = {
     </c-label>
 
     <div v-if="errors.length > 0">
-      <n-alert :title="t('tools.docker-inspect-to-docker-run.texts.title-the-following-errors-occured')" type="error" mt-5>
+      <n-alert
+        :title="t('tools.docker-inspect-to-docker-run.texts.title-the-following-errors-occured')"
+        type="error"
+        mt-5
+      >
         <ul>
           <li v-for="(message, index) of errors" :key="index">
             {{ message }}

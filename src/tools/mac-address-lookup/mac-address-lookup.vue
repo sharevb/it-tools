@@ -12,7 +12,10 @@ const getVendorValue = (address: string) => address.trim().replace(/[.:-]/g, '')
 const macAddress = useQueryParam({ tool: 'mac-lookup', name: 'addr', defaultValue: '20:37:06:12:34:56' });
 const details = computed<string | undefined>(() => (db as Record<string, string>)[getVendorValue(macAddress.value)]);
 
-const { copy } = useCopy({ source: () => details.value ?? '', text: t('tools.mac-address-lookup.texts.text-vendor-info-copied-to-the-clipboard') });
+const { copy } = useCopy({
+  source: () => details.value ?? '',
+  text: t('tools.mac-address-lookup.texts.text-vendor-info-copied-to-the-clipboard'),
+});
 </script>
 
 <template>

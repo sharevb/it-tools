@@ -103,7 +103,7 @@ describe('hash text', () => {
     it('does not mutate its input across successive encodings', () => {
       const encodings: Encoding[] = ['Hex', 'Base64', 'Hex', 'Base64url', 'Bin', 'Hex'];
 
-      expect(encodings.map(encoding => formatHexWithEncoding('deadbeef', encoding))).toEqual([
+      expect(encodings.map((encoding) => formatHexWithEncoding('deadbeef', encoding))).toEqual([
         'deadbeef',
         '3q2+7w==',
         'deadbeef',

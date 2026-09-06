@@ -301,8 +301,8 @@ describe('StandardAmortizationCalculator', () => {
       // 60 months + 5 year summary rows = 65 total
       expect(schedule).toHaveLength(65);
 
-      const monthRows = schedule.filter(row => row.type === 'month');
-      const yearRows = schedule.filter(row => row.type === 'year');
+      const monthRows = schedule.filter((row) => row.type === 'month');
+      const yearRows = schedule.filter((row) => row.type === 'year');
 
       expect(monthRows).toHaveLength(60);
       expect(yearRows).toHaveLength(5);
@@ -331,7 +331,7 @@ describe('StandardAmortizationCalculator', () => {
       const schedule = Array.from(calculator.getAmortizationSchedule(params));
 
       // Filter to only month rows for balance comparison
-      const monthRows = schedule.filter(row => row.type === 'month');
+      const monthRows = schedule.filter((row) => row.type === 'month');
 
       for (let i = 1; i < monthRows.length; i++) {
         expect(monthRows[i].remainingBalance).toBeLessThan(monthRows[i - 1].remainingBalance);
@@ -346,7 +346,7 @@ describe('StandardAmortizationCalculator', () => {
       };
 
       const schedule = Array.from(calculator.getAmortizationSchedule(params));
-      const monthRows = schedule.filter(row => row.type === 'month');
+      const monthRows = schedule.filter((row) => row.type === 'month');
       const lastMonthPayment = monthRows[monthRows.length - 1];
 
       expect(lastMonthPayment.remainingBalance).toBeCloseTo(0, 0);
@@ -376,7 +376,7 @@ describe('StandardAmortizationCalculator', () => {
       };
 
       const schedule = Array.from(calculator.getAmortizationSchedule(params));
-      const monthRows = schedule.filter(row => row.type === 'month');
+      const monthRows = schedule.filter((row) => row.type === 'month');
       const firstPayment = monthRows[0].payment;
 
       monthRows.forEach((payment) => {
@@ -392,7 +392,7 @@ describe('StandardAmortizationCalculator', () => {
       };
 
       const schedule = Array.from(calculator.getAmortizationSchedule(params));
-      const yearRows = schedule.filter(row => row.type === 'year');
+      const yearRows = schedule.filter((row) => row.type === 'year');
 
       expect(yearRows).toHaveLength(2); // 2 years
       expect(yearRows[0].paymentIndex).toBe(1); // Year 1
@@ -407,8 +407,8 @@ describe('StandardAmortizationCalculator', () => {
       };
 
       const schedule = Array.from(calculator.getAmortizationSchedule(params));
-      const monthRows = schedule.filter(row => row.type === 'month');
-      const yearRows = schedule.filter(row => row.type === 'year');
+      const monthRows = schedule.filter((row) => row.type === 'month');
+      const yearRows = schedule.filter((row) => row.type === 'year');
 
       // Calculate cumulative totals for the year
       const totalPrincipal = monthRows.reduce((sum, row) => sum + row.principalPayment, 0);
@@ -465,7 +465,7 @@ describe('StandardAmortizationCalculator', () => {
       const schedule = Array.from(calculator.getAmortizationSchedule(params));
       // 3 months, no year summary (< 12 months)
       expect(schedule).toHaveLength(3);
-      const monthRows = schedule.filter(row => row.type === 'month');
+      const monthRows = schedule.filter((row) => row.type === 'month');
       expect(monthRows[2].remainingBalance).toBeCloseTo(0, 0);
     });
 
@@ -479,7 +479,7 @@ describe('StandardAmortizationCalculator', () => {
       const schedule = Array.from(calculator.getAmortizationSchedule(params));
       // 480 months + 40 year summary rows = 520 total
       expect(schedule).toHaveLength(520);
-      const monthRows = schedule.filter(row => row.type === 'month');
+      const monthRows = schedule.filter((row) => row.type === 'month');
       expect(monthRows).toHaveLength(480);
       expect(monthRows[479].remainingBalance).toBeCloseTo(0, 0);
     });

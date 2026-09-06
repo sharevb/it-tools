@@ -7,6 +7,6 @@ export type TrackerService = ReturnType<typeof createTrackerService>;
  * and the tracker service are not tied to the tracking library currently in use.
  */
 export interface PlausibleInstance {
-  trackEvent: (eventName: string) => void
-  enableAutoPageviews: () => void
+  trackEvent: (eventName: string) => void;
+  enableAutoPageviews: () => void;
 }

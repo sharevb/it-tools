@@ -32,14 +32,17 @@ const formatOptions = [
 
 const supportsPassphrase = computed(() => format.value === 'ssh');
 const [certs, refreshCerts] = computedRefreshableAsync(
-  () => withDefaultOnErrorAsync(() => generateKeyPair(
-    {
-      password: debouncedPassword.value,
-      format: format.value as sshpk.PrivateKeyFormatType,
-      curve: curve.value as sshpk.CurveType,
-      comment: debouncedComment.value,
-    },
-  ), emptyCerts),
+  () =>
+    withDefaultOnErrorAsync(
+      () =>
+        generateKeyPair({
+          password: debouncedPassword.value,
+          format: format.value as sshpk.PrivateKeyFormatType,
+          curve: curve.value as sshpk.CurveType,
+          comment: debouncedComment.value,
+        }),
+      emptyCerts,
+    ),
   emptyCerts,
 );
 </script>

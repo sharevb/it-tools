@@ -20,35 +20,45 @@ const unitOptions = [
   { label: t('tools.css-units-converter.texts.label-viewport-height-vh'), value: 'vh' },
 ];
 
-const usesRelativeUnits = computed(() =>
-  ['em', 'rem', '%'].includes(fromUnit.value) || ['em', 'rem', '%'].includes(toUnit.value),
+const usesRelativeUnits = computed(
+  () => ['em', 'rem', '%'].includes(fromUnit.value) || ['em', 'rem', '%'].includes(toUnit.value),
 );
 
-const usesViewportUnits = computed(() =>
-  ['vw', 'vh'].includes(fromUnit.value) || ['vw', 'vh'].includes(toUnit.value),
-);
+const usesViewportUnits = computed(() => ['vw', 'vh'].includes(fromUnit.value) || ['vw', 'vh'].includes(toUnit.value));
 
 function toPx(value: number, unit: string) {
   switch (unit) {
-    case 'px': return value;
+    case 'px':
+      return value;
     case 'em':
-    case 'rem': return value * baseFontSize.value;
-    case '%': return (value / 100) * baseFontSize.value;
-    case 'vw': return (value / 100) * viewportWidth.value;
-    case 'vh': return (value / 100) * viewportHeight.value;
-    default: return value;
+    case 'rem':
+      return value * baseFontSize.value;
+    case '%':
+      return (value / 100) * baseFontSize.value;
+    case 'vw':
+      return (value / 100) * viewportWidth.value;
+    case 'vh':
+      return (value / 100) * viewportHeight.value;
+    default:
+      return value;
   }
 }
 
 function fromPx(pxValue: number, unit: string) {
   switch (unit) {
-    case 'px': return pxValue;
+    case 'px':
+      return pxValue;
     case 'em':
-    case 'rem': return pxValue / baseFontSize.value;
-    case '%': return (pxValue / baseFontSize.value) * 100;
-    case 'vw': return (pxValue / viewportWidth.value) * 100;
-    case 'vh': return (pxValue / viewportHeight.value) * 100;
-    default: return pxValue;
+    case 'rem':
+      return pxValue / baseFontSize.value;
+    case '%':
+      return (pxValue / baseFontSize.value) * 100;
+    case 'vw':
+      return (pxValue / viewportWidth.value) * 100;
+    case 'vh':
+      return (pxValue / viewportHeight.value) * 100;
+    default:
+      return pxValue;
   }
 }
 
@@ -95,7 +105,11 @@ const convertedValue = computed(() => {
           <span v-if="usesRelativeUnits">(for base font size of {{ baseFontSize }}px)</span>
           <span v-if="usesViewportUnits">(for viewport of {{ viewportWidth }}x{{ viewportHeight }})</span>
         </n-p>
-        <input-copyable :label="t('tools.css-units-converter.texts.label-converted-value')" label-position="left" :value="convertedValue" />
+        <input-copyable
+          :label="t('tools.css-units-converter.texts.label-converted-value')"
+          label-position="left"
+          :value="convertedValue"
+        />
       </c-card>
     </NForm>
   </div>

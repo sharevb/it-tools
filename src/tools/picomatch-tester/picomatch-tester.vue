@@ -5,10 +5,13 @@ import { useITStorage, useQueryParamOrStorage } from '@/composable/queryParams';
 import picomatch from 'picomatch';
 
 const pattern = useQueryParamOrStorage({ name: 'pattern', storageName: 'pico:p', defaultValue: '*.js' });
-const batchInput = useITStorage('pico:sample', `index.js
+const batchInput = useITStorage(
+  'pico:sample',
+  `index.js
 foo.txt
 src/app.js
-README.md`);
+README.md`,
+);
 
 const options = useITStorage('pico:opts', {
   nocase: false,
@@ -22,8 +25,7 @@ const options = useITStorage('pico:opts', {
 const regex = computed(() => {
   try {
     return picomatch.makeRe(pattern.value, options.value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -31,15 +33,12 @@ const regex = computed(() => {
 const matcher = computed(() => {
   try {
     return picomatch(pattern.value, options.value);
-  }
-  catch {
+  } catch {
     return null;
   }
 });
 
-const batchLines = computed(() =>
-  batchInput.value.split(/\r?\n/).filter(l => l.trim().length > 0),
-);
+const batchLines = computed(() => batchInput.value.split(/\r?\n/).filter((l) => l.trim().length > 0));
 
 function highlightDiff(line: string) {
   if (!matcher.value) {
@@ -62,14 +61,14 @@ function highlightDiff(line: string) {
   }
 
   return (
-    `<span class="pre">${line.slice(0, idx)}</span>`
-    + `<span class="hit">${match}</span>`
-    + `<span class="post">${line.slice(idx + match.length)}</span>`
+    `<span class="pre">${line.slice(0, idx)}</span>` +
+    `<span class="hit">${match}</span>` +
+    `<span class="post">${line.slice(idx + match.length)}</span>`
   );
 }
 
 const batchResults = computed(() =>
-  batchLines.value.map(line => ({
+  batchLines.value.map((line) => ({
     line,
     isMatch: matcher.value ? matcher.value(line) : false,
     html: highlightDiff(line),
@@ -81,26 +80,35 @@ const batchResults = computed(() =>
   <div>
     <NForm label-placement="left">
       <NFormItem :label="t('tools.picomatch-tester.texts.label-pattern')">
-        <NInput v-model:value="pattern" :placeholder="t('tools.picomatch-tester.texts.placeholder-enter-a-glob-pattern-like-js')" />
+        <NInput
+          v-model:value="pattern"
+          :placeholder="t('tools.picomatch-tester.texts.placeholder-enter-a-glob-pattern-like-js')"
+        />
       </NFormItem>
 
       <NFormItem :label="t('tools.picomatch-tester.texts.label-options')">
         <n-space justify="center">
-          <NCheckbox v-model:checked="options.nocase">{{ t('tools.picomatch-tester.texts.tag-case-insensitive') }}</NCheckbox>
-          <NCheckbox v-model:checked="options.dot">{{ t('tools.picomatch-tester.texts.tag-match-dotfiles') }}</NCheckbox>
-          <NCheckbox v-model:checked="options.noext">
-            No Extglob (like +(a|b))
-          </NCheckbox>
-          <NCheckbox v-model:checked="options.noglobstar">{{ t('tools.picomatch-tester.texts.tag-no-nested-directories-with-globstars') }}</NCheckbox>
-          <NCheckbox v-model:checked="options.contains">{{ t('tools.picomatch-tester.texts.tag-allows-glob-to-match-any-part-of-the-given-string-s') }}</NCheckbox>
-          <NCheckbox v-model:checked="options.strictSlashes">{{ t('tools.picomatch-tester.texts.tag-don-t-match-trailing-slashes-with-single-stars') }}</NCheckbox>
+          <NCheckbox v-model:checked="options.nocase">{{
+            t('tools.picomatch-tester.texts.tag-case-insensitive')
+          }}</NCheckbox>
+          <NCheckbox v-model:checked="options.dot">{{
+            t('tools.picomatch-tester.texts.tag-match-dotfiles')
+          }}</NCheckbox>
+          <NCheckbox v-model:checked="options.noext"> No Extglob (like +(a|b)) </NCheckbox>
+          <NCheckbox v-model:checked="options.noglobstar">{{
+            t('tools.picomatch-tester.texts.tag-no-nested-directories-with-globstars')
+          }}</NCheckbox>
+          <NCheckbox v-model:checked="options.contains">{{
+            t('tools.picomatch-tester.texts.tag-allows-glob-to-match-any-part-of-the-given-string-s')
+          }}</NCheckbox>
+          <NCheckbox v-model:checked="options.strictSlashes">{{
+            t('tools.picomatch-tester.texts.tag-don-t-match-trailing-slashes-with-single-stars')
+          }}</NCheckbox>
         </n-space>
       </NFormItem>
 
       <NFormItem :label="t('tools.picomatch-tester.texts.label-generated-regex')">
-        <input-copyable
-          :value="regex ? regex.toString() : 'Invalid pattern'"
-        />
+        <input-copyable :value="regex ? regex.toString() : 'Invalid pattern'" />
       </NFormItem>
 
       <NFormItem :label="t('tools.picomatch-tester.texts.label-test-lines-one-per-line')" label-placement="top">
@@ -113,11 +121,7 @@ const batchResults = computed(() =>
       </NFormItem>
 
       <div class="pico-batch-results">
-        <div
-          v-for="(r, i) in batchResults"
-          :key="i"
-          class="batch-line"
-        >
+        <div v-for="(r, i) in batchResults" :key="i" class="batch-line">
           <NAlert :type="r.isMatch ? 'success' : 'error'" :bordered="false">
             <div class="diff-line" v-html="r.html" />
           </NAlert>
@@ -139,18 +143,18 @@ const batchResults = computed(() =>
     white-space: pre-wrap;
 
     .pre {
-        opacity: 0.6;
+      opacity: 0.6;
     }
 
     .post {
-        opacity: 0.6;
+      opacity: 0.6;
     }
 
     .hit {
       background: #7d7b72;
       padding: 0 2px;
       border-radius: 2px;
-      color:white;
+      color: white;
     }
 
     .no-match {

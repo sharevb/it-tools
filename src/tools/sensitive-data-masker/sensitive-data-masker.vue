@@ -23,16 +23,30 @@ const defaultValue = `{
 const customRegex = useITStorage('sensitive-data:regex', '');
 const excludedMatchers = useITStorage('sensitive-data:exclude', [] as string[]);
 const allMatchers = [
-  'uuid', 'creditCard', 'ssn', 'url', 'ipv4', 'email',
-  'passwordInUri', 'mac', 'ipv6', 'urlWithOrWithoutPrefix',
-  'jwt', 'phone'];
+  'uuid',
+  'creditCard',
+  'ssn',
+  'url',
+  'ipv4',
+  'email',
+  'passwordInUri',
+  'mac',
+  'ipv6',
+  'urlWithOrWithoutPrefix',
+  'jwt',
+  'phone',
+];
 
 function transformer(value: string) {
-  return withDefaultOnError(() => maskSensitiveData({
-    value,
-    customRegex: customRegex.value,
-    excludedMatchers: excludedMatchers.value as MatcherNames[],
-  }), '');
+  return withDefaultOnError(
+    () =>
+      maskSensitiveData({
+        value,
+        customRegex: customRegex.value,
+        excludedMatchers: excludedMatchers.value as MatcherNames[],
+      }),
+    '',
+  );
 }
 </script>
 
@@ -53,7 +67,7 @@ function transformer(value: string) {
       :placeholder="t('tools.sensitive-data-masker.texts.placeholder-no-fallback')"
       multiple
       :fallback-option="false"
-      :options="allMatchers.map(v => ({ label: v, value: v }))"
+      :options="allMatchers.map((v) => ({ label: v, value: v }))"
       mb-2
     />
 

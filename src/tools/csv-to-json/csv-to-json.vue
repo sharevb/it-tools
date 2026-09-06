@@ -20,7 +20,8 @@ function transformer(value: string) {
 
 const rules: UseValidationRule<string>[] = [
   {
-    validator: (v: string) => v === '' || ((v.includes(',') || v.includes(';') || v.includes('\t') || v.includes('|')) && v.includes('\n')),
+    validator: (v: string) =>
+      v === '' || ((v.includes(',') || v.includes(';') || v.includes('\t') || v.includes('|')) && v.includes('\n')),
     message: t('tools.csv-to-json.texts.message-provided-csv-is-not-valid'),
   },
 ];

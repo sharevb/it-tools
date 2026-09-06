@@ -24,7 +24,9 @@ describe('password-strength-analyser-and-crack-time-estimation', () => {
         expect(getCharsetLength({ password: 'abcdefghijklmnopqrstuvwxyz0123456789' })).toBe(36);
       });
       it('the charset length is 95 when the password is lowercase characters, uppercase characters, digits and special characters', () => {
-        expect(getCharsetLength({ password: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_(' })).toBe(94);
+        expect(
+          getCharsetLength({ password: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_(' }),
+        ).toBe(94);
       });
     });
   });

@@ -3,7 +3,12 @@ import { useI18n } from 'vue-i18n';
 import { useBase64 } from '@vueuse/core';
 import type { Ref } from 'vue';
 import { useCopy } from '@/composable/copy';
-import { getExtensionFromMimeType, getMimeTypeFromBase64, previewImageFromBase64, useDownloadFileFromBase64Refs } from '@/composable/downloadBase64';
+import {
+  getExtensionFromMimeType,
+  getMimeTypeFromBase64,
+  previewImageFromBase64,
+  useDownloadFileFromBase64Refs,
+} from '@/composable/downloadBase64';
 import { useValidation } from '@/composable/validation';
 import { isValidBase64 } from '@/utils/base64';
 
@@ -12,31 +17,27 @@ const { t } = useI18n();
 const fileName = ref('file');
 const fileExtension = ref('');
 const base64Input = ref('');
-const { download } = useDownloadFileFromBase64Refs(
-  {
-    source: base64Input,
-    filename: fileName,
-    extension: fileExtension,
-  });
+const { download } = useDownloadFileFromBase64Refs({
+  source: base64Input,
+  filename: fileName,
+  extension: fileExtension,
+});
 const base64InputValidation = useValidation({
   source: base64Input,
   rules: [
     {
       message: t('tools.base64-file-converter.texts.message-invalid-base-64-string'),
-      validator: value => isValidBase64(value.trim()),
+      validator: (value) => isValidBase64(value.trim()),
     },
   ],
 });
 
-watch(
-  base64Input,
-  (newValue, _) => {
-    const { mimeType } = getMimeTypeFromBase64({ base64String: newValue });
-    if (mimeType) {
-      fileExtension.value = getExtensionFromMimeType(mimeType) || fileExtension.value;
-    }
-  },
-);
+watch(base64Input, (newValue, _) => {
+  const { mimeType } = getMimeTypeFromBase64({ base64String: newValue });
+  if (mimeType) {
+    fileExtension.value = getExtensionFromMimeType(mimeType) || fileExtension.value;
+  }
+});
 
 function previewImage() {
   if (!base64InputValidation.isValid) {
@@ -51,8 +52,7 @@ function previewImage() {
       previewContainer.innerHTML = '';
       previewContainer.appendChild(image);
     }
-  }
-  catch (_) {
+  } catch (_) {
     //
   }
 }
@@ -64,8 +64,7 @@ function downloadFile() {
 
   try {
     download();
-  }
-  catch (_) {
+  } catch (_) {
     //
   }
 }
@@ -79,7 +78,10 @@ const cleanedFileBase64 = computed(() => {
   }
   return fileBase64.value.replace(/^data:[^;]*;base64,/, '');
 });
-const { copy: copyFileBase64 } = useCopy({ source: cleanedFileBase64, text: t('tools.base64-file-converter.texts.text-base64-string-copied-to-the-clipboard') });
+const { copy: copyFileBase64 } = useCopy({
+  source: cleanedFileBase64,
+  text: t('tools.base64-file-converter.texts.text-base64-string-copied-to-the-clipboard'),
+});
 
 async function onUpload(file: File) {
   if (file) {
@@ -145,7 +147,14 @@ async function onUpload(file: File) {
       </n-checkbox>
     </n-space>
 
-    <c-input-text :value="cleanedFileBase64" multiline readonly :placeholder="t('tools.base64-file-converter.texts.placeholder-file-in-base64-will-be-here')" rows="5" my-2 />
+    <c-input-text
+      :value="cleanedFileBase64"
+      multiline
+      readonly
+      :placeholder="t('tools.base64-file-converter.texts.placeholder-file-in-base64-will-be-here')"
+      rows="5"
+      my-2
+    />
 
     <div flex justify-center>
       <c-button @click="copyFileBase64()">

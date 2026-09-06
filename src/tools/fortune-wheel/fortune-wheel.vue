@@ -17,10 +17,10 @@ const WHEEL_CONFIG = {
 const WHEEL_CENTER = WHEEL_CONFIG.size / 2;
 
 interface WheelOption {
-  id: string
-  text: string
-  color: string
-  bgColor: string
+  id: string;
+  text: string;
+  color: string;
+  bgColor: string;
 }
 
 // Generate random offset once on initialization to vary starting colors
@@ -47,7 +47,7 @@ function getContrastColor(hue: number, saturation: number, lightness: number): s
   const l = lightness / 100;
 
   const c = (1 - Math.abs(2 * l - 1)) * s;
-  const x = c * (1 - Math.abs((h * 6) % 2 - 1));
+  const x = c * (1 - Math.abs(((h * 6) % 2) - 1));
   const m = l - c / 2;
 
   // Compact RGB calculation using array indexing
@@ -61,7 +61,7 @@ function getContrastColor(hue: number, saturation: number, lightness: number): s
     [c, 0, x], // 300-360°
   ];
 
-  const [r, g, b] = rgbValues[hueSegment].map(val => (val + m) * 255);
+  const [r, g, b] = rgbValues[hueSegment].map((val) => (val + m) * 255);
 
   // Calculate relative luminance and return appropriate contrast color
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
@@ -96,20 +96,17 @@ watchEffect(() => {
       text,
       ...generateUniqueColor(index),
     }));
-  }
-  catch {
+  } catch {
     wheelOptions.value = [];
   }
 });
 
 // Save options when changed
 watchEffect(() => {
-  savedOptions.value = JSON.stringify(wheelOptions.value.map(opt => opt.text));
+  savedOptions.value = JSON.stringify(wheelOptions.value.map((opt) => opt.text));
 });
 
-const segmentAngle = computed(() =>
-  wheelOptions.value.length > 0 ? 360 / wheelOptions.value.length : 0,
-);
+const segmentAngle = computed(() => (wheelOptions.value.length > 0 ? 360 / wheelOptions.value.length : 0));
 
 function addOption() {
   if (!newOptionText.value.trim()) {
@@ -127,7 +124,7 @@ function addOption() {
 }
 
 function removeOption(id: string) {
-  const index = wheelOptions.value.findIndex(opt => opt.id === id);
+  const index = wheelOptions.value.findIndex((opt) => opt.id === id);
   if (index > -1) {
     wheelOptions.value.splice(index, 1);
     // Reassign colors after removal
@@ -183,7 +180,7 @@ function spinWheel() {
     recentResults.forEach((recentIndex: number, arrayIndex: number) => {
       if (recentIndex >= 0 && recentIndex < weights.length) {
         // More recent results get heavier penalties
-        const penalty = arrayIndex === 0 ? 0.1 : (arrayIndex === 1 ? 0.3 : 0.6);
+        const penalty = arrayIndex === 0 ? 0.1 : arrayIndex === 1 ? 0.3 : 0.6;
         weights[recentIndex] *= penalty;
       }
     });
@@ -204,8 +201,7 @@ function spinWheel() {
     // Update recent results history (keep last 3)
     const updatedRecent = [targetSegment, ...recentResults.slice(0, 2)];
     localStorage.setItem('fortune-wheel:recent-results', JSON.stringify(updatedRecent));
-  }
-  else {
+  } else {
     targetSegment = 0;
   }
 
@@ -249,8 +245,8 @@ function getSegmentPath(index: number) {
             A ${innerRadius} ${innerRadius} 0 1 0 ${centerX + innerRadius} ${centerY}
             A ${innerRadius} ${innerRadius} 0 1 0 ${centerX - innerRadius} ${centerY} Z`;
   }
-  const startAngle = (index * angle - 90) * Math.PI / 180;
-  const endAngle = ((index + 1) * angle - 90) * Math.PI / 180;
+  const startAngle = ((index * angle - 90) * Math.PI) / 180;
+  const endAngle = (((index + 1) * angle - 90) * Math.PI) / 180;
 
   const x1 = centerX + outerRadius * Math.cos(startAngle);
   const y1 = centerY + outerRadius * Math.sin(startAngle);
@@ -273,7 +269,7 @@ function getTextPosition(index: number) {
   const centerX = WHEEL_CENTER;
   const centerY = WHEEL_CENTER;
 
-  const textAngle = (index * angle + angle / 2 - 90) * Math.PI / 180;
+  const textAngle = ((index * angle + angle / 2 - 90) * Math.PI) / 180;
   // Round coordinates to whole numbers for sharp text rendering
   const x = Math.round(centerX + radius * Math.cos(textAngle));
   const y = Math.round(centerY + radius * Math.sin(textAngle));
@@ -395,15 +391,11 @@ function getTextPosition(index: number) {
             >
               {{ option.text.length > 20 ? `${option.text.slice(0, 20)}...` : option.text }}
             </text>
-
           </g>
         </svg>
 
         <!-- Center circle with result display -->
-        <div
-          class="wheel-center"
-          :style="{ backgroundColor: result?.bgColor }"
-        >
+        <div class="wheel-center" :style="{ backgroundColor: result?.bgColor }">
           <div v-if="result" class="center-result">
             <div
               class="result-text"
@@ -424,11 +416,7 @@ function getTextPosition(index: number) {
       </div>
 
       <div class="spin-controls">
-        <c-button
-          :disabled="isSpinning || wheelOptions.length === 0"
-          size="large"
-          @click="spinWheel"
-        >
+        <c-button :disabled="isSpinning || wheelOptions.length === 0" size="large" @click="spinWheel">
           {{ isSpinning ? 'Spinning...' : 'Spin the Wheel!' }}
         </c-button>
       </div>
@@ -581,7 +569,7 @@ function getTextPosition(index: number) {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .wheel-pointer {

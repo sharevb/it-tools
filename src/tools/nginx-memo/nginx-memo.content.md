@@ -1,4 +1,4 @@
-**nginx** is a web server, reverse proxy and load balancer. Configuration is a tree of *contexts* — `main` → `events` / `http` → `server` → `location` — and a directive is only valid in the contexts that define it.
+**nginx** is a web server, reverse proxy and load balancer. Configuration is a tree of _contexts_ — `main` → `events` / `http` → `server` → `location` — and a directive is only valid in the contexts that define it.
 
 ## 🛠 Service & CLI
 
@@ -35,7 +35,7 @@ sudo tail -f /var/log/nginx/error.log
 ## 📁 Where Things Live
 
 | Path                          | What it holds                                        |
-|-------------------------------|------------------------------------------------------|
+| ----------------------------- | ---------------------------------------------------- |
 | `/etc/nginx/nginx.conf`       | The main file — worker settings and the `http` block |
 | `/etc/nginx/conf.d/*.conf`    | Included by default on RHEL-style installs           |
 | `/etc/nginx/sites-available/` | Site configs on Debian/Ubuntu                        |
@@ -142,12 +142,12 @@ server {
 nginx does not pick locations top to bottom — it picks by modifier, in this order:
 
 | Modifier | Example                  | Meaning                                             | Priority             |
-|----------|--------------------------|-----------------------------------------------------|----------------------|
+| -------- | ------------------------ | --------------------------------------------------- | -------------------- |
 | `=`      | `location = /health`     | Exact match                                         | 1 — wins immediately |
 | `^~`     | `location ^~ /static/`   | Prefix match that stops regex matching              | 2                    |
 | `~`      | `location ~ \.php$`      | Case-sensitive regex, first match in file order     | 3                    |
 | `~*`     | `location ~* \.(jpe?g)$` | Case-insensitive regex                              | 3                    |
-| *(none)* | `location /images/`      | Prefix match — the longest one wins if no regex did | 4                    |
+| _(none)_ | `location /images/`      | Prefix match — the longest one wins if no regex did | 4                    |
 
 ```nginx
 location = /health { return 200 "ok\n"; }   # checked first, cheapest
@@ -258,8 +258,8 @@ server {
 ```
 
 | Method                  | Behaviour                                       |
-|-------------------------|-------------------------------------------------|
-| *(default)*             | Round robin, honouring `weight`                 |
+| ----------------------- | ----------------------------------------------- |
+| _(default)_             | Round robin, honouring `weight`                 |
 | `least_conn`            | Fewest active connections wins                  |
 | `ip_hash`               | Same client IP always reaches the same server   |
 | `hash <key>`            | Distribute by any variable, e.g. `$request_uri` |
@@ -372,7 +372,7 @@ http {
 ## 🧪 Useful Variables
 
 | Variable                     | Holds                                            |
-|------------------------------|--------------------------------------------------|
+| ---------------------------- | ------------------------------------------------ |
 | `$host`                      | The Host header, or the server name that matched |
 | `$uri`                       | The normalised path, without the query string    |
 | `$request_uri`               | The original path **with** the query string      |
@@ -390,7 +390,7 @@ http {
 ## 🩺 Troubleshooting
 
 | Symptom                          | Usual cause                                                                      |
-|----------------------------------|----------------------------------------------------------------------------------|
+| -------------------------------- | -------------------------------------------------------------------------------- |
 | `502 Bad Gateway`                | The backend is down, or refused the connection — check the app and `proxy_pass`  |
 | `504 Gateway Timeout`            | The backend is too slow — raise `proxy_read_timeout`, then fix the app           |
 | `413 Request Entity Too Large`   | Raise `client_max_body_size`                                                     |

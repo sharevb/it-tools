@@ -2,7 +2,7 @@ export const defaultRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA
 
 export const allRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'SRV', 'CAA', 'PTR'] as const;
 
-export type DnsRecordType = typeof allRecordTypes[number];
+export type DnsRecordType = (typeof allRecordTypes)[number];
 
 const dnsTypeNumberToName: Record<number, string> = {
   1: 'A',
@@ -22,22 +22,22 @@ export function getTypeName(typeNumber: number): string {
 }
 
 export interface DnsAnswer {
-  name: string
-  type: number
-  TTL: number
-  data: string
+  name: string;
+  type: number;
+  TTL: number;
+  data: string;
 }
 
 export interface DnsResponse {
-  Status: number
-  TC: boolean
-  RD: boolean
-  RA: boolean
-  AD: boolean
-  CD: boolean
-  Question: { name: string; type: number }[]
-  Answer?: DnsAnswer[]
-  Authority?: DnsAnswer[]
+  Status: number;
+  TC: boolean;
+  RD: boolean;
+  RA: boolean;
+  AD: boolean;
+  CD: boolean;
+  Question: { name: string; type: number }[];
+  Answer?: DnsAnswer[];
+  Authority?: DnsAnswer[];
 }
 
 export async function queryDns({ domain, type }: { domain: string; type: string }): Promise<DnsResponse> {
@@ -55,9 +55,7 @@ export async function queryDns({ domain, type }: { domain: string; type: string 
 }
 
 export async function queryAllDns(domain: string, types: readonly string[]): Promise<DnsAnswer[]> {
-  const results = await Promise.allSettled(
-    types.map(type => queryDns({ domain, type })),
-  );
+  const results = await Promise.allSettled(types.map((type) => queryDns({ domain, type })));
 
   const seen = new Set<string>();
   const answers: DnsAnswer[] = [];
@@ -90,16 +88,16 @@ export function formatDnsRecords(answers: DnsAnswer[]): string {
 }
 
 export interface WhoisInfo {
-  domainName: string
-  registrar: string
-  registrationDate: string
-  expirationDate: string
-  updatedDate: string
-  status: string[]
-  nameServers: string[]
-  dnssec: string
-  registrantCountry: string
-  registrantProvince: string
+  domainName: string;
+  registrar: string;
+  registrationDate: string;
+  expirationDate: string;
+  updatedDate: string;
+  status: string[];
+  nameServers: string[];
+  dnssec: string;
+  registrantCountry: string;
+  registrantProvince: string;
 }
 
 export async function queryWhois(domain: string): Promise<WhoisInfo | null> {
@@ -110,8 +108,7 @@ export async function queryWhois(domain: string): Promise<WhoisInfo | null> {
     }
     const data = await response.json();
     return parseRdapResponse(data, domain);
-  }
-  catch {
+  } catch {
     return null;
   }
 }
@@ -124,8 +121,7 @@ function parseRdapResponse(data: any, domain: string): WhoisInfo {
   };
 
   const registrarEntity = (data.entities ?? []).find((e: any) => e.roles?.includes('registrar'));
-  const registrar = registrarEntity?.vcardArray?.[1]
-    ?.find((v: any) => v[0] === 'fn')?.[3] ?? '';
+  const registrar = registrarEntity?.vcardArray?.[1]?.find((v: any) => v[0] === 'fn')?.[3] ?? '';
 
   const registrantEntity = (data.entities ?? []).find((e: any) => e.roles?.includes('registrant'));
   const registrantVcard = registrantEntity?.vcardArray?.[1] ?? [];
@@ -133,9 +129,7 @@ function parseRdapResponse(data: any, domain: string): WhoisInfo {
   const registrantCountry = adr?.[1]?.cc ?? '';
   const registrantProvince = adr?.[3]?.[4] ?? '';
 
-  const nameServers = (data.nameservers ?? [])
-    .map((ns: any) => (ns.ldhName ?? '').replace(/\.$/, ''))
-    .filter(Boolean);
+  const nameServers = (data.nameservers ?? []).map((ns: any) => (ns.ldhName ?? '').replace(/\.$/, '')).filter(Boolean);
 
   const status = (data.status ?? []).map((s: string) => s.replaceAll(' ', ''));
 
@@ -159,8 +153,7 @@ function formatDate(isoDate: string): string {
   try {
     const d = new Date(isoDate);
     return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
-  }
-  catch {
+  } catch {
     return isoDate;
   }
 }

@@ -18,8 +18,7 @@ async function onFileUploaded(uploadedFile: File) {
   try {
     type.value = await fileTypeFromBuffer(new Uint8Array(fileBuffer.slice(0, 4096)));
     status.value = 'done';
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
@@ -70,10 +69,7 @@ async function onFileUploaded(uploadedFile: File) {
       <c-alert v-if="status === 'error'" type="error">
         {{ $t('tools.file-type.texts.an-error-occured-processing') }} <span>{{ file?.name }}</span>
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
   </div>
 </template>

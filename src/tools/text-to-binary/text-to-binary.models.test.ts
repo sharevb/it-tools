@@ -42,7 +42,9 @@ describe('text-to-binary', () => {
         expect(converted).toBe(binary);
       }
 
-      expect(convertTextToUtf8Binary('💩 A', { base: 2 })).toBe('11110000 10011111 10010010 10101001 00100000 01000001');
+      expect(convertTextToUtf8Binary('💩 A', { base: 2 })).toBe(
+        '11110000 10011111 10010010 10101001 00100000 01000001',
+      );
       expect(convertTextToUtf8Binary('💩 A', { base: 8 })).toBe('0360 0237 0222 0251 040 0101');
       expect(convertTextToUtf8Binary('💩 A', { base: 10 })).toBe('240 159 146 169 32 65');
       expect(convertTextToUtf8Binary('💩 A', { base: 16 })).toBe('f0 9f 92 a9 20 41');
@@ -57,7 +59,9 @@ describe('text-to-binary', () => {
       expect(convertUtf8BinaryToText('104 101 108 108 111', { base: 10 })).toBe('hello');
       expect(convertUtf8BinaryToText('68 65 6c 6c 6f', { base: 16 })).toBe('hello');
 
-      expect(convertUtf8BinaryToText('11110000 10011111 10010010 10101001 00100000 01000001', { base: 2 })).toBe('💩 A');
+      expect(convertUtf8BinaryToText('11110000 10011111 10010010 10101001 00100000 01000001', { base: 2 })).toBe(
+        '💩 A',
+      );
       expect(convertUtf8BinaryToText('0360 0237 0222 0251 040 0101', { base: 8 })).toBe('💩 A');
       expect(convertUtf8BinaryToText('240 159 146 169 32 65', { base: 10 })).toBe('💩 A');
       expect(convertUtf8BinaryToText('f0 9f 92 a9 20 41', { base: 16 })).toBe('💩 A');

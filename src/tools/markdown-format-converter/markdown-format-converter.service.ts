@@ -32,7 +32,8 @@ export function convertMarkdown(input: string, sourceStrategyId: string, targetS
     return '';
   }
 
-  const sourceStrategy = strategies.find((s) => s.id === sourceStrategyId) || strategies.find((s) => s.id === 'github') || strategies[0];
+  const sourceStrategy =
+    strategies.find((s) => s.id === sourceStrategyId) || strategies.find((s) => s.id === 'github') || strategies[0];
   const targetStrategy = strategies.find((s) => s.id === targetStrategyId) || strategies[0];
   const tokens = sourceStrategy.lex(input);
 

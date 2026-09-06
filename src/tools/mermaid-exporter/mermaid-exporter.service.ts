@@ -1,5 +1,12 @@
-export interface ViewTransform { zoom: number; x: number; y: number }
-export interface Size { width: number; height: number }
+export interface ViewTransform {
+  zoom: number;
+  x: number;
+  y: number;
+}
+export interface Size {
+  width: number;
+  height: number;
+}
 
 /**
  * Keeps a zoom factor inside the supported range.
@@ -36,11 +43,7 @@ export function zoomAround(
  */
 export function fitTransform(viewport: Size, content: Size, padding: number, min: number, max: number): ViewTransform {
   const zoom = clampZoom(
-    Math.min(
-      (viewport.width - padding) / content.width,
-      (viewport.height - padding) / content.height,
-      1,
-    ),
+    Math.min((viewport.width - padding) / content.width, (viewport.height - padding) / content.height, 1),
     min,
     max,
   );

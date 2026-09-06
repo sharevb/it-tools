@@ -9,7 +9,11 @@ const code = ref(`function greet(name) {
   console.log('Hello ' + name);
 }
 greet('World');`);
-const method = useQueryParamOrStorage<'base64' | 'rot13' | 'obfuscator.io'>({ name: 'method', storageName: 'js-obfusc:m', defaultValue: 'base64' });
+const method = useQueryParamOrStorage<'base64' | 'rot13' | 'obfuscator.io'>({
+  name: 'method',
+  storageName: 'js-obfusc:m',
+  defaultValue: 'base64',
+});
 
 const methods = [
   {
@@ -50,11 +54,7 @@ const obfuscated = useObfuscateJavascript(code, method);
     />
 
     <c-card v-if="obfuscated" :title="t('tools.javascript-obfuscator.texts.title-obfuscted-js-code')">
-      <textarea-copyable
-        :value="obfuscated"
-        language="js"
-        download-file-name="obfuscated.js"
-      />
+      <textarea-copyable :value="obfuscated" language="js" download-file-name="obfuscated.js" />
     </c-card>
   </div>
 </template>

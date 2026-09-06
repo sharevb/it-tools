@@ -12,13 +12,17 @@ function jiraToMarkdown(input: string): string {
 
   // Blockquotes: {quote}content{quote}
   output = output.replace(/\{quote\}([\s\S]*?)\{quote\}/g, (_, content) => {
-    const lines = content.trim().split('\n').map((line: string) => `> ${line}`).join('\n');
+    const lines = content
+      .trim()
+      .split('\n')
+      .map((line: string) => `> ${line}`)
+      .join('\n');
     return `\n${lines}\n`;
   });
 
   // Jira Lists (Do this before Heading/Bold replacement so `#` list bullets aren't mistaken for markdown headings)
   const lines = output.split('\n');
-  const convertedLines = lines.map(line => {
+  const convertedLines = lines.map((line) => {
     // Unordered nested
     const unorderedMatch = line.match(/^(\*+)\s+(.+)$/);
     if (unorderedMatch) {
@@ -105,7 +109,7 @@ class JiraRenderer extends PlainRenderer {
   override list(body: string, ordered: boolean, start: number): string {
     if (ordered) {
       const lines = body.split('\n');
-      const formattedLines = lines.map(line => {
+      const formattedLines = lines.map((line) => {
         if (line.startsWith('* ')) {
           return line.replace(/^\* /, '# ');
         }

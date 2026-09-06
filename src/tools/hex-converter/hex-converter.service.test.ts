@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { cleanHex, decodeNumber, decodeStruct, encodeStruct, getCoderFromTypeName, parseNumber } from './hex-converter.service';
+import {
+  cleanHex,
+  decodeNumber,
+  decodeStruct,
+  encodeStruct,
+  getCoderFromTypeName,
+  parseNumber,
+} from './hex-converter.service';
 
 describe('cleanHex', () => {
   it('should remove 0x and \\x prefixes from a hex string', () => {
@@ -101,7 +108,7 @@ describe('decodeStruct', () => {
         value: 'floatbe',
       },
     };
-    const hexArray = new Uint8Array([0xFF, 0x01, 0x00, 0x02, 0x3F, 0x80, 0x0, 0x0]); // float 1.0
+    const hexArray = new Uint8Array([0xff, 0x01, 0x00, 0x02, 0x3f, 0x80, 0x0, 0x0]); // float 1.0
 
     const result = decodeStruct({ struct, hexArray });
     expect(result).toEqual({
@@ -122,7 +129,7 @@ describe('decodeStruct', () => {
         value: 'floatbe',
       },
     };
-    const hexArray = new Uint8Array([0xFF, 0x01, 0x00, 0x02, 0x3F, 0x80]); // missing last two bytes
+    const hexArray = new Uint8Array([0xff, 0x01, 0x00, 0x02, 0x3f, 0x80]); // missing last two bytes
 
     expect(() => decodeStruct({ struct, hexArray })).toThrowError(
       'Bad buffer length reading value(floatbe) at offset 4',
@@ -135,9 +142,7 @@ describe('decodeStruct', () => {
     };
     const hexArray = new Uint8Array([0x01, 0x02, 0x03]);
 
-    expect(() => decodeStruct({ struct, hexArray })).toThrowError(
-      'Cannot decode a struct with array',
-    );
+    expect(() => decodeStruct({ struct, hexArray })).toThrowError('Cannot decode a struct with array');
   });
   it('should throw an error when decoding an unsized array type', () => {
     const struct = {
@@ -145,9 +150,7 @@ describe('decodeStruct', () => {
     };
     const hexArray = new Uint8Array([0x01, 0x02, 0x03]);
 
-    expect(() => decodeStruct({ struct, hexArray })).toThrowError(
-      'Unsupported unsized array: uint8[]',
-    );
+    expect(() => decodeStruct({ struct, hexArray })).toThrowError('Unsupported unsized array: uint8[]');
   });
 });
 
@@ -184,7 +187,7 @@ describe('encodeStruct', () => {
     };
 
     const result = encodeStruct({ struct, jsonObject });
-    expect(result).toEqual(new Uint8Array([0xFF, 0x01, 0x00, 0x02, 0x3F, 0x80, 0x0, 0x0]));
+    expect(result).toEqual(new Uint8Array([0xff, 0x01, 0x00, 0x02, 0x3f, 0x80, 0x0, 0x0]));
   });
 
   it('should throw an error if array size is incorrect', () => {
@@ -198,7 +201,7 @@ describe('encodeStruct', () => {
     };
 
     expect(() => encodeStruct({ struct, jsonObject })).toThrowError(
-      'Unexpected array size \'field2\'=\'97,98,99,100\' expected 3 elements',
+      "Unexpected array size 'field2'='97,98,99,100' expected 3 elements",
     );
   });
 
@@ -212,9 +215,7 @@ describe('encodeStruct', () => {
       field2: 123, // Invalid type
     };
 
-    expect(() => encodeStruct({ struct, jsonObject })).toThrowError(
-      'Unexpected non array \'field2\'=\'123\'',
-    );
+    expect(() => encodeStruct({ struct, jsonObject })).toThrowError("Unexpected non array 'field2'='123'");
   });
 
   it('should throw an error if value type is incorrect', () => {
@@ -228,7 +229,7 @@ describe('encodeStruct', () => {
     };
 
     expect(() => encodeStruct({ struct, jsonObject })).toThrowError(
-      'Unexpected array size \'field2\'=\'49,50,51\' expected 1 elements',
+      "Unexpected array size 'field2'='49,50,51' expected 1 elements",
     );
   });
 

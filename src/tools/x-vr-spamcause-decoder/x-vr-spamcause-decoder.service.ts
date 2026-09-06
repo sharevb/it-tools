@@ -10,7 +10,7 @@ function unrot(a: string, b: string, pos: number) {
   }
 
   const offset = ('g'.charCodeAt(0) - a.charCodeAt(0)) * 16;
-  return String.fromCharCode((a.charCodeAt(0) + b.charCodeAt(0)) - 'x'.charCodeAt(0) - offset);
+  return String.fromCharCode(a.charCodeAt(0) + b.charCodeAt(0) - 'x'.charCodeAt(0) - offset);
 }
 
 export function spamCauseDecode(text: string) {

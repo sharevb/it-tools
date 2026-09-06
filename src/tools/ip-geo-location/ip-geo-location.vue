@@ -22,26 +22,25 @@ const fields: Array<{ field: string; name: string }> = [
 
 const geoInfos = ref<CKeyValueListItems>([]);
 const geoInfosData = ref<{
-  loc?: string
+  loc?: string;
 }>({});
 const status = ref<'pending' | 'error' | 'success'>('pending');
 const token = useITStorage('ip-geoloc:token', '');
 
-const openStreetMapUrl = computed(
-  () => {
-    const [gpsLatitude, gpsLongitude] = geoInfosData.value.loc?.split(',') || [];
-    return gpsLatitude && gpsLongitude ? `https://www.openstreetmap.org/?mlat=${gpsLatitude}&mlon=${gpsLongitude}#map=18/${gpsLatitude}/${gpsLongitude}` : undefined;
-  },
-);
+const openStreetMapUrl = computed(() => {
+  const [gpsLatitude, gpsLongitude] = geoInfosData.value.loc?.split(',') || [];
+  return gpsLatitude && gpsLongitude
+    ? `https://www.openstreetmap.org/?mlat=${gpsLatitude}&mlon=${gpsLongitude}#map=18/${gpsLatitude}/${gpsLongitude}`
+    : undefined;
+});
 
 async function onGetInfos() {
   try {
     status.value = 'pending';
 
     const geoInfoQueryResponse = await fetch(
-      token.value !== ''
-        ? `//ipinfo.io/${ip.value}/json?token=${token.value}`
-        : `//ipinfo.io/${ip.value}/json`);
+      token.value !== '' ? `//ipinfo.io/${ip.value}/json?token=${token.value}` : `//ipinfo.io/${ip.value}/json`,
+    );
     if (!geoInfoQueryResponse.ok) {
       throw geoInfoQueryResponse.statusText;
     }
@@ -61,8 +60,7 @@ async function onGetInfos() {
     status.value = 'success';
     geoInfos.value = allGeoInfos;
     geoInfosData.value = data;
-  }
-  catch (e: any) {
+  } catch (e: any) {
     errorMessage.value = e.toString();
     status.value = 'error';
     return [];
@@ -76,7 +74,11 @@ async function onGetInfos() {
       <c-input-text
         v-model:value="ip"
         :placeholder="t('tools.ip-geo-location.texts.placeholder-enter-an-ipv4-6')"
-        @update:value="() => { status = 'pending' }"
+        @update:value="
+          () => {
+            status = 'pending';
+          }
+        "
       />
       <c-button align-center @click="onGetInfos">
         {{ t('tools.ip-geo-location.texts.tag-get-geo-location-infos') }}
@@ -88,7 +90,11 @@ async function onGetInfos() {
       <c-input-text
         v-model:value="token"
         :placeholder="t('tools.ip-geo-location.texts.placeholder-optional-ipinfo-io-token')"
-        @update:value="() => { status = 'pending' }"
+        @update:value="
+          () => {
+            status = 'pending';
+          }
+        "
       />
       <n-p>
         <n-a href="https://ipinfo.io/">

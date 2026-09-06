@@ -26,8 +26,7 @@ async function convertMarkdownToDocx() {
     a.download = 'document.docx';
     a.click();
     URL.revokeObjectURL(url);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
 }

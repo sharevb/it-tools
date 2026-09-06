@@ -1,13 +1,13 @@
 // aspect-ratio-calculator.service.ts
 
 export interface AspectRatio {
-  r1: number
-  r2: number
+  r1: number;
+  r2: number;
 }
 
 export interface Dimensions {
-  width: number
-  height: number
+  width: number;
+  height: number;
 }
 
 export function calculateAspectRatio(width: number, height: number): AspectRatio {
@@ -19,16 +19,11 @@ export function calculateAspectRatio(width: number, height: number): AspectRatio
   };
 }
 
-export function calculateDimensions(
-  knownDimension: number,
-  ratio: AspectRatio,
-  isWidth: boolean,
-): Dimensions {
+export function calculateDimensions(knownDimension: number, ratio: AspectRatio, isWidth: boolean): Dimensions {
   if (isWidth) {
     const height = Math.round((knownDimension * ratio.r2) / ratio.r1);
     return { width: knownDimension, height };
-  }
-  else {
+  } else {
     const width = Math.round((knownDimension * ratio.r1) / ratio.r2);
     return { width, height: knownDimension };
   }

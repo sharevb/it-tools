@@ -11,12 +11,12 @@ export function createNanoid({
   withSymbols = true,
   excludeLookalikes = false,
 }: {
-  length?: number
-  withLowercase?: boolean
-  withUppercase?: boolean
-  withNumbers?: boolean
-  withSymbols?: boolean
-  excludeLookalikes?: boolean
+  length?: number;
+  withLowercase?: boolean;
+  withUppercase?: boolean;
+  withNumbers?: boolean;
+  withSymbols?: boolean;
+  excludeLookalikes?: boolean;
 }) {
   let alphabet = '';
 

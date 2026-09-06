@@ -4,17 +4,17 @@
  */
 export interface FileStructure {
   /** The name of the file or folder */
-  name: string
+  name: string;
 
   /** If a folder, the contents of the folder */
-  children: FileStructure[]
+  children: FileStructure[];
 
   /**
    * The number of spaces in front of the name
    * in the original source string
    */
-  indentCount: number
+  indentCount: number;
 
   /** The parent directory of this file or folder */
-  parent: FileStructure | null
+  parent: FileStructure | null;
 }

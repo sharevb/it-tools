@@ -103,12 +103,12 @@ describe('list-converter', () => {
         trimItems: true,
         outputAsColumn: true,
         splitBySeparator: ',',
-        itemPrefix: '\'',
-        itemSuffix: '\'',
+        itemPrefix: "'",
+        itemSuffix: "'",
         listPrefix: '(',
         listSuffix: ')',
       };
-      const input = '(\'1\',\'2\',\'3\')';
+      const input = "('1','2','3')";
       const expected = `1
 2
 3`;

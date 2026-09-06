@@ -28,12 +28,12 @@ const sections: UserAgentResultSection[] = [
     content: [
       {
         label: t('tools.user-agent-parser.texts.label-name'),
-        getValue: block => block?.browser.name,
+        getValue: (block) => block?.browser.name,
         undefinedFallback: 'No browser name available',
       },
       {
         label: t('tools.user-agent-parser.texts.label-version'),
-        getValue: block => block?.browser.version,
+        getValue: (block) => block?.browser.version,
         undefinedFallback: 'No browser version available',
       },
     ],
@@ -44,12 +44,12 @@ const sections: UserAgentResultSection[] = [
     content: [
       {
         label: t('tools.user-agent-parser.texts.label-name'),
-        getValue: block => block?.engine.name,
+        getValue: (block) => block?.engine.name,
         undefinedFallback: 'No engine name available',
       },
       {
         label: t('tools.user-agent-parser.texts.label-version'),
-        getValue: block => block?.engine.version,
+        getValue: (block) => block?.engine.version,
         undefinedFallback: 'No engine version available',
       },
     ],
@@ -60,12 +60,12 @@ const sections: UserAgentResultSection[] = [
     content: [
       {
         label: t('tools.user-agent-parser.texts.label-name'),
-        getValue: block => block?.os.name,
+        getValue: (block) => block?.os.name,
         undefinedFallback: 'No OS name available',
       },
       {
         label: t('tools.user-agent-parser.texts.label-version'),
-        getValue: block => block?.os.version,
+        getValue: (block) => block?.os.version,
         undefinedFallback: 'No OS version available',
       },
     ],
@@ -76,17 +76,17 @@ const sections: UserAgentResultSection[] = [
     content: [
       {
         label: t('tools.user-agent-parser.texts.label-model'),
-        getValue: block => block?.device.model,
+        getValue: (block) => block?.device.model,
         undefinedFallback: 'No device model available',
       },
       {
         label: t('tools.user-agent-parser.texts.label-type'),
-        getValue: block => block?.device.type,
+        getValue: (block) => block?.device.type,
         undefinedFallback: 'No device type available',
       },
       {
         label: t('tools.user-agent-parser.texts.label-vendor'),
-        getValue: block => block?.device.vendor,
+        getValue: (block) => block?.device.vendor,
         undefinedFallback: 'No device vendor available',
       },
     ],
@@ -97,7 +97,7 @@ const sections: UserAgentResultSection[] = [
     content: [
       {
         label: t('tools.user-agent-parser.texts.label-architecture'),
-        getValue: block => block?.cpu.architecture,
+        getValue: (block) => block?.cpu.architecture,
         undefinedFallback: 'No CPU architecture available',
       },
     ],

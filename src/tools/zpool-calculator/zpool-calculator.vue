@@ -19,11 +19,16 @@ await loadCapacity();
     <table class="inputs">
       <tbody>
         <tr>
-          <td><label id="disks" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="disks">{{ t('tools.zpool-calculator.texts.tag-total-disks-in-pool') }}</label></td>
-          <td><input id="disks" class="monitor" type="text" name="disks" value="24"></td>
+          <td>
+            <label id="disks" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="disks">{{ t('tools.zpool-calculator.texts.tag-total-disks-in-pool') }}</label>
+          </td>
+          <td><input id="disks" class="monitor" type="text" name="disks" value="24" /></td>
 
-          <td><label id="add_disk" for="add_disk">{{ t('tools.zpool-calculator.texts.tag-add-disk-tb') }}</label></td>
-          <td><input id="add_disk" type="text" name="add_disk"></td>
+          <td>
+            <label id="add_disk" for="add_disk">{{ t('tools.zpool-calculator.texts.tag-add-disk-tb') }}</label>
+          </td>
+          <td><input id="add_disk" type="text" name="add_disk" /></td>
         </tr>
 
         <tr>
@@ -149,10 +154,17 @@ await loadCapacity();
         </tr>
 
         <tr>
-          <td><label id="min_spares" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="min_spares">{{ t('tools.zpool-calculator.texts.tag-minimum-spares') }}</label></td>
-          <td><input id="min_spares" class="monitor" type="text" name="min_spares" value="0"></td>
+          <td>
+            <label id="min_spares" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="min_spares">{{ t('tools.zpool-calculator.texts.tag-minimum-spares') }}</label>
+          </td>
+          <td><input id="min_spares" class="monitor" type="text" name="min_spares" value="0" /></td>
 
-          <td><label id="add_vdev_type" for="add_vdev_type">{{ t('tools.zpool-calculator.texts.tag-new-vdev-type') }}</label></td>
+          <td>
+            <label id="add_vdev_type" for="add_vdev_type">{{
+              t('tools.zpool-calculator.texts.tag-new-vdev-type')
+            }}</label>
+          </td>
           <td>
             <select id="add_vdev_type" name="add_vdev_type">
               <option value="mirror">
@@ -175,15 +187,23 @@ await loadCapacity();
         </tr>
 
         <tr id="new_vdev">
-          <td><label id="use_new_slop" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="use_new_slop">{{ t('tools.zpool-calculator.texts.tag-openzfs-2-0-7-slop') }}</label></td>
-          <td><input id="use_new_slop" class="monitor" type="checkbox" name="use_new_slop" checked></td>
+          <td>
+            <label id="use_new_slop" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="use_new_slop">{{ t('tools.zpool-calculator.texts.tag-openzfs-2-0-7-slop') }}</label>
+          </td>
+          <td><input id="use_new_slop" class="monitor" type="checkbox" name="use_new_slop" checked /></td>
 
-          <td><label id="add_vdev" for="add_vdev">{{ t('tools.zpool-calculator.texts.tag-new-vdev-width') }}</label></td>
-          <td><input id="add_vdev" type="text" name="add_vdev"></td>
+          <td>
+            <label id="add_vdev" for="add_vdev">{{ t('tools.zpool-calculator.texts.tag-new-vdev-width') }}</label>
+          </td>
+          <td><input id="add_vdev" type="text" name="add_vdev" /></td>
         </tr>
 
         <tr>
-          <td><label id="recordsize" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="recordsize">{{ t('tools.zpool-calculator.texts.tag-zfs-recordsize-value') }}</label></td>
+          <td>
+            <label id="recordsize" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="recordsize">{{ t('tools.zpool-calculator.texts.tag-zfs-recordsize-value') }}</label>
+          </td>
           <td>
             <select id="recordsize" class="monitor" name="recordsize">
               <option value="4">
@@ -236,7 +256,10 @@ await loadCapacity();
         </tr>
 
         <tr>
-          <td><label id="ashift" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="ashift">{{ t('tools.zpool-calculator.texts.tag-zfs-ashift-value') }}</label></td>
+          <td>
+            <label id="ashift" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="ashift">{{ t('tools.zpool-calculator.texts.tag-zfs-ashift-value') }}</label>
+          </td>
           <td>
             <select id="ashift" class="monitor" name="ashift">
               <option value="9">
@@ -258,7 +281,10 @@ await loadCapacity();
         </tr>
 
         <tr>
-          <td><label id="swap_size" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="swap_size">{{ t('tools.zpool-calculator.texts.tag-disk-swap-size') }}</label></td>
+          <td>
+            <label id="swap_size" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="swap_size">{{ t('tools.zpool-calculator.texts.tag-disk-swap-size') }}</label>
+          </td>
           <td>
             <select id="swap_size" class="monitor" name="swap_size">
               <option value="0" selected>
@@ -276,15 +302,20 @@ await loadCapacity();
             </select>
           </td>
 
-          <td><label>{{ t('tools.zpool-calculator.texts.tag-table-data') }}</label></td>
           <td>
-            <input id="usable_cap_tib" class="monitor" type="radio" name="table_data" value="usable_cap_tib" checked>
-            <label for="usable_cap_tib">{{ t('tools.zpool-calculator.texts.tag-usable-capacity-tib') }}</label><label id="usable_cap_tib" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
+            <label>{{ t('tools.zpool-calculator.texts.tag-table-data') }}</label>
+          </td>
+          <td>
+            <input id="usable_cap_tib" class="monitor" type="radio" name="table_data" value="usable_cap_tib" checked />
+            <label for="usable_cap_tib">{{ t('tools.zpool-calculator.texts.tag-usable-capacity-tib') }}</label
+            ><label id="usable_cap_tib" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
           </td>
         </tr>
 
         <tr>
-          <td><label for="decimal_places">{{ t('tools.zpool-calculator.texts.tag-decimal-places') }}</label></td>
+          <td>
+            <label for="decimal_places">{{ t('tools.zpool-calculator.texts.tag-decimal-places') }}</label>
+          </td>
           <td>
             <select id="decimal_places" class="monitor" name="decimal_places">
               <option value="0">
@@ -328,58 +359,80 @@ await loadCapacity();
 
           <td />
           <td>
-            <input id="usable_cap_tb" class="monitor" type="radio" name="table_data" value="usable_cap_tb">
-            <label for="usable_cap_tb">{{ t('tools.zpool-calculator.texts.tag-usable-capacity-tb') }}</label><label id="usable_cap_tb" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
+            <input id="usable_cap_tb" class="monitor" type="radio" name="table_data" value="usable_cap_tb" />
+            <label for="usable_cap_tb">{{ t('tools.zpool-calculator.texts.tag-usable-capacity-tb') }}</label
+            ><label id="usable_cap_tb" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
           </td>
         </tr>
 
         <tr>
-          <td><label id="show_deflate" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="show_deflate">{{ t('tools.zpool-calculator.texts.tag-show-deflate-ratio') }}</label></td>
-          <td><input id="show_deflate" class="monitor" type="checkbox" name="show_deflate"></td>
+          <td>
+            <label id="show_deflate" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="show_deflate">{{ t('tools.zpool-calculator.texts.tag-show-deflate-ratio') }}</label>
+          </td>
+          <td><input id="show_deflate" class="monitor" type="checkbox" name="show_deflate" /></td>
 
           <td />
           <td>
-            <input id="efficiency" class="monitor" type="radio" name="table_data" value="efficiency">
-            <label for="efficiency">{{ t('tools.zpool-calculator.texts.tag-capacity-efficiency') }}</label><label id="efficiency" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
+            <input id="efficiency" class="monitor" type="radio" name="table_data" value="efficiency" />
+            <label for="efficiency">{{ t('tools.zpool-calculator.texts.tag-capacity-efficiency') }}</label
+            ><label id="efficiency" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
           </td>
         </tr>
 
         <tr>
-          <td><label id="show_afr" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="show_afr">{{ t('tools.zpool-calculator.texts.tag-show-pool-afr') }}</label></td>
-          <td><input id="show_afr" class="monitor" type="checkbox" name="show_afr"></td>
+          <td>
+            <label id="show_afr" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="show_afr">{{ t('tools.zpool-calculator.texts.tag-show-pool-afr') }}</label>
+          </td>
+          <td><input id="show_afr" class="monitor" type="checkbox" name="show_afr" /></td>
 
           <td />
           <td>
-            <input id="overhead" class="monitor" type="radio" name="table_data" value="overhead">
-            <label for="overhead">{{ t('tools.zpool-calculator.texts.tag-zfs-overhead') }}</label><label id="overhead" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
+            <input id="overhead" class="monitor" type="radio" name="table_data" value="overhead" />
+            <label for="overhead">{{ t('tools.zpool-calculator.texts.tag-zfs-overhead') }}</label
+            ><label id="overhead" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
           </td>
         </tr>
 
         <tr>
-          <td><label id="disk_afr_label" for="disk_afr" style="color: grey;">{{ t('tools.zpool-calculator.texts.tag-disk-afr') }}</label></td>
-          <td><input id="disk_afr" class="monitor" type="text" name="disk_afr" value="5" disabled></td>
+          <td>
+            <label id="disk_afr_label" for="disk_afr" style="color: grey">{{
+              t('tools.zpool-calculator.texts.tag-disk-afr')
+            }}</label>
+          </td>
+          <td><input id="disk_afr" class="monitor" type="text" name="disk_afr" value="5" disabled /></td>
 
           <td />
           <td>
-            <input id="cap_w_reserve" class="monitor" type="radio" name="table_data" value="cap_w_reserve">
-            <label for="cap_w_reserve">{{ t('tools.zpool-calculator.texts.tag-cap-w-reservation') }}</label><label id="cap_w_reserve" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
+            <input id="cap_w_reserve" class="monitor" type="radio" name="table_data" value="cap_w_reserve" />
+            <label for="cap_w_reserve">{{ t('tools.zpool-calculator.texts.tag-cap-w-reservation') }}</label
+            ><label id="cap_w_reserve" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label>
           </td>
         </tr>
 
         <tr>
-          <td><label id="fast_draid" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="fast_draid">{{ t('tools.zpool-calculator.texts.tag-fast-draid-calculation') }}</label></td>
-          <td><input id="fast_draid" class="monitor" type="checkbox" name="fast_draid" checked></td>
+          <td>
+            <label id="fast_draid" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="fast_draid">{{ t('tools.zpool-calculator.texts.tag-fast-draid-calculation') }}</label>
+          </td>
+          <td><input id="fast_draid" class="monitor" type="checkbox" name="fast_draid" checked /></td>
 
           <td id="res_label">
-            <label id="reservation" for="reservation" style="color: grey;">{{ t('tools.zpool-calculator.texts.tag-reservation') }}</label>
+            <label id="reservation" for="reservation" style="color: grey">{{
+              t('tools.zpool-calculator.texts.tag-reservation')
+            }}</label>
           </td>
           <td id="res_input">
-            <input id="reservation" class="monitor" type="text" name="reservation" value="20" disabled>
+            <input id="reservation" class="monitor" type="text" name="reservation" value="20" disabled />
           </td>
         </tr>
 
         <tr>
-          <td><label id="show" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label><label for="show">{{ t('tools.zpool-calculator.texts.tag-show-only') }}</label></td>
+          <td>
+            <label id="show" class="tooltip">{{ t('tools.zpool-calculator.texts.tag-') }}</label
+            ><label for="show">{{ t('tools.zpool-calculator.texts.tag-show-only') }}</label>
+          </td>
           <td>
             <select id="show" class="monitor" name="show">
               <option value="all" selected>
@@ -423,7 +476,11 @@ await loadCapacity();
     </n-space>
 
     <p class="subsect_label">
-      {{ t('tools.zpool-calculator.texts.tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values') }}
+      {{
+        t(
+          'tools.zpool-calculator.texts.tag-click-on-the-section-titles-to-expand-collapse-and-view-calculated-data-hovering-over-a-table-cell-loads-the-relevant-data-into-the-calculation-values-section-below-you-can-click-table-cells-to-freeze-or-unfreeze-those-values',
+        )
+      }}
     </p>
 
     <details id="common" class="raid_results">
@@ -524,17 +581,17 @@ table#debug_vals tr:nth-last-child(1) td {
 table.debug#debug_vals {
   font-family: 'Courier New', monospace;
 }
-table.debug#debug_vals tr:nth-child(n+3) td:nth-child(1) {
+table.debug#debug_vals tr:nth-child(n + 3) td:nth-child(1) {
   text-align: right;
   width: 275px;
 }
-table.debug#debug_vals tr:nth-child(n+3) td:nth-child(2) {
+table.debug#debug_vals tr:nth-child(n + 3) td:nth-child(2) {
   text-align: left;
   width: 275px;
 }
 table.debug#debug_vals tr td {
   padding-left: 5px;
-  padding-right:5px;
+  padding-right: 5px;
 }
 
 button#plus_1 {
@@ -579,71 +636,81 @@ td#add_disk_buttons {
   text-align: center;
 }
 
-.rocker-button{
-  width:30px;
-  height:50px;
+.rocker-button {
+  width: 30px;
+  height: 50px;
   border: 1px solid v-bind('themeVars.borderColor');
   background-color: v-bind('themeVars.inputColor');
   color: v-bind('themeVars.textColorBase');
-  border-radius:4px;
-  position:relative;
+  border-radius: 4px;
+  position: relative;
   border: 1px solid black;
-  overflow:hidden;
-  font-size:8px;
-  display:inline-block;
-  margin:0 3px;
-  vertical-align:middle;
+  overflow: hidden;
+  font-size: 8px;
+  display: inline-block;
+  margin: 0 3px;
+  vertical-align: middle;
 }
 
-.add_disk_vrule{
-  width:1px;
-  height:52px;
+.add_disk_vrule {
+  width: 1px;
+  height: 52px;
   background: black;
-  border-radius:4px;
-  position:relative;
-  overflow:hidden;
-  display:inline-block;
-  margin:0 3px;
-  vertical-align:middle;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 3px;
+  vertical-align: middle;
 }
 
-.half{
-  width:100%;
-  height:50%;
-  position:absolute;
-  left:0;
-  text-align:center;
-  cursor:pointer;
-  transition:background .12s, transform .08s;
-  user-select:none;
+.half {
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    transform 0.08s;
+  user-select: none;
   z-index: 0;
 }
-.half.up{ top:-3px; }
-.half.down{ bottom: -2px; }
-.half.up:hover{ background:#E5E5E5; }
-.half.down:hover{ background:#E5E5E5; }
+.half.up {
+  top: -3px;
+}
+.half.down {
+  bottom: -2px;
+}
+.half.up:hover {
+  background: #e5e5e5;
+}
+.half.down:hover {
+  background: #e5e5e5;
+}
 
 .half.up:active,
-.half.down:active{
-  background:#f6f6f6;
+.half.down:active {
+  background: #f6f6f6;
 }
 
-.arrow{
-  display:inline-block;
-  font-size:12px;
-  line-height:1;
-  position:relative;
-  top:50%;
-  transform:translateY(-50%);
-  pointer-events:none;
+.arrow {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
-.center-text{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
   z-index: 1;
 }
 
@@ -674,9 +741,9 @@ table.debug#details {
 }
 table.debug#details tr td {
   padding-left: 25px;
-  padding-right:25px;
+  padding-right: 25px;
 }
-table.debug#details tr:nth-child(n+1) td {
+table.debug#details tr:nth-child(n + 1) td {
   font-size: 15px;
 }
 table.debug#details tr td:nth-child(6) {
@@ -727,7 +794,7 @@ label.tooltip {
   display: inline-block;
 }
 
-input[type=text] {
+input[type='text'] {
   width: 75px;
 }
 
@@ -825,56 +892,56 @@ select option {
 
 summary {
   font-size: 1.5em;
-  padding: .5em;
+  padding: 0.5em;
 }
 
 /* Style for the container of tables with class "results" */
 .results-container {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    scrollbar-width: .8em;
-    scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: 0.8em;
+  scroll-behavior: smooth;
 }
 
 .results-container table.results th,
 .results-container table.results td {
-    border-top: none;
-    border-bottom: none;
-    border-left: 1px solid v-bind('themeVars.borderColor');
-    border-right: 1px solid v-bind('themeVars.borderColor');
+  border-top: none;
+  border-bottom: none;
+  border-left: 1px solid v-bind('themeVars.borderColor');
+  border-right: 1px solid v-bind('themeVars.borderColor');
 }
 
 .results-container table.results td:first-child:empty {
-    border: none !important;
-    border-bottom: 1px solid transparent !important;
-    background-color: v-bind('themeVars.bodyColor');
-    cursor: default;
+  border: none !important;
+  border-bottom: 1px solid transparent !important;
+  background-color: v-bind('themeVars.bodyColor');
+  cursor: default;
 }
 
 table.results {
-    width: 99%;
-    max-width: 99%;
-    table-layout: auto;
+  width: 99%;
+  max-width: 99%;
+  table-layout: auto;
 }
 
 .results-container table.results th {
-    background-color: #0095d5;
-    color: white;
-    cursor: default;
+  background-color: #0095d5;
+  color: white;
+  cursor: default;
 }
 
 .results-container table.results tr:nth-child(2) td {
-    font-style: italic;
-    font-size: 0.8em;
-    color: white !important;
-    cursor: default;
-    line-height: 0.8em;
-    background-color: v-bind('themeVars.buttonColor2');
+  font-style: italic;
+  font-size: 0.8em;
+  color: white !important;
+  cursor: default;
+  line-height: 0.8em;
+  background-color: v-bind('themeVars.buttonColor2');
 }
 
 .results-container table.results td {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .results-container table.results th#first_ssd,
@@ -888,47 +955,47 @@ table.results {
 
 /* Adjust class "debug" table from the capacity calculator */
 table.debug {
-    border-collapse: collapse;
-    border: 1px solid #0095d5;
-    width: 50% !important;
-    margin: 0 auto;
+  border-collapse: collapse;
+  border: 1px solid #0095d5;
+  width: 50% !important;
+  margin: 0 auto;
 }
 
 table.debug tr {
-    border: none !important;
+  border: none !important;
 }
 
 table.debug th,
 table.debug td {
-    border: none;
-    border-collapse: collapse;
-    font-family: 'Courier New', Courier, monospace;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+  border: none;
+  border-collapse: collapse;
+  font-family: 'Courier New', Courier, monospace;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 table.debug td:nth-child(even) {
-    text-align: left;
+  text-align: left;
 }
 
 table.debug td:nth-child(odd) {
-    text-align: right;
+  text-align: right;
 }
 
 table.debug td:only-child {
-    text-align: center;
-    font-size: 1.2em;
-    padding: .2em !important;
+  text-align: center;
+  font-size: 1.2em;
+  padding: 0.2em !important;
 }
 
 /* Hover effect for highlighting the current row in the "debug" table */
 table.debug td:hover {
-    background-color: #0095d5;
+  background-color: #0095d5;
 }
 
 /* Reset hover effect for other tables or elements with class "debug" */
 :not(table).debug tr:hover {
-    background-color: initial;
+  background-color: initial;
 }
 
 /* End Adjust class "debug" table from the capacity calculator */

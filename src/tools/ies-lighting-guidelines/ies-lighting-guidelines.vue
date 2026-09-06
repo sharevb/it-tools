@@ -24,8 +24,11 @@ const { searchResult } = useFlexSearch({
     <div flex items-center gap-3>
       <c-input-text
         v-model:value="searchQuery"
-        :placeholder="t('tools.ies-lighting-guidelines.texts.placeholder-search-ies-recommendation-by-industry-or-application')"
-        mx-auto max-w-600px
+        :placeholder="
+          t('tools.ies-lighting-guidelines.texts.placeholder-search-ies-recommendation-by-industry-or-application')
+        "
+        mx-auto
+        max-w-600px
       >
         <template #prefix>
           <icon-mdi-search mr-6px color-black op-70 dark:color-white />
@@ -34,17 +37,17 @@ const { searchResult } = useFlexSearch({
     </div>
 
     <n-p style="text-align: center">
-      {{ t('tools.ies-lighting-guidelines.texts.tag-individual-applications-will-determine-exact-foot-candle-levels-please-refer-to-the') }}<n-a href="https://www.ies.org/standards/lighting-library/" target="_blank">
-        {{ t('tools.ies-lighting-guidelines.texts.tag-ies-lighting-handbook') }}
-      </n-a>{{ t('tools.ies-lighting-guidelines.texts.tag-for-a-more-detailed-evaluation') }}
+      {{
+        t(
+          'tools.ies-lighting-guidelines.texts.tag-individual-applications-will-determine-exact-foot-candle-levels-please-refer-to-the',
+        )
+      }}<n-a href="https://www.ies.org/standards/lighting-library/" target="_blank">
+        {{ t('tools.ies-lighting-guidelines.texts.tag-ies-lighting-handbook') }} </n-a
+      >{{ t('tools.ies-lighting-guidelines.texts.tag-for-a-more-detailed-evaluation') }}
     </n-p>
 
     <div>
-      <div
-        v-if="searchResult.length === 0"
-
-        mt-4 text-center text-20px font-bold
-      >
+      <div v-if="searchResult.length === 0" mt-4 text-center text-20px font-bold>
         {{ t('tools.ies-lighting-guidelines.texts.tag-no-results') }}
       </div>
 

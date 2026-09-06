@@ -28,11 +28,10 @@ async function onUpload(file: File) {
 }
 
 const certificateX509DER = ref('');
-const { download: downloadX509DER } = useDownloadFileFromBase64(
-  {
-    source: certificateX509DER,
-    extension: 'der',
-  });
+const { download: downloadX509DER } = useDownloadFileFromBase64({
+  source: certificateX509DER,
+  extension: 'der',
+});
 
 function downloadX509DERFile() {
   if (certificateX509DER.value === '') {
@@ -41,8 +40,7 @@ function downloadX509DERFile() {
 
   try {
     downloadX509DER();
-  }
-  catch (_) {
+  } catch (_) {
     //
   }
 }
@@ -53,8 +51,7 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
   let inputKeyOrCertificateValue: string | Buffer = '';
   if (inputType.value === 'file' && file) {
     inputKeyOrCertificateValue = file;
-  }
-  else if (inputType.value === 'content' && inputContent) {
+  } else if (inputType.value === 'content' && inputContent) {
     inputKeyOrCertificateValue = inputContent;
   }
   try {
@@ -63,15 +60,11 @@ const parsedSections = computedAsync<LabelValue[][]>(async () => {
       const { values, certificateX509DER: certPEM } = parsed[0];
       certificateX509DER.value = certPEM || '';
       return [values];
+    } else {
+      return parsed.map((p) => p.values);
     }
-    else {
-      return parsed.map(p => p.values);
-    }
-  }
-  catch (e: any) {
-    return [
-      [{ label: t('tools.certificate-key-parser.texts.label-parsing-error'), value: e.toString() }],
-    ];
+  } catch (e: any) {
+    return [[{ label: t('tools.certificate-key-parser.texts.label-parsing-error'), value: e.toString() }]];
   }
 });
 
@@ -83,7 +76,10 @@ const pemHeaders = [
 
   { label: t('tools.certificate-key-parser.texts.private-key-pkcs-8'), value: 'PRIVATE KEY' },
   { label: t('tools.certificate-key-parser.texts.public-key-pkcs-8'), value: 'PUBLIC KEY' },
-  { label: t('tools.certificate-key-parser.texts.encrypted-private-key-pkcs-8-encrypted'), value: 'ENCRYPTED PRIVATE KEY' },
+  {
+    label: t('tools.certificate-key-parser.texts.encrypted-private-key-pkcs-8-encrypted'),
+    value: 'ENCRYPTED PRIVATE KEY',
+  },
 
   { label: t('tools.certificate-key-parser.texts.rsa-private-key-pkcs-1'), value: 'RSA PRIVATE KEY' },
   { label: t('tools.certificate-key-parser.texts.rsa-public-key-pkcs-1'), value: 'RSA PUBLIC KEY' },
@@ -107,28 +103,34 @@ const pemHeaders = [
     <c-card>
       <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
         <n-space>
-          <n-radio
-            value="file"
-            :label="t('tools.certificate-key-parser.texts.label-file')"
-          />
-          <n-radio
-            value="content"
-            :label="t('tools.certificate-key-parser.texts.label-content')"
-          />
+          <n-radio value="file" :label="t('tools.certificate-key-parser.texts.label-file')" />
+          <n-radio value="content" :label="t('tools.certificate-key-parser.texts.label-content')" />
         </n-space>
       </n-radio-group>
 
       <c-file-upload
         v-if="inputType === 'file'"
-        :title="t('tools.certificate-key-parser.texts.title-drag-and-drop-a-certificate-file-here-or-click-to-select-a-certificate-file')"
+        :title="
+          t(
+            'tools.certificate-key-parser.texts.title-drag-and-drop-a-certificate-file-here-or-click-to-select-a-certificate-file',
+          )
+        "
         @file-upload="onUpload"
       />
 
       <c-input-text
         v-if="inputType === 'content'"
         v-model:value="inputKeyOrCertificate"
-        :label="t('tools.certificate-key-parser.texts.label-paste-your-public-key-private-key-signature-fingerprint-certificate')"
-        :placeholder="t('tools.certificate-key-parser.texts.placeholder-your-public-key-private-key-signature-fingerprint-certificate')"
+        :label="
+          t(
+            'tools.certificate-key-parser.texts.label-paste-your-public-key-private-key-signature-fingerprint-certificate',
+          )
+        "
+        :placeholder="
+          t(
+            'tools.certificate-key-parser.texts.placeholder-your-public-key-private-key-signature-fingerprint-certificate',
+          )
+        "
         multiline
         rows="8"
         data-test-id="input"
@@ -155,11 +157,7 @@ const pemHeaders = [
 
     <n-divider />
 
-    <c-card
-      v-for="(part, partIndex) of parsedSections"
-      :key="partIndex"
-      mb-2
-    >
+    <c-card v-for="(part, partIndex) of parsedSections" :key="partIndex" mb-2>
       <input-copyable
         v-for="{ label, value, multiline } of part"
         :key="label"
@@ -168,8 +166,8 @@ const pemHeaders = [
         label-position="left"
         label-width="100px"
         label-align="right"
-
-        autosize mb-2
+        autosize
+        mb-2
         :multiline="multiline"
         :value="value"
         :placeholder="t('tools.certificate-key-parser.texts.placeholder-not-set')"

@@ -24,7 +24,8 @@ const { searchResult } = useFlexSearch({
       <c-input-text
         v-model:value="search"
         :placeholder="t('tools.ad-ldap-searcher.texts.placeholder-search-active-directory-ldap-mapping')"
-        mx-auto max-w-600px
+        mx-auto
+        max-w-600px
       >
         <template #prefix>
           <icon-mdi-search mr-6px color-black op-70 dark:color-white />
@@ -33,11 +34,7 @@ const { searchResult } = useFlexSearch({
     </div>
 
     <div>
-      <div
-        v-if="searchResult.length === 0"
-
-        mt-4 text-center text-20px font-bold
-      >
+      <div v-if="searchResult.length === 0" mt-4 text-center text-20px font-bold>
         {{ t('tools.ad-ldap-searcher.texts.tag-no-results') }}
       </div>
 

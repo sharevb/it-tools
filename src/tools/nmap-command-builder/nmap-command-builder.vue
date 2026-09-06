@@ -185,7 +185,10 @@ const computedCommand = computed(() => {
   <div>
     <NForm label-placement="left">
       <NFormItem :label="t('tools.nmap-command-builder.texts.label-target')" mb-1>
-        <NInput v-model:value="target" :placeholder="t('tools.nmap-command-builder.texts.placeholder-example-com-or-192-168-1-1')" />
+        <NInput
+          v-model:value="target"
+          :placeholder="t('tools.nmap-command-builder.texts.placeholder-example-com-or-192-168-1-1')"
+        />
       </NFormItem>
 
       <n-tabs type="line" size="large" mb-2>
@@ -229,7 +232,10 @@ const computedCommand = computed(() => {
 
           <n-card :title="t('tools.nmap-command-builder.texts.title-advanced')">
             <NFormItem :label="t('tools.nmap-command-builder.texts.label-custom-ports-p')">
-              <NInput v-model:value="customPorts" :placeholder="t('tools.nmap-command-builder.texts.placeholder-80-443-or-1-65535')" />
+              <NInput
+                v-model:value="customPorts"
+                :placeholder="t('tools.nmap-command-builder.texts.placeholder-80-443-or-1-65535')"
+              />
             </NFormItem>
 
             <NFormItem :label="t('tools.nmap-command-builder.texts.label-timing-t')">
@@ -237,11 +243,17 @@ const computedCommand = computed(() => {
             </NFormItem>
 
             <NFormItem :label="t('tools.nmap-command-builder.texts.label-nse-scripts-script')">
-              <NInput v-model:value="scripts" :placeholder="t('tools.nmap-command-builder.texts.placeholder-vuln-http-title')" />
+              <NInput
+                v-model:value="scripts"
+                :placeholder="t('tools.nmap-command-builder.texts.placeholder-vuln-http-title')"
+              />
             </NFormItem>
 
             <NFormItem :label="t('tools.nmap-command-builder.texts.label-output-file-on')">
-              <NInput v-model:value="outputFile" :placeholder="t('tools.nmap-command-builder.texts.placeholder-scan-txt')" />
+              <NInput
+                v-model:value="outputFile"
+                :placeholder="t('tools.nmap-command-builder.texts.placeholder-scan-txt')"
+              />
             </NFormItem>
           </n-card>
         </n-tab-pane>

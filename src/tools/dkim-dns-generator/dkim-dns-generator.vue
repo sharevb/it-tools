@@ -20,11 +20,16 @@ const keySizes = [
 
 const emptyCerts = { publicKey: '', privateKey: '' };
 const [certs, refreshCerts] = computedRefreshableAsync(
-  () => withDefaultOnErrorAsync(() => generateKeyPair({
-    bits: Number(keySize.value),
-    password: password.value,
-    format: 'pem',
-  }), emptyCerts),
+  () =>
+    withDefaultOnErrorAsync(
+      () =>
+        generateKeyPair({
+          bits: Number(keySize.value),
+          password: password.value,
+          format: 'pem',
+        }),
+      emptyCerts,
+    ),
   emptyCerts,
 );
 
@@ -34,11 +39,7 @@ const dKIMRecord = computed(() => {
   }
 
   const pubKey = certs.value.publicKey.replace(/-----(BEGIN|END) PUBLIC KEY-----|\s/g, '');
-  const parts = [
-    'v=DKIM1',
-    'k=rsa',
-    `p=${pubKey}`,
-  ];
+  const parts = ['v=DKIM1', 'k=rsa', `p=${pubKey}`];
 
   const record = parts.join('; ');
   return `${selector.value}._domainkey.${domain.value} IN TXT "${record}"`;
@@ -48,15 +49,31 @@ const dKIMRecord = computed(() => {
 <template>
   <NForm label-placement="top">
     <NFormItem :label="t('tools.dkim-dns-generator.texts.label-domain-name')">
-      <NInput v-model:value="domain" :placeholder="t('tools.dkim-dns-generator.texts.placeholder-enter-domain-e-g-example-com')" />
+      <NInput
+        v-model:value="domain"
+        :placeholder="t('tools.dkim-dns-generator.texts.placeholder-enter-domain-e-g-example-com')"
+      />
     </NFormItem>
 
-    <NFormItem :label="t('tools.dkim-dns-generator.texts.label-selector-unique-name-used-to-distinguish-dkim-records-for-the-same-domain')">
-      <NInput v-model:value="selector" :placeholder="t('tools.dkim-dns-generator.texts.placeholder-enter-selector-e-g-default')" />
+    <NFormItem
+      :label="
+        t(
+          'tools.dkim-dns-generator.texts.label-selector-unique-name-used-to-distinguish-dkim-records-for-the-same-domain',
+        )
+      "
+    >
+      <NInput
+        v-model:value="selector"
+        :placeholder="t('tools.dkim-dns-generator.texts.placeholder-enter-selector-e-g-default')"
+      />
     </NFormItem>
 
     <NFormItem :label="t('tools.dkim-dns-generator.texts.label-key-size-of-the-rsa-key-used-for-signing-emails')">
-      <NSelect v-model:value="keySize" :options="keySizes" :placeholder="t('tools.dkim-dns-generator.texts.placeholder-select-key-size')" />
+      <NSelect
+        v-model:value="keySize"
+        :options="keySizes"
+        :placeholder="t('tools.dkim-dns-generator.texts.placeholder-select-key-size')"
+      />
     </NFormItem>
 
     <NFormItem :label="t('tools.dkim-dns-generator.texts.label-passphrase-of-private-key')">

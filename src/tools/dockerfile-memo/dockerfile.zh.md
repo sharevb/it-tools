@@ -10,6 +10,7 @@ INSTRUCTION arguments
 ## 🚀 核心指令
 
 ### `FROM`
+
 指定基础镜像。
 
 ```Dockerfile
@@ -18,6 +19,7 @@ FROM node:22-alpine
 ```
 
 ### `LABEL`
+
 为镜像添加元数据。
 
 ```Dockerfile
@@ -26,6 +28,7 @@ LABEL version="1.0" description="My App"
 ```
 
 ### `ENV`
+
 设置环境变量。
 
 ```Dockerfile
@@ -34,6 +37,7 @@ ENV PATH="/app/bin:$PATH"
 ```
 
 ### `RUN`
+
 在构建过程中于 shell 中执行命令。
 
 ```Dockerfile
@@ -44,6 +48,7 @@ RUN npm install
 使用 `RUN ["executable", "param1", "param2"]` 以 JSON 数组形式书写。
 
 ### `COPY`
+
 将文件从主机复制到镜像中。
 
 ```Dockerfile
@@ -52,6 +57,7 @@ COPY config.json /app/config.json
 ```
 
 ### `ADD`
+
 类似于 `COPY`，但支持远程 URL 并可自动解压归档文件。
 
 ```Dockerfile
@@ -60,6 +66,7 @@ ADD archive.zip /app/
 ```
 
 ### `CMD`
+
 设置容器启动时运行的默认命令。
 
 ```Dockerfile
@@ -70,6 +77,7 @@ CMD node server.js            # shell 形式
 只允许一条 `CMD`；后面的会覆盖前面的。
 
 ### `ENTRYPOINT`
+
 将容器配置为可执行程序运行。
 
 ```Dockerfile
@@ -79,6 +87,7 @@ ENTRYPOINT ["python", "app.py"]
 与 `CMD` 搭配使用可传递默认参数。
 
 ### `WORKDIR`
+
 为后续指令设置工作目录。
 
 ```Dockerfile
@@ -86,6 +95,7 @@ WORKDIR /app
 ```
 
 ### `EXPOSE`
+
 声明容器监听的端口。
 
 ```Dockerfile
@@ -96,6 +106,7 @@ EXPOSE 443
 注意：这并不会发布端口。
 
 ### `VOLUME`
+
 为持久化或共享数据创建挂载点。
 
 ```Dockerfile
@@ -103,6 +114,7 @@ VOLUME ["/data"]
 ```
 
 ### `USER`
+
 设置运行后续指令的用户。
 
 ```Dockerfile
@@ -110,6 +122,7 @@ USER appuser
 ```
 
 ### `ARG`
+
 定义构建时变量。
 
 ```Dockerfile
@@ -120,6 +133,7 @@ RUN echo $VERSION
 在 `docker build` 时使用 `--build-arg VERSION=2.0`。
 
 ### `ONBUILD`
+
 当该镜像被用作基础镜像时触发相应指令。
 
 ```Dockerfile
@@ -225,6 +239,7 @@ COPY --from=builder /app/output /app/output
 ```
 
 你可以复制：
+
 - 文件
 - 目录
 - 二进制文件

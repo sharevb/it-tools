@@ -13,18 +13,18 @@ const audience = ref('');
 const bypassExpiration = ref(false);
 
 const parsingResult = ref<{
-  type: 'assertion'
-  raw: string
+  type: 'assertion';
+  raw: string;
   profile: {
-    claims?: any[]
-    audience?: string
-    issuer?: string
-    assertionId?: string
-    sessionIndex?: string
-    notBefore?: string
-    notOnOrAfter?: string
-  }
-  validation: { ok: boolean; error?: string | null }
+    claims?: any[];
+    audience?: string;
+    issuer?: string;
+    assertionId?: string;
+    sessionIndex?: string;
+    notBefore?: string;
+    notOnOrAfter?: string;
+  };
+  validation: { ok: boolean; error?: string | null };
 } | null>();
 
 const error = ref<string | null>(null);
@@ -34,8 +34,7 @@ function isBase64(str: string) {
   try {
     Base64.decode(str.trim());
     return true;
-  }
-  catch {
+  } catch {
     return false;
   }
 }
@@ -64,8 +63,7 @@ async function validate(rawAssertion: string) {
   try {
     const profile = await saml.validate(rawAssertion, options);
     return { ok: true, profile, error: null };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { ok: false, profile: e.profile ?? null, error: String(e) };
   }
 }
@@ -89,14 +87,12 @@ async function detect() {
       if (!looksLikeXml(xml)) {
         try {
           xml = inflateBase64(raw);
-        }
-        catch {
+        } catch {
           error.value = 'Input is not valid Base64 or DEFLATE or XML.';
           return;
         }
       }
-    }
-    else {
+    } else {
       error.value = 'Input is not valid Base64 or DEFLATE or XML.';
       return;
     }
@@ -110,11 +106,9 @@ async function detect() {
       profile: validationResult.profile ?? parsedProfile,
       validation: { ok: validationResult.ok, error: validationResult.error ?? null },
     };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = 'Failed to parse SAML assertion.';
-  }
-  finally {
+  } finally {
     loading.value = false;
   }
 }
@@ -181,14 +175,20 @@ const signatureStatus = computed(() => {
     </n-card>
 
     <n-space justify="center">
-      <n-button type="primary" :loading="loading" @click="detect">{{ t('tools.saml-parser.texts.tag-detect-parse-and-validate') }}</n-button>
+      <n-button type="primary" :loading="loading" @click="detect">{{
+        t('tools.saml-parser.texts.tag-detect-parse-and-validate')
+      }}</n-button>
     </n-space>
 
     <n-alert v-if="error" type="error" show-icon mb-2 mt-2>
       {{ error }}
     </n-alert>
 
-    <c-card v-if="!error && !loading && parsingResult?.raw" :title="t('tools.saml-parser.texts.title-parsed-saml-assertion')" mt-2>
+    <c-card
+      v-if="!error && !loading && parsingResult?.raw"
+      :title="t('tools.saml-parser.texts.title-parsed-saml-assertion')"
+      mt-2
+    >
       <input-copyable
         :label="t('tools.saml-parser.texts.label-issuer')"
         label-width="100px"
@@ -261,16 +261,9 @@ const signatureStatus = computed(() => {
       </c-card>
 
       <c-card :title="t('tools.saml-parser.texts.title-raw-assertion')" mt-2>
-        <CodeBlockCopyable
-          :value="JSON.stringify(parsingResult.profile, null, 2)"
-          language="json"
-          mb-2
-        />
+        <CodeBlockCopyable :value="JSON.stringify(parsingResult.profile, null, 2)" language="json" mb-2 />
 
-        <CodeBlockCopyable
-          :value="parsingResult?.raw"
-          language="xml"
-        />
+        <CodeBlockCopyable :value="parsingResult?.raw" language="xml" />
       </c-card>
     </c-card>
   </div>

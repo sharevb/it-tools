@@ -10,14 +10,13 @@ const form = reactive({
 });
 
 interface PageBuilder {
-  pageUrl: string
-  pageTitle?: string
-  pageDescription?: string
+  pageUrl: string;
+  pageTitle?: string;
+  pageDescription?: string;
 }
 
 const platforms = {
-  Facebook: ({ pageUrl }: PageBuilder) =>
-    `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`,
+  Facebook: ({ pageUrl }: PageBuilder) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`,
   Twitter: ({ pageUrl, pageTitle }: PageBuilder) =>
     `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle || '')}`,
   LinkedIn: ({ pageUrl, pageTitle, pageDescription }: PageBuilder) =>
@@ -50,9 +49,7 @@ function generateLink(platform: string) {
 const generatedLink = computed(() => generateLink(form.selectedPlatform));
 
 function copyAllLinks() {
-  const allLinks = platformOptions
-    .map(opt => `${opt.icon} ${opt.label}: ${generateLink(opt.value)}`)
-    .join('\n\n');
+  const allLinks = platformOptions.map((opt) => `${opt.icon} ${opt.label}: ${generateLink(opt.value)}`).join('\n\n');
   navigator.clipboard.writeText(allLinks);
 }
 </script>
@@ -61,13 +58,22 @@ function copyAllLinks() {
   <n-card :title="t('tools.social-link-sharer.texts.title-share-link-generator')">
     <n-form :model="form" label-placement="top" size="medium">
       <n-form-item :label="t('tools.social-link-sharer.texts.label-page-url')">
-        <n-input v-model:value="form.pageUrl" :placeholder="t('tools.social-link-sharer.texts.placeholder-https-example-com')" />
+        <n-input
+          v-model:value="form.pageUrl"
+          :placeholder="t('tools.social-link-sharer.texts.placeholder-https-example-com')"
+        />
       </n-form-item>
       <n-form-item :label="t('tools.social-link-sharer.texts.label-page-title')">
-        <n-input v-model:value="form.pageTitle" :placeholder="t('tools.social-link-sharer.texts.placeholder-amazing-page-title')" />
+        <n-input
+          v-model:value="form.pageTitle"
+          :placeholder="t('tools.social-link-sharer.texts.placeholder-amazing-page-title')"
+        />
       </n-form-item>
       <n-form-item :label="t('tools.social-link-sharer.texts.label-page-description')">
-        <n-input v-model:value="form.pageDescription" :placeholder="t('tools.social-link-sharer.texts.placeholder-brief-description-of-the-page')" />
+        <n-input
+          v-model:value="form.pageDescription"
+          :placeholder="t('tools.social-link-sharer.texts.placeholder-brief-description-of-the-page')"
+        />
       </n-form-item>
       <n-form-item :label="t('tools.social-link-sharer.texts.label-platform')">
         <n-select
@@ -76,7 +82,11 @@ function copyAllLinks() {
           :placeholder="t('tools.social-link-sharer.texts.placeholder-choose-a-platform')"
         />
       </n-form-item>
-      <input-copy :label="t('tools.social-link-sharer.texts.label-generated-share-link')" :value="generatedLink" readonly />
+      <input-copy
+        :label="t('tools.social-link-sharer.texts.label-generated-share-link')"
+        :value="generatedLink"
+        readonly
+      />
       <n-space justify="center">
         <n-button type="success" @click="copyAllLinks">
           {{ t('tools.social-link-sharer.texts.tag-copy-all-links') }}
@@ -86,7 +96,14 @@ function copyAllLinks() {
 
     <n-divider>{{ t('tools.social-link-sharer.texts.tag-all-platforms') }}</n-divider>
     <div v-for="platform in platformOptions" :key="platform.value">
-      <input-copyable label-position="left" label-width="110px" :label="`${platform.icon} ${platform.label}:`" :value="generateLink(platform.value)" readonly mb-1 />
+      <input-copyable
+        label-position="left"
+        label-width="110px"
+        :label="`${platform.icon} ${platform.label}:`"
+        :value="generateLink(platform.value)"
+        readonly
+        mb-1
+      />
     </div>
   </n-card>
 </template>

@@ -8,18 +8,18 @@ export function compareLists({
   trimItems = true,
   separator = '',
 }: {
-  list1: string
-  list2: string
-  separator?: string
-  ignoreCase?: boolean
-  trimItems?: boolean
+  list1: string;
+  list2: string;
+  separator?: string;
+  ignoreCase?: boolean;
+  trimItems?: boolean;
 }) {
   const splitSep = separator ? `${separator}|` : '';
   const splitRegExp = new RegExp(`(?:${splitSep}\\n)`, 'g');
 
   const prepareList = (list: string) => {
     const text = ignoreCase ? (list ?? '').toLowerCase() : (list ?? '');
-    return text.split(splitRegExp).map(item => trimItems ? item.trim() : item);
+    return text.split(splitRegExp).map((item) => (trimItems ? item.trim() : item));
   };
 
   const list1Arr = prepareList(list1);

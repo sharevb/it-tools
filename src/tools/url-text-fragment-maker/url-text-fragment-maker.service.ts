@@ -1,19 +1,22 @@
 import { translate as t } from '@/plugins/i18n.plugin';
 
-export function getUrlWithTextFragment(
-  { url, textStartSearch, textStopSearch, prefixSearch, suffixSearch }:
-  { url: string
-    textStartSearch: string
-    textStopSearch?: string
-    prefixSearch?: string
-    suffixSearch?: string
-  },
-) {
+export function getUrlWithTextFragment({
+  url,
+  textStartSearch,
+  textStopSearch,
+  prefixSearch,
+  suffixSearch,
+}: {
+  url: string;
+  textStartSearch: string;
+  textStopSearch?: string;
+  prefixSearch?: string;
+  suffixSearch?: string;
+}) {
   const isValidUrl = (urlString: string) => {
     try {
       return Boolean(new URL(urlString));
-    }
-    catch (e) {
+    } catch (e) {
       return false;
     }
   };
@@ -26,10 +29,13 @@ export function getUrlWithTextFragment(
   }
 
   const [textStartSearchFirstText, ...textStartSearchOtherTexts] = textStartSearch.split(',');
-  const text = `${encodeURIComponent(prefixSearch ?? '')}-,${encodeURIComponent(textStartSearchFirstText.trim())},${encodeURIComponent(textStopSearch ?? '')},-${encodeURIComponent(suffixSearch ?? '')}`
-    .replace(/^-,|,(?=,)|,-$/g, '')
-    .replace(/,+/g, ',');
-  let textStartSearchOtherTextEncoded = textStartSearchOtherTexts.map(t => `text=${encodeURIComponent(t.trim())}`).join('&');
+  const text =
+    `${encodeURIComponent(prefixSearch ?? '')}-,${encodeURIComponent(textStartSearchFirstText.trim())},${encodeURIComponent(textStopSearch ?? '')},-${encodeURIComponent(suffixSearch ?? '')}`
+      .replace(/^-,|,(?=,)|,-$/g, '')
+      .replace(/,+/g, ',');
+  let textStartSearchOtherTextEncoded = textStartSearchOtherTexts
+    .map((t) => `text=${encodeURIComponent(t.trim())}`)
+    .join('&');
   if (textStartSearchOtherTextEncoded.length) {
     textStartSearchOtherTextEncoded = `&${textStartSearchOtherTextEncoded}`;
   }

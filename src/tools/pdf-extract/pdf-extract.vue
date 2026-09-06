@@ -14,12 +14,11 @@ const extractRange = ref('');
 const base64OutputPDF = ref('');
 const logs = ref<string[]>([]);
 const fileName = ref('');
-const { download } = useDownloadFileFromBase64(
-  {
-    source: base64OutputPDF,
-    filename: fileName,
-    extension: 'pdf',
-  });
+const { download } = useDownloadFileFromBase64({
+  source: base64OutputPDF,
+  filename: fileName,
+  extension: 'pdf',
+});
 const qpdfCommand = ref('');
 
 function onFileUploaded(uploadedFile: File) {
@@ -35,23 +34,13 @@ async function onProcessClicked() {
 
   status.value = 'processing';
   try {
-    const options = [
-      'in.pdf',
-      '--verbose',
-      '--pages',
-      '.',
-      `${extractRange.value}`,
-      '--',
-      'out.pdf',
-    ];
-    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer,
-      options, 0);
+    const options = ['in.pdf', '--verbose', '--pages', '.', `${extractRange.value}`, '--', 'out.pdf'];
+    const outPdfBuffer = await callMainWithInOutPdf(fileBuffer, options, 0);
     base64OutputPDF.value = `data:application/pdf;base64,${Base64.fromUint8Array(outPdfBuffer)}`;
     status.value = 'done';
 
     download();
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
@@ -86,7 +75,11 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
           @file-upload="onFileUploaded"
         />
         <div mt-2 text-center>
-          <c-input-text :value="fileName" :label="t('tools.pdf-extract.texts.label-output-file')" label-position="left" />
+          <c-input-text
+            :value="fileName"
+            :label="t('tools.pdf-extract.texts.label-output-file')"
+            label-position="left"
+          />
         </div>
       </div>
     </div>
@@ -99,7 +92,8 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
         mb-2
       />
       <n-p>
-        {{ t('tools.pdf-extract.texts.tag-for-details-about-range-options-see') }}<n-a target="_blank" href="https://qpdf.readthedocs.io/en/stable/cli.html#page-selection">
+        {{ t('tools.pdf-extract.texts.tag-for-details-about-range-options-see')
+        }}<n-a target="_blank" href="https://qpdf.readthedocs.io/en/stable/cli.html#page-selection">
           {{ t('tools.pdf-extract.texts.tag-qpdf-documentation') }}
         </n-a>
       </n-p>
@@ -117,10 +111,7 @@ async function callMainWithInOutPdf(data: ArrayBuffer, args: string[], expected_
       <c-alert v-if="status === 'error'" type="error">
         {{ $t('tools.file-type.texts.an-error-occured-processing') }} <span>{{ fileName }}</span>
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
 
     <c-card :title="t('tools.pdf-extract.texts.title-logs')">

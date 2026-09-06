@@ -1,9 +1,9 @@
 import { getAllTimezones, getTimezone } from 'countries-and-timezones';
 
 interface TimezoneInfo {
-  name: string
-  utcOffsetStr: string
-  dstOffsetStr: string
+  name: string;
+  utcOffsetStr: string;
+  dstOffsetStr: string;
 }
 
 const timezones = getAllTimezones() as Record<string, TimezoneInfo>;
@@ -35,8 +35,7 @@ export function resolveIanaTimeZone(timezone?: string, fallback = 'Etc/UTC') {
     }
 
     return fallback;
-  }
-  catch (_ignored) {
+  } catch (_ignored) {
     return fallback;
   }
 }
@@ -58,8 +57,7 @@ export function resolveBrowserTimeZone(timezone?: string, fallback = 'Etc/UTC') 
     }
 
     return fallback;
-  }
-  catch (_ignored) {
+  } catch (_ignored) {
     return fallback;
   }
 }
@@ -74,10 +72,10 @@ export function getTimeZoneOptionLabel({
   name,
   utcOffsetStr,
 }: {
-  browserTimezone: string
-  dstOffsetStr: string
-  name: string
-  utcOffsetStr: string
+  browserTimezone: string;
+  dstOffsetStr: string;
+  name: string;
+  utcOffsetStr: string;
 }) {
   const browserPrefix = name === browserTimezone ? 'Browser TZ - ' : '';
   const offsetLabel = utcOffsetStr === dstOffsetStr ? utcOffsetStr : `${utcOffsetStr}/${dstOffsetStr}`;
@@ -87,7 +85,7 @@ export function getTimeZoneOptionLabel({
 
 export function getIanaTimeZoneOptions(browserTimezone = getBrowserTimeZone()) {
   return Object.values(timezones)
-    .map(tz => ({
+    .map((tz) => ({
       value: tz.name,
       label: getTimeZoneOptionLabel({
         browserTimezone,

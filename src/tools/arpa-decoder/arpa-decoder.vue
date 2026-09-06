@@ -9,8 +9,7 @@ const arpaInput = ref('');
 const decodedIP = computed(() => {
   try {
     return fromARPA(arpaInput.value.trim());
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return `# ${e.toString()}`;
   }
 });
@@ -19,7 +18,10 @@ const decodedIP = computed(() => {
 <template>
   <div>
     <NFormItem :label="t('tools.arpa-decoder.texts.label-arpa-address')" label-placement="left" mb-2>
-      <NInput v-model:value="arpaInput" :placeholder="t('tools.arpa-decoder.texts.placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa')" />
+      <NInput
+        v-model:value="arpaInput"
+        :placeholder="t('tools.arpa-decoder.texts.placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa')"
+      />
     </NFormItem>
 
     <c-card v-if="decodedIP">

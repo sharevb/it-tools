@@ -33,7 +33,9 @@ export const CLAIM_DESCRIPTIONS: Record<string, string> = {
   family_name: t('tools.jwt-parser.constants.text.surname-s-or-last-name-s'),
   middle_name: t('tools.jwt-parser.constants.text.middle-name-s'),
   nickname: t('tools.jwt-parser.constants.text.casual-name'),
-  preferred_username: t('tools.jwt-parser.constants.text.shorthand-name-by-which-the-end-user-wishes-to-be-referred-to'),
+  preferred_username: t(
+    'tools.jwt-parser.constants.text.shorthand-name-by-which-the-end-user-wishes-to-be-referred-to',
+  ),
   profile: t('tools.jwt-parser.constants.text.profile-page-url'),
   picture: t('tools.jwt-parser.constants.text.profile-picture-url'),
   website: t('tools.jwt-parser.constants.text.web-page-or-blog-url'),
@@ -44,7 +46,9 @@ export const CLAIM_DESCRIPTIONS: Record<string, string> = {
   zoneinfo: t('tools.jwt-parser.constants.text.time-zone'),
   locale: t('tools.jwt-parser.constants.text.locale'),
   phone_number: t('tools.jwt-parser.constants.text.preferred-telephone-number'),
-  phone_number_verified: t('tools.jwt-parser.constants.text.true-if-the-phone-number-has-been-verified-otherwise-false'),
+  phone_number_verified: t(
+    'tools.jwt-parser.constants.text.true-if-the-phone-number-has-been-verified-otherwise-false',
+  ),
   address: t('tools.jwt-parser.constants.text.preferred-postal-address'),
   updated_at: t('tools.jwt-parser.constants.text.time-the-information-was-last-updated'),
   azp: t('tools.jwt-parser.constants.text.authorized-party-the-party-to-which-the-id-token-was-issued'),

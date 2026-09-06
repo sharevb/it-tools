@@ -1,8 +1,12 @@
 export type Encoding = 'htmldec' | 'htmlhex' | 'uniplus' | 'antiuni' | 'css' | 'python' | 'js' | 'utf16';
 
-const ALL_PRINTABLE_ASCII = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
+const ALL_PRINTABLE_ASCII =
+  ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
-function convertTextToUnicode(text: string, { encoding = 'htmldec', skipAscii = false }: { encoding?: Encoding; skipAscii?: boolean } = {}): string {
+function convertTextToUnicode(
+  text: string,
+  { encoding = 'htmldec', skipAscii = false }: { encoding?: Encoding; skipAscii?: boolean } = {},
+): string {
   let prefix: (value: number) => string;
   let suffix: (value: number) => string = () => '';
   let base = 16;
@@ -13,46 +17,41 @@ function convertTextToUnicode(text: string, { encoding = 'htmldec', skipAscii = 
     prefix = () => '&#';
     base = 10;
     suffix = () => ';';
-  }
-  else if (encoding === 'htmlhex') {
+  } else if (encoding === 'htmlhex') {
     prefix = () => '&#x';
     suffix = () => ';';
-  }
-  else if (encoding === 'uniplus') {
+  } else if (encoding === 'uniplus') {
     prefix = () => 'U+';
     padding = () => 5;
     separator = ' ';
-  }
-  else if (encoding === 'antiuni') {
+  } else if (encoding === 'antiuni') {
     prefix = () => '\\u';
-    padding = (value: number) => value < 256 ? 2 : 4;
-  }
-  else if (encoding === 'utf16') {
+    padding = (value: number) => (value < 256 ? 2 : 4);
+  } else if (encoding === 'utf16') {
     prefix = () => '\\u';
     padding = () => 4;
     codepoints = text.split('');
-  }
-  else if (encoding === 'python') {
-    prefix = (value: number) => value < 256 ? '\\x' : (value < 65536 ? '\\u' : '\\U');
-    padding = (value: number) => value < 256 ? 2 : (value < 65536 ? 4 : 8);
-  }
-  else if (encoding === 'js') {
-    prefix = (value: number) => value < 65536 ? '\\u' : '\\u{';
-    suffix = (value: number) => value < 65536 ? '' : '}';
+  } else if (encoding === 'python') {
+    prefix = (value: number) => (value < 256 ? '\\x' : value < 65536 ? '\\u' : '\\U');
+    padding = (value: number) => (value < 256 ? 2 : value < 65536 ? 4 : 8);
+  } else if (encoding === 'js') {
+    prefix = (value: number) => (value < 65536 ? '\\u' : '\\u{');
+    suffix = (value: number) => (value < 65536 ? '' : '}');
     padding = () => 4;
-  }
-  else if (encoding === 'css') {
+  } else if (encoding === 'css') {
     prefix = () => '\\';
     padding = () => 6;
   }
 
-  return codepoints.map((value) => {
-    if (skipAscii && ALL_PRINTABLE_ASCII.includes(value)) {
-      return value;
-    }
-    const charCode = value.codePointAt(0) || 0xFF;
-    return `${prefix(charCode)}${charCode.toString(base).padStart(padding(charCode), '0')}${suffix(charCode)}`;
-  }).join(separator);
+  return codepoints
+    .map((value) => {
+      if (skipAscii && ALL_PRINTABLE_ASCII.includes(value)) {
+        return value;
+      }
+      const charCode = value.codePointAt(0) || 0xff;
+      return `${prefix(charCode)}${charCode.toString(base).padStart(padding(charCode), '0')}${suffix(charCode)}`;
+    })
+    .join(separator);
 }
 
 function convertUnicodeToText(unicodeStr: string): string {

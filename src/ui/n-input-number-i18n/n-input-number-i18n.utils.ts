@@ -6,13 +6,9 @@ export function countChar(str: string, char: string) {
     }
   }
   return result;
-};
+}
 export function parseNumber(value: string) {
-  if (
-    value === undefined
-        || value === null
-        || (typeof value === 'string' && value.trim() === '')
-  ) {
+  if (value === undefined || value === null || (typeof value === 'string' && value.trim() === '')) {
     return null;
   }
   let cleanedValue = value.replace(/[^,\.\d-]/g, '');

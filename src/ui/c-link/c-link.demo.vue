@@ -5,8 +5,6 @@ import CLink from './c-link.vue';
 <template>
   <div>
     <h2>Default</h2>
-    <CLink mx-1>
-      Link
-    </CLink>
+    <CLink mx-1> Link </CLink>
   </div>
 </template>

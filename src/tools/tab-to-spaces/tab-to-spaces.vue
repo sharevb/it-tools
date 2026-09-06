@@ -15,19 +15,20 @@ function getLen(str: string): number {
   let length = 0;
   for (let i = 0; i < str.length; i++) {
     const chr = str.charCodeAt(i);
-    if ((chr >= 0x00 && chr <= 0x80)
-            || (chr >= 0xA0 && chr <= 0xFF)
-            || (chr === 0xF8F0)
-            || (chr >= 0xFF61 && chr <= 0xFF9F)
-            || (chr >= 0xF8F1 && chr <= 0xF8F3)) {
+    if (
+      (chr >= 0x00 && chr <= 0x80) ||
+      (chr >= 0xa0 && chr <= 0xff) ||
+      chr === 0xf8f0 ||
+      (chr >= 0xff61 && chr <= 0xff9f) ||
+      (chr >= 0xf8f1 && chr <= 0xf8f3)
+    ) {
       length += 1;
-    }
-    else {
+    } else {
       length += 2;
     }
   }
   return length;
-};
+}
 
 function normalizeInnerSpacing(text: string): string {
   return text
@@ -74,8 +75,7 @@ const output = computed(() => {
         return transformTabs(line.slice(0, leadingSpaces), tabSize) + line.slice(leadingSpaces);
       })
       .join('\n');
-  }
-  else {
+  } else {
     out = out
       .split('\n')
       .map((line) => {
@@ -120,9 +120,7 @@ const output = computed(() => {
       />
     </c-card>
     <c-card :title="t('tools.tab-to-spaces.texts.title-output-with-spaces')">
-      <textarea-copyable
-        :value="output"
-      />
+      <textarea-copyable :value="output" />
     </c-card>
   </div>
 </template>

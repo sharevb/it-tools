@@ -14,7 +14,14 @@ const { searchResult } = useFlexSearch({
   search: searchQuery,
   data: langsSearchData,
   options: {
-    keys: [{ name: 'name', weight: 2 }, { name: '1', weight: 3 }, { name: '2T', weight: 2 }, { name: '2B', weight: 2 }, { name: '3', weight: 2 }, 'local'],
+    keys: [
+      { name: 'name', weight: 2 },
+      { name: '1', weight: 3 },
+      { name: '2T', weight: 2 },
+      { name: '2B', weight: 2 },
+      { name: '3', weight: 2 },
+      'local',
+    ],
   },
   limit,
 });
@@ -50,12 +57,8 @@ function startAutomatedLoading() {
   // Start loading batches every 150ms
   loadingInterval = setInterval(() => {
     if (visibleResultsCount.value < searchResult.value.length) {
-      visibleResultsCount.value = Math.min(
-        visibleResultsCount.value + RESULTS_PER_BATCH,
-        searchResult.value.length,
-      );
-    }
-    else {
+      visibleResultsCount.value = Math.min(visibleResultsCount.value + RESULTS_PER_BATCH, searchResult.value.length);
+    } else {
       // Stop loading when all results are visible
       stopAutomatedLoading();
     }
@@ -63,16 +66,19 @@ function startAutomatedLoading() {
 }
 
 // Watch for changes in search results to restart batching
-watch(searchResult, (newResults) => {
-  if (newResults.length > 0) {
-    nextTick(() => {
-      startAutomatedLoading();
-    });
-  }
-  else {
-    stopAutomatedLoading();
-  }
-}, { immediate: true });
+watch(
+  searchResult,
+  (newResults) => {
+    if (newResults.length > 0) {
+      nextTick(() => {
+        startAutomatedLoading();
+      });
+    } else {
+      stopAutomatedLoading();
+    }
+  },
+  { immediate: true },
+);
 
 // Clean up on component unmount
 onUnmounted(() => {
@@ -83,7 +89,12 @@ onUnmounted(() => {
 <template>
   <div mx-auto max-w-2400px important:flex-1>
     <div mx-auto max-w-600px flex justify-center gap-3>
-      <c-input-text v-model:value="searchQuery" :placeholder="t('tools.iso-639-searcher.texts.placeholder-search-iso-639-language-code-by-iso-1-iso-2t-2b-iso-3-name')">
+      <c-input-text
+        v-model:value="searchQuery"
+        :placeholder="
+          t('tools.iso-639-searcher.texts.placeholder-search-iso-639-language-code-by-iso-1-iso-2t-2b-iso-3-name')
+        "
+      >
         <template #prefix>
           <icon-mdi-search mr-6px color-black op-70 dark:color-white />
         </template>
@@ -116,14 +127,31 @@ onUnmounted(() => {
                 <input-copyable :value="result[1]" :readonly="true" />
               </td>
               <td>
-                <input-copyable label-position="left" :label="t('tools.iso-639-searcher.texts.label-2b')" :value="result['2B']" :readonly="true" mb-1 />
-                <input-copyable label-position="left" :label="t('tools.iso-639-searcher.texts.label-2t')" :value="result['2T']" :readonly="true" />
+                <input-copyable
+                  label-position="left"
+                  :label="t('tools.iso-639-searcher.texts.label-2b')"
+                  :value="result['2B']"
+                  :readonly="true"
+                  mb-1
+                />
+                <input-copyable
+                  label-position="left"
+                  :label="t('tools.iso-639-searcher.texts.label-2t')"
+                  :value="result['2T']"
+                  :readonly="true"
+                />
               </td>
               <td>
                 <input-copyable :value="result['3']" :readonly="true" />
               </td>
               <td>
-                <input-copyable label-position="left" :label="t('tools.iso-639-searcher.texts.label-eng')" :value="result.name" :readonly="true" mb-1 />
+                <input-copyable
+                  label-position="left"
+                  :label="t('tools.iso-639-searcher.texts.label-eng')"
+                  :value="result.name"
+                  :readonly="true"
+                  mb-1
+                />
                 <input-copyable :value="result.local" :readonly="true" />
               </td>
             </tr>
@@ -133,7 +161,9 @@ onUnmounted(() => {
         <!-- Loading indicator when more results are coming -->
         <div v-if="visibleResultsCount < searchResult.length" mt-6 text-center>
           <div text-14px op-70>
-            {{ $t('tools.iso-639-searcher.texts.loading-more-results') }} ({{ visibleSearchResults.length }}/{{ searchResult.length }})
+            {{ $t('tools.iso-639-searcher.texts.loading-more-results') }} ({{ visibleSearchResults.length }}/{{
+              searchResult.length
+            }})
           </div>
         </div>
       </div>

@@ -15,9 +15,11 @@ const store = useStore('pomodoro-store');
       {{ $t('tools.pomodoro-timer.Home.text.welcome') }}
     </p>
     <p>
-      {{ $t('tools.pomodoro-timer.Home.text.go-to') }} <a style="cursor: pointer;" @click="store.commit('goToPage', 'settings')">
+      {{ $t('tools.pomodoro-timer.Home.text.go-to') }}
+      <a style="cursor: pointer" @click="store.commit('goToPage', 'settings')">
         {{ $t('tools.watermarker.texts.title-settings') }}
-      </a> {{ $t('tools.pomodoro-timer.Home.text.to-get-started') }}
+      </a>
+      {{ $t('tools.pomodoro-timer.Home.text.to-get-started') }}
     </p>
   </div>
   <div v-else class="home">
@@ -35,29 +37,29 @@ const store = useStore('pomodoro-store');
 
 <style scoped>
 .home {
-    width: 100%;
-    display: grid;
-    grid-template-rows: 1fr auto;
-    grid-template-areas:
-        "graphic"
-        "counter";
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    'graphic'
+    'counter';
 }
 .graphic {
-    grid-area: graphic;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  grid-area: graphic;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .counter {
-    grid-area: counter;
-    justify-self: center;
-    padding-bottom: 1.25rem;
+  grid-area: counter;
+  justify-self: center;
+  padding-bottom: 1.25rem;
 }
 .welcome-msg {
-    font-size: 1.375rem;
-    text-align: center;
-    align-self: center;
-    margin-top: -5rem;
+  font-size: 1.375rem;
+  text-align: center;
+  align-self: center;
+  margin-top: -5rem;
 }
 </style>

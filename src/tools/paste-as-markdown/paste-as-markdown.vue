@@ -17,9 +17,13 @@ onMounted(() => {
 <template>
   <c-card :title="t('tools.paste-as-markdown.texts.title-paste-in-markdown')" class="paste-zone">
     <n-ul>
-      <n-li>{{ t('tools.paste-as-markdown.texts.tag-paste-spreadsheet-cells-and-html-tables-as-a-markdown-tables') }}</n-li>
+      <n-li>{{
+        t('tools.paste-as-markdown.texts.tag-paste-spreadsheet-cells-and-html-tables-as-a-markdown-tables')
+      }}</n-li>
       <n-li>{{ t('tools.paste-as-markdown.texts.tag-paste-urls-on-selected-text-as-markdown-links') }}</n-li>
-      <n-li>{{ t('tools.paste-as-markdown.texts.tag-paste-text-containing-links-as-text-containing-markdown-links') }}</n-li>
+      <n-li>{{
+        t('tools.paste-as-markdown.texts.tag-paste-text-containing-links-as-text-containing-markdown-links')
+      }}</n-li>
       <n-li>{{ t('tools.paste-as-markdown.texts.tag-paste-image-urls-as-markdown-image-links') }}</n-li>
     </n-ul>
     <CInputText

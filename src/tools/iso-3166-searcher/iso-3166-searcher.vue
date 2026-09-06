@@ -15,7 +15,17 @@ const { searchResult } = useFlexSearch({
   search: searchQuery,
   data: countriesSearchData,
   options: {
-    keys: [{ name: 'name', weight: 2 }, { name: 'iso3', weight: 3 }, { name: 'iso2', weight: 2 }, 'officialName', 'domain', 'continentId', 'currencyCode', 'currencyName', 'phoneCode'],
+    keys: [
+      { name: 'name', weight: 2 },
+      { name: 'iso3', weight: 3 },
+      { name: 'iso2', weight: 2 },
+      'officialName',
+      'domain',
+      'continentId',
+      'currencyCode',
+      'currencyName',
+      'phoneCode',
+    ],
   },
   limit,
 });
@@ -59,12 +69,8 @@ function startAutomatedLoading() {
   // Start loading batches every 150ms
   loadingInterval = setInterval(() => {
     if (visibleResultsCount.value < searchResult.value.length) {
-      visibleResultsCount.value = Math.min(
-        visibleResultsCount.value + RESULTS_PER_BATCH,
-        searchResult.value.length,
-      );
-    }
-    else {
+      visibleResultsCount.value = Math.min(visibleResultsCount.value + RESULTS_PER_BATCH, searchResult.value.length);
+    } else {
       // Stop loading when all results are visible
       stopAutomatedLoading();
     }
@@ -72,16 +78,19 @@ function startAutomatedLoading() {
 }
 
 // Watch for changes in search results to restart batching
-watch(searchResult, (newResults) => {
-  if (newResults.length > 0) {
-    nextTick(() => {
-      startAutomatedLoading();
-    });
-  }
-  else {
-    stopAutomatedLoading();
-  }
-}, { immediate: true });
+watch(
+  searchResult,
+  (newResults) => {
+    if (newResults.length > 0) {
+      nextTick(() => {
+        startAutomatedLoading();
+      });
+    } else {
+      stopAutomatedLoading();
+    }
+  },
+  { immediate: true },
+);
 
 // Clean up on component unmount
 onUnmounted(() => {
@@ -92,7 +101,10 @@ onUnmounted(() => {
 <template>
   <div mx-auto max-w-2400px important:flex-1>
     <div mx-auto max-w-600px flex justify-center gap-3>
-      <c-input-text v-model:value="searchQuery" :placeholder="t('tools.iso-3166-searcher.texts.placeholder-search-countries-by-name-iso2-iso3')">
+      <c-input-text
+        v-model:value="searchQuery"
+        :placeholder="t('tools.iso-3166-searcher.texts.placeholder-search-countries-by-name-iso2-iso3')"
+      >
         <template #prefix>
           <icon-mdi-search mr-6px color-black op-70 dark:color-white />
         </template>
@@ -124,7 +136,14 @@ onUnmounted(() => {
                 <input-copyable :value="result.iso3" :readonly="true" />
               </td>
               <td>
-                <input-copyable label-width="150px" :label="t('tools.iso-3166-searcher.texts.label-name')" label-position="left" :value="result.name" :readonly="true" mb-1 />
+                <input-copyable
+                  label-width="150px"
+                  :label="t('tools.iso-3166-searcher.texts.label-name')"
+                  label-position="left"
+                  :value="result.name"
+                  :readonly="true"
+                  mb-1
+                />
                 <input-copyable
                   label-width="150px"
                   :label="t('tools.iso-3166-searcher.texts.label-official-name')"
@@ -133,7 +152,14 @@ onUnmounted(() => {
                   :readonly="true"
                   mb-1
                 />
-                <input-copyable label-width="150px" :label="t('tools.iso-3166-searcher.texts.label-domain')" label-position="left" :value="result.domain" :readonly="true" mb-1 />
+                <input-copyable
+                  label-width="150px"
+                  :label="t('tools.iso-3166-searcher.texts.label-domain')"
+                  label-position="left"
+                  :value="result.domain"
+                  :readonly="true"
+                  mb-1
+                />
                 <input-copyable
                   label-width="150px"
                   :label="t('tools.iso-3166-searcher.texts.label-emoji')"
@@ -221,8 +247,7 @@ onUnmounted(() => {
                   :value="
                     result.neighborCountryIds
                       .map((id) => CountriesDB.getCountry(id, 'name')?.toString() || id)
-                      .join(', ')
-                      || 'None'
+                      .join(', ') || 'None'
                   "
                   :readonly="true"
                   mb-1
@@ -257,7 +282,9 @@ onUnmounted(() => {
         <!-- Loading indicator when more results are coming -->
         <div v-if="visibleResultsCount < searchResult.length" mt-6 text-center>
           <div text-14px op-70>
-            {{ t('tools.iso-3166-searcher.texts.loading-more-results') }} ({{ visibleSearchResults.length }}/{{ searchResult.length }})
+            {{ t('tools.iso-3166-searcher.texts.loading-more-results') }} ({{ visibleSearchResults.length }}/{{
+              searchResult.length
+            }})
           </div>
         </div>
       </div>

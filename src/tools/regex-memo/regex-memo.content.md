@@ -1,14 +1,14 @@
 **Regular expressions** describe a pattern that text either matches or does not. The syntax below is the JavaScript flavour; PCRE, Python, Go and Java agree on almost all of it — the differences are called out where they bite.
 
 ```js
-/^\d{4}-\d{2}-\d{2}$/.test('2026-08-22')   // true
-'a1b2'.replace(/\d/g, '#')                 // 'a#b#'
+/^\d{4}-\d{2}-\d{2}$/.test('2026-08-22'); // true
+'a1b2'.replace(/\d/g, '#'); // 'a#b#'
 ```
 
 ## 🔡 Character Classes
 
 | Expression             | Matches                                                       |
-|------------------------|---------------------------------------------------------------|
+| ---------------------- | ------------------------------------------------------------- |
 | `.`                    | Any character except a newline (any at all with the `s` flag) |
 | `[A-Za-z]`             | A letter                                                      |
 | `[a-z]` / `[A-Z]`      | A lower-case / upper-case letter                              |
@@ -24,7 +24,7 @@
 ## ␣ Whitespace
 
 | Expression | Matches                 |
-|------------|-------------------------|
+| ---------- | ----------------------- |
 | ` `        | A literal space         |
 | `\t`       | Tab                     |
 | `\n`       | Newline                 |
@@ -35,7 +35,7 @@
 ## 🎯 Character Sets
 
 | Expression  | Matches                                   |
-|-------------|-------------------------------------------|
+| ----------- | ----------------------------------------- |
 | `[xyz]`     | `x`, `y` or `z`                           |
 | `[^xyz]`    | Anything except `x`, `y`, `z`             |
 | `[1-3]`     | `1`, `2` or `3`                           |
@@ -51,11 +51,11 @@
 Outside a character set, these need a backslash to be taken literally:
 
 | Escape | Character                              | Escape | Character           |
-|--------|----------------------------------------|--------|---------------------|
+| ------ | -------------------------------------- | ------ | ------------------- | --------------- |
 | `\.`   | Period                                 | `\(`   | Opening parenthesis |
 | `\^`   | Caret                                  | `\)`   | Closing parenthesis |
 | `\$`   | Dollar sign                            | `\[`   | Opening bracket     |
-| `\\|`  | Pipe                                   | `\]`   | Closing bracket     |
+| `\\    | `                                      | Pipe   | `\]`                | Closing bracket |
 | `\\`   | Backslash                              | `\{`   | Opening brace       |
 | `\/`   | Forward slash (only in `/…/` literals) | `\}`   | Closing brace       |
 
@@ -64,28 +64,28 @@ Inside a character set only `\\` and `\]` always need escaping. A `^` needs it o
 ## 🔢 Quantifiers
 
 | Expression              | Repeats the preceding item                            |
-|-------------------------|-------------------------------------------------------|
+| ----------------------- | ----------------------------------------------------- |
 | `{2}`                   | Exactly twice                                         |
 | `{2,}`                  | Two or more times                                     |
 | `{2,7}`                 | Between two and seven times                           |
 | `*`                     | Zero or more                                          |
 | `+`                     | One or more                                           |
 | `?`                     | Zero or once                                          |
-| `*?` `+?` `??` `{2,7}?` | The lazy form — match as *few* characters as possible |
+| `*?` `+?` `??` `{2,7}?` | The lazy form — match as _few_ characters as possible |
 
 ```js
-'<b>bold</b>'.match(/<.+>/)[0]    // '<b>bold</b>'  — greedy
-'<b>bold</b>'.match(/<.+?>/)[0]   // '<b>'          — lazy
+'<b>bold</b>'.match(/<.+>/)[0]; // '<b>bold</b>'  — greedy
+'<b>bold</b>'.match(/<.+?>/)[0]; // '<b>'          — lazy
 ```
 
 ## 📍 Anchors & Boundaries
 
 | Expression | Matches at                                                              |
-|------------|-------------------------------------------------------------------------|
+| ---------- | ----------------------------------------------------------------------- |
 | `^`        | Start of the string (start of a line with the `m` flag)                 |
 | `$`        | End of the string (end of a line with the `m` flag)                     |
 | `\b`       | A word boundary                                                         |
-| `\B`       | Anywhere that is *not* a word boundary                                  |
+| `\B`       | Anywhere that is _not_ a word boundary                                  |
 | `\A` `\z`  | Start / end of the string in PCRE, Python, Java — **not** in JavaScript |
 
 A word boundary sits between a `\w` and a `\W` (or the edge of the string), so `\bcat\b` matches `cat` in `the cat sat` but not in `concatenate`.
@@ -93,19 +93,19 @@ A word boundary sits between a `\w` and a `\W` (or the edge of the string), so `
 ## 🔀 Alternation & Lookaround
 
 | Expression    | Matches                                   |
-|---------------|-------------------------------------------|
+| ------------- | ----------------------------------------- |
 | `foo\|bar`    | Either `foo` or `bar`                     |
 | `foo(?=bar)`  | `foo` only when followed by `bar`         |
 | `foo(?!bar)`  | `foo` only when **not** followed by `bar` |
 | `(?<=bar)foo` | `foo` only when preceded by `bar`         |
 | `(?<!bar)foo` | `foo` only when **not** preceded by `bar` |
 
-Lookaround is *zero-width*: it tests the surroundings without consuming them, so nothing it matches ends up in the result.
+Lookaround is _zero-width_: it tests the surroundings without consuming them, so nothing it matches ends up in the result.
 
 ## 🎁 Groups & Backreferences
 
 | Expression       | Meaning                                          |
-|------------------|--------------------------------------------------|
+| ---------------- | ------------------------------------------------ |
 | `(foo)`          | Capturing group — matches `foo` and remembers it |
 | `(?:foo)`        | Non-capturing group — groups without capturing   |
 | `(?<year>\d{4})` | Named capturing group                            |
@@ -114,7 +114,7 @@ Lookaround is *zero-width*: it tests the surroundings without consuming them, so
 
 ```js
 // named groups make replacements readable
-'2026-08-22'.replace(/(?<y>\d{4})-(?<m>\d{2})-(?<d>\d{2})/, '$<d>/$<m>/$<y>')
+'2026-08-22'.replace(/(?<y>\d{4})-(?<m>\d{2})-(?<d>\d{2})/, '$<d>/$<m>/$<y>');
 // '22/08/2026'
 
 const { groups } = /(?<user>\w+)@(?<host>[\w.]+)/.exec('jane@example.com');
@@ -124,7 +124,7 @@ const { groups } = /(?<user>\w+)@(?<host>[\w.]+)/.exec('jane@example.com');
 ## 🚩 Flags
 
 | Flag | Name        | Effect                                                    |
-|------|-------------|-----------------------------------------------------------|
+| ---- | ----------- | --------------------------------------------------------- |
 | `g`  | global      | Find every match, not just the first                      |
 | `i`  | ignore case | Case-insensitive matching                                 |
 | `m`  | multiline   | `^` and `$` match at line breaks                          |
@@ -136,7 +136,7 @@ const { groups } = /(?<user>\w+)@(?<host>[\w.]+)/.exec('jane@example.com');
 ## 🔁 Replacement Patterns
 
 | Token      | Inserts                     |
-|------------|-----------------------------|
+| ---------- | --------------------------- |
 | `$&`       | The whole match             |
 | `` $` ``   | Everything before the match |
 | `$'`       | Everything after the match  |

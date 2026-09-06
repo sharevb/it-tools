@@ -5,9 +5,7 @@ function normalize(src: string, firstUpper = true) {
   // return /^\d$/.test(src.charAt(0))
   //   ? `N${pascalCase(src)}`
   //   : pascalCase(src);
-  return /^\d$/.test(src.charAt(0))
-    ? `N${src}`
-    : (firstUpper ? src.charAt(0).toUpperCase() + src.slice(1) : src);
+  return /^\d$/.test(src.charAt(0)) ? `N${src}` : firstUpper ? src.charAt(0).toUpperCase() + src.slice(1) : src;
 }
 
 export function isDate(src: string) {
@@ -16,7 +14,12 @@ export function isDate(src: string) {
   );
 }
 
-interface Prop { type: string; name: string; isArray?: boolean; canBeNullable?: boolean }
+interface Prop {
+  type: string;
+  name: string;
+  isArray?: boolean;
+  canBeNullable?: boolean;
+}
 
 export function getPrimitiveProp(obj: any, key: string): Prop {
   const type = typeof obj;
@@ -34,15 +37,14 @@ export function getPrimitiveProp(obj: any, key: string): Prop {
   }
 }
 
-interface ClassType { key: string; props: Array<Prop> }
+interface ClassType {
+  key: string;
+  props: Array<Prop>;
+}
 
-function handleObject(
-  classes: Array<ClassType>,
-  obj: any,
-  key: string,
-  skip: boolean = false) {
+function handleObject(classes: Array<ClassType>, obj: any, key: string, skip: boolean = false) {
   const normalizedKey = normalize(key);
-  let target: ClassType = classes.find(x => x.key === normalizedKey) as never;
+  let target: ClassType = classes.find((x) => x.key === normalizedKey) as never;
   if (!target) {
     target = { key: normalizedKey, props: [] };
     if (!skip) {
@@ -64,23 +66,20 @@ function handleObject(
                 name: keyName,
                 isArray: true,
               };
-            }
-            else {
+            } else {
               prop = getPrimitiveProp(obj[k][0], keyName);
               prop.isArray = true;
             }
           }
-        }
-        else {
+        } else {
           handleObject(classes, obj[k], keyName);
           prop = { type: normalize(keyName), name: keyName };
         }
-      }
-      else {
+      } else {
         prop = getPrimitiveProp(obj[k], keyName);
       }
 
-      if (prop && !target.props.some(x => x.name === prop?.name)) {
+      if (prop && !target.props.some((x) => x.name === prop?.name)) {
         target.props.push(prop);
       }
     });
@@ -93,32 +92,31 @@ export function json2classes(src: object, rootTypeName: string = 'Root') {
   return classes;
 }
 
-export function json2csharp(
-  {
-    src,
-    rootTypeName = 'Root',
-    pascalCase = true,
-    nullValueHandlingIgnore = true,
-    addJsonPropertyName = true,
-    useReadonlyLists,
-    useRecordTypes,
-    addJsonProperty,
-    generateImmutableClasses,
-    useFields,
-    useNullable,
-  }: {
-    src: any
-    rootTypeName?: string
-    pascalCase?: boolean
-    useFields?: boolean
-    useNullable?: boolean
-    addJsonProperty?: boolean
-    nullValueHandlingIgnore?: boolean
-    addJsonPropertyName?: boolean
-    generateImmutableClasses?: boolean
-    useRecordTypes?: boolean
-    useReadonlyLists?: boolean
-  }) {
+export function json2csharp({
+  src,
+  rootTypeName = 'Root',
+  pascalCase = true,
+  nullValueHandlingIgnore = true,
+  addJsonPropertyName = true,
+  useReadonlyLists,
+  useRecordTypes,
+  addJsonProperty,
+  generateImmutableClasses,
+  useFields,
+  useNullable,
+}: {
+  src: any;
+  rootTypeName?: string;
+  pascalCase?: boolean;
+  useFields?: boolean;
+  useNullable?: boolean;
+  addJsonProperty?: boolean;
+  nullValueHandlingIgnore?: boolean;
+  addJsonPropertyName?: boolean;
+  generateImmutableClasses?: boolean;
+  useRecordTypes?: boolean;
+  useReadonlyLists?: boolean;
+}) {
   const normalizeCase = (s: string) => {
     const normalized = normalize(s, pascalCase);
     return pascalCase ? convertToPascalCase(normalized) : normalized;
@@ -129,8 +127,7 @@ export function json2csharp(
     if (p.isArray) {
       if (useReadonlyLists) {
         type = useRecordTypes ? `IReadonlyList<${type}>` : `List<${type}>`;
-      }
-      else {
+      } else {
         type = `${type}[]`;
       }
     }
@@ -141,7 +138,8 @@ export function json2csharp(
   const srcObj = typeof src === 'string' ? JSON5.parse(src) : src;
   const classes = json2classes(
     Array.isArray(srcObj) ? srcObj[0] : srcObj,
-    Array.isArray(srcObj) ? `${rootTypeName}Item` : rootTypeName);
+    Array.isArray(srcObj) ? `${rootTypeName}Item` : rootTypeName,
+  );
   let result = '';
   result += 'using System;\n';
   result += addJsonProperty ? 'using Newtonsoft.Json;\n' : '';
@@ -150,8 +148,7 @@ export function json2csharp(
   classes.forEach((c) => {
     if (useRecordTypes) {
       result += `public record ${normalizeCase(c.key)}(\n`;
-    }
-    else {
+    } else {
       result += `public class ${normalizeCase(c.key)}\n`;
       result += '{\n';
     }
@@ -173,8 +170,7 @@ export function json2csharp(
       if (addJsonProperty) {
         if (nullValueHandlingIgnore) {
           result += `\t[${scope}JsonProperty("${p.name}", NullValueHandling = NullValueHandling.Ignore)]\n`;
-        }
-        else {
+        } else {
           result += `\t[${scope}JsonProperty("${p.name}")]\n`;
         }
       }
@@ -185,16 +181,13 @@ export function json2csharp(
       const propType = getPropType(p);
       if (useRecordTypes) {
         result += `\t${propType.type}${propType.nullable} ${normalizeCase(p.name)},\n`;
-      }
-      else {
+      } else {
         const newList = useReadonlyLists && p.isArray ? ` = new ${propType.type};` : '';
         if (useFields) {
-          result += `\tpublic ${propType.type}${propType.nullable} ${normalizeCase(p.name)}${(newList || ';')}`;
-        }
-        else if (generateImmutableClasses || (p.isArray && useReadonlyLists)) {
+          result += `\tpublic ${propType.type}${propType.nullable} ${normalizeCase(p.name)}${newList || ';'}`;
+        } else if (generateImmutableClasses || (p.isArray && useReadonlyLists)) {
           result += `\tpublic ${propType.type}${propType.nullable} ${normalizeCase(p.name)} { get; }${newList}`;
-        }
-        else {
+        } else {
           result += `\tpublic ${propType.type}${propType.nullable} ${normalizeCase(p.name)} { get; set; }${newList}`;
         }
         result += '\n';
@@ -203,8 +196,7 @@ export function json2csharp(
     if (useRecordTypes) {
       result = result.replace(/,\n$/, '\n');
       result += ');\n\n';
-    }
-    else {
+    } else {
       result += '}\n\n';
     }
   });

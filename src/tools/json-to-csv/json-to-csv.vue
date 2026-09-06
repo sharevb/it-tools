@@ -7,7 +7,8 @@ import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
 
-const defaultValue = '[\n   {\n      "Age": 18,\n      "Country": "Germany",\n      "Gender": "Male",\n      "Purchased": "N",\n      "Salary": 20000\n   },\n   {\n      "Age": 19,\n      "Country": "France",\n      "Gender": "Female",\n      "Purchased": "N",\n      "Salary": 22000\n   },\n   {\n      "Age": 20,\n      "Country": "England",\n      "Gender": "Female",\n      "Purchased": "N",\n      "Salary": 24000\n   }\n]';
+const defaultValue =
+  '[\n   {\n      "Age": 18,\n      "Country": "Germany",\n      "Gender": "Male",\n      "Purchased": "N",\n      "Salary": 20000\n   },\n   {\n      "Age": 19,\n      "Country": "France",\n      "Gender": "Female",\n      "Purchased": "N",\n      "Salary": 22000\n   },\n   {\n      "Age": 20,\n      "Country": "England",\n      "Gender": "Female",\n      "Purchased": "N",\n      "Salary": 24000\n   }\n]';
 
 function transformer(value: string) {
   return withDefaultOnError(() => {

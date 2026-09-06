@@ -38,7 +38,9 @@ const htpasswd = computed(() => {
       v-model:value="username"
       :label="t('tools.htpasswd-generator.texts.label-username')"
       :placeholder="t('tools.htpasswd-generator.texts.placeholder-your-username')"
-      clearable raw-text mb-5
+      clearable
+      raw-text
+      mb-5
     />
     <c-input-text
       v-model:value="password"
@@ -57,8 +59,19 @@ const htpasswd = computed(() => {
       mb-2
     />
 
-    <n-form-item v-if="hashMethod === 'bcrypt'" :label="t('tools.htpasswd-generator.texts.label-salt-rounds')" label-placement="left" label-width="120">
-      <n-input-number-i18n v-model:value="saltCount" :placeholder="t('tools.htpasswd-generator.texts.placeholder-salt-rounds')" :max="100" :min="0" w-full />
+    <n-form-item
+      v-if="hashMethod === 'bcrypt'"
+      :label="t('tools.htpasswd-generator.texts.label-salt-rounds')"
+      label-placement="left"
+      label-width="120"
+    >
+      <n-input-number-i18n
+        v-model:value="saltCount"
+        :placeholder="t('tools.htpasswd-generator.texts.placeholder-salt-rounds')"
+        :max="100"
+        :min="0"
+        w-full
+      />
     </n-form-item>
 
     <n-divider />

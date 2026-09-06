@@ -17,7 +17,11 @@ const formats = [
   { value: 'clickhouse', label: t('tools.json-to-schema.texts.label-clickhouse-table-schema') },
 ];
 
-const tableName = useQueryParamOrStorage({ name: 'table', storageName: 'json-to-schema:tbl', defaultValue: 'TableName' });
+const tableName = useQueryParamOrStorage({
+  name: 'table',
+  storageName: 'json-to-schema:tbl',
+  defaultValue: 'TableName',
+});
 const format = useQueryParamOrStorage({ name: 'fmt', storageName: 'json-to-schema:fmt', defaultValue: 'json' });
 
 function convertJsonToSchema(value: string) {
@@ -37,7 +41,8 @@ function convertJsonToSchema(value: string) {
       return JSON.stringify(GenerateSchema.generic(object), null, 2);
   }
 }
-const transformer = (value: string) => value.trim() === '' ? '' : withDefaultOnError(() => convertJsonToSchema(value), '');
+const transformer = (value: string) =>
+  value.trim() === '' ? '' : withDefaultOnError(() => convertJsonToSchema(value), '');
 const schemaLanguage = computed(() => {
   switch (format.value) {
     case 'mysql':

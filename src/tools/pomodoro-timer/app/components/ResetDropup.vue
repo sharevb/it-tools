@@ -22,27 +22,27 @@ const store = useStore('pomodoro-store');
 
 <style scoped>
 .dropup-btn {
-    background-color: white;
-    color: var(--pomodoro-app-accent-color);
-    border: 0.0625rem solid var(--pomodoro-app-accent-color);
-    box-shadow: none;
-    width: 11.125rem;
+  background-color: white;
+  color: var(--pomodoro-app-accent-color);
+  border: 0.0625rem solid var(--pomodoro-app-accent-color);
+  box-shadow: none;
+  width: 11.125rem;
 }
 .dropup {
-    position: relative;
-    display: block;
-    text-align: center;
-    padding-top: 1.25rem;
+  position: relative;
+  display: block;
+  text-align: center;
+  padding-top: 1.25rem;
 }
 .dropup-content {
-    position: absolute;
-    bottom: 50px;
-    z-index: 1;
-    background-color: white;
-    padding: 0.625rem;
-    box-shadow: 1px 1px 7px -4px black;
+  position: absolute;
+  bottom: 50px;
+  z-index: 1;
+  background-color: white;
+  padding: 0.625rem;
+  box-shadow: 1px 1px 7px -4px black;
 }
 .reset-btns {
-    margin: 0.625rem;
+  margin: 0.625rem;
 }
 </style>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 type FoodEnergyScale = 'kcal' | 'cal' | 'kJ' | 'J';
 
 const units = reactive<
@@ -7,36 +6,36 @@ const units = reactive<
     string | FoodEnergyScale,
     { title: string; unit: string; ref: number; toBase: (v: number) => number; fromBase: (v: number) => number }
   >
-      >({
-        kcal: {
-          title: 'Calories (Nutritional, kcal)',
-          unit: 'kcal',
-          ref: 0,
-          toBase: (v: number) => v,
-          fromBase: (v: number) => v,
-        },
-        cal: {
-          title: 'Calories (cal)',
-          unit: 'cal',
-          ref: 0,
-          toBase: (v: number) => v / 1000,
-          fromBase: (v: number) => v * 1000,
-        },
-        kJ: {
-          title: 'Kilojoules (kJ)',
-          unit: 'kJ',
-          ref: 0,
-          toBase: (v: number) => v / 4.184,
-          fromBase: (v: number) => v * 4.184,
-        },
-        J: {
-          title: 'Joules (J)',
-          ref: 0,
-          unit: 'J',
-          toBase: (v: number) => v / 4184,
-          fromBase: (v: number) => v * 4184,
-        },
-      });
+>({
+  kcal: {
+    title: 'Calories (Nutritional, kcal)',
+    unit: 'kcal',
+    ref: 0,
+    toBase: (v: number) => v,
+    fromBase: (v: number) => v,
+  },
+  cal: {
+    title: 'Calories (cal)',
+    unit: 'cal',
+    ref: 0,
+    toBase: (v: number) => v / 1000,
+    fromBase: (v: number) => v * 1000,
+  },
+  kJ: {
+    title: 'Kilojoules (kJ)',
+    unit: 'kJ',
+    ref: 0,
+    toBase: (v: number) => v / 4.184,
+    fromBase: (v: number) => v * 4.184,
+  },
+  J: {
+    title: 'Joules (J)',
+    ref: 0,
+    unit: 'J',
+    toBase: (v: number) => v / 4184,
+    fromBase: (v: number) => v * 4184,
+  },
+});
 
 function update(key: FoodEnergyScale) {
   const { ref: value, toBase } = units[key];

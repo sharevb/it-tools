@@ -9,8 +9,7 @@ const textInput = ref('');
 const nicewareOutput = computed(() => {
   try {
     return bytesToPassphrase(hexArray.fromString(textInput.value)).join(' ');
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -27,12 +26,10 @@ const textOutput = computed(() => {
       grouping: grouping.value,
       rowlength: rowlength.value,
     });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
-},
-);
+});
 </script>
 
 <template>

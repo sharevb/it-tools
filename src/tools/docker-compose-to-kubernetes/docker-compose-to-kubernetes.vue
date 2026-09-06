@@ -20,8 +20,7 @@ services:
 const conversionResult = computed(() => {
   try {
     return { kubeYaml: docker2kube(dockerCompose.value.trim()), errors: [] };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { kubeYaml: '#see error messages', errors: e.toString().split('\n') };
   }
 });
@@ -51,7 +50,11 @@ const MONACO_EDITOR_OPTIONS = {
     </c-label>
 
     <div v-if="errors.length > 0">
-      <n-alert :title="t('tools.docker-compose-to-kubernetes.texts.title-the-following-errors-occured')" type="error" mt-5>
+      <n-alert
+        :title="t('tools.docker-compose-to-kubernetes.texts.title-the-following-errors-occured')"
+        type="error"
+        mt-5
+      >
         <ul>
           <li v-for="(message, index) of errors" :key="index">
             {{ message }}

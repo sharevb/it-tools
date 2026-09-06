@@ -42,7 +42,7 @@ tmux kill-server
 ## ⌨️ Sessions
 
 | Keys       | Action                           |
-|------------|----------------------------------|
+| ---------- | -------------------------------- |
 | `Ctrl+b d` | Detach from the session          |
 | `Ctrl+b s` | Interactive session list         |
 | `Ctrl+b $` | Rename the current session       |
@@ -53,7 +53,7 @@ tmux kill-server
 ## 📂 Windows (tabs)
 
 | Keys         | Action                           |
-|--------------|----------------------------------|
+| ------------ | -------------------------------- |
 | `Ctrl+b c`   | Create a window                  |
 | `Ctrl+b ,`   | Rename the current window        |
 | `Ctrl+b n`   | Next window                      |
@@ -68,7 +68,7 @@ tmux kill-server
 ## 🪟 Panes (splits)
 
 | Keys              | Action                                     |
-|-------------------|--------------------------------------------|
+| ----------------- | ------------------------------------------ |
 | `Ctrl+b %`        | Split into left / right panes              |
 | `Ctrl+b "`        | Split into top / bottom panes              |
 | `Ctrl+b ←↑↓→`     | Move the focus in that direction           |
@@ -85,7 +85,7 @@ tmux kill-server
 ## 📋 Copy Mode & Scrollback
 
 | Keys        | Action                                        |
-|-------------|-----------------------------------------------|
+| ----------- | --------------------------------------------- |
 | `Ctrl+b [`  | Enter copy mode (scroll with the arrows/PgUp) |
 | `space`     | Start the selection                           |
 | `Enter`     | Copy the selection and leave copy mode        |

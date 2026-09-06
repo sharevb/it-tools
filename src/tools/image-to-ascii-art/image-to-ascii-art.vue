@@ -18,11 +18,11 @@ function toBase64(file: File) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result?.toString() ?? '');
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
-const languagesOptions = languages.map(lang => ({ value: lang.id, label: lang.name }));
+const languagesOptions = languages.map((lang) => ({ value: lang.id, label: lang.name }));
 
 const output = computedAsync(async () => {
   const inputBase64Value = inputBase64.value;
@@ -45,8 +45,7 @@ const output = computedAsync(async () => {
     });
     outputValue = printToLanguage(await imageToAsciiArt.convert(inputBase64Value), languageValue);
     imageToAsciiArt.destroy();
-  }
-  catch (e) {
+  } catch (e) {
     errored.value = true;
   }
   processing.value = false;
@@ -90,11 +89,7 @@ async function onFileUploaded(uploadedFile: File) {
     </c-alert>
 
     <n-form-item v-if="!processing && !errored" :label="t('tools.image-to-ascii-art.texts.label-ascii-art-text')">
-      <TextareaCopyable
-        :value="output"
-        mb-1 mt-1
-        copy-placement="outside"
-      />
+      <TextareaCopyable :value="output" mb-1 mt-1 copy-placement="outside" />
     </n-form-item>
   </c-card>
 </template>

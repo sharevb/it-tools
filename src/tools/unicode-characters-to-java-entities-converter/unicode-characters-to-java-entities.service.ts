@@ -12,8 +12,7 @@ function parseUnicodeToJavaEntities(source: string): string {
     const charCode = source.charCodeAt(i);
     if (charCode <= 127) {
       result += source.charAt(i);
-    }
-    else {
+    } else {
       result += `\\u${strlenFix(charCode.toString(16).toUpperCase())}`;
     }
   }
@@ -30,8 +29,7 @@ function parseJavaEntitiesToUnicode(source: string): string {
       case 0:
         if (source.charAt(i) === '\\') {
           state = 1;
-        }
-        else {
+        } else {
           result += source.charAt(i);
         }
         break;
@@ -40,8 +38,7 @@ function parseJavaEntitiesToUnicode(source: string): string {
           state = 2;
           chars = 0;
           value = '';
-        }
-        else {
+        } else {
           result += `\\${source.charAt(i)}`;
           state = 0;
         }

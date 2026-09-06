@@ -3,12 +3,15 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { translate as t } from '@/plugins/i18n.plugin';
 
-export function mergeIcals(inputs: Array<string>, options: {
-  calname?: string
-  timezone?: string
-  caldesc?: string
-  regenerate_uids?: boolean
-} = {}) {
+export function mergeIcals(
+  inputs: Array<string>,
+  options: {
+    calname?: string;
+    timezone?: string;
+    caldesc?: string;
+    regenerate_uids?: boolean;
+  } = {},
+) {
   let calendar;
   for (const input of inputs) {
     try {
@@ -29,14 +32,12 @@ export function mergeIcals(inputs: Array<string>, options: {
         if (options.caldesc) {
           calendar.updatePropertyWithValue('x-wr-caldesc', options.caldesc);
         }
-      }
-      else {
+      } else {
         for (const vevent of cal.getAllSubcomponents('vevent')) {
           calendar.addSubcomponent(vevent);
         }
       }
-    }
-    catch (e) {
+    } catch (e) {
       throw new Error(t('tools.ical-merger.service.text.failed-to-merge-e-n-nwith-input-input', [e, input]));
     }
   }

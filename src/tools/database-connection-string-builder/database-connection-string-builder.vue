@@ -70,11 +70,22 @@ const connectionString = computed(() => {
 
   const effectivePort = getPort(dbType.value, port);
 
-  const sslParam = ssl ? (format === 'uri' ? 'ssl=true' : 'Encrypt=true;') : (format === 'uri' ? 'ssl=false' : 'Encrypt=false;');
-  const timeoutParam = timeout ? (format === 'uri' ? `connectTimeout=${timeout}` : `Connection Timeout=${timeout};`) : '';
-  const extras = format === 'uri'
-    ? [sslParam, timeoutParam, extra].filter(Boolean).join('&')
-    : [sslParam, timeoutParam, extra].filter(Boolean).join('');
+  const sslParam = ssl
+    ? format === 'uri'
+      ? 'ssl=true'
+      : 'Encrypt=true;'
+    : format === 'uri'
+      ? 'ssl=false'
+      : 'Encrypt=false;';
+  const timeoutParam = timeout
+    ? format === 'uri'
+      ? `connectTimeout=${timeout}`
+      : `Connection Timeout=${timeout};`
+    : '';
+  const extras =
+    format === 'uri'
+      ? [sslParam, timeoutParam, extra].filter(Boolean).join('&')
+      : [sslParam, timeoutParam, extra].filter(Boolean).join('');
 
   const suffix = format === 'uri' && extras ? `?${extras}` : '';
 
@@ -107,9 +118,7 @@ const connectionString = computed(() => {
         ? `mssql://${username}:${password}@${host}:${effectivePort}/${database}${suffix}`
         : `Server=${host},${effectivePort};Database=${database};User Id=${username};Password=${password};${extras}`;
     case 'sqlite':
-      return format === 'uri'
-        ? `sqlite://${filePath}${suffix}`
-        : `Data Source=${filePath};${extras}`;
+      return format === 'uri' ? `sqlite://${filePath}${suffix}` : `Data Source=${filePath};${extras}`;
     case 'mongodb':
       if (authType === 'x509') {
         return format === 'uri'
@@ -126,7 +135,10 @@ const connectionString = computed(() => {
 </script>
 
 <template>
-  <n-card :title="t('tools.database-connection-string-builder.texts.title-database-connection-string-generator')" style="max-width: 750px; margin: auto;">
+  <n-card
+    :title="t('tools.database-connection-string-builder.texts.title-database-connection-string-generator')"
+    style="max-width: 750px; margin: auto"
+  >
     <c-select
       v-model:value="dbType"
       :options="dbOptions"
@@ -148,7 +160,10 @@ const connectionString = computed(() => {
     <n-divider>{{ t('tools.database-connection-string-builder.texts.tag-options') }}</n-divider>
 
     <n-form :model="form" label-placement="left" label-width="140">
-      <n-form-item v-if="authOptions[dbType]?.length" :label="t('tools.database-connection-string-builder.texts.label-authentication-type')">
+      <n-form-item
+        v-if="authOptions[dbType]?.length"
+        :label="t('tools.database-connection-string-builder.texts.label-authentication-type')"
+      >
         <n-select
           v-model:value="form.authType"
           :options="authOptions[dbType]"
@@ -158,14 +173,21 @@ const connectionString = computed(() => {
 
       <template v-if="dbType !== 'sqlite'">
         <n-form-item :label="t('tools.database-connection-string-builder.texts.label-host')">
-          <n-input v-model:value="form.host" :placeholder="t('tools.database-connection-string-builder.texts.placeholder-e-g-localhost')" />
+          <n-input
+            v-model:value="form.host"
+            :placeholder="t('tools.database-connection-string-builder.texts.placeholder-e-g-localhost')"
+          />
         </n-form-item>
         <n-form-item :label="t('tools.database-connection-string-builder.texts.label-port')">
           <n-input-number v-model:value="form.port" :min="1" :max="65535" />
         </n-form-item>
       </template>
 
-      <template v-if="dbType !== 'sqlite' && form.authType !== 'peer' && form.authType !== 'windows' && form.authType !== 'x509'">
+      <template
+        v-if="
+          dbType !== 'sqlite' && form.authType !== 'peer' && form.authType !== 'windows' && form.authType !== 'x509'
+        "
+      >
         <n-form-item :label="t('tools.database-connection-string-builder.texts.label-username')">
           <n-input v-model:value="form.username" />
         </n-form-item>
@@ -175,11 +197,20 @@ const connectionString = computed(() => {
       </template>
 
       <n-form-item :label="t('tools.database-connection-string-builder.texts.label-database')">
-        <n-input v-model:value="form.database" :placeholder="t('tools.database-connection-string-builder.texts.placeholder-e-g-mydb')" />
+        <n-input
+          v-model:value="form.database"
+          :placeholder="t('tools.database-connection-string-builder.texts.placeholder-e-g-mydb')"
+        />
       </n-form-item>
 
-      <n-form-item v-if="dbType === 'sqlite'" :label="t('tools.database-connection-string-builder.texts.label-file-path')">
-        <n-input v-model:value="form.filePath" :placeholder="t('tools.database-connection-string-builder.texts.placeholder-path-to-sqlite-db')" />
+      <n-form-item
+        v-if="dbType === 'sqlite'"
+        :label="t('tools.database-connection-string-builder.texts.label-file-path')"
+      >
+        <n-input
+          v-model:value="form.filePath"
+          :placeholder="t('tools.database-connection-string-builder.texts.placeholder-path-to-sqlite-db')"
+        />
       </n-form-item>
 
       <details mb-3>
@@ -191,7 +222,12 @@ const connectionString = computed(() => {
           <n-input-number v-model:value="form.timeout" :min="0" />
         </n-form-item>
         <n-form-item :label="t('tools.database-connection-string-builder.texts.label-extra-params')">
-          <n-input v-model:value="form.extra" :placeholder="t('tools.database-connection-string-builder.texts.placeholder-e-g-charset-utf8-applicationname-myapp')" />
+          <n-input
+            v-model:value="form.extra"
+            :placeholder="
+              t('tools.database-connection-string-builder.texts.placeholder-e-g-charset-utf8-applicationname-myapp')
+            "
+          />
         </n-form-item>
       </details>
     </n-form>

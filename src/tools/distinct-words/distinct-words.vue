@@ -19,7 +19,14 @@ const sortedWordCounts = computed(() => {
 
 <template>
   <div>
-    <c-input-text v-model:value="inputText" multiline rows="10" :label="t('tools.distinct-words.texts.label-text')" :placeholder="t('tools.distinct-words.texts.placeholder-enter-text')" mb-1 />
+    <c-input-text
+      v-model:value="inputText"
+      multiline
+      rows="10"
+      :label="t('tools.distinct-words.texts.label-text')"
+      :placeholder="t('tools.distinct-words.texts.placeholder-enter-text')"
+      mb-1
+    />
     <c-card :title="t('tools.distinct-words.texts.title-distinct-words')">
       <n-table>
         <thead>
@@ -29,8 +36,9 @@ const sortedWordCounts = computed(() => {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="([word, count]) in sortedWordCounts" :key="word">
-            <td>{{ word }}</td><td>{{ count }}</td>
+          <tr v-for="[word, count] in sortedWordCounts" :key="word">
+            <td>{{ word }}</td>
+            <td>{{ count }}</td>
           </tr>
         </tbody>
       </n-table>

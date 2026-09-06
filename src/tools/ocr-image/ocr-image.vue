@@ -112,10 +112,12 @@ const languages = [
   { name: 'Welsh', code: 'cym' },
   { name: 'Yiddish', code: 'yid' },
 ];
-const languagesOptions = Array.from(languages.map(l => ({
-  label: l.name,
-  value: l.code,
-})));
+const languagesOptions = Array.from(
+  languages.map((l) => ({
+    label: l.name,
+    value: l.code,
+  })),
+);
 
 const language = useQueryParamOrStorage({ name: 'lang', storageName: 'ocr-image:lang', defaultValue: 'eng' });
 
@@ -124,9 +126,8 @@ const ocrInProgress = ref(false);
 const fileInput = ref() as Ref<File>;
 const ocrText = computedAsync(async () => {
   try {
-    return (await ocr(fileInput.value, language.value));
-  }
-  catch (e: any) {
+    return await ocr(fileInput.value, language.value);
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -163,7 +164,7 @@ async function convertPdfToImage(file: File) {
     images.push(canvas.toDataURL('image/png'));
   }
   return images;
-};
+}
 
 async function ocr(file: File, language: string) {
   if (!file) {
@@ -176,11 +177,10 @@ async function ocr(file: File, language: string) {
   if (file.type.match('^image/')) {
     const ret = await worker.recognize(file);
     allTexts.push(ret.data.text);
-  }
-  else {
+  } else {
     pdfJS.GlobalWorkerOptions.workerSrc = pdfJSWorkerURL;
 
-    for (const image of (await convertPdfToImage(file))) {
+    for (const image of await convertPdfToImage(file)) {
       const ret = await worker.recognize(image);
       allTexts.push(ret.data.text);
     }
@@ -188,7 +188,7 @@ async function ocr(file: File, language: string) {
   await worker.terminate();
   ocrInProgress.value = false;
   return allTexts.join(pageSeparator);
-};
+}
 </script>
 
 <template>
@@ -197,7 +197,8 @@ async function ocr(file: File, language: string) {
       v-model:value="language"
       :label="t('tools.ocr-image.texts.label-language')"
       :options="languagesOptions"
-      searchable mb-2
+      searchable
+      mb-2
     />
 
     <c-file-upload
@@ -208,7 +209,7 @@ async function ocr(file: File, language: string) {
 
     <n-divider />
 
-    <div id="container" style="display: none;" />
+    <div id="container" style="display: none" />
 
     <div>
       <h3>{{ t('tools.ocr-image.texts.tag-ocr') }}</h3>
@@ -218,10 +219,7 @@ async function ocr(file: File, language: string) {
         :word-wrap="true"
         download-file-name="output.txt"
       />
-      <n-spin
-        v-if="ocrInProgress"
-        size="small"
-      />
+      <n-spin v-if="ocrInProgress" size="small" />
     </div>
 
     <c-card v-if="!ocrInProgress && stats" :title="t('tools.ocr-image.texts.title-statistics')">

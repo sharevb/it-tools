@@ -1,4 +1,4 @@
 export interface CSelectOption<Value = unknown> {
-  label: string
-  value: Value
+  label: string;
+  value: Value;
 }

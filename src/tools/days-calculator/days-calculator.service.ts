@@ -5,34 +5,34 @@ import * as _ from 'es-toolkit/compat';
 import { BusinessTime, type Holiday } from './business-time-calculator';
 
 interface DateTimeRange {
-  startDate: Date
-  endDate: Date
+  startDate: Date;
+  endDate: Date;
   totalDifference: {
-    years: number
-    months: number
-    weeks: number
-    days: number
-    hours: number
-    minutes: number
-    seconds: number
-  }
-  totalDifferenceFormatted: string
-  differenceSeconds: number
-  differenceFormatted: string
-  businessSeconds: number
-  businessSecondsFormatted: string
-  businessHours: number
-  businessDays: number
-  mondays: string[]
-  tuesdays: string[]
-  wednesdays: string[]
-  thursdays: string[]
-  fridays: string[]
-  saturdays: string[]
-  sundays: string[]
-  weekendDays: number
-  weekends: number
-  holidays: HolidaysTypes.Holiday[]
+    years: number;
+    months: number;
+    weeks: number;
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  };
+  totalDifferenceFormatted: string;
+  differenceSeconds: number;
+  differenceFormatted: string;
+  businessSeconds: number;
+  businessSecondsFormatted: string;
+  businessHours: number;
+  businessDays: number;
+  mondays: string[];
+  tuesdays: string[];
+  wednesdays: string[];
+  thursdays: string[];
+  fridays: string[];
+  saturdays: string[];
+  sundays: string[];
+  weekendDays: number;
+  weekends: number;
+  holidays: HolidaysTypes.Holiday[];
 }
 
 export type Weekdays = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
@@ -42,26 +42,27 @@ export const allWeekDays: Weekdays[] = ['monday', 'tuesday', 'wednesday', 'thurs
 export function diffDateTimes({
   date1,
   date2,
-  country, state, region,
+  country,
+  state,
+  region,
   businessTimezone,
   includeEndDate = true,
   includeWeekDays = allWeekDays,
   includeHolidays = true,
   businessStartHour = 9,
   businessEndHour = 18,
-
 }: {
-  date1: Date
-  date2: Date
-  country: string
-  state?: string
-  region?: string
-  includeEndDate?: boolean
-  includeWeekDays?: Array<Weekdays>
-  includeHolidays?: boolean
-  businessStartHour: number
-  businessEndHour: number
-  businessTimezone: string
+  date1: Date;
+  date2: Date;
+  country: string;
+  state?: string;
+  region?: string;
+  includeEndDate?: boolean;
+  includeWeekDays?: Array<Weekdays>;
+  includeHolidays?: boolean;
+  businessStartHour: number;
+  businessEndHour: number;
+  businessTimezone: string;
 }): DateTimeRange {
   function getHolidaysBetween(date1: DateTime, date2: DateTime) {
     const startDateTime = date1.startOf('day');
@@ -73,7 +74,7 @@ export function diffDateTimes({
     }
 
     const range = Interval.fromDateTimes(startDateTime, endDateTime);
-    return holidays.filter(h => range.contains(DateTime.fromJSDate(h.start)));
+    return holidays.filter((h) => range.contains(DateTime.fromJSDate(h.start)));
   }
 
   const startDateTime = DateTime.fromJSDate(date1);
@@ -86,7 +87,7 @@ export function diffDateTimes({
   }
 
   const holidays = getHolidaysBetween(startDateTime, endDateTime);
-  const holidaysDates = holidays.map(h => DateTime.fromJSDate(h.start).toFormat('dd/MM/yyyy') as Holiday);
+  const holidaysDates = holidays.map((h) => DateTime.fromJSDate(h.start).toFormat('dd/MM/yyyy') as Holiday);
 
   const differenceTimeComputer = new BusinessTime({
     businessDays: includeWeekDays,
@@ -150,20 +151,24 @@ export function diffDateTimes({
 export function countCertainDays(days: Array<0 | 1 | 2 | 3 | 4 | 5 | 6>, d0: Date, d1: Date) {
   const ndays = 1 + Math.round((d1.getTime() - d0.getTime()) / (24 * 3600 * 1000));
   const sum = function (a: number, b: number) {
-    return a + Math.floor((ndays + (d0.getDay() + 6 - b) % 7) / 7);
+    return a + Math.floor((ndays + ((d0.getDay() + 6 - b) % 7)) / 7);
   };
   return days.reduce(sum, 0);
 }
 
 export function datesByDays(startDateTime: DateTime, endDateTime: DateTime) {
-  const dates = Interval.fromDateTimes(startDateTime.startOf('day'), endDateTime.endOf('day')).splitBy({ day: 1 }).map(d => d.start);
+  const dates = Interval.fromDateTimes(startDateTime.startOf('day'), endDateTime.endOf('day'))
+    .splitBy({ day: 1 })
+    .map((d) => d.start);
   return Object.fromEntries(
-    Object.entries(_.groupBy(dates, d => d?.weekday))
-      .map(([weekday, weekdayDates]) => [weekday, mapToJSDate(weekdayDates)]),
+    Object.entries(_.groupBy(dates, (d) => d?.weekday)).map(([weekday, weekdayDates]) => [
+      weekday,
+      mapToJSDate(weekdayDates),
+    ]),
   ) as { [weekday: string]: string[] };
 }
 function mapToJSDate(dates: (DateTime | null)[]): string[] {
-  return dates.map(d => d?.toISODate() || '').filter(d => d);
+  return dates.map((d) => d?.toISODate() || '').filter((d) => d);
 }
 
 export function getSupportedCountries() {

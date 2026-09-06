@@ -42,7 +42,7 @@ function readFileAsString(file: File) {
   return new Promise<string>((resolve, reject) => {
     const fr = new FileReader();
     fr.onload = () => {
-      resolve(fr.result as string || '');
+      resolve((fr.result as string) || '');
     };
     fr.onerror = reject;
     fr.readAsText(file);
@@ -63,19 +63,17 @@ async function convertFile() {
     if (outFormat === 'xlsx') {
       convertedData.value = '';
       downloadXLSX(data, tableName.value);
-    }
-    else {
+    } else {
       convertedData.value = objectArrayToData(data, outFormat as ExportFormat, {
         tableName: tableName.value,
         nestify: nestify.value,
       });
     }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
     return null;
   }
-};
+}
 
 function downloadXLSX<T extends Record<string, any>>(data: T[], fileName: string = 'data') {
   const worksheet = XLSX.utils.json_to_sheet(data);
@@ -92,14 +90,8 @@ function downloadXLSX<T extends Record<string, any>>(data: T[], fileName: string
     <c-card>
       <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
         <n-space>
-          <n-radio
-            value="file"
-            :label="t('tools.csv-to-data.texts.label-file')"
-          />
-          <n-radio
-            value="content"
-            :label="t('tools.csv-to-data.texts.label-content')"
-          />
+          <n-radio value="file" :label="t('tools.csv-to-data.texts.label-file')" />
+          <n-radio value="content" :label="t('tools.csv-to-data.texts.label-content')" />
         </n-space>
       </n-radio-group>
 
@@ -131,10 +123,19 @@ function downloadXLSX<T extends Record<string, any>>(data: T[], fileName: string
     </n-space>
 
     <NFormItem :label="t('tools.csv-to-data.texts.label-select-output-format')" label-placement="left">
-      <NSelect v-model:value="selectedFormat" :options="formats" :placeholder="t('tools.csv-to-data.texts.placeholder-select-format')" />
+      <NSelect
+        v-model:value="selectedFormat"
+        :options="formats"
+        :placeholder="t('tools.csv-to-data.texts.placeholder-select-format')"
+      />
     </NFormItem>
 
-    <c-input-text v-if="selectedFormat === 'sql'" v-model:value="tableName" :label="t('tools.csv-to-data.texts.label-table-name')" label-placement="left" />
+    <c-input-text
+      v-if="selectedFormat === 'sql'"
+      v-model:value="tableName"
+      :label="t('tools.csv-to-data.texts.label-table-name')"
+      label-placement="left"
+    />
 
     <div mt-3 flex justify-center>
       <NButton :disabled="!((inputType === 'file' && fileInput) || csvContent)" @click="convertFile">
@@ -147,7 +148,11 @@ function downloadXLSX<T extends Record<string, any>>(data: T[], fileName: string
     </c-alert>
 
     <c-card v-if="convertedData" :title="t('tools.csv-to-data.texts.title-converted-data')">
-      <textarea-copyable :value="convertedData" :language="selectedFormat" :download-file-name="`output.${selectedFormat}`" />
+      <textarea-copyable
+        :value="convertedData"
+        :language="selectedFormat"
+        :download-file-name="`output.${selectedFormat}`"
+      />
     </c-card>
   </NCard>
 </template>

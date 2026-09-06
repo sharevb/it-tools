@@ -18,14 +18,29 @@ export const videoMovie: OGSchemaType = {
       key: 'video:director',
       placeholder: t('tools.meta-tag-generator.videoMovie.text.name-of-the-director'),
     },
-    { type: 'input-multiple', label: t('tools.meta-tag-generator.videoMovie.text.writer'), key: 'video:writer', placeholder: t('tools.meta-tag-generator.videoMovie.text.writers-of-the-movie') },
-    { type: 'input', label: t('tools.meta-tag-generator.musicSong.text.duration'), key: 'video:duration', placeholder: t('tools.meta-tag-generator.videoMovie.text.the-movie-s-length-in-seconds') },
+    {
+      type: 'input-multiple',
+      label: t('tools.meta-tag-generator.videoMovie.text.writer'),
+      key: 'video:writer',
+      placeholder: t('tools.meta-tag-generator.videoMovie.text.writers-of-the-movie'),
+    },
+    {
+      type: 'input',
+      label: t('tools.meta-tag-generator.musicSong.text.duration'),
+      key: 'video:duration',
+      placeholder: t('tools.meta-tag-generator.videoMovie.text.the-movie-s-length-in-seconds'),
+    },
     {
       type: 'input',
       label: t('tools.meta-tag-generator.book.text.release-date'),
       key: 'video:release_date',
       placeholder: t('tools.meta-tag-generator.videoMovie.text.the-date-the-movie-was-released'),
     },
-    { type: 'input', label: t('tools.meta-tag-generator.article.text.tag'), key: 'video:tag', placeholder: t('tools.meta-tag-generator.videoMovie.text.tag-words-associated-with-this-movie') },
+    {
+      type: 'input',
+      label: t('tools.meta-tag-generator.article.text.tag'),
+      key: 'video:tag',
+      placeholder: t('tools.meta-tag-generator.videoMovie.text.tag-words-associated-with-this-movie'),
+    },
   ],
 };

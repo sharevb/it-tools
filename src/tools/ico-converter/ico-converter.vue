@@ -12,12 +12,11 @@ const file = ref<File | null>(null);
 const base64OutputFile = ref('');
 const fileName = ref('');
 const fileExtension = ref('');
-const { download } = useDownloadFileFromBase64(
-  {
-    source: base64OutputFile,
-    filename: fileName,
-    extension: fileExtension,
-  });
+const { download } = useDownloadFileFromBase64({
+  source: base64OutputFile,
+  filename: fileName,
+  extension: fileExtension,
+});
 
 async function onFileUploaded(uploadedFile: File) {
   file.value = uploadedFile;
@@ -39,22 +38,23 @@ async function onFileUploaded(uploadedFile: File) {
       });
       fileExtension.value = 'png';
       base64OutputFile.value = `data:image/png;base64,${Base64.fromUint8Array(encodedPng)}`;
-    }
-    else {
+    } else {
       const decodedImage = decodeImage({
         data: fileBuffer,
       });
 
       if (decodedImage == null) {
         throw new Error(t('tools.ico-converter.texts.invalid-png-file'));
-      };
+      }
 
       const encodedICO = encodeIcoImages({
-        images: [16, 32, 64, 128, 256].map(size => Transform.copyResize({
-          image: decodedImage,
-          width: size,
-          maintainAspect: true,
-        })),
+        images: [16, 32, 64, 128, 256].map((size) =>
+          Transform.copyResize({
+            image: decodedImage,
+            width: size,
+            maintainAspect: true,
+          }),
+        ),
       });
       fileExtension.value = 'ico';
       base64OutputFile.value = `data:image/x-icon;base64,${Base64.fromUint8Array(encodedICO)}`;
@@ -62,8 +62,7 @@ async function onFileUploaded(uploadedFile: File) {
     status.value = 'done';
 
     download();
-  }
-  catch (e) {
+  } catch (e) {
     status.value = 'error';
   }
 }
@@ -74,7 +73,9 @@ async function onFileUploaded(uploadedFile: File) {
     <div style="flex: 0 0 100%">
       <div mx-auto max-w-600px>
         <c-file-upload
-          :title="t('tools.ico-converter.texts.title-drag-and-drop-an-ico-or-png-jpeg-file-here-or-click-to-select-a-file')"
+          :title="
+            t('tools.ico-converter.texts.title-drag-and-drop-an-ico-or-png-jpeg-file-here-or-click-to-select-a-file')
+          "
           accept=".ico,.png,.jpg"
           paste-image
           @file-upload="onFileUploaded"
@@ -86,10 +87,7 @@ async function onFileUploaded(uploadedFile: File) {
       <c-alert v-if="status === 'error'" type="error">
         {{ $t('tools.ico-converter.texts.an-error-occured-processing') }} <span>{{ fileName }}</span>
       </c-alert>
-      <n-spin
-        v-if="status === 'processing'"
-        size="small"
-      />
+      <n-spin v-if="status === 'processing'" size="small" />
     </div>
   </div>
 </template>

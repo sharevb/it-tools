@@ -78,8 +78,9 @@ function onPasteMarkdownTable(markdownContent: string) {
         mb-1
       />
       <n-space justify="center" mb-2>
-        <c-button @click="table = onPasteMarkdownTable(inputMarkdown) || createMarkdownTable()"
-          >{{ t('tools.markdown-table-generator.texts.tag-import-table-data') }}</c-button>
+        <c-button @click="table = onPasteMarkdownTable(inputMarkdown) || createMarkdownTable()">{{
+          t('tools.markdown-table-generator.texts.tag-import-table-data')
+        }}</c-button>
       </n-space>
 
       <c-alert v-if="error" type="error" mb-2>

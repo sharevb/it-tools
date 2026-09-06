@@ -40,7 +40,7 @@ nano -P <file>
 ## 💾 File Handling
 
 | Shortcut | Action                            |
-|----------|-----------------------------------|
+| -------- | --------------------------------- |
 | `Ctrl+S` | Save the current file             |
 | `Ctrl+O` | Write to a named file ("save as") |
 | `Ctrl+R` | Insert another file into this one |
@@ -51,7 +51,7 @@ nano -P <file>
 ## ✏️ Editing
 
 | Shortcut            | Action                                       |
-|---------------------|----------------------------------------------|
+| ------------------- | -------------------------------------------- |
 | `Ctrl+K`            | Cut the current line into the cutbuffer      |
 | `Alt+6`             | Copy the current line into the cutbuffer     |
 | `Ctrl+U`            | Paste the cutbuffer                          |
@@ -66,7 +66,7 @@ nano -P <file>
 ## 🔎 Search & Replace
 
 | Shortcut | Action                      |
-|----------|-----------------------------|
+| -------- | --------------------------- |
 | `Ctrl+W` | Search forward ("where is") |
 | `Ctrl+Q` | Search backward             |
 | `Alt+W`  | Repeat the search forward   |
@@ -78,7 +78,7 @@ nano -P <file>
 ## ⌫ Deletion
 
 | Shortcut   | Action                                |
-|------------|---------------------------------------|
+| ---------- | ------------------------------------- |
 | `Ctrl+H`   | Delete the character to the left      |
 | `Ctrl+D`   | Delete the character under the cursor |
 | `Alt+Bksp` | Delete the word to the left           |
@@ -88,7 +88,7 @@ nano -P <file>
 ## 🧭 Moving Around
 
 | Shortcut            | Action                                    |
-|---------------------|-------------------------------------------|
+| ------------------- | ----------------------------------------- |
 | `Ctrl+B` / `Ctrl+F` | One character left / right                |
 | `Ctrl+←` / `Ctrl+→` | One word left / right                     |
 | `Ctrl+A` / `Ctrl+E` | Start / end of the line                   |
@@ -103,7 +103,7 @@ nano -P <file>
 ## 🔧 Operations
 
 | Shortcut | Action                                       |
-|----------|----------------------------------------------|
+| -------- | -------------------------------------------- |
 | `Ctrl+T` | Run a command, or pipe the buffer through it |
 | `Ctrl+J` | Justify the paragraph or selection           |
 | `Alt+J`  | Justify the whole buffer                     |
@@ -115,7 +115,7 @@ nano -P <file>
 ## ℹ️ Information & Display
 
 | Shortcut | Action                             |
-|----------|------------------------------------|
+| -------- | ---------------------------------- |
 | `Ctrl+G` | Open the help text                 |
 | `Ctrl+C` | Report the cursor position         |
 | `Alt+D`  | Count lines, words and characters  |

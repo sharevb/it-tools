@@ -12,16 +12,17 @@ const previewHtml = computed(() => renderMarkdown(inputMarkdown.value));
   <div class="markdown-preview-tool">
     <c-input-text
       v-model:value="inputMarkdown"
-
       :placeholder="t('tools.markdown-preview.texts.placeholder-your-markdown-content')"
       rows="8"
-
       :label="t('tools.markdown-preview.texts.label-your-markdown-to-preview')"
       autocomplete="off"
       autocorrect="off"
       autocapitalize="off"
       spellcheck="false"
-      raw-text autofocus multiline monospace
+      raw-text
+      autofocus
+      multiline
+      monospace
       test-id="markdown-input"
     />
 
@@ -29,11 +30,7 @@ const previewHtml = computed(() => renderMarkdown(inputMarkdown.value));
 
     <n-form-item :label="t('tools.markdown-preview.texts.label-rendered-preview')">
       <c-card>
-        <div
-          class="markdown-preview"
-          data-test-id="markdown-preview"
-          v-html="previewHtml"
-        />
+        <div class="markdown-preview" data-test-id="markdown-preview" v-html="previewHtml" />
       </c-card>
     </n-form-item>
   </div>
@@ -57,16 +54,55 @@ const previewHtml = computed(() => renderMarkdown(inputMarkdown.value));
     display: none;
   }
 
-  :deep(h1) { font-size: 1.5em; }
-  :deep(h2) { font-size: 1.3em; }
-  :deep(h3) { font-size: 1.1em; }
-  :deep(h1), :deep(h2), :deep(h3) { margin: 0.5em 0; line-height: 1.3; }
-  :deep(p), :deep(ul), :deep(ol) { margin: 0.5em 0; line-height: 1.6; }
-  :deep(ul), :deep(ol) { padding-left: 1.5em; }
-  :deep(code) { background: var(--n-color-modal); padding: 0.2em 0.4em; border-radius: 4px; font-size: 0.9em; }
-  :deep(pre) { background: var(--n-color-modal); padding: 12px; border-radius: 6px; overflow-x: auto; margin: 0.5em 0; }
-  :deep(pre code) { background: none; padding: 0; font-size: 0.9em; }
-  :deep(a) { color: var(--n-color-primary); text-decoration: none; }
-  :deep(a:hover) { text-decoration: underline; }
+  :deep(h1) {
+    font-size: 1.5em;
+  }
+  :deep(h2) {
+    font-size: 1.3em;
+  }
+  :deep(h3) {
+    font-size: 1.1em;
+  }
+  :deep(h1),
+  :deep(h2),
+  :deep(h3) {
+    margin: 0.5em 0;
+    line-height: 1.3;
+  }
+  :deep(p),
+  :deep(ul),
+  :deep(ol) {
+    margin: 0.5em 0;
+    line-height: 1.6;
+  }
+  :deep(ul),
+  :deep(ol) {
+    padding-left: 1.5em;
+  }
+  :deep(code) {
+    background: var(--n-color-modal);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  :deep(pre) {
+    background: var(--n-color-modal);
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 0.5em 0;
+  }
+  :deep(pre code) {
+    background: none;
+    padding: 0;
+    font-size: 0.9em;
+  }
+  :deep(a) {
+    color: var(--n-color-primary);
+    text-decoration: none;
+  }
+  :deep(a:hover) {
+    text-decoration: underline;
+  }
 }
 </style>

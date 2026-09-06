@@ -10,8 +10,16 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
-const rawStartAddress = useQueryParamOrStorage({ name: 'start', storageName: 'ip-range-to-cidr:startAddress', defaultValue: '192.168.1.1' });
-const rawEndAddress = useQueryParamOrStorage({ name: 'end', storageName: 'ip-range-to-cidr:endAddress', defaultValue: '192.168.6.255' });
+const rawStartAddress = useQueryParamOrStorage({
+  name: 'start',
+  storageName: 'ip-range-to-cidr:startAddress',
+  defaultValue: '192.168.1.1',
+});
+const rawEndAddress = useQueryParamOrStorage({
+  name: 'end',
+  storageName: 'ip-range-to-cidr:endAddress',
+  defaultValue: '192.168.6.255',
+});
 
 const isReversed = ref<boolean>(false);
 const isNotSameVersion = ref<boolean>(false);
@@ -39,20 +47,19 @@ const result = computed(() => {
       allIps[i] = iterIp++;
     }
 
-    return mergeCidr(Array.from(allIps, ip => stringifyIp({ number: ip, version })));
-  }
-  catch (e) {
+    return mergeCidr(Array.from(allIps, (ip) => stringifyIp({ number: ip, version })));
+  } catch (e) {
     return [];
   }
 });
 
 const startIpValidation = useValidation({
   source: rawStartAddress,
-  rules: [{ message: t('tools.ip-range-to-cidr.texts.message-invalid-ipv4-6-address'), validator: ip => isIP(ip) }],
+  rules: [{ message: t('tools.ip-range-to-cidr.texts.message-invalid-ipv4-6-address'), validator: (ip) => isIP(ip) }],
 });
 const endIpValidation = useValidation({
   source: rawEndAddress,
-  rules: [{ message: t('tools.ip-range-to-cidr.texts.message-invalid-ipv4-6-address'), validator: ip => isIP(ip) }],
+  rules: [{ message: t('tools.ip-range-to-cidr.texts.message-invalid-ipv4-6-address'), validator: (ip) => isIP(ip) }],
 });
 
 const showResult = computed(() => endIpValidation.isValid && startIpValidation.isValid && result.value.length > 0);
@@ -100,12 +107,14 @@ function onSwitchStartEndClicked() {
       type="error"
     >
       <div my-3 op-70>
-        The end IPv4/6 address is lower than the start IPv4/6 address. This is not valid and no result could be calculated.
-        In the most cases the solution to solve this problem is to change start and end address.
+        The end IPv4/6 address is lower than the start IPv4/6 address. This is not valid and no result could be
+        calculated. In the most cases the solution to solve this problem is to change start and end address.
       </div>
 
       <c-button @click="onSwitchStartEndClicked">
-        <n-icon mr-2 :component="Exchange" depth="3" size="22" />{{ t('tools.ip-range-to-cidr.texts.tag-switch-start-and-end-ipv4-6-address') }}
+        <n-icon mr-2 :component="Exchange" depth="3" size="22" />{{
+          t('tools.ip-range-to-cidr.texts.tag-switch-start-and-end-ipv4-6-address')
+        }}
       </c-button>
     </n-alert>
     <n-alert

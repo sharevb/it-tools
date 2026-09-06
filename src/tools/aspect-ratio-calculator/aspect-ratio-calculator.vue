@@ -3,10 +3,7 @@
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
 import { NButton, NRadio, NRadioGroup, NSpace } from 'naive-ui';
-import {
-  calculateAspectRatio,
-  calculateDimensions,
-} from './aspect-ratio-calculator.service';
+import { calculateAspectRatio, calculateDimensions } from './aspect-ratio-calculator.service';
 
 const { t } = useI18n();
 
@@ -22,37 +19,30 @@ function calculateResult() {
     const ratio = calculateAspectRatio(width.value, height.value);
     if (r2.value) {
       r1.value = ratio.r1 / ratio.r2;
-    }
-    else if (r1.value) {
+    } else if (r1.value) {
       r2.value = ratio.r2 / ratio.r1;
-    }
-    else {
+    } else {
       r1.value = ratio.r1;
       r2.value = ratio.r2;
     }
     if (ratio.r1 !== r1.value) {
       result.value = `Aspect Ratio: ${r1.value}:${r2.value} or ${ratio.r1}:${ratio.r2}`;
-    }
-    else {
+    } else {
       result.value = `Aspect Ratio: ${ratio.r1}:${ratio.r2}`;
     }
-  }
-  else if (mode.value === 'dimensions' && r1.value && r2.value) {
+  } else if (mode.value === 'dimensions' && r1.value && r2.value) {
     if (width.value) {
       const dimensions = calculateDimensions(width.value, { r1: r1.value, r2: r2.value }, true);
       height.value = dimensions.height;
       result.value = `Dimensions: ${dimensions.width}x${dimensions.height}`;
-    }
-    else if (height.value) {
+    } else if (height.value) {
       const dimensions = calculateDimensions(height.value, { r1: r1.value, r2: r2.value }, false);
       width.value = dimensions.width;
       result.value = `Dimensions: ${dimensions.width}x${dimensions.height}`;
-    }
-    else {
+    } else {
       result.value = 'Please enter either width or height to calculate dimensions';
     }
-  }
-  else {
+  } else {
     result.value = 'Please fill in the required fields';
   }
 }
@@ -85,25 +75,41 @@ function clearRatio() {
     <div class="input-group">
       <div class="input-pair">
         <label>{{ t('tools.aspect-ratio-calculator.texts.tag-pixels-width') }}</label>
-        <n-input-number-i18n v-model:value="width" :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-pixels-width')" :min="1" />
+        <n-input-number-i18n
+          v-model:value="width"
+          :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-pixels-width')"
+          :min="1"
+        />
       </div>
       <div class="input-pair">
         <label>{{ t('tools.aspect-ratio-calculator.texts.tag-pixels-height') }}</label>
-        <n-input-number-i18n v-model:value="height" :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-pixels-height')" :min="1" />
+        <n-input-number-i18n
+          v-model:value="height"
+          :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-pixels-height')"
+          :min="1"
+        />
       </div>
     </div>
 
     <div class="input-group">
       <div class="input-pair">
         <label>{{ t('tools.aspect-ratio-calculator.texts.tag-ratio-width') }}</label>
-        <n-input-number-i18n v-model:value="r1" :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-ratio-width')" :min="1" />
+        <n-input-number-i18n
+          v-model:value="r1"
+          :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-ratio-width')"
+          :min="1"
+        />
       </div>
       <div class="separator">
         {{ t('tools.aspect-ratio-calculator.texts.tag-') }}
       </div>
       <div class="input-pair">
         <label>{{ t('tools.aspect-ratio-calculator.texts.tag-ratio-height') }}</label>
-        <n-input-number-i18n v-model:value="r2" :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-ratio-height')" :min="1" />
+        <n-input-number-i18n
+          v-model:value="r2"
+          :placeholder="t('tools.aspect-ratio-calculator.texts.placeholder-ratio-height')"
+          :min="1"
+        />
       </div>
     </div>
 

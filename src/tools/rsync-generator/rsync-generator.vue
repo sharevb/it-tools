@@ -7,18 +7,66 @@ import { NCard, NCheckbox, NCheckboxGroup, NForm, NFormItem, NInput, NRadio, NRa
 const { t } = useI18n();
 
 const availableOptions = [
-  { label: t('tools.rsync-generator.texts.label-dry-run'), value: '--dry-run', description: 'Simulates the sync without making changes' },
-  { label: t('tools.rsync-generator.texts.label-archive-mode'), value: '-a', description: 'Preserves permissions, timestamps, symbolic links, and metadata' },
-  { label: t('tools.rsync-generator.texts.label-compress'), value: '-z', description: 'Compresses files during transfer to save bandwidth' },
-  { label: t('tools.rsync-generator.texts.label-show-progress'), value: '--progress', description: 'Displays detailed progress information' },
-  { label: t('tools.rsync-generator.texts.label-partial'), value: '--partial', description: 'Keeps partially transferred files in case of interruption' },
-  { label: t('tools.rsync-generator.texts.label-verbose'), value: '-v', description: 'Outputs more information about the transfer process' },
-  { label: t('tools.rsync-generator.texts.label-human-readable'), value: '-h', description: 'Formats output in a more readable way' },
-  { label: t('tools.rsync-generator.texts.label-recursive'), value: '-r', description: 'Copies directories recursively' },
-  { label: t('tools.rsync-generator.texts.label-copy-symlinks'), value: '-L', description: 'Follows symbolic links and copies the target files' },
-  { label: t('tools.rsync-generator.texts.label-remove-source'), value: '--remove-source-files', description: 'Deletes source files after transfer' },
-  { label: t('tools.rsync-generator.texts.label-delete'), value: '--delete', description: 'Removes files in destination that no longer exist in the source' },
-  { label: t('tools.rsync-generator.texts.label-update'), value: '-u', description: 'Copies files only if the source is newer than the destination' },
+  {
+    label: t('tools.rsync-generator.texts.label-dry-run'),
+    value: '--dry-run',
+    description: 'Simulates the sync without making changes',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-archive-mode'),
+    value: '-a',
+    description: 'Preserves permissions, timestamps, symbolic links, and metadata',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-compress'),
+    value: '-z',
+    description: 'Compresses files during transfer to save bandwidth',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-show-progress'),
+    value: '--progress',
+    description: 'Displays detailed progress information',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-partial'),
+    value: '--partial',
+    description: 'Keeps partially transferred files in case of interruption',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-verbose'),
+    value: '-v',
+    description: 'Outputs more information about the transfer process',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-human-readable'),
+    value: '-h',
+    description: 'Formats output in a more readable way',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-recursive'),
+    value: '-r',
+    description: 'Copies directories recursively',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-copy-symlinks'),
+    value: '-L',
+    description: 'Follows symbolic links and copies the target files',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-remove-source'),
+    value: '--remove-source-files',
+    description: 'Deletes source files after transfer',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-delete'),
+    value: '--delete',
+    description: 'Removes files in destination that no longer exist in the source',
+  },
+  {
+    label: t('tools.rsync-generator.texts.label-update'),
+    value: '-u',
+    description: 'Copies files only if the source is newer than the destination',
+  },
 ];
 
 const form = reactive({
@@ -63,13 +111,25 @@ const generatedCommand = computed(() => {
         </NRadioGroup>
       </NFormItem>
       <NFormItem :label="t('tools.rsync-generator.texts.label-source')">
-        <NInput v-model:value="form.source" :placeholder="t('tools.rsync-generator.texts.placeholder-enter-source-directory')" />
+        <NInput
+          v-model:value="form.source"
+          :placeholder="t('tools.rsync-generator.texts.placeholder-enter-source-directory')"
+        />
       </NFormItem>
       <NFormItem v-if="form.sourceType === 'remote'" :label="t('tools.rsync-generator.texts.label-source-ssh-host')">
-        <NInput v-model:value="form.sourceHost" :placeholder="t('tools.rsync-generator.texts.placeholder-enter-ssh-host')" />
+        <NInput
+          v-model:value="form.sourceHost"
+          :placeholder="t('tools.rsync-generator.texts.placeholder-enter-ssh-host')"
+        />
       </NFormItem>
-      <NFormItem v-if="form.sourceType === 'remote'" :label="t('tools.rsync-generator.texts.label-source-ssh-username')">
-        <NInput v-model:value="form.sourceUser" :placeholder="t('tools.rsync-generator.texts.placeholder-enter-ssh-username-optional')" />
+      <NFormItem
+        v-if="form.sourceType === 'remote'"
+        :label="t('tools.rsync-generator.texts.label-source-ssh-username')"
+      >
+        <NInput
+          v-model:value="form.sourceUser"
+          :placeholder="t('tools.rsync-generator.texts.placeholder-enter-ssh-username-optional')"
+        />
       </NFormItem>
 
       <NFormItem :label="t('tools.rsync-generator.texts.label-destination-type')">
@@ -83,13 +143,28 @@ const generatedCommand = computed(() => {
         </NRadioGroup>
       </NFormItem>
       <NFormItem :label="t('tools.rsync-generator.texts.label-destination')">
-        <NInput v-model:value="form.destination" :placeholder="t('tools.rsync-generator.texts.placeholder-enter-destination-directory')" />
+        <NInput
+          v-model:value="form.destination"
+          :placeholder="t('tools.rsync-generator.texts.placeholder-enter-destination-directory')"
+        />
       </NFormItem>
-      <NFormItem v-if="form.destinationType === 'remote'" :label="t('tools.rsync-generator.texts.label-destination-ssh-host')">
-        <NInput v-model:value="form.destinationHost" :placeholder="t('tools.rsync-generator.texts.placeholder-enter-ssh-host')" />
+      <NFormItem
+        v-if="form.destinationType === 'remote'"
+        :label="t('tools.rsync-generator.texts.label-destination-ssh-host')"
+      >
+        <NInput
+          v-model:value="form.destinationHost"
+          :placeholder="t('tools.rsync-generator.texts.placeholder-enter-ssh-host')"
+        />
       </NFormItem>
-      <NFormItem v-if="form.destinationType === 'remote'" :label="t('tools.rsync-generator.texts.label-destination-ssh-username')">
-        <NInput v-model:value="form.destinationUser" :placeholder="t('tools.rsync-generator.texts.placeholder-enter-ssh-username-optional')" />
+      <NFormItem
+        v-if="form.destinationType === 'remote'"
+        :label="t('tools.rsync-generator.texts.label-destination-ssh-username')"
+      >
+        <NInput
+          v-model:value="form.destinationUser"
+          :placeholder="t('tools.rsync-generator.texts.placeholder-enter-ssh-username-optional')"
+        />
       </NFormItem>
 
       <NFormItem :label="t('tools.rsync-generator.texts.label-options')">

@@ -1,21 +1,24 @@
 <script lang="ts" setup>
 import * as _ from 'es-toolkit/compat';
 
-const props = withDefaults(defineProps<{
-  multiple?: boolean
-  accept?: string
-  title?: string
-  pasteImage?: boolean
-}>(), {
-  multiple: false,
-  accept: undefined,
-  title: 'Drag and drop files here, or click to select files',
-  pasteImage: false,
-});
+const props = withDefaults(
+  defineProps<{
+    multiple?: boolean;
+    accept?: string;
+    title?: string;
+    pasteImage?: boolean;
+  }>(),
+  {
+    multiple: false,
+    accept: undefined,
+    title: 'Drag and drop files here, or click to select files',
+    pasteImage: false,
+  },
+);
 
 const emit = defineEmits<{
-  (event: 'filesUpload', files: File[]): void
-  (event: 'fileUpload', file: File): void
+  (event: 'filesUpload', files: File[]): void;
+  (event: 'fileUpload', file: File): void;
 }>();
 
 const { multiple, pasteImage } = toRefs(props);
@@ -27,7 +30,7 @@ function toBase64(file: File) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result?.toString() ?? '');
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
@@ -42,8 +45,7 @@ async function handlePreview(image: File) {
   if (imgPreview.value) {
     if (image.type?.includes('image/')) {
       imgPreview.value.src = await toBase64(image);
-    }
-    else {
+    } else {
       clearPreview();
     }
   }
@@ -117,14 +119,7 @@ async function handleUpload(files: FileList | null | undefined) {
     @dragenter="isOverDropZone = true"
     @dragleave="isOverDropZone = false"
   >
-    <input
-      ref="fileInput"
-      type="file"
-      class="hidden"
-      :multiple="multiple"
-      :accept="accept"
-      @change="handleFileInput"
-    >
+    <input ref="fileInput" type="file" class="hidden" :multiple="multiple" :accept="accept" @change="handleFileInput" />
 
     <slot>
       <span op-70>
@@ -134,23 +129,17 @@ async function handleUpload(files: FileList | null | undefined) {
       <!-- separator -->
       <div my-4 w-full flex items-center justify-center op-70>
         <div class="h-1px max-w-100px flex-1 bg-gray-300 op-50" />
-        <div class="mx-2 text-gray-400">
-          or
-        </div>
+        <div class="mx-2 text-gray-400">or</div>
         <div class="h-1px max-w-100px flex-1 bg-gray-300 op-50" />
       </div>
 
-      <c-button>
-        Browse files
-      </c-button>
+      <c-button> Browse files </c-button>
 
       <div v-if="pasteImage">
         <!-- separator -->
         <div my-4 w-full flex items-center justify-center op-70>
           <div class="h-1px max-w-100px flex-1 bg-gray-300 op-50" />
-          <div class="mx-2 text-gray-400">
-            or
-          </div>
+          <div class="mx-2 text-gray-400">or</div>
           <div class="h-1px max-w-100px flex-1 bg-gray-300 op-50" />
         </div>
 
@@ -158,7 +147,7 @@ async function handleUpload(files: FileList | null | undefined) {
       </div>
     </slot>
     <div mt-2>
-      <img ref="imgPreview" width="150">
+      <img ref="imgPreview" width="150" />
     </div>
   </div>
 </template>

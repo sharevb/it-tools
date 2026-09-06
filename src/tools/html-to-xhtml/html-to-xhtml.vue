@@ -10,15 +10,11 @@ const addNamespace = ref(false);
 const indentation = ref(2);
 const outputHtml = computed(() => {
   try {
-    return toStrictXhtml(
-      inputHtml.value,
-      {
-        addNamespace: addNamespace.value,
-        indent: indentation.value,
-      },
-    );
-  }
-  catch (e: any) {
+    return toStrictXhtml(inputHtml.value, {
+      addNamespace: addNamespace.value,
+      indent: indentation.value,
+    });
+  } catch (e: any) {
     return `<!-- ERROR: ${e.toString()} -->`;
   }
 });
@@ -28,7 +24,8 @@ const outputHtml = computed(() => {
   <div>
     <c-input-text
       v-model:value="inputHtml"
-      multiline raw-text
+      multiline
+      raw-text
       :placeholder="t('tools.html-to-xhtml.texts.placeholder-your-html-content')"
       rows="8"
       autofocus

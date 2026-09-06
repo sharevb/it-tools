@@ -6,10 +6,10 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 const { t } = useI18n();
 
 interface Prefix {
-  label: string
-  symbol: string
-  exponent: number
-};
+  label: string;
+  symbol: string;
+  exponent: number;
+}
 
 const prefixes: Prefix[] = [
   { label: t('tools.si-prefixes-converter.texts.label-quetta-q'), symbol: 'Q', exponent: 30 },
@@ -39,21 +39,25 @@ const prefixes: Prefix[] = [
   { label: t('tools.si-prefixes-converter.texts.label-quecto-q'), symbol: 'q', exponent: -30 },
 ];
 
-const prefixOptions = prefixes.map(p => ({
+const prefixOptions = prefixes.map((p) => ({
   label: p.label,
   value: p.symbol,
 }));
 
 const fromSymbol = useQueryParamOrStorage({ storageName: 'si-pref-conv:f', name: 'from', defaultValue: 'q' });
 const toSymbol = useQueryParamOrStorage({ storageName: 'si-pref-conv:t', name: 'to', defaultValue: 'Q' });
-const formatMode = useQueryParamOrStorage<'auto' | 'fixed' | 'exp'>({ storageName: 'si-pref-conv:m', name: 'mode', defaultValue: 'auto' });
+const formatMode = useQueryParamOrStorage<'auto' | 'fixed' | 'exp'>({
+  storageName: 'si-pref-conv:m',
+  name: 'mode',
+  defaultValue: 'auto',
+});
 const decimals = useQueryParamOrStorage({ storageName: 'si-pref-conv:d', name: 'dec', defaultValue: 6 });
 const thousandSep = useQueryParamOrStorage({ storageName: 'si-pref-conv:s', name: 'sep', defaultValue: true });
 
 const inputValue = ref<number | null>(1);
 
-const fromPrefix = computed(() => prefixes.find(p => p.symbol === fromSymbol.value)!);
-const toPrefix = computed(() => prefixes.find(p => p.symbol === toSymbol.value)!);
+const fromPrefix = computed(() => prefixes.find((p) => p.symbol === fromSymbol.value)!);
+const toPrefix = computed(() => prefixes.find((p) => p.symbol === toSymbol.value)!);
 
 // Conversion
 const converted = computed(() => {
@@ -104,12 +108,7 @@ const displayValue = computed(() => {
     <NSpace justify="center" wrap>
       <NFormItem :label="t('tools.si-prefixes-converter.texts.label-convert')" label-placement="left">
         <n-input-number-i18n v-model:value="inputValue" mr-1 />
-        <NSelect
-          v-model:value="fromSymbol"
-          :options="prefixOptions"
-          style="width: 200px"
-          filterable
-        />
+        <NSelect v-model:value="fromSymbol" :options="prefixOptions" style="width: 200px" filterable />
       </NFormItem>
     </NSpace>
 

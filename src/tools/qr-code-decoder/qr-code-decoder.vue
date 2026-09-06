@@ -14,9 +14,8 @@ const qrCode = computedAsync(async () => {
     if (!file) {
       return null;
     }
-    return (await qrcodeParser(file));
-  }
-  catch (e: any) {
+    return await qrcodeParser(file);
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -28,8 +27,7 @@ const qrCodeParsed = computed(() => {
     }
     const parsed = parseQRData(qrCodeValue);
     return `Type: ${parsed.type}\nValue:${JSON.stringify(parsed.value, null, 2)}`;
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -54,17 +52,11 @@ async function onUpload(file: File) {
 
     <div v-if="qrCode">
       <h3>{{ t('tools.qr-code-decoder.texts.tag-decoded') }}</h3>
-      <TextareaCopyable
-        :value="qrCode"
-        :word-wrap="true"
-      />
+      <TextareaCopyable :value="qrCode" :word-wrap="true" />
     </div>
     <div v-if="qrCodeParsed">
       <h3>{{ t('tools.qr-code-decoder.texts.tag-parsed') }}</h3>
-      <TextareaCopyable
-        :value="qrCodeParsed"
-        :word-wrap="true"
-      />
+      <TextareaCopyable :value="qrCodeParsed" :word-wrap="true" />
     </div>
   </div>
 </template>

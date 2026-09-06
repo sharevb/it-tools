@@ -1,11 +1,11 @@
-**Docker Compose** describes a multi-container application in one YAML file and runs it with a single command. The file declares *services* (containers), plus the *networks*, *volumes*, *secrets* and *configs* they use.
+**Docker Compose** describes a multi-container application in one YAML file and runs it with a single command. The file declares _services_ (containers), plus the _networks_, _volumes_, _secrets_ and _configs_ they use.
 
 > ℹ️ The `version:` key at the top is obsolete — the Compose Spec ignores it. Start the file with `services:`.
 
 ## 📁 File Names & Precedence
 
 | File                    | Role                                                         |
-|-------------------------|--------------------------------------------------------------|
+| ----------------------- | ------------------------------------------------------------ |
 | `compose.yaml`          | The preferred name (`compose.yml` also works)                |
 | `docker-compose.yaml`   | Legacy name, still supported                                 |
 | `compose.override.yaml` | Merged on top of the base file automatically                 |
@@ -34,7 +34,7 @@ services:
   web:
     image: nginx:1.27
     ports:
-      - "8080:80"
+      - '8080:80'
     depends_on:
       - api
 
@@ -70,10 +70,10 @@ services:
     stop_grace_period: 30s
 
     # what it runs
-    entrypoint: ["/entrypoint.sh"]
-    command: ["node", "server.js"]
+    entrypoint: ['/entrypoint.sh']
+    command: ['node', 'server.js']
     working_dir: /app
-    user: "1000:1000"
+    user: '1000:1000'
 
     # configuration
     environment:
@@ -85,13 +85,13 @@ services:
 
     # connectivity
     ports:
-      - "8080:80"
+      - '8080:80'
     expose:
-      - "9000"
+      - '9000'
     networks:
       - frontend
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - 'host.docker.internal:host-gateway'
     dns:
       - 1.1.1.1
 
@@ -107,7 +107,7 @@ services:
       db:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      test: ['CMD', 'curl', '-f', 'http://localhost/health']
       interval: 30s
       timeout: 5s
       retries: 3
@@ -123,7 +123,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1.5"
+          cpus: '1.5'
           memory: 512M
 
     # bookkeeping
@@ -132,8 +132,8 @@ services:
     logging:
       driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: '10m'
+        max-file: '3'
 ```
 
 ## 🏗 Build Options
@@ -146,7 +146,7 @@ services:
       dockerfile: docker/Dockerfile
       target: production
       args:
-        NODE_VERSION: "22"
+        NODE_VERSION: '22'
       cache_from:
         - myapp:cache
       secrets:
@@ -154,7 +154,7 @@ services:
       platforms:
         - linux/amd64
         - linux/arm64
-    image: myapp:1.2   # the name given to the built image
+    image: myapp:1.2 # the name given to the built image
 ```
 
 ## 📦 Volumes
@@ -178,12 +178,12 @@ services:
 volumes:
   db-data:
   shared:
-    external: true          # created outside Compose
+    external: true # created outside Compose
   nfs-data:
     driver_opts:
       type: nfs
       o: addr=10.0.0.10,rw
-      device: ":/exports/data"
+      device: ':/exports/data'
 ```
 
 ## 🌐 Networks
@@ -204,13 +204,13 @@ networks:
   frontend:
     driver: bridge
   backend:
-    internal: true          # no outbound access
+    internal: true # no outbound access
   existing:
     external: true
     name: some-other-network
 ```
 
-> 💡 Compose creates a default network per project and every service joins it, so containers already reach each other by service name. Declare networks when you want to *separate* things.
+> 💡 Compose creates a default network per project and every service joins it, so containers already reach each other by service name. Declare networks when you want to _separate_ things.
 
 ## 🔀 Ports
 
@@ -218,12 +218,12 @@ networks:
 services:
   web:
     ports:
-      - "8080:80"             # host:container
-      - "127.0.0.1:8080:80"   # bind to one interface only
-      - "8080-8090:80-90"     # a range
-      - "80"                  # random host port
-      - target: 80            # long syntax
-        published: "8080"
+      - '8080:80' # host:container
+      - '127.0.0.1:8080:80' # bind to one interface only
+      - '8080-8090:80-90' # a range
+      - '80' # random host port
+      - target: 80 # long syntax
+        published: '8080'
         protocol: tcp
         mode: host
 ```
@@ -254,14 +254,14 @@ docker compose --env-file .env.staging up -d
 
 ## 🩺 Healthchecks & Startup Order
 
-`depends_on` on its own only waits for the container to *start*. Wait for it to be **healthy** instead:
+`depends_on` on its own only waits for the container to _start_. Wait for it to be **healthy** instead:
 
 ```yaml
 services:
   db:
     image: postgres:16
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
       interval: 10s
       timeout: 5s
       retries: 5
@@ -271,13 +271,13 @@ services:
     image: myapi
     depends_on:
       db:
-        condition: service_healthy      # or service_started, service_completed_successfully
+        condition: service_healthy # or service_started, service_completed_successfully
 ```
 
 ## 🔄 Restart Policies
 
 | Policy           | Behaviour                                                     |
-|------------------|---------------------------------------------------------------|
+| ---------------- | ------------------------------------------------------------- |
 | `no`             | Never restart (the default)                                   |
 | `on-failure`     | Restart only on a non-zero exit — `on-failure:5` to cap tries |
 | `always`         | Always restart, including after a daemon restart              |
@@ -290,7 +290,7 @@ Profiles keep optional services out of the way until you ask for them.
 ```yaml
 services:
   web:
-    image: nginx                # no profile: always started
+    image: nginx # no profile: always started
 
   debug:
     image: busybox
@@ -386,7 +386,7 @@ secrets:
   db_password:
     file: ./db_password.txt
   api_token:
-    external: true      # Swarm only
+    external: true # Swarm only
 
 configs:
   pg_conf:
@@ -405,7 +405,7 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: all          # or: device_ids: ["0"]
+              count: all # or: device_ids: ["0"]
               capabilities: [gpu]
 
   # Intel iGPU — VAAPI/OpenCL through the render device
@@ -473,7 +473,7 @@ docker compose stats
 Both read a Compose file, but `docker stack deploy` honours a different subset of it.
 
 | Key                              | `docker compose`            | `docker stack deploy`                           |
-|----------------------------------|-----------------------------|-------------------------------------------------|
+| -------------------------------- | --------------------------- | ----------------------------------------------- |
 | `build:`                         | ✅ builds locally           | ❌ ignored — push the image to a registry first |
 | `restart:`                       | ✅                          | ❌ use `deploy.restart_policy`                  |
 | `depends_on:`                    | ✅                          | ❌ ignored — rely on health checks and retries  |

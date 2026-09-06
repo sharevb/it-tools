@@ -17,7 +17,17 @@ export const profile: OGSchemaType = {
       placeholder: t('tools.meta-tag-generator.profile.text.enter-the-last-name-of-the-person'),
       key: 'profile:last_name',
     },
-    { type: 'input', label: t('tools.meta-tag-generator.basic-auth-generator.username'), placeholder: t('tools.meta-tag-generator.profile.text.enter-the-username-of-the-person'), key: 'profile:username' },
-    { type: 'input', label: t('tools.meta-tag-generator.profile.text.gender'), placeholder: t('tools.meta-tag-generator.profile.text.enter-the-gender-of-the-person'), key: 'profile:gender' },
+    {
+      type: 'input',
+      label: t('tools.meta-tag-generator.basic-auth-generator.username'),
+      placeholder: t('tools.meta-tag-generator.profile.text.enter-the-username-of-the-person'),
+      key: 'profile:username',
+    },
+    {
+      type: 'input',
+      label: t('tools.meta-tag-generator.profile.text.gender'),
+      placeholder: t('tools.meta-tag-generator.profile.text.enter-the-gender-of-the-person'),
+      key: 'profile:gender',
+    },
   ],
 };

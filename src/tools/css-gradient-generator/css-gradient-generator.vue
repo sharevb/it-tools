@@ -17,9 +17,7 @@ const gradientCSS = computed(() => {
   const stops = _.orderBy(colorStops.value, 'position')
     .map(({ color, position }) => `${color} ${position}%`)
     .join(', ');
-  return gradientType.value === 'linear'
-    ? `linear-gradient(${angle.value}deg, ${stops})`
-    : `radial-gradient(${stops})`;
+  return gradientType.value === 'linear' ? `linear-gradient(${angle.value}deg, ${stops})` : `radial-gradient(${stops})`;
 });
 
 function addStop() {
@@ -46,7 +44,10 @@ function removeStop(index: number) {
           </NRadioGroup>
         </NFormItem>
 
-        <NFormItem v-if="gradientType === 'linear'" :label="t('tools.css-gradient-generator.texts.label-angle-degrees')">
+        <NFormItem
+          v-if="gradientType === 'linear'"
+          :label="t('tools.css-gradient-generator.texts.label-angle-degrees')"
+        >
           <NSlider v-model:value="angle" :min="0" :max="360" :step="1" mr-1 />
           <n-input-number :value="angle" />
         </NFormItem>
@@ -54,19 +55,9 @@ function removeStop(index: number) {
 
       <c-card :title="t('tools.css-gradient-generator.texts.title-color-stops')">
         <div class="color-stop-list" w-full>
-          <div
-            v-for="(stop, index) in colorStops"
-            :key="index"
-            class="color-stop-item"
-          >
+          <div v-for="(stop, index) in colorStops" :key="index" class="color-stop-item">
             <NColorPicker v-model:value="stop.color" />
-            <NInputNumber
-              v-model:value="stop.position"
-              :min="0"
-              :max="100"
-              :step="1"
-              style="width: 150px"
-            />
+            <NInputNumber v-model:value="stop.position" :min="0" :max="100" :step="1" style="width: 150px" />
             <NButton size="small" type="error" @click="removeStop(index)">
               {{ t('tools.css-gradient-generator.texts.tag-remove') }}
             </NButton>

@@ -11,12 +11,14 @@ const textInput = ref('');
 const base64Output = computed(() => {
   try {
     return Base64.fromUint8Array(hexArray.fromString(textInput.value));
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
-const { copy: copyTextBase64 } = useCopy({ source: base64Output, text: t('tools.base64-hex-converter.texts.text-base64-hex-array-copied-to-the-clipboard') });
+const { copy: copyTextBase64 } = useCopy({
+  source: base64Output,
+  text: t('tools.base64-hex-converter.texts.text-base64-hex-array-copied-to-the-clipboard'),
+});
 
 const uppercase = ref(false);
 const grouping = ref(0);
@@ -30,13 +32,14 @@ const textOutput = computed(() => {
       grouping: grouping.value,
       rowlength: rowlength.value,
     });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
-},
-);
-const { copy: copyText } = useCopy({ source: textOutput, text: t('tools.base64-hex-converter.texts.text-hex-array-copied-to-the-clipboard') });
+});
+const { copy: copyText } = useCopy({
+  source: textOutput,
+  text: t('tools.base64-hex-converter.texts.text-hex-array-copied-to-the-clipboard'),
+});
 const b64ValidationRules = [
   {
     message: t('tools.base64-hex-converter.texts.message-invalid-base64-string'),
@@ -62,7 +65,9 @@ const b64ValidationRules = [
       :value="base64Output"
       multiline
       readonly
-      :placeholder="t('tools.base64-hex-converter.texts.placeholder-the-base64-encoding-of-your-hex-array-will-be-here')"
+      :placeholder="
+        t('tools.base64-hex-converter.texts.placeholder-the-base64-encoding-of-your-hex-array-will-be-here')
+      "
       rows="5"
       mb-5
     />
@@ -80,10 +85,14 @@ const b64ValidationRules = [
         <n-switch v-model:value="uppercase" />
       </n-form-item>
       <n-form-item :label="t('tools.base64-hex-converter.texts.label-group-by')" label-placement="left">
-        <n-input-number-i18n v-model:value="grouping" :min="0" style="width: 6em" mr-1 />{{ t('tools.base64-hex-converter.texts.tag-digits-0-no-grouping') }}
+        <n-input-number-i18n v-model:value="grouping" :min="0" style="width: 6em" mr-1 />{{
+          t('tools.base64-hex-converter.texts.tag-digits-0-no-grouping')
+        }}
       </n-form-item>
       <n-form-item :label="t('tools.base64-hex-converter.texts.label-split-as-rows-by')" label-placement="left">
-        <n-input-number-i18n v-model:value="rowlength" :min="0" style="width: 6em" mr-1 />{{ t('tools.base64-hex-converter.texts.tag-group-of-digits-0-no-rows') }}
+        <n-input-number-i18n v-model:value="rowlength" :min="0" style="width: 6em" mr-1 />{{
+          t('tools.base64-hex-converter.texts.tag-group-of-digits-0-no-rows')
+        }}
       </n-form-item>
     </n-space>
     <c-input-text

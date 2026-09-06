@@ -21,17 +21,17 @@ const results = computedAsync(async () => {
         return null;
       }
       return unpack(Buffer.from(await file.arrayBuffer()));
-    }
-    else {
+    } else {
       return unpack(hexArray.fromString(hexInput.value));
     }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
     return [];
   }
 });
-const resultsJson = computed(() => JSON.stringify(results.value || [], (_, v) => typeof v === 'bigint' ? v.toString() : v, 2));
+const resultsJson = computed(() =>
+  JSON.stringify(results.value || [], (_, v) => (typeof v === 'bigint' ? v.toString() : v), 2),
+);
 
 function onUpload(file: File) {
   if (file) {
@@ -45,14 +45,8 @@ function onUpload(file: File) {
     <c-card :title="t('tools.msgpack-to-json.texts.title-input-message-pack-file-or-content')" mb-2>
       <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
         <n-space>
-          <n-radio
-            value="file"
-            :label="t('tools.msgpack-to-json.texts.label-file')"
-          />
-          <n-radio
-            value="content"
-            :label="t('tools.msgpack-to-json.texts.label-hex-content')"
-          />
+          <n-radio value="file" :label="t('tools.msgpack-to-json.texts.label-file')" />
+          <n-radio value="content" :label="t('tools.msgpack-to-json.texts.label-hex-content')" />
         </n-space>
       </n-radio-group>
 

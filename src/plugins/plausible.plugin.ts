@@ -18,11 +18,11 @@ export function createPlausibleInstance({
   config,
 }: {
   config: {
-    isTrackerEnabled: boolean
-    domain: string
-    apiHost: string
-    trackLocalhost: boolean
-  }
+    isTrackerEnabled: boolean;
+    domain: string;
+    apiHost: string;
+    trackLocalhost: boolean;
+  };
 }): PlausibleInstance {
   // `init` throws when no domain is configured. Without a domain the events would be attributed to
   // nothing anyway, so stay with the no-op instance instead.
@@ -46,7 +46,7 @@ export function createPlausibleInstance({
   }
 
   return {
-    trackEvent: eventName => track(eventName, {}),
+    trackEvent: (eventName) => track(eventName, {}),
     // `init` already captures pageviews, `autoCapturePageviews` being enabled by default
     enableAutoPageviews: noop,
   };

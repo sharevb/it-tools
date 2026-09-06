@@ -26,16 +26,14 @@ db:
 function fromProperties(value: string) {
   try {
     return yaml.stringify(properties.parse(value, { sections: true, namespaces: true }));
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 }
 function toProperties(value: string) {
   try {
     return properties.stringify(flatten(yaml.parse(value, { intAsBigInt: true })));
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 }

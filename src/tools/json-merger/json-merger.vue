@@ -10,15 +10,8 @@ const json1 = ref('{a:{b:5}}');
 const json2 = ref('{a:{c:6}}');
 const merged = computed(() => {
   try {
-    return JSON.stringify(
-      merge(
-        JSON.parseBigNum(json1.value),
-        JSON.parseBigNum(json2.value),
-      ),
-      null, 2,
-    );
-  }
-  catch (e: any) {
+    return JSON.stringify(merge(JSON.parseBigNum(json1.value), JSON.parseBigNum(json2.value)), null, 2);
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -33,12 +26,31 @@ const rules: UseValidationRule<string>[] = [
 
 <template>
   <c-card :title="t('tools.json-merger.texts.title-your-first-json-content')">
-    <c-input-text v-model:value="json1" multiline mb-1 rows="10" :placeholder="t('tools.json-merger.texts.placeholder-put-your-json-content')" :validation-rules="rules" />
+    <c-input-text
+      v-model:value="json1"
+      multiline
+      mb-1
+      rows="10"
+      :placeholder="t('tools.json-merger.texts.placeholder-put-your-json-content')"
+      :validation-rules="rules"
+    />
   </c-card>
   <c-card :title="t('tools.json-merger.texts.title-your-second-json-content')">
-    <c-input-text v-model:value="json2" multiline mb-1 rows="10" :placeholder="t('tools.json-merger.texts.placeholder-put-your-json-content')" :validation-rules="rules" />
+    <c-input-text
+      v-model:value="json2"
+      multiline
+      mb-1
+      rows="10"
+      :placeholder="t('tools.json-merger.texts.placeholder-put-your-json-content')"
+      :validation-rules="rules"
+    />
   </c-card>
   <c-card :title="t('tools.json-merger.texts.title-merged-json')">
-    <CodeBlockCopyable v-model:value="merged" language="json" :placeholder="t('tools.json-merger.texts.placeholder-your-merged-json-will-be-here')" download-file-name="merge.json" />
+    <CodeBlockCopyable
+      v-model:value="merged"
+      language="json"
+      :placeholder="t('tools.json-merger.texts.placeholder-your-merged-json-will-be-here')"
+      download-file-name="merge.json"
+    />
   </c-card>
 </template>

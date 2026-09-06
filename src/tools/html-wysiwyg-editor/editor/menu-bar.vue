@@ -27,8 +27,17 @@ import {
   LayersUnion,
   LayoutDistributeHorizontal,
   LayoutDistributeVertical,
-  List, ListNumbers, RowInsertBottom, RowInsertTop, SeparatorVertical, Strikethrough,
-  Table, TableOff, TextWrap, TextWrapDisabled, Tool,
+  List,
+  ListNumbers,
+  RowInsertBottom,
+  RowInsertTop,
+  SeparatorVertical,
+  Strikethrough,
+  Table,
+  TableOff,
+  TextWrap,
+  TextWrapDisabled,
+  Tool,
 } from '@vicons/tabler';
 import type { Component } from 'vue';
 import MenuBarItem from './menu-bar-item.vue';
@@ -40,21 +49,21 @@ const { t } = useI18n();
 
 type MenuItem =
   | {
-    icon: Component
-    title: string
-    action: () => void
-    value?: () => string
-    isActive?: () => boolean
-    enabled?: () => boolean
-    type: 'button'
-  }
+      icon: Component;
+      title: string;
+      action: () => void;
+      value?: () => string;
+      isActive?: () => boolean;
+      enabled?: () => boolean;
+      type: 'button';
+    }
   | {
-    icon: Component
-    title: string
-    action: (color: string) => void
-    value: () => string
-    type: 'color'
-  }
+      icon: Component;
+      title: string;
+      action: (color: string) => void;
+      value: () => string;
+      type: 'color';
+    }
   | { type: 'br' }
   | { type: 'divider' };
 
@@ -231,7 +240,7 @@ const items: MenuItem[] = [
     type: 'color',
     title: t('tools.menu-bar.text.forecolor'),
     icon: ColorPicker,
-    action: color => editor.value.chain().focus().setColor(color).run(),
+    action: (color) => editor.value.chain().focus().setColor(color).run(),
     value: () => editor.value.getAttributes('textStyle').color,
   },
   {
@@ -247,7 +256,7 @@ const items: MenuItem[] = [
     type: 'color',
     title: t('tools.menu-bar.text.highlight-color'),
     icon: ColorPicker,
-    action: color => editor.value.chain().focus().setHighlight({ color }).run(),
+    action: (color) => editor.value.chain().focus().setHighlight({ color }).run(),
     value: () => '#FAF594',
   },
   {
@@ -392,10 +401,7 @@ const items: MenuItem[] = [
       <n-divider v-if="item.type === 'divider'" :key="`divider${index}`" vertical />
       <div v-if="item.type === 'br'" :key="`br${index}`" style="width: 100%" />
       <MenuBarItem v-else-if="item.type === 'button'" :key="index" v-bind="item" />
-      <c-tooltip
-        v-if="item.type === 'color'" :key="`color${index}`"
-        :tooltip="item.title"
-      >
+      <c-tooltip v-if="item.type === 'color'" :key="`color${index}`" :tooltip="item.title">
         <n-color-picker
           style="width: 120px"
           :show-alpha="false"

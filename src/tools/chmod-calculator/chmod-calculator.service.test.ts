@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { computeChmodOctalRepresentation, computeChmodSymbolicRepresentation, computePermissionsFromChmodOctalRepresentation, computePermissionsFromChmodSymbolicRepresentation, computeUmaskRepresentation } from './chmod-calculator.service';
+import {
+  computeChmodOctalRepresentation,
+  computeChmodSymbolicRepresentation,
+  computePermissionsFromChmodOctalRepresentation,
+  computePermissionsFromChmodSymbolicRepresentation,
+  computeUmaskRepresentation,
+} from './chmod-calculator.service';
 
 describe('chmod-calculator', () => {
   describe('computeChmodOctalRepresentation', () => {
@@ -248,90 +254,70 @@ describe('chmod-calculator', () => {
     });
 
     it('get permissions from octal representation', () => {
-      expect(
-        computePermissionsFromChmodOctalRepresentation('777'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('777')).to.eql({
         owner: { read: true, write: true, execute: true },
         group: { read: true, write: true, execute: true },
         public: { read: true, write: true, execute: true },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodOctalRepresentation('000'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('000')).to.eql({
         owner: { read: false, write: false, execute: false },
         group: { read: false, write: false, execute: false },
         public: { read: false, write: false, execute: false },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodOctalRepresentation('235'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('235')).to.eql({
         owner: { read: false, write: true, execute: false },
         group: { read: false, write: true, execute: true },
         public: { read: true, write: false, execute: true },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodOctalRepresentation('421'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('421')).to.eql({
         owner: { read: true, write: false, execute: false },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: false, execute: true },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodOctalRepresentation('124'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('124')).to.eql({
         owner: { read: false, write: false, execute: true },
         group: { read: false, write: true, execute: false },
         public: { read: true, write: false, execute: false },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodOctalRepresentation('222'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('222')).to.eql({
         owner: { read: false, write: true, execute: false },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: true, execute: false },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodOctalRepresentation('7222'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('7222')).to.eql({
         owner: { read: false, write: true, execute: false },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: true, execute: false },
         flags: { setuid: true, setgid: true, stickybit: true },
       });
 
-      expect(
-        computePermissionsFromChmodOctalRepresentation('4222'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('4222')).to.eql({
         owner: { read: false, write: true, execute: false },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: true, execute: false },
         flags: { setuid: true, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodOctalRepresentation('2222'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('2222')).to.eql({
         owner: { read: false, write: true, execute: false },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: true, execute: false },
         flags: { setuid: false, setgid: true, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodOctalRepresentation('1222'),
-      ).to.eql({
+      expect(computePermissionsFromChmodOctalRepresentation('1222')).to.eql({
         owner: { read: false, write: true, execute: false },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: true, execute: false },
@@ -346,107 +332,83 @@ describe('chmod-calculator', () => {
     });
 
     it('get permissions from symbolic representation', () => {
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('dr-xr-xr-x'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('dr-xr-xr-x')).to.eql({
         owner: { read: true, write: false, execute: true },
         group: { read: true, write: false, execute: true },
         public: { read: true, write: false, execute: true },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('-rw-r--r--'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('-rw-r--r--')).to.eql({
         owner: { read: true, write: true, execute: false },
         group: { read: true, write: false, execute: false },
         public: { read: true, write: false, execute: false },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('rwxrwxrwx'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('rwxrwxrwx')).to.eql({
         owner: { read: true, write: true, execute: true },
         group: { read: true, write: true, execute: true },
         public: { read: true, write: true, execute: true },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('---------'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('---------')).to.eql({
         owner: { read: false, write: false, execute: false },
         group: { read: false, write: false, execute: false },
         public: { read: false, write: false, execute: false },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('r---wxr-x'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('r---wxr-x')).to.eql({
         owner: { read: true, write: false, execute: false },
         group: { read: false, write: true, execute: true },
         public: { read: true, write: false, execute: true },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('r---w---x'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('r---w---x')).to.eql({
         owner: { read: true, write: false, execute: false },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: false, execute: true },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('--x-w-r--'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('--x-w-r--')).to.eql({
         owner: { read: false, write: false, execute: true },
         group: { read: false, write: true, execute: false },
         public: { read: true, write: false, execute: false },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('-w--w--w-'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('-w--w--w-')).to.eql({
         owner: { read: false, write: true, execute: false },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: true, execute: false },
         flags: { setuid: false, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('-ws-ws-wt'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('-ws-ws-wt')).to.eql({
         owner: { read: false, write: true, execute: true },
         group: { read: false, write: true, execute: true },
         public: { read: false, write: true, execute: true },
         flags: { setuid: true, setgid: true, stickybit: true },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('-ws-w--w-'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('-ws-w--w-')).to.eql({
         owner: { read: false, write: true, execute: true },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: true, execute: false },
         flags: { setuid: true, setgid: false, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('-w--ws-w-'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('-w--ws-w-')).to.eql({
         owner: { read: false, write: true, execute: false },
         group: { read: false, write: true, execute: true },
         public: { read: false, write: true, execute: false },
         flags: { setuid: false, setgid: true, stickybit: false },
       });
 
-      expect(
-        computePermissionsFromChmodSymbolicRepresentation('-w--w--wt'),
-      ).to.eql({
+      expect(computePermissionsFromChmodSymbolicRepresentation('-w--w--wt')).to.eql({
         owner: { read: false, write: true, execute: false },
         group: { read: false, write: true, execute: false },
         public: { read: false, write: true, execute: true },

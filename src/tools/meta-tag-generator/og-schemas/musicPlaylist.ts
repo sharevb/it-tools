@@ -5,7 +5,12 @@ import { translate as t } from '@/plugins/i18n.plugin';
 export const musicPlaylist: OGSchemaType = {
   name: t('tools.meta-tag-generator.musicPlaylist.text.playlist-details'),
   elements: [
-    { type: 'input', label: t('tools.meta-tag-generator.website.text.song'), key: 'music:song', placeholder: t('tools.meta-tag-generator.musicAlbum.text.the-song-on-this-album') },
+    {
+      type: 'input',
+      label: t('tools.meta-tag-generator.website.text.song'),
+      key: 'music:song',
+      placeholder: t('tools.meta-tag-generator.musicAlbum.text.the-song-on-this-album'),
+    },
     {
       type: 'input',
       label: t('tools.meta-tag-generator.musicAlbum.text.disc'),
@@ -18,6 +23,11 @@ export const musicPlaylist: OGSchemaType = {
       key: 'music:song:track',
       placeholder: t('tools.meta-tag-generator.musicAlbum.text.the-same-as-music-album-track-but-in-reverse'),
     },
-    { type: 'input', label: t('tools.meta-tag-generator.musicPlaylist.text.creator'), key: 'music:creator', placeholder: t('tools.meta-tag-generator.musicPlaylist.text.the-creator-of-this-playlist') },
+    {
+      type: 'input',
+      label: t('tools.meta-tag-generator.musicPlaylist.text.creator'),
+      key: 'music:creator',
+      placeholder: t('tools.meta-tag-generator.musicPlaylist.text.the-creator-of-this-playlist'),
+    },
   ],
 };

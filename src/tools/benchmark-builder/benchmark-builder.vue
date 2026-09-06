@@ -38,8 +38,8 @@ const results = computed(() => {
       const deltaWithBestMean = mean - bestMean;
       const ratioWithBestMean = bestMean === 0 ? '∞' : round(mean / bestMean);
 
-      const comparisonValues: string
-        = (index !== 0 && bestMean !== mean) ? ` (+${round(deltaWithBestMean)}${cleanUnit} ; x${ratioWithBestMean})` : '';
+      const comparisonValues: string =
+        index !== 0 && bestMean !== mean ? ` (+${round(deltaWithBestMean)}${cleanUnit} ; x${ratioWithBestMean})` : '';
 
       return {
         position: index + 1,
@@ -102,7 +102,9 @@ function copyAsBulletList() {
 
         <div flex justify-center>
           <c-button v-if="suites.length > 1" variant="text" @click="suites.splice(index, 1)">
-            <n-icon :component="Trash" depth="3" mr-2 size="18" />{{ t('tools.benchmark-builder.texts.tag-delete-suite') }}
+            <n-icon :component="Trash" depth="3" mr-2 size="18" />{{
+              t('tools.benchmark-builder.texts.tag-delete-suite')
+            }}
           </c-button>
           <c-button
             variant="text"
@@ -118,7 +120,13 @@ function copyAsBulletList() {
   <div style="flex: 0 0 100%">
     <div style="max-width: 600px; margin: 0 auto">
       <div mx-auto max-w-sm flex justify-center gap-3>
-        <c-input-text v-model:value="unit" :placeholder="t('tools.benchmark-builder.texts.placeholder-unit-eg-ms')" :label="t('tools.benchmark-builder.texts.label-unit')" label-position="left" mb-4 />
+        <c-input-text
+          v-model:value="unit"
+          :placeholder="t('tools.benchmark-builder.texts.placeholder-unit-eg-ms')"
+          :label="t('tools.benchmark-builder.texts.label-unit')"
+          label-position="left"
+          mb-4
+        />
 
         <c-button
           @click="

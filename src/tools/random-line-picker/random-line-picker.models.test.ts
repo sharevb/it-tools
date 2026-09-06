@@ -37,7 +37,7 @@ describe('random-line-picker', () => {
     it('should only return lines from the input', () => {
       const config: Config = { input: 'foo\nbar\nbaz', count: 3, repeat: false, prefix: false };
       const result = pickLines(config).split('\n');
-      expect(result.every(line => ['foo', 'bar', 'baz'].includes(line))).toBe(true);
+      expect(result.every((line) => ['foo', 'bar', 'baz'].includes(line))).toBe(true);
     });
 
     it('should not repeat lines when repeat is false', () => {
@@ -57,7 +57,7 @@ describe('random-line-picker', () => {
     it('should not add prefix when prefix is false', () => {
       const config: Config = { input: 'a\nb\nc', count: 3, repeat: false, prefix: false };
       const result = pickLines(config).split('\n');
-      expect(result.every(line => !/^\d+\. /.test(line))).toBe(true);
+      expect(result.every((line) => !/^\d+\. /.test(line))).toBe(true);
     });
 
     it('should return an empty string for empty input', () => {

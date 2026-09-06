@@ -3,47 +3,24 @@ import { describe, expect, it } from 'vitest';
 import type { DayOfWeek, Holiday } from './business-time-calculator';
 import { BusinessTime } from './business-time-calculator';
 
-const weekDays: DayOfWeek[] = [
-  'monday',
-  'tuesday',
-  'wednesday',
-  'thursday',
-  'friday',
-];
+const weekDays: DayOfWeek[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
 
-const allDays: DayOfWeek[] = [
-  'monday',
-  'tuesday',
-  'wednesday',
-  'thursday',
-  'friday',
-  'saturday',
-  'sunday',
-];
+const allDays: DayOfWeek[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
 interface TestCase {
-  businessTimezone: string
-  businessDays: DayOfWeek[]
-  businessHours: number[]
-  holidays: Holiday[]
-  start?: string
-  end?: string
-  expected: any
+  businessTimezone: string;
+  businessDays: DayOfWeek[];
+  businessHours: number[];
+  holidays: Holiday[];
+  start?: string;
+  end?: string;
+  expected: any;
 }
 
 type BusinessTimeMethod = keyof InstanceType<typeof BusinessTime>;
 
-function testEachComputeTime(testCases: TestCase[],
-  businessTimeFunctionName: BusinessTimeMethod) {
-  for (const {
-    start,
-    end,
-    businessTimezone,
-    businessHours,
-    businessDays,
-    holidays,
-    expected,
-  } of testCases) {
+function testEachComputeTime(testCases: TestCase[], businessTimeFunctionName: BusinessTimeMethod) {
+  for (const { start, end, businessTimezone, businessHours, businessDays, holidays, expected } of testCases) {
     if (!start || !end) {
       throw new Error('Start and end dates must be defined');
     }
@@ -67,20 +44,13 @@ function testEachComputeTime(testCases: TestCase[],
       businessTime[businessTimeFunctionName]({
         start: startDatetime,
         end: endDatetime,
-      } as never)).to.deep.eq(expected);
+      } as never),
+    ).to.deep.eq(expected);
   }
 }
 
 function testEachMoveDateInBusinessTime(testCases: (TestCase & { datetime: string; moveBehind: boolean })[]) {
-  for (const {
-    businessTimezone,
-    businessHours,
-    businessDays,
-    holidays,
-    datetime,
-    moveBehind,
-    expected,
-  } of testCases) {
+  for (const { businessTimezone, businessHours, businessDays, holidays, datetime, moveBehind, expected } of testCases) {
     const businessTime = new BusinessTime({
       businessTimezone,
       businessHours,
@@ -94,21 +64,13 @@ function testEachMoveDateInBusinessTime(testCases: (TestCase & { datetime: strin
           datetime: DateTime.fromISO(datetime),
           moveBehind,
         })
-        .toISO()).to.deep.eq(
-      expected,
-    );
+        .toISO(),
+    ).to.deep.eq(expected);
   }
 }
 
 function testEachIsBusinessDay(testCases: (TestCase & { datetime: string })[]) {
-  for (const {
-    datetime,
-    businessTimezone,
-    businessHours,
-    businessDays,
-    holidays,
-    expected,
-  } of testCases) {
+  for (const { datetime, businessTimezone, businessHours, businessDays, holidays, expected } of testCases) {
     const datetimeObj = DateTime.fromISO(datetime) as DateTime;
     if (!datetimeObj.isValid) {
       throw new Error(`Invalid datetime: ${datetime}`);
@@ -125,15 +87,7 @@ function testEachIsBusinessDay(testCases: (TestCase & { datetime: string })[]) {
 }
 
 function testEachAddBusinessSecondsToDate(testCases: (TestCase & { datetime: string; seconds: number })[]) {
-  for (const {
-    seconds,
-    businessTimezone,
-    businessHours,
-    businessDays,
-    holidays,
-    datetime,
-    expected,
-  } of testCases) {
+  for (const { seconds, businessTimezone, businessHours, businessDays, holidays, datetime, expected } of testCases) {
     const datetimeObj = DateTime.fromISO(datetime) as DateTime;
     if (!datetimeObj.isValid) {
       throw new Error(`Invalid datetime: ${datetime}`);
@@ -145,25 +99,12 @@ function testEachAddBusinessSecondsToDate(testCases: (TestCase & { datetime: str
       holidays,
     });
 
-    expect(
-      businessTime
-        .addBusinessSecondsToDate({ datetime: datetimeObj, seconds })
-        .toISO()).to.deep.eq(
-      expected,
-    );
+    expect(businessTime.addBusinessSecondsToDate({ datetime: datetimeObj, seconds }).toISO()).to.deep.eq(expected);
   }
 }
 
 function testEachRemoveBusinessSecondsToDate(testCases: (TestCase & { datetime: string; seconds: number })[]) {
-  for (const {
-    seconds,
-    businessTimezone,
-    businessHours,
-    businessDays,
-    holidays,
-    datetime,
-    expected,
-  } of testCases) {
+  for (const { seconds, businessTimezone, businessHours, businessDays, holidays, datetime, expected } of testCases) {
     const datetimeObj = DateTime.fromISO(datetime) as DateTime;
     if (!datetimeObj.isValid) {
       throw new Error(`Invalid datetime: ${datetime}`);
@@ -175,12 +116,7 @@ function testEachRemoveBusinessSecondsToDate(testCases: (TestCase & { datetime: 
       holidays,
     });
 
-    expect(
-      businessTime
-        .removeBusinessSecondsFromDate({ datetime: datetimeObj, seconds })
-        .toISO()).to.deep.eq(
-      expected,
-    );
+    expect(businessTime.removeBusinessSecondsFromDate({ datetime: datetimeObj, seconds }).toISO()).to.deep.eq(expected);
   }
 }
 

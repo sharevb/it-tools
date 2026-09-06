@@ -78,10 +78,13 @@ const languageOptions = [
   { label: t('tools.translator.texts.label-welsh'), value: 'cy' },
 ];
 
-const languageNames = languageOptions.reduce((acc, { value, label }) => {
-  acc[value] = label;
-  return acc;
-}, {} as Record<string, string>);
+const languageNames = languageOptions.reduce(
+  (acc, { value, label }) => {
+    acc[value] = label;
+    return acc;
+  },
+  {} as Record<string, string>,
+);
 
 const langPairs = {
   af: ['en'],
@@ -90,8 +93,27 @@ const langPairs = {
   da: ['de', 'en'],
   de: ['en', 'es', 'fr'],
   en: [
-    'af', 'ar', 'cs', 'da', 'de', 'es', 'fi', 'fr', 'hi', 'hu', 'id', 'it',
-    'jap', 'nl', 'ro', 'ru', 'sv', 'uk', 'vi', 'xh', 'zh',
+    'af',
+    'ar',
+    'cs',
+    'da',
+    'de',
+    'es',
+    'fi',
+    'fr',
+    'hi',
+    'hu',
+    'id',
+    'it',
+    'jap',
+    'nl',
+    'ro',
+    'ru',
+    'sv',
+    'uk',
+    'vi',
+    'xh',
+    'zh',
   ],
   es: ['de', 'en', 'fr', 'it', 'ru'],
   et: ['en'],
@@ -119,14 +141,14 @@ const langPairs = {
 };
 
 const fromLanguages = computed(() => {
-  return Object.keys(langPairs).map(lang => ({ label: languageNames[lang] || lang, value: lang }));
+  return Object.keys(langPairs).map((lang) => ({ label: languageNames[lang] || lang, value: lang }));
 });
 const toLanguages = computed(() => {
   const toLangs = langPairs[sourceLang.value as keyof typeof langPairs] || [];
   if (!toLangs.includes(targetLang.value)) {
     targetLang.value = toLangs[0];
   }
-  return toLangs.map(lang => ({ label: languageNames[lang] || lang, value: lang }));
+  return toLangs.map((lang) => ({ label: languageNames[lang] || lang, value: lang }));
 });
 
 // Cache the loaded model
@@ -148,13 +170,11 @@ async function translateText() {
     loadingModel.value = true;
 
     try {
-      translators.set(modelId, await pipeline('translation', modelId) as TranslationPipeline);
-    }
-    catch (e: any) {
+      translators.set(modelId, (await pipeline('translation', modelId)) as TranslationPipeline);
+    } catch (e: any) {
       error.value = `Model loading failed: ${e.toString()}`;
       return;
-    }
-    finally {
+    } finally {
       loadingModel.value = false;
     }
   }
@@ -164,11 +184,9 @@ async function translateText() {
   try {
     const result = await translators.get(modelId)!(inputText.value);
     translatedText.value = (result[0] as TranslationSingle)?.translation_text;
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = `Translation failed: ${e.toString()}`;
-  }
-  finally {
+  } finally {
     translating.value = false;
   }
 }
@@ -176,10 +194,33 @@ async function translateText() {
 
 <template>
   <div max-w-600px>
-    <NInput v-model:value="inputText" type="textarea" :placeholder="t('tools.translator.texts.placeholder-enter-text-to-translate')" mb-1 />
+    <NInput
+      v-model:value="inputText"
+      type="textarea"
+      :placeholder="t('tools.translator.texts.placeholder-enter-text-to-translate')"
+      mb-1
+    />
 
-    <c-select v-model:value="sourceLang" searchable :label="t('tools.translator.texts.label-from')" label-position="left" label-width="70px" :options="fromLanguages" :placeholder="t('tools.translator.texts.placeholder-from')" mb-1 />
-    <c-select v-model:value="targetLang" searchable :label="t('tools.translator.texts.label-to')" label-position="left" label-width="70px" :options="toLanguages" :placeholder="t('tools.translator.texts.placeholder-to')" mb-1 />
+    <c-select
+      v-model:value="sourceLang"
+      searchable
+      :label="t('tools.translator.texts.label-from')"
+      label-position="left"
+      label-width="70px"
+      :options="fromLanguages"
+      :placeholder="t('tools.translator.texts.placeholder-from')"
+      mb-1
+    />
+    <c-select
+      v-model:value="targetLang"
+      searchable
+      :label="t('tools.translator.texts.label-to')"
+      label-position="left"
+      label-width="70px"
+      :options="toLanguages"
+      :placeholder="t('tools.translator.texts.placeholder-to')"
+      mb-1
+    />
 
     <n-space justify="center" mb-2 mt-2>
       <NButton type="primary" :disabled="loadingModel || translating" @click="translateText">
@@ -196,6 +237,11 @@ async function translateText() {
       {{ error }}
     </c-alert>
 
-    <textarea-copyable v-if="translatedText" v-model:value="translatedText" :placeholder="t('tools.translator.texts.placeholder-translation-will-appear-here')" mb-2 />
+    <textarea-copyable
+      v-if="translatedText"
+      v-model:value="translatedText"
+      :placeholder="t('tools.translator.texts.placeholder-translation-will-appear-here')"
+      mb-2
+    />
   </div>
 </template>

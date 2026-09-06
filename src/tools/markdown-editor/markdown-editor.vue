@@ -9,7 +9,7 @@ const theme = ref<Themes>('light');
 const styleStore = useStyleStore();
 watch(
   () => styleStore.isDarkTheme,
-  isDarkTheme => theme.value = isDarkTheme ? 'dark' : 'light',
+  (isDarkTheme) => (theme.value = isDarkTheme ? 'dark' : 'light'),
   { immediate: true },
 );
 
@@ -18,10 +18,6 @@ const markdown = ref('Sample _formatted_ *text*');
 
 <template>
   <div>
-    <MdEditor
-      v-model="markdown"
-      :theme="theme"
-      language="en-US"
-    />
+    <MdEditor v-model="markdown" :theme="theme" language="en-US" />
   </div>
 </template>

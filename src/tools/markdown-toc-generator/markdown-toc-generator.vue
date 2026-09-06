@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { withDefaultOnError } from '../../utils/defaults';
-import {
-  getTocMarkdown,
-} from './markdown-toc-generator.service';
+import { getTocMarkdown } from './markdown-toc-generator.service';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
@@ -32,26 +30,36 @@ echo 'test';
 Some text
 
 ## Last Title`);
-const generateAnchors = useQueryParamOrStorage({ name: 'anchors', storageName: 'md-toc-gen:anchors', defaultValue: true });
+const generateAnchors = useQueryParamOrStorage({
+  name: 'anchors',
+  storageName: 'md-toc-gen:anchors',
+  defaultValue: true,
+});
 const indentChars = useQueryParamOrStorage({ name: 'bullets', storageName: 'md-toc-gen:bullets', defaultValue: '-*+' });
 const indentSpaces = ref(3);
 const maxLevel = useQueryParamOrStorage({ name: 'max', storageName: 'md-toc-gen:max', defaultValue: -1 });
 const anchorPrefix = useQueryParamOrStorage({ name: 'prefix', storageName: 'md-toc-gen:prefix', defaultValue: '' });
 const concatSpaces = useQueryParamOrStorage({ name: 'concat', storageName: 'md-toc-gen:concat', defaultValue: false });
-const commentStyle = useQueryParamOrStorage({ name: 'comment', storageName: 'md-toc-gen:comment', defaultValue: 'html' });
+const commentStyle = useQueryParamOrStorage({
+  name: 'comment',
+  storageName: 'md-toc-gen:comment',
+  defaultValue: 'html',
+});
 
-const markdownWithTOC = computed(() => withDefaultOnError(() => {
-  return getTocMarkdown({
-    markdown: markdown.value,
-    anchorPrefix: anchorPrefix.value,
-    commentStyle: commentStyle.value as ('html' | 'liquid'),
-    concatSpaces: concatSpaces.value,
-    generateAnchors: generateAnchors.value,
-    indentChars: indentChars.value,
-    indentSpaces: indentSpaces.value,
-    maxLevel: maxLevel.value,
-  });
-}, ''));
+const markdownWithTOC = computed(() =>
+  withDefaultOnError(() => {
+    return getTocMarkdown({
+      markdown: markdown.value,
+      anchorPrefix: anchorPrefix.value,
+      commentStyle: commentStyle.value as 'html' | 'liquid',
+      concatSpaces: concatSpaces.value,
+      generateAnchors: generateAnchors.value,
+      indentChars: indentChars.value,
+      indentSpaces: indentSpaces.value,
+      maxLevel: maxLevel.value,
+    });
+  }, ''),
+);
 </script>
 
 <template>
@@ -67,7 +75,8 @@ const markdownWithTOC = computed(() => withDefaultOnError(() => {
           <n-input-number
             v-model:value="maxLevel"
             :placeholder="t('tools.markdown-toc-generator.texts.placeholder-max-heading-level')"
-            :max="6" :min="-1"
+            :max="6"
+            :min="-1"
           />
         </n-form-item>
       </n-space>
@@ -96,7 +105,8 @@ const markdownWithTOC = computed(() => withDefaultOnError(() => {
             <n-input-number
               v-model:value="indentSpaces"
               :placeholder="t('tools.markdown-toc-generator.texts.placeholder-indents')"
-              :max="10" :min="1"
+              :max="10"
+              :min="1"
             />
           </n-form-item>
           <c-select
@@ -111,7 +121,14 @@ const markdownWithTOC = computed(() => withDefaultOnError(() => {
     </c-card>
 
     <c-card :title="t('tools.markdown-toc-generator.texts.title-input-markdown')" mb-2>
-      <n-p>{{ t('tools.markdown-toc-generator.texts.tag-you-can-paste-a-document-with-existing-toc-generated-by-this-tool-or-add-a') }}<code>[TOC]</code>{{ t('tools.markdown-toc-generator.texts.tag-marker-in-your-document-on-a-single-line') }}</n-p>
+      <n-p
+        >{{
+          t(
+            'tools.markdown-toc-generator.texts.tag-you-can-paste-a-document-with-existing-toc-generated-by-this-tool-or-add-a',
+          )
+        }}<code>[TOC]</code
+        >{{ t('tools.markdown-toc-generator.texts.tag-marker-in-your-document-on-a-single-line') }}</n-p
+      >
       <c-input-text
         v-model:value="markdown"
         :placeholder="t('tools.markdown-toc-generator.texts.placeholder-put-your-markdown-here')"
@@ -121,11 +138,7 @@ const markdownWithTOC = computed(() => withDefaultOnError(() => {
     </c-card>
 
     <c-card :title="t('tools.markdown-toc-generator.texts.title-output-markdown-with-toc')" mb-2>
-      <textarea-copyable
-        language="markdown"
-        :value="markdownWithTOC"
-        download-file-name="toc.md"
-      />
+      <textarea-copyable language="markdown" :value="markdownWithTOC" download-file-name="toc.md" />
     </c-card>
   </div>
 </template>

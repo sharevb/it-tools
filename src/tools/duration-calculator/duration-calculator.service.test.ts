@@ -211,9 +211,7 @@ describe('duration-calculator', () => {
     });
     it('should report invalid lines', () => {
       expect(computeDuration('azerr')).to.deep.eq({
-        errors: [
-          'azerr',
-        ],
+        errors: ['azerr'],
         total: {
           days: 0,
           hours: 0,
@@ -231,9 +229,7 @@ describe('duration-calculator', () => {
         },
       });
       expect(computeDuration('25s\ner\n-10s')).to.deep.eq({
-        errors: [
-          'er',
-        ],
+        errors: ['er'],
         total: {
           days: 0.00017361111111111112,
           hours: 0.004166666666666667,
@@ -251,9 +247,7 @@ describe('duration-calculator', () => {
         },
       });
       expect(computeDuration('25s\n+00:40:00\ner')).to.deep.eq({
-        errors: [
-          'er',
-        ],
+        errors: ['er'],
         total: {
           days: 0.02806712962962963,
           hours: 0.6736111111111112,
@@ -271,9 +265,7 @@ describe('duration-calculator', () => {
         },
       });
       expect(computeDuration('ty\n+12:40\n-10s')).to.deep.eq({
-        errors: [
-          'ty',
-        ],
+        errors: ['ty'],
         total: {
           days: 0.5276620370370371,
           hours: 12.66388888888889,

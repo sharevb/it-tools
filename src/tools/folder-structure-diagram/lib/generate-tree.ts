@@ -12,25 +12,25 @@ interface GenerateTreeOptions {
    * Which set of characters to use when
    * rendering directory lines
    */
-  charset?: 'ascii' | 'utf-8'
+  charset?: 'ascii' | 'utf-8';
 
   /**
    * Whether or not to append trailing slashes
    * to directories. Items that already include a
    * trailing slash will not have another appended.
    */
-  trailingDirSlash?: boolean
+  trailingDirSlash?: boolean;
 
   /**
    * Whether or not to print the full
    * path of the item
    */
-  fullPath?: boolean
+  fullPath?: boolean;
 
   /**
    * Whether or not to render a dot as the root of the tree
    */
-  rootDot?: boolean
+  rootDot?: boolean;
 }
 
 /** The default options if no options are provided */
@@ -46,18 +46,19 @@ const defaultOptions: GenerateTreeOptions = {
  * @param structure The FileStructure object to convert into ASCII
  * @param options The rendering options
  */
-export function generateTree(structure: FileStructure,
-  options?: GenerateTreeOptions): string {
+export function generateTree(structure: FileStructure, options?: GenerateTreeOptions): string {
   // generateTree already returns joined strings, so one level of children is all
   // there is to flatten.
-  return [
-    getAsciiLine(structure, defaultsDeep({}, options, defaultOptions)),
-    ...structure.children.map(c => generateTree(c, options)),
-  ]
-    // Remove null entries. Should only occur for the very first node
-    // when `options.rootDot === false`
-    .filter(line => line != null)
-    .join('\n');
+  return (
+    [
+      getAsciiLine(structure, defaultsDeep({}, options, defaultOptions)),
+      ...structure.children.map((c) => generateTree(c, options)),
+    ]
+      // Remove null entries. Should only occur for the very first node
+      // when `options.rootDot === false`
+      .filter((line) => line != null)
+      .join('\n')
+  );
 }
 
 /**
@@ -66,8 +67,7 @@ export function generateTree(structure: FileStructure,
  * @param structure The file to render
  * @param options The rendering options
  */
-function getAsciiLine(structure: FileStructure,
-  options: GenerateTreeOptions): string | null {
+function getAsciiLine(structure: FileStructure, options: GenerateTreeOptions): string | null {
   const lines = LINE_STRINGS[options.charset as string];
 
   // Special case for the root element
@@ -75,10 +75,7 @@ function getAsciiLine(structure: FileStructure,
     return options.rootDot ? structure.name : null;
   }
 
-  const chunks = [
-    isLastChild(structure) ? lines.LAST_CHILD : lines.CHILD,
-    getName(structure, options),
-  ];
+  const chunks = [isLastChild(structure) ? lines.LAST_CHILD : lines.CHILD, getName(structure, options)];
 
   let current = structure.parent;
   while (current && current.parent) {
@@ -97,30 +94,24 @@ function getAsciiLine(structure: FileStructure,
  * @param structure The file or folder to get the name of
  * @param options The rendering options
  */
-function getName(structure: FileStructure,
-  options: GenerateTreeOptions): string {
+function getName(structure: FileStructure, options: GenerateTreeOptions): string {
   const nameChunks = [structure.name];
 
   // Optionally append a trailing slash
   if (
     // if the trailing slash option is enabled
-    options.trailingDirSlash
+    options.trailingDirSlash &&
     // and if the item has at least one child
-    && structure.children.length > 0
+    structure.children.length > 0 &&
     // and if the item doesn't already have a trailing slash
-    && !/\/\s*$/.test(structure.name)
+    !/\/\s*$/.test(structure.name)
   ) {
     nameChunks.push('/');
   }
 
   // Optionally prefix the name with its full path
   if (options.fullPath && structure.parent && structure.parent) {
-    nameChunks.unshift(
-      getName(
-        structure.parent,
-        defaultsDeep({}, { trailingDirSlash: true }, options),
-      ),
-    );
+    nameChunks.unshift(getName(structure.parent, defaultsDeep({}, { trailingDirSlash: true }, options)));
   }
 
   return nameChunks.join('');

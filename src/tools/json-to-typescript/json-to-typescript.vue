@@ -20,27 +20,47 @@ const jsonInput = ref(defaultValue);
 const rootName = useQueryParamOrStorage({ name: 'root', storageName: 'json-ts:r', defaultValue: 'MyType' });
 const interfacesOnly = useQueryParamOrStorage({ name: 'interfaces', storageName: 'json-ts:i', defaultValue: false });
 const transformPropertyNames = useQueryParamOrStorage({ name: 'js', storageName: 'json-ts:t', defaultValue: false });
-const explicitlyNameUnions = useQueryParamOrStorage({ name: 'nameunion', storageName: 'json-ts:eu', defaultValue: false });
+const explicitlyNameUnions = useQueryParamOrStorage({
+  name: 'nameunion',
+  storageName: 'json-ts:eu',
+  defaultValue: false,
+});
 const verifyJsonParseResults = useQueryParamOrStorage({ name: 'valid', storageName: 'json-ts:v', defaultValue: true });
-const preferUnionTypeOverEnum = useQueryParamOrStorage({ name: 'unionenum', storageName: 'json-ts:u', defaultValue: false });
-const preferTypesOverInterfaces = useQueryParamOrStorage({ name: 'types', storageName: 'json-ts:typ', defaultValue: false });
-const useStringInsteadOfEnumForSingleValueEnums = useQueryParamOrStorage({ name: 'stringenums', storageName: 'json-ts:str', defaultValue: false });
+const preferUnionTypeOverEnum = useQueryParamOrStorage({
+  name: 'unionenum',
+  storageName: 'json-ts:u',
+  defaultValue: false,
+});
+const preferTypesOverInterfaces = useQueryParamOrStorage({
+  name: 'types',
+  storageName: 'json-ts:typ',
+  defaultValue: false,
+});
+const useStringInsteadOfEnumForSingleValueEnums = useQueryParamOrStorage({
+  name: 'stringenums',
+  storageName: 'json-ts:str',
+  defaultValue: false,
+});
 const useReadonlyTypeMembers = useQueryParamOrStorage({ name: 'ro', storageName: 'json-ts:ro', defaultValue: false });
-const optionalProperties = useQueryParamOrStorage({ name: 'optional', storageName: 'json-ts:opt', defaultValue: false });
+const optionalProperties = useQueryParamOrStorage({
+  name: 'optional',
+  storageName: 'json-ts:opt',
+  defaultValue: false,
+});
 
 async function convertJsonToTypescript(
   json: string,
   options: {
-    rootName: string
-    optionalProperties?: boolean
-    interfacesOnly?: boolean
-    transformPropertyNames?: boolean
-    explicitlyNameUnions?: boolean
-    verifyJsonParseResults?: boolean
-    preferUnionTypeOverEnum?: boolean
-    preferTypesOverInterfaces?: boolean
-    useStringInsteadOfEnumForSingleValueEnums?: boolean
-    useReadonlyTypeMembers?: boolean
+    rootName: string;
+    optionalProperties?: boolean;
+    interfacesOnly?: boolean;
+    transformPropertyNames?: boolean;
+    explicitlyNameUnions?: boolean;
+    verifyJsonParseResults?: boolean;
+    preferUnionTypeOverEnum?: boolean;
+    preferTypesOverInterfaces?: boolean;
+    useStringInsteadOfEnumForSingleValueEnums?: boolean;
+    useReadonlyTypeMembers?: boolean;
   },
 ): Promise<string> {
   const targetLanguage = 'typescript';
@@ -62,7 +82,7 @@ async function convertJsonToTypescript(
       'runtime-typecheck': options.verifyJsonParseResults,
       'nice-property-names': options.transformPropertyNames,
       'prefer-const-values': options.useStringInsteadOfEnumForSingleValueEnums,
-      'readonly': options.useReadonlyTypeMembers,
+      readonly: options.useReadonlyTypeMembers,
       'prefer-types': options.preferTypesOverInterfaces,
     },
   } as any);
@@ -72,22 +92,19 @@ async function convertJsonToTypescript(
 
 const tsOutput = computedAsync(async () => {
   try {
-    return await convertJsonToTypescript(jsonInput.value,
-      {
-        rootName: rootName.value,
-        interfacesOnly: interfacesOnly.value,
-        transformPropertyNames: transformPropertyNames.value,
-        explicitlyNameUnions: explicitlyNameUnions.value,
-        verifyJsonParseResults: verifyJsonParseResults.value,
-        preferUnionTypeOverEnum: preferUnionTypeOverEnum.value,
-        preferTypesOverInterfaces: preferTypesOverInterfaces.value,
-        useStringInsteadOfEnumForSingleValueEnums: useStringInsteadOfEnumForSingleValueEnums.value,
-        useReadonlyTypeMembers: useReadonlyTypeMembers.value,
-        optionalProperties: optionalProperties.value,
-      },
-    );
-  }
-  catch (e: any) {
+    return await convertJsonToTypescript(jsonInput.value, {
+      rootName: rootName.value,
+      interfacesOnly: interfacesOnly.value,
+      transformPropertyNames: transformPropertyNames.value,
+      explicitlyNameUnions: explicitlyNameUnions.value,
+      verifyJsonParseResults: verifyJsonParseResults.value,
+      preferUnionTypeOverEnum: preferUnionTypeOverEnum.value,
+      preferTypesOverInterfaces: preferTypesOverInterfaces.value,
+      useStringInsteadOfEnumForSingleValueEnums: useStringInsteadOfEnumForSingleValueEnums.value,
+      useReadonlyTypeMembers: useReadonlyTypeMembers.value,
+      optionalProperties: optionalProperties.value,
+    });
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -144,10 +161,6 @@ const rules: UseValidationRule<string>[] = [
     </n-space>
   </c-card>
   <c-card :title="t('tools.json-to-typescript.texts.title-your-typescript-code')">
-    <TextareaCopyable
-      :value="tsOutput"
-      language="typescript"
-      download-file-name="output.ts"
-    />
+    <TextareaCopyable :value="tsOutput" language="typescript" download-file-name="output.ts" />
   </c-card>
 </template>

@@ -8,7 +8,7 @@ set -euo pipefail
 ## ⌨️ Keyboard Shortcuts
 
 | Keys                | Does                                             |
-|---------------------|--------------------------------------------------|
+| ------------------- | ------------------------------------------------ |
 | `Ctrl+A` / `Ctrl+E` | Jump to the start / end of the line              |
 | `Ctrl+B` / `Ctrl+F` | Back / forward one character                     |
 | `Alt+B` / `Alt+F`   | Back / forward one word                          |
@@ -213,7 +213,7 @@ declare -i counter=0
 ```
 
 | Variable                         | Holds                                     |
-|----------------------------------|-------------------------------------------|
+| -------------------------------- | ----------------------------------------- |
 | `$0`                             | The name of the script                    |
 | `$1` … `$9`                      | Positional arguments                      |
 | `$#`                             | How many arguments were passed            |
@@ -230,7 +230,7 @@ declare -i counter=0
 ## 🔤 Parameter Expansion
 
 | Expansion               | Result                                                                     |
-|-------------------------|----------------------------------------------------------------------------|
+| ----------------------- | -------------------------------------------------------------------------- |
 | `${var:-default}`       | `default` when `var` is unset or empty                                     |
 | `${var:=default}`       | The same, and assigns it                                                   |
 | `${var:?message}`       | Abort with `message` when unset — great for required arguments             |
@@ -285,7 +285,7 @@ done
 Use `[[ ... ]]` in bash — it handles empty variables and patterns far better than the old `[ ... ]`.
 
 | Files          | True when                                 |
-|----------------|-------------------------------------------|
+| -------------- | ----------------------------------------- |
 | `-e file`      | It exists                                 |
 | `-f file`      | It exists and is a regular file           |
 | `-d file`      | It exists and is a directory              |
@@ -296,7 +296,7 @@ Use `[[ ... ]]` in bash — it handles empty variables and patterns far better t
 | `f1 -nt f2`    | `f1` is newer than `f2` (`-ot` for older) |
 
 | Strings        | True when                                     |
-|----------------|-----------------------------------------------|
+| -------------- | --------------------------------------------- |
 | `-z "$s"`      | The string is empty                           |
 | `-n "$s"`      | The string is not empty                       |
 | `"$a" == "$b"` | They are equal (`=` also works)               |
@@ -306,7 +306,7 @@ Use `[[ ... ]]` in bash — it handles empty variables and patterns far better t
 | `"$s" =~ ^re$` | Regex match, captures land in `$BASH_REMATCH` |
 
 | Numbers | Meaning               |
-|---------|-----------------------|
+| ------- | --------------------- |
 | `-eq`   | Equal                 |
 | `-ne`   | Not equal             |
 | `-lt`   | Less than             |
@@ -383,7 +383,7 @@ export -f greet
 ## ➡️ Redirection
 
 | Syntax             | Does                                       |
-|--------------------|--------------------------------------------|
+| ------------------ | ------------------------------------------ |
 | `> file`           | Send stdout to a file, replacing it        |
 | `>> file`          | Append stdout to a file                    |
 | `2> file`          | Send stderr to a file                      |
@@ -490,7 +490,7 @@ shellcheck script.sh
 Escape sequences take the form `\033[<style>;<colour>m`, and `\033[0m` resets. `\e` and `\x1B` are the same character as `\033`.
 
 | Colour  | Foreground | Bright | Background |
-|---------|------------|--------|------------|
+| ------- | ---------- | ------ | ---------- |
 | Black   | `30`       | `90`   | `40`       |
 | Red     | `31`       | `91`   | `41`       |
 | Green   | `32`       | `92`   | `42`       |
@@ -501,7 +501,7 @@ Escape sequences take the form `\033[<style>;<colour>m`, and `\033[0m` resets. `
 | White   | `37`       | `97`   | `47`       |
 
 | Style | Code | Style     | Code |
-|-------|------|-----------|------|
+| ----- | ---- | --------- | ---- |
 | Reset | `0`  | Underline | `4`  |
 | Bold  | `1`  | Blink     | `5`  |
 | Dim   | `2`  | Reverse   | `7`  |

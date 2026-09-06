@@ -16,8 +16,8 @@ describe('tools metadata', () => {
   describe('npmPackages', () => {
     // The tool pages advertise the libraries they are built on. A dependency that gets replaced has
     // to be renamed here too, otherwise the ui links to a package the app no longer uses.
-    const declarations = tools.flatMap(tool =>
-      (tool.npmPackages ?? []).map(npmPackage => ({ tool: tool.name, npmPackage })),
+    const declarations = tools.flatMap((tool) =>
+      (tool.npmPackages ?? []).map((npmPackage) => ({ tool: tool.name, npmPackage })),
     );
 
     it('only references packages the app actually depends on', () => {

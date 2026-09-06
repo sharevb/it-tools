@@ -8,32 +8,26 @@ const { t } = useI18n();
 
 const wrapInQuotes = useQueryParamOrStorage({ name: 'wrap', storageName: 'json-escaper:wrap', defaultValue: false });
 const unescapedInput = useQueryParam({ tool: 'json-escaper', name: 'escape', defaultValue: '' });
-const escapedOutput = computed(
-  () => {
-    try {
-      const slashedString = addSlashes(unescapedInput.value);
-      if (wrapInQuotes.value) {
-        return `"${slashedString}"`;
-      }
-      return slashedString;
+const escapedOutput = computed(() => {
+  try {
+    const slashedString = addSlashes(unescapedInput.value);
+    if (wrapInQuotes.value) {
+      return `"${slashedString}"`;
     }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+    return slashedString;
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 
 const escapedInput = useQueryParam({ tool: 'json-escaper', name: 'unescape', defaultValue: '' });
-const unescapedOutput = computed(
-  () => {
-    try {
-      return removeSlashes(escapedInput.value);
-    }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+const unescapedOutput = computed(() => {
+  try {
+    return removeSlashes(escapedInput.value);
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 </script>
 
 <template>

@@ -14,10 +14,10 @@ function useFuzzySearch<Data>({
   options = {},
   limit = -1,
 }: {
-  search: MaybeRef<string>
-  data: Data[]
-  options?: IFuseOptions<Data> & { filterEmpty?: boolean }
-  limit?: number
+  search: MaybeRef<string>;
+  data: Data[];
+  options?: IFuseOptions<Data> & { filterEmpty?: boolean };
+  limit?: number;
 }) {
   const fuse = new Fuse(data, options);
   const filterEmpty = options.filterEmpty ?? true;

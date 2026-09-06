@@ -42,7 +42,7 @@ screen -wipe
 ## ⌨️ Windows
 
 | Keys            | Action                              |
-|-----------------|-------------------------------------|
+| --------------- | ----------------------------------- |
 | `Ctrl+a c`      | Create a window                     |
 | `Ctrl+a A`      | Rename the current window           |
 | `Ctrl+a n`      | Next window                         |
@@ -56,7 +56,7 @@ screen -wipe
 ## 🪟 Split Regions
 
 | Keys         | Action                                    |
-|--------------|-------------------------------------------|
+| ------------ | ----------------------------------------- |
 | `Ctrl+a S`   | Split into top / bottom regions           |
 | `Ctrl+a \|`  | Split into left / right regions           |
 | `Ctrl+a Tab` | Move the focus to the next region         |
@@ -68,7 +68,7 @@ screen -wipe
 ## 🔌 Session Control
 
 | Keys         | Action                                   |
-|--------------|------------------------------------------|
+| ------------ | ---------------------------------------- |
 | `Ctrl+a d`   | Detach and leave everything running      |
 | `Ctrl+a D D` | Detach and log out                       |
 | `Ctrl+a x`   | Lock the terminal (password required)    |
@@ -80,7 +80,7 @@ screen -wipe
 ## 📋 Copy Mode & Scrollback
 
 | Keys        | Action                                          |
-|-------------|-------------------------------------------------|
+| ----------- | ----------------------------------------------- |
 | `Ctrl+a [`  | Enter copy/scrollback mode                      |
 | `space`     | Start the selection, then `space` again to copy |
 | `Ctrl+a ]`  | Paste the buffer                                |
@@ -91,7 +91,7 @@ screen -wipe
 ## 📝 Logging & Monitoring
 
 | Keys       | Action                                        |
-|------------|-----------------------------------------------|
+| ---------- | --------------------------------------------- |
 | `Ctrl+a H` | Toggle logging of the window to `screenlog.n` |
 | `Ctrl+a M` | Notify me when this window shows activity     |
 | `Ctrl+a _` | Notify me when this window goes quiet         |

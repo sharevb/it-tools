@@ -10,7 +10,11 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 const { t } = useI18n();
 
 const amount = useQueryParamOrStorage({ name: 'amount', storageName: 'mac-address-generator:amount', defaultValue: 1 });
-const macAddressPrefix = useQueryParamOrStorage({ name: 'prefix', storageName: 'mac-address-generator:prefix', defaultValue: '64:16:7F' });
+const macAddressPrefix = useQueryParamOrStorage({
+  name: 'prefix',
+  storageName: 'mac-address-generator:prefix',
+  defaultValue: '64:16:7F',
+});
 
 const prefixValidation = usePartialMacAddressValidation(macAddressPrefix);
 
@@ -38,21 +42,32 @@ const separators = [
     value: '',
   },
 ];
-const separator = useQueryParamOrStorage({ name: 'sep', storageName: 'mac-address-generator:separator', defaultValue: separators[0].value });
+const separator = useQueryParamOrStorage({
+  name: 'sep',
+  storageName: 'mac-address-generator:separator',
+  defaultValue: separators[0].value,
+});
 
 const [macAddresses, refreshMacAddresses] = computedRefreshable(() => {
   if (!prefixValidation.isValid) {
     return '';
   }
 
-  const ids = _.times(amount.value, () => caseTransformer.value(generateRandomMacAddress({
-    prefix: macAddressPrefix.value,
-    separator: separator.value,
-  })));
+  const ids = _.times(amount.value, () =>
+    caseTransformer.value(
+      generateRandomMacAddress({
+        prefix: macAddressPrefix.value,
+        separator: separator.value,
+      }),
+    ),
+  );
   return ids.join('\n');
 });
 
-const { copy } = useCopy({ source: macAddresses, text: t('tools.mac-address-generator.texts.text-mac-addresses-copied-to-the-clipboard') });
+const { copy } = useCopy({
+  source: macAddresses,
+  text: t('tools.mac-address-generator.texts.text-mac-addresses-copied-to-the-clipboard'),
+});
 </script>
 
 <template>

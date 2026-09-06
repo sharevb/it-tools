@@ -15,7 +15,7 @@ CMD ["node", "server.js"]
 ## 📋 Instruction Reference
 
 | Instruction   | Purpose                                                       |
-|---------------|---------------------------------------------------------------|
+| ------------- | ------------------------------------------------------------- |
 | `FROM`        | The base image, and the start of a build stage                |
 | `ARG`         | A build-time variable (`--build-arg`)                         |
 | `ENV`         | An environment variable, kept in the final image              |
@@ -135,7 +135,7 @@ CMD ["node", "server.js"]
 ## ⚔️ CMD vs ENTRYPOINT
 
 |                                | `CMD`                                           | `ENTRYPOINT`                             |
-|--------------------------------|-------------------------------------------------|------------------------------------------|
+| ------------------------------ | ----------------------------------------------- | ---------------------------------------- |
 | Purpose                        | Default arguments, or the whole default command | The executable the image is built around |
 | `docker run <image> other-cmd` | Replaced entirely                               | Still runs; the argument is appended     |
 | Override flag                  | —                                               | `--entrypoint`                           |

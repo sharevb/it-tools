@@ -6,15 +6,12 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();
 
-const dockerRuns = ref(
-  'docker run -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --restart always nginx',
-);
+const dockerRuns = ref('docker run -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --restart always nginx');
 
 const conversionResult = computed(() => {
   try {
     return { yaml: docker2kube(composerize(dockerRuns.value.trim())), errors: [] };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { yaml: '#see error messages', errors: e.toString().split('\n') };
   }
 });

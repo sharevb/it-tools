@@ -18,11 +18,10 @@ function getAuthHeaderCheckResult({ message, password }: { message: string; pass
   const ha2 = MD5(`${method}:${uri}`).toString();
   if (qop.toLowerCase() === 'auth') {
     calculatedHash = MD5(`${ha1}:${nonce}:${nc}:${cnonce}:${qop}:${ha2}`).toString();
-  }
-  else {
+  } else {
     calculatedHash = MD5(`${ha1}:${nonce}:${cnonce}`).toString();
   }
-  return (response === calculatedHash);
+  return response === calculatedHash;
 }
 
 function extractComponent(regex: string, source: string): string {
@@ -30,8 +29,7 @@ function extractComponent(regex: string, source: string): string {
   const matchResult = processor.exec(source);
   if (matchResult !== null && matchResult.length > 1) {
     return matchResult[1];
-  }
-  else {
+  } else {
     return t('tools.sip-auth.text.not-found');
   }
 }

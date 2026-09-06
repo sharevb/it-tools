@@ -35,14 +35,12 @@ test.describe('Mermaid Diagram Renderer', () => {
     await expect(page.locator('.viewport svg')).toBeVisible({ timeout: 30_000 });
 
     const canvas = page.locator('.canvas');
-    const before = await canvas.evaluate(el => getComputedStyle(el).transform);
+    const before = await canvas.evaluate((el) => getComputedStyle(el).transform);
 
     await page.locator('.viewport').focus();
     await page.keyboard.press('ArrowRight');
 
-    await expect
-      .poll(async () => canvas.evaluate(el => getComputedStyle(el).transform))
-      .not.toBe(before);
+    await expect.poll(async () => canvas.evaluate((el) => getComputedStyle(el).transform)).not.toBe(before);
   });
 
   test('should update diagram when user edits Mermaid code', async ({ page }) => {

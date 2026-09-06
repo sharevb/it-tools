@@ -140,8 +140,11 @@ tryOnBeforeUnmount(() => {
 
     .selectedCell:after {
       background: v-bind('themeVars.tableColorHover');
-      content: "";
-      left: 0; right: 0; top: 0; bottom: 0;
+      content: '';
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
       pointer-events: none;
       position: absolute;
       z-index: 2;

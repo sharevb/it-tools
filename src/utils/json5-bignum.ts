@@ -36,12 +36,10 @@ JSON.parseBigNum = function (jsonStr: string): unknown {
           const json_number = Number(number_string);
           if (json_number.toString() === full_precision.toString()) {
             return json_number;
-          }
-          else {
+          } else {
             return full_precision;
           }
-        }
-        catch {
+        } catch {
           return number_string;
         }
       }

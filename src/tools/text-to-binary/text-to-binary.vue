@@ -10,15 +10,24 @@ const { t } = useI18n();
 
 const base = useQueryParamOrStorage({ name: 'base', storageName: 'txt-bin:base', defaultValue: '2' });
 const inputText = useQueryParam({ tool: 'txt-bin', name: 'text', defaultValue: '' });
-const binaryFromText = computed(() => convertTextToUtf8Binary(inputText.value, { base: Number(base.value) as EncodingBase }));
+const binaryFromText = computed(() =>
+  convertTextToUtf8Binary(inputText.value, { base: Number(base.value) as EncodingBase }),
+);
 const { copy: copyBinary } = useCopy({ source: binaryFromText });
 
 const inputBinary = ref('');
-const textFromBinary = computed(() => withDefaultOnError(() => convertUtf8BinaryToText(inputBinary.value, { base: Number(base.value) as EncodingBase }), ''));
+const textFromBinary = computed(() =>
+  withDefaultOnError(
+    () => convertUtf8BinaryToText(inputBinary.value, { base: Number(base.value) as EncodingBase }),
+    '',
+  ),
+);
 const inputBinaryValidationRules = [
   {
     validator: (value: string) => isNotThrowing(() => convertUtf8BinaryToText(value)),
-    message: t('tools.text-to-binary.texts.message-binary-should-be-a-valid-utf-8-binary-string-with-multiples-of-8-bits'),
+    message: t(
+      'tools.text-to-binary.texts.message-binary-should-be-a-valid-utf-8-binary-string-with-multiples-of-8-bits',
+    ),
   },
 ];
 const { copy: copyText } = useCopy({ source: textFromBinary });

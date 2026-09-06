@@ -43,10 +43,7 @@ watchEffect(() => {
 
 locale.value = get(getITToolsSetting('default_locale', locale.value));
 
-syncRef(
-  locale,
-  useStorage('locale', locale),
-);
+syncRef(locale, useStorage('locale', locale));
 </script>
 
 <template>

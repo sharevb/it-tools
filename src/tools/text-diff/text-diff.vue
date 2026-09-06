@@ -18,7 +18,9 @@ const ignoreTrailingWhitespaces = ref(false);
       </n-checkbox>
     </n-space>
     <c-card w-full important:flex-1 important:pa-0>
-      <c-diff-editor :options="{ wordWrap: wordWrap ? 'on' : 'off', ignoreTrimWhitespace: ignoreTrailingWhitespaces }" />
+      <c-diff-editor
+        :options="{ wordWrap: wordWrap ? 'on' : 'off', ignoreTrimWhitespace: ignoreTrailingWhitespaces }"
+      />
     </c-card>
   </div>
 </template>

@@ -60,7 +60,7 @@ class SlackRenderer extends PlainRenderer {
     if (ordered) {
       let index = start;
       const lines = body.split('\n');
-      const formattedLines = lines.map(line => {
+      const formattedLines = lines.map((line) => {
         if (line.startsWith('• ')) {
           return line.replace(/^• /, `${index++}. `);
         }
@@ -81,11 +81,14 @@ class SlackRenderer extends PlainRenderer {
       prefix = checked ? '✓ ' : '☐ ';
     }
 
-    const lines = text.trim().split('\n').filter(line => line.trim() !== '');
+    const lines = text
+      .trim()
+      .split('\n')
+      .filter((line) => line.trim() !== '');
     const firstLine = lines[0].trim();
     const otherLines = lines
       .slice(1)
-      .map(line => `    ${line}`)
+      .map((line) => `    ${line}`)
       .join('\n');
 
     const formatted = otherLines ? `${firstLine}\n${otherLines}` : firstLine;

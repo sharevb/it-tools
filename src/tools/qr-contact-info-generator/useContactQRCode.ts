@@ -4,14 +4,14 @@ import type { MaybeRef } from '@vueuse/core';
 import { get } from '@vueuse/core';
 
 interface IContactQRCodeOptions {
-  fullName: MaybeRef<string>
-  jobRole: MaybeRef<string>
-  phoneNumber: MaybeRef<string>
-  email: MaybeRef<string>
-  website: MaybeRef<string>
-  address: MaybeRef<string>
-  color: { foreground: MaybeRef<string>; background: MaybeRef<string> }
-  options?: QRCodeToDataURLOptions
+  fullName: MaybeRef<string>;
+  jobRole: MaybeRef<string>;
+  phoneNumber: MaybeRef<string>;
+  email: MaybeRef<string>;
+  website: MaybeRef<string>;
+  address: MaybeRef<string>;
+  color: { foreground: MaybeRef<string>; background: MaybeRef<string> };
+  options?: QRCodeToDataURLOptions;
 }
 
 // Computed vCard to ensure reactivity works correctly

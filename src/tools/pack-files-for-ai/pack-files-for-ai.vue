@@ -28,7 +28,11 @@ function handleFileUpload({ fileList }: { fileList: Array<UploadFileInfo> }) {
   treeData.value = buildTree(fileList);
 }
 
-interface FileDesc { label: string; key: string; chidren?: Array<FileDesc> | any };
+interface FileDesc {
+  label: string;
+  key: string;
+  chidren?: Array<FileDesc> | any;
+}
 
 function toTreeData(obj: { [s: string]: any }, path: string = ''): Array<FileDesc> {
   return Object.entries(obj).map(([key, value]) => ({
@@ -68,22 +72,18 @@ async function generateOutput() {
 
   if (outputFormat.value === 'xml') {
     output.value = await generateXML(filteredFiles);
-  }
-  else {
+  } else {
     output.value = await generateMarkdown(filteredFiles);
   }
 }
 
 async function prepareFileContent(file: UploadFileInfo) {
   const content = (await file.file?.text?.()) || '';
-  return processSourceCode(
-    content,
-    file.name.split('.').slice(-1)[0] || 'txt',
-    {
-      numberLines: lineNumbers.value,
-      removeEmptyLines: removeEmptyLines.value,
-      removeComments: removeComments.value,
-    });
+  return processSourceCode(content, file.name.split('.').slice(-1)[0] || 'txt', {
+    numberLines: lineNumbers.value,
+    removeEmptyLines: removeEmptyLines.value,
+    removeComments: removeComments.value,
+  });
 }
 
 async function generateXML(fileList: Array<UploadFileInfo>) {
@@ -131,7 +131,7 @@ The content is organized as follows:
 
   const structure = `
 <directory_structure>
-${fileList.map(f => `  ${getFileName(f)}`).join('\n')}
+${fileList.map((f) => `  ${getFileName(f)}`).join('\n')}
 </directory_structure>
 `;
 
@@ -139,11 +139,11 @@ ${fileList.map(f => `  ${getFileName(f)}`).join('\n')}
 <files>
 This section contains the contents of the repository's files.
 
-${(await Promise.all<string>(fileList.map(async f => `<file path="${getFileName(f)}">\n${(await prepareFileContent(f))}\n</file>`))).join('\n')}
+${(await Promise.all<string>(fileList.map(async (f) => `<file path="${getFileName(f)}">\n${await prepareFileContent(f)}\n</file>`))).join('\n')}
 </files>
 `;
 
-  return `${(fileSummary.value ? summary : '')}\n${(directoryStructure.value ? structure : '')}\n${contents}`.trim();
+  return `${fileSummary.value ? summary : ''}\n${directoryStructure.value ? structure : ''}\n${contents}`.trim();
 }
 
 async function generateMarkdown(fileList: Array<UploadFileInfo>) {
@@ -188,30 +188,26 @@ The content is organized as follows:
   const structure = `
 # Directory Structure
 \`\`\`
-${fileList.map(f => `- ${getFileName(f)}`).join('\n')}
+${fileList.map((f) => `- ${getFileName(f)}`).join('\n')}
 \`\`\`
 `;
 
   const contents = `
 # Files
 
-${(await Promise.all<string>(fileList.map(async f => `## File: ${getFileName(f)}\n\`\`\`\n${(await prepareFileContent(f))}\n\`\`\``))).join('\n')}
+${(await Promise.all<string>(fileList.map(async (f) => `## File: ${getFileName(f)}\n\`\`\`\n${await prepareFileContent(f)}\n\`\`\``))).join('\n')}
 `;
 
-  return `${(fileSummary.value ? summary : '')}\n${(directoryStructure.value ? structure : '')}\n${contents}`.trim();
+  return `${fileSummary.value ? summary : ''}\n${directoryStructure.value ? structure : ''}\n${contents}`.trim();
 }
 
 interface ProcessOptions {
-  numberLines?: boolean
-  removeEmptyLines?: boolean
-  removeComments?: boolean
+  numberLines?: boolean;
+  removeEmptyLines?: boolean;
+  removeComments?: boolean;
 }
 
-function processSourceCode(
-  content: string,
-  extension: string,
-  options: ProcessOptions = {},
-): string {
+function processSourceCode(content: string, extension: string, options: ProcessOptions = {}): string {
   let lines = content.split(/\r?\n/);
 
   if (options.removeComments) {
@@ -244,7 +240,7 @@ function processSourceCode(
   }
 
   if (options.removeEmptyLines) {
-    lines = lines.filter(line => line.trim() !== '');
+    lines = lines.filter((line) => line.trim() !== '');
   }
 
   if (options.numberLines) {
@@ -257,16 +253,14 @@ function processSourceCode(
 
 <template>
   <n-card :title="t('tools.pack-files-for-ai.texts.title-repomix-like-ai-pack-generator')">
-    <n-upload
-      multiple
-      directory-dnd
-      mb-1
-      :show-file-list="showFiles"
-      @change="handleFileUpload"
-    >
+    <n-upload multiple directory-dnd mb-1 :show-file-list="showFiles" @change="handleFileUpload">
       <n-upload-dragger>
         <n-text style="font-size: 16px">
-          {{ t('tools.pack-files-for-ai.texts.tag-click-or-drag-code-source-files-or-folder-to-this-area-to-add-to-package') }}
+          {{
+            t(
+              'tools.pack-files-for-ai.texts.tag-click-or-drag-code-source-files-or-folder-to-this-area-to-add-to-package',
+            )
+          }}
         </n-text>
       </n-upload-dragger>
     </n-upload>
@@ -282,10 +276,17 @@ function processSourceCode(
     </n-form-item>
 
     <n-form-item :label="t('tools.pack-files-for-ai.texts.label-include-files-regexp')" label-placement="left">
-      <n-input v-model:value="includePattern" :placeholder="t('tools.pack-files-for-ai.texts.placeholder-include-pattern-regexp')" />
+      <n-input
+        v-model:value="includePattern"
+        :placeholder="t('tools.pack-files-for-ai.texts.placeholder-include-pattern-regexp')"
+      />
     </n-form-item>
     <n-form-item :label="t('tools.pack-files-for-ai.texts.label-exclude-files-regexp')" label-placement="left">
-      <n-input v-model:value="excludePattern" :placeholder="t('tools.pack-files-for-ai.texts.placeholder-exclude-pattern-regexp')" style="margin-top: 8px;" />
+      <n-input
+        v-model:value="excludePattern"
+        :placeholder="t('tools.pack-files-for-ai.texts.placeholder-exclude-pattern-regexp')"
+        style="margin-top: 8px"
+      />
     </n-form-item>
 
     <n-card :title="t('tools.pack-files-for-ai.texts.title-options')" mb-2>
@@ -318,11 +319,15 @@ function processSourceCode(
     </n-space>
 
     <n-space justify="center">
-      <n-button mb-1 @click="generateOutput">
-        Generate {{ outputFormat.toUpperCase() }}
-      </n-button>
+      <n-button mb-1 @click="generateOutput"> Generate {{ outputFormat.toUpperCase() }} </n-button>
     </n-space>
 
-    <textarea-copyable :label="t('tools.pack-files-for-ai.texts.label-output-preview')" download :download-file-name="`output.${(outputFormat === 'xml' ? '.xml' : '.md')}`" :value="output" :language="outputFormat" />
+    <textarea-copyable
+      :label="t('tools.pack-files-for-ai.texts.label-output-preview')"
+      download
+      :download-file-name="`output.${outputFormat === 'xml' ? '.xml' : '.md'}`"
+      :value="output"
+      :language="outputFormat"
+    />
   </n-card>
 </template>

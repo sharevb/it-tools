@@ -7,21 +7,32 @@ import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams'
 
 const { t } = useI18n();
 
-const lang = useQueryParamOrStorage({ name: 'lang', storageName: 'text-to-nato:lang', defaultValue: '(International)' });
+const lang = useQueryParamOrStorage({
+  name: 'lang',
+  storageName: 'text-to-nato:lang',
+  defaultValue: '(International)',
+});
 const input = useQueryParam({ tool: 'text-to-nato', name: 'text', defaultValue: '' });
-const useDigitsNames = useQueryParamOrStorage({ name: 'digits', storageName: 'text-to-nato:digits', defaultValue: false });
-const usePunctuationsNames = useQueryParamOrStorage({ name: 'puncts', storageName: 'text-to-nato:puncts', defaultValue: false });
+const useDigitsNames = useQueryParamOrStorage({
+  name: 'digits',
+  storageName: 'text-to-nato:digits',
+  defaultValue: false,
+});
+const usePunctuationsNames = useQueryParamOrStorage({
+  name: 'puncts',
+  storageName: 'text-to-nato:puncts',
+  defaultValue: false,
+});
 const natoText = computed(() => textToNatoAlphabet({ text: input.value, langOrCountry: lang.value }));
-const { copy } = useCopy({ source: natoText, text: t('tools.text-to-nato-alphabet.texts.text-nato-alphabet-string-copied') });
+const { copy } = useCopy({
+  source: natoText,
+  text: t('tools.text-to-nato-alphabet.texts.text-nato-alphabet-string-copied'),
+});
 </script>
 
 <template>
   <div>
-    <c-select
-      v-model:value="lang"
-      :options="allLanguagesAndCountries"
-      searchable
-    />
+    <c-select v-model:value="lang" :options="allLanguagesAndCountries" searchable />
 
     <div flex justify-center>
       <n-form-item :label="t('tools.text-to-nato-alphabet.texts.label-use-digits-pronunciation')">
@@ -41,9 +52,7 @@ const { copy } = useCopy({ source: natoText, text: t('tools.text-to-nato-alphabe
     />
 
     <div v-if="natoText">
-      <div mb-2>
-        Your text in NATO phonetic alphabet ({{ lang }})
-      </div>
+      <div mb-2>Your text in NATO phonetic alphabet ({{ lang }})</div>
       <c-card>
         {{ natoText }}
       </c-card>

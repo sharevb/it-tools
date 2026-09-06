@@ -7,7 +7,10 @@ import { applyPatch, compare } from 'fast-json-patch';
 const jsonPathsInput = ref('');
 const pathRows = ref<{ op: string; path: string; value: string }[]>([]);
 const paths = computed(() => pathRows.value.map((r) => r.path).join('\n'));
-const { copy: copyPaths } = useCopy({ source: paths, text: t('tools.json-patch.texts.text-json-paths-copied-to-clipboard') });
+const { copy: copyPaths } = useCopy({
+  source: paths,
+  text: t('tools.json-patch.texts.text-json-paths-copied-to-clipboard'),
+});
 
 const pathColumns = [
   { title: 'Operation', key: 'op' },

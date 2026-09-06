@@ -32,13 +32,22 @@ const bimiRecord = computed(() => {
   <NCard :title="t('tools.bimi-dns-generator.texts.title-bimi-dns-record-generator')">
     <NForm :model="bimiData" label-placement="left" label-width="150px">
       <NFormItem :label="t('tools.bimi-dns-generator.texts.label-domain')">
-        <NInput v-model:value="bimiData.domain" :placeholder="t('tools.bimi-dns-generator.texts.placeholder-example-com')" />
+        <NInput
+          v-model:value="bimiData.domain"
+          :placeholder="t('tools.bimi-dns-generator.texts.placeholder-example-com')"
+        />
       </NFormItem>
       <NFormItem :label="t('tools.bimi-dns-generator.texts.label-logo-url')">
-        <NInput v-model:value="bimiData.logoUrl" :placeholder="t('tools.bimi-dns-generator.texts.placeholder-https-example-com-logo-svg')" />
+        <NInput
+          v-model:value="bimiData.logoUrl"
+          :placeholder="t('tools.bimi-dns-generator.texts.placeholder-https-example-com-logo-svg')"
+        />
       </NFormItem>
       <NFormItem :label="t('tools.bimi-dns-generator.texts.label-vmc-certificate-url')">
-        <NInput v-model:value="bimiData.vmcUrl" :placeholder="t('tools.bimi-dns-generator.texts.placeholder-https-example-com-vmc-pem')" />
+        <NInput
+          v-model:value="bimiData.vmcUrl"
+          :placeholder="t('tools.bimi-dns-generator.texts.placeholder-https-example-com-vmc-pem')"
+        />
       </NFormItem>
     </NForm>
 

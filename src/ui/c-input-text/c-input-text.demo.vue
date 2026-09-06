@@ -26,8 +26,7 @@ const lineCount = computed(() => {
   return lineNumbersValue.value.split(/\r\n|\r|\n/).length;
 });
 
-const lineNumbersText = computed(() =>
-  Array.from({ length: lineCount.value }, (_, index) => index + 1).join('\n'));
+const lineNumbersText = computed(() => Array.from({ length: lineCount.value }, (_, index) => index + 1).join('\n'));
 const lineNumberGutterWidth = computed(() => Math.max(1, `${lineCount.value}`.length));
 const textareaElement = computed(() => {
   const textarea = lineNumberInput.value?.textareaRef;
@@ -98,12 +97,13 @@ watch(
 
 watch(
   lineNumbersValue,
-  () => nextTick(() => {
-    const textarea = textareaElement.value;
-    if (textarea) {
-      lineNumbersOffset.value = textarea.scrollTop;
-    }
-  }),
+  () =>
+    nextTick(() => {
+      const textarea = textareaElement.value;
+      if (textarea) {
+        lineNumbersOffset.value = textarea.scrollTop;
+      }
+    }),
   { flush: 'post' },
 );
 
@@ -201,7 +201,9 @@ function focusLineNumbersInput() {
         aria-hidden="true"
         @click="focusLineNumbersInput"
       >
-        <pre class="line-numbers__content" :style="{ transform: `translateY(-${lineNumbersOffset}px)` }">{{ lineNumbersText }}</pre>
+        <pre class="line-numbers__content" :style="{ transform: `translateY(-${lineNumbersOffset}px)` }">{{
+          lineNumbersText
+        }}</pre>
       </div>
     </template>
   </CInputText>

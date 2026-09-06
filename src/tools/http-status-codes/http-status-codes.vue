@@ -19,7 +19,7 @@ const search = useQueryParam({ tool: 'http-status-codes', name: 's', defaultValu
 
 const { searchResult } = useFlexSearch({
   search,
-  data: codesByCategories.flatMap(({ codes, category }) => codes.map(code => ({ ...code, category }))),
+  data: codesByCategories.flatMap(({ codes, category }) => codes.map((code) => ({ ...code, category }))),
   options: {
     keys: [{ name: 'code', weight: 3 }, { name: 'name', weight: 2 }, 'description', 'category'],
   },
@@ -65,7 +65,9 @@ function openMdnDocs(code: number) {
     <c-input-text
       v-model:value="search"
       :placeholder="t('tools.http-status-codes.texts.placeholder-search-http-status')"
-      autofocus raw-text mb-10
+      autofocus
+      raw-text
+      mb-10
     />
 
     <div v-for="{ codes, category } of codesByCategoryFiltered" :key="category" mb-8>
@@ -85,9 +87,7 @@ function openMdnDocs(code: number) {
             <n-icon :component="IconExternalLink" size="18" />
           </div>
         </div>
-        <div op-70>
-          {{ description }} {{ type !== 'HTTP' ? `For ${type}.` : '' }}
-        </div>
+        <div op-70>{{ description }} {{ type !== 'HTTP' ? `For ${type}.` : '' }}</div>
       </c-card>
     </div>
   </div>

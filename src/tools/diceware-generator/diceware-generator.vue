@@ -26,36 +26,38 @@ const langs = [
   { value: 'ru', label: t('tools.diceware-generator.texts.label-russian') },
 ];
 
-const [dicewares, refreshDicewares] = computedRefreshable(
-  () => Array.from({ length: count.value },
-    () => {
-      let language = enWL;
-      switch (lang.value) {
-        case 'en-eff':
-          language = enEffWL;
-          break;
-        case 'sp':
-          language = spWL;
-          break;
-        case 'jp':
-          language = jpWL;
-          break;
-        case 'swe':
-          language = sweWL;
-          break;
-        case 'ru':
-          language = ruWL;
-          break;
-      }
-      return dwGen({
-        language,
-        wordcount: words.value,
-        format: 'string',
-      });
-    }).join('\n'),
+const [dicewares, refreshDicewares] = computedRefreshable(() =>
+  Array.from({ length: count.value }, () => {
+    let language = enWL;
+    switch (lang.value) {
+      case 'en-eff':
+        language = enEffWL;
+        break;
+      case 'sp':
+        language = spWL;
+        break;
+      case 'jp':
+        language = jpWL;
+        break;
+      case 'swe':
+        language = sweWL;
+        break;
+      case 'ru':
+        language = ruWL;
+        break;
+    }
+    return dwGen({
+      language,
+      wordcount: words.value,
+      format: 'string',
+    });
+  }).join('\n'),
 );
 
-const { copy } = useCopy({ source: dicewares, text: t('tools.diceware-generator.texts.text-diceward-passwords-copied-to-clipboard') });
+const { copy } = useCopy({
+  source: dicewares,
+  text: t('tools.diceware-generator.texts.text-diceward-passwords-copied-to-clipboard'),
+});
 </script>
 
 <template>
@@ -67,7 +69,10 @@ const { copy } = useCopy({ source: dicewares, text: t('tools.diceware-generator.
           <n-input-number-i18n v-model:value="words" size="small" />
         </n-form-item>
 
-        <n-form-item :label="t('tools.diceware-generator.texts.label-number-of-diceware-passwords-to-generate')" label-placement="left">
+        <n-form-item
+          :label="t('tools.diceware-generator.texts.label-number-of-diceware-passwords-to-generate')"
+          label-placement="left"
+        >
           <n-input-number-i18n v-model:value="count" size="small" />
         </n-form-item>
       </n-space>

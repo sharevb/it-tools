@@ -16,20 +16,22 @@ const getNetworkInfo = (address: string) => new Netmask(parseAsCIDR(address.trim
 
 const networkInfo = computed(() => withDefaultOnError(() => getNetworkInfo(ip.value), undefined));
 
-const allSubnetsInfos = computed(() => withDefaultOnError(() => {
-  let bitmask = networkInfo.value?.bitmask;
-  if (!bitmask || bitmask < 16) {
-    return [];
-  }
+const allSubnetsInfos = computed(() =>
+  withDefaultOnError(() => {
+    let bitmask = networkInfo.value?.bitmask;
+    if (!bitmask || bitmask < 16) {
+      return [];
+    }
 
-  const base = networkInfo.value?.base;
-  const subnets: { bitmask: number; hostsPerSubnet: number; subnets: SubnetInfo[] }[] = [];
-  for (;bitmask <= 30; bitmask++) {
-    const bitmaskSubnets = getSubnetsInfos(`${base}/${bitmask}`);
-    subnets.push({ bitmask, hostsPerSubnet: bitmaskSubnets[0]?.hostsCount, subnets: bitmaskSubnets });
-  }
-  return subnets;
-}, undefined));
+    const base = networkInfo.value?.base;
+    const subnets: { bitmask: number; hostsPerSubnet: number; subnets: SubnetInfo[] }[] = [];
+    for (; bitmask <= 30; bitmask++) {
+      const bitmaskSubnets = getSubnetsInfos(`${base}/${bitmask}`);
+      subnets.push({ bitmask, hostsPerSubnet: bitmaskSubnets[0]?.hostsCount, subnets: bitmaskSubnets });
+    }
+    return subnets;
+  }, undefined),
+);
 
 const ipValidationRules = [
   {
@@ -43,14 +45,21 @@ const ipValidationRules = [
   <div>
     <c-input-text
       v-model:value="ip"
-      :label="t('tools.ipv4-subnets-list.texts.label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask')"
+      :label="
+        t('tools.ipv4-subnets-list.texts.label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask')
+      "
       :placeholder="t('tools.ipv4-subnets-list.texts.placeholder-ipv4-or-cidr')"
       :validation-rules="ipValidationRules"
       mb-4
     />
 
     <div v-if="networkInfo && allSubnetsInfos?.length">
-      <c-card v-for="{ bitmask, hostsPerSubnet, subnets } in allSubnetsInfos" :key="bitmask" :title="`${networkInfo.base}/${bitmask} (${subnets.length} subnets; ${hostsPerSubnet} hosts)`" mb-2>
+      <c-card
+        v-for="{ bitmask, hostsPerSubnet, subnets } in allSubnetsInfos"
+        :key="bitmask"
+        :title="`${networkInfo.base}/${bitmask} (${subnets.length} subnets; ${hostsPerSubnet} hosts)`"
+        mb-2
+      >
         <n-table>
           <thead>
             <tr>

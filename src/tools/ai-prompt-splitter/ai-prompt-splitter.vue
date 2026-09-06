@@ -16,8 +16,7 @@ const splittedPrompts = computed(() => {
       splitLength: splitLength.value,
       newLine: true,
     });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return [e.toString()];
   }
 });
@@ -26,7 +25,7 @@ const promptValidation = useValidation({
   source: prompt,
   rules: [
     {
-      validator: v => v !== '',
+      validator: (v) => v !== '',
       message: t('tools.ai-prompt-splitter.texts.message-prompt-must-not-be-empty'),
     },
   ],

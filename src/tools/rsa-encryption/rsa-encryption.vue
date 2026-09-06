@@ -11,92 +11,95 @@ const schemes = [
   { value: 'RSAES-PKCS1-V1_5', label: t('tools.rsa-encryption.texts.label-rsaes-pkcs-1-v1-5') },
   { value: 'RSAES-OAEP', label: t('tools.rsa-encryption.texts.label-rsaes-oaep') },
   { value: 'RSAES-OAEP/SHA-256', label: t('tools.rsa-encryption.texts.label-rsaes-oaep-sha-256') },
-  { value: 'RSAES-OAEP/SHA-256/MGF1-SHA-1', label: t('tools.rsa-encryption.texts.label-rsaes-oaep-sha-256-mgf1-sha-1-rsa-ecb-oaepwithsha-256andmgf1padding') },
+  {
+    value: 'RSAES-OAEP/SHA-256/MGF1-SHA-1',
+    label: t('tools.rsa-encryption.texts.label-rsaes-oaep-sha-256-mgf1-sha-1-rsa-ecb-oaepwithsha-256andmgf1padding'),
+  },
 ];
 
 const cryptInput = ref('');
 const cryptScheme = ref('RSAES-PKCS1-V1_5');
 const cryptPublicKey = ref('');
-const [cryptOutput, cryptError] = computedCatchAsync(async () => {
-  const publicKeyPEM = cryptPublicKey.value;
-  const text = cryptInput.value;
-  const scheme = cryptScheme.value;
+const [cryptOutput, cryptError] = computedCatchAsync(
+  async () => {
+    const publicKeyPEM = cryptPublicKey.value;
+    const text = cryptInput.value;
+    const scheme = cryptScheme.value;
 
-  const publicKey = pki.publicKeyFromPem(publicKeyPEM);
+    const publicKey = pki.publicKeyFromPem(publicKeyPEM);
 
-  let encrypted;
-  if (scheme === 'RSAES-PKCS1-V1_5') {
-  // encrypt data with a public key using RSAES PKCS#1 v1.5
-    encrypted = publicKey.encrypt(text, 'RSAES-PKCS1-V1_5');
-  }
-  else if (scheme === 'RSAES-OAEP') {
-  // encrypt data with a public key using RSAES-OAEP
-    encrypted = publicKey.encrypt(text, 'RSA-OAEP');
-  }
-  else if (scheme === 'RSAES-OAEP/SHA-256') {
-  // encrypt data with a public key using RSAES-OAEP/SHA-256
-    encrypted = publicKey.encrypt(text, 'RSA-OAEP', {
-      md: md.sha256.create(),
-    });
-  }
-  else if (scheme === 'RSAES-OAEP/SHA-256/MGF1-SHA-1') {
-  // encrypt data with a public key using RSAES-OAEP/SHA-256/MGF1-SHA-1
-  // compatible with Java's RSA/ECB/OAEPWithSHA-256AndMGF1Padding
-    encrypted = publicKey.encrypt(text, 'RSA-OAEP', {
-      md: md.sha256.create(),
-      mgf1: {
-        md: md.sha1.create(),
-      },
-    });
-  }
-  return Base64.encode(encrypted || '');
-}, {
-  defaultValue: '',
-  defaultErrorMessage: 'Unable to encrypt your text',
-});
+    let encrypted;
+    if (scheme === 'RSAES-PKCS1-V1_5') {
+      // encrypt data with a public key using RSAES PKCS#1 v1.5
+      encrypted = publicKey.encrypt(text, 'RSAES-PKCS1-V1_5');
+    } else if (scheme === 'RSAES-OAEP') {
+      // encrypt data with a public key using RSAES-OAEP
+      encrypted = publicKey.encrypt(text, 'RSA-OAEP');
+    } else if (scheme === 'RSAES-OAEP/SHA-256') {
+      // encrypt data with a public key using RSAES-OAEP/SHA-256
+      encrypted = publicKey.encrypt(text, 'RSA-OAEP', {
+        md: md.sha256.create(),
+      });
+    } else if (scheme === 'RSAES-OAEP/SHA-256/MGF1-SHA-1') {
+      // encrypt data with a public key using RSAES-OAEP/SHA-256/MGF1-SHA-1
+      // compatible with Java's RSA/ECB/OAEPWithSHA-256AndMGF1Padding
+      encrypted = publicKey.encrypt(text, 'RSA-OAEP', {
+        md: md.sha256.create(),
+        mgf1: {
+          md: md.sha1.create(),
+        },
+      });
+    }
+    return Base64.encode(encrypted || '');
+  },
+  {
+    defaultValue: '',
+    defaultErrorMessage: 'Unable to encrypt your text',
+  },
+);
 
 const decryptInput = ref('');
 const decryptScheme = ref('RSAES-PKCS1-V1_5');
 const decryptPrivateKey = ref('');
 const decryptPrivateKeyPassphrase = ref('');
-const [decryptOutput, decryptError] = computedCatchAsync(async () => {
-  const privateKeyPEM = decryptPrivateKey.value;
-  const passphrase = decryptPrivateKeyPassphrase.value;
-  const encrypted = Base64.decode(decryptInput.value);
-  const scheme = decryptScheme.value;
+const [decryptOutput, decryptError] = computedCatchAsync(
+  async () => {
+    const privateKeyPEM = decryptPrivateKey.value;
+    const passphrase = decryptPrivateKeyPassphrase.value;
+    const encrypted = Base64.decode(decryptInput.value);
+    const scheme = decryptScheme.value;
 
-  const privateKey = pki.decryptRsaPrivateKey(privateKeyPEM, passphrase);
+    const privateKey = pki.decryptRsaPrivateKey(privateKeyPEM, passphrase);
 
-  let decrypted;
-  if (scheme === 'RSAES-PKCS1-V1_5') {
-  // decrypt data with a private key using RSAES PKCS#1 v1.5
-    decrypted = privateKey.decrypt(encrypted, 'RSAES-PKCS1-V1_5');
-  }
-  else if (scheme === 'RSAES-OAEP') {
-  // decrypt data with a private key using RSAES-OAEP
-    decrypted = privateKey.decrypt(encrypted, 'RSA-OAEP');
-  }
-  else if (scheme === 'RSAES-OAEP/SHA-256') {
-  // decrypt data with a private key using RSAES-OAEP/SHA-256
-    decrypted = privateKey.decrypt(encrypted, 'RSA-OAEP', {
-      md: md.sha256.create(),
-    });
-  }
-  else if (scheme === 'RSAES-OAEP/SHA-256/MGF1-SHA-1') {
-  // decrypt data with a private key using RSAES-OAEP/SHA-256/MGF1-SHA-1
-  // compatible with Java's RSA/ECB/OAEPWithSHA-256AndMGF1Padding
-    decrypted = privateKey.decrypt(encrypted, 'RSA-OAEP', {
-      md: md.sha256.create(),
-      mgf1: {
-        md: md.sha1.create(),
-      },
-    });
-  }
-  return decrypted;
-}, {
-  defaultValue: '',
-  defaultErrorMessage: 'Unable to encrypt your text',
-});
+    let decrypted;
+    if (scheme === 'RSAES-PKCS1-V1_5') {
+      // decrypt data with a private key using RSAES PKCS#1 v1.5
+      decrypted = privateKey.decrypt(encrypted, 'RSAES-PKCS1-V1_5');
+    } else if (scheme === 'RSAES-OAEP') {
+      // decrypt data with a private key using RSAES-OAEP
+      decrypted = privateKey.decrypt(encrypted, 'RSA-OAEP');
+    } else if (scheme === 'RSAES-OAEP/SHA-256') {
+      // decrypt data with a private key using RSAES-OAEP/SHA-256
+      decrypted = privateKey.decrypt(encrypted, 'RSA-OAEP', {
+        md: md.sha256.create(),
+      });
+    } else if (scheme === 'RSAES-OAEP/SHA-256/MGF1-SHA-1') {
+      // decrypt data with a private key using RSAES-OAEP/SHA-256/MGF1-SHA-1
+      // compatible with Java's RSA/ECB/OAEPWithSHA-256AndMGF1Padding
+      decrypted = privateKey.decrypt(encrypted, 'RSA-OAEP', {
+        md: md.sha256.create(),
+        mgf1: {
+          md: md.sha1.create(),
+        },
+      });
+    }
+    return decrypted;
+  },
+  {
+    defaultValue: '',
+    defaultErrorMessage: 'Unable to encrypt your text',
+  },
+);
 </script>
 
 <template>
@@ -108,7 +111,11 @@ const [decryptOutput, decryptError] = computedCatchAsync(async () => {
           :label="t('tools.rsa-encryption.texts.label-your-text')"
           :placeholder="t('tools.rsa-encryption.texts.placeholder-the-string-to-encrypt')"
           rows="4"
-          multiline raw-text monospace autosize flex-1
+          multiline
+          raw-text
+          monospace
+          autosize
+          flex-1
         />
         <c-select
           v-model:value="cryptScheme"
@@ -122,12 +129,21 @@ const [decryptOutput, decryptError] = computedCatchAsync(async () => {
             :label="t('tools.rsa-encryption.texts.label-target-public-key')"
             :placeholder="t('tools.rsa-encryption.texts.placeholder-target-public-key')"
             rows="5"
-            multiline raw-text monospace autosize flex-1
+            multiline
+            raw-text
+            monospace
+            autosize
+            flex-1
           />
         </div>
       </div>
 
-      <c-alert v-if="cryptError && cryptPublicKey !== ''" type="error" mt-12 :title="t('tools.rsa-encryption.texts.title-error-while-encrypting')">
+      <c-alert
+        v-if="cryptError && cryptPublicKey !== ''"
+        type="error"
+        mt-12
+        :title="t('tools.rsa-encryption.texts.title-error-while-encrypting')"
+      >
         {{ cryptError }}
       </c-alert>
 
@@ -136,7 +152,11 @@ const [decryptOutput, decryptError] = computedCatchAsync(async () => {
           :value="cryptOutput || ''"
           rows="3"
           :placeholder="t('tools.rsa-encryption.texts.placeholder-your-string-encrypted')"
-          multiline monospace readonly autosize mt-5
+          multiline
+          monospace
+          readonly
+          autosize
+          mt-5
         />
       </n-form-item>
     </c-card>
@@ -148,7 +168,11 @@ const [decryptOutput, decryptError] = computedCatchAsync(async () => {
           :label="t('tools.rsa-encryption.texts.label-your-pgp-message-to-decrypt')"
           :placeholder="t('tools.rsa-encryption.texts.placeholder-the-string-to-decrypt')"
           rows="4"
-          multiline raw-text monospace autosize flex-1
+          multiline
+          raw-text
+          monospace
+          autosize
+          flex-1
         />
 
         <c-select
@@ -164,17 +188,28 @@ const [decryptOutput, decryptError] = computedCatchAsync(async () => {
             :label="t('tools.rsa-encryption.texts.label-your-private-key')"
             :placeholder="t('tools.rsa-encryption.texts.placeholder-the-private-key-to-use-to-decrypt-message')"
             rows="5"
-            multiline raw-text monospace autosize flex-1
+            multiline
+            raw-text
+            monospace
+            autosize
+            flex-1
           />
 
           <c-input-text
             v-model:value="decryptPrivateKeyPassphrase"
-            :label="t('tools.rsa-encryption.texts.label-your-private-key-password')" clearable raw-text
+            :label="t('tools.rsa-encryption.texts.label-your-private-key-password')"
+            clearable
+            raw-text
           />
         </div>
       </div>
 
-      <c-alert v-if="decryptError && decryptPrivateKey !== ''" type="error" mt-12 :title="t('tools.rsa-encryption.texts.title-error-while-decrypting')">
+      <c-alert
+        v-if="decryptError && decryptPrivateKey !== ''"
+        type="error"
+        mt-12
+        :title="t('tools.rsa-encryption.texts.title-error-while-decrypting')"
+      >
         {{ decryptError }}
       </c-alert>
 
@@ -183,7 +218,11 @@ const [decryptOutput, decryptError] = computedCatchAsync(async () => {
           :value="decryptOutput || ''"
           rows="3"
           :placeholder="t('tools.rsa-encryption.texts.placeholder-your-string-decrypted')"
-          multiline monospace readonly autosize mt-5
+          multiline
+          monospace
+          readonly
+          autosize
+          mt-5
         />
       </n-form-item>
     </c-card>

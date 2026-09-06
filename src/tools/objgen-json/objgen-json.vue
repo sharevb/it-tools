@@ -45,8 +45,7 @@ const indentSize = useQueryParamOrStorage({ name: 'indent', storageName: 'objgen
 function transformer(value: string) {
   try {
     return ObjGen2Json(value, { numSpaces: indentSize.value });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return `/* ERROR: ${e.toString()} */`;
   }
 }

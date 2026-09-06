@@ -1,23 +1,23 @@
 export interface AmortizationParams {
-  readonly principal: number
-  readonly periodInterestRate: number
-  readonly numberOfPayments: number
+  readonly principal: number;
+  readonly periodInterestRate: number;
+  readonly numberOfPayments: number;
 }
 
 export interface CachedPaymentResults {
-  readonly payment: number
-  readonly totalPayments: number
+  readonly payment: number;
+  readonly totalPayments: number;
 }
 
 export interface GetNthResult extends CachedPaymentResults {
-  readonly paymentIndex: number
-  readonly principalPayment: number
-  readonly interestPayment: number
-  readonly remainingBalance: number
+  readonly paymentIndex: number;
+  readonly principalPayment: number;
+  readonly interestPayment: number;
+  readonly remainingBalance: number;
 }
 
 export interface AmortizationScheduleItem extends GetNthResult {
-  readonly type: 'month' | 'year'
+  readonly type: 'month' | 'year';
 }
 
 type AmortizationPaymentCacheKey = `principal:${number};interest-rate:${number};number-of-payments:${number}`;
@@ -162,8 +162,8 @@ export class StandardAmortizationCalculator extends AmortizationCalculator {
 
     const r = 1 + periodInterestRate;
 
-    const balanceBeforePayment
-      = principal * r ** (paymentIndex - 1) - payment * ((r ** (paymentIndex - 1) - 1) / periodInterestRate);
+    const balanceBeforePayment =
+      principal * r ** (paymentIndex - 1) - payment * ((r ** (paymentIndex - 1) - 1) / periodInterestRate);
 
     const interestPayment = balanceBeforePayment * periodInterestRate;
 

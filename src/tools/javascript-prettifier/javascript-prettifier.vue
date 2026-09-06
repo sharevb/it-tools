@@ -19,7 +19,8 @@ const outputJS = computed(() => {
   <div>
     <c-input-text
       v-model:value="inputJS"
-      multiline raw-text
+      multiline
+      raw-text
       :placeholder="t('tools.javascript-prettifier.texts.placeholder-your-js-content')"
       rows="8"
       autofocus
@@ -29,13 +30,7 @@ const outputJS = computed(() => {
     <n-divider />
 
     <n-form-item :label="t('tools.javascript-prettifier.texts.label-output-prettified-js')">
-      <TextareaCopyable
-        :value="outputJS"
-        multiline
-        language="javascript"
-        download-file-name="output.js"
-        word-wrap
-      />
+      <TextareaCopyable :value="outputJS" multiline language="javascript" download-file-name="output.js" word-wrap />
     </n-form-item>
   </div>
 </template>

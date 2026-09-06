@@ -4,20 +4,21 @@ export function hasNumberPrefix(value: string) {
   return (value ?? '').trim().match(/^(0[xob].|&[hob].)/i);
 }
 
-export function convertBase(
-  {
-    value, fromBase, toBase,
-    ignorePunctuationsRegexChars = ' \u00A0_\\.,-',
-    handlePrefixSuffix = true,
-    ignoreCase = true,
-  }: {
-    value: string
-    fromBase: number
-    toBase: number
-    ignorePunctuationsRegexChars?: string
-    handlePrefixSuffix?: boolean
-    ignoreCase?: boolean
-  }) {
+export function convertBase({
+  value,
+  fromBase,
+  toBase,
+  ignorePunctuationsRegexChars = ' \u00A0_\\.,-',
+  handlePrefixSuffix = true,
+  ignoreCase = true,
+}: {
+  value: string;
+  fromBase: number;
+  toBase: number;
+  ignorePunctuationsRegexChars?: string;
+  handlePrefixSuffix?: boolean;
+  ignoreCase?: boolean;
+}) {
   let cleanedValue = (value ?? '0').trim();
   if (ignorePunctuationsRegexChars) {
     cleanedValue = cleanedValue.replace(new RegExp(`[${ignorePunctuationsRegexChars}]`, 'g'), '');
@@ -50,7 +51,12 @@ export function convertBase(
     .reverse()
     .reduce((carry: bigint, digit: string, index: number) => {
       if (!fromRange.includes(digit)) {
-        throw new Error(t('tools.integer-base-converter.model.text.invalid-digit-digit-for-base-finalfrombase', [digit, finalFromBase]));
+        throw new Error(
+          t('tools.integer-base-converter.model.text.invalid-digit-digit-for-base-finalfrombase', [
+            digit,
+            finalFromBase,
+          ]),
+        );
       }
       return (carry += BigInt(fromRange.indexOf(digit)) * BigInt(finalFromBase) ** BigInt(index));
     }, 0n);

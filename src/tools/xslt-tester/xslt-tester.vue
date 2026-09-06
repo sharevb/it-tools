@@ -57,16 +57,12 @@ const xmlOutput = computedAsync(async () => {
   const xmlParser = new XmlParser();
 
   try {
-    let xmlOutput = await xsltProcessor.xsltProcess(
-      xmlParser.xmlParse(xmlString),
-      xmlParser.xmlParse(xsltString),
-    );
+    let xmlOutput = await xsltProcessor.xsltProcess(xmlParser.xmlParse(xmlString), xmlParser.xmlParse(xsltString));
     if (formatResult) {
       xmlOutput = formatXml(xmlOutput);
     }
     return xmlOutput;
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });

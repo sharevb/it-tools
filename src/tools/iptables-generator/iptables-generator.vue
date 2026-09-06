@@ -92,8 +92,12 @@ const command = computed(() => {
   <table border="1" class="w-full border-collapse text-left text-sm text-gray-500 dark:text-gray-400">
     <thead>
       <tr>
-        <td><strong>{{ t('tools.iptables-generator.texts.tag-expression') }}</strong></td>
-        <td><strong>{{ t('tools.iptables-generator.texts.tag-meaning') }}</strong></td>
+        <td>
+          <strong>{{ t('tools.iptables-generator.texts.tag-expression') }}</strong>
+        </td>
+        <td>
+          <strong>{{ t('tools.iptables-generator.texts.tag-meaning') }}</strong>
+        </td>
       </tr>
     </thead>
     <tbody>
@@ -126,8 +130,20 @@ const command = computed(() => {
         <td>{{ t('tools.iptables-generator.texts.tag-block-a-specific-ip-address') }}</td>
       </tr>
       <tr>
-        <td>{{ t('tools.iptables-generator.texts.tag-iptables-a-input-p-tcp-dport-80-m-limit-limit-25-minute-limit-burst-100-j-accept') }}</td>
-        <td>{{ t('tools.iptables-generator.texts.tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached') }}</td>
+        <td>
+          {{
+            t(
+              'tools.iptables-generator.texts.tag-iptables-a-input-p-tcp-dport-80-m-limit-limit-25-minute-limit-burst-100-j-accept',
+            )
+          }}
+        </td>
+        <td>
+          {{
+            t(
+              'tools.iptables-generator.texts.tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached',
+            )
+          }}
+        </td>
       </tr>
       <tr>
         <td>{{ t('tools.iptables-generator.texts.tag-iptables-n-mychain') }}</td>

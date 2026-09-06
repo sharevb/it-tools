@@ -14,8 +14,8 @@ describe('detectTypeAndEscape', () => {
   });
 
   it('should escape and wrap strings in quotes', () => {
-    expect(detectTypeAndEscape('O\'Reilly')).toBe('\'O\'\'Reilly\'');
-    expect(detectTypeAndEscape('hello')).toBe('\'hello\'');
+    expect(detectTypeAndEscape("O'Reilly")).toBe("'O''Reilly'");
+    expect(detectTypeAndEscape('hello')).toBe("'hello'");
   });
 });
 
@@ -23,11 +23,11 @@ describe('generateSQLFromTemplate', () => {
   it('should replace named parameters correctly', () => {
     const template = 'SELECT * FROM users WHERE name = :name AND age = @age';
     const params = [
-      { key: 'name', value: 'O\'Reilly' },
+      { key: 'name', value: "O'Reilly" },
       { key: 'age', value: '42' },
     ];
     const { sql, error } = generateSQLFromTemplate(template, params);
-    expect(sql).toBe('SELECT * FROM users WHERE name = \'O\'\'Reilly\' AND age = 42');
+    expect(sql).toBe("SELECT * FROM users WHERE name = 'O''Reilly' AND age = 42");
     expect(error).toBeNull();
   });
 
@@ -39,15 +39,15 @@ describe('generateSQLFromTemplate', () => {
       { key: '2', value: 'null' },
     ];
     const { sql, error } = generateSQLFromTemplate(template, params);
-    expect(sql).toBe('INSERT INTO products VALUES (\'Book\', 19.99, NULL)');
+    expect(sql).toBe("INSERT INTO products VALUES ('Book', 19.99, NULL)");
     expect(error).toBeNull();
   });
 
   it('should handle escaped question marks', () => {
-    const template = 'SELECT * FROM faq WHERE question LIKE \'\\?\' OR answer = ?';
+    const template = "SELECT * FROM faq WHERE question LIKE '\\?' OR answer = ?";
     const params = [{ key: '0', value: '42' }];
     const { sql, error } = generateSQLFromTemplate(template, params);
-    expect(sql).toBe('SELECT * FROM faq WHERE question LIKE \'?\' OR answer = 42');
+    expect(sql).toBe("SELECT * FROM faq WHERE question LIKE '?' OR answer = 42");
     expect(error).toBeNull();
   });
 

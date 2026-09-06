@@ -30,7 +30,10 @@ const resultsJson = computed(() =>
 );
 
 const columns = computed(() =>
-  Object.keys((results.value || [])[0] || {}).map((h) => ({ key: h.replace(/\\/g, '\\\\').replace(/\./g, '\\.'), title: h })),
+  Object.keys((results.value || [])[0] || {}).map((h) => ({
+    key: h.replace(/\\/g, '\\\\').replace(/\./g, '\\.'),
+    title: h,
+  })),
 );
 
 function onUpload(file: File) {

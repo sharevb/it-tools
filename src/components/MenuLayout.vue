@@ -48,11 +48,14 @@ watchEffect(() => {
 // Close the menu when navigating (tool links, the about button, ...) so the
 // destination page is visible.
 const route = useRoute();
-watch(() => route.path, () => {
-  if (isSmallScreen.value) {
-    isMenuCollapsed.value = true;
-  }
-});
+watch(
+  () => route.path,
+  () => {
+    if (isSmallScreen.value) {
+      isMenuCollapsed.value = true;
+    }
+  },
+);
 onUnmounted(() => {
   document.body.style.overflow = '';
 });

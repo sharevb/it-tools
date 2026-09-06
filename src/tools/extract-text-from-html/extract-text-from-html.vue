@@ -11,8 +11,7 @@ function transformer(value: string) {
   }
   try {
     return getTextFromHtml(value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 }

@@ -15,7 +15,7 @@ const CACHE_TTL = 1000 * 60 * 60 * 24; // 24h
 
 async function loadOptions() {
   const now = Date.now();
-  const isStale = !options.value.length || (now - lastFetched.value > CACHE_TTL);
+  const isStale = !options.value.length || now - lastFetched.value > CACHE_TTL;
 
   if (!isStale) {
     // Use cached options
@@ -34,8 +34,7 @@ async function loadOptions() {
         value: name,
       }));
     lastFetched.value = now;
-  }
-  catch {
+  } catch {
     if (!options.value?.length) {
       options.value = [
         'C++',
@@ -48,7 +47,7 @@ async function loadOptions() {
         'Python',
         'VisualStudio',
         'WordPress',
-      ].map(name => ({
+      ].map((name) => ({
         label: name,
         value: name,
       }));
@@ -72,11 +71,9 @@ async function generateGitignore() {
       gitignores += `${gitignores ? '\n\n' : ''}# === .gitignore for ${lang} (${url}) ===\n\n${text}`;
     }
     output.value = gitignores;
-  }
-  catch (err: any) {
+  } catch (err: any) {
     error.value = err.toString();
-  }
-  finally {
+  } finally {
     loading.value = false;
   }
 }
@@ -92,14 +89,14 @@ onMounted(loadOptions);
       multiple
       filterable
       :placeholder="t('tools.gitignore-generator.texts.placeholder-select-templates-e-g-node-python-vue')"
-      style="width: 100%;"
+      style="width: 100%"
       :disable="!options"
     />
 
     <n-space justify="center">
       <NButton
         type="primary"
-        style="margin-top: 12px;"
+        style="margin-top: 12px"
         :loading="loading"
         :disable="!options"
         @click="generateGitignore"

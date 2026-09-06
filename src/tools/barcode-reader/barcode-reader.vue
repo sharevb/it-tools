@@ -12,10 +12,9 @@ const barCode = computedAsync(async () => {
   }
   try {
     const barcodeReader = new BrowserMultiFormatReader();
-    const result = (await barcodeReader.decodeFromImageUrl(imageBase64.value));
+    const result = await barcodeReader.decodeFromImageUrl(imageBase64.value);
     return { text: result.getText(), format: BarcodeFormat[result.getBarcodeFormat()], error: '' };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { error: e.toString(), text: '', format: '' };
   }
 });
@@ -50,11 +49,10 @@ async function onUpload(file: File) {
     <div v-if="barCode?.text">
       <n-divider />
 
-      <h3>{{ t('tools.barcode-reader.texts.tag-decoded') }}<span v-if="barCode?.format">({{ barCode?.format }})</span></h3>
-      <TextareaCopyable
-        :value="barCode?.text"
-        :word-wrap="true"
-      />
+      <h3>
+        {{ t('tools.barcode-reader.texts.tag-decoded') }}<span v-if="barCode?.format">({{ barCode?.format }})</span>
+      </h3>
+      <TextareaCopyable :value="barCode?.text" :word-wrap="true" />
     </div>
     <c-alert v-if="barCode?.error">
       {{ barCode?.error }}

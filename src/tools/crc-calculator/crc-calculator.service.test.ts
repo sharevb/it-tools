@@ -101,7 +101,7 @@ describe('crc-calculator', () => {
     it('re-encodes every checksum of "Hello, World!" as the ui does', () => {
       const hashes = getCRCs('Hello, World!');
 
-      expect(algoNames.map(algo => formatHexWithEncoding(hashes[algo], 'Hex'))).toEqual([
+      expect(algoNames.map((algo) => formatHexWithEncoding(hashes[algo], 'Hex'))).toEqual([
         '69',
         '87',
         '9c',
@@ -116,7 +116,7 @@ describe('crc-calculator', () => {
         '19270120',
         '13b53c2f',
       ]);
-      expect(algoNames.map(algo => formatHexWithEncoding(hashes[algo], 'Base64'))).toEqual([
+      expect(algoNames.map((algo) => formatHexWithEncoding(hashes[algo], 'Base64'))).toEqual([
         'aQ==',
         'hw==',
         'nA==',

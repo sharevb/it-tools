@@ -5,14 +5,14 @@ import { generateKeyPair } from './utils/generateKeyPair';
 
 interface GenerateKeysOptions {
   /** Also create a preshared key */
-  preSharedKey?: boolean
+  preSharedKey?: boolean;
   /**
    * Overwrite this object's private key if it already exists
    *
    * If this is not set to true, a new public key will be generated from the existing private key if
    * the private key exists.
    */
-  overwrite?: boolean
+  overwrite?: boolean;
 }
 
 /** A Javascript object representation of a WireGuard config file with some extras */
@@ -80,11 +80,10 @@ export class WgConfig implements WgConfigObject {
       this.peers = [];
     }
     // check if peer exists by public key
-    const i = this.peers.map(x => x.publicKey).indexOf(peer.publicKey);
+    const i = this.peers.map((x) => x.publicKey).indexOf(peer.publicKey);
     if (i === -1) {
       this.peers.push(peer);
-    }
-    else {
+    } else {
       mergeWith(this.peers[i], peer, (objValue: any, srcValue: any, key: string) => {
         if (key === 'allowedIps' && Array.isArray(objValue) && Array.isArray(srcValue)) {
           return mergeAllowedIps ? [...new Set([...objValue, ...srcValue])] : srcValue;
@@ -100,7 +99,7 @@ export class WgConfig implements WgConfigObject {
     if (!this.peers) {
       this.peers = [];
     }
-    const i = this.peers.map(x => x.publicKey).indexOf(publicKey);
+    const i = this.peers.map((x) => x.publicKey).indexOf(publicKey);
     if (i !== -1) {
       this.peers.splice(i, 1);
     }
@@ -128,7 +127,7 @@ export class WgConfig implements WgConfigObject {
     if (!this.peers || !this.peers.length) {
       return undefined;
     }
-    return this.peers.find(x => x.publicKey === publicKey);
+    return this.peers.find((x) => x.publicKey === publicKey);
   }
 
   clearPeers() {

@@ -14,11 +14,11 @@ export function generateHtpasswd({
   salt = null,
   saltRounds = 10,
 }: {
-  username: string
-  password: string
-  algorithm: 'bcrypt' | 'md5' | 'apr1' | 'sha256' | 'sha512'
-  salt?: string | null
-  saltRounds?: number
+  username: string;
+  password: string;
+  algorithm: 'bcrypt' | 'md5' | 'apr1' | 'sha256' | 'sha512';
+  salt?: string | null;
+  saltRounds?: number;
 }): string {
   const generateSalt = (length: number) => multiRandFromArray([...itoa64], length).join('');
   let hash: string;
@@ -31,16 +31,16 @@ export function generateHtpasswd({
       hash = hashSync(password, saltRounds);
       break;
     case 'md5':
-
       if (non_ascii.test(password)) {
         throw new Error(t('tools.htpasswd-generator.service.text.md5-does-not-currently-support-non-ascii-characters'));
       }
       hash = md5(password, `$1$${finalSalt}`);
       break;
     case 'apr1':
-
       if (non_ascii.test(password)) {
-        throw new Error(t('tools.htpasswd-generator.service.text.md5-does-not-currently-support-non-ascii-characters-0'));
+        throw new Error(
+          t('tools.htpasswd-generator.service.text.md5-does-not-currently-support-non-ascii-characters-0'),
+        );
       }
       hash = md5(password, `$apr1$${finalSalt}`);
       break;

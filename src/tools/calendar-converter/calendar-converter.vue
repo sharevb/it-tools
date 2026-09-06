@@ -7,12 +7,18 @@ const { t } = useI18n();
 const converter = ref(new CalendarConverter());
 
 const monthOptions = [
-  { label: t('tools.calendar-converter.texts.label-january'), value: 1 }, { label: t('tools.calendar-converter.texts.label-february'), value: 2 },
-  { label: t('tools.calendar-converter.texts.label-march'), value: 3 }, { label: t('tools.calendar-converter.texts.label-april'), value: 4 },
-  { label: t('tools.calendar-converter.texts.label-may'), value: 5 }, { label: t('tools.calendar-converter.texts.label-june'), value: 6 },
-  { label: t('tools.calendar-converter.texts.label-july'), value: 7 }, { label: t('tools.calendar-converter.texts.label-august'), value: 8 },
-  { label: t('tools.calendar-converter.texts.label-september'), value: 9 }, { label: t('tools.calendar-converter.texts.label-october'), value: 10 },
-  { label: t('tools.calendar-converter.texts.label-november'), value: 11 }, { label: t('tools.calendar-converter.texts.label-december'), value: 12 },
+  { label: t('tools.calendar-converter.texts.label-january'), value: 1 },
+  { label: t('tools.calendar-converter.texts.label-february'), value: 2 },
+  { label: t('tools.calendar-converter.texts.label-march'), value: 3 },
+  { label: t('tools.calendar-converter.texts.label-april'), value: 4 },
+  { label: t('tools.calendar-converter.texts.label-may'), value: 5 },
+  { label: t('tools.calendar-converter.texts.label-june'), value: 6 },
+  { label: t('tools.calendar-converter.texts.label-july'), value: 7 },
+  { label: t('tools.calendar-converter.texts.label-august'), value: 8 },
+  { label: t('tools.calendar-converter.texts.label-september'), value: 9 },
+  { label: t('tools.calendar-converter.texts.label-october'), value: 10 },
+  { label: t('tools.calendar-converter.texts.label-november'), value: 11 },
+  { label: t('tools.calendar-converter.texts.label-december'), value: 12 },
 ];
 
 const hebrewMonths = [
@@ -77,12 +83,18 @@ const indianMonths = [
 ];
 
 const frenchMonths = [
-  { label: t('tools.calendar-converter.texts.label-vendémiaire'), value: 1 }, { label: t('tools.calendar-converter.texts.label-brumaire'), value: 2 },
-  { label: t('tools.calendar-converter.texts.label-frimaire'), value: 3 }, { label: t('tools.calendar-converter.texts.label-nivôse'), value: 4 },
-  { label: t('tools.calendar-converter.texts.label-pluviôse'), value: 5 }, { label: t('tools.calendar-converter.texts.label-ventôse'), value: 6 },
-  { label: t('tools.calendar-converter.texts.label-germinal'), value: 7 }, { label: t('tools.calendar-converter.texts.label-floréal'), value: 8 },
-  { label: t('tools.calendar-converter.texts.label-prairial'), value: 9 }, { label: t('tools.calendar-converter.texts.label-messidor'), value: 10 },
-  { label: t('tools.calendar-converter.texts.label-thermidor'), value: 11 }, { label: t('tools.calendar-converter.texts.label-fructidor'), value: 12 },
+  { label: t('tools.calendar-converter.texts.label-vendémiaire'), value: 1 },
+  { label: t('tools.calendar-converter.texts.label-brumaire'), value: 2 },
+  { label: t('tools.calendar-converter.texts.label-frimaire'), value: 3 },
+  { label: t('tools.calendar-converter.texts.label-nivôse'), value: 4 },
+  { label: t('tools.calendar-converter.texts.label-pluviôse'), value: 5 },
+  { label: t('tools.calendar-converter.texts.label-ventôse'), value: 6 },
+  { label: t('tools.calendar-converter.texts.label-germinal'), value: 7 },
+  { label: t('tools.calendar-converter.texts.label-floréal'), value: 8 },
+  { label: t('tools.calendar-converter.texts.label-prairial'), value: 9 },
+  { label: t('tools.calendar-converter.texts.label-messidor'), value: 10 },
+  { label: t('tools.calendar-converter.texts.label-thermidor'), value: 11 },
+  { label: t('tools.calendar-converter.texts.label-fructidor'), value: 12 },
   { label: t('tools.calendar-converter.texts.label-sans-culottides'), value: 13 },
 ];
 
@@ -93,23 +105,32 @@ const frenchDecades = [
 ];
 
 const frenchDays = [
-  { label: t('tools.calendar-converter.texts.label-primidi-1'), value: 1 }, { label: t('tools.calendar-converter.texts.label-duodi-2'), value: 2 },
-  { label: t('tools.calendar-converter.texts.label-tridi-3'), value: 3 }, { label: t('tools.calendar-converter.texts.label-quartidi-4'), value: 4 },
-  { label: t('tools.calendar-converter.texts.label-quintidi-5'), value: 5 }, { label: t('tools.calendar-converter.texts.label-sextidi-6'), value: 6 },
-  { label: t('tools.calendar-converter.texts.label-septidi-7'), value: 7 }, { label: t('tools.calendar-converter.texts.label-octidi-8'), value: 8 },
-  { label: t('tools.calendar-converter.texts.label-nonidi-9'), value: 9 }, { label: t('tools.calendar-converter.texts.label-décadi-10'), value: 10 },
-  { label: t('tools.calendar-converter.texts.label-vertu-1'), value: 12 }, { label: t('tools.calendar-converter.texts.label-génie-2'), value: 13 },
-  { label: t('tools.calendar-converter.texts.label-travail-3'), value: 14 }, { label: t('tools.calendar-converter.texts.label-opinion-4'), value: 15 },
-  { label: t('tools.calendar-converter.texts.label-récompenses-5'), value: 16 }, { label: t('tools.calendar-converter.texts.label-révolution-6'), value: 17 },
+  { label: t('tools.calendar-converter.texts.label-primidi-1'), value: 1 },
+  { label: t('tools.calendar-converter.texts.label-duodi-2'), value: 2 },
+  { label: t('tools.calendar-converter.texts.label-tridi-3'), value: 3 },
+  { label: t('tools.calendar-converter.texts.label-quartidi-4'), value: 4 },
+  { label: t('tools.calendar-converter.texts.label-quintidi-5'), value: 5 },
+  { label: t('tools.calendar-converter.texts.label-sextidi-6'), value: 6 },
+  { label: t('tools.calendar-converter.texts.label-septidi-7'), value: 7 },
+  { label: t('tools.calendar-converter.texts.label-octidi-8'), value: 8 },
+  { label: t('tools.calendar-converter.texts.label-nonidi-9'), value: 9 },
+  { label: t('tools.calendar-converter.texts.label-décadi-10'), value: 10 },
+  { label: t('tools.calendar-converter.texts.label-vertu-1'), value: 12 },
+  { label: t('tools.calendar-converter.texts.label-génie-2'), value: 13 },
+  { label: t('tools.calendar-converter.texts.label-travail-3'), value: 14 },
+  { label: t('tools.calendar-converter.texts.label-opinion-4'), value: 15 },
+  { label: t('tools.calendar-converter.texts.label-récompenses-5'), value: 16 },
+  { label: t('tools.calendar-converter.texts.label-révolution-6'), value: 17 },
 ];
 </script>
 
 <template>
   <div>
     <n-p>
-      {{ t('tools.calendar-converter.texts.tag-this-is-a-port-of-wonderful') }}<c-link target="_blank" href="https://www.fourmilab.ch/documents/calendar">
-        {{ t('tools.calendar-converter.texts.tag-fourmilab-ch-calendar-converter') }}
-      </c-link>{{ t('tools.calendar-converter.texts.tag-by-john-walker') }}
+      {{ t('tools.calendar-converter.texts.tag-this-is-a-port-of-wonderful')
+      }}<c-link target="_blank" href="https://www.fourmilab.ch/documents/calendar">
+        {{ t('tools.calendar-converter.texts.tag-fourmilab-ch-calendar-converter') }} </c-link
+      >{{ t('tools.calendar-converter.texts.tag-by-john-walker') }}
     </n-p>
     <n-tabs type="line" animated>
       <!-- Gregorian -->
@@ -117,7 +138,12 @@ const frenchDays = [
         <n-form :model="converter.document.gregorian" label-placement="left">
           <n-form-item :label="t('tools.calendar-converter.texts.label-date')">
             <n-input-number v-model:value="converter.document.gregorian.day" style="width: 90px" mr-1 />
-            <n-select v-model:value="converter.document.gregorian.month" :options="monthOptions" style="width: 160px; " mr-1 />
+            <n-select
+              v-model:value="converter.document.gregorian.month"
+              :options="monthOptions"
+              style="width: 160px"
+              mr-1
+            />
             <n-input-number v-model:value="converter.document.gregorian.year" style="width: 100px" />
           </n-form-item>
 
@@ -141,7 +167,14 @@ const frenchDays = [
             <n-button type="primary" mr-1 @click="() => converter.calcGregorian()">
               {{ t('tools.calendar-converter.texts.tag-update-other-calendars') }}
             </n-button>
-            <n-button @click="() => { converter.setDateToToday(); converter.updateFromGregorian(); }">
+            <n-button
+              @click="
+                () => {
+                  converter.setDateToToday();
+                  converter.updateFromGregorian();
+                }
+              "
+            >
               {{ t('tools.calendar-converter.texts.tag-today') }}
             </n-button>
           </n-space>
@@ -181,7 +214,12 @@ const frenchDays = [
         <n-form :model="converter.document.juliancalendar" label-placement="left">
           <n-form-item :label="t('tools.calendar-converter.texts.label-date')">
             <n-input-number v-model:value="converter.document.juliancalendar.day" style="width: 90px" mr-1 />
-            <n-select v-model:value="converter.document.juliancalendar.month" :options="monthOptions" style="width: 160px; " mr-1 />
+            <n-select
+              v-model:value="converter.document.juliancalendar.month"
+              :options="monthOptions"
+              style="width: 160px"
+              mr-1
+            />
             <n-input-number v-model:value="converter.document.juliancalendar.year" style="width: 100px" />
           </n-form-item>
           <n-form-item :label="t('tools.calendar-converter.texts.label-leap')">
@@ -218,7 +256,12 @@ const frenchDays = [
         <n-form :model="converter.document.hebrew" label-placement="left">
           <n-form-item :label="t('tools.calendar-converter.texts.label-date')">
             <n-input-number v-model:value="converter.document.hebrew.day" style="width: 90px" mr-1 />
-            <n-select v-model:value="converter.document.hebrew.month" :options="hebrewMonths" style="width: 220px; " mr-1 />
+            <n-select
+              v-model:value="converter.document.hebrew.month"
+              :options="hebrewMonths"
+              style="width: 220px"
+              mr-1
+            />
             <n-input-number v-model:value="converter.document.hebrew.year" style="width: 100px" />
           </n-form-item>
 
@@ -239,7 +282,12 @@ const frenchDays = [
         <n-form :model="converter.document.islamic" label-placement="left">
           <n-form-item :label="t('tools.calendar-converter.texts.label-date')">
             <n-input-number v-model:value="converter.document.islamic.day" style="width: 90px" mr-1 />
-            <n-select v-model:value="converter.document.islamic.month" :options="islamicMonths" style="width: 250px; " mr-1 />
+            <n-select
+              v-model:value="converter.document.islamic.month"
+              :options="islamicMonths"
+              style="width: 250px"
+              mr-1
+            />
             <n-input-number v-model:value="converter.document.islamic.year" style="width: 100px" />
           </n-form-item>
 
@@ -264,7 +312,12 @@ const frenchDays = [
         <n-form :model="converter.document.persian" label-placement="left">
           <n-form-item :label="t('tools.calendar-converter.texts.label-date')">
             <n-input-number v-model:value="converter.document.persian.day" style="width: 90px" mr-1 />
-            <n-select v-model:value="converter.document.persian.month" :options="persianMonths" style="width: 220px; " mr-1 />
+            <n-select
+              v-model:value="converter.document.persian.month"
+              :options="persianMonths"
+              style="width: 220px"
+              mr-1
+            />
             <n-input-number v-model:value="converter.document.persian.year" style="width: 100px" />
           </n-form-item>
 
@@ -289,7 +342,12 @@ const frenchDays = [
         <n-form :model="converter.document.persiana" label-placement="left">
           <n-form-item :label="t('tools.calendar-converter.texts.label-date')">
             <n-input-number v-model:value="converter.document.persiana.day" style="width: 90px" mr-1 />
-            <n-select v-model:value="converter.document.persiana.month" :options="persianMonths" style="width: 220px; " mr-1 />
+            <n-select
+              v-model:value="converter.document.persiana.month"
+              :options="persianMonths"
+              style="width: 220px"
+              mr-1
+            />
             <n-input-number v-model:value="converter.document.persiana.year" style="width: 100px" />
           </n-form-item>
 
@@ -344,7 +402,12 @@ const frenchDays = [
         <n-form :model="converter.document.indiancivilcalendar" label-placement="left">
           <n-form-item :label="t('tools.calendar-converter.texts.label-date')">
             <n-input-number v-model:value="converter.document.indiancivilcalendar.day" style="width: 90px" mr-1 />
-            <n-select v-model:value="converter.document.indiancivilcalendar.month" :options="indianMonths" style="width: 220px;" mr-1 />
+            <n-select
+              v-model:value="converter.document.indiancivilcalendar.month"
+              :options="indianMonths"
+              style="width: 220px"
+              mr-1
+            />
             <n-input-number v-model:value="converter.document.indiancivilcalendar.year" style="width: 100px" />
           </n-form-item>
           <n-form-item :label="t('tools.calendar-converter.texts.label-leap')">

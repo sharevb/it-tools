@@ -19,7 +19,8 @@ const outputCSS = computed(() => {
   <div>
     <c-input-text
       v-model:value="inputCSS"
-      multiline raw-text
+      multiline
+      raw-text
       :placeholder="t('tools.css-prettifier.texts.placeholder-your-css-content')"
       rows="8"
       autofocus
@@ -29,13 +30,7 @@ const outputCSS = computed(() => {
     <n-divider />
 
     <n-form-item :label="t('tools.css-prettifier.texts.label-output-prettified-css')">
-      <TextareaCopyable
-        :value="outputCSS"
-        multiline
-        language="css"
-        word-wrap
-        download-file-name="output.css"
-      />
+      <TextareaCopyable :value="outputCSS" multiline language="css" word-wrap download-file-name="output.css" />
     </n-form-item>
   </div>
 </template>

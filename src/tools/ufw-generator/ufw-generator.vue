@@ -48,11 +48,9 @@ const ufwCommand = computed(() => {
     // port or port range
     if (state.port && state.portTo) {
       parts.push(`${state.port}:${state.portTo}`);
-    }
-    else if (state.port) {
+    } else if (state.port) {
       parts.push(state.port);
-    }
-    else {
+    } else {
       throw new Error(t('tools.ufw-generator.texts.missing-port'));
     }
 
@@ -87,8 +85,7 @@ const ufwCommand = computed(() => {
     }
 
     return parts.join(' ');
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -134,7 +131,10 @@ const ufwCommand = computed(() => {
       </NFormItem>
 
       <NFormItem :label="t('tools.ufw-generator.texts.label-comment')">
-        <NInput v-model:value="state.comment" :placeholder="t('tools.ufw-generator.texts.placeholder-optional-comment')" />
+        <NInput
+          v-model:value="state.comment"
+          :placeholder="t('tools.ufw-generator.texts.placeholder-optional-comment')"
+        />
       </NFormItem>
     </NForm>
 

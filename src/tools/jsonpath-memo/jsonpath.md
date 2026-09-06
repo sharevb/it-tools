@@ -5,7 +5,7 @@
 ## 🧭 Syntax
 
 | Syntax                           | Description                                              |
-|----------------------------------|----------------------------------------------------------|
+| -------------------------------- | -------------------------------------------------------- |
 | `$`                              | The root element                                         |
 | `@`                              | The element currently being filtered                     |
 | `$.store.book[0].title`          | Dot notation                                             |
@@ -18,7 +18,7 @@
 ## 🌳 Tree Traversal
 
 | Syntax                         | Description                                                              |
-|--------------------------------|--------------------------------------------------------------------------|
+| ------------------------------ | ------------------------------------------------------------------------ |
 | `$.parentNode.childNode.field` | XPath `/parentNode/childNode/@field` — the field of every matching child |
 | `$..anyChildNode`              | XPath `//anyChildNode` — every node with that name, at any depth         |
 | `$.parentNode.*`               | XPath `/parentNode/*` — every child of the node                          |
@@ -28,7 +28,7 @@
 ## 🔢 Array Access
 
 | Syntax            | Description                             |
-|-------------------|-----------------------------------------|
+| ----------------- | --------------------------------------- |
 | `$.myList[0]`     | First element                           |
 | `$.myList[-1]`    | Last element                            |
 | `$.myList[*]`     | Every element                           |
@@ -43,7 +43,7 @@
 Filters are written `[?(...)]` — `[?...]` in RFC 9535 — and keep the elements for which the expression is true.
 
 | Syntax                                  | Description                                        |
-|-----------------------------------------|----------------------------------------------------|
+| --------------------------------------- | -------------------------------------------------- |
 | `$.customer[?(@.car)]`                  | Customers that have a `car` field at all           |
 | `$.customer[?(@.car == 'Ford Fiesta')]` | Customers with a Ford Fiesta                       |
 | `$.customer[?(@.age > 18)]`             | Adults only                                        |
@@ -54,7 +54,7 @@ Filters are written `[?(...)]` — `[?...]` in RFC 9535 — and keep the element
 ### Combining conditions
 
 | Syntax                                                  | Description |
-|---------------------------------------------------------|-------------|
+| ------------------------------------------------------- | ----------- |
 | `$.customer[?(@.age > 18 \|\| @.car == 'Ford Fiesta')]` | Logical or  |
 | `$.customer[?(@.age < 18 && @.hobby == 'Biking')]`      | Logical and |
 | `$.customer[?(!@.car)]`                                 | Logical not |
@@ -64,7 +64,7 @@ Filters are written `[?(...)]` — `[?...]` in RFC 9535 — and keep the element
 Available in RFC 9535 and in most modern implementations:
 
 | Function   | Example                               | Returns                                |
-|------------|---------------------------------------|----------------------------------------|
+| ---------- | ------------------------------------- | -------------------------------------- |
 | `length()` | `$.book[?(length(@.tags) > 2)]`       | Length of a string, array or object    |
 | `count()`  | `$.book[?(count(@.authors.*) > 1)]`   | Number of nodes a query matched        |
 | `match()`  | `$.book[?(match(@.isbn, "\\d{13}"))]` | True when the **whole** string matches |
@@ -89,7 +89,7 @@ Older Jayway-style implementations instead offer `.length()`, `.min()`, `.max()`
 ```
 
 | Expression                          | Result                                |
-|-------------------------------------|---------------------------------------|
+| ----------------------------------- | ------------------------------------- |
 | `$.store.book[*].author`            | All three authors                     |
 | `$..price`                          | `8.95`, `8.99`, `22.99`, `19.95`      |
 | `$.store.book[?(@.price < 10)]`     | The two cheap books                   |
@@ -100,7 +100,7 @@ Older Jayway-style implementations instead offer `.length()`, `.min()`, `.max()`
 ## 🗺 Output Mapping
 
 | Syntax                                               | Description                                                                               |
-|------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `$.[].{Name:name, Age:age, Hobbies:details.hobbies}` | Map fields and nested fields into a new object (JMESPath-style, not supported everywhere) |
 
 ## 🧰 Where You'll Meet It
@@ -110,7 +110,7 @@ Older Jayway-style implementations instead offer `.length()`, `.min()`, `.max()`
 - Karate, Postman and Newman test scripts
 - Nginx, Grafana and Prometheus JSON scrapers
 
-> 💡 For heavier transformation on the command line, `jq` is usually the better tool — JSONPath selects, `jq` selects *and* reshapes.
+> 💡 For heavier transformation on the command line, `jq` is usually the better tool — JSONPath selects, `jq` selects _and_ reshapes.
 
 ## 📚 Resources
 

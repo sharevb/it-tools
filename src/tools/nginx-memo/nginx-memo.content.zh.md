@@ -20,13 +20,13 @@ sudo tail -f /var/log/nginx/access.log # 实时查看日志以检查请求
 server {
   # 使用 HTTP 协议
   listen 80;
-  
+
   # 使用 HTTPS 协议
   listen 443 ssl;
-  
+
   # 使用 IPv6 监听 80 端口
   listen [::]:80;
-  
+
   # 仅使用 IPv6 监听 80 端口
   listen [::]:80 ipv6only=on;
 }
@@ -36,22 +36,22 @@ server {
 server {
   # 监听 example.com
   server_name example.com;
-  
+
   # 监听多个域名
   server_name example.com www.example.com;
-  
+
   # 监听所有子域名
   server_name *.example.com;
-  
+
   # 监听所有顶级域名
   server_name example.*;
-  
+
   # 监听未指定的主机名（监听 IP 地址本身）
   server_name "";
 }
 
 # *****************************************************************************
-# 提供文件服务 
+# 提供文件服务
 # *****************************************************************************
 
 # 静态资源（传统 Web 服务器）
@@ -116,7 +116,7 @@ server {
 server {
   listen 80;
   server_name example.com;
-  
+
   location / {
     proxy_pass http://0.0.0.0:3000;
     # 其中 0.0.0.0:3000 是绑定在 0.0.0.0 上监听 3000 端口的 Node.js 服务器
@@ -133,7 +133,7 @@ upstream node_js {
 server {
   listen 80;
   server_name example.com;
-  
+
   location / {
     proxy_pass http://node_js;
   }
@@ -148,7 +148,7 @@ upstream node_js {
 server {
   listen 80;
   server_name example.com;
-  
+
   location / {
     proxy_pass http://node_js;
     proxy_redirect off;
@@ -156,7 +156,7 @@ server {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
     proxy_set_header Host $host;
-	
+
     }
 }
 
@@ -210,7 +210,7 @@ upstream node_js {
 server {
   listen 80;
   server_name example.com;
-  
+
   location / {
     proxy_pass http://node_js;
   }

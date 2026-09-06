@@ -7,11 +7,7 @@ import { randFromArray } from '@/utils/random';
 const firstSentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 export function getSupportedLanguages() {
-  return [...new Set([
-    ...languageLorems.flatMap(l => l.languages),
-    'Japanese',
-    'Chinese',
-  ])].sort();
+  return [...new Set([...languageLorems.flatMap((l) => l.languages), 'Japanese', 'Chinese'])].sort();
 }
 
 function generateSentence(language: string, length: number) {
@@ -33,7 +29,8 @@ function generateSentence(language: string, length: number) {
       .join(' ');
   }
 
-  const vocabulary = _.find(languageLorems, ({ languages }) => languages.includes(language))?.loremIpsum?.split(' ') || [];
+  const vocabulary =
+    _.find(languageLorems, ({ languages }) => languages.includes(language))?.loremIpsum?.split(' ') || [];
 
   const sentence = Array.from({ length })
     .map(() => randFromArray(vocabulary))
@@ -50,12 +47,12 @@ export function generateLoremIpsum({
   asHTML = false,
   language = 'English',
 }: {
-  paragraphCount?: number
-  sentencePerParagraph?: number
-  wordCount?: number
-  startWithLoremIpsum?: boolean
-  asHTML?: boolean
-  language?: string
+  paragraphCount?: number;
+  sentencePerParagraph?: number;
+  wordCount?: number;
+  startWithLoremIpsum?: boolean;
+  asHTML?: boolean;
+  language?: string;
 }) {
   const paragraphs = Array.from({ length: paragraphCount }).map(() =>
     Array.from({ length: sentencePerParagraph }).map(() => generateSentence(language, wordCount)),
@@ -66,8 +63,8 @@ export function generateLoremIpsum({
   }
 
   if (asHTML) {
-    return `<p>${paragraphs.map(s => s.join(' ')).join('</p>\n\n<p>')}</p>`;
+    return `<p>${paragraphs.map((s) => s.join(' ')).join('</p>\n\n<p>')}</p>`;
   }
 
-  return paragraphs.map(s => s.join(' ')).join('\n\n');
+  return paragraphs.map((s) => s.join(' ')).join('\n\n');
 }

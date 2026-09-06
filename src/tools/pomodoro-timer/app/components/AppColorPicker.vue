@@ -24,25 +24,25 @@ function setColor(hexColor) {
 
 <style scoped>
 .dot-container {
-    display: inline-block;
+  display: inline-block;
 }
 .dot-container > div {
-    display: inline-block;
-    border-radius: 50%;
-    width: 1.875rem;
-    height: 1.875rem;
-    margin-right: 0.3125rem;
+  display: inline-block;
+  border-radius: 50%;
+  width: 1.875rem;
+  height: 1.875rem;
+  margin-right: 0.3125rem;
 }
 
 .blue-dot {
-    background-color: #3b83b0;
+  background-color: #3b83b0;
 }
 
 .red-dot {
-    background-color: #c93232;
+  background-color: #c93232;
 }
 
 .green-dot {
-    background-color: #008000;
+  background-color: #008000;
 }
 </style>

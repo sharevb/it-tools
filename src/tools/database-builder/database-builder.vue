@@ -79,7 +79,8 @@ GRANT ${perms} TO ${account.value};
     <NForm label-placement="left" label-width="130px">
       <NFormItem :label="t('tools.database-builder.texts.label-database-type')">
         <NSelect
-          v-model:value="dbType" :options="[
+          v-model:value="dbType"
+          :options="[
             { label: t('tools.database-builder.texts.label-mysql'), value: 'mysql' },
             { label: t('tools.database-builder.texts.label-postgresql'), value: 'postgresql' },
             { label: t('tools.database-builder.texts.label-sql-server'), value: 'sqlserver' },
@@ -102,10 +103,17 @@ GRANT ${perms} TO ${account.value};
       </NFormItem>
 
       <NFormItem :label="t('tools.database-builder.texts.label-password-leave-empty-to-generate')" label-width="auto">
-        <NInput v-model:value="password" type="password" :placeholder="t('tools.database-builder.texts.placeholder-leave-empty-for-random')" />
+        <NInput
+          v-model:value="password"
+          type="password"
+          :placeholder="t('tools.database-builder.texts.placeholder-leave-empty-for-random')"
+        />
       </NFormItem>
 
-      <NFormItem :label="t('tools.database-builder.texts.label-permissions-all-privileges-if-none-selected')" label-width="auto">
+      <NFormItem
+        :label="t('tools.database-builder.texts.label-permissions-all-privileges-if-none-selected')"
+        label-width="auto"
+      >
         <NCheckboxGroup v-model:value="permissions">
           <NCheckbox value="SELECT">
             {{ t('tools.database-builder.texts.tag-select') }}

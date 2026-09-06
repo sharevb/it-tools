@@ -4,12 +4,15 @@ import { compareLists } from './list-comparer.service';
 
 const { t } = useI18n();
 
-const compareConfig = useStorage<{ ignoreCase: boolean; trimItems: boolean; noDuplicate: boolean; separator: string }>('list-cmp:conf', {
-  ignoreCase: false,
-  trimItems: true,
-  noDuplicate: false,
-  separator: '',
-});
+const compareConfig = useStorage<{ ignoreCase: boolean; trimItems: boolean; noDuplicate: boolean; separator: string }>(
+  'list-cmp:conf',
+  {
+    ignoreCase: false,
+    trimItems: true,
+    noDuplicate: false,
+    separator: '',
+  },
+);
 const list1 = ref('');
 const list2 = ref('');
 
@@ -27,25 +30,15 @@ const compareResult = computed(() => {
 <template>
   <div>
     <n-space justify="center" gap-1 align="baseline">
-      <n-form-item
-        :label="t('tools.list-comparer.texts.label-trim-items')"
-        label-placement="left"
-      >
+      <n-form-item :label="t('tools.list-comparer.texts.label-trim-items')" label-placement="left">
         <n-switch v-model:value="compareConfig.trimItems" />
       </n-form-item>
 
-      <n-form-item
-        :label="t('tools.list-comparer.texts.label-ignore-case')"
-        label-placement="left"
-        mb-2
-      >
+      <n-form-item :label="t('tools.list-comparer.texts.label-ignore-case')" label-placement="left" mb-2>
         <n-switch v-model:value="compareConfig.ignoreCase" />
       </n-form-item>
 
-      <n-form-item
-        :label="t('tools.list-comparer.texts.label-separator')"
-        label-placement="left"
-      >
+      <n-form-item :label="t('tools.list-comparer.texts.label-separator')" label-placement="left">
         <n-input
           v-model:value="compareConfig.separator"
           :placeholder="t('tools.list-comparer.texts.placeholder-additional-separator')"
@@ -54,18 +47,8 @@ const compareResult = computed(() => {
     </n-space>
 
     <div flex gap-1>
-      <c-input-text
-        v-model:value="list1"
-        multiline
-        rows="10"
-        :label="t('tools.list-comparer.texts.label-list-1')"
-      />
-      <c-input-text
-        v-model:value="list2"
-        multiline
-        rows="10"
-        :label="t('tools.list-comparer.texts.label-list-2')"
-      />
+      <c-input-text v-model:value="list1" multiline rows="10" :label="t('tools.list-comparer.texts.label-list-1')" />
+      <c-input-text v-model:value="list2" multiline rows="10" :label="t('tools.list-comparer.texts.label-list-2')" />
     </div>
 
     <div v-if="list1 || list2">

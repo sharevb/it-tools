@@ -33,11 +33,11 @@ export function computeHmac({
   keyEncoding,
   encoding,
 }: {
-  plainText: string
-  secret: string
-  hashFunction: AlgoNames
-  keyEncoding: KeyEncoding
-  encoding: Encoding
+  plainText: string;
+  secret: string;
+  hashFunction: AlgoNames;
+  keyEncoding: KeyEncoding;
+  encoding: Encoding;
 }) {
   // normalize secret according to the key encoding
   const key = keyEncoding === 'Text' ? secret : Hex.parse(secret);

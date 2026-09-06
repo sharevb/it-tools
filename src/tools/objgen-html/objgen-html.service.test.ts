@@ -4,7 +4,8 @@ import { xHtml } from './objgen-html.service';
 describe('objgen-html service', () => {
   describe('xHtml', () => {
     it('generate correct HTML', () => {
-      expect(xHtml(`// This is a comment!
+      expect(
+        xHtml(`// This is a comment!
 // HTML generator quick tips:
 // - Each line with content will generate a HTML element
 // - Generate elements by just using their tag names
@@ -132,7 +133,8 @@ container-fluid
   alert alert-primary mt-3 mb-3=Primary Alert
   alert alert-secondary mt-3 mb-3=Secondary Alert
   alert alert-success mt-3 mb-3=Success! Thank you for viewing this demo!
-`)).toBe(`  <div class="container-fluid">
+`),
+      ).toBe(`  <div class="container-fluid">
     <h2>HTML Generator Demo</h2>
     <p>The HTML Live Generator uses a shorthand syntax for quickly prototyping and generating HTML snippets. ObjGen includes support for styling elements using the Bootstrap v4.x toolkit and is used in this demo example.</p>
     <a href="https://getbootstrap.com" target="_blank">Click here for Bootstrap documentation and reference</a>

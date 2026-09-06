@@ -1,8 +1,8 @@
 import type { WgConfigInterface, WgConfigObject, WgConfigPeer } from '../types/WgConfigObject';
 
 interface FindPartInStringOptions {
-  string: string
-  part: string
+  string: string;
+  part: string;
 }
 
 /**
@@ -18,14 +18,14 @@ interface FindPartInStringOptions {
  */
 function findPartInString({ string, part }: FindPartInStringOptions) {
   const parts = string.split('\n');
-  const wantedParts = parts.filter(x => x.includes(part));
+  const wantedParts = parts.filter((x) => x.includes(part));
 
   if (!wantedParts.length) {
     return undefined;
   }
   const values = wantedParts
-    .map(x => x.match(/((?<==).)(.+$)/gm)?.[0]?.trim())
-    .filter(x => x !== undefined) as string[];
+    .map((x) => x.match(/((?<==).)(.+$)/gm)?.[0]?.trim())
+    .filter((x) => x !== undefined) as string[];
 
   if (!values.length) {
     return undefined;
@@ -35,8 +35,8 @@ function findPartInString({ string, part }: FindPartInStringOptions) {
 
 /** Generate a string version of the WgConfig suitable for saving to a Wireguard Config file (wg0.conf) */
 export function generateConfigString(conf: WgConfigObject): {
-  server: string
-  peers: { name: string; config: string }[]
+  server: string;
+  peers: { name: string; config: string }[];
 } {
   const s: string[] = [];
   const { wgInterface, peers, publicKey } = conf;
@@ -69,16 +69,16 @@ export function generateConfigString(conf: WgConfigObject): {
     s.push(`Table = ${table}`);
   }
   if (preUp && preUp.length) {
-    s.push(preUp.map(x => `PreUp = ${x}`).join('\n'));
+    s.push(preUp.map((x) => `PreUp = ${x}`).join('\n'));
   }
   if (postUp && postUp.length) {
-    s.push(postUp.map(x => `PostUp = ${x}`).join('\n'));
+    s.push(postUp.map((x) => `PostUp = ${x}`).join('\n'));
   }
   if (preDown && preDown.length) {
-    s.push(preDown.map(x => `PreDown = ${x}`).join('\n'));
+    s.push(preDown.map((x) => `PreDown = ${x}`).join('\n'));
   }
   if (postDown && postDown.length) {
-    s.push(postDown.map(x => `PostDown = ${x}`).join('\n'));
+    s.push(postDown.map((x) => `PostDown = ${x}`).join('\n'));
   }
 
   const peersConfig: Array<{ name: string; config: string }> = [];
@@ -162,7 +162,7 @@ export function parseConfigString(configString: string) {
   }
 
   const maybeAddress = findPartInString({ string: interfaceString, part: 'Address' })?.[0]?.split(',');
-  const address = maybeAddress ? maybeAddress.filter(x => x !== undefined) as [string, ...string[]] : undefined;
+  const address = maybeAddress ? (maybeAddress.filter((x) => x !== undefined) as [string, ...string[]]) : undefined;
   if (!address || !address.length) {
     throw new Error(`No address found in config:\n${configString}`);
   }
@@ -178,7 +178,9 @@ export function parseConfigString(configString: string) {
   const maybeMTU = findPartInString({ string: interfaceString, part: 'MTU' })?.[0];
   const mtu = maybeMTU ? Number.parseInt(maybeMTU) : undefined;
 
-  const maybeDns = findPartInString({ string: interfaceString, part: 'DNS' })?.[0]?.split(',').filter(x => x !== undefined);
+  const maybeDns = findPartInString({ string: interfaceString, part: 'DNS' })?.[0]
+    ?.split(',')
+    .filter((x) => x !== undefined);
   const dns = maybeDns?.length ? maybeDns : undefined;
 
   const wgInterface: WgConfigInterface = {
@@ -209,46 +211,53 @@ export function parseConfigString(configString: string) {
 
   const peers = !peerStrings
     ? []
-    : peerStrings.map((x) => {
-      if (!x) {
-        return undefined;
-      }
+    : (peerStrings
+        .map((x) => {
+          if (!x) {
+            return undefined;
+          }
 
-      const maybeAllowedIps = findPartInString({ string: x, part: 'AllowedIPs' })?.[0]?.split(',');
-      const allowedIps = maybeAllowedIps ? maybeAllowedIps.filter(y => y !== undefined) as [string, ...string[]] : undefined;
-      if (!allowedIps || !allowedIps.length) {
-        throw new Error(`No allowedIps found in peer:\n${x}`);
-      }
+          const maybeAllowedIps = findPartInString({ string: x, part: 'AllowedIPs' })?.[0]?.split(',');
+          const allowedIps = maybeAllowedIps
+            ? (maybeAllowedIps.filter((y) => y !== undefined) as [string, ...string[]])
+            : undefined;
+          if (!allowedIps || !allowedIps.length) {
+            throw new Error(`No allowedIps found in peer:\n${x}`);
+          }
 
-      const publicKey = findPartInString({ string: x, part: 'PublicKey' })?.[0];
-      if (!publicKey) {
-        throw new Error(`No publicKey found in peer:\n${x}`);
-      }
+          const publicKey = findPartInString({ string: x, part: 'PublicKey' })?.[0];
+          if (!publicKey) {
+            throw new Error(`No publicKey found in peer:\n${x}`);
+          }
 
-      const maybePersistentKeepAlive = findPartInString({ string: interfaceString, part: 'PersistentKeepalive' })?.[0];
-      const persistentKeepalive = maybePersistentKeepAlive ? Number.parseInt(maybePersistentKeepAlive) : undefined;
+          const maybePersistentKeepAlive = findPartInString({
+            string: interfaceString,
+            part: 'PersistentKeepalive',
+          })?.[0];
+          const persistentKeepalive = maybePersistentKeepAlive ? Number.parseInt(maybePersistentKeepAlive) : undefined;
 
-      const peer: WgConfigPeer = {
-        // required keys
-        allowedIps,
-        publicKey,
-        // optional keys
-        persistentKeepalive,
-        name: findPartInString({ string: x, part: 'Name' })?.[0],
-        endpoint: findPartInString({ string: x, part: 'Endpoint' })?.[0],
-        preSharedKey: findPartInString({ string: x, part: 'PresharedKey' })?.[0],
-      };
+          const peer: WgConfigPeer = {
+            // required keys
+            allowedIps,
+            publicKey,
+            // optional keys
+            persistentKeepalive,
+            name: findPartInString({ string: x, part: 'Name' })?.[0],
+            endpoint: findPartInString({ string: x, part: 'Endpoint' })?.[0],
+            preSharedKey: findPartInString({ string: x, part: 'PresharedKey' })?.[0],
+          };
 
-      // remove undefined keys
-      let peerKey: keyof WgConfigPeer;
-      for (peerKey in peer) {
-        if (peer[peerKey] === undefined) {
-          delete peer[peerKey];
-        }
-      }
+          // remove undefined keys
+          let peerKey: keyof WgConfigPeer;
+          for (peerKey in peer) {
+            if (peer[peerKey] === undefined) {
+              delete peer[peerKey];
+            }
+          }
 
-      return peer;
-    }).filter(x => x !== undefined) as WgConfigPeer[];
+          return peer;
+        })
+        .filter((x) => x !== undefined) as WgConfigPeer[]);
 
   const returnVal: Pick<WgConfigObject, 'peers' | 'wgInterface'> = {
     wgInterface,

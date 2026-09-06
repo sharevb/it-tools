@@ -6,8 +6,7 @@ const { t } = useI18n();
 function goToHomeOrSettings() {
   if (isWorkIntervalSet()) {
     store.commit('goToHome');
-  }
-  else {
+  } else {
     store.commit('goToSettings');
   }
 }
@@ -30,21 +29,21 @@ setTimeout(() => {
 
 <style scoped>
 .splash-screen {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: var(--pomodoro-app-accent-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--pomodoro-app-accent-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 .splash-title {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
 }
 .splash-loader {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 </style>

@@ -8,7 +8,7 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
-const cardKeys = [...Object.keys(cards).filter(k => k !== 'joker'), 'joker', 'joker'];
+const cardKeys = [...Object.keys(cards).filter((k) => k !== 'joker'), 'joker', 'joker'];
 type CardNames = keyof typeof cards;
 
 const numberOfCards = useQueryParamOrStorage({ name: 'cards', storageName: 'card-picker:n', defaultValue: 5 });
@@ -47,23 +47,41 @@ function translateName(cardId: string) {
 
 const cardPickedString = computed(() => cardPicked.value.map(translateName).join(', '));
 
-const { copy } = useCopy({ source: cardPickedString, text: t('tools.card-picker.texts.text-cards-picked-copied-to-the-clipboard') });
+const { copy } = useCopy({
+  source: cardPickedString,
+  text: t('tools.card-picker.texts.text-cards-picked-copied-to-the-clipboard'),
+});
 </script>
 
 <template>
   <c-card>
     <n-space justify="space-around" mb-1>
-      <img v-for="(card, index) in cardPicked" :key="index" style="width:90px" mr-1 :src="`data:image/svg+xml;base64,${cards[card as CardNames]}`">
+      <img
+        v-for="(card, index) in cardPicked"
+        :key="index"
+        style="width: 90px"
+        mr-1
+        :src="`data:image/svg+xml;base64,${cards[card as CardNames]}`"
+      />
     </n-space>
     <div mb-2>
       <textarea-copyable :value="cardPickedString" readonly mb-1 />
     </div>
     <div flex justify-center gap-3>
       <n-form-item :label="t('tools.card-picker.texts.label-number-of-cards')" label-placement="left">
-        <n-input-number-i18n v-model:value="numberOfCards" min="1" :max="maxCards" :placeholder="t('tools.card-picker.texts.placeholder-number-of-cards-to-pick')" />
+        <n-input-number-i18n
+          v-model:value="numberOfCards"
+          min="1"
+          :max="maxCards"
+          :placeholder="t('tools.card-picker.texts.placeholder-number-of-cards-to-pick')"
+        />
       </n-form-item>
       <n-form-item :label="t('tools.card-picker.texts.label-number-of-packs')" label-placement="left">
-        <n-input-number-i18n v-model:value="numberOfPacks" min="1" :placeholder="t('tools.card-picker.texts.placeholder-number-of-card-packs-to-pick-in')" />
+        <n-input-number-i18n
+          v-model:value="numberOfPacks"
+          min="1"
+          :placeholder="t('tools.card-picker.texts.placeholder-number-of-card-packs-to-pick-in')"
+        />
       </n-form-item>
     </div>
     <div mb-4 flex justify-center>

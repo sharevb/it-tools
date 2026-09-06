@@ -26,22 +26,26 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 const { t } = useI18n();
 
 const languages = {
-  'English': englishWordList,
+  English: englishWordList,
   'Chinese simplified': chineseSimplifiedWordList,
   'Chinese traditional': chineseTraditionalWordList,
-  'Czech': czechWordList,
-  'French': frenchWordList,
-  'Italian': italianWordList,
-  'Japanese': japaneseWordList,
-  'Korean': koreanWordList,
-  'Portuguese': portugueseWordList,
-  'Spanish': spanishWordList,
+  Czech: czechWordList,
+  French: frenchWordList,
+  Italian: italianWordList,
+  Japanese: japaneseWordList,
+  Korean: koreanWordList,
+  Portuguese: portugueseWordList,
+  Spanish: spanishWordList,
 };
 
 const entropy = ref(generateEntropy());
 const passphraseInput = ref('');
 
-const language = useQueryParamOrStorage<keyof typeof languages>({ name: 'lang', storageName: 'bip39-gen:l', defaultValue: 'English' });
+const language = useQueryParamOrStorage<keyof typeof languages>({
+  name: 'lang',
+  storageName: 'bip39-gen:l',
+  defaultValue: 'English',
+});
 
 const passphrase = computed({
   get() {
@@ -57,11 +61,11 @@ const entropyValidation = useValidation({
   source: entropy,
   rules: [
     {
-      validator: value => value === '' || (value.length <= 32 && value.length >= 16 && value.length % 4 === 0),
+      validator: (value) => value === '' || (value.length <= 32 && value.length >= 16 && value.length % 4 === 0),
       message: t('tools.bip39-generator.texts.message-entropy-length-should-be-16-32-and-be-a-multiple-of-4'),
     },
     {
-      validator: value => /^[a-fA-F0-9]*$/.test(value),
+      validator: (value) => /^[a-fA-F0-9]*$/.test(value),
       message: t('tools.bip39-generator.texts.message-entropy-should-be-an-hexadecimal-string'),
     },
   ],
@@ -71,7 +75,7 @@ const mnemonicValidation = useValidation({
   source: passphrase,
   rules: [
     {
-      validator: value => isNotThrowing(() => mnemonicToEntropy(value, languages[language.value])),
+      validator: (value) => isNotThrowing(() => mnemonicToEntropy(value, languages[language.value])),
       message: t('tools.bip39-generator.texts.message-invalid-mnemonic'),
     },
   ],
@@ -81,8 +85,14 @@ function refreshEntropy() {
   entropy.value = generateEntropy();
 }
 
-const { copy: copyEntropy } = useCopy({ source: entropy, text: t('tools.bip39-generator.texts.text-entropy-copied-to-the-clipboard') });
-const { copy: copyPassphrase } = useCopy({ source: passphrase, text: t('tools.bip39-generator.texts.text-passphrase-copied-to-the-clipboard') });
+const { copy: copyEntropy } = useCopy({
+  source: entropy,
+  text: t('tools.bip39-generator.texts.text-entropy-copied-to-the-clipboard'),
+});
+const { copy: copyPassphrase } = useCopy({
+  source: passphrase,
+  text: t('tools.bip39-generator.texts.text-passphrase-copied-to-the-clipboard'),
+});
 </script>
 
 <template>
@@ -103,7 +113,10 @@ const { copy: copyPassphrase } = useCopy({ source: passphrase, text: t('tools.bi
           :validation-status="entropyValidation.status"
         >
           <n-input-group>
-            <c-input-text v-model:value="entropy" :placeholder="t('tools.bip39-generator.texts.placeholder-your-string')" />
+            <c-input-text
+              v-model:value="entropy"
+              :placeholder="t('tools.bip39-generator.texts.placeholder-your-string')"
+            />
 
             <c-button @click="refreshEntropy()">
               <n-icon size="22">
@@ -125,7 +138,11 @@ const { copy: copyPassphrase } = useCopy({ source: passphrase, text: t('tools.bi
       :validation-status="mnemonicValidation.status"
     >
       <n-input-group>
-        <c-input-text v-model:value="passphrase" :placeholder="t('tools.bip39-generator.texts.placeholder-your-mnemonic')" raw-text />
+        <c-input-text
+          v-model:value="passphrase"
+          :placeholder="t('tools.bip39-generator.texts.placeholder-your-mnemonic')"
+          raw-text
+        />
 
         <c-button @click="copyPassphrase()">
           <n-icon size="22" :component="Copy" />

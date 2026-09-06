@@ -20,7 +20,16 @@ const { selected } = toRefs(props);
       'text-white': selected,
       'bg-primary': selected,
     }"
-    w-full flex cursor-pointer items-center overflow-hidden rounded pa-3 transition hover:bg-primary hover:text-white
+    w-full
+    flex
+    cursor-pointer
+    items-center
+    overflow-hidden
+    rounded
+    pa-3
+    transition
+    hover:bg-primary
+    hover:text-white
     @click="() => emit('activated', option)"
   >
     <component :is="option.icon" v-if="option.icon" mr-3 h-30px w-30px shrink-0 op-50 />
@@ -28,14 +37,8 @@ const { selected } = toRefs(props);
     <div flex-1 overflow-hidden>
       <div truncate font-bold lh-tight op-90>
         {{ option.name }}
-        <World
-          v-if="option.externAccessDescription"
-          class="tool-privacy-icon"
-        />
-        <DeviceDesktop
-          v-else
-          class="tool-privacy-icon"
-        />
+        <World v-if="option.externAccessDescription" class="tool-privacy-icon" />
+        <DeviceDesktop v-else class="tool-privacy-icon" />
       </div>
 
       <div v-if="option.description" truncate lh-tight op-60>
@@ -48,6 +51,6 @@ const { selected } = toRefs(props);
 <style lang="css" scoped>
 .tool-privacy-icon {
   display: inline-block;
-  height: .9em;
+  height: 0.9em;
 }
 </style>

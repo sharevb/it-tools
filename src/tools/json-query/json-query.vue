@@ -10,7 +10,9 @@ const { t } = useI18n();
 const indent = 2;
 
 const jsonQuery = useQueryParam({
-  tool: 'json-query', name: 'q', defaultValue: `
+  tool: 'json-query',
+  name: 'q',
+  defaultValue: `
   .friends 
     | filter(.city == "New York") 
     | sort(.age) 
@@ -33,8 +35,7 @@ const result = computed(() => {
   try {
     const obj = JSON.parseBigNum(json.value);
     return JSON.stringify(jsonquery(obj, jsonQuery.value), null, indent);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -43,7 +44,7 @@ const jsonValidation = useValidation({
   source: json,
   rules: [
     {
-      validator: v => JSON5.parse(v),
+      validator: (v) => JSON5.parse(v),
       message: t('tools.json-query.texts.message-provided-json-is-not-valid'),
     },
   ],

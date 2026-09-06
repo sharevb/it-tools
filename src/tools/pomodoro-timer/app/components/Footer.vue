@@ -6,12 +6,12 @@
 
 <style scoped>
 footer {
-    text-align: right;
-    font-size: 0.875rem;
-    color: var(--pomodoro-dark-text-color);
+  text-align: right;
+  font-size: 0.875rem;
+  color: var(--pomodoro-dark-text-color);
 }
 
 footer > div {
-    padding: 0.3125rem;
+  padding: 0.3125rem;
 }
 </style>

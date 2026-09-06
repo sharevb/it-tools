@@ -19,8 +19,7 @@ export function extractPangolinLabelsFromCompose(compose: any) {
           }
         }
       }
-    }
-    else {
+    } else {
       for (const [key, value] of Object.entries(labels)) {
         if (key.startsWith('pangolin.')) {
           collected[key] = String(value);
@@ -60,10 +59,7 @@ function assignNested(target: any, path: string, value: any) {
   }
 
   // Convert "a.b[0].c" → ["a", "b", "0", "c"]
-  const segments = path
-    .replace(/\]/g, '')
-    .split(/\.|\[/)
-    .filter(Boolean);
+  const segments = path.replace(/\]/g, '').split(/\.|\[/).filter(Boolean);
 
   let current = target;
 
@@ -89,8 +85,7 @@ function assignNested(target: any, path: string, value: any) {
     // If wrong type, fix it
     if (shouldBeArray && !Array.isArray(current[key])) {
       current[key] = [];
-    }
-    else if (!shouldBeArray && typeof current[key] !== 'object') {
+    } else if (!shouldBeArray && typeof current[key] !== 'object') {
       current[key] = {};
     }
 
@@ -133,11 +128,9 @@ function flatten(obj: any, prefix: string, out: Record<string, string>) {
       value.forEach((item, i) => {
         flatten(item, `${path}[${i}]`, out);
       });
-    }
-    else if (value && typeof value === 'object') {
+    } else if (value && typeof value === 'object') {
       flatten(value, path, out);
-    }
-    else {
+    } else {
       out[path] = String(value);
     }
   }

@@ -10,8 +10,7 @@ const inputSharePointUrl = useQueryParam({ tool: 'sharepoint-decoder', name: 'ur
 const outputDecodedUrl = computed(() => {
   try {
     return decodeSharePointsURL(inputSharePointUrl.value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });

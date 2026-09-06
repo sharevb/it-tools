@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import yaml from 'yaml';
-import { blueprintToLabels, extractPangolinLabelsFromCompose, pangolinLabelsToBlueprint } from './docker-pangolin-labels.service';
+import {
+  blueprintToLabels,
+  extractPangolinLabelsFromCompose,
+  pangolinLabelsToBlueprint,
+} from './docker-pangolin-labels.service';
 
 const composeYml = `
 services:
@@ -73,18 +77,18 @@ describe('Pangolin Compose Extraction', () => {
       'public-resources': {
         nginx: {
           'full-domain': 'nginx.fosrl.io',
-          'headers': [
+          headers: [
             {
               name: 'X-Example-Header',
               value: 'example-value',
             },
           ],
-          'name': 'nginx',
-          'protocol': 'http',
-          'targets': [
+          name: 'nginx',
+          protocol: 'http',
+          targets: [
             {
-              'method': 'http',
-              'path': '/path',
+              method: 'http',
+              path: '/path',
               'path-match': 'prefix',
             },
             {

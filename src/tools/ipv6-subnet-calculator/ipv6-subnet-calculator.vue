@@ -22,9 +22,9 @@ const ipValidationRules = [
 ];
 
 const sections: {
-  label: string
-  getValue: (blocks: Address6) => string | undefined
-  undefinedFallback?: string
+  label: string;
+  getValue: (blocks: Address6) => string | undefined;
+  undefinedFallback?: string;
 }[] = [
   {
     label: t('tools.ipv6-subnet-calculator.texts.label-full-address'),
@@ -36,7 +36,7 @@ const sections: {
   },
   {
     label: t('tools.ipv6-subnet-calculator.texts.label-address-as-binary'),
-    getValue: (block: Address6) => (block.binaryZeroPad()).match(/.{8}/g)?.join(':') ?? '',
+    getValue: (block: Address6) => block.binaryZeroPad().match(/.{8}/g)?.join(':') ?? '',
   },
   {
     label: t('tools.ipv6-subnet-calculator.texts.label-address-as-integer'),
@@ -48,7 +48,7 @@ const sections: {
   },
   {
     label: t('tools.ipv6-subnet-calculator.texts.label-address-as-hex'),
-    getValue: (block: Address6) => (block.getBitsBase16(0, 128)),
+    getValue: (block: Address6) => block.getBitsBase16(0, 128),
   },
   {
     label: t('tools.ipv6-subnet-calculator.texts.label-network-mask-size'),
@@ -56,7 +56,11 @@ const sections: {
   },
   {
     label: t('tools.ipv6-subnet-calculator.texts.label-network-mask'),
-    getValue: (block: Address6) => BigInt(`0b${'1'.repeat(block.subnetMask).padEnd(128, '0')}`).toString(16).match(/.{4}/g)?.join(':') ?? '',
+    getValue: (block: Address6) =>
+      BigInt(`0b${'1'.repeat(block.subnetMask).padEnd(128, '0')}`)
+        .toString(16)
+        .match(/.{4}/g)
+        ?.join(':') ?? '',
   },
   {
     label: t('tools.ipv6-subnet-calculator.texts.label-network-mask-as-integer'),
@@ -75,7 +79,7 @@ const sections: {
   },
   {
     label: t('tools.ipv6-subnet-calculator.texts.label-total-networks'),
-    getValue: ({ subnetMask }) => subnetMask <= 64 ? (BigInt(2) ** BigInt(64 - subnetMask)).toString() : '',
+    getValue: ({ subnetMask }) => (subnetMask <= 64 ? (BigInt(2) ** BigInt(64 - subnetMask)).toString() : ''),
   },
   {
     label: t('tools.ipv6-subnet-calculator.texts.label-first-address'),

@@ -13,7 +13,7 @@ const regexValidation = useValidation({
   rules: [
     {
       message: t('tools.duplicate-line-finder.texts.message-invalid-regex-0'),
-      validator: value => new RegExp(value),
+      validator: (value) => new RegExp(value),
       getErrorMessage: (value) => {
         const _ = new RegExp(value);
         return '';
@@ -25,7 +25,12 @@ const regexValidation = useValidation({
 const duplicatedLines = computed(() => {
   const clean = new RegExp(cleaningRegex.value, 'g');
   const lines = input.value.split('\n');
-  return _.uniq(_.filter(lines.map(val => val.replace(clean, '')), (val, i, iteratee) => val && _.includes(iteratee, val, i + 1))).join('\n');
+  return _.uniq(
+    _.filter(
+      lines.map((val) => val.replace(clean, '')),
+      (val, i, iteratee) => val && _.includes(iteratee, val, i + 1),
+    ),
+  ).join('\n');
 });
 </script>
 

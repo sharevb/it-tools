@@ -8,32 +8,26 @@ const { t } = useI18n();
 const decryptedInput = ref('');
 const encryptPassword = ref('');
 const encryptId = ref('');
-const cryptedOutput = computedAsync(
-  async () => {
-    try {
-      const v = new Vault({ password: encryptPassword.value });
-      return await v.encrypt(decryptedInput.value, encryptId.value);
-    }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+const cryptedOutput = computedAsync(async () => {
+  try {
+    const v = new Vault({ password: encryptPassword.value });
+    return await v.encrypt(decryptedInput.value, encryptId.value);
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 
 const cryptedInput = ref('');
 const decryptPassword = ref('');
-const decryptedOutput = computedAsync(
-  async () => {
-    try {
-      const v = new Vault({ password: decryptPassword.value });
-      // handle mac \r
-      return (await v.decrypt(cryptedInput.value?.replace(/\r(?!\n)/, '\n'), undefined)) ?? '';
-    }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+const decryptedOutput = computedAsync(async () => {
+  try {
+    const v = new Vault({ password: decryptPassword.value });
+    // handle mac \r
+    return (await v.decrypt(cryptedInput.value?.replace(/\r(?!\n)/, '\n'), undefined)) ?? '';
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 </script>
 
 <template>
@@ -80,7 +74,9 @@ const decryptedOutput = computedAsync(
       v-model:value="cryptedInput"
       :placeholder="t('tools.ansible-vault-crypt-decrypt.texts.placeholder-put-your-encrypted-string-here')"
       :label="t('tools.ansible-vault-crypt-decrypt.texts.label-string-to-decrypt')"
-      raw-text multiline mb-5
+      raw-text
+      multiline
+      mb-5
       rows="5"
     />
 

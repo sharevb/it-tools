@@ -1,18 +1,18 @@
 interface RegExpGroupIndices {
-  [name: string]: [number, number]
+  [name: string]: [number, number];
 }
 interface RegExpIndices extends Array<[number, number]> {
-  groups: RegExpGroupIndices
+  groups: RegExpGroupIndices;
 }
 interface RegExpExecArrayWithIndices extends RegExpExecArray {
-  indices: RegExpIndices
+  indices: RegExpIndices;
 }
 interface GroupCapture {
-  name: string
-  value: string
-  start: number
-  end: number
-};
+  name: string;
+  value: string;
+  start: number;
+  end: number;
+}
 
 export function matchRegex(regex: string, text: string, flags: string) {
   // if (regex === '' || text === '') {

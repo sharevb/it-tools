@@ -13,8 +13,8 @@ function escapeMarkdown(text: string) {
 }
 
 interface SpineItems {
-  items: SpineItem[]
-  get(href: string | undefined): Section
+  items: SpineItem[];
+  get(href: string | undefined): Section;
 }
 export async function extractTextAndMetaFromEPUB(file: File, format: 'text' | 'markdown') {
   let turndownService: TurndownService;
@@ -50,7 +50,7 @@ export async function extractTextAndMetaFromEPUB(file: File, format: 'text' | 'm
   await book.ready;
 
   // Ensure spine is loaded
-  const spine = await ((book.loaded.spine as unknown) as Promise<SpineItems>);
+  const spine = await (book.loaded.spine as unknown as Promise<SpineItems>);
 
   let text = '';
 
@@ -58,12 +58,11 @@ export async function extractTextAndMetaFromEPUB(file: File, format: 'text' | 'm
   for (const spineItem of spine.items) {
     // Load the item (returns XHTML)
     const section = spine.get(spineItem.href);
-    const content = await ((section.load(book.load.bind(book)) as unknown) as Promise<HTMLElement>);
+    const content = await (section.load(book.load.bind(book)) as unknown as Promise<HTMLElement>);
 
     if (format === 'markdown') {
       text += `${turndownService!.turndown(content.ownerDocument?.body?.innerHTML)}\n\n`;
-    }
-    else {
+    } else {
       text += `${content.ownerDocument?.body?.textContent}\n\n`;
     }
 

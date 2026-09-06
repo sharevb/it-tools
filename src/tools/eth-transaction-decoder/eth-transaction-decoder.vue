@@ -11,8 +11,7 @@ const decoded = computed(() => {
   error.value = '';
   try {
     return decodeTransaction(abi.value, txJson.value);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
   }
 });
@@ -21,10 +20,24 @@ const decoded = computed(() => {
 <template>
   <div>
     <NFormItem :label="t('tools.eth-transaction-decoder.texts.label-smart-contract-abi')" mb-2>
-      <NInput v-model:value="abi" type="textarea" :placeholder="t('tools.eth-transaction-decoder.texts.placeholder-paste-abi-json-here')" rows="6" />
+      <NInput
+        v-model:value="abi"
+        type="textarea"
+        :placeholder="t('tools.eth-transaction-decoder.texts.placeholder-paste-abi-json-here')"
+        rows="6"
+      />
     </NFormItem>
     <NFormItem :label="t('tools.eth-transaction-decoder.texts.label-raw-transaction-0x-or-json-transaction')" mb-2>
-      <NInput v-model:value="txJson" type="textarea" :placeholder="t('tools.eth-transaction-decoder.texts.placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x')" rows="6" />
+      <NInput
+        v-model:value="txJson"
+        type="textarea"
+        :placeholder="
+          t(
+            'tools.eth-transaction-decoder.texts.placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x',
+          )
+        "
+        rows="6"
+      />
     </NFormItem>
 
     <n-alert v-if="error">

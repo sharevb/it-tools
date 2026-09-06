@@ -17,8 +17,7 @@ function renderSwagger() {
     let parsed: any;
     try {
       parsed = json5.parse(manifestText.value);
-    }
-    catch {
+    } catch {
       parsed = yaml.parse(manifestText.value);
     }
 
@@ -26,8 +25,7 @@ function renderSwagger() {
       spec: parsed,
       domNode: swaggerContainer.value,
     });
-  }
-  catch (e: any) {
+  } catch (e: any) {
     errorMessage.value = e.toString();
   }
 }
@@ -54,7 +52,7 @@ function renderSwagger() {
       {{ errorMessage }}
     </c-alert>
 
-    <c-card :title="t('tools.swagger-ui-tester.texts.title-swagger-ui')" style="background-color: #fff;">
+    <c-card :title="t('tools.swagger-ui-tester.texts.title-swagger-ui')" style="background-color: #fff">
       <div ref="swaggerContainer" class="swagger-ui" />
     </c-card>
   </n-space>

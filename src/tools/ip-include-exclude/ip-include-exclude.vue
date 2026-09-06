@@ -7,12 +7,23 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();
 
-const allowedRanges = useQueryParamOrStorage({ name: 'allow', storageName: 'ip-inc-exc:allow', defaultValue: '192.168.0.1/24' }); // NOSONAR
-const disallowedRanges = useQueryParamOrStorage({ name: 'disallow', storageName: 'ip-inc-exc:disallow', defaultValue: '192.168.0.6' }); // NOSONAR
+const allowedRanges = useQueryParamOrStorage({
+  name: 'allow',
+  storageName: 'ip-inc-exc:allow',
+  defaultValue: '192.168.0.1/24',
+}); // NOSONAR
+const disallowedRanges = useQueryParamOrStorage({
+  name: 'disallow',
+  storageName: 'ip-inc-exc:disallow',
+  defaultValue: '192.168.0.6',
+}); // NOSONAR
 
-const result = computed(() => substractCIDRs({
-  allowedRanges: allowedRanges.value, disallowedRanges: disallowedRanges.value,
-}));
+const result = computed(() =>
+  substractCIDRs({
+    allowedRanges: allowedRanges.value,
+    disallowedRanges: disallowedRanges.value,
+  }),
+);
 </script>
 
 <template>

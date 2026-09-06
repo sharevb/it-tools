@@ -24,16 +24,16 @@ import { translate as t } from '@/plugins/i18n.plugin';
 
 const props = withDefaults(
   defineProps<{
-    value: string
-    followHeightOf?: HTMLElement | null
-    language?: string
-    copyPlacement?: 'top-right' | 'bottom-right' | 'outside' | 'none'
-    copyMessage?: string
-    wordWrap?: boolean
-    downloadFileName?: string
-    downloadButtonText?: string
-    scrollable?: boolean
-    maxHeight?: string
+    value: string;
+    followHeightOf?: HTMLElement | null;
+    language?: string;
+    copyPlacement?: 'top-right' | 'bottom-right' | 'outside' | 'none';
+    copyMessage?: string;
+    wordWrap?: boolean;
+    downloadFileName?: string;
+    downloadButtonText?: string;
+    scrollable?: boolean;
+    maxHeight?: string;
   }>(),
   {
     followHeightOf: null,
@@ -65,36 +65,46 @@ hljs.registerLanguage('python', pythonHljs);
 hljs.registerLanguage('php', phpHljs);
 hljs.registerLanguage('protobuf', protobufHljs);
 
-const { value, language, followHeightOf, copyPlacement, copyMessage, downloadFileName, downloadButtonText } = toRefs(props);
+const { value, language, followHeightOf, copyPlacement, copyMessage, downloadFileName, downloadButtonText } =
+  toRefs(props);
 const { height } = followHeightOf.value ? useElementSize(followHeightOf) : { height: ref(null) };
 
 const scrollbarRef = ref();
 
 // Watch for content changes and scroll to bottom
-watch(value, () => {
-  nextTick(() => {
-    if (scrollbarRef.value) {
-      scrollbarRef.value.scrollTo({ top: scrollbarRef.value.scrollbarInstRef.containerRef.scrollHeight });
-    }
-  });
-}, { flush: 'post' });
+watch(
+  value,
+  () => {
+    nextTick(() => {
+      if (scrollbarRef.value) {
+        scrollbarRef.value.scrollTo({ top: scrollbarRef.value.scrollbarInstRef.containerRef.scrollHeight });
+      }
+    });
+  },
+  { flush: 'post' },
+);
 
 const { copy, isJustCopied } = useCopy({ source: value, createToast: false });
-const tooltipText = computed(() => isJustCopied.value ? t('textareaCopyable.copied') : copyMessage.value);
+const tooltipText = computed(() => (isJustCopied.value ? t('textareaCopyable.copied') : copyMessage.value));
 
 const valueBase64 = computed(() => Base64.encode(value.value));
-const { download } = useDownloadFileFromBase64(
-  {
-    source: valueBase64,
-    filename: downloadFileName,
-  });
+const { download } = useDownloadFileFromBase64({
+  source: valueBase64,
+  filename: downloadFileName,
+});
 </script>
 
 <template>
   <div style="overflow-x: hidden; width: 100%">
     <c-card
       relative
-      :style="copyPlacement === 'top-right' ? 'padding-top: 50px' : (copyPlacement === 'bottom-right' ? 'padding-bottom: 50px' : '')"
+      :style="
+        copyPlacement === 'top-right'
+          ? 'padding-top: 50px'
+          : copyPlacement === 'bottom-right'
+            ? 'padding-bottom: 50px'
+            : ''
+      "
     >
       <n-scrollbar
         ref="scrollbarRef"
@@ -112,8 +122,9 @@ const { download } = useDownloadFileFromBase64(
       </n-scrollbar>
       <div
         v-if="value && copyPlacement !== 'none'"
-        absolute right-10px
-        :class="copyPlacement === 'top-right' ? 'top-10px' : (copyPlacement === 'bottom-right' ? 'bottom-10px' : '')"
+        absolute
+        right-10px
+        :class="copyPlacement === 'top-right' ? 'top-10px' : copyPlacement === 'bottom-right' ? 'bottom-10px' : ''"
         :style="scrollable ? 'z-index: 10; background: var(--bg-color); border-radius: 50%; padding: 2px;' : ''"
       >
         <c-tooltip v-if="value && copyPlacement !== 'outside'" :tooltip="tooltipText" position="left">

@@ -32,7 +32,12 @@ const rules: UseValidationRule<string>[] = [
       <n-form-item :label="t('tools.xml-formatter.texts.label-collapse-content')" label-placement="left">
         <n-switch v-model:value="collapseContent" />
       </n-form-item>
-      <n-form-item :label="t('tools.xml-formatter.texts.label-indent-size')" label-placement="left" label-width="100" :show-feedback="false">
+      <n-form-item
+        :label="t('tools.xml-formatter.texts.label-indent-size')"
+        label-placement="left"
+        label-width="100"
+        :show-feedback="false"
+      >
         <n-input-number-i18n v-model:value="indentSize" min="0" max="10" w-100px />
       </n-form-item>
     </div>

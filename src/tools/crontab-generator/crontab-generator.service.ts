@@ -11,7 +11,7 @@ function looksLikeAwsExpression(cronExpression: string) {
   return /(?:^|\s)\?(?:\s|$)/.test(cronExpression);
 }
 
-export function getLastExecutionTimes(cronExpression: string, tz?: string | undefined, count: number = 5) {
+export function getLastExecutionTimes(cronExpression: string, tz?: string, count: number = 5) {
   const cronType = getCronType(cronExpression);
 
   if (cronType === 'standard') {
@@ -46,8 +46,7 @@ function isStandardExpression(cronExpression: string) {
     CronExpressionParser.parse(cronExpression);
     cronstrue.toString(cronExpression, { throwExceptionOnParseError: true });
     return true;
-  }
-  catch (_) {
+  } catch (_) {
     return false;
   }
 }
@@ -57,8 +56,7 @@ function isAwsExpression(cronExpression: string) {
     const parsed = new EventCronParser(cronExpression);
     parsed.validate();
     return true;
-  }
-  catch (_) {
+  } catch (_) {
     return false;
   }
 }

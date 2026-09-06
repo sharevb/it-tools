@@ -10,9 +10,7 @@ const inputText = ref('');
 const outputRaw = ref('');
 const error = ref('');
 
-const outputEncSyntax = computed(() =>
-  outputRaw.value ? `ENC(${outputRaw.value})` : '',
-);
+const outputEncSyntax = computed(() => (outputRaw.value ? `ENC(${outputRaw.value})` : ''));
 
 const isEncryptMode = computed(() => mode.value === 'encrypt');
 
@@ -24,12 +22,10 @@ function run() {
 
     if (isEncryptMode.value) {
       outputRaw.value = jasypt.encrypt(inputText.value);
-    }
-    else {
+    } else {
       outputRaw.value = jasypt.decrypt(inputText.value.trim().replace(/^ENC\(|\)$/g, ''));
     }
-  }
-  catch (err: any) {
+  } catch (err: any) {
     outputRaw.value = '';
     error.value = err.toString();
   }
@@ -59,14 +55,22 @@ function run() {
         />
       </NFormItem>
 
-      <NFormItem :label="isEncryptMode ? t('tools.jasypt-string-encryption.texts.plain-text') : t('tools.jasypt-string-encryption.texts.jasypt-encrypted-string')">
+      <NFormItem
+        :label="
+          isEncryptMode
+            ? t('tools.jasypt-string-encryption.texts.plain-text')
+            : t('tools.jasypt-string-encryption.texts.jasypt-encrypted-string')
+        "
+      >
         <NInput
           v-model:value="inputText"
           type="textarea"
           rows="6"
-          :placeholder="isEncryptMode
-            ? t('tools.jasypt-string-encryption.texts.text-to-encrypt-e-g-db-password')
-            : t('tools.jasypt-string-encryption.texts.encrypted-value-e-g-enc-or-raw-jasypt-string')"
+          :placeholder="
+            isEncryptMode
+              ? t('tools.jasypt-string-encryption.texts.text-to-encrypt-e-g-db-password')
+              : t('tools.jasypt-string-encryption.texts.encrypted-value-e-g-enc-or-raw-jasypt-string')
+          "
         />
       </NFormItem>
 
@@ -81,9 +85,25 @@ function run() {
       </c-alert>
 
       <NCard v-if="outputRaw" :title="t('tools.jasypt-string-encryption.texts.title-results')">
-        <input-copyable :label="t('tools.jasypt-string-encryption.texts.label-decoded')" label-position="left" :value="outputRaw" mb-1 />
-        <input-copyable v-if="isEncryptMode" :label="t('tools.jasypt-string-encryption.texts.label-raw')" label-position="left" :value="outputRaw" mb-1 />
-        <input-copyable v-if="isEncryptMode" :label="t('tools.jasypt-string-encryption.texts.label-enc-form')" label-position="left" :value="outputEncSyntax" />
+        <input-copyable
+          :label="t('tools.jasypt-string-encryption.texts.label-decoded')"
+          label-position="left"
+          :value="outputRaw"
+          mb-1
+        />
+        <input-copyable
+          v-if="isEncryptMode"
+          :label="t('tools.jasypt-string-encryption.texts.label-raw')"
+          label-position="left"
+          :value="outputRaw"
+          mb-1
+        />
+        <input-copyable
+          v-if="isEncryptMode"
+          :label="t('tools.jasypt-string-encryption.texts.label-enc-form')"
+          label-position="left"
+          :value="outputEncSyntax"
+        />
       </NCard>
     </NForm>
   </div>

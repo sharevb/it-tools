@@ -24,7 +24,7 @@ Get-Process | Select-Object -First 1 | Format-List *
 ## 📦 Variables
 
 | Syntax                          | Description                                   |
-|---------------------------------|-----------------------------------------------|
+| ------------------------------- | --------------------------------------------- |
 | `$var = "string"`               | Assign a variable                             |
 | `[int]$var = 5`                 | Strongly typed variable                       |
 | `[ValidateRange(1,9)][int]$x=1` | Typed and constrained                         |
@@ -38,7 +38,7 @@ Get-Process | Select-Object -First 1 | Format-List *
 ## 📚 Arrays
 
 | Syntax                                                  | Description                                       |
-|---------------------------------------------------------|---------------------------------------------------|
+| ------------------------------------------------------- | ------------------------------------------------- |
 | `"a","b","c"`                                           | Array of strings                                  |
 | `@()`                                                   | Empty array                                       |
 | `,"hi"`                                                 | Array of exactly one element                      |
@@ -56,7 +56,7 @@ Get-Process | Select-Object -First 1 | Format-List *
 ## 🗂 Hash Tables
 
 | Syntax                                     | Description                |
-|--------------------------------------------|----------------------------|
+| ------------------------------------------ | -------------------------- |
 | `$hash = @{}`                              | Empty hash table           |
 | `@{foo=1; bar='two'}`                      | Initialise with values     |
 | `[ordered]@{a=1; b=2}`                     | Keeps insertion order      |
@@ -69,18 +69,18 @@ Get-Process | Select-Object -First 1 | Format-List *
 
 ## 🔤 Strings
 
-| Syntax                           | Description                                           |
-|----------------------------------|-------------------------------------------------------|
-| `"$var expands"`                 | Double quotes interpolate                             |
-| `'$var does not'`                | Single quotes are literal                             |
-| `"Total: $($items.Count)"`       | `$( )` evaluates an expression inside a string        |
-| `"{0} of {1}" -f $a, $b`         | The format operator                                   |
-| `` "col1`tcol2`n" ``             | `` `t `` tab, `` `n `` newline, `` `` ` `` `` escapes |
-| `@"…"@` / `@'…'@`                | Here-string, expanding / literal                      |
-| `"abc".ToUpper()`                | .NET methods work on strings                          |
-| `$s -split ','` / `$a -join ','` | Split and join                                        |
-| `$s.Trim()` / `.PadLeft(5)`      | Trim and pad                                          |
-| `$s -replace 'a','b'`            | Regex replace                                         |
+| Syntax                           | Description                                       |
+| -------------------------------- | ------------------------------------------------- |
+| `"$var expands"`                 | Double quotes interpolate                         |
+| `'$var does not'`                | Single quotes are literal                         |
+| `"Total: $($items.Count)"`       | `$( )` evaluates an expression inside a string    |
+| `"{0} of {1}" -f $a, $b`         | The format operator                               |
+| ``"col1`tcol2`n"``               | `` `t `` tab, `` `n `` newline, ` ` ` ` ` escapes |
+| `@"…"@` / `@'…'@`                | Here-string, expanding / literal                  |
+| `"abc".ToUpper()`                | .NET methods work on strings                      |
+| `$s -split ','` / `$a -join ','` | Split and join                                    |
+| `$s.Trim()` / `.PadLeft(5)`      | Trim and pad                                      |
+| `$s -replace 'a','b'`            | Regex replace                                     |
 
 ## 💬 Comments & Escaping
 
@@ -104,7 +104,7 @@ Get-ChildItem -Path C:\ `
 ## 📁 Files & Paths
 
 | Command                                                   | Does                                  |
-|-----------------------------------------------------------|---------------------------------------|
+| --------------------------------------------------------- | ------------------------------------- |
 | `Get-Location` (`pwd`)                                    | Current directory                     |
 | `Set-Location` (`cd`)                                     | Change directory                      |
 | `Get-ChildItem` (`ls`, `dir`)                             | List a directory                      |
@@ -159,7 +159,7 @@ switch ($value) {
 ## ⚖️ Operators
 
 | Operator                       | Meaning                                 |
-|--------------------------------|-----------------------------------------|
+| ------------------------------ | --------------------------------------- |
 | `= += -= *= /= %= ++ --`       | Assignment                              |
 | `-eq` / `-ne`                  | Equal / not equal                       |
 | `-gt` `-ge` `-lt` `-le`        | Numeric comparison                      |
@@ -202,7 +202,7 @@ Get-Process | Select-Object Name, @{ Name = 'MB'; Expression = { [math]::Round($
 ## 🔍 Filter, Sort, Group, Format
 
 | Example                                                   | Does                      |
-|-----------------------------------------------------------|---------------------------|
+| --------------------------------------------------------- | ------------------------- |
 | `Get-Process \| Where-Object CPU -gt 100`                 | Filter (simple syntax)    |
 | `Get-Process \| Where-Object { $_.Name -like "chrome*" }` | Filter (script block)     |
 | `Get-Process \| Sort-Object WorkingSet -Descending`       | Sort                      |
@@ -359,7 +359,7 @@ notepad $PROFILE
 ## 🧾 Automatic Variables
 
 | Variable                 | Holds                                     |
-|--------------------------|-------------------------------------------|
+| ------------------------ | ----------------------------------------- |
 | `$_` / `$PSItem`         | The current pipeline object               |
 | `$Args`                  | Unbound arguments to a script or function |
 | `$Error`                 | The error history, newest first           |
@@ -375,7 +375,7 @@ notepad $PROFILE
 ## 💾 PSDrives
 
 | Drive             | Contents              |
-|-------------------|-----------------------|
+| ----------------- | --------------------- |
 | `Env:`            | Environment variables |
 | `Alias:`          | Command aliases       |
 | `Function:`       | Defined functions     |
@@ -393,7 +393,7 @@ Get-ChildItem Variable:
 ## ⌨️ Aliases Worth Knowing
 
 | Alias              | Real command    | Alias       | Real command                   |
-|--------------------|-----------------|-------------|--------------------------------|
+| ------------------ | --------------- | ----------- | ------------------------------ |
 | `ls`, `dir`, `gci` | `Get-ChildItem` | `%`         | `ForEach-Object`               |
 | `cat`, `gc`        | `Get-Content`   | `?`         | `Where-Object`                 |
 | `cd`, `sl`         | `Set-Location`  | `select`    | `Select-Object`                |
@@ -407,7 +407,7 @@ Get-ChildItem Variable:
 ## 🔣 Regular Expressions
 
 | Pattern              | Matches                     |
-|----------------------|-----------------------------|
+| -------------------- | --------------------------- |
 | `\w` / `\W`          | Word character / non-word   |
 | `\s` / `\S`          | Whitespace / non-whitespace |
 | `\d` / `\D`          | Digit / non-digit           |

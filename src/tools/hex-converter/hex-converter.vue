@@ -26,17 +26,23 @@ const decodedOutput = computed(() => {
     const buffer = hexArray.fromString(cleanHex(hexInput.value));
     if (decodeAs.value === 'utf8') {
       return unpackString(buffer);
+    } else {
+      return unpackArray(
+        buffer,
+        {
+          bits: bits.value,
+          fp: floatingPoint.value,
+          signed: signed.value,
+          be: bigEndian.value,
+        },
+        0,
+        buffer.length,
+        true,
+      )
+        .map((n) => decodeNumber(n, bits.value, decodeAs.value as Conversion))
+        .join(' ');
     }
-    else {
-      return unpackArray(buffer, {
-        bits: bits.value,
-        fp: floatingPoint.value,
-        signed: signed.value,
-        be: bigEndian.value,
-      }, 0, buffer.length, true).map(n => decodeNumber(n, bits.value, decodeAs.value as Conversion)).join(' ');
-    }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -51,15 +57,15 @@ const encodedOutput = computed(() => {
           fp: floatingPoint.value,
           signed: signed.value,
           be: bigEndian.value,
-        })),
+        }),
+      ),
       {
         uppercase: uppercase.value,
         grouping: grouping.value,
         rowlength: rowlength.value,
       },
     );
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -67,16 +73,12 @@ const encodedOutput = computed(() => {
 const stringInput = ref('');
 const utf8Output = computed(() => {
   try {
-    return hexArray.toString(
-      new Uint8Array(packString(stringInput.value)),
-      {
-        uppercase: uppercase.value,
-        grouping: grouping.value,
-        rowlength: rowlength.value,
-      },
-    );
-  }
-  catch (e: any) {
+    return hexArray.toString(new Uint8Array(packString(stringInput.value)), {
+      uppercase: uppercase.value,
+      grouping: grouping.value,
+      rowlength: rowlength.value,
+    });
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -90,7 +92,7 @@ const structDefinitionValidation = useValidation({
   rules: [
     {
       message: t('tools.hex-converter.texts.message-struct-definition-is-not-a-valid-json'),
-      validator: value => JSON5.parse(value.trim()),
+      validator: (value) => JSON5.parse(value.trim()),
     },
   ],
 });
@@ -102,9 +104,10 @@ const decodedStructOutput = computed(() => {
         struct: JSON5.parse(structDefinition.value),
         hexArray: hexArray.fromString(cleanHex(hexStructInput.value)),
       }),
-      null, 2);
-  }
-  catch (e: any) {
+      null,
+      2,
+    );
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -116,13 +119,14 @@ const encodedStructOutput = computed(() => {
       encodeStruct({
         struct: JSON5.parse(structDefinition.value),
         jsonObject: JSON5.parse(jsonStructInput.value),
-      }), {
+      }),
+      {
         uppercase: uppercase.value,
         grouping: grouping.value,
         rowlength: rowlength.value,
-      });
-  }
-  catch (e: any) {
+      },
+    );
+  } catch (e: any) {
     return e.toString();
   }
 });
@@ -132,14 +136,8 @@ const encodedStructOutput = computed(() => {
   <div>
     <n-radio-group v-model:value="mode" name="radiogroup" mb-2 flex justify-center>
       <n-space>
-        <n-radio
-          value="simple"
-          :label="t('tools.hex-converter.texts.label-simple-encoder-decoder')"
-        />
-        <n-radio
-          value="struct"
-          :label="t('tools.hex-converter.texts.label-c-c-typed-struct')"
-        />
+        <n-radio value="simple" :label="t('tools.hex-converter.texts.label-simple-encoder-decoder')" />
+        <n-radio value="struct" :label="t('tools.hex-converter.texts.label-c-c-typed-struct')" />
       </n-space>
     </n-radio-group>
 
@@ -148,8 +146,15 @@ const encodedStructOutput = computed(() => {
         <c-select
           v-model:value="decodeAs"
           :label="t('tools.hex-converter.texts.label-decode-encode-as')"
-          label-position="left" mb-1
-          :options="[{ value: 'dec', label: t('tools.hex-converter.texts.label-decimal') }, { value: 'bin', label: t('tools.hex-converter.texts.label-binary') }, { value: 'hex', label: t('tools.hex-converter.texts.label-hexadecimal') }, { value: 'char', label: t('tools.hex-converter.texts.label-char-ascii') }, { value: 'utf8', label: t('tools.hex-converter.texts.label-utf8-string') }]"
+          label-position="left"
+          mb-1
+          :options="[
+            { value: 'dec', label: t('tools.hex-converter.texts.label-decimal') },
+            { value: 'bin', label: t('tools.hex-converter.texts.label-binary') },
+            { value: 'hex', label: t('tools.hex-converter.texts.label-hexadecimal') },
+            { value: 'char', label: t('tools.hex-converter.texts.label-char-ascii') },
+            { value: 'utf8', label: t('tools.hex-converter.texts.label-utf8-string') },
+          ]"
         />
         <n-space v-if="decodeAs !== 'utf8'" align="baseline" justify="center">
           <n-form-item :label="t('tools.hex-converter.texts.label-bits')" label-placement="left">
@@ -223,10 +228,14 @@ const encodedStructOutput = computed(() => {
             <n-switch v-model:value="uppercase" />
           </n-form-item>
           <n-form-item :label="t('tools.hex-converter.texts.label-group-by')" label-placement="left">
-            <n-input-number-i18n v-model:value="grouping" :min="0" style="width: 6em" mr-1 />{{ t('tools.hex-converter.texts.tag-digits-0-no-grouping') }}
+            <n-input-number-i18n v-model:value="grouping" :min="0" style="width: 6em" mr-1 />{{
+              t('tools.hex-converter.texts.tag-digits-0-no-grouping')
+            }}
           </n-form-item>
           <n-form-item :label="t('tools.hex-converter.texts.label-split-as-rows-by')" label-placement="left">
-            <n-input-number-i18n v-model:value="rowlength" :min="0" style="width: 6em" mr-1 />{{ t('tools.hex-converter.texts.tag-group-of-digits-0-no-rows') }}
+            <n-input-number-i18n v-model:value="rowlength" :min="0" style="width: 6em" mr-1 />{{
+              t('tools.hex-converter.texts.tag-group-of-digits-0-no-rows')
+            }}
           </n-form-item>
         </n-space>
       </c-card>
@@ -248,11 +257,16 @@ const encodedStructOutput = computed(() => {
         <details>
           <summary>{{ t('tools.hex-converter.texts.tag-instructions') }}</summary>
           <n-p>
-            {{ t('tools.hex-converter.texts.tag-define-you-struct-definition-in-json-format-keys-struct-member-names-value-type') }}<br>
+            {{
+              t(
+                'tools.hex-converter.texts.tag-define-you-struct-definition-in-json-format-keys-struct-member-names-value-type',
+              )
+            }}<br />
             Types syntax: u?int{size}(be)? | float(be)? | double(be)? | char | wchar(be)? | &lt;type&gt;[{array size}]
-            <br>
-            where "u" means "unsigned" ; "be" means "Big Endian" ; {size} is number of bits ; {array size} fixed size for arrays
-            <br>{{ t('tools.hex-converter.texts.tag-can-prefix-integer-with-0x-or-0b-to-display-as-hex-and-binary') }}
+            <br />
+            where "u" means "unsigned" ; "be" means "Big Endian" ; {size} is number of bits ; {array size} fixed size
+            for arrays
+            <br />{{ t('tools.hex-converter.texts.tag-can-prefix-integer-with-0x-or-0b-to-display-as-hex-and-binary') }}
           </n-p>
         </details>
       </c-card>
@@ -292,10 +306,14 @@ const encodedStructOutput = computed(() => {
             <n-switch v-model:value="uppercase" />
           </n-form-item>
           <n-form-item :label="t('tools.hex-converter.texts.label-group-by')" label-placement="left">
-            <n-input-number-i18n v-model:value="grouping" :min="0" style="width: 6em" mr-1 />{{ t('tools.hex-converter.texts.tag-digits-0-no-grouping') }}
+            <n-input-number-i18n v-model:value="grouping" :min="0" style="width: 6em" mr-1 />{{
+              t('tools.hex-converter.texts.tag-digits-0-no-grouping')
+            }}
           </n-form-item>
           <n-form-item :label="t('tools.hex-converter.texts.label-split-as-rows-by')" label-placement="left">
-            <n-input-number-i18n v-model:value="rowlength" :min="0" style="width: 6em" mr-1 />{{ t('tools.hex-converter.texts.tag-group-of-digits-0-no-rows') }}
+            <n-input-number-i18n v-model:value="rowlength" :min="0" style="width: 6em" mr-1 />{{
+              t('tools.hex-converter.texts.tag-group-of-digits-0-no-rows')
+            }}
           </n-form-item>
         </n-space>
       </c-card>

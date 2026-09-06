@@ -22,15 +22,12 @@ export function convert(className: string, data: string | null) {
       const typeName = capitalizeFirstLetter(fixListClass(key));
       type = `List<${typeName}>`;
       objects[typeName] = value[0];
-    }
-    else if (type === 'object') {
+    } else if (type === 'object') {
       type = capitalizeFirstLetter(key);
       objects[type] = value;
-    }
-    else if (equivalence[type] !== undefined) {
+    } else if (equivalence[type] !== undefined) {
       type = equivalence[type];
-    }
-    else {
+    } else {
       type = capitalizeFirstLetter(type);
     }
     result += `\tpublic ${type} ${key};\n`;

@@ -5,10 +5,7 @@ function svgo(config: Config) {
     const { plugins = [], ...rest } = config || {};
     return optimize(data, {
       ...rest,
-      plugins: [
-        ...(plugins.length > 0 ? plugins : ['preset-default']),
-        'removeXMLNS',
-      ] as PluginConfig[],
+      plugins: [...(plugins.length > 0 ? plugins : ['preset-default']), 'removeXMLNS'] as PluginConfig[],
     }).data.replace(/^<svg/g, '<svg xmlns="http://www.w3.org/2000/svg"');
   };
 }
@@ -21,7 +18,7 @@ export function encodeStr(svgStr: string) {
     .replace(/%3A/g, ':')
     .replace(/%2F/g, '/')
     .replace(/%2C/g, ',')
-    .replace(/%22/g, '\'');
+    .replace(/%22/g, "'");
 
   return `data:image/svg+xml,${encoded}`;
 }
@@ -30,12 +27,12 @@ export type CSSType = 'Background' | 'Border' | 'ListItemBullet' | 'Url';
 
 async function fileToDataUrl(file: File) {
   if (file.type === 'image/svg+xml') {
-    const svgContent = (await (new Promise<string>((resolve, reject) => {
+    const svgContent = await new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsText(file);
       reader.onload = () => resolve(reader.result?.toString() ?? '');
-      reader.onerror = error => reject(error);
-    })));
+      reader.onerror = (error) => reject(error);
+    });
     return svgToDataUrl(svgContent);
   }
 
@@ -43,7 +40,7 @@ async function fileToDataUrl(file: File) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result?.toString() ?? '');
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
@@ -51,10 +48,7 @@ function svgToDataUrl(svg: string) {
   return encodeStr(svgo({})(svg));
 }
 
-export async function imageToCSS(
-  image: File | string,
-  type: CSSType,
-) {
+export async function imageToCSS(image: File | string, type: CSSType) {
   if (image === '' || !image) {
     return '';
   }

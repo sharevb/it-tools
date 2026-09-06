@@ -1,5 +1,4 @@
 declare module 'is-ip' {
-  
   /**
   Check if `string` is IPv6 or IPv4.
   
@@ -15,7 +14,7 @@ declare module 'is-ip' {
   ```
   */
   export function isIP(string: string): boolean; // eslint-disable-line @typescript-eslint/naming-convention
-  
+
   /**
   Check if `string` is IPv6.
   
@@ -28,7 +27,7 @@ declare module 'is-ip' {
   ```
   */
   export function isIPv6(string: string): boolean; // eslint-disable-line @typescript-eslint/naming-convention
-  
+
   /**
   Check if `string` is IPv4.
   
@@ -41,7 +40,7 @@ declare module 'is-ip' {
   ```
   */
   export function isIPv4(string: string): boolean; // eslint-disable-line @typescript-eslint/naming-convention
-  
+
   /**
   @returns `6` if `string` is IPv6, `4` if `string` is IPv4, or `undefined` if `string` is neither.
   

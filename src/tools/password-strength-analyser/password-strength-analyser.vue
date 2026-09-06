@@ -48,7 +48,7 @@ const details = computed(() => [
       </div>
     </c-card>
     <c-card>
-      <div v-for="({ label, value }) of details" :key="label" flex gap-3>
+      <div v-for="{ label, value } of details" :key="label" flex gap-3>
         <div flex-1 text-right op-60>
           {{ label }}
         </div>
@@ -58,7 +58,12 @@ const details = computed(() => [
       </div>
     </c-card>
     <div op-70>
-      <span font-bold>{{ t('tools.password-strength-analyser.texts.tag-note') }}</span>{{ t('tools.password-strength-analyser.texts.tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack') }}
+      <span font-bold>{{ t('tools.password-strength-analyser.texts.tag-note') }}</span
+      >{{
+        t(
+          'tools.password-strength-analyser.texts.tag-the-computed-strength-is-based-on-the-time-it-would-take-to-crack-the-password-using-a-brute-force-approach-it-does-not-take-into-account-the-possibility-of-a-dictionary-attack',
+        )
+      }}
     </div>
   </div>
 </template>

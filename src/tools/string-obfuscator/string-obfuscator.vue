@@ -17,7 +17,14 @@ const { copy } = useCopy({ source: obfuscatedString });
 
 <template>
   <div>
-    <c-input-text v-model:value="str" raw-text :placeholder="t('tools.string-obfuscator.texts.placeholder-enter-string-to-obfuscate')" :label="t('tools.string-obfuscator.texts.label-string-to-obfuscate')" clearable multiline />
+    <c-input-text
+      v-model:value="str"
+      raw-text
+      :placeholder="t('tools.string-obfuscator.texts.placeholder-enter-string-to-obfuscate')"
+      :label="t('tools.string-obfuscator.texts.label-string-to-obfuscate')"
+      clearable
+      multiline
+    />
 
     <div mt-4 flex gap-10px>
       <div>

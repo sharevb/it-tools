@@ -5,14 +5,14 @@ import { useTheme } from './c-button.theme';
 
 const props = withDefaults(
   defineProps<{
-    type?: 'default' | 'primary' | 'warning' | 'error'
-    variant?: 'basic' | 'text'
-    disabled?: boolean
-    round?: boolean
-    circle?: boolean
-    href?: string
-    to?: RouteLocationRaw
-    size?: 'small' | 'medium' | 'large'
+    type?: 'default' | 'primary' | 'warning' | 'error';
+    variant?: 'basic' | 'text';
+    disabled?: boolean;
+    round?: boolean;
+    circle?: boolean;
+    href?: string;
+    to?: RouteLocationRaw;
+    size?: 'small' | 'medium' | 'large';
   }>(),
   {
     type: 'default',

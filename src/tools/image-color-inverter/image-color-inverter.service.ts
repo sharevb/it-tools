@@ -55,9 +55,10 @@ export function invertImageFile(file: File): Promise<string> {
           // Convert to base64 PNG
           const invertedDataUrl = canvas.toDataURL('image/png');
           resolve(invertedDataUrl);
-        }
-        catch (err: any) {
-          reject(new Error(`${t('tools.image-color-inverter.service.texts.failed-to-process-image-err')} ${err.toString()}`));
+        } catch (err: any) {
+          reject(
+            new Error(`${t('tools.image-color-inverter.service.texts.failed-to-process-image-err')} ${err.toString()}`),
+          );
         }
       };
 

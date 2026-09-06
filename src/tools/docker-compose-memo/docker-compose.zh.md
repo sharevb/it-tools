@@ -3,6 +3,7 @@ Docker Compose 是一个用于定义和运行多容器 Docker 应用程序的强
 无论你是在搭建本地开发环境，还是部署到生产环境，Compose 都能简化编排过程，并让你的配置保持可读、可版本控制。
 
 ## 📁 文件名
+
 ```yaml
 compose.yaml
 ```
@@ -25,7 +26,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "host_port:container_port"
+      - 'host_port:container_port'
     volumes:
       - ./host_path:/container_path
     environment:
@@ -54,12 +55,12 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
-    command: ["nginx", "-g", "daemon off;"]
+    command: ['nginx', '-g', 'daemon off;']
     container_name: custom_name
     ports:
-      - "8080:80"
+      - '8080:80'
     expose:
-      - "80"
+      - '80'
     environment:
       - DEBUG=true
     env_file:
@@ -72,7 +73,7 @@ services:
     networks:
       - frontend
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ['CMD', 'curl', '-f', 'http://localhost']
       interval: 30s
       timeout: 10s
       retries: 5
@@ -141,9 +142,10 @@ services:
 ## 🌐 端口（Ports）
 
 ```yaml
-    ports:
-      - "3000:3000"
+ports:
+  - '3000:3000'
 ```
+
 - **`ports:`** 将容器端口映射到宿主机端口。格式为 `"宿主机:容器"`。常用于将服务暴露给本机访问。
 
 ## 🔐 密钥（Secrets，仅 Docker Swarm）
@@ -177,7 +179,7 @@ services:
 
 ```yaml
 healthcheck:
-  test: ["CMD", "curl", "-f", "http://localhost"]
+  test: ['CMD', 'curl', '-f', 'http://localhost']
   interval: 30s
   timeout: 10s
   retries: 3
@@ -215,16 +217,18 @@ env_file:
 ## 命令（Command）
 
 ```yaml
-    command: npm start
+command: npm start
 ```
+
 - **`command:`** 覆盖 Dockerfile 中定义的默认命令。常用于自定义容器行为。
 
 ## 依赖（Dependencies）
 
 ```yaml
-    depends_on:
-      - db
+depends_on:
+  - db
 ```
+
 - **`depends_on:`** 指定服务的启动顺序。在 Compose 中，这并不会等待服务"就绪"——只是"已启动"。
 
 ## 🧹 清理（Clean Up）
@@ -236,16 +240,16 @@ docker compose down -v      # 同时删除具名卷
 
 ## 🚀 命令（Commands）
 
-| 命令 | 描述 |
-|--------|-------------|
-| `docker compose up` | 启动服务 |
-| `docker compose up -d` | 以分离（后台）模式启动 |
-| `docker compose down` | 停止并删除服务 |
-| `docker compose build` | 构建镜像 |
-| `docker compose ps` | 列出容器 |
-| `docker compose logs` | 查看日志 |
-| `docker compose exec <service> <cmd>` | 在容器中执行命令 |
-| `docker compose config` | 校验并查看配置 |
+| 命令                                  | 描述                   |
+| ------------------------------------- | ---------------------- |
+| `docker compose up`                   | 启动服务               |
+| `docker compose up -d`                | 以分离（后台）模式启动 |
+| `docker compose down`                 | 停止并删除服务         |
+| `docker compose build`                | 构建镜像               |
+| `docker compose ps`                   | 列出容器               |
+| `docker compose logs`                 | 查看日志               |
+| `docker compose exec <service> <cmd>` | 在容器中执行命令       |
+| `docker compose config`               | 校验并查看配置         |
 
 ## 🧠 挂载 GPU / iGPU
 
@@ -280,15 +284,15 @@ services:
 
 ## 🔄 Compose 与 Swarm YAML 差异
 
-| 特性            | Docker Compose (`compose.yaml`) | Docker Swarm (`stack.yml`) |
-|--------------------|----------------------------------------|-----------------------------|
-| `restart`          | ✅ 支持                          | ❌ 不支持             |
-| `depends_on`       | ✅ 支持                          | ❌ 不支持             |
-| `deploy`           | ❌ 忽略                            | ✅ 副本数必需     |
-| `build`            | ✅ 支持                          | ❌ 不支持             |
-| `volumes`（bind）  | ✅ 支持                          | ✅ 支持                 |
-| `configs` / `secrets`| ❌ 忽略                            | ✅ 支持                 |
-| `healthcheck`      | ✅ 支持                          | ✅ 支持                 |
+| 特性                  | Docker Compose (`compose.yaml`) | Docker Swarm (`stack.yml`) |
+| --------------------- | ------------------------------- | -------------------------- |
+| `restart`             | ✅ 支持                         | ❌ 不支持                  |
+| `depends_on`          | ✅ 支持                         | ❌ 不支持                  |
+| `deploy`              | ❌ 忽略                         | ✅ 副本数必需              |
+| `build`               | ✅ 支持                         | ❌ 不支持                  |
+| `volumes`（bind）     | ✅ 支持                         | ✅ 支持                    |
+| `configs` / `secrets` | ❌ 忽略                         | ✅ 支持                    |
+| `healthcheck`         | ✅ 支持                         | ✅ 支持                    |
 
 > 🧠 **提示：** 本地开发请使用 `compose.yaml`，Swarm 部署请使用 `stack.yml`。
 
@@ -330,31 +334,32 @@ Docker Compose 和 Docker Swarm 都使用 YAML 文件来定义服务，但它们
 
 ### 🧭 用途
 
-| 模式        | 用途                          |
-|-------------|-----------------------------------|
-| Compose     | 本地开发、测试        |
-| Swarm       | 集群部署、扩缩容       |
+| 模式    | 用途             |
+| ------- | ---------------- |
+| Compose | 本地开发、测试   |
+| Swarm   | 集群部署、扩缩容 |
 
 ### 🧩 YAML 结构上的关键差异
 
-| 特性              | Compose (`compose.yaml`) | Swarm (`stack.yml`) |
-|----------------------|-------------------------------|----------------------|
-| `build:`             | ✅ 支持                   | ❌ 忽略            |
-| `restart:`           | ✅ 支持                   | ❌ 忽略            |
-| `depends_on:`        | ✅ 支持                   | ❌ 忽略            |
-| `deploy:`            | ❌ 忽略                     | ✅ 扩缩容、调度必需 |
-| `configs:`           | ❌ 忽略                     | ✅ 支持           |
-| `secrets:`           | ❌ 忽略                     | ✅ 支持           |
-| `healthcheck:`       | ✅ 支持                   | ✅ 支持           |
-| `volumes:`（bind）   | ✅ 支持                   | ✅ 支持           |
-| `networks:`          | ✅ 支持                   | ✅ 支持           |
-| `profiles:`          | ✅ 支持（v3.9+）           | ❌ 不支持       |
+| 特性               | Compose (`compose.yaml`) | Swarm (`stack.yml`) |
+| ------------------ | ------------------------ | ------------------- |
+| `build:`           | ✅ 支持                  | ❌ 忽略             |
+| `restart:`         | ✅ 支持                  | ❌ 忽略             |
+| `depends_on:`      | ✅ 支持                  | ❌ 忽略             |
+| `deploy:`          | ❌ 忽略                  | ✅ 扩缩容、调度必需 |
+| `configs:`         | ❌ 忽略                  | ✅ 支持             |
+| `secrets:`         | ❌ 忽略                  | ✅ 支持             |
+| `healthcheck:`     | ✅ 支持                  | ✅ 支持             |
+| `volumes:`（bind） | ✅ 支持                  | ✅ 支持             |
+| `networks:`        | ✅ 支持                  | ✅ 支持             |
+| `profiles:`        | ✅ 支持（v3.9+）         | ❌ 不支持           |
 
 ### 🔧 仅 Compose 支持的特性
 
 以下特性对本地开发很有用，但在 Swarm 中会被忽略：
 
 #### `build:`
+
 ```yaml
 services:
   app:
@@ -362,21 +367,26 @@ services:
       context: .
       dockerfile: Dockerfile
 ```
+
 - Compose 在本地构建镜像。
 - Swarm 要求使用已推送到镜像仓库的预构建镜像。
 
 #### `restart:`
+
 ```yaml
 restart: unless-stopped
 ```
+
 - Compose 使用此配置自动重启容器。
 - Swarm 使用 `deploy.restart_policy`。
 
 #### `depends_on:`
+
 ```yaml
 depends_on:
   - db
 ```
+
 - Compose 按顺序启动服务。
 - Swarm 会忽略此配置；请使用 healthcheck 和 wait-for-it 脚本。
 
@@ -385,6 +395,7 @@ depends_on:
 以下特性是 Swarm 独有的，Compose 会忽略：
 
 #### `deploy:`
+
 ```yaml
 services:
   app:
@@ -396,9 +407,11 @@ services:
       restart_policy:
         condition: on-failure
 ```
+
 - 用于在集群中控制扩缩容、调度和重启行为。
 
 #### `configs:` 和 `secrets:`
+
 ```yaml
 configs:
   app_config:
@@ -408,49 +421,53 @@ secrets:
   db_password:
     file: ./password.txt
 ```
+
 - 用于在节点间安全地分发配置和密钥。
 
 #### `placement:`（位于 `deploy` 内）
+
 ```yaml
 placement:
   constraints:
     - node.labels.env == production
 ```
+
 - 根据 label 将服务分配到指定节点。
 
 ### 🧪 健康检查（两者均支持）
 
 ```yaml
 healthcheck:
-  test: ["CMD", "curl", "-f", "http://localhost"]
+  test: ['CMD', 'curl', '-f', 'http://localhost']
   interval: 30s
   timeout: 10s
   retries: 3
 ```
+
 - 在 Compose 和 Swarm 中均可使用。
 - 在 Swarm 中，健康状态会影响服务的重新调度。
 
 ### 📦 卷的差异
 
-| 类型        | Compose | Swarm |
-|-------------|---------|-------|
-| Bind mount（绑定挂载）  | ✅       | ✅     |
-| Named volume（具名卷）| ✅       | ✅     |
-| External volume（外部卷） | ✅   | ✅     |
-| Volume driver options（卷驱动选项） | ✅ | ✅ |
+| 类型                                | Compose | Swarm |
+| ----------------------------------- | ------- | ----- |
+| Bind mount（绑定挂载）              | ✅      | ✅    |
+| Named volume（具名卷）              | ✅      | ✅    |
+| External volume（外部卷）           | ✅      | ✅    |
+| Volume driver options（卷驱动选项） | ✅      | ✅    |
 
 Swarm 要求外部卷必须预先在所有节点上创建好。
 
 ### 🧠 总结
 
-| 特性类别     | Compose | Swarm |
-|----------------------|---------|-------|
-| 本地构建         | ✅       | ❌     |
-| 集群扩缩容      | ❌       | ✅     |
-| Secrets / Configs      | ❌       | ✅     |
-| Profiles             | ✅       | ❌     |
-| 重启策略     | ✅       | ✅（通过 `deploy`） |
-| 服务依赖 | ✅       | ❌     |
+| 特性类别          | Compose | Swarm               |
+| ----------------- | ------- | ------------------- |
+| 本地构建          | ✅      | ❌                  |
+| 集群扩缩容        | ❌      | ✅                  |
+| Secrets / Configs | ❌      | ✅                  |
+| Profiles          | ✅      | ❌                  |
+| 重启策略          | ✅      | ✅（通过 `deploy`） |
+| 服务依赖          | ✅      | ❌                  |
 
 > 🧭 **提示：** 开发请使用 `compose.yaml`，Swarm 请使用 `stack.yml`。你也可以将配置拆分为多个文件，或使用 `kompose` 等工具将 Kubernetes 的清单进行转换。
 

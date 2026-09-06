@@ -11,7 +11,7 @@ const textKey = 'my secret key 16my secret key 16';
 const algoNames = Object.keys(algos) as (keyof typeof algos)[];
 
 // AES-KW only wraps key material: its input must be a multiple of 8 bytes, so arbitrary text is rejected.
-const algoNamesAcceptingText = algoNames.filter(algo => algo !== 'AES-KW');
+const algoNamesAcceptingText = algoNames.filter((algo) => algo !== 'AES-KW');
 
 describe('encryption', () => {
   describe('algos', () => {
@@ -51,12 +51,9 @@ describe('encryption', () => {
     });
 
     // AES-KWP pads its input to a multiple of 8 bytes but still requires at least one byte.
-    it.each(algoNamesAcceptingText.filter(algo => algo !== 'AES-KWP'))(
-      '%s round trips an empty message',
-      (algo) => {
-        expect(algos[algo].decrypt(algos[algo].encrypt('', hexKey, 'Hex'), hexKey, 'Hex')).toEqual('');
-      },
-    );
+    it.each(algoNamesAcceptingText.filter((algo) => algo !== 'AES-KWP'))('%s round trips an empty message', (algo) => {
+      expect(algos[algo].decrypt(algos[algo].encrypt('', hexKey, 'Hex'), hexKey, 'Hex')).toEqual('');
+    });
 
     it('AES-KWP rejects an empty message', () => {
       expect(() => algos['AES-KWP'].encrypt('', hexKey, 'Hex')).toThrow('invalid plaintext length');
@@ -70,9 +67,9 @@ describe('encryption', () => {
 
     it('AES-KW only accepts inputs whose length is a multiple of 8 bytes', () => {
       expect(() => algos['AES-KW'].encrypt(message, hexKey, 'Hex')).toThrow();
-      expect(algos['AES-KW'].decrypt(algos['AES-KW'].encrypt('0123456789abcdef', hexKey, 'Hex'), hexKey, 'Hex')).toEqual(
-        '0123456789abcdef',
-      );
+      expect(
+        algos['AES-KW'].decrypt(algos['AES-KW'].encrypt('0123456789abcdef', hexKey, 'Hex'), hexKey, 'Hex'),
+      ).toEqual('0123456789abcdef');
     });
   });
 

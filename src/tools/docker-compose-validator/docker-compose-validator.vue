@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import {
-  validateDockerComposeToCommonSpec,
-} from 'composeverter';
+import { validateDockerComposeToCommonSpec } from 'composeverter';
 
 const { t } = useI18n();
 
@@ -24,9 +22,11 @@ services:
 const conversionResult = computed(() => {
   try {
     return validateDockerComposeToCommonSpec(dockerCompose.value);
-  }
-  catch (e: any) {
-    return e.toString().split('\n').map((err: string) => ({ line: -1, message: err, helpLink: '' }));
+  } catch (e: any) {
+    return e
+      .toString()
+      .split('\n')
+      .map((err: string) => ({ line: -1, message: err, helpLink: '' }));
   }
 });
 
@@ -58,8 +58,8 @@ const MONACO_EDITOR_OPTIONS = {
         <ul>
           <li v-for="(message, index) of errors" :key="index">
             {{ message.message }} (<n-a v-if="message.helpLink" target="_blank" rel="noreferer noopener">
-              {{ t('tools.docker-compose-validator.texts.tag-see-docker-compose-help') }}
-            </n-a>{{ t('tools.docker-compose-validator.texts.tag-') }}
+              {{ t('tools.docker-compose-validator.texts.tag-see-docker-compose-help') }} </n-a
+            >{{ t('tools.docker-compose-validator.texts.tag-') }}
           </li>
         </ul>
       </n-alert>

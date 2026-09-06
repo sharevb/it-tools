@@ -21,8 +21,8 @@ const collapsedCategories = useStorage<Record<string, boolean>>(
   {
     deep: true,
     serializer: {
-      read: v => (v ? JSON.parse(v) : null),
-      write: v => JSON.stringify(v),
+      read: (v) => (v ? JSON.parse(v) : null),
+      write: (v) => JSON.stringify(v),
     },
   },
 );
@@ -52,9 +52,7 @@ function toggleCategoryCollapse({ name }: { name: string }) {
 }
 
 const areAllCollapsed = computed(() => {
-  return toolsByCategory.value.every(({ name }) =>
-    collapsedCategories.value[name] !== false,
-  );
+  return toolsByCategory.value.every(({ name }) => collapsedCategories.value[name] !== false);
 });
 
 async function toggleAllCategories() {
@@ -82,12 +80,12 @@ function getAnimationDuration(itemCount: number): number {
   const baseDuration = 250;
   const durationIncrement = 5;
 
-  return baseDuration + (Math.min(itemCount, 30) * durationIncrement);
+  return baseDuration + Math.min(itemCount, 30) * durationIncrement;
 }
 
 // Function to check if any tool in the category is active
 function isCategoryActive(components: Tool[]): boolean {
-  return components.some(tool => tool.path === route.path);
+  return components.some((tool) => tool.path === route.path);
 }
 
 const menuOptions = computed(() =>
@@ -96,7 +94,7 @@ const menuOptions = computed(() =>
     isCollapsed: collapsedCategories.value[name],
     isActive: isCategoryActive(components),
     animationDuration: getAnimationDuration(components.length),
-    tools: components.map(tool => ({
+    tools: components.map((tool) => ({
       label: makeLabel(tool),
       icon: makeIcon(tool),
       key: tool.path,
@@ -105,16 +103,14 @@ const menuOptions = computed(() =>
 );
 
 async function scrollToActiveItem() {
-  const activeCategory = toolsByCategory.value.find(({ components }) =>
-    isCategoryActive(components),
-  );
+  const activeCategory = toolsByCategory.value.find(({ components }) => isCategoryActive(components));
 
   if (activeCategory) {
     // Expand the active category
     collapsedCategories.value[activeCategory.name] = false;
 
     // Wait for the entire animation to complete
-    await new Promise(resolve => setTimeout(resolve, getAnimationDuration(activeCategory.components.length) + 50));
+    await new Promise((resolve) => setTimeout(resolve, getAnimationDuration(activeCategory.components.length) + 50));
 
     // Scroll to the active menu item
     const menuContainer = menuContainerRefs.value[activeCategory.name];
@@ -131,9 +127,12 @@ onMounted(() => {
   scrollToActiveItem();
 });
 
-watch(() => route.path, () => {
-  scrollToActiveItem();
-});
+watch(
+  () => route.path,
+  () => {
+    scrollToActiveItem();
+  },
+);
 
 const themeVars = useThemeVars();
 </script>
@@ -147,19 +146,37 @@ const themeVars = useThemeVars();
         {{ areAllCollapsed ? $t('collapsibleToolMenu.text.expanding') : $t('collapsibleToolMenu.text.collapsing') }}
       </span>
       <span v-else>
-        {{ areAllCollapsed ? $t('collapsibleToolMenu.text.expand-all-tools') : $t('collapsibleToolMenu.text.collapse-all-tools') }}
+        {{
+          areAllCollapsed
+            ? $t('collapsibleToolMenu.text.expand-all-tools')
+            : $t('collapsibleToolMenu.text.collapse-all-tools')
+        }}
       </span>
     </c-button>
   </div>
 
-  <div v-for="{ name, tools, isCollapsed, isActive, animationDuration } of menuOptions" :key="name" class="category-container">
+  <div
+    v-for="{ name, tools, isCollapsed, isActive, animationDuration } of menuOptions"
+    :key="name"
+    class="category-container"
+  >
     <button
       class="category-button"
       :class="{ 'category-active': isActive }"
-      flex cursor-pointer items-center op-60
+      flex
+      cursor-pointer
+      items-center
+      op-60
       @click="toggleCategoryCollapse({ name })"
     >
-      <span :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }" text-16px lh-1 op-50 transition-transform duration-200>
+      <span
+        :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }"
+        text-16px
+        lh-1
+        op-50
+        transition-transform
+        duration-200
+      >
         <icon-mdi-chevron-right />
       </span>
 
@@ -169,7 +186,11 @@ const themeVars = useThemeVars();
     </button>
 
     <div
-      :ref="el => { if (el) menuContainerRefs[name] = el as HTMLElement }"
+      :ref="
+        (el) => {
+          if (el) menuContainerRefs[name] = el as HTMLElement;
+        }
+      "
       class="menu-container"
       :class="{ collapsed: isCollapsed }"
       :style="{ '--animation-duration': `${animationDuration}ms` }"
@@ -227,11 +248,11 @@ const themeVars = useThemeVars();
   content-visibility: auto;
   contain-intrinsic-size: auto 36px;
 
-.menu-container {
-  display: grid;
-  grid-template-rows: 1fr;
-  transition: grid-template-rows var(--animation-duration, 250ms) ease-out;
-  will-change: grid-template-rows;
+  .menu-container {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows var(--animation-duration, 250ms) ease-out;
+    will-change: grid-template-rows;
 
     &.collapsed {
       grid-template-rows: 0fr;

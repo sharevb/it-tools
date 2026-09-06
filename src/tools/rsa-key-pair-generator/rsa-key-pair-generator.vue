@@ -33,19 +33,26 @@ const { attrs: bitsValidationAttrs } = useValidation({
   source: bits,
   rules: [
     {
-      message: t('tools.rsa-key-pair-generator.text.bits-should-be-256-less-than-bits-less-than-16384-and-be-a-multiple-of-8'),
-      validator: value => value >= 256 && value <= 16384 && value % 8 === 0,
+      message: t(
+        'tools.rsa-key-pair-generator.text.bits-should-be-256-less-than-bits-less-than-16384-and-be-a-multiple-of-8',
+      ),
+      validator: (value) => value >= 256 && value <= 16384 && value % 8 === 0,
     },
   ],
 });
 
 const [certs, refreshCerts] = computedRefreshableAsync(
-  () => withDefaultOnErrorAsync(() => generateKeyPair({
-    bits: bits.value,
-    password: debouncedPassword.value,
-    format: format.value as sshpk.PrivateKeyFormatType,
-    comment: debouncedComment.value,
-  }), emptyCerts),
+  () =>
+    withDefaultOnErrorAsync(
+      () =>
+        generateKeyPair({
+          bits: bits.value,
+          password: debouncedPassword.value,
+          format: format.value as sshpk.PrivateKeyFormatType,
+          comment: debouncedComment.value,
+        }),
+      emptyCerts,
+    ),
   emptyCerts,
 );
 </script>
@@ -61,7 +68,11 @@ const [certs, refreshCerts] = computedRefreshableAsync(
         :placeholder="t('tools.rsa-key-pair-generator.texts.placeholder-select-a-key-format')"
       />
 
-      <n-form-item :label="t('tools.rsa-key-pair-generator.texts.label-bits')" v-bind="bitsValidationAttrs as any" label-placement="left">
+      <n-form-item
+        :label="t('tools.rsa-key-pair-generator.texts.label-bits')"
+        v-bind="bitsValidationAttrs as any"
+        label-placement="left"
+      >
         <n-input-number-i18n v-model:value="bits" min="256" max="16384" step="8" />
       </n-form-item>
     </n-space>

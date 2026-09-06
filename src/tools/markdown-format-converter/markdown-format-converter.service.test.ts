@@ -102,7 +102,7 @@ describe('markdown-format-converter', () => {
   describe('Lists conversion', () => {
     it('should convert ordered lists correctly in standard formats', () => {
       const input = '1. First item\n2. Second item\n3. Third item';
-      
+
       const githubOutput = convertMarkdown(input, 'github', 'github');
       expect(githubOutput).toContain('1. First item');
       expect(githubOutput).toContain('2. Second item');
@@ -153,7 +153,8 @@ describe('markdown-format-converter', () => {
 
   describe('Cross-format parsing and conversion', () => {
     it('should convert Jira input to Slack output', () => {
-      const input = 'h1. Title\nThis is *bold* and _italic_ and {{inline code}}.\n{code:javascript}\nconst x = 5;\n{code}\n[Google|https://google.com]';
+      const input =
+        'h1. Title\nThis is *bold* and _italic_ and {{inline code}}.\n{code:javascript}\nconst x = 5;\n{code}\n[Google|https://google.com]';
       const output = convertMarkdown(input, 'jira', 'slack');
       expect(output).toContain('*Title*');
       expect(output).toContain('*bold*');

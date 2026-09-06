@@ -44,7 +44,10 @@ function openMailto() {
   <NCard :title="t('tools.mailto-generator.texts.title-mailto-link-generator')">
     <NForm :model="form" label-placement="left">
       <NFormItem :label="t('tools.mailto-generator.texts.label-to')">
-        <NInput v-model:value="form.to" :placeholder="t('tools.mailto-generator.texts.placeholder-recipient-example-com')" />
+        <NInput
+          v-model:value="form.to"
+          :placeholder="t('tools.mailto-generator.texts.placeholder-recipient-example-com')"
+        />
       </NFormItem>
       <NFormItem :label="t('tools.mailto-generator.texts.label-cc')">
         <NInput v-model:value="form.cc" :placeholder="t('tools.mailto-generator.texts.placeholder-cc-example-com')" />
@@ -53,7 +56,10 @@ function openMailto() {
         <NInput v-model:value="form.bcc" :placeholder="t('tools.mailto-generator.texts.placeholder-bcc-example-com')" />
       </NFormItem>
       <NFormItem :label="t('tools.mailto-generator.texts.label-subject')">
-        <NInput v-model:value="form.subject" :placeholder="t('tools.mailto-generator.texts.placeholder-email-subject')" />
+        <NInput
+          v-model:value="form.subject"
+          :placeholder="t('tools.mailto-generator.texts.placeholder-email-subject')"
+        />
       </NFormItem>
       <NFormItem :label="t('tools.mailto-generator.texts.label-body')" label-placement="top">
         <NInput

@@ -64,7 +64,11 @@ describe('qr-code-decoder', () => {
         password: 'password', // NOSONAR
       },
     });
-    expect(parseQRData('otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30')).toEqual({
+    expect(
+      parseQRData(
+        'otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30',
+      ),
+    ).toEqual({
       type: 'OTP Auth',
       value: {
         label: {
@@ -83,7 +87,11 @@ describe('qr-code-decoder', () => {
         uri: 'otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30',
       },
     });
-    expect(parseQRData('otpauth-migration://offline?data=CigKFFVUVURPbmFMMXd1cDlBSVZHOUVjEgRUZXN0GgRUZXN0IAEoAjACCi8KCkhlbGxvId6tvu8SEGFsaWNlQGdvb2dsZS5jb20aB0V4YW1wbGUgASgBMAE4BxABGAEgAA%3D%3D')).toEqual({
+    expect(
+      parseQRData(
+        'otpauth-migration://offline?data=CigKFFVUVURPbmFMMXd1cDlBSVZHOUVjEgRUZXN0GgRUZXN0IAEoAjACCi8KCkhlbGxvId6tvu8SEGFsaWNlQGdvb2dsZS5jb20aB0V4YW1wbGUgASgBMAE4BxABGAEgAA%3D%3D',
+      ),
+    ).toEqual({
       type: 'OTP Migration',
       value: [
         {
@@ -118,91 +126,42 @@ describe('qr-code-decoder', () => {
           uri: 'otpauth://hotp/Example%3Aalice%40google.com?issuer=Example&algorithm=SHA1&digits=6&counter=7&secret=JBSWY3DPEHPK3PXP',
         },
       ],
-    },
-
-    );
-    expect(parseQRData('BEGIN:VCALENDAR\nPRODID:-//xyz Corp//NONSGML PDA Calendar Version 1.0//EN\nVERSION:2.0\nBEGIN:VEVENT\nDTSTAMP:19960704T120000Z\nUID:uid1@example.com\nORGANIZER:mailto:jsmith@example.com\nDTSTART:19960918T143000Z\nDTEND:19960920T220000Z\nSTATUS:CONFIRMED\nCATEGORIES:CONFERENCE\nSUMMARY:Networld+Interop Conference\nDESCRIPTION:Networld+Interop Conference\n  and Exhibit\\nAtlanta World Congress Center\\n\n Atlanta\\, Georgia\nEND:VEVENT\nEND:VCALENDAR'))
-      .toEqual({
-        type: 'iCal',
-        value: [
-          'vcalendar',
+    });
+    expect(
+      parseQRData(
+        'BEGIN:VCALENDAR\nPRODID:-//xyz Corp//NONSGML PDA Calendar Version 1.0//EN\nVERSION:2.0\nBEGIN:VEVENT\nDTSTAMP:19960704T120000Z\nUID:uid1@example.com\nORGANIZER:mailto:jsmith@example.com\nDTSTART:19960918T143000Z\nDTEND:19960920T220000Z\nSTATUS:CONFIRMED\nCATEGORIES:CONFERENCE\nSUMMARY:Networld+Interop Conference\nDESCRIPTION:Networld+Interop Conference\n  and Exhibit\\nAtlanta World Congress Center\\n\n Atlanta\\, Georgia\nEND:VEVENT\nEND:VCALENDAR',
+      ),
+    ).toEqual({
+      type: 'iCal',
+      value: [
+        'vcalendar',
+        [
+          ['prodid', {}, 'text', '-//xyz Corp//NONSGML PDA Calendar Version 1.0//EN'],
+          ['version', {}, 'text', '2.0'],
+        ],
+        [
           [
+            'vevent',
             [
-              'prodid',
-              {},
-              'text',
-              '-//xyz Corp//NONSGML PDA Calendar Version 1.0//EN',
-            ],
-            [
-              'version',
-              {},
-              'text',
-              '2.0',
-            ],
-          ],
-          [
-            [
-              'vevent',
+              ['dtstamp', {}, 'date-time', '1996-07-04T12:00:00Z'],
+              ['uid', {}, 'text', 'uid1@example.com'],
+              ['organizer', {}, 'cal-address', 'mailto:jsmith@example.com'],
+              ['dtstart', {}, 'date-time', '1996-09-18T14:30:00Z'],
+              ['dtend', {}, 'date-time', '1996-09-20T22:00:00Z'],
+              ['status', {}, 'text', 'CONFIRMED'],
+              ['categories', {}, 'text', 'CONFERENCE'],
+              ['summary', {}, 'text', 'Networld+Interop Conference'],
               [
-                [
-                  'dtstamp',
-                  {},
-                  'date-time',
-                  '1996-07-04T12:00:00Z',
-                ],
-                [
-                  'uid',
-                  {},
-                  'text',
-                  'uid1@example.com',
-                ],
-                [
-                  'organizer',
-                  {},
-                  'cal-address',
-                  'mailto:jsmith@example.com',
-                ],
-                [
-                  'dtstart',
-                  {},
-                  'date-time',
-                  '1996-09-18T14:30:00Z',
-                ],
-                [
-                  'dtend',
-                  {},
-                  'date-time',
-                  '1996-09-20T22:00:00Z',
-                ],
-                [
-                  'status',
-                  {},
-                  'text',
-                  'CONFIRMED',
-                ],
-                [
-                  'categories',
-                  {},
-                  'text',
-                  'CONFERENCE',
-                ],
-                [
-                  'summary',
-                  {},
-                  'text',
-                  'Networld+Interop Conference',
-                ],
-                [
-                  'description',
-                  {},
-                  'text',
-                  'Networld+Interop Conference and Exhibit\nAtlanta World Congress Center\nAtlanta, Georgia',
-                ],
+                'description',
+                {},
+                'text',
+                'Networld+Interop Conference and Exhibit\nAtlanta World Congress Center\nAtlanta, Georgia',
               ],
-              [],
             ],
+            [],
           ],
         ],
-      });
+      ],
+    });
   });
 });

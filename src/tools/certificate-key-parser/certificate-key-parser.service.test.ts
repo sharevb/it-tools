@@ -194,7 +194,7 @@ describe('certificate-key-parser', async () => {
     const { input, pass, type, title } = format;
     it(`Parse '${title ?? type}' format with right type (${type})`, async () => {
       const { values } = await getKeyOrCertificateInfosAsync(input, pass);
-      const result_type = values.find(v => v.label === 'Type:')?.value;
+      const result_type = values.find((v) => v.label === 'Type:')?.value;
 
       expect(result_type).toBe(type);
     });

@@ -9,10 +9,14 @@ import { withDefaultOnError } from '@/utils/defaults';
 const { t } = useI18n();
 
 function transformer(value: string) {
-  return withDefaultOnError(() => stringifyObject(JSON.parseBigNum(value), {
-    indent: '  ',
-    singleQuotes: false,
-  }), '');
+  return withDefaultOnError(
+    () =>
+      stringifyObject(JSON.parseBigNum(value), {
+        indent: '  ',
+        singleQuotes: false,
+      }),
+    '',
+  );
 }
 
 const rules: UseValidationRule<string>[] = [

@@ -7,16 +7,12 @@ const positions = ['top', 'bottom', 'left', 'right'] as const;
     <c-tooltip>
       Hover me
 
-      <template #tooltip>
-        Tooltip content
-      </template>
+      <template #tooltip> Tooltip content </template>
     </c-tooltip>
   </div>
 
   <div mt-5>
-    <c-tooltip tooltip="Tooltip content">
-      Hover me
-    </c-tooltip>
+    <c-tooltip tooltip="Tooltip content"> Hover me </c-tooltip>
   </div>
 
   <div mt-5>

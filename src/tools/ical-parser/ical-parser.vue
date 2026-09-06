@@ -15,13 +15,11 @@ const icalInfosRaw = computedAsync(async () => {
     if (inputType.value === 'file' && file) {
       const jcal = ICAL.parse(await readFileAsString(file));
       return new ICAL.Component(jcal);
-    }
-    else {
+    } else {
       const jcal = ICAL.parse(content);
       return new ICAL.Component(jcal);
     }
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return {
       error: e.toString(),
     };
@@ -44,7 +42,7 @@ function readFileAsString(file: File) {
   return new Promise<string>((resolve, reject) => {
     const fr = new FileReader();
     fr.onload = () => {
-      resolve(fr.result as string || '');
+      resolve((fr.result as string) || '');
     };
     fr.onerror = reject;
     fr.readAsText(file);
@@ -56,14 +54,8 @@ function readFileAsString(file: File) {
   <div>
     <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
       <n-space>
-        <n-radio
-          value="file"
-          :label="t('tools.ical-parser.texts.label-file')"
-        />
-        <n-radio
-          value="content"
-          :label="t('tools.ical-parser.texts.label-content')"
-        />
+        <n-radio value="file" :label="t('tools.ical-parser.texts.label-file')" />
+        <n-radio value="content" :label="t('tools.ical-parser.texts.label-content')" />
       </n-space>
     </n-radio-group>
 

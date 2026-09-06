@@ -17,15 +17,13 @@ async function getUInt8ArrayFromInputs() {
   const file = fileInput.value;
   if (inputType.value === 'file' && file) {
     return new Uint8Array(await file.arrayBuffer());
-  }
-  else if (inputType.value === 'content' && fileContentValue) {
+  } else if (inputType.value === 'content' && fileContentValue) {
     const uint8Array = new Uint8Array(fileContentValue.length);
     for (let i = 0; i < fileContentValue.length; i++) {
       uint8Array[i] = fileContentValue.charCodeAt(i);
     }
     return uint8Array;
-  }
-  else {
+  } else {
     return null;
   }
 }
@@ -38,8 +36,7 @@ const encodings = computedAsync(async () => {
       return null;
     }
     return chardet.analyse(buffer);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     error.value = e.toString();
     return null;
   }
@@ -54,8 +51,7 @@ async function generateEncodedOutput(encoding: string) {
       return;
     }
     contentDecoded.value = iconv.decode(Buffer.from(buffer), encoding);
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return e.toString();
   }
 }
@@ -68,18 +64,12 @@ function onUpload(file: File) {
 </script>
 
 <template>
-  <div style="max-width: 600px;">
+  <div style="max-width: 600px">
     <c-card :title="t('tools.charset-detector.texts.title-input')" mb-2>
       <n-radio-group v-model:value="inputType" name="radiogroup" mb-2 flex justify-center>
         <n-space>
-          <n-radio
-            value="file"
-            :label="t('tools.charset-detector.texts.label-file')"
-          />
-          <n-radio
-            value="content"
-            :label="t('tools.charset-detector.texts.label-content')"
-          />
+          <n-radio value="file" :label="t('tools.charset-detector.texts.label-file')" />
+          <n-radio value="content" :label="t('tools.charset-detector.texts.label-content')" />
         </n-space>
       </n-radio-group>
 
@@ -121,10 +111,7 @@ function onUpload(file: File) {
           </tr>
         </thead>
         <tbody>
-          <tr
-            v-for="(enc, index) in encodings || []"
-            :key="index"
-          >
+          <tr v-for="(enc, index) in encodings || []" :key="index">
             <td>
               {{ enc.confidence }}
             </td>

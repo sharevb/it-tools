@@ -28,7 +28,7 @@ const validation = useValidation({
   source: rawJwt,
   rules: [
     {
-      validator: value => value.length > 0 && isNotThrowing(() => decodeJwt({ jwt: rawJwt.value })),
+      validator: (value) => value.length > 0 && isNotThrowing(() => decodeJwt({ jwt: rawJwt.value })),
       message: t('tools.jwt-parser.texts.message-invalid-jwt'),
     },
   ],
@@ -60,12 +60,10 @@ const signatureVerification = computedAsync(async () => {
       const publicKey = await jose.importJWK(jwk, alg);
 
       await jose.jwtVerify(jwt, publicKey);
-    }
-    else if (secretEncoding.value === 'key' || secretOrPublicKeyValue.includes('-----BEGIN PUBLIC KEY-----')) {
+    } else if (secretEncoding.value === 'key' || secretOrPublicKeyValue.includes('-----BEGIN PUBLIC KEY-----')) {
       const publicKey = await jose.importSPKI(secretOrPublicKeyValue, alg);
       await jose.jwtVerify(jwt, publicKey);
-    }
-    else {
+    } else {
       let secret;
       try {
         switch (secretEncoding.value) {
@@ -82,16 +80,20 @@ const signatureVerification = computedAsync(async () => {
             secret = Base64.toUint8Array(secretOrPublicKeyValue);
             break;
         }
-      }
-      catch (parseError: any) {
-        throw new Error(t('tools.jwt-generator.texts.cannot-parse-secret-as-encoding', [secretOrPublicKeyValue, secretEncoding.value, parseError]));
+      } catch (parseError: any) {
+        throw new Error(
+          t('tools.jwt-generator.texts.cannot-parse-secret-as-encoding', [
+            secretOrPublicKeyValue,
+            secretEncoding.value,
+            parseError,
+          ]),
+        );
       }
       await jose.jwtVerify(jwt, secret);
     }
 
     return { error: '' };
-  }
-  catch (e: any) {
+  } catch (e: any) {
     return { error: t('tools.jwt-parser.texts.key-or-secret-or-verification-error-e-tostring', [e.toString()]) };
   }
 });
@@ -99,7 +101,17 @@ const signatureVerification = computedAsync(async () => {
 
 <template>
   <c-card>
-    <c-input-text v-model:value="rawJwt" :label="t('tools.jwt-parser.texts.label-jwt-to-decode')" :validation="validation" :placeholder="t('tools.jwt-parser.texts.placeholder-put-your-token-here')" rows="5" multiline raw-text autofocus mb-3 />
+    <c-input-text
+      v-model:value="rawJwt"
+      :label="t('tools.jwt-parser.texts.label-jwt-to-decode')"
+      :validation="validation"
+      :placeholder="t('tools.jwt-parser.texts.placeholder-put-your-token-here')"
+      rows="5"
+      multiline
+      raw-text
+      autofocus
+      mb-3
+    />
 
     <n-table v-if="validation.isValid">
       <tbody>
@@ -112,15 +124,11 @@ const signatureVerification = computedAsync(async () => {
               <span font-bold>
                 {{ claim }}
               </span>
-              <span v-if="claimDescription" ml-2 op-70>
-                ({{ claimDescription }})
-              </span>
+              <span v-if="claimDescription" ml-2 op-70> ({{ claimDescription }}) </span>
             </td>
             <td>
               <span>{{ value }}</span>
-              <span v-if="friendlyValue" ml-2 op-70>
-                ({{ friendlyValue }})
-              </span>
+              <span v-if="friendlyValue" ml-2 op-70> ({{ friendlyValue }}) </span>
             </td>
           </tr>
         </template>
@@ -136,8 +144,14 @@ const signatureVerification = computedAsync(async () => {
         mb-2
       />
       <c-input-text
-        v-model:value="secretOrPublicKey" :label="t('tools.jwt-parser.texts.label-secret-or-public-key-spki-or-jwk')"
-        :placeholder="t('tools.jwt-parser.texts.placeholder-put-your-secret-or-public-key-here')" rows="5" multiline raw-text autofocus mb-3
+        v-model:value="secretOrPublicKey"
+        :label="t('tools.jwt-parser.texts.label-secret-or-public-key-spki-or-jwk')"
+        :placeholder="t('tools.jwt-parser.texts.placeholder-put-your-secret-or-public-key-here')"
+        rows="5"
+        multiline
+        raw-text
+        autofocus
+        mb-3
       />
 
       <c-alert v-if="signatureVerification?.error">

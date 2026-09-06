@@ -4,14 +4,14 @@ import { URI as OTPURI } from 'otpauth-migration';
 import { translate as t } from '@/plugins/i18n.plugin';
 
 interface OTPAuthURI {
-  type: string
+  type: string;
   label: {
-    issuer?: string
-    account?: string
-    raw: string
-  }
-  params: Record<string, string>
-  uri: string
+    issuer?: string;
+    account?: string;
+    raw: string;
+  };
+  params: Record<string, string>;
+  uri: string;
 }
 
 function parseOtpAuthUri(uri: string): OTPAuthURI | null {
@@ -34,8 +34,7 @@ function parseOtpAuthUri(uri: string): OTPAuthURI | null {
   if (labelParts.length > 1) {
     issuer = labelParts[0];
     account = labelParts.slice(1).join(':');
-  }
-  else {
+  } else {
     account = rawLabel;
   }
 
@@ -142,7 +141,7 @@ export function parseQRData(qrContent: string | null) {
     const otpauthUris = OTPURI.toOTPAuthURIs(qrContent);
     return {
       type: t('tools.qr-code-decoder.service.text.otpmigration'),
-      value: otpauthUris.map(otpauthUri => parseOtpAuthUri(otpauthUri)),
+      value: otpauthUris.map((otpauthUri) => parseOtpAuthUri(otpauthUri)),
     };
   }
   if (/^(?:https?|ftp):\/\//.test(qrContent)) {

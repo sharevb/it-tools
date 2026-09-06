@@ -8,28 +8,22 @@ import { useQueryParam } from '@/composable/queryParams';
 const { t } = useI18n();
 
 const cssInput = useQueryParam({ tool: 'css-xpath-conv', name: 'css', defaultValue: '' });
-const xpathOutput = computed(
-  () => {
-    try {
-      return cssToXpath(cssInput.value);
-    }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+const xpathOutput = computed(() => {
+  try {
+    return cssToXpath(cssInput.value);
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 
 const xpathInput = useQueryParam({ tool: 'css-xpath-conv', name: 'xpath', defaultValue: '' });
-const cssOutput = computed(
-  () => {
-    try {
-      return xPathToCss(xpathInput.value);
-    }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+const cssOutput = computed(() => {
+  try {
+    return xPathToCss(xpathInput.value);
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 </script>
 
 <template>

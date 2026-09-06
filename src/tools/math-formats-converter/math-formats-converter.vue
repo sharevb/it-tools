@@ -19,7 +19,11 @@ const formats = [
 
 const source = useQueryParam({ tool: 'math-fmts-conv', name: 'input', defaultValue: '' });
 const sourceFormat = useQueryParamOrStorage({ name: 'src', storageName: 'math-fmts-conv:src', defaultValue: 'latex' });
-const targetFormat = useQueryParamOrStorage({ name: 'target', storageName: 'math-fmts-conv:target', defaultValue: 'mathml' });
+const targetFormat = useQueryParamOrStorage({
+  name: 'target',
+  storageName: 'math-fmts-conv:target',
+  defaultValue: 'mathml',
+});
 const target = computedAsync(async () => {
   const sourceValue = source.value;
   const sourceFormatValue = sourceFormat.value;
@@ -59,8 +63,7 @@ const target = computedAsync(async () => {
           break;
       }
       resolve(result);
-    }
-    catch (e: any) {
+    } catch (e: any) {
       resolve(`# error converting formula: ${e.toString()}`);
     }
   });
@@ -95,7 +98,12 @@ const target = computedAsync(async () => {
     />
 
     <c-card :title="t('tools.math-formats-converter.texts.title-converted-expression')">
-      <textarea-copyable :value="target" :language="targetFormat" word-wrap :download-file-name="`math.${targetFormat}`" />
+      <textarea-copyable
+        :value="target"
+        :language="targetFormat"
+        word-wrap
+        :download-file-name="`math.${targetFormat}`"
+      />
     </c-card>
   </div>
 </template>

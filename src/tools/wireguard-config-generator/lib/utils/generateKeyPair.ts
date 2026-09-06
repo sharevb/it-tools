@@ -25,18 +25,18 @@ function pack(o: Uint8Array, n: Float64Array) {
   carry(t);
   carry(t);
   for (let j = 0; j < 2; ++j) {
-    m[0] = t[0] - 0xFFED;
+    m[0] = t[0] - 0xffed;
     for (let i = 1; i < 15; ++i) {
-      m[i] = t[i] - 0xFFFF - ((m[i - 1] >> 16) & 1);
-      m[i - 1] &= 0xFFFF;
+      m[i] = t[i] - 0xffff - ((m[i - 1] >> 16) & 1);
+      m[i - 1] &= 0xffff;
     }
-    m[15] = t[15] - 0x7FFF - ((m[14] >> 16) & 1);
+    m[15] = t[15] - 0x7fff - ((m[14] >> 16) & 1);
     b = (m[15] >> 16) & 1;
-    m[14] &= 0xFFFF;
+    m[14] &= 0xffff;
     cswap(t, m, 1 - b);
   }
   for (let i = 0; i < 16; ++i) {
-    o[2 * i] = t[i] & 0xFF;
+    o[2 * i] = t[i] & 0xff;
     o[2 * i + 1] = t[i] >> 8;
   }
 }
@@ -45,7 +45,7 @@ function carry(o: Float64Array) {
   // let c;
   for (let i = 0; i < 16; ++i) {
     o[(i + 1) % 16] += (i < 15 ? 1 : 38) * Math.floor(o[i] / 65536);
-    o[i] &= 0xFFFF;
+    o[i] &= 0xffff;
   }
 }
 
@@ -118,7 +118,7 @@ function generatePublicKey(privateKey: Uint8Array) {
   const d = gf([1]);
   const e = gf();
   const f = gf();
-  const _121665 = gf([0xDB41, 1]);
+  const _121665 = gf([0xdb41, 1]);
   const _9 = gf([9]);
   for (let i = 0; i < 32; ++i) {
     z[i] = privateKey[i];
@@ -193,8 +193,8 @@ export function generateKeyPair({
   privateKey,
   preSharedKey = false,
 }: {
-  privateKey: Uint8Array | string | undefined
-  preSharedKey: boolean
+  privateKey: Uint8Array | string | undefined;
+  preSharedKey: boolean;
 }) {
   if (!privateKey) {
     privateKey = generatePrivateKey();

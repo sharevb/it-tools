@@ -10,7 +10,7 @@ const store = useStore('pomodoro-store');
 
 <style scoped>
 span {
-    font-family: 'Varela Round', 'Lucida Console', 'Courier New', Courier, monospace;
-    font-size: 4rem;
+  font-family: 'Varela Round', 'Lucida Console', 'Courier New', Courier, monospace;
+  font-size: 4rem;
 }
 </style>

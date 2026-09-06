@@ -24,7 +24,11 @@ const [decodeOutput, decodeError] = computedCatch(() => decode(decodeInput.value
         :label="t('tools.morse-converter.texts.label-your-text')"
         :placeholder="t('tools.morse-converter.texts.placeholder-the-string-to-encode')"
         rows="4"
-        multiline raw-text monospace autosize flex-1
+        multiline
+        raw-text
+        monospace
+        autosize
+        flex-1
       />
     </div>
     <c-input-text
@@ -32,7 +36,11 @@ const [decodeOutput, decodeError] = computedCatch(() => decode(decodeInput.value
       :value="encodeOutput"
       rows="3"
       :placeholder="t('tools.morse-converter.texts.placeholder-your-string-encoded')"
-      multiline monospace readonly autosize mt-5
+      multiline
+      monospace
+      readonly
+      autosize
+      mt-5
     />
   </c-card>
   <c-card :title="t('tools.morse-converter.texts.title-decode')">
@@ -42,7 +50,11 @@ const [decodeOutput, decodeError] = computedCatch(() => decode(decodeInput.value
         :label="t('tools.morse-converter.texts.label-your-morse-encoded-text')"
         :placeholder="t('tools.morse-converter.texts.placeholder-the-string-to-decode')"
         rows="4"
-        multiline raw-text monospace autosize flex-1
+        multiline
+        raw-text
+        monospace
+        autosize
+        flex-1
       />
     </div>
     <c-alert v-if="decodeError" type="error" mt-12 :title="t('tools.morse-converter.texts.title-error-while-decoding')">
@@ -54,7 +66,11 @@ const [decodeOutput, decodeError] = computedCatch(() => decode(decodeInput.value
       :value="decodeOutput"
       :placeholder="t('tools.morse-converter.texts.placeholder-your-string-decoded')"
       rows="3"
-      multiline monospace readonly autosize mt-5
+      multiline
+      monospace
+      readonly
+      autosize
+      mt-5
     />
   </c-card>
 </template>

@@ -46,7 +46,7 @@ zellij delete-session <name>
 ## 🪟 Pane Mode — `Ctrl+p`
 
 | Key             | Action                                          |
-|-----------------|-------------------------------------------------|
+| --------------- | ----------------------------------------------- |
 | `n`             | New pane                                        |
 | `d`             | Split down (new pane below)                     |
 | `r`             | Split right (new pane to the right)             |
@@ -61,7 +61,7 @@ zellij delete-session <name>
 ## 📑 Tab Mode — `Ctrl+t`
 
 | Key          | Action                                      |
-|--------------|---------------------------------------------|
+| ------------ | ------------------------------------------- |
 | `n`          | New tab                                     |
 | `x`          | Close the tab                               |
 | `r`          | Rename the tab                              |
@@ -73,7 +73,7 @@ zellij delete-session <name>
 ## 📐 Resize & Move
 
 | Mode              | Keys            | Action                          |
-|-------------------|-----------------|---------------------------------|
+| ----------------- | --------------- | ------------------------------- |
 | Resize — `Ctrl+n` | `←↑↓→` / `hjkl` | Grow the pane in that direction |
 | Resize — `Ctrl+n` | `+` / `-`       | Grow or shrink the pane         |
 | Move — `Ctrl+h`   | `←↑↓→` / `hjkl` | Move the pane in the layout     |
@@ -81,7 +81,7 @@ zellij delete-session <name>
 ## 🔍 Search & Scrollback — `Ctrl+s`
 
 | Key             | Action                                |
-|-----------------|---------------------------------------|
+| --------------- | ------------------------------------- |
 | `s`             | Search the scrollback                 |
 | `e`             | Open the scrollback in your `$EDITOR` |
 | `PgUp` / `PgDn` | Scroll a page at a time               |
@@ -91,7 +91,7 @@ zellij delete-session <name>
 ## 🗄 Session Mode — `Ctrl+o`
 
 | Key | Action                                      |
-|-----|---------------------------------------------|
+| --- | ------------------------------------------- |
 | `d` | Detach — the session keeps running          |
 | `w` | Session manager (switch, resurrect, delete) |
 | `p` | Plugin manager                              |
@@ -102,7 +102,7 @@ zellij delete-session <name>
 ## ⚡ Shortcuts Without a Mode
 
 | Keys                    | Action                    |
-|-------------------------|---------------------------|
+| ----------------------- | ------------------------- |
 | `Alt+n`                 | New pane                  |
 | `Alt+←↑↓→` / `Alt+hjkl` | Move the focus            |
 | `Alt+=` / `Alt+-`       | Resize the focused pane   |

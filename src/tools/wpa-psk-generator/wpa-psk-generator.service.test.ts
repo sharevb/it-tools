@@ -8,7 +8,7 @@ describe('wpa-psk-generator', () => {
       psk: 'd630c5513becfd3952432bd7fcf098b7a40907f3214cf43551f1b8cfda873ecc',
       ssid: 'test',
     });
-    expect(generateWpaPskRawKey('test', 'test')?.psk).toHaveLength(256 / 8 * 2);
+    expect(generateWpaPskRawKey('test', 'test')?.psk).toHaveLength((256 / 8) * 2);
   });
 
   it.each<[string, string, string]>([

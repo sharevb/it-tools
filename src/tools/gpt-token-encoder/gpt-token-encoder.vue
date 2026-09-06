@@ -8,31 +8,29 @@ import { useQueryParamOrStorage } from '@/composable/queryParams';
 const { t } = useI18n();
 
 const models = GPTTokens.supportModels;
-const model = useQueryParamOrStorage({ name: 'model', storageName: 'gpt-token-encoder:model', defaultValue: 'gpt-3.5-turbo-1106' });
+const model = useQueryParamOrStorage({
+  name: 'model',
+  storageName: 'gpt-token-encoder:model',
+  defaultValue: 'gpt-3.5-turbo-1106',
+});
 
 const decodedInput = ref('');
-const encodedOutput = computed(
-  () => {
-    try {
-      return GPTTokens.encode(model.value as TiktokenModel, decodedInput.value).join(' ');
-    }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+const encodedOutput = computed(() => {
+  try {
+    return GPTTokens.encode(model.value as TiktokenModel, decodedInput.value).join(' ');
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 
 const encodedInput = ref('');
-const decodedOutput = computed(
-  () => {
-    try {
-      return GPTTokens.decode(model.value as TiktokenModel, encodedInput.value.split(/\s+/).map(Number));
-    }
-    catch (e: any) {
-      return e.toString();
-    }
-  },
-);
+const decodedOutput = computed(() => {
+  try {
+    return GPTTokens.decode(model.value as TiktokenModel, encodedInput.value.split(/\s+/).map(Number));
+  } catch (e: any) {
+    return e.toString();
+  }
+});
 </script>
 
 <template>

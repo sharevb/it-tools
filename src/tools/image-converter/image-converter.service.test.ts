@@ -3,7 +3,8 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import wasmDataUrl from '@resvg/resvg-wasm/index_bg.wasm?url&inline';
 import { convertSvgToPng, initializeSvgRenderer } from './image-converter.service';
 
-const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"><rect width="100" height="50" fill="#18a058"/></svg>';
+const svg =
+  '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"><rect width="100" height="50" fill="#18a058"/></svg>';
 
 function readPngSize(png: Uint8Array) {
   const view = new DataView(png.buffer, png.byteOffset, png.byteLength);
@@ -13,7 +14,7 @@ function readPngSize(png: Uint8Array) {
 }
 
 function isPng(bytes: Uint8Array) {
-  return [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A].every((byte, index) => bytes[index] === byte);
+  return [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a].every((byte, index) => bytes[index] === byte);
 }
 
 describe('image-converter', () => {
@@ -72,9 +73,11 @@ describe('image-converter', () => {
     });
 
     it('only initializes the wasm module once, as a second call would throw', async () => {
-      await expect(initializeSvgRenderer(() => {
-        throw new Error('should not be called again');
-      })).resolves.toBeUndefined();
+      await expect(
+        initializeSvgRenderer(() => {
+          throw new Error('should not be called again');
+        }),
+      ).resolves.toBeUndefined();
     });
   });
 });

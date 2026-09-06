@@ -4,7 +4,7 @@ import { nextTick, onMounted, onUnmounted, ref } from 'vue';
 import type { Tool } from '@/tools/tools.types';
 
 defineProps<{
-  tool: Tool
+  tool: Tool;
 }>();
 
 const textRef = ref<HTMLElement>();
@@ -25,9 +25,10 @@ async function checkTruncation() {
     const textWidth = context.measureText(text).width;
 
     // Calculate precise container width by accounting for padding
-    const containerWidth = textRef.value.clientWidth
-      - Number.parseFloat(computedStyle.paddingLeft)
-      - Number.parseFloat(computedStyle.paddingRight);
+    const containerWidth =
+      textRef.value.clientWidth -
+      Number.parseFloat(computedStyle.paddingLeft) -
+      Number.parseFloat(computedStyle.paddingRight);
 
     showTooltip.value = textWidth > containerWidth;
   }
@@ -55,19 +56,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <n-tooltip
-    placement="right"
-    :delay="500"
-    :show-arrow="true"
-    :disabled="!showTooltip"
-  >
+  <n-tooltip placement="right" :delay="500" :show-arrow="true" :disabled="!showTooltip">
     <template #trigger>
       <RouterLink :to="tool.path" class="menu-link">
-        <span
-          ref="textRef"
-          class="menu-text"
-          @mouseenter="checkTruncation"
-        >
+        <span ref="textRef" class="menu-text" @mouseenter="checkTruncation">
           {{ tool.name }}
         </span>
       </RouterLink>

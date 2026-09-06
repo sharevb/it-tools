@@ -3,9 +3,9 @@ import { type RouteLocationRaw, RouterLink } from 'vue-router';
 import { useTheme } from './c-link.theme';
 
 const props = defineProps<{
-  href?: string
-  to?: RouteLocationRaw
-  target?: string
+  href?: string;
+  to?: RouteLocationRaw;
+  target?: string;
 }>();
 
 const { href, to, target } = toRefs(props);

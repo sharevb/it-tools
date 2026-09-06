@@ -8,7 +8,8 @@ import type { UseValidationRule } from '@/composable/validation';
 
 const { t } = useI18n();
 
-const transformer = (value: string) => value.trim() === '' ? '' : withDefaultOnError(() => stringifyToYaml(parseToml(value)), '');
+const transformer = (value: string) =>
+  value.trim() === '' ? '' : withDefaultOnError(() => stringifyToYaml(parseToml(value)), '');
 
 const rules: UseValidationRule<string>[] = [
   {
