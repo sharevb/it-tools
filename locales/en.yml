@@ -9969,6 +9969,186 @@ tools:
         get-a-random-tool-from-the-list: Get a random tool from the list.
         random-tool: Random tool
         tools: Tools
+  restic-command-generator:
+    title: Restic Command Generator
+    description: "Generate restic CLI commands to restore a Backrest or plain restic
+      repository: a whole snapshot, only some files, or a browsable mount."
+    texts:
+      intro: "Generator only: nothing runs here and nothing you type leaves your
+        browser. Describe your repository, pick what you need to recover, and copy
+        the shell snippet."
+      title-repository: Repository
+      label-backend: Backend
+      backend-s3: S3 compatible (Backblaze B2, MinIO, Wasabi, AWS…)
+      backend-b2: Backblaze B2 (native)
+      backend-local: Local path or mounted disk
+      backend-sftp: SFTP
+      backend-rest: restic REST server
+      backend-rclone: Rclone
+      backend-azure: Azure Blob Storage
+      backend-gs: Google Cloud Storage
+      backend-raw: Other (raw repository URI)
+      label-local-path: Repository path
+      label-endpoint: Endpoint
+      label-bucket: Bucket
+      label-prefix: Path in the bucket
+      label-region: Region (optional)
+      label-user: User
+      label-host: Host
+      label-port: Port (optional)
+      label-path: Repository path
+      label-url: Server URL
+      label-remote: Rclone remote and path
+      label-container: Container
+      label-raw-repository: Repository URI
+      label-repository-mode: Repository passed as
+      repository-flag: -r flag on every command
+      repository-env: RESTIC_REPOSITORY environment variable
+      label-repository-uri: Repository URI
+      label-password: Repository password
+      password-prompt: Prompt for it in the shell (read -rs, stays out of the history)
+      password-file: --password-file
+      password-command: --password-command
+      password-placeholder: RESTIC_PASSWORD export with a placeholder
+      password-none: Already set in my environment
+      label-password-file: Password file
+      label-password-command: Password command
+      label-credentials: Backend credentials
+      credentials-prompt: Prompt for the secret in the shell
+      credentials-placeholder: Export them with placeholders
+      credentials-none: Already set in my environment
+      label-account-id: Key ID / account name
+      hint-secrets: 'No secret is ever put in the generated command: the prompt
+        options read them into your shell with "read -rs" so they stay out of your
+        history.'
+      title-operation: What do you want to do?
+      operation-restore: restore — write files from a snapshot back to disk
+      operation-dump: dump — stream one file or folder out of a snapshot
+      operation-mount: mount — browse the repository as a filesystem
+      operation-snapshots: snapshots — list the snapshots of the repository
+      operation-ls: ls — list the files inside a snapshot
+      operation-find: find — locate a file across snapshots
+      operation-diff: diff — compare two snapshots
+      operation-check: check — verify the integrity of the repository
+      operation-stats: stats — size of a snapshot or of the repository
+      operation-unlock: unlock — remove stale locks
+      title-snapshot: Snapshot selection
+      label-snapshot-id: Snapshot ID
+      label-subfolder: Only this subfolder of the snapshot
+      label-plan: Backrest plan ID
+      label-instance: Backrest instance ID
+      label-filter-host: Host
+      label-tags: Extra tags
+      placeholder-tag: manual
+      label-filter-paths: Paths
+      placeholder-path: /home/me/documents
+      hint-tags: Backrest tags the snapshots it creates with "plan:" and
+        "created-by:" followed by the plan and the instance IDs. Tags inside a
+        single --tag are ANDed while repeated --tag flags are ORed, so the plan
+        and the instance stay in one flag and each extra tag gets its own.
+      title-restore-options: Restore options
+      label-target: Target directory
+      label-include: Restore only these paths or patterns
+      placeholder-include: /home/me/documents/**/*.pdf
+      label-exclude: Exclude these paths or patterns
+      placeholder-exclude: "**/node_modules"
+      label-overwrite: Overwrite existing files
+      overwrite-default: restic default (always)
+      overwrite-always: always
+      overwrite-if-changed: if-changed
+      overwrite-if-newer: if-newer
+      overwrite-never: never
+      label-case-insensitive: Case insensitive patterns
+      label-dry-run: Dry run
+      label-verify: Verify restored files
+      label-sparse: Write sparse files
+      label-delete: Delete files missing from the snapshot
+      title-dump-options: Dump options
+      label-dump-path: File or folder inside the snapshot
+      label-archive: Archive format
+      archive-none: Raw file
+      archive-tar: tar
+      archive-zip: zip
+      label-output-file: Redirect to a local file (optional)
+      hint-dump: dump streams a single file or folder straight out of the repository,
+        so you do not have to restore a whole snapshot to get one config file
+        back.
+      title-mount-options: Mount options
+      label-mount-point: Mount point
+      label-allow-other: Allow other users to access the mount
+      title-ls-options: List options
+      label-ls-directory: Directory to list (optional)
+      label-long: Long listing
+      label-recursive: Recursive
+      title-find-options: Find options
+      label-find-pattern: Pattern
+      label-restrict-snapshot: Search only the selected snapshot
+      title-diff-options: Diff options
+      label-diff-snapshot: Compare with snapshot
+      label-metadata: Report metadata changes too
+      title-snapshots-options: Snapshots options
+      label-compact: Compact output
+      title-check-options: Check options
+      label-read-data-subset: Read data subset
+      label-read-data: Read and verify every pack file
+      label-check-unused: Report unused blobs
+      label-with-cache: Use the existing cache
+      title-stats-options: Stats options
+      label-stats-mode: Counting mode
+      stats-restore-size: restore-size — size of a restore
+      stats-files-by-contents: files-by-contents — unique files
+      stats-raw-data: raw-data — size before deduplication
+      stats-blobs-per-file: blobs-per-file
+      label-stats-all: All snapshots
+      title-unlock-options: Unlock options
+      label-remove-all: Remove every lock, including the ones in use
+      title-global-options: Global options
+      label-cache-dir: Cache directory
+      label-limit-download: Download limit (KiB/s)
+      label-retry-lock: Retry a locked repository for
+      label-extra-options: Backend options (-o)
+      placeholder-extra-option: s3.connections=4
+      label-extra-arguments: Extra arguments (appended as-is)
+      label-no-lock: --no-lock
+      label-no-cache: --no-cache
+      label-insecure-tls: --insecure-tls
+      label-json: --json
+      label-quiet: --quiet
+      label-verbose: --verbose
+      title-output: Generated command
+      label-include-environment: Include the environment setup
+      label-multiline: One argument per line
+      button-reset: Reset to defaults
+      warning-history: "Placeholder exports stay in your shell history once filled in:
+        prefer the prompt options, or clear the history afterwards."
+      warning-target: restore recreates the full path of every file under the
+        target directory, so /etc/hosts ends up in the etc/hosts subfolder of the
+        target.
+      warning-delete: --delete removes the files of the target directory that are not
+        in the snapshot. Try it with --dry-run first.
+      warning-restic-version: --dry-run, --delete and --overwrite require restic 0.17 or newer.
+      warning-mount: mount needs FUSE, exposes the snapshots read-only, and keeps
+        running until you stop it with Ctrl-C.
+      title-walkthrough: Recovery walkthrough
+      hint-walkthrough: The usual sequence when the repository is all that is left,
+        built from the settings above.
+      walkthrough-snapshots: List the snapshots of the repository
+      walkthrough-find: Find which snapshot holds the file you need
+      walkthrough-ls: List the files of the chosen snapshot
+      walkthrough-restore: Restore only the files you need
+      walkthrough-mount: Or browse the repository and copy files out by hand
+      title-backrest: Backrest cheat sheet
+      table-item: Item
+      table-value: Default path or format (Docker image between parentheses)
+      backrest-config: Config file, holding the repository URI, its password and the
+        backend environment variables
+      backrest-data: Data directory
+      backrest-binary: Restic binary downloaded by Backrest
+      backrest-plan-tag: Tag identifying the plan
+      backrest-instance-tag: Tag identifying the instance
+      hint-backrest: "A Backrest repository is a plain restic repository: if the web
+        UI is gone, read the URI and the password out of config.json and drive it
+        with the restic binary Backrest already downloaded."
   external-self-hosted-required: External Self Hosted Required
 collapsibleToolMenu:
   text:
