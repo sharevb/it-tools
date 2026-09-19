@@ -12,7 +12,6 @@ const VueMarkdown = defineAsyncComponent(() => import('vue-markdown-render'));
 
 import { useThemeVars } from 'naive-ui';
 import { useTheme } from '../ui/c-link/c-link.theme';
-import BaseLayout from './base.layout.vue';
 import FavoriteButton from '@/components/FavoriteButton.vue';
 import type { Tool } from '@/tools/tools.types';
 
@@ -83,51 +82,49 @@ const linkTheme = useTheme();
 </script>
 
 <template>
-  <BaseLayout>
-    <div class="tool-layout">
-      <div class="tool-header">
-        <div flex flex-nowrap items-center justify-between>
-          <n-h1>
-            {{ toolTitle }}
-            <n-tooltip placement="right" trigger="click" content-class="tool-privacy-info">
-              <template #trigger>
-                <World v-if="route.meta.externAccessDescription" class="tool-privacy-icon" />
-                <DeviceDesktop v-else class="tool-privacy-icon" />
-              </template>
-              <VueMarkdown
-                v-if="route.meta.externAccessDescription"
-                :source="route.meta.externAccessDescription as string"
-                :options="{ linkify: true }"
-              />
-              <template v-else>
-                {{ $t('tools.tool.layout.text.runs-entirely-in-your-browser-no-external-requests') }}
-              </template>
-            </n-tooltip>
-          </n-h1>
+  <div class="tool-layout">
+    <div class="tool-header">
+      <div flex flex-nowrap items-center justify-between>
+        <n-h1>
+          {{ toolTitle }}
+          <n-tooltip placement="right" trigger="click" content-class="tool-privacy-info">
+            <template #trigger>
+              <World v-if="route.meta.externAccessDescription" class="tool-privacy-icon" />
+              <DeviceDesktop v-else class="tool-privacy-icon" />
+            </template>
+            <VueMarkdown
+              v-if="route.meta.externAccessDescription"
+              :source="route.meta.externAccessDescription as string"
+              :options="{ linkify: true }"
+            />
+            <template v-else>
+              {{ $t('tools.tool.layout.text.runs-entirely-in-your-browser-no-external-requests') }}
+            </template>
+          </n-tooltip>
+        </n-h1>
 
-          <div>
-            <FavoriteButton :tool="{ name: route.meta.name, path: route.path } as Tool" />
-          </div>
-        </div>
-
-        <div class="separator" />
-
-        <div class="description">
-          {{ toolDescription }}
+        <div>
+          <FavoriteButton :tool="{ name: route.meta.name, path: route.path } as Tool" />
         </div>
       </div>
-    </div>
 
-    <div class="tool-content">
-      <Suspense>
-        <slot />
-      </Suspense>
-    </div>
+      <div class="separator" />
 
-    <div class="tool-footer">
-      <VueMarkdown :source="toolFooter" />
+      <div class="description">
+        {{ toolDescription }}
+      </div>
     </div>
-  </BaseLayout>
+  </div>
+
+  <div class="tool-content">
+    <Suspense>
+      <slot />
+    </Suspense>
+  </div>
+
+  <div class="tool-footer">
+    <VueMarkdown :source="toolFooter" />
+  </div>
 </template>
 
 <style lang="less">

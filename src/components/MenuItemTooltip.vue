@@ -11,26 +11,17 @@ const textRef = ref<HTMLElement>();
 const showTooltip = ref(false);
 let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
 
+// Must settle before the pointer arrives: n-tooltip reads `disabled` on enter,
+// so deciding on hover would leave the first hover with a stale value.
 async function checkTruncation() {
   await nextTick();
-  if (textRef.value) {
-    const text = textRef.value.textContent || '';
-    const computedStyle = window.getComputedStyle(textRef.value);
 
-    // Create canvas context for precise text measurement
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d')!;
-    context.font = `${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
+  const el = textRef.value;
 
-    const textWidth = context.measureText(text).width;
-
-    // Calculate precise container width by accounting for padding
-    const containerWidth =
-      textRef.value.clientWidth -
-      Number.parseFloat(computedStyle.paddingLeft) -
-      Number.parseFloat(computedStyle.paddingRight);
-
-    showTooltip.value = textWidth > containerWidth;
+  if (el) {
+    // .menu-text is one nowrap ellipsised line, so overflow is exactly the condition.
+    // Replaces a canvas measureText() that cost a <canvas> + getComputedStyle per item.
+    showTooltip.value = el.scrollWidth > el.clientWidth;
   }
 }
 
