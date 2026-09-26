@@ -20,6 +20,8 @@ async function generateKeyPair(
   const pubKey = privKey.toPublic();
   return {
     publicKey: pubKey.toString(pubFormat),
+    fingerprint: pubKey.fingerprint('sha256').toString(),
+    md5Fingerprint: pubKey.fingerprint('md5').toString(),
     privateKey: config?.password
       ? privKey.toString(privFormat, {
           passphrase: config?.password,

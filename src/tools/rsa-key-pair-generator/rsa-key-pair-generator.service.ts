@@ -30,8 +30,12 @@ async function generateKeyPair(
   const privateUnencryptedKeyPem = pki.privateKeyToPem(privateKey);
 
   if (config?.format === 'pem') {
+    const publicKeyPEM = pki.publicKeyToPem(publicKey);
+    const parsedPubicKey = sshpk.parseKey(publicKeyPEM);
     return {
-      publicKey: pki.publicKeyToPem(publicKey),
+      publicKey: publicKeyPEM,
+      fingerprint: publicKey ? parsedPubicKey.fingerprint('sha256').toString() : '',
+      md5Fingerprint: publicKey ? parsedPubicKey.fingerprint('md5').toString() : '',
       privateKey: config?.password ? pki.encryptRsaPrivateKey(privateKey, config?.password) : privateUnencryptedKeyPem,
     };
   }
@@ -46,6 +50,8 @@ async function generateKeyPair(
   const pubKey = privKey.toPublic();
   return {
     publicKey: pubKey.toString(pubFormat),
+    fingerprint: pubKey.fingerprint('sha256').toString(),
+    md5Fingerprint: pubKey.fingerprint('md5').toString(),
     privateKey: config?.password
       ? privKey.toString(privFormat, { passphrase: config?.password, comment: config?.comment })
       : privKey.toString(privFormat, { comment: config?.comment }),

@@ -26,7 +26,7 @@ const { t } = useI18n();
 
 const styleStore = useStyleStore();
 
-const jsonText = ref('{ "a": { "array": [1, 2, 3] } }');
+const jsonText = useITStorage('json-editor:data', '{ "a": { "array": [1, 2, 3] } }');
 const jsonPath = ref('');
 
 function updateJsonPath(selection: JSONEditorSelection) {
@@ -46,7 +46,8 @@ function updateJsonPath(selection: JSONEditorSelection) {
 }
 
 const jsonSchemaInputElement = ref<HTMLElement>();
-const schemaData = useITStorage('json-linter:schema-data', '');
+const schemaData = useITStorage('json-editor:schema-data', '');
+const autoHeight = useITStorage('json-editor:auto-height', false);
 
 const schemaUrl = useQueryParamOrStorage<string>({
   name: 'schema',
@@ -74,10 +75,17 @@ const formattedJson = computed(() => {
 
 <template>
   <div>
+    <n-space justify="center">
+      <n-checkbox v-model:checked="autoHeight" mb-2>
+        {{ t('tools.json-editor.texts.label-auto-height') }}
+      </n-checkbox>
+    </n-space>
+
     <JsonEditorVue
       v-model="jsonText"
       :mode="Mode.text"
       :class="styleStore.isDarkTheme ? 'jse-theme-dark' : ''"
+      :style="autoHeight ? { height: '80vh' } : {}"
       :on-select="updateJsonPath"
       mb-2
     />
@@ -98,7 +106,12 @@ const formattedJson = computed(() => {
       <n-input-number-i18n v-model:value="indentSize" min="0" max="10" style="width: 100px" />
     </n-form-item>
     <n-form-item :label="t('tools.json-editor.texts.label-your-edited-json')">
-      <textarea-copyable :value="formattedJson" language="json" download-file-name="output.json" />
+      <textarea-copyable
+        :value="formattedJson"
+        language="json"
+        download-file-name="output.json"
+        :style="autoHeight ? { height: '80vh' } : {}"
+      />
     </n-form-item>
 
     <n-form-item
