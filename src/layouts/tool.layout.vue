@@ -153,7 +153,7 @@ const linkTheme = useTheme();
   gap: 16px;
   overflow-x: auto;
 
-  ::v-deep(& > *) {
+  > :deep(*) {
     flex: 0 1 1200px;
     min-width: 0;
   }
