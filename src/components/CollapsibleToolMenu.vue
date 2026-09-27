@@ -47,6 +47,17 @@ watchEffect(() => {
 const isToggling = ref(false);
 const menuContainerRefs = ref<Record<string, HTMLElement>>({});
 
+// Every category starts coMount a category's items when it first opens, then keep themllapsed, so mounting all ~460 items up front built a
+// menu nobody can see. Mount a category's items when it first opens, then keep them.
+const openedCategories = ref<Record<string, boolean>>({});
+watchEffect(() => {
+  toolsByCategory.value.forEach(({ name }) => {
+    if (collapsedCategories.value[name] === false) {
+      openedCategories.value[name] = true;
+    }
+  });
+});
+
 function toggleCategoryCollapse({ name }: { name: string }) {
   collapsedCategories.value[name] = !collapsedCategories.value[name];
 }
@@ -88,11 +99,12 @@ function isCategoryActive(components: Tool[]): boolean {
   return components.some((tool) => tool.path === route.path);
 }
 
+// Depends on the tool list only: holding the collapsed/active flags in here rebuilt
+// every category's `tools` array, re-rendering all ~460 items on each navigation.
 const menuOptions = computed(() =>
   toolsByCategory.value.map(({ name, components }) => ({
     name,
-    isCollapsed: collapsedCategories.value[name],
-    isActive: isCategoryActive(components),
+    components,
     animationDuration: getAnimationDuration(components.length),
     tools: components.map((tool) => ({
       label: makeLabel(tool),
@@ -155,14 +167,10 @@ const themeVars = useThemeVars();
     </c-button>
   </div>
 
-  <div
-    v-for="{ name, tools, isCollapsed, isActive, animationDuration } of menuOptions"
-    :key="name"
-    class="category-container"
-  >
+  <div v-for="{ name, components, tools, animationDuration } of menuOptions" :key="name" class="category-container">
     <button
       class="category-button"
-      :class="{ 'category-active': isActive }"
+      :class="{ 'category-active': isCategoryActive(components) }"
       flex
       cursor-pointer
       items-center
@@ -170,7 +178,7 @@ const themeVars = useThemeVars();
       @click="toggleCategoryCollapse({ name })"
     >
       <span
-        :class="{ 'rotate-0': isCollapsed, 'rotate-90': !isCollapsed }"
+        :class="{ 'rotate-0': collapsedCategories[name], 'rotate-90': !collapsedCategories[name] }"
         text-16px
         lh-1
         op-50
@@ -192,13 +200,14 @@ const themeVars = useThemeVars();
         }
       "
       class="menu-container"
-      :class="{ collapsed: isCollapsed }"
+      :class="{ collapsed: collapsedCategories[name] }"
       :style="{ '--animation-duration': `${animationDuration}ms` }"
     >
       <div class="menu-wrapper">
         <div class="toggle-bar" @click="toggleCategoryCollapse({ name })" />
 
         <n-menu
+          v-if="openedCategories[name]"
           class="menu"
           :value="route.path"
           :collapsed-width="64"
