@@ -4,8 +4,8 @@
 // ! license : AGPL-3.0
 
 const rawLineRegx = /^.*$|\n|$/g;
-const newLineRegx = /\n/;
-const spacesRegx = /\s/;
+const newLineRegx = /\n/g;
+const spacesRegx = /\s/g;
 const arrayRegx = /\[\s*?([0-9]{1,100})?\s*?\]/;
 const typesRegx = /^(\w+)(\s+)(\w+).*?$/;
 
@@ -146,7 +146,8 @@ export function ObjGen2Json(val: string, options?: { numSpaces?: number }) {
 
   // parse the raw inbound lines, to find individual input lines
   parseLines(val, options, (line, depth) => {
-    if (line.match('^\s+$/|^\/$|^\/\/|^\s.*\/$|^\s.*\/\/') !== null) {
+    // lines are already trimmed: skip `//` comments and lone `/` lines
+    if (/^\/\/|^\/$/.test(line)) {
       return '';
     }
 

@@ -96,6 +96,19 @@ person
       expect(JSON.parse(ObjGen2Json('this.that s = xxx'))).to.deep.eq(dots);
     });
 
+    it('should keep lines starting with "s" that contain slashes', () => {
+      const model = '// a comment\n' + 'site = https://example.com\n' + 'src = assets/';
+      expect(JSON.parse(ObjGen2Json(model))).to.deep.eq({ site: 'https://example.com', src: 'assets/' });
+    });
+
+    it('should strip every space from prop names', () => {
+      expect(JSON.parse(ObjGen2Json('name   =\nid = 1'))).to.deep.eq({ name: '', id: '1' });
+    });
+
+    it('should ignore whitespace-only lines', () => {
+      expect(JSON.parse(ObjGen2Json('id = 1\n   \nname = test'))).to.deep.eq({ id: '1', name: 'test' });
+    });
+
     it('should generate an array of strings', () => {
       const model = 'a[] = 1, 2, 3';
       const strings = { a: ['1', '2', '3'] };
