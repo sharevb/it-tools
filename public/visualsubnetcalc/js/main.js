@@ -33,7 +33,7 @@ function escapeHtml(text) {
         '"': '&quot;',
         "'": '&#039;'
     };
-    return text.replace(/[&<>"']/g, char => map[char]);
+    return String(text).replace(/[&<>"']/g, char => map[char]);
 }
 
 // Helper function to generate HTML table from table data array
@@ -1139,7 +1139,7 @@ function reset() {
     let rootNetwork = get_network($('#network').val(), $('#netsize').val())
     let rootCidr = rootNetwork + '/' + $('#netsize').val()
     if (cidrInput !== rootCidr) {
-        show_warning_modal('<div>Your network input is not on a network boundary for this network size. It has been automatically changed:</div><div class="font-monospace pt-2">' + $('#network').val() + ' -> ' + rootNetwork + '</div>')
+        show_warning_modal('<div>Your network input is not on a network boundary for this network size. It has been automatically changed:</div><div class="font-monospace pt-2">' + escapeHtml($('#network').val()) + ' -> ' + escapeHtml(rootNetwork) + '</div>')
         $('#network').val(rootNetwork)
         cidrInput = $('#network').val() + '/' + $('#netsize').val()
     }
@@ -1264,6 +1264,13 @@ function addRowTree(subnetTree, depth, maxDepth, operatingMode) {
 }
 
 function addRow(network, netSize, colspan, note, notesWidth, color, operatingMode) {
+    // The subnet map can come from a shareable URL or an imported config, so escape everything that lands in HTML
+    const rawNetwork = network
+    network = escapeHtml(network)
+    note = escapeHtml(note)
+    if (!/^#[0-9a-f]{3,8}$/i.test(color)) {
+        color = ''
+    }
     let addressFirst = ip2int(network)
     let addressLast = subnet_last_address(addressFirst, netSize)
     let usableFirst = subnet_usable_first(addressFirst, netSize, operatingMode)
@@ -1317,10 +1324,10 @@ function addRow(network, netSize, colspan, note, notesWidth, color, operatingMod
         // DONE: If the subnet address (without the mask) matches a larger subnet address
         // in the heirarchy that is a signal to add more join buttons to that row, since they start at the top row and
         // via rowspan extend downward.
-        let matchingNetworkList = get_matching_network_list(network, subnetMap).slice(1)
+        let matchingNetworkList = get_matching_network_list(rawNetwork, subnetMap).slice(1)
         for (const i in matchingNetworkList) {
-            let matchingNetwork = matchingNetworkList[i]
-            let networkChildrenCount = count_network_children(matchingNetwork, subnetMap, [])
+            let networkChildrenCount = count_network_children(matchingNetworkList[i], subnetMap, [])
+            let matchingNetwork = escapeHtml(matchingNetworkList[i])
             newRow += '                <td aria-label="' + matchingNetwork + ' Join" rowspan="' + networkChildrenCount + '" colspan="1" class="join rotate" data-subnet="' + matchingNetwork + '" data-mutate-verb="join"><span>/' + matchingNetwork.split('/')[1] + '</span></td>\n'
         }
     }
@@ -2281,7 +2288,7 @@ $('#btn_auto_allocate').on('click', function() {
     if (subnetRequests.errors) {
         let errorHtml = '<div class="alert alert-danger"><strong>Subnet Requirements Errors:</strong><ul class="mb-0">';
         for (const error of subnetRequests.errors) {
-            errorHtml += `<li>${error}</li>`;
+            errorHtml += `<li>${escapeHtml(error)}</li>`;
         }
         errorHtml += '</ul></div>';
         $('#allocation_results').html(errorHtml);
@@ -2464,7 +2471,7 @@ $('#btn_auto_allocate').on('click', function() {
         if (allocations.length > 0) {
             resultsHtml += '<div class="alert alert-success"><h6>Allocated Subnets:</h6><ul class="mb-0">';
             for (const alloc of allocations) {
-                resultsHtml += `<li><strong>${alloc.name}:</strong> ${alloc.cidr}</li>`;
+                resultsHtml += `<li><strong>${escapeHtml(alloc.name)}:</strong> ${escapeHtml(alloc.cidr)}</li>`;
             }
             resultsHtml += '</ul></div>';
 
@@ -2557,7 +2564,7 @@ $('#btn_auto_allocate').on('click', function() {
         if (allocationErrors.length > 0) {
             resultsHtml += '<div class="alert alert-danger"><h6>Errors:</h6><ul class="mb-0">';
             for (const error of allocationErrors) {
-                resultsHtml += `<li>${error}</li>`;
+                resultsHtml += `<li>${escapeHtml(error)}</li>`;
             }
             resultsHtml += '</ul></div>';
         }
@@ -2565,7 +2572,7 @@ $('#btn_auto_allocate').on('click', function() {
         $('#allocation_results').html(resultsHtml);
         } catch (error) {
             console.error('Auto-allocation error:', error);
-            $('#allocation_results').html('<div class="alert alert-danger">An error occurred during allocation: ' + error.message + '</div>');
+            $('#allocation_results').html('<div class="alert alert-danger">An error occurred during allocation: ' + escapeHtml(error.message) + '</div>');
         }
     }, 100);
 });
@@ -2665,14 +2672,14 @@ $('#btn_validate_alignment').on('click', function() {
         if (issues.length > 0) {
             resultsHtml += '<div class="alert alert-danger"><h6>Issues Found:</h6><ul class="mb-0">';
             for (const issue of issues) {
-                resultsHtml += `<li>${issue}</li>`;
+                resultsHtml += `<li>${escapeHtml(issue)}</li>`;
             }
             resultsHtml += '</ul></div>';
         }
         if (warnings.length > 0) {
             resultsHtml += '<div class="alert alert-warning"><h6>Gaps Detected:</h6><ul class="mb-0">';
             for (const warning of warnings) {
-                resultsHtml += `<li>${warning}</li>`;
+                resultsHtml += `<li>${escapeHtml(warning)}</li>`;
             }
             resultsHtml += '</ul></div>';
         }
