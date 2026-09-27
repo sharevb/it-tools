@@ -20,6 +20,10 @@ describe('markdown-table-generator service', () => {
     it('escapes pipes and converts line breaks to br tags', () => {
       expect(escapeMarkdownTableCell(' foo | bar\nbaz ')).toBe('foo \\| bar<br>baz');
     });
+
+    it('escapes backslashes so a trailing backslash cannot unescape the pipe', () => {
+      expect(escapeMarkdownTableCell('C:\\temp\\|x')).toBe('C:\\\\temp\\\\\\|x');
+    });
   });
 
   describe('generateMarkdownTable', () => {

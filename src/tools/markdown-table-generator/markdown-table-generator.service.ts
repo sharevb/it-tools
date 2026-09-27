@@ -47,7 +47,7 @@ export function createMarkdownTable({
 
 export function escapeMarkdownTableCell(value: string): string {
   return value
-    .replace(/\|/g, '\\|')
+    .replace(/[\\|]/g, '\\$&')
     .replace(/\r\n|\r|\n/g, '<br>')
     .trim();
 }
