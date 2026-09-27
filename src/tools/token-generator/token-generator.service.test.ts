@@ -1,8 +1,15 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { createToken } from './token-generator.service';
 
 describe('token-generator', () => {
   describe('createToken', () => {
+    it('should not use Math.random', () => {
+      const spy = vi.spyOn(Math, 'random');
+      createToken({ length: 64 });
+      expect(spy).not.toHaveBeenCalled();
+      spy.mockRestore();
+    });
+
     it('should generate an empty string when all params are false', () => {
       const token = createToken({
         withLowercase: false,

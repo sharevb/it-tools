@@ -6,7 +6,7 @@ import { randIntFromInterval } from '@/utils/random';
 const { t } = useI18n();
 
 const [coinFlip, refreshCoinFlip] = computedRefreshable(() => ({
-  coin: randIntFromInterval(0, 10) % 2 === 0 ? 'Heads' : 'Tails',
+  coin: randIntFromInterval(0, 1) === 0 ? 'Heads' : 'Tails',
   dt: Date.now(),
 }));
 </script>
