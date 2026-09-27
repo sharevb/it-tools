@@ -1255,9 +1255,9 @@ $(document).ready(function() {
 			$("input#add_vdev").val("");
 
 			if (new_vdev_type == "mirror") {
-				$("td#status").html(new_vdev_width + "-way mirror added");
+				$("td#status").text(new_vdev_width + "-way mirror added");
 			} else {
-				$("td#status").html(new_vdev_width + "-wide " + new_vdev_type.toUpperCase() + " added");
+				$("td#status").text(new_vdev_width + "-wide " + new_vdev_type.toUpperCase() + " added");
 			}
 		}
 
