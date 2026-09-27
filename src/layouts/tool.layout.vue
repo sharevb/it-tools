@@ -62,7 +62,7 @@ const toolTitle = computed<string>(() => t(`tools.${i18nKey.value}.title`, Strin
 const toolDescription = computed<string>(() => t(`tools.${i18nKey.value}.description`, String(route.meta.description)));
 const toolFooter = computed<string>(() => {
   const createLink = (linkText: string, url: string) => {
-    return `[${linkText.replace('[', '\\[').replace(']', '\\]')}](${url.replace('(', '%28').replace(')', '%29')})`;
+    return `[${linkText.replace(/[\\[\]]/g, '\\$&')}](${url.replace(/\(/g, '%28').replace(/\)/g, '%29')})`;
   };
   let footer = t(`tools.${i18nKey.value}.footer`, String(route.meta.footer));
   if (footer === 'undefined') {
