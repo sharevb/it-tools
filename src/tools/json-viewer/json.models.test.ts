@@ -83,6 +83,13 @@ describe('json models', () => {
         expect(result).toBe(expected);
       });
 
+      it('does not unescape an escaped backslash twice', () => {
+        const escapedJson = '{\\"text\\":\\"line1\\\\nline2\\",\\"path\\":\\"C:\\\\\\\\new\\"}';
+        const result = formatJson({ rawJson: escapedJson, unescapeJsonString: true, indentSize: 2 });
+        const expected = '{\n  "path": "C:\\\\new",\n  "text": "line1\\nline2"\n}';
+        expect(result).toBe(expected);
+      });
+
       it('handles single-quoted outer strings', () => {
         const escapedJson = '\'{\\\"id\\\":\\\"123\\\"}\'';
         const result = formatJson({ rawJson: escapedJson, unescapeJsonString: true, indentSize: 2 });
