@@ -14,12 +14,41 @@ const password = ref('');
 const permissions = ref<string[]>([]);
 const sqlOutput = ref('');
 
+// Oracle quoted identifiers and passwords cannot contain `"`, and there is no way to escape it
+const accountError = computed(() =>
+  dbType.value === 'oracle' && account.value.includes('"')
+    ? t('tools.database-builder.texts.error-oracle-account-double-quote')
+    : undefined,
+);
+const passwordError = computed(() =>
+  dbType.value === 'oracle' && password.value.includes('"')
+    ? t('tools.database-builder.texts.error-oracle-password-double-quote')
+    : undefined,
+);
+
 function generateRandomPassword(length = 12) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
   return multiRandFromArray([...chars], length).join('');
 }
 
+// Quote user input so a quote, backtick or bracket cannot end the literal or identifier early
+const sqlString = (value: string) => `'${value.replace(/'/g, "''")}'`;
+// E'' treats backslashes as escapes whatever standard_conforming_strings is set to
+const pgString = (value: string) =>
+  value.includes('\\') ? `E'${value.replace(/\\/g, '\\\\').replace(/'/g, "''")}'` : sqlString(value);
+const mysqlString = (value: string) => `'${value.replace(/\\/g, '\\\\').replace(/'/g, "''")}'`;
+const mysqlIdentifier = (value: string) => `\`${value.replace(/`/g, '``')}\``;
+const pgIdentifier = (value: string) => `"${value.replace(/"/g, '""')}"`;
+const sqlServerIdentifier = (value: string) => `[${value.replace(/]/g, ']]')}]`;
+// Quoting makes Oracle names case-sensitive, so plain names stay unquoted (names with `"` are rejected by accountError)
+const oracleIdentifier = (value: string) => (/^[A-Za-z][\w$#]*$/.test(value) ? value : `"${value}"`);
+const sqlComment = (value: string) => value.replace(/[\r\n]+/g, ' ');
+
 function generateSQL() {
+  if (accountError.value || passwordError.value) {
+    sqlOutput.value = '';
+    return;
+  }
   const pwd = password.value || generateRandomPassword();
   const perms = permissions.value.length > 0 ? permissions.value.join(', ') : 'ALL PRIVILEGES';
 
@@ -28,44 +57,44 @@ function generateSQL() {
   switch (dbType.value) {
     case 'mysql':
       sql = `
-CREATE DATABASE IF NOT EXISTS \`${dbName.value}\`;
-CREATE USER IF NOT EXISTS '${account.value}'@'${serverAddress.value || '%'}' IDENTIFIED BY '${pwd}';
-GRANT ${perms} ON \`${dbName.value}\`.* TO '${account.value}'@'${serverAddress.value || '%'}';
+CREATE DATABASE IF NOT EXISTS ${mysqlIdentifier(dbName.value)};
+CREATE USER IF NOT EXISTS ${mysqlString(account.value)}@${mysqlString(serverAddress.value || '%')} IDENTIFIED BY ${mysqlString(pwd)};
+GRANT ${perms} ON ${mysqlIdentifier(dbName.value)}.* TO ${mysqlString(account.value)}@${mysqlString(serverAddress.value || '%')};
 FLUSH PRIVILEGES;
       `.trim();
       break;
 
     case 'postgresql':
       sql = `
-CREATE DATABASE "${dbName.value}";
-CREATE ROLE "${account.value}" LOGIN PASSWORD '${pwd}';
-GRANT ${perms} ON DATABASE "${dbName.value}" TO "${account.value}";
+CREATE DATABASE ${pgIdentifier(dbName.value)};
+CREATE ROLE ${pgIdentifier(account.value)} LOGIN PASSWORD ${pgString(pwd)};
+GRANT ${perms} ON DATABASE ${pgIdentifier(dbName.value)} TO ${pgIdentifier(account.value)};
       `.trim();
       break;
 
     case 'sqlserver':
       sql = `
-CREATE DATABASE [${dbName.value}];
-CREATE LOGIN [${account.value}] WITH PASSWORD = '${pwd}';
-USE [${dbName.value}];
-CREATE USER [${account.value}] FOR LOGIN [${account.value}];
-GRANT ${perms} TO [${account.value}];
+CREATE DATABASE ${sqlServerIdentifier(dbName.value)};
+CREATE LOGIN ${sqlServerIdentifier(account.value)} WITH PASSWORD = ${sqlString(pwd)};
+USE ${sqlServerIdentifier(dbName.value)};
+CREATE USER ${sqlServerIdentifier(account.value)} FOR LOGIN ${sqlServerIdentifier(account.value)};
+GRANT ${perms} TO ${sqlServerIdentifier(account.value)};
       `.trim();
       break;
 
     case 'oracle':
       sql = `
-CREATE USER ${account.value} IDENTIFIED BY "${pwd}";
-GRANT ${perms} TO ${account.value};
+CREATE USER ${oracleIdentifier(account.value)} IDENTIFIED BY "${pwd}";
+GRANT ${perms} TO ${oracleIdentifier(account.value)};
 -- Oracle typically uses schemas; adjust database creation as needed
--- for quota, you may want: ALTER USER ${account.value} QUOTA UNLIMITED ON USERS;
+-- for quota, you may want: ALTER USER ${sqlComment(oracleIdentifier(account.value))} QUOTA UNLIMITED ON USERS;
       `.trim();
       break;
 
     case 'sqlite':
       sql = `
 -- SQLite does not support user management or GRANT statements.
--- Database is created as a file: ${dbName.value}.db
+-- Database is created as a file: ${sqlComment(dbName.value)}.db
 -- Permissions are handled at the OS/file system level.
       `.trim();
       break;
@@ -99,11 +128,20 @@ GRANT ${perms} TO ${account.value};
         <NInput v-model:value="serverAddress" :placeholder="t('tools.database-builder.texts.placeholder-127-0-0-1')" />
       </NFormItem>
 
-      <NFormItem :label="t('tools.database-builder.texts.label-account')">
+      <NFormItem
+        :label="t('tools.database-builder.texts.label-account')"
+        :feedback="accountError"
+        :validation-status="accountError ? 'error' : undefined"
+      >
         <NInput v-model:value="account" :placeholder="t('tools.database-builder.texts.placeholder-test')" />
       </NFormItem>
 
-      <NFormItem :label="t('tools.database-builder.texts.label-password-leave-empty-to-generate')" label-width="auto">
+      <NFormItem
+        :label="t('tools.database-builder.texts.label-password-leave-empty-to-generate')"
+        label-width="auto"
+        :feedback="passwordError"
+        :validation-status="passwordError ? 'error' : undefined"
+      >
         <NInput
           v-model:value="password"
           type="password"
