@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { multiRandFromArray } from '@/utils/random';
 
 const { t } = useI18n();
 
@@ -15,7 +16,7 @@ const sqlOutput = ref('');
 
 function generateRandomPassword(length = 12) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
-  return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+  return multiRandFromArray([...chars], length).join('');
 }
 
 function generateSQL() {

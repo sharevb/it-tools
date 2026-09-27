@@ -1,4 +1,4 @@
-import { shuffleString } from '@/utils/random';
+import { multiRandFromArray } from '@/utils/random';
 
 export function createToken({
   withUppercase = true,
@@ -35,5 +35,5 @@ export function createToken({
     .join('');
 
   const len = length < 1 ? 1 : length;
-  return shuffleString(allAlphabet.repeat(len)).substring(0, len);
+  return allAlphabet ? multiRandFromArray(Array.from(allAlphabet), len).join('') : '';
 }
