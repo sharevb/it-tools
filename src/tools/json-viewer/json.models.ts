@@ -28,6 +28,17 @@ function unescapeUnicodeJSON(str: string) {
   return str.replace(/\\u([\dA-Fa-f]{4})/g, (match, grp) => String.fromCharCode(Number.parseInt(grp, 16)));
 }
 
+const JSON_STRING_ESCAPES: Record<string, string> = {
+  '"': '"',
+  '\\': '\\',
+  '/': '/',
+  n: '\n',
+  r: '\r',
+  t: '\t',
+  f: '\f',
+  b: '\b',
+};
+
 function unescapeJson(jsonString: string): string {
   try {
     // First, try to handle double-escaped scenarios
@@ -40,16 +51,9 @@ function unescapeJson(jsonString: string): string {
       result = result.slice(1, -1);
     }
 
-    // Handle common escape sequences
-    result = result
-      .replace(/\\"/g, '"') // Unescape quotes
-      .replace(/\\\\/g, '\\') // Unescape backslashes (do this after quotes!)
-      .replace(/\\n/g, '\n') // Unescape newlines
-      .replace(/\\r/g, '\r') // Unescape carriage returns
-      .replace(/\\t/g, '\t') // Unescape tabs
-      .replace(/\\f/g, '\f') // Unescape form feeds
-      .replace(/\\b/g, '\b') // Unescape backspaces
-      .replace(/\\\//g, '/'); // Unescape forward slashes
+    // Handle common escape sequences in a single pass, so an escaped backslash
+    // is not unescaped twice: `\\\\n` becomes `\\n`, not a newline
+    result = result.replace(/\\(["\\/nrtfb])/g, (_, char: string) => JSON_STRING_ESCAPES[char]);
 
     return result;
   } catch {
