@@ -4,14 +4,6 @@ import type { SpineItem } from 'epubjs/types/section';
 import TurndownService from 'turndown';
 import { gfm as addGFM } from '@guyplusplus/turndown-plugin-gfm';
 
-function escapeMarkdown(text: string) {
-  return text
-    .replace(/\\/g, '\\\\') // escape backslash first
-    .replace(/([*_#>|`])/g, '\\$1') // escape common markdown symbols
-    .replace(/([\[\]\(\)])/g, '\\$1') // escape brackets and parentheses
-    .replace(/\|/g, '\\|'); // escape table pipes
-}
-
 interface SpineItems {
   items: SpineItem[];
   get(href: string | undefined): Section;
@@ -20,14 +12,6 @@ export async function extractTextAndMetaFromEPUB(file: File, format: 'text' | 'm
   let turndownService: TurndownService;
   if (format === 'markdown') {
     turndownService = new TurndownService();
-    turndownService.addRule('escapeText', {
-      filter(node) {
-        return node.nodeType === 3; // text nodes
-      },
-      replacement(content) {
-        return escapeMarkdown(content);
-      },
-    });
     addGFM(turndownService);
     turndownService.addRule('normalizedHeading', {
       filter: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],

@@ -34,23 +34,6 @@ const formats = [
 
 const turndownService = new TurndownService();
 
-function escapeMarkdown(text: string) {
-  return text
-    .replace(/\\/g, '\\\\') // escape backslash first
-    .replace(/([*_#>|`])/g, '\\$1') // escape common markdown symbols
-    .replace(/([\[\]\(\)])/g, '\\$1') // escape brackets and parentheses
-    .replace(/\|/g, '\\|'); // escape table pipes
-}
-
-turndownService.addRule('escapeText', {
-  filter(node) {
-    return node.nodeType === 3; // text nodes
-  },
-  replacement(content) {
-    return escapeMarkdown(content);
-  },
-});
-
 addGFM(turndownService);
 
 async function convertContent() {
