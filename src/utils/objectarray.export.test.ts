@@ -52,6 +52,11 @@ INSERT INTO users (id, name, age) VALUES (2, 'Bob', 30);`);
     expect(result).toContain('| 2 | Bob | 30 |');
   });
 
+  it('should escape Markdown table cells', () => {
+    const result = objectArrayToData([{ path: 'C:\\dir\\', note: 'a|`b`\nc' }], 'markdown');
+    expect(result).toContain('| C:\\\\dir\\\\ | a\\|\\`b\\`<br>c |');
+  });
+
   it('should export nested JSON format correctly', () => {
     const result = objectArrayToData(sampleNestedData, 'json', { tableName, nestify: true });
     expect(result).toBe(`[

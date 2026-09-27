@@ -13,7 +13,9 @@ function escapeCSV(value: any) {
 }
 
 function escapeMarkdown(value: any) {
-  return String(value).replace(/\|/g, '\\|').replace(/`/g, '\\`');
+  return String(value)
+    .replace(/[\\|`]/g, '\\$&')
+    .replace(/\r\n|\r|\n/g, '<br>');
 }
 
 export function objectArrayToData(
