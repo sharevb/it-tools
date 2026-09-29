@@ -8686,34 +8686,34 @@ tools:
       output-label-linearized-shell-commands: 线性化的 shell 命令
   ufw-generator:
     title: UFW 命令生成器
-    description: 生成 UFW 命令行
+    description: 生成 UFW 防火墙命令行
     externalAccess: 无效的
     texts:
       label-allow: 允许
-      label-deny: 否定
+      label-deny: 丢弃
       label-reject: 拒绝
-      label-limit: 限制
-      label-incoming: 即将到来
-      label-outgoing: 外向
+      label-limit: 限流
+      label-incoming: 入站
+      label-outgoing: 出站
       label-tcp: TCP
       label-udp: UDP
-      label-any: 任何
-      label-action: 行动：
+      label-any: 任意
+      label-action: 动作：
       label-direction: 方向：
       label-protocol: 协议：
-      label-port: 港口：
+      label-port: 端口：
       placeholder-80: "80"
-      label-port-to-range: 端口至（范围）：
+      label-port-to-range: 结束端口（范围）：
       placeholder-443: "443"
-      label-from-ip: 来自 IP 地址：
+      label-from-ip: 源 IP：
       placeholder-192-168-1-10: 192.168.1.10
-      label-to-ip: 至 IP 地址：
+      label-to-ip: 目标 IP：
       placeholder-10-0-0-5: 10.0.0.5
-      label-interface: 界面：
+      label-interface: 网络接口：
       placeholder-eth0: eth0
-      label-logging: 日志记录：
-      label-comment: 评论：
-      placeholder-optional-comment: 可选评论
+      label-logging: 记录日志：
+      label-comment: 注释：
+      placeholder-optional-comment: 可选注释
       title-generated-command: 生成的命令
       missing-port: 缺少端口
   visual-subnet-calculator:
