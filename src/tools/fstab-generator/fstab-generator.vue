@@ -36,40 +36,41 @@ const fileSystems = [
   'swap',
 ];
 
+// `key` maps to `tools.fstab-generator.options.<key>` in this tool's locales/*.yml files.
 const defaultOptions = [
-  { value: 'defaults', description: 'Standard mount options (rw, suid, dev, exec, auto, nouser, async).' },
-  { value: 'noatime', description: 'Prevents access time updates for better performance.' },
-  { value: 'nodiratime', description: 'Prevents directory access time updates.' },
-  { value: 'relatime', description: 'Updates access time only when modified or accessed after reboot.' },
-  { value: 'ro', description: 'Mount filesystem as read-only.' },
-  { value: 'rw', description: 'Mount filesystem as read/write.' },
-  { value: 'sync', description: 'Writes synchronously for better integrity.' },
-  { value: 'async', description: 'Writes asynchronously for better performance.' },
-  { value: 'user', description: 'Allow normal users to mount the filesystem.' },
-  { value: 'nouser', description: 'Only root can mount.' },
-  { value: 'exec', description: 'Allows execution of binaries.' },
-  { value: 'noexec', description: 'Disables execution of binaries (security measure).' },
-  { value: 'errors=remount-ro', description: 'Remount as read-only upon errors.' },
-  { value: 'auto', description: 'Mount automatically at boot.' },
-  { value: 'noauto', description: 'Requires manual mount.' },
-  { value: 'dev', description: 'Interpret character or block special devices on the file system.' },
-  { value: 'nodev', description: 'Do not interpret character or block special devices on the file system.' },
-  { value: 'suid', description: 'Permit the operation of suid, and sgid bits.' },
-  { value: 'nosuid', description: 'Block the operation of suid, and sgid bits.' },
+  { value: 'defaults', key: 'defaults' },
+  { value: 'noatime', key: 'noatime' },
+  { value: 'nodiratime', key: 'nodiratime' },
+  { value: 'relatime', key: 'relatime' },
+  { value: 'ro', key: 'ro' },
+  { value: 'rw', key: 'rw' },
+  { value: 'sync', key: 'sync' },
+  { value: 'async', key: 'async' },
+  { value: 'user', key: 'user' },
+  { value: 'nouser', key: 'nouser' },
+  { value: 'exec', key: 'exec' },
+  { value: 'noexec', key: 'noexec' },
+  { value: 'errors=remount-ro', key: 'errors-remount-ro' },
+  { value: 'auto', key: 'auto' },
+  { value: 'noauto', key: 'noauto' },
+  { value: 'dev', key: 'dev' },
+  { value: 'nodev', key: 'nodev' },
+  { value: 'suid', key: 'suid' },
+  { value: 'nosuid', key: 'nosuid' },
 ];
 
 const nfsOptions = [
-  { value: 'vers=3', description: 'Use NFS protocol version 3.' },
-  { value: 'soft', description: 'Fail after timeout if server is unreachable.' },
-  { value: 'hard', description: 'Retry indefinitely if server is unreachable.' },
-  { value: 'rsize=8192,wsize=8192', description: 'Tunable read/write buffer sizes.' },
+  { value: 'vers=3', key: 'vers3' },
+  { value: 'soft', key: 'soft' },
+  { value: 'hard', key: 'hard' },
+  { value: 'rsize=8192,wsize=8192', key: 'rsize8192-wsize8192' },
 ];
 
-const cifsOptions = [{ value: 'sec=ntlm', description: 'Use NTLM security protocol.' }];
+const cifsOptions = [{ value: 'sec=ntlm', key: 'sec-ntlm' }];
 
 const tmpfsOptions = [
-  { value: 'size=512M', description: 'Define tmpfs size limit.' },
-  { value: 'mode=1777', description: 'Set permissions on tmpfs mount.' },
+  { value: 'size=512M', key: 'size512m' },
+  { value: 'mode=1777', key: 'mode1777' },
 ];
 
 const filesystemOptions = computed(() => {
@@ -133,7 +134,12 @@ const fstabLine = computed(() => {
           )
         "
         multiple
-        :options="filesystemOptions.map((o) => ({ value: o.value, label: `${o.description} (${o.value})` }))"
+        :options="
+          filesystemOptions.map((o) => ({
+            value: o.value,
+            label: `${t('tools.fstab-generator.options.' + o.key)} (${o.value})`,
+          }))
+        "
       />
     </NFormItem>
 

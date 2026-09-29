@@ -149,6 +149,10 @@ function buildMacCommand() {
   return `sudo shutdown ${args.join(' ')}`;
 }
 
+// Some translations keep `&nbsp;` entities for spacing around the unit label,
+// they would be displayed as plain text, so they are converted to real spaces.
+const unitLabel = (key: string) => t(`tools.shutdown-command-generator.texts.${key}`).replaceAll('&nbsp;', ' ').trim();
+
 // --- Final Command ----------------------------------------------------------
 
 const command = computed(() => {
@@ -183,13 +187,14 @@ const command = computed(() => {
 
     <NSpace v-if="mode === 'delay'" justify="center" mb-1>
       <NFormItem :label="t('tools.shutdown-command-generator.texts.label-delay')" label-placement="left" mb-1>
-        <NInputNumber v-model:value="delayHours" :min="0" />{{
-          t('tools.shutdown-command-generator.texts.tag-nbsp-h-nbsp')
-        }}<NInputNumber v-model:value="delayMinutes" :min="0" />{{
-          t('tools.shutdown-command-generator.texts.tag-nbsp-m-nbsp')
-        }}<NInputNumber v-model:value="delaySeconds" :min="0" />{{
-          t('tools.shutdown-command-generator.texts.tag-nbsp-s')
-        }}
+        <div flex items-center gap-2>
+          <NInputNumber v-model:value="delayHours" :min="0" />
+          <span>{{ unitLabel('tag-nbsp-h-nbsp') }}</span>
+          <NInputNumber v-model:value="delayMinutes" :min="0" />
+          <span>{{ unitLabel('tag-nbsp-m-nbsp') }}</span>
+          <NInputNumber v-model:value="delaySeconds" :min="0" />
+          <span>{{ unitLabel('tag-nbsp-s') }}</span>
+        </div>
       </NFormItem>
     </NSpace>
 

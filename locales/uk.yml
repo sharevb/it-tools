@@ -5642,7 +5642,7 @@ tools:
       label-source-port: "Порт джерела:"
       label-destination-port: "Порт призначення:"
       label-chain: "Ланцюг:"
-      label-rule-order: "Порядок правил:"
+      label-rule-order: "Позиція вставки (пусто = додати в кінець):"
       title-generated-iptables-command: Згенерована команда iptables
       tag-expression: Вираз
       tag-meaning: Значення

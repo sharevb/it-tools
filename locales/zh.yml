@@ -1626,28 +1626,28 @@ tools:
       label-bibytes-ib: Bibytes（iB）
       label-kilobytes-kb: 千字节（KB）
       label-kilobits-kbit: 千比特（Kbit）
-      label-kibibytes-kib: 千比字节（Kibibytes）
+      label-kibibytes-kib: 千字节（KiB）
       label-megabytes-mb: 兆字节（MB）
       label-megabits-mbit: 兆比特（Mbit）
-      label-mebibytes-mib: 兆比字节（Mebibytes）
+      label-mebibytes-mib: 兆字节（MiB）
       label-gigabytes-gb: 吉字节（GB）
       label-gigabits-gbit: 吉比特（Gbit）
-      label-gibibytes-gib: 吉比字节（Gibibytes）
+      label-gibibytes-gib: 吉字节（GiB）
       label-terabytes-tb: 太字节（TB）
       label-terabits-tbit: 太比特（Tbit）
-      label-tebibytes-tib: 太比字节（Tebibytes）
+      label-tebibytes-tib: 太字节（TiB）
       label-petabytes-pb: 拍字节（PB）
       label-petabits-pbit: 拍比特（Pbit）
-      label-pebibytes-pib: 拍比字节（Pebibytes）
+      label-pebibytes-pib: 拍字节（PiB）
       label-exabytes-eb: 艾字节（EB）
       label-exabits-ebit: 艾比特（Ebit）
-      label-exbibytes-eib: 艾比字节（Exbibytes）
+      label-exbibytes-eib: 艾字节（EiB）
       label-zettabytes-zb: 泽字节（ZB）
       label-zettabits-zbit: 泽比特（Zbit）
-      label-zebibytes-zib: 泽比字节（Zebibytes）
+      label-zebibytes-zib: 泽字节（ZiB）
       label-yottabytes-yb: 尧字节（YB）
       label-yottabits-ybit: 尧比特（Ybit）
-      label-yobibytes-yib: 尧比字节（Yobibytes）
+      label-yobibytes-yib: 尧字节（YiB）
       label-input-size: 输入大小：
       placeholder-put-your-number-here-ex-1024: 在此输入数字（示例：1024）
       placeholder-select-input-unit: 选择输入单位
@@ -1657,7 +1657,7 @@ tools:
       placeholder-precision: 精度...
       label-output-value: 输出值
       placeholder-output-value-will-be-here: 输出值将显示在此处...
-      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB；1MB = 1000kB；1GiB = 1024MiB；1GB = 1000MB；
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB；1MB = 1000KB；1GiB = 1024MiB；1GB = 1000MB；
       tag-see-here-for-details: 详情请查看此处
       tag-show-unit: 显示单位？
   data-transfer-rate-converter:
@@ -1667,23 +1667,23 @@ tools:
       label-bytes-b: 字节（B）
       label-bibytes-ib: Bibytes（iB）
       label-kilobytes-kb: 千字节（KB）
-      label-kibibytes-kib: 千比字节（Kibibytes）
+      label-kibibytes-kib: 千字节（KiB）
       label-megabytes-mb: 兆字节（MB）
-      label-mebibytes-mib: 兆比字节（Mebibytes）
+      label-mebibytes-mib: 兆字节（MiB）
       label-gigabytes-gb: 吉字节（GB）
       label-gigabits-gbit: 吉比特（Gbit）
-      label-gibibytes-gib: 吉比字节（Gibibytes）
+      label-gibibytes-gib: 吉字节（GiB）
       label-terabytes-tb: 太字节（TB）
       label-terabits-tbit: 太比特（Tbit）
       label-petabytes-pb: 拍字节（PB）
       label-petabits-pbit: 拍比特（Pbit）
       label-exabytes-eb: 艾字节（EB）
       label-exabits-ebit: 艾比特（Ebit）
-      label-exbibytes-eib: 艾比字节（Exbibytes）
+      label-exbibytes-eib: 艾字节（EiB）
       label-zettabytes-zb: 泽字节（ZB）
       label-zettabits-zbit: 泽比特（Zbit）
       label-yottabytes-yb: 尧字节（YB）
-      label-yobibytes-yib: 尧比字节（Yobibytes）
+      label-yobibytes-yib: 尧字节（YiB）
       label-bits-bit: 比特（bit）
       label-kilobits-kbit: 千比特（Kbit）
       label-megabits-mbit: 兆比特（Mbit）
@@ -1707,11 +1707,11 @@ tools:
       title-amount-transferable: 可传输量
       label-amount-transferable: 可传输量：
       placeholder-amount-transferable-will-be-here: 可传输量将显示在此处...
-      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB；1MB = 1000kB；1GiB = 1024MiB；1GB = 1000MB；
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB；1MB = 1000KB；1GiB = 1024MiB；1GB = 1000MB；
       tag-see-here-for-details: 详情请查看此处
-      label-tebibytes-tib: 太字节 (TiB)
-      label-pebibytes-pib: 皮字节（PiB）
-      label-zebibytes-zib: 泽比字节 (ZiB)
+      label-tebibytes-tib: 太字节（TiB）
+      label-pebibytes-pib: 拍字节（PiB）
+      label-zebibytes-zib: 泽字节（ZiB）
   date-duration-calculator:
     title: 日期+持续时间计算器
     description: 从特定日期添加/减去持续时间。
@@ -2167,17 +2167,17 @@ tools:
     description: |
       存储设备制造商以十进制形式报告容量（如GB），而操作系统和其他软件使用二进制形式（GiB），尽管仍错误地使用十进制单位（GiB）。此工具将十进制形式的容量转换为各种二进制形式。
     texts:
-      label-kb: 千字节
+      label-kb: KB
       label-mb: MB
-      label-gb: 英国
-      label-tb: 结核病
-      label-pb: 铅
-      label-kib: 基布
-      label-mib: 信息局
-      label-gib: 吉布
-      label-tib: 硼化钛
-      label-pib: 派布
-      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB；1MB = 1000kB；1GiB = 1024MiB；1GB = 1000MB；
+      label-gb: GB
+      label-tb: TB
+      label-pb: PB
+      label-kib: KiB
+      label-mib: MiB
+      label-gib: GiB
+      label-tib: TiB
+      label-pib: PiB
+      tag-1mib-1024kib-1mb-1000kb-1gib-1024mib-1gb-1000mb: 1MiB = 1024KiB；1MB = 1000KB；1GiB = 1024MiB；1GB = 1000MB；
       tag-see-here-for-details: 详情请查看此处
       column-decimal: 小数
       column-binary: 二进制
@@ -4245,51 +4245,51 @@ tools:
       label-your-html-to-minify-can-paste-from-clipboard: 您的HTML（可从剪贴板粘贴）：
       label-output-minified-html: 压缩后的HTML：
   iptables-generator:
-    title: iptables生成器
-    description: 生成iptables命令行
+    title: iptables 生成器
+    description: 生成 iptables 命令行
     texts:
-      label-accept: 接受
-      label-drop: 降低
-      label-reject: 拒绝
+      label-accept: ACCEPT（接受）
+      label-drop: DROP（丢弃）
+      label-reject: REJECT（拒绝）
       label-tcp: TCP
       label-udp: UDP
       label-icmp: ICMP
-      label-ip: 知识产权
-      label-input: 输入
-      label-output: 输出
-      label-forward: 向前
-      label-prerouting: 预路由
-      label-action: 操作：
+      label-ip: IP（任意协议）
+      label-input: INPUT
+      label-output: OUTPUT
+      label-forward: FORWARD
+      label-prerouting: PREROUTING
+      label-action: 动作：
       label-protocol: 协议：
-      label-source-ip: 源IP：
-      label-destination-ip: 目标IP：
-      label-source-port: 源端口：
-      label-destination-port: 目标端口：
+      label-source-ip: 源 IP：
+      label-destination-ip: 目标 IP：
+      label-source-port: 源端口（仅 TCP/UDP）：
+      label-destination-port: 目标端口（仅 TCP/UDP）：
       label-chain: 链：
-      label-rule-order: 规则顺序：
-      title-generated-iptables-command: 生成的iptables命令
+      label-rule-order: 插入位置（留空则追加到链尾）：
+      title-generated-iptables-command: 生成的 iptables 命令
       tag-expression: 表达式
       tag-meaning: 含义
       tag-iptables-l: iptables -L
-      tag-list-all-rules-in-the-selected-chain: 列出所选链的所有规则
+      tag-list-all-rules-in-the-selected-chain: 列出 filter 表中所有链的规则
       tag-iptables-t-nat-n-l: iptables -t nat -n -L
-      tag-list-all-nat-rules: 列出所有NAT规则
-      tag-iptables-l-n-line-numbers: iptables -L -n --行号
-      tag-list-all-rules-including-their-line-number: 列出所有规则（含行号）
+      tag-list-all-nat-rules: 以数字形式列出所有 NAT 规则
+      tag-iptables-l-n-line-numbers: iptables -L -n --line-numbers
+      tag-list-all-rules-including-their-line-number: 以数字形式列出所有规则（含行号）
       tag-iptables-f: iptables -F
-      tag-delete-existing-rules: 删除现有规则
-      tag-iptables-d-input-2: iptables -D 输入 2
-      tag-delete-the-second-rule-in-the-input-chain: 删除INPUT链的第二条规则
-      tag-iptables-t-nat-d-prerouting-2: iptables -t nat -D 预路由 2
-      tag-delete-the-second-rule-in-the-nat-table: 删除NAT表的第二条规则
+      tag-delete-existing-rules: 清空现有规则
+      tag-iptables-d-input-2: iptables -D INPUT 2
+      tag-delete-the-second-rule-in-the-input-chain: 删除 INPUT 链中的第二条规则
+      tag-iptables-t-nat-d-prerouting-2: iptables -t nat -D PREROUTING 2
+      tag-delete-the-second-rule-in-the-nat-table: 删除 nat 表 PREROUTING 链中的第二条规则
       tag-iptables-a-input-s-lt-ip-address-gt-j-drop: iptables -A INPUT -s "<ip address>" -j DROP
-      tag-block-a-specific-ip-address: 阻止特定IP地址
+      tag-block-a-specific-ip-address: 屏蔽指定 IP 地址
       tag-iptables-a-input-p-tcp-dport-80-m-limit-limit-25-minute-limit-burst-100-j-accept:
-        iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute
-        --limit-burst 100 -j ACCEPT
-      tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached: 在80端口达到100次连接后，限制每分钟25次连接
-      tag-iptables-n-mychain: iptables -N 我的链
-      tag-create-a-new-chain-called-mychain: 创建名为"MYCHAIN"的新链
+        iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT
+      tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached:
+        达到 100 次突发连接后，将 80 端口的连接限制为每分钟 25 次
+      tag-iptables-n-mychain: iptables -N MYCHAIN
+      tag-create-a-new-chain-called-mychain: 创建名为 "MYCHAIN" 的新链
   json-query:
     title: JSON查询
     description: 在JSON内容上运行JSON查询语言
@@ -8804,22 +8804,22 @@ tools:
     description: 为各种操作系统生成关机命令
     externalAccess: 无效的
     texts:
-      label-windows: 视窗
+      label-windows: Windows
       label-linux: Linux
       label-macos: macOS
       label-delay: 延迟：
       label-specific-time: 具体时间
       label-platform: 平台：
       label-shutdown-time: 关机时间：
-      label-force: 力量
+      label-force: 强制
       label-reboot: 重启
       label-logoff: 注销
       label-cancel: 取消
-      label-hibernate: 冬眠
+      label-hibernate: 休眠
       title-generated-command: 生成的命令
-      tag-nbsp-h-nbsp: "&nbsp;h&nbsp;"
-      tag-nbsp-m-nbsp: 和
-      tag-nbsp-s: 和
+      tag-nbsp-h-nbsp: 小时
+      tag-nbsp-m-nbsp: 分钟
+      tag-nbsp-s: 秒
   random-line-picker:
     title: 随机行选择器
     description: 从文本输入中随机选择行

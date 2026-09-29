@@ -4560,7 +4560,7 @@ tools:
       label-source-port: "Θύρα πηγής:"
       label-destination-port: "Λιμάνι προορισμού:"
       label-chain: "Αλυσίδα:"
-      label-rule-order: "Σειρά κανόνων:"
+      label-rule-order: "Θέση εισαγωγής (κενό = προσθήκη στο τέλος):"
       title-generated-iptables-command: Δημιουργήθηκε εντολή iptables
       tag-expression: Εκφραση
       tag-meaning: Εννοια

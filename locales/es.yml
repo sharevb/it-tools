@@ -4498,7 +4498,7 @@ tools:
       label-source-port: "Puerto de origen:"
       label-destination-port: "Puerto de destino:"
       label-chain: "Cadena:"
-      label-rule-order: "Orden de reglas:"
+      label-rule-order: "Posición de inserción (vacío = añadir al final):"
       title-generated-iptables-command: Comando iptables generado
       tag-expression: Expresión
       tag-meaning: Significado

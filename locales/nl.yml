@@ -4973,7 +4973,7 @@ tools:
       label-source-port: "Bronpoort:"
       label-destination-port: "Bestemmingshaven:"
       label-chain: "Ketting:"
-      label-rule-order: "Regelvolgorde:"
+      label-rule-order: "Invoegpositie (leeg = toevoegen aan het einde):"
       title-generated-iptables-command: Gegenereerde iptables-opdracht
       tag-expression: Uitdrukking
       tag-meaning: Betekenis

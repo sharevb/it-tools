@@ -4985,7 +4985,7 @@ tools:
       label-source-port: "Kildeport:"
       label-destination-port: "Destinasjonshavn:"
       label-chain: "Kjede:"
-      label-rule-order: "Regelrekkefølge:"
+      label-rule-order: "Innsettingsposisjon (tom = legg til på slutten):"
       title-generated-iptables-command: Genererte iptables-kommandoen
       tag-expression: Uttrykk
       tag-meaning: Betydning

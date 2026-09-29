@@ -5019,7 +5019,7 @@ tools:
       label-source-port: "Porta di origine:"
       label-destination-port: "Porto di destinazione:"
       label-chain: "Catena:"
-      label-rule-order: "Ordine delle regole:"
+      label-rule-order: "Posizione di inserimento (vuoto = aggiungi alla fine):"
       title-generated-iptables-command: Comando iptables generato
       tag-expression: Espressione
       tag-meaning: Senso

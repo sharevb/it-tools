@@ -5200,7 +5200,7 @@ tools:
       label-source-port: "Quellport:"
       label-destination-port: "Zielhafen:"
       label-chain: "Kette:"
-      label-rule-order: "Regelreihenfolge:"
+      label-rule-order: "Einfügeposition (leer = anhängen):"
       title-generated-iptables-command: Generierter iptables-Befehl
       tag-expression: Ausdruck
       tag-meaning: Bedeutung

@@ -30,11 +30,22 @@ const sourcePort = ref<number | null>(null);
 const destinationPort = ref<number | null>(null);
 const ruleOrder = ref<number | null>(null);
 const chain = ref('INPUT');
-const command = computed(() => {
-  let cmd = `iptables -A ${chain.value}`;
-  if (ruleOrder.value) {
-    cmd += ` ${ruleOrder.value}`;
+
+// ports only exist on transport protocols, `--sport`/`--dport` are rejected by iptables otherwise
+const portProtocols = ['tcp', 'udp'];
+const isPortSupported = computed(() => portProtocols.includes(protocol.value));
+
+watch(protocol, (newProtocol) => {
+  if (!portProtocols.includes(newProtocol)) {
+    sourcePort.value = null;
+    destinationPort.value = null;
   }
+});
+
+const command = computed(() => {
+  // -A appends and takes no rule number, inserting at a given position requires -I
+  const insertAt = ruleOrder.value && ruleOrder.value > 0 ? ruleOrder.value : null;
+  let cmd = insertAt === null ? `iptables -A ${chain.value}` : `iptables -I ${chain.value} ${insertAt}`;
   if (protocol.value) {
     cmd += ` -p ${protocol.value}`;
   }
@@ -44,11 +55,13 @@ const command = computed(() => {
   if (destinationIP.value) {
     cmd += ` -d ${destinationIP.value}`;
   }
-  if (sourcePort.value !== null) {
-    cmd += ` --sport ${sourcePort.value}`;
-  }
-  if (destinationPort.value !== null) {
-    cmd += ` --dport ${destinationPort.value}`;
+  if (isPortSupported.value) {
+    if (sourcePort.value !== null) {
+      cmd += ` --sport ${sourcePort.value}`;
+    }
+    if (destinationPort.value !== null) {
+      cmd += ` --dport ${destinationPort.value}`;
+    }
   }
   cmd += ` -j ${action.value}`;
   return cmd;
@@ -70,16 +83,16 @@ const command = computed(() => {
       <NInput v-model:value="destinationIP" />
     </NFormItem>
     <NFormItem :label="t('tools.iptables-generator.texts.label-source-port')">
-      <n-input-number-i18n v-model:value="sourcePort" />
+      <n-input-number-i18n v-model:value="sourcePort" :disabled="!isPortSupported" />
     </NFormItem>
     <NFormItem :label="t('tools.iptables-generator.texts.label-destination-port')">
-      <n-input-number-i18n v-model:value="destinationPort" />
+      <n-input-number-i18n v-model:value="destinationPort" :disabled="!isPortSupported" />
     </NFormItem>
     <NFormItem :label="t('tools.iptables-generator.texts.label-chain')">
       <NSelect v-model:value="chain" :options="chainOptions" />
     </NFormItem>
     <NFormItem :label="t('tools.iptables-generator.texts.label-rule-order')">
-      <n-input-number-i18n v-model:value="ruleOrder" />
+      <n-input-number-i18n v-model:value="ruleOrder" :min="1" />
     </NFormItem>
   </NForm>
 

@@ -4705,7 +4705,7 @@ tools:
       label-source-port: "Kaynak Portu:"
       label-destination-port: "Hedef Liman:"
       label-chain: "Zincir:"
-      label-rule-order: "Kural Sırası:"
+      label-rule-order: "Ekleme konumu (boş = sona ekle):"
       title-generated-iptables-command: Oluşturulan iptables komutu
       tag-expression: İfade
       tag-meaning: Anlam

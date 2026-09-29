@@ -1,0 +1,29 @@
+tools:
+  fstab-generator:
+    options:
+      defaults: Standard mount options (rw, suid, dev, exec, auto, nouser, async).
+      noatime: Prevents access time updates for better performance.
+      nodiratime: Prevents directory access time updates.
+      relatime: Updates access time only when modified or accessed after reboot.
+      ro: Mount filesystem as read-only.
+      rw: Mount filesystem as read/write.
+      sync: Writes synchronously for better integrity.
+      async: Writes asynchronously for better performance.
+      user: Allow normal users to mount the filesystem.
+      nouser: Only root can mount.
+      exec: Allows execution of binaries.
+      noexec: Disables execution of binaries (security measure).
+      errors-remount-ro: Remount as read-only upon errors.
+      auto: Mount automatically at boot.
+      noauto: Requires manual mount.
+      dev: Interpret character or block special devices on the file system.
+      nodev: Do not interpret character or block special devices on the file system.
+      suid: Permit the operation of suid, and sgid bits.
+      nosuid: Block the operation of suid, and sgid bits.
+      vers3: Use NFS protocol version 3.
+      soft: Fail after timeout if server is unreachable.
+      hard: Retry indefinitely if server is unreachable.
+      rsize8192-wsize8192: Tunable read/write buffer sizes.
+      sec-ntlm: Use NTLM security protocol.
+      size512m: Define tmpfs size limit.
+      mode1777: Set permissions on tmpfs mount.

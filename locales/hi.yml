@@ -4503,7 +4503,7 @@ tools:
       label-source-port: "स्रोत पोर्ट:"
       label-destination-port: "गंतव्य बंदरगाह:"
       label-chain: "जंजीर:"
-      label-rule-order: "नियम क्रम:"
+      label-rule-order: "सम्मिलन स्थान (खाली = अंत में जोड़ें):"
       title-generated-iptables-command: iptables कमांड जनरेट किया गया
       tag-expression: अभिव्यक्ति
       tag-meaning: अर्थ

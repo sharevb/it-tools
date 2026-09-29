@@ -4687,7 +4687,7 @@ tools:
       label-source-port: "소스 포트:"
       label-destination-port: "목적지 항구:"
       label-chain: "체인:"
-      label-rule-order: "규칙 순서:"
+      label-rule-order: "삽입 위치 (비우면 끝에 추가):"
       title-generated-iptables-command: 생성된 iptables 명령
       tag-expression: 표현
       tag-meaning: 의미
