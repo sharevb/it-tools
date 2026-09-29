@@ -4430,7 +4430,7 @@ tools:
       label-source-port: "Source Port:"
       label-destination-port: "Destination Port:"
       label-chain: "Chain:"
-      label-rule-order: "Rule Order:"
+      label-rule-order: "Insert position (empty = append):"
       title-generated-iptables-command: Generated iptables command
       tag-expression: Expression
       tag-meaning: Meaning

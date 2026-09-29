@@ -4912,7 +4912,7 @@ tools:
       label-source-port: "Kildeport:"
       label-destination-port: "Destinationshavn:"
       label-chain: "Kæde:"
-      label-rule-order: "Regelrækkefølge:"
+      label-rule-order: "Indsættelsesposition (tom = tilføj sidst):"
       title-generated-iptables-command: Genereret iptables-kommando
       tag-expression: Udtryk
       tag-meaning: Mening

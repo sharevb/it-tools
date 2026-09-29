@@ -5733,7 +5733,7 @@ tools:
       label-source-port: 'Port Foinse:'
       label-destination-port: 'Calafort Ceann Scríbe:'
       label-chain: 'Slabhra:'
-      label-rule-order: 'Ord Rialacha:'
+      label-rule-order: 'Suíomh ionsáite (folamh = cuir leis ag an deireadh):'
       title-generated-iptables-command: Gineadh ordú iptables
       tag-expression: Léiriú
       tag-meaning: Brí

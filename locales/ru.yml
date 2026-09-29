@@ -5671,7 +5671,7 @@ tools:
       label-source-port: "Исходный порт:"
       label-destination-port: "Порт назначения:"
       label-chain: "Цепь:"
-      label-rule-order: "Порядок правил:"
+      label-rule-order: "Позиция вставки (пусто = добавить в конец):"
       title-generated-iptables-command: Сгенерированная команда iptables
       tag-expression: Выражение
       tag-meaning: Значение

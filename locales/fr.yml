@@ -3328,7 +3328,7 @@ tools:
       label-prerouting: Prurotinage
       label-protocol: "Protocole :"
       label-reject: REJETER
-      label-rule-order: "Ordre des règles :"
+      label-rule-order: "Position d'insertion (vide = ajouter à la fin) :"
       label-source-ip: "IP de source :"
       label-source-port: "Port source :"
       label-tcp: TCP

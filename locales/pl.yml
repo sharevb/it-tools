@@ -4467,7 +4467,7 @@ tools:
       label-source-port: "Port źródłowy:"
       label-destination-port: "Port docelowy:"
       label-chain: "Łańcuch:"
-      label-rule-order: "Kolejność zasad:"
+      label-rule-order: "Pozycja wstawienia (puste = dodaj na końcu):"
       title-generated-iptables-command: Wygenerowano polecenie iptables
       tag-expression: Wyrażenie
       tag-meaning: Oznaczający

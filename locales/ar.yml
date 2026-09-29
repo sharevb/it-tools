@@ -4962,7 +4962,7 @@ tools:
       label-source-port: "منفذ المصدر:"
       label-destination-port: "ميناء الوجهة:"
       label-chain: "سلسلة:"
-      label-rule-order: "ترتيب القواعد:"
+      label-rule-order: "موضع الإدراج (فارغ = إلحاق بالنهاية):"
       title-generated-iptables-command: أمر iptables المُولَّد
       tag-expression: تعبير
       tag-meaning: معنى

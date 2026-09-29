@@ -4978,7 +4978,7 @@ tools:
       label-source-port: "Cổng nguồn:"
       label-destination-port: "Cảng đích:"
       label-chain: "Xích:"
-      label-rule-order: "Thứ tự quy tắc:"
+      label-rule-order: "Vị trí chèn (để trống = thêm vào cuối):"
       title-generated-iptables-command: Đã tạo lệnh iptables
       tag-expression: Sự biểu lộ
       tag-meaning: Nghĩa
