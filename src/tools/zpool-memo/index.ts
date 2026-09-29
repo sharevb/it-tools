@@ -9,5 +9,5 @@ export const tool = defineTool({
   component: () => import('./zpool-memo.vue'),
   icon: defineAsyncComponent(() => import('@vicons/tabler/es/DeviceDesktop')),
   createdAt: new Date('2025-08-15'),
-  category: 'Network',
+  category: 'Cheatsheets',
 });
