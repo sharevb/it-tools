@@ -36,14 +36,25 @@ function computedCatchAsync<T, D>(
 ) {
   const error = ref<string | undefined>();
   const value = ref<T | D | undefined>();
+  let currentRequestId = 0;
 
   watchEffect(async () => {
+    const requestId = ++currentRequestId;
+
     try {
       error.value = undefined;
-      value.value = await getterAsync();
+      const result = await getterAsync();
+
+      // Only update value if this is still the latest request
+      if (requestId === currentRequestId) {
+        value.value = result;
+      }
     } catch (err) {
-      error.value = err instanceof Error ? err.message : (err?.toString() ?? defaultErrorMessage);
-      value.value = defaultValue;
+      // Only update error if this is still the latest request
+      if (requestId === currentRequestId) {
+        error.value = err instanceof Error ? err.message : (err?.toString() ?? defaultErrorMessage);
+        value.value = defaultValue;
+      }
     }
   });
 

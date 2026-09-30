@@ -35,10 +35,21 @@ function getKeyFromP12(p12: forge.pkcs12.Pkcs12Pfx) {
 
 function getCertificateFromP12(p12: any) {
   const certData = p12.getBags({ bagType: forge.pki.oids.certBag });
-  const certificate = certData[forge.pki.oids.certBag][0];
+  const certBag = certData[forge.pki.oids.certBag];
+
+  if (!certBag || !certBag[0]) {
+    throw new TypeError(t('tools.ssl-cert-converter.text.unable-to-get-certificate'));
+  }
+
+  const certificate = certBag[0];
+
+  if (!certificate?.cert?.subject?.attributes?.length) {
+    throw new TypeError(t('tools.ssl-cert-converter.text.unable-to-get-certificate'));
+  }
 
   const pemCertificate = forge.pki.certificateToPem(certificate.cert);
-  const commonName = certificate.cert.subject.attributes[0].value;
+  const firstAttribute = certificate.cert.subject.attributes[0];
+  const commonName = firstAttribute?.value ?? '';
   return { pemCertificate, commonName };
 }
 

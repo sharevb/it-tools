@@ -121,16 +121,16 @@ onMounted(loadOptions);
     </c-card>
 
     <NTabs v-if="output" type="line" animated>
-      <NTabPane name="curl" tab="Curl">
+      <NTabPane name="curl" :tab="t('tools.gitattributes-generator.texts.tab-curl')">
         <textarea-copyable :value="commands.curl" word-wrap />
       </NTabPane>
-      <NTabPane name="wget" tab="Wget">
+      <NTabPane name="wget" :tab="t('tools.gitattributes-generator.texts.tab-wget')">
         <textarea-copyable :value="commands.wget" word-wrap />
       </NTabPane>
-      <NTabPane name="powershell" tab="PowerShell">
+      <NTabPane name="powershell" :tab="t('tools.gitattributes-generator.texts.tab-powershell')">
         <textarea-copyable :value="commands.powershell" word-wrap />
       </NTabPane>
-      <NTabPane name="cmd" tab="Windows CMD">
+      <NTabPane name="cmd" :tab="t('tools.gitattributes-generator.texts.tab-windows-cmd')">
         <textarea-copyable :value="commands.cmd" word-wrap />
       </NTabPane>
     </NTabs>

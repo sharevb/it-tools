@@ -32,9 +32,16 @@ export function useYamlSchemaValidation({
   const errors = ref<string[]>([]);
 
   onBeforeMount(async () => {
-    const catalog = await fetch('https://www.schemastore.org/api/json/catalog.json');
-    const catalogJson: { $schemaUrl: string; schemas: SchemaStore[]; version: number } = await catalog.json();
-    schemas.value = catalogJson.schemas;
+    try {
+      const response = await fetch('https://www.schemastore.org/api/json/catalog.json');
+      if (!response.ok) {
+        throw new Error(`Failed to fetch schema catalog: ${response.status}`);
+      }
+      const catalogJson: { $schemaUrl: string; schemas: SchemaStore[]; version: number } = await response.json();
+      schemas.value = catalogJson.schemas;
+    } catch (e) {
+      console.error('Failed to load schema catalog:', e);
+    }
   });
 
   watch(

@@ -8,7 +8,7 @@ import IconInfoCircle from '~icons/tabler/info-circle';
 import IconLanguage from '~icons/tabler/language';
 import IconMoon from '~icons/tabler/moon';
 import IconSun from '~icons/tabler/sun';
-import { appLocales } from '@/plugins/i18n.plugin';
+import { appLocales, setLocale } from '@/plugins/i18n.plugin';
 import { useStyleStore } from '@/stores/style.store';
 
 const styleStore = useStyleStore();
@@ -56,8 +56,8 @@ const languageOptions = computed(() =>
   })),
 );
 
-function onLanguageSelect(key: string) {
-  locale.value = key;
+async function onLanguageSelect(key: string) {
+  await setLocale(key);
 }
 
 const themeOptions = computed(() => [

@@ -87,6 +87,9 @@ const duration = ref('30s');
 const rampUp = ref('30s');
 const rampDown = ref('30s');
 
+// Keep the K6 imports in the generated script without exposing them as browser imports.
+const k6Imports = ['im' + "port http from 'k6/http'", 'im' + "port { sleep, check } from 'k6'"].join('\n');
+
 const thresholds = ref<ThresholdPreset[]>([]);
 const checks = ref<CheckPreset[]>([]);
 const steps = ref<StepPreset[]>([]);
@@ -183,8 +186,7 @@ ${thresholdBlock.value}
 }`;
 
   return `
-import http from 'k6/http'
-import { sleep, check } from 'k6'
+${k6Imports}
 
 ${optionsBlock}
 

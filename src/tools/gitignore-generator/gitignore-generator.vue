@@ -24,6 +24,9 @@ async function loadOptions() {
 
   try {
     const res = await fetch('https://api.github.com/repos/github/gitignore/git/trees/main?recursive=true');
+    if (!res.ok) {
+      throw new Error(`Failed to fetch: ${res.status}`);
+    }
     const files = await res.json();
     options.value = files.tree
       .filter((f: any) => f.path.endsWith('.gitignore'))
@@ -67,6 +70,9 @@ async function generateGitignore() {
     for (const lang of selected.value) {
       const url = `https://raw.githubusercontent.com/github/gitignore/main/${lang}.gitignore`;
       const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`Failed to fetch ${lang}: ${res.status}`);
+      }
       const text = await res.text();
       gitignores += `${gitignores ? '\n\n' : ''}# === .gitignore for ${lang} (${url}) ===\n\n${text}`;
     }

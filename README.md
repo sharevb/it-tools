@@ -2,11 +2,19 @@
 
 Since the _base image_ is now `nginx-unpriviledged` the container will now listen to port **8080** and not 80. So you need to update your port mapping, i.e. from `8080:80` to `8080:8080`.
 
+<p align="center">
+Useful tools for developer and people working in IT. <a href="https://it-tools.tech">Try it!</a>
+</p>
+
 You can override listening port using environment variable `PORT` (docker option `-e PORT=8888`).
 
 You can serve the app from a subfolder using environment variable `BASE_URL` (docker option
 `-e BASE_URL=/it-tools/`), without rebuilding the image -- see
 [Host in a subfolder](#host-in-a-subfolder-it-tools).
+
+You can inject custom HTML into `<head>` using `HEADER_INJECT` or `HEADER_INJECT_FILE`
+(docker option `-e HEADER_INJECT='<script ...></script>'`) -- see
+[Inject HTML into `<head>`](#inject-html-into-head).
 
 If the container needs to listen to IPv6, it needs to be enabled: https://serverfault.com/questions/1147296/how-to-enable-ipv6-on-ubuntu-20-04. Alternatively, you can mount your own `nginx.conf` own using docker option `-v "./nginx.conf:/etc/nginx/templates/default.conf.template"` (with `listen [::]:8080;` removed)
 
@@ -26,8 +34,6 @@ than on the JavaScript heap.
 ## PR Welcome
 
 Especially for UI improvements and translation. And for anything else.
-
-Want to support this fork of IT Tools: [Buy me a coffee](https://www.buymeacoffee.com/sharevb)
 
 ## HTTPS is recommended
 
@@ -292,6 +298,83 @@ Two things worth knowing:
 
 1. Enable GitHub Pages build and deployment option in your fork, under **Settings** > **Pages** and select **GitHub Actions** as the source
 2. Add the following GitHub action to your repo: https://github.com/sharevb/it-tools/tree/chore/all-my-stuffs/.github/workflows/sharevb-github-pages-publish.yml
+
+## Inject HTML into `<head>`
+
+The container splices extra HTML into `index.html`'s `<head>` at start-up --
+analytics snippets, extra meta tags, and the like -- without rebuilding:
+
+```yaml
+services:
+  it-tools:
+    image: ghcr.io/sharevb/it-tools:latest
+    environment:
+      HEADER_INJECT: |
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script>
+    ports:
+      - 8080:8080
+```
+
+or `docker run -d --name it-tools -e HEADER_INJECT='<script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script>' -p 8080:8080 ghcr.io/sharevb/it-tools:latest`.
+
+Several tags can live in that one value:
+
+```yaml
+environment:
+  HEADER_INJECT: |
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script>
+    <script defer src="https://plausible.example.com/js/script.js" data-domain="example.com"></script>
+    <meta name="robots" content="noindex">
+```
+
+When the host UI only allows a single-line env var, split them across numbered keys
+`HEADER_INJECT_1` ... `HEADER_INJECT_30` (missing numbers are skipped):
+
+```yaml
+environment:
+  HEADER_INJECT_1: '<script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script>'
+  HEADER_INJECT_2: '<script defer src="https://plausible.example.com/js/script.js" data-domain="example.com"></script>'
+```
+
+or `docker run ... -e HEADER_INJECT_1='<script ...></script>' -e HEADER_INJECT_2='<meta ...>'`.
+
+A file works too, which is easier for longer snippets or Docker secrets:
+
+```yaml
+services:
+  it-tools:
+    image: ghcr.io/sharevb/it-tools:latest
+    environment:
+      HEADER_INJECT_FILE: /run/header-inject.html
+    volumes:
+      - ./umami.html:/run/header-inject.html:ro
+    ports:
+      - 8080:8080
+```
+
+All of `HEADER_INJECT`, `HEADER_INJECT_1`..`_30` and `HEADER_INJECT_FILE` are concatenated
+in that order. The placeholder `<!-- HEADER_INJECT -->` in `index.html` is replaced once
+at start-up. On a read-only root filesystem the file cannot be rewritten, so the container
+logs a warning and leaves the page alone. The service worker fetches documents with
+NetworkFirst and does not precache `index.html`, so a new `HEADER_INJECT` value shows up
+on the next full page load.
+
+The same `HEADER_INJECT` environment variable is honoured at build time
+(`HEADER_INJECT='<script ...></script>' pnpm build`) for a plain static deploy. If the
+placeholder is already gone, the container skips the runtime step.
+
+Third-party scripts loaded from another origin (Umami Cloud, Plausible Cloud, ...) are
+blocked by `Cross-Origin-Embedder-Policy: require-corp`, which the image sets so
+WebAssembly tools can use `SharedArrayBuffer`. Self-host the tracker on the same origin,
+or set `RELAX_CROSS_ORIGIN=true` to drop COEP/COOP -- some WASM-backed tools will then
+stop working.
+
+A WAF or reverse proxy in front of the tracker origin can still drop the snippet even
+when it is present in `<head>`. Allowlist the tracker **script** and its **collect
+endpoint** on the tracker origin (Umami: `GET /script.js` and `POST /api/send`;
+Plausible: `GET /js/script.js` and `POST /api/event`). Bot challenges or 403s on
+those paths leave analytics empty while the app itself loads normally. The allowlist
+belongs on the tracker site; IT-Tools does not proxy those requests.
 
 ## To add authentication
 

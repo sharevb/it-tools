@@ -15,13 +15,22 @@ export function useMicrophoneService(messageSender: IMessageSender) {
 
   const isPlaying = ref(false);
   const loudnessLevel = ref(0); // Observable for loudness
+  let animationFrameId: number | null = null;
 
   // Measure loudness and update loudness bar
   function measureLoudness() {
-    const dataArray = new Uint8Array(analyserNode!.frequencyBinCount);
+    if (!analyserNode) {
+      return;
+    }
+
+    const dataArray = new Uint8Array(analyserNode.frequencyBinCount);
 
     const updateLoudness = () => {
-      analyserNode!.getByteFrequencyData(dataArray);
+      if (!analyserNode) {
+        return;
+      }
+
+      analyserNode.getByteFrequencyData(dataArray);
 
       // Calculate average loudness
       let sum = 0;
@@ -32,7 +41,7 @@ export function useMicrophoneService(messageSender: IMessageSender) {
       loudnessLevel.value = average;
 
       if (isPlaying.value) {
-        requestAnimationFrame(updateLoudness);
+        animationFrameId = requestAnimationFrame(updateLoudness);
       }
     };
     updateLoudness();
@@ -71,11 +80,21 @@ export function useMicrophoneService(messageSender: IMessageSender) {
   };
 
   function stopMicReplay() {
+    // Cancel any pending animation frame
+    if (animationFrameId !== null) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+
     if (audioContext && stream) {
       const tracks = stream.getTracks();
       tracks.forEach((track) => track.stop());
       audioContext.close();
       audioContext = null;
+      stream = null;
+      sourceNode = null;
+      delayNode = null;
+      analyserNode = null;
       isPlaying.value = false;
       loudnessLevel.value = 0;
     }

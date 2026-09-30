@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import { getOption43Infos } from './option43-generator.service';
 import { useITStorage } from '@/composable/queryParams';
+import DOMPurify from 'dompurify';
 
 const { t } = useI18n();
 
@@ -32,7 +33,10 @@ const dhcpVendor = useITStorage('option43-generator:dhcp', 'genuine');
 const wifiVendor = useITStorage('option43-generator:wifi', 'cisco_01');
 const ipAdresses = ref('192.168.0.15'); // NOSONAR
 
-const option43Infos = computed(() => getOption43Infos(ipAdresses.value, wifiVendor.value, dhcpVendor.value));
+const option43Infos = computed(() => {
+  const rawHtml = getOption43Infos(ipAdresses.value, wifiVendor.value, dhcpVendor.value);
+  return DOMPurify.sanitize(rawHtml);
+});
 </script>
 
 <template>

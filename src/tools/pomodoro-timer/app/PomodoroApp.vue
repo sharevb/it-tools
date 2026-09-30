@@ -1,8 +1,9 @@
 <script setup>
 import { useStore } from 'vuex';
+import { onBeforeUnmount } from 'vue';
 import Header from './components/Header.vue';
 import FinishedPopup from './components/FinishedPopup.vue';
-import { startTimer } from './storeUtils';
+import { startTimer, stopAllTimers } from './storeUtils';
 import PomodoroAbout from './views/PomodoroAbout.vue';
 import PomodoroHome from './views/Home.vue';
 import PomodoroSettings from './views/Settings.vue';
@@ -10,18 +11,31 @@ import PomodoroSettings from './views/Settings.vue';
 const store = useStore('pomodoro-store');
 
 // Save state on visibilitychange
-document.addEventListener('visibilitychange', () => {
+function handleVisibilityChange() {
   if (document.hidden) {
     localStorage.setItem('pomodoro-state', JSON.stringify(store.state));
   }
-});
+}
+
+document.addEventListener('visibilitychange', handleVisibilityChange);
 
 // Save state on mutation
+let unsubscribe = null;
+
 function subscribeToSavingState() {
-  store.subscribe((mutation, state) => {
+  unsubscribe = store.subscribe((mutation, state) => {
     localStorage.setItem('pomodoro-state', JSON.stringify(state));
   });
 }
+
+// Cleanup on unmount
+onBeforeUnmount(() => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
+  if (unsubscribe) {
+    unsubscribe();
+  }
+  stopAllTimers();
+});
 
 // Restore state on load
 function restoreStateIfAvaiable() {

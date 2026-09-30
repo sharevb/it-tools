@@ -150,7 +150,7 @@ describe('decodeStruct', () => {
     };
     const hexArray = new Uint8Array([0x01, 0x02, 0x03]);
 
-    expect(() => decodeStruct({ struct, hexArray })).toThrowError('Unsupported unsized array: uint8[]');
+    expect(() => decodeStruct({ struct, hexArray })).toThrowError('Unsupported unsized array typename: uint8[]');
   });
 });
 
@@ -215,7 +215,7 @@ describe('encodeStruct', () => {
       field2: 123, // Invalid type
     };
 
-    expect(() => encodeStruct({ struct, jsonObject })).toThrowError("Unexpected non array 'field2'='123'");
+    expect(() => encodeStruct({ struct, jsonObject })).toThrowError("Unexpected non-array key value for 'field2': 123");
   });
 
   it('should throw an error if value type is incorrect', () => {

@@ -70,7 +70,7 @@ interface CoderOption {
 
 export function getCoderFromTypeName(typeName: string): CoderOption {
   if (typeName.includes('[]')) {
-    throw new Error(t('tools.hex-converter.service.text.unsupported-unsized-array-typename', [typeName]));
+    throw new Error(`Unsupported unsized array typename: ${typeName}`);
   }
   const [, prefix, baseTypeName, bigEndian, arraySize] =
     /^((?:0x|0b)?)(u?int\d+|w?char|half|float|double)(be)?(?:\[(\d+)\])?$/.exec(typeName) || [];
@@ -178,7 +178,7 @@ export function encodeStruct({ struct, jsonObject }: { struct: object; jsonObjec
           const [typeName, value] = obj[key];
           const coderOption = getCoderFromTypeName(typeName);
           if (coderOption.size > 1 && !Array.isArray(value)) {
-            throw new TypeError(t('tools.hex-converter.service.text.unexpected-non-array-key-value', [key, value]));
+            throw new TypeError(`Unexpected non-array key value for '${key}': ${value}`);
           }
           if (Array.isArray(value) && value.length !== coderOption.size) {
             throw new TypeError(

@@ -77,7 +77,7 @@ function computeDelayForWord(word: string): number {
 
 function start() {
   if (!words.value.length) {
-    message.warning(t('tools.rsvp-reader.text.please-provide-some-text-first'));
+    message.warning('Please provide some text first.');
     return;
   }
   isPlaying.value = true;
@@ -162,7 +162,7 @@ async function onUpload(file: File) {
       return;
     }
 
-    message.error(t('tools.rsvp-reader.text.unsupported-file-type'));
+    message.error('Unsupported file type.');
   } catch (err) {
     message.error(`Failed to parse file: ${err}`);
   }
@@ -251,7 +251,7 @@ onBeforeUnmount(() => {
 <template>
   <div>
     <n-tabs type="line" animated>
-      <n-tab-pane name="display" :tab="t('tools.rsvp-reader.text.display')">
+      <n-tab-pane name="display" :tab="t('tools.rsvp-reader.texts.tab-display')">
         <NAlert v-if="!words.length" type="warning">
           {{ t('tools.rsvp-reader.texts.tag-no-text-to-read-please-input-some-text-in-text-tab') }}
         </NAlert>
@@ -276,7 +276,7 @@ onBeforeUnmount(() => {
 
           <NProgress
             type="line"
-            :percentage="Number(((currentIndex / words.length) * 100).toFixed(1))"
+            :percentage="((currentIndex / words.length) * 100).toFixed(1)"
             indicator-placement="inside"
             style="cursor: pointer"
             mb-2
@@ -292,17 +292,17 @@ onBeforeUnmount(() => {
                 letterSpacing: '0.05em',
               }"
             >
-              {{ currentChunk || t('tools.rsvp-reader.text.ready') }}
+              {{ currentChunk || 'Ready' }}
             </div>
           </NCard>
           <n-space justify="center" mt-1>
-            <NText>{{ currentIndex + 1 }} / {{ words.length }} {{ t('tools.rsvp-reader.text.words') }}</NText> -
-            <NText>{{ wpm }} {{ t('tools.rsvp-reader.text.wpm') }}</NText>
+            <NText>{{ currentIndex + 1 }} / {{ words.length }} words</NText>{{ t('tools.rsvp-reader.texts.tag-')
+            }}<NText>{{ wpm }} WPM</NText>
           </n-space>
         </div>
       </n-tab-pane>
 
-      <n-tab-pane name="text" :tab="t('tools.rsvp-reader.text.text')">
+      <n-tab-pane name="text" :tab="t('tools.rsvp-reader.texts.tab-text')">
         <c-input-text
           v-model:value="rawText"
           :label="t('tools.rsvp-reader.texts.label-text-to-read')"
@@ -324,7 +324,7 @@ onBeforeUnmount(() => {
         />
       </n-tab-pane>
 
-      <n-tab-pane name="settings" :tab="t('tools.rsvp-reader.text.settings')">
+      <n-tab-pane name="settings" :tab="t('tools.rsvp-reader.texts.tab-settings')">
         <NForm label-placement="left" label-width="150px">
           <NFormItem :label="t('tools.rsvp-reader.texts.label-word-per-minute')">
             <NInputNumber v-model:value="wpm" :min="50" :max="2000" mr-1 />
@@ -367,7 +367,7 @@ onBeforeUnmount(() => {
         </NForm>
       </n-tab-pane>
 
-      <n-tab-pane name="keyboard" :tab="t('tools.rsvp-reader.text.keyboard-shortcuts')">
+      <n-tab-pane name="keyboard" :tab="t('tools.rsvp-reader.texts.tab-keyboard-shortcuts')">
         <n-space vertical size="medium">
           <n-text depth="3">
             {{ t('tools.rsvp-reader.texts.tag-control-playback-and-navigation-without-touching-the-mouse') }}

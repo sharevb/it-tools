@@ -35,12 +35,29 @@ async function posterizeAsync(input: Buffer) {
 }
 
 function file2Buffer(file: File) {
-  return new Promise<Buffer>((resolve, _reject) => {
+  return new Promise<Buffer>((resolve, reject) => {
     const reader = new FileReader();
-    reader.addEventListener('load', () => {
+
+    let cleanup: () => void;
+
+    const handleLoad = () => {
+      cleanup();
       const buffer = Buffer.from(reader.result as ArrayBuffer);
       resolve(buffer);
-    });
+    };
+
+    const handleError = (error: ProgressEvent<FileReader>) => {
+      cleanup();
+      reject(new Error(`Failed to read file: ${error.type}`));
+    };
+
+    cleanup = () => {
+      reader.removeEventListener('load', handleLoad);
+      reader.removeEventListener('error', handleError);
+    };
+
+    reader.addEventListener('load', handleLoad);
+    reader.addEventListener('error', handleError);
     reader.readAsArrayBuffer(file);
   });
 }

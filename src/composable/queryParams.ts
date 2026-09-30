@@ -1,5 +1,5 @@
 import { useRouteQuery } from '@vueuse/router';
-import { type MaybeRef, computed } from 'vue';
+import { type MaybeRef, type Ref, computed, isRef, ref, watch } from 'vue';
 import { type RemovableRef, type StorageLike, type UseStorageOptions, get, useStorage } from '@vueuse/core';
 import { getCurrentInstance } from 'vue';
 
@@ -20,7 +20,11 @@ const transformers = {
   },
   object: {
     fromQuery: (value: string) => {
-      return JSON.parse(value);
+      try {
+        return JSON.parse(value);
+      } catch {
+        return null;
+      }
     },
     toQuery: (value: object) => JSON.stringify(value),
   },

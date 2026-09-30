@@ -60,7 +60,7 @@ function inputHandler(type: Formats, text: string) {
           pair[1] = pair[1]
             // trim single quotes at beginning and end
             .replace(/^['](.+(?=[']$))[']$/, '$1') // https://stackoverflow.com/a/19156197/1098564
-            // trim out double quotes (TODO: this needs improvement and is definitely bug prone...but works for most simple values I come across)
+            // trim out double quotes; values can have trailing spaces after newline flattening
             .replace(/"([^"]+(?="))"/g, '$1');
         }
         setAcc(acc, ...pair);

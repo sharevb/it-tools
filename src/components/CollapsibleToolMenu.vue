@@ -2,11 +2,13 @@
 import { useStorage } from '@vueuse/core';
 import { useThemeVars } from 'naive-ui';
 import { useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import MenuIconItem from './MenuIconItem.vue';
 import MenuItemWithTooltip from './MenuItemTooltip.vue';
 import type { Tool, ToolCategory } from '@/tools/tools.types';
 
 const props = withDefaults(defineProps<{ toolsByCategory?: ToolCategory[] }>(), { toolsByCategory: () => [] });
+const { t } = useI18n();
 const { toolsByCategory } = toRefs(props);
 const route = useRoute();
 
@@ -150,19 +152,13 @@ const themeVars = useThemeVars();
 </script>
 
 <template>
-  <!-- Full width: the label changes between expand/collapse, and a
-       hug-content button would jump in width on every toggle -->
-  <div class="top-controls" mb-12px mx-12px>
-    <c-button w-full :disabled="isToggling" @click="toggleAllCategories">
+  <div class="top-controls" mb-12px ml-12px>
+    <c-button :disabled="isToggling" @click="toggleAllCategories">
       <span v-if="isToggling">
-        {{ areAllCollapsed ? $t('collapsibleToolMenu.text.expanding') : $t('collapsibleToolMenu.text.collapsing') }}
+        {{ areAllCollapsed ? t('home.expanding') : t('home.collapsing') }}
       </span>
       <span v-else>
-        {{
-          areAllCollapsed
-            ? $t('collapsibleToolMenu.text.expand-all-tools')
-            : $t('collapsibleToolMenu.text.collapse-all-tools')
-        }}
+        {{ areAllCollapsed ? t('home.expandAllTools') : t('home.collapseAllTools') }}
       </span>
     </c-button>
   </div>
@@ -214,6 +210,7 @@ const themeVars = useThemeVars();
           :collapsed-icon-size="22"
           :options="tools"
           :indent="8"
+          :default-expand-all="true"
         />
       </div>
     </div>
@@ -230,12 +227,9 @@ const themeVars = useThemeVars();
   text-align: left;
   user-select: none;
 
-  // Hover only on hover-capable devices; on touch it sticks after tapping
-  @media (hover: hover) {
-    &:hover {
-      background-color: v-bind('themeVars.buttonColor2Hover');
-      opacity: 0.8;
-    }
+  &:hover {
+    background-color: v-bind('themeVars.buttonColor2Hover');
+    opacity: 0.8;
   }
 
   &.category-active {
@@ -243,10 +237,8 @@ const themeVars = useThemeVars();
     opacity: 1;
     color: white;
 
-    @media (hover: hover) {
-      &:hover {
-        background-color: color-mix(in srgb, v-bind('themeVars.primaryColorHover') 50%, transparent);
-      }
+    &:hover {
+      background-color: color-mix(in srgb, v-bind('themeVars.primaryColorHover') 50%, transparent);
     }
   }
 }
@@ -301,10 +293,8 @@ const themeVars = useThemeVars();
           left: 14px;
         }
 
-        @media (hover: hover) {
-          &:hover {
-            opacity: 0.5;
-          }
+        &:hover {
+          opacity: 0.5;
         }
       }
     }

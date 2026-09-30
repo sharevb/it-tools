@@ -1,6 +1,8 @@
 import { getCurrentLocale, translate as t } from '@/plugins/i18n.plugin';
 
 Intl.DurationFormat ??= class DurationFormat {
+  constructor(..._args: unknown[]) {}
+
   format(duration: { seconds?: number; milliseconds?: number }): string {
     return 'seconds' in duration ? `${duration.seconds} seconds` : `${duration.milliseconds} milliseconds`;
   }
@@ -40,11 +42,13 @@ export async function* bcryptWithProgressUpdates<Param, Result>(
   options?: Partial<BcryptWithProgressOptions>,
 ): AsyncGenerator<Update<Result>, undefined, undefined> {
   const { timeoutMs = 10_000 } = options ?? {};
-  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
-  // @ts-ignore: AbortSignal.any breaks typecheck
-  const signal: AbortSignal = AbortSignal.any(
-    [AbortSignal.timeout(timeoutMs), options?.signal].filter((x) => x != null),
-  );
+
+  // AbortSignal.any is available in modern browsers but not in TypeScript 5.2 types
+  // Create a combined signal that aborts when any signal aborts
+  const timeoutSignal = AbortSignal.timeout(timeoutMs);
+  const userSignal = options?.signal;
+
+  const signal: AbortSignal = userSignal ? (AbortSignal as any).any([userSignal, timeoutSignal]) : timeoutSignal;
 
   let res = (_: Update<Result>) => {};
   const nextPromise = () => new Promise<Update<Result>>((resolve) => (res = resolve));

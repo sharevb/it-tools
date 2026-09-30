@@ -65,11 +65,27 @@ export function useSerialPort() {
 
     try {
       reader?.cancel();
-      await inputDone?.catch(() => {});
+      if (inputDone) {
+        try {
+          await inputDone;
+        } catch {
+          // Ignore cancellation errors during disconnect
+        }
+      }
       reader?.releaseLock();
 
-      await writer?.close().catch(() => {});
-      await outputDone?.catch(() => {});
+      try {
+        await writer?.close();
+      } catch {
+        // Ignore close errors during disconnect
+      }
+      if (outputDone) {
+        try {
+          await outputDone;
+        } catch {
+          // Ignore close errors during disconnect
+        }
+      }
       writer?.releaseLock();
 
       await port.close();
@@ -112,7 +128,7 @@ export function useSerialPort() {
 
   async function attemptReconnect() {
     if (reconnectAttempts >= maxReconnects) {
-      appendOutput('[Reconnect failed]');
+      appendOutput('[Reconnect failed: max attempts reached]');
       return;
     }
     reconnectAttempts++;
@@ -121,7 +137,11 @@ export function useSerialPort() {
     try {
       await openPort();
     } catch (err) {
-      attemptReconnect();
+      if (reconnectAttempts < maxReconnects) {
+        attemptReconnect();
+      } else {
+        appendOutput(`[Reconnect failed] ${err}`);
+      }
     }
   }
 

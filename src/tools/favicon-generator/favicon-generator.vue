@@ -117,7 +117,12 @@ function downloadURL(data: string, fileName: string) {
 
 function downloadZip() {
   if (zipBlob.value) {
-    downloadURL(window.URL.createObjectURL(zipBlob.value), 'favicons.zip');
+    const url = window.URL.createObjectURL(zipBlob.value);
+    downloadURL(url, 'favicons.zip');
+    // Cleanup the blob URL after download
+    setTimeout(() => {
+      window.URL.revokeObjectURL(url);
+    }, 1000);
   }
 }
 </script>

@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
+if (typeof globalThis.self === 'undefined') {
+  Object.defineProperty(globalThis, 'self', { value: globalThis });
+}
+
 const encryptedPrivateKey = /* NOSONAR */ `-----BEGIN ENCRYPTED PRIVATE KEY-----
 MIIFHzBJBgkqhkiG9w0BBQ0wPDAbBgkqhkiG9w0BBQwwDgQILjmiBkdY16UCAggA
 MB0GCWCGSAFlAwQBAgQQ+sYf2MO9hoZ4F5+LdE2vRgSCBNC6CLgqMJ6fKS3YnMMJ

@@ -5,9 +5,8 @@ import { watch } from 'vue';
 import { createI18n } from 'vue-i18n';
 import enBaseMessages from '../../locales/en.yml';
 
-const DEFAULT_LOCALE = String(import.meta.env.VITE_LANGUAGE || 'en');
 const FALLBACK_LOCALE = 'en';
-
+const HOME_TITLE_KEY = 'home.page.text.it-tools-handy-online-tools-for-developers';
 // The fallback locale (and its tool-level files) is bundled eagerly so the app always has
 // complete messages at startup; every other locale is compiled into its own lazy chunk and
 // only fetched the first time it becomes the active locale.
@@ -36,6 +35,56 @@ export const appLocales = (() => {
   const wantedLocales = available.split(',').map((locale) => locale.trim());
   return allLocales.filter((locale) => wantedLocales.includes(locale) || locale === FALLBACK_LOCALE);
 })();
+
+export function resolveLocale(locale: string): string {
+  const normalizedLocale = locale.trim().toLowerCase();
+  const language = normalizedLocale.split('-')[0];
+
+  return appLocales.includes(normalizedLocale)
+    ? normalizedLocale
+    : appLocales.includes(language)
+      ? language
+      : FALLBACK_LOCALE;
+}
+
+export function readPersistedLocale(storage?: Storage | null): string | undefined {
+  const store = storage ?? (typeof localStorage === 'undefined' ? undefined : localStorage);
+  if (!store) {
+    return undefined;
+  }
+
+  try {
+    const raw = store.getItem('locale');
+    if (!raw) {
+      return undefined;
+    }
+    const parsed = JSON.parse(raw);
+    return typeof parsed === 'string' && parsed.trim() ? parsed : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+export function resolveRequestedLocale({ persisted, configured }: { persisted?: string; configured?: string }): string {
+  if (persisted?.trim()) {
+    const normalized = persisted.trim().toLowerCase();
+    const language = normalized.split('-')[0];
+    if (appLocales.includes(normalized) || appLocales.includes(language)) {
+      return resolveLocale(persisted);
+    }
+  }
+
+  return resolveLocale(String(configured || FALLBACK_LOCALE));
+}
+
+const DEFAULT_LOCALE = resolveRequestedLocale({
+  persisted: readPersistedLocale(),
+  configured: String(
+    (typeof window === 'undefined' ? undefined : window.__IT_TOOLS_CONFIG__?.language) ||
+      import.meta.env.VITE_LANGUAGE ||
+      FALLBACK_LOCALE,
+  ),
+});
 
 const i18n = createI18n({
   legacy: false,
@@ -71,15 +120,45 @@ export async function loadLocaleMessages(locale: string) {
   loadedLocales.add(locale);
 }
 
+function applyDocumentLocale(locale: string) {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  document.documentElement.lang = locale;
+}
+
+export async function setLocale(locale: string) {
+  const resolvedLocale = resolveLocale(locale);
+  await loadLocaleMessages(resolvedLocale);
+  i18n.global.locale.value = resolvedLocale;
+  applyDocumentLocale(resolvedLocale);
+}
+
+export async function prepareI18n() {
+  await loadLocaleMessages(DEFAULT_LOCALE);
+  i18n.global.locale.value = DEFAULT_LOCALE;
+  applyDocumentLocale(DEFAULT_LOCALE);
+
+  if (typeof document !== 'undefined') {
+    const title = String(i18n.global.t(HOME_TITLE_KEY));
+    if (title && title !== HOME_TITLE_KEY) {
+      document.title = title;
+    }
+  }
+}
+
 export const i18nPlugin: Plugin = {
   install: (app) => {
     app.use(i18n);
-    // Messages arrive after the switch; vue-i18n falls back to English until
-    // setLocaleMessage triggers a reactive re-render. Watching through the getter
-    // avoids depending on vue-i18n's locale ref generics.
+    // Later locale switches (navbar, tools-settings) still lazy-load. The initial
+    // locale is preloaded by prepareI18n() before mount so the first paint is not
+    // English fallback. Watching through the getter avoids vue-i18n locale ref generics.
     watch(
       () => getCurrentLocale(),
-      (locale) => loadLocaleMessages(locale),
+      (locale) => {
+        void loadLocaleMessages(locale).then(() => applyDocumentLocale(locale));
+      },
       { immediate: true },
     );
   },

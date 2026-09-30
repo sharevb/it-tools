@@ -1,5 +1,5 @@
 import { type MaybeRef, get } from '@vueuse/core';
-import { type Ref, computed, ref } from 'vue';
+import { computed, shallowRef } from 'vue';
 import FlexSearch from 'flexsearch';
 
 // Define key types to match Fuse.js format
@@ -67,7 +67,7 @@ export function useFlexSearch<Data extends Record<string, any>>({
   const getItemKey = (item: Data, idx: number) => (item.id !== undefined ? item.id : idx);
 
   // Map to store original data items by unique key
-  const dataMap = ref(new Map<any, Data>()) as Ref<Map<any, Data>>;
+  const dataMap = shallowRef(new Map<any, Data>());
 
   // Create separate indices for each key with weight info
   const indices = normalizedKeys.map(({ name, weight }) => ({
@@ -125,7 +125,9 @@ export function useFlexSearch<Data extends Record<string, any>>({
         await new Promise<void>((resolve) => {
           requestAnimationFrame(() => {
             chunk.forEach(({ itemKey, value }) => {
-              index.add(itemKey, value!);
+              if (value !== undefined) {
+                index.add(itemKey, value);
+              }
             });
             resolve();
           });
@@ -135,7 +137,9 @@ export function useFlexSearch<Data extends Record<string, any>>({
   };
 
   // Initialize on creation
-  initializeIndices();
+  initializeIndices().catch((error) => {
+    console.error('Failed to initialize search indices:', error);
+  });
 
   // Function to search across all indices with weight consideration
   const searchAllIndices = (query: string, searchLimit: number) => {

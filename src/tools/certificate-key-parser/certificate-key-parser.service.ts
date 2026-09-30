@@ -11,6 +11,7 @@ import type {
   SignatureFormatType,
 } from 'sshpk';
 import { Base64 } from 'js-base64';
+import 'webcrypto-liner-shim';
 import * as openpgp from 'openpgp';
 import * as forge from 'node-forge';
 import {
@@ -169,7 +170,7 @@ export async function getKeyOrCertificateInfosAsync(keyOrCertificateValue: strin
     return {
       values: [
         {
-          label: t('tools.certificate-key-parser.service.text.error'),
+          label: 'Error',
           value: e.toString(),
         },
       ] as LabelValue[],
