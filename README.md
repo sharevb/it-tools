@@ -82,6 +82,12 @@ docker run --pull always --restart unless-stopped -p 8080:8080 sharevb/it-tools:
 
 Other existing docker tags: `latest-en` (english only)
 
+Container builds precompress JavaScript, CSS, and WebAssembly files in `dist/assets`.
+Nginx serves the `.gz` sidecars when clients accept gzip, including requests forwarded
+by reverse proxies, and otherwise serves the original files. Compression happens once
+at build time rather than on every request. HTML remains uncompressed so runtime
+`BASE_URL` rewriting continues to work.
+
 ## Use in Docker Compose file
 
 ```yml

@@ -20,7 +20,10 @@ COPY . .
 ARG VITE_AVAILABLE_LOCALES
 ENV VITE_AVAILABLE_LOCALES=${VITE_AVAILABLE_LOCALES}
 ENV VITE_VERCEL_ENV=production
-RUN pnpm build
+# Precompress hashed assets once instead of compressing each response at runtime.
+RUN pnpm build \
+    && find dist/assets -type f \( -name '*.js' -o -name '*.mjs' -o -name '*.css' -o -name '*.wasm' \) \
+        -exec gzip -9 -n -k {} +
 
 # production stage
 FROM nginxinc/nginx-unprivileged:stable-alpine@sha256:4714e0b1b2577eaa1a6131d07c958b67f0eb68e6d0521e90c6e5287db8cf0bc5 AS production-stage
