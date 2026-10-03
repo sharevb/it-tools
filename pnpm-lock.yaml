@@ -728,8 +728,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       htmlparser2:
-        specifier: ^10.1.0
-        version: 10.1.0
+        specifier: ^12.0.0
+        version: 12.0.0
       hyparquet:
         specifier: ^1.26.2
         version: 1.26.2
