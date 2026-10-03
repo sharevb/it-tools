@@ -416,8 +416,8 @@ importers:
         specifier: ^10.11.1
         version: 10.11.1(vue-router@5.1.0(@vue/compiler-sfc@3.5.39)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3)))(rolldown@1.1.4)(rollup@4.62.2)(vite@8.1.3(@types/node@24.13.3)(jiti@2.7.0)(less@4.6.7)(terser@5.48.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))(webpack@5.108.3(csso@5.0.5)(lightningcss@1.32.0)(postcss@8.5.16)))(vue@3.5.39(typescript@6.0.3))
       '@xmldom/xmldom':
-        specifier: ^0.8.15
-        version: 0.8.15
+        specifier: 0.9.11
+        version: 0.9.11
       '@xterm/xterm':
         specifier: ^5.5.0
         version: 5.5.0
