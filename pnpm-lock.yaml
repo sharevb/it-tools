@@ -762,7 +762,7 @@ importers:
         version: 0.0.4
       ip-address:
         specifier: ^10.7.2
-        version: 10.7.2
+        version: 10.7.3
       ip-bigint:
         specifier: ^9.0.6
         version: 9.0.6
@@ -7866,8 +7866,8 @@ packages:
     resolution: {integrity: sha512-Mly2yu4nE470qgIdWKlVe5hEAult6sDbOVZw77qwcURMqPbaqkYxknKzKEEdBsplBp1nlhy6f2hFvlt/naopTA==}
     hasBin: true
 
-  ip-address@10.7.2:
-    resolution: {integrity: sha512-7H/2gFSIitxc0hG3nOI1glS8QLo/EHBFFLk8vEUjXY/xu0AdL8jZ9U1IzO2PUm0d2D/ofQcAifb0g6OBkt8U7w==}
+  ip-address@10.7.3:
+    resolution: {integrity: sha512-A1kdq/tSb5QjvKvAMgIoEvDBIgL7qaqVP/jkvSwYYRZ9iEzvPpopxp2wQfu3SuZRHtpHNxMn8Fs0bS+gf5Xmwg==}
     engines: {node: '>= 12'}
 
   ip-address@9.0.5:
@@ -18867,7 +18867,7 @@ snapshots:
       memoizee: 0.4.17
       uuid: 9.0.1
 
-  ip-address@10.7.2: {}
+  ip-address@10.7.3: {}
 
   ip-address@9.0.5:
     dependencies:
