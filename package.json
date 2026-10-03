@@ -445,7 +445,7 @@
     "@vitejs/plugin-vue-jsx": "^5.1.6",
     "@vue/compiler-sfc": "^3.5.39",
     "@vue/runtime-dom": "^3.5.39",
-    "@vue/test-utils": "^2.4.11",
+    "@vue/test-utils": "^2.5.1",
     "@vue/tsconfig": "^0.9.1",
     "axios": "^1.18.1",
     "commander": "^15.0.0",
