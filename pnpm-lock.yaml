@@ -193,7 +193,7 @@ overrides:
   onnxruntime-node: file:./stubs/empty-stub
   elliptic: ^6.6.1
   '@xmldom/xmldom@0.9.10': 0.9.11
-  js-sha256: ^0.11.1
+  js-sha256: ^0.12.0
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
 
 patchedDependencies:
@@ -7764,9 +7764,6 @@ packages:
     resolution: {integrity: sha512-IKXpvIzjnC9XTAUbVBcMfGS0EPaIXtW6v+zr+RRp+hqULEpo0owZax6wyRwPOJbWbzjYspQwusTsfVr0ifh4uQ==}
     engines: {node: '>=0.10.0'}
 
-  idb-keyval@6.2.6:
-    resolution: {integrity: sha512-FY64UEhw+5liMzMQ1R9Mw6AF0+wyBrg1CIA1z4CjI/EvT5ty/SvQcWZgd8s9sgaNhX10Y8UzScTh89tEAls5nA==}
-
   idb-keyval@6.3.0:
     resolution: {integrity: sha512-um+2dgAWmYsu615EXpWVwSmapJhON0G43t3Ka/EVaohzPQXSMqKEqeDK/oIW3Ow+BXaF2PvSc+oBTFp793A5Ow==}
 
@@ -8271,8 +8268,8 @@ packages:
   js-cookie@3.0.8:
     resolution: {integrity: sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw==}
 
-  js-sha256@0.11.1:
-    resolution: {integrity: sha512-o6WSo/LUvY2uC4j7mO50a2ms7E/EAdbP0swigLV+nzHKTTaYnaLIWJ02VdXrsJX0vGedDESQnLsOekr94ryfjg==}
+  js-sha256@0.12.0:
+    resolution: {integrity: sha512-P2IyTRMIHCkLD9clcQST8wGP/wqOXjvDD7E3onloE/5LSQGscyrmk2Loa069YsdtLfQWN1EnMDiaomAs9AfP4w==}
 
   js-string-escape@1.0.1:
     resolution: {integrity: sha512-Smw4xcfIQ5LVjAOuJCvN/zIodzA/BBSsluuoSykP+lUvScIi4U6RJLfwHet5cxFnCswUjISV8oAXaqaJDY3chg==}
@@ -13556,7 +13553,7 @@ snapshots:
 
   '@it-tools/bip39@0.0.4':
     dependencies:
-      js-sha256: 0.11.1
+      js-sha256: 0.12.0
       nanoid: 3.3.15
 
   '@it-tools/oggen@1.3.0': {}
@@ -18768,8 +18765,6 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  idb-keyval@6.2.6: {}
-
   idb-keyval@6.3.0: {}
 
   idb@7.1.1: {}
@@ -19257,7 +19252,7 @@ snapshots:
 
   js-cookie@3.0.8: {}
 
-  js-sha256@0.11.1: {}
+  js-sha256@0.12.0: {}
 
   js-string-escape@1.0.1: {}
 
@@ -22003,7 +21998,7 @@ snapshots:
   tesseract.js@7.0.0:
     dependencies:
       bmp-js: 0.1.0
-      idb-keyval: 6.2.6
+      idb-keyval: 6.3.0
       is-url: 1.2.4
       node-fetch: 2.7.0
       opencollective-postinstall: 2.0.3
