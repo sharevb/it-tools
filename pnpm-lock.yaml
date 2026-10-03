@@ -621,7 +621,7 @@ importers:
         version: 0.0.14
       dom-to-image-more:
         specifier: ^3.10.0
-        version: 3.10.0
+        version: 3.11.0
       dompurify:
         specifier: ^3.4.16
         version: 3.4.16
@@ -6747,8 +6747,8 @@ packages:
     resolution: {integrity: sha512-4MEa38/QexBob6gFNwu+EGdWvhJ1OKuNwdYY3Y3NyeWDQfnGeDYQUDfIRzWu5B5gsv03so2Uxd28YC6zrsx3Lw==}
     engines: {node: '>=20.19.0'}
 
-  dom-to-image-more@3.10.0:
-    resolution: {integrity: sha512-APrFEimSmH4phJKs8DlURuSr3BFwDqNi62l14bx73Wrhx0OhE4dd0qzZR+4E3sH8PnHxvax1LOrosC9oXRFA5A==}
+  dom-to-image-more@3.11.0:
+    resolution: {integrity: sha512-qvT580MyiR4wh6q3zNj0fXt0ViDA1y4iCJRkDioy4Ema6N9EOrwdvXT/wuRHh20epPJPvq9xl5ea/y87nYnkug==}
 
   dom-walk@0.1.2:
     resolution: {integrity: sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w==}
@@ -17549,7 +17549,7 @@ snapshots:
       domhandler: 6.0.1
       entities: 8.0.0
 
-  dom-to-image-more@3.10.0: {}
+  dom-to-image-more@3.11.0: {}
 
   dom-walk@0.1.2: {}
 
