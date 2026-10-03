@@ -1002,7 +1002,7 @@ importers:
         version: 2.1.8
       parse-torrent:
         specifier: ^11.0.21
-        version: 11.0.21
+        version: 11.0.24
       paseto-ts:
         specifier: ^2.0.6
         version: 2.0.6
@@ -4423,8 +4423,8 @@ packages:
   '@tabler/icons@3.44.0':
     resolution: {integrity: sha512-Wn0AOZG9sg0L+bjfMqq4eNhC6pQjIrk94LvvWYNYkY8KH8wC3YILRzQlrnVJc4FUeMxH/AK97QsYCX35H3LndA==}
 
-  '@thaunknown/thirty-two@1.0.5':
-    resolution: {integrity: sha512-Q53KyCXweV1CS62EfqtPDqfpksn5keQ59PGqzzkK+g8Vif1jB4inoBCcs/BUSdsqddhE3G+2Fn+4RX3S6RqT0A==}
+  '@thaunknown/thirty-two@1.0.6':
+    resolution: {integrity: sha512-Uz2kFb0cNeHg7hds8BtI/umcwzaSMUdbkeQgZrIZQbp3gWRFjrvrvBHNEB6SQYChVxC3rWHovKx1Ya/vSRRMYA==}
     engines: {node: '>=0.2.6'}
 
   '@tiptap/core@3.31.3':
@@ -8719,8 +8719,8 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
-  magnet-uri@7.0.8:
-    resolution: {integrity: sha512-cRzrGzw6nvjj+CMQczrVGZbcZfxhth4uSIQf7PGzACW11UsptwrQbAXTuUek7k3xG1HiFZJnkGpgjY2a5Y5Pgw==}
+  magnet-uri@7.0.10:
+    resolution: {integrity: sha512-PjS/xWnvq9RK6P/8+dWG7ka3mFGGt/R9xiq5A+P8a8MpE40Dw6yNyTdjCFuJHS3apn6p5bJUCzMSceW3VxezRA==}
     engines: {node: '>=12.20.0'}
 
   mailparser@3.9.12:
@@ -9603,8 +9603,8 @@ packages:
   parse-srcset@1.0.2:
     resolution: {integrity: sha512-/2qh0lav6CmI15FzA3i/2Bzk2zCgQhGMkvhOhKNcBVQ1ldgpbfiNTVslmooUmWJcADi1f1kIeynbDRVzNlfR6Q==}
 
-  parse-torrent@11.0.21:
-    resolution: {integrity: sha512-yQeIv9PaT/AQGhyyYpj0h2W5iP7Eka5CyaG6ECw/4SeoFK9lcIxCG3EqBHisrM3LA+LrtGzo68DLcE4rSd5YLA==}
+  parse-torrent@11.0.24:
+    resolution: {integrity: sha512-6nNWYiJq6egD8pMqZYL1mfnAly9ZH32DHkAYgZuAfwWij52ce7e3BtrWGVw2q1Bpb5Us8YQVGN7ML/47z/bVIA==}
     engines: {node: '>=12.20.0'}
     hasBin: true
 
@@ -11011,6 +11011,9 @@ packages:
 
   uint8-util@2.2.6:
     resolution: {integrity: sha512-r+ZjS8CzPhtPF771ROOadUoqC40OVdiMKBI8lTfJQWb4W7+73sMBwMYmai/uvNcmZ7tBJJyZSad03yMWIt3RQg==}
+
+  uint8-util@2.3.2:
+    resolution: {integrity: sha512-u1c0/eiT1IW+c5+ogbmE2Fu2hmtJQPkuzDmXD/4crMU4FPMjkTkFnjJ2NN/9AsZ9YWcc7yE869uc3WB8wIZEEA==}
 
   uint8array-extras@1.5.0:
     resolution: {integrity: sha512-rvKSBiC5zqCCiDZ9kAOszZcDvdAHwwIKJG33Ykj43OKcWsnmcBRL09YTU4nOeHZ8Y2a7l1MgTd08SBe9A8Qj6A==}
@@ -14973,9 +14976,9 @@ snapshots:
 
   '@tabler/icons@3.44.0': {}
 
-  '@thaunknown/thirty-two@1.0.5':
+  '@thaunknown/thirty-two@1.0.6':
     dependencies:
-      uint8-util: 2.2.6
+      uint8-util: 2.3.2
 
   '@tiptap/core@3.31.3(@tiptap/pm@3.31.3)':
     dependencies:
@@ -19708,11 +19711,11 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  magnet-uri@7.0.8:
+  magnet-uri@7.0.10:
     dependencies:
-      '@thaunknown/thirty-two': 1.0.5
+      '@thaunknown/thirty-two': 1.0.6
       bep53-range: 2.0.1
-      uint8-util: 2.2.6
+      uint8-util: 2.3.2
 
   mailparser@3.9.12:
     dependencies:
@@ -20604,14 +20607,14 @@ snapshots:
 
   parse-srcset@1.0.2: {}
 
-  parse-torrent@11.0.21:
+  parse-torrent@11.0.24:
     dependencies:
       bencode: 4.0.1
       cross-fetch-ponyfill: 1.0.3
       get-stdin: 10.0.0
-      magnet-uri: 7.0.8
+      magnet-uri: 7.0.10
       queue-microtask: 1.2.3
-      uint8-util: 2.2.6
+      uint8-util: 2.3.2
 
   parse5@8.0.1:
     dependencies:
@@ -22243,6 +22246,8 @@ snapshots:
   uint8-util@2.2.6:
     dependencies:
       base64-arraybuffer: 1.0.2
+
+  uint8-util@2.3.2: {}
 
   uint8array-extras@1.5.0: {}
 
