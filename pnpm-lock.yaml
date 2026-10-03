@@ -863,8 +863,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       katex:
-        specifier: ^0.17.0
-        version: 0.17.0
+        specifier: ^0.19.0
+        version: 0.19.0
       korean-unpacker:
         specifier: ^1.0.3
         version: 1.0.3
@@ -1242,7 +1242,7 @@ importers:
         version: 0.1.6(typescript@6.0.3)
       vue3-katex:
         specifier: ^0.8.1
-        version: 0.8.1(katex@0.17.0)(vue@3.5.39(typescript@6.0.3))
+        version: 0.8.1(katex@0.19.0)(vue@3.5.39(typescript@6.0.3))
       vuedraggable:
         specifier: ^4.1.0
         version: 4.1.0(vue@3.5.39(typescript@6.0.3))
@@ -8424,8 +8424,8 @@ packages:
     resolution: {integrity: sha512-Eeo8Ys1doU1z+x8AZsPpQu+p/QcZBI5PeOo7QGQdy2x2m0MU/hYagBbGOmXwr5KVbEfVuWv9LpnQWeehogurjg==}
     hasBin: true
 
-  katex@0.17.0:
-    resolution: {integrity: sha512-Vdw0ATsQ9V+LuegM/BTwQqV/6cTl5lbGcIrU+BCgLxyf6bo38ybOr372tuSIxir3CN720flu1meYR6XzNMwQnw==}
+  katex@0.19.0:
+    resolution: {integrity: sha512-v6Tznz3zJ7u3niRCoDTsumM2+HA2XXcCu+WAacCeHD2z3p9A9Ks987o5FzfTGBN0e8A0vjEgIDvLbICrXpdw/Q==}
     hasBin: true
 
   keycode@2.2.1:
@@ -19425,9 +19425,9 @@ snapshots:
     dependencies:
       commander: 8.3.0
 
-  katex@0.17.0:
+  katex@0.19.0:
     dependencies:
-      commander: 8.3.0
+      commander: 15.0.0
 
   keycode@2.2.1: {}
 
@@ -22834,10 +22834,10 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  vue3-katex@0.8.1(katex@0.17.0)(vue@3.5.39(typescript@6.0.3)):
+  vue3-katex@0.8.1(katex@0.19.0)(vue@3.5.39(typescript@6.0.3)):
     dependencies:
       deepmerge: 4.3.1
-      katex: 0.17.0
+      katex: 0.19.0
       vue: 3.5.39(typescript@6.0.3)
       vue-dompurify-html: 5.3.0(vue@3.5.39(typescript@6.0.3))
 
