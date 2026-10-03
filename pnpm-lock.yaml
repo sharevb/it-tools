@@ -741,7 +741,7 @@ importers:
         version: 4.5.4
       ical-generator:
         specifier: ^11.0.0
-        version: 11.0.0(@types/luxon@3.7.2)(@types/node@24.13.3)(dayjs@1.11.21)(luxon@3.7.2)(moment-timezone@0.5.48)(moment@2.30.1)
+        version: 11.1.2(@types/luxon@3.7.2)(@types/node@24.13.3)(dayjs@1.11.21)(luxon@3.7.2)(moment-timezone@0.5.48)(moment@2.30.1)
       ical.js:
         specifier: ^2.2.1
         version: 2.2.1
@@ -7716,8 +7716,8 @@ packages:
   ibantools@4.5.4:
     resolution: {integrity: sha512-6jX1gh4aH6XH+o0ey+wtkMTzkcvsEta7DakIOZSng9voZYpMw3U+gK1+tZChk3aRcPcloEt0NOzksjaRZiqXbw==}
 
-  ical-generator@11.0.0:
-    resolution: {integrity: sha512-OScZbXduIbjqtJzq0WLyPpAuKnc106+l28wszD+Wi2O9jXn76NVBfr4Ksv2XFyQn4JNZ9vWr5xAac0uT/FhVag==}
+  ical-generator@11.1.2:
+    resolution: {integrity: sha512-/pr2IbEhMoEGsLvCsgRoK5yEtFwLC08JuI6sQy0jejJq/94CTttaRHgnrmsvsM2290YOXfZjwyZc9J4UQhB+vA==}
     engines: {node: 22 || >=24.0.0}
     peerDependencies:
       '@touch4it/ical-timezones': '>=1.6.0'
@@ -18745,7 +18745,7 @@ snapshots:
 
   ibantools@4.5.4: {}
 
-  ical-generator@11.0.0(@types/luxon@3.7.2)(@types/node@24.13.3)(dayjs@1.11.21)(luxon@3.7.2)(moment-timezone@0.5.48)(moment@2.30.1):
+  ical-generator@11.1.2(@types/luxon@3.7.2)(@types/node@24.13.3)(dayjs@1.11.21)(luxon@3.7.2)(moment-timezone@0.5.48)(moment@2.30.1):
     optionalDependencies:
       '@types/luxon': 3.7.2
       '@types/node': 24.13.3
