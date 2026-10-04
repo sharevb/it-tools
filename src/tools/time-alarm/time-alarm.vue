@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n';
 import { Countdown } from 'vue3-flip-countdown';
 import { format, set } from 'date-fns';
 import { useQueryParam } from '@/composable/queryParams';
+import { appBaseUrl as base } from '@/utils/base-url';
 
 const { t } = useI18n();
 
@@ -146,7 +147,7 @@ const isEnded = computed(() => status.value === 'ended');
       </div>
     </c-card>
 
-    <audio ref="audio" loop src="/Beep.mp3" />
+    <audio ref="audio" loop :src="`${base}Beep.mp3`" />
   </div>
 </template>
 
