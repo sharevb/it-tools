@@ -54,7 +54,11 @@ const schemaUrl = useQueryParamOrStorage<string>({
   storageName: 'json-editor:schema',
   defaultValue: '',
 });
-const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: jsonText, schemaUrl, schemaData });
+const {
+  schemas,
+  errors: validationErrors,
+  catalogAvailable,
+} = useJsonSchemaValidation({ json: jsonText, schemaUrl, schemaData });
 
 function tryAutoRepair() {
   try {
@@ -128,6 +132,7 @@ const formattedJson = computed(() => {
           ...schemas.map((s) => ({ label: `${s.name} / ${s.description}`, value: s.url })),
         ]"
         filterable
+        :tag="!catalogAvailable"
         mb-4
       />
     </n-form-item>

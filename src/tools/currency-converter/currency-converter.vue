@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { code, countries, country } from 'currency-codes-ts';
-import converter from 'currency-exchanger-js';
+import { DEFAULT_CURRENCY_API_URL, convertWithRates, fetchCurrencyRates } from './currency-rates';
 import moneysData from './moneys.json';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
+import { getToolsSettingString, toolsSettings } from '@/tools-settings';
 
 const { t } = useI18n();
 
@@ -21,21 +22,19 @@ const currentCurrency = useQueryParamOrStorage<string>({
 const amount = useQueryParam({ tool: 'currency-conv', name: 'amount', defaultValue: 1 });
 const currentDatetime = ref(Date.now());
 
+// An intranet mirror of the currency-api files, configured in tools-settings.json
+const currencyApiUrl = getToolsSettingString(toolsSettings, 'currency-converter', 'url') || DEFAULT_CURRENCY_API_URL;
+
 const convertedCurrencies = computedAsync<Record<string, number>>(async () => {
   const currentCurrencyValue = currentCurrency.value;
-  const currentDatetimeValue = currentDatetime.value;
   const amountValue = amount.value;
   const otherCurrenciesValues = otherCurrencies.value;
 
+  // Always the latest rates: currency-exchanger-js, used before, ignored the date too. One fetch covers all targets.
+  const rates = await fetchCurrencyRates(currencyApiUrl, currentCurrencyValue);
   let result = {};
   for (const targetCurrency of otherCurrenciesValues) {
-    const value = await converter.convertOnDate(
-      amountValue,
-      currentCurrencyValue,
-      targetCurrency.name,
-      new Date(currentDatetimeValue),
-    );
-    result = { ...result, [targetCurrency.name]: value };
+    result = { ...result, [targetCurrency.name]: convertWithRates(rates, amountValue, targetCurrency.name) };
   }
   return result;
 });
