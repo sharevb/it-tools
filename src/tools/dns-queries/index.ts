@@ -11,4 +11,5 @@ export const tool = defineTool({
   createdAt: new Date('2024-08-15'),
   category: 'Network',
   externAccessDescription: t('tools.dns-queries.externalAccess'),
+  requiresInternet: true,
 });
