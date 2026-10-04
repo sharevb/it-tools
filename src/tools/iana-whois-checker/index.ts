@@ -11,4 +11,5 @@ export const tool = defineTool({
   createdAt: new Date('2025-10-03'),
   category: 'Network',
   externAccessDescription: t('tools.iana-whois-checker.externalAccess'),
+  requiresInternet: true,
 });

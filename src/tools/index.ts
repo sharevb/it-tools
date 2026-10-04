@@ -5,14 +5,17 @@ import { appBaseUrl as base } from '@/utils/base-url';
 const modules = import.meta.glob<true, string, ToolWithCategory>('./*/index.ts', { eager: true, import: 'tool' });
 
 // Both config files are optional; fetch them in parallel so app boot waits on at
-// most one network round-trip instead of two sequential ones.
-const [filterConfig, externalTools] = await Promise.all([
+// most one network round-trip instead of two sequential ones. tools-settings.json is
+// imported dynamically for the same reason: a static import would evaluate (and fetch)
+// it before this module's own fetches start.
+const [filterConfig, externalTools, { toolsSettings, isOfflineMode }] = await Promise.all([
   fetch(`${base}tools-filter.json`)
     .then((response) => (response.ok ? (response.json() as Promise<ToolsFilter>) : ({} as ToolsFilter)))
     .catch(() => ({}) as ToolsFilter),
   fetch(`${base}external-tools.json`)
     .then((response) => (response.ok ? (response.json() as Promise<ExternalTool[]>) : ([] as ExternalTool[])))
     .catch(() => [] as ExternalTool[]),
+  import('@/tools-settings'),
 ]);
 
 const allModules: ToolWithCategory[] = Object.values(modules);
@@ -45,7 +48,13 @@ const filters = {
   includeToolsFilterRegex: makeRegExp(filterConfig.includeToolsFilterRegex),
 };
 
+const requiresInternet = ({ requiresInternet }: ToolWithCategory) =>
+  typeof requiresInternet === 'function' ? requiresInternet(toolsSettings) : Boolean(requiresInternet);
+
 const filteredModules = allModules.filter((tool) => {
+  if (isOfflineMode && requiresInternet(tool)) {
+    return false;
+  }
   const category = tool.category || 'Development';
   if (filters.includeToolsFilterRegex?.test(tool.path)) {
     return true;

@@ -11,4 +11,5 @@ export const tool = defineTool({
   createdAt: new Date('2025-08-15'),
   category: 'Network',
   externAccessDescription: t('tools.dnsbl-checker.externalAccess'),
+  requiresInternet: true,
 });

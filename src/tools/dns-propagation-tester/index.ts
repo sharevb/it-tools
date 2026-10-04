@@ -11,4 +11,5 @@ export const tool = defineTool({
   createdAt: new Date('2026-05-11'),
   category: 'Forensic',
   externAccessDescription: t('tools.dns-propagation-tester.externalAccess'),
+  requiresInternet: true,
 });
