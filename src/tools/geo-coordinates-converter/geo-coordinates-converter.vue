@@ -5,6 +5,7 @@ import { flatten } from 'flatten-anything';
 import { convertFrom } from './geo-coordinates-converter.service';
 import { objectArrayToData } from '@/utils/objectarray.export';
 import { useQueryParam, useQueryParamOrStorage } from '@/composable/queryParams';
+import { getToolsSettingString, isOfflineMode, toolsSettings } from '@/tools-settings';
 import proj4 from 'proj4';
 
 import L from 'leaflet';
@@ -150,10 +151,16 @@ const utm = reactive({
   northing: 5411932,
 });
 
+// Map tiles come from tools-settings.json `"geo-coordinates-converter": { "tile-url": "..." }` (an intranet tile
+// server) or OpenStreetMap; offline without a tile server there is no map at all, the conversions still work.
+const tileUrl = getToolsSettingString(toolsSettings, 'geo-coordinates-converter', 'tile-url');
+const tileAttribution = getToolsSettingString(toolsSettings, 'geo-coordinates-converter', 'tile-attribution');
+const showMap = !isOfflineMode || tileUrl !== '';
+
 const mapRef = ref<HTMLElement | null>(null);
 watch(mapRef, () => initMap());
-let map: L.Map;
-let marker: L.Marker;
+let map: L.Map | undefined;
+let marker: L.Marker | undefined;
 
 // -----------------------------
 // HELPERS
@@ -238,16 +245,20 @@ function initMap() {
     }
     map = L.map(mapRef.value).setView([decimal.lat, decimal.lng], 13);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    L.tileLayer(tileUrl || 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: tileUrl
+        ? tileAttribution
+        : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       referrerPolicy: 'strict-origin-when-cross-origin',
-      crossOrigin: true,
+      // CORS-mode tile requests would fail against an intranet tile server that sends no CORS headers
+      crossOrigin: !tileUrl,
     }).addTo(map);
 
-    marker = L.marker([decimal.lat, decimal.lng], { draggable: true }).addTo(map);
+    const mapMarker = L.marker([decimal.lat, decimal.lng], { draggable: true }).addTo(map);
+    marker = mapMarker;
 
-    marker.on('dragend', () => {
-      const pos = marker.getLatLng();
+    mapMarker.on('dragend', () => {
+      const pos = mapMarker.getLatLng();
       decimal.lat = Number.parseFloat(pos.lat.toFixed(6));
       decimal.lng = Number.parseFloat(pos.lng.toFixed(6));
       decimal.latDir = pos.lat >= 0 ? 'N' : 'S';
@@ -270,8 +281,8 @@ onMounted(() => {
 });
 
 function updateMarker() {
-  marker.setLatLng([decimal.lat, decimal.lng]);
-  map.setView([decimal.lat, decimal.lng]);
+  marker?.setLatLng([decimal.lat, decimal.lng]);
+  map?.setView([decimal.lat, decimal.lng]);
 }
 </script>
 
@@ -359,7 +370,7 @@ function updateMarker() {
           </n-form>
         </n-card>
 
-        <div ref="mapRef" style="height: 400px; width: 100%; border-radius: 8px; overflow: hidden" />
+        <div v-if="showMap" ref="mapRef" style="height: 400px; width: 100%; border-radius: 8px; overflow: hidden" />
       </n-tab-pane>
       <n-tab-pane name="proj" :tab="t('tools.geo-coordinates-converter.texts.decimal-projections')">
         <n-radio-group v-model:value="sourceSystem" mb-2>

@@ -37,7 +37,11 @@ const schemaUrl = useQueryParamOrStorage<string>({
   storageName: 'json-linter:schema',
   defaultValue: '',
 });
-const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: jsonContent, schemaUrl, schemaData });
+const {
+  schemas,
+  errors: validationErrors,
+  catalogAvailable,
+} = useJsonSchemaValidation({ json: jsonContent, schemaUrl, schemaData });
 
 const indentSize = useITStorage('json-linter:indent-size', 3);
 const autoRepair = useITStorage('json-linter:repair', true);
@@ -88,6 +92,7 @@ const cleanJson = computed(() => {
           ...schemas.map((s) => ({ label: `${s.name} / ${s.description}`, value: s.url })),
         ]"
         filterable
+        :tag="!catalogAvailable"
         mb-4
       />
     </n-form-item>

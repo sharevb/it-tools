@@ -11,4 +11,5 @@ export const tool = defineTool({
   createdAt: new Date('2024-01-31'),
   npmPackages: ['yaml'],
   category: 'YAML',
+  externAccessDescription: t('tools.yaml-prettify.externalAccess'),
 });
