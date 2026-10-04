@@ -6,6 +6,10 @@ import { startTimer } from './storeUtils';
 import PomodoroAbout from './views/PomodoroAbout.vue';
 import PomodoroHome from './views/Home.vue';
 import PomodoroSettings from './views/Settings.vue';
+import { appBaseUrl as base } from '@/utils/base-url';
+
+// Bundled instead of fetched from Google Fonts (the font only comes in this one weight).
+import '@fontsource/varela-round/400.css';
 
 const store = useStore('pomodoro-store');
 
@@ -62,7 +66,6 @@ const currentTab = computed({
 </script>
 
 <template>
-  <link href="//fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
   <div class="pomodoro-timer-app">
     <Header />
     <div class="page-container">
@@ -80,13 +83,11 @@ const currentTab = computed({
     </div>
     <!-- <Footer /> -->
     <FinishedPopup />
-    <audio id="alarmPlayer" src="/Beep.mp3" loop />
+    <audio id="alarmPlayer" :src="`${base}Beep.mp3`" loop />
   </div>
 </template>
 
 <style>
-@import url('//fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-
 :root {
   --pomodoro-app-accent-color: #3b83b0;
   --pomodoro-dark-text-color: #303030;
