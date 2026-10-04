@@ -2,6 +2,15 @@
 import { useI18n } from 'vue-i18n';
 import { onMounted } from 'vue';
 import { useLocalStorage } from '@vueuse/core';
+import {
+  type GitTemplatesSnapshot,
+  type GitTemplatesSource,
+  liveTemplateUrl,
+  loadTemplate,
+  loadTemplateNames,
+  snapshotDay,
+} from '../gitignore-generator/git-templates';
+import { isOfflineMode } from '@/tools-settings';
 
 const { t } = useI18n();
 
@@ -13,70 +22,45 @@ const output = ref<string>('');
 const lastFetched = useLocalStorage<number>('gitattr-gen:ts', 0);
 const CACHE_TTL = 1000 * 60 * 60 * 24; // 24h
 
+// Commit date of the bundled snapshot, shown when templates come from it (offline mode or GitHub unreachable)
+const snapshotDate = ref('');
+
+const source: GitTemplatesSource = {
+  repository: 'alexkaratarakis/gitattributes',
+  ref: 'master',
+  extension: '.gitattributes',
+  loadSnapshot: () => import('./gitattributes-templates.json').then((m) => m.default as GitTemplatesSnapshot),
+};
+
 async function loadOptions() {
   const now = Date.now();
   const isStale = !options.value.length || now - lastFetched.value > CACHE_TTL;
 
-  if (!isStale) {
+  if (!isStale && !isOfflineMode) {
     // Use cached options
     return;
   }
 
-  try {
-    const res = await fetch(
-      'https://api.github.com/repos/alexkaratarakis/gitattributes/git/trees/master?recursive=true',
-    );
-    const files = await res.json();
-    options.value = files.tree
-      .filter((f: any) => f.path.endsWith('.gitattributes'))
-      .map((f: any) => f.path.replace('.gitattributes', ''))
-      .filter(Boolean)
-      .map((name: string) => ({
-        label: name,
-        value: name,
-      }));
+  const { names, snapshot } = await loadTemplateNames(source, { offline: isOfflineMode });
+  options.value = names.map((name: string) => ({
+    label: name,
+    value: name,
+  }));
+  if (snapshot) {
+    snapshotDate.value = snapshotDay(snapshot);
+  } else {
     lastFetched.value = now;
-  } catch {
-    if (!options.value?.length) {
-      options.value = [
-        'ActionScript',
-        'Ada',
-        'Ballerina',
-        'C++',
-        'CSharp',
-        'Common',
-        'Delphi',
-        'Drupal',
-        'Fortran',
-        'Fountain',
-        'Go',
-        'Java',
-        'Lua',
-        'Matlab',
-        'ObjectiveC',
-        'Pascal',
-        'Perl',
-        'Python',
-        'R',
-        'Rails',
-        'Servoy',
-        'VisualStudio',
-        'Web',
-      ].map((name) => ({
-        label: name,
-        value: name,
-      }));
-    }
   }
 }
 
 async function generateOutput() {
   let gitattributes = '';
   for (const lang of selected.value) {
-    const url = `https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/${lang}.gitattributes`;
-    const res = await fetch(url);
-    const text = await res.text();
-    gitattributes += `${gitattributes ? '\n\n' : ''}# === .gitattributes for ${lang} (${url}) ===\n\n${text}`;
+    const { content, url, snapshot } = await loadTemplate(source, lang, { offline: isOfflineMode });
+    if (snapshot) {
+      snapshotDate.value = snapshotDay(snapshot);
+    }
+    gitattributes += `${gitattributes ? '\n\n' : ''}# === .gitattributes for ${lang} (${url}) ===\n\n${content}`;
   }
   output.value = gitattributes;
 }
@@ -86,9 +70,7 @@ const commands = computed(() => {
   if (!selected.value.length) {
     return { curl: '', wget: '', powershell: '', cmd: '' };
   }
-  const urls = selected.value
-    .map((lang) => `https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/${lang}.gitattributes`)
-    .join(' ');
+  const urls = selected.value.map((lang) => liveTemplateUrl(source, lang)).join(' ');
   return {
     curl: `curl ${urls} > .gitattributes`,
     wget: `wget ${urls} -O .gitattributes`,
@@ -111,6 +93,9 @@ onMounted(loadOptions);
         :options="options"
       />
     </n-form-item>
+    <n-p v-if="snapshotDate" op-70>
+      {{ t('tools.gitattributes-generator.texts.snapshot-used', [snapshotDate]) }}
+    </n-p>
     <n-space justify="center" mb-2>
       <NButton type="primary" :disabled="!selected.length" @click="generateOutput">
         {{ t('tools.gitattributes-generator.texts.tag-fetch-generate') }}
@@ -120,7 +105,8 @@ onMounted(loadOptions);
       <textarea-copyable :value="output" language="bash" download-file-name=".gitattributes" />
     </c-card>
 
-    <NTabs v-if="output" type="line" animated>
+    <!-- The download commands fetch from GitHub, which an offline deployment can't reach -->
+    <NTabs v-if="output && !isOfflineMode" type="line" animated>
       <NTabPane name="curl" tab="Curl">
         <textarea-copyable :value="commands.curl" word-wrap />
       </NTabPane>

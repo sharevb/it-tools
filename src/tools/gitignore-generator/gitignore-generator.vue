@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import {
+  type GitTemplatesSnapshot,
+  type GitTemplatesSource,
+  loadTemplate,
+  loadTemplateNames,
+  snapshotDay,
+} from './git-templates';
+import { isOfflineMode } from '@/tools-settings';
 
 const { t } = useI18n();
 
@@ -13,45 +21,34 @@ const loading = ref(false);
 const lastFetched = useLocalStorage<number>('gitignore-gen:ts', 0);
 const CACHE_TTL = 1000 * 60 * 60 * 24; // 24h
 
+// Commit date of the bundled snapshot, shown when templates come from it (offline mode or GitHub unreachable)
+const snapshotDate = ref('');
+
+const source: GitTemplatesSource = {
+  repository: 'github/gitignore',
+  ref: 'main',
+  extension: '.gitignore',
+  loadSnapshot: () => import('./gitignore-templates.json').then((m) => m.default as GitTemplatesSnapshot),
+};
+
 async function loadOptions() {
   const now = Date.now();
   const isStale = !options.value.length || now - lastFetched.value > CACHE_TTL;
 
-  if (!isStale) {
+  if (!isStale && !isOfflineMode) {
     // Use cached options
     return;
   }
 
-  try {
-    const res = await fetch('https://api.github.com/repos/github/gitignore/git/trees/main?recursive=true');
-    const files = await res.json();
-    options.value = files.tree
-      .filter((f: any) => f.path.endsWith('.gitignore'))
-      .map((f: any) => f.path.replace('.gitignore', ''))
-      .filter(Boolean)
-      .map((name: string) => ({
-        label: name,
-        value: name,
-      }));
+  const { names, snapshot } = await loadTemplateNames(source, { offline: isOfflineMode });
+  options.value = names.map((name: string) => ({
+    label: name,
+    value: name,
+  }));
+  if (snapshot) {
+    snapshotDate.value = snapshotDay(snapshot);
+  } else {
     lastFetched.value = now;
-  } catch {
-    if (!options.value?.length) {
-      options.value = [
-        'C++',
-        'CMake',
-        'Dotnet',
-        'Node',
-        'Java',
-        'Swift',
-        'Symfony',
-        'Python',
-        'VisualStudio',
-        'WordPress',
-      ].map((name) => ({
-        label: name,
-        value: name,
-      }));
-    }
   }
 }
 
@@ -65,10 +62,11 @@ async function generateGitignore() {
   try {
     let gitignores = '';
     for (const lang of selected.value) {
-      const url = `https://raw.githubusercontent.com/github/gitignore/main/${lang}.gitignore`;
-      const res = await fetch(url);
-      const text = await res.text();
-      gitignores += `${gitignores ? '\n\n' : ''}# === .gitignore for ${lang} (${url}) ===\n\n${text}`;
+      const { content, url, snapshot } = await loadTemplate(source, lang, { offline: isOfflineMode });
+      if (snapshot) {
+        snapshotDate.value = snapshotDay(snapshot);
+      }
+      gitignores += `${gitignores ? '\n\n' : ''}# === .gitignore for ${lang} (${url}) ===\n\n${content}`;
     }
     output.value = gitignores;
   } catch (err: any) {
@@ -92,6 +90,9 @@ onMounted(loadOptions);
       style="width: 100%"
       :disable="!options"
     />
+    <n-p v-if="snapshotDate" mt-1 op-70>
+      {{ t('tools.gitignore-generator.texts.snapshot-used', [snapshotDate]) }}
+    </n-p>
 
     <n-space justify="center">
       <NButton
