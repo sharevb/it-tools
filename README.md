@@ -231,6 +231,45 @@ To define the default UI language, add a `default_locale` key to json:
 }
 ```
 
+## Offline / air-gapped deployments
+
+Fonts, editor extensions, the ffmpeg core, the ONNX runtime, the Tesseract OCR engine and its English and Simplified Chinese language data ship with the app, so these never come from a third-party CDN. The large ones are only downloaded when their tool is opened, and are left out of the PWA precache.
+
+On a network without internet access, add `"offline": true` to `tools-settings.json`. Tools that only work with internet are then hidden (my-ip, ip-geo-location, dns-queries, dnsbl-checker, dns-propagation-tester, online-wiktionary, iana-whois-checker), and tools with a bundled fallback switch to it:
+
+- gitignore-generator and gitattributes-generator use a template snapshot bundled at build time (also used online when GitHub can't be reached). Refresh it with `pnpm script:update:git-templates`.
+- ocr-image offers only the bundled languages.
+- JSON/YAML schema validation offers only a custom schema (pasted, or a URL you enter).
+- geo-coordinates-converter converts coordinates without showing a map.
+
+Some tools work offline once you point them at an intranet mirror; without one, they are hidden in offline mode. The mirrors can also be used online:
+
+```json
+{
+  "offline": true,
+  "transformers": { "models-url": "https://intranet.example/hf-mirror/" },
+  "ocr-image": { "lang-url": "https://intranet.example/tessdata/" },
+  "json-schemas": { "catalog-url": "https://intranet.example/schemastore/api/json/catalog.json" },
+  "currency-converter": { "url": "https://intranet.example/currency-api/" },
+  "geo-coordinates-converter": {
+    "tile-url": "https://tiles.intranet.example/{z}/{x}/{y}.png",
+    "tile-attribution": "&copy; OpenStreetMap contributors"
+  },
+  "explainchain": { "url": "https://explainshell.intranet.example" }
+}
+```
+
+| Setting | Used by | Expected content |
+| --- | --- | --- |
+| `transformers.models-url` | translator, remove-background, math-ocr | A mirror of the Hugging Face model repos with the same layout: `<url>/<org>/<model>/resolve/main/<file>`, e.g. `Xenova/opus-mt-en-fr/resolve/main/onnx/encoder_model_quantized.onnx`. Relative URLs resolve against the app. |
+| `ocr-image.lang-url` | ocr-image | A directory of `<lang>.traineddata.gz` files (the `4.0.0_best_int` variant from the `@tesseract.js-data/<lang>` npm packages), or a URL containing a `{lang}` placeholder. |
+| `json-schemas.catalog-url` | json-viewer, yaml-viewer, json-editor, json-linter | A copy of the [SchemaStore](https://www.schemastore.org) catalog. The schema URLs listed in it must be reachable too. |
+| `currency-converter.url` | currency-converter | A mirror of the `@fawazahmed0/currency-api` npm package, serving `v1/currencies/<code>.json`. |
+| `geo-coordinates-converter.tile-url` | geo-coordinates-converter | A Leaflet tile URL template; `tile-attribution` is optional. |
+| `explainchain.url` | explainshell | A self-hosted [explainshell](https://github.com/idank/explainshell). |
+
+The tools that use the [companion self-hosted services](#use-with-companion-self-hosted-docker-services) stay available in offline mode and work against intranet targets.
+
 ## To build using a custom default language:
 
 ```
