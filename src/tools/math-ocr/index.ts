@@ -1,4 +1,5 @@
 import { defineTool } from '../tool';
+import { getToolsSettingString } from '@/utils/tools-settings';
 import { translate as t } from '@/plugins/i18n.plugin';
 
 export const tool = defineTool({
@@ -11,4 +12,5 @@ export const tool = defineTool({
   createdAt: new Date('2024-08-15'),
   category: 'Maths',
   externAccessDescription: t('tools.math-ocr.externalAccess'),
+  requiresInternet: (settings) => !getToolsSettingString(settings, 'transformers', 'models-url'),
 });

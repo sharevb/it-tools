@@ -1,5 +1,6 @@
 import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
+import { getToolsSettingString } from '@/utils/tools-settings';
 
 export const tool = defineTool({
   name: t('tools.remove-background.title'),
@@ -11,4 +12,5 @@ export const tool = defineTool({
   createdAt: new Date('2026-03-15'),
   category: 'Images',
   externAccessDescription: t('tools.remove-background.externalAccess'),
+  requiresInternet: (settings) => !getToolsSettingString(settings, 'transformers', 'models-url'),
 });

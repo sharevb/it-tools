@@ -138,6 +138,17 @@ export default defineConfig({
             ? ['**\/*.{js,wasm,css,html}']
             : ['**\/*.{css,html}'],
         maximumFileSizeToCacheInBytes: 25 * 1024 ** 2,
+        // Runtimes and data that only one tool needs and that are far too big to download up front, even for a full
+        // precache: ffmpeg core (~31 MB), the ONNX runtime used by the transformers.js tools (~21 MB), tesseract
+        // cores (~3.7 MB each) and OCR language data. They are fetched when their tool runs and kept by the runtime
+        // caches below once used (OCR language data by tesseract.js itself, in IndexedDB).
+        globIgnores: [
+          '**/node_modules/**/*',
+          '**/ffmpeg-core-*',
+          '**/ort-wasm-simd-threaded*',
+          '**/tesseract-core-*',
+          '**/*.traineddata*',
+        ],
         // Relative, like every other precache entry: workbox resolves them against the
         // service worker's own URL, so the same sw.js works under any deployment path.
         navigateFallback: 'index.html',
@@ -256,6 +267,10 @@ export default defineConfig({
       'isolated-vm': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'onnxruntime-node': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
       'unpdf/pdfjs': fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
+      // The ONNX runtime files shipped by src/utils/transformers-env.ts; the package's `exports` don't list them.
+      '@huggingface/transformers/dist': fileURLToPath(
+        new URL('./node_modules/@huggingface/transformers/dist', import.meta.url),
+      ),
       'webcrypto-liner-shim': !process.env.VERCEL
         ? 'webcrypto-liner-shim'
         : fileURLToPath(new URL('./src/_empty.ts', import.meta.url)),
@@ -291,6 +306,12 @@ export default defineConfig({
       external: ['regex', './out/isolated_vm', 'isolated-vm', 'onnxruntime-node', 'unpdf/pdfjs'],
       output: {
         format: 'es',
+        // Tesseract language data is fetched as `<langPath>/<lang>.traineddata.gz`, so the bundled files keep their
+        // name and get the content hash as a directory instead (see src/tools/ocr-image/ocr-image.vue).
+        assetFileNames: ({ names }) =>
+          names.some((name) => name.endsWith('.traineddata.gz'))
+            ? 'assets/[hash]/[name][extname]'
+            : 'assets/[name]-[hash][extname]',
         codeSplitting: {
           // Tool icons are loaded through per-icon dynamic imports (see src/tools/*/index.ts);
           // merge them into a single lazy chunk instead of ~450 tiny ones.
