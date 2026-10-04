@@ -12,6 +12,7 @@ import { getDocument } from 'pdfjs-dist';
 import * as pdfJS from 'pdfjs-dist';
 import pdfJSWorkerURL from 'pdfjs-dist/build/pdf.worker?url';
 import { textStatistics } from '../text-statistics/text-statistics.service';
+import { getMirrorLangPath } from './lang-path';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 import { getToolsSettingString, isOfflineMode, toolsSettings } from '@/tools-settings';
@@ -126,7 +127,8 @@ const languages = [
 const bundledLanguageData: Record<string, string> = { eng: engDataUrl, chi_sim: chiSimDataUrl };
 
 // Other languages come from `{ "ocr-image": { "lang-url": "..." } }` in tools-settings.json when set (a directory
-// of `<lang>.traineddata.gz` files, or a URL with a `{lang}` placeholder), otherwise from tesseract.js' default CDN.
+// of `<lang>.traineddata.gz` files, optionally with a `{lang}` placeholder in the path, e.g. a mirror of jsDelivr's
+// `.../@tesseract.js-data/{lang}/4.0.0_best_int`), otherwise from tesseract.js' default CDN.
 const languageDataUrl = getToolsSettingString(toolsSettings, 'ocr-image', 'lang-url');
 
 function getLangPath(lang: string) {
@@ -135,7 +137,7 @@ function getLangPath(lang: string) {
     return new URL('.', new URL(bundled, document.baseURI)).href;
   }
   if (languageDataUrl) {
-    return new URL(languageDataUrl.replaceAll('{lang}', lang), document.baseURI).href;
+    return getMirrorLangPath(languageDataUrl, lang, document.baseURI);
   }
   return undefined;
 }

@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { useITStorage, useQueryParam } from '@/composable/queryParams';
+import { getToolsSettingString, isOfflineMode, toolsSettings } from '@/tools-settings';
 
 const { t } = useI18n();
 
 const command = useQueryParam({ tool: 'explainshell', name: 'command', defaultValue: '' });
-const explainshellUrl = useITStorage('explainchain:url', 'https://explainshell.com');
+// Offline, the deployment's self-hosted instance is the only one reachable (the tool is hidden without it), so it
+// overrides any URL the browser stored earlier.
+const fixedExplainshellUrl = isOfflineMode ? getToolsSettingString(toolsSettings, 'explainchain', 'url') : '';
+const explainshellUrl = fixedExplainshellUrl
+  ? ref(fixedExplainshellUrl)
+  : useITStorage('explainchain:url', 'https://explainshell.com');
 
 const iframeUrl = ref('');
 function openExplain() {
@@ -16,7 +22,7 @@ function openExplain() {
 
 <template>
   <div>
-    <details mb-1>
+    <details v-if="!fixedExplainshellUrl" mb-1>
       <summary>{{ t('tools.explainshell.texts.tag-explain-shell-configuration') }}</summary>
       <n-card>
         <c-input-text

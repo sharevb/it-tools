@@ -262,7 +262,7 @@ Some tools work offline once you point them at an intranet mirror; without one, 
 | Setting | Used by | Expected content |
 | --- | --- | --- |
 | `transformers.models-url` | translator, remove-background, math-ocr | A mirror of the Hugging Face model repos with the same layout: `<url>/<org>/<model>/resolve/main/<file>`, e.g. `Xenova/opus-mt-en-fr/resolve/main/onnx/encoder_model_quantized.onnx`. Relative URLs resolve against the app. |
-| `ocr-image.lang-url` | ocr-image | A directory of `<lang>.traineddata.gz` files (the `4.0.0_best_int` variant from the `@tesseract.js-data/<lang>` npm packages), or a URL containing a `{lang}` placeholder. |
+| `ocr-image.lang-url` | ocr-image | A directory of `<lang>.traineddata.gz` files (the `4.0.0_best_int` variant from the `@tesseract.js-data/<lang>` npm packages). The path may contain a `{lang}` placeholder, e.g. `https://intranet.example/npm/@tesseract.js-data/{lang}/4.0.0_best_int` for a mirror of jsDelivr. |
 | `json-schemas.catalog-url` | json-viewer, yaml-viewer, json-editor, json-linter | A copy of the [SchemaStore](https://www.schemastore.org) catalog. The schema URLs listed in it must be reachable too. |
 | `currency-converter.url` | currency-converter | A mirror of the `@fawazahmed0/currency-api` npm package, serving `v1/currencies/<code>.json`. |
 | `geo-coordinates-converter.tile-url` | geo-coordinates-converter | A Leaflet tile URL template; `tile-attribution` is optional. |
