@@ -437,6 +437,9 @@ tools:
   yaml-prettify:
     title: YAML prettify and format
     description: Prettify your YAML string into a friendly, human-readable format.
+    externalAccess: This tool may download a JSON schema from https://www.schemastore.org (or
+      the configured schema catalog) when validation is requested. No data is
+      sent externally.
   eta-calculator:
     title: ETA calculator
     description: An ETA (Estimated Time of Arrival) calculator to determine the
@@ -741,8 +744,8 @@ tools:
     title: JSON prettify and format
     description: Prettify your JSON string into a friendly, human-readable format.
     externalAccess: This tool may download a JSON schema from
-      https://www.schemastore.org when validation is requested. No data is send
-      externally.
+      https://www.schemastore.org (or the configured schema catalog) when
+      validation is requested. No data is sent externally.
   docker-run-to-docker-compose-converter:
     title: Docker run to Docker compose converter
     description: Transforms "docker run" commands into docker-compose files!
@@ -1710,7 +1713,8 @@ tools:
       title-currencies-to-countries: Currencies to Countries
       label-currency: Currency
     externalAccess: This tool downloads fresh currency data from
-      https://cdn.jsdelivr.net/npm/{'@'}fawazahmed0/currency-api
+      https://cdn.jsdelivr.net/npm/{'@'}fawazahmed0/currency-api (or the
+      configured mirror)
   data-storage-unit-converter:
     title: Data Storage Unit converter
     description: Convert data storage or transfer units (bytes, bibytes, bits, kilobytes...)
@@ -2649,8 +2653,8 @@ tools:
       repair-json: Repair JSON
       label-auto-height: Auto Height
     externalAccess: This tool may download a JSON schema from
-      https://www.schemastore.org when validation is requested. No data is send
-      externally.
+      https://www.schemastore.org (or the configured schema catalog) when
+      validation is requested. No data is sent externally.
   json-escaper:
     title: Json Escaper/Unescaper
     description: Escape and unescape JSON string
@@ -2681,8 +2685,8 @@ tools:
       title-repaired-version: Auto Repaired and Formatted version
       label-auto-repair-json: "Auto Repair JSON:"
     externalAccess: This tool may download a JSON schema from
-      https://www.schemastore.org when validation is requested. No data is send
-      externally.
+      https://www.schemastore.org (or the configured schema catalog) when
+      validation is requested. No data is sent externally.
   json-size-analyzer:
     title: Json Size Analyzer
     description: Measure JSON nodes relative weights
@@ -2969,11 +2973,13 @@ tools:
       tag-nb-processing-is-done-in-your-browser-so-be-patient-processing-can-take-a-while:
         "NB: processing is done in your browser, so be patient, processing can
         take a while"
-      tag-this-tool-required-internet-connection-to-access-models: This tool required internet connection (to access models)
+      tag-this-tool-required-internet-connection-to-access-models:
+        This tool needs access to Hugging Face or the configured models mirror
+        (to download models)
       tag-latex-result: Latex Result
-    externalAccess: This tool downloads MathJaX from https://cdnjs.cloudflare.com
-      and download Latex OCR recognition model (Xenova/texify) from
-      https://huggingface.co/
+    externalAccess: This tool downloads the LaTeX OCR recognition model
+      (Xenova/texify) from https://huggingface.co/ (or the configured models
+      mirror). Processing is done in your browser.
   mermaid-exporter:
     title: Mermaid exporter
     description: Convert Markdown (Mermaid) to image and allow to export to PNG, JPG & SVG
@@ -3083,7 +3089,9 @@ tools:
       label-spaces-chars: Spaces chars
       label-word-count-no-punct: Word count (no punct)
       tag-ocr: OCR
-    externalAccess: This tool downloads OCR languages models on https://cdn.jsdelivr.net
+    externalAccess: English and Simplified Chinese OCR language data is included.
+      Other languages are downloaded from https://cdn.jsdelivr.net (or the
+      configured language data mirror).
   option43-generator:
     title: Option43 generator
     description: Generate Option43 Wifi DHCP configuration
@@ -7437,7 +7445,8 @@ tools:
       placeholder-translation-will-appear-here: Translation will appear here...
       tag-translate: Translate
     externalAccess: This tool downloads translation models
-      (Xenova/opus-mt-[source]-[target]) on https://huggingface.co/
+      (Xenova/opus-mt-[source]-[target]) from https://huggingface.co/ (or the
+      configured models mirror). Processing is done in your browser.
   unicode-to-gsm7:
     title: Unicode to GSM-7
     description: Encode unicode text to SMS GSM-7 encoding and display related SMS send info
@@ -7934,8 +7943,10 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Select templates (e.g. node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Generate
-    externalAccess: This tool download .gitignore from
-      https://github.com/github/gitignore using Github API
+      snapshot-used: Using the bundled template snapshot from {0}.
+    externalAccess: This tool downloads .gitignore templates from
+      https://github.com/github/gitignore using the GitHub API, and falls back
+      to a bundled snapshot when GitHub is unreachable.
   i-and-l-checker:
     title: I and L Checker
     description: Check a password or text with highlighting of 1, l, I, 0, O
@@ -8185,8 +8196,10 @@ tools:
       placeholder-select-templates: Select templates
       title-preview: Preview
       tag-fetch-generate: Fetch & Generate
-    externalAccess: This tool download .gitattributes from
-      https://github.com/gitattributes/gitattributes using Github API
+      snapshot-used: Using the bundled template snapshot from {0}.
+    externalAccess: This tool downloads .gitattributes templates from
+      https://github.com/gitattributes/gitattributes using the GitHub API, and
+      falls back to a bundled snapshot when GitHub is unreachable.
   html-to-xhtml:
     title: HTML to XHTML
     description: Convert HTML to strict XHTML (XML parsable, self closing tags...)
@@ -8328,6 +8341,8 @@ tools:
       download-results-csv: Download Results CSV
       batch-lat-lng-converter: Batch Lat/Lng Converter
       single-lat-lng-converter: Single Lat/Lng Converter
+    externalAccess: This tool loads map tiles from OpenStreetMap or the configured tile
+      server; the coordinates shown are sent as tile requests.
   si-prefixes-converter:
     title: SI Prefixes Converter
     description: Convert between Metric Prefixes
@@ -9002,8 +9017,8 @@ tools:
   remove-background:
     title: Remove Image Background
     description: Remove background from an image using AI
-    externalAccess: Downloads Remove Background models from HuggingFace. Processing
-      is done in your browser
+    externalAccess: Downloads Remove Background models from Hugging Face (or the
+      configured models mirror). Processing is done in your browser.
     texts:
       label-rmbg-1-4-cpu-wasm: RMBG‑1.4 (CPU/WASM)
       label-modnet-webgpu: MODNet (WebGPU)
