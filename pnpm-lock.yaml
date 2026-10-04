@@ -792,7 +792,7 @@ importers:
         version: 1.0.7
       javascript-obfuscator:
         specifier: ^5.4.7
-        version: 5.4.7
+        version: 5.9.0
       javastack.js:
         specifier: ^1.0.3
         version: 1.0.3
@@ -8210,8 +8210,8 @@ packages:
   javascript-natural-sort@0.7.1:
     resolution: {integrity: sha512-nO6jcEfZWQXDhOiBtG2KvKyEptz7RVbpGP4vTD2hLBdmNQSsCiicO2Ioinv6UI4y9ukqnBpy+XZ9H6uLNgJTlw==}
 
-  javascript-obfuscator@5.4.7:
-    resolution: {integrity: sha512-QBgWD5ty+GlTZkvkKlKGdcYaeXCPP3JjtxFI61NZrcT8Je5Maq9cvBa6hENY4Pem+j3/89fekeNOfo486b2JEg==}
+  javascript-obfuscator@5.9.0:
+    resolution: {integrity: sha512-Irv8rKagYiAGql2m1gl+5N8iMqJIBJz65F0qD3wMHeD1JTusMSIXaVeoMm6rv2y6Mhm5JLlHgaTUIxf5/Gr2TA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -19163,7 +19163,7 @@ snapshots:
 
   javascript-natural-sort@0.7.1: {}
 
-  javascript-obfuscator@5.4.7:
+  javascript-obfuscator@5.9.0:
     dependencies:
       '@javascript-obfuscator/escodegen': 2.4.2
       '@javascript-obfuscator/estraverse': 5.4.0
