@@ -8,6 +8,10 @@ import { formatSelection } from './unicode-formatter.service';
 
 import { useCopy } from '@/composable/copy';
 
+// Bundled instead of fetched from Google Fonts. Only the regular weight is used; its unicode-range
+// subsets are only downloaded when the text needs them.
+import '@fontsource/open-sans/400.css';
+
 const { t } = useI18n();
 
 const textArea = ref<HTMLTextAreaElement>();
@@ -29,10 +33,6 @@ const { copy: copyFormattedText } = useCopy({
 </script>
 
 <template>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-
   <div
     max-w-600
     style="
