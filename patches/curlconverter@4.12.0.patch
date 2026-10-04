@@ -1,0 +1,24 @@
+diff --git a/dist/src/shell/webParser.js b/dist/src/shell/webParser.js
+index 1b3bab1a4789e926fbe07786188d1dcddf655489..39ac6d3a8f4f5ac007d4dc1e2da272e2cc5b9088 100644
+--- a/dist/src/shell/webParser.js
++++ b/dist/src/shell/webParser.js
+@@ -2,13 +2,17 @@
+ import Parser from "web-tree-sitter";
+ // NOTE: top-level await requires Safari 15+
+ // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#browser_compatibility
++// The wasm files are served next to the app (it-tools ships them in public/). Resolve them
++// against the document's <base href> rather than the domain root, so the app also works
++// when it is served from a subfolder.
++const appBase = document.querySelector("base")?.href ?? new URL("/", location.href).href;
+ await Parser.init({
+     // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     locateFile(scriptName, scriptDirectory) {
+-        return "/" + scriptName;
++        return new URL(scriptName, appBase).href;
+     },
+ });
+-const Bash = await Parser.Language.load("/tree-sitter-bash.wasm");
++const Bash = await Parser.Language.load(new URL("tree-sitter-bash.wasm", appBase).href);
+ const parser = new Parser();
+ parser.setLanguage(Bash);
+ export default parser;

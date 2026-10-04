@@ -23,6 +23,7 @@ patchedDependencies:
   node-forge@1.4.0: patches/node-forge@1.4.0.patch
   esm-potrace-wasm: patches/esm-potrace-wasm.patch
   run-pace: patches/run-pace.patch
+  curlconverter@4.12.0: patches/curlconverter@4.12.0.patch
 
 # pnpm 11 requires an explicit decision for every dependency build script.
 # true  = script is needed (native binaries / functional postinstall)
