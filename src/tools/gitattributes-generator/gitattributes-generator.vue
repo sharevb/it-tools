@@ -5,7 +5,6 @@ import { useLocalStorage } from '@vueuse/core';
 import {
   type GitTemplatesSnapshot,
   type GitTemplatesSource,
-  liveTemplateUrl,
   loadTemplate,
   loadTemplateNames,
   snapshotDay,
@@ -17,6 +16,8 @@ const { t } = useI18n();
 const options = useLocalStorage<{ label: string; value: string }[]>('gitattr-gen:opts2', []);
 const selected = ref<string[]>([]);
 const output = ref<string>('');
+// Where each template in `output` came from: the live branch, or the snapshot commit when the snapshot was used
+const outputUrls = ref<string[]>([]);
 
 // Timestamp cache to allow refresh after X hours
 const lastFetched = useLocalStorage<number>('gitattr-gen:ts', 0);
@@ -55,22 +56,25 @@ async function loadOptions() {
 
 async function generateOutput() {
   let gitattributes = '';
+  const urls: string[] = [];
   for (const lang of selected.value) {
     const { content, url, snapshot } = await loadTemplate(source, lang, { offline: isOfflineMode });
     if (snapshot) {
       snapshotDate.value = snapshotDay(snapshot);
     }
+    urls.push(url);
     gitattributes += `${gitattributes ? '\n\n' : ''}# === .gitattributes for ${lang} (${url}) ===\n\n${content}`;
   }
   output.value = gitattributes;
+  outputUrls.value = urls;
 }
 
-// Multi-command generation
+// Multi-command generation, downloading the same files as the generated preview
 const commands = computed(() => {
-  if (!selected.value.length) {
+  if (!outputUrls.value.length) {
     return { curl: '', wget: '', powershell: '', cmd: '' };
   }
-  const urls = selected.value.map((lang) => liveTemplateUrl(source, lang)).join(' ');
+  const urls = outputUrls.value.join(' ');
   return {
     curl: `curl ${urls} > .gitattributes`,
     wget: `wget ${urls} -O .gitattributes`,

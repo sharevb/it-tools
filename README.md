@@ -235,7 +235,7 @@ To define the default UI language, add a `default_locale` key to json:
 
 Fonts, editor extensions, the ffmpeg core, the ONNX runtime, the Tesseract OCR engine and its English and Simplified Chinese language data ship with the app, so these never come from a third-party CDN. The large ones are only downloaded when their tool is opened, and are left out of the PWA precache.
 
-On a network without internet access, add `"offline": true` to `tools-settings.json`. Tools that only work with internet are then hidden (my-ip, ip-geo-location, dns-queries, dnsbl-checker, dns-propagation-tester, online-wiktionary, iana-whois-checker), and tools with a bundled fallback switch to it:
+On a network without internet access, add `"offline": true` to `tools-settings.json`. Tools that only work with internet are then hidden (my-ip, ip-geo-location, dns-query, dns-queries, dnsbl-checker, dns-propagation-tester, online-wiktionary, iana-whois-checker), and tools with a bundled fallback switch to it:
 
 - gitignore-generator and gitattributes-generator use a template snapshot bundled at build time (also used online when GitHub can't be reached). Refresh it with `pnpm script:update:git-templates`.
 - ocr-image offers only the bundled languages.

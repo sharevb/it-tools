@@ -28,4 +28,5 @@ export const tool = defineTool({
   category: 'Network',
   externAccessDescription:
     "This tool resolves DNS records for a given domain using Cloudflare's DNS over HTTPS API (https://cloudflare-dns.com). It resolves WhoIs throught RDAP API (https://rdap.org).",
+  requiresInternet: true,
 });
