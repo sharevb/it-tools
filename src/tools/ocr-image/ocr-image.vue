@@ -1,13 +1,20 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
-import { createWorker } from 'tesseract.js';
+import { OEM, createWorker } from 'tesseract.js';
+import workerUrl from 'tesseract.js/dist/worker.min.js?url';
+import coreLstmUrl from 'tesseract.js-core/tesseract-core-lstm.wasm.js?url';
+import coreSimdLstmUrl from 'tesseract.js-core/tesseract-core-simd-lstm.wasm.js?url';
+import coreRelaxedSimdLstmUrl from 'tesseract.js-core/tesseract-core-relaxedsimd-lstm.wasm.js?url';
+import engDataUrl from '@tesseract.js-data/eng/4.0.0_best_int/eng.traineddata.gz?url';
+import chiSimDataUrl from '@tesseract.js-data/chi_sim/4.0.0_best_int/chi_sim.traineddata.gz?url';
 import { getDocument } from 'pdfjs-dist';
 import * as pdfJS from 'pdfjs-dist';
 import pdfJSWorkerURL from 'pdfjs-dist/build/pdf.worker?url';
 import { textStatistics } from '../text-statistics/text-statistics.service';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { getToolsSettingString, isOfflineMode, toolsSettings } from '@/tools-settings';
 
 const { t } = useI18n();
 
@@ -112,14 +119,56 @@ const languages = [
   { name: 'Welsh', code: 'cym' },
   { name: 'Yiddish', code: 'yid' },
 ];
-const languagesOptions = Array.from(
-  languages.map((l) => ({
-    label: l.name,
-    value: l.code,
-  })),
-);
+
+// Language data shipped with the app: the LSTM-only `4.0.0_best_int` variant tesseract.js downloads by default.
+// tesseract.js fetches `<langPath>/<lang>.traineddata.gz`, and the build keeps these file names (the content hash
+// is a directory instead, see vite.config.ts), so the containing directory is the langPath.
+const bundledLanguageData: Record<string, string> = { eng: engDataUrl, chi_sim: chiSimDataUrl };
+
+// Other languages come from `{ "ocr-image": { "lang-url": "..." } }` in tools-settings.json when set (a directory
+// of `<lang>.traineddata.gz` files, or a URL with a `{lang}` placeholder), otherwise from tesseract.js' default CDN.
+const languageDataUrl = getToolsSettingString(toolsSettings, 'ocr-image', 'lang-url');
+
+function getLangPath(lang: string) {
+  const bundled = bundledLanguageData[lang];
+  if (bundled) {
+    return new URL('.', new URL(bundled, document.baseURI)).href;
+  }
+  if (languageDataUrl) {
+    return new URL(languageDataUrl.replaceAll('{lang}', lang), document.baseURI).href;
+  }
+  return undefined;
+}
+
+// Offline without a mirror, only the bundled languages can be loaded.
+const availableLanguages =
+  isOfflineMode && !languageDataUrl ? languages.filter(({ code }) => code in bundledLanguageData) : languages;
+const languagesOptions = availableLanguages.map((l) => ({
+  label: l.name,
+  value: l.code,
+}));
 
 const language = useQueryParamOrStorage({ name: 'lang', storageName: 'ocr-image:lang', defaultValue: 'eng' });
+if (!availableLanguages.some(({ code }) => code === language.value)) {
+  language.value = 'eng';
+}
+
+// Pick the tesseract core build the way tesseract.js does when given a directory (it can't be, as the build hashes
+// the file names). Same feature probes as wasm-feature-detect, which tesseract.js uses for this.
+function getCorePath() {
+  const supports = (bytes: number[]) => WebAssembly.validate(new Uint8Array(bytes));
+  const relaxedSimd = [
+    0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 96, 0, 1, 123, 3, 2, 1, 0, 10, 15, 1, 13, 0, 65, 1, 253, 15, 65, 2, 253, 15,
+    253, 128, 2, 11,
+  ];
+  const simd = [
+    0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 96, 0, 1, 123, 3, 2, 1, 0, 10, 10, 1, 8, 0, 65, 0, 253, 15, 253, 98, 11,
+  ];
+  if (supports(relaxedSimd)) {
+    return coreRelaxedSimdLstmUrl;
+  }
+  return supports(simd) ? coreSimdLstmUrl : coreLstmUrl;
+}
 
 const pageSeparator = '\n=============\n';
 const ocrInProgress = ref(false);
@@ -171,8 +220,11 @@ async function ocr(file: File, language: string) {
     return '';
   }
   ocrInProgress.value = true;
-  const worker = await createWorker();
-  await worker.reinitialize(language);
+  const worker = await createWorker(language, OEM.LSTM_ONLY, {
+    workerPath: workerUrl,
+    corePath: getCorePath(),
+    langPath: getLangPath(language),
+  });
   const allTexts = [];
   if (file.type.match('^image/')) {
     const ret = await worker.recognize(file);
