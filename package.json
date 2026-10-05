@@ -455,7 +455,7 @@
     "hygen": "^6.2.11",
     "jsdom": "^29.1.1",
     "less": "^4.6.7",
-    "oxfmt": "^0.57.0",
+    "oxfmt": "^0.72.0",
     "oxlint": "^1.72.0",
     "oxlint-tsgolint": "^7.0.2001",
     "rollup-plugin-visualizer": "^7.0.1",
