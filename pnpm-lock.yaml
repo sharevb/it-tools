@@ -303,7 +303,7 @@ importers:
         version: 3.7.6
       '@iplookup/country-extra':
         specifier: ^1.0.20260711
-        version: 1.0.20260711
+        version: 1.0.20261010
       '@it-tools/bip39':
         specifier: ^0.0.4
         version: 0.0.4
@@ -2861,8 +2861,8 @@ packages:
     peerDependencies:
       reflect-metadata: ~0.2.2
 
-  '@iplookup/country-extra@1.0.20260711':
-    resolution: {integrity: sha512-MpcSbIblUPf/p28M4jjjqeJeyO0XXLFhvbLVfLCOmvKBGxH6sewlaETxA0VTDPqJQwYSxvJ/jx/tQ+CoGkTFgg==}
+  '@iplookup/country-extra@1.0.20261010':
+    resolution: {integrity: sha512-dwfscjNmxi7mOgtEb2TXY5S5Ao1ranzfiDqa4799N+bG2SmF6WEnIk86fRQ5Eyjz+pGJ/ehdLZw1NVS6OJPseQ==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -13541,7 +13541,7 @@ snapshots:
     dependencies:
       reflect-metadata: 0.2.2
 
-  '@iplookup/country-extra@1.0.20260711': {}
+  '@iplookup/country-extra@1.0.20261010': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:
