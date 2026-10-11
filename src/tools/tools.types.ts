@@ -1,3 +1,4 @@
+import type { ToolsSettings } from '@/utils/tools-settings';
 import type { Component } from 'vue';
 
 export interface Tool {
@@ -12,6 +13,12 @@ export interface Tool {
   createdAt?: Date;
   npmPackages?: string[];
   externAccessDescription?: string;
+  /**
+   * Whether the tool needs internet access to be useful. When the deployment sets `"offline": true` in
+   * tools-settings.json, tools for which this is (or returns) true are hidden. Use the function form for tools that
+   * work offline once an intranet mirror is configured in tools-settings.json.
+   */
+  requiresInternet?: boolean | ((settings: ToolsSettings) => boolean);
   footer?: string;
   category: string;
   externalHTMLContent?: string;

@@ -10,5 +10,5 @@ export const tool = defineTool({
   icon: defineAsyncComponent(() => import('@tabler/icons-vue/dist/esm/icons/IconWorldPin.mjs')),
   createdAt: new Date('2026-01-09'),
   category: 'Converters',
-  externAccessDescription: 'This tool access OpenStreetMap to display the World map using the Leaflet library.',
+  externAccessDescription: t('tools.geo-coordinates-converter.externalAccess'),
 });

@@ -11,4 +11,5 @@ export const tool = defineTool({
   createdAt: new Date('2026-01-03'),
   category: 'Data',
   externAccessDescription: t('tools.online-wiktionary.externalAccess'),
+  requiresInternet: true,
 });

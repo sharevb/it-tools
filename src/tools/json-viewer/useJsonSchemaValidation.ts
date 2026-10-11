@@ -1,14 +1,8 @@
 import { type Schema, Validator } from 'jsonschema';
 import { isRef, onBeforeMount, ref, watch } from 'vue';
 import { type MaybeRef, get } from '@vueuse/core';
-
-export interface SchemaStore {
-  name: string;
-  description: string;
-  url: string;
-  fileMatch: string[];
-  versions?: string[];
-}
+import { type SchemaStore, fetchSchemaCatalog, resolveSchemaCatalogUrl } from './schema-catalog';
+import { isOfflineMode, toolsSettings } from '@/tools-settings';
 
 export function useJsonSchemaValidation({
   json,
@@ -23,10 +17,12 @@ export function useJsonSchemaValidation({
   const schema = ref<Schema | null>(null);
   const errors = ref<string[]>([]);
 
+  // Offline without a configured catalog mirror there is no catalog to pick from: only custom or user-entered schemas
+  const catalogUrl = resolveSchemaCatalogUrl(toolsSettings, isOfflineMode);
+  const catalogAvailable = catalogUrl !== '';
+
   onBeforeMount(async () => {
-    const catalog = await fetch('https://www.schemastore.org/api/json/catalog.json');
-    const catalogJson: { $schemaUrl: string; schemas: SchemaStore[]; version: number } = await catalog.json();
-    schemas.value = catalogJson.schemas;
+    schemas.value = await fetchSchemaCatalog(catalogUrl);
   });
 
   watch(
@@ -81,5 +77,5 @@ export function useJsonSchemaValidation({
     { immediate: true },
   );
 
-  return { schemas, errors };
+  return { schemas, errors, catalogAvailable };
 }

@@ -11,4 +11,5 @@ export const tool = defineTool({
   createdAt: new Date('2024-01-17'),
   category: 'Network',
   externAccessDescription: t('tools.ip-geo-location.externalAccess'),
+  requiresInternet: true,
 });

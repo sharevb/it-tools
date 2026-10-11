@@ -4,8 +4,9 @@ import { ref } from 'vue';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 
 import ffmpegClassWorkerUrl from '@ffmpeg/ffmpeg/worker?worker&url';
-
-import { toBlobURL } from '@ffmpeg/util';
+// Shipped with the app (single-threaded ESM build). The worker above is a module worker, so it `import()`s the core.
+import ffmpegCoreUrl from '@ffmpeg/core?url';
+import ffmpegWasmUrl from '@ffmpeg/core/wasm?url';
 
 const { t } = useI18n();
 
@@ -22,11 +23,9 @@ const loop = ref(5);
 
 async function loadFFmpeg() {
   if (!ffmpeg.loaded) {
-    const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/esm';
-
     await ffmpeg.load({
-      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-      wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+      coreURL: ffmpegCoreUrl,
+      wasmURL: ffmpegWasmUrl,
       classWorkerURL: ffmpegClassWorkerUrl,
     });
   }

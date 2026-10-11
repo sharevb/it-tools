@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n';
 import { onMounted, ref } from 'vue';
 import type { BackgroundRemovalPipeline, ProgressInfo } from '@huggingface/transformers';
 import { RawImage, pipeline } from '@huggingface/transformers';
+import '@/utils/transformers-env';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
 
 const { t } = useI18n();

@@ -1,5 +1,6 @@
 import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
+import { getToolsSettingString } from '@/utils/tools-settings';
 
 export const tool = defineTool({
   name: t('tools.explainshell.title'),
@@ -11,4 +12,5 @@ export const tool = defineTool({
   createdAt: new Date('2026-01-30'),
   category: 'Data',
   externAccessDescription: t('tools.explainshell.externalAccess'),
+  requiresInternet: (settings) => !getToolsSettingString(settings, 'explainchain', 'url'),
 });

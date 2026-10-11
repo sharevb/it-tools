@@ -393,6 +393,8 @@ tools:
   yaml-prettify:
     title: YAML格式化与美化
     description: 将您的YAML字符串格式化为友好、易读的格式。
+    externalAccess: 请求验证时，此工具可能会从 https://www.schemastore.org（或配置的 Schema 目录）下载 JSON
+      Schema。不会向外部发送任何数据。
   eta-calculator:
     title: ETA计算器
     description: ETA（预计到达时间）计算器，用于确定任务的大致结束时间，例如文件下载的结束时间和持续时间。
@@ -675,7 +677,8 @@ tools:
   json-prettify:
     title: JSON格式化与美化
     description: 将JSON字符串格式化为友好、易读的格式。
-    externalAccess: 当需要进行验证时，此工具可能会从 https://www.schemastore.org 下载 JSON 模式。不会向外部发送任何数据。
+    externalAccess: 请求验证时，此工具可能会从 https://www.schemastore.org（或配置的 Schema 目录）下载 JSON
+      Schema。不会向外部发送任何数据。
   docker-run-to-docker-compose-converter:
     title: Docker运行命令转Docker Compose转换器
     description: 将"docker run"命令转换为Docker Compose文件！
@@ -1615,7 +1618,8 @@ tools:
       label-country: 国家
       title-currencies-to-countries: 货币到国家
       label-currency: 货币
-    externalAccess: 此工具从 https://cdn.jsdelivr.net/npm/{'@'}fawazahmed0/currency-api 下载最新的货币数据
+    externalAccess: 此工具会从
+      https://cdn.jsdelivr.net/npm/{'@'}fawazahmed0/currency-api（或配置的镜像）下载最新的汇率数据
   data-storage-unit-converter:
     title: 数据存储单位转换器
     description: |
@@ -2522,7 +2526,8 @@ tools:
       label-indent-size-0-compact: 缩进大小（0 = 紧凑格式）：
       repair-json: 修复JSON
       label-auto-height: 自动高度
-    externalAccess: 当需要进行验证时，此工具可能会从 https://www.schemastore.org 下载 JSON 模式。不会向外部发送任何数据。
+    externalAccess: 请求验证时，此工具可能会从 https://www.schemastore.org（或配置的 Schema 目录）下载 JSON
+      Schema。不会向外部发送任何数据。
   json-escaper:
     title: JSON转义器/反转义器
     description: 转义和反转义JSON字符串
@@ -2552,7 +2557,8 @@ tools:
       label-indent-size-0-compact: 缩进大小（0 = 紧凑）：
       title-repaired-version: 自动修复和格式化版本
       label-auto-repair-json: 汽车维修 JSON：
-    externalAccess: 当需要进行验证时，此工具可能会从 https://www.schemastore.org 下载 JSON 模式。不会向外部发送任何数据。
+    externalAccess: 请求验证时，此工具可能会从 https://www.schemastore.org（或配置的 Schema 目录）下载 JSON
+      Schema。不会向外部发送任何数据。
   json-size-analyzer:
     title: JSON大小分析器
     description: 测量JSON节点的相对权重
@@ -2833,10 +2839,10 @@ tools:
     texts:
       title-drag-and-drop-a-image-here-or-click-to-select-a-file: 将图像拖放到此处，或点击选择文件
       tag-nb-processing-is-done-in-your-browser-so-be-patient-processing-can-take-a-while: 注意：处理在浏览器中进行，请耐心等待，处理可能需要一段时间
-      tag-this-tool-required-internet-connection-to-access-models: 此工具需要互联网连接（以访问模型）
+      tag-this-tool-required-internet-connection-to-access-models: 此工具需要访问 Hugging Face 或配置的模型镜像（以下载模型）
       tag-latex-result: LaTeX结果
-    externalAccess: 该工具从 https://cdnjs.cloudflare.com 下载 MathJaX，并从
-      https://huggingface.co/ 下载 Latex OCR 识别模型 (Xenova/texify)。
+    externalAccess: 此工具会从 https://huggingface.co/（或配置的模型镜像）下载 LaTeX OCR
+      识别模型（Xenova/texify）。处理在您的浏览器中完成。
   mermaid-exporter:
     title: Mermaid导出器
     description: 将Markdown（Mermaid）转换为图像并允许导出为PNG、JPG和SVG
@@ -2945,7 +2951,7 @@ tools:
       label-spaces-chars: 空格字符数
       label-word-count-no-punct: 无标点单词数
       tag-ocr: 光学字符识别
-    externalAccess: 此工具从 https://cdn.jsdelivr.net 下载 OCR 语言模型。
+    externalAccess: 已内置英文和简体中文 OCR 语言数据。其他语言将从 https://cdn.jsdelivr.net（或配置的语言数据镜像）下载。
   option43-generator:
     title: Option43生成器
     description: 生成Option43 Wifi DHCP配置
@@ -7082,7 +7088,8 @@ tools:
       placeholder-to: 到
       placeholder-translation-will-appear-here: 翻译将出现在这里...
       tag-translate: 翻译
-    externalAccess: 此工具从 https://huggingface.co/ 下载翻译模型（Xenova/opus-mt-[源]-[目标]）。
+    externalAccess: 此工具会从
+      https://huggingface.co/（或配置的模型镜像）下载翻译模型（Xenova/opus-mt-[source]-[target]）。处理在您的浏览器中完成。
   unicode-to-gsm7:
     title: Unicode 转 GSM-7
     description: 将unicode文本编码为短信GSM-7编码并显示相关的短信发送信息
@@ -7567,7 +7574,9 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: 选择模板（例如 node、python、vue）
       title-gitignore: .gitignore
       tag-generate: 产生
-    externalAccess: 此工具使用 GitHub API 从 https://github.com/github/gitignore 下载 .gitignore 文件。
+      snapshot-used: 正在使用 {0} 的内置模板快照。
+    externalAccess: 此工具通过 GitHub API 从 https://github.com/github/gitignore 下载
+      .gitignore 模板，无法访问 GitHub 时使用内置的模板快照。
   i-and-l-checker:
     title: 我和 L 检查器
     description: 检查密码或文本，其中高亮显示的字母为 1、l、I、0、O。
@@ -7812,8 +7821,10 @@ tools:
       placeholder-select-templates: 选择模板
       title-preview: 预览
       tag-fetch-generate: 获取并生成
-    externalAccess: 此工具使用 GitHub API 从
-      https://github.com/gitattributes/gitattributes 下载 .gitattributes 文件。
+      snapshot-used: 正在使用 {0} 的内置模板快照。
+    externalAccess: 此工具通过 GitHub API 从
+      https://github.com/gitattributes/gitattributes 下载 .gitattributes 模板，无法访问
+      GitHub 时使用内置的模板快照。
   html-to-xhtml:
     title: HTML 转 XHTML
     description: 将 HTML 转换为严格的 XHTML（可解析 XML，带有自闭合标签……）
@@ -7952,6 +7963,7 @@ tools:
       download-results-csv: 下载结果 CSV 文件
       batch-lat-lng-converter: 批量经纬度转换器
       single-lat-lng-converter: 单经纬度转换器
+    externalAccess: 此工具从 OpenStreetMap 或配置的瓦片服务器加载地图瓦片；显示的坐标会随瓦片请求发送。
   si-prefixes-converter:
     title: SI 前缀转换器
     description: 公制前缀转换
@@ -8647,7 +8659,7 @@ tools:
   remove-background:
     title: 移除图片背景
     description: 使用人工智能去除图像背景
-    externalAccess: 从 HuggingFace 下载移除背景模型。处理过程在您的浏览器中完成。
+    externalAccess: 从 Hugging Face（或配置的模型镜像）下载背景移除模型。处理在您的浏览器中完成。
     texts:
       label-rmbg-1-4-cpu-wasm: RMBG-1.4（CPU/WASM）
       label-modnet-webgpu: MODNet（WebGPU）

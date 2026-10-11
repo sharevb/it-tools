@@ -31,7 +31,11 @@ const MONACO_EDITOR_OPTIONS = {
 };
 
 const schemaUrl = useQueryParamOrStorage({ name: 'schema', storageName: 'yaml-prettify:schema', defaultValue: '' });
-const { schemas, errors: validationErrors } = useYamlSchemaValidation({ yaml: rawYaml, schemaUrl, schemaData });
+const {
+  schemas,
+  errors: validationErrors,
+  catalogAvailable,
+} = useYamlSchemaValidation({ yaml: rawYaml, schemaUrl, schemaData });
 </script>
 
 <template>
@@ -66,6 +70,7 @@ const { schemas, errors: validationErrors } = useYamlSchemaValidation({ yaml: ra
           ...schemas.map((s) => ({ label: `${s.name} / ${s.description}`, value: s.url })),
         ]"
         filterable
+        :tag="!catalogAvailable"
         mb-4
       />
     </n-form-item>

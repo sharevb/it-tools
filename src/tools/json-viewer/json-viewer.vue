@@ -50,7 +50,11 @@ const schemaUrl = useQueryParamOrStorage<string>({
   storageName: 'json-prettify:schema',
   defaultValue: '',
 });
-const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: rawJson, schemaUrl, schemaData });
+const {
+  schemas,
+  errors: validationErrors,
+  catalogAvailable,
+} = useJsonSchemaValidation({ json: rawJson, schemaUrl, schemaData });
 </script>
 
 <template>
@@ -95,6 +99,7 @@ const { schemas, errors: validationErrors } = useJsonSchemaValidation({ json: ra
         ...schemas.map((s) => ({ label: `${s.name} / ${s.description}`, value: s.url })),
       ]"
       filterable
+      :tag="!catalogAvailable"
       mb-4
     />
   </n-form-item>

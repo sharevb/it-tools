@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import type { Ref } from 'vue';
 import { pipeline } from '@huggingface/transformers';
-import { useScriptTag } from '@vueuse/core';
+import '@/utils/transformers-env';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();
