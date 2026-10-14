@@ -41,7 +41,7 @@ CMD ["node", "server.js"]
 FROM node:22-alpine
 
 # name a stage so later stages can copy from it
-FROM golang:1.23 AS build
+FROM golang:1.27@sha256:820153096fda4de6ac1b7194d12e416b7dd8f4e9a33d17e0345b111b945162d8 AS build
 
 # an ARG before the first FROM can parameterise the base image itself
 ARG NODE_VERSION=22
@@ -174,7 +174,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ```dockerfile
 # a compiled binary on a near-empty base
-FROM golang:1.23 AS build
+FROM golang:1.27@sha256:820153096fda4de6ac1b7194d12e416b7dd8f4e9a33d17e0345b111b945162d8 AS build
 WORKDIR /src
 COPY . .
 RUN CGO_ENABLED=0 go build -o /out/app ./cmd/app
