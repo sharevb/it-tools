@@ -14,7 +14,7 @@ INSTRUCTION arguments
 指定基础镜像。
 
 ```Dockerfile
-FROM ubuntu:20.04
+FROM ubuntu:26.04@sha256:c098726dd9b9733f3e885f8de0ef375206a311b0a317eadc40d347b1115fb944
 FROM node:22-alpine
 ```
 
