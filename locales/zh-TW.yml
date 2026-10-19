@@ -89,14 +89,14 @@ home:
     p1: 在
     githubRepository: IT-Tools GitHub 倉庫給我們加顆星，
     p2: 或在
-    twitterXAccount: IT-Tools X 賬號關注我們。
+    twitterXAccount: IT-Tools X 帳號關注我們。
     thankYou: 感謝！
   loading-more-tools: 正在載入更多工具……
   nav:
     github: GitHub 倉庫
     githubRepository: IT-Tools GitHub 倉庫
-    twitterX: X 賬號
-    twitterXAccount: IT-Tools X 賬號
+    twitterX: X 帳號
+    twitterXAccount: IT-Tools X 帳號
     about: 關於 IT-Tools
     darkMode: 深色模式
     lightMode: 淺色模式
@@ -636,7 +636,7 @@ tools:
       label-uppercase: 大寫：
       label-camelcase: 駝峰式：
       label-capitalcase: 單詞首字母大寫：
-      label-constantcase: 常量式（全大寫加下劃線）：
+      label-constantcase: 常數式（全大寫加底線）：
       label-dotcase: 點分隔式：
       label-kebab-paramcase: 短橫線/引數式（kebab-case）：
       label-nocase: 無大小寫（原樣）：
@@ -644,7 +644,7 @@ tools:
       label-pascalcase: 帕斯卡式（各單詞首字母大寫）：
       label-pathcase: 路徑式（斜槓分隔）：
       label-sentencecase: 句子式（首字母大寫）：
-      label-snakecase: 蛇形式（下劃線分隔）：
+      label-snakecase: 蛇形式（底線分隔）：
       label-mockingcase: 大小寫交替：
       label-your-string: 您的字串：
       placeholder-your-string: 輸入字串...
@@ -692,14 +692,14 @@ tools:
       title-the-following-errors-occured: 發生以下錯誤
       tag-download-docker-compose-yml: 下載 docker-compose.yml
   mac-address-lookup:
-    title: MAC 地址查詢
-    description: 透過 MAC 地址查詢裝置的廠商和製造商資訊。
+    title: MAC 位址查詢
+    description: 透過 MAC 位址查詢裝置的廠商和製造商資訊。
     texts:
       text-vendor-info-copied-to-the-clipboard: 廠商資訊已複製到剪貼簿
-      label-mac-address: MAC 地址：
-      placeholder-type-a-mac-address: 輸入 MAC 地址
+      label-mac-address: MAC 位址：
+      placeholder-type-a-mac-address: 輸入 MAC 位址
       tag-vendor-info: 廠商資訊：
-      tag-unknown-vendor-for-this-address: 此地址廠商未知
+      tag-unknown-vendor-for-this-address: 此位址廠商未知
       tag-copy-vendor-info: 複製廠商資訊
   mime-types:
     title: MIME 型別
@@ -827,27 +827,27 @@ tools:
     title: IPv4 子網計算器
     description: 解析 IPv4 CIDR 塊，獲取子網相關的所有資訊。
     texts:
-      message-we-cannot-parse-this-address-check-the-format: 無法解析此地址，請檢查格式
-      label-netmask: 子網掩碼
-      label-network-address: 網路地址
-      label-network-mask: 網路掩碼
-      label-network-mask-in-binary: 二進位制網路掩碼
+      message-we-cannot-parse-this-address-check-the-format: 無法解析此位址，請檢查格式
+      label-netmask: 子網遮罩
+      label-network-address: 網路位址
+      label-network-mask: 網路遮罩
+      label-network-mask-in-binary: 二進位制網路遮罩
       label-cidr-notation: CIDR 表示法
-      label-wildcard-mask: 萬用字元掩碼
+      label-wildcard-mask: 萬用字元遮罩
       label-network-size: 網路大小
       label-subnets-count: 子網數量
       label-subnets: 子網列表
-      label-first-address: 首地址
-      label-last-address: 末地址
-      label-broadcast-address: 廣播地址
+      label-first-address: 起始位址
+      label-last-address: 結束位址
+      label-broadcast-address: 廣播位址
       label-arpa: ARPA 記錄
-      label-ipv4-mapped-address: IPv4 對映地址
-      label-ipv4-mapped-address-decimal: IPv4 對映地址（十進位制）
+      label-ipv4-mapped-address: IPv4 對映位址
+      label-ipv4-mapped-address-decimal: IPv4 對映位址（十進位制）
       label-6to4-prefix: 6to4 字首
       label-ip-class: IP 類別
       label-type: 型別
-      label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask: IPv4 地址（帶或不帶掩碼，CIDR/IP 範圍/萬用字元 IP/IP 掩碼）
-      placeholder-the-ipv4-address: 輸入 IPv4 地址...
+      label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask: IPv4 位址（帶或不帶遮罩，CIDR/IP 範圍/萬用字元 IP/IP 遮罩）
+      placeholder-the-ipv4-address: 輸入 IPv4 位址...
       tag-previous-block: 上一個塊
       tag-next-block: 下一個塊
   og-meta-generator:
@@ -855,14 +855,14 @@ tools:
     description: 為您的網站生成 Open Graph 和社交媒體 HTML 元標籤。
   ipv6-ula-generator:
     title: IPv6 ULA 生成器
-    description: 根據 RFC4193 標準生成本地非路由的 IPv6 地址（ULA，Unique Local Address）。
+    description: 根據 RFC4193 標準生成本地非路由的 IPv6 位址（ULA，Unique Local Address）。
     texts:
       label-ipv6-ula: IPv6 ULA：
       label-first-routable-block: 第一個可路由塊：
       label-last-routable-block: 最後一個可路由塊：
       title-info: 資訊
-      placeholder-type-a-mac-address: 輸入 MAC 地址
-      label-mac-address: MAC 地址：
+      placeholder-type-a-mac-address: 輸入 MAC 位址
+      label-mac-address: MAC 位址：
   hash-text:
     title: 文字雜湊
     description: 使用所需演算法（MD5、SHA1、SHA256、SHA224、SHA512、SHA384、SHA3 或 RIPEMD160）對文字進行雜湊。
@@ -1023,8 +1023,8 @@ tools:
       placeholder-nanoids-quantity: NanoID 數量
       placeholder-your-uuids: 您的 NanoID
   ipv4-address-converter:
-    title: IPv4 地址轉換器
-    description: 將 IP 地址轉換為十進位制、二進位制、十六進位制，甚至 IPv6 表示形式。
+    title: IPv4 位址轉換器
+    description: 將 IP 位址轉換為十進位制、二進位制、十六進位制，甚至 IPv6 表示形式。
     texts:
       label-decimal: 十進位制：
       label-hexadecimal: 十六進位制：
@@ -1037,10 +1037,10 @@ tools:
       label-arpa: ARPA 記錄
       label-ip-class: IP 類別
       label-type: 型別
-      message-invalid-ipv4-address: 無效的 IPv4 地址
-      label-the-ipv4-address: IPv4 地址：
-      placeholder-the-ipv4-address: IPv4 地址...
-      placeholder-set-a-correct-ipv4-address: 設定正確的 IPv4 地址
+      message-invalid-ipv4-address: 無效的 IPv4 位址
+      label-the-ipv4-address: IPv4 位址：
+      placeholder-the-ipv4-address: IPv4 位址...
+      placeholder-set-a-correct-ipv4-address: 設定正確的 IPv4 位址
   text-statistics:
     title: 文字統計
     description: 獲取文字資訊，包括字元數、單詞數、位元組大小等。
@@ -1104,20 +1104,20 @@ tools:
       tag-copy-text-to-clipboard: 複製文字到剪貼簿
   ipv4-range-expander:
     title: IPv4 範圍擴充套件器
-    description: 給定起始和結束 IPv4 地址，此工具可計算有效的 IPv4 子網及其 CIDR 表示法。
+    description: 給定起始和結束 IPv4 位址，此工具可計算有效的 IPv4 子網及其 CIDR 表示法。
     texts:
-      label-start-address: 起始地址
-      label-end-address: 結束地址
-      label-addresses-in-range: 範圍內的地址
+      label-start-address: 起始位址
+      label-end-address: 結束位址
+      label-addresses-in-range: 範圍內的位址
       label-cidr: CIDR
-      message-invalid-ipv4-address: 無效的 IPv4 地址
-      placeholder-start-ipv4-address: 起始 IPv4 地址...
-      placeholder-end-ipv4-address: 結束 IPv4 地址...
-      title-invalid-combination-of-start-and-end-ipv4-address: 起始和結束 IPv4 地址組合無效
+      message-invalid-ipv4-address: 無效的 IPv4 位址
+      placeholder-start-ipv4-address: 起始 IPv4 位址...
+      placeholder-end-ipv4-address: 結束 IPv4 位址...
+      title-invalid-combination-of-start-and-end-ipv4-address: 起始和結束 IPv4 位址組合無效
       tag-nbsp: "&nbsp;"
       tag-old-value: 舊值
       tag-new-value: 新值
-      tag-switch-start-and-end-ipv4-address: 交換起始和結束 IPv4 地址
+      tag-switch-start-and-end-ipv4-address: 交換起始和結束 IPv4 位址
   text-diff:
     title: 文字差異對比
     description: 比較兩段文字並檢視它們之間的差異。
@@ -1435,15 +1435,15 @@ tools:
       tag-copy-deck: 複製牌組
       tag-refresh-deck: 重新整理牌組
   cidr-in-cidr:
-    title: IPv4/IPv6/IP 範圍/CIDR 是否在 IP 範圍/CIDR/IP 掩碼中
+    title: IPv4/IPv6/IP 範圍/CIDR 是否在 IP 範圍/CIDR/IP 遮罩中
     description: |
-      給定一個 CIDR/IP 範圍/萬用字元 IP/IP 掩碼，判斷指定的 IPv4/IPv6/範圍/CIDR/萬用字元 IP/IP 掩碼是否位於其子網範圍內。
+      給定一個 CIDR/IP 範圍/萬用字元 IP/IP 遮罩，判斷指定的 IPv4/IPv6/範圍/CIDR/萬用字元 IP/IP 遮罩是否位於其子網範圍內。
     texts:
-      message-we-cannot-parse-this-cidr-ip-range-mask-wildcard-check-the-format: 無法解析此 CIDR/IP 範圍/掩碼/萬用字元，請檢查格式。
-      label-an-ipv4-6-cidr-range-mask-wildcard-base-network: 一個 IPv4/IPv6 CIDR/範圍/掩碼/萬用字元（基礎網路）。
+      message-we-cannot-parse-this-cidr-ip-range-mask-wildcard-check-the-format: 無法解析此 CIDR/IP 範圍/遮罩/萬用字元，請檢查格式。
+      label-an-ipv4-6-cidr-range-mask-wildcard-base-network: 一個 IPv4/IPv6 CIDR/範圍/遮罩/萬用字元（基礎網路）。
       placeholder-the-ipv4-6-cidr: IPv4/IPv6 CIDR...
-      label-an-ipv4-6-cidr-range-mask-wildcard-to-test-for-inclusion: 一個用於測試包含關係的 IPv4/IPv6 CIDR/範圍/掩碼/萬用字元。
-      placeholder-the-an-ipv4-6-cidr-range-mask-wildcard: IPv4/IPv6 CIDR/範圍/掩碼/萬用字元...
+      label-an-ipv4-6-cidr-range-mask-wildcard-to-test-for-inclusion: 一個用於測試包含關係的 IPv4/IPv6 CIDR/範圍/遮罩/萬用字元。
+      placeholder-the-an-ipv4-6-cidr-range-mask-wildcard: IPv4/IPv6 CIDR/範圍/遮罩/萬用字元...
       title-subnets: 子網
       tag-included: 已包含
       tag-not-included: 未包含
@@ -1544,9 +1544,9 @@ tools:
     title: CSR 生成器
     description: 生成證書籤名請求（PEM 格式）。
     texts:
-      message-common-name-domain-name-must-not-be-empty: 通用名稱/域名不能為空
-      label-common-name-domain-name: 通用名稱/域名：
-      placeholder-common-domain-name: 通用名稱/域名
+      message-common-name-domain-name-must-not-be-empty: 通用名稱/網域不能為空
+      label-common-name-domain-name: 通用名稱/網域：
+      placeholder-common-domain-name: 通用名稱/網域
       label-organization-name: 組織名稱：
       placeholder-organization-name: 組織名稱
       label-organization-unit: 組織單位：
@@ -1815,7 +1815,7 @@ tools:
       label-reportid: reportId：
       label-date-begin: 開始日期：
       label-date-end: 結束日期：
-      label-domain: 域名：
+      label-domain: 網域：
       title-policy-published: 已釋出的策略：
       title-failures: 失敗
       tag-source-ip: 源 IP
@@ -2236,10 +2236,10 @@ tools:
       label-heading-style: 標題樣式：
       label-emphasis-style: 強調樣式：
       label-hash: 井號（#）
-      label-underline: 下劃線（=/-）
+      label-underline: 底線（=/-）
       label-surround-heading: 環繞（= 標題 =）
       label-asterisk: 星號（*）
-      label-underscore: 下劃線（_）
+      label-underscore: 底線（_）
       label-tilde: 波浪號（~）
   ical-parser:
     title: iCal 檔案解析器
@@ -2317,7 +2317,7 @@ tools:
       tag-css-code: CSS 程式碼
   integers-to-ip:
     title: 整數轉 IPv4/IPv6
-    description: 將整數轉換為 IP 地址
+    description: 將整數轉換為 IP 位址
     texts:
       label-binary: 二進位制
       label-octal: 八進位制
@@ -2343,14 +2343,14 @@ tools:
       title-resulting-cidr: 結果 CIDR
       label-cidr: CIDR
       title-ipv4-6-range: IPv4/6 範圍
-      label-start-ip-address: 起始 IP 地址
-      label-end-ip-address: 結束 IP 地址
+      label-start-ip-address: 起始 IP 位址
+      label-end-ip-address: 結束 IP 位址
       label-network-type: 網路型別
   ip-geo-location:
     title: IP 地理位置
-    description: 檢索 IPv4/6 地址或域名的位置資訊
+    description: 檢索 IPv4/6 位址或網域的位置資訊
     texts:
-      placeholder-enter-an-ipv4-6: 輸入 IPv4/6 地址
+      placeholder-enter-an-ipv4-6: 輸入 IPv4/6 位址
       placeholder-optional-ipinfo-io-token: 可選的 ipinfo.io 令牌
       title-errors-occured: 發生錯誤
       tag-get-geo-location-infos: 獲取地理位置資訊
@@ -2358,14 +2358,14 @@ tools:
       tag-signup-for-a-free-token: 註冊免費令牌
       tag-click-on-button-above-to-get-latest-infos: 點選上方按鈕獲取最新資訊
       tag-localize-on-open-street-map: 在 OpenStreetMap 上定位
-    externalAccess: 此工具會將提供的 IP 地址傳送到 https://ipinfo.io/ 以獲取 IP 地理位置資訊。
+    externalAccess: 此工具會將提供的 IP 位址傳送到 https://ipinfo.io/ 以獲取 IP 地理位置資訊。
   ip-include-exclude:
     title: IP 子網排除計算器
-    description: 從允許的 IP 範圍/掩碼/CIDR 列表中排除不允許的 IP 範圍/掩碼/CIDR 列表
+    description: 從允許的 IP 範圍/遮罩/CIDR 列表中排除不允許的 IP 範圍/遮罩/CIDR 列表
     texts:
-      label-allowedips-ipv4-6-cidr-range-mask-wildcard: 允許的 IP（IPv4/6 CIDR/範圍/掩碼/萬用字元）
-      placeholder-an-ipv4-6-cidr-range-mask-wildcard: IPv4/6 CIDR/範圍/掩碼/萬用字元...
-      label-disallowedips-ipv4-6-cidr-range-mask-wildcard: 不允許的 IP（IPv4/6 CIDR/範圍/掩碼/萬用字元）
+      label-allowedips-ipv4-6-cidr-range-mask-wildcard: 允許的 IP（IPv4/6 CIDR/範圍/遮罩/萬用字元）
+      placeholder-an-ipv4-6-cidr-range-mask-wildcard: IPv4/6 CIDR/範圍/遮罩/萬用字元...
+      label-disallowedips-ipv4-6-cidr-range-mask-wildcard: 不允許的 IP（IPv4/6 CIDR/範圍/遮罩/萬用字元）
       label-final-allowedips: 最終允許的 IP：
       title-allowed-subnets: 允許的子網
       title-disallowed-subnets: 不允許的子網
@@ -2373,19 +2373,19 @@ tools:
     title: IPv4/6 範圍轉 CIDR 計算器
     description: 根據 IP 範圍（IPv4/6）計算 CIDR
     texts:
-      message-invalid-ipv4-6-address: 無效的 IPv4/6 地址
-      label-start-address: 起始地址
-      placeholder-start-ipv4-6-address: 起始 IPv4/6 地址...
-      label-end-address: 結束地址
-      placeholder-end-ipv4-6-address: 結束 IPv4/6 地址...
+      message-invalid-ipv4-6-address: 無效的 IPv4/6 位址
+      label-start-address: 起始位址
+      placeholder-start-ipv4-6-address: 起始 IPv4/6 位址...
+      label-end-address: 結束位址
+      placeholder-end-ipv4-6-address: 結束 IPv4/6 位址...
       title-cidr: CIDR
-      title-invalid-combination-of-start-and-end-ipv4-6-address: 起始和結束 IPv4/6 地址組合無效
+      title-invalid-combination-of-start-and-end-ipv4-6-address: 起始和結束 IPv4/6 位址組合無效
       title-invalid-combination-of-ip-version-4-6: IPv4/6 版本組合無效
-      tag-switch-start-and-end-ipv4-6-address: 交換起始和結束 IPv4/6 地址
+      tag-switch-start-and-end-ipv4-6-address: 交換起始和結束 IPv4/6 位址
       tag-start-ip-and-end-ip-must-be-of-same-version-ipv4-or-ipv6: 起始 IP 和結束 IP 必須為同一版本：IPv4 或 IPv6
   ipv6-address-converter:
-    title: IPv6 地址轉換器
-    description: 將 IP 地址轉換為十進位制、二進位制、十六進位制並獲取相關資訊
+    title: IPv6 位址轉換器
+    description: 將 IP 位址轉換為十進位制、二進位制、十六進位制並獲取相關資訊
     texts:
       label-decimal: "十進位制： "
       label-hexadecimal: "十六進位制： "
@@ -2396,37 +2396,37 @@ tools:
       label-arpa: "ARPA： "
       label-microsoft-transcription: "Microsoft 轉寫格式： "
       label-type: "型別： "
-      message-invalid-ipv6-address: 無效的 IPv6 地址
-      label-the-ipv6-address: IPv6 地址：
-      placeholder-the-ipv6-address: IPv6 地址...
-      placeholder-set-a-correct-ipv6-address: 請輸入正確的 IPv6 地址
+      message-invalid-ipv6-address: 無效的 IPv6 位址
+      label-the-ipv6-address: IPv6 位址：
+      placeholder-the-ipv6-address: IPv6 位址...
+      placeholder-set-a-correct-ipv6-address: 請輸入正確的 IPv6 位址
   ipv6-subnet-calculator:
     title: IPv6 子網計算器
     description: 解析 IPv6 CIDR 塊，獲取子網的全部相關資訊
     texts:
-      message-we-cannot-parse-this-address-check-the-format: 無法解析此地址，請檢查格式
-      label-full-address: 完整地址
-      label-short-address: 短地址
-      label-address-as-binary: 地址（二進位制）
-      label-address-as-integer: 地址（整數）
-      label-address-as-decimal: 地址（十進位制）
-      label-address-as-hex: 地址（十六進位制）
-      label-network-mask-size: 網路掩碼大小
-      label-network-mask: 網路掩碼
-      label-network-mask-as-integer: 網路掩碼（整數）
-      label-network-mask-as-binary: 網路掩碼（二進位制）
-      label-total-ip-addresses: 總 IP 地址數
+      message-we-cannot-parse-this-address-check-the-format: 無法解析此位址，請檢查格式
+      label-full-address: 完整位址
+      label-short-address: 短位址
+      label-address-as-binary: 位址（二進位制）
+      label-address-as-integer: 位址（整數）
+      label-address-as-decimal: 位址（十進位制）
+      label-address-as-hex: 位址（十六進位制）
+      label-network-mask-size: 網路遮罩大小
+      label-network-mask: 網路遮罩
+      label-network-mask-as-integer: 網路遮罩（整數）
+      label-network-mask-as-binary: 網路遮罩（二進位制）
+      label-total-ip-addresses: 總 IP 位址數
       label-total-networks: 總網路數
-      label-first-address: 首地址
-      label-last-address: 末地址
+      label-first-address: 起始位址
+      label-last-address: 結束位址
       label-scope: 作用域
       label-6to4-properties: 6to4 屬性
       label-teredo-properties: Teredo 屬性
       label-arpa: ARPA
       label-microsoft-unc-transcription: Microsoft UNC 轉寫格式
       label-type: 型別
-      label-an-ipv6-address-with-or-without-mask: 帶或不帶掩碼的 IPv6 地址
-      placeholder-the-ipv6-address: IPv6 地址...
+      label-an-ipv6-address-with-or-without-mask: 帶或不帶遮罩的 IPv6 位址
+      placeholder-the-ipv6-address: IPv6 位址...
   isbn-validator-and-parser:
     title: ISBN 驗證器與解析器
     description: 解析、驗證、格式化 ISBN 並獲取資訊
@@ -2450,7 +2450,7 @@ tools:
       label-max-results: 最大結果數：
       label-name: 名稱
       label-official-name: 官方名稱
-      label-domain: 域名
+      label-domain: 網域
       label-emoji: 表情符號
       label-iso-num: ISO 編號
       label-continent: 大洲
@@ -2719,8 +2719,8 @@ tools:
       title-infos: 資訊
       tag-invalid-luhn-key: 無效的 Luhn 校驗位。
   mac-address-converter:
-    title: MAC 地址轉換器
-    description: 更改 MAC 地址的格式，可在多種格式（EUI-48、EUI-64、IPv6）之間選擇
+    title: MAC 位址轉換器
+    description: 更改 MAC 位址的格式，可在多種格式（EUI-48、EUI-64、IPv6）之間選擇
     texts:
       label-canonical-ietf-format: 規範 IETF 格式：
       label-canonical-format: 規範格式：
@@ -2735,8 +2735,8 @@ tools:
       label-eui-64-ipv6-canonical-ieee-format: EUI-64 IPv6 規範 IEEE 格式：
       label-eui-64-ipv6-cisco: EUI-64 IPv6 Cisco：
       label-link-local-ipv6: 鏈路本地 IPv6：
-      label-mac-address: MAC 地址：
-      placeholder-type-a-mac-address: 輸入 MAC 地址
+      label-mac-address: MAC 位址：
+      placeholder-type-a-mac-address: 輸入 MAC 位址
   many-units-converter:
     title: 多單位轉換器
     description: 轉換各種單位
@@ -2779,8 +2779,8 @@ tools:
       tag-you-can-paste-a-document-with-existing-toc-generated-by-this-tool-or-add-a: 您可以貼上已包含目錄（由本工具生成）的文件，或在文件中新增一個
       tag-marker-in-your-document-on-a-single-line: 標記（單獨佔一行）
   mass-converter:
-    title: 品質單位轉換器
-    description: 轉換品質單位的值
+    title: 質量單位轉換器
+    description: 轉換質量單位的值
     texts:
       label-gram: 克
       label-petagram: 拍克
@@ -2900,10 +2900,10 @@ tools:
       label-your-decoded-text: 解碼後的文字：
       placeholder-your-string-decoded: 解碼後的字串
   my-ip:
-    title: 我的 IP 地址
-    description: 使用 https://www.ipify.org/ 獲取您的客戶端 IP 地址（IPv4/6）
+    title: 我的 IP 位址
+    description: 使用 https://www.ipify.org/ 獲取您的客戶端 IP 位址（IPv4/6）
     texts:
-      title-your-ipv4-6-address-details: 您的 IPv4/6 地址詳情
+      title-your-ipv4-6-address-details: 您的 IPv4/6 位址詳情
       label-ipv4: IPv4：
       placeholder-your-ipv4: 您的 IPv4
       label-ipv6: IPv6：
@@ -2912,7 +2912,7 @@ tools:
       label-country-name: 國家名稱：
       label-continent-name: 大洲名稱：
       tag-refresh: 重新整理
-    externalAccess: 該工具使用 https://www.ipify.org/ 的 API 獲取 IPv4/6 地址，並從
+    externalAccess: 該工具使用 https://www.ipify.org/ 的 API 獲取 IPv4/6 位址，並從
       https://cdn.jsdelivr.net/npm/{'@'}iplookup/country-extra/ 下載 IP 資訊資料。
   nano-memo:
     title: Nano 速查表
@@ -2971,8 +2971,8 @@ tools:
       placeholder-select-a-wifi-vendor: 選擇 WiFi 供應商
       label-dhcp-vendor: DHCP 供應商：
       placeholder-select-a-dhcp-vendor: 選擇 DHCP 供應商
-      label-ip-address-es-one-per-line: IP 地址（每行一個）：
-      placeholder-enter-your-ip-addresses-one-per-line: 輸入 IP 地址（每行一個）
+      label-ip-address-es-one-per-line: IP 位址（每行一個）：
+      placeholder-enter-your-ip-addresses-one-per-line: 輸入 IP 位址（每行一個）
       title-option-43-result: Option 43 結果
   outlook-parser:
     title: Outlook MSG 解析器
@@ -2993,8 +2993,8 @@ tools:
       title-rtf-content: RTF 內容
       title-attachments: 附件
       label-message-id: 訊息 ID
-      label-sender-name: 發件人（名稱）
-      label-sender-email: 發件人（電子郵件）
+      label-sender-name: 寄件者（名稱）
+      label-sender-email: 寄件者（電子郵件）
       title-all-headers: 所有郵件頭
       title-all-rawprops: 所有原始屬性
       tag-see-content: 檢視內容
@@ -3542,7 +3542,7 @@ tools:
       tag-was-not-clean: 原連結含跟蹤引數
   url-fanger:
     title: URL 無害化/還原工具
-    description: 對 URL 或電子郵件地址進行無害化（Defang）或還原（Refang）
+    description: 對 URL 或電子郵件位址進行無害化（Defang）或還原（Refang）
     texts:
       title-refang-string: 還原字串
       placeholder-put-your-string-here: 在此輸入您的字串...
@@ -3716,9 +3716,9 @@ tools:
     title: X.509 證書生成器
     description: 生成自簽名 SSL/X.509 證書
     texts:
-      message-common-name-domain-name-must-not-be-empty: 通用名稱/域名不能為空
-      label-common-name-domain-name: 通用名稱/域名：
-      placeholder-common-domain-name: 通用/域名
+      message-common-name-domain-name-must-not-be-empty: 通用名稱/網域不能為空
+      label-common-name-domain-name: 通用名稱/網域：
+      placeholder-common-domain-name: 通用/網域
       label-duration-days: 有效期（天）：
       placeholder-duration-days: 有效期（天）
       label-organization-name: 組織名稱：
@@ -3798,17 +3798,17 @@ tools:
     output: 轉換後的 JSON
     error: 提供的 XML 無效。
   email-normalizer:
-    title: 電子郵件規範化工具
+    title: 電子郵件正規化工具
     description: |
-      將電子郵件地址規範化為標準格式，便於比較。適用於去重和資料清理。
-    input: 待規範化的原始電子郵件地址：
-    output: 規範化後的電子郵件地址：
-    input-placeholder: 在此輸入電子郵件地址（每行一個）...
-    output-placeholder: 規範化後的電子郵件地址將顯示在此處...
+      將電子郵件位址正規化為標準格式，便於比較。適用於去重和資料清理。
+    input: 待正規化的原始電子郵件位址：
+    output: 正規化後的電子郵件位址：
+    input-placeholder: 在此輸入電子郵件位址（每行一個）...
+    output-placeholder: 正規化後的電子郵件位址將顯示在此處...
     button:
-      clear: 清空電子郵件地址
-      copy: 複製規範化後的電子郵件地址
-    copied: 規範化後的電子郵件地址已複製到剪貼簿
+      clear: 清空電子郵件位址
+      copy: 複製正規化後的電子郵件位址
+    copied: 正規化後的電子郵件位址已複製到剪貼簿
   markdown-to-html:
     title: Markdown 轉 HTML
     description: 將 Markdown 轉換為 HTML，並支援列印（如列印為 PDF）
@@ -3882,7 +3882,7 @@ tools:
       tag-truecolor: 真彩色
       tag-bold: 粗體
       tag-italic: 斜體
-      tag-underline: 下劃線
+      tag-underline: 底線
       tag-overline: 上劃線
       tag-inverse: 反色
       tag-dim: 暗淡
@@ -3897,7 +3897,7 @@ tools:
     description: 生成 BIMI DNS TXT 記錄
     texts:
       title-bimi-dns-record-generator: BIMI DNS 記錄生成器
-      label-domain: 域名：
+      label-domain: 網域：
       placeholder-example-com: example.com
       label-logo-url: Logo URL：
       placeholder-https-example-com-logo-svg: https://example.com/logo.svg
@@ -4059,9 +4059,9 @@ tools:
       label-1024-bit-less-secure-but-faster: 1024 位（安全性較低但更快）
       label-2048-bit-recommended-for-security: 2048 位（出於安全考慮推薦）
       label-4096-bit-stronger-security-but-slower: 4096 位（安全性更高但更慢）
-      label-domain-name: 域名：
-      placeholder-enter-domain-e-g-example-com: 輸入域名（例如 example.com）
-      label-selector-unique-name-used-to-distinguish-dkim-records-for-the-same-domain: 選擇器（用於區分同一域名下 DKIM 記錄的唯一名稱）：
+      label-domain-name: 網域：
+      placeholder-enter-domain-e-g-example-com: 輸入網域（例如 example.com）
+      label-selector-unique-name-used-to-distinguish-dkim-records-for-the-same-domain: 選擇器（用於區分同一網域下 DKIM 記錄的唯一名稱）：
       placeholder-enter-selector-e-g-default: 輸入選擇器（例如 default）
       label-key-size-of-the-rsa-key-used-for-signing-emails: RSA 金鑰長度（用於簽名郵件的 RSA 金鑰）：
       placeholder-select-key-size: 選擇金鑰長度
@@ -4081,16 +4081,16 @@ tools:
       label-relaxed-r: 寬鬆（r）
       label-strict-s: 嚴格（s）
       title-dmarc-record-generator: DMARC 記錄生成器
-      label-domain: 域名：
+      label-domain: 網域：
       placeholder-example-com: example.com
       label-policy: 策略：
       placeholder-select-policy: 選擇策略
-      label-subdomain-policy: 子域名策略：
+      label-subdomain-policy: 子網域策略：
       label-percentage-of-emails-subject-to-dmarc-policy-enforcement-0-100: 受 DMARC 策略約束的郵件比例（0-100%）：
       placeholder-enter-percentage: 輸入比例
-      label-aggregate-email-where-aggregate-dmarc-reports-should-be-sent: 聚合報告電子郵件（DMARC 聚合報告的接收地址）：
+      label-aggregate-email-where-aggregate-dmarc-reports-should-be-sent: 聚合報告電子郵件（DMARC 聚合報告的接收位址）：
       placeholder-admin-example-com: admin{'@'}example.com
-      label-forensic-email-where-forensic-dmarc-failure-reports-should-be-sent: 取證報告電子郵件（DMARC 失敗取證報告的接收地址）：
+      label-forensic-email-where-forensic-dmarc-failure-reports-should-be-sent: 取證報告電子郵件（DMARC 失敗取證報告的接收位址）：
       label-alignment-spf: 對齊（SPF）：
       placeholder-select-alignment: 選擇對齊方式
       label-alignment-dkim: 對齊（DKIM）：
@@ -4200,7 +4200,7 @@ tools:
       label-block: 阻止
       title-htaccess-generator: .htaccess 生成器
       title-rewrite-to-www: 重寫到 www
-      label-domain-name: 域名
+      label-domain-name: 網域
       placeholder-example-com: example.com
       title-301-redirect-file-or-directory: 301 重定向檔案或目錄
       placeholder-old-path: 原路徑
@@ -4218,7 +4218,7 @@ tools:
       placeholder-htpasswd-file-path: .htpasswd 檔案路徑
       title-prevent-hotlinking: 防止盜鏈
       label-referring-url: 來源 URL：
-      placeholder-the-domain-that-is-hotlinking-to-you: 盜鏈您資源的域名。
+      placeholder-the-domain-that-is-hotlinking-to-you: 盜鏈您資源的網域。
       label-file-extension: 副檔名：
       placeholder-extensions: 副檔名
       label-no-hotlinking-image: 盜鏈替換圖片：
@@ -4226,9 +4226,9 @@ tools:
       title-custom-error-pages: 自定義錯誤頁面
       placeholder-error-code: 錯誤程式碼
       placeholder-file-path: 檔案路徑
-      title-block-or-allow-ip-addresses: 阻止或允許 IP 地址
+      title-block-or-allow-ip-addresses: 阻止或允許 IP 位址
       placeholder-select-authorization: 選擇授權方式
-      placeholder-ip-address: IP 地址
+      placeholder-ip-address: IP 位址
       title-directory-settings: 目錄設定
       label-default-directory-page: 預設目錄頁：
       placeholder-default-directory-page: 預設目錄頁
@@ -4282,8 +4282,8 @@ tools:
       tag-delete-the-second-rule-in-the-input-chain: 刪除 INPUT 鏈中的第二條規則
       tag-iptables-t-nat-d-prerouting-2: iptables -t nat -D PREROUTING 2
       tag-delete-the-second-rule-in-the-nat-table: 刪除 nat 表 PREROUTING 鏈中的第二條規則
-      tag-iptables-a-input-s-lt-ip-address-gt-j-drop: iptables -A INPUT -s "&lt;IP 地址&gt;" -j DROP
-      tag-block-a-specific-ip-address: 遮蔽指定 IP 地址
+      tag-iptables-a-input-s-lt-ip-address-gt-j-drop: iptables -A INPUT -s "&lt;IP 位址&gt;" -j DROP
+      tag-block-a-specific-ip-address: 遮蔽指定 IP 位址
       tag-iptables-a-input-p-tcp-dport-80-m-limit-limit-25-minute-limit-burst-100-j-accept:
         iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT
       tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached:
@@ -4508,15 +4508,15 @@ tools:
       output-label-properties-version: .properties 版本：
   punycode-converter:
     title: Punycode 轉換器
-    description: 在國際化 Unicode 域名/電子郵件地址與 ASCII Punycode 版本之間轉換
+    description: 在國際化 Unicode 網域/電子郵件位址與 ASCII Punycode 版本之間轉換
     texts:
       title-punycode-to-international: Punycode 轉國際化格式
-      placeholder-put-your-punycode-domain-name-or-email-to-decode: 在此輸入要解碼的 Punycode 域名或電子郵件地址...
-      label-punycode-domain-name-email: Punycode 域名/電子郵件地址
-      label-decoded-domain-name-email: 解碼後的域名/電子郵件地址
+      placeholder-put-your-punycode-domain-name-or-email-to-decode: 在此輸入要解碼的 Punycode 網域或電子郵件位址...
+      label-punycode-domain-name-email: Punycode 網域/電子郵件位址
+      label-decoded-domain-name-email: 解碼後的網域/電子郵件位址
       title-international-to-punycode: 國際化格式轉 Punycode
-      placeholder-put-your-international-domain-or-email-name-here: 在此輸入國際化域名或電子郵件地址...
-      label-domain-name-or-email-to-encode: 要編碼的域名或電子郵件地址
+      placeholder-put-your-international-domain-or-email-name-here: 在此輸入國際化網域或電子郵件位址...
+      label-domain-name-or-email-to-encode: 要編碼的網域或電子郵件位址
   quote-converter:
     title: 引號轉換器
     description: 將帶引號的字串在單引號和雙引號之間轉換
@@ -4571,14 +4571,14 @@ tools:
       placeholder-enter-sql-query: 輸入 SQL 查詢...
       title-minified-sql-query: 壓縮後的 SQL 查詢
   string-escaper:
-    title: 字串跳脫工具
-    description: 按目標程式語言跳脫字串
+    title: 字串轉義工具
+    description: 按目標程式語言轉義字串
     texts:
-      title-string-escaper: 字串跳脫工具
+      title-string-escaper: 字串轉義工具
       label-your-text: 您的文字：
-      placeholder-your-raw-text-to-escape: 要跳脫的原始文字
+      placeholder-your-raw-text-to-escape: 要轉義的原始文字
       label-target-language: 目標語言：
-      title-your-escaped-string-in-target-language: 目標語言中的跳脫字串
+      title-your-escaped-string-in-target-language: 目標語言中的轉義字串
       tag-single-linize: 單行化
   tcpdump-generator:
     title: tcpdump 命令生成器
@@ -4625,7 +4625,7 @@ tools:
       tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon: "&nbsp;主機、源主機和目標主機可接受多個條目，用逗號、空格或分號分隔。"
       tag-note-2: 注意 2：
       tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
-        '&nbsp;指定源（src）或目標（dst）標誌時，tcpdump 僅會按該方向過濾。若要捕獲完整的 TCP 握手過程，請使用“host”而非“src host”或“dst host”，以同時檢視請求和響應流量。'
+        '&nbsp;指定源（src）或目標（dst）標誌時，tcpdump 僅會按該方向過濾。若要捕獲完整的 TCP 握手過程，請使用“host”而非“src host”或“dst host”，以同時檢視請求和回應流量。'
       tag-the-network-interface-to-capture-packets-from: 要捕獲資料包的網路介面
       tag-capture-packets-originating-from-this-host: 捕獲源自此主機的資料包
       tag-capture-packets-destined-for-this-host: 捕獲發往此主機的資料包
@@ -4633,7 +4633,7 @@ tools:
       tag-filter-packets-going-to-this-destination-port: 按此目標埠過濾資料包
       tag-stop-capturing-after-this-number-of-packets: 捕獲指定數量的資料包後停止
       tag-n: -n
-      tag-prevent-resolving-ips-to-hostnames: 不將 IP 解析為主機名
+      tag-prevent-resolving-ips-to-hostnames: 不將 IP 解析為主機名稱
       tag-e: -e
       tag-display-link-layer-headers-in-output: 在輸出中顯示鏈路層頭部
       tag-q: -q
@@ -4671,8 +4671,8 @@ tools:
       placeholder-enter-service-name: 輸入服務名稱
       label-proxied-service-image: 被代理服務映象：
       placeholder-enter-image-name: 輸入映象名稱
-      label-proxied-service-host-name: 被代理服務主機名：
-      placeholder-enter-service-hostname: 輸入服務主機名
+      label-proxied-service-host-name: 被代理服務主機名稱：
+      placeholder-enter-service-hostname: 輸入服務主機名稱
       label-proxied-service-load-balancer-port: 被代理服務負載均衡埠：
       placeholder-enter-port: 輸入埠
       label-enable-load-balancer: 啟用負載均衡
@@ -4683,8 +4683,8 @@ tools:
       label-let-s-encrypt-test-mode: Let's Encrypt 測試模式
       label-enable-dashboard: 啟用儀表盤
       label-log-level-debug: 日誌級別（DEBUG）
-      label-traefik-dashboard-host-name: Traefik 儀表盤主機名：
-      placeholder-enter-dashboard-host-name: 輸入儀表盤主機名
+      label-traefik-dashboard-host-name: Traefik 儀表盤主機名稱：
+      placeholder-enter-dashboard-host-name: 輸入儀表盤主機名稱
       label-dashboard-user-and-password: 儀表盤使用者名稱和密碼：
       placeholder-user-password: 使用者名稱:密碼
       title-generated-compose-entry: 生成的 Compose 條目
@@ -4844,14 +4844,14 @@ tools:
     text:
       invalid-safelinks-url-provided: 提供的 SafeLinks URL 無效
   mac-address-generator:
-    title: MAC 地址生成器
-    description: 輸入數量和字首，生成指定大小寫（大寫或小寫）的 MAC 地址
+    title: MAC 位址生成器
+    description: 輸入數量和字首，生成指定大小寫（大寫或小寫）的 MAC 位址
     texts:
       label-uppercase: 大寫
       label-lowercase: 小寫
       label-: 。
-      text-mac-addresses-copied-to-the-clipboard: MAC 地址已複製到剪貼簿
-      label-mac-address-prefix: MAC 地址字首：
+      text-mac-addresses-copied-to-the-clipboard: MAC 位址已複製到剪貼簿
+      label-mac-address-prefix: MAC 位址字首：
       placeholder-set-a-prefix-e-g-64-16-7f: 設定字首，例如 64:16:7F
       label-case: 大小寫：
       label-separator: 分隔符號：
@@ -5187,7 +5187,7 @@ tools:
       placeholder-software-engineer: 軟體工程師
       label-phone-number: 電話號碼
       placeholder-1-234-567-8901: +1 234 567 8901
-      label-email-address: 電子郵件地址
+      label-email-address: 電子郵件位址
       placeholder-john-doe-example-com: john.doe{'@'}example.com
       placeholder-https-acme-com: https://acme.com
       label-company-address: 公司地址
@@ -5442,17 +5442,17 @@ tools:
         song-details: 歌曲詳情
     twitter:
       text:
-        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 創作者的 Twitter 賬號名稱（例如：{'@'}sharevb）...
-        creator-acc: 創作者賬號
-        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 網站的 Twitter 賬號名稱（例如：{'@'}ittoolsdottech）...
-        site-account: 網站賬號
+        the-name-of-the-twitter-account-of-the-creator-ex-sharevb: 創作者的 Twitter 帳號名稱（例如：{'@'}sharevb）...
+        creator-acc: 創作者帳號
+        the-name-of-the-twitter-account-of-the-site-ex-ittoolsdottech: 網站的 Twitter 帳號名稱（例如：{'@'}ittoolsdottech）...
+        site-account: 網站帳號
         the-twitter-card-type: Twitter 卡片型別...
         card-type: 卡片型別
         player: 播放器
         summary-with-large-image: 帶大圖的摘要
         summary: 摘要
         twitter: Twitter
-        the-name-of-the-twitter-account-of-the-creator-ex-cthmsst: 創作者的 Twitter 賬號名稱（例如：{'@'}cthmsst）……
+        the-name-of-the-twitter-account-of-the-creator-ex-cthmsst: 創作者的 Twitter 帳號名稱（例如：{'@'}cthmsst）……
     videoEpisode:
       text:
         which-series-this-episode-belongs-to: 此集屬於哪個系列...
@@ -5569,8 +5569,8 @@ tools:
       title-output: 輸出
       label-file-name: 檔名
       label-date: 日期
-      label-from-name: 發件人（姓名）
-      label-from-address: 發件人（地址）
+      label-from-name: 寄件者（姓名）
+      label-from-address: 寄件者（位址）
       label-to: 收件人
       label-cc: 抄送
       label-bcc: 密送
@@ -5584,7 +5584,7 @@ tools:
       label-delivered-to: 已送達至
       label-return-path: 返回路徑
       label-sender-name: 傳送者（姓名）
-      label-sender-address: 傳送者（地址）
+      label-sender-address: 傳送者（位址）
       title-all-headers: 所有郵件頭
       tag-see-content: 檢視內容
       tag-attachment: 附件
@@ -5622,7 +5622,7 @@ tools:
       key-or-secret-or-verification-error-e-tostring: 金鑰、共享金鑰或驗證錯誤：{0}
     constants:
       text:
-        token-introspection-response: 令牌自省響應
+        token-introspection-response: 令牌自省回應
         entitlements: 權限
         roles: 角色
         expires-in: 有效時長
@@ -5671,8 +5671,8 @@ tools:
         locale: 區域設定
         time-zone: 時區
         birthday: 生日
-        true-if-the-e-mail-address-has-been-verified-otherwise-false: 若電子郵件地址已驗證則為 true，否則為 false
-        preferred-e-mail-address: 首選電子郵件地址
+        true-if-the-e-mail-address-has-been-verified-otherwise-false: 若電子郵件位址已驗證則為 true，否則為 false
+        preferred-e-mail-address: 首選電子郵件位址
         web-page-or-blog-url: 網頁或部落格 URL
         profile-picture-url: 個人資料圖片 URL
         profile-page-url: 個人資料頁面 URL
@@ -5739,14 +5739,14 @@ tools:
       title-valid-iban-examples: 有效 IBAN 示例
       placeholder-enter-ibans-to-check-for-validity: 每行輸入一個 IBAN 來檢查有效性
       bank-name: 銀行名稱
-      account-number: 賬號
+      account-number: 帳號
       branch-identifier: 分行識別符號
       bank-identifier: 銀行識別符號
       bic: BIC
     service:
       text:
         qr-iban-not-allowed: 不允許 QR-IBAN
-        wrong-account-bank-branch-checksum: 賬戶/銀行/分行校驗和錯誤
+        wrong-account-bank-branch-checksum: 帳戶/銀行/分行校驗和錯誤
         wrong-iban-checksum: IBAN 校驗和錯誤
         checksum-is-not-a-number: 校驗和不是數字
         wrong-bban-format: BBAN 格式錯誤
@@ -5854,7 +5854,7 @@ tools:
       title-serif-bold: 襯線粗體
       title-serif-italic: 襯線斜體
       title-serif-bold-italic: 襯線粗斜體
-      title-double-underline: 雙下劃線
+      title-double-underline: 雙底線
       title-short-strikethrough: 短刪除線
       title-math-double-struck: 數學雙線
       title-fullwidth: 全形
@@ -6194,13 +6194,13 @@ tools:
           伺服器不支援請求中使用的 HTTP 協議版本
         http-version-not-supported: 不支援的 HTTP 版本
         the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server: |
-          伺服器作為閘道器或代理，但未及時收到上游伺服器的響應
+          伺服器作為閘道器或代理，但未及時收到上游伺服器的回應
         gateway-timeout: 閘道器逾時
         the-server-is-currently-unavailable-because-it-is-overloaded-or-down-for-maintenance: |
           伺服器當前不可用（因過載或維護中）
         service-unavailable: 服務不可用
         the-server-was-acting-as-a-gateway-or-proxy-and-received-an-invalid-response-from-the-upstream-server: |
-          伺服器作為閘道器或代理，但收到上游伺服器的無效響應
+          伺服器作為閘道器或代理，但收到上游伺服器的無效回應
         bad-gateway: 閘道器錯誤
         the-server-either-does-not-recognize-the-request-method-or-it-lacks-the-ability-to-fulfill-the-request: |
           伺服器不識別請求方法或缺乏完成請求的能力
@@ -6232,7 +6232,7 @@ tools:
           請求格式正確，但因語義錯誤無法處理
         unprocessable-entity: 無法處理的實體
         the-request-was-directed-at-a-server-that-is-not-able-to-produce-a-response: |
-          請求傳送到無法生成響應的伺服器
+          請求傳送到無法生成回應的伺服器
         misdirected-request: 請求定向錯誤
         the-server-refuses-the-attempt-to-brew-coffee-with-a-teapot: 伺服器拒絕用茶壺煮咖啡的嘗試
         i-m-a-teapot: 我是茶壺
@@ -6295,13 +6295,13 @@ tools:
           不再使用（原意是後續請求應使用指定的代理）
         switch-proxy: 切換代理
         the-requested-resource-is-available-only-through-a-proxy-the-address-for-which-is-provided-in-the-response: |
-          請求的資源僅透過代理可用（地址在響應中提供）
+          請求的資源僅透過代理可用（位址在回應中提供）
         use-proxy: 使用代理
         indicates-that-the-resource-has-not-been-modified-since-the-version-specified-by-the-request-headers: |
           表示資源自請求頭指定的版本以來未被修改
         not-modified: 未修改
         the-response-to-the-request-can-be-found-under-another-uri-using-a-get-method: |
-          請求的響應可透過 GET 方法在其他 URI 下獲取
+          請求的回應可透過 GET 方法在其他 URI 下獲取
         see-other: 參見其他
         redirect-to-another-url-this-is-an-example-of-industry-practice-contradicting-the-standard: |
           重定向到其他 URL（這是行業實踐與標準相矛盾的一個示例）
@@ -6314,13 +6314,13 @@ tools:
         multiple-choices: 多個選擇
         3xx-redirection: 3xx 重定向
         the-server-has-fulfilled-a-request-for-the-resource-and-the-response-is-a-representation-of-the-result: |
-          伺服器已滿足資源請求，響應是結果的表示
+          伺服器已滿足資源請求，回應是結果的表示
         im-used: IM Used
         the-members-of-a-dav-binding-have-already-been-enumerated-in-a-preceding-part-of-the-multistatus-response: |
-          DAV 繫結的成員已在（多狀態）響應的前面部分中列出
+          DAV 繫結的成員已在（多狀態）回應的前面部分中列出
         already-reported: 已報告
         the-message-body-that-follows-is-an-xml-message-and-can-contain-a-number-of-separate-response-codes: |
-          後續訊息體是 XML 訊息，可包含多個獨立的響應程式碼
+          後續訊息體是 XML 訊息，可包含多個獨立的回應程式碼
         the-server-is-delivering-only-part-of-the-resource-due-to-a-range-header-sent-by-the-client: |
           伺服器僅交付資源的一部分（因客戶端傳送了 Range 請求頭）
         partial-content: 部分內容
@@ -6339,19 +6339,19 @@ tools:
         the-request-has-been-fulfilled-resulting-in-the-creation-of-a-new-resource: |
           請求已滿足，建立了新資源
         created: 已建立
-        standard-response-for-successful-http-requests: 成功的 HTTP 請求的標準響應
+        standard-response-for-successful-http-requests: 成功的 HTTP 請求的標準回應
         2xx-success: 2xx 成功
         the-server-returns-some-response-headers-before-final-http-message: |
-          伺服器在最終 HTTP 訊息之前返回一些響應頭
+          伺服器在最終 HTTP 訊息之前返回一些回應頭
         early-hints: 早期提示
         the-server-is-processing-the-request-but-no-response-is-available-yet: |
-          伺服器正在處理請求，但尚無響應
+          伺服器正在處理請求，但尚無回應
         processing: 處理中
         the-server-has-agreed-to-change-protocol: 伺服器已同意更改協議
         switching-protocols: 切換協議
         waiting-for-the-client-to-emit-the-body-of-the-request: 等待客戶端傳送請求體
         continue: 繼續
-        1xx-informational-response: 1xx 資訊響應
+        1xx-informational-response: 1xx 資訊回應
   docker-compose-to-quadlets:
     title: Docker Compose 轉 Quadlets
     description: 將 Docker Compose 檔案內容轉換為 Podman Quadlets
@@ -6502,14 +6502,14 @@ tools:
     description: 檢查給定的 IP 是否在任何已知的 DNS 黑名單伺服器中（垃圾郵件攔截）
     texts:
       title-dnsbl-multi-checker: DNSBL 多重檢查器
-      placeholder-enter-ip-or-domain: 輸入 IP 或域名
+      placeholder-enter-ip-or-domain: 輸入 IP 或網域
       label-show-listed-only: 僅顯示已列入黑名單的
       label-resolved-ip: 解析出的 IP：
       tag-check-all: 全部檢查
       tag-want-to-understand-why-an-ip-might-be-blacklisted-check-out: 想了解 IP 為何會被列入黑名單？檢視
       tag-this-dnsbl-explanation-and-removal-guide: 這份 DNSBL 說明及移除指南
       tag-: 。
-    externalAccess: 此工具會檢查提供的 IP 地址，並透過 https://cloudflare-dns.com/dns-query 將 IP 地址傳送給 DNSBL。
+    externalAccess: 此工具會檢查提供的 IP 位址，並透過 https://cloudflare-dns.com/dns-query 將 IP 位址傳送給 DNSBL。
   docker-compose-memo:
     title: Docker Compose 速查表
     description: Docker Compose 格式速查表
@@ -6753,7 +6753,7 @@ tools:
       compressOptions: 傳遞給壓縮命令的選項。
       uncompressCmd: 用於解壓縮檔案的命令。
       oldDir: 將舊日誌檔案移動到的目錄。
-      mail: 傳送輪換日誌的電子郵件地址。
+      mail: 傳送輪換日誌的電子郵件位址。
       mailFirst: 透過郵件傳送第一個輪換檔案。
       mailLast: 透過郵件傳送最後一個輪換檔案。
       shred: 輪換後安全地粉碎日誌檔案。
@@ -7338,12 +7338,12 @@ tools:
       tag-gtin-is-valid: GTIN 有效
   iana-whois-checker:
     title: Whois 檢查器
-    description: 使用 IANA 網站查詢域名的 Whois 資訊
+    description: 使用 IANA 網站查詢網域的 Whois 資訊
     texts:
-      label-domain-to-check: 要檢查的域名：
-      placeholder-enter-a-domain-e-g-example-com: 輸入域名（例如 example.com）
+      label-domain-to-check: 要檢查的網域：
+      placeholder-enter-a-domain-e-g-example-com: 輸入網域（例如 example.com）
       tag-lookup-whois: 查詢 WHOIS
-    externalAccess: 此工具會在新標籤頁中開啟 https://www.iana.org/whois 查詢該域名
+    externalAccess: 此工具會在新標籤頁中開啟 https://www.iana.org/whois 查詢該網域
   keyboard-layout-converter:
     title: 鍵盤佈局轉換器
     description: 將按鍵序列從一種鍵盤佈局轉換為另一種鍵盤佈局
@@ -7454,7 +7454,7 @@ tools:
       title-result: 結果
       label-decimal-signed: 十進位制（有符號）：
       label-decimal-unigned: 十進位制（無符號）：
-      title-bitmask: 位掩碼
+      title-bitmask: 位遮罩
   chmod-memo:
     title: chmod 命令速查表
     description: Linux 權限變更速查表
@@ -7582,8 +7582,8 @@ tools:
     title: IPv4 子網列表
     description: 列出給定 CIDR 的所有可能子網
     texts:
-      message-we-cannot-parse-this-address-check-the-format: 我們無法解析此地址，請檢查格式
-      label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask: 帶或不帶掩碼的 IPv4 地址（CIDR/IP 地址範圍/萬用字元 IP 地址/IP 掩碼）
+      message-we-cannot-parse-this-address-check-the-format: 我們無法解析此位址，請檢查格式
+      label-an-ipv4-address-with-or-without-mask-cidr-ip-range-wildcard-ip-ip-mask: 帶或不帶遮罩的 IPv4 位址（CIDR/IP 位址範圍/萬用字元 IP 位址/IP 遮罩）
       placeholder-ipv4-or-cidr: IPv4 或 CIDR...
       tag-network: 網路
       tag-first-ip: 首個 IP
@@ -7734,9 +7734,9 @@ tools:
       copied-to-the-clipboard: 已複製到剪貼簿
   arpa-decoder:
     title: ARPA 解碼器
-    description: 解碼 IPv4/6 ARPA 地址或 PTR 記錄
+    description: 解碼 IPv4/6 ARPA 位址或 PTR 記錄
     texts:
-      label-arpa-address: ARPA 地址：
+      label-arpa-address: ARPA 位址：
       placeholder-e-g-10-1-168-192-in-addr-arpa-or-xxxx-ip6-arpa: 例如 10.1.168.192.in-addr.arpa 或 xxxx.ip6.arpa。
   database-builder:
     title: 資料庫建立語句生成器
@@ -7750,9 +7750,9 @@ tools:
       label-database-type: 資料庫型別：
       label-database-name: 資料庫名稱：
       placeholder-test: test
-      label-server-address: 伺服器地址：
+      label-server-address: 伺服器位址：
       placeholder-127-0-0-1: 127.0.0.1
-      label-account: 賬戶：
+      label-account: 帳戶：
       label-password-leave-empty-to-generate: 密碼（留空則自動生成）：
       placeholder-leave-empty-for-random: 留空則隨機生成
       label-permissions-all-privileges-if-none-selected: 權限（如果未選擇任何權限，則為所有權限）：
@@ -7773,7 +7773,7 @@ tools:
       tag-replication-slave: REPLICATION SLAVE
       tag-generate-sql-instructions: 生成 SQL 指令
       error-oracle-password-double-quote: Oracle 密碼不能包含雙引號（"）
-      error-oracle-account-double-quote: Oracle 賬戶名不能包含雙引號（"）
+      error-oracle-account-double-quote: Oracle 帳戶名不能包含雙引號（"）
   database-table-generator:
     title: 資料庫表生成器
     description: 為常用資料庫生成 SQL CREATE TABLE 語句
@@ -7849,7 +7849,7 @@ tools:
     title: PTR DNS 生成器
     description: 生成 DNS PTR 記錄
     texts:
-      label-ip-address-ipv4-or-ipv6: IP 地址（IPv4 或 IPv6）：
+      label-ip-address-ipv4-or-ipv6: IP 位址（IPv4 或 IPv6）：
       placeholder-e-g-192-168-1-10-or-2001-db8-1: 例如：192.168.1.10 或 2001:db8::1
   screen-memo:
     title: Screen 命令速查表
@@ -8152,7 +8152,7 @@ tools:
     texts:
       label-spaces-per-tab: 每個製表符的空格數
       label-convert-only-leading-tabs: 僅轉換前導製表符
-      label-normalize-inner-spacing: 規範化內部空白
+      label-normalize-inner-spacing: 正規化內部空白
       title-input-with-tabs: 輸入（使用製表符）
       placeholder-paste-text-with-tabs-here: 請在此處貼上帶製表符的文字……
       title-output-with-spaces: 輸出（使用空格）
@@ -8246,18 +8246,18 @@ tools:
       label-cubic-yards-per-hour: 立方碼/小時
   tip-calculator:
     title: 小費計算器
-    description: 計算賬單上的小費金額，並將其分攤給多人。
+    description: 計算帳單上的小費金額，並將其分攤給多人。
     texts:
-      title-bill-details: 賬單詳情
-      label-bill-amount: 賬單金額：
-      placeholder-total-bill: 總賬單
+      title-bill-details: 帳單詳情
+      label-bill-amount: 帳單金額：
+      placeholder-total-bill: 總帳單
       label-tip-percentage: 小費比例：
       placeholder-tip: 小費 %
       label-number-of-person: 人數：
       placeholder-people: 人數
       title-results: 結果
       label-tip-amount: 小費金額：
-      label-total-bill: 總賬單：
+      label-total-bill: 總帳單：
       label-amount-per-person: 每人金額：
       title-quick-tip: 快速小費 %
       tag-const-billamount-ref: const billAmount = ref
@@ -8488,7 +8488,7 @@ tools:
       invalid-blueprint-yaml: 無效的藍圖 YAML
   fitness-computer:
     title: 健身計算器
-    description: 計算基礎代謝率（BMR）、每日總能量消耗（TDEE/卡路里）、身體品質指數（BMI）、理想體重、體脂率、最大心率（Max HR）：這些是評估整體健康水平和生理健康的關鍵指標。
+    description: 計算基礎代謝率（BMR）、每日總能量消耗（TDEE/卡路里）、身體質量指數（BMI）、理想體重、體脂率、最大心率（Max HR）：這些是評估整體健康水平和生理健康的關鍵指標。
     externalAccess: "null"
     texts:
       label-bmr: BMR
@@ -8949,7 +8949,7 @@ tools:
       label-basic-authentication: 基本身份驗證：
       placeholder-username-password: 使用者名稱:密碼
       tab-dns-propagation: DNS 傳播
-      label-domain: 域名：
+      label-domain: 網域：
       placeholder-example-com: example.com
       label-record-type: 記錄型別：
       title-resolvers-to-check: 要檢查的解析器
@@ -8959,7 +8959,7 @@ tools:
       label-resolver-name: 解析器名稱：
       placeholder-resolver-name-e-g-my-dns: 解析器名稱（例如：我的 DNS）
       label-resolver-ip: 解析器 IP：
-      placeholder-resolver-ip-e-g-10-0-0-1: 解析器 IP 地址（例如 10.0.0.1）
+      placeholder-resolver-ip-e-g-10-0-0-1: 解析器 IP 位址（例如 10.0.0.1）
       title-your-custom-resolvers: 您的自定義解析器
       tag-network-utilities-service-configuration-self-hosted: 網路實用工具服務設定（自託管）
       tag-you-must-self-host-network-utilities-service-see: 您必須自行託管網路實用工具服務。請參閱：
@@ -8978,38 +8978,38 @@ tools:
       tag-no-custom-resolvers-added-yet: 尚未新增自定義解析器。
   dns-query:
     title: Cloudflare DNS/RDAP 查詢
-    description: 使用 Cloudflare DNS/RDAP.org 線上查詢任何域名的 DNS 記錄和 RDAP。
+    description: 使用 Cloudflare DNS/RDAP.org 線上查詢任何網域的 DNS 記錄和 RDAP。
     externalAccess: "null"
     texts:
-      message-please-enter-a-valid-domain-name: 請輸入有效的域名
+      message-please-enter-a-valid-domain-name: 請輸入有效的網域
       text-dns-records-copied-to-the-clipboard: DNS 記錄已複製到剪貼簿
-      label-domain-name: 域名
+      label-domain-name: 網域
       placeholder-e-g-example-com: 例如 example.com
       tag-name: 名稱
       tag-ttl: TTL
       tag-data: 資料
       tag-copy-results: 複製結果
-      tag-no-records-found-for-this-domain: 未找到與該域名相關的記錄。
+      tag-no-records-found-for-this-domain: 未找到與該網域相關的記錄。
       tag-loading-whois-info: 正在載入 WHOIS 資訊……
       tag-whois: WHOIS
-      tag-domain-name: 域名
+      tag-domain-name: 網域
       tag-registrar: 註冊商
       tag-registration-date: 註冊日期
       tag-expiration-date: 到期日期
       tag-updated-date: 更新日期
       tag-registrant: 註冊人
       tag-name-servers: 名稱伺服器
-      tag-domain-status: 域名狀態
+      tag-domain-status: 網域狀態
       tag-dnssec: DNSSEC
   dns-tester:
     title: DNS 測試器
     description: 一個簡單的工具，用於測試 DNS 解析、whois 查詢和其他 DNS 相關任務。
     externalAccess: 該工具呼叫您自託管的網路實用工具服務來執行 DNS/Whois 查詢及相關任務。
     texts:
-      label-a-ipv4-address: A — IPv4 地址
-      label-aaaa-ipv6-address: AAAA — IPv6 地址
+      label-a-ipv4-address: A — IPv4 位址
+      label-aaaa-ipv6-address: AAAA — IPv6 位址
       label-afsdb-afs-database-location: AFSDB — AFS 資料庫位置
-      label-apl-address-prefix-list: APL — 地址字首列表
+      label-apl-address-prefix-list: APL — 位址字首列表
       label-caa-certificate-authority-authorization: CAA — 證書頒發機構授權
       label-cdnskey-child-dnskey: CDNSKEY — 子 DNSKEY
       label-cds-child-ds: CDS — 子 DS
@@ -9021,8 +9021,8 @@ tools:
       label-dname-non-terminal-rename: DNAME — 非終端重新命名
       label-dnskey-dnssec-public-key: DNSKEY — DNSSEC 公鑰
       label-ds-delegation-signer: DS — 委派簽名者
-      label-eui48-mac-address-48-bit: EUI48 — MAC 地址（48 位）
-      label-eui64-mac-address-64-bit: EUI64 — MAC 地址（64 位）
+      label-eui48-mac-address-48-bit: EUI48 — MAC 位址（48 位）
+      label-eui64-mac-address-64-bit: EUI64 — MAC 位址（64 位）
       label-hinfo-host-information: HINFO — 主機資訊
       label-hip-host-identity-protocol: HIP — 主機身份協議
       label-https-https-service-binding: HTTPS — HTTPS 服務繫結
@@ -9043,7 +9043,7 @@ tools:
       label-sig-signature-obsolete: SIG — 簽名（已過時）
       label-smimea-s-mime-cert-association: SMIMEA — S/MIME 證書關聯
       label-soa-start-of-authority: SOA — 授權起始
-      label-spf-sender-policy-framework-deprecated: SPF — 發件人策略框架（已棄用）
+      label-spf-sender-policy-framework-deprecated: SPF — 寄件者策略框架（已棄用）
       label-srv-service-locator: SRV — 服務定位器
       label-sshfp-ssh-public-key-fingerprint: SSHFP — SSH 公鑰指紋
       label-svcb-service-binding: SVCB — 服務繫結
@@ -9099,7 +9099,7 @@ tools:
       placeholder-system-default: 系統預設
       placeholder-e-g-10-0-0-53: 例如：10.0.0.53
       tab-dns-query: DNS 查詢
-      label-domain: 域名
+      label-domain: 網域
       placeholder-example-com: example.com
       label-dns-record-type: DNS 記錄型別：
       title-result: 結果
@@ -9113,7 +9113,7 @@ tools:
       label-dnskey: DNSKEY
       label-rrsig: RRSIG
       tab-reverse-dns-ptr: 反向 DNS（PTR）
-      label-ip-address: IP 地址：
+      label-ip-address: IP 位址：
       placeholder-8-8-8-8: 8.8.8.8
       label-ip: IP
       label-ptr: PTR
@@ -9169,7 +9169,7 @@ tools:
       label-port: 埠：
       placeholder-443: "443"
       title-result: 結果
-      label-hostname: 主機名：
+      label-hostname: 主機名稱：
       label-not-before: 生效時間：
       label-not-after: 失效時間：
       label-days-until-expiry: 剩餘有效期：
@@ -9181,11 +9181,11 @@ tools:
       placeholder-https-example-com: https://example.com
       label-hsts-present: 存在 HSTS
       label-max-age: Max-Age
-      label-inc-subdomains: 包含子域名
+      label-inc-subdomains: 包含子網域
       label-preload: 預載入
       label-raw-header: 原始標頭
       tab-http-https-redirect: HTTP → HTTPS 重定向
-      label-domain: 域名：
+      label-domain: 網域：
       label-http-url: HTTP URL
       label-redirected: 已重定向
       label-final-url: 最終網址
@@ -9424,10 +9424,10 @@ tools:
       tag-apply-patch: 應用補丁
   ping:
     title: Ping
-    description: Ping 一組主機名、IP 地址、CIDR 或 IP 地址範圍
+    description: Ping 一組主機名稱、IP 位址、CIDR 或 IP 位址範圍
     externalAccess: 該工具會呼叫您自託管的網路實用工具服務來執行 ICMP ping 操作。
     texts:
-      label-targets-ips-cidrs-hostnames-one-per-line-or-or: 目標（IP/CIDR/主機名，每行一個，或用逗號、分號分隔）：
+      label-targets-ips-cidrs-hostnames-one-per-line-or-or: 目標（IP/CIDR/主機名稱，每行一個，或用逗號、分號分隔）：
       placeholder-192-168-1-1-10-google-com-10-10-0-0-0-24: 192.168.1.1&#10;google.com&#10;10.0.0.0/24
       label-count: 次數：
       label-timeout-seconds: 逾時時間（秒）：
@@ -9516,7 +9516,7 @@ tools:
       credentials-prompt: 在 shell 中提示輸入金鑰
       credentials-placeholder: 使用佔位符匯出
       credentials-none: 已在我的環境中設定
-      label-account-id: 金鑰 ID / 賬戶名稱
+      label-account-id: 金鑰 ID / 帳戶名稱
       hint-secrets: 生成的命令中絕不會包含任何金鑰：提示選項會透過“read -rs”將其讀入您的 shell，因此不會留在歷史記錄中。
       title-operation: 您想做什麼？
       operation-restore: restore — 將快照中的檔案寫回磁碟
@@ -9636,7 +9636,7 @@ tools:
       hint-backrest: Backrest 倉庫就是普通的 restic 倉庫：如果 Web UI 已不可用，可從 config.json 中讀取 URI 和密碼，然後使用 Backrest 已下載的 restic 二進位制檔案來操作它。
   epc-qrcode-generator:
     title: EPC QR 碼生成器
-    description: 生成用於發起 SEPA 貸記轉賬的歐洲支付委員會（EPC）QR 碼
+    description: 生成用於發起 SEPA 貸記轉帳的歐洲支付委員會（EPC）QR 碼
     externalAccess: "null"
     texts:
       text-copied-to-clipboard: 已複製到剪貼簿
@@ -9644,7 +9644,7 @@ tools:
       label-v2: V2
       label-beneficiary-name: 收款人名稱：
       placeholder-beneficiary-name: 收款人名稱
-      label-account-iban: 賬戶（IBAN）：
+      label-account-iban: 帳戶（IBAN）：
       placeholder-fr76: FR76...
       label-bic: BIC：
       placeholder-bank-bic-optional: 銀行 BIC（可選）
@@ -9687,7 +9687,7 @@ tools:
       tag-redirect: 重定向
       tag-location: Location
       tag-300-hop-status-code: = 300 && hop.status_code
-      tag-headers-body-preview: 響應頭和正文預覽
+      tag-headers-body-preview: 回應頭和正文預覽
       tag-truncated: 已截斷
 collapsibleToolMenu:
   text:
