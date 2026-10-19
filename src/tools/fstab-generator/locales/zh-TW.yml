@@ -1,0 +1,29 @@
+tools:
+  fstab-generator:
+    options:
+      defaults: 標準掛載選項（rw, suid, dev, exec, auto, nouser, async）。
+      noatime: 不更新訪問時間，以提升效能。
+      nodiratime: 不更新目錄的訪問時間。
+      relatime: 僅在檔案被修改或重啟後訪問時才更新訪問時間。
+      ro: 以只讀方式掛載檔案系統。
+      rw: 以讀寫方式掛載檔案系統。
+      sync: 同步寫入，以提升資料完整性。
+      async: 非同步寫入，以提升效能。
+      user: 允許普通使用者掛載該檔案系統。
+      nouser: 僅 root 可以掛載。
+      exec: 允許執行二進位制檔案。
+      noexec: 禁止執行二進位制檔案（安全措施）。
+      errors-remount-ro: 發生錯誤時以只讀方式重新掛載。
+      auto: 開機時自動掛載。
+      noauto: 需要手動掛載。
+      dev: 解析檔案系統上的字元裝置或塊裝置。
+      nodev: 不解析檔案系統上的字元裝置或塊裝置。
+      suid: 允許 suid 和 sgid 位的生效。
+      nosuid: 阻止 suid 和 sgid 位的生效。
+      vers3: 使用 NFS 協議版本 3。
+      soft: 伺服器不可達時逾時後失敗。
+      hard: 伺服器不可達時無限重試。
+      rsize8192-wsize8192: 可調的讀寫緩衝區大小。
+      sec-ntlm: 使用 NTLM 安全協議。
+      size512m: 定義 tmpfs 大小限制。
+      mode1777: 設定 tmpfs 掛載點的權限。
