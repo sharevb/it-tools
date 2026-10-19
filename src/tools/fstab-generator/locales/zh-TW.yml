@@ -21,9 +21,9 @@ tools:
       suid: 允許 suid 和 sgid 位的生效。
       nosuid: 阻止 suid 和 sgid 位的生效。
       vers3: 使用 NFS 協議版本 3。
-      soft: 伺服器不可達時超時後失敗。
+      soft: 伺服器不可達時逾時後失敗。
       hard: 伺服器不可達時無限重試。
       rsize8192-wsize8192: 可調的讀寫緩衝區大小。
       sec-ntlm: 使用 NTLM 安全協議。
       size512m: 定義 tmpfs 大小限制。
-      mode1777: 設定 tmpfs 掛載點的許可權。
+      mode1777: 設定 tmpfs 掛載點的權限。

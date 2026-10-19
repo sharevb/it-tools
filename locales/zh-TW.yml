@@ -131,7 +131,7 @@ tools:
       rule-of-thirds-grid: 三分法網格：
       export-settings: 匯出設定
       export-format: 匯出格式：
-      image-quality: 圖片質量：
+      image-quality: 圖片品質：
       export-width: 匯出寬度：
       custom-width: 自定義寬度（px）：
       export-download-image: 匯出並下載裁剪後的圖片
@@ -188,7 +188,7 @@ tools:
       tag-is-what-percent-of: 是以下數值的百分之幾
       tag-what-is-the-percentage-increase-decrease: 增減百分比是多少
   svg-placeholder-generator:
-    title: SVG 佔點陣圖生成器
+    title: SVG 佔位圖生成器
     description: 生成用於應用程式中作為佔位符的 SVG 影象。
     texts:
       label-width-in-px: 寬度（畫素）
@@ -224,17 +224,17 @@ tools:
       input-placeholder-paste-your-raw-csv-here: 在此貼上您的原始 CSV...
       output-label-json-version-of-your-csv: 您的 CSV 的 JSON 版本
   camera-recorder:
-    title: 攝像頭錄製器
-    description: 使用網路攝像頭或相機拍攝照片或錄製影片。
+    title: 攝影機錄製器
+    description: 使用網路攝影機或相機拍攝照片或錄製影片。
     texts:
       label-video: 影片：
-      placeholder-select-camera: 選擇攝像頭
+      placeholder-select-camera: 選擇攝影機
       label-audio: 音訊：
       placeholder-select-microphone: 選擇麥克風
-      tag-your-browser-does-not-support-recording-video-from-camera: 您的瀏覽器不支援從攝像頭錄製影片
-      tag-you-need-to-grant-permission-to-use-your-camera-and-microphone: 您需要授予使用攝像頭和麥克風的許可權
-      tag-grant-permission: 授予許可權
-      tag-start-webcam: 啟動網路攝像頭
+      tag-your-browser-does-not-support-recording-video-from-camera: 您的瀏覽器不支援從攝影機錄製影片
+      tag-you-need-to-grant-permission-to-use-your-camera-and-microphone: 您需要授予使用攝影機和麥克風的權限
+      tag-grant-permission: 授予權限
+      tag-start-webcam: 啟動網路攝影機
       tag-take-screenshot: 拍攝截圖
       tag-start-recording: 開始錄製
       tag-pause: 暫停
@@ -272,7 +272,7 @@ tools:
       comparison-result: 對比結果
       matched: 匹配
       no-match: 不匹配
-      timed-out-after-timeout-period: '{timeoutPeriod} 後超時'
+      timed-out-after-timeout-period: '{timeoutPeriod} 後逾時'
       hashed-in-elapsed-period: 雜湊耗時 {elapsedPeriod}
       compared-in-elapsed-period: 比較耗時 {elapsedPeriod}
   crontab-generator:
@@ -357,8 +357,8 @@ tools:
       text-slug-copied-to-clipboard: Slug 已複製到剪貼簿
       placeholder-put-your-string-here-ex-my-file-path: 在此輸入您的字串（示例：my file path）
       label-your-string-to-slugify: 要生成 Slug 的字串
-      placeholder-put-separator-char-here: 在此輸入分隔符字元
-      label-separator-character: 分隔符字元
+      placeholder-put-separator-char-here: 在此輸入分隔字元
+      label-separator-character: 分隔字元
       placeholder-you-slug-will-be-generated-here-ex-my-file-path: 您的 Slug 將在此生成（示例：my-file-path）
       label-your-slug: 您的 Slug
       tag-copy-slug: 複製 Slug
@@ -495,10 +495,10 @@ tools:
       label-output-as-column: 按列輸出
       label-sort-list: 排序列表
       placeholder-sort-alphabetically: 按字母順序排序
-      label-items-separator: 項分隔符
-      placeholder-items-separator: 輸入項分隔符...
-      label-split-separator: 拆分分隔符
-      placeholder-separator-for-splitting: 輸入分割分隔符...
+      label-items-separator: 項分隔符號
+      placeholder-items-separator: 輸入項分隔符號...
+      label-split-separator: 拆分分隔符號
+      placeholder-separator-for-splitting: 輸入分割分隔符號...
       label-unwrap-item: 展開項（移除包裹字元）
       placeholder-remove-item-prefix-regex: 輸入移除項字首的正規表示式
       placeholder-remove-item-suffix-regex: 輸入移除項字尾的正規表示式
@@ -657,19 +657,19 @@ tools:
       label-language: 語言：
       placeholder-your-language: 標題大小寫所用語言...
   html-entities:
-    title: HTML 實體轉義
-    description: 轉義或反轉義 HTML 實體（將 <、>、&、"、' 等字元替換為對應的 HTML 實體）。
+    title: HTML 實體跳脫
+    description: 跳脫或反跳脫 HTML 實體（將 <、>、&、"、' 等字元替換為對應的 HTML 實體）。
     texts:
-      title-escape-html-entities: 轉義 HTML 實體
+      title-escape-html-entities: 跳脫 HTML 實體
       label-your-string: 您的字串：
-      placeholder-the-string-to-escape: 輸入需要轉義的字串
-      label-your-string-escaped: 轉義後的字串：
-      placeholder-your-string-escaped: 轉義後的字串顯示在此處
-      title-unescape-html-entities: 反轉義 HTML 實體
-      label-your-escaped-string: 轉義的字串：
-      placeholder-the-string-to-unescape: 輸入需要反轉義的字串
-      label-your-string-unescaped: 反轉義後的字串：
-      placeholder-your-string-unescaped: 反轉義後的字串顯示在此處
+      placeholder-the-string-to-escape: 輸入需要跳脫的字串
+      label-your-string-escaped: 跳脫後的字串：
+      placeholder-your-string-escaped: 跳脫後的字串顯示在此處
+      title-unescape-html-entities: 反跳脫 HTML 實體
+      label-your-escaped-string: 跳脫的字串：
+      placeholder-the-string-to-unescape: 輸入需要反跳脫的字串
+      label-your-string-unescaped: 反跳脫後的字串：
+      placeholder-your-string-unescaped: 反跳脫後的字串顯示在此處
       tag-it-tool: IT 工具
       tag-copy: 複製
   json-prettify:
@@ -1478,7 +1478,7 @@ tools:
       label-backcolor: 背景色：
       title-wcag-2-1: WCAG 2.1
       label-wcag-constrast: WCAG 對比度：
-      label-contrast-quality: 對比度質量：
+      label-contrast-quality: 對比度品質：
       label-small-texts: 小文字：
       label-large-texts: 大文字：
       title-normal-text: 普通文字
@@ -1509,10 +1509,10 @@ tools:
     title: 常用正規表示式速查表
     description: 常用正規表示式模式速查表。
   countdown:
-    title: 倒計時
-    description: 倒計時並在經過指定時長後提醒。
+    title: 倒數計時
+    description: 倒數計時並在經過指定時長後提醒。
     texts:
-      title-countdown-time: 倒計時時長
+      title-countdown-time: 倒數計時時長
       title-timer-finished: 計時結束
       title-history: 歷史記錄
       tag-days: 天
@@ -2043,7 +2043,7 @@ tools:
       tag-sm3-await-createsm3-promise: "SM3: await createSM3(), // (): Promise"
       tag-whirlpool-await-createwhirlpool-promise: "Whirlpool: await createWhirlpool(), // (): Promise"
   file-type:
-    title: 檔案型別檢測器
+    title: 檔案型別偵測器
     description: 識別檔案型別。
     texts:
       title-drag-and-drop-a-file-here-or-click-to-select-a-file: 拖放檔案至此或點選選擇檔案
@@ -2204,8 +2204,8 @@ tools:
       placeholder-put-your-hex-file-string-here: 在此輸入 HEX 檔案字串...
       title-file-to-hex: 檔案轉 HEX
       title-drag-and-drop-a-file-here-or-click-to-select-a-file: 將檔案拖放到此處，或點選選擇檔案
-      label-separator: 分隔符
-      placeholder-separator: 分隔符
+      label-separator: 分隔符號
+      placeholder-separator: 分隔符號
       label-prefix: 字首
       placeholder-enter-a-prefix-ie-0x-h-or-empty: 輸入字首（如 0x、&H 或留空）
       label-file-in-hex: 檔案的十六進位制內容
@@ -2268,7 +2268,7 @@ tools:
     texts:
       label-output-format: 輸出格式：
       placeholder-select-output-format: 選擇輸出格式
-      label-output-quality: 輸出質量：
+      label-output-quality: 輸出品質：
       label-svg-scaling: SVG 縮放：
       title-drag-and-drop-images-files-here-or-click-to-select-some-files: 將圖片檔案拖放到此處，或點選選擇一些檔案
       tag-first-select-output-options: 首先選擇輸出選項：
@@ -2276,12 +2276,12 @@ tools:
       invalid-image-file: 無效的圖片檔案！
       an-error-occured-processing: 處理過程中發生錯誤
   image-exif-reader:
-    title: 圖片 EXIF/後設資料/GPS/JPEG 質量讀取器
-    description: 從圖片檔案中讀取 EXIF、IPTC、XMP、GPS 及其他後設資料、JPEG 質量和其他資訊
+    title: 圖片 EXIF/後設資料/GPS/JPEG 品質讀取器
+    description: 從圖片檔案中讀取 EXIF、IPTC、XMP、GPS 及其他後設資料、JPEG 品質和其他資訊
     texts:
       title-drag-and-drop-a-image-file-here-or-click-to-select-a-file: 將圖片檔案拖放到此處，或點選選擇檔案
-      title-jpeg-quality: JPEG 質量
-      label-jpeg-quality: JPEG 質量（%）
+      title-jpeg-quality: JPEG 品質
+      label-jpeg-quality: JPEG 品質（%）
       title-gps-infos: GPS 資訊
       label-latitude: 緯度
       label-longitude: 經度
@@ -2499,7 +2499,7 @@ tools:
       tag-see-jsonpath-cheatsheet: 檢視 JSONPath 速查表
   js-unobfuscator:
     title: JavaScript 去混淆器/解包器
-    description: webcrack 是一款用於逆向工程 JavaScript 的工具。它可以去混淆 obfuscator.io 的程式碼、還原壓縮程式碼、轉譯並解包 webpack/browserify，儘可能還原原始原始碼。
+    description: webcrack 是一款用於逆向工程 JavaScript 的工具。它可以去混淆 obfuscator.io 的程式碼、還原壓縮程式碼、轉譯並解包 webpack/browserify，儘可能還原原始碼。
     texts:
       title-sandbox: 沙盒
       placeholder-your-obfuscate-javascript-code: 您的混淆 JavaScript 程式碼
@@ -2524,17 +2524,17 @@ tools:
       label-auto-height: 自動高度
     externalAccess: 當需要進行驗證時，此工具可能會從 https://www.schemastore.org 下載 JSON Schema。不會向外部傳送任何資料。
   json-escaper:
-    title: JSON 轉義器/反轉義器
-    description: 轉義和反轉義 JSON 字串
+    title: JSON 跳脫器/反跳脫器
+    description: 跳脫和反跳脫 JSON 字串
     texts:
-      title-escape-json-string: 轉義 JSON 字串
-      placeholder-put-your-string-to-escape: 在此輸入要轉義的字串...
-      label-string-to-escape: 要轉義的字串
-      label-escaped-string: 轉義後的字串
-      title-unescape-json-string: 反轉義 JSON 字串
-      placeholder-put-your-string-to-unescape: 在此輸入要反轉義的字串...
-      label-string-to-unescape: 要反轉義的字串
-      label-unescaped-string: 反轉義後的字串
+      title-escape-json-string: 跳脫 JSON 字串
+      placeholder-put-your-string-to-escape: 在此輸入要跳脫的字串...
+      label-string-to-escape: 要跳脫的字串
+      label-escaped-string: 跳脫後的字串
+      title-unescape-json-string: 反跳脫 JSON 字串
+      placeholder-put-your-string-to-unescape: 在此輸入要反跳脫的字串...
+      label-string-to-unescape: 要反跳脫的字串
+      label-unescaped-string: 反跳脫後的字串
       label-wrap-in-quotes: 用引號括起來
   json-linter:
     title: JSON 語法檢查器
@@ -2700,8 +2700,8 @@ tools:
     texts:
       label-trim-items: 去除首尾空白
       label-ignore-case: 忽略大小寫
-      label-separator: 分隔符
-      placeholder-additional-separator: 額外分隔符
+      label-separator: 分隔符號
+      placeholder-additional-separator: 額外分隔符號
       label-list-1: 列表 1
       label-list-2: 列表 2
       title-items-in-both-lists: 兩個列表共有的項
@@ -2779,8 +2779,8 @@ tools:
       tag-you-can-paste-a-document-with-existing-toc-generated-by-this-tool-or-add-a: 您可以貼上已包含目錄（由本工具生成）的文件，或在文件中新增一個
       tag-marker-in-your-document-on-a-single-line: 標記（單獨佔一行）
   mass-converter:
-    title: 質量單位轉換器
-    description: 轉換質量單位的值
+    title: 品質單位轉換器
+    description: 轉換品質單位的值
     texts:
       label-gram: 克
       label-petagram: 拍克
@@ -3020,8 +3020,8 @@ tools:
       label-add-numbers-after-x-words: 在 X 個單詞後新增數字
       label-max-passphrase-len: 密碼短語最大長度
       label-capitalize: 首字母大寫
-      label-separator: 分隔符
-      placeholder-put-separator-char: 輸入分隔符
+      label-separator: 分隔符號
+      placeholder-put-separator-char: 輸入分隔符號
       label-ending-salt-chars: 結尾鹽值字元
       placeholder-put-characters-to-appended-to-end-of-passphrase: 輸入要附加到密碼短語末尾的字元
       label-number-of-passphrase-to-generate: 要生成的密碼短語數量
@@ -3054,9 +3054,9 @@ tools:
       label-allow-document-assembly-only-filling-in-form-fields-and-signing-commenting-and-modifying-forms: 僅允許文件組裝+填寫表單欄位和簽名+評論和修改表單
       label-allow-full-document-modification: 允許完全修改文件
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: 將 PDF 檔案拖放到此處，或點選選擇檔案
-      title-permissions: 許可權
-      label-control-modify-access-by-level: 按級別控制修改許可權
-      label-control-printing-access: 控制列印許可權
+      title-permissions: 權限
+      label-control-modify-access-by-level: 按級別控制修改權限
+      label-control-printing-access: 控制列印權限
       label-owner-password: 所有者密碼：
       placeholder-owner-password-optional: 所有者密碼（可選）
       label-user-password: 使用者密碼：
@@ -3081,7 +3081,7 @@ tools:
       label-qpdf: qpdf
   pdf-unlock:
     title: PDF 解密和解鎖
-    description: 解密 PDF 並解鎖（移除安全許可權）
+    description: 解密 PDF 並解鎖（移除安全權限）
     texts:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: 將 PDF 檔案拖放到此處，或點選選擇檔案
       title-logs: 日誌
@@ -3435,8 +3435,8 @@ tools:
       label-second-license-spdx: 第二個許可（SPDX）：
       placeholder-put-your-second-licence-spdx-licence: 輸入第二個許可的 SPDX 標識...
       label-licence-infos: 許可資訊
-      label-allowed-permission-s: 允許的許可權：
-      label-disallowed-permission-s: 禁止的許可權：
+      label-allowed-permission-s: 允許的權限：
+      label-disallowed-permission-s: 禁止的權限：
       label-allowed-condition-s: 允許的條件：
       label-disallowed-condition-s: 禁止的條件：
       label-allowed-limitation-s: 允許的限制：
@@ -3448,7 +3448,7 @@ tools:
       label-description: 描述：
       label-how: 使用方式：
       label-used-by: 使用方：
-      title-permissions: 許可權
+      title-permissions: 權限
       title-conditions: 條件
       title-limitations: 限制
       label-content: 內容：
@@ -3864,8 +3864,8 @@ tools:
       decrypt: 解密
       decrypt-binary: 解密二進位制
   ansi-escape-tester:
-    title: ANSI 轉義測試器
-    description: 建立並測試 ANSI 控制檯轉義序列
+    title: ANSI 跳脫測試器
+    description: 建立並測試 ANSI 控制檯跳脫序列
     texts:
       label-mode: 模式：
       label-foreground: 前景色：
@@ -3873,10 +3873,10 @@ tools:
       label-styles: 樣式：
       label-decorated-text: 裝飾文字：
       placeholder-enter-text: 輸入文字
-      title-output-ansi-escape-sequence: 輸出 ANSI 轉義序列：
+      title-output-ansi-escape-sequence: 輸出 ANSI 跳脫序列：
       title-terminal-preview: 終端預覽：
       label-custom-ansi-sequence: 自定義 ANSI 序列：
-      placeholder-enter-ansi-escape-sequence: 輸入 ANSI 轉義序列
+      placeholder-enter-ansi-escape-sequence: 輸入 ANSI 跳脫序列
       tag-basic: 基礎
       tag-256-color: 256 色
       tag-truecolor: 真彩色
@@ -4854,7 +4854,7 @@ tools:
       label-mac-address-prefix: MAC 地址字首：
       placeholder-set-a-prefix-e-g-64-16-7f: 設定字首，例如 64:16:7F
       label-case: 大小寫：
-      label-separator: 分隔符：
+      label-separator: 分隔符號：
       tag-quantity: 數量：
       tag-refresh: 重新整理
       tag-copy: 複製
@@ -5217,14 +5217,14 @@ tools:
       state-or-province-name: 州/省名稱
   chmod-calculator:
     title: chmod 計算器
-    description: 透過此線上 chmod 計算器計算您的 chmod 許可權和命令。
+    description: 透過此線上 chmod 計算器計算您的 chmod 權限和命令。
     texts:
-      message-invalid-octal-permission-string: 無效的八進位制許可權字串
-      message-invalid-symbolic-permission-string: 無效的符號許可權字串
-      placeholder-put-your-octal-permissions-here: 在此輸入八進位制許可權...
-      label-copy-your-octal-permissions: 複製八進位制許可權
-      placeholder-put-your-symbolic-permissions-here: 在此輸入符號許可權...
-      label-copy-your-symbolic-permissions: 複製符號許可權
+      message-invalid-octal-permission-string: 無效的八進位制權限字串
+      message-invalid-symbolic-permission-string: 無效的符號權限字串
+      placeholder-put-your-octal-permissions-here: 在此輸入八進位制權限...
+      label-copy-your-octal-permissions: 複製八進位制權限
+      placeholder-put-your-symbolic-permissions-here: 在此輸入符號權限...
+      label-copy-your-symbolic-permissions: 複製符號權限
       title-chmod-command: chmod 命令
       title-umask: umask
       label-octal: 八進位制：
@@ -5235,8 +5235,8 @@ tools:
       tag-flags: 標誌
     service:
       text:
-        invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: 無效的八進位制許可權（必須為 3 或 4 位八進位制數字）：{0}
-        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: 無效的符號許可權（必須為 'rwxrwxrwx' 格式）：{0}
+        invalid-octal-permissions-must-be-3-or-4-octal-digits-octalpermissions: 無效的八進位制權限（必須為 3 或 4 位八進位制數字）：{0}
+        invalid-string-permissions-must-be-in-form-rwxrwxrwx-symbolicpermissions: 無效的符號權限（必須為 'rwxrwxrwx' 格式）：{0}
   color-converter:
     title: 顏色轉換器
     description: 在不同格式（十六進位制、RGB、HSL 和 CSS 名稱）之間轉換顏色
@@ -5623,7 +5623,7 @@ tools:
     constants:
       text:
         token-introspection-response: 令牌自省響應
-        entitlements: 許可權
+        entitlements: 權限
         roles: 角色
         expires-in: 有效時長
         client-nonce: 客戶端亂數
@@ -6043,7 +6043,7 @@ tools:
   json-viewer:
     texts:
       label-sort-keys: 鍵排序：
-      label-unescape-unicode: 反轉義 Unicode：
+      label-unescape-unicode: 反跳脫 Unicode：
       label-indent-size: 縮排大小：
       label-your-raw-json: 原始 JSON
       placeholder-paste-your-raw-json-here: 在此貼上原始 JSON...
@@ -6053,7 +6053,7 @@ tools:
       label-json-schema: JSON Schema：
       placeholder-paste-your-json-schema-here: 在此貼上您的 JSON Schema...
       title-schema-validation-errors: Schema 驗證錯誤
-      label-unescape-json-string: 反轉義 JSON 字串：
+      label-unescape-json-string: 反跳脫 JSON 字串：
       label-viewer: 檢視器
     text:
       provided-json-is-not-valid: 提供的 JSON 無效
@@ -6176,7 +6176,7 @@ tools:
       title-view-mdn-documentation: 檢視 MDN 文件
     constants:
       text:
-        the-client-needs-to-authenticate-to-gain-network-access: 客戶端需要認證以獲取網路訪問許可權
+        the-client-needs-to-authenticate-to-gain-network-access: 客戶端需要認證以獲取網路訪問權限
         network-authentication-required: 需要網路認證
         further-extensions-to-the-request-are-required-for-the-server-to-fulfill-it: |
           伺服器需要請求的進一步擴充套件才能完成處理
@@ -6195,7 +6195,7 @@ tools:
         http-version-not-supported: 不支援的 HTTP 版本
         the-server-was-acting-as-a-gateway-or-proxy-and-did-not-receive-a-timely-response-from-the-upstream-server: |
           伺服器作為閘道器或代理，但未及時收到上游伺服器的響應
-        gateway-timeout: 閘道器超時
+        gateway-timeout: 閘道器逾時
         the-server-is-currently-unavailable-because-it-is-overloaded-or-down-for-maintenance: |
           伺服器當前不可用（因過載或維護中）
         service-unavailable: 服務不可用
@@ -6261,8 +6261,8 @@ tools:
         indicates-that-the-request-could-not-be-processed-because-of-conflict-in-the-request-such-as-an-edit-conflict: |
           表示請求因衝突（如編輯衝突）無法處理
         conflict: 衝突
-        the-server-timed-out-waiting-for-the-request: 伺服器等待請求超時
-        request-timeout: 請求超時
+        the-server-timed-out-waiting-for-the-request: 伺服器等待請求逾時
+        request-timeout: 請求逾時
         the-client-must-first-authenticate-itself-with-the-proxy: 客戶端必須首先向代理認證
         proxy-authentication-required: 需要代理認證
         the-requested-resource-is-capable-of-generating-only-content-not-acceptable-according-to-the-accept-headers-sent-in-the-request: |
@@ -6273,7 +6273,7 @@ tools:
         the-requested-resource-could-not-be-found-but-may-be-available-in-the-future: |
           請求的資源未找到，但未來可能可用
         the-request-was-valid-but-the-server-is-refusing-action-the-user-might-not-have-the-necessary-permissions-for-a-resource: |
-          請求有效，但伺服器拒絕操作（使用者可能無資源許可權）
+          請求有效，但伺服器拒絕操作（使用者可能無資源權限）
         forbidden: 禁止訪問
         reserved-for-future-use-the-original-intention-was-that-this-code-might-be-used-as-part-of-some-form-of-digital-cash-or-micropayment-scheme: |
           保留供未來使用（原意圖是作為數字現金或小額支付方案的一部分）
@@ -6471,7 +6471,7 @@ tools:
     title: 亂數生成器
     description: 生成亂數（十進位制、十六進位制）。透過排除字元，您可以生成其他進位制的數。
   charset-detector:
-    title: 文字字元集檢測器/解碼器
+    title: 文字字元集偵測器/解碼器
     description: 檢測文字可能的字元集，並允許使用檢測到的每種編碼進行解碼
     texts:
       title-input: 輸入
@@ -6940,7 +6940,7 @@ tools:
       placeholder-e-g-foo: 例如 foo
       label-replacement: 替換內容：
       placeholder-e-g-bar: 例如 bar
-      label-delimiter: 分隔符：
+      label-delimiter: 分隔符號：
       placeholder-e-g-or: "例如 / 或 #"
       label-flags: 標誌：
       label-options: 選項：
@@ -7288,7 +7288,7 @@ tools:
       label-file-path: 檔案路徑
       placeholder-path-to-sqlite-db: /path/to/sqlite.db
       label-ssl-enabled: 啟用 SSL
-      label-timeout-s: 超時（秒）
+      label-timeout-s: 逾時（秒）
       label-extra-params: 額外引數
       placeholder-e-g-charset-utf8-applicationname-myapp: 例如 charset=utf8&amp;applicationName=myapp
       title-generate-connection-string: 生成連線字串
@@ -7457,7 +7457,7 @@ tools:
       title-bitmask: 位掩碼
   chmod-memo:
     title: chmod 命令速查表
-    description: Linux 許可權變更速查表
+    description: Linux 權限變更速查表
   css-gradient-generator:
     title: CSS 漸變生成器
     description: 根據給定的步驟和顏色生成 CSS 漸變程式碼
@@ -7648,14 +7648,14 @@ tools:
     texts:
       label-screen-smallest: 螢幕（最小）
       label-ebook-balanced: 電子書（均衡）
-      label-printer-high-quality: 印表機（高質量）
-      label-prepress-best-quality: 印前（最佳質量）
+      label-printer-high-quality: 印表機（高品質）
+      label-prepress-best-quality: 印前（最佳品質）
       label-pdf-1-4: PDF 1.4
       label-pdf-1-5: PDF 1.5
       label-pdf-1-6: PDF 1.6
       label-pdf-1-7: PDF 1.7
-      label-compression-quality: 壓縮質量：
-      placeholder-select-compression-quality: 選擇壓縮質量
+      label-compression-quality: 壓縮品質：
+      placeholder-select-compression-quality: 選擇壓縮品質
       label-compatibility-level: 相容級別：
       placeholder-select-compatibility-level: 選擇相容級別
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: 將 PDF 檔案拖放到此處，或單擊選擇檔案
@@ -7755,7 +7755,7 @@ tools:
       label-account: 賬戶：
       label-password-leave-empty-to-generate: 密碼（留空則自動生成）：
       placeholder-leave-empty-for-random: 留空則隨機生成
-      label-permissions-all-privileges-if-none-selected: 許可權（如果未選擇任何許可權，則為所有許可權）：
+      label-permissions-all-privileges-if-none-selected: 權限（如果未選擇任何權限，則為所有權限）：
       title-generated-sql-instructions: 生成的 SQL 指令：
       tag-select: SELECT
       tag-insert: INSERT
@@ -7980,7 +7980,7 @@ tools:
       label-convert: 轉換：
       label-mode: 模式：
       label-decimals: 小數位數：
-      label-thousand-separators: 千位分隔符：
+      label-thousand-separators: 千位分隔符號：
       label-to: 到：
       tag-: =
   tool:
@@ -8488,7 +8488,7 @@ tools:
       invalid-blueprint-yaml: 無效的藍圖 YAML
   fitness-computer:
     title: 健身計算器
-    description: 計算基礎代謝率（BMR）、每日總能量消耗（TDEE/卡路里）、身體質量指數（BMI）、理想體重、體脂率、最大心率（Max HR）：這些是評估整體健康水平和生理健康的關鍵指標。
+    description: 計算基礎代謝率（BMR）、每日總能量消耗（TDEE/卡路里）、身體品質指數（BMI）、理想體重、體脂率、最大心率（Max HR）：這些是評估整體健康水平和生理健康的關鍵指標。
     externalAccess: "null"
     texts:
       label-bmr: BMR
@@ -9430,7 +9430,7 @@ tools:
       label-targets-ips-cidrs-hostnames-one-per-line-or-or: 目標（IP/CIDR/主機名，每行一個，或用逗號、分號分隔）：
       placeholder-192-168-1-1-10-google-com-10-10-0-0-0-24: 192.168.1.1&#10;google.com&#10;10.0.0.0/24
       label-count: 次數：
-      label-timeout-seconds: 超時時間（秒）：
+      label-timeout-seconds: 逾時時間（秒）：
       tag-ping-all: 全部 Ping
       tag-target: 目標
       tag-ip: IP
