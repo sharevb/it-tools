@@ -255,7 +255,7 @@ tools:
       label-scancode-dec: 掃描碼（十進位制）：
   bcrypt:
     title: Bcrypt
-    description: 使用 bcrypt 對文字字串進行雜湊和比較。bcrypt 是一種基於 Blowfish 密碼演演算法的密碼雜湊函式。
+    description: 使用 bcrypt 對文字字串進行雜湊和比較。bcrypt 是一種基於 Blowfish 密碼演算法的密碼雜湊函式。
     texts:
       text-hashed-string-copied-to-the-clipboard: 已雜湊的字串已複製到剪貼簿
       title-hash: 雜湊
@@ -364,7 +364,7 @@ tools:
       tag-copy-slug: 複製 Slug
   encryption:
     title: 加密/解密文字
-    description: 使用 AES、TripleDES、Rabbit 或 RC4 等加密演演算法對明文進行加密，對密文進行解密。
+    description: 使用 AES、TripleDES、Rabbit 或 RC4 等加密演算法對明文進行加密，對密文進行解密。
     defaultErrorMessage: 無法對您的文字進行加密
     title-encrypt: 加密
     title-decrypt: 解密
@@ -376,7 +376,7 @@ tools:
       label-your-secret-key: 您的金鑰：
       label-key-encoding: 金鑰編碼
       placeholder-select-the-key-encoding: 選擇金鑰編碼方式...
-      label-encryption-algorithm: 加密演演算法：
+      label-encryption-algorithm: 加密演算法：
       title-error-while-cyphering: 加密過程中出錯
       label-your-text-encrypted: 加密後的文字：
       placeholder-your-string-hash: 您的字串雜湊
@@ -740,17 +740,17 @@ tools:
       tag-print-ie-use-a-pdf-printer-to-get-a-pdf-file: 列印（即使用 PDF 印表機獲取 PDF 檔案）
   qrcode-generator:
     title: QR 碼生成器
-    description: 生成並下載 URL（或純文字）的QR 碼，並自定義背景色和前景色。
+    description: 生成並下載 URL（或純文字）的 QR 碼，並自定義背景色和前景色。
     error-resistance: 容錯率：
     background-color: 背景顏色：
     foreground-color: 前景顏色：
     text: 文字：
     placeholder: 輸入連結或文字...
     button:
-      download: 下載QR 碼
+      download: 下載 QR 碼
   wifi-qrcode-generator:
     title: WiFi QR 碼生成器
-    description: 生成並下載用於快速連線 WiFi 網路的QR 碼。
+    description: 生成並下載用於快速連線 WiFi 網路的 QR 碼。
   xml-formatter:
     title: XML 格式化
     description: 將 XML 字串格式化為友好、易讀的格式。
@@ -865,7 +865,7 @@ tools:
       label-mac-address: MAC 地址：
   hash-text:
     title: 文字雜湊
-    description: 使用所需演演算法（MD5、SHA1、SHA256、SHA224、SHA512、SHA384、SHA3 或 RIPEMD160）對文字進行雜湊。
+    description: 使用所需演算法（MD5、SHA1、SHA256、SHA224、SHA512、SHA384、SHA3 或 RIPEMD160）對文字進行雜湊。
     texts:
       label-binary-base-2: 二進位制（base 2）
       label-hexadecimal-base-16: 十六進位制（base 16）
@@ -2646,7 +2646,7 @@ tools:
     description: JWT 令牌生成器和編輯器
     texts:
       message-invalid-json-string: 無效的 JSON 字串
-      placeholder-algorithms: 演演算法
+      placeholder-algorithms: 演算法
       label-description: 描述：
       title-token-content: 令牌內容
       label-header: 頭部：
@@ -3277,7 +3277,7 @@ tools:
       label-your-text: 您的文字：
       placeholder-the-string-to-sign: 要簽名的字串
       label-hash-type: 雜湊型別：
-      placeholder-select-the-hashing-algorithm: 選擇雜湊演演算法
+      placeholder-select-the-hashing-algorithm: 選擇雜湊演算法
       label-your-private-key: 您的私鑰：
       placeholder-the-private-key-to-use-to-sign-message: 用於簽名訊息的私鑰
       label-your-private-key-password: 您的私鑰密碼：
@@ -4571,14 +4571,14 @@ tools:
       placeholder-enter-sql-query: 輸入 SQL 查詢...
       title-minified-sql-query: 壓縮後的 SQL 查詢
   string-escaper:
-    title: 字串轉義工具
-    description: 按目標程式語言跳脫字元串
+    title: 字串跳脫工具
+    description: 按目標程式語言跳脫字串
     texts:
-      title-string-escaper: 字串轉義工具
+      title-string-escaper: 字串跳脫工具
       label-your-text: 您的文字：
-      placeholder-your-raw-text-to-escape: 要轉義的原始文字
+      placeholder-your-raw-text-to-escape: 要跳脫的原始文字
       label-target-language: 目標語言：
-      title-your-escaped-string-in-target-language: 目標語言中的跳脫字元串
+      title-your-escaped-string-in-target-language: 目標語言中的跳脫字串
       tag-single-linize: 單行化
   tcpdump-generator:
     title: tcpdump 命令生成器
@@ -4764,7 +4764,7 @@ tools:
       label-background-color: 背景色：
       tag-hidden-ssid: 隱藏 SSID
       tag-anonymous: 匿名？
-      tag-download-qr-code: 下載QR 碼
+      tag-download-qr-code: 下載 QR 碼
       tag-copy-connection-string: 複製連線字串
   url-parser:
     title: URL 解析器
@@ -4970,7 +4970,7 @@ tools:
     title: QR 碼解碼器
     description: QR 碼讀取器
     texts:
-      title-drag-and-drop-a-qr-code-here-or-click-to-select-a-file: 拖放QR 碼至此，或點選選擇檔案
+      title-drag-and-drop-a-qr-code-here-or-click-to-select-a-file: 拖放 QR 碼至此，或點選選擇檔案
       tag-decoded: 已解碼
       tag-parsed: 已解析
     service:
@@ -5179,7 +5179,7 @@ tools:
       article: 文章
   qr-contact-info-generator:
     title: QR 碼聯絡資訊生成器
-    description: 生成並下載聯絡資訊（vCard）的QR 碼，並自定義背景和前景顏色。
+    description: 生成並下載聯絡資訊（vCard）的 QR 碼，並自定義背景和前景顏色。
     texts:
       label-full-name: 全名
       placeholder-john-doe: 約翰·多伊
@@ -5194,7 +5194,7 @@ tools:
       placeholder-123-main-st-city: 123 主街，城市
       label-foreground-color: 前景顏色：
       label-background-color: 背景顏色：
-      tag-download-qr-code: 下載QR 碼
+      tag-download-qr-code: 下載 QR 碼
       label-website: 網站
   videoTVShow:
     text:
@@ -5339,7 +5339,7 @@ tools:
       title-image: 圖片
       label-qr-code-embeddable-dataurl: QR 碼圖片 Data URL：
       link-qr-code-open-embeddable-link: 開啟可嵌入連結
-      label-qr-code-image-viewer: 可嵌入QR 碼
+      label-qr-code-image-viewer: 可嵌入 QR 碼
   basic-auth-generator:
     title: 基本身份驗證生成器
     description: 根據使用者名稱和密碼生成 Base64 編碼的 Basic Auth 請求頭。
@@ -5688,7 +5688,7 @@ tools:
         expiration-time: 到期時間
         audience: 受眾
         issuer: 簽發者
-        algorithm: 演演算法
+        algorithm: 演算法
         no-digital-signature-or-mac-performed: 未執行數字簽名或 MAC
         rsassa-pss-using-sha-512-and-mgf1-with-sha-512: 使用 SHA-512 及基於 SHA-512 的 MGF1 的 RSASSA-PSS
         rsassa-pss-using-sha-384-and-mgf1-with-sha-384: 使用 SHA-384 及基於 SHA-384 的 MGF1 的 RSASSA-PSS
@@ -5721,7 +5721,7 @@ tools:
       label-htpasswd-content: htpasswd 內容：
     service:
       text:
-        unsupported-algorithm: 不支援的演演算法
+        unsupported-algorithm: 不支援的演算法
         md5-does-not-currently-support-non-ascii-characters-0: MD5 當前不支援非 ASCII 字元
         md5-does-not-currently-support-non-ascii-characters: MD5 當前不支援非 ASCII 字元
   iban-validator-and-parser:
@@ -6125,7 +6125,7 @@ tools:
       label-certificate-pem: 證書（pem）：
       label-creation-time: 建立時間：
       label-expiration-time: 過期時間：
-      label-algorithm-info: 演演算法資訊：
+      label-algorithm-info: 演算法資訊：
       label-fingerprint: 指紋：
       label-user-id-s: 使用者 ID：
       label-key-id-s: 金鑰 ID：
@@ -7418,7 +7418,7 @@ tools:
       label-hex: 十六進位制
       label-encoded: 編碼
       label-binary: 二進位制
-      label-algorithm: 演演算法：
+      label-algorithm: 演算法：
       label-password: 密碼：
       placeholder-enter-password: 輸入密碼
       label-salt-hex: 鹽（十六進位制）：
@@ -7685,7 +7685,7 @@ tools:
       tag-send: 傳送
   shamirs-secret-sharing:
     title: Shamir 秘密共享
-    description: 使用 Shamir 演演算法拆分和重組秘密
+    description: 使用 Shamir 演算法拆分和重組秘密
     texts:
       label-text: 文字
       label-hexadecimal: 十六進位制
@@ -8401,7 +8401,7 @@ tools:
       tab-hebrew: 希伯來曆
       tab-islamic: 伊斯蘭曆
       tab-persian: 波斯歷
-      tab-persian-algorithmic: 波斯歷（演演算法）
+      tab-persian-algorithmic: 波斯歷（演算法）
       tab-mayan: 瑪雅歷
       label-long-count: 長紀曆：
       label-haab: 哈布歷
@@ -9656,9 +9656,9 @@ tools:
       label-foreground-color: 前景色：
       label-background-color: 背景顏色：
       label-qr-size: QR 碼尺寸：
-      tag-generate-qr: 生成QR 碼
-      tag-download-qrcode: 下載QR 碼
-      tag-copy-qrcode-text: 複製QR 碼文字
+      tag-generate-qr: 生成 QR 碼
+      tag-download-qrcode: 下載 QR 碼
+      tag-copy-qrcode-text: 複製 QR 碼文字
   url-redirection-checker:
     title: URL 重定向檢查器
     description: 檢查 URL 是否會重定向到另一個 URL。
