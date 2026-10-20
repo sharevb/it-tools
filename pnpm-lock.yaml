@@ -294,7 +294,7 @@ importers:
         version: 1.5.3
       '@guolao/vue-monaco-editor':
         specifier: ^1.6.0
-        version: 1.6.0(monaco-editor@0.55.1)(vue@3.5.39(typescript@6.0.3))
+        version: 1.6.0(monaco-editor@0.57.0)(vue@3.5.39(typescript@6.0.3))
       '@guyplusplus/turndown-plugin-gfm':
         specifier: ^1.0.7
         version: 1.0.7
@@ -944,8 +944,8 @@ importers:
         specifier: ^0.2.5
         version: 0.2.5
       monaco-editor:
-        specifier: ^0.55.1
-        version: 0.55.1
+        specifier: ^0.57.0
+        version: 0.57.0
       morsee:
         specifier: ^1.0.10
         version: 1.0.10
@@ -1441,7 +1441,7 @@ importers:
         version: 4.6.7
       node:
         specifier: runtime:24.x
-        version: runtime:24.21.0
+        version: runtime:24.22.0
       oxfmt:
         specifier: ^0.57.0
         version: 0.57.0(svelte@5.56.4(@typescript-eslint/types@8.62.1))
@@ -6772,8 +6772,8 @@ packages:
     resolution: {integrity: sha512-gYzvtM72ZtxQO0T048kd6HWSbbGCNOUwcnfQ01cqIJ4X2IYKFFHZ5mKvrQETcFXxsRObZulDaKmy//R7TPtsBg==}
     engines: {node: '>=20.19.0'}
 
-  dompurify@3.2.7:
-    resolution: {integrity: sha512-WhL/YuveyGXJaerVlMYGWhvQswa7myDG17P7Vu65EWC05o8vfeNbvNf4d/BOvH99+ZW+LlQsc1GDKMa1vNK6dw==}
+  dompurify@3.4.15:
+    resolution: {integrity: sha512-EUBjM+B+lkDE41iE82DDSCfkoPGfXx8IxFxPMjNzm/Uk4xDet77rTN9wqlxlVg71kK7XGuUMv6wUxJUwwv+Xyw==}
 
   dompurify@3.4.16:
     resolution: {integrity: sha512-sqo+pNp3qRhCIpbgRi1y8Tgk27Bo2Ry7w0dC1NBeNTdZChWjz9Xb/KOoZbRP/R6pQZ80Qw8YhXw13hWWBbMRnQ==}
@@ -9020,8 +9020,8 @@ packages:
   moment@2.30.1:
     resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
 
-  monaco-editor@0.55.1:
-    resolution: {integrity: sha512-jz4x+TJNFHwHtwuV9vA9rMujcZRb0CEilTEwG2rRSpe/A7Jdkuj8xPKttCgOh+v/lkHy7HsZ64oj+q3xoAFl9A==}
+  monaco-editor@0.57.0:
+    resolution: {integrity: sha512-5BkI9KGoqrNvBGUe15/QlZq3OooZ8WLg1AxTpaqHRCP3HNpzPPZKE2EDz8M7c+VRmCeUw1Brp4cx/PWm3kI/5A==}
 
   moo@0.5.3:
     resolution: {integrity: sha512-m2fmM2dDm7GZQsY7KK2cme8agi+AAljILjQnof7p1ZMDe6dQ4bdnSMx0cPppudoeNv5hEFQirN6u+O4fDE0IWA==}
@@ -9182,7 +9182,7 @@ packages:
     resolution: {integrity: sha512-X75ZN8DCLftGM5iKwoYLA3rjnrAEs97MkzvSd4q2746Tgpg8b8XWiBGiBG4ZpgcAqBgtgPHTiAc8ZMCvZuikDw==}
     engines: {node: '>=10'}
 
-  node@runtime:24.21.0:
+  node@runtime:24.22.0:
     resolution:
       type: variations
       variants:
@@ -9190,9 +9190,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-rseyRkr7mfB4wZywbSAdVDvTsxHLoHEoK84bF8l+WLs=
+            integrity: sha256-y7HWJfv6YbI/1KlJ6kHJsIu3kF+8dUA7sR1LzKc6VWY=
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-aix-ppc64.tar.gz
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-aix-ppc64.tar.gz
           targets:
             - cpu: ppc64
               os: aix
@@ -9200,9 +9200,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-vtfupTJeEQjzLOUijd1qXw8IpJnuQqp0Qq6lg3AvYFc=
+            integrity: sha256-apck2bUKXyK0gWze1EG1qNndrlRhkaXlt++lpeLuJtU=
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-darwin-arm64.tar.gz
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-darwin-arm64.tar.gz
           targets:
             - cpu: arm64
               os: darwin
@@ -9210,9 +9210,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-FGLLOzBGuBXPjqQ209pFDsGp8R2sflpGsK2lMF1+gJc=
+            integrity: sha256-SV4/JzxkXzxGd9Q4MEzfxwFynqXexXKPXI52ot7OS5E=
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-darwin-x64.tar.gz
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-darwin-x64.tar.gz
           targets:
             - cpu: x64
               os: darwin
@@ -9220,9 +9220,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-ckKCw7Q67JmKqVJzgEZbRdIp4CG1gDX19PYwleq/5dU=
+            integrity: sha256-t+eZHVQHgVrfp0oqnNTbaDVSyM4y/0opXCLpcoScP10=
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-arm64.tar.gz
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-linux-arm64.tar.gz
           targets:
             - cpu: arm64
               os: linux
@@ -9230,9 +9230,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-UcXVMGbukpILYXg7A7Buy5nzZhFg97Fcp36EdBFaZ7w=
+            integrity: sha256-jLp7v2iam1imXlgRFG6o0B5J0H5x97hGLk9v/NfS5/0=
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-ppc64le.tar.gz
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-linux-ppc64le.tar.gz
           targets:
             - cpu: ppc64le
               os: linux
@@ -9240,9 +9240,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-Xy+jdCLgx13jXBaG/lHXgyTywqj+LMI5pB2cAAop2Tg=
+            integrity: sha256-WQFxj1Uf+qduJQny1hLVvhb6ic3fvi1gEyXBDify0rY=
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-s390x.tar.gz
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-linux-s390x.tar.gz
           targets:
             - cpu: s390x
               os: linux
@@ -9250,9 +9250,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-PWNAX8ZaDS0pdsHwvC/Se7C9ByEkaecFqsPwOuWrTJw=
+            integrity: sha256-qVoPryjW98STA28FWdbTK3uMeaoG5BWxJ4L5aUaERIQ=
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-x64-musl.tar.gz
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-linux-x64-musl.tar.gz
           targets:
             - cpu: x64
               os: linux
@@ -9261,9 +9261,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-bh24fvWLiBnl1UAu/xU2SRsY7djre+5e94l4duiNxf8=
+            integrity: sha256-KOoKQ43poTvXiR/XWO7mx4Ge6K9UQt/Y1FvWXlbUIow=
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-x64.tar.gz
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-linux-x64.tar.gz
           targets:
             - cpu: x64
               os: linux
@@ -9271,10 +9271,10 @@ packages:
             archive: zip
             bin:
               node: node.exe
-            integrity: sha256-h3mxveHTn41CDjtXqmV7OYka9DTT3kSpGQRM7AZ4WSE=
-            prefix: node-v24.21.0-win-arm64
+            integrity: sha256-OlwgmlvFnmWzvA+hPtXhZqJr09VTMoR/SYt2sDdAjWE=
+            prefix: node-v24.22.0-win-arm64
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-win-arm64.zip
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-win-arm64.zip
           targets:
             - cpu: arm64
               os: win32
@@ -9282,10 +9282,10 @@ packages:
             archive: zip
             bin:
               node: node.exe
-            integrity: sha256-FY92hbRN5R9sDfHRU1JsvNPhvHOajfxgdyHO913p5UE=
-            prefix: node-v24.21.0-win-x64
+            integrity: sha256-+Wg6GYd+EqmxZzBcjbcQQNgSh2NZ3iHw0ul8PzIfgMM=
+            prefix: node-v24.22.0-win-x64
             type: binary
-            url: https://nodejs.org/download/release/v24.21.0/node-v24.21.0-win-x64.zip
+            url: https://nodejs.org/download/release/v24.22.0/node-v24.22.0-win-x64.zip
           targets:
             - cpu: x64
               os: win32
@@ -9293,9 +9293,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-MEiwgR4VjKDYZytZyDmGF2PhREkpgNjSmzad/uRXR+Q=
+            integrity: sha256-aBKlPls3+8MkdtbDURA40rw7vRs7s0jWwE3Sxwocj0o=
             type: binary
-            url: https://unofficial-builds.nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-arm64-musl.tar.gz
+            url: https://unofficial-builds.nodejs.org/download/release/v24.22.0/node-v24.22.0-linux-arm64-musl.tar.gz
           targets:
             - cpu: arm64
               os: linux
@@ -9304,14 +9304,14 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-AacT402pjntNKjGR7nyj+T3QOE0aLvI8N5shYe5uEzo=
+            integrity: sha256-cs0lP74MJTnVIgjtCY1Ht4/ywyunYpXY5rWwzgZ9y6U=
             type: binary
-            url: https://unofficial-builds.nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-x64-musl.tar.gz
+            url: https://unofficial-builds.nodejs.org/download/release/v24.22.0/node-v24.22.0-linux-x64-musl.tar.gz
           targets:
             - cpu: x64
               os: linux
               libc: musl
-    version: 24.21.0
+    version: 24.22.0
     hasBin: true
 
   nodemailer@9.0.1:
@@ -13299,10 +13299,10 @@ snapshots:
     dependencies:
       is-negated-glob: 1.0.0
 
-  '@guolao/vue-monaco-editor@1.6.0(monaco-editor@0.55.1)(vue@3.5.39(typescript@6.0.3))':
+  '@guolao/vue-monaco-editor@1.6.0(monaco-editor@0.57.0)(vue@3.5.39(typescript@6.0.3))':
     dependencies:
       '@monaco-editor/loader': 1.7.0
-      monaco-editor: 0.55.1
+      monaco-editor: 0.57.0
       vue: 3.5.39(typescript@6.0.3)
       vue-demi: 0.14.10(vue@3.5.39(typescript@6.0.3))
 
@@ -17567,7 +17567,7 @@ snapshots:
     dependencies:
       domelementtype: 3.0.0
 
-  dompurify@3.2.7:
+  dompurify@3.4.15:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
 
@@ -20044,9 +20044,9 @@ snapshots:
 
   moment@2.30.1: {}
 
-  monaco-editor@0.55.1:
+  monaco-editor@0.57.0:
     dependencies:
-      dompurify: 3.2.7
+      dompurify: 3.4.15
       marked: 14.0.0
 
   moo@0.5.3: {}
@@ -20240,7 +20240,7 @@ snapshots:
       util: 0.12.5
       vm-browserify: 1.1.2
 
-  node@runtime:24.21.0: {}
+  node@runtime:24.22.0: {}
 
   nodemailer@9.0.1: {}
 
