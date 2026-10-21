@@ -220,7 +220,7 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 你可以使用 `AS <name>` 为每个阶段命名，并在之后通过 `--from=<name>` 引用它。
 
 ```Dockerfile
-FROM golang:1.21 AS build
+FROM golang:1.27@sha256:f20d83a83e18dbd2a4714b8ffd4b30b287b6243962dd75608e86abcc63ba4efc AS build
 WORKDIR /src
 COPY . .
 RUN go build -o myapp
