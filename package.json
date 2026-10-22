@@ -188,7 +188,7 @@
     "emojilib": "^4.0.3",
     "epubjs": "^0.3.93",
     "es-toolkit": "^1.49.0",
-    "esm-potrace-wasm": "^0.4.4",
+    "esm-potrace-wasm": "^0.5.0",
     "ethers": "^6.17.0",
     "event-cron-parser": "^1.0.37",
     "exif-be-gone": "^1.5.1",
