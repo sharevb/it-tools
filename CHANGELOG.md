@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.10.25
+
+### Features
+- **json-viewer, yaml-viewer, currency-converter, geo-coordinates-converter**: support intranet mirrors (3af8e4a)
+- **gitignore-generator, gitattributes-generator**: fall back to a bundled template snapshot (81c1201)
+- **translator, remove-background, math-ocr, ocr-image, gif-to-mp4**: ship runtimes with the app (d53e745)
+- **settings**: add an offline mode that hides internet-only tools (4a80283)
+- **zpool-memo**: add localized content and recategorize (f196182)
+
+### Bug fixes
+- **dns-query, gitattributes-generator**: hide dns-query offline, pin commands to the snapshot (788d4fd)
+- **explainshell, ocr-image**: honour the configured mirrors (8ec5590)
+- **countdown, cron-alarm, time-alarm**: resolve Beep.mp3 against the app base (94c0bbf)
+- **markdown-editor, unicode-formatter, pomodoro-timer**: bundle editor extensions and fonts (b536f04)
+- **visualsubnetcalc, zpool-calc**: escape user data before inserting HTML (de40fc7)
+- **scripts**: make extract-tools-desc quote matching linear (a891be1)
+- **database-builder**: quote names and passwords in generated SQL (1b8d487)
+- **random**: use crypto.getRandomValues for generated secrets (0203c23)
+- **layout**: escape every bracket and paren in footer package links (d785329)
+- **markdown**: escape backslashes in generated table cells (3872432)
+- **json-viewer**: unescape JSON strings in a single pass (9b65547)
+- **objgen**: comment detection and whitespace stripping (b688f52)
+- **docker**: serve precompressed static assets (#583) (4e5c0fd)
+
+### Refactoring
+- **turndown**: remove text-node escape rules that never run (f1b20c7)
+
+### Build system
+- **deps**: add the assets offline mode ships, drop unused currency and ffmpeg helpers (ea30976)
+
+### I18n
+-  add Traditional Chinese (zh-TW) locale (#587) (d6e478c)
+- **en, zh**: describe bundled assets, mirrors and snapshots (6241fa6)
+- **zh**: review the Simplified Chinese translation (#584) (bb00dcb)
+-  rewrite Italian locale with human-quality translations (#582) (3e7f845)
+-  update translations for iptables and fstab generator tools (cba443d)
+
+### Documentation
+- **readme**: document offline mode and the mirror settings (b64d2a1)
+- **zpool-memo**: reformat vdev type table (e179bd5)
+- **locales**: improve zh UFW generator translations (44f1298)
+
 ## Version 2026.09.27
 
 ### Features
