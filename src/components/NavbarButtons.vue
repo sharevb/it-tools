@@ -35,6 +35,7 @@ const localesLong: Record<string, string> = {
   uk: 'Українська',
   ko: '한국인',
   zh: '中文',
+  'zh-TW': '繁體中文',
   vi: 'Tiếng Việt',
   ar: 'عربي',
   hi: 'हिन्दी',
