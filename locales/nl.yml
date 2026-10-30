@@ -670,6 +670,10 @@ tools:
   yaml-prettify:
     title: YAML opmaken en formatteren
     description: Verfraai je YAML-string in een vriendelijke, mensvriendelijke opmaak.
+    externalAccess: Deze tool kan een JSON-schema downloaden van
+      https://www.schemastore.org (of de geconfigureerde schema-catalogus)
+      wanneer validatie wordt aangevraagd. Er worden geen gegevens extern
+      verzonden.
   eta-calculator:
     title: ETA calculator
     description: Een ETA (Estimated Time of Arrival) calculator om de geschatte
@@ -7901,6 +7905,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Selecteer sjablonen (bijv. Node, Python, Vue)
       title-gitignore: .gitignore
       tag-generate: Genereren
+      snapshot-used: Gebruikmakend van de meegeleverde sjabloonsnapshot van {0}.
     externalAccess: Deze tool downloadt het .gitignore-bestand van
       https://github.com/github/gitignore met behulp van de GitHub API.
   i-and-l-checker:
@@ -8148,6 +8153,8 @@ tools:
       tag-replication-client: REPLICATIECLIENT
       tag-replication-slave: REPLICATIESLAAF
       tag-generate-sql-instructions: SQL-instructies genereren
+      error-oracle-password-double-quote: Oracle-wachtwoorden mogen geen dubbele aanhalingstekens ("") bevatten.
+      error-oracle-account-double-quote: Oracle-accountnamen mogen geen dubbele aanhalingstekens ("") bevatten.
   database-table-generator:
     title: Database tabelgenerator
     description: Genereer SQL CREATE TABLE voor veelgebruikte databases
@@ -8180,6 +8187,7 @@ tools:
       placeholder-select-templates: Sjablonen selecteren
       title-preview: Voorbeeld
       tag-fetch-generate: Ophalen en genereren
+      snapshot-used: Gebruikmakend van de meegeleverde sjabloonsnapshot van {0}.
     externalAccess: Deze tool downloadt .gitattributes-bestanden van
       https://github.com/gitattributes/gitattributes met behulp van de GitHub
       API.
@@ -8328,6 +8336,9 @@ tools:
       download-results-csv: Resultaten downloaden als CSV-bestand
       batch-lat-lng-converter: Batch Lat/Lng-omzetter
       single-lat-lng-converter: Enkele breedte-/lengtegraadomzetter
+    externalAccess: Deze tool laadt kaarttegels van OpenStreetMap of de
+      geconfigureerde tegelserver; de weergegeven coördinaten worden als
+      tegelverzoeken verzonden.
   si-prefixes-converter:
     title: SI-voorvoegselomzetter
     description: Omrekenen tussen metrische voorvoegsels
@@ -10147,6 +10158,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Kopteksten en voorbeeldtekst
       tag-truncated: Afgekapt
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Breuk → Decimaal
+      label-decimal-fraction: Decimaal → Breuk
+      label-inches: inches
+      label-millimeters: "Millimeters:"
+      label-mode: "Modus:"
+      label-decimal-places: "Aantal decimalen:"
+      label-unit: "Eenheid:"
+      label-fraction-resolution: "Fractieresolutie:"
+      label-decimal-value: "Decimale waarde:"
+      label-fraction: "Fractie:"
+      placeholder-e-g-3-16-or-2-3-16: bijv. 3/16 of 2 3/16
+      title-results: Resultaten
+      label-decimal-inches: "Decimale inches:"
+      tag-const-mode-ref: const mode = ref
+    title: Breuk Decimaal Omzetter
+    description: Breuken omzetten naar decimalen en omgekeerd, inclusief
+      omrekeningen van inches naar het metrische systeem.
+    externalAccess: "null"
+  sound-tester:
+    texts:
+      title-general: Algemeen
+      title-channel-tests: Kanaaltests
+      title-bass-tests: Basstests
+      title-treble-tests: Drievoudige tests
+      title-custom-frequency: Aangepaste frequentie
+      label-frequency-hz: "Frequentie (Hz):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: Vegen
+      tag-white-noise: Witte ruis
+      tag-pink-noise: Roze ruis
+      tag-stop: Stop
+      tag-left: Links
+      tag-right: Rechts
+      tag-play-this-frequency: Speel deze frequentie af
+    title: Geluidstester
+    description: Test je luidsprekers en hoofdtelefoon door testgeluiden af te
+      spelen. Pas het volume aan en controleer of het geluid helder is.
+    externalAccess: "null"
 about:
   alltools-title: Alle {toolsCount}-hulpmiddelen
   tools:

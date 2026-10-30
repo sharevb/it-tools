@@ -1,9 +1,10 @@
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'Fraction Decimal Converter',
+  name: t('tools.fraction-decimal-converter.title'),
   path: '/fraction-decimal-converter',
-  description: 'Convert fractions to decimals and vice versa including inches and metric conversions.',
+  description: t('tools.fraction-decimal-converter.description'),
   keywords: ['fraction', 'decimal', 'inches', 'metric', 'mm', 'length', 'converter'],
   component: () => import('./fraction-decimal-converter.vue'),
   icon: defineAsyncComponent(() => import('@vicons/tabler/es/MathSymbols')),

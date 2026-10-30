@@ -732,6 +732,9 @@ tools:
   yaml-prettify:
     title: YAML forskjønning og formatering
     description: Forskjønn YAML strengene dine til et lettlest format.
+    externalAccess: Dette verktøyet kan laste ned et JSON-skjema fra
+      https://www.schemastore.org (eller den konfigurerte skjemakatalogen) når
+      validering blir forespurt. Ingen data sendes eksternt.
   eta-calculator:
     title: ETA kalkulator
     description: En ETA (Estimert Tid for Ankomst) kalkulator for å anslå den
@@ -7871,6 +7874,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Velg maler (f.eks. node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Generere
+      snapshot-used: Bruker det medfølgende mal-snapshotet fra {0}.
     externalAccess: Dette verktøyet laster ned .gitignore fra
       https://github.com/github/gitignore ved hjelp av Github API
   i-and-l-checker:
@@ -8114,6 +8118,8 @@ tools:
       tag-replication-client: REPLIKASJONSKLIENT
       tag-replication-slave: REPLIKASJONSSLAVE
       tag-generate-sql-instructions: Generer SQL-instruksjoner
+      error-oracle-password-double-quote: Oracle-passord kan ikke inneholde doble anførselstegn (")
+      error-oracle-account-double-quote: Oracle-kontonavn kan ikke inneholde doble anførselstegn (")
   database-table-generator:
     title: Databasetabelgenerator
     description: Generer SQL CREATE TABLE for vanlige databaser
@@ -8146,6 +8152,7 @@ tools:
       placeholder-select-templates: Velg maler
       title-preview: Forhåndsvisning
       tag-fetch-generate: Hent og generer
+      snapshot-used: Bruker det medfølgende mal-snapshotet fra {0}.
     externalAccess: Dette verktøyet laster ned .gitattributes fra
       https://github.com/gitattributes/gitattributes ved hjelp av Github API.
   html-to-xhtml:
@@ -8291,6 +8298,9 @@ tools:
       download-results-csv: Last ned resultater i CSV-format
       batch-lat-lng-converter: Batch Lat/Lng-konverter
       single-lat-lng-converter: Enkel bredde/lengde-omformer
+    externalAccess: Dette verktøyet laster inn kartfliser fra OpenStreetMap eller
+      den konfigurerte fliseserveren; koordinatene som vises sendes som
+      fliseforespørsler.
   si-prefixes-converter:
     title: SI-prefikskonverterer
     description: Konverter mellom metriske prefikser
@@ -10099,6 +10109,46 @@ tools:
       tag-300-hop-status-code: = 300 && hopp.statuskode
       tag-headers-body-preview: Forhåndsvisning av overskrifter og brødtekst
       tag-truncated: Avkortet
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Brøk → Desimaltall
+      label-decimal-fraction: Desimal → Brøk
+      label-inches: Tommer
+      label-millimeters: "Millimeter:"
+      label-mode: "Modus:"
+      label-decimal-places: "Desimalplasser:"
+      label-unit: "Enhet:"
+      label-fraction-resolution: "Brøkdeloppløsning:"
+      label-decimal-value: "Desimalverdi:"
+      label-fraction: "Brøk:"
+      placeholder-e-g-3-16-or-2-3-16: f.eks. 3/16 eller 2 3/16
+      title-results: Resultater
+      label-decimal-inches: "Desimaltommer:"
+      tag-const-mode-ref: konstant modus = ref
+    title: Brøk Desimalkonverter
+    description: Konverter brøker til desimaltall og omvendt, inkludert tommer og
+      metriske konverteringer.
+    externalAccess: "null"
+  sound-tester:
+    texts:
+      title-general: General
+      title-channel-tests: Kanaltester
+      title-bass-tests: Basstester
+      title-treble-tests: Diskanttester
+      title-custom-frequency: Tilpasset frekvens
+      label-frequency-hz: "Frekvens (Hz):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: Feie
+      tag-white-noise: Hvit støy
+      tag-pink-noise: Rosa støy
+      tag-stop: Stoppe
+      tag-left: Igjen
+      tag-right: Høyre
+      tag-play-this-frequency: Spill av denne frekvensen
+    title: Lydtester
+    description: Test høyttalerne og hodetelefonene dine ved å spille av testlyder.
+      Juster volumet og sjekk lydkvaliteten.
+    externalAccess: "null"
 spanCopyable:
   copy: Kopier til utklippstavlen
   copied: Kopiert!

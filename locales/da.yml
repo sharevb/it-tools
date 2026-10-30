@@ -679,6 +679,9 @@ tools:
   yaml-prettify:
     title: YAML prettify og format
     description: Prettify din YAML-streng til et venligt, menneskeligt læsbart format.
+    externalAccess: Dette værktøj kan downloade et JSON-skema fra
+      https://www.schemastore.org (eller det konfigurerede skemakatalog), når
+      der anmodes om validering. Der sendes ingen data eksternt.
   eta-calculator:
     title: ETA beregner
     description: En ETA (Forventet Ankomsttid) beregner til at bestemme den
@@ -7824,6 +7827,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Vælg skabeloner (f.eks. node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Frembringe
+      snapshot-used: Bruger det medfølgende skabelon-snapshot fra {0}.
     externalAccess: Dette værktøj kan downloades .gitignore fra
       https://github.com/github/gitignore ved hjælp af Github API'en.
   i-and-l-checker:
@@ -8067,6 +8071,8 @@ tools:
       tag-replication-client: REPLIKATIONSKLIENT
       tag-replication-slave: REPLIKATIONSSLAVE
       tag-generate-sql-instructions: Generer SQL-instruktioner
+      error-oracle-password-double-quote: Oracle-adgangskoder må ikke indeholde dobbelte anførselstegn (")
+      error-oracle-account-double-quote: Oracle-kontonavne må ikke indeholde dobbelte anførselstegn (")
   database-table-generator:
     title: Databasetabelgenerator
     description: Generer SQL CREATE TABLE til almindelige databaser
@@ -8099,6 +8105,7 @@ tools:
       placeholder-select-templates: Vælg skabeloner
       title-preview: Forhåndsvisning
       tag-fetch-generate: Hent og generer
+      snapshot-used: Bruger det medfølgende skabelon-snapshot fra {0}.
     externalAccess: Dette værktøj downloader .gitattributes fra
       https://github.com/gitattributes/gitattributes ved hjælp af Github API
   html-to-xhtml:
@@ -8244,6 +8251,9 @@ tools:
       download-results-csv: Download resultater i CSV-format
       batch-lat-lng-converter: Batch Lat/Lng-konverter
       single-lat-lng-converter: Enkelt breddegrad/længdegradskonverter
+    externalAccess: Dette værktøj indlæser kortfliser fra OpenStreetMap eller den
+      konfigurerede fliseserver; de viste koordinater sendes som
+      fliseforespørgsler.
   si-prefixes-converter:
     title: SI-præfikser konverter
     description: Konverter mellem metriske præfikser
@@ -10048,6 +10058,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Forhåndsvisning af overskrifter og brødtekst
       tag-truncated: Afkortet
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Brøk → Decimal
+      label-decimal-fraction: Decimal → Brøk
+      label-inches: Tommer
+      label-millimeters: "Millimeter:"
+      label-mode: "Mode:"
+      label-decimal-places: "Decimaler:"
+      label-unit: "Enhed:"
+      label-fraction-resolution: "Brøkopløsning:"
+      label-decimal-value: "Decimalværdi:"
+      label-fraction: "Brøkdel:"
+      placeholder-e-g-3-16-or-2-3-16: f.eks. 3/16 eller 2 3/16
+      title-results: Resultater
+      label-decimal-inches: "Decimaler i tommer:"
+      tag-const-mode-ref: konstant tilstand = ref
+    title: Brøk Decimal Konverter
+    description: Konverter brøker til decimaltal og omvendt, inklusive tommer og
+      metriske konverteringer.
+    externalAccess: nul
+  sound-tester:
+    texts:
+      title-general: Generel
+      title-channel-tests: Kanaltests
+      title-bass-tests: Bastests
+      title-treble-tests: Diskanttests
+      title-custom-frequency: Brugerdefineret frekvens
+      label-frequency-hz: "Frekvens (Hz):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: Feje
+      tag-white-noise: Hvid støj
+      tag-pink-noise: Lyserød støj
+      tag-stop: Stop
+      tag-left: Venstre
+      tag-right: Højre
+      tag-play-this-frequency: Afspil denne frekvens
+    title: Lydtester
+    description: Test dine højttalere og hovedtelefoner ved at afspille testlyde.
+      Juster lydstyrken, og kontroller lyden.
+    externalAccess: nul
 about:
   alltools-title: Alle {toolsCount} værktøjer
   tools:

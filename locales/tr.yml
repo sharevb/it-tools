@@ -650,6 +650,9 @@ tools:
   yaml-prettify:
     title: YAML güzelleştirici
     description: YAML dosyanı göze hitap eden şekilde formatla.
+    externalAccess: Bu araç, doğrulama isteği geldiğinde https://www.schemastore.org
+      adresinden (veya yapılandırılmış şema kataloğundan) bir JSON şeması
+      indirebilir. Dışarıya hiçbir veri gönderilmez.
   eta-calculator:
     title: ETA hesaplayıcı
     description: ETA (Estimated Time of Arrival)Tahmini varış zamanı hesaplayıcı
@@ -7886,6 +7889,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Şablonları seçin (örneğin node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Oluştur
+      snapshot-used: "{0}'dan gelen paketlenmiş şablon anlık görüntüsünü kullanıyoruz."
     externalAccess: Bu araç, Github API'sini kullanarak
       https://github.com/github/gitignore adresinden .gitignore dosyasını
       indirir.
@@ -8135,6 +8139,8 @@ tools:
       tag-replication-client: ÇOĞALTMA İSTEMCİSİ
       tag-replication-slave: ÇOĞALTMA KÖLESİ
       tag-generate-sql-instructions: SQL Talimatları Oluştur
+      error-oracle-password-double-quote: Oracle şifrelerinde çift tırnak (") kullanılamaz.
+      error-oracle-account-double-quote: Oracle hesap adları çift tırnak (") içeremez.
   database-table-generator:
     title: Veritabanı Tablosu Oluşturucu
     description: Yaygın veritabanları için SQL CREATE TABLE sorgusu oluşturun.
@@ -8167,6 +8173,7 @@ tools:
       placeholder-select-templates: Şablonları seçin
       title-preview: Önizleme
       tag-fetch-generate: Getir ve Oluştur
+      snapshot-used: "{0}'dan gelen paketlenmiş şablon anlık görüntüsünü kullanıyoruz."
     externalAccess: Bu araç, Github API'sini kullanarak
       https://github.com/gitattributes/gitattributes adresinden .gitattributes
       dosyasını indirir.
@@ -8314,6 +8321,9 @@ tools:
       download-results-csv: Sonuçları CSV olarak indir
       batch-lat-lng-converter: Toplu Enlem/Boylam Dönüştürücü
       single-lat-lng-converter: Tek Enlem/Boylam Dönüştürücü
+    externalAccess: Bu araç, OpenStreetMap'ten veya yapılandırılmış karo
+      sunucusundan harita karolarını yükler; gösterilen koordinatlar karo
+      istekleri olarak gönderilir.
   si-prefixes-converter:
     title: SI Önekleri Dönüştürücü
     description: Metrik Ön Ekler Arasında Dönüştürme
@@ -10144,6 +10154,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Başlıklar ve Gövde Önizlemesi
       tag-truncated: Kısaltılmış
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Kesir → Ondalık
+      label-decimal-fraction: Ondalık → Kesir
+      label-inches: İnç
+      label-millimeters: "Milimetre:"
+      label-mode: "Mod:"
+      label-decimal-places: "Ondalık Basamaklar:"
+      label-unit: "Birim:"
+      label-fraction-resolution: "Kesir Çözünürlüğü:"
+      label-decimal-value: "Ondalık Değer:"
+      label-fraction: "Kesir:"
+      placeholder-e-g-3-16-or-2-3-16: Örneğin 3/16 veya 2 3/16
+      title-results: Sonuçlar
+      label-decimal-inches: "Ondalık İnç:"
+      tag-const-mode-ref: sabit mod = referans
+    title: Kesirli Ondalık Sayı Dönüştürücü
+    description: Kesirleri ondalık sayılara ve ondalık sayıları kesirlere
+      dönüştürün; inç ve metrik birimler arasındaki dönüşümleri de içerir.
+    externalAccess: hükümsüz
+  sound-tester:
+    texts:
+      title-general: Genel
+      title-channel-tests: Kanal Testleri
+      title-bass-tests: Bas Testleri
+      title-treble-tests: Üçlü Testler
+      title-custom-frequency: Özel Frekans
+      label-frequency-hz: "Frekans (Hz):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: Süpürmek
+      tag-white-noise: Beyaz Gürültü
+      tag-pink-noise: Pembe Gürültü
+      tag-stop: Durmak
+      tag-left: Sol
+      tag-right: Sağ
+      tag-play-this-frequency: Bu frekansı çalın
+    title: Ses Test Cihazı
+    description: Hoparlörlerinizi ve kulaklıklarınızı test etmek için test sesleri
+      çalın. Ses seviyesini ayarlayın ve ses netliğini kontrol edin.
+    externalAccess: hükümsüz
 about:
   alltools-title: Tüm {toolsCount} Araç
   tools:

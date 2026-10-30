@@ -727,6 +727,9 @@ tools:
   yaml-prettify:
     title: Форматирование YAML
     description: Преобразуйте свою YAML-строку в удобный для чтения формат.
+    externalAccess: Этот инструмент может загрузить JSON-схему с сайта
+      https://www.schemastore.org (или из настроенного каталога схем) при
+      запросе проверки. Данные не передаются вовне.
   eta-calculator:
     title: Калькулятор ETA
     description: Калькулятор ETA (Estimated Time of Arrival) для определения
@@ -7935,6 +7938,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Выберите шаблоны (например, node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Генерировать
+      snapshot-used: Используется снимок шаблона из комплекта {0}.
     externalAccess: Этот инструмент загружает файл .gitignore с
       https://github.com/github/gitignore, используя API Github.
   i-and-l-checker:
@@ -8178,6 +8182,8 @@ tools:
       tag-replication-client: КЛИЕНТ РЕПЛИКАЦИИ
       tag-replication-slave: РАБ-РЕПЛИКАЦИЯ
       tag-generate-sql-instructions: Сгенерировать инструкции SQL
+      error-oracle-password-double-quote: Пароли Oracle не могут содержать двойные кавычки (")
+      error-oracle-account-double-quote: Имена учетных записей Oracle не могут содержать двойные кавычки (")
   database-table-generator:
     title: Генератор таблиц базы данных
     description: Сгенерируйте SQL-запрос CREATE TABLE для распространенных баз данных.
@@ -8210,6 +8216,7 @@ tools:
       placeholder-select-templates: Выберите шаблоны
       title-preview: Предварительный просмотр
       tag-fetch-generate: Получить и сгенерировать
+      snapshot-used: Используется снимок шаблона из комплекта {0}.
     externalAccess: Этот инструмент загружает файлы .gitattributes с
       https://github.com/gitattributes/gitattributes, используя API Github.
   html-to-xhtml:
@@ -8358,6 +8365,9 @@ tools:
       download-results-csv: Скачать результаты в формате CSV
       batch-lat-lng-converter: Пакетный конвертер широты/долготы
       single-lat-lng-converter: Конвертер широты/долготы в одном направлении
+    externalAccess: Этот инструмент загружает фрагменты карты из OpenStreetMap или с
+      настроенного сервера фрагментов; отображаемые координаты отправляются в
+      виде запросов на получение фрагментов карты.
   si-prefixes-converter:
     title: Конвертер префиксов СИ
     description: Преобразование между метрическими префиксами
@@ -10197,6 +10207,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Предварительный просмотр заголовков и основного текста
       tag-truncated: Усеченный
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Дробь → Десятичная дробь
+      label-decimal-fraction: Десятичная дробь → Дробь
+      label-inches: Дюймы
+      label-millimeters: "Миллиметры:"
+      label-mode: "Режим:"
+      label-decimal-places: "Десятичные знаки:"
+      label-unit: "Единица:"
+      label-fraction-resolution: "Разрешение по дробям:"
+      label-decimal-value: "Десятичное значение:"
+      label-fraction: "Дробь:"
+      placeholder-e-g-3-16-or-2-3-16: например, 3/16 или 2 3/16
+      title-results: Результаты
+      label-decimal-inches: "Десятичные дюймы:"
+      tag-const-mode-ref: const mode = ref
+    title: Конвертер дробей и десятичных чисел
+    description: Преобразовывать дроби в десятичные числа и наоборот, включая
+      переводы в дюймы и метрическую систему.
+    externalAccess: нулевой
+  sound-tester:
+    texts:
+      title-general: Общий
+      title-channel-tests: Тесты каналов
+      title-bass-tests: Тесты басов
+      title-treble-tests: Тесты на тройной удар
+      title-custom-frequency: Пользовательская частота
+      label-frequency-hz: "Частота (Гц):"
+      tag-440hz-la: 440 Гц / La
+      tag-sweep: Мести
+      tag-white-noise: Белый шум
+      tag-pink-noise: Розовый шум
+      tag-stop: Останавливаться
+      tag-left: Левый
+      tag-right: Верно
+      tag-play-this-frequency: Воспроизвести на этой частоте
+    title: Тестер звука
+    description: Проверьте работу колонок и наушников, воспроизведя тестовые звуки.
+      Отрегулируйте громкость и проверьте чистоту звука.
+    externalAccess: нулевой
 spanCopyable:
   copy: Копировать в буфер обмена
   copied: Скопировано!

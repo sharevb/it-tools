@@ -573,6 +573,8 @@ tools:
   yaml-prettify:
     title: YAML 포매터
     description: YAML 문자열을 사람이 읽기 쉬운 형식으로 변환합니다.
+    externalAccess: 이 도구는 유효성 검사가 요청될 때 https://www.schemastore.org(또는 구성된 스키마
+      카탈로그)에서 JSON 스키마를 다운로드할 수 있습니다. 외부로 데이터가 전송되지는 않습니다.
   eta-calculator:
     title: ETA 계산기
     description: 작업 예상 종료 시각과 소요 시간을 계산합니다.
@@ -7469,6 +7471,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: "템플릿 선택(예: node, python, vue)"
       title-gitignore: .gitignore
       tag-generate: 생성하다
+      snapshot-used: "{0}에서 제공되는 번들 템플릿 스냅샷을 사용합니다."
     externalAccess: 이 도구는 GitHub API를 사용하여 https://github.com/github/gitignore에서
       .gitignore 파일을 다운로드합니다.
   i-and-l-checker:
@@ -7709,6 +7712,8 @@ tools:
       tag-replication-client: 복제 클라이언트
       tag-replication-slave: 복제 노예
       tag-generate-sql-instructions: SQL 명령어 생성
+      error-oracle-password-double-quote: Oracle 암호에는 큰따옴표(")를 포함할 수 없습니다.
+      error-oracle-account-double-quote: Oracle 계정 이름에는 큰따옴표(")를 포함할 수 없습니다.
   database-table-generator:
     title: 데이터베이스 테이블 생성기
     description: 일반적인 데이터베이스에 대한 SQL CREATE TABLE 문을 생성합니다.
@@ -7741,6 +7746,7 @@ tools:
       placeholder-select-templates: 템플릿을 선택하세요
       title-preview: 시사
       tag-fetch-generate: 가져오기 및 생성
+      snapshot-used: "{0}에서 제공되는 번들 템플릿 스냅샷을 사용합니다."
     externalAccess: 이 도구는 GitHub API를 사용하여
       https://github.com/gitattributes/gitattributes에서 .gitattributes 파일을
       다운로드합니다.
@@ -7883,6 +7889,7 @@ tools:
       download-results-csv: 결과 CSV 다운로드
       batch-lat-lng-converter: 일괄 위도/경도 변환기
       single-lat-lng-converter: 단일 위도/경도 변환기
+    externalAccess: 이 도구는 OpenStreetMap 또는 구성된 타일 서버에서 지도 타일을 불러옵니다. 표시되는 좌표는 타일 요청으로 전송됩니다.
   si-prefixes-converter:
     title: SI 접두사 변환기
     description: 미터법 접두사 간 변환
@@ -9641,6 +9648,44 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: 헤더 및 본문 미리보기
       tag-truncated: 잘린
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: 분수 → 소수
+      label-decimal-fraction: 소수 → 분수
+      label-inches: 신장
+      label-millimeters: "밀리미터:"
+      label-mode: "방법:"
+      label-decimal-places: "소수 자릿수:"
+      label-unit: "단위:"
+      label-fraction-resolution: "분수 분해능:"
+      label-decimal-value: "소수 값:"
+      label-fraction: "분수:"
+      placeholder-e-g-3-16-or-2-3-16: "예: 3/16 또는 2 3/16"
+      title-results: 결과
+      label-decimal-inches: "소수점 단위 인치:"
+      tag-const-mode-ref: const mode = ref
+    title: 분수 소수 변환기
+    description: 분수를 소수로, 소수를 분수로 변환하고, 인치와 미터법 단위 변환도 지원합니다.
+    externalAccess: 널
+  sound-tester:
+    texts:
+      title-general: 일반적인
+      title-channel-tests: 채널 테스트
+      title-bass-tests: 베이스 테스트
+      title-treble-tests: 트리플 테스트
+      title-custom-frequency: 사용자 지정 주파수
+      label-frequency-hz: "주파수(Hz):"
+      tag-440hz-la: 440Hz / 라
+      tag-sweep: 스위프
+      tag-white-noise: 백색 잡음
+      tag-pink-noise: 핑크 노이즈
+      tag-stop: 멈추다
+      tag-left: 왼쪽
+      tag-right: 오른쪽
+      tag-play-this-frequency: 이 주파수를 재생하세요
+    title: 사운드 테스터
+    description: 스피커와 헤드폰을 테스트하려면 테스트 사운드를 재생해 보세요. 볼륨을 조절하고 음질이 양호한지 확인하십시오.
+    externalAccess: 널
 about:
   alltools-title: 모든 {toolsCount}개 도구
   tools:

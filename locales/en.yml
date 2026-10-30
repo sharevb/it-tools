@@ -437,9 +437,9 @@ tools:
   yaml-prettify:
     title: YAML prettify and format
     description: Prettify your YAML string into a friendly, human-readable format.
-    externalAccess: This tool may download a JSON schema from https://www.schemastore.org (or
-      the configured schema catalog) when validation is requested. No data is
-      sent externally.
+    externalAccess: This tool may download a JSON schema from
+      https://www.schemastore.org (or the configured schema catalog) when
+      validation is requested. No data is sent externally.
   eta-calculator:
     title: ETA calculator
     description: An ETA (Estimated Time of Arrival) calculator to determine the
@@ -8341,8 +8341,8 @@ tools:
       download-results-csv: Download Results CSV
       batch-lat-lng-converter: Batch Lat/Lng Converter
       single-lat-lng-converter: Single Lat/Lng Converter
-    externalAccess: This tool loads map tiles from OpenStreetMap or the configured tile
-      server; the coordinates shown are sent as tile requests.
+    externalAccess: This tool loads map tiles from OpenStreetMap or the configured
+      tile server; the coordinates shown are sent as tile requests.
   si-prefixes-converter:
     title: SI Prefixes Converter
     description: Convert between Metric Prefixes
@@ -10068,6 +10068,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Headers & Body Preview
       tag-truncated: Truncated
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Fraction → Decimal
+      label-decimal-fraction: Decimal → Fraction
+      label-inches: Inches
+      label-millimeters: "Millimeters:"
+      label-mode: "Mode:"
+      label-decimal-places: "Decimal Places:"
+      label-unit: "Unit:"
+      label-fraction-resolution: "Fraction Resolution:"
+      label-decimal-value: "Decimal Value:"
+      label-fraction: "Fraction:"
+      placeholder-e-g-3-16-or-2-3-16: e.g. 3/16 or 2 3/16
+      title-results: Results
+      label-decimal-inches: "Decimal Inches:"
+      tag-const-mode-ref: const mode = ref
+    title: Fraction Decimal Converter
+    description: Convert fractions to decimals and vice versa including inches and
+      metric conversions.
+    externalAccess: "null"
+  sound-tester:
+    texts:
+      title-general: General
+      title-channel-tests: Channel Tests
+      title-bass-tests: Bass Tests
+      title-treble-tests: Treble Tests
+      title-custom-frequency: Custom Frequency
+      label-frequency-hz: "Frequency (Hz):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: Sweep
+      tag-white-noise: White Noise
+      tag-pink-noise: Pink Noise
+      tag-stop: Stop
+      tag-left: Left
+      tag-right: Right
+      tag-play-this-frequency: Play this frequency
+    title: Sound Tester
+    description: Test your speakers and headphones by playing test sounds. Adjust
+      volume and check for audio clarity.
+    externalAccess: "null"
 collapsibleToolMenu:
   text:
     expanding: Expanding...

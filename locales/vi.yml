@@ -726,6 +726,9 @@ tools:
     title: Định dạng và làm đẹp YAML
     description: Định dạng chuỗi YAML của bạn thành một định dạng dễ đọc và thân
       thiện với con người.
+    externalAccess: Công cụ này có thể tải xuống lược đồ JSON từ
+      https://www.schemastore.org (hoặc danh mục lược đồ đã được cấu hình) khi
+      yêu cầu xác thực được gửi đi. Không có dữ liệu nào được gửi ra bên ngoài.
   eta-calculator:
     title: Máy tính ETA
     description: Một máy tính ETA (Thời gian dự kiến đến) để biết thời gian kết thúc
@@ -7868,6 +7871,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: "Chọn mẫu (ví dụ: node, python, vue)"
       title-gitignore: .gitignore
       tag-generate: Phát ra
+      snapshot-used: Sử dụng ảnh chụp mẫu được đóng gói từ {0}.
     externalAccess: Công cụ này tải xuống tệp .gitignore từ
       https://github.com/github/gitignore bằng API của Github.
   i-and-l-checker:
@@ -8113,6 +8117,8 @@ tools:
       tag-replication-client: MÁY KHÁCH SAO CHÉP
       tag-replication-slave: NÔ LỆ SAO CHÉP
       tag-generate-sql-instructions: Tạo hướng dẫn SQL
+      error-oracle-password-double-quote: Mật khẩu Oracle không được chứa dấu ngoặc kép (")
+      error-oracle-account-double-quote: Tên tài khoản Oracle không được chứa dấu ngoặc kép (")
   database-table-generator:
     title: Trình tạo bảng cơ sở dữ liệu
     description: Tạo câu lệnh SQL CREATE TABLE cho các cơ sở dữ liệu thông dụng.
@@ -8145,6 +8151,7 @@ tools:
       placeholder-select-templates: Chọn mẫu
       title-preview: Xem trước
       tag-fetch-generate: Tìm nạp & Tạo
+      snapshot-used: Sử dụng ảnh chụp mẫu được đóng gói từ {0}.
     externalAccess: Công cụ này tải xuống tập tin .gitattributes từ
       https://github.com/gitattributes/gitattributes bằng API của Github.
   html-to-xhtml:
@@ -8291,6 +8298,8 @@ tools:
       download-results-csv: Tải xuống kết quả CSV
       batch-lat-lng-converter: Bộ chuyển đổi vĩ độ/kinh độ hàng loạt
       single-lat-lng-converter: Bộ chuyển đổi vĩ độ/kinh độ đơn
+    externalAccess: Công cụ này tải các ô bản đồ từ OpenStreetMap hoặc máy chủ ô bản
+      đồ đã được cấu hình; tọa độ hiển thị được gửi dưới dạng yêu cầu ô bản đồ.
   si-prefixes-converter:
     title: Bộ chuyển đổi tiền tố SI
     description: Chuyển đổi giữa các tiền tố hệ mét
@@ -10111,6 +10120,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Xem trước tiêu đề và nội dung
       tag-truncated: bị cắt ngắn
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Phân số → Số thập phân
+      label-decimal-fraction: Số thập phân → Phân số
+      label-inches: Inch
+      label-millimeters: "Milimét:"
+      label-mode: "Cách thức:"
+      label-decimal-places: "Số chữ số thập phân:"
+      label-unit: "Đơn vị:"
+      label-fraction-resolution: "Phân giải phân số:"
+      label-decimal-value: "Giá trị thập phân:"
+      label-fraction: "Phân số:"
+      placeholder-e-g-3-16-or-2-3-16: "Ví dụ: 3/16 hoặc 2 3/16"
+      title-results: Kết quả
+      label-decimal-inches: "Inch thập phân:"
+      tag-const-mode-ref: const mode = ref
+    title: Bộ chuyển đổi phân số sang số thập phân
+    description: Chuyển đổi phân số sang số thập phân và ngược lại, bao gồm cả
+      chuyển đổi từ inch sang hệ mét.
+    externalAccess: vô giá trị
+  sound-tester:
+    texts:
+      title-general: Tổng quan
+      title-channel-tests: Kiểm tra kênh
+      title-bass-tests: Kiểm tra âm trầm
+      title-treble-tests: Bài kiểm tra ba lần
+      title-custom-frequency: Tần số tùy chỉnh
+      label-frequency-hz: "Tần số (Hz):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: Quét
+      tag-white-noise: Tiếng ồn trắng
+      tag-pink-noise: Tiếng ồn hồng
+      tag-stop: Dừng lại
+      tag-left: Bên trái
+      tag-right: Phải
+      tag-play-this-frequency: Phát tần số này
+    title: Máy kiểm tra âm thanh
+    description: Kiểm tra loa và tai nghe bằng cách phát thử âm thanh. Điều chỉnh âm
+      lượng và kiểm tra độ rõ nét của âm thanh.
+    externalAccess: vô giá trị
 spanCopyable:
   copy: Sao chép vào bảng tạm
   copied: Đã sao chép!

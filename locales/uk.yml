@@ -715,6 +715,9 @@ tools:
   yaml-prettify:
     title: Форматування YAML
     description: Перетворіть свій YAML-рядок у зручний для читання формат.
+    externalAccess: Цей інструмент може завантажити схему JSON з
+      https://www.schemastore.org (або з каталогу налаштованих схем), коли
+      запитується перевірка. Дані не надсилаються зовні.
   eta-calculator:
     title: Калькулятор ETA
     description: Калькулятор ETA (Estimated Time of Arrival) для визначення
@@ -7902,6 +7905,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Виберіть шаблони (наприклад, node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Згенерувати
+      snapshot-used: Використовується знімок шаблону з пакета {0}.
     externalAccess: Цей інструмент можна завантажити з файлу .gitignore з
       https://github.com/github/gitignore за допомогою Github API.
   i-and-l-checker:
@@ -8146,6 +8150,8 @@ tools:
       tag-replication-client: КЛІЄНТ РЕПЛІКАЦІЇ
       tag-replication-slave: РЕПЛІКАЦІЙНИЙ РАБ
       tag-generate-sql-instructions: Генерація SQL-інструкцій
+      error-oracle-password-double-quote: Паролі Oracle не можуть містити подвійні лапки (")
+      error-oracle-account-double-quote: Імена облікових записів Oracle не можуть містити подвійні лапки (")
   database-table-generator:
     title: Генератор таблиць бази даних
     description: Генерація SQL CREATE TABLE для поширених баз даних
@@ -8178,6 +8184,7 @@ tools:
       placeholder-select-templates: Вибрати шаблони
       title-preview: Попередній перегляд
       tag-fetch-generate: Отримати та згенерувати
+      snapshot-used: Використовується знімок шаблону з пакета {0}.
     externalAccess: Цей інструмент можна завантажити з файлу .gitattributes за
       посиланням https://github.com/gitattributes/gitattributes за допомогою
       Github API.
@@ -8325,6 +8332,9 @@ tools:
       download-results-csv: Завантажити результати у форматі CSV
       batch-lat-lng-converter: Пакетний конвертер широти/мовлення
       single-lat-lng-converter: Одинарний конвертер Lat/Lng
+    externalAccess: Цей інструмент завантажує тайли карти з OpenStreetMap або
+      налаштованого сервера тайлів; показані координати надсилаються як запити
+      тайлів.
   si-prefixes-converter:
     title: Конвертер префіксів СІ
     description: Конвертувати між метричними префіксами
@@ -10141,6 +10151,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Попередній перегляд заголовків і основного тексту
       tag-truncated: Укорочено
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Дріб → Десятковий дріб
+      label-decimal-fraction: Десятковий дріб → Дріб
+      label-inches: Дюйми
+      label-millimeters: "Міліметри:"
+      label-mode: "Режим:"
+      label-decimal-places: "Десяткові розряди:"
+      label-unit: "Одиниця:"
+      label-fraction-resolution: "Роздільна здатність дробів:"
+      label-decimal-value: "Десяткове значення:"
+      label-fraction: "Дріб:"
+      placeholder-e-g-3-16-or-2-3-16: наприклад, 3/16 або 2 3/16
+      title-results: Результати
+      label-decimal-inches: "Десяткові дюйми:"
+      tag-const-mode-ref: константний режим = посилання
+    title: Конвертер десяткових дробів
+    description: Перетворюйте дроби на десяткові дроби та навпаки, включаючи дюйми
+      та метричні перетворення.
+    externalAccess: нульовий
+  sound-tester:
+    texts:
+      title-general: Загальне
+      title-channel-tests: Тести каналів
+      title-bass-tests: Тести басів
+      title-treble-tests: Тести високих частот
+      title-custom-frequency: Користувацька частота
+      label-frequency-hz: "Частота (Гц):"
+      tag-440hz-la: 440 Гц / Ла
+      tag-sweep: Підмітання
+      tag-white-noise: Білий шум
+      tag-pink-noise: Рожевий шум
+      tag-stop: СТІЙ
+      tag-left: Ліворуч
+      tag-right: Праворуч
+      tag-play-this-frequency: Відтворювати на цій частоті
+    title: Звукотестер
+    description: Перевірте свої динаміки та навушники, відтворивши тестові звуки.
+      Відрегулюйте гучність та перевірте чіткість звуку.
+    externalAccess: нульовий
 spanCopyable:
   copy: Копіювати в буфер обміну
   copied: Скопійовано!

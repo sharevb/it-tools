@@ -460,6 +460,9 @@ tools:
   yaml-prettify:
     title: Embellecer y formatear YAML
     description: Embellece tu cadena YAML en un formato amigable y legible para humanos.
+    externalAccess: Esta herramienta puede descargar un esquema JSON de
+      https://www.schemastore.org (o del catálogo de esquemas configurado)
+      cuando se solicita la validación. No se envían datos externamente.
   eta-calculator:
     title: Calculadora de ETA
     description: Una calculadora de ETA (hora estimada de llegada) para determinar
@@ -8044,6 +8047,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Seleccionar plantillas (por ejemplo, node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Generar
+      snapshot-used: Utilizando la instantánea de plantilla empaquetada de {0}.
     externalAccess: Esta herramienta descarga .gitignore desde
       https://github.com/github/gitignore usando la API de Github
   i-and-l-checker:
@@ -8294,6 +8298,8 @@ tools:
       tag-replication-client: CLIENTE DE REPLICACIÓN
       tag-replication-slave: ESCLAVO DE REPLICACIÓN
       tag-generate-sql-instructions: Generar instrucciones SQL
+      error-oracle-password-double-quote: Las contraseñas de Oracle no pueden contener comillas dobles (").
+      error-oracle-account-double-quote: Los nombres de cuenta de Oracle no pueden contener comillas dobles (").
   database-table-generator:
     title: Generador de tablas de bases de datos
     description: Generar SQL CREATE TABLE para bases de datos comunes
@@ -8326,6 +8332,7 @@ tools:
       placeholder-select-templates: Seleccionar plantillas
       title-preview: Avance
       tag-fetch-generate: Obtener y generar
+      snapshot-used: Utilizando la instantánea de plantilla empaquetada de {0}.
     externalAccess: Esta herramienta descarga .gitattributes desde
       https://github.com/gitattributes/gitattributes usando la API de Github
   html-to-xhtml:
@@ -8470,6 +8477,9 @@ tools:
       download-results-csv: Descargar resultados CSV
       batch-lat-lng-converter: Convertidor de lotes de latitud/longitud
       single-lat-lng-converter: Convertidor de latitud/longitud único
+    externalAccess: Esta herramienta carga los mosaicos del mapa desde OpenStreetMap
+      o desde el servidor de mosaicos configurado; las coordenadas que se
+      muestran se envían como solicitudes de mosaicos.
   si-prefixes-converter:
     title: Convertidor de prefijos del SI
     description: Convertir entre prefijos métricos
@@ -10296,6 +10306,46 @@ tools:
       tag-300-hop-status-code: = 300 && código_de_estado_de_salto
       tag-headers-body-preview: Vista previa de encabezados y cuerpo del texto
       tag-truncated: Truncado
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Fracción → Decimal
+      label-decimal-fraction: Decimal → Fracción
+      label-inches: Pulgadas
+      label-millimeters: "Milímetros:"
+      label-mode: "Modo:"
+      label-decimal-places: "Cifras decimales:"
+      label-unit: "Unidad:"
+      label-fraction-resolution: "Resolución fraccionaria:"
+      label-decimal-value: "Valor decimal:"
+      label-fraction: "Fracción:"
+      placeholder-e-g-3-16-or-2-3-16: p. ej. 3/16 o 2 3/16
+      title-results: Resultados
+      label-decimal-inches: "Pulgadas decimales:"
+      tag-const-mode-ref: const modo = ref
+    title: Convertidor de fracción a decimal
+    description: Convierte fracciones a decimales y viceversa, incluyendo
+      conversiones entre pulgadas y el sistema métrico.
+    externalAccess: nulo
+  sound-tester:
+    texts:
+      title-general: General
+      title-channel-tests: Pruebas de canal
+      title-bass-tests: Pruebas de lubina
+      title-treble-tests: Pruebas de triple
+      title-custom-frequency: Frecuencia personalizada
+      label-frequency-hz: "Frecuencia (Hz):"
+      tag-440hz-la: 440 Hz / La
+      tag-sweep: Barrer
+      tag-white-noise: Ruido blanco
+      tag-pink-noise: Ruido rosa
+      tag-stop: Detener
+      tag-left: Izquierda
+      tag-right: Bien
+      tag-play-this-frequency: Reproduce esta frecuencia
+    title: Probador de sonido
+    description: Prueba tus altavoces y auriculares reproduciendo sonidos de prueba.
+      Ajusta el volumen y comprueba la claridad del audio.
+    externalAccess: nulo
 spanCopyable:
   copy: Copiar al portapapeles
   copied: Copiado!

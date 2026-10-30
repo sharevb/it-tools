@@ -777,6 +777,9 @@ tools:
   yaml-prettify:
     title: YAML verschönern und formatieren
     description: Verschönere deinen YAML-String in ein menschenlesbares Format.
+    externalAccess: Dieses Tool lädt bei Validierungsanforderungen möglicherweise
+      ein JSON-Schema von https://www.schemastore.org (oder dem konfigurierten
+      Schema-Katalog) herunter. Es werden keine Daten extern übertragen.
   eta-calculator:
     title: ETA-Rechner
     description: Ein ETA (Estimated Time of Arrival)-Rechner, um die ungefähre
@@ -8100,6 +8103,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Vorlagen auswählen (z. B. Node, Python, Vue)
       title-gitignore: .gitignore
       tag-generate: Erzeugen
+      snapshot-used: Verwendung des mitgelieferten Vorlagen-Snapshots aus {0}.
     externalAccess: Dieses Tool lädt die .gitignore-Datei von
       https://github.com/github/gitignore mithilfe der GitHub-API herunter.
   i-and-l-checker:
@@ -8352,6 +8356,8 @@ tools:
       tag-replication-client: Replikationskunde
       tag-replication-slave: REPLIKATIONSSKLAVE
       tag-generate-sql-instructions: SQL-Anweisungen generieren
+      error-oracle-password-double-quote: Oracle-Passwörter dürfen keine doppelten Anführungszeichen (") enthalten.
+      error-oracle-account-double-quote: Oracle-Kontonamen dürfen keine doppelten Anführungszeichen (") enthalten.
   database-table-generator:
     title: Datenbanktabellengenerator
     description: SQL-Anweisung zum Erstellen von Tabellen für gängige Datenbanken generieren
@@ -8384,6 +8390,7 @@ tools:
       placeholder-select-templates: Vorlagen auswählen
       title-preview: Vorschau
       tag-fetch-generate: Abrufen und Generieren
+      snapshot-used: Verwendung des mitgelieferten Vorlagen-Snapshots aus {0}.
     externalAccess: Dieses Tool lädt .gitattributes-Dateien von
       https://github.com/gitattributes/gitattributes mithilfe der GitHub-API
       herunter.
@@ -8534,6 +8541,9 @@ tools:
       download-results-csv: Ergebnisse als CSV-Datei herunterladen
       batch-lat-lng-converter: Batch-Lat/Lng-Konverter
       single-lat-lng-converter: Einzelner Breiten-/Längen-Konverter
+    externalAccess: Dieses Tool lädt Kartenkacheln von OpenStreetMap oder dem
+      konfigurierten Kachelserver; die angezeigten Koordinaten werden als
+      Kachelanfragen gesendet.
   si-prefixes-converter:
     title: SI-Präfix-Konverter
     description: Umrechnung zwischen metrischen Präfixen
@@ -10371,6 +10381,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Vorschau von Kopfzeilen und Textkörper
       tag-truncated: Gekürzt
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Bruch → Dezimalzahl
+      label-decimal-fraction: Dezimalzahl → Bruch
+      label-inches: Zoll
+      label-millimeters: "Millimeter:"
+      label-mode: "Modus:"
+      label-decimal-places: "Dezimalstellen:"
+      label-unit: "Einheit:"
+      label-fraction-resolution: "Bruchteilsauflösung:"
+      label-decimal-value: "Dezimalwert:"
+      label-fraction: "Fraktion:"
+      placeholder-e-g-3-16-or-2-3-16: z.B. 3/16 oder 2 3/16
+      title-results: Ergebnisse
+      label-decimal-inches: "Dezimalzoll:"
+      tag-const-mode-ref: const mode = ref
+    title: Bruch-Dezimal-Umrechner
+    description: Brüche in Dezimalzahlen und umgekehrt umrechnen, einschließlich
+      Zoll- und metrischer Umrechnungen.
+    externalAccess: "null"
+  sound-tester:
+    texts:
+      title-general: Allgemein
+      title-channel-tests: Kanaltests
+      title-bass-tests: Bass-Tests
+      title-treble-tests: Dreifachtests
+      title-custom-frequency: Benutzerdefinierte Frequenz
+      label-frequency-hz: "Frequenz (Hz):"
+      tag-440hz-la: 440 Hz / La
+      tag-sweep: Fegen
+      tag-white-noise: Weißes Rauschen
+      tag-pink-noise: Rosa Rauschen
+      tag-stop: Stoppen
+      tag-left: Links
+      tag-right: Rechts
+      tag-play-this-frequency: Spiele diese Frequenz ab
+    title: Schalltester
+    description: Testen Sie Ihre Lautsprecher und Kopfhörer, indem Sie Testtöne
+      abspielen. Passen Sie die Lautstärke an und prüfen Sie die Klangqualität.
+    externalAccess: "null"
 locale-selector:
   select-a-language: Wählen Sie eine Sprache
 collapsibleToolMenu:

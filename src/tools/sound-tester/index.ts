@@ -1,9 +1,10 @@
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'Sound Tester',
+  name: t('tools.sound-tester.title'),
   path: '/sound-tester',
-  description: 'Test your speakers and headphones by playing test sounds. Adjust volume and check for audio clarity.',
+  description: t('tools.sound-tester.description'),
   keywords: ['sound', 'speaker', 'tester'],
   component: () => import('./sound-tester.vue'),
   icon: defineAsyncComponent(() => import('@vicons/tabler/es/Speakerphone')),

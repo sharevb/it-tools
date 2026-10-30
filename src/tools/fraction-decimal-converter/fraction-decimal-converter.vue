@@ -2,51 +2,81 @@
   <div>
     <n-form label-placement="left" label-width="120px">
       <n-space>
-        <n-form-item label="Mode:">
+        <n-form-item :label="t('tools.fraction-decimal-converter.texts.label-mode')">
           <n-select v-model:value="mode" :options="modeOptions" style="width: 180px" />
         </n-form-item>
 
-        <n-form-item label="Decimal Places:">
+        <n-form-item :label="t('tools.fraction-decimal-converter.texts.label-decimal-places')">
           <n-input-number v-model:value="decimalPlaces" :min="0" :max="8" style="width: 80px" />
         </n-form-item>
 
         <template v-if="mode === 'decimalToFraction'">
-          <n-form-item label="Unit:">
+          <n-form-item :label="t('tools.fraction-decimal-converter.texts.label-unit')">
             <n-select v-model:value="decimalUnit" :options="unitOptions" style="width: 120px" />
           </n-form-item>
-          <n-form-item label="Fraction Resolution:" label-width="140px">
+          <n-form-item
+            :label="t('tools.fraction-decimal-converter.texts.label-fraction-resolution')"
+            label-width="140px"
+          >
             <n-select v-model:value="maxDenominator" :options="denominatorOptions" style="width: 180px" />
           </n-form-item>
         </template>
       </n-space>
 
-      <n-form-item label="Decimal Value:" v-if="mode === 'decimalToFraction'">
+      <n-form-item
+        :label="t('tools.fraction-decimal-converter.texts.label-decimal-value')"
+        v-if="mode === 'decimalToFraction'"
+      >
         <n-input-number v-model:value="decimalInput" style="width: 100%" />
       </n-form-item>
 
-      <n-form-item label="Fraction:" v-if="mode === 'fractionToDecimal'">
-        <n-input v-model:value="fractionInput" placeholder="e.g. 3/16 or 2 3/16" />
+      <n-form-item
+        :label="t('tools.fraction-decimal-converter.texts.label-fraction')"
+        v-if="mode === 'fractionToDecimal'"
+      >
+        <n-input
+          v-model:value="fractionInput"
+          :placeholder="t('tools.fraction-decimal-converter.texts.placeholder-e-g-3-16-or-2-3-16')"
+        />
       </n-form-item>
     </n-form>
 
-    <n-card title="Results">
+    <n-card :title="t('tools.fraction-decimal-converter.texts.title-results')">
       <template v-if="mode === 'fractionToDecimal'">
-        <input-copyable :value="decimalInches" label="Decimal Inches:" label-position="left" label-width="120px" mb-1 />
-        <input-copyable :value="millimeters" label="Millimeters:" label-position="left" label-width="120px" mb-1 />
+        <input-copyable
+          :value="decimalInches"
+          :label="t('tools.fraction-decimal-converter.texts.label-decimal-inches')"
+          label-position="left"
+          label-width="120px"
+          mb-1
+        />
+        <input-copyable
+          :value="millimeters"
+          :label="t('tools.fraction-decimal-converter.texts.label-millimeters')"
+          label-position="left"
+          label-width="120px"
+          mb-1
+        />
       </template>
 
       <template v-else>
-        <input-copyable :value="fractionResult" label="Fraction:" label-position="left" label-width="120px" mb-1 />
+        <input-copyable
+          :value="fractionResult"
+          :label="t('tools.fraction-decimal-converter.texts.label-fraction')"
+          label-position="left"
+          label-width="120px"
+          mb-1
+        />
         <input-copyable
           :value="decimalInchesReverse"
-          label="Decimal Inches:"
+          :label="t('tools.fraction-decimal-converter.texts.label-decimal-inches')"
           label-position="left"
           label-width="120px"
           mb-1
         />
         <input-copyable
           :value="millimetersReverse"
-          label="Millimeters:"
+          :label="t('tools.fraction-decimal-converter.texts.label-millimeters')"
           label-position="left"
           label-width="120px"
           mb-1
@@ -57,6 +87,9 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
+
 const mode = ref<'fractionToDecimal' | 'decimalToFraction'>('fractionToDecimal');
 
 const fractionInput = ref('3/16');
@@ -68,22 +101,22 @@ const maxDenominator = ref(64);
 
 const modeOptions = [
   {
-    label: 'Fraction → Decimal',
+    label: t('tools.fraction-decimal-converter.texts.label-fraction-decimal'),
     value: 'fractionToDecimal',
   },
   {
-    label: 'Decimal → Fraction',
+    label: t('tools.fraction-decimal-converter.texts.label-decimal-fraction'),
     value: 'decimalToFraction',
   },
 ];
 
 const unitOptions = [
   {
-    label: 'Inches',
+    label: t('tools.fraction-decimal-converter.texts.label-inches'),
     value: 'in',
   },
   {
-    label: 'Millimeters',
+    label: t('tools.fraction-decimal-converter.texts.label-millimeters'),
     value: 'mm',
   },
 ];

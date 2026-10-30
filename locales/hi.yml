@@ -449,6 +449,9 @@ tools:
   yaml-prettify:
     title: YAML को सुंदर बनाएं और प्रारूपित करें
     description: अपनी YAML स्ट्रिंग को एक सरल, आसानी से पढ़ी जा सकने वाली प्रारूप में बदलें।
+    externalAccess: जब सत्यापन का अनुरोध किया जाता है, तो यह टूल
+      https://www.schemastore.org (या कॉन्फ़िगर किए गए स्कीमा कैटलॉग) से एक JSON
+      स्कीमा डाउनलोड कर सकता है। कोई भी डेटा बाहरी रूप से नहीं भेजा जाता है।
   eta-calculator:
     title: ETA कैलकुलेटर
     description: किसी कार्य के अनुमानित समापन समय (ईटीए) का पता लगाने के लिए एक
@@ -8058,6 +8061,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: टेम्प्लेट चुनें (उदाहरण के लिए, नोड, पायथन, वू)
       title-gitignore: .gitignore
       tag-generate: उत्पन्न
+      snapshot-used: "{0} से बंडल किए गए टेम्पलेट स्नैपशॉट का उपयोग करना।"
     externalAccess: यह टूल GitHub API का उपयोग करके
       https://github.com/github/gitignore से .gitignore फ़ाइल डाउनलोड करता है।
   i-and-l-checker:
@@ -8280,6 +8284,8 @@ tools:
       tag-replication-client: प्रतिकृति क्लाइंट
       tag-replication-slave: प्रतिकृति गुलाम
       tag-generate-sql-instructions: SQL निर्देश उत्पन्न करें
+      error-oracle-password-double-quote: ओरेकल पासवर्ड में डबल कोटेशन मार्क (") नहीं हो सकते।
+      error-oracle-account-double-quote: ओरेकल खाता नामों में दोहरे उद्धरण चिह्न (") नहीं हो सकते।
   database-table-generator:
     title: डेटाबेस टेबल जनरेटर
     description: सामान्य डेटाबेस के लिए SQL CREATE TABLE फ़ंक्शन जनरेट करें
@@ -8312,6 +8318,7 @@ tools:
       placeholder-select-templates: टेम्पलेट चुनें
       title-preview: पूर्व दर्शन
       tag-fetch-generate: फ़ेच और जनरेट
+      snapshot-used: "{0} से बंडल किए गए टेम्पलेट स्नैपशॉट का उपयोग करना।"
     externalAccess: यह टूल GitHub API का उपयोग करके
       https://github.com/gitattributes/gitattributes से .gitattributes फ़ाइलें
       डाउनलोड करता है।
@@ -8459,6 +8466,9 @@ tools:
       download-results-csv: परिणामों की CSV फ़ाइल डाउनलोड करें
       batch-lat-lng-converter: बैच अक्षांश/देशांतर कनवर्टर
       single-lat-lng-converter: सिंगल अक्षांश/देशांतर कनवर्टर
+    externalAccess: यह टूल ओपनस्ट्रीटमैप या कॉन्फ़िगर किए गए टाइल सर्वर से मानचित्र
+      टाइल लोड करता है; दिखाए गए निर्देशांक टाइल अनुरोधों के रूप में भेजे जाते
+      हैं।
   si-prefixes-converter:
     title: एसआई उपसर्ग कनवर्टर
     description: मीट्रिक उपसर्गों के बीच रूपांतरण करें
@@ -10221,6 +10231,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: शीर्षक और मुख्य भाग का पूर्वावलोकन
       tag-truncated: छंटनी की गई
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: भिन्न → दशमलव
+      label-decimal-fraction: दशमलव → भिन्न
+      label-inches: इंच
+      label-millimeters: "मिलीमीटर:"
+      label-mode: "तरीका:"
+      label-decimal-places: "दशमलव स्थानों:"
+      label-unit: "इकाई:"
+      label-fraction-resolution: "अंशीय समाधान:"
+      label-decimal-value: "दशमलव मान:"
+      label-fraction: "अंश:"
+      placeholder-e-g-3-16-or-2-3-16: उदाहरण के लिए 3/16 या 2 3/16
+      title-results: परिणाम
+      label-decimal-inches: "दशमलव इंच:"
+      tag-const-mode-ref: const mode = ref
+    title: भिन्न दशमलव परिवर्तक
+    description: भिन्नों को दशमलव में और दशमलव को भिन्नों में परिवर्तित करें, जिसमें
+      इंच और मीट्रिक रूपांतरण भी शामिल हैं।
+    externalAccess: व्यर्थ
+  sound-tester:
+    texts:
+      title-general: सामान्य
+      title-channel-tests: चैनल परीक्षण
+      title-bass-tests: बास परीक्षण
+      title-treble-tests: तिहरा परीक्षण
+      title-custom-frequency: कस्टम आवृत्ति
+      label-frequency-hz: "आवृत्ति (हर्ट्ज़):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: झाडू
+      tag-white-noise: श्वेत रव
+      tag-pink-noise: गुलाबी शोर
+      tag-stop: रुकना
+      tag-left: बाएं
+      tag-right: सही
+      tag-play-this-frequency: इस आवृत्ति को बजाएं
+    title: ध्वनि परीक्षक
+    description: टेस्ट साउंड चलाकर अपने स्पीकर और हेडफ़ोन की जांच करें। वॉल्यूम
+      एडजस्ट करें और ऑडियो की स्पष्टता जांचें।
+    externalAccess: व्यर्थ
 collapsibleToolMenu:
   text:
     expanding: विस्तार हो रहा है...

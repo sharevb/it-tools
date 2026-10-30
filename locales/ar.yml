@@ -690,6 +690,9 @@ tools:
   yaml-prettify:
     title: تجميل وتنسيق YAML
     description: تجميل سلسلة نصية بتسنيق YAML إلى صيغة سلسة وسهلة القراءة.
+    externalAccess: قد تقوم هذه الأداة بتنزيل مخطط JSON من
+      https://www.schemastore.org (أو من كتالوج المخططات المُكوّن) عند طلب
+      التحقق. لا يتم إرسال أي بيانات إلى جهات خارجية.
   eta-calculator:
     title: حاسبة وقت الوصول المتوقع (ETA)
     description: حاسبة وقت الوصول المتوقع (ETA) لحساب الوقت التقريبي لانتهاء مهمة
@@ -7761,6 +7764,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: حدد القوالب (على سبيل المثال، node، python، vue)
       title-gitignore: .gitignore
       tag-generate: يولد
+      snapshot-used: باستخدام لقطة القالب المجمعة من {0}.
     externalAccess: تقوم هذه الأداة بتنزيل ملف .gitignore من
       https://github.com/github/gitignore باستخدام واجهة برمجة تطبيقات GitHub.
   i-and-l-checker:
@@ -8002,6 +8006,8 @@ tools:
       tag-replication-client: عميل النسخ المتماثل
       tag-replication-slave: خادم النسخ المتماثل
       tag-generate-sql-instructions: إنشاء تعليمات SQL
+      error-oracle-password-double-quote: لا يمكن أن تحتوي كلمات مرور أوراكل على علامات اقتباس مزدوجة (""
+      error-oracle-account-double-quote: لا يمكن أن تحتوي أسماء حسابات أوراكل على علامات اقتباس مزدوجة (")
   database-table-generator:
     title: مولد جداول قواعد البيانات
     description: إنشاء جداول SQL CREATE TABLE لقواعد البيانات الشائعة
@@ -8034,6 +8040,7 @@ tools:
       placeholder-select-templates: اختر القوالب
       title-preview: معاينة
       tag-fetch-generate: جلب وإنشاء
+      snapshot-used: باستخدام لقطة القالب المجمعة من {0}.
     externalAccess: تقوم هذه الأداة بتنزيل ملف .gitattributes من
       https://github.com/gitattributes/gitattributes باستخدام واجهة برمجة
       تطبيقات GitHub.
@@ -8178,6 +8185,8 @@ tools:
       download-results-csv: تنزيل نتائج ملف CSV
       batch-lat-lng-converter: محول خطوط الطول والعرض الدفعي
       single-lat-lng-converter: محول خطوط الطول والعرض أحادي
+    externalAccess: تقوم هذه الأداة بتحميل مربعات الخرائط من OpenStreetMap أو خادم
+      المربعات المُكوّن؛ ويتم إرسال الإحداثيات المعروضة كطلبات مربعات.
   si-prefixes-converter:
     title: محول بادئات النظام الدولي للوحدات
     description: التحويل بين البادئات المترية
@@ -9975,6 +9984,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: معاينة العناوين والمحتوى
       tag-truncated: مختصر
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: الكسر ← العدد العشري
+      label-decimal-fraction: عدد عشري ← كسر
+      label-inches: بوصات
+      label-millimeters: "ملليمترات:"
+      label-mode: "وضع:"
+      label-decimal-places: "المنازل العشرية:"
+      label-unit: "وحدة:"
+      label-fraction-resolution: "حل الكسور:"
+      label-decimal-value: "القيمة العشرية:"
+      label-fraction: "جزء:"
+      placeholder-e-g-3-16-or-2-3-16: "مثال: 3/16 أو 2 3/16"
+      title-results: نتائج
+      label-decimal-inches: "البوصات العشرية:"
+      tag-const-mode-ref: const mode = ref
+    title: محول الكسور العشرية
+    description: تحويل الكسور إلى أعداد عشرية والعكس، بما في ذلك التحويلات بالبوصة
+      والوحدات المترية.
+    externalAccess: باطل
+  sound-tester:
+    texts:
+      title-general: عام
+      title-channel-tests: اختبارات القنوات
+      title-bass-tests: اختبارات الصوت الجهير
+      title-treble-tests: اختبارات التريبل
+      title-custom-frequency: التردد المخصص
+      label-frequency-hz: "التردد (هرتز):"
+      tag-440hz-la: 440 هرتز / لا
+      tag-sweep: مسح
+      tag-white-noise: الضوضاء البيضاء
+      tag-pink-noise: الضوضاء الوردية
+      tag-stop: قف
+      tag-left: غادر
+      tag-right: يمين
+      tag-play-this-frequency: قم بتشغيل هذا التردد
+    title: جهاز اختبار الصوت
+    description: اختبر مكبرات الصوت وسماعات الرأس بتشغيل أصوات اختبارية. اضبط مستوى
+      الصوت وتحقق من وضوح الصوت.
+    externalAccess: باطل
 spanCopyable:
   copy: نسخ إلى الحافظة
   copied: تم النسخ!

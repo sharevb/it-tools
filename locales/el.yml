@@ -438,6 +438,9 @@ tools:
     title: Ομορφοποίηση και μορφοποίηση YAML
     description: Ομορφύνετε τη συμβολοσειρά YAML σε μια φιλική, αναγνώσιμη από τον
       άνθρωπο μορφή.
+    externalAccess: Αυτό το εργαλείο μπορεί να κατεβάσει ένα σχήμα JSON από το
+      https://www.schemastore.org (ή τον διαμορφωμένο κατάλογο σχήματος) όταν
+      ζητηθεί επικύρωση. Δεν αποστέλλονται δεδομένα εξωτερικά.
   eta-calculator:
     title: Υπολογιστής ETA
     description: Μια αριθμομηχανή ETA (Εκτιμώμενη Ώρα Άφιξης) για τον προσδιορισμό
@@ -8176,6 +8179,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Επιλογή προτύπων (π.χ. node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Παράγω
+      snapshot-used: Χρησιμοποιώντας το στιγμιότυπο του πακέτου προτύπου από το {0}.
     externalAccess: Αυτό το εργαλείο κατεβάζει το .gitignore από τη διεύθυνση
       https://github.com/github/gitignore χρησιμοποιώντας το Github API.
   i-and-l-checker:
@@ -8401,6 +8405,9 @@ tools:
       tag-replication-client: ΠΕΛΑΤΗΣ ΑΝΤΙΓΡΑΦΗΣ
       tag-replication-slave: ΑΝΤΙΓΡΑΦΗ ΣΚΛΑΒΟΥ
       tag-generate-sql-instructions: Δημιουργία εντολών SQL
+      error-oracle-password-double-quote: Οι κωδικοί πρόσβασης Oracle δεν μπορούν να περιέχουν διπλά εισαγωγικά (")
+      error-oracle-account-double-quote: Τα ονόματα λογαριασμών Oracle δεν μπορούν να
+        περιέχουν διπλά εισαγωγικά (")
   database-table-generator:
     title: Γεννήτρια πινάκων βάσης δεδομένων
     description: Δημιουργία SQL CREATE TABLE για κοινές βάσεις δεδομένων
@@ -8433,6 +8440,7 @@ tools:
       placeholder-select-templates: Επιλογή προτύπων
       title-preview: Πρεμιέρα
       tag-fetch-generate: Ανάκτηση & Δημιουργία
+      snapshot-used: Χρησιμοποιώντας το στιγμιότυπο του πακέτου προτύπου από το {0}.
     externalAccess: Αυτό το εργαλείο κατεβάζει το αρχείο .gitattributes από τη
       διεύθυνση https://github.com/gitattributes/gitattributes χρησιμοποιώντας
       το Github API.
@@ -8582,6 +8590,9 @@ tools:
       download-results-csv: Λήψη αποτελεσμάτων σε μορφή CSV
       batch-lat-lng-converter: Μετατροπέας Παρτίδας Γεωγραφικού Πλάτους/Υγρού
       single-lat-lng-converter: Μετατροπέας μονού γεωγραφικού πλάτους/υγρού
+    externalAccess: Αυτό το εργαλείο φορτώνει πλακίδια χάρτη από το OpenStreetMap ή
+      τον διαμορφωμένο διακομιστή πλακιδίων. Οι συντεταγμένες που εμφανίζονται
+      αποστέλλονται ως αιτήματα πλακιδίων.
   si-prefixes-converter:
     title: Μετατροπέας προθεμάτων SI
     description: Μετατροπή μεταξύ προθεμάτων μετρικών
@@ -10415,6 +10426,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Προεπισκόπηση κεφαλίδων και σώματος
       tag-truncated: Κολοβός
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Κλάσμα → Δεκαδικό
+      label-decimal-fraction: Δεκαδικό → Κλάσμα
+      label-inches: Ίντσες
+      label-millimeters: "Χιλιοστά:"
+      label-mode: "Τρόπος:"
+      label-decimal-places: "Δεκαδικά ψηφία:"
+      label-unit: "Μονάδα:"
+      label-fraction-resolution: "Ανάλυση κλάσματος:"
+      label-decimal-value: "Δεκαδική τιμή:"
+      label-fraction: "Κλάσμα:"
+      placeholder-e-g-3-16-or-2-3-16: π.χ. 3/16 ή 2 3/16
+      title-results: Αποτελέσματα
+      label-decimal-inches: "Δεκαδικές ίντσες:"
+      tag-const-mode-ref: λειτουργία const = αναφ.
+    title: Μετατροπέας δεκαδικών κλασμάτων
+    description: Μετατρέψτε κλάσματα σε δεκαδικά και αντίστροφα, συμπεριλαμβανομένων
+      των μετατροπών σε ίντσες και μετρικά.
+    externalAccess: άκυρος
+  sound-tester:
+    texts:
+      title-general: Γενικός
+      title-channel-tests: Δοκιμές καναλιών
+      title-bass-tests: Δοκιμές μπάσων
+      title-treble-tests: Δοκιμές πρίμων
+      title-custom-frequency: Προσαρμοσμένη συχνότητα
+      label-frequency-hz: "Συχνότητα (Hz):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: Σκούπισμα
+      tag-white-noise: Λευκός Θόρυβος
+      tag-pink-noise: Ροζ Θόρυβος
+      tag-stop: Στάση
+      tag-left: Αριστερά
+      tag-right: Δικαίωμα
+      tag-play-this-frequency: Αναπαραγωγή αυτής της συχνότητας
+    title: Δοκιμαστής ήχου
+    description: Δοκιμάστε τα ηχεία και τα ακουστικά σας αναπαράγοντας δοκιμαστικούς
+      ήχους. Ρυθμίστε την ένταση και ελέγξτε την καθαρότητα του ήχου.
+    externalAccess: άκυρος
 collapsibleToolMenu:
   text:
     expanding: Επέκταση...

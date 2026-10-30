@@ -457,6 +457,9 @@ tools:
   yaml-prettify:
     title: Embelezar e formatar YAML
     description: Embeleze sua string YAML em um formato amigável e legível.
+    externalAccess: Esta ferramenta pode baixar um esquema JSON de
+      https://www.schemastore.org (ou do catálogo de esquemas configurado)
+      quando a validação for solicitada. Nenhum dado é enviado externamente.
   eta-calculator:
     title: Calculadora de ETA
     description: Uma calculadora de ETA (Tempo Estimado de Chegada) para determinar
@@ -7954,6 +7957,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Selecione modelos (por exemplo, node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Gerar
+      snapshot-used: Usando o snapshot do modelo agrupado de {0}.
     externalAccess: Esta ferramenta baixa o arquivo .gitignore de
       https://github.com/github/gitignore usando a API do GitHub.
   i-and-l-checker:
@@ -8201,6 +8205,8 @@ tools:
       tag-replication-client: CLIENTE DE REPLICAÇÃO
       tag-replication-slave: ESCRAVO DE REPLICAÇÃO
       tag-generate-sql-instructions: Gerar instruções SQL
+      error-oracle-password-double-quote: As senhas da Oracle não podem conter aspas duplas ("").
+      error-oracle-account-double-quote: Os nomes de contas Oracle não podem conter aspas duplas ("").
   database-table-generator:
     title: Gerador de tabelas de banco de dados
     description: Gere instruções SQL CREATE TABLE para bancos de dados comuns.
@@ -8233,6 +8239,7 @@ tools:
       placeholder-select-templates: Selecione os modelos
       title-preview: Pré-visualização
       tag-fetch-generate: Buscar e gerar
+      snapshot-used: Usando o snapshot do modelo agrupado de {0}.
     externalAccess: Esta ferramenta baixa arquivos .gitattributes de
       https://github.com/gitattributes/gitattributes usando a API do GitHub.
   html-to-xhtml:
@@ -8379,6 +8386,9 @@ tools:
       download-results-csv: Baixar resultados em CSV
       batch-lat-lng-converter: Conversor de Latitude/Longitude em Lote
       single-lat-lng-converter: Conversor único de latitude/longitude
+    externalAccess: Esta ferramenta carrega mosaicos de mapas do OpenStreetMap ou do
+      servidor de mosaicos configurado; as coordenadas exibidas são enviadas
+      como solicitações de mosaico.
   si-prefixes-converter:
     title: Conversor de prefixos SI
     description: Converter entre prefixos métricos
@@ -10204,6 +10214,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Pré-visualização do cabeçalho e do corpo do texto
       tag-truncated: Truncado
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Fração → Decimal
+      label-decimal-fraction: Decimal → Fração
+      label-inches: Polegadas
+      label-millimeters: "Milímetros:"
+      label-mode: "Modo:"
+      label-decimal-places: "Casas decimais:"
+      label-unit: "Unidade:"
+      label-fraction-resolution: "Resolução de frações:"
+      label-decimal-value: "Valor decimal:"
+      label-fraction: "Fração:"
+      placeholder-e-g-3-16-or-2-3-16: "Exemplo: 3/16 ou 2 3/16"
+      title-results: Resultados
+      label-decimal-inches: "Polegadas decimais:"
+      tag-const-mode-ref: const mode = ref
+    title: Conversor de Frações para Decimais
+    description: Converta frações em decimais e vice-versa, incluindo conversões
+      entre polegadas e unidades métricas.
+    externalAccess: nulo
+  sound-tester:
+    texts:
+      title-general: Em geral
+      title-channel-tests: Testes de canal
+      title-bass-tests: Testes de baixo
+      title-treble-tests: Testes Triplos
+      title-custom-frequency: Frequência personalizada
+      label-frequency-hz: "Frequência (Hz):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: Varrer
+      tag-white-noise: Ruído branco
+      tag-pink-noise: Ruído Rosa
+      tag-stop: Parar
+      tag-left: Esquerda
+      tag-right: Certo
+      tag-play-this-frequency: Reproduza esta frequência
+    title: Testador de som
+    description: Teste seus alto-falantes e fones de ouvido reproduzindo sons de
+      teste. Ajuste o volume e verifique a clareza do áudio.
+    externalAccess: nulo
 spanCopyable:
   copy: Copiar para a área de transferência
   copied: Copiado!

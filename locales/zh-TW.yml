@@ -272,7 +272,7 @@ tools:
       comparison-result: 對比結果
       matched: 匹配
       no-match: 不匹配
-      timed-out-after-timeout-period: '{timeoutPeriod} 後逾時'
+      timed-out-after-timeout-period: "{timeoutPeriod} 後逾時"
       hashed-in-elapsed-period: 雜湊耗時 {elapsedPeriod}
       compared-in-elapsed-period: 比較耗時 {elapsedPeriod}
   crontab-generator:
@@ -393,6 +393,8 @@ tools:
   yaml-prettify:
     title: YAML 格式化與美化
     description: 將您的 YAML 字串格式化為友好、易讀的格式。
+    externalAccess: 當需要進行驗證時，此工具可能會從 https://www.schemastore.org（或已設定的模式目錄）下載 JSON
+      模式。不會向外部發送任何資料。
   eta-calculator:
     title: ETA 計算器
     description: ETA（預計到達時間）計算器，用於確定任務的大致結束時間，例如檔案下載的結束時間和持續時間。
@@ -417,7 +419,7 @@ tools:
       text-arabic-number-copied-to-the-clipboard: 阿拉伯數字已複製到剪貼簿
       title-arabic-to-roman: 阿拉伯數字轉羅馬數字
       title-roman-to-arabic: 羅馬數字轉阿拉伯數字
-      tag-min-arabic-to-roman-value: "= MIN_ARABIC_TO_ROMAN && value"
+      tag-min-arabic-to-roman-value: = MIN_ARABIC_TO_ROMAN && value
       tag-copy: 複製
   hmac-generator:
     title: HMAC 生成器
@@ -474,7 +476,7 @@ tools:
       tag-preview-image: 預覽圖片
       tag-download-file: 下載檔案
       tag-copy: 複製
-      include-data-uri-prefix: '包含 data: URI 字首'
+      include-data-uri-prefix: "包含 data: URI 字首"
   list-converter:
     title: 列表轉換器
     description: 此工具可處理列資料，並對每行應用多種轉換（轉置、新增前字尾、反轉列表、排序、小寫轉換、截斷值等）。
@@ -623,7 +625,8 @@ tools:
       output-label-json-from-your-javascript-object: 由您的 JavaScript 物件轉換的 JSON
   numeronym-generator:
     title: 數字縮寫生成器
-    description: 數字縮寫是用數字代替單詞首尾字母之間字元的縮寫形式。例如，“i18n” 是 “internationalization” 的數字縮寫（18 代表首字母 i 和尾字母 n 之間的字元數）。
+    description: 數字縮寫是用數字代替單詞首尾字母之間字元的縮寫形式。例如，“i18n” 是 “internationalization”
+      的數字縮寫（18 代表首字母 i 和尾字母 n 之間的字元數）。
     texts:
       placeholder-enter-a-word-e-g-internationalization: 輸入一個單詞（示例：“internationalization”）
       placeholder-your-numeronym-will-be-here-e-g-i18n: 您的數字縮寫將顯示在此處（示例：“i18n”）
@@ -784,7 +787,7 @@ tools:
       placeholder-passphrase: 輸入密碼短語（可選）
       label-comment: 註釋：
       placeholder-comment: 輸入註釋（可選）
-      tag-256-value: "= 256 && value"
+      tag-256-value: = 256 && value
       tag-refresh-key-pair: 重新整理金鑰對
       tag-public-key: 公鑰
       tag-private-key: 私鑰
@@ -987,7 +990,8 @@ tools:
       label-nestify-a-b-c-to-nested-objects: 巢狀化（將 'a.b.c' 轉為巢狀物件）
   uuid-generator:
     title: UUID 生成器
-    description: 通用唯一識別符號（UUID）是 128 位數字，用於在計算機系統中標識資訊。可能的 UUID 數量為 16^32（即 2^128，約 3.4×10^38，數量極其龐大）。
+    description: 通用唯一識別符號（UUID）是 128 位數字，用於在計算機系統中標識資訊。可能的 UUID 數量為 16^32（即 2^128，約
+      3.4×10^38，數量極其龐大）。
     texts:
       message-invalid-uuid: 無效的 UUID
       text-uuids-copied-to-the-clipboard: UUID 已複製到剪貼簿
@@ -1436,8 +1440,9 @@ tools:
       tag-refresh-deck: 重新整理牌組
   cidr-in-cidr:
     title: IPv4/IPv6/IP 範圍/CIDR 是否在 IP 範圍/CIDR/IP 遮罩中
-    description: |
-      給定一個 CIDR/IP 範圍/萬用字元 IP/IP 遮罩，判斷指定的 IPv4/IPv6/範圍/CIDR/萬用字元 IP/IP 遮罩是否位於其子網範圍內。
+    description: >
+      給定一個 CIDR/IP 範圍/萬用字元 IP/IP 遮罩，判斷指定的 IPv4/IPv6/範圍/CIDR/萬用字元 IP/IP
+      遮罩是否位於其子網範圍內。
     texts:
       message-we-cannot-parse-this-cidr-ip-range-mask-wildcard-check-the-format: 無法解析此 CIDR/IP 範圍/遮罩/萬用字元，請檢查格式。
       label-an-ipv4-6-cidr-range-mask-wildcard-base-network: 一個 IPv4/IPv6 CIDR/範圍/遮罩/萬用字元（基礎網路）。
@@ -1863,7 +1868,7 @@ tools:
       tag-remove-rm: 移除（--rm）
       tag-long-arguments: 長引數
       tag-multiline: 多行
-      tag-equal-sep: "--arg=value"
+      tag-equal-sep: --arg=value
   docker-compose-to-kubernetes:
     title: Docker Compose 轉 Kubernetes
     description: 將 Docker Compose 轉換為 Kubernetes 清單。
@@ -2033,7 +2038,9 @@ tools:
       tag-createxxhash64-seedlow-number-seedhigh-number-promise: "// createXXHash64, //(seedLow: number, seedHigh: number): Promise"
       tag-createxxhash3-seedlow-number-seedhigh-number-promise: "// createXXHash3, //(seedLow: number, seedHigh: number): Promise"
       tag-createxxhash128-seedlow-number-seedhigh-number-promise: "// createXXHash128, //(seedLow: number, seedHigh: number): Promise"
-      tag-blake2b-await-createblake2b-bits-number-key-idatatype-promise: "BLAKE2b: await createBLAKE2b(), // (bits?: number, key?: IDataType): Promise"
+      tag-blake2b-await-createblake2b-bits-number-key-idatatype-promise:
+        "BLAKE2b: await createBLAKE2b(), // (bits?: number, key?: IDataType):
+        Promise"
       tag-md5-await-createmd5-promise: "MD5: await createMD5(), // (): Promise"
       tag-ripemd160-await-createripemd160-promise: "RIPEMD160: await createRIPEMD160(), // (): Promise"
       tag-sha1-await-createsha1-promise: "SHA1: await createSHA1(), // (): Promise"
@@ -2336,7 +2343,9 @@ tools:
     description: 根據 CIDR（IPv4/6）計算 IP 範圍
     texts:
       message-invalid-ipv4-6-cidr: 無效的 IPv4/6 CIDR
-      label-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0: IPv4/6 CIDR（如 1.0.0.0/23、1.1.1.1/255.255.252.0、1.1.1.1-2.2.2.2 或 10.0.0.*）
+      label-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0:
+        IPv4/6 CIDR（如 1.0.0.0/23、1.1.1.1/255.255.252.0、1.1.1.1-2.2.2.2 或
+        10.0.0.*）
       placeholder-ipv4-6-cidr-ie-1-0-0-0-23-or-1-1-1-1-255-255-252-0-or-1-1-1-1-2-2-2-2-or-10-0-0:
         IPv4/6 CIDR（如 1.0.0.0/23 或 1.1.1.1/255.255.252.0 或 1.1.1.1-2.2.2.2 或
         10.0.0.*）
@@ -2499,7 +2508,8 @@ tools:
       tag-see-jsonpath-cheatsheet: 檢視 JSONPath 速查表
   js-unobfuscator:
     title: JavaScript 去混淆器/解包器
-    description: webcrack 是一款用於逆向工程 JavaScript 的工具。它可以去混淆 obfuscator.io 的程式碼、還原壓縮程式碼、轉譯並解包 webpack/browserify，儘可能還原原始碼。
+    description: webcrack 是一款用於逆向工程 JavaScript 的工具。它可以去混淆 obfuscator.io
+      的程式碼、還原壓縮程式碼、轉譯並解包 webpack/browserify，儘可能還原原始碼。
     texts:
       title-sandbox: 沙盒
       placeholder-your-obfuscate-javascript-code: 您的混淆 JavaScript 程式碼
@@ -2623,7 +2633,8 @@ tools:
       output-label-php-array-version: PHP 陣列版本
   json-to-schema:
     title: JSON 轉 Schema
-    description: 將 JSON 資料轉換為 JSON Schema、MySQL DDL、Mongoose Schema、Google BigQuery Schema 或 ClickHouse 表結構
+    description: 將 JSON 資料轉換為 JSON Schema、MySQL DDL、Mongoose Schema、Google BigQuery
+      Schema 或 ClickHouse 表結構
     texts:
       label-generic: 通用
       label-json-schema: JSON Schema
@@ -3086,10 +3097,10 @@ tools:
       title-drag-and-drop-a-pdf-file-here-or-click-to-select-a-file: 將 PDF 檔案拖放到此處，或點選選擇檔案
       title-logs: 日誌
       label-qpdf: qpdf
-      label-password: "密碼："
+      label-password: 密碼：
       placeholder-password: 密碼
       tag-decrypt-pdf: 解密 PDF
-      tag-output-file: "輸出檔案："
+      tag-output-file: 輸出檔案：
   pgp-encryption:
     title: PGP 加密
     description: 使用 PGP 金鑰加密和解密明文
@@ -3116,7 +3127,7 @@ tools:
       label-your-text-decrypted: 解密後的文字：
       placeholder-your-string-decrypted: 解密後的字串
       tag-your-browser-is-not-in: 您的瀏覽器未處於
-      tag-secure-context-https: '“安全上下文”（HTTPS）'
+      tag-secure-context-https: “安全上下文”（HTTPS）
       tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully: 。此工具可能無法正常工作，需要 HTTPS 才能完整執行。
       tag-signing-private-key-optional: 簽名私鑰（可選）
       tag-signing-public-key-optional: 簽名公鑰（可選）
@@ -3944,7 +3955,9 @@ tools:
       placeholder-enter-cookie-header: 輸入 Cookie 標頭
       tag-tip-navigate-to-a-website-to-test-open-f12-console-and-run: 提示：開啟要測試的網站，按 F12 開啟控制檯並執行
       tag-window-copy-document-cookie: window.copy(document.cookie)
-      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted: 。這會將 Cookie 字串複製到剪貼簿。注意：僅會複製 JavaScript 可訪問的 Cookie（HttpOnly 和 Secure Cookie 將被忽略）。
+      tag-this-will-copy-the-cookie-string-to-your-clipboard-note-this-will-only-copy-cookies-available-to-javascript-http-only-and-secure-cookies-will-be-omitted:
+        。這會將 Cookie 字串複製到剪貼簿。注意：僅會複製 JavaScript 可訪問的 Cookie（HttpOnly 和 Secure
+        Cookie 將被忽略）。
       tag-name: 名稱
       tag-value: 值
       tag-no-cookies-found: 未找到 Cookie
@@ -4040,7 +4053,7 @@ tools:
       placeholder-select-format: 選擇格式
       label-table-name: 表名：
       title-generated-data: 生成的資料
-      tag-record: '): Record'
+      tag-record: "): Record"
       tag-insert-selected-method: 插入所選方法
       tag-generate-fake-data: 生成假資料
   distinct-words:
@@ -4285,9 +4298,9 @@ tools:
       tag-iptables-a-input-s-lt-ip-address-gt-j-drop: iptables -A INPUT -s "&lt;IP 位址&gt;" -j DROP
       tag-block-a-specific-ip-address: 遮蔽指定 IP 位址
       tag-iptables-a-input-p-tcp-dport-80-m-limit-limit-25-minute-limit-burst-100-j-accept:
-        iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT
-      tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached:
-        達到 100 次突發連線後，將 80 埠的連線限制為每分鐘 25 次
+        iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute
+        --limit-burst 100 -j ACCEPT
+      tag-limit-connections-to-25-per-minute-on-port-80-after-100-connections-have-been-reached: 達到 100 次突發連線後，將 80 埠的連線限制為每分鐘 25 次
       tag-iptables-n-mychain: iptables -N MYCHAIN
       tag-create-a-new-chain-called-mychain: 建立名為 "MYCHAIN" 的新鏈
   json-query:
@@ -4488,7 +4501,7 @@ tools:
       placeholder-passphrase: 密碼短語
       tag-256-value: = 256 && value
       tag-your-browser-is-not-in: 您的瀏覽器不處於
-      tag-secure-context-https: '“安全上下文”（HTTPS）'
+      tag-secure-context-https: “安全上下文”（HTTPS）
       tag-this-tool-may-not-work-correctly-and-require-https-to-work-fully: 。此工具可能無法正常工作，需要 HTTPS 才能完全執行。
       tag-refresh-key-pair: 重新整理金鑰對
       tag-public-key: 公鑰
@@ -4617,15 +4630,19 @@ tools:
       placeholder-e-g-src-port-443-and-dst-10-0-0-1: 例如 src port 443 and dst 10.0.0.1
       title-generated-tcpdump-command: 生成的 tcpdump 命令
       tag-tcpdump-is-a-utility-commonly-installed-available-to-many-linux-distributions-to-quickly-gather-a-network-trace-packet-capture-in-short-it-s-the-wireshark-of-linux-to-gathering-packet-captures-tcpdump-is-very-versatile-with-many-switches-to-granularly-capture-what-you-need-to-dubug-network-traffic-with-options-to-output-results-via-console-file-or-wireshark-pcap:
-        tcpdump 是許多 Linux 發行版中常用的實用工具，可快速收集網路跟蹤/資料包捕獲。簡而言之，它就是 Linux 上用於抓包的 Wireshark。tcpdump 功能多樣，提供大量開關，可精細捕獲除錯網路流量所需的內容，並支援透過控制檯、檔案或 Wireshark pcap 輸出結果。
+        tcpdump 是許多 Linux 發行版中常用的實用工具，可快速收集網路跟蹤/資料包捕獲。簡而言之，它就是 Linux 上用於抓包的
+        Wireshark。tcpdump 功能多樣，提供大量開關，可精細捕獲除錯網路流量所需的內容，並支援透過控制檯、檔案或 Wireshark
+        pcap 輸出結果。
       tag-this-utility-is-to-help-generate-a-tcpdump-command-using-some-of-the-more-common-switches-filters-offered-by-the-tcpdump-this-utility-is-not-encompassing-of-all-options-tcpdump-offers-a-complete-list-of-options-can-be-found-via-its-manual-nbsp:
-        此工具可幫助您使用 tcpdump 提供的一些常用開關/過濾器生成 tcpdump 命令。此工具並未涵蓋 tcpdump 的所有選項，完整選項列表請參閱其手冊：&nbsp;
+        此工具可幫助您使用 tcpdump 提供的一些常用開關/過濾器生成 tcpdump 命令。此工具並未涵蓋 tcpdump
+        的所有選項，完整選項列表請參閱其手冊：&nbsp;
       tag-https-www-tcpdump-org-manpages-tcpdump-1-html: https://www.tcpdump.org/manpages/tcpdump.1.html
       tag-note: 注意：
       tag-nbsp-host-source-host-and-destination-host-can-take-multiple-entries-separate-your-entries-with-a-comma-space-or-semicolon: "&nbsp;主機、源主機和目標主機可接受多個條目，用逗號、空格或分號分隔。"
       tag-note-2: 注意 2：
       tag-nbsp-when-you-specify-a-source-src-or-destination-dst-flags-tcpdump-will-only-filter-in-that-direction-if-you-are-looking-to-capture-full-tcp-handshake-make-sure-you-use-host-vs-src-host-or-dst-host-to-see-both-request-and-response-flow:
-        '&nbsp;指定源（src）或目標（dst）標誌時，tcpdump 僅會按該方向過濾。若要捕獲完整的 TCP 握手過程，請使用“host”而非“src host”或“dst host”，以同時檢視請求和回應流量。'
+        "&nbsp;指定源（src）或目標（dst）標誌時，tcpdump 僅會按該方向過濾。若要捕獲完整的 TCP
+        握手過程，請使用“host”而非“src host”或“dst host”，以同時檢視請求和回應流量。"
       tag-the-network-interface-to-capture-packets-from: 要捕獲資料包的網路介面
       tag-capture-packets-originating-from-this-host: 捕獲源自此主機的資料包
       tag-capture-packets-destined-for-this-host: 捕獲發往此主機的資料包
@@ -4705,7 +4722,9 @@ tools:
       input-placeholder-paste-your-raw-html-here: 在此貼上原始 HTML...
       output-label-text-from-your-html: 您的 HTML 中的文字
     title: 從 HTML 提取文字
-    description: '在左側輸入框中貼上 HTML，即可立即獲取文字。有時您需要從 HTML 頁面中提取純文字，但 CSS 屬性（如 user-select: none;）會阻止選擇文字。通常的解決方法是使用開發者工具（F12）選擇“複製 → outerHTML”。此工具直接從複製的 HTML 中提取“innerText”，從而簡化了這一過程。'
+    description: "在左側輸入框中貼上 HTML，即可立即獲取文字。有時您需要從 HTML 頁面中提取純文字，但 CSS 屬性（如
+      user-select: none;）會阻止選擇文字。通常的解決方法是使用開發者工具（F12）選擇“複製 →
+      outerHTML”。此工具直接從複製的 HTML 中提取“innerText”，從而簡化了這一過程。"
   otp-code-generator-and-validator:
     texts:
       message-secret-should-be-a-base32-string: 金鑰應為 Base32 字串
@@ -4909,7 +4928,8 @@ tools:
         3-drive-failures: 3 個磁碟故障
         raid-7-requires-at-least-5-disks: RAID 7 至少需要 5 個磁碟
         raid-7-raid-tp-non-standard-is-similiar-to-raid-5-and-raid-6-but-with-a-third-parity-block-this-allows-for-a-third-disk-failure-at-the-cost-of-storage-reduction-equal-to-three-drives:
-          RAID 7/RAID TP（非標準）類似於 RAID 5 和 RAID 6，但多了第三個奇偶校驗塊。這樣可容忍第三個磁碟故障，代價是儲存空間減少相當於 3 個磁碟的容量。
+          RAID 7/RAID TP（非標準）類似於 RAID 5 和 RAID
+          6，但多了第三個奇偶校驗塊。這樣可容忍第三個磁碟故障，代價是儲存空間減少相當於 3 個磁碟的容量。
         2-drive-failures: 2 個磁碟故障
         raid-6-requires-at-least-4-disks: RAID 6 至少需要 4 個磁碟
         raid-6-is-similiar-to-raid-5-but-with-an-additional-parity-block-this-allows-for-an-additional-disk-failure-at-the-cost-of-storage-reduction-equal-to-two-drives: RAID 6 類似於 RAID 5，但多了一個奇偶校驗塊。這樣可多容忍一個磁碟故障，代價是儲存空間減少相當於 2 個磁碟的容量。
@@ -5033,7 +5053,8 @@ tools:
         decide-on-a-task-and-set-the-timer-25-minutes-is-common: 確定任務並設定計時器（通常 25 分鐘）。
         five-steps-of-the-pomodoro-technique: 番茄工作法的五個步驟
         the-pomodoro-technique-is-a-time-management-method-developed-by-francesco-cirillo-in-the-1980s-it-uses-a-timer-to-break-work-into-intervals-typically-25-minutes-in-length-separated-by-short-breaks-each-interval-is-known-as-a-pomodoro-from-the-italian-word-for-tomato-after-the-tomato-shaped-kitchen-timer-cirillo-used-as-a-university-student:
-          番茄工作法是由弗朗切斯科·西里洛於 20 世紀 80 年代開發的時間管理方法。它使用計時器將工作分解為間隔（通常 25 分鐘），間隔之間有短暫休息。每個間隔稱為一個“番茄鍾”，名稱源自義大利語中的“番茄”（因西里洛大學時期使用的廚房計時器形狀類似番茄）。
+          番茄工作法是由弗朗切斯科·西里洛於 20 世紀 80 年代開發的時間管理方法。它使用計時器將工作分解為間隔（通常 25
+          分鐘），間隔之間有短暫休息。每個間隔稱為一個“番茄鍾”，名稱源自義大利語中的“番茄”（因西里洛大學時期使用的廚房計時器形狀類似番茄）。
         the-pomodoro-technique: 番茄工作法
     Home:
       text:
@@ -6840,10 +6861,10 @@ tools:
       label-raid-level: RAID 級別：
       placeholder-select-raid-level: 選擇 RAID 級別
       label-number-of-drives: 驅動器數量：
-      label-drive-mtbf-hours: "驅動器 MTBF（小時）："
+      label-drive-mtbf-hours: 驅動器 MTBF（小時）：
       label-rebuild-time-hours: 重建時間（小時）：
       label-bit-error-rate-ber-in-1ex: 誤位元速率（BER，1eX）：
-      label-drive-capacity-tb: "驅動器容量（TB）："
+      label-drive-capacity-tb: 驅動器容量（TB）：
       label-years-for-failure-probability: 故障機率年限：
       label-mttdl-hours: MTTDL（小時）：
       label-mttdl-years: MTTDL（年）：
@@ -7151,7 +7172,7 @@ tools:
     texts:
       tag-: ？
       tag-total-disks-in-pool: 池中的磁碟總數：
-      tag-add-disk-tb: "新增磁碟（TB）："
+      tag-add-disk-tb: 新增磁碟（TB）：
       tag-1: "1"
       tag-10: "10"
       tag-100: "100"
@@ -7211,7 +7232,7 @@ tools:
       tag-capacity-efficiency: 容量效率
       tag-show-pool-afr: 顯示池 AFR：
       tag-zfs-overhead: ZFS 開銷
-      tag-disk-afr: "磁碟 AFR（%）："
+      tag-disk-afr: 磁碟 AFR（%）：
       tag-cap-w-reservation: 含預留的容量
       tag-fast-draid-calculation: 快速 dRAID 計算：
       tag-reservation: 預留（%）：
@@ -7508,7 +7529,9 @@ tools:
       tag-description: 描述
       tag-bit-level-interpretation: 位級解析
       label-tlv-hex-input: TLV 十六進位制輸入
-      placeholder-paste-emv-tlv-hex-string-e-g-6f1a8407a0000000031010a50f500b5649534120435245444954: 貼上 EMV TLV 十六進位制字串（例如 6F1A8407A0000000031010A50F500B5649534120435245444954）
+      placeholder-paste-emv-tlv-hex-string-e-g-6f1a8407a0000000031010a50f500b5649534120435245444954:
+        貼上 EMV TLV 十六進位制字串（例如
+        6F1A8407A0000000031010A50F500B5649534120435245444954）
       label-kernel-type: 核心型別：
       title-decoded-emv-tags: 解碼後的 EMV 標籤
       tag-parse-tlv: 解析 TLV
@@ -7517,7 +7540,8 @@ tools:
     description: 支援智慧合約 ABI 的以太坊交易解碼器
     texts:
       placeholder-quot-to-quot-quot-0x-quot-quot-data-quot-quot-0x-quot-or-raw-0x:
-        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quot;{'}'} 或原始 0x...."
+        "{'{'}&quot;to&quot;:&quot;0x...&quot;,&quot;data&quot;:&quot;0x...&quo\
+        t;{'}'} 或原始 0x...."
       label-smart-contract-abi: 智慧合約 ABI：
       placeholder-paste-abi-json-here: 在此處貼上 ABI JSON
       label-raw-transaction-0x-or-json-transaction: 原始交易（0x...）或 JSON 交易：
@@ -7560,6 +7584,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: 選擇模板（例如 node、python、vue）
       title-gitignore: .gitignore
       tag-generate: 生成
+      snapshot-used: 使用來自 {0} 的捆綁模板快照。
     externalAccess: 此工具使用 GitHub API 從 https://github.com/github/gitignore 下載 .gitignore 檔案。
   i-and-l-checker:
     title: I 和 L 檢查器
@@ -7573,9 +7598,9 @@ tools:
       tag-l: l
       tag-lowercase-letter-l: 小寫字母 L
       tag-1: "1"
-      tag-number-1: '- 數字 1'
+      tag-number-1: "- 數字 1"
       tag-0: "0"
-      tag-number-0: '- 數字 0'
+      tag-number-0: "- 數字 0"
       tag-o: O
       tag-uppercase-letter-o: "- 大寫字母 O"
   ipv4-subnets-list:
@@ -7728,7 +7753,8 @@ tools:
       failed: 失敗
       no-redirect: 無重定向
       expanded: 已展開
-    externalAccess: 此工具使用 CORS Anywhere 例項（預設為 https://cors.outils-libre.org）傳送 HTTP HEAD 請求（不下載資料），以獲取 HTTP 標頭和重定向資訊。
+    externalAccess: 此工具使用 CORS Anywhere 例項（預設為 https://cors.outils-libre.org）傳送 HTTP
+      HEAD 請求（不下載資料），以獲取 HTTP 標頭和重定向資訊。
   copy:
     text:
       copied-to-the-clipboard: 已複製到剪貼簿
@@ -7799,12 +7825,14 @@ tools:
       tag-generate-sql: 生成 SQL
   gitattributes-generator:
     title: Gitattributes 生成器
-    description: 根據 https://github.com/alexkaratarakis/gitattributes 的通用設定生成 .gitattributes 檔案
+    description: 根據 https://github.com/alexkaratarakis/gitattributes 的通用設定生成
+      .gitattributes 檔案
     texts:
       label-gitattributes-templates: Gitattributes 模板：
       placeholder-select-templates: 選擇模板
       title-preview: 預覽
       tag-fetch-generate: 獲取並生成
+      snapshot-used: 使用來自 {0} 的捆綁模板快照。
     externalAccess: 此工具使用 GitHub API 從
       https://github.com/gitattributes/gitattributes 下載 .gitattributes 檔案。
   html-to-xhtml:
@@ -7901,7 +7929,8 @@ tools:
       si-converter: 轉到 SI 字首轉換器
   geo-coordinates-converter:
     title: 地理座標轉換器
-    description: 在 WGS84、GCJ02、BD09、CGCS2000 和 WebMercator 座標系之間轉換地理座標，也支援十進位制、度分秒（DMS）和 UTM 表示法之間的轉換，並提供互動式地圖。
+    description: 在 WGS84、GCJ02、BD09、CGCS2000 和 WebMercator
+      座標系之間轉換地理座標，也支援十進位制、度分秒（DMS）和 UTM 表示法之間的轉換，並提供互動式地圖。
     texts:
       label-latitude: 緯度：
       label-longitude: 經度：
@@ -7945,6 +7974,7 @@ tools:
       download-results-csv: 下載結果 CSV 檔案
       batch-lat-lng-converter: 批次經緯度轉換器
       single-lat-lng-converter: 單點經緯度轉換器
+    externalAccess: 該工具從 OpenStreetMap 或配置的瓦片伺服器載入地圖瓦片；顯示的座標以瓦片請求的形式發送。
   si-prefixes-converter:
     title: SI 字首轉換器
     description: 公制字首轉換
@@ -8107,7 +8137,7 @@ tools:
       tag-back: 後退（←）
       tag-next: 前進（→）
       tag-reset: 重置
-      tag-or: '- 或 -'
+      tag-or: "- 或 -"
       tag-control-playback-and-navigation-without-touching-the-mouse: 無需觸碰滑鼠即可控制播放和導航。
       tag-shortcut: 快捷鍵
       tag-action: 操作
@@ -8483,12 +8513,13 @@ tools:
       placeholder-docker-labels-will-appear-here: Docker 標籤將顯示在此處……
       tag-extract-pangolin-blueprint: 提取 Pangolin 藍圖
       tag-array-key-value: 陣列（- key=value）
-      tag-object-key-value: '物件（key: value）'
+      tag-object-key-value: "物件（key: value）"
       tag-convert-to-docker-labels: 轉換為 Docker 標籤
       invalid-blueprint-yaml: 無效的藍圖 YAML
   fitness-computer:
     title: 健身計算器
-    description: 計算基礎代謝率（BMR）、每日總能量消耗（TDEE/卡路里）、身體質量指數（BMI）、理想體重、體脂率、最大心率（Max HR）：這些是評估整體健康水平和生理健康的關鍵指標。
+    description: 計算基礎代謝率（BMR）、每日總能量消耗（TDEE/卡路里）、身體質量指數（BMI）、理想體重、體脂率、最大心率（Max
+      HR）：這些是評估整體健康水平和生理健康的關鍵指標。
     externalAccess: "null"
     texts:
       label-bmr: BMR
@@ -9506,8 +9537,8 @@ tools:
       label-repository-uri: 倉庫 URI
       label-password: 倉庫密碼
       password-prompt: 在 shell 中提示輸入（read -rs，不會留在歷史記錄中）
-      password-file: '--password-file'
-      password-command: '--password-command'
+      password-file: --password-file
+      password-command: --password-command
       password-placeholder: 匯出帶佔位符的 RESTIC_PASSWORD
       password-none: 已在我的環境中設定
       label-password-file: 密碼檔案
@@ -9605,10 +9636,10 @@ tools:
       label-extra-arguments: 額外引數（按原樣附加）
       label-no-lock: --no-lock
       label-no-cache: --no-cache
-      label-insecure-tls: '--insecure-tls'
+      label-insecure-tls: --insecure-tls
       label-json: --json
-      label-quiet: '--quiet'
-      label-verbose: '--verbose'
+      label-quiet: --quiet
+      label-verbose: --verbose
       title-output: 生成的命令
       label-include-environment: 包含環境設定
       label-multiline: 每行一個引數
@@ -9633,7 +9664,8 @@ tools:
       backrest-binary: 由 Backrest 下載的 restic 二進位制檔案
       backrest-plan-tag: 標識計劃的標籤
       backrest-instance-tag: 標識例項的標籤
-      hint-backrest: Backrest 倉庫就是普通的 restic 倉庫：如果 Web UI 已不可用，可從 config.json 中讀取 URI 和密碼，然後使用 Backrest 已下載的 restic 二進位制檔案來操作它。
+      hint-backrest: Backrest 倉庫就是普通的 restic 倉庫：如果 Web UI 已不可用，可從 config.json 中讀取 URI
+        和密碼，然後使用 Backrest 已下載的 restic 二進位制檔案來操作它。
   epc-qrcode-generator:
     title: EPC QR 碼生成器
     description: 生成用於發起 SEPA 貸記轉帳的歐洲支付委員會（EPC）QR 碼
@@ -9689,6 +9721,44 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: 回應頭和正文預覽
       tag-truncated: 已截斷
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: 分數 → 小數
+      label-decimal-fraction: 小數 → 分數
+      label-inches: 英吋
+      label-millimeters: 毫米：
+      label-mode: 模式：
+      label-decimal-places: 小數位數：
+      label-unit: 單元：
+      label-fraction-resolution: 分數解析度：
+      label-decimal-value: 十進制值：
+      label-fraction: 分數：
+      placeholder-e-g-3-16-or-2-3-16: 例如：3/16 或 2 3/16
+      title-results: 結果
+      label-decimal-inches: 十進制英吋：
+      tag-const-mode-ref: const mode = ref
+    title: 分數小數轉換器
+    description: 將分數轉換為小數，反之亦然，包括英寸和公制轉換。
+    externalAccess: 無效的
+  sound-tester:
+    texts:
+      title-general: 一般的
+      title-channel-tests: 頻道測試
+      title-bass-tests: 低音測試
+      title-treble-tests: 三重測試
+      title-custom-frequency: 自訂頻率
+      label-frequency-hz: 頻率（赫茲）：
+      tag-440hz-la: 440Hz / La
+      tag-sweep: 掃
+      tag-white-noise: 白噪音
+      tag-pink-noise: 粉紅噪音
+      tag-stop: 停止
+      tag-left: 左邊
+      tag-right: 正確的
+      tag-play-this-frequency: 播放此頻率
+    title: 聲音測試儀
+    description: 播放測試音頻，測試揚聲器和耳機。調整音量並檢查音訊清晰度。
+    externalAccess: 無效的
 collapsibleToolMenu:
   text:
     expanding: 正在展開……

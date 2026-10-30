@@ -451,6 +451,9 @@ tools:
     title: Upiększanie i formatowanie YAML
     description: Upiększ swój ciąg znaków YAML, tak aby był przyjazny i czytelny dla
       człowieka.
+    externalAccess: To narzędzie może pobrać schemat JSON z
+      https://www.schemastore.org (lub ze skonfigurowanego katalogu schematów)
+      po zażądaniu walidacji. Żadne dane nie są wysyłane na zewnątrz.
   eta-calculator:
     title: Kalkulator ETA
     description: Kalkulator ETA (szacowanego czasu przybycia) umożliwiający
@@ -7924,6 +7927,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Wybierz szablony (np. node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Spowodować
+      snapshot-used: Korzystając z dołączonego szablonu migawki z {0}.
     externalAccess: To narzędzie pobiera .gitignore ze strony
       https://github.com/github/gitignore za pomocą interfejsu API Github
   i-and-l-checker:
@@ -8167,6 +8171,8 @@ tools:
       tag-replication-client: KLIENT REPLIKACJI
       tag-replication-slave: PODWÓJNA REPLIKACJA
       tag-generate-sql-instructions: Generuj instrukcje SQL
+      error-oracle-password-double-quote: Hasła Oracle nie mogą zawierać cudzysłowów (")
+      error-oracle-account-double-quote: Nazwy kont Oracle nie mogą zawierać cudzysłowów (")
   database-table-generator:
     title: Generator tabel bazy danych
     description: Generuj polecenie SQL CREATE TABLE dla typowych baz danych
@@ -8199,6 +8205,7 @@ tools:
       placeholder-select-templates: Wybierz szablony
       title-preview: Zapowiedź
       tag-fetch-generate: Pobierz i wygeneruj
+      snapshot-used: Korzystając z dołączonego szablonu migawki z {0}.
     externalAccess: To narzędzie pobiera .gitattributes ze strony
       https://github.com/gitattributes/gitattributes za pomocą interfejsu API
       Github
@@ -8346,6 +8353,9 @@ tools:
       download-results-csv: Pobierz wyniki w formacie CSV
       batch-lat-lng-converter: Konwerter szerokości/długości geograficznej partii
       single-lat-lng-converter: Pojedynczy konwerter szerokości geograficznej/długości geograficznej
+    externalAccess: Narzędzie to ładuje kafelki mapy z OpenStreetMap lub
+      skonfigurowanego serwera kafelków; wyświetlane współrzędne są wysyłane
+      jako żądania kafelków.
   si-prefixes-converter:
     title: Konwerter prefiksów SI
     description: Konwersja między prefiksami metrycznymi
@@ -10156,6 +10166,46 @@ tools:
       tag-300-hop-status-code: = 300 i kod_statusu_hopu
       tag-headers-body-preview: Podgląd nagłówków i treści
       tag-truncated: Kadłubowy
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Ułamek → Dziesiętny
+      label-decimal-fraction: Dziesiętny → Ułamek
+      label-inches: Cale
+      label-millimeters: "Milimetry:"
+      label-mode: "Tryb:"
+      label-decimal-places: "Miejsca dziesiętne:"
+      label-unit: "Jednostka:"
+      label-fraction-resolution: "Rozdzielczość ułamkowa:"
+      label-decimal-value: "Wartość dziesiętna:"
+      label-fraction: "Frakcja:"
+      placeholder-e-g-3-16-or-2-3-16: np. 3/16 lub 2 3/16
+      title-results: Wyniki
+      label-decimal-inches: "Cale dziesiętne:"
+      tag-const-mode-ref: stały tryb = ref
+    title: Konwerter ułamków dziesiętnych
+    description: Zamień ułamki na dziesiętne i odwrotnie, w tym konwersję cali i
+      jednostek metrycznych.
+    externalAccess: nieważny
+  sound-tester:
+    texts:
+      title-general: Ogólny
+      title-channel-tests: Testy kanałów
+      title-bass-tests: Testy basowe
+      title-treble-tests: Testy wysokich tonów
+      title-custom-frequency: Częstotliwość niestandardowa
+      label-frequency-hz: "Częstotliwość (Hz):"
+      tag-440hz-la: 440Hz / La
+      tag-sweep: Zamiatać
+      tag-white-noise: Biały szum
+      tag-pink-noise: Różowy szum
+      tag-stop: Zatrzymywać się
+      tag-left: Lewy
+      tag-right: Prawidłowy
+      tag-play-this-frequency: Odtwórz tę częstotliwość
+    title: Tester dźwięku
+    description: Przetestuj głośniki i słuchawki, odtwarzając dźwięki testowe.
+      Dostosuj głośność i sprawdź klarowność dźwięku.
+    externalAccess: nieważny
 favoriteButton:
   remove: Usuń z ulubionych
   add: Dodaj do ulubionych

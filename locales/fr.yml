@@ -7720,6 +7720,9 @@ tools:
   yaml-prettify:
     title: Yaml Prettify and Format
     description: Prétifiez votre chaîne YAML dans un format amical et lisible par l'homme.
+    externalAccess: Cet outil peut télécharger un schéma JSON depuis
+      https://www.schemastore.org (ou le catalogue de schémas configuré) lors
+      d'une demande de validation. Aucune donnée n'est transmise à l'extérieur.
   yaml-to-json-converter:
     description: Convertissez simplement Yaml en JSON avec ce convertisseur en
       direct en ligne.
@@ -8225,6 +8228,7 @@ tools:
       placeholder-select-templates-e-g-node-python-vue: Sélectionnez des modèles (par exemple, node, python, vue)
       title-gitignore: .gitignore
       tag-generate: Générer
+      snapshot-used: Utilisation de l'instantané de modèle groupé de {0}.
     externalAccess: Cet outil télécharge le fichier .gitignore depuis
       https://github.com/github/gitignore via l'API GitHub.
   i-and-l-checker:
@@ -8476,6 +8480,10 @@ tools:
       tag-replication-client: CLIENT DE RÉPLICATION
       tag-replication-slave: ESCLAVE DE LA RÉPLICATION
       tag-generate-sql-instructions: Générer des instructions SQL
+      error-oracle-password-double-quote: Les mots de passe Oracle ne peuvent pas
+        contenir de guillemets doubles (").
+      error-oracle-account-double-quote: Les noms de comptes Oracle ne peuvent pas
+        contenir de guillemets doubles (").
   database-table-generator:
     title: Générateur de tables de base de données
     description: Générer une requête SQL CREATE TABLE pour les bases de données courantes
@@ -8508,6 +8516,7 @@ tools:
       placeholder-select-templates: Sélectionner des modèles
       title-preview: Aperçu
       tag-fetch-generate: Récupérer et générer
+      snapshot-used: Utilisation de l'instantané de modèle groupé de {0}.
     externalAccess: Cet outil télécharge le fichier .gitattributes depuis
       https://github.com/gitattributes/gitattributes via l'API GitHub.
   html-to-xhtml:
@@ -8655,6 +8664,9 @@ tools:
       download-results-csv: Télécharger les résultats au format CSV
       batch-lat-lng-converter: Convertisseur de latitude/longitude par lots
       single-lat-lng-converter: Convertisseur simple latitude/longitude
+    externalAccess: Cet outil charge les tuiles cartographiques depuis OpenStreetMap
+      ou le serveur de tuiles configuré ; les coordonnées affichées sont
+      envoyées sous forme de requêtes de tuiles.
   si-prefixes-converter:
     title: Convertisseur de préfixes SI
     description: Convertir entre préfixes métriques
@@ -10485,6 +10497,46 @@ tools:
       tag-300-hop-status-code: = 300 && hop.status_code
       tag-headers-body-preview: Aperçu des en-têtes et du corps
       tag-truncated: Tronqué
+  fraction-decimal-converter:
+    texts:
+      label-fraction-decimal: Fraction → Décimal
+      label-decimal-fraction: Décimal → Fraction
+      label-inches: Pouces
+      label-millimeters: "Millimètres :"
+      label-mode: "Mode:"
+      label-decimal-places: "Nombre de décimales :"
+      label-unit: "Unité:"
+      label-fraction-resolution: "Résolution fractionnaire :"
+      label-decimal-value: "Valeur décimale :"
+      label-fraction: "Fraction:"
+      placeholder-e-g-3-16-or-2-3-16: par exemple 3/16 ou 2 3/16
+      title-results: Résultats
+      label-decimal-inches: "Pouces décimaux :"
+      tag-const-mode-ref: mode constant = ref
+    title: Convertisseur fractionnaire décimal
+    description: Convertir des fractions en décimales et vice versa, y compris les
+      conversions entre les unités en pouces et en système métrique.
+    externalAccess: nul
+  sound-tester:
+    texts:
+      title-general: Général
+      title-channel-tests: Tests de la chaîne
+      title-bass-tests: Tests de basse
+      title-treble-tests: Tests de triple
+      title-custom-frequency: Fréquence personnalisée
+      label-frequency-hz: "Fréquence (Hz) :"
+      tag-440hz-la: 440 Hz / La
+      tag-sweep: Balayer
+      tag-white-noise: bruit blanc
+      tag-pink-noise: bruit rose
+      tag-stop: Arrêt
+      tag-left: Gauche
+      tag-right: Droite
+      tag-play-this-frequency: Jouez cette fréquence
+    title: Testeur de son
+    description: Testez vos haut-parleurs et votre casque en diffusant des sons de
+      test. Réglez le volume et vérifiez la clarté audio.
+    externalAccess: nul
 favoriteButton:
   add: Ajouter aux favoris
   remove: Retirer des favoris
