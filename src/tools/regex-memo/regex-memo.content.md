@@ -51,11 +51,11 @@
 Outside a character set, these need a backslash to be taken literally:
 
 | Escape | Character                              | Escape | Character           |
-| ------ | -------------------------------------- | ------ | ------------------- | --------------- |
+| ------ | -------------------------------------- | ------ | ------------------- |
 | `\.`   | Period                                 | `\(`   | Opening parenthesis |
 | `\^`   | Caret                                  | `\)`   | Closing parenthesis |
 | `\$`   | Dollar sign                            | `\[`   | Opening bracket     |
-| `\\    | `                                      | Pipe   | `\]`                | Closing bracket |
+| `\|`   | Pipe                                   | `\]`   | Closing bracket     |
 | `\\`   | Backslash                              | `\{`   | Opening brace       |
 | `\/`   | Forward slash (only in `/…/` literals) | `\}`   | Closing brace       |
 
