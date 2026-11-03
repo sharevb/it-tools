@@ -147,6 +147,7 @@ tools:
       label-jpeg: JPEG
       label-webp: WebP
   categories:
+    automation: Automatisme
     favorite-tools: Vos outils favoris
     crypto: Cryptographie
     converter: Convertisseur
@@ -177,6 +178,27 @@ tools:
     finance: Finance
     default: Défaut
     toml: TOML
+  current-loop-4-20ma-converter:
+    title: Convertisseur 4-20 mA
+    description: Convertir un courant 4-20 mA (ou 0-20 mA) en valeur physique et inversement, avec le diagnostic de boucle NAMUR NE 43.
+    texts:
+      signal-label: Courant
+  voltage-0-10v-converter:
+    title: Convertisseur 0-10 V
+    description: Convertir une tension 0-10 V, 2-10 V, 0-5 V, 1-5 V ou ±10 V en valeur physique et inversement.
+    texts:
+      signal-label: Tension
+  analog-scaling-calculator:
+    title: Mise à l'échelle analogique
+    description: Convertir une valeur brute d'entrée analogique d'automate (Siemens 0-27648, Schneider 0-10000, 12/15/16 bits...) en valeur physique et inversement.
+    texts:
+      signal-label: Valeur brute
+      preset-siemens-unipolar: Siemens S7 unipolaire (0 à 27648)
+      preset-siemens-bipolar: Siemens S7 bipolaire (-27648 à 27648)
+      preset-schneider: Schneider M340/M580 (0 à 10000)
+      preset-12-bits: 12 bits (0 à 4095)
+      preset-15-bits: 15 bits (0 à 32767)
+      preset-16-bits: 16 bits (0 à 65535)
   token-generator:
     title: Générateur de token
     description: Génère une chaîne aléatoire avec les caractères que vous voulez,
@@ -10558,6 +10580,39 @@ textareaCopyable:
   download: Télécharger
 locale-selector:
   select-a-language: Sélectionnez une langue
+analogSignalConverter:
+  texts:
+    title-input: Entrée
+    title-parameters: Paramètres
+    title-output: Sortie
+    swap-direction: Inverser le sens
+    status-ok: Dans la plage
+    copy-output: Copier la valeur de sortie
+    title-reference-points: Points de référence
+    label-signal-type: Type de signal
+    preset-custom: Personnalisé
+    label-engineering-range: Plage physique min / max
+    label-engineering-unit: Unité physique
+    placeholder-unit: Unité
+    error-signal-range: Le min du signal doit être inférieur au max du signal.
+    error-engineering-range: Le min de la plage physique doit être inférieur au max.
+    label-engineering-value: Valeur physique
+    label-rounded-signal: Arrondi (entier)
+    status-below-range: Le signal est sous la plage.
+    status-above-range: Le signal est au-dessus de la plage.
+    status-below-live-zero: Le signal est sous le zéro décalé, vérifier une rupture de fil ou un capteur en défaut.
+    engineering-below-range: La valeur est sous la plage physique, le signal sera hors plage.
+    engineering-above-range: La valeur est au-dessus de la plage physique, le signal sera hors plage.
+    loop-status-failure-low: "Défaut bas (≤ 3,6 mA, NAMUR NE 43) : boucle coupée, transmetteur non alimenté ou en défaut."
+    loop-status-uncertain-low: "Entre 3,6 et 3,8 mA : zone indéterminée, défaut probable (NAMUR NE 43)."
+    loop-status-under-range: "Sous-échelle (3,8 à 4 mA) : mesure saturée en bas de plage."
+    loop-status-over-range: "Sur-échelle (20 à 20,5 mA) : mesure saturée en haut de plage."
+    loop-status-uncertain-high: "Entre 20,5 et 21 mA : zone indéterminée, défaut probable (NAMUR NE 43)."
+    loop-status-failure-high: "Défaut haut (≥ 21 mA, NAMUR NE 43) : transmetteur en défaut ou court-circuit."
+    label-formula: Formule
+    formula-value: valeur
+    formula-signal: signal
+    column-percent: Plage
 collapsibleToolMenu:
   text:
     expanding: Réduire...
