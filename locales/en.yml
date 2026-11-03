@@ -5177,6 +5177,7 @@ tools:
           RAID 0 splits data evenly across 2 or more disks without redunancy or
           fault tolerance creating one large storage space.
   categories:
+    automation: Automation
     favorite-tools: Your favorite tools
     crypto: Crypto
     converter: Converter
@@ -5207,6 +5208,27 @@ tools:
     finance: Finance
     default: Default
     toml: TOML
+  current-loop-4-20ma-converter:
+    title: 4-20 mA converter
+    description: Convert a 4-20 mA (or 0-20 mA) current into an engineering value and back, with NAMUR NE 43 loop diagnostic.
+    texts:
+      signal-label: Current
+  voltage-0-10v-converter:
+    title: 0-10 V converter
+    description: Convert a 0-10 V, 2-10 V, 0-5 V, 1-5 V or ±10 V voltage into an engineering value and back.
+    texts:
+      signal-label: Voltage
+  analog-scaling-calculator:
+    title: Analog scaling calculator
+    description: Scale a raw PLC analog value (Siemens 0-27648, Schneider 0-10000, 12/15/16 bits...) into an engineering value and back.
+    texts:
+      signal-label: Raw value
+      preset-siemens-unipolar: Siemens S7 unipolar (0 to 27648)
+      preset-siemens-bipolar: Siemens S7 bipolar (-27648 to 27648)
+      preset-schneider: Schneider M340/M580 (0 to 10000)
+      preset-12-bits: 12 bits (0 to 4095)
+      preset-15-bits: 15 bits (0 to 32767)
+      preset-16-bits: 16 bits (0 to 65535)
   websocket-tester:
     title: Websocket tester
     description: Allows to test WebSocket connections
@@ -10108,6 +10130,39 @@ tools:
     description: Test your speakers and headphones by playing test sounds. Adjust
       volume and check for audio clarity.
     externalAccess: "null"
+analogSignalConverter:
+  texts:
+    title-input: Input
+    title-parameters: Parameters
+    title-output: Output
+    swap-direction: Swap direction
+    status-ok: In range
+    copy-output: Copy the output value
+    title-reference-points: Reference points
+    label-signal-type: Signal type
+    preset-custom: Custom
+    label-engineering-range: Engineering min / max
+    label-engineering-unit: Engineering unit
+    placeholder-unit: Unit
+    error-signal-range: The signal min must be lower than the signal max.
+    error-engineering-range: The engineering min must be lower than the engineering max.
+    label-engineering-value: Engineering value
+    label-rounded-signal: Rounded (integer)
+    status-below-range: The signal is below the range.
+    status-above-range: The signal is above the range.
+    status-below-live-zero: The signal is below the live zero, check for a broken wire or a faulty sensor.
+    engineering-below-range: The value is below the engineering range, the signal will be out of range.
+    engineering-above-range: The value is above the engineering range, the signal will be out of range.
+    loop-status-failure-low: "Low failure (≤ 3.6 mA, NAMUR NE 43): broken loop, unpowered or faulty transmitter."
+    loop-status-uncertain-low: "Between 3.6 and 3.8 mA: undefined zone, a failure is likely (NAMUR NE 43)."
+    loop-status-under-range: "Under-range (3.8 to 4 mA): the measurement is saturated at the bottom of the range."
+    loop-status-over-range: "Over-range (20 to 20.5 mA): the measurement is saturated at the top of the range."
+    loop-status-uncertain-high: "Between 20.5 and 21 mA: undefined zone, a failure is likely (NAMUR NE 43)."
+    loop-status-failure-high: "High failure (≥ 21 mA, NAMUR NE 43): faulty transmitter or short circuit."
+    label-formula: Formula
+    formula-value: value
+    formula-signal: signal
+    column-percent: Range
 collapsibleToolMenu:
   text:
     expanding: Expanding...
