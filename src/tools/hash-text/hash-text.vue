@@ -70,7 +70,7 @@ const defaultHashWasmValues = {
 const hashWasmValues = computedAsync(async () => {
   const encodingValue = encoding.value;
   const clearTextValue = clearText.value;
-  const ret = defaultHashWasmValues;
+  const ret = { ...defaultHashWasmValues };
   for (const algo of algoWasmNames) {
     ret[algo] = formatHexWithEncoding(await algosWasm[algo](clearTextValue), encodingValue);
   }
