@@ -12,12 +12,13 @@ if (fs.existsSync(localesFile)) {
 }
 
 // Single-quoted JS string that may contain escaped quotes. `[^'\\]|\\.` cannot overlap, so it cannot backtrack exponentially.
-const quotedValue = (key) => new RegExp(`\\b${key}: '((?:[^'\\\\]|\\\\.)*)'`);
+const quotedValue = (key) => new RegExp(`\\b${key}:[ \n]+'((?:[^'\\\\]|\\\\.)*)'`);
 // Decode JS string escapes (\n, \x27, \u00e9, \u{1F600}, \') the way the JS parser would
 const JS_ESCAPES = { n: '\n', r: '\r', t: '\t', b: '\b', f: '\f', v: '\v', 0: '\0' };
 const unescapeValue = (value) =>
   value.replace(/\\(?:u\{([\da-fA-F]+)\}|u([\da-fA-F]{4})|x([\da-fA-F]{2})|(.))/g, (_, codePoint, u4, x2, char) =>
-    char === undefined ? String.fromCodePoint(Number.parseInt(codePoint ?? u4 ?? x2, 16)) : (JS_ESCAPES[char] ?? char));
+    char === undefined ? String.fromCodePoint(Number.parseInt(codePoint ?? u4 ?? x2, 16)) : (JS_ESCAPES[char] ?? char),
+  );
 
 function processFile(filePath) {
   const parentDir = path.basename(path.dirname(filePath)); // Get parent directory name
@@ -29,13 +30,17 @@ function processFile(filePath) {
   const externAccessDescriptionMatch = originalContent.match(quotedValue('externAccessDescription'));
 
   if (!nameMatch || !descriptionMatch) {
-    console.warn(`Skipping ${filePath}: Unable to extract name or description.`);
+    console.warn(
+      `Skipping ${filePath}: Unable to extract name (${nameMatch ? 'found' : 'not found'}) or description (${descriptionMatch ? 'found' : 'not found'}).`,
+    );
     return;
   }
 
   const nameValue = unescapeValue(nameMatch[1]);
   const descriptionValue = unescapeValue(descriptionMatch[1]);
-  const externAccessDescriptionValue = externAccessDescriptionMatch ? unescapeValue(externAccessDescriptionMatch[1]) : null;
+  const externAccessDescriptionValue = externAccessDescriptionMatch
+    ? unescapeValue(externAccessDescriptionMatch[1])
+    : null;
 
   // Modify name and description to use the translate function
   const transformedContent = originalContent
@@ -67,8 +72,7 @@ function iterateFolder(folderPath) {
 
     if (stat.isDirectory()) {
       iterateFolder(itemPath);
-    }
-    else if (item === 'index.ts') {
+    } else if (item === 'index.ts') {
       processFile(itemPath);
     }
   });
