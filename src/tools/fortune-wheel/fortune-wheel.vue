@@ -26,7 +26,16 @@ interface WheelOption {
 // Generate random offset once on initialization to vary starting colors
 const colorOffset = Math.random() * 360;
 
-function generateUniqueColor(index: number) {
+function stringHashCode(str: string): number {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+  }
+  return h;
+}
+
+function generateUniqueColor(text: string) {
+  const index = stringHashCode(text);
   // Use HSL for better color distribution with random offset
   const hue = (index * 137.508 + colorOffset) % 360; // Golden angle + random offset
   const saturation = 65 + (index % 3) * 10; // Vary saturation slightly
@@ -80,12 +89,17 @@ const savedOptions = useQueryParamOrStorage({
   defaultValue: '[]',
 });
 
+const removeWinner = useQueryParamOrStorage({
+  name: 'removeWinner',
+  storageName: 'fortune-wheel:rmWin',
+  defaultValue: false,
+});
+
 const wheelOptions = ref<WheelOption[]>([]);
 const newOptionText = ref('');
 const isSpinning = ref(false);
 const wheelRotation = ref(0);
 const result = ref<WheelOption | null>(null);
-const lastResultIndex = ref<number | null>(null); // Track last result
 
 // Load saved options
 watchEffect(() => {
@@ -94,7 +108,7 @@ watchEffect(() => {
     wheelOptions.value = parsed.map((text: string, index: number) => ({
       id: `option-${index}`,
       text,
-      ...generateUniqueColor(index),
+      ...generateUniqueColor(text),
     }));
   } catch {
     wheelOptions.value = [];
@@ -116,7 +130,7 @@ function addOption() {
   const newOption: WheelOption = {
     id: `option-${Date.now()}`,
     text: newOptionText.value.trim(),
-    ...generateUniqueColor(wheelOptions.value.length),
+    ...generateUniqueColor(newOptionText.value.trim()),
   };
 
   wheelOptions.value.push(newOption);
@@ -129,7 +143,7 @@ function removeOption(id: string) {
     wheelOptions.value.splice(index, 1);
     // Reassign colors after removal
     wheelOptions.value.forEach((opt, i) => {
-      Object.assign(opt, generateUniqueColor(i));
+      Object.assign(opt, generateUniqueColor(opt.text));
     });
   }
 }
@@ -148,7 +162,7 @@ function moveOption(fromIndex: number, toIndex: number) {
 
   // Reassign colors after reordering
   wheelOptions.value.forEach((opt, i) => {
-    Object.assign(opt, generateUniqueColor(i));
+    Object.assign(opt, generateUniqueColor(opt.text));
   });
 }
 
@@ -224,7 +238,9 @@ function spinWheel() {
     const segmentIndex = Math.floor(pointerAngle / segmentAngle.value) % wheelOptions.value.length;
 
     result.value = wheelOptions.value[segmentIndex];
-    lastResultIndex.value = segmentIndex; // Keep for compatibility
+    if (removeWinner.value) {
+      removeOption(result.value.id);
+    }
   }, spinDuration.value * 1000);
 }
 
@@ -282,15 +298,8 @@ function getTextPosition(index: number) {
   <div class="fortune-wheel-container">
     <!-- Controls -->
     <div class="wheel-controls">
-      <n-form-item :label="t('tools.fortune-wheel.texts.label-spin-duration-seconds')" label-placement="left" my--5>
-        <n-input-number-i18n v-model:value="spinDuration" :min="0" :max="10" />
-      </n-form-item>
-
-      <n-divider />
-
       <!-- Add new option -->
-      <div class="add-option-section">
-        <h3>{{ t('tools.fortune-wheel.texts.tag-add-new-option') }}</h3>
+      <n-card :title="t('tools.fortune-wheel.texts.tag-add-new-option')">
         <div class="add-option-form">
           <c-input-text
             v-model:value="newOptionText"
@@ -304,11 +313,10 @@ function getTextPosition(index: number) {
             {{ t('tools.fortune-wheel.texts.tag-clear-all-options') }}
           </c-button>
         </div>
-      </div>
+      </n-card>
 
       <!-- Options list -->
-      <div class="options-section">
-        <h3>Wheel Options ({{ wheelOptions.length }})</h3>
+      <n-card :title="t('tools.fortune-wheel.texts.wheel-options-wheeloptions-length', [wheelOptions.length])" mt-1>
         <div v-if="wheelOptions.length === 0" class="empty-state">
           {{ t('tools.fortune-wheel.texts.tag-no-options-added-yet-add-some-options-to-start-spinning') }}
         </div>
@@ -349,7 +357,7 @@ function getTextPosition(index: number) {
             </div>
           </div>
         </div>
-      </div>
+      </n-card>
     </div>
 
     <n-divider />
@@ -408,18 +416,28 @@ function getTextPosition(index: number) {
           </div>
           <div v-else class="center-placeholder">
             <div class="placeholder-text">
-              {{ isSpinning ? 'Spinning...' : 'Spin to Win!' }}
+              {{ isSpinning ? t('tools.fortune-wheel.texts.spinning') : t('tools.fortune-wheel.texts.spin-to-win') }}
             </div>
           </div>
         </div>
         <div class="wheel-pointer" />
       </div>
 
-      <div class="spin-controls">
+      <div mt-3>
         <c-button :disabled="isSpinning || wheelOptions.length === 0" size="large" @click="spinWheel">
-          {{ isSpinning ? 'Spinning...' : 'Spin the Wheel!' }}
+          {{ isSpinning ? t('tools.fortune-wheel.texts.spinning') : t('tools.fortune-wheel.texts.spin-the-wheel') }}
         </c-button>
       </div>
+      <div mt-2>
+        <n-checkbox v-model:checked="removeWinner" mt-2>
+          {{ t('tools.fortune-wheel.texts.checkbox-remove-winner-after-spin') }}
+        </n-checkbox>
+      </div>
+      <n-space mt-2 justify="center">
+        <n-form-item :label="t('tools.fortune-wheel.texts.label-spin-duration-seconds')" label-placement="left" my--5>
+          <n-input-number-i18n v-model:value="spinDuration" :min="0" :max="10" />
+        </n-form-item>
+      </n-space>
     </div>
   </div>
 </template>
@@ -433,13 +451,6 @@ function getTextPosition(index: number) {
 
 .wheel-controls {
   margin-bottom: 20px;
-}
-
-.add-option-section h3,
-.options-section h3 {
-  margin: 16px 0 8px 0;
-  font-size: 18px;
-  font-weight: 600;
 }
 
 .add-option-form {
@@ -585,10 +596,6 @@ function getTextPosition(index: number) {
   z-index: 5;
 }
 
-.spin-controls {
-  margin: 20px 0;
-}
-
 .center-result {
   text-align: center;
   padding: 8px;
@@ -639,6 +646,11 @@ function getTextPosition(index: number) {
   .wheel {
     width: v-bind('`${WHEEL_CONFIG.mobileSize}px`');
     height: v-bind('`${WHEEL_CONFIG.mobileSize}px`');
+  }
+
+  .wheel-center {
+    width: v-bind('`${WHEEL_CONFIG.centerSize * 0.6}px`');
+    height: v-bind('`${WHEEL_CONFIG.centerSize * 0.6}px`');
   }
 
   .segment-text {
