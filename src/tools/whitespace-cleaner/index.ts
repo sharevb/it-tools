@@ -1,10 +1,10 @@
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'Whitespace Cleaner',
+  name: t('tools.whitespace-cleaner.title'),
   path: '/whitespace-cleaner',
-  description:
-    'Clean terminal and Claude Code output: strip line numbers, ANSI codes, box drawing, bullet markers, diff markers, and extra whitespace.',
+  description: t('tools.whitespace-cleaner.description'),
   keywords: [
     'whitespace',
     'cleaner',

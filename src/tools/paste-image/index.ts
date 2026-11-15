@@ -1,9 +1,10 @@
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'Paste Image',
+  name: t('tools.paste-image.title'),
   path: '/paste-image',
-  description: 'Paste an image from your clipboard, convert it to PNG, JPEG, or WebP, and download it.',
+  description: t('tools.paste-image.description'),
   keywords: [
     'paste',
     'image',

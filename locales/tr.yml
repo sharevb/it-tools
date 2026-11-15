@@ -127,6 +127,7 @@ tools:
     finance: Finans
     default: Varsayılan
     toml: TOML
+    automation: Otomasyon
   password-strength-analyser:
     title: Şifre gücü analizi
     description: Şifrenin ne kadar güçlü olduğunu bu araçla birlikte analiz et ve
@@ -4577,6 +4578,7 @@ tools:
       label-permanent: Kalıcı
       title-generated-fw-command: "Oluşturulan fw komutu:"
       tag-const-zone-ref: sabit bölge = ref
+      tooltip-remove: Bu listeden kaldır
     title: firewalld komut satırı oluşturucu
     description: firewalld komut satırlarını oluşturun
   fortune-wheel:
@@ -4594,6 +4596,11 @@ tools:
       tag-clear-all-options: Tüm Seçenekleri Temizle
       tag-no-options-added-yet-add-some-options-to-start-spinning: Henüz seçenek eklenmedi. Dönmeye başlamak için birkaç seçenek ekleyin!
       tag-: ✕
+      wheel-options-wheeloptions-length: Tekerlek Seçenekleri ({0})
+      spinning: Dönüyor...
+      spin-to-win: Döndür ve Kazan!
+      spin-the-wheel: Çarkı Çevir!
+      checkbox-remove-winner-after-spin: Döndürme işleminden sonra kazananı kaldırın.
   fstab-generator:
     title: FStab Jeneratörü
     description: /etc/fstab satırını oluşturun
@@ -9264,6 +9271,11 @@ tools:
       label-azerty: AZERTY
       label-dvorak: DVORAK
       label-colemak: COLEMAK
+    title: Klavye Test Cihazı
+    description: Klavyenizin tuşlarını test edin ve tüm tuşların düzgün çalışıp
+      çalışmadığını kontrol edin. Farklı klavye düzenleri desteğiyle her tuş
+      basımı için görsel geri bildirim.
+    externalAccess: hükümsüz
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "Markdown içeriğinizi yapıştırın:"
@@ -9856,6 +9868,10 @@ tools:
       tag-copy-json-paths: JSON yollarını kopyala
       tag-generate-patch: Yama oluştur
       tag-apply-patch: Yama uygulayın
+    title: JSON Yama Test Cihazı
+    description: RFC 6902'ye göre JSON yamaları oluşturmak ve test etmek için basit
+      bir araç. Ayrıca bir JSON nesnesinin yollarını listeler.
+    externalAccess: hükümsüz
   ping:
     title: Ping
     description: Bir dizi ana bilgisayar adını, IP adresini, CIDR'yi veya IP
@@ -10194,6 +10210,134 @@ tools:
     description: Hoparlörlerinizi ve kulaklıklarınızı test etmek için test sesleri
       çalın. Ses seviyesini ayarlayın ve ses netliğini kontrol edin.
     externalAccess: hükümsüz
+  current-loop-4-20ma-converter:
+    title: 4-20 mA dönüştürücü
+    description: NAMUR NE 43 döngü teşhis cihazı ile 4-20 mA (veya 0-20 mA) akımını
+      mühendislik değerine dönüştürün ve tekrar eski haline getirin.
+    texts:
+      signal-label: Akım
+      label-4-20-ma: 4-20 mA
+      label-0-20-ma: 0-20 mA
+  voltage-0-10v-converter:
+    title: 0-10 V dönüştürücü
+    description: 0-10 V, 2-10 V, 0-5 V, 1-5 V veya ±10 V gerilimini mühendislik
+      değerine dönüştürün ve tekrar eski haline getirin.
+    texts:
+      signal-label: Gerilim
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: Analog ölçekleme hesap makinesi
+    description: Ham PLC analog değerini (Siemens 0-27648, Schneider 0-10000,
+      12/15/16 bit...) mühendislik değerine dönüştürün ve tekrar eski haline
+      getirin.
+    texts:
+      signal-label: Ham değer
+      preset-siemens-unipolar: Siemens S7 tek kutuplu (0 - 27648)
+      preset-siemens-bipolar: Siemens S7 bipolar (-27648 - 27648)
+      preset-schneider: Schneider M340/M580 (0 - 10000)
+      preset-12-bits: 12 bit (0 ila 4095)
+      preset-15-bits: 15 bit (0 ila 32767)
+      preset-16-bits: 16 bit (0 ila 65535)
+  paste-image:
+    texts:
+      copy-image: Resmi kopyala
+      copy-as-base64: Base64 olarak kopyala
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type: Tarayıcınız {0} karakterini kodlayamıyor. Görüntü {1} olarak indiriliyor.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "Çıktı: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "Orijinal: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} piksel"
+      clear-all: Tümünü temizle
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} bu oturuma yapıştırıldı"
+      quality: "{0}%"
+      paste-from-clipboard: Panodan yapıştır
+      the-image-stays-in-your-browser-nothing-is-uploaded: Görüntü tarayıcınızda kalır. Hiçbir şey yüklenmez.
+      anywhere-on-this-page-to-paste-an-image: Bu sayfada herhangi bir yere resim yapıştırabilirsiniz.
+      press: Basmak
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard: Tarayıcı, base64 veri URL'sini panoya kopyalayamadı.
+      base64-data-url-copied-to-the-clipboard: Base64 veri URL'si panoya kopyalandı
+      the-browser-could-not-copy-the-image-to-the-clipboard: Tarayıcı görüntüyü panoya kopyalayamadı.
+      image-copied-to-the-clipboard: Görüntü panoya kopyalandı
+      the-browser-could-not-read-the-clipboard: Tarayıcı panoyu okuyamadı.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        Tarayıcı panoya erişimi engelledi. Site ayarlarından izin verin veya {0}
+        tuşuna basın.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        Tarayıcınız, düğme aracılığıyla panodan resim okuyamaz. Bunun yerine {0}
+        tuşuna basın.
+      the-browser-could-not-read-the-pasted-image: Tarayıcı yapıştırılan resmi okuyamadı.
+      the-browser-could-not-convert-the-image: Tarayıcı görüntüyü dönüştüremedi.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: Panoda resim yok. Bir resim kopyalayın, sonra tekrar deneyin.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: Resmi Yapıştır
+    description: Panodan bir görsel yapıştırın, PNG, JPEG veya WebP formatına
+      dönüştürün ve indirin.
+    externalAccess: hükümsüz
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: CRLF'yi LF'ye dönüştür
+        lf-endings: LF sonları
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack:
+          Reddit, Discord ve Slack için satırları sola hizalayın ve paragrafları
+          birleştirin.
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: Yumuşak dokulu paragrafları birleştirin
+        smart-unwrap: Akıllı açma
+        strip-from-patches: Yamalardan + - {'@'}{'@'} işaretini kaldırın.
+        diff-markers: Farklı işaretleyiciler
+        remove-common-leading-indent: Ortak öndeki girintiyi kaldır
+        indent: Girinti
+        collapse-2-blank-lines-into-1: 2 veya daha fazla boş satırı 1'e daraltın
+        blank-lines: Boş satırlar
+        remove-end-of-line-whitespace: Satır sonundaki boşlukları kaldırın.
+        trailing-space: Arkadaki boşluk
+        strip-prefixes: ●, ○, ⏺ öneklerini kaldırın
+        bullet-markers: Madde işaretleyicileri
+        remove-characters: ─ │ └ ┐ karakterleri kaldır
+        box-drawing: Kutu çizimi
+        strip-color-escape-sequences: Şerit renk kaçış dizileri
+        ansi-codes: ANSI kodları
+        strip-1-2-1-t-prefixes: 1│, 2│, 1\\t öneklerini kaldırın
+        line-numbers: Satır numaraları
+    texts:
+      cleaning-options: Temizlik seçenekleri
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: Temizlenmiş çıktınız burada görünecektir.
+      paste-fragmented-claude-code-output-here: Parçalanmış Claude Code çıktısını buraya yapıştırın…
+      sample: Örnek
+      paste: Yapıştır
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: Kopyalama başarısız
+        oldu. Çıktı seçildi. Kopyalamak için Ctrl+C tuşlarına basın.
+      copied-to-the-clipboard: Panoya kopyalandı.
+      the-clipboard-api-is-unavailable: Pano API'si kullanılamıyor.
+      copy-failed: Kopyalama başarısız oldu
+      copied: Kopyalandı ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} satır · {1} karakter · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} satır · {1} karakter"
+    title: Boşluk Temizleyici
+    description: "Terminal ve Claude Code çıktısını temizleyin: satır numaralarını,
+      ANSI kodlarını, kutu çizimlerini, madde işaretlerini, fark işaretlerini ve
+      gereksiz boşlukları kaldırın."
+    externalAccess: hükümsüz
+  cli-banner-generator:
+    title: CLI Banner Oluşturucu
+    description: CLI uygulamalarınız, terminaliniz veya yönlendiriciniz için ASCII
+      başlıklar ve Günün Mesajı (MOTD) oluşturun.
+    externalAccess: hükümsüz
+    texts:
+      label-border-char: "Sınır Karakteri:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "Genişlik (Minimum 20 – Maksimum 200):"
+      label-banner-text: "Banner Metni:"
+      placeholder-enter-motd-banner-text-here: MOTD (Günün Mesajı) başlık metnini buraya girin...
+      title-generated-banner: Oluşturulan Afiş
 about:
   alltools-title: Tüm {toolsCount} Araç
   tools:
@@ -10273,3 +10417,42 @@ collapsibleToolMenu:
     collapsing: Çöküyor...
     collapse-all-tools: Tüm Araçları Daralt
     expand-all-tools: Tüm Araçları Genişlet
+analogSignalConverter:
+  texts:
+    title-input: Giriş
+    title-parameters: Parametreler
+    title-output: Çıktı
+    swap-direction: Yönü değiştir
+    status-ok: Menzil içinde
+    copy-output: Çıktı değerini kopyala
+    title-reference-points: Referans noktaları
+    label-signal-type: Sinyal türü
+    preset-custom: Gelenek
+    label-engineering-range: Mühendislik minimum/maksimum
+    label-engineering-unit: Mühendislik birimi
+    placeholder-unit: Birim
+    error-signal-range: Sinyal minimum değeri, sinyal maksimum değerinden düşük olmalıdır.
+    error-engineering-range: Mühendislik minimumu, mühendislik maksimumundan düşük olmalıdır.
+    label-engineering-value: Mühendislik değeri
+    label-rounded-signal: Yuvarlanmış (tam sayı)
+    status-below-range: Sinyal aralığın altında.
+    status-above-range: Sinyal aralığın üzerinde.
+    status-below-live-zero: Sinyal canlı sıfır noktasının altında, kopuk bir kablo
+      veya arızalı bir sensör olup olmadığını kontrol edin.
+    engineering-below-range: Değer mühendislik aralığının altında, sinyal aralık dışında kalacak.
+    engineering-above-range: Değer mühendislik aralığının üzerinde, sinyal aralık dışında olacaktır.
+    loop-status-failure-low: "Düşük arıza (≤ 3,6 mA, NAMUR NE 43): kopuk devre,
+      güçsüz veya arızalı verici."
+    loop-status-uncertain-low: "3,6 ile 3,8 mA arası: tanımlanmamış bölge, arıza
+      olasılığı yüksek (NAMUR NE 43)."
+    loop-status-under-range: "Ölçüm aralığının alt sınırında (3,8 ila 4 mA): ölçüm doygunluğa ulaşır."
+    loop-status-over-range: "Aşırı aralık (20 ila 20,5 mA): Ölçüm, aralığın üst
+      kısmında doyuma ulaşır."
+    loop-status-uncertain-high: "20,5 ile 21 mA arası: tanımlanmamış bölge, arıza
+      olasılığı yüksek (NAMUR NE 43)."
+    loop-status-failure-high: "Yüksek akım arızası (≥ 21 mA, NAMUR NE 43): Arızalı
+      verici veya kısa devre."
+    label-formula: Formül
+    formula-value: değer
+    formula-signal: sinyal
+    column-percent: Menzil

@@ -125,6 +125,7 @@ tools:
     finance: Financiën
     default: Standaard
     toml: TOML
+    automation: Automatisering
   password-strength-analyser:
     title: Wachtwoord sterkte-analyse
     description: Ontdek de sterkte van je wachtwoord met deze client-side-only
@@ -4844,6 +4845,7 @@ tools:
       label-permanent: Permanent
       title-generated-fw-command: "Gegenereerde fw-opdracht:"
       tag-const-zone-ref: constante zone = ref
+      tooltip-remove: Verwijderen van deze lijst
     title: firewalld opdrachtregelgenerator
     description: Genereer firewalld-opdrachtregels
   fortune-wheel:
@@ -4863,6 +4865,11 @@ tools:
         Nog geen opties toegevoegd. Voeg wat opties toe om te beginnen met
         spinnen!
       tag-: ✕
+      wheel-options-wheeloptions-length: Wielopties ({0})
+      spinning: Draaien...
+      spin-to-win: Draai aan het draaiwiel en win!
+      spin-the-wheel: Draai aan het wiel!
+      checkbox-remove-winner-after-spin: Verwijder de winnaar na de draai.
   fstab-generator:
     title: FStab-generator
     description: Genereer /etc/fstab-regel
@@ -9275,6 +9282,11 @@ tools:
       label-azerty: AZERTY
       label-dvorak: DVORAK
       label-colemak: COLEMAK
+    title: Toetsenbordtester
+    description: Test de toetsen van je toetsenbord en controleer of alle toetsen
+      goed werken. Je krijgt visuele feedback bij elke toetsaanslag en er is
+      ondersteuning voor verschillende toetsenbordindelingen.
+    externalAccess: "null"
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "Plak hier je markdown-inhoud:"
@@ -9864,6 +9876,10 @@ tools:
       tag-copy-json-paths: Kopieer JSON-paden
       tag-generate-patch: Patch genereren
       tag-apply-patch: Plak de patch
+    title: JSON-patchtester
+    description: Een eenvoudige tool voor het maken en testen van JSON-patches
+      volgens RFC 6902. En voor het weergeven van paden van een JSON-object.
+    externalAccess: "null"
   ping:
     title: Ping
     description: Ping een set hostnamen, IP-adressen, CIDR-waarden of een IP-bereik.
@@ -10198,6 +10214,134 @@ tools:
     description: Test je luidsprekers en hoofdtelefoon door testgeluiden af te
       spelen. Pas het volume aan en controleer of het geluid helder is.
     externalAccess: "null"
+  current-loop-4-20ma-converter:
+    title: 4-20 mA converter
+    description: Converteer een stroom van 4-20 mA (of 0-20 mA) naar een technische
+      waarde en vice versa met de NAMUR NE 43 lusdiagnose.
+    texts:
+      signal-label: Huidig
+      label-4-20-ma: 4-20 mA
+      label-0-20-ma: 0-20 mA
+  voltage-0-10v-converter:
+    title: 0-10 V-omvormer
+    description: Zet een spanning van 0-10 V, 2-10 V, 0-5 V, 1-5 V of ±10 V om naar
+      een technische waarde en vice versa.
+    texts:
+      signal-label: Spanning
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: Analoge schaalcalculator
+    description: Schaal een ruwe analoge PLC-waarde (Siemens 0-27648, Schneider
+      0-10000, 12/15/16 bits...) naar een technische waarde en weer terug.
+    texts:
+      signal-label: Ruwe waarde
+      preset-siemens-unipolar: Siemens S7 unipolair (0 tot 27648)
+      preset-siemens-bipolar: Siemens S7 bipolair (-27648 tot 27648)
+      preset-schneider: Schneider M340/M580 (0 tot 10000)
+      preset-12-bits: 12 bits (0 tot 4095)
+      preset-15-bits: 15 bits (0 tot 32767)
+      preset-16-bits: 16 bits (0 tot 65535)
+  paste-image:
+    texts:
+      copy-image: Afbeelding kopiëren
+      copy-as-base64: Kopiëren als base64
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type: Uw browser kan {0} niet coderen. De afbeelding wordt gedownload als {1}.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "Uitvoer: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "Origineel: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} px"
+      clear-all: Alles wissen
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} geplakt in deze sessie"
+      quality: "{0}%"
+      paste-from-clipboard: Plakken vanuit het klembord
+      the-image-stays-in-your-browser-nothing-is-uploaded: De afbeelding blijft in uw browser staan. Er wordt niets geüpload.
+      anywhere-on-this-page-to-paste-an-image: Plak een afbeelding overal op deze pagina.
+      press: Pers
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard: De browser kon de base64-gegevens-URL niet naar het klembord kopiëren.
+      base64-data-url-copied-to-the-clipboard: De URL van de Base64-gegevens is naar het klembord gekopieerd.
+      the-browser-could-not-copy-the-image-to-the-clipboard: De browser kon de afbeelding niet naar het klembord kopiëren.
+      image-copied-to-the-clipboard: Afbeelding gekopieerd naar het klembord
+      the-browser-could-not-read-the-clipboard: De browser kon het klembord niet lezen.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        De browser heeft de toegang tot het klembord geblokkeerd. Schakel dit in
+        via de site-instellingen of druk op {0}.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        Uw browser kan geen afbeeldingen van het klembord lezen met een knop.
+        Druk in plaats daarvan op {0}.
+      the-browser-could-not-read-the-pasted-image: De browser kon de geplakte afbeelding niet lezen.
+      the-browser-could-not-convert-the-image: De browser kon de afbeelding niet converteren.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: Het klembord bevat geen
+        afbeelding. Kopieer een afbeelding en probeer het opnieuw.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: Afbeelding plakken
+    description: Plak een afbeelding vanuit je klembord, converteer deze naar PNG,
+      JPEG of WebP en download hem.
+    externalAccess: "null"
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: CRLF converteren → LF
+        lf-endings: LF-eindes
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack:
+          Knip regels aan de linkerkant af en voeg alinea's weer samen voor
+          Reddit, Discord en Slack.
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: Voeg alinea's met zachte omslag samen
+        smart-unwrap: Slimme uitpakfunctie
+        strip-from-patches: Verwijder + - {'@'}{'@'} uit patches
+        diff-markers: Verschillende markers
+        remove-common-leading-indent: Verwijder de gebruikelijke inkeping aan het begin.
+        indent: Inspringen
+        collapse-2-blank-lines-into-1: Vouw 2 of meer lege regels samen tot 1 regel
+        blank-lines: Lege regels
+        remove-end-of-line-whitespace: Verwijder witruimte aan het einde van de regel.
+        trailing-space: Achterliggende ruimte
+        strip-prefixes: Verwijder de voorvoegsels ●, ○, ⏺
+        bullet-markers: Kogelmarkeringen
+        remove-characters: Verwijder de tekens ─ │ └ ┐
+        box-drawing: Boxtekening
+        strip-color-escape-sequences: Stripkleur ontsnappingssequenties
+        ansi-codes: ANSI-codes
+        strip-1-2-1-t-prefixes: Verwijder de voorvoegsels 1│, 2│, 1\\t
+        line-numbers: Regelnummers
+    texts:
+      cleaning-options: Reinigingsopties
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: Uw opgeschoonde uitvoer verschijnt hier.
+      paste-fragmented-claude-code-output-here: Plak hier de gefragmenteerde uitvoer van Claude Code…
+      sample: Steekproef
+      paste: Plakken
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: Kopiëren mislukt. De
+        uitvoer is geselecteerd. Druk op Ctrl+C om deze te kopiëren.
+      copied-to-the-clipboard: Gekopieerd naar het klembord.
+      the-clipboard-api-is-unavailable: De Clipboard API is niet beschikbaar.
+      copy-failed: Kopiëren mislukt
+      copied: Gekopieerd ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} regels · {1} tekens · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} regels · {1} tekens"
+    title: Witruimte-opschoner
+    description: "Schone terminal- en Claude-code-uitvoer: verwijder regelnummers,
+      ANSI-codes, kadertekeningen, opsommingstekens, verschilmarkeringen en
+      extra witruimte."
+    externalAccess: "null"
+  cli-banner-generator:
+    title: CLI-bannergenerator
+    description: Genereer ASCII-banners en 'Message of the Day' (MOTD) voor uw
+      CLI-applicaties, terminal of router.
+    externalAccess: "null"
+    texts:
+      label-border-char: "Randkarakter:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "Breedte (min. 20 – max. 200):"
+      label-banner-text: "Bannertekst:"
+      placeholder-enter-motd-banner-text-here: Voer hier de tekst voor de MOTD-banner in...
+      title-generated-banner: Gegenereerde banner
 about:
   alltools-title: Alle {toolsCount}-hulpmiddelen
   tools:
@@ -10276,3 +10420,44 @@ collapsibleToolMenu:
     collapsing: Instorten...
     collapse-all-tools: Alle tools inklappen
     expand-all-tools: Alle tools uitbreiden
+analogSignalConverter:
+  texts:
+    title-input: Invoer
+    title-parameters: Parameters
+    title-output: Uitvoer
+    swap-direction: Wissel van richting
+    status-ok: Binnen bereik
+    copy-output: Kopieer de uitvoerwaarde
+    title-reference-points: Referentiepunten
+    label-signal-type: Signaaltype
+    preset-custom: Aangepast
+    label-engineering-range: Technische min/max
+    label-engineering-unit: Technische afdeling
+    placeholder-unit: Eenheid
+    error-signal-range: Het minimale signaal moet lager zijn dan het maximale signaal.
+    error-engineering-range: De minimale technische waarde moet lager zijn dan de
+      maximale technische waarde.
+    label-engineering-value: Technische waarde
+    label-rounded-signal: Afgerond (geheel getal)
+    status-below-range: Het signaal ligt onder het bereik.
+    status-above-range: Het signaal ligt boven het bereik.
+    status-below-live-zero: Het signaal ligt onder de nulwaarde; controleer op een
+      gebroken draad of een defecte sensor.
+    engineering-below-range: De waarde ligt onder het technische bereik, het signaal
+      valt buiten het bereik.
+    engineering-above-range: De waarde ligt boven het technische bereik, het signaal valt buiten bereik.
+    loop-status-failure-low: "Lage uitval (≤ 3,6 mA, NAMUR NE 43): onderbroken lus,
+      geen stroomtoevoer of defecte zender."
+    loop-status-uncertain-low: "Tussen 3,6 en 3,8 mA: ongedefinieerd gebied, een
+      storing is waarschijnlijk (NAMUR NE 43)."
+    loop-status-under-range: "Onder het bereik (3,8 tot 4 mA): de meting raakt
+      verzadigd aan de onderkant van het bereik."
+    loop-status-over-range: "Overbereik (20 tot 20,5 mA): de meting raakt verzadigd
+      aan de bovenkant van het bereik."
+    loop-status-uncertain-high: "Tussen 20,5 en 21 mA: ongedefinieerd gebied, een
+      storing is waarschijnlijk (NAMUR NE 43)."
+    loop-status-failure-high: "Hoge uitval (≥ 21 mA, NAMUR NE 43): defecte zender of kortsluiting."
+    label-formula: Formule
+    formula-value: waarde
+    formula-signal: signaal
+    column-percent: Bereik

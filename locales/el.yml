@@ -4430,6 +4430,7 @@ tools:
       label-permanent: Μόνιμος
       title-generated-fw-command: "Δημιουργήθηκε εντολή fw:"
       tag-const-zone-ref: σταθερή ζώνη = αναφ.
+      tooltip-remove: Αφαίρεση από αυτήν τη λίστα
     title: γεννήτρια γραμμής εντολών firewalld
     description: Δημιουργία γραμμών εντολών firewalld
   fortune-wheel:
@@ -4449,6 +4450,11 @@ tools:
         Δεν έχουν προστεθεί ακόμη επιλογές. Προσθέστε μερικές επιλογές για να
         ξεκινήσετε την περιστροφή!
       tag-: ✕
+      wheel-options-wheeloptions-length: Επιλογές τροχού ({0})
+      spinning: Κλώση...
+      spin-to-win: Γυρίστε για να κερδίσετε!
+      spin-the-wheel: Γυρίστε τον τροχό!
+      checkbox-remove-winner-after-spin: Αφαίρεση νικητή μετά την περιστροφή
   fstab-generator:
     title: Γεννήτρια FStab
     description: Δημιουργήστε τη γραμμή /etc/fstab
@@ -5340,6 +5346,7 @@ tools:
     finance: Οικονομικά
     default: Αθέτηση
     toml: ΤΟΜΛ
+    automation: Αυτοματοποίηση
   websocket-tester:
     title: Δοκιμή Websocket
     description: Επιτρέπει τον έλεγχο συνδέσεων WebSocket
@@ -9530,6 +9537,11 @@ tools:
       label-azerty: ΑΖΕΡΤΙ
       label-dvorak: Ντβόρακ
       label-colemak: ΚΟΛΕΜΑΚ
+    title: Δοκιμαστής πληκτρολογίου
+    description: Δοκιμάστε τα πλήκτρα του πληκτρολογίου σας και ελέγξτε αν όλα
+      λειτουργούν σωστά. Οπτική ανατροφοδότηση για κάθε πάτημα πλήκτρου με
+      υποστήριξη για διαφορετικές διατάξεις πληκτρολογίου.
+    externalAccess: άκυρος
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "Επικολλήστε το περιεχόμενο της έκπτωσης:"
@@ -10127,6 +10139,11 @@ tools:
       tag-copy-json-paths: Αντιγραφή διαδρομών JSON
       tag-generate-patch: Δημιουργία ενημέρωσης κώδικα
       tag-apply-patch: Εφαρμογή έμπλαστρου
+    title: Δοκιμαστής ενημερώσεων κώδικα Json
+    description: Ένα απλό εργαλείο για τη δημιουργία και τον έλεγχο ενημερώσεων
+      κώδικα JSON σύμφωνα με το RFC 6902. Και καταγραφή διαδρομών ενός
+      αντικειμένου JSON.
+    externalAccess: άκυρος
   ping:
     title: Πινγκ
     description: Ping σε ένα σύνολο ονομάτων κεντρικού υπολογιστή, IP, CIDR ή εύρους IP
@@ -10466,9 +10483,184 @@ tools:
     description: Δοκιμάστε τα ηχεία και τα ακουστικά σας αναπαράγοντας δοκιμαστικούς
       ήχους. Ρυθμίστε την ένταση και ελέγξτε την καθαρότητα του ήχου.
     externalAccess: άκυρος
+  current-loop-4-20ma-converter:
+    title: Μετατροπέας 4-20 mA
+    description: Μετατρέψτε ένα ρεύμα 4-20 mA (ή 0-20 mA) σε μια τιμή μηχανικής και
+      αντίστροφα, με τη διαγνωστική λειτουργία βρόχου NAMUR NE 43.
+    texts:
+      signal-label: Ρεύμα
+      label-4-20-ma: 4-20 mA
+      label-0-20-ma: 0-20 mA
+  voltage-0-10v-converter:
+    title: Μετατροπέας 0-10 V
+    description: Μετατρέψτε μια τάση 0-10 V, 2-10 V, 0-5 V, 1-5 V ή ±10 V σε μια
+      μηχανική τιμή και αντίστροφα.
+    texts:
+      signal-label: Δυναμικό
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: Αναλογική αριθμομηχανή κλιμάκωσης
+    description: Μετατρέψτε μια ακατέργαστη αναλογική τιμή PLC (Siemens 0-27648,
+      Schneider 0-10000, 12/15/16 bits...) σε μια τιμή μηχανικής και αντίστροφα.
+    texts:
+      signal-label: Ακατέργαστη τιμή
+      preset-siemens-unipolar: Siemens S7 μονοπολικό (0 έως 27648)
+      preset-siemens-bipolar: Διπολικός φορτιστής Siemens S7 (-27648 έως 27648)
+      preset-schneider: Σνάιντερ M340/M580 (0 έως 10000)
+      preset-12-bits: 12 bit (0 έως 4095)
+      preset-15-bits: 15 bit (0 έως 32767)
+      preset-16-bits: 16 bit (0 έως 65535)
+  paste-image:
+    texts:
+      copy-image: Αντιγραφή εικόνας
+      copy-as-base64: Αντιγραφή ως base64
+      getoutputextension-image: "{0}"
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type:
+        Το πρόγραμμα περιήγησής σας δεν μπορεί να κωδικοποιήσει το {0}. Η εικόνα
+        λαμβάνεται ως {1}.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "Έξοδος: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "Πρωτότυπο: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} εικονοστοιχεία"
+      clear-all: Διαγραφή όλων
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} επικολλήθηκε σε αυτήν την περίοδο σύνδεσης"
+      quality: "{0}%"
+      paste-from-clipboard: Επικόλληση από το πρόχειρο
+      the-image-stays-in-your-browser-nothing-is-uploaded: Η εικόνα παραμένει στο
+        πρόγραμμα περιήγησής σας. Δεν μεταφορτώνεται τίποτα.
+      anywhere-on-this-page-to-paste-an-image: οπουδήποτε σε αυτήν τη σελίδα για να επικολλήσετε μια εικόνα.
+      press: Τύπος
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard:
+        Το πρόγραμμα περιήγησης δεν μπόρεσε να αντιγράψει τη διεύθυνση URL
+        δεδομένων base64 στο πρόχειρο.
+      base64-data-url-copied-to-the-clipboard: Η διεύθυνση URL δεδομένων Base64 αντιγράφηκε στο πρόχειρο
+      the-browser-could-not-copy-the-image-to-the-clipboard: Το πρόγραμμα περιήγησης
+        δεν μπόρεσε να αντιγράψει την εικόνα στο πρόχειρο.
+      image-copied-to-the-clipboard: Η εικόνα αντιγράφηκε στο πρόχειρο
+      the-browser-could-not-read-the-clipboard: Το πρόγραμμα περιήγησης δεν μπόρεσε να διαβάσει το πρόχειρο.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        Το πρόγραμμα περιήγησης απέκλεισε την πρόσβαση στο πρόχειρο. Επιτρέψτε
+        την στις ρυθμίσεις ιστότοπου ή πατήστε {0}.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        Το πρόγραμμα περιήγησής σας δεν μπορεί να διαβάσει εικόνες από το
+        πρόχειρο με ένα κουμπί. Πατήστε {0} αντί αυτού.
+      the-browser-could-not-read-the-pasted-image: Το πρόγραμμα περιήγησης δεν μπόρεσε να διαβάσει την επικολλημένη εικόνα.
+      the-browser-could-not-convert-the-image: Το πρόγραμμα περιήγησης δεν μπόρεσε να μετατρέψει την εικόνα.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: Το πρόχειρο δεν έχει εικόνα. Αντιγράψτε μια εικόνα και δοκιμάστε ξανά.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: Επικόλληση εικόνας
+    description: Επικολλήστε μια εικόνα από το πρόχειρο, μετατρέψτε την σε PNG, JPEG
+      ή WebP και κατεβάστε την.
+    externalAccess: άκυρος
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: Μετατροπή CRLF → LF
+        lf-endings: Τελειώματα LF
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack:
+          Αριστερή περικοπή γραμμών και επανένωση παραγράφων για Reddit,
+          Discord, Slack
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: Σύνδεση παραγράφων με απαλή αναδίπλωση
+        smart-unwrap: Έξυπνη αποσυσκευασία
+        strip-from-patches: Απογύμνωση + - {'@'}{'@'} από ενημερώσεις κώδικα
+        diff-markers: Δείκτες διαφοράς
+        remove-common-leading-indent: Αφαίρεση κοινής αρχικής εσοχής
+        indent: Δαντελώνω
+        collapse-2-blank-lines-into-1: Σύμπτυξη 2+ κενών γραμμών σε 1
+        blank-lines: Κενές γραμμές
+        remove-end-of-line-whitespace: Αφαίρεση κενού στο τέλος της γραμμής
+        trailing-space: Χώρος στο τέλος
+        strip-prefixes: Προθέματα Strip ●, ○, ⏺
+        bullet-markers: Δείκτες κουκκίδων
+        remove-characters: Αφαίρεση χαρακτήρων ─ │ └ ┐
+        box-drawing: Σχέδιο κουτιού
+        strip-color-escape-sequences: Ακολουθίες διαφυγής χρώματος λωρίδας
+        ansi-codes: Κώδικες ANSI
+        strip-1-2-1-t-prefixes: Προθέματα Strip 1│, 2│, 1\\t
+        line-numbers: Αριθμοί γραμμών
+    texts:
+      cleaning-options: Επιλογές καθαρισμού
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: Το καθαρισμένο σας αποτέλεσμα θα εμφανιστεί εδώ.
+      paste-fragmented-claude-code-output-here: Επικολλήστε εδώ την κατακερματισμένη έξοδο του κώδικα Claude…
+      sample: Δείγμα
+      paste: Πάστα
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: Η αντιγραφή απέτυχε.
+        Η έξοδος έχει επιλεγεί. Πατήστε Ctrl+C για να την αντιγράψετε.
+      copied-to-the-clipboard: Αντιγράφηκε στο πρόχειρο.
+      the-clipboard-api-is-unavailable: Το API του Πρόχειρου δεν είναι διαθέσιμο.
+      copy-failed: Η αντιγραφή απέτυχε.
+      copied: Αντιγράφηκε ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} γραμμές · {1} χαρακτήρες · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} γραμμές · {1} χαρακτήρες"
+    title: Καθαριστικό κενών χώρων
+    description: "Καθαρή έξοδος τερματικού και κώδικα Claude: αριθμοί γραμμών
+      λωρίδας, κωδικοί ANSI, σχέδιο πλαισίου, δείκτες κουκκίδων, δείκτες
+      διαφοράς και επιπλέον κενό διάστημα."
+    externalAccess: άκυρος
+  cli-banner-generator:
+    title: Γεννήτρια banner CLI
+    description: Δημιουργήστε banner ASCII, Μήνυμα της Ημέρας (MOTD) για τις
+      εφαρμογές CLI, το τερματικό ή τον δρομολογητή σας.
+    externalAccess: άκυρος
+    texts:
+      label-border-char: "Χαρακτήρας ορίων:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "Πλάτος (Ελάχιστο 20 – Μέγιστο 200):"
+      label-banner-text: "Κείμενο banner:"
+      placeholder-enter-motd-banner-text-here: Εισαγάγετε εδώ κείμενο banner MOTD...
+      title-generated-banner: Δημιουργημένο banner
 collapsibleToolMenu:
   text:
     expanding: Επέκταση...
     collapsing: Κατάρρευση...
     collapse-all-tools: Σύμπτυξη όλων των εργαλείων
     expand-all-tools: Ανάπτυξη όλων των εργαλείων
+analogSignalConverter:
+  texts:
+    title-input: Εισαγωγή
+    title-parameters: Παράμετροι
+    title-output: Παραγωγή
+    swap-direction: Αλλαγή κατεύθυνσης
+    status-ok: Εντός εμβέλειας
+    copy-output: Αντιγράψτε την τιμή εξόδου
+    title-reference-points: Σημεία αναφοράς
+    label-signal-type: Τύπος σήματος
+    preset-custom: Εθιμο
+    label-engineering-range: Ελάχ. / Μέγ. Μηχανικής
+    label-engineering-unit: Μονάδα Μηχανικών
+    placeholder-unit: Μονάδα
+    error-signal-range: Το ελάχιστο σήμα πρέπει να είναι χαμηλότερο από το μέγιστο σήμα.
+    error-engineering-range: Η ελάχιστη μηχανική τιμή πρέπει να είναι χαμηλότερη από
+      τη μέγιστη μηχανική τιμή.
+    label-engineering-value: Μηχανική αξία
+    label-rounded-signal: Στρογγυλοποιημένο (ακέραιος)
+    status-below-range: Το σήμα είναι κάτω από το εύρος.
+    status-above-range: Το σήμα είναι πάνω από το εύρος.
+    status-below-live-zero: Το σήμα είναι κάτω από το μηδέν, ελέγξτε για σπασμένο
+      καλώδιο ή ελαττωματικό αισθητήρα.
+    engineering-below-range: Εάν η τιμή είναι κάτω από το εύρος μηχανικής, το σήμα
+      θα είναι εκτός εύρους.
+    engineering-above-range: Εάν η τιμή είναι πάνω από το εύρος μηχανικής, το σήμα
+      θα είναι εκτός εύρους.
+    loop-status-failure-low: "Χαμηλή βλάβη (≤ 3,6 mA, NAMUR NE 43): σπασμένος
+      βρόχος, πομπός χωρίς τροφοδοσία ή ελαττωματικός."
+    loop-status-uncertain-low: "Μεταξύ 3,6 και 3,8 mA: απροσδιόριστη ζώνη, πιθανή
+      είναι η βλάβη (NAMUR NE 43)."
+    loop-status-under-range: "Κάτω από το εύρος (3,8 έως 4 mA): η μέτρηση είναι
+      κορεσμένη στο κάτω μέρος του εύρους."
+    loop-status-over-range: "Υπέρβαση εύρους (20 έως 20,5 mA): η μέτρηση είναι
+      κορεσμένη στην κορυφή του εύρους."
+    loop-status-uncertain-high: "Μεταξύ 20,5 και 21 mA: απροσδιόριστη ζώνη, πιθανή
+      είναι η βλάβη (NAMUR NE 43)."
+    loop-status-failure-high: "Υψηλή βλάβη (≥ 21 mA, NAMUR NE 43): ελαττωματικός πομπός ή βραχυκύκλωμα."
+    label-formula: Τύπος
+    formula-value: αξία
+    formula-signal: σύνθημα
+    column-percent: Σειρά

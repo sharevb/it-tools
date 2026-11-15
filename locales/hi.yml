@@ -4377,6 +4377,7 @@ tools:
       label-permanent: स्थायी
       title-generated-fw-command: "जनरेट किया गया fw कमांड:"
       tag-const-zone-ref: स्थिर क्षेत्र = संदर्भ
+      tooltip-remove: इस सूची से हटा
   fortune-wheel:
     title: भाग्य का पहिया
     description: एक विन्यास योग्य भाग्य चक्र
@@ -4394,6 +4395,11 @@ tools:
         अभी तक कोई विकल्प नहीं जोड़ा गया है। स्पिन शुरू करने के लिए कुछ विकल्प
         जोड़ें!
       tag-: ✕
+      wheel-options-wheeloptions-length: व्हील विकल्प ({0})
+      spinning: घूमना...
+      spin-to-win: स्पिन करके जीतें!
+      spin-the-wheel: पहिया घुमाएं!
+      checkbox-remove-winner-after-spin: स्पिन के बाद विजेता को हटा दें
   fstab-generator:
     title: एफस्टैब जनरेटर
     description: /etc/fstab लाइन जनरेट करें
@@ -5074,6 +5080,11 @@ tools:
       label-azerty: अज़ेर्टी
       label-dvorak: ड्वोरक
       label-colemak: कोलमैक
+    title: कीबोर्ड परीक्षक
+    description: अपने कीबोर्ड की कुंजियों का परीक्षण करें और जांचें कि सभी कुंजियाँ
+      ठीक से काम कर रही हैं या नहीं। प्रत्येक कुंजी दबाने पर दृश्य प्रतिक्रिया
+      मिलती है और विभिन्न कीबोर्ड लेआउट के लिए भी समर्थन उपलब्ध है।
+    externalAccess: व्यर्थ
   text-to-binary:
     title: टेक्स्ट को UTF-8 बाइनरी में रूपांतरित करें
     description: टेक्स्ट को उसके UTF-8 बाइनरी रूप में और इसके विपरीत रूप में परिवर्तित करें।
@@ -5289,6 +5300,7 @@ tools:
     finance: वित्त
     default: गलती करना
     toml: टॉमल
+    automation: स्वचालन
   websocket-tester:
     title: वेबसॉकेट परीक्षण
     description: वेबसॉकेट कनेक्शनों का परीक्षण करने की अनुमति देता है
@@ -9936,6 +9948,11 @@ tools:
       tag-copy-json-paths: JSON पथों को कॉपी करें
       tag-generate-patch: पैच जनरेट करें
       tag-apply-patch: पैच लगाएं
+    title: JSON पैच परीक्षक
+    description: RFC 6902 के अनुसार JSON पैच बनाने और उनका परीक्षण करने के लिए एक
+      सरल उपकरण। साथ ही, JSON ऑब्जेक्ट के पथों को सूचीबद्ध करने की सुविधा भी
+      उपलब्ध है।
+    externalAccess: व्यर्थ
   ping:
     title: गुनगुनाहट
     description: होस्टनाम, आईपी पते, सीआईडीआर या आईपी रेंज के एक सेट को पिंग करें
@@ -10271,9 +10288,172 @@ tools:
     description: टेस्ट साउंड चलाकर अपने स्पीकर और हेडफ़ोन की जांच करें। वॉल्यूम
       एडजस्ट करें और ऑडियो की स्पष्टता जांचें।
     externalAccess: व्यर्थ
+  current-loop-4-20ma-converter:
+    title: 4-20 mA कनवर्टर
+    description: NAMUR NE 43 लूप डायग्नोस्टिक का उपयोग करके 4-20 mA (या 0-20 mA)
+      करंट को इंजीनियरिंग मान में और वापस परिवर्तित करें।
+    texts:
+      signal-label: मौजूदा
+      label-4-20-ma: 4-20 एमए
+      label-0-20-ma: 0-20 एमए
+  voltage-0-10v-converter:
+    title: 0-10 वोल्ट कनवर्टर
+    description: 0-10 V, 2-10 V, 0-5 V, 1-5 V या ±10 V वोल्टेज को इंजीनियरिंग मान
+      में परिवर्तित करें और वापस परिवर्तित करें।
+    texts:
+      signal-label: वोल्टेज
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: एनालॉग स्केलिंग कैलकुलेटर
+    description: एक कच्चे पीएलसी एनालॉग मान (सीमेंस 0-27648, श्नाइडर 0-10000,
+      12/15/16 बिट्स...) को इंजीनियरिंग मान में स्केल करें और वापस स्केल करें।
+    texts:
+      signal-label: अपरिष्कृत मान
+      preset-siemens-unipolar: सीमेंस एस7 यूनिपोलर (0 से 27648)
+      preset-siemens-bipolar: सीमेंस एस7 बाइपोलर (-27648 से 27648)
+      preset-schneider: श्नाइडर एम340/एम580 (0 से 10000)
+      preset-12-bits: 12 बिट (0 से 4095)
+      preset-15-bits: 15 बिट (0 से 32767)
+      preset-16-bits: 16 बिट (0 से 65535)
+  paste-image:
+    texts:
+      copy-image: नकल छवि
+      copy-as-base64: बेस64 के रूप में कॉपी करें
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type:
+        आपका ब्राउज़र {0} को एन्कोड नहीं कर सकता। छवि {1} के रूप में डाउनलोड
+        होती है।
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "आउटपुट: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "मूल: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} px"
+      clear-all: सभी साफ करें
+      images-length-images-length-1-image-images-pasted-in-this-session: इस सत्र में {0} {1} चिपकाया गया
+      quality: "{0}%"
+      paste-from-clipboard: क्लिपबोर्ड से पेस्ट करें
+      the-image-stays-in-your-browser-nothing-is-uploaded: यह छवि आपके ब्राउज़र में ही रहेगी। कुछ भी अपलोड नहीं होगा।
+      anywhere-on-this-page-to-paste-an-image: इस पेज पर कहीं भी इमेज पेस्ट करें।
+      press: प्रेस
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard: ब्राउज़र बेस64 डेटा यूआरएल को क्लिपबोर्ड पर कॉपी नहीं कर सका।
+      base64-data-url-copied-to-the-clipboard: बेस64 डेटा यूआरएल क्लिपबोर्ड पर कॉपी हो गया
+      the-browser-could-not-copy-the-image-to-the-clipboard: ब्राउज़र छवि को क्लिपबोर्ड पर कॉपी नहीं कर सका।
+      image-copied-to-the-clipboard: छवि क्लिपबोर्ड पर कॉपी हो गई है
+      the-browser-could-not-read-the-clipboard: ब्राउज़र क्लिपबोर्ड को पढ़ नहीं सका।
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        ब्राउज़र ने क्लिपबोर्ड एक्सेस को ब्लॉक कर दिया है। कृपया साइट सेटिंग्स
+        में इसकी अनुमति दें, या {0} दबाएँ।
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        आपका ब्राउज़र बटन के माध्यम से क्लिपबोर्ड से छवियां नहीं पढ़ सकता है।
+        कृपया इसके बजाय {0} दबाएं।
+      the-browser-could-not-read-the-pasted-image: ब्राउज़र पेस्ट की गई छवि को पढ़ नहीं सका।
+      the-browser-could-not-convert-the-image: ब्राउज़र छवि को रूपांतरित नहीं कर सका।
+      the-clipboard-has-no-image-copy-an-image-then-try-again: क्लिपबोर्ड में कोई छवि नहीं है। एक छवि कॉपी करें, फिर पुनः प्रयास करें।
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: छवि चिपकाएँ
+    description: अपने क्लिपबोर्ड से एक इमेज पेस्ट करें, उसे PNG, JPEG या WebP में
+      बदलें और डाउनलोड करें।
+    externalAccess: व्यर्थ
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: CRLF को LF में परिवर्तित करें
+        lf-endings: एलएफ अंत
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack:
+          Reddit, Discord और Slack के लिए लाइनों को बाईं ओर से ट्रिम करें और
+          पैराग्राफ को फिर से जोड़ें।
+        markdown-reddit: मार्कडाउन / रेडिट
+        join-soft-wrapped-paragraphs: नरम आवरण वाले पैराग्राफों को जोड़ें
+        smart-unwrap: स्मार्ट अनरैप
+        strip-from-patches: पैच से + - {'@'}{'@'} हटाएँ
+        diff-markers: अंतर मार्कर
+        remove-common-leading-indent: सामान्य अग्रणी इंडेंट हटाएँ
+        indent: मांगपत्र
+        collapse-2-blank-lines-into-1: 2 या अधिक खाली पंक्तियों को 1 में समेटें
+        blank-lines: रिक्त रेखाएँ
+        remove-end-of-line-whitespace: पंक्ति के अंत में मौजूद रिक्त स्थान हटाएँ
+        trailing-space: अनुगामी स्थान
+        strip-prefixes: ●, ○, ⏺ उपसर्गों को हटाएँ
+        bullet-markers: बुलेट मार्कर
+        remove-characters: ─ │ └ ┐ वर्णों को हटाएँ
+        box-drawing: बॉक्स ड्राइंग
+        strip-color-escape-sequences: स्ट्रिप रंग एस्केप अनुक्रम
+        ansi-codes: एएनएसआई कोड
+        strip-1-2-1-t-prefixes: स्ट्रिप 1│, 2│, 1\\t उपसर्ग
+        line-numbers: पंक्ति संख्याएँ
+    texts:
+      cleaning-options: सफाई के विकल्प
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: आपका साफ किया हुआ आउटपुट यहां दिखाई देगा।
+      paste-fragmented-claude-code-output-here: खंडित क्लाउड कोड आउटपुट को यहाँ पेस्ट करें…
+      sample: नमूना
+      paste: पेस्ट करें
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: कॉपी करने में विफल। आउटपुट चयनित है। इसे कॉपी करने के लिए Ctrl+C दबाएँ।
+      copied-to-the-clipboard: क्लिपबोर्ड पर कॉपी हो गई।
+      the-clipboard-api-is-unavailable: क्लिपबोर्ड एपीआई अनुपलब्ध है।
+      copy-failed: कॉपी विफल
+      copied: प्रतिलिपि बनाई गई ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} पंक्तियाँ · {1} अक्षर · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} पंक्तियाँ · {1} अक्षर"
+    title: व्हाइटस्पेस क्लीनर
+    description: "टर्मिनल और क्लाउड कोड आउटपुट को साफ करें: लाइन नंबर, एएनएसआई कोड,
+      बॉक्स ड्राइंग, बुलेट मार्कर, डिफ मार्कर और अतिरिक्त व्हाइटस्पेस हटा दें।"
+    externalAccess: व्यर्थ
+  cli-banner-generator:
+    title: सीएलआई बैनर जनरेटर
+    description: अपने CLI एप्लिकेशन, टर्मिनल या राउटर के लिए ASCII बैनर और मैसेज ऑफ
+      द डे (MOTD) जेनरेट करें।
+    externalAccess: व्यर्थ
+    texts:
+      label-border-char: "सीमा वर्ण:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "चौड़ाई (न्यूनतम 20 – अधिकतम 200):"
+      label-banner-text: "बैनर टेक्स्ट:"
+      placeholder-enter-motd-banner-text-here: यहां MOTD बैनर का टेक्स्ट डालें...
+      title-generated-banner: जनरेट किया गया बैनर
 collapsibleToolMenu:
   text:
     expanding: विस्तार हो रहा है...
     collapsing: ढह रहा है...
     collapse-all-tools: सभी टूल को छोटा करें
     expand-all-tools: सभी टूल खोलें
+analogSignalConverter:
+  texts:
+    title-input: इनपुट
+    title-parameters: पैरामीटर
+    title-output: उत्पादन
+    swap-direction: दिशा बदलें
+    status-ok: सीमा में
+    copy-output: आउटपुट मान की प्रतिलिपि बनाएँ
+    title-reference-points: संदर्भ बिंदु
+    label-signal-type: सिग्नल प्रकार
+    preset-custom: रिवाज़
+    label-engineering-range: इंजीनियरिंग न्यूनतम/अधिकतम
+    label-engineering-unit: इंजीनियरिंग इकाई
+    placeholder-unit: इकाई
+    error-signal-range: सिग्नल का न्यूनतम मान सिग्नल के अधिकतम मान से कम होना चाहिए।
+    error-engineering-range: इंजीनियरिंग न्यूनतम, इंजीनियरिंग अधिकतम से कम होना चाहिए।
+    label-engineering-value: इंजीनियरिंग मूल्य
+    label-rounded-signal: राउंडेड (पूर्णांक)
+    status-below-range: सिग्नल निर्धारित सीमा से नीचे है।
+    status-above-range: सिग्नल निर्धारित सीमा से ऊपर है।
+    status-below-live-zero: सिग्नल लाइव जीरो से नीचे है, टूटे हुए तार या खराब सेंसर की जांच करें।
+    engineering-below-range: मान इंजीनियरिंग सीमा से नीचे है, सिग्नल सीमा से बाहर होगा।
+    engineering-above-range: मान इंजीनियरिंग सीमा से ऊपर है, सिग्नल सीमा से बाहर होगा।
+    loop-status-failure-low: "निम्न विफलता (≤ 3.6 mA, NAMUR NE 43): टूटा हुआ लूप,
+      बिजली की कमी या दोषपूर्ण ट्रांसमीटर।"
+    loop-status-uncertain-low: "3.6 और 3.8 mA के बीच: अपरिभाषित क्षेत्र, विफलता की
+      संभावना है (NAMUR NE 43)।"
+    loop-status-under-range: "अंडर-रेंज (3.8 से 4 mA): माप रेंज के निचले सिरे पर संतृप्त हो जाता है।"
+    loop-status-over-range: "सीमा से अधिक (20 से 20.5 mA): माप सीमा के शीर्ष पर संतृप्त हो जाता है।"
+    loop-status-uncertain-high: "20.5 और 21 mA के बीच: अपरिभाषित क्षेत्र, विफलता की
+      संभावना है (NAMUR NE 43)।"
+    loop-status-failure-high: "उच्च विफलता (≥ 21 mA, NAMUR NE 43): दोषपूर्ण ट्रांसमीटर या शॉर्ट सर्किट।"
+    label-formula: FORMULA
+    formula-value: कीमत
+    formula-signal: संकेत
+    column-percent: श्रेणी

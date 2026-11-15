@@ -178,6 +178,7 @@ tools:
     finance: Tài chính
     default: Mặc định
     toml: TOML
+    automation: Tự động hóa
   password-strength-analyser:
     title: Bộ phân tích độ mạnh mật khẩu
     description: Khám phá độ mạnh của mật khẩu của bạn với công cụ phân tích độ mạnh
@@ -4850,6 +4851,7 @@ tools:
       label-permanent: Vĩnh viễn
       title-generated-fw-command: "Đã tạo lệnh fw:"
       tag-const-zone-ref: vùng hằng số = tham chiếu
+      tooltip-remove: Xóa khỏi danh sách này
     title: trình tạo dòng lệnh firewalld
     description: Tạo các dòng lệnh firewalld
   fortune-wheel:
@@ -4869,6 +4871,11 @@ tools:
         Chưa có tùy chọn nào được thêm vào. Hãy thêm một số tùy chọn để bắt đầu
         quay!
       tag-: ✕
+      wheel-options-wheeloptions-length: Tùy chọn bánh xe ({0})
+      spinning: Đang quay...
+      spin-to-win: Quay để trúng thưởng!
+      spin-the-wheel: Quay bánh xe may mắn!
+      checkbox-remove-winner-after-spin: Loại bỏ người thắng cuộc sau khi quay
   fstab-generator:
     title: Trình tạo FStab
     description: Tạo dòng /etc/fstab
@@ -9235,6 +9242,11 @@ tools:
       label-azerty: AZERTY
       label-dvorak: DVORAK
       label-colemak: COLEMAK
+    title: Kiểm tra bàn phím
+    description: Kiểm tra các phím trên bàn phím của bạn và đảm bảo tất cả các phím
+      hoạt động bình thường. Hiển thị phản hồi trực quan cho mỗi lần nhấn phím,
+      hỗ trợ nhiều bố cục bàn phím khác nhau.
+    externalAccess: vô giá trị
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "Dán nội dung Markdown của bạn vào đây:"
@@ -9824,6 +9836,10 @@ tools:
       tag-copy-json-paths: Sao chép đường dẫn JSON
       tag-generate-patch: Tạo bản vá
       tag-apply-patch: Áp dụng miếng vá
+    title: Trình kiểm thử bản vá Json
+    description: Một công cụ đơn giản để tạo và kiểm tra các bản vá JSON theo RFC
+      6902. Và liệt kê các đường dẫn của một đối tượng JSON.
+    externalAccess: vô giá trị
   ping:
     title: Ping
     description: Ping một tập hợp các tên máy chủ, địa chỉ IP, CIDR hoặc dải địa chỉ IP.
@@ -10160,6 +10176,133 @@ tools:
     description: Kiểm tra loa và tai nghe bằng cách phát thử âm thanh. Điều chỉnh âm
       lượng và kiểm tra độ rõ nét của âm thanh.
     externalAccess: vô giá trị
+  current-loop-4-20ma-converter:
+    title: Bộ chuyển đổi 4-20 mA
+    description: Chuyển đổi dòng điện 4-20 mA (hoặc 0-20 mA) thành giá trị kỹ thuật
+      và ngược lại bằng chức năng chẩn đoán vòng lặp NAMUR NE 43.
+    texts:
+      signal-label: Hiện hành
+      label-4-20-ma: 4-20 mA
+      label-0-20-ma: 0-20 mA
+  voltage-0-10v-converter:
+    title: Bộ chuyển đổi 0-10 V
+    description: Chuyển đổi điện áp 0-10 V, 2-10 V, 0-5 V, 1-5 V hoặc ±10 V thành
+      giá trị kỹ thuật và ngược lại.
+    texts:
+      signal-label: Điện áp
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: Máy tính tỷ lệ tương tự
+    description: Chuyển đổi giá trị analog thô của PLC (Siemens 0-27648, Schneider
+      0-10000, 12/15/16 bit...) thành giá trị kỹ thuật và ngược lại.
+    texts:
+      signal-label: Giá trị thô
+      preset-siemens-unipolar: Siemens S7 đơn cực (0 đến 27648)
+      preset-siemens-bipolar: Siemens S7 lưỡng cực (-27648 đến 27648)
+      preset-schneider: Schneider M340/M580 (0 đến 10000)
+      preset-12-bits: 12 bit (0 đến 4095)
+      preset-15-bits: 15 bit (0 đến 32767)
+      preset-16-bits: 16 bit (0 đến 65535)
+  paste-image:
+    texts:
+      copy-image: Sao chép hình ảnh
+      copy-as-base64: Sao chép dưới dạng base64
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type:
+        Trình duyệt của bạn không thể mã hóa {0}. Hình ảnh được tải xuống dưới
+        dạng {1}.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "Kết quả đầu ra: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "Nguyên bản: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} px"
+      clear-all: Xóa tất cả
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} được dán trong phiên này"
+      quality: "{0}%"
+      paste-from-clipboard: Dán từ clipboard
+      the-image-stays-in-your-browser-nothing-is-uploaded: Hình ảnh vẫn hiển thị trên
+        trình duyệt của bạn. Không có gì được tải lên cả.
+      anywhere-on-this-page-to-paste-an-image: Bạn có thể dán hình ảnh vào bất kỳ vị trí nào trên trang này.
+      press: Nhấn
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard: Trình duyệt không thể sao chép URL dữ liệu base64 vào clipboard.
+      base64-data-url-copied-to-the-clipboard: URL dữ liệu Base64 đã được sao chép vào clipboard
+      the-browser-could-not-copy-the-image-to-the-clipboard: Trình duyệt không thể sao chép hình ảnh vào clipboard.
+      image-copied-to-the-clipboard: Hình ảnh đã được sao chép vào clipboard
+      the-browser-could-not-read-the-clipboard: Trình duyệt không thể đọc dữ liệu từ clipboard.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        Trình duyệt đã chặn quyền truy cập clipboard. Hãy cho phép quyền này
+        trong cài đặt trang web hoặc nhấn {0}.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        Trình duyệt của bạn không thể đọc hình ảnh từ clipboard bằng nút bấm.
+        Thay vào đó, hãy nhấn {0}.
+      the-browser-could-not-read-the-pasted-image: Trình duyệt không thể đọc được hình ảnh đã dán.
+      the-browser-could-not-convert-the-image: Trình duyệt không thể chuyển đổi hình ảnh.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: Bộ nhớ tạm không có hình ảnh. Hãy sao chép một hình ảnh, rồi thử lại.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: Dán hình ảnh
+    description: Sao chép hình ảnh từ clipboard, chuyển đổi sang định dạng PNG, JPEG
+      hoặc WebP, rồi tải xuống.
+    externalAccess: vô giá trị
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: Chuyển đổi CRLF → LF
+        lf-endings: Kết thúc LF
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack: Cắt bớt dòng và nối lại đoạn văn cho Reddit, Discord, Slack.
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: Nối các đoạn văn được bao bọc mềm
+        smart-unwrap: Mở gói thông minh
+        strip-from-patches: Xóa dấu + - {'@'}{'@'} khỏi các bản vá
+        diff-markers: Dấu hiệu khác biệt
+        remove-common-leading-indent: Loại bỏ khoảng thụt lề đầu dòng thông thường
+        indent: Thụt lề
+        collapse-2-blank-lines-into-1: Thu gọn 2 dòng trống trở lên thành 1 dòng.
+        blank-lines: Dòng trống
+        remove-end-of-line-whitespace: Xóa khoảng trắng cuối dòng
+        trailing-space: Khoảng trống phía sau
+        strip-prefixes: Loại bỏ các tiền tố ●, ○, ⏺
+        bullet-markers: Dấu hiệu viên đạn
+        remove-characters: Xóa các ký tự ─ │ └ ┐
+        box-drawing: Bản vẽ hộp
+        strip-color-escape-sequences: Chuỗi thoát màu dải
+        ansi-codes: Mã ANSI
+        strip-1-2-1-t-prefixes: Loại bỏ các tiền tố 1│, 2│, 1\\t
+        line-numbers: Số dòng
+    texts:
+      cleaning-options: Các lựa chọn làm sạch
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: Kết quả đã được làm sạch sẽ hiển thị ở đây.
+      paste-fragmented-claude-code-output-here: Dán đoạn mã Claude Code đã được phân mảnh vào đây…
+      sample: Vật mẫu
+      paste: Dán
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: Sao chép thất bại. Đã chọn tệp đầu ra. Nhấn Ctrl+C để sao chép.
+      copied-to-the-clipboard: Đã sao chép vào clipboard.
+      the-clipboard-api-is-unavailable: API Clipboard hiện không khả dụng.
+      copy-failed: Sao chép thất bại
+      copied: Đã sao chép ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} dòng · {1} ký tự · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} dòng · {1} ký tự"
+    title: Công cụ dọn dẹp khoảng trắng
+    description: "Làm sạch đầu ra của thiết bị đầu cuối và mã Claude: loại bỏ số
+      dòng, mã ANSI, hình vẽ hộp, dấu chấm đầu dòng, dấu khác biệt và khoảng
+      trắng thừa."
+    externalAccess: vô giá trị
+  cli-banner-generator:
+    title: Công cụ tạo banner CLI
+    description: Tạo banner ASCII, thông báo trong ngày (MOTD) cho các ứng dụng dòng
+      lệnh, thiết bị đầu cuối hoặc bộ định tuyến của bạn.
+    externalAccess: vô giá trị
+    texts:
+      label-border-char: "Ký tự viền:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "Chiều rộng (Tối thiểu 20 – Tối đa 200):"
+      label-banner-text: "Văn bản trên biểu ngữ:"
+      placeholder-enter-motd-banner-text-here: Nhập nội dung banner MOTD vào đây...
+      title-generated-banner: Biểu ngữ được tạo
 spanCopyable:
   copy: Sao chép vào bảng tạm
   copied: Đã sao chép!
@@ -10184,3 +10327,45 @@ collapsibleToolMenu:
     collapsing: Sụp đổ...
     collapse-all-tools: Thu gọn tất cả công cụ
     expand-all-tools: Mở rộng tất cả công cụ
+analogSignalConverter:
+  texts:
+    title-input: Đầu vào
+    title-parameters: Thông số
+    title-output: Đầu ra
+    swap-direction: Đổi hướng
+    status-ok: Trong phạm vi
+    copy-output: Sao chép giá trị đầu ra
+    title-reference-points: Điểm tham chiếu
+    label-signal-type: Loại tín hiệu
+    preset-custom: Phong tục
+    label-engineering-range: Kỹ thuật tối thiểu/tối đa
+    label-engineering-unit: Đơn vị kỹ thuật
+    placeholder-unit: Đơn vị
+    error-signal-range: Giá trị tín hiệu tối thiểu phải thấp hơn giá trị tín hiệu tối đa.
+    error-engineering-range: Giá trị tối thiểu trong kỹ thuật phải thấp hơn giá trị
+      tối đa trong kỹ thuật.
+    label-engineering-value: Giá trị kỹ thuật
+    label-rounded-signal: Làm tròn (số nguyên)
+    status-below-range: Tín hiệu nằm ngoài phạm vi cho phép.
+    status-above-range: Tín hiệu nằm ngoài phạm vi cho phép.
+    status-below-live-zero: Tín hiệu thấp hơn mức 0 chuẩn, hãy kiểm tra xem có dây
+      dẫn bị đứt hoặc cảm biến bị lỗi không.
+    engineering-below-range: Giá trị này nằm dưới phạm vi kỹ thuật, tín hiệu sẽ bị
+      lệch khỏi phạm vi cho phép.
+    engineering-above-range: Giá trị này vượt quá phạm vi kỹ thuật, tín hiệu sẽ nằm
+      ngoài phạm vi cho phép.
+    loop-status-failure-low: "Lỗi thấp (≤ 3,6 mA, NAMUR NE 43): mạch bị đứt, không
+      có nguồn điện hoặc bộ phát bị lỗi."
+    loop-status-uncertain-low: "Trong khoảng từ 3,6 đến 3,8 mA: vùng không xác định,
+      có khả năng xảy ra lỗi (NAMUR NE 43)."
+    loop-status-under-range: "Dưới ngưỡng (3,8 đến 4 mA): phép đo bị bão hòa ở mức
+      thấp nhất của phạm vi."
+    loop-status-over-range: "Vượt quá phạm vi (20 đến 20,5 mA): phép đo bị bão hòa ở
+      mức cao nhất của phạm vi."
+    loop-status-uncertain-high: "Trong khoảng từ 20,5 đến 21 mA: vùng không xác
+      định, có khả năng xảy ra lỗi (NAMUR NE 43)."
+    loop-status-failure-high: "Lỗi cao (≥ 21 mA, NAMUR NE 43): bộ phát bị lỗi hoặc ngắn mạch."
+    label-formula: Công thức
+    formula-value: giá trị
+    formula-signal: tín hiệu
+    column-percent: Phạm vi

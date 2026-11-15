@@ -182,6 +182,7 @@ tools:
     finance: Финансы
     default: По умолчанию
     toml: ТОМЛ
+    automation: Автоматизация
   password-strength-analyser:
     title: Анализатор надежности пароля
     description: Узнайте о надежности своего пароля с помощью этого анализатора
@@ -5543,6 +5544,7 @@ tools:
       label-permanent: Постоянный
       title-generated-fw-command: "Сгенерированная команда fw:"
       tag-const-zone-ref: константная зона = ссылка
+      tooltip-remove: Удалить из этого списка
     title: генератор командной строки firewalld
     description: Сгенерировать командную строку firewalld
   fortune-wheel:
@@ -5562,6 +5564,11 @@ tools:
         Пока не добавлено ни одного варианта. Добавьте несколько вариантов,
         чтобы начать вращение!
       tag-: ✕
+      wheel-options-wheeloptions-length: Варианты колес ({0})
+      spinning: Вращение...
+      spin-to-win: Крутите педали и выигрывайте!
+      spin-the-wheel: Покрутите колесо!
+      checkbox-remove-winner-after-spin: Удалить победителя после вращения
   fstab-generator:
     title: Генератор FStab
     description: Сгенерировать строку /etc/fstab
@@ -9312,6 +9319,11 @@ tools:
       label-azerty: АЗЕРТИ
       label-dvorak: ДВОРАКА
       label-colemak: КОЛЕМАК
+    title: Тестер клавиатуры
+    description: Проверьте работу клавиш клавиатуры и убедитесь, что все они
+      исправны. Визуальная обратная связь при каждом нажатии клавиши, поддержка
+      различных раскладок клавиатуры.
+    externalAccess: нулевой
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "Вставьте содержимое в формате Markdown:"
@@ -9907,6 +9919,10 @@ tools:
       tag-copy-json-paths: Скопировать пути JSON
       tag-generate-patch: Сгенерировать патч
       tag-apply-patch: Применить патч
+    title: JSON Patch Tester
+    description: Простой инструмент для создания и тестирования JSON-патчей в
+      соответствии с RFC 6902. А также для вывода путей к JSON-объекту.
+    externalAccess: нулевой
   ping:
     title: Пинг
     description: Проверьте доступность набора имен хостов, IP-адресов, CIDR или
@@ -10247,6 +10263,136 @@ tools:
     description: Проверьте работу колонок и наушников, воспроизведя тестовые звуки.
       Отрегулируйте громкость и проверьте чистоту звука.
     externalAccess: нулевой
+  current-loop-4-20ma-converter:
+    title: Преобразователь 4-20 мА
+    description: С помощью диагностической петли NAMUR NE 43 вы можете преобразовать
+      ток 4-20 мА (или 0-20 мА) в инженерное значение и обратно.
+    texts:
+      signal-label: Текущий
+      label-4-20-ma: 4-20 мА
+      label-0-20-ma: 0-20 мА
+  voltage-0-10v-converter:
+    title: Преобразователь 0-10 В
+    description: Преобразуйте напряжение 0-10 В, 2-10 В, 0-5 В, 1-5 В или ±10 В в
+      инженерное значение и обратно.
+    texts:
+      signal-label: Напряжение
+      label-0-10-v: 0-10 В
+      label-2-10-v: 2-10 В
+      label-0-5-v: 0-5 В
+      label-1-5-v: 1-5 В
+      label-10-v: ±10 В
+  analog-scaling-calculator:
+    title: Аналоговый масштабный калькулятор
+    description: Преобразовать исходное аналоговое значение ПЛК (Siemens 0-27648,
+      Schneider 0-10000, 12/15/16 бит...) в инженерное значение и обратно.
+    texts:
+      signal-label: Сырое значение
+      preset-siemens-unipolar: Siemens S7 однополярный (от 0 до 27648)
+      preset-siemens-bipolar: Siemens S7 биполярный (-27648 до 27648)
+      preset-schneider: Schneider M340/M580 (от 0 до 10000)
+      preset-12-bits: 12 бит (от 0 до 4095)
+      preset-15-bits: 15 бит (от 0 до 32767)
+      preset-16-bits: 16 бит (от 0 до 65535)
+  paste-image:
+    texts:
+      copy-image: Скопировать изображение
+      copy-as-base64: Скопировать в формате base64
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type: Ваш браузер не может закодировать {0}. Изображение загружается как {1}.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "Вывод: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "Оригинал: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} px"
+      clear-all: Очистить все
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} вставлено в эту сессию"
+      quality: "{0}%"
+      paste-from-clipboard: Вставить из буфера обмена
+      the-image-stays-in-your-browser-nothing-is-uploaded: Изображение остаётся в вашем браузере. Ничего не загружается.
+      anywhere-on-this-page-to-paste-an-image: Вставьте изображение в любое место на этой странице.
+      press: Нажимать
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard:
+        Браузеру не удалось скопировать URL-адрес данных в формате base64 в
+        буфер обмена.
+      base64-data-url-copied-to-the-clipboard: URL-адрес данных Base64 скопирован в буфер обмена.
+      the-browser-could-not-copy-the-image-to-the-clipboard: Браузеру не удалось скопировать изображение в буфер обмена.
+      image-copied-to-the-clipboard: Изображение скопировано в буфер обмена
+      the-browser-could-not-read-the-clipboard: Браузер не смог прочитать содержимое буфера обмена.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        Браузер заблокировал доступ к буферу обмена. Разрешите его в настройках
+        сайта или нажмите {0}.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        Ваш браузер не может считывать изображения из буфера обмена с помощью
+        кнопки. Вместо этого нажмите {0}.
+      the-browser-could-not-read-the-pasted-image: Браузер не смог прочитать вставленное изображение.
+      the-browser-could-not-convert-the-image: Браузеру не удалось преобразовать изображение.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: В буфере обмена нет
+        изображения. Скопируйте изображение и попробуйте снова.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: Вставить изображение
+    description: Вставьте изображение из буфера обмена, преобразуйте его в формат
+      PNG, JPEG или WebP и скачайте.
+    externalAccess: нулевой
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: Преобразовать CRLF → LF
+        lf-endings: Окончания LF
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack:
+          Обрезка строк по левому краю и объединение абзацев для Reddit,
+          Discord, Slack
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: Соедините абзацы с переносом строк.
+        smart-unwrap: Умная распаковка
+        strip-from-patches: Удалить + - {'@'}{'@'} из патчей
+        diff-markers: Дифференциальные маркеры
+        remove-common-leading-indent: Удалите общий начальный отступ
+        indent: Отступ
+        collapse-2-blank-lines-into-1: Объединить 2+ пустые строки в 1
+        blank-lines: Пустые строки
+        remove-end-of-line-whitespace: Удалите пробелы в конце строки.
+        trailing-space: Пространство для прицепа
+        strip-prefixes: Удалите префиксы ●, ○, ⏺
+        bullet-markers: Маркеры-пули
+        remove-characters: Удалить символы ─ │ └ ┐
+        box-drawing: Рисунок коробки
+        strip-color-escape-sequences: Последовательности выхода цвета полоски
+        ansi-codes: коды ANSI
+        strip-1-2-1-t-prefixes: Strip 1│, 2│, 1\\t prefixes
+        line-numbers: Номера строк
+    texts:
+      cleaning-options: Варианты уборки
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: Здесь отобразится очищенный результат.
+      paste-fragmented-claude-code-output-here: Вставьте сюда фрагментированный код Claude…
+      sample: Образец
+      paste: Вставить
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: Копирование не
+        удалось. Выбранный фрагмент выделен. Нажмите Ctrl+C для копирования.
+      copied-to-the-clipboard: Скопировано в буфер обмена.
+      the-clipboard-api-is-unavailable: API буфера обмена недоступен.
+      copy-failed: Копирование не удалось
+      copied: Скопировано ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} строк · {1} символов · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} строк · {1} символов"
+    title: Очиститель пустого пространства
+    description: "Чистый вывод терминала и кода Клода: номера строк, коды ANSI,
+      схематическое изображение прямоугольника, маркеры маркеров, маркеры
+      различий и лишние пробелы."
+    externalAccess: нулевой
+  cli-banner-generator:
+    title: Генератор баннеров CLI
+    description: Создавайте ASCII-баннеры и сообщения дня (MOTD) для ваших
+      приложений командной строки, терминала или маршрутизатора.
+    externalAccess: нулевой
+    texts:
+      label-border-char: "Пограничный Чар:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "Ширина (мин. 20 – макс. 200):"
+      label-banner-text: "Текст баннера:"
+      placeholder-enter-motd-banner-text-here: Введите текст баннера дня здесь...
+      title-generated-banner: Сгенерированный баннер
 spanCopyable:
   copy: Копировать в буфер обмена
   copied: Скопировано!
@@ -10271,3 +10417,47 @@ collapsibleToolMenu:
     collapsing: Обрушение...
     collapse-all-tools: Свернуть все инструменты
     expand-all-tools: Развернуть все инструменты
+analogSignalConverter:
+  texts:
+    title-input: Вход
+    title-parameters: Параметры
+    title-output: Выход
+    swap-direction: Поменять направление
+    status-ok: В пределах досягаемости
+    copy-output: Скопируйте выходное значение
+    title-reference-points: Точки отсчета
+    label-signal-type: Тип сигнала
+    preset-custom: Обычай
+    label-engineering-range: Инженерные минимальные/максимальные значения
+    label-engineering-unit: Инженерное подразделение
+    placeholder-unit: Единица
+    error-signal-range: Минимальное значение сигнала должно быть ниже максимального
+      значения сигнала.
+    error-engineering-range: Минимальное значение инженерных требований должно быть
+      ниже максимального значения инженерных требований.
+    label-engineering-value: Инженерная ценность
+    label-rounded-signal: Округленный (целое число)
+    status-below-range: Сигнал находится ниже допустимого диапазона.
+    status-above-range: Сигнал находится выше допустимого диапазона.
+    status-below-live-zero: Сигнал ниже нулевого значения, проверьте наличие обрыва
+      провода или неисправности датчика.
+    engineering-below-range: Значение ниже допустимого диапазона, сигнал выйдет за
+      пределы допустимой зоны.
+    engineering-above-range: Значение превышает допустимый диапазон, сигнал выйдет
+      за пределы допустимой зоны.
+    loop-status-failure-low: "Низкий уровень отказов (≤ 3,6 мА, NAMUR NE 43): обрыв
+      шлейфа, отсутствие питания или неисправность передатчика."
+    loop-status-uncertain-low: "В диапазоне от 3,6 до 3,8 мА: неопределенная зона,
+      вероятен сбой (NAMUR NE 43)."
+    loop-status-under-range: "В нижней части диапазона (от 3,8 до 4 мА): измерение
+      насыщается в нижней точке диапазона."
+    loop-status-over-range: "Выход за пределы диапазона (20–20,5 мА): измерение
+      насыщается в верхней части диапазона."
+    loop-status-uncertain-high: "В диапазоне от 20,5 до 21 мА: неопределенная зона,
+      вероятен сбой (NAMUR NE 43)."
+    loop-status-failure-high: "Высокий уровень отказов (≥ 21 мА, NAMUR NE 43):
+      неисправный передатчик или короткое замыкание."
+    label-formula: Формула
+    formula-value: ценить
+    formula-signal: сигнал
+    column-percent: Диапазон

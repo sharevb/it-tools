@@ -123,6 +123,7 @@ tools:
     finance: 재원
     default: 기본
     toml: 톰
+    automation: 오토메이션
   password-strength-analyser:
     title: 비밀번호 강도 분석기
     description: 클라이언트 사이드에서만 동작하는 비밀번호 강도 분석 및 해킹 예상 시간 추정 도구입니다.
@@ -4564,6 +4565,7 @@ tools:
       label-permanent: 영구적인
       title-generated-fw-command: "생성된 fw 명령:"
       tag-const-zone-ref: 상수 영역 = 참조
+      tooltip-remove: 이 목록에서 제거
     title: firewalld 명령줄 생성기
     description: firewalld 명령줄 생성
   fortune-wheel:
@@ -4581,6 +4583,11 @@ tools:
       tag-clear-all-options: 모든 옵션 지우기
       tag-no-options-added-yet-add-some-options-to-start-spinning: 아직 추가된 옵션이 없습니다. 옵션을 추가하여 회전을 시작하세요!
       tag-: ✕
+      wheel-options-wheeloptions-length: 휠 옵션 ({0})
+      spinning: 제사...
+      spin-to-win: 돌려서 승리하세요!
+      spin-the-wheel: 룰렛을 돌려보세요!
+      checkbox-remove-winner-after-spin: 스핀 후 당첨자 제거
   fstab-generator:
     title: FStab 생성기
     description: /etc/fstab 라인 생성
@@ -8800,6 +8807,10 @@ tools:
       label-azerty: 아제르티
       label-dvorak: 드보락
       label-colemak: 콜맥
+    title: 키보드 테스터
+    description: 키보드 키를 테스트하고 모든 키가 제대로 작동하는지 확인하세요. 다양한 키보드 레이아웃을 지원하며, 키를 누를 때마다
+      시각적인 피드백을 제공합니다.
+    externalAccess: 널
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "마크다운 콘텐츠를 붙여넣으세요:"
@@ -9374,6 +9385,9 @@ tools:
       tag-copy-json-paths: JSON 경로를 복사하세요
       tag-generate-patch: 패치를 생성합니다
       tag-apply-patch: 패치를 붙이세요
+    title: JSON 패치 테스터
+    description: RFC 6902에 따라 JSON 패치를 생성하고 테스트하는 간단한 도구입니다. 또한 JSON 객체의 경로 목록을 표시합니다.
+    externalAccess: 널
   ping:
     title: 핑
     description: 호스트 이름, IP 주소, CIDR 또는 IP 범위에 대해 ping을 실행합니다.
@@ -9686,6 +9700,121 @@ tools:
     title: 사운드 테스터
     description: 스피커와 헤드폰을 테스트하려면 테스트 사운드를 재생해 보세요. 볼륨을 조절하고 음질이 양호한지 확인하십시오.
     externalAccess: 널
+  current-loop-4-20ma-converter:
+    title: 4-20mA 변환기
+    description: NAMUR NE 43 루프 진단기를 사용하여 4-20mA(또는 0-20mA) 전류를 공학적 값으로 변환하고 다시 역변환할 수 있습니다.
+    texts:
+      signal-label: 현재의
+      label-4-20-ma: 4-20 mA
+      label-0-20-ma: 0-20mA
+  voltage-0-10v-converter:
+    title: 0-10V 변환기
+    description: 0-10V, 2-10V, 0-5V, 1-5V 또는 ±10V 전압을 공학적 값으로 변환하고 다시 원래 값으로 변환합니다.
+    texts:
+      signal-label: 전압
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: 아날로그 스케일링 계산기
+    description: PLC 아날로그 원시 값(지멘스 0-27648, 슈나이더 0-10000, 12/15/16비트 등)을 엔지니어링 값으로
+      변환하고 다시 역변환합니다.
+    texts:
+      signal-label: 원값
+      preset-siemens-unipolar: 지멘스 S7 단극형(0~27648)
+      preset-siemens-bipolar: 지멘스 S7 바이폴라(-27648 ~ 27648)
+      preset-schneider: 슈나이더 M340/M580 (0~10000)
+      preset-12-bits: 12비트(0~4095)
+      preset-15-bits: 15비트(0~32767)
+      preset-16-bits: 16비트(0~65535)
+  paste-image:
+    texts:
+      copy-image: 이미지 복사
+      copy-as-base64: base64 형식으로 복사
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type: 브라우저에서 {0}을 인코딩할 수 없습니다. 이미지가 {1}로 다운로드됩니다.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "출력: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "원본: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} 픽셀"
+      clear-all: 모두 지우기
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} 이 세션에 붙여넣었습니다"
+      quality: "{0}%"
+      paste-from-clipboard: 클립보드에서 붙여넣기
+      the-image-stays-in-your-browser-nothing-is-uploaded: 이미지는 브라우저에 남아 있습니다. 아무것도 업로드되지 않습니다.
+      anywhere-on-this-page-to-paste-an-image: 이 페이지 아무 곳에나 이미지를 붙여넣으세요.
+      press: 누르다
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard: 브라우저가 base64로 인코딩된 데이터 URL을 클립보드에 복사할 수 없습니다.
+      base64-data-url-copied-to-the-clipboard: Base64 데이터 URL이 클립보드에 복사되었습니다.
+      the-browser-could-not-copy-the-image-to-the-clipboard: 브라우저가 이미지를 클립보드에 복사할 수 없습니다.
+      image-copied-to-the-clipboard: 이미지가 클립보드에 복사되었습니다.
+      the-browser-could-not-read-the-clipboard: 브라우저가 클립보드를 읽을 수 없습니다.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut: 브라우저에서 클립보드 접근을 차단했습니다. 사이트 설정에서 허용하거나 {0}을 누르세요.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead: 브라우저에서 버튼으로 클립보드의 이미지를 읽을 수 없습니다. 대신 {0}을 누르세요.
+      the-browser-could-not-read-the-pasted-image: 브라우저가 붙여넣은 이미지를 읽을 수 없습니다.
+      the-browser-could-not-convert-the-image: 브라우저가 이미지를 변환할 수 없습니다.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: 클립보드에 이미지가 없습니다. 이미지를 복사한 후 다시 시도하세요.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: 이미지 붙여넣기
+    description: 클립보드에서 이미지를 붙여넣고, PNG, JPEG 또는 WebP 형식으로 변환한 후 다운로드하세요.
+    externalAccess: 널
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: CRLF를 LF로 변환
+        lf-endings: LF 엔딩
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack: 레딧, 디스코드, 슬랙에서 왼쪽 줄 바꿈 및 단락 다시 합치기
+        markdown-reddit: 마크다운 / 레딧
+        join-soft-wrapped-paragraphs: 부드럽게 포장된 단락들을 연결하세요
+        smart-unwrap: 스마트 언랩
+        strip-from-patches: 패치에서 + - {'@'}{'@'}를 제거하세요
+        diff-markers: 디프 마커
+        remove-common-leading-indent: 공통 선행 들여쓰기를 제거합니다
+        indent: 톱니 모양
+        collapse-2-blank-lines-into-1: 두 개 이상의 빈 줄을 한 줄로 합칩니다
+        blank-lines: 빈 줄
+        remove-end-of-line-whitespace: 줄 끝 공백을 제거하세요
+        trailing-space: 후행 공간
+        strip-prefixes: ●, ○, ⏺ 접두사를 제거하세요
+        bullet-markers: 총알 표시기
+        remove-characters: ─ │ └ ┐ 문자를 제거하세요
+        box-drawing: 박스 드로잉
+        strip-color-escape-sequences: 스트립 색상 탈출 시퀀스
+        ansi-codes: ANSI 코드
+        strip-1-2-1-t-prefixes: 1│, 2│, 1\\t 접두사를 제거하세요
+        line-numbers: 줄 번호
+    texts:
+      cleaning-options: 청소 옵션
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: 정리된 결과물이 여기에 표시됩니다.
+      paste-fragmented-claude-code-output-here: 조각난 Claude Code 출력 결과를 여기에 붙여넣으세요…
+      sample: 견본
+      paste: 반죽
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: 복사에 실패했습니다. 출력물이 선택되었습니다. Ctrl+C를 눌러 복사하세요.
+      copied-to-the-clipboard: 클립보드에 복사되었습니다.
+      the-clipboard-api-is-unavailable: 클립보드 API를 사용할 수 없습니다.
+      copy-failed: 복사 실패
+      copied: 복사됨 ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0}줄 · {1}자 · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0}줄 · {1}자"
+    title: 화이트스페이스 클리너
+    description: 터미널 및 Claude Code 출력에서 줄 번호, ANSI 코드, 박스 그리기, 글머리 기호, 차이 표시 및 불필요한
+      공백을 제거하여 깔끔하게 정리합니다.
+    externalAccess: 널
+  cli-banner-generator:
+    title: CLI 배너 생성기
+    description: CLI 애플리케이션, 터미널 또는 라우터용 ASCII 배너 및 오늘의 메시지(MOTD)를 생성합니다.
+    externalAccess: 널
+    texts:
+      label-border-char: "보더 차르:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "너비 (최소 20 – 최대 200):"
+      label-banner-text: "배너 텍스트:"
+      placeholder-enter-motd-banner-text-here: 오늘의 주요 뉴스 배너 문구를 여기에 입력하세요...
+      title-generated-banner: 생성된 배너
 about:
   alltools-title: 모든 {toolsCount}개 도구
   tools:
@@ -9753,3 +9882,36 @@ collapsibleToolMenu:
     collapsing: 무너지고 있다...
     collapse-all-tools: 모든 도구 접기
     expand-all-tools: 모든 도구 펼치기
+analogSignalConverter:
+  texts:
+    title-input: 입력
+    title-parameters: 매개변수
+    title-output: 산출
+    swap-direction: 방향 전환
+    status-ok: 범위 내
+    copy-output: 출력값을 복사하세요
+    title-reference-points: 기준점
+    label-signal-type: 신호 유형
+    preset-custom: 관습
+    label-engineering-range: 엔지니어링 최소/최대
+    label-engineering-unit: 엔지니어링 부서
+    placeholder-unit: 단위
+    error-signal-range: 신호 최소값은 신호 최대값보다 낮아야 합니다.
+    error-engineering-range: 공학적 최소값은 공학적 최대값보다 낮아야 합니다.
+    label-engineering-value: 엔지니어링 가치
+    label-rounded-signal: 반올림된 (정수)
+    status-below-range: 신호가 허용 범위를 벗어났습니다.
+    status-above-range: 신호가 허용 범위를 벗어났습니다.
+    status-below-live-zero: 신호가 기준치(0)보다 낮습니다. 배선 단선이나 센서 고장 여부를 확인하십시오.
+    engineering-below-range: 값이 엔지니어링 범위 미만이므로 신호가 범위를 벗어납니다.
+    engineering-above-range: 값이 엔지니어링 범위를 벗어났으므로 신호가 범위를 이탈하게 됩니다.
+    loop-status-failure-low: "낮은 고장률(≤ 3.6mA, NAMUR NE 43): 회로 단선, 전원 공급 안 됨 또는 송신기 고장."
+    loop-status-uncertain-low: "3.6~3.8mA 사이: 정의되지 않은 영역, 고장 발생 가능성 높음(NAMUR NE 43)."
+    loop-status-under-range: "측정 범위 하한(3.8~4mA): 측정값이 범위의 하단에서 포화됩니다."
+    loop-status-over-range: "범위 초과(20~20.5mA): 측정값이 범위의 최상단에서 포화됩니다."
+    loop-status-uncertain-high: "20.5~21mA 사이: 정의되지 않은 영역, 고장 발생 가능성이 높음(NAMUR NE 43)."
+    loop-status-failure-high: "높은 고장률(≥ 21mA, NAMUR NE 43): 송신기 불량 또는 단락."
+    label-formula: 공식
+    formula-value: 값
+    formula-signal: 신호
+    column-percent: 범위

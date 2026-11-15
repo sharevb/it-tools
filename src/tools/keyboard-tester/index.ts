@@ -1,10 +1,10 @@
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'Keyboard Tester',
+  name: t('tools.keyboard-tester.title'),
   path: '/keyboard-tester',
-  description:
-    'Test your keyboard keys and check if all keys are working properly. Visual feedback for each key press with support for different keyboard layouts.',
+  description: t('tools.keyboard-tester.description'),
   keywords: [
     'keyboard',
     'tester',

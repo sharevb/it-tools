@@ -180,17 +180,28 @@ tools:
     toml: TOML
   current-loop-4-20ma-converter:
     title: Convertisseur 4-20 mA
-    description: Convertir un courant 4-20 mA (ou 0-20 mA) en valeur physique et inversement, avec le diagnostic de boucle NAMUR NE 43.
+    description: Convertir un courant 4-20 mA (ou 0-20 mA) en valeur physique et
+      inversement, avec le diagnostic de boucle NAMUR NE 43.
     texts:
       signal-label: Courant
+      label-4-20-ma: 4-20 mA
+      label-0-20-ma: 0-20 mA
   voltage-0-10v-converter:
     title: Convertisseur 0-10 V
-    description: Convertir une tension 0-10 V, 2-10 V, 0-5 V, 1-5 V ou ±10 V en valeur physique et inversement.
+    description: Convertir une tension 0-10 V, 2-10 V, 0-5 V, 1-5 V ou ±10 V en
+      valeur physique et inversement.
     texts:
       signal-label: Tension
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
   analog-scaling-calculator:
     title: Mise à l'échelle analogique
-    description: Convertir une valeur brute d'entrée analogique d'automate (Siemens 0-27648, Schneider 0-10000, 12/15/16 bits...) en valeur physique et inversement.
+    description: Convertir une valeur brute d'entrée analogique d'automate (Siemens
+      0-27648, Schneider 0-10000, 12/15/16 bits...) en valeur physique et
+      inversement.
     texts:
       signal-label: Valeur brute
       preset-siemens-unipolar: Siemens S7 unipolaire (0 à 27648)
@@ -2140,6 +2151,7 @@ tools:
       label-no: Non
       placeholder-enter-the-service-port-protocol: Entrez le service / port / protocole
       title-generated-fw-command: "Commande FW générée :"
+      tooltip-remove: Retirer de cette liste
     title: générateur de ligne de commande firewalld
     description: Générer des lignes de commande firewalld
   floating-point-converter:
@@ -2326,6 +2338,11 @@ tools:
       title-move-down: Descendre
       title-move-up: Monter
       title-remove: Retirer
+      wheel-options-wheeloptions-length: Options de roue ({0})
+      spinning: Filage...
+      spin-to-win: Tournez pour gagner !
+      spin-the-wheel: Faites tourner la roue !
+      checkbox-remove-winner-after-spin: Retirer le gagnant après le tour
     title: Roue de fortune
   fstab-generator:
     texts:
@@ -9630,6 +9647,11 @@ tools:
       label-azerty: AZERTY
       label-dvorak: DVORAK
       label-colemak: COLEMAK
+    title: Testeur de clavier
+    description: Testez les touches de votre clavier et vérifiez leur bon
+      fonctionnement. Un retour visuel s'affiche pour chaque frappe, avec prise
+      en charge de différentes dispositions de clavier.
+    externalAccess: nul
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "Collez votre contenu Markdown :"
@@ -10222,6 +10244,10 @@ tools:
       tag-copy-json-paths: Copier les chemins JSON
       tag-generate-patch: Générer un patch
       tag-apply-patch: Appliquer le patch
+    title: Testeur de correctifs JSON
+    description: Un outil simple pour créer et tester des correctifs JSON conformes
+      à la RFC 6902. Et lister les chemins d'un objet JSON.
+    externalAccess: nul
   ping:
     title: Ping
     description: Effectuer un ping sur un ensemble de noms d'hôtes, d'adresses IP,
@@ -10559,6 +10585,106 @@ tools:
     description: Testez vos haut-parleurs et votre casque en diffusant des sons de
       test. Réglez le volume et vérifiez la clarté audio.
     externalAccess: nul
+  paste-image:
+    texts:
+      copy-image: Copier l'image
+      copy-as-base64: Copier au format base64
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type:
+        Votre navigateur ne peut pas encoder {0}. L'image est téléchargée sous
+        la forme {1}.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "Résultat : {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "Original : {0}, {1}"
+      image-width-image-height-px: "{0} × {1} px"
+      clear-all: Effacer tout
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} collé dans cette session"
+      quality: "{0}%"
+      paste-from-clipboard: Coller depuis le presse-papiers
+      the-image-stays-in-your-browser-nothing-is-uploaded: L'image reste dans votre navigateur. Rien n'est téléchargé.
+      anywhere-on-this-page-to-paste-an-image: Vous pouvez coller une image n'importe où sur cette page.
+      press: Presse
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard:
+        Le navigateur n'a pas pu copier l'URL des données base64 dans le
+        presse-papiers.
+      base64-data-url-copied-to-the-clipboard: URL des données Base64 copiée dans le presse-papiers
+      the-browser-could-not-copy-the-image-to-the-clipboard: Le navigateur n'a pas pu copier l'image dans le presse-papiers.
+      image-copied-to-the-clipboard: Image copiée dans le presse-papiers
+      the-browser-could-not-read-the-clipboard: Le navigateur n'a pas pu lire le presse-papiers.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        Le navigateur a bloqué l'accès au presse-papiers. Autorisez-le dans les
+        paramètres du site ou appuyez sur {0}.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        Votre navigateur ne peut pas lire les images du presse-papiers avec un
+        bouton. Appuyez plutôt sur {0}.
+      the-browser-could-not-read-the-pasted-image: Le navigateur n'a pas pu lire l'image collée.
+      the-browser-could-not-convert-the-image: Le navigateur n'a pas pu convertir l'image.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: Le presse-papiers est vide. Copiez une image, puis réessayez.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: Coller l'image
+    description: Collez une image depuis votre presse-papiers, convertissez-la au
+      format PNG, JPEG ou WebP, puis téléchargez-la.
+    externalAccess: nul
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: Convertir CRLF → LF
+        lf-endings: terminaisons LF
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack:
+          Couper les lignes à gauche et fusionner les paragraphes pour Reddit,
+          Discord et Slack
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: Joindre les paragraphes à retour souple
+        smart-unwrap: Déballage intelligent
+        strip-from-patches: Supprimer + - {'@'}{'@'} des patchs
+        diff-markers: Marqueurs différentiels
+        remove-common-leading-indent: Supprimer le retrait commun
+        indent: Retrait
+        collapse-2-blank-lines-into-1: Réduire 2 lignes vides ou plus en 1
+        blank-lines: lignes vides
+        remove-end-of-line-whitespace: Supprimer les espaces de fin de ligne
+        trailing-space: Espace de traînée
+        strip-prefixes: Supprimer les préfixes ●, ○, ⏺
+        bullet-markers: Marqueurs de balles
+        remove-characters: Supprimer les caractères ─ │ └ ┐
+        box-drawing: Dessin en boîte
+        strip-color-escape-sequences: Séquences d'échappement de couleur de bande
+        ansi-codes: codes ANSI
+        strip-1-2-1-t-prefixes: Supprimer les préfixes 1│, 2│, 1\\t
+        line-numbers: Numéros de ligne
+    texts:
+      cleaning-options: options de nettoyage
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: Votre fichier de sortie nettoyé apparaîtra ici.
+      paste-fragmented-claude-code-output-here: Collez ici le résultat fragmenté du code Claude…
+      sample: Échantillon
+      paste: Coller
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: La copie a échoué.
+        Le fichier de sortie est sélectionné. Appuyez sur Ctrl+C pour le copier.
+      copied-to-the-clipboard: Copié dans le presse-papiers.
+      the-clipboard-api-is-unavailable: L'API Presse-papiers n'est pas disponible.
+      copy-failed: Échec de la copie
+      copied: Copié ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} lignes · {1} caractères · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} lignes · {1} caractères"
+    title: Nettoyeur d'espaces blancs
+    description: "Sortie propre du terminal et du code Claude : numéros de ligne,
+      codes ANSI, dessin de boîte, marqueurs à puce, marqueurs de différence et
+      espaces blancs supplémentaires."
+    externalAccess: nul
+  cli-banner-generator:
+    title: Générateur de bannières CLI
+    description: Générez des bannières ASCII, Message du jour (MOTD) pour vos
+      applications CLI, terminal ou routeur.
+    externalAccess: nul
+    texts:
+      label-border-char: "Caractère de bordure :"
+      placeholder-: "#"
+      label-width-min-20-max-200: "Largeur (Min 20 – Max 200) :"
+      label-banner-text: "Texte de la bannière :"
+      placeholder-enter-motd-banner-text-here: Saisissez ici le texte de la bannière du message du jour...
+      title-generated-banner: Bannière générée
 favoriteButton:
   add: Ajouter aux favoris
   remove: Retirer des favoris
@@ -10600,15 +10726,18 @@ analogSignalConverter:
     label-rounded-signal: Arrondi (entier)
     status-below-range: Le signal est sous la plage.
     status-above-range: Le signal est au-dessus de la plage.
-    status-below-live-zero: Le signal est sous le zéro décalé, vérifier une rupture de fil ou un capteur en défaut.
+    status-below-live-zero: Le signal est sous le zéro décalé, vérifier une rupture
+      de fil ou un capteur en défaut.
     engineering-below-range: La valeur est sous la plage physique, le signal sera hors plage.
     engineering-above-range: La valeur est au-dessus de la plage physique, le signal sera hors plage.
-    loop-status-failure-low: "Défaut bas (≤ 3,6 mA, NAMUR NE 43) : boucle coupée, transmetteur non alimenté ou en défaut."
+    loop-status-failure-low: "Défaut bas (≤ 3,6 mA, NAMUR NE 43) : boucle coupée,
+      transmetteur non alimenté ou en défaut."
     loop-status-uncertain-low: "Entre 3,6 et 3,8 mA : zone indéterminée, défaut probable (NAMUR NE 43)."
     loop-status-under-range: "Sous-échelle (3,8 à 4 mA) : mesure saturée en bas de plage."
     loop-status-over-range: "Sur-échelle (20 à 20,5 mA) : mesure saturée en haut de plage."
     loop-status-uncertain-high: "Entre 20,5 et 21 mA : zone indéterminée, défaut probable (NAMUR NE 43)."
-    loop-status-failure-high: "Défaut haut (≥ 21 mA, NAMUR NE 43) : transmetteur en défaut ou court-circuit."
+    loop-status-failure-high: "Défaut haut (≥ 21 mA, NAMUR NE 43) : transmetteur en
+      défaut ou court-circuit."
     label-formula: Formule
     formula-value: valeur
     formula-signal: signal

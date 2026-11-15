@@ -4357,6 +4357,7 @@ tools:
       label-permanent: Permanente
       title-generated-fw-command: "Comando fw generato:"
       tag-const-zone-ref: const zone = ref
+      tooltip-remove: Rimuovi da questo elenco
   fortune-wheel:
     title: Ruota della fortuna
     description: Una ruota della fortuna configurabile
@@ -4372,6 +4373,11 @@ tools:
       tag-clear-all-options: Cancella tutte le opzioni
       tag-no-options-added-yet-add-some-options-to-start-spinning: Nessuna opzione aggiunta. Aggiungi qualche opzione per iniziare a girare!
       tag-: ✕
+      wheel-options-wheeloptions-length: Opzioni ruote ({0})
+      spinning: Filatura...
+      spin-to-win: Gira la ruota e vinci!
+      spin-the-wheel: Gira la ruota!
+      checkbox-remove-winner-after-spin: Rimuovere il vincitore dopo il giro
   fstab-generator:
     title: Generatore FStab
     description: Genera la riga /etc/fstab
@@ -5050,6 +5056,11 @@ tools:
       label-azerty: AZERTY
       label-dvorak: DVORAK
       label-colemak: COLEMAK
+    title: Tester della tastiera
+    description: Verifica il corretto funzionamento di tutti i tasti della tastiera.
+      Ricevi un feedback visivo per ogni tasto premuto, con supporto per diverse
+      configurazioni di tastiera.
+    externalAccess: nulla
   text-to-binary:
     title: Da testo a binario UTF-8
     description: Converti testo nella sua rappresentazione binaria UTF-8 e viceversa.
@@ -5264,6 +5275,7 @@ tools:
     finance: Finanza
     default: Predefinito
     toml: TOML
+    automation: Automazione
   websocket-tester:
     title: Tester Websocket
     description: Consente di testare le connessioni WebSocket
@@ -9893,6 +9905,10 @@ tools:
       tag-copy-json-paths: Copia i percorsi JSON
       tag-generate-patch: Genera la patch
       tag-apply-patch: Applica la patch
+    title: Tester di patch JSON
+    description: Uno strumento semplice per creare e testare patch JSON conformi a
+      RFC 6902. E per elencare i percorsi di un oggetto JSON.
+    externalAccess: nulla
   ping:
     title: Ping
     description: Ping a un insieme di hostname, IP, CIDR o intervalli IP
@@ -10211,9 +10227,180 @@ tools:
     description: Metti alla prova altoparlanti e cuffie riproducendo dei suoni di
       prova. Regola il volume e verifica la chiarezza dell'audio.
     externalAccess: nulla
+  current-loop-4-20ma-converter:
+    title: Convertitore 4-20 mA
+    description: Converti una corrente da 4-20 mA (o da 0-20 mA) in un valore
+      ingegneristico e viceversa, con la diagnostica di loop NAMUR NE 43.
+    texts:
+      signal-label: Attuale
+      label-4-20-ma: 4-20 mA
+      label-0-20-ma: 0-20 mA
+  voltage-0-10v-converter:
+    title: Convertitore da 0 a 10 V
+    description: Convertire una tensione di 0-10 V, 2-10 V, 0-5 V, 1-5 V o ±10 V in
+      un valore ingegneristico e viceversa.
+    texts:
+      signal-label: Voltaggio
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: Calcolatrice analogica con scala graduata
+    description: Convertire un valore analogico grezzo di un PLC (Siemens 0-27648,
+      Schneider 0-10000, 12/15/16 bit...) in un valore ingegneristico e
+      viceversa.
+    texts:
+      signal-label: valore grezzo
+      preset-siemens-unipolar: Siemens S7 unipolare (da 0 a 27648)
+      preset-siemens-bipolar: Siemens S7 bipolare (-27648 a 27648)
+      preset-schneider: Schneider M340/M580 (da 0 a 10000)
+      preset-12-bits: 12 bit (da 0 a 4095)
+      preset-15-bits: 15 bit (da 0 a 32767)
+      preset-16-bits: 16 bit (da 0 a 65535)
+  paste-image:
+    texts:
+      copy-image: Copia immagine
+      copy-as-base64: Copia come base64
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type:
+        Il tuo browser non è in grado di codificare {0}. L'immagine verrà
+        scaricata come {1}.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "Output: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "Originale: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} px"
+      clear-all: Cancella tutto
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} incollato in questa sessione"
+      quality: "{0}%"
+      paste-from-clipboard: Incolla dagli appunti
+      the-image-stays-in-your-browser-nothing-is-uploaded: L'immagine rimane nel tuo browser. Non viene caricato nulla.
+      anywhere-on-this-page-to-paste-an-image: È possibile incollare un'immagine in qualsiasi punto di questa pagina.
+      press: Premere
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard: Il browser non è riuscito a copiare l'URL dei dati base64 negli appunti.
+      base64-data-url-copied-to-the-clipboard: URL dei dati Base64 copiato negli appunti
+      the-browser-could-not-copy-the-image-to-the-clipboard: Il browser non è riuscito a copiare l'immagine negli appunti.
+      image-copied-to-the-clipboard: Immagine copiata negli appunti
+      the-browser-could-not-read-the-clipboard: Il browser non è riuscito a leggere gli appunti.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        Il browser ha bloccato l'accesso agli appunti. Consentilo nelle
+        impostazioni del sito oppure premi {0}.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        Il tuo browser non può leggere le immagini dagli appunti tramite un
+        pulsante. Premi invece {0}.
+      the-browser-could-not-read-the-pasted-image: Il browser non è riuscito a leggere l'immagine incollata.
+      the-browser-could-not-convert-the-image: Il browser non è riuscito a convertire l'immagine.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: Gli appunti non contengono immagini. Copia un'immagine e riprova.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: Incolla l'immagine
+    description: Incolla un'immagine dagli appunti, convertila in PNG, JPEG o WebP e
+      scaricala.
+    externalAccess: nulla
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: Converti CRLF → LF
+        lf-endings: Finali LF
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack:
+          Taglia le righe a sinistra e riunisci i paragrafi per Reddit, Discord,
+          Slack
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: Unire i paragrafi a capo morbido
+        smart-unwrap: Smart unwrap
+        strip-from-patches: Rimuovi + - {'@'}{'@'} dalle patch
+        diff-markers: Marcatori differenziali
+        remove-common-leading-indent: Rimuovere il rientro iniziale comune
+        indent: Rientro
+        collapse-2-blank-lines-into-1: Comprimi 2 o più righe vuote in 1
+        blank-lines: Righe vuote
+        remove-end-of-line-whitespace: Rimuovere gli spazi bianchi a fine riga
+        trailing-space: spazio di trascinamento
+        strip-prefixes: Rimuovere i prefissi ●, ○, ⏺
+        bullet-markers: marcatori di proiettili
+        remove-characters: Rimuovi i caratteri ─ │ └ ┐
+        box-drawing: Disegno della scatola
+        strip-color-escape-sequences: Sequenze di fuga a colori a strisce
+        ansi-codes: Codici ANSI
+        strip-1-2-1-t-prefixes: Rimuovere i prefissi 1│, 2│, 1\\t
+        line-numbers: Numeri di riga
+    texts:
+      cleaning-options: Opzioni di pulizia
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: Il risultato della pulizia verrà visualizzato qui.
+      paste-fragmented-claude-code-output-here: Incolla qui l'output frammentato del Codice Claude…
+      sample: Campione
+      paste: Impasto
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: Copia non riuscita. L'output è selezionato. Premi Ctrl+C per copiarlo.
+      copied-to-the-clipboard: Copiato negli appunti.
+      the-clipboard-api-is-unavailable: L'API Appunti non è disponibile.
+      copy-failed: Copia non riuscita
+      copied: Copiato ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} righe · {1} caratteri · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} righe · {1} caratteri"
+    title: Pulizia degli spazi bianchi
+    description: "Output pulito del terminale e del codice Claude: rimozione dei
+      numeri di riga, dei codici ANSI, del disegno del riquadro, dei marcatori a
+      punti elenco, dei marcatori di differenza e degli spazi bianchi extra."
+    externalAccess: nulla
+  cli-banner-generator:
+    title: Generatore di banner CLI
+    description: Genera banner ASCII e messaggi del giorno (MOTD) per le tue
+      applicazioni CLI, terminali o router.
+    externalAccess: nulla
+    texts:
+      label-border-char: "Carattere di confine:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "Larghezza (min. 20 – max. 200):"
+      label-banner-text: "Testo del banner:"
+      placeholder-enter-motd-banner-text-here: Inserisci qui il testo del banner MOTD...
+      title-generated-banner: Banner generato
 collapsibleToolMenu:
   text:
     expanding: Espansione in corso...
     collapsing: Compressione in corso...
     collapse-all-tools: Comprimi tutti gli strumenti
     expand-all-tools: Espandi tutti gli strumenti
+analogSignalConverter:
+  texts:
+    title-input: Ingresso
+    title-parameters: Parametri
+    title-output: Produzione
+    swap-direction: Invertire la direzione
+    status-ok: Nel raggio d'azione
+    copy-output: Copia il valore di output
+    title-reference-points: Punti di riferimento
+    label-signal-type: Tipo di segnale
+    preset-custom: Costume
+    label-engineering-range: Ingegneria min / max
+    label-engineering-unit: Unità di ingegneria
+    placeholder-unit: Unità
+    error-signal-range: Il valore minimo del segnale deve essere inferiore al valore
+      massimo del segnale.
+    error-engineering-range: Il valore minimo ingegneristico deve essere inferiore
+      al valore massimo ingegneristico.
+    label-engineering-value: Valore ingegneristico
+    label-rounded-signal: Arrotondato (intero)
+    status-below-range: Il segnale è al di sotto della portata.
+    status-above-range: Il segnale è al di sopra del range.
+    status-below-live-zero: Il segnale è al di sotto dello zero della fase,
+      verificare la presenza di un filo interrotto o di un sensore difettoso.
+    engineering-below-range: Il valore è al di sotto dell'intervallo previsto, il
+      segnale sarà fuori intervallo.
+    engineering-above-range: Il valore è al di sopra dell'intervallo previsto, il
+      segnale sarà fuori intervallo.
+    loop-status-failure-low: "Guasto di basso valore (≤ 3,6 mA, NAMUR NE 43):
+      circuito interrotto, trasmettitore non alimentato o difettoso."
+    loop-status-uncertain-low: "Tra 3,6 e 3,8 mA: zona non definita, è probabile un guasto (NAMUR NE 43)."
+    loop-status-under-range: "Valore inferiore al limite (da 3,8 a 4 mA): la
+      misurazione è satura nella parte inferiore del range."
+    loop-status-over-range: "Fuori scala (da 20 a 20,5 mA): la misurazione è satura
+      nella parte superiore della gamma."
+    loop-status-uncertain-high: "Tra 20,5 e 21 mA: zona non definita, è probabile un guasto (NAMUR NE 43)."
+    loop-status-failure-high: "Guasto elevato (≥ 21 mA, NAMUR NE 43): trasmettitore
+      difettoso o cortocircuito."
+    label-formula: Formula
+    formula-value: valore
+    formula-signal: segnale
+    column-percent: Allineare

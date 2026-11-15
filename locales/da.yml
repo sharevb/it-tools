@@ -126,6 +126,7 @@ tools:
     finance: Finansiere
     default: Misligholdelse
     toml: TOML
+    automation: Automatisering
   password-strength-analyser:
     title: Kodeords styrke analysator
     description: Afslør styrken af dit kodeord med denne client-side-only kodeords
@@ -4784,6 +4785,7 @@ tools:
       label-permanent: Permanent
       title-generated-fw-command: "Genereret fw-kommando:"
       tag-const-zone-ref: konstant zone = ref
+      tooltip-remove: Fjern fra denne liste
     title: firewalld kommandolinjegenerator
     description: Generer firewalld-kommandolinjer
   fortune-wheel:
@@ -4803,6 +4805,11 @@ tools:
         Ingen muligheder tilføjet endnu. Tilføj nogle muligheder for at begynde
         at dreje!
       tag-: ✕
+      wheel-options-wheeloptions-length: Hjulindstillinger ({0})
+      spinning: Spinning...
+      spin-to-win: Spin for at vinde!
+      spin-the-wheel: Drej hjulet!
+      checkbox-remove-winner-after-spin: Fjern vinderen efter spin
   fstab-generator:
     title: FStab-generator
     description: Generer /etc/fstab-linjen
@@ -9182,6 +9189,11 @@ tools:
       label-azerty: AZERTY
       label-dvorak: DVORAK
       label-colemak: COLEMAK
+    title: Tastaturtester
+    description: Test dine tastaturtaster, og kontroller, om alle taster fungerer
+      korrekt. Visuel feedback for hvert tastetryk med understøttelse af
+      forskellige tastaturlayouts.
+    externalAccess: nul
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "Indsæt dit markdown-indhold:"
@@ -9769,6 +9781,10 @@ tools:
       tag-copy-json-paths: Kopiér JSON-stier
       tag-generate-patch: Generer programrettelse
       tag-apply-patch: Påfør programrettelse
+    title: Json-patchtester
+    description: Et simpelt værktøj til at oprette og teste JSON-patches i henhold
+      til RFC 6902. Og liste stier til et JSON-objekt.
+    externalAccess: nul
   ping:
     title: Ping
     description: Ping et sæt værtsnavne, IP'er, CIDR eller IP-interval
@@ -10098,6 +10114,132 @@ tools:
     description: Test dine højttalere og hovedtelefoner ved at afspille testlyde.
       Juster lydstyrken, og kontroller lyden.
     externalAccess: nul
+  current-loop-4-20ma-converter:
+    title: 4-20 mA konverter
+    description: Konverter en 4-20 mA (eller 0-20 mA) strøm til en teknisk værdi og
+      tilbage igen med NAMUR NE 43 loopdiagnostik.
+    texts:
+      signal-label: Strøm
+      label-4-20-ma: 4-20 mA
+      label-0-20-ma: 0-20 mA
+  voltage-0-10v-converter:
+    title: 0-10 V konverter
+    description: Konverter en 0-10 V, 2-10 V, 0-5 V, 1-5 V eller ±10 V spænding til
+      en teknisk værdi og tilbage.
+    texts:
+      signal-label: Spænding
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: Analog skaleringsberegner
+    description: Skalér en rå PLC analog værdi (Siemens 0-27648, Schneider 0-10000,
+      12/15/16 bits...) til en teknisk værdi og tilbage.
+    texts:
+      signal-label: Rå værdi
+      preset-siemens-unipolar: Siemens S7 unipolar (0 til 27648)
+      preset-siemens-bipolar: Siemens S7 bipolar (-27648 til 27648)
+      preset-schneider: Schneider M340/M580 (0 til 10000)
+      preset-12-bits: 12 bit (0 til 4095)
+      preset-15-bits: 15 bit (0 til 32767)
+      preset-16-bits: 16 bit (0 til 65535)
+  paste-image:
+    texts:
+      copy-image: Kopiér billede
+      copy-as-base64: Kopiér som base64
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type: Din browser kan ikke kode {0}. Billedet downloades som {1}.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "Udgang: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "Oprindelig: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} px"
+      clear-all: Ryd alt
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} indsat i denne session"
+      quality: "{0}%"
+      paste-from-clipboard: Indsæt fra udklipsholder
+      the-image-stays-in-your-browser-nothing-is-uploaded: Billedet forbliver i din browser. Intet uploades.
+      anywhere-on-this-page-to-paste-an-image: hvor som helst på denne side for at indsætte et billede.
+      press: Trykke
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard: Browseren kunne ikke kopiere base64-data-URL'en til udklipsholderen.
+      base64-data-url-copied-to-the-clipboard: Base64-data-URL kopieret til udklipsholderen
+      the-browser-could-not-copy-the-image-to-the-clipboard: Browseren kunne ikke kopiere billedet til udklipsholderen.
+      image-copied-to-the-clipboard: Billede kopieret til udklipsholderen
+      the-browser-could-not-read-the-clipboard: Browseren kunne ikke læse udklipsholderen.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        Browseren blokerede adgang til udklipsholderen. Tillad det i
+        webstedsindstillingerne, eller tryk på {0}.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        Din browser kan ikke læse billeder fra udklipsholderen med en knap. Tryk
+        i stedet på {0}.
+      the-browser-could-not-read-the-pasted-image: Browseren kunne ikke læse det indsatte billede.
+      the-browser-could-not-convert-the-image: Browseren kunne ikke konvertere billedet.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: Udklipsholderen har intet billede. Kopiér et billede, og prøv igen.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: Indsæt billede
+    description: Indsæt et billede fra dit udklipsholder, konverter det til PNG,
+      JPEG eller WebP, og download det.
+    externalAccess: nul
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: Konverter CRLF → LF
+        lf-endings: LF-slutninger
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack:
+          Venstrebeskæring af linjer og genforbind afsnit for Reddit, Discord,
+          Slack
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: Forbind afsnit med blød ombrydning
+        smart-unwrap: Smart udpakning
+        strip-from-patches: Fjern + - {'@'}{'@'} fra patches
+        diff-markers: Differencemarkører
+        remove-common-leading-indent: Fjern fælles indledende indrykning
+        indent: Indryk
+        collapse-2-blank-lines-into-1: Skjul 2+ tomme linjer til 1
+        blank-lines: Blanke linjer
+        remove-end-of-line-whitespace: Fjern mellemrum ved linjeslut
+        trailing-space: Efterfølgende plads
+        strip-prefixes: Fjern præfikser ●, ○, ⏺
+        bullet-markers: Punktmarkører
+        remove-characters: Fjern ─ │ └ ┐ tegn
+        box-drawing: Kassetegning
+        strip-color-escape-sequences: Fjern farve-escape-sekvenser
+        ansi-codes: ANSI-koder
+        strip-1-2-1-t-prefixes: Fjern præfikser 1│, 2│, 1\t
+        line-numbers: Linjenumre
+    texts:
+      cleaning-options: Rengøringsmuligheder
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: Dit rensede output vil blive vist her.
+      paste-fragmented-claude-code-output-here: Indsæt fragmenteret Claude Code-output her…
+      sample: Prøve
+      paste: Indsæt
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: Kopiering
+        mislykkedes. Outputtet er valgt. Tryk på Ctrl+C for at kopiere det.
+      copied-to-the-clipboard: Kopieret til udklipsholderen.
+      the-clipboard-api-is-unavailable: Udklipsholder-API'en er ikke tilgængelig.
+      copy-failed: Kopiering mislykkedes
+      copied: Kopieret ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} linjer · {1} tegn · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} linjer · {1} tegn"
+    title: Rengøring af mellemrum
+    description: "Ren terminal og Claude Code output: strip linjenumre, ANSI-koder,
+      bokstegning, punktmarkører, diff-markører og ekstra mellemrum."
+    externalAccess: nul
+  cli-banner-generator:
+    title: CLI-bannergenerator
+    description: Generer ASCII-bannere, Dagens Besked (MOTD) til dine
+      CLI-applikationer, terminal eller router.
+    externalAccess: nul
+    texts:
+      label-border-char: "Kanttegn:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "Bredde (min. 20 – maks. 200):"
+      label-banner-text: "Bannertekst:"
+      placeholder-enter-motd-banner-text-here: Indtast MOTD-bannertekst her...
+      title-generated-banner: Genereret banner
 about:
   alltools-title: Alle {toolsCount} værktøjer
   tools:
@@ -10176,3 +10318,40 @@ collapsibleToolMenu:
     collapsing: Kollapser...
     collapse-all-tools: Skjul alle værktøjer
     expand-all-tools: Udvid alle værktøjer
+analogSignalConverter:
+  texts:
+    title-input: Input
+    title-parameters: Parametre
+    title-output: Produktion
+    swap-direction: Skift retning
+    status-ok: Inden for rækkevidde
+    copy-output: Kopiér outputværdien
+    title-reference-points: Referencepunkter
+    label-signal-type: Signaltype
+    preset-custom: Skik
+    label-engineering-range: Ingeniør min/maks
+    label-engineering-unit: Ingeniørenhed
+    placeholder-unit: Enhed
+    error-signal-range: Signalminimum skal være lavere end signalmaksimum.
+    error-engineering-range: Det tekniske min. skal være lavere end det tekniske maks.
+    label-engineering-value: Ingeniørværdi
+    label-rounded-signal: Afrundet (heltal)
+    status-below-range: Signalet er under intervallet.
+    status-above-range: Signalet er over intervallet.
+    status-below-live-zero: Signalet er under live zero, kontroller for en brudt
+      ledning eller en defekt sensor.
+    engineering-below-range: Værdien er under det tekniske område, signalet vil være uden for området.
+    engineering-above-range: Værdien er over det tekniske område, signalet vil være uden for området.
+    loop-status-failure-low: "Lav fejl (≤ 3,6 mA, NAMUR NE 43): brudt sløjfe,
+      strømløs eller defekt transmitter."
+    loop-status-uncertain-low: "Mellem 3,6 og 3,8 mA: udefineret zone, en fejl er
+      sandsynlig (NAMUR NE 43)."
+    loop-status-under-range: "Under område (3,8 til 4 mA): Målingen er mættet i bunden af området."
+    loop-status-over-range: "Over område (20 til 20,5 mA): målingen er mættet i toppen af området."
+    loop-status-uncertain-high: "Mellem 20,5 og 21 mA: udefineret zone, en fejl er
+      sandsynlig (NAMUR NE 43)."
+    loop-status-failure-high: "Høj fejl (≥ 21 mA, NAMUR NE 43): defekt transmitter eller kortslutning."
+    label-formula: Formel
+    formula-value: værdi
+    formula-signal: signal
+    column-percent: Rækkevidde

@@ -1,9 +1,10 @@
+import { translate as t } from '@/plugins/i18n.plugin';
 import { defineTool } from '../tool';
 
 export const tool = defineTool({
-  name: 'CLI Banner Generator',
+  name: t('tools.cli-banner-generator.title'),
   path: '/cli-banner-generator',
-  description: 'Generate ASCII banners, Message of the Day (MOTD) for your CLI applications, terminal or router.',
+  description: t('tools.cli-banner-generator.description'),
   keywords: ['cli', 'banner', 'generator', 'ascii', 'logo'],
   component: () => import('./cli-banner-generator.vue'),
   icon: defineAsyncComponent(() => import('@vicons/tabler/es/Terminal2')),

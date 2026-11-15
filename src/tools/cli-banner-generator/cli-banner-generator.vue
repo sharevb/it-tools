@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+
+const { t } = useI18n();
 
 const borderChar = useQueryParamOrStorage({ name: 'borderChar', storageName: 'cli-ban-gen:b', defaultValue: '#' });
 const width = useQueryParamOrStorage({ name: 'width', storageName: 'cli-ban-gen:w', defaultValue: 72 });
@@ -77,21 +80,30 @@ const generatedBanner = computed(() => {
   <div>
     <n-form label-placement="left">
       <n-space justify="center" mb-2>
-        <n-form-item label="Border Char:">
-          <n-input v-model:value="borderChar" maxlength="1" placeholder="#" />
+        <n-form-item :label="t('tools.cli-banner-generator.texts.label-border-char')">
+          <n-input
+            v-model:value="borderChar"
+            maxlength="1"
+            :placeholder="t('tools.cli-banner-generator.texts.placeholder-')"
+          />
         </n-form-item>
 
-        <n-form-item label="Width (Min 20 – Max 200):">
+        <n-form-item :label="t('tools.cli-banner-generator.texts.label-width-min-20-max-200')">
           <n-input-number v-model:value="width" :min="20" :max="200" style="width: 100%" />
         </n-form-item>
       </n-space>
 
-      <n-form-item label="Banner Text:" label-placement="top">
-        <n-input v-model:value="bannerText" type="textarea" :rows="8" placeholder="Enter MOTD banner text here..." />
+      <n-form-item :label="t('tools.cli-banner-generator.texts.label-banner-text')" label-placement="top">
+        <n-input
+          v-model:value="bannerText"
+          type="textarea"
+          :rows="8"
+          :placeholder="t('tools.cli-banner-generator.texts.placeholder-enter-motd-banner-text-here')"
+        />
       </n-form-item>
     </n-form>
 
-    <n-card title="Generated Banner">
+    <n-card :title="t('tools.cli-banner-generator.texts.title-generated-banner')">
       <textarea-copyable :value="generatedBanner" download-file-name="banner.txt" />
     </n-card>
   </div>

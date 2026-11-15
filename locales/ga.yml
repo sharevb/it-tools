@@ -200,6 +200,7 @@ tools:
     finance: Airgeadas
     default: Réamhshocrú
     toml: TOML
+    automation: Uathoibriú
   password-strength-analyser:
     title: Anailíseoir neart pasfhocal
     description: Faigh amach cé chomh láidir is atá do phasfhocal leis
@@ -5605,6 +5606,7 @@ tools:
       label-permanent: Buan
       title-generated-fw-command: "Ordú fw ginte:"
       tag-const-zone-ref: crios const = tag
+      tooltip-remove: Bain den liosta seo
     title: gineadóir líne ordaithe firewalld
     description: Gin línte ordaithe firewalld
   fortune-wheel:
@@ -5624,6 +5626,11 @@ tools:
         Níl aon roghanna curtha leis fós. Cuir roinnt roghanna leis chun tús a
         chur le sníomh!
       tag-: ✕
+      wheel-options-wheeloptions-length: Roghanna Roth ({0})
+      spinning: Ag sníomh...
+      spin-to-win: Casadh le Buachan!
+      spin-the-wheel: Cas an Roth!
+      checkbox-remove-winner-after-spin: Bain an buaiteoir tar éis casadh
   fstab-generator:
     title: Gineadóir FStab
     description: Gin líne /etc/fstab
@@ -9369,6 +9376,11 @@ tools:
       label-azerty: AZERTY
       label-dvorak: DVORAK
       label-colemak: COLEMAK
+    title: Tástálaí Méarchláir
+    description: Déan tástáil ar eochracha do mhéarchláir agus seiceáil an bhfuil na
+      heochracha go léir ag obair i gceart. Aiseolas amhairc le haghaidh gach
+      brú eochrach le tacaíocht do leagan amach méarchláir éagsúla.
+    externalAccess: nialas
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "Greamaigh d’ábhar marcála síos:"
@@ -9959,6 +9971,10 @@ tools:
       tag-copy-json-paths: Cóipeáil cosáin JSON
       tag-generate-patch: Gin paiste
       tag-apply-patch: Cuir paiste i bhfeidhm
+    title: Tástálaí Paiste Json
+    description: Uirlis shimplí chun paistí JSON a chruthú agus a thástáil de réir
+      RFC 6902. Agus liostaigh cosáin réada JSON.
+    externalAccess: nialas
   ping:
     title: Ping
     description: Ping sraith d'ainmneacha óstacha, IPanna, CIDR nó raon IP
@@ -10297,6 +10313,137 @@ tools:
       tástála a sheinm. Coigeartaigh an toirt agus seiceáil soiléireacht an
       fhuaime.
     externalAccess: nialas
+  current-loop-4-20ma-converter:
+    title: Tiontaire 4-20 mA
+    description: Tiontaigh sruth 4-20 mA (nó 0-20 mA) go luach innealtóireachta agus
+      ar ais, le diagnóisic lúb NAMUR NE 43.
+    texts:
+      signal-label: Reatha
+      label-4-20-ma: 4-20 mA
+      label-0-20-ma: 0-20 mA
+  voltage-0-10v-converter:
+    title: Tiontaire 0-10 V
+    description: Tiontaigh voltas 0-10 V, 2-10 V, 0-5 V, 1-5 V nó ±10 V go luach
+      innealtóireachta agus ar ais.
+    texts:
+      signal-label: Voltas
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: Áireamhán scálaithe analógach
+    description: Scálaigh luach analógach amh PLC (Siemens 0-27648, Schneider
+      0-10000, 12/15/16 giotán...) isteach i luach innealtóireachta agus ar ais.
+    texts:
+      signal-label: Luach amh
+      preset-siemens-unipolar: Siemens S7 aonpholach (0 go 27648)
+      preset-siemens-bipolar: Siemens S7 dépholach (-27648 go 27648)
+      preset-schneider: Schneider M340/M580 (0 go 10000)
+      preset-12-bits: 12 giotán (0 go 4095)
+      preset-15-bits: 15 giotán (0 go 32767)
+      preset-16-bits: 16 giotán (0 go 65535)
+  paste-image:
+    texts:
+      copy-image: Cóipeáil íomhá
+      copy-as-base64: Cóipeáil mar base64
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type: Ní féidir le do bhrabhsálaí {0} a ionchódú. Íoslódálann an íomhá mar {1}.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "Aschur: {0}, {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "Bunleagan: {0}, {1}"
+      image-width-image-height-px: "{0} × {1} picteilín"
+      clear-all: Glan gach rud
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} greamaithe sa seisiún seo"
+      quality: "{0}%"
+      paste-from-clipboard: Greamaigh ón ghearrthaisce
+      the-image-stays-in-your-browser-nothing-is-uploaded: Fanann an íomhá i do bhrabhsálaí. Ní uaslódálfar aon rud.
+      anywhere-on-this-page-to-paste-an-image: áit ar bith ar an leathanach seo chun íomhá a ghreamú.
+      press: Brúigh
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard:
+        Níorbh fhéidir leis an mbrabhsálaí an URL sonraí base64 a chóipeáil
+        chuig an ngearrthaisce.
+      base64-data-url-copied-to-the-clipboard: URL sonraí Base64 cóipeáilte chuig an ghearrthaisce
+      the-browser-could-not-copy-the-image-to-the-clipboard: Ní raibh an brabhsálaí in
+        ann an íomhá a chóipeáil chuig an ghearrthaisce.
+      image-copied-to-the-clipboard: Íomhá cóipeáilte chuig an ghearrthaisce
+      the-browser-could-not-read-the-clipboard: Ní raibh an brabhsálaí in ann an ghearrthaisce a léamh.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        Chuir an brabhsálaí bac ar rochtain ar an ngearrthaisce. Ceadaigh é i
+        socruithe an tsuímh, nó brúigh {0}.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        Ní féidir le do bhrabhsálaí íomhánna a léamh ón ngearrthaisce le cnaipe.
+        Brúigh {0} ina ionad sin.
+      the-browser-could-not-read-the-pasted-image: Ní raibh an brabhsálaí in ann an íomhá greamaithe a léamh.
+      the-browser-could-not-convert-the-image: Ní raibh an brabhsálaí in ann an íomhá a thiontú.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: Níl aon íomhá ar an
+        ngearrthaisce. Cóipeáil íomhá, agus déan iarracht arís.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: Greamaigh Íomhá
+    description: Greamaigh íomhá ó do ghearrthaisce, tiontaigh í go PNG, JPEG, nó
+      WebP, agus íoslódáil í.
+    externalAccess: nialas
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: Tiontaigh CRLF → LF
+        lf-endings: Deireadh LF
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack:
+          Línte a ghearrtar ar chlé agus míreanna a athcheangal le haghaidh
+          Reddit, Discord, Slack
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: Ceangail míreanna bog-fhillte
+        smart-unwrap: Díphacáil chliste
+        strip-from-patches: Stríoc + - {'@'}{'@'} ó phaistí
+        diff-markers: Marcóirí difríochta
+        remove-common-leading-indent: Bain an t-eangach tosaigh choiteann
+        indent: Líon isteach
+        collapse-2-blank-lines-into-1: Laghdaigh 2+ líne bhána go 1
+        blank-lines: Línte bána
+        remove-end-of-line-whitespace: Bain spás bán deireadh líne
+        trailing-space: Spás leantach
+        strip-prefixes: Réimíreanna stiallta ●, ○, ⏺
+        bullet-markers: Marcóirí urchair
+        remove-characters: Bain ─ │ └ ┐ carachtair
+        box-drawing: Líníocht bosca
+        strip-color-escape-sequences: Seichimh éalaithe datha stiallta
+        ansi-codes: Cóid ANSI
+        strip-1-2-1-t-prefixes: Réimíreanna stiallta 1│, 2│, 1\\t
+        line-numbers: Uimhreacha líne
+    texts:
+      cleaning-options: Roghanna glantacháin
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: Beidh d’aschur glanta le feiceáil anseo.
+      paste-fragmented-claude-code-output-here: Greamaigh aschur Claude Code ilroinnte anseo…
+      sample: Sampla
+      paste: Greamaigh
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: Theip ar an
+        gcóipeáil. Tá an t-aschur roghnaithe. Brúigh Ctrl+C chun é a chóipeáil.
+      copied-to-the-clipboard: Cóipeáilte chuig an ghearrthaisce.
+      the-clipboard-api-is-unavailable: Níl an API Gearrthaisce ar fáil.
+      copy-failed: Theip ar chóipeáil
+      copied: Cóipeáilte ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} líne · {1} carachtar · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} líne · {1} carachtar"
+    title: Glantóir Spáis Bhán
+    description: "Aschur glan críochfoirt agus Claude Code: uimhreacha líne stiall,
+      cóid ANSI, líníocht bosca, marcóirí piléar, marcóirí difríochta, agus spás
+      bán breise."
+    externalAccess: nialas
+  cli-banner-generator:
+    title: Gineadóir Meirge CLI
+    description: Gin meirgí ASCII, Teachtaireacht an Lae (MOTD) do d'fheidhmchláir
+      CLI, críochfort nó ródaire.
+    externalAccess: nialas
+    texts:
+      label-border-char: "Carachtar Teorann:"
+      placeholder-: "#"
+      label-width-min-20-max-200: "Leithead (Íosmhéid 20 – Uasmhéid 200):"
+      label-banner-text: "Téacs Meirge:"
+      placeholder-enter-motd-banner-text-here: Cuir isteach téacs meirge MOTD anseo...
+      title-generated-banner: Meirge Ginte
 locale-selector:
   select-a-language: Roghnaigh teanga
 collapsibleToolMenu:
@@ -10305,3 +10452,43 @@ collapsibleToolMenu:
     collapsing: Ag titim as a chéile...
     collapse-all-tools: Laghdaigh Gach Uirlis
     expand-all-tools: Leathnaigh Gach Uirlis
+analogSignalConverter:
+  texts:
+    title-input: Ionchur
+    title-parameters: Paraiméadair
+    title-output: Aschur
+    swap-direction: Malartaigh treo
+    status-ok: Laistigh den raon
+    copy-output: Cóipeáil an luach aschuir
+    title-reference-points: Pointí tagartha
+    label-signal-type: Cineál comhartha
+    preset-custom: Saincheaptha
+    label-engineering-range: Íosmhéid/uasmhéid innealtóireachta
+    label-engineering-unit: Aonad innealtóireachta
+    placeholder-unit: Aonad
+    error-signal-range: Caithfidh an comhartha íosta a bheith níos ísle ná an comhartha uasta.
+    error-engineering-range: Caithfidh an t-íosmhéid innealtóireachta a bheith níos
+      ísle ná an t-uasmhéid innealtóireachta.
+    label-engineering-value: Luach innealtóireachta
+    label-rounded-signal: Slánuimhir (slánuimhir)
+    status-below-range: Tá an comhartha faoi bhun an raoin.
+    status-above-range: Tá an comhartha os cionn an raoin.
+    status-below-live-zero: Tá an comhartha faoi bhun an náid bheo, seiceáil le
+      haghaidh sreang briste nó braiteoir lochtach.
+    engineering-below-range: Má tá an luach faoi bhun an raoin innealtóireachta,
+      beidh an comhartha lasmuigh den raon.
+    engineering-above-range: Má tá an luach os cionn an raoin innealtóireachta,
+      beidh an comhartha lasmuigh den raon.
+    loop-status-failure-low: "Teip íseal (≤ 3.6 mA, NAMUR NE 43): lúb briste,
+      tarchuradóir gan chumhacht nó lochtach."
+    loop-status-uncertain-low: "Idir 3.6 agus 3.8 mA: crios neamhshainithe, is dócha
+      go dtarlóidh teip (NAMUR NE 43)."
+    loop-status-under-range: "Faoi bhun an raoin (3.8 go 4 mA): tá an tomhas sáithithe ag bun an raoin."
+    loop-status-over-range: "Thar-raon (20 go 20.5 mA): tá an tomhas sáithithe ag barr an raoin."
+    loop-status-uncertain-high: "Idir 20.5 agus 21 mA: crios neamhshainithe, is
+      dócha go dtarlóidh teip (NAMUR NE 43)."
+    loop-status-failure-high: "Teip ard (≥ 21 mA, NAMUR NE 43): tarchuradóir lochtach nó ciorcad gearr."
+    label-formula: Foirmle
+    formula-value: luach
+    formula-signal: comhartha
+    column-percent: Raon

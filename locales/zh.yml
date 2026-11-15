@@ -4159,6 +4159,7 @@ tools:
       label-permanent: 永久
       title-generated-fw-command: 生成的防火墙命令：
       tag-const-zone-ref: const zone = ref
+      tooltip-remove: 从列表中移除
     title: firewalld 命令行生成器
     description: 生成 firewalld 命令行
   fortune-wheel:
@@ -4176,6 +4177,11 @@ tools:
       tag-clear-all-options: 清空所有选项
       tag-no-options-added-yet-add-some-options-to-start-spinning: 尚未添加选项，请添加一些选项开始旋转！
       tag-: ✕
+      wheel-options-wheeloptions-length: 车轮选项（{0}）
+      spinning: 旋转……
+      spin-to-win: 旋转赢大奖！
+      spin-the-wheel: 转动轮盘！
+      checkbox-remove-winner-after-spin: 旋转结束后移除中奖者
   fstab-generator:
     title: /etc/fstab 生成器
     description: 生成 /etc/fstab 行
@@ -4976,6 +4982,7 @@ tools:
     finance: 金融
     default: 默认
     toml: TOML
+    automation: 自动化
   websocket-tester:
     title: WebSocket 测试工具
     description: 测试 WebSocket 连接
@@ -8888,6 +8895,9 @@ tools:
       label-azerty: AZERTY
       label-dvorak: DVORAK
       label-colemak: COLEMAK
+    title: 键盘测试器
+    description: 测试键盘按键，检查所有按键是否正常工作。每次按键都有视觉反馈，并支持不同的键盘布局。
+    externalAccess: 无效的
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: 粘贴您的 Markdown 内容：
@@ -9461,6 +9471,9 @@ tools:
       tag-copy-json-paths: 复制 JSON 路径
       tag-generate-patch: 生成补丁
       tag-apply-patch: 应用补丁
+    title: JSON 补丁测试器
+    description: 一个用于创建和测试符合 RFC 6902 规范的 JSON 补丁的简单工具，并可列出 JSON 对象的路径。
+    externalAccess: 无效的
   ping:
     title: Ping
     description: Ping 一组主机名、IP 地址、CIDR 或 IP 地址范围
@@ -9767,9 +9780,155 @@ tools:
     title: 声音测试仪
     description: 播放测试音频，测试扬声器和耳机。调节音量并检查音频清晰度。
     externalAccess: 无效的
+  current-loop-4-20ma-converter:
+    title: 4-20 mA 转换器
+    description: 使用 NAMUR NE 43 回路诊断，将 4-20 mA（或 0-20 mA）电流转换为工程值，反之亦然。
+    texts:
+      signal-label: 当前的
+      label-4-20-ma: 4-20毫安
+      label-0-20-ma: 0-20毫安
+  voltage-0-10v-converter:
+    title: 0-10V转换器
+    description: 将 0-10 V、2-10 V、0-5 V、1-5 V 或 ±10 V 电压转换为工程值，反之亦然。
+    texts:
+      signal-label: 电压
+      label-0-10-v: 0-10V
+      label-2-10-v: 2-10V
+      label-0-5-v: 0-5V
+      label-1-5-v: 1-5V
+      label-10-v: ±10V
+  analog-scaling-calculator:
+    title: 模拟缩放计算器
+    description: 将原始 PLC 模拟值（西门子 0-27648，施耐德 0-10000，12/15/16 位……）转换为工程值，反之亦然。
+    texts:
+      signal-label: 原始值
+      preset-siemens-unipolar: 西门子 S7 单极（0 至 27648）
+      preset-siemens-bipolar: 西门子 S7 双极型（-27648 至 27648）
+      preset-schneider: 施耐德 M340/M580（0 至 10000）
+      preset-12-bits: 12 位（0 到 4095）
+      preset-15-bits: 15 位（0 到 32767）
+      preset-16-bits: 16 位（0 到 65535）
+  paste-image:
+    texts:
+      copy-image: 复制图像
+      copy-as-base64: 复制为 base64
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type: 您的浏览器无法对 {0} 进行编码。图像将以 {1} 的形式下载。
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: （{0}）
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: 输出：{0}，{1}
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: 原文：{0}，{1}
+      image-width-image-height-px: "{0} × {1} 像素"
+      clear-all: 全部清除
+      images-length-images-length-1-image-images-pasted-in-this-session: 本次会话中粘贴了 {0} {1}
+      quality: "{0}%"
+      paste-from-clipboard: 从剪贴板粘贴
+      the-image-stays-in-your-browser-nothing-is-uploaded: 图片会保留在您的浏览器中，不会上传任何内容。
+      anywhere-on-this-page-to-paste-an-image: 您可以在此页面的任何位置粘贴图片。
+      press: 按
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard: 浏览器无法将 base64 数据 URL 复制到剪贴板。
+      base64-data-url-copied-to-the-clipboard: Base64 数据 URL 已复制到剪贴板
+      the-browser-could-not-copy-the-image-to-the-clipboard: 浏览器无法将图像复制到剪贴板。
+      image-copied-to-the-clipboard: 图片已复制到剪贴板
+      the-browser-could-not-read-the-clipboard: 浏览器无法读取剪贴板内容。
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut: 浏览器已阻止剪贴板访问。请在网站设置中允许访问，或按 {0}。
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead: 您的浏览器无法通过按钮读取剪贴板中的图像。请改用 {0}。
+      the-browser-could-not-read-the-pasted-image: 浏览器无法读取粘贴的图片。
+      the-browser-could-not-convert-the-image: 浏览器无法转换图像。
+      the-clipboard-has-no-image-copy-an-image-then-try-again: 剪贴板中没有图片。请复制一张图片，然后重试。
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: 粘贴图片
+    description: 从剪贴板粘贴图像，将其转换为 PNG、JPEG 或 WebP 格式，然后下载。
+    externalAccess: 无效的
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: 将 CRLF 转换为 LF
+        lf-endings: LF结尾
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack: 为 Reddit、Discord 和 Slack 修剪左侧行并重新合并段落
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: 合并软环绕段落
+        smart-unwrap: 智能解包
+        strip-from-patches: 从补丁中剥离 + - {'@'}{'@'}
+        diff-markers: 差异标记
+        remove-common-leading-indent: 移除常见的行前缩进
+        indent: 缩进
+        collapse-2-blank-lines-into-1: 将 2 个或更多空行合并为 1 个空行。
+        blank-lines: 空白行
+        remove-end-of-line-whitespace: 删除行尾空格
+        trailing-space: 尾随空间
+        strip-prefixes: 去掉 ●、○、⏺ 前缀
+        bullet-markers: 子弹标记
+        remove-characters: 移除 ─ │ └ ┐ 字符
+        box-drawing: 盒子图
+        strip-color-escape-sequences: 条纹颜色转义序列
+        ansi-codes: ANSI 代码
+        strip-1-2-1-t-prefixes: 去除 1│、2│、1\\t 前缀
+        line-numbers: 行号
+    texts:
+      cleaning-options: 清洁选项
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: 清理后的输出结果将显示在此处。
+      paste-fragmented-claude-code-output-here: 请将零散的 Claude Code 输出粘贴到这里……
+      sample: 样本
+      paste: 粘贴
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: 复制失败。输出内容已被选中。请按 Ctrl+C 进行复制。
+      copied-to-the-clipboard: 已复制到剪贴板。
+      the-clipboard-api-is-unavailable: 剪贴板 API 不可用。
+      copy-failed: 复制失败
+      copied: 已复制 ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: 0 行 · 1 个字符 · -2%
+      stats-value-inputlines-lines-stats-value-inputchars-chars: 0 行 · 1 个字符
+    title: 空格清理器
+    description: 清除终端和 Claude 代码输出：去除行号、ANSI 代码、方框图形、项目符号标记、差异标记和额外空白。
+    externalAccess: 无效的
+  cli-banner-generator:
+    title: CLI 横幅生成器
+    description: 为您的 CLI 应用程序、终端或路由器生成 ASCII 横幅、每日消息 (MOTD)。
+    externalAccess: 无效的
+    texts:
+      label-border-char: 边框字符：
+      placeholder-: "#"
+      label-width-min-20-max-200: 宽度（最小 20 – 最大 200）：
+      label-banner-text: 横幅文字：
+      placeholder-enter-motd-banner-text-here: 在此输入每日比赛横幅文字……
+      title-generated-banner: 生成的横幅
 collapsibleToolMenu:
   text:
     expanding: 正在展开……
     collapsing: 正在收起……
     collapse-all-tools: 收起所有工具
     expand-all-tools: 展开所有工具
+analogSignalConverter:
+  texts:
+    title-input: 输入
+    title-parameters: 参数
+    title-output: 输出
+    swap-direction: 交换方向
+    status-ok: 在范围内
+    copy-output: 复制输出值
+    title-reference-points: 参考点
+    label-signal-type: 信号类型
+    preset-custom: 风俗
+    label-engineering-range: 工程最小值/最大值
+    label-engineering-unit: 工程单元
+    placeholder-unit: 单元
+    error-signal-range: 信号的最小值必须小于信号的最大值。
+    error-engineering-range: 工程最小值必须小于工程最大值。
+    label-engineering-value: 工程价值
+    label-rounded-signal: 四舍五入（整数）
+    status-below-range: 信号强度低于检测范围。
+    status-above-range: 信号强度超出范围。
+    status-below-live-zero: 信号低于零点，请检查是否有断线或传感器故障。
+    engineering-below-range: 该值低于工程范围，信号将超出范围。
+    engineering-above-range: 该值超出工程范围，信号将超出范围。
+    loop-status-failure-low: 低故障（≤ 3.6 mA，NAMUR NE 43）：回路断开、变送器未通电或变送器故障。
+    loop-status-uncertain-low: 电流介于 3.6 mA 和 3.8 mA 之间：未定义区域，可能发生故障（NAMUR NE 43）。
+    loop-status-under-range: 量程不足（3.8 至 4 mA）：测量在量程底部达到饱和。
+    loop-status-over-range: 超量程（20 至 20.5 mA）：测量在量程上限处达到饱和。
+    loop-status-uncertain-high: 介于 20.5 和 21 mA 之间：未定义区域，可能发生故障（NAMUR NE 43）。
+    loop-status-failure-high: 高故障（≥ 21 mA，NAMUR NE 43）：变送器故障或短路。
+    label-formula: 公式
+    formula-value: 价值
+    formula-signal: 信号
+    column-percent: 范围

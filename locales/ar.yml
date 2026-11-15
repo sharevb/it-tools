@@ -176,6 +176,7 @@ tools:
     finance: تمويل
     default: تقصير
     toml: TOML
+    automation: الأتمتة
   password-strength-analyser:
     title: محلل قوة كلمة المرور
     description: اكتشف قوة كلمة المرور الخاصة بك باستخدام أداة التحليل هذه التي تعمل
@@ -4836,6 +4837,7 @@ tools:
       label-permanent: دائم
       title-generated-fw-command: "أمر fw المُولَّد:"
       tag-const-zone-ref: منطقة ثابتة = مرجع
+      tooltip-remove: قم بإزالة هذا من القائمة
     title: مولد أوامر جدار الحماية
     description: إنشاء أوامر جدار الحماية (firewalld)
   fortune-wheel:
@@ -4853,6 +4855,11 @@ tools:
       tag-clear-all-options: مسح جميع الخيارات
       tag-no-options-added-yet-add-some-options-to-start-spinning: لم تتم إضافة أي خيارات بعد. أضف بعض الخيارات لبدء الدوران!
       tag-: ✕
+      wheel-options-wheeloptions-length: خيارات العجلات ({0})
+      spinning: الغزل...
+      spin-to-win: أدر العجلة واربح!
+      spin-the-wheel: أدر العجلة!
+      checkbox-remove-winner-after-spin: إزالة الفائز بعد الدوران
   fstab-generator:
     title: مولد FStab
     description: إنشاء سطر /etc/fstab
@@ -9110,6 +9117,10 @@ tools:
       label-azerty: أزيرتي
       label-dvorak: دفوراك
       label-colemak: كولماك
+    title: اختبار لوحة المفاتيح
+    description: اختبر مفاتيح لوحة المفاتيح وتأكد من عملها بشكل صحيح. يُعرض مؤشر
+      مرئي لكل ضغطة مفتاح، مع دعم مختلف تخطيطات لوحة المفاتيح.
+    externalAccess: باطل
   markdown-to-data:
     texts:
       label-paste-your-markdown-content: "ألصق محتوى Markdown الخاص بك:"
@@ -9694,6 +9705,10 @@ tools:
       tag-copy-json-paths: انسخ مسارات JSON
       tag-generate-patch: إنشاء رقعة
       tag-apply-patch: قم بتطبيق التصحيح
+    title: أداة اختبار تصحيح JSON
+    description: أداة بسيطة لإنشاء واختبار تصحيحات JSON وفقًا لـ RFC 6902. وسرد
+      مسارات كائن JSON.
+    externalAccess: باطل
   ping:
     title: بينغ
     description: قم بإجراء اختبار اتصال (ping) لمجموعة من أسماء المضيفين أو عناوين
@@ -10024,6 +10039,130 @@ tools:
     description: اختبر مكبرات الصوت وسماعات الرأس بتشغيل أصوات اختبارية. اضبط مستوى
       الصوت وتحقق من وضوح الصوت.
     externalAccess: باطل
+  current-loop-4-20ma-converter:
+    title: محول 4-20 مللي أمبير
+    description: قم بتحويل تيار 4-20 مللي أمبير (أو 0-20 مللي أمبير) إلى قيمة هندسية
+      والعكس، باستخدام تشخيص حلقة NAMUR NE 43.
+    texts:
+      signal-label: حاضِر
+      label-4-20-ma: 4-20 مللي أمبير
+      label-0-20-ma: 0-20 مللي أمبير
+  voltage-0-10v-converter:
+    title: محول 0-10 فولت
+    description: قم بتحويل جهد 0-10 فولت، أو 2-10 فولت، أو 0-5 فولت، أو 1-5 فولت، أو
+      ±10 فولت إلى قيمة هندسية والعكس.
+    texts:
+      signal-label: الجهد االكهربى
+      label-0-10-v: 0-10 فولت
+      label-2-10-v: 2-10 فولت
+      label-0-5-v: 0-5 فولت
+      label-1-5-v: 1-5 فولت
+      label-10-v: ±10 فولت
+  analog-scaling-calculator:
+    title: آلة حاسبة للقياس التناظري
+    description: قم بتحويل قيمة تناظرية خام لوحدة التحكم المنطقية القابلة للبرمجة
+      (Siemens 0-27648، Schneider 0-10000، 12/15/16 بت...) إلى قيمة هندسية ثم
+      أعد تحويلها إلى قيمة هندسية.
+    texts:
+      signal-label: القيمة الخام
+      preset-siemens-unipolar: سيمنز S7 أحادي القطب (من 0 إلى 27648)
+      preset-siemens-bipolar: سيمنز S7 ثنائي القطب (-27648 إلى 27648)
+      preset-schneider: شنايدر M340/M580 (من 0 إلى 10000)
+      preset-12-bits: 12 بت (من 0 إلى 4095)
+      preset-15-bits: 15 بت (من 0 إلى 32767)
+      preset-16-bits: 16 بت (من 0 إلى 65535)
+  paste-image:
+    texts:
+      copy-image: انسخ الصورة
+      copy-as-base64: انسخ بصيغة base64
+      getoutputextension-image: .{0}
+      your-browser-cannot-encode-outputformats-image-outputformat-label-the-image-downloads-as-gettypelabel-image-output-type: لا يمكن لمتصفحك ترميز {0}. سيتم تنزيل الصورة كـ {1}.
+      formatsizedelta-originalsize-image-source-size-outputsize-image-output-size: ({0})
+      output-gettypelabel-image-output-type-formatbytes-image-output-size: "الناتج: {0}، {1}"
+      original-gettypelabel-image-source-type-formatbytes-image-source-size: "الأصل: {0}، {1}"
+      image-width-image-height-px: "{0} × {1} بكسل"
+      clear-all: مسح الكل
+      images-length-images-length-1-image-images-pasted-in-this-session: "{0} {1} تم لصقها في هذه الجلسة"
+      quality: "{0}%"
+      paste-from-clipboard: لصق من الحافظة
+      the-image-stays-in-your-browser-nothing-is-uploaded: تبقى الصورة في متصفحك. لا يتم تحميل أي شيء.
+      anywhere-on-this-page-to-paste-an-image: يمكنك لصق صورة في أي مكان على هذه الصفحة.
+      press: يضعط
+      the-browser-could-not-copy-the-base64-data-url-to-the-clipboard: لم يتمكن المتصفح من نسخ عنوان URL لبيانات base64 إلى الحافظة.
+      base64-data-url-copied-to-the-clipboard: تم نسخ رابط بيانات Base64 إلى الحافظة
+      the-browser-could-not-copy-the-image-to-the-clipboard: لم يتمكن المتصفح من نسخ الصورة إلى الحافظة.
+      image-copied-to-the-clipboard: تم نسخ الصورة إلى الحافظة
+      the-browser-could-not-read-the-clipboard: لم يتمكن المتصفح من قراءة الحافظة.
+      the-browser-blocked-clipboard-access-allow-it-in-the-site-settings-or-press-pasteshortcut:
+        قام المتصفح بحظر الوصول إلى الحافظة. اسمح بذلك في إعدادات الموقع، أو
+        اضغط على {0}.
+      your-browser-cannot-read-images-from-the-clipboard-with-a-button-press-pasteshortcut-instead:
+        لا يستطيع متصفحك قراءة الصور من الحافظة باستخدام زر. اضغط على {0} بدلاً
+        من ذلك.
+      the-browser-could-not-read-the-pasted-image: لم يتمكن المتصفح من قراءة الصورة الملصقة.
+      the-browser-could-not-convert-the-image: لم يتمكن المتصفح من تحويل الصورة.
+      the-clipboard-has-no-image-copy-an-image-then-try-again: لا توجد صورة في الحافظة. انسخ صورة، ثم حاول مرة أخرى.
+      ctrl-v: Ctrl + V
+      v: ⌘ + V
+    title: لصق الصورة
+    description: الصق صورة من الحافظة، وحوّلها إلى PNG أو JPEG أو WebP، ثم قم بتنزيلها.
+    externalAccess: باطل
+  whitespace-cleaner:
+    options:
+      texts:
+        convert-crlf-lf: تحويل CRLF → LF
+        lf-endings: نهايات LF
+        left-trim-lines-and-rejoin-paragraphs-for-reddit-discord-slack: قم بقص الأسطر من اليسار وأعد ربط الفقرات لـ Reddit و Discord و Slack
+        markdown-reddit: Markdown / Reddit
+        join-soft-wrapped-paragraphs: ضم الفقرات ذات الالتفاف المرن
+        smart-unwrap: فك التغليف الذكي
+        strip-from-patches: إزالة علامة الجمع والطرح {'@'}{'@'} من الرقع
+        diff-markers: علامات التفاضل
+        remove-common-leading-indent: إزالة المسافة البادئة المشتركة
+        indent: مسافة بادئة
+        collapse-2-blank-lines-into-1: قم بدمج سطرين فارغين أو أكثر في سطر واحد
+        blank-lines: خطوط فارغة
+        remove-end-of-line-whitespace: قم بإزالة المسافات البيضاء في نهاية السطر
+        trailing-space: مساحة خلفية
+        strip-prefixes: إزالة البادئات ●، ○، ⏺
+        bullet-markers: علامات الرصاص
+        remove-characters: إزالة الأحرف ─ │ └ ┐
+        box-drawing: رسم صندوقي
+        strip-color-escape-sequences: تسلسلات الهروب الملونة
+        ansi-codes: رموز ANSI
+        strip-1-2-1-t-prefixes: إزالة البادئات 1│، 2│، 1\\t
+        line-numbers: أرقام الأسطر
+    texts:
+      cleaning-options: خيارات التنظيف
+      ctrl-a-ctrl-c: ⌘/Ctrl+A · Ctrl+C
+      your-cleaned-output-will-appear-here: ستظهر مخرجاتك المنقحة هنا.
+      paste-fragmented-claude-code-output-here: ألصق هنا مخرجات كود كلود المجزأة...
+      sample: عينة
+      paste: لصق
+      copy-failed-the-output-is-selected-press-ctrl-c-to-copy-it: فشلت عملية النسخ. تم تحديد الملف الناتج. اضغط على Ctrl+C لنسخه.
+      copied-to-the-clipboard: تم نسخها إلى الحافظة.
+      the-clipboard-api-is-unavailable: واجهة برمجة تطبيقات الحافظة غير متاحة.
+      copy-failed: فشلت عملية النسخ
+      copied: تم النسخ ✓
+      stats-value-outputlines-lines-stats-value-outputchars-chars-stats-value-savedpercent: "{0} أسطر · {1} أحرف · −{2}%"
+      stats-value-inputlines-lines-stats-value-inputchars-chars: "{0} أسطر · {1} أحرف"
+    title: منظف المساحات البيضاء
+    description: "تنظيف مخرجات الطرفية ورمز كلود: إزالة أرقام الأسطر، ورموز ANSI،
+      ورسم المربعات، وعلامات التعداد النقطي، وعلامات الاختلاف، والمسافات البيضاء
+      الإضافية."
+    externalAccess: باطل
+  cli-banner-generator:
+    title: مولد لافتات واجهة سطر الأوامر
+    description: قم بإنشاء لافتات ASCII ورسالة اليوم (MOTD) لتطبيقات CLI أو المحطة
+      الطرفية أو جهاز التوجيه الخاص بك.
+    externalAccess: باطل
+    texts:
+      label-border-char: "رمز الحدود:"
+      placeholder-: "8"
+      label-width-min-20-max-200: "العرض (الحد الأدنى 20 - الحد الأقصى 200):"
+      label-banner-text: "نص الشعار:"
+      placeholder-enter-motd-banner-text-here: أدخل نص شعار رسالة اليوم هنا...
+      title-generated-banner: تم إنشاء لافتة
 spanCopyable:
   copy: نسخ إلى الحافظة
   copied: تم النسخ!
@@ -10048,3 +10187,40 @@ collapsibleToolMenu:
     collapsing: ينهار...
     collapse-all-tools: طي جميع الأدوات
     expand-all-tools: عرض جميع الأدوات
+analogSignalConverter:
+  texts:
+    title-input: مدخل
+    title-parameters: حدود
+    title-output: الناتج
+    swap-direction: تبديل الاتجاه
+    status-ok: ضمن النطاق
+    copy-output: انسخ قيمة الإخراج
+    title-reference-points: نقاط مرجعية
+    label-signal-type: نوع الإشارة
+    preset-custom: مخصص
+    label-engineering-range: الحد الأدنى / الحد الأقصى للهندسة
+    label-engineering-unit: وحدة الهندسة
+    placeholder-unit: وحدة
+    error-signal-range: يجب أن تكون قيمة الإشارة الدنيا أقل من قيمة الإشارة القصوى.
+    error-engineering-range: يجب أن يكون الحد الأدنى للهندسة أقل من الحد الأقصى للهندسة.
+    label-engineering-value: القيمة الهندسية
+    label-rounded-signal: عدد صحيح مقرب
+    status-below-range: الإشارة خارج النطاق.
+    status-above-range: الإشارة أعلى من النطاق.
+    status-below-live-zero: الإشارة أقل من الصفر المباشر، تحقق من وجود سلك مقطوع أو مستشعر معطل.
+    engineering-below-range: إذا كانت القيمة أقل من النطاق الهندسي، فستكون الإشارة خارج النطاق.
+    engineering-above-range: إذا كانت القيمة أعلى من النطاق الهندسي، فستكون الإشارة خارج النطاق.
+    loop-status-failure-low: "فشل منخفض (≤ 3.6 مللي أمبير، NAMUR NE 43): حلقة
+      مكسورة، أو جهاز إرسال غير مزود بالطاقة أو معيب."
+    loop-status-uncertain-low: "بين 3.6 و 3.8 مللي أمبير: منطقة غير محددة، من
+      المحتمل حدوث عطل (NAMUR NE 43)."
+    loop-status-under-range: "النطاق الأدنى (من 3.8 إلى 4 مللي أمبير): يكون القياس
+      مشبعًا في أسفل النطاق."
+    loop-status-over-range: "تجاوز النطاق (20 إلى 20.5 مللي أمبير): يتم تشبع القياس عند أعلى النطاق."
+    loop-status-uncertain-high: "بين 20.5 و 21 مللي أمبير: منطقة غير محددة، من
+      المحتمل حدوث عطل (NAMUR NE 43)."
+    loop-status-failure-high: "فشل عالي (≥ 21 مللي أمبير، NAMUR NE 43): جهاز إرسال معيب أو دارة قصر."
+    label-formula: صيغة
+    formula-value: قيمة
+    formula-signal: إشارة
+    column-percent: يتراوح
