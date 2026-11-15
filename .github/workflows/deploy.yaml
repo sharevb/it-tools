@@ -39,9 +39,13 @@ jobs:
     # job runs the checked-out branch's build scripts with VERCEL_TOKEN in the environment.
     # That is fine for branches in this repository, whose authors already have the secrets, and
     # is not something to offer an arbitrary fork.
+    # Skip renovate[bot] too as it exceeds Vercel Free Plan limits.
     if: >-
-      github.event_name != 'pull_request' ||
-      github.event.pull_request.head.repo.full_name == github.repository
+      (
+        github.event_name != 'pull_request' ||
+        github.event.pull_request.head.repo.full_name == github.repository
+      ) &&
+      github.actor != 'renovate[bot]'
     runs-on: ubuntu-26.04-arm
     timeout-minutes: 15
     # Records a GitHub Deployment per run, which is what puts the Environments sidebar, the
