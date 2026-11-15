@@ -58,7 +58,7 @@ test.describe('Tool - Paste image', () => {
   });
 
   test('Has title', async ({ page }) => {
-    await expect(page).toHaveTitle('Paste image - Toolbox');
+    await expect(page).toHaveTitle('Paste Image - IT Tools');
   });
 
   test('A pasted image is added to the history and can be downloaded', async ({ page }) => {
