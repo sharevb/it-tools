@@ -1,0 +1,31 @@
+# Ensure consistent LF line endings across platforms
+* text=auto eol=lf
+
+# Force LF for text-based files
+*.yml     text eol=lf
+*.yaml    text eol=lf
+*.json    text eol=lf
+*.js      text eol=lf
+*.ts      text eol=lf
+*.vue     text eol=lf
+*.css     text eol=lf
+*.scss    text eol=lf
+*.html    text eol=lf
+*.md      text eol=lf
+*.sh      text eol=lf
+*.envsh   text eol=lf
+
+# Binary files must not be converted
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.webp    binary
+*.ico     binary
+*.woff    binary
+*.woff2   binary
+*.ttf     binary
+*.eot     binary
+*.pdf     binary
+*.zip     binary
+*.gz      binary
