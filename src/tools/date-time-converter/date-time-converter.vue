@@ -139,7 +139,7 @@ const formats: DateFormat[] = [
     name: '.Net ticks',
     fromDate: (date) => ticksFromDate(date),
     toDate: (date) => ticksToDate(date) || new Date(),
-    formatMatcher: (date) => /\d+/.test(date || ''),
+    formatMatcher: (date) => /^\d+$/.test(date || ''),
   },
 ];
 
