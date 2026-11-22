@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import {
+  format,
   formatISO,
   formatISO9075,
   formatRFC3339,
@@ -10,6 +11,7 @@ import {
   getUnixTime,
   isDate,
   isValid,
+  parse,
   parseISO,
 } from 'date-fns';
 import { ticksFromDate, ticksToDate } from 'tick-time';
@@ -128,6 +130,12 @@ const formats: DateFormat[] = [
     fromDate: (date) => dateToLDAPTimestamp(date),
     toDate: (date) => lDAPTimestampToDate(date),
     formatMatcher: isLDAPTimestamp,
+  },
+  {
+    name: 'Julian Date (YYYY/DDD)',
+    fromDate: (date) => format(date, 'yyyy/DDD'),
+    toDate: (date) => parse(date, 'yyyy/DDD', new Date()),
+    formatMatcher: (date) => /\d{4}\/\d{3}/.test(date || ''),
   },
   {
     name: 'Win32 FileTime/LDAP 18 digits Timestamp',
