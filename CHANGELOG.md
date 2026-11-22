@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.11.22
+
+### Features
+- **xml-diff**: add XML diff tool (e8f0677)
+- **new tool**: Paste Image (0295223)
+- **new tool**: Whitespace cleaner tool (8974b30)
+- **new tool**: CLI Banner Generator (6e021e9)
+- **new tools**: 4-20 mA, 0-10 V and analog scaling converters (#596) (b5eace8)
+- **new tool**: Fraction Decimal Converter (41297c8)
+- **new tool**: Sound Tester (f122baf)
+
+### Bug fixes
+-  update nginx for CVE (5bbc672)
+- **percentage-calculator**: clear the result when an input is cleared (7632d99)
+- **extract desc script**: handle formatting of long lines (83d7d33)
+- **Fortune Wheel**: better color choosing and UI enhancement (8d13f0a)
+- **hash-text**: refresh added hashes when digest encoding changes (#594) (e775893)
+-  keep the language dropdown scrollable within the viewport (#592) (324a6be)
+- **Regex Memo**: fix Escaping table formatting (ec33d7d)
+
+### Continuous integration
+-  fix e2e (d10b89b)
+-  disable deploy on renovate bot PR because it exceeds Vercel free plan limits (231930d)
+
+### Chores
+- **deps**: update nginxinc/nginx-unprivileged:stable-alpine docker digest to f5116ed (#590) (47943c7)
+
+### I18n
+-  extract and translate remaining (1d77ed3)
+-  extract and translated remaining (8f94ed3)
+
 ## Version 2026.10.25
 
 ### Features
