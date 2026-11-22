@@ -10616,6 +10616,19 @@ tools:
       label-banner-text: "Κείμενο banner:"
       placeholder-enter-motd-banner-text-here: Εισαγάγετε εδώ κείμενο banner MOTD...
       title-generated-banner: Δημιουργημένο banner
+  xml-diff:
+    title: Διαφορά XML
+    description: Συγκρίνετε δύο έγγραφα XML και βρείτε τις διαφορές μεταξύ τους.
+    texts:
+      message-invalid-xml-format: Μη έγκυρη μορφή XML
+      label-your-first-xml: Το πρώτο σας XML
+      placeholder-paste-your-first-xml-here: Επικολλήστε εδώ το πρώτο σας XML...
+      label-your-xml-to-compare: Το XML σας για σύγκριση
+      placeholder-paste-your-xml-to-compare-here: Επικολλήστε το XML σας για σύγκριση εδώ...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: Τα παρεχόμενα XML είναι τα ίδια
+      only-show-differences: Εμφάνιση μόνο διαφορών
 collapsibleToolMenu:
   text:
     expanding: Επέκταση...

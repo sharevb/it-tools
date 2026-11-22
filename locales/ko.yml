@@ -9815,6 +9815,19 @@ tools:
       label-banner-text: "배너 텍스트:"
       placeholder-enter-motd-banner-text-here: 오늘의 주요 뉴스 배너 문구를 여기에 입력하세요...
       title-generated-banner: 생성된 배너
+  xml-diff:
+    title: XML 차이점
+    description: 두 XML 문서를 비교하고 그 차이점을 확인하세요.
+    texts:
+      message-invalid-xml-format: 잘못된 XML 형식입니다.
+      label-your-first-xml: 첫 번째 XML
+      placeholder-paste-your-first-xml-here: 여기에 첫 번째 XML을 붙여넣으세요...
+      label-your-xml-to-compare: 비교할 XML
+      placeholder-paste-your-xml-to-compare-here: 비교할 XML을 여기에 붙여넣으세요...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: 제공된 XML은 동일합니다.
+      only-show-differences: 차이점만 표시하세요.
 about:
   alltools-title: 모든 {toolsCount}개 도구
   tools:

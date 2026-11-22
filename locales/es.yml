@@ -10490,6 +10490,19 @@ tools:
       label-banner-text: "Texto del banner:"
       placeholder-enter-motd-banner-text-here: Introduzca aquí el texto del banner del mensaje del día...
       title-generated-banner: Banner generado
+  xml-diff:
+    title: Diferencia XML
+    description: Compara dos documentos XML y obtén las diferencias entre ellos.
+    texts:
+      message-invalid-xml-format: Formato XML no válido
+      label-your-first-xml: Tu primer XML
+      placeholder-paste-your-first-xml-here: Pegue aquí su primer XML...
+      label-your-xml-to-compare: Su XML para comparar
+      placeholder-paste-your-xml-to-compare-here: Pegue aquí su código XML para compararlo...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: Los XML proporcionados son los mismos
+      only-show-differences: Solo muestra las diferencias
 spanCopyable:
   copy: Copiar al portapapeles
   copied: Copiado!

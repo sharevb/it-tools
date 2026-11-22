@@ -9885,6 +9885,19 @@ tools:
       label-banner-text: 橫幅文字：
       placeholder-enter-motd-banner-text-here: 在此輸入每日比賽橫幅文字…
       title-generated-banner: 產生的橫幅
+  xml-diff:
+    title: XML差異
+    description: 比較兩個 XML 文檔，找出它們之間的差異。
+    texts:
+      message-invalid-xml-format: 無效的 XML 格式
+      label-your-first-xml: 你的第一個 XML
+      placeholder-paste-your-first-xml-here: 把你的第一個 XML 檔案貼到這裡…
+      label-your-xml-to-compare: 要比較的 XML
+      placeholder-paste-your-xml-to-compare-here: 請將要比較的 XML 檔案貼到這裡…
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: 提供的 XML 檔案相同
+      only-show-differences: 僅顯示差異
 collapsibleToolMenu:
   text:
     expanding: 正在展開……

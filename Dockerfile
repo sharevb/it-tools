@@ -26,7 +26,7 @@ RUN pnpm build \
         -exec gzip -9 -n -k {} +
 
 # production stage
-FROM nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03 AS production-stage
+FROM nginx/nginx-unprivileged:alpine AS production-stage
 
 LABEL maintainer="ShareVB <sharevb@gmail.com>" \
       org.opencontainers.image.authors="ShareVB <sharevb@gmail.com>"

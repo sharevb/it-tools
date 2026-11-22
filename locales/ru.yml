@@ -10393,6 +10393,19 @@ tools:
       label-banner-text: "Текст баннера:"
       placeholder-enter-motd-banner-text-here: Введите текст баннера дня здесь...
       title-generated-banner: Сгенерированный баннер
+  xml-diff:
+    title: XML-разница
+    description: Сравните два XML-документа и выявите различия между ними.
+    texts:
+      message-invalid-xml-format: Неверный формат XML
+      label-your-first-xml: Ваш первый XML
+      placeholder-paste-your-first-xml-here: Вставьте сюда свой первый XML-файл...
+      label-your-xml-to-compare: Ваш XML-файл для сравнения
+      placeholder-paste-your-xml-to-compare-here: Вставьте сюда свой XML-код для сравнения...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: Предоставленные XML-файлы идентичны.
+      only-show-differences: Покажите только различия.
 spanCopyable:
   copy: Копировать в буфер обмена
   copied: Скопировано!

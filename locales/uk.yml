@@ -10335,6 +10335,19 @@ tools:
       label-banner-text: "Текст банера:"
       placeholder-enter-motd-banner-text-here: Введіть тут текст банера MOTD...
       title-generated-banner: Згенерований банер
+  xml-diff:
+    title: Різниця XML
+    description: Порівняйте два XML-документи та знайдіть відмінності між ними.
+    texts:
+      message-invalid-xml-format: Недійсний формат XML
+      label-your-first-xml: Ваш перший XML-файл
+      placeholder-paste-your-first-xml-here: Вставте сюди свій перший XML-файл...
+      label-your-xml-to-compare: Ваш XML для порівняння
+      placeholder-paste-your-xml-to-compare-here: Вставте сюди свій XML-файл для порівняння...
+  xml-diff-viewer:
+    texts:
+      the-provided-xmls-are-the-same: Надані XML-файли однакові
+      only-show-differences: Показати лише відмінності
 spanCopyable:
   copy: Копіювати в буфер обміну
   copied: Скопійовано!
