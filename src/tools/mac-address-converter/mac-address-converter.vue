@@ -18,58 +18,71 @@ const { t } = useI18n();
 
 const input = useQueryParam({ tool: 'mac-conv', name: 'addr', defaultValue: 'AA:BB:CC:DD:EE:FF' });
 
+const convertMulti = (value: string, converter: (mac: string) => string): string => {
+  const macs = value.split(/[\s,;]+/).filter((mac) => mac.trim() !== '');
+  return macs
+    .map((mac) => {
+      try {
+        return converter(mac);
+      } catch (error) {
+        return t('tools.mac-address-converter.texts.error-invalid-mac-address', [mac]);
+      }
+    })
+    .join('\n');
+};
+
 const formats = computed(() => [
   {
     label: t('tools.mac-address-converter.texts.label-canonical-ietf-format'),
-    value: convertMacCanonicalIETF(input.value),
+    value: convertMulti(input.value, convertMacCanonicalIETF),
   },
   {
     label: t('tools.mac-address-converter.texts.label-canonical-format'),
-    value: convertMacCanonical(input.value),
+    value: convertMulti(input.value, convertMacCanonical),
   },
   {
     label: t('tools.mac-address-converter.texts.label-canonical-ieee-format'),
-    value: convertMacCanonicalIEEE(input.value),
+    value: convertMulti(input.value, convertMacCanonicalIEEE),
   },
   {
     label: t('tools.mac-address-converter.texts.label-cisco'),
-    value: convertMacCISCO(input.value),
+    value: convertMulti(input.value, convertMacCISCO),
   },
   {
     label: t('tools.mac-address-converter.texts.label-hex'),
-    value: convertMacToNumber(input.value).toString(16),
+    value: convertMulti(input.value, (mac) => convertMacToNumber(mac).toString(16)),
   },
   {
     label: t('tools.mac-address-converter.texts.label-decimal'),
-    value: convertMacToNumber(input.value).toString(10),
+    value: convertMulti(input.value, (mac) => convertMacToNumber(mac).toString(10)),
   },
   {
     label: t('tools.mac-address-converter.texts.label-eui-64-canonical-ietf-format'),
-    value: convertMacToEUI64CanonicalIETF(input.value, false),
+    value: convertMulti(input.value, (mac) => convertMacToEUI64CanonicalIETF(mac, false)),
   },
   {
     label: t('tools.mac-address-converter.texts.label-eui-64-canonical-ieee-format'),
-    value: convertMacToEUI64CanonicalIEEE(input.value, false),
+    value: convertMulti(input.value, (mac) => convertMacToEUI64CanonicalIEEE(mac, false)),
   },
   {
     label: t('tools.mac-address-converter.texts.label-eui-64-cisco'),
-    value: convertMacToEUI64CISCO(input.value, false),
+    value: convertMulti(input.value, (mac) => convertMacToEUI64CISCO(mac, false)),
   },
   {
     label: t('tools.mac-address-converter.texts.label-eui-64-ipv6-canonical-ietf-format'),
-    value: convertMacToEUI64CanonicalIETF(input.value, true),
+    value: convertMulti(input.value, (mac) => convertMacToEUI64CanonicalIETF(mac, true)),
   },
   {
     label: t('tools.mac-address-converter.texts.label-eui-64-ipv6-canonical-ieee-format'),
-    value: convertMacToEUI64CanonicalIEEE(input.value, true),
+    value: convertMulti(input.value, (mac) => convertMacToEUI64CanonicalIEEE(mac, true)),
   },
   {
     label: t('tools.mac-address-converter.texts.label-eui-64-ipv6-cisco'),
-    value: convertMacToEUI64CISCO(input.value, true),
+    value: convertMulti(input.value, (mac) => convertMacToEUI64CISCO(mac, true)),
   },
   {
     label: t('tools.mac-address-converter.texts.label-link-local-ipv6'),
-    value: convertMacToLinkLocalIPv6(input.value),
+    value: convertMulti(input.value, (mac) => convertMacToLinkLocalIPv6(mac)),
   },
 ]);
 
@@ -86,8 +99,10 @@ const inputLabelAlignmentConfig = {
       v-model:value="input"
       :label="t('tools.mac-address-converter.texts.label-mac-address')"
       size="large"
-      :placeholder="t('tools.mac-address-converter.texts.placeholder-type-a-mac-address')"
+      :placeholder="t('tools.mac-address-converter.texts.placeholder-type-mac-address')"
       clearable
+      multiline
+      rows="3"
       autocomplete="off"
       autocorrect="off"
       autocapitalize="off"
@@ -103,6 +118,9 @@ const inputLabelAlignmentConfig = {
       :value="format.value"
       :label="format.label"
       v-bind="inputLabelAlignmentConfig"
+      multiline
+      autosize
+      rows="1"
       mb-1
     />
   </c-card>
