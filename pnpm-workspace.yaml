@@ -16,7 +16,7 @@ overrides:
   '@xmldom/xmldom@0.9.10': 0.9.11
   # @it-tools/bip39 pins ^0.9.0, whose Node fallback uses eval("require('crypto')")
   # and triggers rolldown EVAL build warnings; 0.11.x dropped the eval.
-  js-sha256: ^0.11.1
+  js-sha256: ^1.0.0
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
 
 patchedDependencies:
